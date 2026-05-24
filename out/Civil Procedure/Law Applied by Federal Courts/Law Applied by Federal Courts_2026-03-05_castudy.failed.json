@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "sourceResult": "/Users/wayneclub/BarCard/out/Civil Procedure/Law Applied by Federal Courts/Law Applied by Federal Courts_2026-03-05_castudy.json",
+    "generatedAt": "2026-03-05T07:04:48",
+    "failedCount": 5
+  },
+  "failed": [
+    {
+      "index": 4,
+      "qid": "",
+      "question": "A woman brought a diversity action against her former employer in a federal district court in State A. In her complaint, the woman alleged that she contracted a lung disease at work due to her employer's negligence. The employer moved to dismiss the woman's action for failure to state a claim. The court granted the motion because State A does not recognize claims for occupational diseases. The woman appealed.\nWhile the woman's appeal was pending, the highest state court in State A issued a ruling that, for the first time, recognized claims for occupational diseases.\nIs the appellate court likely to overturn the dismissal?",
+      "reason": "stem-mismatch",
+      "match_score": 0.0112,
+      "error": "",
+      "url": "https://castudy.com/api/mcq-search?q=A%20woman%20brought%20a%20diversity%20action%20against%20her%20former%20employer%20in%20a%20federal%20district%20court%20in%20State%20A.%20In%20her%20complaint%2C%20the%20woman%20alleged%20that%20she%20contracted%20a%20lung%20disease%20at%20work%20due%20to%20her%20employer%27s%20negligence.%20The%20employer%20moved%20to%20dismiss%20the%20woman%27s%20action%20for%20failure%20to%20state%20a%20claim.%20The%20court%20granted%20the%20motion%20because%20State%20A%20does%20not%20recognize%20claims%20for%20occupational%20diseases.%20The%20woman%20appealed.%20While%20the%20woman%27s%20appeal%20was%20pending%2C%20the%20highest%20state%20court%20in%20State%20A%20issued%20a%20ruling%20that%2C%20for%20the%20first%20time%2C%20recognized%20claims%20for%20occupational%20diseases.%20Is%20the%20appellate%20court%20likely%20to%20overturn%20the%20dismissal%3F&type=MBE"
+    },
+    {
+      "index": 13,
+      "qid": "",
+      "question": "A truck driver from State A and a bus driver from State B were involved in a collision in State B that injured the truck driver. The truck driver filed a federal diversity action in State B based on negligence, seeking $100,000 in damages from the bus driver.\nWhat law of negligence should the court apply?",
+      "reason": "request-failed",
+      "match_score": 0.0,
+      "error": "stem-mismatch",
+      "url": "https://castudy.com/api/mcq-search?q=A%20truck%20driver%20from%20State%20A%20and%20a%20bus%20driver%20from%20State%20B%20were%20involved%20in%20a%20collision%20in%20State%20B%20that%20injured%20the%20truck%20driver.%20The%20truck%20driver%20filed%20a%20federal%20diversity%20action%20in%20State%20B%20based%20on%20negligence%2C%20seeking%20%24100%2C000%20in%20damages%20from%20the%20bus%20driver.%20What%20law%20of%20negligence%20should%20the%20court%20apply%3F&type=MBE"
+    },
+    {
+      "index": 15,
+      "qid": "",
+      "question": "A man was injured when a military drone crashed into his house in State A. The drone was manufactured for the U.S. government by a company incorporated and headquartered in State B pursuant to the government's design specifications.\nThe man filed a diversity action against the company in federal court in State A to recover $100,000 in damages. The man claimed that the drone was defectively designed. In its answer, the company asserted a defense that a manufacturer of military equipment for the U.S. government cannot be held liable for injuries caused by defectively designed equipment. The company's defense is not explicitly authorized by a federal statute, but many federal courts in other jurisdictions have recognized this defense as federal common law.\nState A law allows all manufacturers to be held liable for their defectively designed products.\nShould the federal court look to federal law or state law to decide if the company can validly assert this defense?",
+      "reason": "stem-mismatch",
+      "match_score": 0.5713,
+      "error": "",
+      "url": "https://castudy.com/api/mcq-search?q=A%20man%20was%20injured%20when%20a%20military%20drone%20crashed%20into%20his%20house%20in%20State%20A.%20The%20drone%20was%20manufactured%20for%20the%20U.S.%20government%20by%20a%20company%20incorporated%20and%20headquartered%20in%20State%20B%20pursuant%20to%20the%20government%27s%20design%20specifications.%20The%20man%20filed%20a%20diversity%20action%20against%20the%20company%20in%20federal%20court%20in%20State%20A%20to%20recover%20%24100%2C000%20in%20damages.%20The%20man%20claimed%20that%20the%20drone%20was%20defectively%20designed.%20In%20its%20answer%2C%20the%20company%20asserted%20a%20defense%20that%20a%20manufacturer%20of%20military%20equipment%20for%20the%20U.S.%20government%20cannot%20be%20held%20liable%20for%20injuries%20caused%20by%20defectively%20designed%20equipment.%20The%20company%27s%20defense%20is%20not%20explicitly%20authorized%20by%20a%20federal%20statute%2C%20but%20many%20federal%20courts%20in%20other%20jurisdictions%20have%20recognized%20this%20defense%20as%20federal%20common%20law.%20State%20A%20law%20allows%20all%20manufacturers%20to%20be%20held%20liable%20for%20their%20defectively%20designed%20products.%20Should%20the%20federal%20court%20look%20to%20federal%20law%20or%20state%20law%20to%20decide%20if%20the%20company%20can%20validly%20assert%20this%20defense%3F&type=MBE"
+    },
+    {
+      "index": 16,
+      "qid": "",
+      "question": "A patient from State A sued a doctor from State B in a State A federal court for medical malpractice that allegedly occurred in State B. At the conclusion of trial, the jury found in favor of the patient and awarded him $3,000,000 in damages. The court entered a judgment consistent with the verdict. Fifteen days later, the patient brought an action to enforce the judgment in the same federal court.\nThe Federal Rules of Civil Procedure impose an automatic 30-day stay on all final judgments awarding damages. State A law, in contrast, imposes a 14-day stay on all final judgments awarding damages and provides that the law of the state where the injury occurred must be applied to all malpractice claims. However, State B law imposes a 21-day stay on all final judgments awarding damages and provides that State B law must be applied to all tort claims.\nShould the federal court enter an order to enforce the judgment?",
+      "reason": "stem-mismatch",
+      "match_score": 0.4223,
+      "error": "",
+      "url": "https://castudy.com/api/mcq-search?q=A%20patient%20from%20State%20A%20sued%20a%20doctor%20from%20State%20B%20in%20a%20State%20A%20federal%20court%20for%20medical%20malpractice%20that%20allegedly%20occurred%20in%20State%20B.%20At%20the%20conclusion%20of%20trial%2C%20the%20jury%20found%20in%20favor%20of%20the%20patient%20and%20awarded%20him%20%243%2C000%2C000%20in%20damages.%20The%20court%20entered%20a%20judgment%20consistent%20with%20the%20verdict.%20Fifteen%20days%20later%2C%20the%20patient%20brought%20an%20action%20to%20enforce%20the%20judgment%20in%20the%20same%20federal%20court.%20The%20Federal%20Rules%20of%20Civil%20Procedure%20impose%20an%20automatic%2030-day%20stay%20on%20all%20final%20judgments%20awarding%20damages.%20State%20A%20law%2C%20in%20contrast%2C%20imposes%20a%2014-day%20stay%20on%20all%20final%20judgments%20awarding%20damages%20and%20provides%20that%20the%20law%20of%20the%20state%20where%20the%20injury%20occurred%20must%20be%20applied%20to%20all%20malpractice%20claims.%20However%2C%20State%20B%20law%20imposes%20a%2021-day%20stay%20on%20all%20final%20judgments%20awarding%20damages%20and%20provides%20that%20State%20B%20law%20must%20be%20applied%20to%20all%20tort%20claims.%20Should%20the%20federal%20court%20enter%20an%20order%20to%20enforce%20the%20judgment%3F&type=MBE"
+    },
+    {
+      "index": 17,
+      "qid": "",
+      "question": "A man brought a diversity action against a woman in a federal court in State A for conversion. The man claimed that the woman stole several historic artifacts from his home and sold them to a pawn shop.\nWhat body of law governs the burden of proof in this action?",
+      "reason": "stem-mismatch",
+      "match_score": 0.1359,
+      "error": "",
+      "url": "https://castudy.com/api/mcq-search?q=A%20man%20brought%20a%20diversity%20action%20against%20a%20woman%20in%20a%20federal%20court%20in%20State%20A%20for%20conversion.%20The%20man%20claimed%20that%20the%20woman%20stole%20several%20historic%20artifacts%20from%20his%20home%20and%20sold%20them%20to%20a%20pawn%20shop.%20What%20body%20of%20law%20governs%20the%20burden%20of%20proof%20in%20this%20action%3F&type=MBE"
+    }
+  ]
+}

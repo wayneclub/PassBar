@@ -1,0 +1,521 @@
+{
+  "meta": {
+    "source": "UWorld (captured from DOM #questionText + choices + right-content screenshot)",
+    "capturedAt": "2026-03-05T13:20:57.543Z",
+    "count": 39,
+    "screenshotCount": 39,
+    "url": "https://apps-legal.uworld.com/courseapp/legal/v58/testinterface/launchtest/14822410/405138776/2/1",
+    "examName": "Real Property: Mortgages/Security Devices",
+    "subject": "Real Property",
+    "chapter": "Mortgages/Security Devices"
+  },
+  "questions": [
+    {
+      "index": 1,
+      "question": "A woman acquired title to a four-acre lot. Several years later, she executed a mortgage on the lot to a bank to secure repayment of a $100,000 loan. Subsequently, the woman executed a mortgage on the same four-acre lot to a finance company to secure repayment of a $50,000 loan. Both mortgages were promptly recorded.\nThe woman recently defaulted on both loans. The bank promptly initiated foreclosure proceedings and sent proper notice to all necessary parties. The current fair market value of the four-acre lot is $250,000.\nThe finance company has filed a timely motion in the foreclosure proceeding asking the court to require the bank to first foreclose on two of the four acres in the four-acre lot. The bank opposes this motion and insists that it has the right to subject the entire four-acre lot to the foreclosure sale.\nWill the court grant the finance company's motion?",
+      "choices": {
+        "a": "No, because the bank holds a purchase-money mortgage.",
+        "b": "No, because the entire four-acre lot is subject to the bank's senior mortgage.",
+        "c": "Yes, because a pro rata foreclosure of the lot will not prejudice the rights of the bank.",
+        "d": "Yes, because of the \"two funds\" rule of marshalling."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0001.png"
+    },
+    {
+      "index": 2,
+      "question": "An investor purchased a tract of commercial land, financing a large part of the purchase price with a loan from a business partner that was secured by a mortgage. The investor made the installment payments on the mortgage regularly for several years. Then the investor persuaded a neighbor to buy the land, subject to the mortgage to his partner. They expressly agreed that the neighbor would not assume and agree to pay the investor's debt to the partner. The investor's mortgage to the partner contained a due-on-sale clause stating, \"If Mortgagor transfers his or her interest without the written consent of Mortgagee first obtained, then at Mortgagee's option the entire principal balance of the debt secured by this Mortgage shall become immediately due and payable.\" However, without seeking his partner's consent, the investor conveyed the land to the neighbor, the deed stating that it was \"subject to a mortgage to [the partner]\" and giving details and recording data related to the mortgage. The neighbor took possession of the land and made several mortgage payments, which the partner accepted. Now, however, neither the neighbor nor the investor has made the last three mortgage payments. The partner has sued the neighbor for the amount of the delinquent payments.\nIn this action, for whom should the court render judgment?",
+      "choices": {
+        "a": "The neighbor, because she did not assume and agree to pay the investor's mortgage debt.",
+        "b": "The neighbor, because she is not in privity of estate with the partner.",
+        "c": "The partner, because the investor's deed to the neighbor violated the due-on-sale clause.",
+        "d": "The partner, because the neighbor is in privity of estate with the partner."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0002.png"
+    },
+    {
+      "index": 3,
+      "question": "A credit card company obtained and properly filed a judgment against a man after he failed to pay a $10,000 debt. A statute in the jurisdiction provides as follows: \"Any judgment properly filed shall, for 10 years from filing, be a lien on the real property then owned or subsequently acquired by any person against whom the judgment is rendered.\"\nTwo years later, the man purchased land for $200,000. He made a down payment of $20,000 and borrowed the remaining $180,000 from a bank. The bank loan was secured by a mortgage on the land. Immediately after the closing, the deed to the man was recorded first, and the bank's mortgage was recorded second.\nFive months later, the man defaulted on the mortgage loan and the bank initiated judicial foreclosure proceedings. After receiving notice of the proceedings, the credit card company filed a motion to have its judgment lien declared to be the first lien on the land.\nIs the credit card company's motion likely to be granted?",
+      "choices": {
+        "a": "No, because the bank's mortgage secured a loan used to purchase the land.",
+        "b": "No, because the man's down payment exceeded the amount of his debt to the credit card company.",
+        "c": "Yes, because the bank had constructive notice of the judgment lien.",
+        "d": "Yes, because the bank is a third-party lender and not the seller of the land."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0003.png"
+    },
+    {
+      "index": 4,
+      "question": "A man borrowed $500,000 from a bank, securing the loan with a mortgage on a commercial building he owned.\nThe mortgage provided as follows: \"No prepayment may be made on this loan during the first two years after the date of this mortgage. Thereafter, prepayment may be made in any amount at any time but only if accompanied by a prepayment fee of 5% of the amount prepaid.\"\nOne year later, the man received an unexpected cash gift of $1 million and wished to pay off the $495,000 principal balance still owed on the loan. Concerned that the bank might refuse prepayment—despite a rise in market interest rates in the year since the loan was made—or at least insist on the 5% prepayment fee, the man consulted an attorney concerning the enforceability of the above-quoted clause.\nThere is no applicable statute.\nWhat is the attorney likely to say?",
+      "choices": {
+        "a": "The entire clause is unenforceable, because it violates a public policy favoring the prompt and early repayment of debt.",
+        "b": "The entire clause is unenforceable, because the rise in interest rates will allow the bank to reloan the funds without loss.",
+        "c": "The two-year prepayment prohibition and the prepayment fee provision are both valid and enforceable.",
+        "d": "The two-year prepayment prohibition is unenforceable, but the prepayment fee provision is enforceable."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0004.png"
+    },
+    {
+      "index": 5,
+      "question": "A homebuyer financed the purchase of a new home by executing a promissory note and purchase-money mortgage to his credit union. The mortgage was promptly recorded. The next year, the home developed foundation problems. The homebuyer was forced to take out a second mortgage with a bank to finance the repairs. The mortgage was properly recorded, and file-stamped copies were sent to the homebuyer and the credit union.\nAfter making consistent payments for five years, the homebuyer defaulted on both mortgages. The homebuyer agreed to execute a deed in lieu of foreclosure to the credit union in satisfaction of the debt. The deed was signed, delivered, and properly recorded. The credit union then initiated foreclosure proceedings on its first mortgage in order to eliminate the second mortgage held by the bank.\nIs the credit union likely to prevail?",
+      "choices": {
+        "a": "No, because the credit union had actual knowledge of the second mortgage when it accepted the deed in lieu of foreclosure.",
+        "b": "No, because the deed in lieu of foreclosure automatically eliminated the second mortgage under the doctrine of merger.",
+        "c": "Yes, because the credit union impliedly retained the right to foreclose on the mortgage to eliminate junior liens.",
+        "d": "Yes, because the doctrine of merger does not apply to mortgages and the lender retains the right to foreclose."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0005.png"
+    },
+    {
+      "index": 6,
+      "question": "A builder sold a new house to a buyer for use as the buyer's residence. The buyer paid 10% of the purchase price and financed the rest by executing a promissory note and purchase-money mortgage to the builder.\nA year later, the buyer missed several mortgage payments to the builder and became unable to make payments. During that year, property values in the neighborhood declined substantially. The builder suggested that the buyer deed the house back to the builder to settle all claims and avoid the costs and other disadvantages of foreclosure. The buyer deeded the house back to the builder.\nDoes the builder now own fee simple title to the house?",
+      "choices": {
+        "a": "No, because the deed back to the builder constitutes a disguised mortgage.",
+        "b": "No, because the owner of a personal residence cannot waive the right to foreclosure.",
+        "c": "Yes, because of the doctrine of equitable redemption.",
+        "d": "Yes, because the transaction was reasonable and fair under the circumstances."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0006.png"
+    },
+    {
+      "index": 7,
+      "question": "The owner of a residence entered into a contract of sale with a couple. After a down payment, the remaining purchase price of the residence was $500,000. The couple was only able to secure a mortgage loan from a bank for $400,000, so the owner-seller agreed to advance the couple the difference in exchange for a mortgage on the residence. At closing, the couple paid the owner-seller $400,000 from the proceeds of their bank loan. The couple also signed notes that obligated them to pay $400,000 to the bank and $100,000 to the owner-seller, and to give the bank and the owner-seller mortgages on the residence to secure those notes. The owner-seller, agreeing to the bank's demand, subordinated her mortgage to the bank's mortgage. The bank recorded its mortgage one day after the owner-seller recorded her mortgage.\nSeveral years later, the couple stopped paying on both notes at a time when the principal balances of their obligations were $350,000 to the bank and $85,000 to the owner-seller. The owner-seller has filed a complaint for foreclosure on her mortgage.\nThe recording act of the applicable jurisdiction reads, \"No conveyance or mortgage of real property shall be good against subsequent purchasers for value and without notice who shall first record.\"\nIs the owner-seller required to make the bank a party to this action?",
+      "choices": {
+        "a": "No, because the owner-seller subordinated her mortgage to the bank's mortgage.",
+        "b": "No, because the remaining principal amount of the couple's obligation to the bank exceeds that of the owner-seller.",
+        "c": "Yes, because the owner-seller recorded her mortgage before the bank recorded its mortgage.",
+        "d": "Yes, because the owner-seller's purchase-money mortgage has priority over the bank's mortgage."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0007.png"
+    },
+    {
+      "index": 8,
+      "question": "A man owned land. He took out a loan that was secured by a mortgage on the land. The man had personal liability on the loan.\nThe man sold the land to a purchaser, who expressly assumed the mortgage debt. The purchaser failed to make two installment payments. To prevent default and foreclosure, the man paid the overdue installments. After making the payments, the man sued the purchaser for reimbursement.\nIs the man likely to prevail?",
+      "choices": {
+        "a": "No, because the man did not initiate foreclosure proceedings before seeking reimbursement.",
+        "b": "No, because the man was personally liable on the loan.",
+        "c": "Yes, because the law of suretyship permits the man to seek reimbursement.",
+        "d": "Yes, because the man's transfer of the land discharged him from any personal liability on the loan."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0008.png"
+    },
+    {
+      "index": 9,
+      "question": "A man defaulted on a loan that was secured by a mortgage on his home. The lender brought an appropriate action to foreclose the mortgage and, at the judicial foreclosure sale, the home was sold to a buyer. Shortly thereafter, the man inherited sufficient funds to enable him to reacquire the home from the buyer, but the buyer declined to sell.\nWhich of the following would provide the man with legal justification for pursuing an action for specific performance to compel the buyer to transfer ownership of the home to the man?",
+      "choices": {
+        "a": "The jurisdiction adheres to the doctrine of equitable redemption.",
+        "b": "The jurisdiction does not follow the doctrine of merger.",
+        "c": "The jurisdiction has enacted a statute that permits redemption.",
+        "d": "The jurisdiction recognizes the lien theory of mortgages."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0009.png"
+    },
+    {
+      "index": 10,
+      "question": "A businessman owned a hotel, subject to a mortgage securing a debt he owed to a bank. The businessman later acquired a nearby parking garage, financing part of the purchase price with a loan from a financing company, secured by a mortgage on the parking garage. Two years thereafter, the businessman defaulted on the loan owed to the bank, which caused the full amount of that loan to become immediately due and payable. The bank decided not to foreclose the mortgage on the hotel at that time, but instead properly sued for the full amount of the defaulted loan. The bank obtained and properly filed a judgment for that amount.\nA statute of the jurisdiction provides: \"Any judgment properly filed shall, for 10 years from filing, be a lien on the real property then owned or subsequently acquired by any person against whom the judgment is rendered.\" There is no other applicable statute, except the statute providing for judicial foreclosure of mortgages, which places no restrictions on deficiency judgments.\nShortly thereafter, the bank brought an appropriate action for judicial foreclosure of its mortgage on the hotel and of its judgment lien on the parking garage. The financing company was joined as a party defendant and appropriately sued for foreclosure of its mortgage on the parking garage, which was also in default. All procedures were properly followed, and the confirmed foreclosure sales resulted in the following: The net proceeds of the sale of the hotel to a third party were $200,000 less than the bank's mortgage balance. The net proceeds of the sale of the parking garage to a fourth party were $200,000 more than the financing company's mortgage balance.\nHow should the $200,000 surplus arising from the sale of the parking garage be distributed?",
+      "choices": {
+        "a": "It should be paid to the bank.",
+        "b": "It should be paid to the businessman.",
+        "c": "It should be paid to the financing company.",
+        "d": "It should be split equally between the bank and the financing company."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0010.png"
+    },
+    {
+      "index": 11,
+      "question": "A man borrowed money from a bank and executed a promissory note for the amount secured by a mortgage on an office building that he owned. Several years later, the man sold the building. As specified in the contract of sale, the deed to the buyer provided that the buyer agreed \"to assume the existing mortgage debt\" on the building.\nSubsequently, the buyer defaulted on the mortgage loan to the bank, and appropriate foreclosure proceedings were initiated. The foreclosure sale resulted in a deficiency.\nThere is no applicable statute.\nIs the buyer liable for the deficiency?",
+      "choices": {
+        "a": "No, because even if the buyer assumed the mortgage, the man is solely responsible for any deficiency.",
+        "b": "No, because the buyer did not sign a promissory note to the bank and therefore has no personal liability.",
+        "c": "Yes, because the buyer assumed the mortgage and therefore became personally liable for the mortgage loan and any deficiency.",
+        "d": "Yes, because the transfer of the mortgage debt to the buyer resulted in a novation of the original mortgage and loan and rendered the buyer solely responsible for any deficiency."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0011.png"
+    },
+    {
+      "index": 12,
+      "question": "A businessman executed a promissory note for $200,000 to a bank, secured by a mortgage on commercial real estate owned by the businessman. The promissory note stated that the businessman was not personally liable for the mortgage debt.\nOne week later, a finance company obtained a judgment against the businessman for $50,000 and filed the judgment in the county where the real estate was located. At the time the judgment was filed, the finance company had no actual notice of the bank's mortgage.\nTwo weeks after that filing, the bank recorded its mortgage on the businessman's real estate.\nThe recording act of the jurisdiction provides: \"Unless the same be recorded according to law, no conveyance or mortgage of real property shall be good against subsequent purchasers for value and without notice or against judgment creditors without notice.\"\nThe finance company sued to enforce its judgment lien against the businessman's real estate. The bank intervened in the action, contending that the judgment lien was a second lien on the real estate and that its mortgage was a first lien.\nIs the bank's contention correct?",
+      "choices": {
+        "a": "No, because the businessman was not personally liable for the mortgage debt, and the mortgage was therefore void.",
+        "b": "No, because the judgment lien was recorded before the mortgage, and the finance company had no actual notice of the mortgage.",
+        "c": "Yes, because a mortgage prior in time has priority over a subsequent judgment lien.",
+        "d": "Yes, because the recording of a mortgage relates back to the date of execution of the mortgage note."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0012.png"
+    },
+    {
+      "index": 13,
+      "question": "A landowner needed money. His land was fairly worth $100,000, so the landowner tried to borrow $60,000 from a lender on the security of the land. The lender agreed, but only if the landowner would convey the land to the lender outright by warranty deed, with the lender agreeing orally to reconvey to the owner once the loan was paid according to its terms. The landowner agreed, conveyed the land to the lender by warranty deed, and received $60,000 cash from the lender. The lender promptly and properly recorded the landowner's deed.\nNow, the landowner has defaulted on repayment with $55,000 still due on the loan. The landowner is still in possession.\nWhich of the following best states the parties' rights in the land?",
+      "choices": {
+        "a": "The attempted security arrangement is null as an unknown creature to the law, so the lender has only a personal right to $55,000 from the landowner.",
+        "b": "The landowner, having defaulted, has no further rights in the land, so the lender may obtain summary eviction.",
+        "c": "The lender may bring whatever foreclosure proceeding is appropriate under the laws of the jurisdiction.",
+        "d": "The lender's oral agreement to reconvey is invalid under the statute of frauds, so the lender owns the land outright."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0013.png"
+    },
+    {
+      "index": 14,
+      "question": "A carpenter decided to start a business with his friend. In order to fund the business, the carpenter took out a loan from a local bank. The carpenter signed a 30-year promissory note to the bank and secured the note with a mortgage on his cabin, which served as his primary residence. The mortgage included a due-on-sale clause and was promptly recorded by the bank.\nAfter running a successful business together for 10 years, the carpenter wanted to reward his friend for all of his hard work. As a result, the carpenter conveyed the cabin by quitclaim deed as a gift to the friend. When the bank received notice that the cabin had been transferred to the friend, the bank demanded full payment of the remaining mortgage debt. When neither the carpenter nor the friend made the required payment, the bank initiated foreclosure proceedings.\nWill the bank likely prevail?",
+      "choices": {
+        "a": "No, because a due-on-sale clause can only be enforced when the mortgaged property is sold to another.",
+        "b": "No, because a due-on-sale clause cannot be enforced against a mortgage on a primary residence.",
+        "c": "Yes, because the due-on-sale clause made the friend personally liable for the mortgage debt.",
+        "d": "Yes, because the transfer of the mortgaged property triggered the due-on-sale clause."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0014.png"
+    },
+    {
+      "index": 15,
+      "question": "A farmer borrowed $100,000 from a bank and gave the bank a promissory note secured by a mortgage on the farm that she owned. The bank promptly recorded the mortgage, which contained an acceleration clause and a due-on-sale provision.\nA few years later, the farmer borrowed $5,000 from a second bank and gave that bank a promissory note secured by a mortgage on her farm. The bank promptly recorded the mortgage.\nSubsequently, the farmer defaulted on her obligation to the first bank, which then validly accelerated the debt and instituted nonjudicial foreclosure proceedings as permitted by the jurisdiction. The second bank received notice of the foreclosure sale but did not send a representative to the sale. At the foreclosure sale, a buyer who was not acting in collusion with the farmer outbid all other bidders and received a deed to the farm.\nSeveral months later, the original farmer repurchased her farm from the buyer, who executed a warranty deed transferring the farm to her. After the farmer promptly recorded that deed, the second bank commenced foreclosure proceedings on the farm. The farmer denied the validity of the second bank's mortgage.\nDoes the second bank continue to have a valid mortgage on the farm?",
+      "choices": {
+        "a": "No, because of the due-on-sale provision in the farmer's mortgage to the first bank.",
+        "b": "No, because the purchase at the foreclosure sale by the buyer under these facts eliminated the second bank's junior mortgage lien.",
+        "c": "Yes, because of the doctrine of estoppel by deed.",
+        "d": "Yes, because the original owner reacquired title to the farm."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0015.png"
+    },
+    {
+      "index": 16,
+      "question": "A man borrowed money from a lender and mortgaged land that he owned to secure repayment of the loan. Before he had completely repaid the loan, the man conveyed the land to an investor, who expressly assumed the loan. The note and mortgage did not contain a due-on-sale clause.\nAfter the investor had made several payments on the loan, she defaulted on two payments. The lender notified the man and the investor of its intention to accelerate the loan pursuant to the terms of the note and mortgage unless the default was cured within 60 days. When neither the man nor the investor made the required payment, the lender accelerated the loan and initiated foreclosure proceedings, naming both the man and the investor as party defendants. The foreclosure sale resulted in a deficiency. The lender has sought a deficiency judgment against only the man, because the investor has become insolvent in the meantime.\nWill the court likely find the man liable for the deficiency?",
+      "choices": {
+        "a": "No, because the investor's express assumption of the loan released the man from liability.",
+        "b": "No, because the lender must first seek to obtain a deficiency judgment against the investor.",
+        "c": "Yes, because even after the assumption, the man remains liable as a surety of the investor in the absence of a release from the lender.",
+        "d": "Yes, because the note and mortgage did not contain a due-on-sale clause."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0016.png"
+    },
+    {
+      "index": 17,
+      "question": "A seller conveyed residential land to a buyer by a warranty deed that contained no exceptions and recited that the full consideration had been paid. To finance the purchase, the buyer borrowed 80% of the necessary funds from a bank. The seller agreed to finance 15% of the purchase price, and the buyer agreed to provide cash for the remaining 5%.\nAt the closing, the buyer signed a promissory note to the seller for 15% of the purchase price but did not execute a mortgage. The bank knew of the loan made by the seller and of the promissory note executed by the buyer to the seller. The buyer also signed a note to the bank, secured by a mortgage, for the 80% advanced by the bank.\nThe buyer has now defaulted on both loans. There are no applicable statutes.\nWhich loan has priority?",
+      "choices": {
+        "a": "The bank's loan, because it was secured by a purchase-money mortgage.",
+        "b": "The bank's loan, because the seller can finance a part of the purchase price only by use of an installment land contract.",
+        "c": "The seller's loan, because a promissory note to a seller has priority over a bank loan for residential property.",
+        "d": "The seller's loan, because the bank knew that the seller had an equitable vendor's lien."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0017.png"
+    },
+    {
+      "index": 18,
+      "question": "A man borrowed $150,000 from a bank to remodel his home and executed a promissory note agreeing to repay the loan over a 10-year period. The loan was secured by a mortgage on the home. The bank promptly recorded the mortgage, which was the only lien on the home at that time. Several months later, the man borrowed $40,000 from his mother in order to purchase a new truck and gave his mother a mortgage on the home to secure repayment of the debt. The mother promptly recorded the mortgage.\nThe man later lost his job and was struggling to make loan payments to both the bank and his mother. To accommodate the man's financial situation, the bank extended the amortization period of its loan to substantially reduce the amount of each monthly payment. The bank did not alter the interest rate or increase the principal amount of the loan. At the time of the modification of the bank loan, the man was not in default in his payments to his mother. Neither the bank nor the man informed the mother of the modification of the bank loan.\nAfter the man later missed five payments to his mother, she commenced a foreclosure action. While the action was pending, the mother learned of the bank's loan modification. The mother asserted that her mortgage had become a first lien on the home and that the bank's mortgage had become a second lien.\nIs the mother's assertion correct?",
+      "choices": {
+        "a": "No, because the bank's loan modification was not detrimental to the rights of the mother.",
+        "b": "No, because the man was not in default in his payments to his mother at the time of the bank's loan modification.",
+        "c": "Yes, because the bank's loan modification was made without the mother's prior consent.",
+        "d": "Yes, because the bank's loan modification was material."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0018.png"
+    },
+    {
+      "index": 19,
+      "question": "A landowner mortgaged her land to a nationally chartered bank as security for a loan. The mortgage provided that the bank could, at its option, declare the entire loan due and payable if all or any part of the land, or an interest therein, was sold or transferred without the bank's prior written consent.\nSubsequently, the landowner wanted to sell the land to a neighbor by an installment land contract, but the bank refused to consent. The neighbor's credit was good, and all mortgage payments to the bank were fully current.\nThe landowner and the neighbor consulted an attorney about their proposed transaction, their desire to complete it, and the bank's refusal to consent.\nWhat would the attorney's best advice be?",
+      "choices": {
+        "a": "By making the transfer in land contract form, the landowner will prevent enforcement of the due-on-sale clause if the mortgage payments are kept current.",
+        "b": "Even if the landowner transfers to the neighbor by land contract, the bank may accelerate the debt and foreclose if the full amount is not paid.",
+        "c": "The due-on-sale clause is void as an illegal restraint on alienation of the fee simple, so they may proceed.",
+        "d": "The only effect of the due-on-sale clause is that the proposed transfer will automatically make the neighbor personally liable on the debt, whether or not the neighbor specifically agrees to assume it."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0019.png"
+    },
+    {
+      "index": 20,
+      "question": "A seller and a buyer signed a contract of sale for improved real property. The contract contained a financing contingency for a certain percentage of the purchase price. The buyer obtained the requisite financing from a bank.\nAt the closing, the buyer executed a note to the seller for a portion of the purchase price, which note was not secured by a mortgage. The buyer then executed a second note, secured by a mortgage to the bank, applying the bank loan proceeds to the purchase price of the property. The bank had actual knowledge of the prior note to the seller. The bank promptly recorded its mortgage.\nThe buyer is now in default on both notes.\nThere is no applicable statute.\nWhich party has priority?",
+      "choices": {
+        "a": "The bank, because its loan satisfied the financing contingency in the contract of sale.",
+        "b": "The bank, because its note is secured by a purchase-money mortgage.",
+        "c": "The seller, because he retained a vendor's lien that was first in time.",
+        "d": "The seller, because the bank had actual knowledge of the seller's note."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0020.png"
+    },
+    {
+      "index": 21,
+      "question": "A man wanted to downsize his home after his youngest child moved out to attend college. To finance the purchase, the man secured a loan from a bank and executed a promissory note in which he agreed to repay the bank's loan over a 30-year period. The loan was secured by a mortgage on the new home. The bank promptly and properly recorded the mortgage.\nA year later, the man missed several mortgage payments and abandoned the home shortly thereafter. The bank initiated judicial foreclosure proceedings once it learned of the man's abandonment.\nIn a jurisdiction that follows the intermediate theory of mortgages, which of the following events first entitled the bank to take possession of the mortgaged property?",
+      "choices": {
+        "a": "The man executing the mortgage.",
+        "b": "The man defaulting on the mortgage.",
+        "c": "The man abandoning the property.",
+        "d": "The bank foreclosing on the property."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0021.png"
+    },
+    {
+      "index": 22,
+      "question": "A brother and sister owned in fee simple a large piece of property as tenants in common, each owning an undivided one-half interest. The brother and sister joined in mortgaging the property to their cousin by a properly recorded mortgage that contained a general warranty clause. The brother became disenchanted with land-owning and notified the sister that he would no longer contribute to the payment of installments due to the cousin. After the mortgage was in default and the cousin made demand for payment of the entire amount of principal and interest due, the sister tendered to the cousin, and the cousin deposited, a check for one-half of the amount due to the cousin. The sister then demanded a release of her undivided one-half interest. The cousin refused to release any interest in the property. The sister promptly brought an action against the cousin to quiet title to an undivided one-half interest in the property.\nIn such action, should the sister win or lose?",
+      "choices": {
+        "a": "Lose, because the cousin's title had been warranted by an express provision of the mortgage.",
+        "b": "Lose, because there was no redemption from the mortgage.",
+        "c": "Win, because the co-tenancy of the mortgagors was in common and not joint.",
+        "d": "Win, because the sister is entitled to marshalling."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0022.png"
+    },
+    {
+      "index": 23,
+      "question": "A land developer executed and delivered a promissory note and a mortgage securing the note to a bank. The bank was named as payee in the note and as mortgagee in the mortgage. The note also included a statement that the indebtedness evidenced by the note was \"subject to the terms of a contract between the maker and the payee of the note executed on the same day\" and that the note was \"secured by a mortgage of even date.\" The mortgage was promptly and properly recorded.\nSubsequently, the bank sold the land developer's note and mortgage to an investor and delivered to the investor a written assignment of the land developer's note and mortgage. The assignment was promptly and properly recorded. The bank retained possession of both the note and the mortgage in order to act as collecting agent.\nLater, being short of funds, the bank sold the note and mortgage to an asset management company at a substantial discount. The bank executed a written assignment of the note and mortgage to the asset management company and delivered to it the note, the mortgage, and the assignment. The asset management company paid value for the assignment without actual knowledge of the prior assignment to the investor and promptly and properly recorded the assignment. The principal of the note was not then due, and there had been no default in payment of either interest or principal.\nIf the issue of ownership of the land developer's note and mortgage is subsequently raised in an appropriate action by the investor to foreclose, for whom should the court hold?",
+      "choices": {
+        "a": "The asset management company as to both the note and the mortgage.",
+        "b": "The investor as to both the note and the mortgage.",
+        "c": "The asset management company as to the note and the investor as to the mortgage.",
+        "d": "The investor as to the note and the asset management company as to the mortgage."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0023.png"
+    },
+    {
+      "index": 24,
+      "question": "A man obtained a bank loan secured by a mortgage on an office building that he owned. After several years, the man conveyed the office building to a woman, who took title subject to the mortgage. The deed to the woman was not recorded. The woman took immediate possession of the building and made the mortgage payments for several years.\nSubsequently, the woman stopped making payments on the mortgage loan, and the bank eventually commenced foreclosure proceedings in which the man and the woman were both named parties. At the foreclosure sale, a third party purchased the building for less than the outstanding balance on the mortgage loan. The bank then sought to collect the deficiency from the woman.\nIs the bank entitled to collect the deficiency from the woman?",
+      "choices": {
+        "a": "No, because the woman did not record the deed from the man.",
+        "b": "No, because the woman is not personally liable on the loan.",
+        "c": "Yes, because the woman took immediate possession of the building when she bought it from the man.",
+        "d": "Yes, because the woman was a party to the foreclosure proceeding."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0024.png"
+    },
+    {
+      "index": 25,
+      "question": "A franchisee owned a hotel, subject to a mortgage securing a debt that the franchisee owed to a bank. The franchisee later acquired a nearby parking garage, financing a part of the purchase price by a loan from a credit union, secured by a mortgage on the parking garage. Two years thereafter, the franchisee defaulted on the loan owed to the bank, which caused the full amount of that loan to become immediately due and payable. The bank decided not to foreclose the mortgage on the franchisee's hotel at that time but instead brought an action, appropriate under the laws of the jurisdiction and authorized by the mortgage loan documents, for the full amount of the defaulted loan. The bank obtained and properly filed a judgment for that amount.\nA statute of the jurisdiction provides: \"Any judgment properly filed shall, for ten years from filing, be a lien on the real property then owned or subsequently acquired by any person against whom the judgment is rendered.\" There is no other applicable statute, except the statute providing for judicial foreclosure of mortgages, which places no restriction on deficiency judgments.\nThe bank later brought an appropriate action for judicial foreclosure of its first mortgage on the hotel and of its judgment lien on the parking garage. The credit union was joined as a party defendant, and appropriately counterclaimed for foreclosure of its mortgage on the parking garage, which was also in default. All procedures were properly followed, and the confirmed foreclosure sales resulted as follows:\nThe bank purchased the hotel for $100,000 less than its mortgage balance.\nThe bank purchased the parking garage for an amount that is $200,000 in excess of the credit union's mortgage balance.\nHow should the $200,000 surplus arising from the bid paid by the bank for the parking garage be paid?",
+      "choices": {
+        "a": "$100,000 to the bank and $100,000 to the credit union.",
+        "b": "$100,000 to the bank and $100,000 to the franchisee.",
+        "c": "$100,000 to the credit union and $100,000 to the franchisee.",
+        "d": "$200,000 to the franchisee."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0025.png"
+    },
+    {
+      "index": 26,
+      "question": "A woman borrowed money from a bank in order to build a new barn on her 20-acre farm. The loan was secured by a 10-year mortgage on the farm. The mortgage contained an acceleration clause. After three years, the woman defaulted on the loan. The bank sent a certified letter to the woman notifying her of its intention to accelerate the loan unless she cured the default within 75 days.\nThe woman was unable to make the required payment by the 75-day deadline to cure the default. As a result, the bank accelerated the loan and initiated foreclosure proceedings against the woman. The day after being served with a summons and complaint, the woman informed the bank that she was able to make the two outstanding mortgage payments, including late fees and interest. The woman then filed a motion to dismiss the foreclosure proceedings.\nShould the motion to dismiss be granted?",
+      "choices": {
+        "a": "No, because the bank initiated the foreclosure, which terminated the woman's right to redemption.",
+        "b": "No, because the woman does not have enough money to force the bank to accept her payment.",
+        "c": "Yes, because the bank is clogging the equity of redemption by failing to accept her payment.",
+        "d": "Yes, because the woman has properly exercised the statutory right of redemption."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0026.png"
+    },
+    {
+      "index": 27,
+      "question": "A newly married couple, anxious to start a life together, decided to build a new home. They financed the home by executing a 15-year promissory note and purchase-money mortgage to the bank. The mortgage, which contained a power-of-sale clause, was promptly recorded.\nSeven years later, the couple legally separated. Neither could afford the mortgage payments on their individual salary, so they abandoned the home and stopped making mortgage payments. After the couple missed two payments, the bank decided to initiate a foreclosure proceeding.\nThe jurisdiction follows the title theory of mortgages and allows for nonjudicial foreclosures.\nWhich of the following actions poses the most financial risk to the bank?",
+      "choices": {
+        "a": "Accepting a deed in lieu of foreclosure.",
+        "b": "Entering the property to make repairs prior to foreclosure.",
+        "c": "Foreclosing on the mortgage through a privately conducted public sale.",
+        "d": "Leasing the home to a tenant."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0027.png"
+    },
+    {
+      "index": 28,
+      "question": "A woman borrowed $500,000 from a bank. She signed a note to the bank and secured repayment of the loan with a mortgage on a commercial tract that she owned. The note and mortgage did not contain a due-on-sale clause. Several months later, the woman conveyed the commercial tract to her business partner. The conveyance provided that \"the grantee assumes and agrees to pay the existing mortgage to the bank.\" The business partner then conveyed the tract to a buyer \"subject to the existing mortgage to the bank.\" Each grantee received a copy of the note and the mortgage.\nAfter the buyer made several timely payments, no further payments were made by any party. The bank initiated a foreclosure action, naming the woman, the business partner, and the buyer as defendants. The foreclosure sale resulted in a deficiency.\nThere are no applicable statutes.\nAgainst whom is the bank entitled to collect a deficiency judgment?",
+      "choices": {
+        "a": "The business partner and the buyer.",
+        "b": "The woman.",
+        "c": "The woman and the business partner.",
+        "d": "The woman, the business partner, and the buyer."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0028.png"
+    },
+    {
+      "index": 29,
+      "question": "An aspiring dancer purchased an apartment near the theater district from a local real estate broker. To complete the sale, the dancer signed a document entitled \"Contract for Deed.\" The document provided that the dancer was to pay the broker in monthly installments over a five-year period for the apartment, but it was silent as to remedies in the event of any default.\nFour years later, after never missing a payment, the dancer suffered a severe injury and was out of work for many months. When she missed a monthly payment, the broker notified her that he intended to retake possession of the apartment. The dancer refused to surrender possession unless the broker refunded some of the money that she paid him over the years.\nWhich of the following outcomes is the court LEAST likely to impose?",
+      "choices": {
+        "a": "Require the broker to initiate judicial foreclosure proceedings on the property.",
+        "b": "Require the broker to refund the dancer's payments to the extent that they exceed the broker's actual damages upon forfeiture.",
+        "c": "Require the dancer to indemnify the broker for the delinquent payments in order to retain possession.",
+        "d": "Require the dancer to pay the remaining contract balance to retain possession and obtain ownership."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0029.png"
+    },
+    {
+      "index": 30,
+      "question": "A man decided to purchase an apartment building. To finance this purchase, the man borrowed funds from a bank. The man executed a negotiable promissory note and a mortgage to the bank in order to secure repayment of the loan.\nTwo years later, the bank sold its promissory note to a mortgage company by endorsing and promptly delivering the note to the mortgage company. Shortly thereafter, the man stopped making payments on the mortgage, and the mortgage company initiated judicial foreclosure proceedings against him. The man has moved to dismiss the suit.\nShould the motion to dismiss be granted?",
+      "choices": {
+        "a": "No, because the mortgage was not assigned and is unenforceable by anyone except the bank.",
+        "b": "No, because the mortgage will be deemed to have been transferred with the promissory note.",
+        "c": "Yes, because the promissory note could not be assigned independent of the mortgage.",
+        "d": "Yes, because the promissory note required a separate document for assignment to the mortgage company."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0030.png"
+    },
+    {
+      "index": 31,
+      "question": "A landowner borrowed $100,000 from a lender and executed a valid mortgage on a commercial tract of land to secure the debt. The lender promptly recorded the mortgage.\nA year later, the landowner conveyed the same tract to a developer by a deed that expressly stated that the conveyance was subject to the mortgage to the lender and that the grantee expressly assumed and agreed to pay the mortgage obligation as part of the consideration for the purchase. The mortgage was properly described in the deed, and the deed was properly executed by the landowner; however, because there was no provision or place in the deed for the developer to sign, he did not do so. The developer promptly recorded the deed.\nThe developer made the monthly mortgage payments of principal and interest for six payments but then stopped payments and defaulted on the mortgage obligation. The lender properly instituted foreclosure procedures in accordance with the governing law. After the foreclosure sale, there was a $10,000 deficiency due to the lender. Both the landowner and the developer had sufficient assets to pay the deficiency.\nThere is no applicable statute in the jurisdiction other than the statute relating to foreclosure proceedings.\nAt the appropriate stage of the foreclosure action, which party will the court decide is responsible for payment of the deficiency?",
+      "choices": {
+        "a": "The developer, because he accepted delivery of the deed from the landowner and in so doing accepted the terms and conditions of the deed.",
+        "b": "The developer, because he is estopped by his having made six monthly payments to the lender.",
+        "c": "The landowner, because he was the maker of the note and the mortgage, and at most the developer is liable only as a guarantor of the landowner's obligation.",
+        "d": "The landowner, because the developer was not a signatory to the deed."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0031.png"
+    },
+    {
+      "index": 32,
+      "question": "A baker borrowed funds from an investor to purchase a plot of land on which the baker planned to build a new bakery. In order to secure repayment of the loan, the baker signed a nonnegotiable promissory note and executed a mortgage to the investor.\nFive years later, the investor sold her promissory note to a credit union by endorsing the note and promptly delivering it to the credit union. Due to a downturn in business, the baker was unable to make payments on the mortgage. The credit union now seeks to foreclose on the baker's plot of land.\nIf the court denies the credit union's foreclosure, what is the most likely reason?",
+      "choices": {
+        "a": "The mortgage required a separate written assignment in order for the transferee-credit union to enforce the mortgage.",
+        "b": "The nonnegotiable promissory note required a separate document for assignment to the credit union, so neither the note nor the mortgage transferred.",
+        "c": "The transfer of the nonnegotiable promissory note modified the terms of the loan, resulting in a release of the baker's personal liability.",
+        "d": "The transfer of the nonnegotiable promissory note without the mortgage was void."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0032.png"
+    },
+    {
+      "index": 33,
+      "question": "A man owned property that he used as his residence. The man received a loan, secured by a mortgage on the property, from a bank. Later, the man defaulted on the loan. The bank then brought an appropriate action to foreclose the mortgage, was the sole bidder at the judicial sale, and received title to the property as a result of the foreclosure sale.\nShortly after the foreclosure sale, the man received a substantial inheritance. He approached the bank to repurchase the property, but the bank had decided to build a branch office on the property and declined to sell.\nIf the man prevails in an appropriate action to recover title to the property, what will be the most likely reason?",
+      "choices": {
+        "a": "He had used the property as his residence.",
+        "b": "He timely exercised an equitable right of redemption.",
+        "c": "The court applied the doctrine of exoneration.",
+        "d": "The jurisdiction provides a statutory right of redemption."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0033.png"
+    },
+    {
+      "index": 34,
+      "question": "A woman borrowed $100,000 from a bank and executed a promissory note to the bank in that amount. As security for repayment of the loan, the woman's brother gave the bank a mortgage on a tract of land solely owned by him. The brother did not sign the promissory note.\nThe woman subsequently defaulted on the loan, and after acceleration, the bank instituted foreclosure proceedings on the brother's land. The brother filed a timely objection to the foreclosure.\nWill the bank succeed in foreclosing on the tract of land?",
+      "choices": {
+        "a": "No, because a mortgage from the brother is invalid without a mortgage debt owed by him.",
+        "b": "No, because the bank has an equitable mortgage rather than a legal mortgage.",
+        "c": "Yes, because the bank has a valid mortgage.",
+        "d": "Yes, because the bank is a surety for the brother's mortgage."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0034.png"
+    },
+    {
+      "index": 35,
+      "question": "A woman borrowed money from her local credit union to purchase an undeveloped lot on which to build her dream home. She executed a promissory note agreeing to repay the loan over a 10-year period. The loan was secured by a deed of trust that contained a power-of-sale clause. The deed of trust was promptly recorded.\nAfter the woman missed five loan payments, the credit union accelerated the debt and instructed the trustee to initiate nonjudicial foreclosure proceedings as permitted by the jurisdiction. The trustee followed the jurisdiction's notice requirements and procedures. At the foreclosure sale, the credit union was the sole bidder. The winning bid was equal to the remaining obligation on the note, amounting to only 60% of the fair market value of the property.\nThe woman immediately filed an action against the credit union to set aside the foreclosure sale.\nIs the woman likely to prevail?",
+      "choices": {
+        "a": "No, because a court cannot overturn a nonjudicial foreclosure on a deed of trust.",
+        "b": "No, because there is no indication that the procedure or price would shock the conscience of the court.",
+        "c": "Yes, because a deed of trust can be foreclosed upon only by judicial foreclosure.",
+        "d": "Yes, because a lender may not purchase the mortgaged property at a nonjudicial foreclosure."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0035.png"
+    },
+    {
+      "index": 36,
+      "question": "A man who owned property in fee simple mortgaged the property to a bank to secure a loan of $100,000. The mortgage was promptly and properly recorded. The man later mortgaged the property to his mother to secure a loan of $50,000. This mortgage was also promptly and properly recorded. Subsequently, the man conveyed the property to a purchaser. About a year later, the purchaser borrowed $100,000 from an elderly widow and gave her a mortgage on the property to secure repayment of the loan. The widow did not know about the mortgage held by the mother. The understanding between the purchaser and the widow was that the purchaser would use the $100,000 to pay off the mortgage held by the bank and that the widow would therefore have a first mortgage on the property. The widow's mortgage was promptly and properly recorded. The purchaser paid the $100,000 received from the widow to the bank and obtained and recorded a release of the bank's mortgage.\nThe $50,000 debt secured by the mother's mortgage was not paid when it was due, and the mother brought an appropriate action to foreclose, joining the man, the purchaser, and the widow as defendants and alleging that the mother's mortgage was senior to the widow's mortgage on the property.\nIf the court rules that the widow's mortgage is entitled to priority over the mother's mortgage, which of the following determinations are necessary to support that ruling?",
+      "choices": {
+        "a": "The bank's mortgage was originally senior to the mother's mortgage.",
+        "b": "The widow is entitled to have the bank's mortgage revived for her benefit, and the widow is entitled to be subrogated to the bank's original position as senior mortgagee.",
+        "c": "There are no countervailing equities in favor of the mother.",
+        "d": "All of the above."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0036.png"
+    },
+    {
+      "index": 37,
+      "question": "A landowner in fee simple mortgaged the land to an investor to secure repayment of the loan she made to him. The loan was due at the end of the growing season of the year in which it was made. The landowner maintained and operated an orchard on the land, which was his sole source of income. Halfway through the growing season, the landowner experienced severe health and personal problems and, as a result, left the state; his whereabouts were unknown. The investor learned that no one was responsible for the cultivation and care of the orchard on the land. She undertook to provide, through employees, the care of the orchard and the harvest for the remainder of the growing season. The net profits were applied to the debt secured by the mortgage on the land.\nDuring the course of the harvest, the landowner's friend, a business invitee, was injured by reason of a fault in the equipment used. Under applicable tort case law, the owner of the premises would be liable for the friend's injuries. The friend brought an appropriate action against the investor to recover damages for the injuries suffered, relying on this aspect of tort law.\nIn such lawsuit, for whom should the court render judgment?",
+      "choices": {
+        "a": "The friend, because the investor was a mortgagee in possession.",
+        "b": "The friend, but only if the state is a title theory state, because in other jurisdictions a mortgagee has no title interest but only a lien.",
+        "c": "The investor, because she acted as agent of the landowner only to preserve her security interest.",
+        "d": "The investor, but only if the mortgage expressly provided for her taking possession in the event of danger to her security interest."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0037.png"
+    },
+    {
+      "index": 38,
+      "question": "An individual purchased a residence for $200,000. The individual paid $25,000 of the purchase price from her own funds and the remaining $175,000 with the proceeds of a loan she obtained from a bank. She signed a promissory note payable to the bank in the principal amount of $175,000 and gave the bank a mortgage on the residence. The bank promptly and properly recorded this mortgage.\nSeveral years later, the individual borrowed $35,000 from a credit union to finance the construction of an addition to the residence. She signed a promissory note payable to the credit union in the principal amount of $35,000 and gave the credit union a mortgage on the residence. Because of a clerical oversight, the credit union failed to record this mortgage.\nSubsequently, the individual defaulted on the bank note. This note contained an acceleration clause, pursuant to which the full unpaid balance of the note became immediately due. The fair market value of the residence was slightly less than the amount owed on the note, so the bank offered to accept the deed to the residence in exchange for cancellation of the note. The individual agreed, and also agreed to waive her equitable right to redeem the property. Shortly after title to the residence was transferred to the bank, the bank learned of the credit union's mortgage.\nThe bank has brought a foreclosure action to which the credit union was made a party. The credit union contests the bank's right to bring this action.\nIf the court rules in favor of the bank, what is the most likely reason?",
+      "choices": {
+        "a": "The jurisdiction recognizes a statutory right of redemption.",
+        "b": "The jurisdiction recognizes the principle of clogging the equity of redemption.",
+        "c": "The jurisdiction does not recognize the doctrine of caveat emptor.",
+        "d": "The jurisdiction does not recognize the doctrine of merger with regard to mortgages."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0038.png"
+    },
+    {
+      "index": 39,
+      "question": "A man purchased a house that needed substantial repairs. The man financed the purchase of the house by borrowing funds from a bank. He signed a note to the bank and secured repayment of the loan with a mortgage. After purchasing the house, the man borrowed money from his credit union to make the repairs. The man signed a note to the credit union; this note was also secured by a mortgage on the house. Both mortgages were promptly recorded in the order granted. The man was personally liable on both loans.\nThe man moved into the house and made the necessary repairs. He later defaulted on the debt to the bank, and the bank initiated judicial foreclosure proceedings, naming both the man and the credit union as parties to the action. An outside party acquired the house at the foreclosure sale.\nAfter the expenses of the sale and the balance due the bank have been paid, $5,000 remains in the sale proceeds. The outstanding balance of the credit union loan is $20,000. The man and the credit union both claim the $5,000.\nThere is no applicable statute.\nWho is entitled to the $5,000?",
+      "choices": {
+        "a": "The credit union, because the credit union has priority.",
+        "b": "The credit union, because the man is personally liable on the debt.",
+        "c": "The man, because of his equitable right of redemption.",
+        "d": "The man, because the outside party received title to the house subject to the second mortgage."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0039.png"
+    }
+  ]
+}

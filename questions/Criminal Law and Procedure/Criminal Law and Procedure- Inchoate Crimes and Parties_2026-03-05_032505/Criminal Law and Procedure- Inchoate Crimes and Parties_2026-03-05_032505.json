@@ -1,0 +1,586 @@
+{
+  "meta": {
+    "source": "UWorld (captured from DOM #questionText + choices + right-content screenshot)",
+    "capturedAt": "2026-03-05T11:25:05.974Z",
+    "count": 44,
+    "screenshotCount": 44,
+    "url": "https://apps-legal.uworld.com/courseapp/legal/v58/testinterface/launchtest/14822410/405138696/2/1",
+    "examName": "Criminal Law and Procedure: Inchoate Crimes and Parties",
+    "subject": "Criminal Law and Procedure",
+    "chapter": "Inchoate Crimes and Parties"
+  },
+  "questions": [
+    {
+      "index": 1,
+      "question": "A woman wanted to kill a business competitor. She contacted a man who she believed was willing to commit murder for hire and offered him $50,000 to kill the competitor. The man agreed to do so and accepted $25,000 as a down payment. Unbeknownst to the woman, the man was an undercover police officer.\nIn a jurisdiction that has adopted the unilateral theory of conspiracy, is the woman guilty of conspiracy to murder the business competitor?",
+      "choices": {
+        "a": "No, because it would have been impossible for the woman to kill the competitor by this method.",
+        "b": "No, because the man did not intend to kill the competitor.",
+        "c": "Yes, because the woman believed that she had an agreement with the man that would bring about the competitor's death.",
+        "d": "Yes, because the woman took a substantial step toward bringing about the competitor's death by paying the man $25,000."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0001.png"
+    },
+    {
+      "index": 2,
+      "question": "A foreign diplomat discovered that a small person could enter a particular jewelry store by crawling through an air vent. The diplomat befriended a woman he met in a bar who he believed was small enough to crawl through the air vent. Without telling her that he was a diplomat, he explained how she could get into the jewelry store. She agreed to help him burglarize the store. Someone overheard their conversation and reported it to the police. Shortly thereafter, the police arrested the diplomat and the woman. Both were charged with conspiracy to commit burglary.\nBefore trial, the diplomat moved to dismiss the charge against him on the ground that he was entitled to diplomatic immunity. The court granted his motion. The woman then moved to dismiss the conspiracy charge against her. The jurisdiction has adopted the Model Penal Code version of conspiracy.\nShould the court grant the woman's motion to dismiss the conspiracy charge against her?",
+      "choices": {
+        "a": "No, because the diplomat's defense does not negate any element of the crime.",
+        "b": "No, because the woman was not aware of the diplomat's status.",
+        "c": "Yes, because a conspiracy requires two guilty participants.",
+        "d": "Yes, because but for the diplomat's conduct, no conspiracy would have occurred."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0002.png"
+    },
+    {
+      "index": 3,
+      "question": "An art thief planned to steal a three-dimensional piece of hanging installation art from a modern art museum. Her plan involved dressing up like a museum docent, temporarily closing off the room that contained the installation art, and in the one minute it took for the security camera to visually sweep the rest of the room, hiding the installation art in a covered garbage can. Before the police or museum security would think to search a garbage can, the art thief would then disguise herself as part of the janitorial crew and remove the garbage can containing the installation art from the museum. However, on the day she planned to execute her heist, the art thief found out that the museum had recently installed hidden GPS tracking devices on all of the art pieces in the museum. The art thief decided to postpone her heist until she could figure out how to disable the GPS device and avoid getting caught. A few days later, the art thief was arrested by the police based on security footage from the museum that showed the art thief engaged in suspicious activities like stealing docent and janitorial uniforms and timing the security cameras.\nCan the art thief be charged with attempted larceny of the artwork?",
+      "choices": {
+        "a": "No, because the element of \"asportation\" was not satisfied.",
+        "b": "No, because she abandoned the crime before it occurred.",
+        "c": "Yes, because she took a substantial step toward stealing the artwork.",
+        "d": "Yes, because attempted larceny is a general intent crime."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0003.png"
+    },
+    {
+      "index": 4,
+      "question": "An 18-year-old student and his 14-year-old girlfriend made plans to meet in the student's apartment to have sexual intercourse, and they did so. The girlfriend later told her mother about the incident.\nThe student was charged with statutory rape and conspiracy to commit statutory rape. In the jurisdiction, the age of consent is 15, and the law of conspiracy is the same as at common law. The student was convicted of both charges and given consecutive sentences.\nOn appeal, he contends that his conspiracy conviction should be reversed.\nShould the student's conviction be affirmed or reversed?",
+      "choices": {
+        "a": "Affirmed, because he agreed with the girlfriend to commit the crime.",
+        "b": "Reversed, because one cannot conspire with a person too young to consent.",
+        "c": "Reversed, because the crime is one that can only be committed by agreement and thus Wharton's Rule bars conspiracy liability.",
+        "d": "Reversed, because the girlfriend could not be a conspirator to this crime."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0004.png"
+    },
+    {
+      "index": 5,
+      "question": "A landlord decided to destroy his dilapidated building in order to collect the insurance money. He hired a man to burn down the building. The man broke into the building and carefully searched it to make sure no one was inside. The man failed, however, to see a person experiencing homelessness asleep in an office closet. The man started a fire. The building was destroyed, and the person experiencing homelessness died from burns a week later. Two days after the fire, the landlord filed an insurance claim in which he stated that he had no information about the cause of the fire.\nThe landlord is charged with felony murder of the person experiencing homelessness.\nIf the landlord is found guilty, it is because the death of the person experiencing homelessness occurred in connection with which felony?",
+      "choices": {
+        "a": "Arson.",
+        "b": "Burglary.",
+        "c": "Conspiracy.",
+        "d": "Fraud."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0005.png"
+    },
+    {
+      "index": 6,
+      "question": "A state statute provides as follows: \"The maintenance of any ongoing enterprise in the nature of a betting parlor or bookmaking organization is a felony.\"\nA prosecutor has evidence that a woman has been renting an office to a man, that the man has been using the office as a betting parlor within the meaning of the statute, and that the woman is aware of this use.\nWhich of the following additional pieces of evidence would be most useful to the prosecutor's effort to convict the woman as an accomplice to the man's violation of the statute?",
+      "choices": {
+        "a": "The man has paid the woman the rent in bills that are traceable as the proceeds of gambling activity.",
+        "b": "The woman charges the man considerably more in rent than she charged the preceding tenant, who used the office for legitimate activities.",
+        "c": "The woman has personally placed bets with the man at the office location.",
+        "d": "The woman was previously convicted of running a betting parlor herself on the same premises."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0006.png"
+    },
+    {
+      "index": 7,
+      "question": "A man was engaged to marry a woman. One evening, the man became enraged at the comments of the woman's eight-year-old daughter, who was complaining, in her usual fashion, that she did not want her mother to marry the man. The man, who had had too much to drink, began beating the daughter. The daughter suffered some bruises and a broken arm. The woman took her daughter to the hospital, and the police were notified by the hospital staff.\nThe man was indicted for felony child abuse. He pleaded with the woman to forgive him and to run away with him. She agreed. They moved out of state and took the daughter with them. Without the testimony of the child, the prosecution was forced to dismiss the case. Some time later, the woman returned for a visit with her family and was arrested and indicted as an accessory after the fact to child abuse.\nAt the woman's trial, how should the court proceed?",
+      "choices": {
+        "a": "Dismiss the charge, because the evidence shows that any aid the woman rendered occurred after the crime was completed.",
+        "b": "Dismiss the charge, because the man had not been convicted.",
+        "c": "Submit the case to the jury, on an instruction to convict only if the woman knew the man had been indicted.",
+        "d": "Submit the case to the jury, on an instruction to convict only if the woman's purpose in moving was to help the man avoid conviction."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0007.png"
+    },
+    {
+      "index": 8,
+      "question": "A man decided to rob a bank to pay off his crippling loan debt, so he purchased a gun, a mask, and some duffel bags. The man then told his friend that he had decided to rob a local bank and was going to scope it out the next day. As planned, the man went inside the local bank to look around. After surveilling the bank, he decided not to go through with robbing the bank because a bank in the neighboring city had fewer cameras. Unbeknownst to the man, the friend had called the police to inform them of the man's plan. As the man was walking back to his car, he was arrested by the police.\nOf what crime, if any, may the man be properly convicted?",
+      "choices": {
+        "a": "Attempted robbery, because he still intended to rob the neighboring bank.",
+        "b": "No crime, because he voluntarily withdrew from the robbery.",
+        "c": "No crime, because his conduct did not exceed mere preparation.",
+        "d": "Robbery, because he committed an act in furtherance of that crime."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0008.png"
+    },
+    {
+      "index": 9,
+      "question": "A woman who wanted to rob a bank offered to pay her friend one-third of the money she stole if the friend would drive the getaway car to be used in the robbery. The friend agreed but made the woman promise not to hurt anyone during the robbery.\nThe woman then drove to a sporting goods store, where she explained to the store owner that she needed a small firearm for use in a bank robbery. The store owner responded that he would charge extra because the woman was so unwise as to confide her unlawful plans for using the weapon, and he sold her a handgun at four times the regular price.\nDuring the robbery, the woman used the gun to threaten a bank teller, who handed over money. The gun discharged by accident and killed a bank customer. The friend drove the woman away from the bank.\nIn addition to the woman, who could properly be convicted of murder in the death of the customer at common law?",
+      "choices": {
+        "a": "Both the friend and the store owner.",
+        "b": "Neither the friend nor the store owner.",
+        "c": "Only the friend.",
+        "d": "Only the store owner."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0009.png"
+    },
+    {
+      "index": 10,
+      "question": "A man told his girlfriend that he was planning to rob a 24-hour convenience store and would split the proceeds from the robbery if she agreed to drive the getaway car. The girlfriend agreed and drove the man to the store so he could commit the robbery. While the man was holding up the cashier in the store, the man's gun went off accidentally, killing the cashier. The man left through the exit at the back of the store without taking any money, leaving the girlfriend in the car outside the store to be arrested when the police arrived.\nFor which of the following crimes may the girlfriend properly be convicted and punished?",
+      "choices": {
+        "a": "Robbery only.",
+        "b": "Murder only.",
+        "c": "Both robbery and murder.",
+        "d": "Neither robbery nor murder."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0010.png"
+    },
+    {
+      "index": 11,
+      "question": "An artist facing financial difficulty asked her friend, who worked as a security guard in an art museum, to help her by leaving the museum's warehouse unlocked so she could steal paintings and replace them with forgeries. The artist said she would reward the friend with half of her profits. The friend said that he agreed, but in fact he did not have access to the museum's warehouse and did not intend to leave the warehouse unlocked. Later that day, he informed the police of her plans. The artist was arrested immediately.\nThe applicable jurisdiction follows the common law for all relevant rules.\nWhich of the following crimes has the artist committed?",
+      "choices": {
+        "a": "Attempted larceny.",
+        "b": "Bribery.",
+        "c": "Conspiracy.",
+        "d": "Solicitation."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0011.png"
+    },
+    {
+      "index": 12,
+      "question": "The police had been tracking a businessman who used his fast-food chain as a front for selling cocaine. The cocaine was produced by a chemist in a lab hidden inside the factory where the fast food was made. The cocaine was then shipped along with the food to a fast-food restaurant, where the manager of the restaurant would divide the cocaine up into smaller quantities for sale to individual customers. Due to the large-scale operations, the businessman, the chemist, and the manager did not know one another. One day, an undercover police officer came to the restaurant and purchased cocaine from the manager. Upon completion of the transaction, the manager was arrested for conspiracy to sell cocaine.\nIs the manager likely guilty of conspiracy to sell cocaine?",
+      "choices": {
+        "a": "No, because the manager, the businessman, and the chemist did not know one another.",
+        "b": "No, because there was no agreement between the manager, the businessman, and the chemist to sell cocaine.",
+        "c": "Yes, because the manager, the businessman, and the chemist had the general intent to sell cocaine.",
+        "d": "Yes, because there was a community of interest between the manager, the businessman, and the chemist to sell cocaine."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0012.png"
+    },
+    {
+      "index": 13,
+      "question": "An 18-year-old female and a 15-year-old male, who had known each other since early childhood, agreed to have sexual intercourse and did so. The applicable jurisdiction defines rape as \"sexual intercourse with another person (i) without that person's consent or (ii) who is less than 16 years old.\" This jurisdiction also follows the common-law approach to conspiracy.\nCan the female properly be charged with conspiracy to commit rape?",
+      "choices": {
+        "a": "No, because the male is a member of the protected class.",
+        "b": "No, because the sexual intercourse was consensual.",
+        "c": "Yes, because the female knew that the male was only 15 years old.",
+        "d": "Yes, because the male was less than 16 years old."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0013.png"
+    },
+    {
+      "index": 14,
+      "question": "A woman wanted to make some money, so she decided to sell cocaine. She asked her neighbor, who was reputed to have access to illegal drugs, to supply her with cocaine so she could resell it. The neighbor agreed and sold the woman a bag of white powder. The woman then repackaged the white powder into smaller containers and sold one to an undercover police officer who promptly arrested the woman. The woman immediately confessed and said that her neighbor was her supplier. Upon examination, the white powder was found not to be cocaine or any type of illegal substance.\nIf the neighbor knew the white powder was not cocaine but the woman believed it was, which of the following is correct?",
+      "choices": {
+        "a": "Both the neighbor and the woman are guilty of attempting to sell cocaine.",
+        "b": "The neighbor is guilty of attempting to sell cocaine, but the woman is not.",
+        "c": "The neighbor is not guilty of attempting to sell cocaine, but the woman is.",
+        "d": "Neither the neighbor nor the woman is guilty of attempting to sell cocaine."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0014.png"
+    },
+    {
+      "index": 15,
+      "question": "A businesswoman decided to destroy an old warehouse that she owned because the taxes on the structure exceeded the income that she could receive from it. She crept into the building in the middle of the night with a can of gasoline and a fuse and set the fuse timer for 30 minutes. She then left the building. The fuse failed to ignite, and the building was not harmed.\nArson is defined in this jurisdiction as \"the intentional burning of any building or structure of another, without the consent of the owner.\" The businesswoman believed, however, that burning one's own building was arson, having been so advised by her lawyer.\nHas the businesswoman committed attempted arson?",
+      "choices": {
+        "a": "No, because even if her actions had every consequence she intended, they would not have constituted arson.",
+        "b": "No, because her mistake negated a necessary mental state.",
+        "c": "Yes, because a mistake of law even on the advice of an attorney is no defense.",
+        "d": "Yes, because factual impossibility is no defense."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0015.png"
+    },
+    {
+      "index": 16,
+      "question": "A man was angry at a coworker who had received a promotion. The man believed that the coworker had taken credit for the man's work and had bad-mouthed him to their boss. One day, as the man was leaving the company parking lot in his car, he saw the coworker walking through the lot. On a sudden impulse, the man pushed the accelerator pedal hard and veered toward the coworker with the intention of scaring him. The coworker tried to jump out of the way but slipped and fell and was run over. Although the coworker suffered life-threatening injuries, he survived.\nIn a jurisdiction that follows the common law of homicide, could the man properly be convicted of attempted murder?",
+      "choices": {
+        "a": "No, because the coworker's slip and fall broke the chain of proximate causation.",
+        "b": "No, because the man lacked the requisite intent.",
+        "c": "Yes, because the coworker suffered life-threatening injuries.",
+        "d": "Yes, because the man acted with reckless disregard for human life."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0016.png"
+    },
+    {
+      "index": 17,
+      "question": "A man was charged with felony murder because of his involvement in a bank robbery. The evidence at trial disclosed that a coworker invited the man to go for a ride in her new car, and after a while asked him to drive. As they drove around town, the coworker explained to the man that she planned to rob the bank and that she needed him to drive the getaway car. The man agreed to drive to the bank and to wait outside while the coworker went in to rob it.\nAs they approached the bank, the man began to regret his agreement to help with the robbery. Once there, the coworker got out of the car. As she went out of sight inside the bank, the man drove away and went home. Inside the bank, the coworker killed a bank guard who tried to prevent her from leaving with the money. The coworker ran outside and, finding that her car and the man were gone, ran down an alley. She was apprehended a few blocks away. The man later turned himself in after hearing on the radio that the coworker had killed the guard.\nThe jurisdiction has a death penalty that applies to felony murder.\nConsistent with the law and the Constitution, of which crime may the jury convict the man?",
+      "choices": {
+        "a": "Felony murder and impose the death penalty.",
+        "b": "Felony murder but not impose the death penalty.",
+        "c": "Bank robbery only.",
+        "d": "No crime."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0017.png"
+    },
+    {
+      "index": 18,
+      "question": "A woman and her sister took a trip to the Caribbean. When they passed through U.S. Customs inspection upon their return, the customs officials found packages of cocaine stitched inside separate carry-on bags belonging to each of them. They were arrested. Upon separate questioning by customs officers, the woman broke down and cried, \"I told my sister there were too many officers at this airport.\" The sister did not give a statement.\nThe woman and her sister were indicted for conspiracy to import cocaine. They were tried separately. At the woman's trial, after the government introduced the above evidence and rested its case, her lawyer moved for a judgment of acquittal on grounds of insufficient evidence.\nShould the court grant the motion?",
+      "choices": {
+        "a": "No, because the evidence shows that both the woman and her sister agreed to import cocaine.",
+        "b": "No, because the evidence shows that both the woman and her sister possessed cocaine.",
+        "c": "Yes, because the evidence shows only that the woman and her sister committed separate crimes of cocaine possession.",
+        "d": "Yes, because the evidence shows that the woman effectively withdrew from the conspiracy when she cooperated by giving a statement."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0018.png"
+    },
+    {
+      "index": 19,
+      "question": "An undercover police detective told a local drug dealer that she wanted to buy cocaine but needed time to raise the necessary funds. The drug dealer said that he needed time to get the cocaine. They agreed to meet again in 10 days. An hour later, without a warrant, other officers forcibly entered the drug dealer's apartment and arrested him for attempted possession of a controlled substance.\nIf the drug dealer is prosecuted in a common law jurisdiction for attempted possession of cocaine, should he be convicted?",
+      "choices": {
+        "a": "No, because he had not taken sufficient steps toward commission of the crime.",
+        "b": "No, because he was illegally arrested.",
+        "c": "Yes, because by objective standards the undercover detective and the drug dealer had made an agreement that the dealer would obtain cocaine.",
+        "d": "Yes, because he unequivocally expressed his intent to obtain the cocaine."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0019.png"
+    },
+    {
+      "index": 20,
+      "question": "A man was planning to propose to his girlfriend, so he took her to a jewelry store to look at engagement rings. After trying on several rings, the girlfriend selected a ring that was well outside of the man's price range. The man asked the girlfriend to wait in the car while he purchased the ring. Once she exited the jewelry store, the man pulled out a gun and robbed the store.\nAfter the robbery, the man calmly returned to the car and sat silently as the girlfriend unwittingly drove them to their house. Shortly after their arrival, a police officer knocked on their front door. Panicked, the man told the girlfriend that he had robbed the jewelry store and begged her not to open the door. Despite his pleas, the girlfriend answered the door. The man quickly hid inside their bedroom closet. When the officer asked the girlfriend where the man was, she said that the man was headed to a neighboring town. The girlfriend provided no further information to the police.\nIf the woman is charged as an accessory after the fact to robbery and the above evidence is presented at trial, which verdict should the jury render?",
+      "choices": {
+        "a": "Guilty, because the girlfriend aided the man by driving the getaway car.",
+        "b": "Guilty, because the girlfriend told the police officer that the man was headed to a neighboring town.",
+        "c": "Not guilty, because the girlfriend did not learn of the robbery until after its commission.",
+        "d": "Not guilty, because the girlfriend had no duty to report the robbery to the police."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0020.png"
+    },
+    {
+      "index": 21,
+      "question": "A man decided to steal a valuable coin collection from a collector's house while the collector was away. Knowing that the house had an alarm system, the man contacted the pool cleaner who worked at the house twice a week. The man offered the pool cleaner part of the proceeds from selling the coin collection if she would disarm the alarm and leave a side door unlocked so that the man could enter the house. The pool cleaner pretended to agree but then contacted the police, who immediately arrested the man.\nIn a jurisdiction that follows the common law and has adopted the bilateral requirement for conspiracy, what crime has the man committed?",
+      "choices": {
+        "a": "Attempted burglary.",
+        "b": "Attempted larceny.",
+        "c": "Conspiracy.",
+        "d": "Solicitation."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0021.png"
+    },
+    {
+      "index": 22,
+      "question": "A man and a woman were partners in an automobile leasing agency. For some time, the man had been embezzling money from the agency. The woman became suspicious and told the man that she wanted to engage an accounting firm to audit the agency's books. In a panic to prevent the audit and avoid being discovered, the man decided to have the woman killed. He contacted a professional killer and hired him to kill the woman for $10,000. A short time later, the woman died in a car crash arranged by the killer.\nIn addition to embezzlement, of what crime or crimes may the man properly be convicted?",
+      "choices": {
+        "a": "Conspiracy and murder.",
+        "b": "Murder.",
+        "c": "Solicitation and conspiracy.",
+        "d": "Solicitation, conspiracy, and murder."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0022.png"
+    },
+    {
+      "index": 23,
+      "question": "A jurisdiction has the following decisional law on questions of principal and accomplice liability:\nCASE A: The defendant, a hardware store owner, sold several customers a device which detects police radar and enables speeders to avoid detection. When one of the devices broke down and the speeder was arrested, he confessed that he often sped, secure in the knowledge that the device would warn him of police radar in the vicinity. Held: The defendant is guilty as an accomplice to speeding.\nCASE B: The defendant told a friend that the defendant had stored some stereo equipment in a self-storage locker. He gave the friend a key and asked her to pick up the equipment and deliver it to the defendant's house. The friend complied and removed the equipment from the locker using the key. In fact, the equipment belonged to the defendant's neighbor, whose locker key the defendant had found in the driveway. Held: The defendant is guilty as a principal to burglary.\nCASE C: A city council member accepted a bribe from the defendant in exchange for his vote on the defendant's application for a zoning variance. A statute prohibits the taking of bribes by public officials. Held: The defendant is not guilty as an accomplice to the city council member's violation of the bribery statute.\nCASE D: The defendant, an innkeeper, sometimes let his rooms to prostitutes whom he knew to be using the rooms to ply their trade. He charged the prostitutes the same price as other guests at his inn. Held: The defendant is not guilty as an accomplice to prostitution.\nA plastic surgeon agreed to remove the fingerprints from the hands of a man whom the surgeon knew to be a safecracker. The surgeon charged his usual hourly rate for the operation. Afterward, the man burglarized a bank safe and was convicted of burglary. The surgeon has been charged with burglary.\nShould he be convicted or acquitted of this crime?",
+      "choices": {
+        "a": "Convicted on the authority of Case A.",
+        "b": "Convicted on the authority of Case B.",
+        "c": "Acquitted on the authority of Case C.",
+        "d": "Acquitted on the authority of Case D."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0023.png"
+    },
+    {
+      "index": 24,
+      "question": "A jurisdiction has the following decisional law on questions of principal and accomplice liability:\nCASE A: The defendant, a hardware store owner, sold several customers a device which detects police radar and enables speeders to avoid detection. When one of the devices broke down and the speeder was arrested, he confessed that he often sped, secure in the knowledge that the device would warn him of police radar in the vicinity. Held: The defendant is guilty as an accomplice to speeding.\nCASE B: The defendant told a friend that the defendant had stored some stereo equipment in a self-storage locker. He gave the friend a key and asked her to pick up the equipment and deliver it to the defendant's house. The friend complied and removed the equipment from the locker using the key. In fact, the equipment belonged to the defendant's neighbor, whose locker key the defendant had found in the driveway. Held: The defendant is guilty as a principal to burglary.\nCASE C: A city council member accepted a bribe from the defendant in exchange for his vote on the defendant's application for a zoning variance. A statute prohibits the taking of bribes by public officials. Held: The defendant is not guilty as an accomplice to the city council member's violation of the bribery statute.\nCASE D: The defendant, an innkeeper, sometimes lent his rooms to prostitutes whom he knew to be using the rooms to ply their trade. He charged the prostitutes the same price as other guests at his inn. Held: The defendant is not guilty as an accomplice to prostitution.\nIn this jurisdiction, conviction for statutory rape requires proof of the defendant's knowledge that the victim is underage. A high school student, who knew that a girl was underage, encouraged his friend, who was unaware of the girl's age, to have sex with the girl. The student has been charged with statutory rape.\nShould the student be convicted or acquitted of this crime?",
+      "choices": {
+        "a": "Convicted on the authority of Case A.",
+        "b": "Convicted on the authority of Case B.",
+        "c": "Acquitted on the authority of Case C.",
+        "d": "Acquitted on the authority of Case D."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0024.png"
+    },
+    {
+      "index": 25,
+      "question": "A woman promised to pay $10,000 to a hit man if he would kill her neighbor in any manner that could not be traced to her. The hit man bought a gun and watched the neighbor's house for an opportunity to shoot him. One evening, unaware of the hit man's presence, the neighbor tripped as he was walking toward his house, falling and hitting his head against the front steps. Believing that the neighbor was unconscious, the hit man ran over to him and shot him twice in the chest.\nWhen the woman learned of the neighbor's death, she paid the hit man $10,000. A medical examiner determined that the neighbor was already dead when the hit man shot him.\nThe crimes below are listed in descending order of seriousness.\nWhat is the most serious crime of which the woman properly could be convicted?",
+      "choices": {
+        "a": "Murder.",
+        "b": "Attempted murder.",
+        "c": "Conspiracy.",
+        "d": "Solicitation."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0025.png"
+    },
+    {
+      "index": 26,
+      "question": "A youth and two of his friends were members of a teenage street gang. While they were returning from a club late one evening, their car collided with a car driven by an elderly woman. After an argument, the youth attacked the elderly woman with his fists and beat her to death. The youth's two friends watched, and when they saw the woman fall to the ground, they urged him to flee.\nThe youth was eventually apprehended and tried for manslaughter, but the jury could not decide on a verdict.\nIf the youth's companions are subsequently tried as accomplices to manslaughter, should they be acquitted or convicted?",
+      "choices": {
+        "a": "Acquitted, because the youth was not convicted of the offense.",
+        "b": "Acquitted, because they did not assist or encourage the youth to commit the crime.",
+        "c": "Convicted, because they made no effort to intervene.",
+        "d": "Convicted, because they urged him to flee."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0026.png"
+    },
+    {
+      "index": 27,
+      "question": "A man and a woman agreed to engage in sexual intercourse at a particular hotel the following night. The man, who was the son of the woman's brother-in-law, rented the hotel room for their tryst, but the woman did not show up.\nIn the applicable jurisdiction, a statute provides that a person commits the offense of incest when such person engages in sexual intercourse with a person whom he or she knows he or she is related to either by blood or by marriage as aunt or nephew.\nCan the woman and the man properly be charged with conspiracy to commit incest?",
+      "choices": {
+        "a": "No, because of Wharton's Rule.",
+        "b": "No, because the woman did not show up at the hotel.",
+        "c": "Yes, because each consented to engage in sexual intercourse.",
+        "d": "Yes, because the man rented a hotel room."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0027.png"
+    },
+    {
+      "index": 28,
+      "question": "A babysitter, while working one night, noticed that her next-door neighbor had left his house but the door had not closed completely behind him. The babysitter said to the 11-year-old boy she was watching, \"Let's play a game. You go next door and see if you can find my laptop, which I lent to my neighbor, and bring it over here.\" The babysitter knew that the neighbor had a laptop and the babysitter planned to keep the laptop for herself.\nThe boy thought the laptop belonged to the babysitter. He went next door, found the laptop, and carried it out the front door. At that moment, the neighbor returned home and discovered the boy in his front yard with the laptop. The boy explained the \"game\" he and the babysitter were playing. The neighbor then took back his laptop and called the police.\nWhat is the most serious crime for which the babysitter can be convicted?",
+      "choices": {
+        "a": "No crime, because the boy did not commit any crime.",
+        "b": "Attempted larceny, because the babysitter never acquired possession of the laptop.",
+        "c": "Larceny as an accomplice to the boy.",
+        "d": "Larceny by the use of an innocent agent."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0028.png"
+    },
+    {
+      "index": 29,
+      "question": "Four men are being tried for conspiracy to commit a series of bank robberies. Nine successful bank robberies took place during the period of the charged conspiracy. Because the robbers wore masks and gloves and stole the bank surveillance tapes, no witnesses have been able to directly identify the robbers. Some circumstantial evidence ties each of the men to the overall conspiracy.\nDuring cross-examination, a prosecution witness testified that one of the men was in jail on other charges during the last six robberies. That man's lawyer has moved for a judgment of acquittal at the close of the government's case.\nShould the motion be granted?",
+      "choices": {
+        "a": "No, because a conspirator is not required to agree to all of the objectives of the conspiracy.",
+        "b": "No, because a conspirator need not be present at the commission of each crime conspired upon.",
+        "c": "Yes, provided that the man has complied with the rule requiring pretrial notice of alibi.",
+        "d": "Yes, regardless of compliance with the alibi rule, because the government is bound by exculpatory evidence elicited during its case-in-chief."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0029.png"
+    },
+    {
+      "index": 30,
+      "question": "A retailer sponsored a game that required individuals to collect game pieces in order to win various monetary prizes. An employee of the retailer embezzled the rare game pieces necessary for the significant monetary prizes. The employee then separately contacted various individuals, each of whom was given a rare game piece. The employee did not disclose, and the individuals did not learn, that the employee gave game pieces to anyone else. Each individual then submitted the necessary game pieces, including the rare game piece provided by the employee, to the retailer for a monetary prize. In order to obtain a prize, each individual falsely stated that he had obtained all of the game pieces through authorized, legitimate channels. Upon receipt of the prize money, each individual paid 50 percent of the money to the employee, as previously agreed.\nAmong other offenses, the employee and all of the individuals were charged with entering into a single conspiracy to obtain money from the retailer by false pretenses.\nCan the defendants properly be convicted of this conspiracy?",
+      "choices": {
+        "a": "No, because only the employee embezzled the game pieces from the retailer.",
+        "b": "No, because the individuals did not know of the participation of the other individuals in the scheme.",
+        "c": "Yes, because each individual falsely stated that he had obtained all of the necessary game pieces through authorized, legitimate channels.",
+        "d": "Yes, because each individual shared 50 percent of the prize received from the retailer with the employee."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0030.png"
+    },
+    {
+      "index": 31,
+      "question": "In a jurisdiction that has abolished the felony-murder rule but otherwise follows the common law of murder, a husband and wife, both armed with automatic weapons, went into a bank to rob it. The husband ordered all the persons in the bank to lie on the floor. When some were slow to obey, the wife, not intending to hit anyone, fired about 15 rounds into the air. One of these ricocheted off a stone column and struck and killed a customer in the bank.\nThe husband and wife were charged with murder of the customer.\nWhich of the following is correct?",
+      "choices": {
+        "a": "Both can be convicted of murder.",
+        "b": "Neither can be guilty of murder, but both can be convicted of manslaughter based upon an unintentional homicide.",
+        "c": "The wife can be convicted of murder, because she did the act of killing, but the husband cannot be convicted of either murder or manslaughter.",
+        "d": "The wife can be convicted only of manslaughter, but the husband cannot be convicted of murder or manslaughter."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0031.png"
+    },
+    {
+      "index": 32,
+      "question": "A bank teller was fired by the president of the bank. The teller decided to take revenge against the president but decided against attempting it personally because he knew the president was protected around the clock by bank security guards. The teller also knew that his cousin had a violent temper and was very jealous. The teller falsely told his cousin that the cousin's wife was having an affair with the president. Enraged, the cousin said, \"What am I going to do?\" The teller said, \"If it were my wife, I'd just march into his office and blow his brains out.\"\nThe cousin grabbed a revolver and rushed to the bank. He walked into the bank, carrying the gun in his hand. One of the security guards, believing a holdup was about to occur, shot and killed the cousin.\nIf the teller is charged with attempted murder of the president, which verdict should be rendered?",
+      "choices": {
+        "a": "Guilty, because he intended to kill the president and used the cousin to carry out his plan.",
+        "b": "Guilty, because he was extremely reckless as to the president.",
+        "c": "Not guilty, because the cousin, if successful, would be guilty of no more than manslaughter and an accomplice cannot be guilty of a higher crime than the principal.",
+        "d": "Not guilty, because the president was never in imminent danger of being killed."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0032.png"
+    },
+    {
+      "index": 33,
+      "question": "A construction company sent a bill to a customer who had hired the company to do work on the customer's home. The bill contained charges for material and labor for construction that was done on the personal residence of the company's president, rather than the customer's home. The customer paid the bill, believing it was for his home. Subsequently, the company and its president were charged with the crime of conspiring to commit theft as well as the crime of theft. The customer lived in the state that was prosecuting these crimes. The company was incorporated in another state and its president lived in that state. Each defendant was convicted of both crimes.\nThe theft crime is statutorily defined as follows: \"A person commits the offense of theft if the person obtains property of another by deception.\" The conspiracy crime is statutorily defined as follows: \"A person commits the offense of conspiracy to commit theft when the person agrees with another to commit theft of any property that belongs to another.\" Both crimes include a legal entity within the definition of \"person.\"\nThe company and its president have appealed their convictions for the conspiracy offense only. Which of the following is their best defense to this crime?",
+      "choices": {
+        "a": "A corporation cannot be criminally liable because it cannot form the requisite mens rea.",
+        "b": "The company and its president are a single entity for purposes of this crime.",
+        "c": "The crime of conspiracy to commit theft merges into the completed crime of theft.",
+        "d": "The state lacks the authority to prosecute this crime."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0033.png"
+    },
+    {
+      "index": 34,
+      "question": "A boyfriend approached a hitman and inquired about hiring someone to kill his girlfriend's parents. Unknown to the boyfriend, the hitman was an undercover police officer who pretended to agree to handle the job and secretly taped subsequent conversations with the boyfriend concerning plans and payment.\nA few days before the payment was due, the boyfriend changed his mind and called the plan off. Nevertheless, the boyfriend was charged with solicitation to commit murder.\nShould the boyfriend be acquitted or convicted of solicitation, as defined at common law?",
+      "choices": {
+        "a": "Acquitted, because he withdrew before payment and commission of the act.",
+        "b": "Acquitted, because no substantial acts were performed.",
+        "c": "Convicted, because the \"hitman\" agreed to commit the offense.",
+        "d": "Convicted, because the offense was completed before his attempt to withdraw."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0034.png"
+    },
+    {
+      "index": 35,
+      "question": "While on their way home from a ball game, a driver and his passenger stopped at an all-night gas station. The passenger offered to pay for the gas. While the passenger pumped gas, he was surprised to see the driver enter the station, take money from the unattended cash drawer, and get back in the car. The passenger paid the attendant for the gas, and the driver drove off. The driver offered to reimburse the passenger for the gas, but the passenger declined. After discovering the missing cash, the gas station attendant called the police, and the driver was later stopped. The driver escaped with the stolen money, however, and was never prosecuted.\nIf the passenger is prosecuted for theft as an accomplice, should he be convicted?",
+      "choices": {
+        "a": "No, because he had no intent to promote the commission of the offense.",
+        "b": "No, because the driver, the principal, was never prosecuted.",
+        "c": "Yes, because he facilitated commission of the offense by failing to make any effort to stop it.",
+        "d": "Yes, because he paid the attendant while he knew the driver was holding the stolen money."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0035.png"
+    },
+    {
+      "index": 36,
+      "question": "A man who owned a failing construction business lacked the money and supplies necessary to complete a major industrial project. In order to acquire supplies for the major project, the man planned to take supplies that another client had purchased and delivered for the construction of an apartment complex. The man shared his plan with a friend, an employee of the construction business, and asked the friend to help him retrieve the supplies from the business's storage facility. The friend knew that the supplies belonged to the other client but nevertheless agreed to help the man. Unbeknownst to the man and the friend, the apartment project had recently been canceled and the supplies had been returned to the client.\nThe next day, the friend went to the storage facility to get the supplies. The friend searched the facility for only a few minutes when he had a change of heart and left. However, his movement around the facility had triggered a silent alarm that turned on the surveillance cameras and alerted the police.\nThe friend and the man were later arrested, charged with conspiracy to commit larceny, and tried separately. The man was acquitted based on a lack of evidence, but the friend's trial is still pending.\nIn a jurisdiction that follows the modern-prevailing approach for conspiracy, is the friend likely guilty?",
+      "choices": {
+        "a": "No, because the friend's subsequent withdrawal from the conspiracy prevented its success.",
+        "b": "No, because the man was acquitted due to insufficient evidence.",
+        "c": "Yes, because impossibility is not a defense to conspiracy.",
+        "d": "Yes, because the friend agreed to take the supplies and committed an overt act."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0036.png"
+    },
+    {
+      "index": 37,
+      "question": "A man wanted to kill his coworker because the man believed the coworker was having an affair with the man's wife. Early one morning, armed with a pistol, the man crouched behind some bushes on a park hillside overlooking a path upon which the coworker frequently jogged. On this morning, however, the man saw the coworker jogging on another path about a half mile away. Nonetheless, the man fired five shots at the coworker. None of the five shots came anywhere close to the coworker as he was well out of the range of the pistol the man was using.\nAt the man's trial, what verdict should the jury return?",
+      "choices": {
+        "a": "Guilty of attempted murder, because a reasonable person would not have been aware of the limited range of the pistol.",
+        "b": "Guilty of attempted murder, because the man was not aware of the limited range of his pistol.",
+        "c": "Not guilty of attempted murder, but guilty of assault.",
+        "d": "Not guilty of attempted murder or any lesser included offense, because it was impossible for the man to have killed his coworker."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0037.png"
+    },
+    {
+      "index": 38,
+      "question": "A jurisdiction has the following decisional law on questions of principal and accomplice liability:\nCASE A: The defendant, a hardware store owner, sold several customers a device which detects police radar and enables speeders to avoid detection. When one of the devices broke down and the speeder was arrested, he confessed that he often sped, secure in the knowledge that the device would warn him of police radar in the vicinity. Held: The defendant is guilty as an accomplice to speeding.\nCASE B: The defendant told a friend that the defendant had stored some stereo equipment in a self-storage locker. He gave the friend a key and asked her to pick up the equipment and deliver it to the defendant's house. The friend complied and removed the equipment from the locker using the key. In fact, the equipment belonged to the defendant's neighbor, whose locker key the defendant had found in the driveway. Held: The defendant is guilty as a principal to burglary.\nCASE C: A city council member accepted a bribe from the defendant in exchange for his vote on the defendant's application for a zoning variance. A statute prohibits the taking of bribes by public officials. Held: The defendant is not guilty as an accomplice to the city council member's violation of the bribery statute.\nCASE D: The defendant, an innkeeper, sometimes let his rooms to prostitutes whom he knew to be using the rooms to ply their trade. He charged the prostitutes the same price as other guests at his inn. Held: The defendant is not guilty as an accomplice to prostitution.\nA college student purchased narcotics from a man whom the student believed to be a drug dealer but who was in fact an undercover police agent. The student has been charged as an accomplice to the sale of narcotics.\nShould the student be convicted or acquitted of this crime?",
+      "choices": {
+        "a": "Convicted on the authority of Case A.",
+        "b": "Convicted on the authority of Case B.",
+        "c": "Acquitted on the authority of Case C.",
+        "d": "Acquitted on the authority of Case D."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0038.png"
+    },
+    {
+      "index": 39,
+      "question": "A man asked his girlfriend to lend him something he could use to break into his neighbor's padlocked storage shed in order to steal a lawn mower. She handed him a crowbar. He took the crowbar but then found a bolt cutter that the neighbor had left outside the shed. Using the bolt cutter, he cut the padlock on the shed and took the mower, which he then used to mow his girlfriend's lawn. She was surprised and pleased by this gesture.\nBurglary in the jurisdiction applies to any structure or building, and there is no nighttime element. The girlfriend has been charged as an accomplice to burglary and larceny.\nOf which crimes, if any, is she guilty?",
+      "choices": {
+        "a": "Burglary and larceny.",
+        "b": "Burglary, but not larceny, because she intended to assist only in the breaking.",
+        "c": "Larceny, but not burglary, because she provided no actual assistance to the breaking but received a benefit from the larceny.",
+        "d": "Neither burglary nor larceny, because she provided no actual assistance."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0039.png"
+    },
+    {
+      "index": 40,
+      "question": "A drug dealer agreed with another individual to purchase heroin from the individual in order to sell it on a city street corner. Unbeknownst to the drug dealer, the other individual was an undercover police officer whose only purpose was to arrest distributors of drugs. The drug dealer made a down payment for the heroin and agreed to pay the remainder after he sold it on the street. As soon as the undercover officer handed over the heroin, other officers moved in and arrested the dealer.\nThe jurisdiction follows the common law approach to conspiracy.\nCould the dealer properly be convicted of conspiring to distribute drugs?",
+      "choices": {
+        "a": "No, because there was no overt act.",
+        "b": "No, because there was no plurality of agreement.",
+        "c": "Yes, because neither an overt act nor plurality of agreement is required at common law.",
+        "d": "Yes, because the dealer believed that all the elements of conspiracy were present and cannot take advantage of a mistake of fact or law."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0040.png"
+    },
+    {
+      "index": 41,
+      "question": "A man and a woman agreed that the woman would rob a bank and that the man would steal a car beforehand for the woman to use as a getaway vehicle. The man stole a car and parked it two blocks from the bank. He left the car key under the floor mat with a note saying that he wanted nothing more to do with the scheme. The next day, the woman robbed the bank and ran to the spot where the man had said he would leave the stolen car. She then escaped in the car and disappeared. She never shared any of the money with the man.\nIn a jurisdiction that has adopted the bilateral requirement for conspiracy, can the man properly be convicted of conspiring with the woman to rob the bank?",
+      "choices": {
+        "a": "No, because the man received no benefit from the robbery.",
+        "b": "No, because the man withdrew from the conspiracy.",
+        "c": "Yes, because the robbery was successful due in part to the man's actions.",
+        "d": "Yes, because there was an agreement to rob the bank and an overt act in furtherance of the agreement."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0041.png"
+    },
+    {
+      "index": 42,
+      "question": "A girl told an 18-year-old boy she would like to have sexual intercourse with him and that he should come to her apartment that night at 7 p.m. After the boy arrived, he and the girl went into the bedroom. As the boy started to remove the girl's blouse, she said she had changed her mind. The boy tried to convince her to have intercourse with him, but after ten minutes of her sustained refusals, he left the apartment. Unknown to the boy, the girl was 15 years old. Because she appeared to be older, the boy believed her to be about 18 years old.\nA statute in the jurisdiction provides: \"A person commits rape in the second degree if he has sexual intercourse with a girl, not his wife, who is under the age of 16 years.\"\nIf the boy is charged with attempting to violate this statute, what is the proper verdict?",
+      "choices": {
+        "a": "Guilty, because he persisted after she told him she had changed her mind.",
+        "b": "Guilty, because no mental state is required as to the element of age.",
+        "c": "Not guilty, because he did not intend to have intercourse with a girl under the age of 16.",
+        "d": "Not guilty, because he reasonably believed she had consented and voluntarily withdrew after she told him she had changed her mind."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0042.png"
+    },
+    {
+      "index": 43,
+      "question": "A hair technician agreed to implant synthetic hair into the scalp of her customer. The customer explained to the hair technician that he often broke into people's houses to take jewelry and that he wanted to avoid leaving his own hair at the scene as incriminating evidence. The technician, knowing that a great deal of the synthetic hair would fall out due to implant rejection, that the strands would still have the customer's DNA at the root, and that the procedure would be no help at all in hiding forensic evidence, said nothing. The technician completed the procedure and charged her regular hourly rate. The next night, the customer broke into a house and stole a diamond ring. He later was convicted of burglary based on hair evidence he left behind.\nThe jurisdiction follows the Model Penal Code rule regarding accomplice liability.\nShould the hair technician be convicted of burglary as an accomplice?",
+      "choices": {
+        "a": "No, because she did not break into the house and steal the ring.",
+        "b": "No, because she did not have the requisite intent for accomplice liability.",
+        "c": "Yes, because she failed to notify legal authorities in a timely manner.",
+        "d": "Yes, because she knew that the customer broke into houses regularly."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0043.png"
+    },
+    {
+      "index": 44,
+      "question": "Nine gang members, including the gang leader, were indicted for the murder of a tenth gang member, who had become an informant. The gang leader pleaded guilty. At the trial of the other eight gang members, the state's evidence showed the following: The gang leader had announced a party to celebrate the release of a gang member from jail, but the party was not what it seemed. The gang leader had learned that the released gang member had earned his freedom by informing the authorities about the gang's criminal activities. The gang leader decided to use the party to let the other gang members see what happened to informants. He told no one about his plan. At the party, after everyone had consumed large amounts of liquor, the gang leader announced that the released gang member was an informant and stabbed him with a knife in front of the others. The eight other gang members watched and did nothing while the released gang member slowly bled to death. The jury found the eight gang members guilty of murder, and they appealed.\nShould the appellate court uphold the convictions?",
+      "choices": {
+        "a": "No, because mere presence at the scene of a crime is insufficient to make a person an accomplice.",
+        "b": "No, because murder is a specific-intent crime, and there is insufficient evidence to show that the other gang members intended to kill.",
+        "c": "Yes, because the gang members made no effort to save the informant after he had been stabbed.",
+        "d": "Yes, because voluntary intoxication does not negate criminal responsibility."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0044.png"
+    }
+  ]
+}

@@ -1,0 +1,612 @@
+{
+  "meta": {
+    "source": "UWorld (captured from DOM #questionText + choices + right-content screenshot)",
+    "capturedAt": "2026-03-04T18:08:13.683Z",
+    "count": 46,
+    "screenshotCount": 46,
+    "url": "https://apps-legal.uworld.com/courseapp/legal/v57/testinterface/launchtest/14822410/405136663/2/1",
+    "examName": "Constitutional Law: Federal-State Relations",
+    "subject": "Constitutional Law",
+    "chapter": "Federal-State Relations"
+  },
+  "questions": [
+    {
+      "index": 1,
+      "question": "A state law prohibits the withdrawal of groundwater from any well within the state for use in another state. The express purpose of the law is to safeguard the supply of water for state citizens. Adoption of this state law followed enactment of a federal statute providing that \"the transport of groundwater from one state to another may be restricted or prohibited in accordance with the laws of the state in which the water originates.\"\nAn association of water users in a neighboring state has filed suit to have the state law declared unconstitutional and enjoined on the ground that it violates the negative implications of the commerce clause.\nWhich of the following is the best argument supporting a motion to dismiss the lawsuit?",
+      "choices": {
+        "a": "Groundwater located within a state is not itself an article of interstate commerce, and therefore state regulation of the withdrawal of such groundwater does not implicate the commerce clause.",
+        "b": "The federal statute explicitly consents to a state's regulation of its groundwater in a way that would otherwise violate the negative implications of the commerce clause.",
+        "c": "The law promotes a compelling state interest that outweighs any burden on interstate commercial activity that might result from this state regulation of its groundwater.",
+        "d": "The Tenth Amendment reserves to the states plenary authority over the regulation of the natural resources located within their respective borders."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0001.png"
+    },
+    {
+      "index": 2,
+      "question": "A state legislature conducted an investigation into a series of fatal accidents in the state involving commercial trucks with exteriors made of polished aluminum. The investigation revealed that the sun's glare reflecting off these trucks blinded the drivers of other vehicles. In response, the state's legislature enacted a law prohibiting commercial trucks with polished aluminum exteriors from traveling on the state's highways.\nLitigation over the state law resulted in a final decision by the United States Supreme Court that the law impermissibly burdened interstate commerce and therefore was unconstitutional. Congress later enacted a statute permitting any state to enact a law regulating the degree of light reflectiveness of the exteriors of commercial trucks using the state's highways.\nIs this federal statute constitutional?",
+      "choices": {
+        "a": "No, because Article III vests the judicial power in the federal courts, the essence of judicial power is the ability to render a final judgment, and this statute overrules a final judgment of the U.S. Supreme Court.",
+        "b": "No, because the U.S. Supreme Court has already determined that state laws of this type impermissibly burden interstate commerce.",
+        "c": "Yes, because Article I, Section 8 grants Congress authority to enact statutes authorizing states to impose burdens on interstate commerce that would otherwise be prohibited.",
+        "d": "Yes, because Article I, Section 8 grants Congress authority to enact statutes for the general welfare, and Congress could reasonably believe that state laws regulating the light reflectiveness of the exteriors of commercial trucks promote the general welfare."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0002.png"
+    },
+    {
+      "index": 3,
+      "question": "The United States Department of Energy regularly transports nuclear materials through a city on the way to a nuclear weapons processing plant it operates in a nearby state. The city recently adopted an ordinance prohibiting the transportation of any nuclear materials in or through the city. The ordinance declares that its purpose is to protect the health and safety of the residents of that city.\nMay the Department of Energy continue to transport these nuclear materials through the city?",
+      "choices": {
+        "a": "No, because the ordinance is rationally related to the public health and safety of the city's residents.",
+        "b": "No, because the Tenth Amendment reserves to the states certain unenumerated sovereign powers.",
+        "c": "Yes, because the Department of Energy is a federal agency engaged in a lawful federal function and, therefore, its activities may not be regulated by a local government without the consent of Congress.",
+        "d": "Yes, because the ordinance enacted by the city is invalid because it denies persons transporting such materials the equal protection of the laws."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0003.png"
+    },
+    {
+      "index": 4,
+      "question": "A city in State X is a center for businesses that assemble personal computers. Components for these computers are manufactured elsewhere in State X and in other states, then shipped to the city, where the computers are assembled.\nA city ordinance imposes a special license tax on all of the many companies engaged in the business of assembling computers in that city. The tax payable by each such company is a percentage of the company's gross receipts earned in the state.\nA State X statute that authorizes municipalities to impose this license tax has a \"State X content\" provision. To comply with this provision of the state statute, the city license tax ordinance provides that the tax paid by any assembler of computers subject to this tax ordinance will be reduced by a percentage equal to the proportion of computer components manufactured in State X.\nA company assembles computers in the city and sells them from its offices in the city to buyers throughout the United States. All of the components of its computers come from outside State X. Therefore, the company must pay the city license tax in full without receiving any refund. Other computer assemblers in the city use components manufactured in State X in varying proportions and, therefore, are entitled to partial reductions of their city license tax payments.\nFollowing prescribed procedure, the company brings an action in a proper court asking to have the city's special license tax declared unconstitutional on the ground that it is inconsistent with the negative implications of the commerce clause.\nIn this case, should the court rule in favor of the company?",
+      "choices": {
+        "a": "No, because the commerce clause does not interfere with the right of a state to foster and support businesses located within its borders by encouraging its residents to purchase the products of those businesses.",
+        "b": "No, because the tax falls only on companies resident in State X and, therefore, does not discriminate against or otherwise adversely affect interstate commerce.",
+        "c": "Yes, because any tax on a company engaged in interstate commerce, measured in whole or in part by its gross receipts earned in the state, is a per se violation of the negative implications of the commerce clause.",
+        "d": "Yes, because the tax improperly discriminates against interstate commerce by treating in-state products more favorably than out-of-state products."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0004.png"
+    },
+    {
+      "index": 5,
+      "question": "A state enacted a statute requiring the state's appointed presidential electors to swear an oath that they will cast their electoral votes for the presidential and vice-presidential nominees chosen by the popular vote of the state. A provision of the statute provides that an elector who breaks this oath and votes for another candidate will be removed and replaced as an elector and fined $1,000.\nThree appointed electors in the state swore the oath as required by the statute. When the time came to cast their electoral votes, however, the electors voted for a presidential candidate who was not chosen by the state's popular vote. The state removed the electors and replaced them with alternates. The state also fined each elector $1,000.\nThe three electors sued the state in state court, claiming that the statute governing presidential electors violates the United States Constitution.\nHow should the court rule on the constitutionality of the state statute?",
+      "choices": {
+        "a": "The provision imposing a monetary fine on the electors is an unconstitutional bill of attainder.",
+        "b": "The provision allowing the removal of electors violates their fundamental right to vote.",
+        "c": "The provision requiring electors to swear an oath violates their First Amendment right to free speech and association.",
+        "d": "The statute is constitutional in its entirety."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0005.png"
+    },
+    {
+      "index": 6,
+      "question": "State A requires commercial airlines to pay an annual property tax based on the value of the airline's fleet of planes that operate in the state. The tax is calculated by multiplying the percentage of the airline's annual arrivals and departures in the state by the fleet's overall value. The airline's fleet of planes is based in State B. Ten percent of the airline's annual arrivals and departures occur in State A. The airline has sued to challenge the State A tax, arguing that it is unconstitutional.\nIs the state tax likely constitutional?",
+      "choices": {
+        "a": "No, because Congress has the sole power to tax property moving in interstate commerce.",
+        "b": "No, because the airline's fleet is based in State B.",
+        "c": "Yes, because it does not place an undue burden on interstate commerce in violation of the negative implications of the commerce clause.",
+        "d": "Yes, because states have plenary authority to construct their tax system in any manner they choose."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0006.png"
+    },
+    {
+      "index": 7,
+      "question": "A federal statute provides that the cities in which certain specified airports are located may regulate the rates and services of all limousines that serve those airports, without regard to the origin or destination of the passengers who use the limousines.\nA city in State A is located adjacent to a city in State B. The airport serving both of them is located in the State A city and is one of those airports specified in the federal statute. The State A city council has adopted a rule that requires any limousines serving the airport to charge only the rates authorized by the State A city council.\nAn airline limousine service has a lucrative business transporting passengers between the State B city and the airport in the State A city, at much lower rates than those required by the State A city council. It transports passengers in interstate traffic only; it does not provide local service within the State A city. The new rule adopted by the State A city council will require the limousine service to charge the same rates as limousines operating only in the State A city.\nMust the airline limousine service comply with the new rule of the State A city council?",
+      "choices": {
+        "a": "No, because the airline limousine service is engaged in interstate commerce and this rule is an undue burden on that commerce.",
+        "b": "No, because the rule would arbitrarily destroy a lucrative existing business and, therefore, would amount to a taking without just compensation.",
+        "c": "Yes, because Congress has authorized this form of regulation by the State A city and, therefore, removed any constitutional impediments to it that may have otherwise existed.",
+        "d": "Yes, because the airport is located in the State A city and, therefore, its city council has exclusive regulatory authority over all transportation to and from the airport."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0007.png"
+    },
+    {
+      "index": 8,
+      "question": "A state owned a large natural gas field and took bids for its exploitation. The highest bid came from an interstate pipeline company that distributed natural gas to providers throughout the country. A local gas company submitted the next highest bid, which included the commitment that it would pass along to local customers any savings if it was awarded the contract. The state awarded the contract to the local company.\nThe interstate company sued to overturn this decision.\nShould the interstate company prevail?",
+      "choices": {
+        "a": "No, because the state acted as a market participant.",
+        "b": "No, because the state has a compelling interest in reducing the cost of gas for state citizens.",
+        "c": "Yes, because the state acted irrationally by not choosing the highest bidder and thus denied the interstate company due process of law.",
+        "d": "Yes, because the state discriminated against interstate commerce."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0008.png"
+    },
+    {
+      "index": 9,
+      "question": "The United States Department of the Interior granted a man the food and drink concession in a federal park located in a state. The man operated his concession out of federally owned facilities in the park. The federal statute authorizing the Interior Department to grant such concessions provided that the grantees would pay only a nominal rental for use of these federal facilities because of the great benefit their concessions would provide to the people of the United States.\nThe state legislature enacted a statute imposing an occupancy tax on the occupants of real estate within that state that is not subject to state real estate taxes. The statute was intended to equalize the state tax burden on such occupants with that on people occupying real estate that is subject to state real estate taxes.\nPursuant to that statute, the state's Department of Revenue attempted to collect the state occupancy tax from the man because the federal facilities occupied by the man were not subject to state real estate taxes.\nThe man sued to invalidate the state occupancy tax as applied to him.\nWhat is the strongest constitutional ground upon which the man could challenge the occupancy tax?",
+      "choices": {
+        "a": "The tax violates the commerce clause by unduly burdening the interstate tourist trade.",
+        "b": "The tax violates the equal protection clause of the Fourteenth Amendment because the tax treats him less favorably than federal concessionaires in other states who do not have to pay such occupancy taxes.",
+        "c": "The tax violates the privileges or immunities clause of the Fourteenth Amendment by interfering with the fundamental right to do business on federal property.",
+        "d": "The tax violates the supremacy clause of Article VI and the federal statute authorizing such concessions."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0009.png"
+    },
+    {
+      "index": 10,
+      "question": "A federal statute authorizes the Interstate Commerce Commission (ICC) to permit interstate carriers to discontinue any unprofitable route.\nAn interstate bus company that operates in a five-state area applied to the ICC for permission to drop a very unprofitable route through a sparsely populated mountain region. The ICC granted that permission even though the bus company provided the only public transportation into that region.\nA woman owns a mountain resort in this region. The resort's customers usually arrived on buses operated by the company. After exhausting all available federal administrative remedies, the woman filed suit against the bus company in the trial court of the state in which the resort is located to enjoin the discontinuance by the bus company of its service to that area. The woman alleged that the discontinuance of service would violate a state statute that prohibits common carriers from abandoning service to communities having no alternate form of public transportation.\nWhat action should the state court take?",
+      "choices": {
+        "a": "Deny the injunction, because a valid federal law preempts the state statute on which the woman relies.",
+        "b": "Direct the removal of the case to federal court, because this suit involves a substantial federal question.",
+        "c": "Dismiss the action, because the woman lacks standing to sue.",
+        "d": "Grant the injunction because, on these facts, a federal agency is interfering with essential state functions."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0010.png"
+    },
+    {
+      "index": 11,
+      "question": "A state requires all corporations that operate in the state to file their annual income tax returns with the state's tax board for the purpose of calculating the amount of income tax that each corporation owes. The board requires corporations to provide reasonable approximations of their income earned on a worldwide basis. The board then calculates the income tax that a corporation owes based on the amount of income attributable to its operations within the state.\nSeveral foreign corporations that operate in the state and do not use the state's method of accounting have sued the board in state court, arguing that the state tax is unconstitutional.\nIs the state tax constitutional?",
+      "choices": {
+        "a": "No, because Congress has the sole power to tax foreign corporations.",
+        "b": "No, because the state tax discriminates against foreign commerce.",
+        "c": "Yes, because the state tax was enacted pursuant to the state's police power, which takes precedence over the negative implications of the commerce clause.",
+        "d": "Yes, if the court determines that the state tax does not impede federal uniformity in foreign commerce."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0011.png"
+    },
+    {
+      "index": 12,
+      "question": "A federally owned and operated office building located in a state is heated with a new, pollution-free heating system. However, in the coldest season of the year, this new system is sometimes insufficient to supply adequate heat to the building. The federal appropriation statute providing the money for construction of the new heating system permitted use of the old, pollution-generating system when necessary to supply additional heat. When the old heating system operates (only about two days in any year), the smokestack of the building emits smoke that exceeds the state's pollution-control standards.\nMay the operators of the federal office building be prosecuted successfully by state authorities for violating that state's pollution-control standards?",
+      "choices": {
+        "a": "No, because the operations of the federal government are immune from state regulation in the absence of federal consent.",
+        "b": "No, because the violations of the state pollution-control standards involved here are so insignificant that they are beyond the legitimate reach of state law.",
+        "c": "Yes, because the regulation of pollution is a joint concern of the federal government and the state and, therefore, both of them may regulate conduct causing pollution.",
+        "d": "Yes, because the regulation of pollution is a legitimate state police power concern."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0012.png"
+    },
+    {
+      "index": 13,
+      "question": "A federal law provides that all motor vehicle tires discarded in this country must be disposed of in facilities licensed by the federal Environmental Protection Agency. Pursuant to this federal law and all proper federal procedural requirements, that agency has adopted very strict standards for the licensing of such facilities. As a result, the cost of disposing of tires in licensed facilities is substantial.\nA state has a very large fleet of motor vehicles, including trucks used to support state-owned commercial activities and police cars. The state disposes of used tires from both kinds of state motor vehicles in a state-owned and operated facility. This state facility is unlicensed, but its operation in actual practice meets most of the standards imposed by the federal Environmental Protection Agency on facilities it licenses to dispose of tires.\nIs it consistent with United States Supreme Court precedent for the state to continue disposing of its used tires in this manner?",
+      "choices": {
+        "a": "No, because a state must comply with valid federal laws that regulate matters substantially affecting interstate commerce.",
+        "b": "No, because some of the tires come from vehicles that are used by the state solely in its commercial activities.",
+        "c": "Yes, because some of the tires come from vehicles that are used by the state in the performance of core state governmental functions such as law enforcement.",
+        "d": "Yes, because the legitimate needs of the federal government are satisfied by the fact that the unlicensed state disposal scheme meets, in actual practice, most of the federal standards for the licensing of such facilities."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0013.png"
+    },
+    {
+      "index": 14,
+      "question": "A state statute requires corporations located in the state to pay an annual property tax based on the value of their inventory that is stored there. A tire distributor that imports tires manufactured in foreign countries and stores them at warehouses located in the state has sued to challenge the state tax, arguing that it is unconstitutional.\nIs the state tax constitutional?",
+      "choices": {
+        "a": "No, because the import-export clause prohibits state taxes on imported goods.",
+        "b": "No, because the state tax discriminates against foreign commerce.",
+        "c": "Yes, because states have absolute authority to tax goods within their borders.",
+        "d": "Yes, because the state tax does not divert import revenue from the federal government."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0014.png"
+    },
+    {
+      "index": 15,
+      "question": "Due to the high cost of labor, several large corporations shut down their manufacturing plants in a state and moved their operations overseas. This caused severe and continuous unemployment in the state, which relies heavily on manufacturing jobs and manufactured goods to spur its economy. In response, the state legislature enacted a statute that requires certain businesses selling goods in the state to purchase goods produced in the state in an amount equal to at least half of the business's annual sales in the state. This statute only applies to businesses with annual sales in the state that exceed $3 million.\nA company that has annual sales in the state of $5 million challenges the state statute in federal court.\nWhich constitutional provision provides the strongest ground on which to attack this statute?",
+      "choices": {
+        "a": "The Article I commerce clause.",
+        "b": "The Fourteenth Amendment due process clause.",
+        "c": "The Fourteenth Amendment equal protection clause.",
+        "d": "The Fourteenth Amendment privileges or immunities clause."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0015.png"
+    },
+    {
+      "index": 16,
+      "question": "Widgets are manufactured wholly from raw materials mined and processed in a state. The only two manufacturers of widgets in the United States are also located in that state. However, their widgets are purchased by retailers located in every state.\nThe state legislature is considering the adoption of a statute that would impose a tax solely on the manufacture of widgets. The tax is to be calculated at 3% of their wholesale value.\nWhich of the following arguments would be LEAST helpful to the state in defending the constitutionality of this proposed state tax on widgets?",
+      "choices": {
+        "a": "A tax on the manufacture of widgets may be imposed only by the state in which the manufacturing occurs and, therefore, it is not likely to create the danger of a multiple tax burden on interstate commerce.",
+        "b": "At the time widgets are manufactured and taxed they have not yet entered the channels of interstate commerce.",
+        "c": "Because of the powers reserved to them by the Tenth Amendment, states have plenary authority to construct their tax system in any manner they choose.",
+        "d": "The economic impact of this tax will be passed on to both in-state and out-of-state purchasers of widgets and, therefore, the tax is wholly nondiscriminatory in its effect."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0016.png"
+    },
+    {
+      "index": 17,
+      "question": "A federal statute requires all owners of mineral springs to pay a sales tax on the mineral water they sell. A state that sells mineral water from the springs that it owns has refused to pay the tax. The United States has sued the state in federal court, seeking payment of the tax. The state has moved to dismiss the action.\nIs the court likely to dismiss the action?",
+      "choices": {
+        "a": "No, because Congress has unlimited power to tax and spend for the general welfare.",
+        "b": "No, because the nondiscriminatory tax does not interfere with the essential functions of state government.",
+        "c": "Yes, because the Eleventh Amendment prohibits states from being sued in federal court without the state's consent.",
+        "d": "Yes, because the Tenth Amendment grants states immunity from all direct federal taxation."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0017.png"
+    },
+    {
+      "index": 18,
+      "question": "A state representative made a speech on the floor of the state legislature in which she asserted that a state senator had violated the legislature's code of ethics by having a sexual relationship with a staff member. In making this assertion, the representative played a recording of a phone conversation between the senator and staff member in which they admitted having such a relationship. The representative obtained the recording from an acquaintance, who had placed an illegal wiretap on the staff member's phone.\nOne year later, the federal government initiated a prosecution against the state representative for violating a federal criminal statute that prohibits the intentional publication of communications that were unlawfully recorded. A person found guilty under the statute is subject to a one-year prison sentence and a monetary fine.\nThe representative has moved to dismiss the action.\nIs the court likely to dismiss the action?",
+      "choices": {
+        "a": "No.",
+        "b": "Yes, because state legislators are absolutely immune from liability for actions taken pursuant to their official legislative functions.",
+        "c": "Yes, because the Eleventh Amendment bars actions of this kind in federal court.",
+        "d": "Yes, because the speech or debate clause wholly insulates state legislators from civil and criminal liability for legislative activity."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0018.png"
+    },
+    {
+      "index": 19,
+      "question": "A state owned and operated an electric power system, which included a nuclear power plant. In order to ensure the availability of sites for the disposal of spent fuel from the nuclear power plant, the state refused to supply electric power to out-of-state purchasers residing in states that would not accept spent fuel from the plant for storage or disposal.\nAssume that no federal statute applies.\nWhich of the following is the strongest argument that the state's action is constitutional?",
+      "choices": {
+        "a": "A state may condition the sale to out-of-state purchasers of any products produced in that state on the willingness of those purchasers to bear their fair share of the environmental costs of producing those products.",
+        "b": "The generation of electricity is intrastate by nature and therefore subject to plenary state control.",
+        "c": "The state itself owns and operates the power system, and therefore its refusal to supply power to out-of-state purchasers is not subject to the negative implications of the commerce clause.",
+        "d": "The state's action is rationally related to the health, safety, and welfare of state citizens."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0019.png"
+    },
+    {
+      "index": 20,
+      "question": "A state law requires any lawn mower sold in the state to meet a specified minimum level of fuel efficiency.\nA new federal statute requires all power equipment, including lawn mowers, to be labeled with energy efficiency stickers to permit purchasers to make informed choices when buying such equipment. The statute does not expressly preempt state law.\nAssume that no other federal statute or administrative regulation addresses the energy efficiency of power equipment.\nWhich of the following is the best argument the state can make for the continued validity of its law?",
+      "choices": {
+        "a": "Congress cannot preempt state laws requiring a specified minimum level of fuel efficiency for lawn mowers, because the use of such equipment is a wholly local event and, therefore, is beyond the regulatory authority vested in Congress by the commerce clause.",
+        "b": "The law is unaffected by the federal statute, because Congress did not expressly prohibit state laws requiring power equipment to meet specified levels of fuel efficiency.",
+        "c": "The purpose of the law is consistent with the purpose of the federal statute, enforcement of the law would not interfere with the full execution of the statute, and there is no evidence that Congress intended to preclude the states from enacting supplemental laws on this subject.",
+        "d": "There is a very strong presumption that a specific state law on a subject normally within the state's police power prevails over a more general federal statute, because the Tenth Amendment reserves to the states primary authority over matters affecting public health, welfare, and safety."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0020.png"
+    },
+    {
+      "index": 21,
+      "question": "A fatal virus recently infected poultry in several nations. Some scientific evidence indicates that the virus can be transmitted from poultry to humans.\nPoultry farming is a major industry in several U.S. states. In one such state, the legislature has enacted a law imposing a fee of two cents per bird on all poultry farming and processing operations in the state. The purpose of the fee is to pay for a state inspection system to ensure that no poultry raised or processed in the state is infected with the virus.\nA company that has poultry processing plants both in the state and in other states has sued to challenge the fee.\nIs the fee constitutional?",
+      "choices": {
+        "a": "No, because although it attaches only to intrastate activity, in the aggregate, the fee substantially affects interstate commerce.",
+        "b": "No, because it places an undue burden on interstate commerce in violation of the negative implications of the commerce clause.",
+        "c": "Yes, because it applies only to activities that take place wholly within the state, and it does not unduly burden interstate commerce.",
+        "d": "Yes, because it was enacted pursuant to the state's police power, which takes precedence over the negative implications of the commerce clause."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0021.png"
+    },
+    {
+      "index": 22,
+      "question": "A state statute requires each insurance company that offers burglary insurance policies in the state to charge a uniform rate for such insurance to all of its customers residing within the same county in that state. So long as a company complies with this requirement, it is free to charge whatever rate the market will bear for its burglary insurance policies.\nAn insurance company located in the state files suit in federal district court against appropriate state officials to challenge this statute on constitutional grounds. The insurance company wishes to charge customers residing within the same county in the state rates for burglary insurance policies that will vary because they would be based on the specific nature of the customer's business, on its precise location, and on its past claims record.\nHow should the court rule in this suit?",
+      "choices": {
+        "a": "Abstain from ruling on the merits of this case until the state courts have had an opportunity to pass on the constitutionality of this state statute.",
+        "b": "Hold the statute constitutional, because the statute is a reasonable exercise of the state's police power.",
+        "c": "Hold the statute unconstitutional, because the statute deprives the insurance company of its liberty or property without due process of law.",
+        "d": "Hold the statute unconstitutional, because the statute imposes an undue burden on interstate commerce."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0022.png"
+    },
+    {
+      "index": 23,
+      "question": "The legislatures of several states entered into an agreement in which each state pledged to curb its pollution emissions. The agreement authorized a commission that contained a representative of each state to investigate how the states could reach their pollution emission goals and propose solutions for the states to adopt. The commission determined that each state needed to commit a fixed percentage of its energy consumption to clean energy sources, and each state enacted legislation that implemented the commission's suggestion. As a result, the states' demand for electricity produced by a company that uses coal-burning plants has significantly declined.\nThe company has filed suit against the commission in a federal district court, seeking a declaratory judgment that the states' agreement is unconstitutional.\nAssume that no federal statute applies.\nWhat action should the federal court take?",
+      "choices": {
+        "a": "Dismiss the suit without reaching the merits, because the Eleventh Amendment bars suits of this kind in federal court.",
+        "b": "Dismiss the suit without reaching the merits, because the suit presents a nonjusticiable political question.",
+        "c": "Invalidate the states' agreement, because the states failed to obtain congressional consent.",
+        "d": "Uphold the states' agreement, because the states validly entered into an interstate compact."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0023.png"
+    },
+    {
+      "index": 24,
+      "question": "A man bought an antique car from a car dealer in State A. Under State A law, a person who buys from such a dealer acquires good title, even if the property was stolen from a previous owner. The man showed the car at an antique car show in State B. A woman recognized the car as having been stolen from her. Under State B law, a person whose property is stolen may reclaim it, even if the current possessor is an innocent purchaser.\nThe woman sued the man in a State B court to reclaim the car. In his defense, the man claimed that he had good title under the law of State A. Nevertheless, the State B court applied State B law, and the woman prevailed. The man did not appeal. The sheriff had the car returned to State B and gave the woman possession of the car.\nSeveral months later, the woman moved to State A, bringing the car with her. The man brought a new suit against the woman in a State A court, claiming that the State B court in the prior suit should have applied the State A law, which protects innocent purchasers. The woman appeared and moved to dismiss the suit.\nWhat should the State A court do?",
+      "choices": {
+        "a": "Apply State A law, because the car is currently located in State A.",
+        "b": "Apply the federal law on sale of goods, because the car has moved in interstate commerce.",
+        "c": "Dismiss the suit, because the State A court must give full faith and credit to the State B judgment.",
+        "d": "Remove the case to federal court, because the car has moved in interstate commerce, and therefore the case raises a federal question."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0024.png"
+    },
+    {
+      "index": 25,
+      "question": "Congressional hearings determined that the use of mechanical power hammers is very dangerous to the persons using them and to persons in the vicinity of the persons using them. As a result, Congress enacted a statute prohibiting the use of mechanical power hammers on all construction projects in the United States.\nSubsequently, a study conducted by a private research firm concluded that nails driven by mechanical power hammers have longer-lasting joining power than hand-driven nails. After learning about this study, a city council enacted an amendment to its building safety code requiring the use of mechanical power hammers in the construction of all buildings intended for human habitation.\nIs this amendment to the city's building safety code constitutional?",
+      "choices": {
+        "a": "No, because it conflicts with the provisions of the federal statute.",
+        "b": "No, because it was enacted subsequent to the federal statute.",
+        "c": "Yes, because the federal statute does not expressly indicate that it supersedes inconsistent state or local laws.",
+        "d": "Yes, because the long-term safety of human habitations justifies some additional risk to the people engaged in their construction."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0025.png"
+    },
+    {
+      "index": 26,
+      "question": "A state law makes it a crime for an individual to intentionally provide false information on state tax forms when applying for employment.\nA federal statute prohibits employers from hiring individuals who provide false Social Security numbers when applying for employment. The statute's purpose is to prevent individuals from assuming a false identity to obtain employment. A provision of the federal statute states that the statute expressly preempts state laws imposing civil or criminal punishments on employers who hire individuals who provide fraudulent Social Security numbers.\nA man was charged in state court with violating the state law by intentionally providing a false Social Security number on his state tax withholding form when he applied for employment in the state. The man argued that the prosecution should not proceed because the federal statute preempts the state law.\nAssume that no other federal statute applies.\nHow should the state court proceed with the case?",
+      "choices": {
+        "a": "Determine whether the man intentionally provided false information on his state tax form and, if so, find him guilty of violating the state law.",
+        "b": "Refuse to adjudicate the merits of the case and dismiss it, because the federal statute expressly preempts the state law.",
+        "c": "Refuse to adjudicate the merits of the case and dismiss it, because the federal statute impliedly preempts the state law.",
+        "d": "Refuse to adjudicate the merits of the case and dismiss it, because the federal statute expressly and impliedly preempts the state law."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0026.png"
+    },
+    {
+      "index": 27,
+      "question": "Congress enacted a federal statute providing that any state may \"require labeling to show the state or other geographic origin of citrus fruit that is imported into the receiving state.\"\nPursuant to the federal statute, a state that produced large quantities of citrus fruit enacted a law requiring all citrus fruit imported into the state to be stamped with a two-letter postal abbreviation signifying the state of the fruit's origin. The law did not impose any such requirement for citrus fruit grown within the state. When it adopted the law, the state legislature declared that its purpose was to reduce the risks of infection of local citrus crops by itinerant diseases that have been found to attack citrus fruit.\nA national association of citrus growers has sued to have the state law declared unconstitutional. The association claims that the law is prohibited by the negative implications of the commerce clause of the Constitution.\nWhich of the following is the best argument in favor of the state's effort to have this lawsuit dismissed?",
+      "choices": {
+        "a": "Any burden on interstate commerce imposed by the state law is outweighed by a legitimate state interest.",
+        "b": "Congress has the authority to authorize specified state regulations that would otherwise be prohibited by the negative implications of the commerce clause, and it has done so in this situation.",
+        "c": "The state law does not discriminate against out-of-state citrus growers or producers.",
+        "d": "The state law furthers a legitimate state interest, the burden it imposes on interstate commerce is only incidental, and the state's interest cannot be satisfied by other means that are less burdensome to interstate commerce."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0027.png"
+    },
+    {
+      "index": 28,
+      "question": "State A sent three of its employees to a city located in State B to consult with a chemical laboratory there about matters of state business. While in the course of their employment, the three State A employees negligently released into local State B waterways some of the chemical samples they had received from the laboratory in State B.\nPersons in State B injured by the release of the chemicals sued the three State A employees and State A in a State B court for the damages they suffered. After a trial in which all of the defendants admitted jurisdiction of the State B court and fully participated, the plaintiffs received a judgment against all of the defendants for $5 million, which became final.\nSubsequently, the plaintiffs sought to enforce their State B court judgment by commencing a proper proceeding in an appropriate State A court. In that enforcement proceeding, State A argued, as it had done unsuccessfully in the earlier action in the State B court, that its liability is limited by a State A law to $100,000 in any tort case. Because the three individual employees of State A are able to pay only $50,000 of the judgment, the only way the plaintiffs can fully satisfy their State B court judgment is from the funds of State A.\nCan the plaintiffs recover the full balance of their State B court judgment from State A in the enforcement proceeding they filed in the State A court?",
+      "choices": {
+        "a": "No, because the State A employees were negligent and, therefore, their actions were not authorized by State A.",
+        "b": "No, because the Tenth Amendment preserves the right of a state to have its courts enforce the state's public policy limiting its tort liability.",
+        "c": "Yes, because a limitation on damage awards against State A for tortious actions of its agents would violate the equal protection clause of the Fourteenth Amendment.",
+        "d": "Yes, because the final judgment of the State B court is entitled to full faith and credit in the State A courts."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0028.png"
+    },
+    {
+      "index": 29,
+      "question": "A plaintiff has sued a defendant in a court of the state in which both parties reside. The plaintiff alleges only a cause of action arising under a federal statute, although state law provides a similar cause of action. The federal statute provides that claims under the statute can be brought in any court of competent jurisdiction. The statute has not yet been interpreted by any federal court.\nShould the state court hear the case?",
+      "choices": {
+        "a": "No, because cases arising under federal law must be decided in federal court.",
+        "b": "No, because state courts must abstain in cases arising under federal law until a federal court has decided the federal issue.",
+        "c": "Yes, because state courts may not discriminate against cases arising under federal law.",
+        "d": "Yes, because the parties cannot proceed in federal court since there is no diversity of citizenship."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0029.png"
+    },
+    {
+      "index": 30,
+      "question": "A state spends several million dollars a year on an oyster conservation program. As part of that program, the state limits, by statute, oyster fishing in its coastal waters to persons who have state oyster permits. In order to promote conservation, it issues only a limited number of oyster permits each year. The permits are effective for only one year from the date of their issuance and are awarded on the basis of a lottery, in which there is no differentiation between resident and nonresident applicants. However, each nonresident who obtains a permit is charged an annual permit fee that is $5 more than the fee charged residents.\nA large fishing company operates from a port in another state and is incorporated in that other state. Each of the company's boats has a federal shipping license that permits it \"to engage in all aspects of the coastal trade, to fish and to carry cargo from place to place along the coast, and to engage in other lawful activities along the coast of the United States.\" These shipping licenses are authorized by federal statute. Assume no other federal statutes or administrative rules apply.\nAlthough it had previously held a state oyster permit, the company did not obtain a permit in that state's lottery this year.\nWhich of the following is the strongest argument that can be made in support of a continued right of the company to fish for oysters this year in the state's coastal waters?",
+      "choices": {
+        "a": "The company has a right to fish for oysters in the state's waters despite the state law because it holds a federal shipping license.",
+        "b": "The refusal to grant the company a permit this year is a taking of its property without due process of law because the company previously held a state oyster permit and the state knows that the company is engaged in a continuing business operation.",
+        "c": "The state law denies the company the privileges and immunities of state citizenship because it provides higher permit charges for nonresidents.",
+        "d": "The state law is an undue burden on interstate commerce because it provides higher permit charges for nonresidents."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0030.png"
+    },
+    {
+      "index": 31,
+      "question": "In recent years, several large corporations incorporated and headquartered in State A have been acquired by out-of-state corporations that have moved all of their operations out of State A. Other corporations incorporated and headquartered in State A have successfully resisted such acquisition attempts by out-of-state corporations, but they have suffered severe economic injury as a result.\nIn an effort to preserve jobs in State A and to protect its domestic corporations against their sudden acquisition by out-of-state purchasers, the legislature of State A enacts a statute governing acquisitions of shares in all corporations incorporated in State A. This statute requires that any acquisition of more than 25% of the voting shares of a corporation incorporated in State A that occurs over a period of less than one year must be approved by the holders of record of a majority of the shares of the corporation as of the day before the acquisition of those shares commences. The statute expressly applies to acquisitions of State A corporations by both in-state and out-of-state entities.\nAssume that no federal statute applies.\nIs this statute of State A constitutional?",
+      "choices": {
+        "a": "No, because one of the purposes of the statute is to prevent out-of-state entities from acquiring corporations incorporated and headquartered in State A.",
+        "b": "No, because the effect of the statute will necessarily be to hinder the acquisition of State A corporations by other corporations, many of whose shareholders are not residents of State A and, therefore, it will adversely affect the interstate sale of securities.",
+        "c": "Yes, because corporations exist only by virtue of state law and, therefore, the negative implications of the commerce clause do not apply to state regulations governing their creation and acquisition.",
+        "d": "Yes, because the statute imposes the same burden on both in-state and out-of-state entities wishing to acquire a State A corporation, it regulates only the acquisition of State A corporations, and it does not create an impermissible risk of inconsistent regulation on this subject by different states."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0031.png"
+    },
+    {
+      "index": 32,
+      "question": "A federal statute authorizes a federal agency to issue rules requiring that state legislatures adopt laws of limited duration to reduce water pollution from gasoline-powered boat motors. The purpose of these rules is to assist the agency in attaining the clean water standards required by the statute.\nAfter the agency issued such rules, several states filed an action challenging the rules on the sole ground that they are unconstitutional.\nShould the court uphold the constitutionality of the agency's rules?",
+      "choices": {
+        "a": "No, because the federal government may not compel a state legislature to enact into state law a federally mandated regulatory program.",
+        "b": "No, because the Tenth Amendment grants states immunity from all direct federal regulation.",
+        "c": "Yes, because the rules serve an important purpose, and the requirements they impose on the states are only temporary and do not excessively interfere with the functioning of the state governments.",
+        "d": "Yes, because the supremacy clause of Article VI requires states to enforce federal law."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0032.png"
+    },
+    {
+      "index": 33,
+      "question": "National statistics revealed a dramatic increase in the number of elementary and secondary school students bringing controlled substances to school for sale. In response, Congress enacted a statute requiring each state's legislature to enact a law making it a crime for any person to sell, within 1,000 feet of any elementary or secondary school, any controlled substance that had previously been transported in interstate commerce.\nIs the federal statute constitutional?",
+      "choices": {
+        "a": "No, because Congress has no authority to require a state legislature to enact any specified legislation.",
+        "b": "No, because the sale of a controlled substance in close proximity to a school does not have a sufficiently close nexus to interstate commerce to justify its regulation by Congress.",
+        "c": "Yes, because Congress possesses broad authority under the commerce clause to regulate any activities affecting education that also have, in inseverable aggregates, a substantial effect on interstate commerce.",
+        "d": "Yes, because it contains a jurisdictional provision that will ensure, on a case-by-case basis, that any particular controlled substance subject to the terms of this statute will in fact affect interstate commerce."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0033.png"
+    },
+    {
+      "index": 34,
+      "question": "A toy manufacturer that has its headquarters and sole manufacturing plant in a particular state has developed a \"Martian\" toy that simulates the exploration of Mars by a remote-controlled vehicle. It accurately depicts the Martian landscape and the unmanned exploratory vehicle traversing it. The toy is of high quality, is safe and durable, and has sold very well.\nOther toy manufacturers, all located outside of the state, have developed similar toys that are lower in price. These manufacturers have contracts to sell their Martian toys to outlets in the state. Although these toys are safe and durable, they depict the Martian landscape less realistically than the toys manufactured in the state. Nevertheless, because of the price difference, sales of these toys have cut severely into the sales of the Martian toys manufactured in the state.\nThe state legislature has recently enacted a law \"to protect the children of this state from faulty science and to protect in-state toy manufacturers from unfair competition.\" The law forbids the sale in the state of any toy that purports to represent extraterrestrial objects and does not satisfy specified scientific criteria. The Martian toy manufactured in the state satisfies all of these criteria; none of the Martian toys of the competing manufacturers meet the requirements.\nIs the state law constitutional?",
+      "choices": {
+        "a": "No, because it abrogates the obligations of the contracts between the other toy manufacturers and the in-state outlets that have agreed to sell their Martian toys.",
+        "b": "No, because it imposes an undue burden on interstate commerce.",
+        "c": "Yes, because it deals only with a local matter, the sale of toys in stores located within the state.",
+        "d": "Yes, because the state's interest in protecting the state's children from faulty science justifies this burden on interstate commerce."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0034.png"
+    },
+    {
+      "index": 35,
+      "question": "Radon is a harmful gas found in the soil of certain regions of the United States. A state statute requires occupants of residences with basements susceptible to the intrusion of radon to have their residences tested for the presence of radon and to take specified remedial steps if the test indicates the presence of radon above specified levels. The statute also provides that the testing for radon may be done only by testers licensed by a state agency. According to the statute, a firm may be licensed to test for radon only if it meets specified rigorous standards relating to the accuracy of its testing. These standards may easily be achieved with current technology; but the technology required to meet them is 50% more expensive than the technology required to measure radon accumulations in a slightly less accurate manner.\nThe United States Environmental Protection Agency (EPA) does not license radon testers. However, a federal statute authorizes the EPA to advise on the accuracy of various methods of radon testing and to provide to the general public a list of testers that use methods it believes to be reasonably accurate.\nA recently established firm in the state uses a testing method that the EPA has stated is reasonably accurate. The firm is also included by the EPA on the list of testers using methods of testing it believes to be reasonably accurate. The firm applies for a state radon-testing license, but its application is denied because the firm cannot demonstrate that the method it uses to test for radon is sufficiently accurate to meet the rigorous state statutory standards.\nThe firm sues appropriate state officials in federal court claiming that the state may not constitutionally exclude the firm from performing the required radon tests in the state.\nWho will the court likely rule in favor of in this suit?",
+      "choices": {
+        "a": "The firm, because the full faith and credit clause of the Constitution requires the state to respect and give effect to the action of the EPA in including the firm on its list of testers that use reasonably accurate methods.",
+        "b": "The firm, because the supremacy clause of the Constitution requires the state to respect and give effect to the action of the EPA in including the firm on its list of testers that use reasonably accurate methods.",
+        "c": "The state, because radon exposure is limited to basement areas that, by their very nature, cannot move in interstate commerce.",
+        "d": "The state, because the federal statute and the action of the EPA in including the firm on its list of testers that use reasonably accurate methods are not inconsistent with the more rigorous state licensing requirement, and that requirement is reasonably related to a legitimate public interest."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0035.png"
+    },
+    {
+      "index": 36,
+      "question": "A federal statute established a national lottery and created a new federal agency to administer it. In order to sell lottery tickets directly to the public, the agency established outlets throughout the country. Some of these outlets are within a state that levies a general tax on the gross receipts from all in-state gaming operations. The state seeks to tax the agency on the sales of lottery tickets from its outlets within the state.\nMust the agency pay the state gross receipts tax?",
+      "choices": {
+        "a": "No, because a federal agency may not pay any monies to a state without explicit federal statutory authorization to do so.",
+        "b": "No, because a state may not impose a tax directly on the federal government or any of its agencies or instrumentalities.",
+        "c": "Yes, because it is a generally applicable tax that does not discriminate against the agency.",
+        "d": "Yes, because the federal government is not exempt from state taxation on its commercial activities."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0036.png"
+    },
+    {
+      "index": 37,
+      "question": "In response to massive layoffs of employees of automobile assembly plants located in State A, the state legislature enacted a statute which prohibits the parking of automobiles manufactured outside of the United States in any parking lot or parking structure located within State A. This statute does not apply to parking on public streets.\nWhich of the following is the strongest argument with which to challenge the constitutionality of this statute?",
+      "choices": {
+        "a": "The statute denies the owners of foreign-made automobiles the equal protection of the laws.",
+        "b": "The statute deprives the owners of foreign-made automobiles of liberty or property without due process of law.",
+        "c": "The statute imposes an undue burden on foreign commerce.",
+        "d": "The statute is inconsistent with the privileges or immunities clause of the Fourteenth Amendment."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0037.png"
+    },
+    {
+      "index": 38,
+      "question": "Congress enacted a statute that annually awards federal funds to states that must be used to improve the quality of public education. Every state agreed to participate in this federal program. On average, the funds awarded by the federal program comprise 15% of a state's overall annual budget.\nSeveral years later, Congress enacted another statute that expanded this federal program to reduce the academic achievement gap between high-performing and low-performing public schools. A provision of this federal statute requires states to administer a statewide academic test to students that is then used to assess the academic performance of public schools. States that choose not to comply with this testing requirement will no longer receive any federal funding from the program and may suffer budgetary shortfalls as a result.\nA state that has chosen not to comply with the testing requirement has sued the federal government, arguing that the statute's provision is unconstitutional.\nWhich of the following is the state's best argument?",
+      "choices": {
+        "a": "Incentivizing states to adopt federal policies exceeds the scope of Congress's spending power.",
+        "b": "The condition placed on the receipt of federal funding is unduly coercive.",
+        "c": "The funding of public education has traditionally been performed by the states.",
+        "d": "The Tenth Amendment grants states immunity from direct federal regulation."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0038.png"
+    },
+    {
+      "index": 39,
+      "question": "A state imposes a tax on the \"income\" of each of its residents. As defined in the taxing statute, \"income\" includes the fair rental value of the use of any automobile provided by the taxpayer's employer for the taxpayer's personal use.\nThe federal government supplies automobiles to some of its employees who are residents in the state so that they may perform their jobs properly. A federal government employee supplied with an automobile for this purpose may also use it for the employee's own personal business.\nAssume there is no federal legislation on this subject.\nMay the state collect this tax on the fair rental value of the personal use of the automobiles furnished by the federal government to these employees?",
+      "choices": {
+        "a": "No, because such a tax would be a tax on the United States.",
+        "b": "No, because such a tax would be a tax upon activities performed on behalf of the United States, since the automobiles are primarily used by these federal employees in the discharge of their official duties.",
+        "c": "Yes, because an exemption from such state taxes for federal employees would be a denial to others of the equal protection of the laws.",
+        "d": "Yes, because the tax is imposed on the employees rather than on the United States, and the tax does not discriminate against persons who are employed by the United States."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0039.png"
+    },
+    {
+      "index": 40,
+      "question": "A county in State A is located adjacent to the border of State B. The communities located in the county are principally suburbs of a large city located in State B, and therefore there is a large volume of traffic between that city and the county. While most of that traffic is by private passenger automobiles, some of it is by taxicabs and other kinds of commercial vehicles.\nA county ordinance provides that only taxicabs registered in the county may pick up or discharge passengers in the county. The stated purpose of this ordinance is to reduce traffic congestion. The ordinance also provides that only residents of the county may register taxicabs in that county.\nWhich of the following is the proper result in a suit brought by State B taxicab owners challenging the constitutionality of this county ordinance?",
+      "choices": {
+        "a": "Judgment for the county, because State B taxicab owners do not constitute a suspect or quasi-suspect class and the ordinance is reasonably related to the legitimate governmental purpose of reducing traffic congestion.",
+        "b": "Judgment for the county, because the ordinance forbids taxicabs registered in other counties of State A as well as in states other than State A to operate in the county and, therefore, it does not discriminate against interstate commerce.",
+        "c": "Judgment for the State B taxicab owners, because the fact that private passenger automobiles contribute more to the traffic congestion problem in the county than do taxicabs indicates that the ordinance is not a reasonable means by which to solve that problem.",
+        "d": "Judgment for the State B taxicab owners, because the ordinance unduly burdens interstate commerce by insulating the county taxicab owners from out-of-state competition without adequate justification."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0040.png"
+    },
+    {
+      "index": 41,
+      "question": "A state statute requires corporations located in the state to pay a use tax on equipment they purchased out-of-state for in-state use. The statute specifies that the use-tax rate is the same as the state's sales-tax rate for in-state equipment purchases. The statute also provides tax credits to corporations in the amount of the sales or use tax they paid on the same equipment in other states.\nA construction company that builds homes in the state has refused to pay the state's use tax on equipment it purchased outside the state. The company has sued to challenge the state tax, arguing it is unconstitutional.\nIs the state tax likely constitutional?",
+      "choices": {
+        "a": "No, because it discriminates against interstate commerce.",
+        "b": "No, because the commerce clause gives Congress the power to regulate interstate commerce.",
+        "c": "Yes, because it does not unduly burden interstate commerce.",
+        "d": "Yes, because the Tenth Amendment reserves to the states the power to construct their own tax system."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0041.png"
+    },
+    {
+      "index": 42,
+      "question": "A man contracted with a moving company to ship household goods from the man's old home in State A to his new home in State B.\nA federal statute provides that all liability of an interstate mover to a shipper for loss of or damage to the shipper's goods in transit is governed exclusively by the contract between them. The statute also requires the mover to offer a shipper at least two contracts with different levels of liability.\nIn full compliance with that federal statute, the moving company offered the man a choice between two shipping agreements that provided different levels of liability on the part of the moving company. The more expensive contract provided that the moving company was fully liable in case of loss or damage. The less expensive contract limited the moving company's liability in case of loss or damage to less than full value. The man voluntarily signed the less expensive contract, fixing the moving company's liability at less than the full value of the shipment.\nThe moving company's truck was involved in an accident in State B. The accident was entirely a product of the negligence of the moving company's driver. The man's household goods were destroyed. In accordance with the contract, the moving company reimbursed the man for less than the full value of the goods.\nThe man then brought suit against the moving company under the tort law of State B claiming that he was entitled to be reimbursed for the full value of the destroyed goods. The moving company filed a motion to dismiss.\nIn this suit, what action should the court take?",
+      "choices": {
+        "a": "Deny the motion to dismiss, because it is unconstitutional for a federal statute to authorize the moving company to contract out of any degree of liability for its own negligence.",
+        "b": "Deny the motion to dismiss, because the full faith and credit clause of the Constitution requires that state tort law be given effect.",
+        "c": "Dismiss the case, because the contractual relationship between the man and the moving company is governed by the obligation of contracts clause of the Constitution.",
+        "d": "Dismiss the case, because the federal statute governing liability of interstate carriers is the supreme law of the land and preempts state tort law."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0042.png"
+    },
+    {
+      "index": 43,
+      "question": "A state statute provides that only corporations whose owners have been residents of the state for at least two years may obtain a retail license to sell liquor in the state. The stated purpose of the statute is to promote responsible alcohol sales and consumption through the local control of retail liquor stores.\nA corporation's application for a liquor store license was denied because its owners had been state residents for less than two years. The corporation has sued to challenge the statute.\nIs the state statute constitutional?",
+      "choices": {
+        "a": "No, because Congress has exclusive authority over interstate commerce.",
+        "b": "No, because it unduly burdens interstate commerce.",
+        "c": "Yes, because the issuance of licenses is a traditional government function.",
+        "d": "Yes, because the Twenty-first Amendment grants states authority to regulate alcohol."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0043.png"
+    },
+    {
+      "index": 44,
+      "question": "The childhood home of a former U.S. president is part of a national park located in a city. The National Park Service entered into a contract with an independent antique collector to acquire items owned by residents of the city during the former president's lifetime. According to the contract, the collector purchases items and then sells them to the Park Service at a price equal to the collector's cost plus a 10% commission. Purchases by antique collectors are ordinarily subject to the sales tax of the state in which the city is located.\nThe collector has filed suit in state court to enjoin collection of the tax on these purchases for the Park Service, claiming that the sales tax is unconstitutional as applied to them.\nShould the state court issue the injunction?",
+      "choices": {
+        "a": "No, because as the purchaser of the antiques, the collector, rather than the federal government, is liable for the tax.",
+        "b": "No, because the suit is within the exclusive jurisdiction of the federal courts.",
+        "c": "Yes, because the federal government is contractually obligated to pay the amount of the sales tax when the government covers the collector's cost of the antiques.",
+        "d": "Yes, because under the supremacy clause, the federal program to acquire the antiques preempts the state sales tax on the purchase of these items."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0044.png"
+    },
+    {
+      "index": 45,
+      "question": "Small retailers located in a state are concerned about the loss of business to certain large retailers located nearby in bordering states. In an effort to deal with this concern, the state legislature enacted a statute requiring all manufacturers and wholesalers that sell goods to retailers in the state to do so at prices that are no higher than the lowest prices at which they sell them to retailers in any of the bordering states.\nSeveral manufacturers and wholesalers that are located in bordering states and that sell their goods to retailers in the state bring an action in federal court to challenge the constitutionality of this statute.\nWhich of the following arguments offered by these plaintiffs is likely to be most persuasive in light of applicable precedent?",
+      "choices": {
+        "a": "The state statute denies them the equal protection of the laws.",
+        "b": "The state statute deprives them of a privilege or immunity of national citizenship.",
+        "c": "The state statute deprives them of their property or liberty without due process of law.",
+        "d": "The state statute imposes an unreasonable burden on interstate commerce."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0045.png"
+    },
+    {
+      "index": 46,
+      "question": "After several well-publicized deaths caused by fires in products made from highly flammable fabrics, State A enacted a statute prohibiting \"the manufacture or assembly of any product in this state which contains any fabric that has not been tested and approved for flame retardancy by a specific privately owned and operated testing company located in State A.\"\nFor many years, a fabric mill located in State A has had its fabric tested for flame retardancy by a privately owned and operated testing company located in State B. This testing company is a reliable organization that uses a process for testing and approving fabrics for flame retardancy identical in all respects to that used by the State A testing company.\nBecause the fabric mill wishes to continue to have its fabric tested solely by the State B testing company, the fabric mill files an action in a State A court challenging the constitutionality of the State A statute as applied to its circumstances.\nIn this suit, should the court hold the statute to be constitutional?",
+      "choices": {
+        "a": "No, because it denies the fabric mill the equal protection of the laws.",
+        "b": "No, because it imposes an unreasonable burden on interstate commerce.",
+        "c": "Yes, because it is a legitimate means of protecting the safety of the public.",
+        "d": "Yes, because it is reasonably related to the protection of the reputation of the fabric industry located in State A."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0046.png"
+    }
+  ]
+}

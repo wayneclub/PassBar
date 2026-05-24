@@ -1,0 +1,807 @@
+{
+  "meta": {
+    "source": "UWorld (captured from DOM #questionText + choices + right-content screenshot)",
+    "capturedAt": "2026-03-05T10:46:35.280Z",
+    "count": 61,
+    "screenshotCount": 61,
+    "url": "https://apps-legal.uworld.com/courseapp/legal/v58/testinterface/launchtest/14822410/405138676/2/1",
+    "examName": "Contracts: Performance, Breach, and Discharge",
+    "subject": "Contracts",
+    "chapter": "Performance, Breach, and Discharge"
+  },
+  "questions": [
+    {
+      "index": 1,
+      "question": "A metal fabricator and manufacturer entered into a contract for the sale of a plasma cutter made by the manufacturer. While the manufacturer had several plasma cutters on hand, the contract provided for the sale of a particular plasma cutter identified by its serial number. The contract specified that the manufacturer would ship the cutter by a third-party carrier. However, the contract did not specify who was to pay the costs of transportation nor the place of tender for the plasma cutter. The manufacturer shipped the cutter identified in the contract to the fabricator via a carrier under a proper contract for its transportation. The carrier delivered the cutter to the fabricator, and the fabricator verified that the cutter delivered was the one specified in the contract.\nUnder these facts, when did the risk of loss pass to the fabricator?",
+      "choices": {
+        "a": "When the contract was made.",
+        "b": "When the cutter was delivered to the carrier and a proper contract for its transportation was made.",
+        "c": "When the cutter was unloaded on the fabricator's premises by the carrier.",
+        "d": "When the fabricator verified that the cutter delivered was the cutter specified in the contract."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0001.png"
+    },
+    {
+      "index": 2,
+      "question": "A seller entered into a contract with a buyer to sell a house for a price of $150,000. The contract contained the following clause: \"This contract is conditional on the buyer securing bank financing at an interest rate of 7% or below.\" The buyer did not make an application for bank financing and therefore did not secure it and refused to proceed with the purchase. The seller sued the buyer for breach of contract.\nIs the seller likely to prevail?",
+      "choices": {
+        "a": "No, because the buyer did not secure bank financing.",
+        "b": "No, because the contract did not expressly impose on the buyer any obligation to apply for bank financing.",
+        "c": "Yes, because a court will excuse the condition to avoid a disproportionate forfeiture.",
+        "d": "Yes, because a court will imply a term imposing on the buyer a duty to use reasonable efforts to secure bank financing."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0002.png"
+    },
+    {
+      "index": 3,
+      "question": "A lumber supplier agreed to sell to a furniture manufacturer all the lumber that the manufacturer required over a two-year period. The sales contract provided that payment was due 60 days after delivery, but that a 3% discount would be allowed if the manufacturer paid within 10 days of delivery. During the first year of the contract, the manufacturer regularly paid within the 10-day period and received the 3% discount.\nFifteen days after the supplier had made its most recent lumber delivery to the manufacturer, the supplier had received no payment from the manufacturer. At this time, the supplier became aware of rumors from a credible source that the manufacturer's financial condition was precarious. The supplier wrote the manufacturer, demanding assurances regarding the manufacturer's financial status. The manufacturer immediately mailed to the supplier its latest audited financial statements as well as a satisfactory credit report prepared by the manufacturer's banker. The rumors proved to be false. Nevertheless, the supplier refused to resume deliveries. The manufacturer has sued the supplier for breach of contract.\nWill the manufacturer likely prevail?",
+      "choices": {
+        "a": "No, because the contract was unenforceable, since the manufacturer had not committed to purchase a definite quantity of lumber.",
+        "b": "No, because the supplier had reasonable grounds for insecurity and was therefore entitled to cancel the contract and refuse to make any future deliveries.",
+        "c": "Yes, because the credit report and audited financial statements provided adequate assurance of due performance under the contract.",
+        "d": "Yes, because the supplier was not entitled to condition resumption of deliveries on the receipt of financial status information."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0003.png"
+    },
+    {
+      "index": 4,
+      "question": "A tech company contracted with a private university to sell and deliver to the university a mainframe computer using a new type of technology then under development but not perfected by the company, at a price substantially lower than that of a similar computer using current technology. After making the contract with the university, the tech company discovered that the new technology it intended to use was unreliable and that no computer manufacturer could yet build a reliable computer using that technology.\nThe tech company thereupon notified the university that it was impossible for the tech company or anyone else to build the contracted-for computer \"in the present state of the art.\"\nIf the university sues the tech company for failure to perform its computer contract, which party will the court most likely find in favor of?",
+      "choices": {
+        "a": "The tech company, because a contract to build a machine using technology under development imposes only a duty on the builder to use its best efforts to achieve the result contracted for.",
+        "b": "The tech company, because its performance of the contract was objectively impossible.",
+        "c": "The university, because the law of impossibility does not apply to merchants under the applicable law.",
+        "d": "The university, because the tech company assumed the risk, in the given circumstances, that the projected new technology would not work reliably."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0004.png"
+    },
+    {
+      "index": 5,
+      "question": "On October 30, a customer entered a retail beauty supply store to purchase hair dye to color her hair for Halloween. The clerk who helped the customer was hired the previous day and was not trained regarding different types of dye. The customer explained that she wanted a washable dye, as she had a presentation the following day at work and needed to look professional for it. The clerk showed the customer a permanent hair dye, assuring the customer that the dye was appropriate for her needs. The clerk then told the customer that because the dye was on sale, it was being sold \"as is,\" and that she could not be responsible for any adverse reactions. The customer made the purchase and used the dye to color her hair. The customer could not wash out the dye from her hair on the morning of November 1. As a consequence, the customer lost an account because she could not deliver the presentation.\nIn a breach-of-warranty action against the store, will the customer likely prevail?",
+      "choices": {
+        "a": "No, because the clerk was not a merchant.",
+        "b": "No, because the clerk's statement that the dye was sold \"as is\" disclaimed any warranties.",
+        "c": "Yes, because the clerk's promise created an express warranty.",
+        "d": "Yes, because the warranty of fitness for a particular purpose cannot be disclaimed."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0005.png"
+    },
+    {
+      "index": 6,
+      "question": "An engineer signed a two-year contract to serve as the chief safety engineer for a coal mine at a salary of $7,000 per month. The position required the engineer to work underground each workday. After one week on the job, the engineer became very ill. He requested testing of the mine air system, which revealed the presence of a chemical agent to which the engineer had a rare allergic reaction. The engineer promptly quit. The coal mine then hired a qualified replacement for the remainder of the engineer's contract at a salary of $7,500 per month.\nAssume that no statute or regulation applies.\nIf the coal mine sues the engineer for breach of contract, is the coal mine likely to recover damages?",
+      "choices": {
+        "a": "No, because an at-will employee has the right to terminate an employment contract.",
+        "b": "No, because the risk to the engineer's health excused his nonperformance of the contract.",
+        "c": "Yes, because the coal mine acted in good faith in mitigating the effect of the engineer's failure to finish the contract term.",
+        "d": "Yes, because the mine is reasonably safe for most people."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0006.png"
+    },
+    {
+      "index": 7,
+      "question": "A manufacturer of flat screen televisions and a big box retailer had a written contract in which the manufacturer agreed to sell and the retailer agreed to buy all of its requirements of a certain type of television for three years.\nA dispute arose near the end of the third year, when the retailer returned 25 undefective televisions to the manufacturer for full credit along with a check payable to the manufacturer for the balance admittedly due on all other merchandise sold and delivered to the retailer. The check was conspicuously marked, \"Payment in full for all goods sold to the retailer to date.\" The manufacturer's credit manager, reading this check notation and knowing that the retailer had also returned the 25 televisions for full credit, deposited the check without protest in the manufacturer's local bank account. The canceled check was returned to the retailer a week later.\nWhich of the following defenses would best serve the retailer in an action by the television manufacturer against the retailer for damages due to return of the 25 televisions?",
+      "choices": {
+        "a": "By depositing the check without protest and with knowledge of its wording, the television manufacturer discharged any remaining duty to pay on the part of the retailer.",
+        "b": "By depositing the check without protest and with knowledge of its wording, the television manufacturer entered into a novation discharging any remaining duty to pay on the part of the retailer.",
+        "c": "The parties' good-faith dispute over return of the televisions suspended the duty of the retailer, if any, to pay any balance due.",
+        "d": "The television manufacturer's deposit of the check and its return to the retailer after payment estopped the manufacturer thereafter to assert that the retailer owed any additional amount."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0007.png"
+    },
+    {
+      "index": 8,
+      "question": "A home goods distributor signed a written contract with a nursing home to sell the nursing home 100 identical bathroom sinks, 50 sinks to be delivered on March 1, and the remaining 50 sinks on April 1. The agreement did not specify the place of delivery, or the time or place of payment.\nOn March 1, the distributor tendered 49 sinks to the nursing home and explained, \"One of the 50 sinks was damaged in transit from the manufacturer to us, but we will deliver a replacement within 5 days.\"\nWhich of the following statements is correct?",
+      "choices": {
+        "a": "The nursing home is entitled to accept any number of the 49 sinks and to reject the rest, but is not entitled to cancel the contract as to any rejected sinks or the lot due on April 1.",
+        "b": "The nursing home is entitled to accept any number of the 49 sinks, reject the rest, and cancel the contract, both as to any rejected sinks and the lot due on April 1.",
+        "c": "The nursing home must accept the 49 sinks and is not entitled to cancel the rest of the contract.",
+        "d": "The nursing home must accept the 49 sinks but is entitled to cancel the rest of the contract."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0008.png"
+    },
+    {
+      "index": 9,
+      "question": "In the spring, a scholarship program held a competition to award $10,000 to the high school senior who wrote and submitted the best essay, as judged by the program's grading rubric. The competition announcement provided that any student could enter the contest by submitting an essay and a signed copy of the competition's \"Terms and Conditions.\" Many students submitted essays, and the scholarship program selected a winner in accordance with their grading rubric the following fall. However, when the winning student tried to claim the award, the program refused to give it to him. The \"Terms and Conditions\" of the competition provided that the winner of the competition could receive the award only if he or she was enrolled in a public university in that state by the following fall. The winning student had not read the \"Terms and Conditions\" of the competition when he signed and submitted them with his essay and had already enrolled in an out-of-state private college by the fall.\nIf the winning student sues the scholarship program to recover the $10,000 award, will he succeed?",
+      "choices": {
+        "a": "No, because the student did not substantially perform under the terms of the competition.",
+        "b": "No, because the student was not enrolled in a public university in that state by the fall.",
+        "c": "Yes, because the student was unaware of the condition that he must be enrolled in a public university in that state by the fall.",
+        "d": "Yes, because the student wrote and submitted the best essay as judged by the program's grading rubric."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0009.png"
+    },
+    {
+      "index": 10,
+      "question": "In a writing signed by both parties on December 1, a buyer agreed to buy from a seller a gasoline engine for $1,000, delivery to be made on the following February 1. Through a secretarial error, the writing called for delivery on March 1, but neither party noticed the error until February 1. Before signing the agreement, the parties orally agreed that the contract of sale would be effective only if the buyer should notify the seller in writing not later than January 2 that the buyer had arranged to resell the engine to a third person. Otherwise, they agreed orally, \"There is no deal.\" On December 15, the buyer entered into a contract with a third party to resell the engine to the third party at a profit. The buyer did not give the seller notice of the resale agreement until January 25, and the seller received it by mail on January 26. In the meantime, the value of the engine had unexpectedly increased about 75% since December 1, and the seller renounced the agreement.\nIf the buyer sues the seller on February 2 for breach of contract, which of the following is the seller's best defense?",
+      "choices": {
+        "a": "In view of the unexpected 75% increase in value of the engine after December 1, the seller's performance is excused by the doctrine of commercial frustration.",
+        "b": "The agreement, if any, is unenforceable because a material term was not included in the writing.",
+        "c": "The buyer not giving written notice by January 2 of his resale agreement was a failure of a condition precedent to the existence of a contract.",
+        "d": "The secretarial error in the written delivery-term was a mutual mistake concerning a basic fact, and the agreement is voidable by either party."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0010.png"
+    },
+    {
+      "index": 11,
+      "question": "A woman owed her friend $5,000, plus interest at 6% until paid. Collection of the debt would become barred by the statute of limitations on July 31. On the preceding May 1, the woman and the friend both signed a writing in which the woman promised to pay the debt in full on the following December 31, plus interest at 6% until that date, and the friend promised not to sue to collect the debt in the meantime. The friend became concerned about the legal effect of the May 1 agreement, and on June 1 filed suit to collect the debt.\nOn January 2 of the following year, the friend's suit has not come to trial, and the woman has not paid the debt. The friend amends the complaint to add a second count to enforce the promise the woman made in the May 1 agreement.\nDoes the new count state a claim upon which relief can be granted?",
+      "choices": {
+        "a": "No, because such relief would undermine the policy of the statute of limitations against enforcement of stale claims.",
+        "b": "No, because the woman's May 1 promise was lawfully conditioned upon the friend's promise not to sue prior to December 31.",
+        "c": "Yes, because the woman's failure to pay the debt, plus interest, on December 31 makes the friend's breach of promise not to sue before that date no longer material.",
+        "d": "Yes, because the woman's May 1 promise is enforceable by reason of her moral obligation to pay the debt."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0011.png"
+    },
+    {
+      "index": 12,
+      "question": "Under a written agreement, a pastry supplier promised to sell its entire output of baked buns at a specified unit price to a retailer, for one year. The retailer promised not to sell any other supplier's baked buns.\nShortly after making the contract, and before the supplier had tendered any buns, the retailer decided that the contract had become undesirable because of a sudden, sharp decline in its customers' demand for baked buns. It renounced the agreement, and the supplier sues for breach of contract.\nWhich of the following will the court probably decide?",
+      "choices": {
+        "a": "The retailer wins, because mutuality of obligation was lacking in that the retailer made no express promise to buy any of the supplier's baked buns.",
+        "b": "The retailer wins, because the agreement was void for indefiniteness of quantity and total price for the year involved.",
+        "c": "The supplier wins, because the retailer's promise to sell the supplier's baked buns exclusively, if it sold any such buns at all, implied a promise to use its best efforts to sell the supplier's one-year output of baked buns.",
+        "d": "The supplier wins, because under the applicable law both parties to a sale-of-goods contract impliedly assume the risk of price and demand fluctuations."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0012.png"
+    },
+    {
+      "index": 13,
+      "question": "A buyer agreed to purchase a seller's house for $250,000 \"on condition that the buyer obtain mortgage financing within 30 days.\" Thirty days later, the buyer told the seller that he would not purchase the house because he had not obtained mortgage financing. The seller asked the buyer where he had tried to obtain mortgage financing, and the buyer responded, \"I was busy and didn't have time to seek mortgage financing.\"\nIf the seller sues the buyer for breach of contract, is the court likely to find the buyer in breach?",
+      "choices": {
+        "a": "No, because the buyer's performance was subject to a condition that did not occur.",
+        "b": "No, because the promise was illusory since the buyer was not obligated to do anything.",
+        "c": "Yes, because a promise was implied that the buyer had to make reasonable efforts to obtain mortgage financing.",
+        "d": "Yes, because a reasonable interpretation of the agreement is that the buyer had an obligation to purchase the house for $250,000 in 30 days."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0013.png"
+    },
+    {
+      "index": 14,
+      "question": "A life coach entered into a contract with an introverted woman to provide a weeklong course that served as an introduction to the life coach's yearlong program. Under the terms of the contract, the life coach would work with the woman full-time for a week to start teaching her to interact with people with more confidence. The woman would then participate in a speed-dating event as her \"graduation\" from the course. The contract also provided that unless the woman received an offer for a second date at the speed-dating event, she had no obligation to pay for the introductory course. If she received an offer for a second date at the speed-dating event, she would be required to pay the life coach $1,000 within three days of the event.\nAfter working with the life coach pursuant to the terms of the contract, the woman attended the speed-dating event. Four days after the event, when the woman still had not paid the life coach, the life coach brought a breach-of-contract action against the woman to recover $1,000 under the contract.\nWhich of the following best states the burden of proof that will apply in this case?",
+      "choices": {
+        "a": "Because the contract involved a condition precedent, the life coach must prove that the woman received an offer of a second date at the speed-dating event to recover.",
+        "b": "Because the contract involved a condition precedent, the woman must prove that she did not receive an offer of a second date at the speed-dating event to avoid liability.",
+        "c": "Because the contract involved a condition subsequent, the life coach must prove that the woman received an offer of a second date at the speed-dating event to recover.",
+        "d": "Because the contract involved a condition subsequent, the woman must prove that she did not receive an offer of a second date at the speed-dating event to avoid liability."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0014.png"
+    },
+    {
+      "index": 15,
+      "question": "On June 1, a seller and a buyer contracted in writing for the sale and purchase of the seller's cattle ranch (a large single tract), and to close the transaction on December 1. On October 1, the buyer told the seller, \"I'm increasingly unhappy about our June 1 contract because of the current cattle market, and do not intend to buy your ranch unless I'm legally obligated to do so.\"\nOn October 15, the seller sued the buyer for breach of contract.\nIs the seller likely to prevail?",
+      "choices": {
+        "a": "No, because the buyer's October 1 statement to the seller was neither a repudiation nor a present breach of the June 1 contract.",
+        "b": "No, because the parties contracted for the sale and conveyance of a single tract, and the seller cannot bring suit for breach of such a contract prior to the agreed closing date.",
+        "c": "Yes, because the buyer committed a total breach by anticipatory repudiation on October 1.",
+        "d": "Yes, because the buyer's October 1 statement created reasonable grounds for the seller's insecurity with respect to the buyer's performance."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0015.png"
+    },
+    {
+      "index": 16,
+      "question": "The owner of an apartment complex contracted in writing with a landscaper to install a sprinkler system for $20,000. The contract required the landscaper to install a specific brand of brass sprinkler heads. It also required the landscaper to install a $500 anti-backflow device, which was required by the city plumbing code but would not affect the sprinkler system's performance.\nIn order to speed up installation, the landscaper installed the sprinkler system using brass sprinkler heads left over from a previous job that, while not the brand specifically required by the contract, were equal in quality and performance. However, the landscaper did not install the anti-backflow device, even though the city plumbing code required it and the owner could be subject to a fine if the device were not installed.\nThe landscaper completed the installation work and then sought payment from the owner. The owner refused to pay the landscaper anything on the ground that the work did not comply with the contract.\nIf the landscaper sues the owner for breach of contract, what is the likely result?",
+      "choices": {
+        "a": "The landscaper will not recover, because he willfully and materially breached the contract.",
+        "b": "The landscaper will recover restitution for the cost spent on labor and materials.",
+        "c": "The landscaper will recover the contract price less the cost to remedy any defects in performance.",
+        "d": "The landscaper will recover the full contract price."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0016.png"
+    },
+    {
+      "index": 17,
+      "question": "In a single writing, a painter contracted with a farmer to paint three identical barns on her rural estate for $2,000 each. The contract provided for the farmer's payment of $6,000 upon the painter's completion of the work on all three barns. The painter did not ask for any payment when the first barn was completely painted, but she demanded $4,000 after painting the second barn.\nIs the farmer obligated to make the $4,000 payment?",
+      "choices": {
+        "a": "No, because the farmer has no duty under the contract to pay anything to the painter until all three barns have been painted.",
+        "b": "No, because the painter waived her right, if any, to payment on a per-barn basis by failing to demand $2,000 upon completion of the first barn.",
+        "c": "Yes, because the contract is divisible.",
+        "d": "Yes, because the painter has substantially performed the entire contract."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0017.png"
+    },
+    {
+      "index": 18,
+      "question": "A fugitive was wanted for murder. The authorities offered the following reward: \"$20,000 to anyone who provides information leading to the arrest and conviction of this fugitive.\" A private detective knew of the reward, located the fugitive, and brought him to the authorities, who arrested him. The authorities then determined that although the fugitive had, in fact, committed the crime, he had been directed to do so by his boss. The authorities and the fugitive then agreed that in exchange for the fugitive's testimony against his boss, all charges against the fugitive would be dropped. The fugitive testified and was released. The authorities refused to pay the reward to the private detective on the ground that the fugitive was never convicted.\nWould the private detective be likely to prevail in a breach of contract action against the authorities?",
+      "choices": {
+        "a": "No, because the express conditions set out in the reward offer were not met.",
+        "b": "No, because the private detective failed to notify the authorities that he had accepted the reward offer.",
+        "c": "Yes, because the authorities' agreement with the fugitive was against public policy.",
+        "d": "Yes, because the authorities themselves prevented the conviction of the fugitive."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0018.png"
+    },
+    {
+      "index": 19,
+      "question": "A sailor owns an exceptionally seaworthy boat that she charters for sport fishing at a $500 daily rate. The fee includes the use of the boat with the sailor as the captain, and one other crew member, as well as fishing tackle and bait. On May 1, a customer agreed with the sailor that the customer would have the full-day use of the boat on May 15 for himself and his family for $500. The customer paid an advance deposit of $200 and signed an agreement that the deposit could be retained by the sailor as liquidated damages in the event the customer canceled or failed to appear. On May 15 at 1:00 a.m., the Coast Guard issued offshore \"heavy weather\" warnings and prohibited all small vessels the size of the sailor's boat from leaving the harbor. This prohibition remained in effect throughout the day. The customer did not appear at all on May 15, because he had heard the weather warnings on his radio.\nWhich of the following is an accurate statement of the parties' legal relationship?",
+      "choices": {
+        "a": "The contract is discharged because of impossibility, and the customer is entitled to return of his deposit.",
+        "b": "The contract is discharged because of mutual mistake concerning an essential fact, and the customer is entitled to return of his deposit.",
+        "c": "The contract is not discharged, and the customer is not entitled to return of his deposit, because the liquidated-damage clause in effect allocated the risk of bad weather to the customer.",
+        "d": "The contract is not discharged, because its performance was possible in view of the exceptional seaworthiness of the sailor's boat, and the customer is not entitled to return of his deposit."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0019.png"
+    },
+    {
+      "index": 20,
+      "question": "A buyer agreed to purchase and took delivery of a telescope from a seller for a price of $100. She promised to pay him $100 \"as soon as I am able.\"\nWhat effect does the quoted language have on the enforceability of the buyer's promise?",
+      "choices": {
+        "a": "None.",
+        "b": "It makes the promise illusory.",
+        "c": "It requires the buyer to prove her inability to pay.",
+        "d": "It requires the seller to prove the buyer's ability to pay."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0020.png"
+    },
+    {
+      "index": 21,
+      "question": "A homeowner and a planner signed a detailed writing in which the planner, a landscape architect, agreed to landscape and replant the owner's residential property in accordance with a design prepared by the planner and incorporated in the writing. The owner agreed to pay $10,000 for the work upon its completion. At the owner's insistence, the written agreement contained a provision that neither party would be bound unless the owner's law partner, an avid student of landscaping, should approve the planner's design. Before the planner commenced the work, the owner's law partner, in the presence of both the owner and the planner, expressly disapproved the landscaping design. Nevertheless, the owner ordered the planner to proceed with the work, and the planner reluctantly did so. When the planner's performance was 40% complete, the owner repudiated his duty, if any, to pay the contract price or any part thereof.\nIf the planner now sues the owner for damages for breach of contract, which of the following concepts best supports the planner's claim?",
+      "choices": {
+        "a": "Irrevocable waiver of condition.",
+        "b": "Promissory estoppel.",
+        "c": "Substantial performance.",
+        "d": "Unjust enrichment."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0021.png"
+    },
+    {
+      "index": 22,
+      "question": "A manufacturer contracted in a signed writing to provide a company with industrial ceiling tiles for its new production facility. The contract specified that the manufacturer would deliver the tiles by third-party carrier, \"F.O.B. the company's production facility.\"\nWhile in transit to the production facility, one-third of the tiles fell off the carrier's truck and were destroyed. The manufacturer subsequently emailed the company that it did not intend to replace the tiles. The company sent a letter to the manufacturer that read in relevant part: \"You are not responsible for replacing the damaged tiles. We will sue the carrier.\" The company signed the letter. Shortly thereafter, the carrier filed for bankruptcy and the company decided to sue the manufacturer for breach of contract.\nWill the company be likely to prevail?",
+      "choices": {
+        "a": "No, because the company's signed letter operated as a release and discharged the manufacturer from its remaining contractual duties.",
+        "b": "No, because the tiles were specifically identified goods that were destroyed through no fault of either party.",
+        "c": "Yes, because the manufacturer bore the risk of loss when the tiles were destroyed and breached the contract by refusing to replace the tiles.",
+        "d": "Yes, because there was no new consideration to support the release of the manufacturer's remaining contractual duties."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0022.png"
+    },
+    {
+      "index": 23,
+      "question": "A homeowner contracted in writing with a kitchen contractor to renovate her kitchen for $25,000, \"subject to the homeowner's complete personal satisfaction.\" The contractor replaced the cabinets, flooring, and countertops and then sought payment from the homeowner. The homeowner paid the contractor only $20,000, truthfully saying that she did not like the finish on the cabinets and was therefore not satisfied.\nIf the contractor sues the homeowner for the balance of the contract price, will the contractor be likely to prevail?",
+      "choices": {
+        "a": "No, because a condition to the homeowner's obligation to pay was not satisfied.",
+        "b": "No, because the contractor breached his duty of good faith and fair dealing by supplying unsatisfactory materials.",
+        "c": "Yes, because the homeowner breached the covenant of good faith and fair dealing by rejecting the cabinets without justification.",
+        "d": "Yes, because the homeowner was the first party to breach the contract."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0023.png"
+    },
+    {
+      "index": 24,
+      "question": "A seller and a buyer entered into a contract obligating the seller to convey title to a parcel of land to the buyer in exchange for $100,000. The agreement provided that the buyer's obligation to purchase the parcel was expressly conditioned upon the buyer's obtaining a loan at an interest rate no higher than 10%. The buyer was unable to do so but did obtain a loan at an interest rate of 10.5% and timely tendered the purchase price. Because the value of the land had increased since the time of contracting, the seller refused to perform. The buyer sued the seller.\nIs the buyer likely to prevail?",
+      "choices": {
+        "a": "No, because an express condition will be excused only to avoid forfeiture.",
+        "b": "No, because the contract called for a loan at an interest rate not to exceed 10% and it could not be modified without the consent of the seller.",
+        "c": "Yes, because the buyer detrimentally changed position in reliance on the seller's promise to convey.",
+        "d": "Yes, because the buyer's obtaining a loan at an interest rate no higher than 10% was not a condition to the seller's duty to perform."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0024.png"
+    },
+    {
+      "index": 25,
+      "question": "A manufacturer of computer chipsets for smartphones contracted to sell to a tech company 1 million chipsets each month for three years, payment for each installment to be made upon delivery. Before delivering the first installment, the manufacturer told the tech company, \"Our manufacturing plant is undergoing renovations. This will likely have a temporary impact on the quantity, but not the quality, of chipsets in future installments.\" The manufacturer delivered the first three installments to the tech company in compliance with the contract. However, the fourth installment contained only 500,000 chipsets. The tech company accepted the installment on the manufacturer's assurance that the remaining 500,000 chipsets would be delivered in two weeks, which they were. Then the manufacturer communicated that the fifth installment likely would contain only 500,000 chipsets.\nWhich of the following statements best describes the tech company's rights after receiving the manufacturer's most recent communication regarding the fifth installment?",
+      "choices": {
+        "a": "It can demand adequate assurance that the fifth installment will conform to the contract and treat a failure to give immediate assurance as a repudiation.",
+        "b": "It can treat the manufacturer's communication as a repudiation and sue for breach of contract.",
+        "c": "It cannot demand adequate assurance that the fifth installment will comply with the contract because it accepted a nonconforming installment.",
+        "d": "It cannot sue for breach of contract if it demands, and the manufacturer gives, adequate assurance that the fifth installment will comply with the contract."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0025.png"
+    },
+    {
+      "index": 26,
+      "question": "A buyer agreed in writing to purchase a car from a seller for $15,000, with the price to be paid on a specified date at the seller's home. The contract provided, and both parties intended, that time was of the essence. Before the specified date, however, the seller sold the car to a third party for $18,000. On the specified date, the buyer arrived at the seller's home prepared to tender payment. The seller was not there, so the buyer called the seller to ask where he was. The seller then told the buyer that he had sold the car to the third party.\nIf the buyer sues the seller for breach of contract, will the buyer be likely to prevail?",
+      "choices": {
+        "a": "No, because the buyer did not tender her performance on the specified date.",
+        "b": "No, because the contractual obligations were discharged on the ground of impossibility.",
+        "c": "Yes, because the seller anticipatorily repudiated the contract when he sold the car to the third party.",
+        "d": "Yes, because the seller did not inform the buyer of his repudiation."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0026.png"
+    },
+    {
+      "index": 27,
+      "question": "On June 1, a woman telegraphed a vendor, \"At what price will you sell 100 of your basic garbage-disposal units for delivery around June 10?\" On June 2, the vendor telegraphed the woman, \"You're in luck. We have only 100 basic garbage-disposal units, all on clearance at 50% off usual wholesale of $120 per unit, for delivery at our shipping platform on June 12.\" On June 5, the vendor received a letter from the woman that stated, \"I accept. Would prefer to pay in full 30 days after invoice.\"\nOn June 6, the woman received a telegram from the vendor that stated, \"You must pick up at our platform and pay upon delivery.\" On June 9, the vendor received a letter from the woman that stated, \"I don't deal with people who can't accommodate my simple requests.\" On June 10, the vendor received a telegram from the woman that stated, \"Okay. I'm over a barrel and will pick up the goods on your terms on June 12.\" The vendor had sold all 100 of the units to another buyer earlier that day.\nThe woman sued the vendor for breach of contract.\nWhich of the following arguments will best serve the vendor's defense?",
+      "choices": {
+        "a": "The vendor's telegraph on June 2 was merely a price quotation, not an offer.",
+        "b": "The woman's letter on June 5 was not an acceptance because it varied from the terms of the vendor's initial telegraph.",
+        "c": "The woman's letter on June 9 was an unequivocal refusal to perform that excused the vendor even if the parties had previously formed a contract.",
+        "d": "The woman's use of the mail in response to the vendor's initial telegraph was an ineffective method of acceptance."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0027.png"
+    },
+    {
+      "index": 28,
+      "question": "A young lawyer asked her neighbor to lend her $1,000. On September 15, the neighbor lent $1,000 to the lawyer, which she agreed to repay in installments of $100 plus accrued interest on the last day of each month beginning October 31. The lawyer did not pay the installments due on October 31, November 30, or December 31 and has informed the neighbor that she will be unable to make repayments in the foreseeable future.\nOn January 15, the neighbor is entitled to a judgment against the lawyer for which of the following amounts?",
+      "choices": {
+        "a": "Nothing, because if the neighbor sues before the entire amount is due, he will be splitting his cause of action.",
+        "b": "$300 plus the accrued interest, because the lawyer's breach is only a partial breach.",
+        "c": "$1,000 plus the accrued interest, because the failure to pay her debts as they come due indicates that the lawyer is insolvent and the neighbor is thereby entitled to accelerate payment of the debt.",
+        "d": "$1,000 plus the accrued interest, because the lawyer's unexcused failure to pay three installments is a material breach."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0028.png"
+    },
+    {
+      "index": 29,
+      "question": "On March 1, an excavator entered into a contract with a contractor to perform excavation work on a large project. The contract expressly required that the excavator begin work on June 1 to enable other subcontractors to install utilities. On May 15, the excavator requested a 30-day delay in the start date for the excavation work because he was seriously behind schedule on another project. When the contractor refused to grant the delay, the excavator stated that he would try to begin the work for the contractor on June 1.\nDoes the contractor have valid legal grounds to cancel the contract with the excavator and hire a replacement?",
+      "choices": {
+        "a": "No, because the excavator did not state unequivocally that he would delay the beginning of his work.",
+        "b": "No, because the excavator would be entitled to specific performance of the contract if he could begin by June 1.",
+        "c": "Yes, because the excavator breached the implied covenant of good faith and fair dealing.",
+        "d": "Yes, because the excavator committed an anticipatory repudiation of the contract by causing the contractor to feel insecure about the performance."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0029.png"
+    },
+    {
+      "index": 30,
+      "question": "An engineer entered into a written contract with an owner to serve in the essential position of on-site supervisor for construction of an office building. The day after signing the contract, the engineer was injured while bicycling and was rendered physically incapable of performing as the on-site supervisor. The engineer offered to serve as an off-site consultant for the same pay as originally agreed to by the parties.\nIs the owner likely to prevail in an action against the engineer for damages resulting from his failure to perform under the contract?",
+      "choices": {
+        "a": "No, because the engineer offered a reasonable substitute by offering to serve as an off-site consultant.",
+        "b": "No, because the engineer's physical ability to perform as on-site supervisor was a basic assumption of the contract.",
+        "c": "Yes, because the engineer breached the contract by disappointing the owner's expectations.",
+        "d": "Yes, because the engineer's duty to perform was personal and absolute."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0030.png"
+    },
+    {
+      "index": 31,
+      "question": "A dealer needed a certain rare baseball card to complete a set that he had contracted to assemble and sell to a collector. On March 1, the dealer obtained such a card from a woman in exchange for $1,000 and a written promise to redeliver to the woman \"no later than December 31 of this year\" a comparable specimen of the same kind of card. On March 2, the dealer consummated the sale of the complete set to the collector.\nOn September 1, the market price of rare baseball cards suddenly began a rapid, sustained rise. On September 10, the woman wrote the dealer for assurance that the dealer would timely meet his card-replacement commitment to her. On September 15, the dealer telephoned the woman and said, \"I absolutely will not replace your card until the market drops far below its present level.\"\nThe woman sued the dealer on October 15 for the market value of a comparable replacement-card.\nIf the dealer moves to dismiss the woman's complaint, which of the following is the woman's best argument in opposing the motion?",
+      "choices": {
+        "a": "The dealer breached an implied warranty by failing to supply the baseball card.",
+        "b": "The woman complied with her duty to mitigate her losses by promptly suing when the market rose.",
+        "c": "The woman may resort to any appropriate remedy for breach of contract because the dealer repudiated his performance.",
+        "d": "The woman may treat the dealer's anticipatory repudiation as an immediately actionable tort."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0031.png"
+    },
+    {
+      "index": 32,
+      "question": "On June 1, a seller agreed to sell an antique car to a buyer for $20,000, in a writing signed by both the seller and the buyer. At the time, the car was on display in a museum in a different city and was to be delivered to the buyer on August 1. On July 15, before the risk of loss had passed to the buyer, the car was destroyed by fire without fault of either party. Subsequent to the contract but before the fire, the car had increased in value to $30,000. The seller sued the buyer for the contract price of $20,000, and the buyer counterclaimed for $30,000.\nWhat is the likely outcome of this suit?",
+      "choices": {
+        "a": "Both claims will fail.",
+        "b": "Both claims will succeed, and the buyer will recover $10,000.",
+        "c": "Only the buyer's claim will prevail.",
+        "d": "Only the seller's claim will succeed."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0032.png"
+    },
+    {
+      "index": 33,
+      "question": "The owner of a fleet of taxis contracted with a dealer in petroleum products for the purchase and sale of the fleet owner's total requirements of gasoline and oil for one year. As part of that agreement, the petroleum dealer also agreed with the fleet owner that for one year the petroleum dealer would place all his advertising with the fleet owner's wife, who owned her own small advertising agency. When the wife was informed of the contract, she declined to accept an advertising account from another company because she could not handle both accounts during the same year. During the first month of the contract, the fleet owner purchased substantial amounts of his gasoline from a supplier other than the petroleum dealer, and the petroleum dealer thereupon notified the wife that he would no longer place his advertising with her agency.\nIn an action by the wife against the petroleum dealer for breach of contract, will the wife succeed?",
+      "choices": {
+        "a": "No, because the failure of a constructive condition precedent excused the petroleum dealer's duty to place his advertising with the wife.",
+        "b": "No, because the wife did not provide any consideration to support the petroleum dealer's promise to place his advertising with her.",
+        "c": "Yes, because she is a third-party beneficiary of the contract.",
+        "d": "Yes, because the fleet owner was acting as the wife's agent when he contracted with the petroleum dealer."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0033.png"
+    },
+    {
+      "index": 34,
+      "question": "Before the season began, a professional hockey player entered into a signed, written agreement with the owner of the team. Among the provisions in the agreement was one that provided that, if the player scored 20 or more goals during the season, he would receive additional compensation. The player tried his best during the season but only managed to score 19 goals. The owner refused to pay the player any additional compensation.\nIs the owner excused from paying the additional compensation?",
+      "choices": {
+        "a": "No, because the player substantially complied with the condition regarding goals scored.",
+        "b": "No, because the player's failure to satisfy the condition was not willful.",
+        "c": "Yes, because the additional compensation was conditioned on the player scoring at least 20 goals during the season.",
+        "d": "Yes, because the player promised to score 20 goals."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0034.png"
+    },
+    {
+      "index": 35,
+      "question": "On August 1, a nursing home for the elderly admitted an 84-year-old man for a trial period of two months. On September 25, the man and the nursing home entered into a written lifetime-care contract with an effective commencement date of October 1. The full contract price was $20,000, which, as required by the terms of the contract, the man prepaid to the nursing home on September 25. The nursing home rejected a woman's application for lifetime care on September 26 due to its commitment to the man.\nOn October 2, the man died of a heart attack.\nIn a restitutionary action, will the administrator of the man's estate likely recover on behalf of the estate either all or part of the $20,000 paid to the nursing home on September 25?",
+      "choices": {
+        "a": "No, because the man's life span and the duration of the nursing home's commitment to him were risks assumed by both parties.",
+        "b": "No, because the nursing home rejected the woman's application due to its commitment to the man.",
+        "c": "Yes, because the doctrine of frustration of purpose applies.",
+        "d": "Yes, because the nursing home would otherwise be unjustly enriched at the man's expense."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0035.png"
+    },
+    {
+      "index": 36,
+      "question": "In late March, a jeweler contracted to create and sell a ruby ring to a buyer on May 1. In early April, the price of rubies rose by 25%, and the jeweler could not purchase a ruby without losing money on the transaction. However, the jeweler had an emerald that was purchased for another customer who had canceled the order. The jeweler created the ring for the buyer using the emerald. On May 1, the jeweler tendered the emerald ring to the buyer in good faith, explaining the situation and pointing out that the emerald ring was the same value that the ruby ring would have been. The buyer refused to accept the emerald ring and refused to pay the jeweler the contract price.\nWhich of the following most accurately describes the legal relationship between the jeweler and the buyer?",
+      "choices": {
+        "a": "The buyer can immediately bring a valid breach-of-contract claim against the jeweler for his failure to tender a ruby ring.",
+        "b": "The buyer must give the jeweler an opportunity to cure the breach before bringing a claim against him.",
+        "c": "The jeweler can immediately bring a valid breach-of-contract claim against the buyer for rejecting the emerald ring.",
+        "d": "The jeweler's duty under the contract with the buyer is excused by the rise in the price of rubies."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0036.png"
+    },
+    {
+      "index": 37,
+      "question": "Under the terms of a written contract, a builder agreed to construct a garage for a homeowner for $10,000. Nothing was stated in the parties' negotiations or in the contract about progress payments during the course of the work.\nAfter completing 25 percent of the garage according to the homeowner's specifications, the builder demanded $2,000 as a reasonable progress payment. The homeowner refused, and the builder abandoned the job.\nIf each party sues the other for breach of contract, which of the following will the court decide?",
+      "choices": {
+        "a": "Both parties are in breach, and each is entitled to damages, if any, from the other.",
+        "b": "Only the builder is in breach and liable for the homeowner's damages, if any.",
+        "c": "Only the homeowner is in breach and liable for the builder's damages, if any.",
+        "d": "Both parties took reasonable positions, and neither is in breach."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0037.png"
+    },
+    {
+      "index": 38,
+      "question": "On March 1, a bookstore emailed a publisher the following: \"We have received your catalog and are interested in doing business. Do you offer any discounts to retailers?\" On March 2, the publisher emailed the bookstore: \"Yes, a retailer receives a 40% discount on our books if at least $500 worth of books are ordered.\" On March 3, the bookstore responded: \"Attached is an order for $600 worth of books listed in your current catalog.\" On March 4, the publisher replied: \"Order accepted. Please be aware, as noted in the Terms of Service in our catalog, the cost of shipping for orders of less than $1,000 is borne by the buyer.\" On March 5, the bookstore emailed: \"Can't accept additional shipping cost. Please cancel order.\" The publisher did not reply. On March 6, the bookstore, having reconsidered its options, sent the following email to the publisher: \"You drive a hard bargain. Please ship the books as ordered on March 3.\"\nIf the publisher does not send the books, can the publisher be liable for breach of contract?",
+      "choices": {
+        "a": "No, because the bookstore clearly and unequivocally repudiated the contract on March 5.",
+        "b": "No, because the publisher's March 2 email was not an offer to form a contract.",
+        "c": "Yes, because both of the parties are merchants.",
+        "d": "Yes, because the bookstore retracted its repudiation on March 6."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0038.png"
+    },
+    {
+      "index": 39,
+      "question": "A landowner entered into a single contract with a builder to have three different structures built on separate pieces of property owned by the landowner. Each structure was distinct from the other two, and the parties agreed on a specific price for each. After completing the first structure in accordance with the terms of the contract, the builder demanded payment of the specified price for that structure. At the same time, the builder told the landowner that the builder was \"tired of the construction business\" and would not even begin the other two structures. The landowner refused to pay anything to the builder.\nIs the builder likely to prevail in a suit for the agreed-upon price of the first structure?",
+      "choices": {
+        "a": "No, because substantial performance is a constructive condition to the landowner's duty to pay at the contract rate.",
+        "b": "No, because the builder's cessation of performance without legal excuse was a willful breach of the contract.",
+        "c": "Yes, because the contract is divisible, and the landowner will be required to bring a separate claim for the builder's failure to complete the other two structures.",
+        "d": "Yes, because the contract is divisible, but the landowner will be able to deduct any recoverable damages caused by the builder's failure to complete the contract."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0039.png"
+    },
+    {
+      "index": 40,
+      "question": "A client consulted with his lawyer about handling the sale of the client's building, and asked the lawyer what her legal fee would be. The lawyer replied that her usual charge was $100 per hour, and estimated that the legal work on behalf of the client would cost about $5,000 at that rate. The client said, \"Okay; let's proceed with it,\" and the lawyer timely and successfully completed the work. Because of unexpected title problems, the lawyer reasonably spent 75 hours on the matter and shortly thereafter mailed the client a bill for $7,500, with a letter itemizing the work performed and time spent. The client responded by a letter expressing his good-faith belief that the lawyer had agreed to a total fee of no more than $5,000. The client enclosed a check in the amount of $5,000 payable to the lawyer and conspicuously marked, \"Payment in full for legal services in connection with the sale of my building.\" Despite reading the \"Payment in full...\" language, the lawyer, without any notation of protest or reservation of rights, endorsed and deposited the check to her bank account. The check was duly paid by the client's bank. A few days later, the lawyer unsuccessfully demanded payment from the client of the $2,500 difference between the amount of her bill and the check, and now sues the client for that difference.\nWhat, if anything, can the lawyer recover from the client?",
+      "choices": {
+        "a": "$2,500, because the client agreed to an hourly rate for as many hours as the work reasonably required, and the sum of $5,000 was merely an estimate.",
+        "b": "Nothing, because the amount of the lawyer's fee was disputed in good faith by the client, and the lawyer impliedly agreed to an accord and satisfaction.",
+        "c": "Nothing, because the risk of unexpected title problems in a real-property transaction is properly allocable to the seller's attorney and thus to the lawyer in this case.",
+        "d": "The reasonable value of the lawyer's services in excess of $5,000, if any, because there was no specific agreement on the total amount of the lawyer's fee."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0040.png"
+    },
+    {
+      "index": 41,
+      "question": "A business contracted with a shareholder to purchase all of the shareholder's stock in a corporation at a specified price per share. At the time this contract was executed, the business's financial officer said to the shareholder, \"Our commitment to buy is conditioned on our obtaining approval of the contract from our parent company.\" The shareholder replied, \"Fine. No problem.\" The shareholder subsequently refused to consummate the sale on the ground that the business had neglected to request the parent company's approval of the contract, which was true. The parent company's chief executive officer, however, is prepared to testify that the parent company would have routinely approved the contract if requested to do so. The business can also prove that it has made a substantial sale of other assets to finance the stock purchase, although it admittedly had not anticipated any such necessity when it entered into the stock-purchase agreement.\nIf the business sues the shareholder for breach of contract, is the business likely to prevail?",
+      "choices": {
+        "a": "No, because obtaining the parent company's approval of the contract was an event within the business's control and the business's failure to obtain it was itself a material breach of contract.",
+        "b": "No, because the express condition of the parent company's approval had not occurred prior to the lawsuit.",
+        "c": "Yes, because the business detrimentally relied on the shareholder's commitment by selling off other assets to finance the stock purchase.",
+        "d": "Yes, because the condition of the parent company's approval of the contract, being designed to protect only the business and the parent company, can be and has been waived by those entities."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0041.png"
+    },
+    {
+      "index": 42,
+      "question": "A regional garden center regularly purchases plants from various sources to sell to its customers. In January, the garden center entered into a contract to purchase a specific quantity of fruit tree saplings from a supplier. The contract called for the saplings to be delivered in 90 days, with payment due on delivery. Coincidentally, shortly after this contract was executed, the garden center contracted with a nursery to purchase additional saplings for the upcoming spring. Unbeknownst to the garden center, the nursery was the supplier's primary source of fruit tree saplings. As a consequence of the garden center's purchase of fruit tree saplings from the nursery, the nursery ran out of saplings, and the supplier could not obtain the required number of saplings by the delivery date. Instead, the supplier delivered only half of the required number of fruit tree saplings to the garden center on the delivery date.\nHas the supplier breached its contract with the garden center?",
+      "choices": {
+        "a": "No, because the garden center's purchase of saplings from the nursery prevented the supplier from meeting its contractual obligation.",
+        "b": "No, because the supplier delivered as many saplings as it could in good faith obtain.",
+        "c": "Yes, because merchants do not have the obligation to deal in good faith with one another.",
+        "d": "Yes, because the supplier failed to deliver the required number of saplings on the delivery date."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0042.png"
+    },
+    {
+      "index": 43,
+      "question": "A buyer contracted with a seller to purchase 10,000 bushels of soybeans at market price. The soybeans were to be delivered in 90 days. Two days after the soybean contract was made, the buyer and the seller entered into another contract under which the buyer agreed to purchase 10,000 bushels of wheat from the seller at market price. Before the time for delivery of the soybeans, the seller notified the buyer that it would not deliver the wheat because the seller's wheat supplier had refused to extend additional credit to the seller and therefore the seller had no wheat available for the buyer.\nWhich of the following statements best describes the effect of the seller's repudiation of the wheat contract on the buyer's rights under the soybean contract?",
+      "choices": {
+        "a": "It gives the buyer the right to demand assurances that the seller will perform the soybean contract.",
+        "b": "It gives the buyer the right to terminate the soybean contract, because of the doctrine of dependent covenants.",
+        "c": "It gives the buyer the right to terminate the soybean contract, because the buyer does not have to deal with a party that breaches a contract.",
+        "d": "It has no effect on the buyer's rights, because the two contracts are entirely separate."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0043.png"
+    },
+    {
+      "index": 44,
+      "question": "A mill and a bakery entered into a written contract that obligated the mill to deliver to the bakery 1,000 pounds of flour every Monday for 26 weeks at a specified price per pound. The mill delivered the proper quantity of flour in a timely manner for the first 15 weeks. However, the 16th delivery was tendered on a Tuesday, and amounted to only 800 pounds. The mill told the bakery that the 200-pound shortage would be made up on the delivery due the following Monday. The late delivery and the 200-pound shortage will not significantly disrupt the bakery's operations.\nHow may the bakery legally respond to the nonconforming tender?",
+      "choices": {
+        "a": "Accept the 800 pounds tendered, but notify the mill that the bakery will cancel the contract if the exact amount is not delivered on the following Monday.",
+        "b": "Accept the 800 pounds tendered, but notify the mill that the bakery will deduct from the price any damages for losses due to the nonconforming tender.",
+        "c": "Reject the 800 pounds tendered, and notify the mill that the bakery is canceling the contract.",
+        "d": "Reject the 800 pounds tendered, but notify the mill that the bakery will accept delivery the following Monday if it is conforming."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0044.png"
+    },
+    {
+      "index": 45,
+      "question": "Responding to a county's written advertisement for bids, a tire company was the successful bidder for the sale of tires to the county for its vehicles. The tire company and the county entered into a signed, written agreement that specified, \"It is agreed that the tire company will deliver all tires required by this agreement to the county, in accordance with the attached bid form and specifications, for a one-year period beginning September 1, 2019.\" Attached to the agreement was a copy of the bid form and specifications. No definite quantity of tires to be bought by the county from the tire company was specified in any of these documents.\nIn January 2020, the tire company learned that the county was buying some of its tires from one of the company's competitors. A court has determined the tire company–county agreement is a requirements contract.\nIf the tire company sues the county for damages caused by the county's purchase of some of its tires from the competitor, is the tire company likely to prevail?",
+      "choices": {
+        "a": "No, because the agreement is indefinite as to quantity.",
+        "b": "No, because the agreement lacks mutuality of obligation.",
+        "c": "Yes, under the contracts clause of the United States Constitution.",
+        "d": "Yes, under the provisions of the Uniform Commercial Code."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0045.png"
+    },
+    {
+      "index": 46,
+      "question": "A tenant rented a commercial building from a landlord and operated a business in it. The building's large front window was smashed by vandals. The tenant, who was obligated thereunder to effect and pay for repairs in such cases, promptly contracted with a window store to replace the window for $2,000.\nAfter the store's satisfactory completion of the window replacement, the tenant ceased doing business and vacated the building. Upon vacating the building, the tenant mailed a $1,000 check to the window store bearing on its face the following conspicuous notation: \"This check is in full and final satisfaction of your $2,000 window replacement bill.\" Without noticing this notation, the window store cashed the check and then sued the tenant for the $1,000 difference.\nIf the tenant's only defense is accord and satisfaction, is the tenant likely to prevail?",
+      "choices": {
+        "a": "No, because the amount owed by the tenant to the window store was liquidated and undisputed.",
+        "b": "No, because the window store failed to notice the tenant's notation on the check.",
+        "c": "Yes, because by cashing the check the window store impliedly agreed to accept the $1,000 as full payment of its claim.",
+        "d": "Yes, because the window store failed to write a reservation-of-rights notation on the check before cashing it."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0046.png"
+    },
+    {
+      "index": 47,
+      "question": "A businesswoman entered into a contract with a painter by the terms of which he was to paint the businesswoman's office for $1,000 and was required to do all the work over the following weekend so as to avoid disruption of her business.\nThe painter commenced work on Saturday morning and had finished half the painting by the time he quit work for the day. That night, without the fault of either party, the office building was destroyed by fire.\nWhich of the following is an accurate statement?",
+      "choices": {
+        "a": "Both parties' contractual duties are discharged, and the painter can recover nothing from the businesswoman.",
+        "b": "Both parties' contractual duties are discharged, but the painter can recover in quasi-contract from the businesswoman.",
+        "c": "Only the painter's contractual duty is discharged, and the painter can recover contract damages from the businesswoman.",
+        "d": "Only the painter's contractual duty is discharged, because the businesswoman's performance (payment of the agreed price) is not impossible."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0047.png"
+    },
+    {
+      "index": 48,
+      "question": "An architect agreed with a developer to design a large residential development. Because the architect had a history of substance abuse problems, the parties agreed that the developer's duty to accept and pay for the plans would be conditioned on the architect's abstaining from alcohol during the six months it would take to do the work. After two months, the architect began having several alcoholic drinks each day. The developer became aware of the architect's drinking before the architect showed the developer the preliminary plans. When the developer saw the preliminary plans, the developer told the architect that the concept was impressive and that he looked forward to seeing the final plans. The architect continued to have several alcoholic drinks each day and completed the plans within the specified contract period. However, the developer declined to review, accept, or pay for the final plans and stated that it was because of the architect's continued use of alcohol.\nThe architect has sued the developer for breach of contract.\nWhich of the following arguments best supports the architect's claim?",
+      "choices": {
+        "a": "The alcohol use was not a material breach of contract by the architect, since it did not affect the quality of the work.",
+        "b": "The developer waived the condition of no alcohol use.",
+        "c": "The no-alcohol term was functionally a penalty clause and therefore was unenforceable.",
+        "d": "The no-alcohol term would be interpreted as a promise and not a condition."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0048.png"
+    },
+    {
+      "index": 49,
+      "question": "Under a written agreement, a pastry supplier promised to sell its entire output of baked buns at a specified unit price to a retailer, for one year. The retailer promised not to sell any other supplier's baked buns.\nThe parties' contract included a provision for termination by either party at any time upon reasonable notice. After six months of performance on both sides, the supplier, claiming that its old bun-baker had become uneconomical and that it could not afford a new one, dismantled the bun-baker and began using the space for making dog biscuits. The supplier's output of baked buns having ceased, the retailer sued for breach of contract. The retailer moves for summary judgment on liability, and the supplier moves for summary judgment dismissing the retailer's claim.\nHow should the court rule?",
+      "choices": {
+        "a": "Deny both motions, because the supplier may legally cease production of baked buns, but under the circumstances it must share with the retailer its profits from the manufacture of dog biscuits until the end of the first year.",
+        "b": "Deny both motions, because there are triable issues of fact as to whether the supplier gave reasonable notice of termination or whether its losses from continued production of baked buns were sufficiently substantial to justify cessation of production.",
+        "c": "Grant summary judgment for the retailer, because as a matter of law the supplier could not discontinue production of baked buns merely because it was losing money on that product.",
+        "d": "Grant summary judgment for the supplier, because its cessation of baked-bun production and the retailer's awareness thereof amounted as a matter of law to valid notice of termination as permitted by the contract."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0049.png"
+    },
+    {
+      "index": 50,
+      "question": "On May 1, a seller and a buyer entered into a written contract, signed by both parties, for the sale of a tract of land for $100,000. Delivery of the deed and payment of the purchase price were scheduled for July 1. On June 1, the buyer received a letter from the seller repudiating the contract. On June 5, the buyer bought a second tract of land at a higher price as a substitute for the first tract. On June 10, the seller communicated a retraction of the repudiation to the buyer.\nThe buyer did not tender the purchase price for the first tract on July 1 but subsequently sued the seller for breach of contract.\nWill the buyer likely prevail?",
+      "choices": {
+        "a": "No, because the buyer's tender of the purchase price on July 1 was a constructive condition to the seller's duty to tender a conveyance.",
+        "b": "No, because the seller retracted the repudiation prior to the agreed time for performance.",
+        "c": "Yes, because the buyer bought the second tract as a substitute for the first tract prior to the seller's retraction.",
+        "d": "Yes, because the seller's repudiation was not retractable after it was communicated to the buyer."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0050.png"
+    },
+    {
+      "index": 51,
+      "question": "On April 1, a buyer agreed to purchase an electric motor from a seller for $1,000, delivery to be made on the following June 1. Before signing the agreement, the parties orally agreed that the contract of sale would be effective only if the buyer should notify the seller in writing not later than May 2 that the buyer had arranged to resell the motor to a third party.\nOn April 15, the buyer entered into a contract with a third party to resell the motor to the third party at a profit. On April 16, the buyer notified the seller by phone of the buyer's resale agreement with the third party and explained that a written notice was unfeasible, because the buyer's secretary was ill. The seller replied, \"That's okay. I'll get the motor to you on June 1, as we agreed.\" Having learned, however, that the motor had increased in value about 75% since April 1, the seller renounced the agreement on June 1.\nIf the buyer sues the seller on June 2 for breach of contract, which of the following concepts best supports the buyer's claim?",
+      "choices": {
+        "a": "Nonoccurrence of a condition subsequent.",
+        "b": "Novation of buyers.",
+        "c": "Substantial performance.",
+        "d": "Waiver of condition."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0051.png"
+    },
+    {
+      "index": 52,
+      "question": "A wholesaler contracted in a signed writing to sell to a bakery 10,000 pounds of flour each week for 10 weeks, the flour to be delivered to the bakery on Mondays and payment to be made on Wednesdays of each week. The bakery did all of its weekly bread baking on Tuesdays.\nOn Monday morning of the first week, the wholesaler tendered delivery of 8,000 pounds of flour to the bakery, and the bakery accepted it on the wholesaler's assurance that the remaining 2,000 pounds would be delivered later that evening, which it was. The bakery paid for both deliveries on Wednesday.\nOn Monday of the second week, the wholesaler tendered delivery of 5,000 pounds of flour to the bakery and said that the remaining 5,000 pounds could not be delivered on Monday but would be delivered by Wednesday. The bakery rejected the tender.\nWas the bakery legally justified in rejecting the tender of the 5,000 pounds of flour?",
+      "choices": {
+        "a": "No, because by accepting the first 8,000 pounds on Monday of the first week, the bakery had waived the condition of perfect tender and had not reinstated it.",
+        "b": "No, because the tender was not a substantial impairment of the entire contract, and the wholesaler had given assurance of a cure.",
+        "c": "Yes, because the bakery was legally entitled to reject any tender that did not conform perfectly to the contract.",
+        "d": "Yes, because the tender was a substantial impairment of that installment and could not be cured."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0052.png"
+    },
+    {
+      "index": 53,
+      "question": "A general contractor agreed to build a refrigerated storage facility for a company that transports perishable food. A subcontractor agreed with the general contractor to install the facility's refrigeration system. Their agreement included the express condition that all pipes for the refrigeration system were to be made of solid steel. However, the subcontractor completed the job using galvanized steel pipes that he had on hand. Unlike solid steel, the galvanized steel degrades quickly upon coming into contact with the type of refrigerant used in the refrigeration system.\nThe general contractor discovered the substitution after the job was completed. The subcontractor, who was fully engaged out-of-state on another company's job site, declined to replace the pipes. The general contractor subsequently refused to pay the subcontractor pursuant to the contract and hired another subcontractor to replace the pipes so that the facility could be made operational.\nIf the subcontractor sues the general contractor for breach of contract, how is the court likely to rule?",
+      "choices": {
+        "a": "The subcontractor can recover in quantum meruit despite his failure to comply with an express condition in the contract.",
+        "b": "The subcontractor cannot recover damages under the contract because he committed a material breach.",
+        "c": "The subcontractor is entitled to damages for services performed because the use of a different type of pipe was a minor breach.",
+        "d": "The subcontractor is entitled to the full contract price because he substantially performed."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0053.png"
+    },
+    {
+      "index": 54,
+      "question": "On June 1, a general contractor and a subcontractor entered into a contract under which the subcontractor agreed to deliver all of the steel joists that the general contractor required in the construction of a hospital building. The contract provided that delivery of the steel joists would begin on September 1.\nAlthough the general contractor had no reason to doubt the subcontractor's ability to perform, the general contractor wanted to be sure that the subcontractor was on track for delivery in September. He therefore wrote a letter on July 1 to the subcontractor demanding that the subcontractor provide assurance of its ability to meet the September 1 deadline. The subcontractor refused to provide such assurance.\nThe general contractor then immediately obtained the steel joists from another supplier.\nIf the subcontractor sues the general contractor for breach of contract, is the subcontractor likely to prevail?",
+      "choices": {
+        "a": "No, because the contract failed to specify a definite quantity.",
+        "b": "No, because the subcontractor anticipatorily repudiated the contract when it failed to provide adequate assurance.",
+        "c": "Yes, because a demand for assurance constitutes a breach of contract when the contract does not expressly authorize a party to demand assurance.",
+        "d": "Yes, because the subcontractor's failure to provide assurance was not a repudiation since there were no reasonable grounds for the general contractor's insecurity."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0054.png"
+    },
+    {
+      "index": 55,
+      "question": "A rental company contracted to lease a collapsible sports dome to a private tennis club. The dome would be used to cover the club's outdoor tennis courts so that the courts could be used for the club's Annual Winter Tennis Tournament beginning on November 16. The contract required the rental company to finish installing the dome no later than November 15.\nOn November 10, the installation crew arrived to lay out the anchoring system required for the dome. However, the crew did not have enough anchors to secure the dome. The club's owner overheard a crew member say that the rental company had forgotten to order the rest of the anchors and that he did not expect them to arrive for at least a month. That same day, the club owner canceled the contract and leased an indoor space near the club. The rental company has sued the tennis club for breach of contract.\nWill the rental company likely prevail?",
+      "choices": {
+        "a": "No, because the crew member's November 10 statement was an anticipatory repudiation that gave the club owner the right to cancel the contract.",
+        "b": "No, because the rental company's failure to order the remaining anchors made it impossible to finish installing the dome by November 15.",
+        "c": "Yes, because the club owner failed to seasonably notify the rental company of his intention to cancel the contract before leasing the indoor space.",
+        "d": "Yes, because the club owner never demanded and did not obtain the rental company's assurance of due performance under the contract."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0055.png"
+    },
+    {
+      "index": 56,
+      "question": "A producer contracted to pay an inexperienced performer a specified salary to act in a small role in a play the producer was taking on a six-week road tour. The contract was for the duration of the tour.\nOn the third day of the tour, the performer was hospitalized with a stomach disorder. The producer replaced her in the cast with an experienced actor. One week later, the performer recovered, but the producer refused to allow her to resume her original role for the remainder of the tour.\nIn an action by the performer against the producer for breach of contract, which of the following, if proved, would be the producer's best defense?",
+      "choices": {
+        "a": "Both the producer and the performer knew that a year earlier the performer had been incapacitated for a short period of time by the same kind of stomach disorder.",
+        "b": "The actor, by general acclaim, was much better in the role than the performer had been.",
+        "c": "The actor was the only replacement the producer could find, and the actor would accept nothing less than a contract for the remainder of the six-week tour.",
+        "d": "The producer offered to employ the performer as the actor's understudy for the remainder of the six-week tour at the performer's original salary, but the performer declined."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0056.png"
+    },
+    {
+      "index": 57,
+      "question": "A broker needed a certain rare coin to complete a set that he had contracted to assemble and sell to a collector. On February 1, the broker obtained such a coin from a hoarder in exchange for $1,000 and a written promise to redeliver to the hoarder \"no later than December 31 of this year\" a comparable specimen of the same kind of coin. On February 2, the broker consummated the sale of the complete set to the collector.\nOn October 1, the market price of rare coins suddenly began a rapid, sustained rise. On October 15, the broker wrote the hoarder, \"In view of the surprising market, it seems unfair that I should have to replace your coin within the next few weeks.\" On October 17, the hoarder responded in writing that she was treating the broker's repudiation as final and canceled the contract.\nOn November 15, the hoarder sued the broker for the market value of a comparable replacement-coin.\nIf the broker moves to dismiss the hoarder's complaint, which of the following is the broker's best argument in support of the motion?",
+      "choices": {
+        "a": "Even if the broker repudiated on October 15, the hoarder has no remedy because she failed to demand in writing that the broker retract his repudiation.",
+        "b": "Even if the broker repudiated on October 15, the hoarder's only action would be for specific performance because the coin is a unique chattel.",
+        "c": "The broker did not repudiate the contract on October 15 and may still perform no later than the contract deadline of December 31.",
+        "d": "Under the doctrine of impossibility, the broker is temporarily excused by the market conditions from timely performance of his coin-replacement obligation."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0057.png"
+    },
+    {
+      "index": 58,
+      "question": "A seller and a buyer entered into a written agreement providing that the seller was to deliver 1,000 cases of candy bars to the buyer during the months of May and June. Under the agreement, the buyer was obligated to make a selection by March 1 of the quantities of the various candy bars to be delivered under the contract. The buyer did not make the selection by March 1, and on March 2 the seller notified the buyer that because of the buyer's failure to select, the seller would not deliver the candy bars. The seller had all the necessary candy bars on hand on March 1 and made no additional sales or purchases on March 1 or March 2. On March 2, after receiving the seller's notice that it would not perform, the buyer notified the seller of its selection and insisted that the seller perform. The seller refused.\nIf the buyer sues the seller for breach of contract, is the buyer likely to prevail?",
+      "choices": {
+        "a": "No, because a contract did not exist until the buyer selected the specific candy bars, and the seller withdrew its offer before selection.",
+        "b": "No, because the buyer's selection of the candy bars by March 1 was an express condition to the seller's duty to perform.",
+        "c": "Yes, because the delay of one day in making the selection did not have a material effect on the seller.",
+        "d": "Yes, because upon the buyer's failure to make a selection by March 1, the seller had a duty to make a reasonable selection."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0058.png"
+    },
+    {
+      "index": 59,
+      "question": "On July 1, a man and a developer contracted in writing for the sale and purchase of the man's farm, and to close the transaction on December 1.\nOn September 1, the developer unequivocally repudiated the contract. On September 15, the man urged the developer to change her mind and proceed with the scheduled closing on December 1. On October 1, having heard nothing further from the developer, the man sold and conveyed his farm to a farmer without notifying the developer. On December 1, the developer attempted to close under the July 1 contract by tendering the full purchase price to the man. The man rejected the tender.\nThe developer sued the man for breach of contract.\nWill the developer likely prevail?",
+      "choices": {
+        "a": "No, because acceptance of the purchase price by the man was a concurrent condition to the man's obligation to convey the farm to the developer on December 1.",
+        "b": "No, because the developer did not retract her repudiation before the man materially changed his position in reliance thereon by selling the farm to the farmer.",
+        "c": "Yes, because the man failed seasonably to notify the developer of any pending sale to the farmer.",
+        "d": "Yes, because the man waived the developer's September 1 repudiation by urging her to retract it on September 15."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0059.png"
+    },
+    {
+      "index": 60,
+      "question": "In a signed writing, a man contracted to purchase a 25-foot travel trailer from a dealership for $15,000, cash on delivery, no later than June 1. The man arrived at the dealership's sales lot on Sunday, May 31, but he refused to pay for and take delivery of the trailer as contracted when he discovered that the spare tire was missing. The dealership offered to install a spare tire on Monday when its service department would open, but the man replied that he did not want the trailer and would purchase another one elsewhere.\nWhich of the following is accurate?",
+      "choices": {
+        "a": "The man had a right to reject the trailer and terminate the contract under the perfect-tender rule.",
+        "b": "The man had a right to reject the trailer, but the dealership was entitled to a reasonable opportunity to cure the defect.",
+        "c": "The man was required to accept the trailer, because the defect could be readily cured.",
+        "d": "The man was required to accept the trailer, because the defect did not substantially impair its value."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0060.png"
+    },
+    {
+      "index": 61,
+      "question": "The manager of a state fair contracted with a renowned hog breeder to exhibit the breeder's only world-champion hog for the three weeks of the annual fair. At the conclusion of the fair the breeder would receive $300. Two days before the opening of the fair, the hog became sick with a communicable disease among swine and, under the applicable state quarantine law, could not be exhibited for at least a month.\nUpon learning this, which of the following courses of action can the manager legally pursue with respect to his contract with the breeder?",
+      "choices": {
+        "a": "Suspend his own performance and recover damages from the breeder for breach of contract unless the breeder at once supplies a healthy hog of exhibition quality as a substitute for the world-champion hog.",
+        "b": "Suspend his own performance, demand assurances from the breeder, and treat a failure by the breeder to produce the hog as an actionable repudiation.",
+        "c": "Terminate his own performance and treat the hog's illness as discharging all remaining duties under the contract.",
+        "d": "Terminate the contract, but only if the manager promptly seeks to obtain for the exhibit a suitable substitute for the world-champion hog from another hog owner."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0061.png"
+    }
+  ]
+}

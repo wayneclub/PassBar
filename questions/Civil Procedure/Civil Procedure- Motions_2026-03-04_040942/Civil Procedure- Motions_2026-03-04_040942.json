@@ -1,0 +1,638 @@
+{
+  "meta": {
+    "source": "UWorld (captured from DOM #questionText + choices + right-content screenshot)",
+    "capturedAt": "2026-03-04T12:09:42.013Z",
+    "count": 48,
+    "screenshotCount": 48,
+    "url": "https://apps-legal.uworld.com/courseapp/legal/v57/testinterface/launchtest/14822410/405136104/2/1",
+    "examName": "Civil Procedure: Motions",
+    "subject": "Civil Procedure",
+    "chapter": "Motions"
+  },
+  "questions": [
+    {
+      "index": 1,
+      "question": "A retailer brought a federal diversity action against a wholesaler, alleging breach of contract and fraudulent misrepresentation. After the parties presented their evidence at trial, the court instructed the jury on the law. Neither party filed a motion for judgment as a matter of law before the case went to the jury.\nThe jury found for the retailer on both claims. After the court entered judgment on the verdict, the wholesaler moved for a new trial and for judgment as a matter of law, arguing that the evidence was insufficient to support the jury verdict on either claim. The court acknowledged that there had been problems with some of the evidence, but it denied the motions. The wholesaler appealed, challenging the sufficiency of the evidence.\nShould the appellate court consider the wholesaler's challenge?",
+      "choices": {
+        "a": "No, because a determination of the sufficiency of the evidence is solely within the jury's province.",
+        "b": "No, because the wholesaler did not raise the sufficiency-of-the-evidence issue in a motion for judgment as a matter of law before the case went to the jury.",
+        "c": "Yes, because, as the trial court acknowledged, the wholesaler has strong arguments on the challenge.",
+        "d": "Yes, because the challenge was raised and ruled on by the trial court before the wholesaler filed the appeal."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0001.png"
+    },
+    {
+      "index": 2,
+      "question": "A plaintiff sued a defendant in a federal district court for breach of contract. After the trial, the jury returned a verdict in favor of the plaintiff and awarded her $1,000,000. The district court entered a final judgment consistent with the jury's verdict. The defendant then filed a notice of appeal, alleging that the district court abused its discretion by failing to exclude several pieces of evidence during trial. The day after the notice of appeal was filed, the district court discovered that the final judgment listed only a $1,000 award for the plaintiff. The appellate court has not docketed the appeal of the final judgment.\nHow is the district court likely to proceed?",
+      "choices": {
+        "a": "Correct the mistake in the judgment on its own initiative.",
+        "b": "Instruct the appellate court to correct the mistake in the judgment on appeal.",
+        "c": "Provide the parties with notice and an opportunity to be heard before correcting the mistake in the judgment.",
+        "d": "Request permission from the appellate court to correct the mistake in the judgment."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0002.png"
+    },
+    {
+      "index": 3,
+      "question": "A stockbroker was convicted in federal court of criminal fraud in the sale of certain securities. A former client then sued the stockbroker in a federal civil action, alleging fraud in the sale of the same securities for which the stockbroker had been criminally convicted. The client's attorney moved to preclude the stockbroker from relitigating the liability issues that were common to the criminal and civil actions. The court granted the motion and, after a bench trial on damages, entered judgment against the stockbroker for $100,000.\nOn appeal from the stockbroker's criminal conviction, the appellate court reversed and vacated the conviction. The stockbroker promptly moved for relief from the final judgment in the civil action. The motion was filed 15 months after entry of the final judgment in the civil action.\nShould the court grant the motion?",
+      "choices": {
+        "a": "No, because it is untimely.",
+        "b": "No, because the stockbroker did not appeal the civil judgment.",
+        "c": "Yes, because the court in the civil action should not have based the civil judgment on the criminal judgment before it had been reviewed on appeal.",
+        "d": "Yes, because the criminal judgment on which the civil judgment was based has been reversed and vacated."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0003.png"
+    },
+    {
+      "index": 4,
+      "question": "A plaintiff sued a defendant in federal court for injuries arising out of an accident involving the parties. The plaintiff alleged and presented evidence at trial demonstrating that her injuries had left her legs permanently paralyzed. The jury found in favor of the plaintiff and awarded her $5 million in damages. Two months after the court entered judgment, the defendant was given a video made that day showing the plaintiff jogging with her doctor.\nWhat is the best way for the defendant to seek relief from the judgment?",
+      "choices": {
+        "a": "Move for a new trial or in the alternative for remittitur to reduce the award in light of the shortened duration of the plaintiff's injuries.",
+        "b": "Move for relief from the judgment on the ground that the judgment was based on the jury's mistaken belief that the plaintiff's injuries would be permanent.",
+        "c": "Move for relief from the judgment on the ground that the plaintiff committed a fraud in obtaining damages for permanent injuries.",
+        "d": "Move for relief from the judgment on the ground that there is newly discovered evidence that the plaintiff's injuries were not permanent."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0004.png"
+    },
+    {
+      "index": 5,
+      "question": "A woman domiciled in State A was driving in State B when the brakes on her car malfunctioned. As a result, she lost control of her car and hit a concrete traffic barrier. The woman later brought a strict products liability action against the brake manufacturer in a federal court in State A to recover $100,000 in damages. The manufacturer is incorporated and headquartered in State B. The manufacturer conducts no business and has no employees in State A.\nThe manufacturer filed a motion to dismiss for insufficient service of process, which was denied. The manufacturer has now filed an answer to the woman's complaint and asserted therein a motion to dismiss for improper venue. The woman failed to respond to the motion.\nIs the court likely to dismiss the action for improper venue?",
+      "choices": {
+        "a": "No, because the manufacturer waived its right to challenge venue.",
+        "b": "No, unless the court determines that a federal court in State B is a more convenient forum under the doctrine of forum non conveniens.",
+        "c": "Yes, because the manufacturer resides in State B and the accident occurred there.",
+        "d": "Yes, because the woman failed to respond to the manufacturer's motion to dismiss."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0005.png"
+    },
+    {
+      "index": 6,
+      "question": "A store owner from State A had a dispute with its supplier incorporated and headquartered in State B over the quality of the produce the supplier had delivered to the store. The store owner sued the supplier in a federal court in State A for breach of contract, seeking $200,000 in damages.\nThe supplier filed a pre-answer motion to dismiss the case based solely on lack of personal jurisdiction, which the court denied. The supplier now seeks to assert that the federal court is an improper venue and that the store owner failed to state a claim on which relief can be granted.\nWhich of the following statements best describes the effect of the supplier's pre-answer motion on these two defenses?",
+      "choices": {
+        "a": "It has no effect on the supplier's \"improper venue\" or \"failure to state a claim\" defense.",
+        "b": "It resulted in a waiver of the supplier's \"failure to state a claim\" defense.",
+        "c": "It resulted in a waiver of the supplier's \"improper venue\" defense.",
+        "d": "It resulted in a waiver of the supplier's \"improper venue\" and \"failure to state a claim\" defenses."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0006.png"
+    },
+    {
+      "index": 7,
+      "question": "A plaintiff sued a defendant in federal court for trademark infringement. At the conclusion of trial, the judge instructed the 10-member jury. In the jury deliberation room, one of the jurors pulled out his cell phone and searched for \"trademark infringement.\" He read aloud from an article that said, \"trademark infringement hurts the U.S. economy.\" The jury foreman directed the juror to stop reading and sent a note to the judge describing the incident.\nThe judge brought the jury back to the courtroom and reminded the members of their obligation not to consult outside sources during deliberations. She confiscated their phones, instructed them to ignore the juror's misconduct, and directed them to continue deliberating. The jury returned to the deliberation room. After three hours, the jury returned a verdict in favor of the defendant. The court entered a final judgment consistent with the verdict.\nThe plaintiff moved for a new trial based on the juror's conduct 21 days after the entry of the final judgment.\nHow will the judge likely rule on the plaintiff's motion?",
+      "choices": {
+        "a": "Deny the motion, because the juror's misconduct was harmless.",
+        "b": "Deny the motion, because the plaintiff waived its right to challenge the juror's conduct by filing an untimely motion for new trial.",
+        "c": "Grant the motion, because the judge should have removed the juror from the jury.",
+        "d": "Grant the motion, because the juror engaged in misconduct by consulting outside information."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0007.png"
+    },
+    {
+      "index": 8,
+      "question": "An employee sued her employer for violation of the Americans with Disabilities Act. At trial there was a dispute over whether the employee's supervisor told her in a conversation that she was being dismissed because of her Tourette's syndrome. The jury found for the employee and awarded her damages. Six months after the entry of the judgment in this case, the employer learned that the employee, without her supervisor's knowledge, had recorded the conversation in question. Obtaining a copy of the recording, the employer learned that the employee had lied about the content of the conversation.\nWhich of the following motions with respect to this judgment can the employer now make to the district court?",
+      "choices": {
+        "a": "A motion for relief from the judgment under Rule 60(b).",
+        "b": "A motion to alter or amend the judgment under Rule 59(e).",
+        "c": "A motion to correct the judgment under Rule 60(a).",
+        "d": "A motion to set aside the judgment for fraud on the court under Rule 60(d)."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0008.png"
+    },
+    {
+      "index": 9,
+      "question": "A state opened a new park near a residential neighborhood. One of the residents sued the state in federal district court, claiming that the state took some of his property for the new park without providing him just compensation.\nAt trial, the resident entered an old, unrecorded document into evidence that supported his claim that he owned the disputed property. In its defense, the state entered hundreds of documents into evidence that showed that the disputed property was state-owned land. At the end of trial, the jury returned a verdict in favor of the state, and the court entered a final judgment consistent with the verdict.\nThe next day, the resident hired a professional researcher to meticulously search the state and county records relating to the property. The researcher discovered a misfiled document in the county records that conclusively showed that the resident, not the state, owned the disputed property. This document was not entered into evidence at trial. The resident immediately moved for a new trial based on this newly discovered evidence.\nIs the court likely to grant the resident's motion for a new trial?",
+      "choices": {
+        "a": "No, because the resident could have discovered the document before the end of trial had he exercised due diligence.",
+        "b": "No, because the resident must present the document on appeal.",
+        "c": "Yes, because the document is material to the resident's case.",
+        "d": "Yes, because the document will likely produce a different result at a new trial."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0009.png"
+    },
+    {
+      "index": 10,
+      "question": "A customer sued a retailer in federal court, claiming that the retailer had intentionally engaged in trade practices that violated federal law. At the close of evidence, the retailer filed a motion for judgment as a matter of law, which was denied. The jury returned a verdict for the customer.\nTwenty-five days after the court entered judgment on the verdict, the retailer filed a renewed motion for judgment as a matter of law. The trial court determined that the evidence was legally insufficient to find in the customer's favor because the customer's main witness was not credible. The trial court then issued an order granting the retailer's motion. Twenty-eight days later, the customer appealed.\nIs the appellate court likely to uphold the trial court's ruling?",
+      "choices": {
+        "a": "No, because the retailer renewed its motion for judgment as a matter of law more than 21 days after the trial court entered judgment on the verdict.",
+        "b": "No, because the trial court considered the credibility of the customer's main witness when granting the retailer's renewed motion.",
+        "c": "Yes, because the appellate court must give great deference to the trial court's ruling.",
+        "d": "Yes, because the customer appealed more than 30 days after the trial court entered judgment on the verdict."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0010.png"
+    },
+    {
+      "index": 11,
+      "question": "A car manufacturer sued one of its competitors for infringing the manufacturer's patented technology for its self-driving cars. During discovery, the manufacturer requested that the competitor produce all documents related to the competitor's research into self-driving technology. The competitor turned over millions of documents, none of which contained any information related to the manufacturer's patented technology.\nThe case proceeded to trial, and the jury returned a verdict in favor of the competitor. Six months after the court entered a judgment consistent with this verdict, the competitor's CEO was charged with criminal negligence after several of the competitor's self-driving cars caused accidents. During a search of the competitor's research labs, the police discovered several documents containing information about the manufacturer's patented self-driving technology. The documents had been saved to the competitor's computers three years earlier.\nWhat action may the manufacturer take upon discovering this new evidence?",
+      "choices": {
+        "a": "Move for a new trial.",
+        "b": "Move for judgment as a matter of law.",
+        "c": "Move for relief from the prior judgment.",
+        "d": "Move for summary judgment."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0011.png"
+    },
+    {
+      "index": 12,
+      "question": "After being forcibly ejected from a casino, a tourist brought a federal diversity action against the casino, seeking $105,000 in damages. The tourist claimed that the casino's security guard had used excessive force when ejecting him from the casino, causing severe personal injuries.\nAt trial, the tourist's attorney attempted to introduce testimony of the security guard's ex-wife, who had filed several complaints of spousal abuse against the security guard. The casino's attorney objected that the evidence was irrelevant and unfairly prejudicial. The court overruled the objection, and the ex-wife testified. The jury returned a verdict for the tourist, awarding him $82,000 in damages.\nThe casino's attorney believes that the ex-wife's testimony was unfairly prejudicial and should not have been admitted.\nWhat is the best way for the casino's attorney to attack the verdict?",
+      "choices": {
+        "a": "Appeal, arguing that the trial court erred in admitting the testimony, which was so prejudicial that the judgment should be reversed.",
+        "b": "Move for a new trial, arguing that the court erred in admitting the testimony and that a new trial without the testimony is necessary.",
+        "c": "Move for judgment as a matter of law, arguing that the court erred in admitting the testimony and that without the testimony, the evidence was legally insufficient to find for the tourist.",
+        "d": "Move for relief from judgment, arguing that the court's admission of the testimony was a mistake."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0012.png"
+    },
+    {
+      "index": 13,
+      "question": "A woman brought a diversity action against a pharmaceutical company in a federal court in State A for strict products liability arising under State A law. The woman claims that the company defectively manufactured her medication, which caused her to suffer a stroke that led to complete paralysis of the left side of her body.\nThe company moved for summary judgment, arguing that a State A statute forbids strict products liability lawsuits against pharmaceutical companies. The federal court granted the motion and entered summary judgment dismissing the woman's action with prejudice.\nFourteen days after the federal court entered summary judgment, the highest court in State A held that the State A statute granting immunity to pharmaceutical companies only applies to strict products liability actions alleging a design defect.\nWhat is the best course of action the woman's lawyer could take?",
+      "choices": {
+        "a": "File a motion for judgment as a matter of law.",
+        "b": "File a motion to amend the summary judgment.",
+        "c": "File a motion to correct the mistake in the summary judgment.",
+        "d": "Refile the strict products liability action against the pharmaceutical company."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0013.png"
+    },
+    {
+      "index": 14,
+      "question": "A purchaser filed a federal diversity action against a seller, alleging breach of contract. The seller answered the complaint and included as a separate defense an allegation that the purchaser had brought and lost a similar contract claim against a different seller three years earlier, and that this history represented a pattern of filing frivolous lawsuits. The purchaser believes that the earlier lawsuit was factually completely different from the current one and is therefore irrelevant.\nWhat is the purchaser's best response to the seller's answer?",
+      "choices": {
+        "a": "File a reply that includes a denial of the separate defense.",
+        "b": "Move for sanctions against the seller for asserting a frivolous defense.",
+        "c": "Move to amend the complaint to add allegations about the differences between the lawsuits.",
+        "d": "Move to strike the separate defense as irrelevant."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0014.png"
+    },
+    {
+      "index": 15,
+      "question": "A plaintiff domiciled in State A has brought a federal diversity action in State A against a defendant domiciled in State B, seeking damages for injuries the defendant allegedly caused the plaintiff in State B. The defendant has never been to State A and has no connections there. The defendant's attorney knows that the defendant was properly served but does not believe that the State A court has personal jurisdiction over her.\nWhat is the best way for the attorney to raise the argument that the court lacks personal jurisdiction over the defendant?",
+      "choices": {
+        "a": "Move for discovery on the issue of personal jurisdiction.",
+        "b": "Move for judgment on the pleadings, seeking dismissal of the action for lack of personal jurisdiction.",
+        "c": "Move for sanctions against the plaintiff and his attorney for filing the action in a court that has no personal jurisdiction over the defendant.",
+        "d": "Move to dismiss the action for lack of personal jurisdiction based on the complaint allegations and an affidavit from the defendant about her lack of connection to State A."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0015.png"
+    },
+    {
+      "index": 16,
+      "question": "An investor from State A sued a man from State B in a federal court in State A for defrauding the investor of $100,000. The man filed a pre-answer motion to dismiss the investor's complaint for improper venue and lack of personal jurisdiction. The court denied this motion. The man then filed an answer denying liability. One month later, the man moved for judgment on the pleadings. The motion claims that the investor failed to state a claim on which relief can be granted.\nShould the court consider the man's motion for judgment on the pleadings?",
+      "choices": {
+        "a": "No, because the man waived the right to challenge the pleading by not raising the issue in his answer.",
+        "b": "No, because the man waived the right to challenge the pleading by not raising the issue in his pre-answer motion.",
+        "c": "Yes, because the man's right to challenge the pleading was not waived.",
+        "d": "Yes, because the right to challenge a pleading can never be waived."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0016.png"
+    },
+    {
+      "index": 17,
+      "question": "A patient from State A sued a doctor from State B in federal court for medical malpractice, seeking $100,000 in damages. During trial, the doctor's attorney presented a substantial amount of evidence that clearly demonstrated the doctor was not negligent, while the patient presented little evidence that showed the doctor was at fault.\nNeither party filed any motions before the case was submitted to the jury. The jury returned a verdict in favor of the patient and awarded her $70,000 after deliberating for an hour, and the judge entered final judgment consistent with the jury's verdict that same day.\nThe doctor's attorney believes that the verdict was not supported by the clear weight of evidence and seeks to challenge the verdict before filing a notice of appeal.\nWhat action should the doctor's attorney take?",
+      "choices": {
+        "a": "Move for a new trial.",
+        "b": "Move for a renewed judgment as a matter of law.",
+        "c": "Move for summary judgment.",
+        "d": "Move to dismiss for lack of subject-matter jurisdiction."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0017.png"
+    },
+    {
+      "index": 18,
+      "question": "A basketball coach sued the university that employed her for violating a federal law that prohibits religious discrimination. The coach claimed that the university dismissed her due to her religious beliefs. The university denied this allegation and asserted that the coach was dismissed because she had a subpar coaching record.\nAt trial, the coach testified that the university's athletic director frequently disparaged the coach's religious beliefs when the two met to discuss the coach's employment status. The athletic director had died before the trial commenced. Based on this evidence, the jury returned a verdict in favor of the coach and awarded her $3 million in damages. Six months after the district court entered judgment consistent with the verdict, the university discovered that the coach had secretly recorded her meetings with the athletic director but never disclosed the existence of the recordings when the university requested that she turn over all relevant evidence before trial. In these recordings, the athletic director never mentioned the coach's religious beliefs and focused entirely on her subpar coaching record.\nWhat is the best way for the university to seek relief from the judgment?",
+      "choices": {
+        "a": "Move for a new trial based on the newly discovered evidence.",
+        "b": "Move for relief from the judgment based on the newly discovered evidence.",
+        "c": "Move to alter or amend the judgment based on the newly discovered evidence.",
+        "d": "Move to correct the mistaken judgment based on the newly discovered evidence."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0018.png"
+    },
+    {
+      "index": 19,
+      "question": "An investor purchased stock through a corporation's initial stock offering. When the price of the stock plummeted soon after the purchase, the investor sued the company in a federal district court, claiming that the company's offering materials violated federal securities laws and seeking $1 million in damages. The investor's suit proceeded to a bench trial. At the end of trial, the judge announced his findings of fact and conclusions of law and entered final judgment in favor of the corporation.\nFour years later, the U.S. government brought charges against current and former members of the corporation's board for bribing judges and jurors in suits involving the corporation. The charges described how the corporation had bribed the judge in the investor's case to find in its favor. The investor now seeks relief from the judgment.\nWhat is the best way for the investor to seek relief from the judgment?",
+      "choices": {
+        "a": "Move for a new trial.",
+        "b": "Move for judgment as a matter of law.",
+        "c": "Move for relief from a void judgment.",
+        "d": "Move to set aside the judgment for fraud on the court."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0019.png"
+    },
+    {
+      "index": 20,
+      "question": "A group of consumers sued a company in federal court for violating federal antitrust laws. Immediately after presenting evidence in its defense, the company moved for judgment as a matter of law. The judge denied the motion. The jury returned a verdict in favor of the consumers. The court expressed surprise at the verdict, noting the scarcity of evidence in favor of the consumers, but nevertheless entered a judgment consistent with the verdict. Twenty days later, the company renewed its motion for judgment as a matter of law, challenging the sufficiency of the evidence. The motion was denied. The company then filed a notice of appeal, challenging the sufficiency of the evidence supporting the jury's verdict.\nIs the appellate court likely to review the company's challenge?",
+      "choices": {
+        "a": "No, because the company's motion for judgment as a matter of law at the close of its defense was untimely.",
+        "b": "No, because the jury has complete discretion to determine the sufficiency of the evidence presented by the consumers.",
+        "c": "Yes, because the company timely renewed its motion for judgment as a matter of law.",
+        "d": "Yes, because the jury verdict based on scarce evidence was clearly erroneous."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0020.png"
+    },
+    {
+      "index": 21,
+      "question": "A man brought a federal diversity action against his insurance company, alleging that the company had breached its duty under his insurance policy by refusing to pay for his medical expenses resulting from a mountain-biking accident.\nAt the jury trial, the man presented evidence that he had paid all premiums on the insurance policy and that the policy covered personal-injury-related medical expenses arising from accidents. After he rested his case, the company presented evidence that a provision of the policy excluded payment for injury-related expenses resulting from an insured's \"unduly risky\" behavior. The company also presented a witness who testified that the accident had occurred in an area where posted signs warned bikers not to enter. The man did not cross-examine the witness.\nAfter resting its case, the company moved for judgment as a matter of law.\nShould the court grant the motion?",
+      "choices": {
+        "a": "No, because a motion for judgment as a matter of law must first be made at the close of the plaintiff's case-in-chief.",
+        "b": "No, because whether the man's behavior was unduly risky is a question of fact for the jury to resolve.",
+        "c": "Yes, because the company's uncontradicted evidence of the man's unduly risky behavior means that no reasonable jury could find that the policy covers his injuries.",
+        "d": "Yes, because the man waived his right to rebut the company's evidence by not addressing the \"unduly risky\" policy provision in his case-in-chief."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0021.png"
+    },
+    {
+      "index": 22,
+      "question": "A plaintiff filed a diversity action against a defendant in a federal court in State A. The plaintiff claims that the defendant caused extensive damage to the plaintiff's summer cottage in State B. The complaint also alleges that the defendant has a nefarious reputation in the community. The defendant resides in State B and has no contacts with State A.\nBefore filing an answer, the defendant moved to strike from the complaint the assertion that she had a nefarious reputation in the community. The court granted the motion, finding that the assertion was scandalous and immaterial to the case. The defendant now moves to dismiss the complaint for lack of personal jurisdiction and improper venue.\nHow will the court likely rule on the motion?",
+      "choices": {
+        "a": "Deny the motion, because the defendant failed to include these defenses in her motion to strike.",
+        "b": "Deny the motion, because the defendant must assert each defense in a separate motion.",
+        "c": "Grant the motion for improper venue, because the defendant resides and the cottage is located in State B.",
+        "d": "Grant the motion for lack of personal jurisdiction, because the defendant has no contacts with State A."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0022.png"
+    },
+    {
+      "index": 23,
+      "question": "The parents of a teenager from State A sued a construction company from State B for negligence on behalf of the teenager in a federal district court. The parents requested $100,000 in damages and demanded a jury trial. The construction company denied liability. At trial, the parents presented evidence that the construction company failed to sufficiently warn about the excavation pit on its worksite, these insufficient warnings caused the teenager to fall into the pit, and the teenager suffered severe injuries as a result.\nImmediately after the parents presented their case and before offering any evidence in its defense, the construction company moved for judgment as a matter of law.\nMay the court consider the construction company's motion?",
+      "choices": {
+        "a": "No, because the construction company has not presented any evidence in its defense.",
+        "b": "No, because the construction company may only move for judgment as a matter of law after the court enters a final judgment.",
+        "c": "Yes, because the construction company may move for judgment as a matter of law at any time before the case is submitted to the jury.",
+        "d": "Yes, because the parents had an opportunity to present their case."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0023.png"
+    },
+    {
+      "index": 24,
+      "question": "A consumer brought a federal diversity action against a manufacturer, alleging strict products liability. After the parties presented their evidence at trial, the judge instructed the jury to return a special verdict providing written answers to specific questions about each factual issue but refraining from finding in favor of a party.\nThe jury returned its special verdict, specifically finding that the manufacturer's product was defectively designed and caused the consumer foreseeable harm. Before the judge entered a judgment consistent with the jury's findings, the manufacturer moved for judgment as a matter of law, arguing that the evidence was insufficient to support the jury's determinations.\nShould the judge consider the manufacturer's motion?",
+      "choices": {
+        "a": "No, because the case has already been submitted to the jury.",
+        "b": "No, because the jury is the conclusive determiner of the sufficiency of the evidence.",
+        "c": "Yes, because the consumer has had the opportunity to present evidence to the jury.",
+        "d": "Yes, because the court has not yet entered a final judgment."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0024.png"
+    },
+    {
+      "index": 25,
+      "question": "A mechanic sued his former employer in federal court, claiming that the employer had discharged him because of his age in violation of federal law. The employer answered, denying the claims and promptly moving for summary judgment. In support of the motion, the employer attached the mechanic's employment evaluations for the past three years, which rated his skills and performance as poor and culminated in a recommendation for his discharge.\nWhat is the mechanic's best argument to defeat the summary judgment motion?",
+      "choices": {
+        "a": "The allegations in the complaint conflict with the mechanic's employment evaluations, raising a genuine dispute as to material facts.",
+        "b": "The employer cannot rely in his motion on matters outside the pleadings.",
+        "c": "The essential facts are unavailable to the mechanic and therefore discovery is required.",
+        "d": "The motion was filed before the close of discovery."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0025.png"
+    },
+    {
+      "index": 26,
+      "question": "After being fired, a woman sued her former employer in federal court, alleging that her supervisor had discriminated against her on the basis of her sex. The woman's complaint included a lengthy description of what the supervisor had said and done over the years, quoting his telephone calls and emails to her and her own emails to the supervisor's manager asking for help.\nThe employer moved for summary judgment, alleging that the woman was a pathological liar who had filed the action and included fictitious documents in revenge for having been fired. Because the woman's attorney was at a lengthy out-of-state trial when the summary judgment motion was filed, he failed to respond to it. The court therefore granted the motion in a one-line order and entered final judgment. The woman has appealed.\nIs the appellate court likely to uphold the trial court's ruling?",
+      "choices": {
+        "a": "No, because the complaint's allegations were detailed and specific.",
+        "b": "No, because the employer moved for summary judgment on the basis that the woman was not credible, creating a factual dispute.",
+        "c": "Yes, because the woman's failure to respond to the summary judgment motion means that there was no sworn affidavit to support her allegations and supporting documents.",
+        "d": "Yes, because the woman's failure to respond to the summary judgment motion was a default giving sufficient basis to grant the motion."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0026.png"
+    },
+    {
+      "index": 27,
+      "question": "A public high school student was accused by a classmate of smoking marijuana on school grounds. The school resource officer detected no smoke aroma on the student and found no marijuana contraband in the student's pockets or bag. The officer then placed the student in a locked classroom and went to deal with another incident. The officer forgot about the student, who remained in the room for two hours doing homework until a teacher let him out.\nThe student sued the officer in federal court for violating a federal statute that allows recovery for false imprisonment by an officer of the law, which includes school resource officers. At trial, the student presented evidence that the experience required him to see a counselor twice a week and has caused him emotional harm. After the close of evidence, the judge properly instructed the jury that the statute allows an individual to recover compensatory damages for loss of liberty and physical or emotional injury. The jury returned a verdict in favor of the student and awarded him $5 million in compensatory damages, which is 100 times more than any other plaintiff has received under this statute.\nThe officer's attorney believes that this award of damages is not supported by the evidence.\nWhat should the officer's attorney do to most efficiently challenge the damages award?",
+      "choices": {
+        "a": "Move for a new trial of the entire case.",
+        "b": "Move for additur.",
+        "c": "Move for judgment as a matter of law.",
+        "d": "Move for remittitur."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0027.png"
+    },
+    {
+      "index": 28,
+      "question": "An inmate sued a private prison-management company in federal court for allegedly mistreating her in violation of federal law. During the jury trial, the inmate's attorney questioned one of the company's prison guards. When the guard repeatedly gave nonresponsive answers, the inmate's attorney became frustrated and accidentally complained out loud in the presence of the jury, \"The guard obviously has something to hide.\" The company's counsel objected to the comment. The inmate's attorney immediately apologized and withdrew the comment from the record, and the judge admonished the jury to disregard the comment. The inmate's attorney did not make any other improper comments throughout the rest of the trial.\nAt the end of the trial, the jury returned a verdict in favor of the inmate, finding that the overwhelming amount of evidence supported her claim. The court entered a final judgment consistent with the verdict. The company immediately moved for a new trial on the ground that the inmate's attorney made the improper comment.\nWill the court likely grant the company's motion for a new trial?",
+      "choices": {
+        "a": "No, because the comment was harmless.",
+        "b": "No, because the comment was unintentional.",
+        "c": "Yes, because the comment was made in the presence of the jury.",
+        "d": "Yes, because the comment was prejudicial."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0028.png"
+    },
+    {
+      "index": 29,
+      "question": "A recently enacted federal statute allows individuals to sue medical providers for fraudulent billing practices. A woman sued a hospital in a federal district court for allegedly violating this statute. The hospital did not challenge the woman's factual assertions but argued that its conduct was not \"fraudulent\" as defined by the statute.\nAfter a bench trial, the district court issued its findings of fact and conclusions of law. The findings explained what the court believed to be the correct definition of \"fraudulent\" under the statute and concluded that the hospital's billing practices did not meet this definition. A final judgment in favor of the hospital was entered the same day.\nTwenty-one days later, a federal appellate court, whose boundaries include the district court, issued an opinion in a different case that involved the same federal statute. In its opinion, the appellate court defined the term \"fraudulent\" differently than the district court. The appellate court's definition would have allowed the woman to prevail in her suit.\nWhat is the most efficient action the woman can take to challenge the final judgment issued by the district court?",
+      "choices": {
+        "a": "File a motion for a new trial.",
+        "b": "File a motion to alter or amend the judgment.",
+        "c": "File a motion to correct the mistaken judgment.",
+        "d": "File a petition for writ of mandamus."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0029.png"
+    },
+    {
+      "index": 30,
+      "question": "A man sued his employer in federal court for sexual harassment in violation of a federal statute. The man planned to have several of his coworkers testify that they witnessed the employer make sexual advances toward the man on several occasions. However, at their depositions, the coworkers testified that they never witnessed the employer engage in inappropriate behavior. The man had no other evidence to support his claim, so the court entered summary judgment in favor of the employer.\nTwo years later, one of the coworkers who was supposed to testify on the man's behalf told the man that the employer had paid the coworkers a sum of money to lie at their depositions. The man immediately filed a motion in the same federal court to obtain relief from the entry of summary judgment.\nHow is the court likely to rule on his motion?",
+      "choices": {
+        "a": "Deny the motion, because it was not made within one year of the entry of summary judgment.",
+        "b": "Deny the motion, because the man failed to appeal.",
+        "c": "Grant the motion, because it was made within a reasonable time.",
+        "d": "Grant the motion, because the employer engaged in misconduct."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0030.png"
+    },
+    {
+      "index": 31,
+      "question": "A railroad worker's widow brought a wrongful death action in federal court against the railroad, claiming that its negligence had caused her husband's death. At trial, the widow offered the testimony of a coworker of the husband. The coworker testified that he had seen the rail car on which the husband was riding slow down and the cars behind it gain speed. The coworker also stated that he later heard a loud crash, but did not turn around to look because loud noises were common in the yard. Three other railroad employees testified that no collision had occurred.\nAt the close of the evidence, the railroad moved for judgment as a matter of law, which was denied, and the case was submitted to the jury. The jury returned a verdict for the widow.\nThe railroad has made a renewed motion for judgment as a matter of law.\nWhat standard should the court apply to determine how to rule on the motion?",
+      "choices": {
+        "a": "Whether the evidence revealed a genuine dispute of material fact supporting the widow's claim.",
+        "b": "Whether the verdict is against the weight of the evidence.",
+        "c": "Whether the widow presented a scintilla of evidence to support the verdict.",
+        "d": "Whether there is substantial evidence in the record to support the verdict, resolving all disputed issues in the widow's favor."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0031.png"
+    },
+    {
+      "index": 32,
+      "question": "A woman sued her former employer in federal court for sexual discrimination in violation of federal law. At the jury trial, the woman presented evidence that she had been repeatedly passed over for promotions that went to her less-qualified male colleagues. After the woman rested her case, the employer presented evidence that the promotions were made pursuant to a merit-based system that did not take sex into account. To rebut the employer's evidence, the woman provided witness testimony that the system was just a pretext to discriminate against female employees.\nAt the conclusion of evidence, the employer moved for judgment as a matter of law. Viewing the evidence in the light most favorable to the employer, the court granted the employer's motion. Twenty-two days later, the woman appealed the district court's entry of judgment as a matter of law.\nIs the appellate court likely to overturn the judgment as a matter of law?",
+      "choices": {
+        "a": "No, because the entry of judgment as a matter of law was appropriate under the circumstances.",
+        "b": "No, because the woman failed to timely appeal the district court's entry of judgment as a matter of law.",
+        "c": "Yes, because the district court failed to follow the proper procedural requirements in assessing the motion for judgment as a matter of law.",
+        "d": "Yes, because the employer failed to move for judgment as a matter of law at the close of the woman's case-in-chief."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0032.png"
+    },
+    {
+      "index": 33,
+      "question": "A man from State A sued a woman from State B in a proper federal district court to recover $250,000 for the damage to his car and personal injuries he suffered when the two were involved in a car accident at a four-way intersection. The man requested a jury trial. The only issue in dispute is who had the green light as the cars approached the intersection.\nAt trial, the man called his 18-year-old son to the stand. The son testified that he was sitting in the passenger seat of the man's car and that his father was driving reasonably. On cross-examination, the son admitted that he did not see the light as the man's car approached the intersection. The man called no other witnesses and presented no other evidence.\nIn her defense, the woman called five witnesses to the accident. All five testified that the woman had the green light as she approached the intersection.\nAt the close of evidence, the woman's attorney moved for judgment as a matter of law. The court denied this motion and allowed the case to go to the jury. After deliberating for twenty minutes, the jury returned a verdict in favor of the man.\nIf the woman seeks to overturn the jury's verdict and obtain a judgment in her favor, which of the following actions would most effectively and efficiently accomplish her goal?",
+      "choices": {
+        "a": "Move for a judgment on partial findings.",
+        "b": "Move for a new trial.",
+        "c": "Petition for writ of mandamus.",
+        "d": "Renew her motion for judgment as a matter of law."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0033.png"
+    },
+    {
+      "index": 34,
+      "question": "A boutique sued a dressmaker in federal court for breach of contract. The boutique's complaint alleged that the dressmaker violated the contract between the parties by delivering the wrong dresses. The dressmaker immediately filed an answer, in which he admitted to delivering the wrong dresses. The answer also contained an affirmative defense that the boutique failed to file its complaint within the applicable statute of limitations.\nThe dressmaker wants the court to decide the case based solely on the information contained in the complaint and answer.\nWhich motion will best accomplish the dressmaker's goal?",
+      "choices": {
+        "a": "A motion for default judgment.",
+        "b": "A motion for judgment as a matter of law.",
+        "c": "A motion for judgment on the pleadings.",
+        "d": "A motion for summary judgment."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0034.png"
+    },
+    {
+      "index": 35,
+      "question": "An artist from State A filed a federal diversity suit in State B against an art collector from State B for conversion. The complaint alleges that the collector stole a painting from the artist 50 years ago and requests a jury trial on this issue. The statute of limitations for conversion, measured from the time the plaintiff learns that the defendant possesses the property at issue, is 25 years in State A and 10 years in State B.\nDuring discovery, the collector deposed the artist. At her deposition, the artist stated that she knew that the collector had purchased the painting 20 years ago at an auction, but she did not try to recover the painting at that time because she did not want the hassle of a court case to distract her from creating art. However, due to her advancing age, she now seeks to reclaim her painting.\nThe collector immediately moved for summary judgment. The collector stipulated to all of the facts alleged by the artist at her deposition and attached a transcript of her deposition testimony to the motion. The artist did not respond.\nIs the federal court likely to grant the collector's motion?",
+      "choices": {
+        "a": "No, because the collector failed to attach an affidavit to the motion.",
+        "b": "No, because the statute of limitations has not expired.",
+        "c": "Yes, because the artist did not respond to the motion.",
+        "d": "Yes, because the collector is entitled to judgment as a matter of law."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0035.png"
+    },
+    {
+      "index": 36,
+      "question": "A construction worker sued an insulation manufacturer in federal court, claiming that he had developed a chronic health condition as a result of 20 years of exposure to the manufacturer's insulation at his work sites. The manufacturer answered, denying all liability and stating that it had never supplied its insulation to the worker's employer.\nThe worker's attorney deposed the manufacturer's president, and the manufacturer's attorney deposed the worker. Immediately thereafter, the manufacturer moved for summary judgment on the ground that the worker had no evidence showing that the insulation had ever been used by the worker's employer.\nWhat would be the worker's best response to the motion for summary judgment?",
+      "choices": {
+        "a": "Argue that more time is needed for additional discovery to show the manufacturer's liability, and attach a declaration describing the desired discovery.",
+        "b": "Argue that the motion should be denied, because a central issue in the case will be the manufacturer's credibility on the question of its distribution of the insulation, and only a jury can decide questions of credibility.",
+        "c": "Argue that the motion should be denied, because the manufacturer failed to attach any evidence to its motion to show that the insulation was not used by the worker's employer.",
+        "d": "Make a cross-motion for summary judgment arguing that the manufacturer has introduced no evidence to show that its insulation did not harm the worker."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0036.png"
+    },
+    {
+      "index": 37,
+      "question": "A plaintiff has brought a federal diversity action against a defendant, alleging that the defendant defamed and inflicted emotional distress on the plaintiff. The plaintiff had the summons and complaint delivered to the defendant's home by the plaintiff's 18-year-old nephew. The nephew handed the documents to the defendant's 16-year-old daughter who resides there. She placed the documents on the kitchen table, and the defendant reviewed those documents later that week. After reading the complaint, the defendant could not determine what conduct the plaintiff was claiming had caused the emotional distress.\nWhat is the defendant's best response to the plaintiff's complaint?",
+      "choices": {
+        "a": "File a motion for a more definite statement.",
+        "b": "File a motion for judgment on the pleadings.",
+        "c": "File a motion to dismiss for improper service of process.",
+        "d": "File a motion to strike the emotional distress claim."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0037.png"
+    },
+    {
+      "index": 38,
+      "question": "A plaintiff brought a diversity action in a federal district court and served process on the defendant. After thoroughly reviewing the plaintiff's complaint, the defendant's attorney could not reasonably identify the grounds upon which the plaintiff's claims for relief rest. The defendant's attorney moved for a more definite statement, and the court ordered the plaintiff's attorney to file a more definite statement.\nWhat should the plaintiff's attorney do?",
+      "choices": {
+        "a": "File a reply within 21 days.",
+        "b": "File a supplemental complaint within 14 days.",
+        "c": "File an amended complaint within 14 days.",
+        "d": "File an answer within 21 days."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0038.png"
+    },
+    {
+      "index": 39,
+      "question": "A group of parents sued a public school district in a federal district court to enjoin the school district from using public funds and resources for educational programs at religious schools. The judge presiding over the case concluded that the programs violated the establishment clause and issued a permanent injunction against the school to prevent it from continuing with these programs.\nTwenty years later, the school district filed a motion in the federal district court to obtain relief from the injunction. The school district argued that establishment clause law had changed so significantly that the programs are now constitutional.\nMay the court consider this motion?",
+      "choices": {
+        "a": "No, because only an appellate court may provide relief from the judgment.",
+        "b": "No, because the motion was not filed within one year from the entry of final judgment.",
+        "c": "Yes, because the motion concerns a constitutional issue.",
+        "d": "Yes, because the motion concerns law that may have significantly changed."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0039.png"
+    },
+    {
+      "index": 40,
+      "question": "A driver from State A and a bicyclist from State B were involved in a collision that caused the driver to incur $150,000 in medical expenses. The driver filed a federal diversity action in State B based on negligence. The summons and complaint were served at the bicyclist's home, where the process server handed the documents to the bicyclist's 16-year-old daughter. The daughter failed to share those documents with the bicyclist who, unbeknownst to the driver, was in a coma. No one else was informed about the lawsuit.\nAfter three months, no response had been filed so the clerk entered the bicyclist's default into the record. The court then entered a default judgment in favor of the driver.\nTen months after the entry of default judgment, the bicyclist awoke from the coma and learned about the default judgment. The bicyclist immediately hired a lawyer who filed a motion to set aside the default judgment based on excusable neglect. An affidavit from an eyewitness to the accident, who stated that the bicyclist did not swerve into the driver's lane as the driver claimed, was attached to the motion.\nIs the court likely to grant the bicyclist's motion?",
+      "choices": {
+        "a": "No, because more than one year has passed since the driver filed his complaint.",
+        "b": "No, because the driver did not engage in misconduct.",
+        "c": "Yes, because service of process was improper.",
+        "d": "Yes, because the attached affidavit provides a meritorious defense."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0040.png"
+    },
+    {
+      "index": 41,
+      "question": "An actor brought a federal diversity action against a theater company for breach of contract. Twenty days after discovery closed, the company moved for summary judgment. The company attached to the motion affidavits of its managing director and artistic director and a verified copy of its contract with the actor. In their affidavits, the directors stated facts establishing that the company had fully performed the contract.\nThe actor's brief opposing the motion relied solely on the allegations of the complaint.\nShould the court grant the summary-judgment motion?",
+      "choices": {
+        "a": "No, because in deciding the motion, the court must take the allegations and inferences of the complaint as true.",
+        "b": "No, because the company did not timely file the motion.",
+        "c": "Yes, because the actor filed no evidence in opposition to the motion.",
+        "d": "Yes, because there is no genuine dispute as to any material fact and the company is entitled to judgment as a matter of law."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0041.png"
+    },
+    {
+      "index": 42,
+      "question": "A plaintiff brought a diversity action against a defendant in federal district court to determine liability in a fatal auto accident. During jury deliberations, a juror brought a highway manual that he had found at the local library into the jury room. The manual listed the skid mark distances created when a vehicle brakes at various speeds. The jurors used the manual's data to analyze the admitted photographic evidence of the skid marks from the accident scene. They determined that the plaintiff must have been traveling at a recklessly high speed, which caused the accident. Based on the data from the highway manual, the jury returned a verdict in favor of the defendant. The judge presiding over the case entered a final judgment consistent with that verdict on the same day. The plaintiff made no posttrial motions and did not file a notice of appeal.\nSixty days after the court entered final judgment, one of the jurors went to the presiding judge's chambers and told her about the highway manual. The juror then told the judge that the data from the highway manual was the primary reason why the jury found in favor of the defendant. The judge was concerned about this revelation and asked her clerk to research whether the court could order a new trial. After extensive research, the clerk determined that the judge may not order a new trial sua sponte in the action.\nWhat is the most likely reason the clerk determined that the judge may not order a new trial sua sponte?",
+      "choices": {
+        "a": "A court may not order a new trial sua sponte.",
+        "b": "A court may not order a new trial sua sponte unless a party engaged in misconduct.",
+        "c": "A court may not order a new trial sua sponte until an appeal from the judgment is filed.",
+        "d": "A court may not order a new trial sua sponte when more than 28 days have passed since the entry of final judgment."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0042.png"
+    },
+    {
+      "index": 43,
+      "question": "A plaintiff sued a defendant for fraud in federal court. The complaint contained a short and plain statement of facts giving rise to the claim. One week after being served with process, the defendant filed and served an answer that denied the plaintiff's allegations. Five days later, the defendant filed and served a motion for a more definite statement. The motion alleged that the complaint failed to state the circumstances giving rise to the claim with particularity and specified the details that needed to be included.\nShould the court grant the defendant's motion?",
+      "choices": {
+        "a": "No, because the complaint contained a short and plain statement of the facts giving rise to the claim.",
+        "b": "No, because the motion was filed after the defendant's responsive pleading was filed.",
+        "c": "Yes, because the circumstances giving rise to the claim must be stated with particularity.",
+        "d": "Yes, because the motion was filed within 21 days after the defendant was served with process."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0043.png"
+    },
+    {
+      "index": 44,
+      "question": "A jury sitting in a federal court case returned a verdict that found in favor of the plaintiff and awarded her $100,000. The federal district court entered a final judgment consistent with the jury's verdict.\nThe defendant immediately filed a notice of appeal, alleging that the district court erred by failing to exclude several pieces of evidence from the jury's consideration. The appellate court docketed the case. The day after the appeal was docketed, the district court discovered that the final judgment listed a $1,000,000 award for the plaintiff.\nMay the district court correct the mistake?",
+      "choices": {
+        "a": "No, because both parties must receive notice and an opportunity to be heard on this action.",
+        "b": "No, because leave of the appellate court is required once an appeal is docketed.",
+        "c": "Yes, because a district court may correct clerical mistakes on its own initiative.",
+        "d": "Yes, because a district court may freely alter and amend final judgments in the interest of justice."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0044.png"
+    },
+    {
+      "index": 45,
+      "question": "A patient filed a medical malpractice action against a hospital in federal court, alleging that hospital staff had failed to diagnose the patient's cancer based on an X-ray that had been taken at the hospital. The patient's cancer was diagnosed six months later, based on the same X-ray, when he sought a second opinion. In the interim, the cancer had spread.\nFact and expert discovery have been completed in the action. The hospital has moved for summary judgment. In support of its motion, the hospital has submitted a memorandum identifying facts that it claims are not in dispute. It has also cited and attached supporting exhibits, including a declaration signed under penalty of perjury from the hospital's radiologist, who found no signs of cancer on the X-ray.\nWhat is the best way for the patient to raise a genuine dispute of material fact?",
+      "choices": {
+        "a": "Submit a report from the patient's expert radiologist contradicting the findings in the declaration of the hospital's radiologist.",
+        "b": "Submit an affidavit from the patient's attorney detailing his conversations with the patient's expert radiologist.",
+        "c": "Submit an affidavit from the patient's expert radiologist with findings that contradict the declaration of the hospital's radiologist.",
+        "d": "Submit the patient's medical records showing his current cancer diagnosis."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0045.png"
+    },
+    {
+      "index": 46,
+      "question": "A man in State A posted his exotic car for sale on a website. He received an email with an offer to buy the car for $150,000 from a 16-year-old girl from State B. The man accepted the girl's offer but received a phone call from the girl's father rescinding the offer the following day.\nThe man filed a complaint in a federal court in State A against the girl for breach of contract. The girl timely filed an answer in which she admitted to the facts provided in the man's complaint but asserted the affirmative defense of accord and satisfaction. The man moved for judgment on the pleadings.\nStatutes in both State A and State B treat contracts with persons below the age of 18 for items other than necessities as void. Necessities are defined as food, shelter, and clothing.\nIs the court likely to grant the man's motion?",
+      "choices": {
+        "a": "No, because plaintiffs cannot move for judgment on the pleadings.",
+        "b": "No, because the man failed to state a claim upon which relief may be granted.",
+        "c": "Yes, because accord and satisfaction is not a valid defense in this case.",
+        "d": "Yes, because the girl admitted to the facts alleged in the man's complaint."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0046.png"
+    },
+    {
+      "index": 47,
+      "question": "A consumer from State A sued a fireworks manufacturer from State B in federal court. The consumer claimed that she suffered severe burns when the fuses on the manufacturer's fireworks malfunctioned. At the conclusion of trial, the jury awarded the consumer $200,000 for her medical bills, $50,000 for her lost wages, and $5 million for her pain and suffering. The court entered judgment consistent with this verdict.\nThe consumer then filed a motion claiming that the amount of damages awarded for her medical bills and lost wages are inadequate and requesting that the court increase these awards. The manufacturer filed a motion claiming that the amount of damages awarded for pain and suffering is excessive and requesting that the court decrease that amount or order a new trial on damages. The court agrees with both parties' contentions.\nHow will the court likely rule on the parties' motions?",
+      "choices": {
+        "a": "Deny both motions.",
+        "b": "Deny the consumer's motion and grant the manufacturer's motion.",
+        "c": "Grant both motions.",
+        "d": "Grant the consumer's motion and deny the manufacturer's motion."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0047.png"
+    },
+    {
+      "index": 48,
+      "question": "A firm sued a corporation in a federal district court for allegedly engaging in unfair trade practices in violation of a federal statute. The firm sought $100,000 and an injunction. At the conclusion of a bench trial, the judge announced her findings of fact and conclusions of law on the record, and judgment was entered in favor of the corporation.\nTwenty-eight days later, the firm discovered a legal theory it initially overlooked that entitles it to relief. That same day, the firm filed a motion for a new trial based on this newly discovered legal theory.\nIs the court likely to grant the firm's motion?",
+      "choices": {
+        "a": "No, because the legal theory could have been asserted at trial.",
+        "b": "No, because the motion was not timely made.",
+        "c": "Yes, because the judge's factual findings and legal conclusions were not in writing.",
+        "d": "Yes, because the legal theory shows that the firm is entitled to relief."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0048.png"
+    }
+  ]
+}

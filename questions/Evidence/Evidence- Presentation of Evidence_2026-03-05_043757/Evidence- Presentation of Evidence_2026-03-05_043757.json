@@ -1,0 +1,976 @@
+{
+  "meta": {
+    "source": "UWorld (captured from DOM #questionText + choices + right-content screenshot)",
+    "capturedAt": "2026-03-05T12:37:57.998Z",
+    "count": 74,
+    "screenshotCount": 74,
+    "url": "https://apps-legal.uworld.com/courseapp/legal/v58/testinterface/launchtest/14822410/405138734/2/1",
+    "examName": "Evidence: Presentation of Evidence",
+    "subject": "Evidence",
+    "chapter": "Presentation of Evidence"
+  },
+  "questions": [
+    {
+      "index": 1,
+      "question": "A defendant is on trial for extorting $10,000 from her victim. An issue is the identification of the person who made a telephone call to the victim. The victim is prepared to testify that the caller had a distinctive accent like the defendant's, but that he cannot positively identify the voice as the defendant's.\nThe victim recorded the call but has not brought the tape to court, although its existence is known to the defendant.\nIs the victim's testimony admissible?",
+      "choices": {
+        "a": "No, because the tape recording of the conversation is the best evidence.",
+        "b": "No, because the victim cannot sufficiently identify the caller.",
+        "c": "Yes, because the defendant waived the \"best evidence\" rule by failing to subpoena the tape.",
+        "d": "Yes, because the victim's lack of certainty goes to the weight to be given the victim's testimony, not to its admissibility."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0001.png"
+    },
+    {
+      "index": 2,
+      "question": "A pedestrian died from injuries caused when a driver's car struck him. The pedestrian's executor sued the driver for wrongful death. At trial, the executor calls a nurse to testify that two days after the accident, the pedestrian said to the nurse, \"The car that hit me ran the red light.\" Fifteen minutes thereafter, the pedestrian died. As a foundation for introducing evidence of the pedestrian's statement, the executor offers to the court a doctor's affidavit that the doctor was the intern on duty the day of the pedestrian's death and that several times that day, the pedestrian had said that he knew he was about to die.\nMay the affidavit be properly considered by the court in ruling on the admissibility of the pedestrian's statement?",
+      "choices": {
+        "a": "No, because it is hearsay not within any exception.",
+        "b": "No, because it is irrelevant since dying declarations cannot be used except in prosecutions for homicide.",
+        "c": "Yes, because the judge may consider hearsay in ruling on preliminary questions.",
+        "d": "Yes, because, though hearsay, it is a statement of then-existing state of mind."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0002.png"
+    },
+    {
+      "index": 3,
+      "question": "A man's estate brought a wrongful death action against a trucking company that owned a semi-trailer involved in a deadly collision with the man's car. An eyewitness testifies at the jury trial that the driver of the semi-trailer was looking at his cell phone moments before the collision. On cross-examination, the trucking company offers a written statement that the witness submitted to a local newspaper in which the witness describes the accident but makes no mention of the driver looking at his cell phone.\nThe man's estate objects to the admission of the written statement on hearsay grounds. In the alternative, the estate requests that the court issue a limiting instruction directing the jury to consider the statement only for impeachment purposes and admit the witness's written follow-up statement to the newspaper that mentions the cell phone.\nHow should the court respond?",
+      "choices": {
+        "a": "Overrule the hearsay objection, deny the request for a limiting instruction, and deny the admission of the witness's follow-up statement.",
+        "b": "Overrule the hearsay objection, give the limiting instruction, and deny the admission of the witness's follow-up statement.",
+        "c": "Overrule the hearsay objection, give the limiting instruction, and allow the admission of the witness's follow-up statement.",
+        "d": "Sustain the hearsay objection."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0003.png"
+    },
+    {
+      "index": 4,
+      "question": "A plaintiff, a former city employee, sued the city for his alleged wrongful discharge from a civil service position. The plaintiff alleged that his supervisor had discharged him in retaliation after she learned that he had told the police he thought the supervisor might be embezzling. At trial, the plaintiff has called the supervisor as an adverse witness, and the supervisor has testified that the plaintiff was fired for incompetence.\nThe plaintiff's attorney then asks the supervisor, \"Isn't it true that before the discharge you were told that [the plaintiff] had reported to the police that you were pilfering money from the office coffee fund?\"\nFor what purpose(s) is the plaintiff's question permissible?",
+      "choices": {
+        "a": "Only to establish the supervisor's improper motive in discharging the plaintiff.",
+        "b": "Only to impeach the supervisor's veracity as a witness because of her dishonesty.",
+        "c": "Only to impeach the supervisor's veracity as a witness because of her personal bias against her accuser, the plaintiff.",
+        "d": "Both to impeach by showing bias and to establish improper motive in discharging the plaintiff."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0004.png"
+    },
+    {
+      "index": 5,
+      "question": "A plaintiff sued an industrial facility in her neighborhood for injuries to her health caused by air pollution. At trial, the plaintiff was asked questions on direct examination about the days on which she had observed large amounts of dust in the air and how long the condition had lasted. She testified that she could not remember the specific times, but that she maintained a diary in which she had accurately recorded this information on a daily basis. When her attorney sought to refresh her recollection with her diary, she still could not remember. The plaintiff's attorney seeks to have the information in the diary admitted at trial.\nIs the information admissible?",
+      "choices": {
+        "a": "No, because reviewing it did not refresh the plaintiff's recollection.",
+        "b": "No, unless it is offered by the defendant.",
+        "c": "Yes, and the plaintiff should be allowed the option of reading it into evidence or having the diary received as an exhibit.",
+        "d": "Yes, and the plaintiff should be allowed to read the diary into evidence."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0005.png"
+    },
+    {
+      "index": 6,
+      "question": "A plaintiff sued a water park for injuries that she and her son sustained from one of the park's waterslides. The plaintiff alleges that the accident occurred when a water park employee negligently let the plaintiff and her son use a two-person tube on a waterslide that accommodated only single-person tubes. At trial, the plaintiff's first witness testified that, although he did not see the accident, he heard his girlfriend say just before the accident, \"I can't believe that employee just waved them through without looking.\" The water park seeks to cross-examine the witness about a prior incident in which the girlfriend lied on a job application.\nIs the water park's proposed cross-examination proper?",
+      "choices": {
+        "a": "No, because it refers to hearsay not within any exception.",
+        "b": "No, because the girlfriend is not available to explain or deny the statement.",
+        "c": "Yes, as impeachment for a bad act probative of the girlfriend's character for truthfulness.",
+        "d": "Yes, as impeachment for prior inconsistency."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0006.png"
+    },
+    {
+      "index": 7,
+      "question": "At a defendant's trial for a gang-related murder, the prosecution introduced, as former testimony, a statement by a gang member who testified against the defendant at a preliminary hearing and has now invoked his privilege against self-incrimination.\nIf the defendant now seeks to impeach the credibility of the gang member, which of the following is the court most likely to admit?",
+      "choices": {
+        "a": "Evidence that the gang member had three misdemeanor convictions for assault.",
+        "b": "Testimony by a psychologist that persons with the gang member's background have a tendency to fabricate.",
+        "c": "Testimony by a witness that, at the time the gang member testified, the gang member was challenging the defendant's leadership role in the gang.",
+        "d": "Testimony by a witness that the gang member is a cocaine dealer."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0007.png"
+    },
+    {
+      "index": 8,
+      "question": "At a defendant's trial for robbery, the defendant called a witness who testified that he and the defendant were camping in a state park on the night in question. On cross-examination, the prosecutor asked the witness if it is true that the witness forged his former manager's signature to gain access to a company expense account. The witness denied forging the signature. The prosecutor now seeks to question the witness about the 30-day suspension that he received after company officials determined that he had forged the manager's signature.\nIs the prosecutor's proposed question proper?",
+      "choices": {
+        "a": "No, because a party may not reference the consequences of a bad act denied by a witness.",
+        "b": "No, because the question exceeds the proper scope of cross-examination.",
+        "c": "Yes, to impeach the witness on a collateral issue.",
+        "d": "Yes, to rebut the witness's denial of the forgery."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0008.png"
+    },
+    {
+      "index": 9,
+      "question": "A plaintiff sued a defendant for negligence to recover damages that the plaintiff suffered as a result of a crash between the two parties. At trial, the plaintiff's attorney called the plaintiff's wife to testify as to what she witnessed on the day of the crash. On cross-examination of the wife, the defendant's lawyer elicited several responses that tended to show that the plaintiff's actions constituted contributory negligence. The plaintiff's attorney seeks to ask the wife several questions on redirect examination, but the defendant's attorney objected.\nWhat is the strongest argument that the court must allow redirect examination of the wife?",
+      "choices": {
+        "a": "The plaintiff's attorney failed to provide all significant information on direct examination.",
+        "b": "The plaintiff's attorney seeks to reiterate the necessary elements of the claim.",
+        "c": "The plaintiff's attorney seeks to reply to all matters raised on cross-examination.",
+        "d": "The plaintiff's attorney seeks to reply to significant new matters raised on cross-examination."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0009.png"
+    },
+    {
+      "index": 10,
+      "question": "At a defendant's trial for mail fraud, the defendant calls his wife to testify that she committed the fraud herself without the defendant's knowledge. On cross-examination, the prosecutor asks the wife, \"Isn't it true that you have fled your home several times in fear of your husband?\"\nIs the prosecutor's question proper?",
+      "choices": {
+        "a": "No, because it is leading a witness not shown to be hostile.",
+        "b": "No, because its probative value is outweighed by the danger of unfair prejudice to the defendant.",
+        "c": "Yes, because by calling his wife, the defendant has waived his privilege to prevent her from testifying against him.",
+        "d": "Yes, because it explores the wife's possible motive for testifying falsely."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0010.png"
+    },
+    {
+      "index": 11,
+      "question": "A defendant was indicted on two counts of grand larceny, which occurred near a U.S. canal located between two foreign countries. At the bench trial in federal district court, the prosecution provided direct evidence of the locations of the thefts but provided no evidence that those locations were within the U.S. canal. The defendant was found guilty of grand larceny.\nOn appeal, the defendant has argued that the prosecution failed to establish that the trial court had jurisdiction because there was no evidence that the charged offenses were committed within the boundaries of the United States. The prosecution has requested that the appellate court take judicial notice of the boundaries of the canal zone. The appellate court has been furnished with official government maps of the boundaries between the U.S. canal and the foreign countries that identify the general area where the offenses occurred.\nIs the prosecution's request for judicial notice proper?",
+      "choices": {
+        "a": "No, because a court cannot take judicial notice of jurisdictional boundaries that are determinative of its subject-matter jurisdiction.",
+        "b": "No, because taking judicial notice of jurisdictional boundaries for the first time on appeal violates the defendant's right to confrontation.",
+        "c": "Yes, because a party is entitled to an opportunity to be heard on the propriety of taking judicial notice and tenor of the matter to be noticed.",
+        "d": "Yes, because judicial notice may be taken at any stage of this proceeding."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0011.png"
+    },
+    {
+      "index": 12,
+      "question": "A plaintiff was involved in an altercation with the defendant and subsequently sued the defendant for battery. At trial, the plaintiff was called as a witness by his lawyer but was having difficulty remembering the injuries that he had suffered. The lawyer showed the plaintiff a photograph of the plaintiff taken by a friend shortly after the altercation. After looking at the photograph and returning it to the lawyer, the plaintiff testified from memory as to his injuries. The plaintiff's lawyer did not introduce the photograph into evidence.\nIs the plaintiff's testimony admissible over the defendant's objection?",
+      "choices": {
+        "a": "No, because the photograph is the best evidence of the plaintiff's injuries.",
+        "b": "No, because the photograph was not taken by the testifying witness.",
+        "c": "Yes, because the photograph refreshed the plaintiff's recollection of his injuries.",
+        "d": "Yes, because the plaintiff's lawyer did not introduce the photograph into evidence."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0012.png"
+    },
+    {
+      "index": 13,
+      "question": "A defendant is charged with murder in connection with a carjacking incident during which the defendant allegedly shot the victim while attempting to steal his car. The prosecutor calls the victim's four-year-old son, whose face was horribly disfigured by the same bullet, to testify that the defendant shot his father and him.\nShould the son's testimony be admitted or excluded?",
+      "choices": {
+        "a": "Admitted, provided the prosecutor first provides evidence that persuades the judge that the son is competent to testify despite his tender age.",
+        "b": "Admitted, provided there is sufficient basis for believing that the son has personal knowledge and understands his obligation to testify truthfully.",
+        "c": "Excluded, because it is insufficiently probative in view of the son's tender age.",
+        "d": "Excluded, because it is more unfairly prejudicial than probative."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0013.png"
+    },
+    {
+      "index": 14,
+      "question": "A defendant was on trial for burglary. The prosecutor called the arresting officer to testify that shortly after her arrest and interrogation, the defendant had orally admitted her guilt to the officer. Before the officer testified, the defendant objected that no Miranda warnings had been given to her, and she requested a hearing outside the presence of the jury to hear evidence on that issue.\nHow should the court proceed?",
+      "choices": {
+        "a": "The court may grant or deny the request, because the court has discretion whether to conduct preliminary hearings in the presence of the jury.",
+        "b": "The court should deny the request and rule the confession admissible, because it is the statement of a party-opponent.",
+        "c": "The court should deny the request and rule the confession inadmissible, because only signed confessions are permitted in criminal cases.",
+        "d": "The court should grant the request, because the hearing on the admissibility of the confession must be conducted outside the presence of the jury."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0014.png"
+    },
+    {
+      "index": 15,
+      "question": "In litigation on a federal claim, the plaintiff had the burden of proving that the defendant received a notice. The plaintiff relied on the presumption of receipt by offering evidence that the notice was addressed to the defendant, properly stamped, and mailed. The defendant, on the other hand, testified that she never received the notice.\nWhich of the following is correct?",
+      "choices": {
+        "a": "The burden shifts to the defendant to persuade the jury of nonreceipt.",
+        "b": "The jury may find that the notice was received.",
+        "c": "The jury must find that the notice was not received, because the presumption has been rebutted and there is uncontradicted evidence of nonreceipt.",
+        "d": "The jury must find that the notice was received."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0015.png"
+    },
+    {
+      "index": 16,
+      "question": "A defendant was charged with drug trafficking after a large quantity of heroin was found in the trunk of his car during a traffic stop. The defendant filed a motion to suppress the heroin on the ground that the officer who stopped him had no legal basis to do so. The court granted a hearing on the defendant's motion, at which the defendant testified about his driving behavior prior to the traffic stop. On cross-examination, the prosecutor asked the defendant whether he was aware that the heroin was in the trunk of his car. The defendant's attorney objected to the prosecutor's question.\nIs the prosecutor's question proper?",
+      "choices": {
+        "a": "No, because a criminal defendant testifying about a specific issue at a preliminary hearing is not subject to cross-examination on other issues in the case.",
+        "b": "No, because the prosecutor failed to obtain judicial authorization to inquire into additional matters on cross-examination.",
+        "c": "Yes, because the defendant waived his privilege against self-incrimination as to other issues in the case by voluntarily testifying at the preliminary hearing.",
+        "d": "Yes, because the question is within the proper scope of cross-examination."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0016.png"
+    },
+    {
+      "index": 17,
+      "question": "A plaintiff sued the insurer of her home after the insurer denied coverage for water damage to the home allegedly caused by a frozen plastic pipe that burst. At trial, the insurer called as an expert witness an engineer, who testified that the pipe had burst because of age rather than freezing. On cross-examination, the engineer admitted that five years earlier, he had been convicted of tax fraud, even though he had asserted that it was his accountant's error. In response, the insurer calls a witness, who is well acquainted with the engineer and his reputation, to testify that (1) in the witness's opinion, the engineer is a truthful person, and (2) the engineer's neighbors all describe him as a truthful person.\nHow much, if any, of the witness's testimony is admissible?",
+      "choices": {
+        "a": "All of the testimony is admissible to support the engineer's credibility.",
+        "b": "Only the portion concerning the engineer's reputation is admissible, because where both opinion and reputation evidence are available, only the latter is admissible under a rule of preference.",
+        "c": "Only the portion concerning the witness's opinion of the engineer's character, because the witness's reporting of the neighbors' comments is hearsay.",
+        "d": "None of the testimony is admissible, because it is collateral, having no bearing on the engineer's qualifications as an expert."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0017.png"
+    },
+    {
+      "index": 18,
+      "question": "In an automobile negligence action by the plaintiff against the defendant, a witness testified for the plaintiff. The defendant later called his own witness, who testified that the plaintiff's witness's reputation for truthfulness was bad.\nOn cross-examination of the defendant's witness, the plaintiff's counsel asks, \"Isn't it a fact that when you bought your new car last year, you made a false affidavit to escape paying the sales tax?\"\nIs this question proper?",
+      "choices": {
+        "a": "No, because character cannot be proved by specific instances of conduct.",
+        "b": "No, because one cannot impeach an impeaching witness.",
+        "c": "Yes, because it bears on the credibility of the defendant's witness.",
+        "d": "Yes, because it will indicate the defendant's witness's standard of judgment as to reputation for truthfulness."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0018.png"
+    },
+    {
+      "index": 19,
+      "question": "A plaintiff has sued the government for injuries she received when her car was allegedly forced off the road by a military convoy. At trial, an eyewitness testifies for the plaintiff and then is asked on cross-examination whether he belongs to a religious group that refuses on principle to file federal tax returns, because the revenues are used to build weapons of war.\nIs the question proper?",
+      "choices": {
+        "a": "No, because evidence of the witness's religious beliefs cannot be used for impeachment in this case.",
+        "b": "No, because the witness's character cannot be impeached by evidence of criminal acts, but only by convictions.",
+        "c": "Yes, because a person's willingness to violate tax laws indicates possible willingness to testify falsely.",
+        "d": "Yes, because the witness's beliefs are relevant to the possibility of bias."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0019.png"
+    },
+    {
+      "index": 20,
+      "question": "A woman is on trial for murder. The prosecutor calls a witness to testify that after being shot, the victim said, \"[the woman] did it.\" Before the testimony is given, the woman's lawyer asks for a hearing on whether the victim believed his death was imminent when he made the statement.\nFrom whom should the judge hear evidence on the issue before ruling on the admissibility of the dying declaration?",
+      "choices": {
+        "a": "Both sides, with the jury not present, and decide whether the witness may testify to the victim's statement.",
+        "b": "Both sides, with the jury present, and allow the jury to determine whether the witness may testify to the victim's statement.",
+        "c": "Both sides, with the jury present, and decide whether the witness may testify to the victim's statement.",
+        "d": "The prosecutor only, with the jury not present, and if the judge believes a jury could reasonably find that the victim knew he was dying, permit the witness to testify to the statement and allow the woman to offer evidence on the issue as a part of her case."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0020.png"
+    },
+    {
+      "index": 21,
+      "question": "At a defendant's trial for burglary, the defendant has called a witness who has testified without objection that the defendant said shortly after his arrest, \"They've got the wrong person for this because I have an alibi.\" The prosecutor seeks to cross-examine the witness about why she did not mention that statement when the police asked her whether the defendant had said anything to her about having an alibi.\nIs the prosecutor's proposed cross-examination proper?",
+      "choices": {
+        "a": "No, because the witness's character for truthfulness cannot be attacked by specific instances of conduct.",
+        "b": "No, because the witness's failure to mention the alibi is collateral.",
+        "c": "Yes, as impeachment for bias and interest.",
+        "d": "Yes, as impeachment for prior inconsistency."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0021.png"
+    },
+    {
+      "index": 22,
+      "question": "A man is on trial for the brutal murder of his wife. The man's first witness testified that, in her opinion, the man is a peaceful and nonviolent person. The prosecution did not cross-examine the witness, and the witness was then excused from further attendance.\nWhich one of the following is INADMISSIBLE during the prosecution's rebuttal?",
+      "choices": {
+        "a": "Testimony by a neighbor that the witness has a long-standing reputation in the community as an untruthful person.",
+        "b": "Testimony by a police officer that the defendant has a long-standing reputation in the community as having a violent temper.",
+        "c": "Testimony by the defendant's former cellmate that he overheard the witness offer to provide favorable testimony if the defendant would pay her $5,000.",
+        "d": "Testimony by the witness's former employer that the witness submitted a series of false expense vouchers two years ago."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0022.png"
+    },
+    {
+      "index": 23,
+      "question": "A plaintiff sued a defendant for personal injuries arising out of an automobile accident.\nWhich of the following would be error?",
+      "choices": {
+        "a": "The judge allows cross-examination about the credibility of a witness even though no question relating to credibility has been asked on direct examination.",
+        "b": "The judge allows the defendant's attorney to ask the defendant questions on cross-examination that go well beyond the scope of direct examination by the plaintiff, who has called the defendant as an adverse witness.",
+        "c": "The judge, despite the defendant's request for exclusion of witnesses, allows the plaintiff's eyewitness to remain in the courtroom after testifying, even though the eyewitness is expected to be recalled for further cross-examination.",
+        "d": "The judge refuses to allow the defendant's attorney to cross-examine the defendant by leading questions."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0023.png"
+    },
+    {
+      "index": 24,
+      "question": "At trial in an action for personal injuries suffered in a traffic accident, the plaintiff first calls the defendant as an adverse party. The plaintiff then calls a witness who was a passenger in the plaintiff's car but who also happens to be the defendant's former employer. On direct examination, the witness testifies to how the accident occurred and also expresses his opinion that the defendant is not a truthful person.\nWhich one of the following areas of questioning is most likely to be held beyond the proper scope of cross-examination?",
+      "choices": {
+        "a": "In letters to prospective employers, the witness has described the defendant as very honest and dependable.",
+        "b": "The defendant recently filed an action against the witness for breach of contract.",
+        "c": "The plaintiff's injuries were not as serious as the plaintiff is claiming.",
+        "d": "The witness has been falsifying his income tax returns."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0024.png"
+    },
+    {
+      "index": 25,
+      "question": "In a federal civil trial, the plaintiff wishes to establish that the defendant had been convicted of fraud in a state court, a fact that the defendant denies.\nWhich mode of proof of the conviction is LEAST likely to be permitted?",
+      "choices": {
+        "a": "A certified copy of the judgment of conviction, offered as a self-authenticating document.",
+        "b": "Judicial notice of the conviction, based on the court's telephone call to the clerk of the state court, whom the judge knows personally.",
+        "c": "Testimony by a witness to whom the defendant made an oral admission that he had been convicted.",
+        "d": "Testimony of the plaintiff, who was present at the time of the sentence."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0025.png"
+    },
+    {
+      "index": 26,
+      "question": "A plaintiff who was involved in a vehicular collision with a commercial driver filed a personal-injury lawsuit against the driver's employer. The plaintiff planned to introduce evidence of the driver's prior driving-while-intoxicated (DWI) conviction obtained during discovery. The employer filed a pretrial motion in limine to exclude evidence of the DWI conviction on the ground that intoxication was not an issue in the case. The court denied the motion.\nAt trial, the plaintiff called the driver and asked if he had any prior DWI convictions, and the employer renewed its objection. The judge sustained the objection and instructed the plaintiff not to mention or question the driver about any prior DWI convictions. The plaintiff proceeded to examine the driver without mentioning the DWI conviction. The jury recessed immediately after the driver's testimony. While the jury was in recess, the plaintiff informed the judge on the record of the relevancy of the conviction and basis for the conviction's admissibility. No additional evidence of the conviction was provided.\nCan the plaintiff challenge the court's exclusion of the driver's DWI conviction on appeal?",
+      "choices": {
+        "a": "No, because the plaintiff did not provide formal evidence of the conviction on the record.",
+        "b": "No, because the plaintiff's offer of proof was made outside the jury's presence.",
+        "c": "Yes, because the plaintiff explained the relevancy of the conviction and the grounds for its admissibility.",
+        "d": "Yes, because the trial court's ruling on the pretrial motion in limine to exclude the conviction was definitive."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0026.png"
+    },
+    {
+      "index": 27,
+      "question": "A defendant was prosecuted for sexually abusing his 13-year-old stepdaughter. The stepdaughter testified to the defendant's conduct. On cross-examination, defense counsel asks the stepdaughter, \"Isn't it true that shortly before you complained that [the defendant] abused you, he punished you for maliciously ruining his vintage record collection?\"\nIs defense counsel's question proper?",
+      "choices": {
+        "a": "No, because it falls outside the scope of direct examination.",
+        "b": "No, because the incident had nothing to do with the stepdaughter's truthfulness.",
+        "c": "Yes, because it relates to a possible motive for the stepdaughter to falsely accuse the defendant.",
+        "d": "Yes, because the stepdaughter's misconduct is relevant to her character for veracity."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0027.png"
+    },
+    {
+      "index": 28,
+      "question": "A plaintiff sued a defendant in federal court for assault and battery. At trial, the court has allowed the plaintiff to introduce the deposition testimony of a witness, now deceased, that he was with the plaintiff at the time of the incident.\nThe defendant now seeks to impeach the testimony of the witness with his 13-year-old conviction for burglary (for which he served 18 months in prison) for breaking into the home of a neighbor while she was away and taking some of her valuable jewelry.\nShould the court allow evidence of the conviction?",
+      "choices": {
+        "a": "No, because the witness did not testify at trial.",
+        "b": "No, unless the court finds, in the interests of justice, that the probative value of the conviction, supported by specific facts and circumstances, substantially outweighs its prejudicial effect.",
+        "c": "Yes, because prior convictions are probative to impeach the witness's character for truthfulness.",
+        "d": "Yes, because the crime involved an act of dishonesty."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0028.png"
+    },
+    {
+      "index": 29,
+      "question": "At trial in a civil case arising out of a car accident, the plaintiff has called the investigating police officer to testify regarding a statement that the officer overheard the defendant make at the scene admitting that he had failed to see the stop sign. However, while on the stand, the officer is unable to recall the exact words that the defendant used. The plaintiff proposes to refresh the officer's recollection with a police report written by a fellow officer who was also at the scene and wrote down the defendant's statement. The defendant has objected to the use of this report to refresh the testifying officer's memory.\nShould the court permit this use of the report?",
+      "choices": {
+        "a": "No, because the report is hearsay not within any exception.",
+        "b": "No, because the report was not written or adopted by this witness.",
+        "c": "Yes, because the report fits the public record exception to the hearsay rule.",
+        "d": "Yes, because the report may be used to refresh recollection without regard to its admissibility."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0029.png"
+    },
+    {
+      "index": 30,
+      "question": "A college student sued an amusement company for injuries he sustained when the amusement company's roller coaster allegedly malfunctioned so that the student fell out.\nAt trial, after the student presented his case, the amusement company called a witness who testified that just before the accident he had heard a bystander say to the bystander's companion, \"That crazy fool is standing up in the car!\" The student has offered the testimony of another witness who would testify that the day after the accident she was with the same bystander, and that in describing the accident, the bystander told her that the car had jerked suddenly and \"just threw the guy out of his seat.\"\nHow should the court rule with respect to this offered testimony?",
+      "choices": {
+        "a": "Rule it admissible only to impeach the bystander's credibility.",
+        "b": "Rule it admissible to impeach the bystander's credibility and to prove the amusement company's negligence.",
+        "c": "Rule it inadmissible, because the bystander herself was not called as a witness.",
+        "d": "Rule it inadmissible, because the bystander was given no opportunity to deny or explain her apparently inconsistent statement."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0030.png"
+    },
+    {
+      "index": 31,
+      "question": "A plaintiff sued a defendant for embezzling company funds. At trial, the defendant's first witness was his brother, who testified that he embezzled the company funds without the defendant's knowledge or assistance. The plaintiff now seeks to cross-examine the witness.\nWhich one of the following questions is most likely to be permitted on cross-examination?",
+      "choices": {
+        "a": "\"Didn't you have limited access to the company's financial accounts, or did your position provide you with unrestricted access to those accounts?\"",
+        "b": "\"How did your brother feel after he was demoted during the embezzlement investigation?\"",
+        "c": "\"Isn't it true that you cofounded several offshore shell corporations with your brother three months before the embezzlement investigation began?\"",
+        "d": "\"You must have gotten the account information to access the company funds from the defendant, so he had to know, didn't he?\""
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0031.png"
+    },
+    {
+      "index": 32,
+      "question": "A defendant was charged in federal court with selling a controlled substance (heroin) in interstate commerce. At trial, the prosecutor introduced evidence that the defendant had obtained the substance from a supplier in Kansas City and had delivered it in Chicago. The defendant denied that the substance in question was heroin, but he introduced no contrary evidence on the issue of transportation.\nWhich of the following instructions regarding judicial notice may the judge legitimately give the jury?",
+      "choices": {
+        "a": "\"I instruct you that there is a presumption that the substance was sold in an interstate transaction, but the burden of persuasion on that issue is still on the government.\"",
+        "b": "\"If you find that the defendant obtained the substance in Kansas City and delivered it to Chicago, I instruct you to find that the substance was sold in an interstate transaction.\"",
+        "c": "\"If you find that the defendant obtained the substance in Kansas City and delivered it to Chicago, then the burden of persuasion is on the defendant to establish that the transaction was not interstate.\"",
+        "d": "\"If you find that the defendant obtained the substance in Kansas City and delivered it to Chicago, then you may, but you are not required to, find that the transaction was interstate in nature.\""
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0032.png"
+    },
+    {
+      "index": 33,
+      "question": "A plaintiff sued a defendant for illegal discrimination, claiming that the defendant fired him because of his race. At trial, the plaintiff called a witness, expecting her to testify that the defendant had admitted the racial motivation. Instead, the witness testified that the defendant said that he had fired the plaintiff because of his frequent absenteeism. The plaintiff then asked the witness if she and the defendant had ever discussed any racial motivations that the defendant had for firing the plaintiff. The witness denied ever participating in such a conversation.\nThen, while the witness is still on the stand, the plaintiff offers a properly authenticated secret tape recording he had made at a meeting with the witness in which the witness related the defendant's admissions of racial motivation.\nIs the tape recording admissible?",
+      "choices": {
+        "a": "No, because a secret recording is an invasion of the witness's Fourth Amendment right to privacy.",
+        "b": "No, because it is hearsay not within any exception.",
+        "c": "Yes, as evidence of the defendant's racial motivation and to impeach the witness's testimony.",
+        "d": "Yes, but only to impeach the witness's testimony."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0033.png"
+    },
+    {
+      "index": 34,
+      "question": "A plaintiff sued a church for damages he suffered when he crashed his motorcycle in an attempt to avoid a cow that had escaped from its corral. The cow and corral belonged to a farm that had recently been left by will to the church.\nAt trial, the plaintiff seeks to ask the defendant's witness whether she is a member of that church.\nIs the question proper?",
+      "choices": {
+        "a": "No, because evidence of a witness's religious beliefs is not admissible to impeach credibility.",
+        "b": "No, because it violates the First Amendment right to free exercise of religion.",
+        "c": "Yes, for the purpose of ascertaining partiality or bias.",
+        "d": "Yes, for the purpose of showing capacity to appreciate the nature and obligation of an oath."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0034.png"
+    },
+    {
+      "index": 35,
+      "question": "A plaintiff sued a defendant for damages stemming from a slip-and-fall accident on the defendant's property. At trial, the plaintiff's key witness testified that the defendant failed to maintain his property, making it unsafe for visitors. The defendant then called his own witness to testify that the plaintiff's witness has a poor reputation in the community for honesty and had once cheated in a community raffle to win a new car. The plaintiff has objected to the defendant's witness's testimony.\nHow should the court proceed?",
+      "choices": {
+        "a": "Admit the testimony in its entirety.",
+        "b": "Admit the testimony regarding the plaintiff's witness's reputation for honesty, but exclude the testimony about the community raffle.",
+        "c": "Exclude the testimony about the plaintiff's witness's reputation for honesty, but admit the testimony about the community raffle.",
+        "d": "Exclude the testimony in its entirety."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0035.png"
+    },
+    {
+      "index": 36,
+      "question": "A woman is prosecuted for embezzling her employer's funds. As part of its case-in-chief, the prosecution calls the woman's former supervisor to testify. The prosecution asks the supervisor, \"Isn't it true that you are the defendant's former supervisor?\" The woman's attorney objects to the form of the question.\nIs the court likely to sustain the objection?",
+      "choices": {
+        "a": "No, because the question relates to a preliminary matter that is not in dispute.",
+        "b": "No, because the supervisor is a hostile witness.",
+        "c": "Yes, because leading questions are only permitted on cross-examination.",
+        "d": "Yes, because the supervisor is not a child."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0036.png"
+    },
+    {
+      "index": 37,
+      "question": "A defendant testified at a grand jury investigation regarding his employer's alleged tax evasion. The grand jury investigation later uncovered a large bank deposit in the employer's financial records that contradicted the defendant's testimony. The defendant was subsequently charged with obstruction of a grand jury investigation. At trial, the defendant testified that the bank deposit was an accounting discrepancy. On cross-examination, the prosecutor seeks to introduce evidence of the defendant's prior conviction for wire fraud that is currently on appeal.\nIs the evidence admissible?",
+      "choices": {
+        "a": "No, because evidence of a prior crime cannot be used as character evidence.",
+        "b": "No, because the pendency of an appeal renders the conviction inadmissible.",
+        "c": "Yes, because the evidence is probative of the defendant's character for truthfulness.",
+        "d": "Yes, because the evidence shows absence of mistake."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0037.png"
+    },
+    {
+      "index": 38,
+      "question": "A woman's car was set on fire by vandals. When she submitted a claim of loss for the car to her insurance company, the insurance company refused to pay, asserting that the woman's policy had lapsed due to the nonpayment of her premium. The woman sued the insurance company for breach of contract.\nAt trial, the woman testified that she had, in a timely manner, placed a stamped, properly addressed envelope containing the premium payment in the outgoing mail bin at her office. The woman's secretary then testified that every afternoon at closing time he takes all outgoing mail in the bin to the post office. The insurance company later called its mail clerk to testify that he opens all incoming mail and that he did not receive the woman's premium payment.\nThe woman and the insurance company have both moved for a directed verdict.\nFor which party, if either, should the court direct a verdict?",
+      "choices": {
+        "a": "For the insurance company, because neither the woman nor her secretary has any personal knowledge that the envelope was delivered to the post office.",
+        "b": "For the insurance company, because the mail clerk's direct testimony negates the woman's circumstantial evidence.",
+        "c": "For the woman, because there is a presumption that an envelope properly addressed and stamped was received by the addressee.",
+        "d": "For neither the woman nor the insurance company, because under these circumstances the jury is responsible for determining whether the insurance company received the payment."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0038.png"
+    },
+    {
+      "index": 39,
+      "question": "A man sued his former business partner for fraud. After a verdict for the man, the business partner talked with a juror about the trial. After talking with the juror, the business partner promptly filed a motion for new trial.\nThe business partner seeks to have the juror testify as to the reason for his vote at the hearing on the motion for new trial.\nWhich testimony by the juror would most likely be permitted by the court?",
+      "choices": {
+        "a": "The juror learned from a court clerk that the business partner had been accused of fraud in several recent lawsuits.",
+        "b": "The juror misunderstood the judge's instructions concerning the standard of proof in a fraud case.",
+        "c": "The juror relied on testimony that the judge had stricken and ordered the jury to disregard.",
+        "d": "The juror was feeling ill and needed to get home quickly."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0039.png"
+    },
+    {
+      "index": 40,
+      "question": "A defendant is on trial in federal court for fraudulently inducing an elderly woman to invest her life savings in an investment fund managed by the defendant. The prosecutor has disclosed that the elderly woman suffers from dementia and seeks to call her as a witness. The court, upon its own motion, conducted a competency hearing outside the presence of the jury. At the hearing, the woman gave her personal and family history but could not recall her age, address, or level of education. The woman was also unable to recall the current day, month, or year. However, she was able to understand the difference between the truth and a lie and appreciated the importance of being honest. The woman was also aware that she was in court because her savings had been depleted. When asked if she recognized the defendant, the woman stated that she was sure she had met the defendant but could not recall where.\nShould the court allow the woman to testify?",
+      "choices": {
+        "a": "No, because due to her dementia, the woman's testimony will not be helpful to the trier of fact.",
+        "b": "No, because the woman could not sufficiently identify the defendant as a person connected with the crime.",
+        "c": "Yes, because a crime victim cannot be precluded from testifying against her perpetrator.",
+        "d": "Yes, because the woman meets the minimum standards for witness competency."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0040.png"
+    },
+    {
+      "index": 41,
+      "question": "A young entrepreneur is on trial for tax fraud. He testified that the inconsistencies in his tax returns were attributable to bookkeeping errors, not a willful desire to avoid taxes. The prosecution seeks to introduce evidence of the entrepreneur's juvenile adjudication for felony credit-card fraud that occurred nine years earlier. The entrepreneur's attorney objects to introduction of this evidence.\nIs evidence of the juvenile adjudication admissible over the entrepreneur's objection?",
+      "choices": {
+        "a": "No, because juvenile adjudications are inadmissible to attack a criminal defendant's character for truthfulness.",
+        "b": "No, because specific instances of conduct cannot be used to attack a criminal defendant's character for truthfulness.",
+        "c": "Yes, because the juvenile adjudication involves a felony offense.",
+        "d": "Yes, because the juvenile adjudication occurred within the last ten years."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0041.png"
+    },
+    {
+      "index": 42,
+      "question": "A defendant is charged with murdering his business partner. At trial, the defendant called a witness to testify that he was with the defendant at an all-day business conference on the day of the murder. The witness further testified that the defendant remained at the conference and did not leave at any point for an extended amount of time. On cross-examination, the prosecutor seeks to impeach the witness by introducing evidence of his five-year-old conviction for stalking for which the witness served two years in prison. The defendant objects on the ground that the witness's conviction was pardoned pursuant to a first-offender pardon program which automatically pardons first-time offenders upon the successful completion of their sentence.\nIs evidence of the witness's prior conviction admissible?",
+      "choices": {
+        "a": "No, because the witness did not put his character at issue by testifying about the defendant's whereabouts.",
+        "b": "No, because the witness's character for truthfulness cannot be impeached with a specific instance of conduct.",
+        "c": "Yes, because prior convictions are probative of a witness's character for truthfulness.",
+        "d": "Yes, because the conviction was not pardoned based on a finding of innocence."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0042.png"
+    },
+    {
+      "index": 43,
+      "question": "A defendant is on trial for bank robbery. Evidence at the trial has included testimony by a bank teller who was present during the robbery. The teller testified for the prosecution after having refreshed her memory by looking at an FBI agent's investigative report that was created shortly after the robbery.\nThe defendant has asked to examine the report.\nHow should the court respond?",
+      "choices": {
+        "a": "The court may allow the examination if the report was used by the teller to refresh her memory before testifying and must allow it if she used the report during her testimony.",
+        "b": "The court must allow the examination, but only to the extent that the report contains the teller's own statement to the FBI agent.",
+        "c": "The court should not allow the examination, because the report was not shown to have been read and approved by the teller while the matter was fresh in her mind.",
+        "d": "The court should not allow the examination, unless the report was used by the teller to refresh her memory while on the witness stand."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0043.png"
+    },
+    {
+      "index": 44,
+      "question": "A defendant has been charged with selling cocaine to a police informant. At trial, the alleged cocaine no longer exists, and the only evidence that the substance sold was cocaine is the informant's testimony that it tasted like cocaine and gave her a cocaine-like sensation. The informant has no formal training in identifying controlled substances.\nShould the court admit the informant's opinion testimony that the substance was cocaine?",
+      "choices": {
+        "a": "No, because identification of a controlled substance requires an expert with formal training.",
+        "b": "No, because, without a quantity of the controlled substance for testing, opinion testimony is insufficient to make a prima facie case against the defendant.",
+        "c": "Yes, if the court determines that the informant has sufficient knowledge and experience to identify cocaine.",
+        "d": "Yes, provided there is evidence sufficient to support a jury finding that the informant has sufficient knowledge and experience to identify cocaine."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0044.png"
+    },
+    {
+      "index": 45,
+      "question": "A defendant is on trial for the burglary of a small-town jewelry store. The prosecution called a witness to testify that, on the night of the burglary, the witness was leaving a diner located behind the jewelry store and saw a man who she is certain was the defendant exit the jewelry store carrying a knapsack. On cross-examination, the defendant's attorney confronted the witness about the lack of artificial lighting behind the jewelry store and in its immediate vicinity. The defendant's attorney asked the witness how she could be certain that the person she saw was the defendant. The witness responded that the moon was full and provided enough light for her to see the defendant clearly.\nThe defendant's attorney provided the court with data from the U.S. Naval Observatory stating that, on the night of the burglary, there was a new moon, which is not illuminated and therefore provides no light. The attorney then requested that the court take judicial notice of this fact. The prosecutor has objected to the defense attorney's request.\nHow should the court rule on the prosecutor's objection?",
+      "choices": {
+        "a": "Overrule the objection.",
+        "b": "Sustain the objection, because judicial notice is not an appropriate method to establish the phases of the moon.",
+        "c": "Sustain the objection, because the data is hearsay.",
+        "d": "Sustain the objection, because the moon's phase on the night in question is irrelevant."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0045.png"
+    },
+    {
+      "index": 46,
+      "question": "A man sued a mechanic for injuries suffered in a car accident allegedly caused by brakes that had been negligently repaired by the mechanic. At a settlement conference, the man exhibited the brake shoe that caused the accident and pointed out the alleged defect to the mechanic's expert, who had carefully examined the brake shoe. No settlement was reached.\nThe man inadvertently lost the brake shoe before trial. Therefore, the man seeks to testify on the condition of the shoe at trial.\nIs the man's testimony admissible?",
+      "choices": {
+        "a": "No, because the brake shoe was produced and examined as a part of settlement negotiations.",
+        "b": "No, because the disappearance of the brake shoe was the man's fault.",
+        "c": "Yes, because the man had personal knowledge of the shoe's condition.",
+        "d": "Yes, because the mechanic's expert had been able to examine the shoe carefully."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0046.png"
+    },
+    {
+      "index": 47,
+      "question": "A man and a woman were charged with burglary of a warehouse. They were tried separately. At the man's trial, the woman testified that she saw the man commit the burglary. On cross-examination, the man's attorney asks the woman if she had ever told anyone that she committed the burglary alone, which the woman denies. The man's attorney then calls the woman's cellmate to testify that the woman said, \"I broke into the warehouse alone because [the man] was too drunk to help.\"\nIs the testimony regarding the woman's statement admissible?",
+      "choices": {
+        "a": "No, because it is hearsay not within any exception.",
+        "b": "No, because the statement is not clearly corroborated.",
+        "c": "Yes, as a declaration against penal interest.",
+        "d": "Yes, as a prior inconsistent statement."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0047.png"
+    },
+    {
+      "index": 48,
+      "question": "A plaintiff sued a defendant for injuries allegedly suffered when he slipped and fell on the defendant's business property.\nAt trial, without asking that the defendant's property manager be declared a hostile witness, the plaintiff called him solely to establish that the defendant was the owner of the property where the plaintiff fell. On cross-examination of the manager, the defendant's attorney sought to establish that the defendant had taken reasonable precautions to make the property safe for business invitees.\nShould the defendant's cross-examination of the manager be permitted over the plaintiff's objection?",
+      "choices": {
+        "a": "No, because cross-examination should be limited to the subject matter of the direct examination and matters affecting the credibility of the witness.",
+        "b": "No, because the court has not declared the manager hostile.",
+        "c": "Yes, because the cross-examiner is entitled to explore matters relevant to any issue in the case, including credibility.",
+        "d": "Yes, because the manager is the agent of a party, as to whom the scope of cross-examination is unlimited."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0048.png"
+    },
+    {
+      "index": 49,
+      "question": "A plaintiff is suing the defendant for injuries suffered in an automobile collision. At trial, the plaintiff's first witness testified that, although she did not see the accident, she heard her boyfriend say just before the crash, \"Look at the crazy way [the defendant] is driving!\"\nThe defendant offers evidence to impeach the boyfriend by asking the witness if it is true that the boyfriend beat up the defendant just the day before the collision.\nIs the defendant's question to the witness proper?",
+      "choices": {
+        "a": "No, because impeachment cannot properly be by specific instances of conduct.",
+        "b": "No, because the boyfriend has no opportunity to explain or deny the defendant's assertion.",
+        "c": "Yes, because it tends to show the boyfriend's character.",
+        "d": "Yes, because it tends to show the possible bias of the boyfriend against the defendant."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0049.png"
+    },
+    {
+      "index": 50,
+      "question": "In a civil trial for fraud arising from a real estate transaction, the defendant claimed not to have been involved in the transaction. The plaintiff called a witness to testify concerning the defendant's involvement in the fraudulent scheme. To the plaintiff's surprise, however, the witness testified that the defendant was not involved. The plaintiff then asked the witness whether the witness previously told a second witness that the defendant was involved in the fraudulent transaction, which the witness denied.\nThe plaintiff has now called the second witness to testify that the first witness had stated, while the two were having a dinner conversation, that the defendant was involved in the fraudulent transaction.\nIs the testimony of the second witness admissible?",
+      "choices": {
+        "a": "No, because a party cannot impeach the party's own witness.",
+        "b": "No, because it is hearsay not within any exception.",
+        "c": "Yes, but only to impeach the first witness.",
+        "d": "Yes, to impeach the first witness and to prove the defendant's involvement."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0050.png"
+    },
+    {
+      "index": 51,
+      "question": "A daughter is prosecuted for the murder of her mother. At trial, the government seeks to introduce a properly authenticated note written by the mother that reads: \"My daughter did it.\" In laying the foundation for admitting the note as a dying declaration, the prosecution offered an affidavit from the attending physician that the mother knew she was about to die when she wrote the note.\nIs the admissibility of the note as a dying declaration a question for the judge or the jury?",
+      "choices": {
+        "a": "The judge as a preliminary fact question, and the judge may properly consider the affidavit.",
+        "b": "The judge as a preliminary fact question, and the judge must not consider the affidavit.",
+        "c": "The jury as a question of weight and credibility, and the jury may properly consider the affidavit.",
+        "d": "The jury as a question of weight and credibility, and the jury must not consider the affidavit."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0051.png"
+    },
+    {
+      "index": 52,
+      "question": "A defendant is being tried for the murder of a woman who disappeared 10 years ago and has not been heard from since. Her body has never been found.\nThe prosecutor has presented strong circumstantial evidence that she was murdered by the defendant. To help establish the fact of her death, the prosecutor has requested that the judge give the following instruction, based on a recognized presumption in the jurisdiction: \"A person missing and not heard from in the last seven years shall be presumed to be deceased.\"\nIs the instruction proper?",
+      "choices": {
+        "a": "No, because mandatory presumptions are not allowed against a criminal defendant on an element of the charged crime.",
+        "b": "No, because the fact that someone has not been heard from in seven years does not necessarily lead to a conclusion that the person is dead.",
+        "c": "Yes, because it expresses a rational conclusion that the jury should be required to accept.",
+        "d": "Yes, because the defendant has a chance to rebut the presumption by offering evidence that the woman is alive or has been heard from in the last seven years."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0052.png"
+    },
+    {
+      "index": 53,
+      "question": "A defendant is charged with mail fraud. At trial, the defendant has not taken the witness stand, but he has called a witness who has testified that the defendant has a reputation for honesty. On cross-examination of the witness, the prosecutor seeks to ask her, \"Didn't you hear that two years ago the defendant was arrested for embezzlement?\"\nShould the court permit the question?",
+      "choices": {
+        "a": "No, because the defendant has not testified and therefore has not put his character at issue.",
+        "b": "No, because the incident was an arrest, not a conviction.",
+        "c": "Yes, because it seeks to impeach the credibility of the witness.",
+        "d": "Yes, because the earlier arrest for a crime of dishonesty makes the defendant's guilt of the mail fraud more likely."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0053.png"
+    },
+    {
+      "index": 54,
+      "question": "A defendant is on trial for burglary. During cross-examination of the defendant, the prosecutor wants to inquire about the defendant's earlier conviction for falsifying a credit application.\nWhich of the following facts concerning the conviction would be the best reason for the trial court's refusing to allow such examination?",
+      "choices": {
+        "a": "The conviction is on appeal.",
+        "b": "The conviction was for a misdemeanor rather than a felony.",
+        "c": "The defendant was put on probation rather than imprisoned.",
+        "d": "The defendant was released from prison 12 years ago."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0054.png"
+    },
+    {
+      "index": 55,
+      "question": "In a civil trial arising from a car accident at an intersection, the plaintiff testified on direct examination that he came to a full stop at the intersection. On cross-examination, the defendant's lawyer asked whether the plaintiff claimed to have been exercising due care at the time, and the plaintiff replied that he had been driving carefully. At a sidebar conference, the defendant's lawyer sought permission to ask the plaintiff about two accidents in the previous 12 months in which he had received traffic citations for failing to stop at stop signs. The plaintiff's lawyer has objected.\nShould the court allow defense counsel to ask the plaintiff about the two prior accidents?",
+      "choices": {
+        "a": "No, because improperly failing to stop on the other occasions does not bear on the plaintiff's veracity and does not contradict his testimony in this case.",
+        "b": "No, because there is no indication that failing to stop on the other occasions led to convictions.",
+        "c": "Yes, because improperly failing to stop on the other occasions bears on the plaintiff's credibility, since he claims to have stopped in this case.",
+        "d": "Yes, because improperly failing to stop on the recent occasions tends to contradict the plaintiff's claim that he was driving carefully at the time he collided with the defendant."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0055.png"
+    },
+    {
+      "index": 56,
+      "question": "A plaintiff sued a nonprofit organization after falling down a small set of stairs while visiting its headquarters. The plaintiff alleges that the nonprofit was negligent in failing to adequately mark the stairs. The nonprofit argues that the stairs were adequately marked and that the plaintiff's failure to watch her step caused the fall. At trial, the nonprofit called a witness who testified that he saw the plaintiff looking down at her cellphone just before falling. On cross-examination, the plaintiff's attorney asked the witness whether he had ever made monetary donations to the nonprofit. The witness denied making any donations. The plaintiff's attorney now seeks to introduce donation records from the nonprofit that the witness had made 10 donations to the nonprofit over the past 5 years.\nAre the donation records admissible?",
+      "choices": {
+        "a": "No, because the donation records are extrinsic evidence of the witness's conduct.",
+        "b": "No, because the donation records are hearsay not within an exception.",
+        "c": "Yes, as impeachment evidence of the witness's bias.",
+        "d": "Yes, as impeachment evidence of the witness's character for truthfulness."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0056.png"
+    },
+    {
+      "index": 57,
+      "question": "In contract litigation between a plaintiff and a defendant, a fact of consequence to the determination of the action is whether the plaintiff provided the defendant with a required notice at the defendant's branch office \"in the state capital.\" The plaintiff introduced evidence that he gave notice at the defendant's office in City X. Although City X is the state's capital, the plaintiff failed to offer proof of that fact.\nWhich of the following statements is most clearly correct with respect to possible judicial notice of the fact that City X is the state's capital?",
+      "choices": {
+        "a": "If the court takes judicial notice, it should instruct the jury that it may, but is not required to, accept as conclusive the fact that City X is the capital.",
+        "b": "If the court takes judicial notice, the burden of persuasion on the issue of whether City X is the capital shifts to the defendant.",
+        "c": "The court may take judicial notice even though the plaintiff does not request it.",
+        "d": "The court may take judicial notice only if the plaintiff provides the court with an authenticated copy of the statute that designates City X as the capital."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0057.png"
+    },
+    {
+      "index": 58,
+      "question": "A plaintiff sued an individual defendant for injuries suffered in a collision between the plaintiff's car and the defendant's truck while the defendant's employee was driving the truck. The plaintiff sought discovery of any accident report the employee might have made to the defendant, but the defendant responded that no such report existed. Before trial, the defendant moved to preclude the plaintiff from asking the defendant in the presence of the jury whether he had destroyed such a report because the defendant would then invoke his privilege against self-incrimination.\nShould the court allow the plaintiff to ask the defendant about the destruction of the report?",
+      "choices": {
+        "a": "No, because a report that was prepared in anticipation of litigation is not subject to discovery.",
+        "b": "No, because no inference may properly be drawn from invocation of a legitimate privilege.",
+        "c": "Yes, because a party in a civil action may not invoke the privilege against self-incrimination.",
+        "d": "Yes, because the defendant's destruction of the report could serve as the basis of an inference adverse to the defendant."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0058.png"
+    },
+    {
+      "index": 59,
+      "question": "At the defendant's trial for burglary, a witness supported the defendant's alibi that they were fishing together at the time of the crime. On cross-examination, the witness was asked whether his statement on a credit card application that he had worked for his present employer for the last five years was false. The witness denied that the statement was false.\nThe prosecutor then calls the manager of the company for which the witness works to testify that although the witness had been first employed five years earlier and is now employed by the company, there had been a three-year period during which he had not been so employed.\nIs the manager's testimony admissible or inadmissible?",
+      "choices": {
+        "a": "Admissible, as a matter of right, because the witness \"opened the door\" by his denial on cross-examination.",
+        "b": "Admissible, in the judge's discretion, because the witness's credibility is a fact of major consequence to the case.",
+        "c": "Inadmissible, because the misstatement by the witness could have been caused by misunderstanding of the application form.",
+        "d": "Inadmissible, because whether the witness lied in his application is a matter that cannot be proved by extrinsic evidence."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0059.png"
+    },
+    {
+      "index": 60,
+      "question": "A plaintiff sued a defendant for damages arising out of an automobile collision. At trial, the plaintiff called an eyewitness to the collision. The plaintiff expected the eyewitness to testify that she had observed the defendant's automobile for five seconds prior to the collision and estimated the defendant's speed at the time of the collision to have been 50 miles per hour. Instead, the eyewitness testified that she estimated the defendant's speed to have been 25 miles per hour. When asked whether she had ever claimed to have seen the defendant going faster than 25 miles per hour, the eyewitness denied making such a statement.\nWithout finally excusing the eyewitness, the plaintiff then called a second witness, a police officer, to testify that the eyewitness had told him during his investigation at the accident scene that the defendant \"was doing at least 50.\"\nIs the police officer's testimony admissible?",
+      "choices": {
+        "a": "No, because it is hearsay not within any exception.",
+        "b": "No, because the plaintiff may not impeach his own witness.",
+        "c": "Yes, as a present sense impression.",
+        "d": "Yes, in order to impeach the eyewitness."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0060.png"
+    },
+    {
+      "index": 61,
+      "question": "A man suffered a broken jaw in a fight with a neighbor that took place when they were both spectators at a soccer match. The man sues the neighbor for personal-injury damages.\nWhich of the following actions must the trial court take if requested by the man?",
+      "choices": {
+        "a": "Exclude nonparty eyewitnesses from the courtroom during the testimony of other witnesses.",
+        "b": "Prevent the neighbor's principal eyewitness from testifying, upon a showing that six years ago the witness was convicted of perjury and the conviction has not been the subject of a pardon or annulment.",
+        "c": "Refuse to let the neighbor cross-examine the man's medical expert on matters not covered on direct examination of the expert.",
+        "d": "Require the production of a writing used before trial to refresh a witness's memory."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0061.png"
+    },
+    {
+      "index": 62,
+      "question": "A plaintiff sued the defendant for dissolution of their yearlong partnership. One issue concerned the amount of money the plaintiff had received in cash. It was customary for the defendant to give the plaintiff money from the cash register as the plaintiff needed it for personal expenses. The plaintiff testified that, as he received money, he jotted down the amounts in the partnership ledger. Although the defendant had access to the ledger, she made no changes in it.\nThe ledger was admitted into evidence. The defendant seeks to testify to her memory of much larger amounts she had given the plaintiff.\nIs the defendant's testimony admissible or inadmissible?",
+      "choices": {
+        "a": "Admissible, because it is based on the defendant's firsthand knowledge.",
+        "b": "Admissible, because the ledger entries offered by a party-opponent opened the door.",
+        "c": "Inadmissible, because the defendant's failure to challenge the accuracy of the ledger constituted an adoptive admission.",
+        "d": "Inadmissible, because the ledger is the best evidence of the amounts the plaintiff received."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0062.png"
+    },
+    {
+      "index": 63,
+      "question": "A defendant was charged with murder. While walking down the hallway of the federal courthouse during a recess in the defendant's trial, the judge overheard the defendant say to his attorney, \"So what if I did it? There's not enough proof to convict.\" After the judge reported the incident to counsel, the prosecutor called the judge as a witness in the trial.\nIs the judge's testimony regarding the defendant's statement admissible?",
+      "choices": {
+        "a": "Yes, as the statement of a party-opponent.",
+        "b": "Yes, because the defendant's statement, although otherwise privileged, was made without reasonable efforts to preserve confidentiality.",
+        "c": "No, because the statement was a privileged attorney-client communication.",
+        "d": "No, because a judge may never testify in a trial over which he or she is presiding."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0063.png"
+    },
+    {
+      "index": 64,
+      "question": "A defendant was charged with murder, and a witness testified for the prosecution. On cross-examination of the witness, the defendant seeks to elicit an admission that the witness was also charged with the same murder and that the prosecutor told her, \"If you testify against the defendant, we will drop the charges against you after the conclusion of the defendant's trial.\"\nIs the evidence about the prosecutor's promise to the witness admissible?",
+      "choices": {
+        "a": "No, because the evidence is hearsay not within any exception.",
+        "b": "No, because the law encourages plea-bargaining.",
+        "c": "Yes, as an admission by an agent of a party-opponent.",
+        "d": "Yes, as proper impeachment of the witness."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0064.png"
+    },
+    {
+      "index": 65,
+      "question": "A defendant is on trial in federal court for bank robbery. The prosecutor called a witness who testified that, while in the bank parking lot, she (1) saw the defendant and his accomplice running out of the bank while removing their ski masks and (2) heard the accomplice call the defendant by name as they ran to their red car.\nWhich of the following areas of questioning most likely exceeds the proper scope of cross-examination?",
+      "choices": {
+        "a": "A plane passed loudly overhead as the defendant and his accomplice ran to their car.",
+        "b": "The witness failed to report income on her federal tax returns for the past five years.",
+        "c": "The witness has suffered from colorblindness since childhood.",
+        "d": "The witness is a former alcoholic who regularly attends addiction support meetings."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0065.png"
+    },
+    {
+      "index": 66,
+      "question": "A defendant was charged with possession of marijuana with intent to distribute. On direct examination, the defendant testified that he worked with disadvantaged children as a drug counselor, that he hated drugs, that he would \"never possess or distribute drugs,\" and that he had never used drugs and would not touch them.\nThe government offered as a rebuttal witness a police officer who would testify that, three years earlier, she saw the defendant buy cocaine from a street dealer. The defendant objected.\nIs the testimony of the police officer about the prior drug transaction admissible to impeach the defendant?",
+      "choices": {
+        "a": "No, because it is contradiction on a collateral matter.",
+        "b": "No, because the bad act of buying drugs is not sufficiently probative of a witness's character for truthfulness.",
+        "c": "Yes, because it is proper contradiction.",
+        "d": "Yes, because the bad act shows a disregard for the law and makes it less likely that the defendant would respect the oath of truthfulness."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0066.png"
+    },
+    {
+      "index": 67,
+      "question": "A plaintiff sued a defendant for breach of a commercial contract in which the defendant had agreed to sell the plaintiff all of her requirements for widgets. The plaintiff called an expert witness to testify as to damages.\nThe defendant seeks to show that the expert witness had provided false testimony as a witness in his own divorce proceedings.\nShould the defendant's evidence be admitted?",
+      "choices": {
+        "a": "No, because it is impeachment on a collateral issue.",
+        "b": "No, because it is improper character evidence.",
+        "c": "Yes, if elicited from the expert witness on cross-examination.",
+        "d": "Yes, if the false testimony is established by clear and convincing extrinsic evidence."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0067.png"
+    },
+    {
+      "index": 68,
+      "question": "A defendant is charged with robbing a bank. The prosecutor has supplied the court with information from accurate sources establishing that the bank is a federally insured institution and that this fact is not subject to reasonable dispute. The prosecutor asks the court to take judicial notice of this fact. The defendant objects.\nHow should the court proceed?",
+      "choices": {
+        "a": "The court must take judicial notice and instruct the jury that it is required to accept the judicially noticed fact as conclusive.",
+        "b": "The court must take judicial notice and instruct the jury that it may, but is not required to, accept the judicially noticed fact as conclusive.",
+        "c": "The court may refuse to take judicial notice, because judicial notice may not be taken of essential facts in a criminal case.",
+        "d": "The court must refuse to take judicial notice, because whether a bank is federally insured would not be generally known within the court's jurisdiction."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0068.png"
+    },
+    {
+      "index": 69,
+      "question": "A woman sued a man for damages stemming from an automobile collision. At trial, the woman wishes to show by extrinsic evidence that the man's primary witness is also his partner in a small-scale marijuana growing operation.\nShould the court admit the evidence?",
+      "choices": {
+        "a": "No, because bias must be shown on cross-examination and not by extrinsic evidence.",
+        "b": "No, because the evidence would be more prejudicial than probative.",
+        "c": "Yes, as evidence of the witness's character.",
+        "d": "Yes, as evidence of the witness's possible bias in favor of the man."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0069.png"
+    },
+    {
+      "index": 70,
+      "question": "A defendant was charged with possession of a prohibited firearm after a sawed-off shotgun was found in his vehicle during a routine traffic stop. At trial, the prosecutor called the officer who stopped the defendant's vehicle and questioned him about the basis for the traffic stop and the subsequent discovery of the shotgun. Thereafter, the defendant's attorney cross-examined the officer. To clarify the officer's testimony, the court then asked the officer several questions about the discovery of the shotgun that had not been asked by either party. The court excused the officer after giving each attorney a chance for further examination.\nLater, while the jury was on its lunch break, the defendant's attorney objected to the court's questioning of the officer. The attorney requested that the court's examination be stricken from the record and that the jury be instructed to disregard it. The court overruled the objection and denied the request. The defendant was subsequently convicted. On appeal, the defendant argues that the court's questioning of the officer was improper.\nIs the court of appeals likely to overturn the defendant's conviction on this basis?",
+      "choices": {
+        "a": "No, because a trial court may examine a witness for the purpose of clarifying the witness's testimony.",
+        "b": "No, because the defendant's attorney failed to timely object to the court's questioning of the officer.",
+        "c": "Yes, because in order to maintain neutrality, a trial judge may not examine a witness.",
+        "d": "Yes, because the court did not give the defendant notice of its intent to examine the officer."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0070.png"
+    },
+    {
+      "index": 71,
+      "question": "A defendant is on trial for tax evasion. The defendant called his accountant to testify that the inconsistencies in the defendant's tax returns were clerical errors that occurred when the defendant's account information was transferred into a new accounting system. On cross-examination, the prosecutor seeks to attack the accountant's credibility by questioning him about his prior arrest for embezzlement and introducing evidence of his prior conviction for disorderly conduct.\nIf the defendant objects, how should the court rule?",
+      "choices": {
+        "a": "Admit evidence of the arrest and the conviction, because the witness opened the door to reputation testimony.",
+        "b": "Admit evidence of the arrest, but exclude evidence of the conviction because specific instances of conduct must be introduced intrinsically.",
+        "c": "Exclude evidence of the arrest and the conviction, but allow the prosecutor to cross-examine the accountant about the underlying conduct that led to the arrest.",
+        "d": "Exclude evidence of the conviction, but admit evidence of the arrest because it involves a crime of dishonesty."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0071.png"
+    },
+    {
+      "index": 72,
+      "question": "In a prosecution of a defendant for forgery, the defense objects to the testimony of a government expert on the ground of inadequate qualifications. The government seeks to introduce a letter from the expert's former criminology professor, stating that the expert is generally acknowledged in his field as well qualified.\nOn the issue of the expert's qualifications, who may properly consider the letter?",
+      "choices": {
+        "a": "Both the judge and the jury, because the letter is not offered for a hearsay purpose.",
+        "b": "Neither the judge nor the jury, because it is hearsay not within any exception.",
+        "c": "The judge, without regard to the hearsay rule.",
+        "d": "The jury, without regard to the hearsay rule."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0072.png"
+    },
+    {
+      "index": 73,
+      "question": "A witness for the prosecution in a murder case testified on direct examination that she saw the defendant and the victim in a heated argument at a local bar the same night the victim was murdered. When asked by the prosecutor what time she left the bar, the witness was unable to remember. The prosecutor seeks to show the witness his handwritten notes of the witness's pretrial interview during which she stated that she left the bar at 10:00 p.m.\nHow is the trial court likely to view the prosecutor's request to show the witness his notes?",
+      "choices": {
+        "a": "A proper attempt to introduce a recorded recollection.",
+        "b": "A proper attempt to refresh the witness's recollection.",
+        "c": "An improper attempt to lead the witness.",
+        "d": "An improper attempt to support the witness's credibility."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0073.png"
+    },
+    {
+      "index": 74,
+      "question": "An employer was sued by a former employee with hearing loss for failing to provide reasonable accommodations as required by federal law. At trial, the former employee's lawyer called the employer as a witness to testify as to the former employee's assigned tasks and the steps the employer had taken to accommodate the former employee. On cross-examination, the employer's lawyer asked the employer a question about an accommodation the employer had failed to mention: \"Didn't you provide him with a smartphone so he could receive text messages about information that other employees received through a public address system?\" The former employee's lawyer objected to the question as a leading question.\nCan the court sustain the objection?",
+      "choices": {
+        "a": "No, because the employer was being cross-examined.",
+        "b": "No, because the leading question may be asked when there is a communication difficulty.",
+        "c": "No, because the question concerned the same subject matter as the direct examination of the employer.",
+        "d": "Yes, because the employer was being questioned by his own lawyer."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0074.png"
+    }
+  ]
+}

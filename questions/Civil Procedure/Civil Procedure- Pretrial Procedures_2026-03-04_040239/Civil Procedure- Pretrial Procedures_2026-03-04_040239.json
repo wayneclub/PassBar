@@ -1,0 +1,1314 @@
+{
+  "meta": {
+    "source": "UWorld (captured from DOM #questionText + choices + right-content screenshot)",
+    "capturedAt": "2026-03-04T12:02:39.653Z",
+    "count": 100,
+    "screenshotCount": 100,
+    "url": "https://apps-legal.uworld.com/courseapp/legal/v57/testinterface/launchtest/14822410/405136094/2/1",
+    "examName": "Civil Procedure: Pretrial Procedures",
+    "subject": "Civil Procedure",
+    "chapter": "Pretrial Procedures"
+  },
+  "questions": [
+    {
+      "index": 1,
+      "question": "A consumer from State A filed a $100,000 products liability action in federal court against a manufacturer incorporated and with its principal place of business in State B. The consumer claimed that a flaw in the manufacturer's product had resulted in severe injuries to the consumer. In its answer, the manufacturer asserted a third-party complaint against the product designer, also incorporated and with its principal place of business in State B. Believing that the consumer had sued the wrong defendant, the manufacturer claimed both that the designer was solely responsible for the flaw that had led to the consumer's injuries and that the manufacturer was not at fault.\nThe designer is aware that the manufacturer did not follow all of the designer's specifications when making the product.\nWhich of the following arguments is most likely to achieve the designer's goal of dismissal of the third-party complaint?",
+      "choices": {
+        "a": "The court does not have subject-matter jurisdiction over the third-party complaint, because both the manufacturer and the designer are citizens of State B.",
+        "b": "The manufacturer failed to obtain the court's leave to file the third-party complaint.",
+        "c": "The manufacturer's failure to follow the designer's specifications caused the flaw that resulted in the consumer's injuries.",
+        "d": "The manufacturer's third-party complaint failed to state a proper third-party claim."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0001.png"
+    },
+    {
+      "index": 2,
+      "question": "A woman and her wife believed that a company providing credit scores intentionally lowered their scores because they are a same-sex couple. The couple's lawyer discovered 10 other individuals who had their credit scores lowered by the same company. These individuals claim that their scores were lowered based on their race.\nThe lawyer filed suit in federal court on behalf of the couple and the 10 other individuals against the company for violating a federal statute. One provision of the statute forbids racial discrimination and another provision prohibits sexual-orientation discrimination. The couple are the only plaintiffs named in the complaint. The lawyer moved to certify the case as a class action.\nWhich of the following would be an invalid argument for the company to challenge class action certification?",
+      "choices": {
+        "a": "The class does not share common questions of law or fact.",
+        "b": "The class is not numerous.",
+        "c": "The company does not discriminate against any class when calculating credit scores.",
+        "d": "The named couple's claim is not typical of the class."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0002.png"
+    },
+    {
+      "index": 3,
+      "question": "A man sued his supervisor in a federal district court for sexual harassment in violation of federal law. During discovery, the man's attorney served the supervisor with a request to admit that the supervisor made derogatory jokes about the employee at a company party. The supervisor admitted to making the jokes. The man's attorney has now filed a motion with the district court for permission to take the depositions of 15 employees who will testify to hearing the supervisor make the derogatory jokes at the company party.\nIf the court denies the man's motion, what is the likely explanation?",
+      "choices": {
+        "a": "The company did not designate the employees to testify on its behalf.",
+        "b": "The court may not alter the 10-deposition limit.",
+        "c": "The depositions would be unreasonably cumulative and duplicative.",
+        "d": "The employees cannot be deposed because they are not parties in the suit."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0003.png"
+    },
+    {
+      "index": 4,
+      "question": "A pedestrian domiciled in State A was crossing a street in State B when he was hit by a car driven by a citizen of a foreign country. Both the pedestrian and the driver suffered injuries.\nThe pedestrian filed a negligence action against the driver in a federal district court in State B, seeking $100,000 in damages. The driver believes that the pedestrian was crossing the street illegally and is therefore responsible for the accident. The driver seeks an attorney's advice on how best to respond to the action. Assume that State B is a contributory negligence state.\nHow should the attorney advise the driver to respond?",
+      "choices": {
+        "a": "File an answer raising the affirmative defense of contributory negligence and asserting a counterclaim for negligence, seeking damages for the driver's injuries.",
+        "b": "File an answer raising the affirmative defense of contributory negligence and move for judgment on the pleadings.",
+        "c": "Move to dismiss for lack of personal jurisdiction, because the driver is not a citizen of State B.",
+        "d": "Move to dismiss for lack of subject-matter jurisdiction, because the driver is not a U.S. citizen."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0004.png"
+    },
+    {
+      "index": 5,
+      "question": "A purchaser of a luxury car sued the car's manufacturer in a state court in State A. The purchaser claimed that the steering wheel was defective and caused a car accident resulting in over $300,000 in damages. Before the manufacturer responded, the purchaser filed a notice of dismissal.\nTwo weeks later, the purchaser filed a complaint in a federal court in State B against the manufacturer for the same claim. The manufacturer filed an answer that included a motion to dismiss for lack of venue. The purchaser did not oppose this motion, but she did file a stipulation of dismissal signed by both parties.\nOne month later, the purchaser filed a complaint in a federal court in State C alleging the same claim asserted in the prior actions. The manufacturer moved to dismiss the suit, arguing that the purchaser was precluded from bringing this suit a third time.\nWill the court likely grant the manufacturer's motion to dismiss?",
+      "choices": {
+        "a": "No, because a voluntary dismissal is with prejudice only when specified in a court order.",
+        "b": "No, because the second action was dismissed by a stipulation signed by both parties.",
+        "c": "Yes, because the purchaser failed to obtain a court order to dismiss the second action.",
+        "d": "Yes, because the second dismissal occurred in federal court."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0005.png"
+    },
+    {
+      "index": 6,
+      "question": "A pharmaceutical company sued its competitor for patent infringement in federal court. The competitor's attorney hired a pharmacist to examine the case and testify as an expert at trial. The pharmacist studied the case and submitted an initial draft of her report to the attorney. After reading the draft report, the attorney noticed that certain facts and data were missing. To correct this issue, the attorney emailed the pharmacist and provided additional facts and data to include in the report. The pharmacist then revised her report based on this additional information.\nAfter receiving this revised report from the competitor's attorney, the pharmaceutical company served a request for production on the attorney to produce the email exchanged with the pharmacist.\nMust the attorney produce the email?",
+      "choices": {
+        "a": "No, because attorney communications with expert witnesses are privileged.",
+        "b": "No, because the contents of the email are discoverable through interrogatories served on the pharmacist.",
+        "c": "Yes, because a draft of an expert report is discoverable.",
+        "d": "Yes, because the email contained facts and data that the pharmacist relied on to revise her report."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0006.png"
+    },
+    {
+      "index": 7,
+      "question": "A pharmaceutical retailer sued a drug manufacturer in federal court for antitrust and unfair-competition violations under federal and state law. After the parties completed discovery, the retailer submitted a pretrial narrative statement designating a broad set of facts and issues to be tried. The manufacturer disputed the statement and submitted a much narrower one. At the final pretrial conference, the court entered its final order, ruling in favor of the retailer's broader statement as the one the court would read to the jury during voir dire and would use to define the facts and issues to be tried.\nThe manufacturer's attorney is concerned that trying many of the facts and issues listed in the pretrial order would reveal litigation strategies important in other actions pending against the manufacturer.\nWhat is the best way for the manufacturer's attorney to seek relief from the court's ruling on the pretrial statement?",
+      "choices": {
+        "a": "Appeal from the final pretrial order, arguing that it is overbroad on its face.",
+        "b": "Object in the trial court and appeal any adverse ruling on the objection.",
+        "c": "Object in the trial court and file a motion to delay the trial.",
+        "d": "Object in the trial court and move to modify the order to prevent manifest injustice."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0007.png"
+    },
+    {
+      "index": 8,
+      "question": "A manufacturer sued its competitor in federal district court for allegedly violating the manufacturer's patent. The competitor filed an answer that claimed the patent was invalid and asserted a counterclaim for damages. During a bench trial, the competitor presented overwhelming evidence showing that the manufacturer's chief executive officer (CEO) had used deceptive methods to obtain the patent. At the close of evidence, the judge issued findings of fact and conclusions of law, and the court entered judgment in favor of the competitor.\nThe competitor was worried that the manufacturer would declare bankruptcy and be unable to pay the judgment, so the competitor moved to amend its counterclaim to add the manufacturer's CEO as a party. It also requested that the court alter the judgment to require the CEO to pay the judgment in the event the manufacturer files for bankruptcy. The district court immediately granted the competitor's motion, and the CEO appealed.\nThe applicable statute of limitations governing the competitor's counterclaim has yet to expire.\nIs the appellate court likely to affirm the district court's action?",
+      "choices": {
+        "a": "No, because the district court violated the CEO's due process rights by not allowing him to respond to the counterclaim.",
+        "b": "No, because the manufacturer did not consent in writing to the competitor's amendment.",
+        "c": "Yes, because the applicable statute of limitations for the competitor's counterclaim against the CEO has not expired.",
+        "d": "Yes, because the CEO should have been aware of the pending lawsuit."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0008.png"
+    },
+    {
+      "index": 9,
+      "question": "A woman from State A contracted with a builder from State B to construct her new home in State A for $500,000. The builder ordered all the necessary materials, including drywall, and built the home to the woman's specifications.\nAfter one year, the drywall throughout the home began to crumble and give off an awful odor. The home became uninhabitable. The woman sued the builder for breach of contract in a federal district court in State A. The builder believes that the drywall supplier from State B should reimburse him for any damages he may owe the woman. The builder has yet to file his answer.\nWhat is the most efficient action the builder can take to seek reimbursement from the supplier?",
+      "choices": {
+        "a": "File a crossclaim against the supplier.",
+        "b": "File a motion to join the supplier as an indispensable party.",
+        "c": "File a separate lawsuit against the supplier.",
+        "d": "File a third-party complaint against the supplier."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0009.png"
+    },
+    {
+      "index": 10,
+      "question": "A tech company sued a software firm in a federal district court for allegedly violating federal antitrust laws.\nThe tech company employs a developer who regularly provides expert testimony for the company in litigation. The developer is advising the company in its suit against the firm, but the company is not going to call the developer as an expert witness in this case. Instead, the company hired an economist to testify as an expert witness about the economic impact caused by the software firm's anticompetitive behavior.\nWhom must the tech company disclose to the software firm at least 90 days before trial without waiting for a discovery request?",
+      "choices": {
+        "a": "Neither the economist nor the developer.",
+        "b": "Only the economist.",
+        "c": "Only the developer.",
+        "d": "Both the economist and the developer."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0010.png"
+    },
+    {
+      "index": 11,
+      "question": "A buyer from State A and a seller from State B entered into a contract in which the buyer agreed to purchase a parcel of State B land from the seller for $200,000. However, the seller did not disclose to the buyer that the seller co-owned the land with his mother, who is from State A. The seller's mother was never mentioned in the contract, and she never authorized the sale of the land. The buyer paid the seller $200,000 pursuant to the contract but was prevented from taking possession of the land by the seller's mother.\nThe buyer sued the seller in federal court in State B to obtain possession of the land. The seller has filed a motion to dismiss the buyer's lawsuit for failing to join the seller's mother in the action.\nShould the court grant the seller's motion to dismiss the case?",
+      "choices": {
+        "a": "No, because although the seller's mother is a required party to the lawsuit, dismissing the case would leave the buyer with no adequate remedy.",
+        "b": "No, because the seller's mother is not a required party to the lawsuit.",
+        "c": "Yes, because although the seller's mother is a required party to the lawsuit, joining her in the action would destroy subject-matter jurisdiction.",
+        "d": "Yes, because although the seller's mother is a required party to the lawsuit, the State B federal court lacks personal jurisdiction over her."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0011.png"
+    },
+    {
+      "index": 12,
+      "question": "A defendant sued in federal court seeks information from a nonparty witness.\nWhich of the following discovery devices can the defendant use to obtain this information?",
+      "choices": {
+        "a": "Interrogatory.",
+        "b": "Mental exam.",
+        "c": "Oral deposition.",
+        "d": "Request for admissions."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0012.png"
+    },
+    {
+      "index": 13,
+      "question": "An insurance company from State A paid out $500,000 to a dentist from State B after she filed a claim for property damage allegedly caused by a spontaneous fire. After further investigation, however, the insurance company concluded that the dentist intentionally set the fire to recover the insurance money.\nThe insurance company sued the dentist in a federal court in State B to recover the $500,000 it had paid her. In its complaint, the insurance company claimed that the dentist \"intentionally devised a plan to defraud the insurer and obtain money by false pretenses.\"\nThe dentist filed a pre-answer motion to dismiss the complaint for failure to state a claim on which relief may be granted.\nWill the dentist likely succeed on her motion to dismiss?",
+      "choices": {
+        "a": "No, because the complaint contains a short and plain statement of the claim showing that the insurance company is entitled to relief.",
+        "b": "No, because the dentist must file an answer before she can make this motion.",
+        "c": "Yes, because a federal court cannot hear claims based on fraud.",
+        "d": "Yes, because claims based on fraud must be stated with particularity."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0013.png"
+    },
+    {
+      "index": 14,
+      "question": "Several female students enrolled at a public university sued the university in federal district court for violating a federal law that prohibits gender-based discrimination. The female students allege that the university provided them with substandard athletic facilities in comparison to those provided to its male students. The complaint requests a permanent injunction against the university to prevent it from discriminating against female students. The university has denied any allegations of gender discrimination.\nPrior to the current litigation, an email between the university's athletic director and women's basketball coach revealed that the university refused requests to update its female athletic facilities because female sports provided the university with substantially less revenue than male sports.\nThe university has initiated an investigation into the allegations in the students' complaint and has asked its attorney for advice whether the email must be provided as part of the university's initial disclosures.\nWhat is the university's best argument to withhold the email from its initial disclosures?",
+      "choices": {
+        "a": "A party need not make initial disclosures until it has fully investigated the case.",
+        "b": "Initial disclosures need not be provided without a discovery request.",
+        "c": "Permanent-injunction proceedings are exempt from mandatory initial disclosures.",
+        "d": "The email supports the female students' claim that the university violated federal law."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0014.png"
+    },
+    {
+      "index": 15,
+      "question": "A dancer at an adult entertainment establishment sued her employer in a federal district court for allegedly creating a hostile work environment and engaging in sexual harassment in violation of federal law. The dancer alleged that the employer constantly pressured her to engage in sexual intercourse, but she repeatedly refused his advances.\nAt the dancer's deposition, the employer's attorney asked the dancer about her sexual history with the employer. The dancer denied having any sexual relations with the employer. In an effort to embarrass the dancer, the employer's attorney asked about her general sexual history. The dancer's attorney objected, directed the dancer not to answer the question, and immediately suspended the deposition.\nThe next day, the dancer's attorney filed a motion in the court where the dancer's suit was brought for a protective order to prevent the employer from asking the dancer about her general sexual history. The dancer's attorney did not confer or attempt to confer with the employer's attorney before filing the motion.\nIs the court likely to grant the protective order?",
+      "choices": {
+        "a": "No, because the dancer did not answer the deposition question.",
+        "b": "No, because the dancer's attorney made no attempt to confer with the employer's attorney.",
+        "c": "Yes, because the dancer will suffer irreparable harm if the questioning is allowed to continue.",
+        "d": "Yes, because the motion was properly filed in the court where the action is pending."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0015.png"
+    },
+    {
+      "index": 16,
+      "question": "A pedestrian from State A sued a driver from State B in a federal court in State B to recover $85,000 in damages. The pedestrian alleged that the driver ran a red light and hit the pedestrian in a crosswalk. Prior to trial, the driver's attorney disclosed that he intended to call a witness to testify that the traffic light facing the driver was green when the pedestrian entered the crosswalk. To verify whether the witness is truthful, the pedestrian's attorney sent the witness interrogatories.\nThe witness failed to respond to any of the interrogatories. After attempting to confer with the witness and the driver's attorney, the pedestrian's attorney filed a motion to compel the witness to respond to the interrogatories. The driver's attorney opposed the motion.\nHow should the court rule on the pedestrian's motion to compel?",
+      "choices": {
+        "a": "The court should deny the motion and award the driver reasonable expenses incurred in opposing the motion.",
+        "b": "The court should deny the motion but not award the driver reasonable expenses incurred in opposing the motion.",
+        "c": "The court should grant the motion and award the pedestrian reasonable expenses incurred in making the motion.",
+        "d": "The court should grant the motion but not award the pedestrian reasonable expenses incurred in making the motion."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0016.png"
+    },
+    {
+      "index": 17,
+      "question": "An employee from State A sued his former company in a federal court in State A for discrimination in violation of federal employment law.\nThe employee served an officer of the company with a subpoena to attend a deposition in the city in State A where the employee now resides. The city is 175 miles away from the company's headquarters in State B and 200 miles away from where the officer resides in State A. The officer performs all her employment duties at the company's headquarters.\nMust the officer comply with the subpoena?",
+      "choices": {
+        "a": "No, because the city is located 200 miles away from the officer's residence.",
+        "b": "No, because the city is located in a different state than the company's headquarters.",
+        "c": "Yes, because the city is located 175 miles away from the company's headquarters.",
+        "d": "Yes, because the city is located in the state where the officer resides."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0017.png"
+    },
+    {
+      "index": 18,
+      "question": "An employee brought a diversity suit against his employer in federal district court for intentional infliction of emotional distress. The employee claimed that the employer repeatedly engaged in conduct that caused the employee to suffer severe emotional distress that has resulted in physical manifestations. During discovery, the court issued a valid order compelling the employee to submit to a mental and physical examination by a licensed medical professional chosen by the employer. The employee refused to submit to the examination.\nThe employer's attorney has moved for sanctions against the employee.\nWhich of the following sanctions, if any, may the court order?",
+      "choices": {
+        "a": "None, because the employee has the right to choose the person who conducts the examination.",
+        "b": "None, because a court cannot compel a person to submit to a mental examination.",
+        "c": "Hold the employee in contempt of court.",
+        "d": "Stay the proceeding until the order for examination is obeyed."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0018.png"
+    },
+    {
+      "index": 19,
+      "question": "A company located in State A filed a lawsuit against its distributor located in State B in a federal district court. The company's complaint asserted a breach of contract claim for $60,000 and a negligence claim for $30,000. These claims arose from different facts.\nMay the federal court hear these claims in a single suit?",
+      "choices": {
+        "a": "No, because neither claim satisfies subject-matter jurisdiction on its own.",
+        "b": "No, because the claims arose out of different facts.",
+        "c": "Yes, because the claims were properly joined, and the federal court has diversity jurisdiction.",
+        "d": "Yes, because the claims were properly joined, and the federal court has supplemental jurisdiction."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0019.png"
+    },
+    {
+      "index": 20,
+      "question": "A bank loaned a borrower $20,000 to buy a car. The borrower signed a promissory note to pay back the loan over the course of four years. After six months of payments, the borrower stopped paying because he heard a report that the bank was fined by a federal agency for systematically misrepresenting the terms in its loans.\nThe borrower sued the bank in a federal court for misrepresentations in the loan paperwork in violation of federal law. The bank believes that the borrower has breached the terms of the promissory note and seeks to recover the remaining balance due, which amounts to $18,000.\nIn addition to denying the borrower's allegations in its answer, what should the bank do?",
+      "choices": {
+        "a": "Assert a compulsory counterclaim for breach of contract.",
+        "b": "Assert a compulsory crossclaim for breach of contract.",
+        "c": "Assert a permissive counterclaim for breach of contract.",
+        "d": "Assert a permissive crossclaim for breach of contract."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0020.png"
+    },
+    {
+      "index": 21,
+      "question": "A bicyclist sued the drivers of two cars in a federal district court after all three were involved in an accident. In her answer, the first driver denied liability and alleged that the second driver caused the accident by running a red light. The first driver also seeks to assert a claim against the second driver to recover damages for the injuries she suffered in the accident.\nMay the first driver include this claim in her answer?",
+      "choices": {
+        "a": "No, because the first driver must first implead the second driver.",
+        "b": "No, because the first driver must obtain the bicyclist's permission before asserting the claim.",
+        "c": "Yes, because the claim arises from the accident that gave rise to the bicyclist's claim.",
+        "d": "Yes, because the first driver may assert as many claims as she has against the second driver."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0021.png"
+    },
+    {
+      "index": 22,
+      "question": "A patient brought a medical malpractice action against a physician in federal court. The patient's complaint sought $100,000 in damages. The parties met for a Rule 26(f) discovery conference. Twenty days later, the patient had not supplied the physician with a computation of the patient's damages and access to documentary support for that computation.\nWhich of the following would justify the patient's conduct?",
+      "choices": {
+        "a": "A party is generally not required to make initial disclosures until 21 days after the discovery conference.",
+        "b": "The parties agreed, without court approval, to lengthen the time period in which initial disclosures must be made.",
+        "c": "The physician has not requested this information.",
+        "d": "The physician has not supplied the initial disclosures that are required of her."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0022.png"
+    },
+    {
+      "index": 23,
+      "question": "During an interview, a company's chief executive officer (CEO) made a prepared statement denying that the company was in merger talks with one of its competitors. After the interview aired, the company's stock price dropped, and an investor sold his stock in the company at a great loss. Two weeks later, the company announced that it was merging with its competitor.\nThe investor filed a lawsuit against the company in an appropriate federal court based on misrepresentation. After the parties held their initial planning conference, the investor requested that the company produce all documents and data related to the CEO's prepared statement and the subsequent announcement of the merger. In response, the company carefully screened its records and produced approximately three million documents, including electronically stored information. It also produced a privilege log of documents withheld. After production, the company realized that it had inadvertently produced 102 potentially privileged documents.\nThe company immediately notified the investor of the inadvertent disclosure, provided a basis for its privilege claim, and asked that the documents be immediately returned. The investor, who disputed the company's privilege claim, immediately isolated the documents from the rest of the production but refused to return them.\nThe investor has presented the documents and the parties' privilege arguments to the court for a determination of the privilege claim. A hearing was scheduled to be held in 15 days. In response, the company promptly moved for an injunction that would require the investor to immediately return the documents to the company and destroy any copies in his possession before the hearing.\nHow should the court rule on the company's motion?",
+      "choices": {
+        "a": "Deny the motion, because the company has waived attorney-client privilege by disclosing the documents to a third party.",
+        "b": "Deny the motion, because the investor promptly sequestered the documents and presented the information to the court.",
+        "c": "Grant the motion, because the investor has failed to return the documents.",
+        "d": "Grant the motion, because the party that produced the privileged information determines whether it is returned, sequestered, or destroyed."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0023.png"
+    },
+    {
+      "index": 24,
+      "question": "A taxpayer filed an action in federal court against the IRS for a refund. The IRS served upon the taxpayer a request that the taxpayer admit that she was not entitled to claim a business deduction for a specific expense. The taxpayer, believing that the requested admission improperly required the application of law to facts, did not reply to the request.\nWhat is the effect of the taxpayer's action?",
+      "choices": {
+        "a": "For purposes of any legal proceeding against the taxpayer, the taxpayer is deemed to have conclusively admitted the requested matter because she did not respond to the request.",
+        "b": "For purposes of this lawsuit, the taxpayer is deemed to have conclusively admitted the requested matter because she did not respond to the request.",
+        "c": "The taxpayer is deemed to have denied the request for admission because she did not respond to the request.",
+        "d": "The taxpayer is deemed to have denied the request for admission because the matter was not a proper subject for a request for an admission."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0024.png"
+    },
+    {
+      "index": 25,
+      "question": "A man asked his attorney whether he had a legal basis to challenge a rate increase proposed by his electric utility company. The attorney said that he did and filed a federal action seeking a declaratory judgment that the proposed increase would violate federal law.\nSoon thereafter, the court issued an order requiring the man and his attorney to show cause why they should not be sanctioned under Rule 11 and required to pay a monetary penalty to the court for filing a frivolous complaint. The order cited several recent judicial decisions holding that rate increases such as the one proposed do not violate federal law.\nMay the court impose this monetary sanction on the man?",
+      "choices": {
+        "a": "No, because the court cannot impose a monetary sanction under Rule 11 without a motion seeking such a sanction.",
+        "b": "No, because the man is represented by an attorney.",
+        "c": "Yes, because the action is not warranted by existing law.",
+        "d": "Yes, because the court issued a show-cause order before imposing any sanction."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0025.png"
+    },
+    {
+      "index": 26,
+      "question": "A police officer pulled over a speeding driver and administered a breathalyzer test. The driver failed this test, and the officer peacefully took him into custody. These events were recorded on the officer's dashboard and body cameras.\nSix months later, the driver sued the officer in a federal court, claiming that she violated a federal civil rights statute that prohibits police officers from using excessive force. The driver claimed that the officer slammed him against the car and repeatedly punched him in the face while making the arrest.\nThe officer vehemently believes that the driver has no evidence to support his contention and is only pursuing the suit to harass her. The officer filed an answer denying the driver's allegations and served the driver with a motion for sanctions to recover attorney's fees incurred in filing the answer. Immediately thereafter, the officer filed the motion for sanctions with the court.\nIs the court likely to grant the officer's motion for sanctions?",
+      "choices": {
+        "a": "No, because the judge did not issue an order to show cause.",
+        "b": "No, because the officer did not wait 21 days before filing the motion with the court.",
+        "c": "Yes, because the driver has no evidence to support the facts asserted in his complaint.",
+        "d": "Yes, because the officer believes that the driver filed the suit to harass her."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0026.png"
+    },
+    {
+      "index": 27,
+      "question": "A farmer sued a seed supplier in federal district court for allegedly selling the farmer's patented seeds without the farmer's permission. The supplier filed and served an answer denying liability, and the court entered a scheduling order with discovery deadlines.\nOver the next year, the supplier repeatedly tried to contact the farmer through phone calls, regular mail, and email. The supplier also sent several discovery requests to the farmer. The farmer never responded to the supplier, made no discovery requests, and failed to adhere to the discovery deadlines. The supplier wants to end this litigation and prevent the farmer from suing her on the same claim in the future.\nWhich action will best achieve the supplier's goals?",
+      "choices": {
+        "a": "Move for a voluntary dismissal with prejudice.",
+        "b": "Move for a voluntary dismissal without prejudice.",
+        "c": "Move for an involuntary dismissal with prejudice.",
+        "d": "Move for an involuntary dismissal without prejudice."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0027.png"
+    },
+    {
+      "index": 28,
+      "question": "A woman from State A sued a man from State B in a federal district court in State B for intentional infliction of emotional distress and sought $80,000 in damages. The woman claimed that the man's actions caused her to suffer post-traumatic stress disorder. The man wishes to subject the woman to a mental examination by a licensed psychiatrist of his own choosing before trial.\nWhich is true about the prospect of a mental examination?",
+      "choices": {
+        "a": "A federal district court in State A may order the woman to undergo a mental examination because that is where the woman resides.",
+        "b": "Only the federal district court in State B may order the woman to undergo a mental examination because that is where the lawsuit is pending.",
+        "c": "The examining psychiatrist is entitled to receive the woman's prior psychiatric records because he cannot conduct a complete examination without this information.",
+        "d": "The woman is entitled to choose who will perform the examination because the party to be examined always has this right."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0028.png"
+    },
+    {
+      "index": 29,
+      "question": "A group of neighbors sued a power plant in a federal court for allegedly contaminating the river that flows through their properties. In its answer, the power plant included a counterclaim for defamation. The power plant claimed that the neighbors maliciously spread false information that it had contaminated the river.\nOne week before the start of trial, the judge and the parties had a final pretrial conference. At the conference, the judge ordered a separate trial for the power plant's defamation claim, decided that the river contamination trial would proceed first, and established that each party would get five days to present evidence in each trial as this was the customary time allotted in the jurisdiction. The power plant objected to each of these orders.\nAt the river contamination trial, the jury found in favor of the neighbors and awarded them $3 million in damages. As a result of this trial, the judge dismissed the power plant's defamation counterclaim.\nThe power plant appealed, arguing that the trial judge's orders during the pretrial conference were invalid.\nHow is the federal appellate court likely to rule?",
+      "choices": {
+        "a": "Affirm all three orders.",
+        "b": "Reverse the trial judge's order requiring a separate trial on the counterclaim.",
+        "c": "Reverse the trial judge's order allowing each side just five days to present evidence.",
+        "d": "Reverse the trial judge's order to hear the river contamination trial before the defamation trial."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0029.png"
+    },
+    {
+      "index": 30,
+      "question": "A woman's house burned down after the wiring in her refrigerator sparked and started a fire. The following week, the woman received adequate notice that a class action had been filed in federal court against the manufacturer of the refrigerator for damages caused by the refrigerator's faulty wiring system. The woman did nothing when she received the notice and was not named as a class representative.\nThe court certified the class action after determining that common questions of law and fact predominated and that the class action was the best method to fairly and efficiently adjudicate the dispute. During discovery, the named class representatives reached a proposed settlement with the manufacturer. At a hearing, the woman objected to the proposed settlement on the ground that it was inadequate to cover the damage to her house. Despite her objection, the court approved the settlement after concluding that it was fair, reasonable, and adequate.\nThe woman then sued the manufacturer in another federal court to recover damages for the remaining damage to her house. The manufacturer moved to dismiss this suit.\nIs the court likely to grant the manufacturer's motion?",
+      "choices": {
+        "a": "No, because the woman objected to the proposed class action settlement.",
+        "b": "No, because the woman was not a named representative in the class action.",
+        "c": "Yes, because the court certified the class action.",
+        "d": "Yes, because the woman failed to opt out of the class action."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0030.png"
+    },
+    {
+      "index": 31,
+      "question": "On July 1, 2015, a man was seriously injured when the helicopter he was piloting crashed. The man's attorney diligently investigated and determined that a valve malfunction caused the crash. The attorney contacted the helicopter distributor and requested the name of the company that manufactured the valve in the man's helicopter. The helicopter distributor mistakenly gave the attorney the name of the wrong valve manufacturer.\nOn June 1, 2017, the man sued the helicopter distributor and the valve manufacturer in federal court to recover $5 million in damages. On January 3, 2018, the name of the valve manufacturer that actually manufactured the valve in the man's helicopter was revealed during discovery. The same day, the man moved to amend his complaint to substitute the correct valve manufacturer as the defendant. The correct valve company did not receive notice of the man's suit until this time.\nThe applicable statute of limitations provides: \"Any personal injury action shall be brought within two years from the date the alleged injuries occurred. A complaint may be amended to properly name a defendant not identified until after the complaint has been filed if the complaint was filed within the designated limitations period.\"\nMay the man amend his complaint?",
+      "choices": {
+        "a": "No, because the correct valve manufacturer did not receive timely notice of the suit.",
+        "b": "No, because the statute of limitations has expired.",
+        "c": "Yes, because the amendment concerns the same transaction asserted in the original pleading.",
+        "d": "Yes, because the amendment is permitted under the relation-back doctrine."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0031.png"
+    },
+    {
+      "index": 32,
+      "question": "A plaintiff filed a diversity action in federal district court against a defendant. The day after the defendant was served with process, the defendant filed and served an answer.\nWhen must the parties confer to develop a discovery plan?",
+      "choices": {
+        "a": "At least 21 days before a scheduling conference is held or a scheduling order is due.",
+        "b": "At least 30 days before a scheduling conference is held or a scheduling order is due.",
+        "c": "Within 21 days after the defendant's answer was served.",
+        "d": "Within 30 days after the defendant's answer was served."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0032.png"
+    },
+    {
+      "index": 33,
+      "question": "A manufacturer sued its competitor for patent infringement in a federal district court. On February 1, the manufacturer served the competitor with a summons and complaint. The day after the competitor was served with process, the competitor filed and served an answer. On February 28, the manufacturer delivered to the competitor a request to produce certain documents within the next 15 days. The competitor did not respond to the request for production or produce the requested documents by March 15. As a result, the manufacturer filed a motion to compel a written response to the request for production on April 1, the day after the parties' initial planning conference.\nWill the federal court likely grant the manufacturer's motion?",
+      "choices": {
+        "a": "No, because a request for production is not permitted less than 30 days after service of process.",
+        "b": "No, because the competitor's response is not due until 30 days after the initial planning conference.",
+        "c": "Yes, because the competitor failed to produce the requested documents by the 15-day deadline.",
+        "d": "Yes, because the competitor's response was due 30 days after the request for production was delivered."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0033.png"
+    },
+    {
+      "index": 34,
+      "question": "A woman from State A purchased a luxury motorhome online and wired the dealership a deposit for $80,000. The dealership is incorporated and headquartered in State B. When the dealership shipped the motorhome to the woman, she discovered that it failed to meet the contract specifications and refused to accept delivery. The woman then permanently moved to State C.\nThe woman sued the dealership in a federal court in State C for breach of contract to recover her deposit. The dealership moved to dismiss for lack of personal jurisdiction and improper venue. The court granted the motion on both grounds and dismissed the action.\nThe woman immediately filed the same breach-of-contract claim in a federal court in State B. The dealership filed a motion to dismiss, arguing that the dismissal of the first action precludes the second action.\nIs the court likely to grant the motion?",
+      "choices": {
+        "a": "No, because a dismissal does not operate as an adjudication on the merits.",
+        "b": "No, because the first action was dismissed without prejudice.",
+        "c": "Yes, because the dealership obtained a court order to dismiss the first action.",
+        "d": "Yes, because the first action was involuntarily dismissed."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0034.png"
+    },
+    {
+      "index": 35,
+      "question": "A woman sued a large company in federal court for violating federal environmental laws. During discovery, the woman's attorney requested that the company produce all electronically stored information (ESI) pertaining to the company's carbon dioxide production but did not specify the form in which this ESI was to be produced. The company provided a written response confirming that it would produce the requested documents.\nOne month later, the company sent the woman's attorney thousands of documents, emails, spreadsheets, and other files in their ordinarily maintained electronic forms. The attorney did not have the software necessary to access all of the produced ESI, so he sent the company a request for the production of the same ESI that specified the form in which it should be produced. The company refused.\nThe attorney filed a motion with the federal court to compel the company to produce the ESI again in the specified form.\nIs the court likely to grant the motion?",
+      "choices": {
+        "a": "No, because the company may choose to produce the ESI in any form.",
+        "b": "No, because the company produced the ESI in forms in which they are ordinarily maintained.",
+        "c": "Yes, because the attorney is unable to access the ESI through his software.",
+        "d": "Yes, because the attorney may specify the form in which the ESI is to be produced."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0035.png"
+    },
+    {
+      "index": 36,
+      "question": "A man brought a diversity action against a retail store in federal district court for injuries he sustained from a fall in the store. The man alleged that the store allowed its entryway to become slippery from a pipe that leaked water.\nSixty days before trial, the store sent the man its pretrial disclosures, which included a spreadsheet containing the names, addresses, and telephone numbers of the witnesses whom the store expected to testify at trial. Due to a formatting problem, one of the testifying witnesses was omitted from the spreadsheet. The store discovered the omission the following day. Twenty-one days before trial, the store sent the man's attorney an amended spreadsheet containing the testifying witness's information. This was the first time the man's attorney had heard of the testifying witness.\nThe man's attorney argues that the witness should be excluded from testifying at trial.\nWhich of the following arguments is most likely to achieve the man's goal of preventing the witness from testifying at trial?",
+      "choices": {
+        "a": "The parties did not stipulate that pretrial disclosures could be amended before trial.",
+        "b": "The store failed to timely correct its pretrial disclosures.",
+        "c": "The store never obtained the court's leave before correcting its pretrial disclosures.",
+        "d": "The store's initial pretrial disclosures were untimely filed."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0036.png"
+    },
+    {
+      "index": 37,
+      "question": "A pedestrian was struck and seriously injured by the driver of an automobile while crossing the street. The pedestrian brought a negligence action against the driver in federal court. The driver answered the complaint, contending that the pedestrian's own negligence in darting across the street without looking for oncoming traffic was the cause of the accident. The pedestrian moved for a court order that the driver submit to an examination by an ophthalmologist, alleging that a person with good eyesight would have seen him and avoided the accident. The driver, who did not seek a physical or mental examination of the pedestrian, opposed the motion. The court denied the pedestrian's motion.\nWhich of the following is the most likely basis for the court's ruling?",
+      "choices": {
+        "a": "A request for a mental or physical examination is not a discovery device available to a plaintiff.",
+        "b": "A physical or mental examination may not be ordered if the party who would be subject to the examination objects.",
+        "c": "The driver did not seek a physical or mental examination of the pedestrian.",
+        "d": "The pedestrian's conclusory allegations did not place the driver's eyesight in controversy or constitute a showing of good cause."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0037.png"
+    },
+    {
+      "index": 38,
+      "question": "A fisherman from State A repeatedly trespassed across a homeowner's property in State B to fish in a publicly owned lake. After one of the fisherman's trips across the homeowner's property, the homeowner discovered that her $80,000 marble statue had been destroyed. The homeowner filed a lawsuit in a federal court in State B to enjoin the fisherman from trespassing and to recover for the damage to her statue.\nDuring discovery, the homeowner interviewed a former friend of the fisherman. The friend said that the fisherman had bragged about trespassing across the homeowner's property and accidently knocking over a marble statue on one occasion. The homeowner expects the fisherman to testify at trial that he did not know he was trespassing and never saw the statue. To impeach the fisherman's anticipated testimony, the homeowner intends to call the friend to testify. The homeowner does not want to disclose the friend's identity to the fisherman.\nWhat is the homeowner's strongest argument to accomplish her goal?",
+      "choices": {
+        "a": "The fisherman could have discovered this evidence on his own.",
+        "b": "The fisherman will have a full and fair opportunity to cross-examine the friend.",
+        "c": "The friend's testimony will be used solely to impeach the fisherman's testimony.",
+        "d": "The homeowner's failure to disclose the friend as a witness is harmless."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0038.png"
+    },
+    {
+      "index": 39,
+      "question": "A woman sued the manufacturer of her hip implant in federal court, claiming that she developed neurological and other health symptoms as a result of her exposure to the implant's material.\nDuring discovery, the woman's attorney hired a doctor as an expert to assess the woman's case. The doctor evaluated the woman, reviewed her medical records, and concluded that the hip implant was not the cause of the woman's symptoms. After sharing this conclusion with the woman's attorney, the doctor was paid for the time spent assessing the woman's case. The woman's attorney did not retain the doctor's services for trial.\nThe manufacturer's attorney then served a subpoena on the doctor to take her deposition. The woman's attorney moved to quash the subpoena.\nHow will the court likely rule on the motion?",
+      "choices": {
+        "a": "Deny the motion, because the doctor has evidence relevant to the case.",
+        "b": "Deny the motion, because the woman's attorney hired the doctor as an expert.",
+        "c": "Grant the motion, because the doctor is not a party in the case.",
+        "d": "Grant the motion, because the facts known and opinions held by the doctor are privileged."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0039.png"
+    },
+    {
+      "index": 40,
+      "question": "A man filed a class action in federal court against an insurance company on behalf of thousands of individuals nationwide. The complaint asserted that the insurance company denied these individuals' legitimate claims pursuant to a company policy that violates federal law. The insurance company denied the allegations.\nAfter the parties held an initial planning conference, the man served the insurance company with 25 interrogatories. One of the interrogatories asked the company to list its net profits over the past five years. The interrogatories stated that they were to be answered within 30 days after service.\nWhat is the insurance company's best response to the interrogatory about its net profits?",
+      "choices": {
+        "a": "Serve an objection on the ground that interrogatories may only be served on individuals, not companies.",
+        "b": "Serve an objection on the ground that the interrogatories exceed the number allowed without permission from the court or an agreement between the parties.",
+        "c": "Serve an answer identifying the specific documents that contain information about the company's net profits and provide the man's attorney an opportunity to inspect and copy those documents.",
+        "d": "Serve an answer identifying the specific documents that contain information about the company's net profits and provide the man's attorney an opportunity to inspect, but not copy, those documents."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0040.png"
+    },
+    {
+      "index": 41,
+      "question": "A symphony was scheduled to perform a famous songwriter's music at a concert in 10 days. After a disagreement with the symphony's conductor, the songwriter told the conductor that he could no longer use her songs. The conductor stated that he was going to proceed with the concert as planned.\nThe songwriter filed a verified complaint against the conductor and the symphony in a federal district court for copyright infringement. The songwriter also moved for a temporary restraining order (TRO) to stop the concert from proceeding. The songwriter did not provide notice to the defendants but argued that the court should immediately issue an ex parte TRO.\nHow will the federal district court likely rule on the songwriter's motion?",
+      "choices": {
+        "a": "Deny the motion, because notice must be given to an opposing party before a court may issue a TRO.",
+        "b": "Deny the motion, because the songwriter's attorney failed to certify in writing why the defendants need not be notified.",
+        "c": "Grant the motion, because an ex parte TRO is justified under the circumstances.",
+        "d": "Grant the motion, because federal courts have exclusive jurisdiction over claims based on copyright infringement."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0041.png"
+    },
+    {
+      "index": 42,
+      "question": "A customer brought a federal diversity action against a corporation. During discovery, the customer requested information that was stored on hard drives at the corporation's headquarters. The corporation informed the customer that the hard drives had been wiped clean when the corporation switched over to a new information technology firm a few months before the customer filed suit. The customer moved for sanctions.\nAfter a hearing, the court found that the corporation negligently failed to preserve the information contained in the hard drives, but that the corporation did not act intentionally to prevent the customer from accessing the information. The court also found that the information cannot be obtained by any other means and that the loss of this information prejudices the customer's claim.\nBased on those findings, what action should the court take?",
+      "choices": {
+        "a": "Enter a default judgment in favor of the customer.",
+        "b": "Instruct the jury at trial that it must presume that the lost information was unfavorable to the corporation.",
+        "c": "Permit the parties to present evidence at trial regarding the loss of information.",
+        "d": "Prohibit the corporation from seeking discovery in the lawsuit to put the parties at a similar disadvantage."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0042.png"
+    },
+    {
+      "index": 43,
+      "question": "A plaintiff obtained an ex parte temporary restraining order (TRO) in a federal civil action and posted a bond the same day. One day later, the plaintiff served the defendant with copies of the summons and complaint, the TRO, and supporting documents. The court scheduled a hearing on the preliminary injunction to occur 14 days after the TRO had been issued.\nTwo days before the hearing, the plaintiff moved to extend the TRO and postpone the hearing for one week on the ground that its principal witness would be unavailable to testify on the scheduled day due to a planned vacation. The defendant opposed the motion and moved to dissolve the TRO.\nIs the court likely to grant the defendant's motion to dissolve the TRO?",
+      "choices": {
+        "a": "No, because a TRO can be extended once for 14 days.",
+        "b": "No, because the plaintiff posted a bond and its principal witness's testimony is critical to the hearing.",
+        "c": "Yes, because the plaintiff's principal witness's vacation is not good cause to extend the TRO.",
+        "d": "Yes, because the TRO will expire before a rescheduled hearing can be held."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0043.png"
+    },
+    {
+      "index": 44,
+      "question": "A pedestrian filed a federal diversity action against a motorcyclist, alleging that the motorcyclist ran a stop sign and hit the pedestrian in a crosswalk outside of a bar.\nDuring discovery, the pedestrian's attorney interviewed a bartender who was working at the bar on the night the accident occurred. The bartender told the attorney that the motorcyclist drank four bottles of beer and two shots of tequila in the hour immediately preceding the accident. The attorney wrote down the bartender's statements in a document.\nThe motorcyclist requested that the pedestrian produce all documents related to the case, including statements by potential witnesses. In response, the pedestrian's attorney produced several documents and a privilege log of the documents withheld. The privilege log included a description of the document containing the bartender's statements. The motorcyclist filed a motion to compel production of this document.\nShould the court grant the motorcyclist's motion?",
+      "choices": {
+        "a": "No, because the document is inadmissible at trial.",
+        "b": "No, because the motorcyclist can obtain the information in the document by other means.",
+        "c": "Yes, because the document does not contain the attorney's opinions or legal theories.",
+        "d": "Yes, because the motorcyclist has a right to receive all materials containing information relevant to the case."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0044.png"
+    },
+    {
+      "index": 45,
+      "question": "An executive signed an employment contract with a steel plant. The contract contained a noncompete clause that prohibited the executive from working for any of the steel plant's competitors for one year after leaving the plant. The contract also contained a nondisclosure clause that prohibited the executive from disclosing the steel plant's trade secrets and other confidential information. On September 1, 2015, the executive left the steel plant. On August 1, 2016, she began working for one of the steel plant's competitors.\nOn April 1, 2018, the steel plant filed a complaint against the executive in a federal court for breaching the noncompete clause. On November 1, 2018, the steel plant discovered that the executive divulged its trade secrets to its competitor when she began working there. The steel plant immediately filed a motion with the court to amend its complaint to add a claim for infringement of trade secrets against the executive.\nThe applicable statute of limitations for each claim is two years from the date the violation allegedly occurred. The laws that establish these statutes of limitations do not mention whether relation back is allowed for these claims.\nShould the federal court allow the steel plant to amend its complaint to include the trade secrets claim?",
+      "choices": {
+        "a": "No, because the executive did not consent to the amendment.",
+        "b": "No, because the statute of limitations for the claim has expired.",
+        "c": "Yes, because a federal court should freely allow amendments to pleadings when justice so requires.",
+        "d": "Yes, because the amended claim arises from the transaction and occurrence set out in the original pleading."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0045.png"
+    },
+    {
+      "index": 46,
+      "question": "A patient brought a diversity action against a doctor in federal court for medical malpractice. The patient alleges that the doctor negligently administered medication to the patient after surgery, which caused further complications. During discovery, the patient's attorney sent the doctor 30 requests for admission. One request stated, \"Please admit that the medication administered to the patient poses a higher risk to individuals in the patient's age group.\" The doctor served a written response 21 days later, in which she specifically denied that the medication poses a higher risk to such individuals.\nThe case proceeded to trial. The patient offered several of the doctor's records into evidence that demonstrated the doctor knew at the time she prescribed the medication that it was unsafe for individuals in the patient's age group. At the conclusion of trial, the jury returned a verdict for the patient, specifically finding that the patient proved that the medication is unsafe for individuals in the patient's age group. The patient then moved for sanctions against the doctor to pay the reasonable expenses incurred in proving this matter.\nIs the court likely to grant the patient's motion?",
+      "choices": {
+        "a": "No, because the patient's motion for sanctions after the jury returned its verdict was untimely.",
+        "b": "No, because the requests for admission exceeded the number allowed.",
+        "c": "Yes, because requests for admission are proper to obtain the truth about facts.",
+        "d": "Yes, because the patient proved that the matter was true."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0046.png"
+    },
+    {
+      "index": 47,
+      "question": "A company sued a competitor in federal court, alleging that the competitor stole the company's trade secrets regarding its 3D printing technology. The company is concerned that discovery will lead to disclosure of its other trade secrets.\nWhat is the most efficient strategy for the company to protect these trade secrets from disclosure?",
+      "choices": {
+        "a": "Assert that its trade secrets are privileged.",
+        "b": "File a motion for an ex parte temporary restraining order.",
+        "c": "Obtain a stipulation that limits the scope of discovery.",
+        "d": "Withhold information relating to its trade secrets."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0047.png"
+    },
+    {
+      "index": 48,
+      "question": "On March 1, 2017, a woman tripped and fell on a cruise ship, sustaining severe injuries. On February 28, 2018, she brought a diversity action in federal court against the entity she believed owned the cruise ship. The entity was served with process the same day. The entity immediately forwarded the complaint to the office of legal counsel for the corporation that owned the cruise ship.\nTwo weeks later, the entity filed and served its answer in which it denied ownership of the cruise ship. The entity explained that it was merely a ticketing agency with a name similar to the corporation that owned the ship.\nThe next day, the woman amended her complaint to substitute the corporation that owned the cruise ship as the defendant and had process served on the corporation. The corporation immediately moved to dismiss the suit, arguing that the statute of limitations had expired.\nThe applicable statute of limitations for the claim is one year from the date the accident allegedly occurred. The law establishing this statute of limitations does not mention relation back.\nShould the court grant the corporation's motion to dismiss?",
+      "choices": {
+        "a": "No, because the amended complaint relates back to the date the original complaint was filed.",
+        "b": "No, because the woman may freely amend her complaint once as a matter of course.",
+        "c": "Yes, because the amended complaint was filed after the statute of limitations expired.",
+        "d": "Yes, because the applicable law does not mention relation back."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0048.png"
+    },
+    {
+      "index": 49,
+      "question": "A pedestrian sued an out-of-state driver in a federal district court for allegedly hitting the pedestrian in a crosswalk, which the pedestrian claims resulted in $1 million in medical expenses, lost wages, and pain and suffering. The driver filed an answer denying liability.\nWhich of the following must the pedestrian automatically provide the driver without waiting for a discovery request?",
+      "choices": {
+        "a": "A copy of the pedestrian's medical bills for her alleged injuries.",
+        "b": "A copy of the pedestrian's medical insurance agreement.",
+        "c": "A list of the cases in which the pedestrian has been a witness over the previous four years.",
+        "d": "The name of a witness who knows about the driver's past car accidents."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0049.png"
+    },
+    {
+      "index": 50,
+      "question": "The attorney for a woman who owned a joint bank account with a co-owner filed a motion for a temporary restraining order that would prohibit the bank from releasing funds from the account to the co-owner for 14 days. The motion stated that the attorney had not made an effort to notify the co-owner because the co-owner had threatened to withdraw all of the money in the account and abscond with the money to a foreign country. The attorney certified this information in a document submitted with the motion. The motion was accompanied by an affidavit by the woman asserting that the co-owner made this threat to her personally and that she believes the co-owner will carry it out.\nCan the court issue the temporary restraining order without notice to the co-owner?",
+      "choices": {
+        "a": "No, because a temporary restraining order cannot issue without notice to the adverse party.",
+        "b": "No, because the attorney failed to make an effort to give the co-owner notice of the motion for a temporary restraining order.",
+        "c": "Yes, because a temporary restraining order does not require notice to an adverse party if the order is for no more than 14 days.",
+        "d": "Yes, because the co-owner's threat justifies the issuance of the temporary restraining order without notice to the co-owner."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0050.png"
+    },
+    {
+      "index": 51,
+      "question": "A homeowner brought a diversity action against a mining company in federal court for negligence, claiming that the company's negligent mining practices caused extensive damage to her property. Forty-five days before trial, the homeowner sent the company the evidence that she plans to use at trial, including a witness whose testimony she intends to present by deposition. The homeowner also attached a transcript of the pertinent depositions. Twenty-one days later, the company objected to the use of the deposition testimony on the ground that it is inadmissible hearsay.\nShould the court hear the merits of the company's objection?",
+      "choices": {
+        "a": "No, because the company failed to object at least 30 days before trial.",
+        "b": "No, because the company failed to object within 14 days after the homeowner disclosed the deposition testimony she intended to use at trial.",
+        "c": "Yes, because the company objected within 30 days after the homeowner disclosed the deposition testimony she intended to use at trial.",
+        "d": "Yes, because the homeowner failed to disclose the deposition testimony at least 90 days before trial."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0051.png"
+    },
+    {
+      "index": 52,
+      "question": "A consumer, from State A, properly brought a federal diversity action against a retailer, from State B, based on strict products liability. The consumer was injured when the lock switch on a ladder purchased from the retailer malfunctioned, causing the consumer to fall and seriously injure himself. After being served with the consumer's complaint and filing an answer, the retailer filed a third-party claim under Rule 14 against the manufacturer of the ladder, incorporated and with its principal place of business in State A. The retailer claimed that the manufacturer would be liable to the retailer for the retailer's liability, if any, on the consumer's claim. The consumer then filed an additional claim against the manufacturer based on the defective ladder. In response to the consumer's claim, the manufacturer asserted a defense based on federal law.\nCan the court exercise jurisdiction over the consumer's claim against the manufacturer?",
+      "choices": {
+        "a": "Yes, based on diversity jurisdiction.",
+        "b": "Yes, based on federal-question jurisdiction.",
+        "c": "Yes, based on supplemental jurisdiction.",
+        "d": "No."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0052.png"
+    },
+    {
+      "index": 53,
+      "question": "A designer sued a clothing store in a federal district court for selling clothes that featured the designer's trademarked designs without the designer's permission. As the trial approached, the judge ordered the parties' attorneys to attend a final pretrial conference.\nWhich of the following can the judge NOT do at the conference?",
+      "choices": {
+        "a": "Decide which party has the burden of proof.",
+        "b": "Establish a time limit for each party's presentation of evidence.",
+        "c": "Limit each party's use of expert testimony.",
+        "d": "Rule on the admissibility of evidence."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0053.png"
+    },
+    {
+      "index": 54,
+      "question": "Two women filed a joint complaint in federal court against their employer for allegedly violating a federal law that prohibits workplace discrimination against pregnant women.\nThe complaint alleged that the women applied for promotion to two, newly opened supervisor positions when they were six and seven months pregnant, respectively. The women claimed that their employer told each of them separately that he was denying them the promotion because they would miss work as a result of their pregnancies. The complaint also alleged that the women were fired from their positions shortly after these meetings. One woman seeks to be reinstated to her former position, while the other woman requests $100,000 in damages.\nThe employer denied these allegations and filed a motion asking the court to sever the women's claims.\nHow will the court likely rule on the employer's motion?",
+      "choices": {
+        "a": "Deny the motion, because the women are required parties to the lawsuit.",
+        "b": "Deny the motion, because the women's claims arise out of the same series of occurrences and share common questions of law and fact.",
+        "c": "Grant the motion, because the women requested different relief.",
+        "d": "Grant the motion, because trying both women's claims together would prejudice the employer."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0054.png"
+    },
+    {
+      "index": 55,
+      "question": "A plastic surgeon left her business partner to open her own plastic surgery clinic in a neighboring state. The business partner brought a diversity action against the plastic surgeon in federal court for violating a noncompete clause in the partnership agreement. The business partner properly filed an ex parte application for a temporary restraining order (TRO) that would prohibit the plastic surgeon from operating her new clinic. After a hearing at which only the business partner was present, the court properly issued the ex parte TRO, finding that the partner would be immediately and irreparably harmed by the loss of goodwill caused by the plastic surgeon's violation of the noncompete clause. The TRO was served on the plastic surgeon the next day.\nOne week later, the business partner moved to convert the TRO into a preliminary injunction. He requested that the court grant the motion immediately without providing notice to the plastic surgeon.\nWill the court grant the business partner's request?",
+      "choices": {
+        "a": "No, because notice must be given to an opposing party before a court may issue a preliminary injunction.",
+        "b": "No, because the partner's attorney failed to certify in writing why the plastic surgeon need not be notified.",
+        "c": "Yes, because the ex parte TRO had expired and was no longer in effect.",
+        "d": "Yes, because the partner will suffer immediate and irreparable harm if the request is not granted."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0055.png"
+    },
+    {
+      "index": 56,
+      "question": "A software developer left her company to open her own software firm. The developer and her new employees immediately began contacting the company's clients in violation of her noncompete agreement with the company.\nThe company filed a diversity action in federal court against the developer. The complaint requested damages and preliminary and permanent injunctions. After a hearing at which both parties were present, the court granted a preliminary injunction that prohibited \"[the developer] and her employees from contacting any of [the company's] clients pending the outcome of the case.\" The court also explained why the injunction was issued. The developer and her employees received copies of the preliminary injunction the following day.\nAre the employees bound by the preliminary injunction?",
+      "choices": {
+        "a": "No, because the employees are not parties to the lawsuit.",
+        "b": "No, because the preliminary injunction violates due process.",
+        "c": "Yes, because the employees received actual notice of the preliminary injunction.",
+        "d": "Yes, because the preliminary injunction specifically mentioned the employees."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0056.png"
+    },
+    {
+      "index": 57,
+      "question": "A company incorporated in State A and with its principal place of business in State B sued its former employee from State C in a federal district court in State A for allegedly embezzling $80,000. During a deposition of the employee in State B, the company's attorney asked the employee whether he stole the money. The employee's attorney objected and directed the employee not to answer to preserve his Fifth Amendment privilege against self-incrimination. The company's attorney thinks this privilege does not apply because she believes that the statute of limitations has run on any criminal proceedings that could be brought against the employee for his conduct.\nHow should the company's attorney proceed?",
+      "choices": {
+        "a": "Adjourn the deposition and file a motion with the federal court in State B to compel the employee to answer.",
+        "b": "Adjourn the deposition and file a motion with the federal court in State C to compel the employee to answer.",
+        "c": "Proceed with the deposition and then file a motion with the federal court in State A to compel the employee to answer.",
+        "d": "Proceed with the deposition and then file a motion with the federal court in State B to compel the employee to answer."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0057.png"
+    },
+    {
+      "index": 58,
+      "question": "A doctor from State B performed surgery on a man from State A and implanted a device in the man's lower spine. The device was manufactured by a corporation incorporated and with its principal place of business in State C. Following the surgery, the device fell apart inside the man's back and caused him to suffer severe injuries.\nThe man sued the corporation in a federal district court in State B for $250,000. The corporation filed a pre-answer motion to dismiss the man's suit for failing to join the doctor as a required party. The corporation claimed that the doctor improperly installed the device and, therefore, is jointly and severally liable for the man's injuries.\nWill the court likely grant the corporation's motion to dismiss?",
+      "choices": {
+        "a": "No, because the corporation must file an answer before it can make this motion.",
+        "b": "No, because the doctor is not a required party to the suit.",
+        "c": "Yes, because it is inequitable to proceed without the doctor.",
+        "d": "Yes, because joining the doctor to the suit is not feasible."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0058.png"
+    },
+    {
+      "index": 59,
+      "question": "A mail clerk domiciled in State A slipped and fell on ice that had formed near the loading dock of the building in State B where the clerk's State B employer leased space for its headquarters. The building was owned and operated by a State C corporation. As a result of the fall, the clerk was injured and the employer's expensive computer he was carrying was badly damaged.\nThe clerk sued the building owner for negligence in a federal district court in State B, seeking $100,000 in personal-injury damages. The employer has filed a timely motion to intervene, asserting an $80,000 negligence claim against the building owner for the damage to its computer.\nIs the court likely to grant the employer's motion to intervene?",
+      "choices": {
+        "a": "No, because although the employer has an interest in the clerk's action, that interest is not likely to be impaired in the employer's absence.",
+        "b": "No, because the clerk chose not to join the employer as a co-plaintiff in his action.",
+        "c": "Yes, because the employer is an indispensable party.",
+        "d": "Yes, because the employer's claim shares common questions of law and fact with the clerk's action."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0059.png"
+    },
+    {
+      "index": 60,
+      "question": "Hundreds of same-sex couples domiciled across the country initiated a class action in a federal district court against a health insurance company. The suit alleged that the insurance company violated a federal statute by charging the couples higher insurance premiums solely because they were in a same-sex relationship. The suit sought an injunction to stop the insurance company's discriminatory premiums as well as individualized monetary damages of $5,000 to $20,000 for each couple.\nThe district court entered an order certifying the suit as a \"final equitable relief\" class action after it determined that injunctive relief was appropriate because the insurance company's actions applied generally to the whole class. The insurance company immediately appealed the certification order.\nIs the federal appellate court likely to overturn the certification order?",
+      "choices": {
+        "a": "No, because subject-matter jurisdiction exists over the class action.",
+        "b": "No, because the district court has not entered a final judgment.",
+        "c": "Yes, because the amount-in-controversy requirement was not satisfied.",
+        "d": "Yes, because the class action seeks individualized monetary damages."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0060.png"
+    },
+    {
+      "index": 61,
+      "question": "The attorney for a plaintiff in an action filed in federal district court served the defendant with the summons, the complaint, and 25 interrogatories asking questions about the defendant's contentions in the case. The interrogatories stated that they were to be answered within 30 days after service.\nThe defendant is likely to succeed in obtaining a protective order on which of the following grounds?",
+      "choices": {
+        "a": "Interrogatories are only proper to discover facts, not contentions.",
+        "b": "Interrogatories may not be served until an answer to the complaint is filed.",
+        "c": "Interrogatories may not be served until the parties have conferred to arrange for initial disclosures and prepare a discovery plan.",
+        "d": "The interrogatories exceed the number permitted without permission from the court or an agreement between the parties."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0061.png"
+    },
+    {
+      "index": 62,
+      "question": "A plaintiff filed an action in federal district court and served the defendant with the summons and complaint. The defendant moved to dismiss the complaint for failure to state a claim.\nInstead of opposing the motion to dismiss, the plaintiff voluntarily dismissed the action and filed a new action alleging the same claims and addressing the pleading defects outlined in the defendant's motion to dismiss. The defendant moved to dismiss the second action, and the plaintiff voluntarily dismissed the second action instead of filing opposition papers.\nThe plaintiff has filed a third action asserting the same claims and new allegations that are responsive to the defendant's second motion. The defendant has moved to dismiss the third action; the plaintiff opposes the motion.\nIs the court likely to grant the defendant's motion?",
+      "choices": {
+        "a": "No, because the plaintiff has promptly and diligently attempted to address the pleading defects.",
+        "b": "No, because the plaintiff voluntarily dismissed each previous action before the defendant filed an answer or moved for summary judgment.",
+        "c": "Yes, because the plaintiff failed to seek a court order dismissing the second action.",
+        "d": "Yes, because the plaintiff's previously dismissed actions asserting the same claims operate as an adjudication on the merits."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0062.png"
+    },
+    {
+      "index": 63,
+      "question": "The owner of a food processing plant sued a food preservative company in federal court for federal antitrust violations. During discovery, the owner's lawyer served the company with notice of a written deposition of the company. The notice stated the company's name and address and provided the name and address of the officer before whom the deposition would be taken.\nThe company refused to attend the written deposition. The owner moved for sanctions.\nThe company is likely to succeed in defeating the owner's motion on which of the following grounds?",
+      "choices": {
+        "a": "The owner failed to designate an individual from the company to answer the questions.",
+        "b": "The owner failed to include a subpoena with the notice.",
+        "c": "The owner failed to obtain the court's leave before serving the company with the notice.",
+        "d": "The owner failed to reasonably describe the matters to be examined."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0063.png"
+    },
+    {
+      "index": 64,
+      "question": "A construction company bought lumber from an out-of-state supplier. The lumber was supposed to be pressure-treated, which renders the lumber resistant to rot and termites. The construction company used the lumber to build its headquarters, and after one year, the lumber began to show signs of rot and termites.\nThe construction company sued the supplier for breach of contract in a federal district court.\nWhich method of discovery should the construction company use to most efficiently identify the supplier's employees who might have information about how the lumber was treated?",
+      "choices": {
+        "a": "Interrogatories.",
+        "b": "Oral deposition.",
+        "c": "Request for production of documents.",
+        "d": "Subpoena."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0064.png"
+    },
+    {
+      "index": 65,
+      "question": "A man from State A and a woman from State B started a fashion business together in State A. After a year of working together, the man and the woman began to have different opinions on how the business should operate. The woman was also concerned that the man used dress designs from his previous employer, thereby risking a lawsuit from the former employer. They tried to figure out a solution to wind down the business without involving lawyers but failed.\nThe woman sued the man in federal district court, seeking $2 million for breach of contract. During discovery, the woman served a subpoena on the man's former employer seeking copies of the employer's dress designs. The employer is worried that disclosing these designs will reveal his trade secrets.\nWhat is the most efficient action the employer can take to prevent disclosure of his trade secrets?",
+      "choices": {
+        "a": "Claim privilege over the dress designs.",
+        "b": "File a motion to quash the subpoena.",
+        "c": "Intervene in the case.",
+        "d": "Request a temporary restraining order."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0065.png"
+    },
+    {
+      "index": 66,
+      "question": "A woman bought a piece of farmland in the state where she resides. Three years after this purchase, a man informed her that he held a mortgage against the farmland and that she must pay him.\nThe woman then filed a quiet title action in an appropriate federal court in the state where the farmland is located. The man was properly served with the complaint and summons.\nThe day after receiving the complaint and summons, the man called the woman and informed her that he co-owns the mortgage on the farmland with his brother. Both the man and his brother live in another state.\nWhat is the easiest action the woman can take to join the man's brother in the suit?",
+      "choices": {
+        "a": "File a motion for compulsory joinder.",
+        "b": "Immediately file and serve an amended complaint listing both siblings as defendants.",
+        "c": "Move the court for permission to join the other sibling.",
+        "d": "Voluntarily dismiss the case and refile a complaint naming both siblings as defendants."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0066.png"
+    },
+    {
+      "index": 67,
+      "question": "A plaintiff brought a diversity action against a defendant in federal court. During discovery, the plaintiff orally deposed the defendant. Upon completion of that deposition, the plaintiff sought to depose the defendant again, which would be the tenth deposition taken by the plaintiff in the case.\nThe plaintiff served the defendant with written notice stating the time and place of the deposition. Upon receipt of the notice, the defendant's attorney called the plaintiff's attorney to tell him that the defendant would not appear at the deposition. The plaintiff's attorney demanded that the defendant appear as noticed. Neither the defendant nor the defendant's attorney appeared at the deposition. The plaintiff's attorney has moved for sanctions.\nIs the court likely to impose sanctions?",
+      "choices": {
+        "a": "No, because the defendant had already been deposed in the action.",
+        "b": "No, because the plaintiff failed to serve a subpoena to compel the defendant's attendance.",
+        "c": "Yes, because the defendant received written notice of the deposition.",
+        "d": "Yes, because the plaintiff is entitled to take up to 10 depositions."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0067.png"
+    },
+    {
+      "index": 68,
+      "question": "A landowner sued a company in a federal district court in State A for violating a federal environmental statute. The landowner alleged that the company dumped chemicals into a stream, which polluted the groundwater near his home. The company denied the landowner's allegation and sought to prove that its waste system prevents chemicals from being dumped into the stream. The company's attorney signed and issued a subpoena that required the engineer who designed the waste system to testify at trial. The engineer was personally served with the subpoena, which contained the contents required by the federal rules. The courthouse where the engineer will testify is 81 miles away from where she resides.\nThe engineer has asked her attorney's advice as to whether she must comply with the subpoena and testify at trial.\nWhat advice should the engineer's attorney give?",
+      "choices": {
+        "a": "The engineer must comply with the subpoena if the company's attorney is authorized to practice in State A's federal court.",
+        "b": "The engineer must comply with the subpoena if the landowner signed it.",
+        "c": "The engineer need not comply with the subpoena because she is not a party to the suit.",
+        "d": "The engineer need not comply with the subpoena because the courthouse is located more than 75 miles from where she resides."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0068.png"
+    },
+    {
+      "index": 69,
+      "question": "An entrepreneur from State A sued a company incorporated and headquartered in State B in federal court in State B to recover $100,000 in damages. The entrepreneur alleged that the company breached their contract by disclosing confidential information supplied by the entrepreneur's consultant, a U.S. citizen who resides in a foreign country. The company denies receiving this information from the consultant.\nThe entrepreneur asked the consultant to voluntarily attend a deposition or submit an affidavit, but he refused. The entrepreneur then moved for, and the court issued a subpoena requiring, the consultant's appearance at a deposition in State B. The consultant was served with the subpoena by mail in accordance with an international agreement signed by the foreign country. The subpoena contained the contents required by federal rules and stated that the consultant must pay his own expenses to attend the deposition.\nWhat is the consultant's best argument that he does not need to comply with the subpoena?",
+      "choices": {
+        "a": "The consultant's testimony is unnecessary in the interest of justice.",
+        "b": "The court lacks authority to issue a subpoena for a person in a foreign country.",
+        "c": "The entrepreneur failed to pay the consultant's travel and attendance expenses.",
+        "d": "The entrepreneur used an improper method to serve the subpoena."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0069.png"
+    },
+    {
+      "index": 70,
+      "question": "An injured pedestrian filed a diversity action in federal court against a truck driver. The truck driver filed an answer in which he denied liability and asserted an affirmative defense that the pedestrian was contributorily negligent. The truck driver did not assert any counterclaims against the pedestrian in his answer. Thirty days later, the pedestrian seeks to file a pleading to respond to the allegations in the truck driver's answer. The court has not yet issued any orders in the case.\nMay the pedestrian file a response?",
+      "choices": {
+        "a": "No, because the pedestrian did not file a reply within 14 days after the answer was filed.",
+        "b": "No, because the truck driver did not assert a counterclaim and the court did not order a reply.",
+        "c": "Yes, because due process allows the pedestrian to file a reply.",
+        "d": "Yes, because the truck driver asserted an affirmative defense."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0070.png"
+    },
+    {
+      "index": 71,
+      "question": "A distributor brought a diversity action against a manufacturer in federal district court for breach of contract. The district court ordered the parties' attorneys to attend a pretrial conference to obtain admissions and stipulations about the facts in the case. When the conference started, the manufacturer's attorney announced that his client had not authorized him to make admissions or stipulations. The district court canceled the conference as a result. This was the third time the court had to cancel a pretrial conference due to the attorney's failure to obtain authorization to make admissions or stipulations on behalf of his client.\nAfter the conference, the district court issued an order that struck one of the manufacturer's affirmative defenses and required the manufacturer to pay the attorney's fees incurred by the distributor for attending the pretrial conference. At the conclusion of trial, the manufacturer appealed the order.\nIs the appellate court likely to reverse the district court's order?",
+      "choices": {
+        "a": "No, because the district court has absolute discretion to issue sanctions.",
+        "b": "No, because the order was reasonable under the circumstances.",
+        "c": "Yes, because the district court is limited to requiring the manufacturer to pay the distributor's attorney's fees.",
+        "d": "Yes, because the manufacturer did not authorize the attorney to make admissions or stipulations."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0071.png"
+    },
+    {
+      "index": 72,
+      "question": "A miner sued a coal company in a federal district court to recover damages for severe injuries he sustained during a mining explosion. Sixty days prior to trial, the company's attorney interviewed a forklift operator who witnessed the incident. The operator stated that he saw the miner violate several safety protocols leading up to the explosion.\nAt trial, the company sought to have the forklift operator testify to support its contributory negligence defense. The miner's attorney objected and moved for sanctions on the ground that the company had failed to disclose the operator's identity prior to trial. The company's attorney stated that she did not disclose the operator's identity because the miner's attorney never made a formal request.\nThe district court then sanctioned the company by (1) prohibiting the operator from testifying, (2) informing the jury of the company's nondisclosure, and (3) ordering the company to pay the miner's reasonable expenses. After the jury returned a verdict for the miner, the company appealed the sanctions.\nHow should the appellate court rule?",
+      "choices": {
+        "a": "Affirm all the sanctions.",
+        "b": "Affirm the sanction ordering the company to pay the miner's reasonable expenses but reverse the other sanctions.",
+        "c": "Affirm the sanction prohibiting the operator from testifying at trial but reverse the other sanctions.",
+        "d": "Reverse all the sanctions."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0072.png"
+    },
+    {
+      "index": 73,
+      "question": "A dispute arose between a woman and a man over who was entitled to insurance policy proceeds held by a company incorporated and headquartered in the northern district of State A. The woman resides in the southern district of State A, and the man resides in the eastern district of State B.\nThe company filed a statutory interpleader action against the woman and the man in a federal court in the eastern district of State B. The company posted a bond of $50,000, which represents the amount of the disputed insurance policy proceeds. The woman and the man were served with process at their respective homes. The woman has moved to dismiss the action, claiming that the federal court has no subject-matter jurisdiction over the claim, lacks personal jurisdiction over her, and is not a proper venue.\nIs the court likely to grant the woman's motion?",
+      "choices": {
+        "a": "No.",
+        "b": "Yes, because the court lacks personal jurisdiction over her.",
+        "c": "Yes, because the parties lack complete diversity of citizenship.",
+        "d": "Yes, because venue is improper."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0073.png"
+    },
+    {
+      "index": 74,
+      "question": "An employee, a citizen of State A, has sued his former employer, a corporation incorporated and with its headquarters in State B, in a federal district court in State A. The employee claims that the employer fired the employee because of his disability in violation of federal law. During discovery, the employee learned that the employer had previously been investigated for discriminatory practices. After the employer was served with process, the employee served the employer with a request to produce documents related to the discrimination investigation.\nThe employer failed to produce the requested documents at the initial planning conference. Sixty days later, the employer still had not responded or produced the documents. Without attempting to confer with the employer's attorney, the employee filed a motion in the federal court in State A to compel the employer to produce the requested documents. The employer was properly served with the motion.\nThe employer will likely succeed in defending against the motion to compel on which of the following grounds?",
+      "choices": {
+        "a": "The employee did not serve the employer with a subpoena when he requested the documents' production.",
+        "b": "The employee failed to include a certification of good-faith conferral with the motion.",
+        "c": "The employee should have filed the motion in State B, where the employer is incorporated and headquartered.",
+        "d": "The employer still has time to respond to the discovery request."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0074.png"
+    },
+    {
+      "index": 75,
+      "question": "A musician sued a political candidate in a federal court for federal copyright infringement. The complaint requested damages and a preliminary injunction to stop the candidate from using the musician's songs at his political rallies. Notice of a hearing on the preliminary injunction was provided to both parties. After the hearing was conducted, the judge granted the musician's request for a preliminary injunction and stated the reasons for doing so. In addition, the injunction reads as follows:\n\"The political candidate and any person working or volunteering to put on a rally for the candidate may not play any of the musician's songs. The political campaign is directed to distribute this injunction to all persons, including workers, independent contractors, and volunteers, who are involved in the candidate's rallies. A fine of $1,000 per violation will be assessed against anyone who fails to adhere to this injunction.\"\nAt the candidate's next rally, a volunteer who had received a copy of the preliminary injunction nonetheless played the musician's song.\nIs the volunteer subject to the monetary fine for violating the preliminary injunction?",
+      "choices": {
+        "a": "No, because the volunteer did not receive notice of the hearing.",
+        "b": "No, because the volunteer is not a party in the musician's suit against the candidate.",
+        "c": "Yes, because the injunction is in the best interests of the public.",
+        "d": "Yes, because the injunction reasonably described the prohibited acts."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0075.png"
+    },
+    {
+      "index": 76,
+      "question": "A corporation brought a patent infringement action in federal court against a manufacturer. The corporation alleged that the manufacturer infringed on the corporation's patent for a shoe design. During discovery, the corporation sent the manufacturer a request to \"produce all electronic documents relating to the production of the shoe.\" The corporation did not specify the form in which the documents were to be produced.\nThe manufacturer produced one year's worth of electronic documents relating to the production of the shoe, but it argued that it could not produce any documents beyond this time because they had been deleted from its server. The corporation filed a motion to compel the production of the documents. In response to the motion, the manufacturer established that recovering the electronic documents would be unduly burdensome and costly because they could be recovered only if the manufacturer hired an expensive data-recovery firm.\nHow should the court rule on the corporation's motion to compel?",
+      "choices": {
+        "a": "It should deny the motion, because the corporation failed to specify the form in which the electronic documents should be produced.",
+        "b": "It should deny the motion, if the manufacturer provides a meritorious defense to the claim.",
+        "c": "It should grant the motion, if the corporation demonstrates that it will prevail on the merits of the case.",
+        "d": "It should grant the motion, if the corporation shows good cause for the production."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0076.png"
+    },
+    {
+      "index": 77,
+      "question": "A distributor brought a diversity action against a manufacturer in a federal court for breach of contract. During discovery, the distributor's attorney signed and served a request that the manufacturer produce every contract that the manufacturer entered during the past 50 years. The manufacturer's attorney objected in writing to the request, arguing that the request was unduly burdensome and inconsistent with the relevant case law.\nThe distributor's attorney filed a motion to compel the manufacturer to produce the requested documents. After a hearing on the motion, the trial judge concluded on the record that she agreed with the manufacturer's objections. The judge then ordered the distributor to pay the reasonable expenses incurred by the manufacturer related to the request and hearing.\nAt the conclusion of trial, the jury returned a verdict for the distributor, and the judge entered judgment on the verdict. The distributor has appealed the award of sanctions.\nIs the appellate court likely to overturn the sanctions?",
+      "choices": {
+        "a": "No.",
+        "b": "Yes, because the jury entered a verdict in favor of the distributor.",
+        "c": "Yes, because the manufacturer did not request the sanctions.",
+        "d": "Yes, because the trial judge should have issued the sanctions against the distributor's attorney, not against the distributor directly."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0077.png"
+    },
+    {
+      "index": 78,
+      "question": "A homeowner from State A sued a mortgage lender in a federal court located in State A. The mortgage lender is incorporated and maintains its principal place of business in State B. The homeowner's complaint alleged that the lender charged her an interest rate on her home loan that exceeded the maximum rate allowed under a federal statute. The homeowner requested $250,000 in damages and a release from the mortgage.\nThe mortgage lender filed a pre-answer motion to dismiss the homeowner's suit for failure to state a claim, which the court denied. The lender then filed an answer and moved to dismiss the suit for failure to join a required party. The lender claims that the homeowner's husband must be joined in the suit because he cosigned the mortgage and his name is on the deed to the home. The homeowner and her husband have been separated for five years, and he permanently resides in State B.\nShould the court grant the mortgage lender's motion to dismiss for failure to join a required party?",
+      "choices": {
+        "a": "No, because although the husband is a required party, joining him to the suit is feasible.",
+        "b": "No, because the lender waived this defense by failing to assert it in the pre-answer motion.",
+        "c": "Yes, because joining the husband to the suit would destroy proper venue.",
+        "d": "Yes, because joining the husband to the suit would destroy subject-matter jurisdiction."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0078.png"
+    },
+    {
+      "index": 79,
+      "question": "A politician from State A sued a newspaper located in State B in a federal court in State A for $200,000. The politician claimed that the newspaper invaded his privacy by publishing his federal income tax records.\nDuring a deposition in State B, the politician's attorney asked the reporter who wrote the article to reveal the name of the source who supplied the records. The reporter, who resides in State A, refused to answer the question to preserve an alleged privilege. At the conclusion of the deposition, the politician's attorney filed a motion in the federal court in State B to compel the reporter to answer the question. After a hearing, the court held that no privilege existed and ordered the reporter to reveal the source. The reporter refused to comply with the court order. The court held the reporter in contempt and sentenced him to jail until he reveals the source.\nWas the federal court's action proper?",
+      "choices": {
+        "a": "No, because a federal court cannot sentence a person to jail for violating a court order in a civil case.",
+        "b": "No, because only a federal court in State A may order the reporter to reveal his source and impose sanctions.",
+        "c": "Yes, because a deponent must answer every question at a deposition.",
+        "d": "Yes, because the reporter failed to comply with the court's order."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0079.png"
+    },
+    {
+      "index": 80,
+      "question": "A plaintiff from State A sued a defendant from State B in a federal court in State B. The plaintiff claims that the defendant breached a provision of their contract, which resulted in $100,000 in damages. The defendant filed and served an answer denying liability.\nThree months later, the plaintiff stopped performing his duties under the contract. The defendant would now like to assert a claim against the plaintiff for breach of contract for $80,000.\nWhat is the best way for the defendant to pursue her claim?",
+      "choices": {
+        "a": "File a new suit in the same court.",
+        "b": "File a reply.",
+        "c": "File an amended answer as a matter of course.",
+        "d": "Move for leave to file a supplemental answer."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0080.png"
+    },
+    {
+      "index": 81,
+      "question": "An employee brought a federal diversity action against his former employer, a chemical manufacturing company, seeking damages for injuries sustained on the job. During discovery, the employee's attorney served the company with notice of a written deposition she intended to conduct of one of the company's former managers. The employee's attorney attached the questions she intended to have the court officer ask the manager at the deposition. Eight days later, the company sent the manager and the employee the questions it wanted the officer to ask the manager on cross-examination. The employee's attorney served written objections to the form of the cross-examination questions four days after they were served. Twelve days later, the employee's attorney served the questions she wanted the officer to ask on redirect. Six days after service of the redirect questions, the company served its objections to the redirect questions and the questions it wanted the officer to ask on recross-examination.\nWhich of the following events was untimely?",
+      "choices": {
+        "a": "Service of the cross-examination questions.",
+        "b": "Service of the objections to the form of the cross-examination questions.",
+        "c": "Service of the redirect-examination questions.",
+        "d": "Service of the recross-examination questions."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0081.png"
+    },
+    {
+      "index": 82,
+      "question": "A patient suffered severe complications from a surgery on his leg. The patient hired an attorney to file a negligence lawsuit in federal court against the surgeon who performed the operation.\nWhich of the following does the patient's attorney NOT need to include in the complaint?",
+      "choices": {
+        "a": "A demand for the relief the patient seeks.",
+        "b": "A detailed statement of the claim showing that the patient is entitled to relief.",
+        "c": "A short and plain statement showing the grounds for the court's subject-matter jurisdiction.",
+        "d": "The attorney's address, phone number, and email address."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0082.png"
+    },
+    {
+      "index": 83,
+      "question": "A pedestrian was struck in a crosswalk by a truck and severely injured. The pedestrian brought a federal diversity action against the driver of the truck, alleging the following in the complaint: \"On January 15, 2019, on Broad Street in City A, located in State B, the defendant negligently drove a motor vehicle, striking the plaintiff. As a result, the plaintiff was physically injured, lost wages or income, suffered physical and mental pain, and incurred medical expenses of $100,000.\"\nThe truck driver has moved to dismiss the action for failure to state a claim, arguing that the complaint lacks sufficient detail.\nIs the court likely to grant the motion?",
+      "choices": {
+        "a": "No, because the complaint alleges facts showing plausible entitlement to relief.",
+        "b": "No, because the pedestrian has not had an opportunity to conduct discovery.",
+        "c": "Yes, because the complaint fails to allege facts showing probable entitlement to relief.",
+        "d": "Yes, because the complaint uses the term \"negligently,\" which is a legal conclusion."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0083.png"
+    },
+    {
+      "index": 84,
+      "question": "A woman died with a life insurance policy worth $50,000. The woman had named \"my son\" as the sole beneficiary of the policy proceeds. The woman's three sons, two of whom are domiciled in State A and one of whom is domiciled in State B, individually filed claims with the insurance company to recover the proceeds of the woman's policy. The insurance company, which is incorporated and has its principal place of business in State B, brought a statutory-interpleader action in federal court against all three sons. The sons have moved to dismiss for lack of subject-matter jurisdiction.\nWill the court likely grant the sons' motion to dismiss?",
+      "choices": {
+        "a": "No, because federal courts have exclusive jurisdiction over actions involving life insurance policies.",
+        "b": "No, because there is minimal diversity between the sons and the amount-in-controversy requirement is satisfied.",
+        "c": "Yes, because the amount in controversy does not exceed $75,000.",
+        "d": "Yes, because there is not complete diversity between the insurance company and the sons."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0084.png"
+    },
+    {
+      "index": 85,
+      "question": "An engaged couple broke up one month before their planned wedding. Upon the breakup, the man asked the woman to reimburse him for the costs associated with the wedding and to return the engagement ring that had belonged to his great-grandmother. The woman, who had moved to another state after the breakup, refused to return the ring.\nThe man sued the woman in a federal district court to recover the expenses and the engagement ring, which totaled over $100,000. He seeks to possess the ring pending the outcome of the litigation on the merits.\nWhich of the following provisional remedies would most likely accomplish the man's goal?",
+      "choices": {
+        "a": "Garnishment.",
+        "b": "Receivership.",
+        "c": "Replevin.",
+        "d": "Temporary restraining order."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0085.png"
+    },
+    {
+      "index": 86,
+      "question": "A homeowners' association sued a federal agency in a federal district court to enjoin the agency from issuing a license to a fracking company to drill near the homeowners' association's neighborhood. An environmental group that owns a park in the neighborhood seeks to join and fully participate in that case to obtain the same remedy as the homeowners' association.\nWhat action should the environmental group take to achieve its goal?",
+      "choices": {
+        "a": "File a motion to intervene as a matter of right.",
+        "b": "File a motion to join as an indispensable party.",
+        "c": "File a motion to permissibly intervene.",
+        "d": "File an amicus brief."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0086.png"
+    },
+    {
+      "index": 87,
+      "question": "An electrician and a plumber filed separate diversity actions against a construction company in which they both claim that the company failed to pay them the amount specified in their contracts. The company defended on the ground that the electrician and plumber failed to complete their work on time. The electrician served a request for admission on the company, requesting that the company admit that it repeatedly denied contractors such as the electrician access to the construction site. The company did not respond to the request.\nForty-five days after the electrician's request was served, the plumber asked the court during a pretrial conference to enter an order conclusively establishing the fact that the company repeatedly denied contractors access to the construction site. The plumber relied on the company's failure to timely respond to the electrician's request for admission.\nIs the court likely to enter the order?",
+      "choices": {
+        "a": "No, because the construction company has sixty days to respond to the electrician's request for admission.",
+        "b": "No, because the plumber cannot rely on the construction company's failure to respond to the request for admission in the electrician's action.",
+        "c": "Yes, because the construction company's failure to respond to the electrician's request for admission within 30 days after service is treated as an admission.",
+        "d": "Yes, because the court has the authority to enter orders at pretrial conferences that will expedite litigation."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0087.png"
+    },
+    {
+      "index": 88,
+      "question": "A sailor filed a diversity action against a defendant in a federal district court to recover damages for injuries sustained in a boating accident. The district court ordered the attorneys for both parties to attend the first pretrial conference, but the sailor's attorney failed to appear. This was the first and only hearing that the attorney failed to attend. As a result, the district court entered an order dismissing the sailor's action with prejudice. The court also ordered the sailor to pay the expenses incurred by the defendant for attending the conference. The sailor immediately appealed.\nWhat is the sailor's best argument for persuading the appellate court to reverse the dismissal?",
+      "choices": {
+        "a": "The dismissal was unreasonable because the attorney had not shown a pattern of noncompliance or disobedience.",
+        "b": "The dismissal was unwarranted because the sailor was also ordered to pay the defendant's expenses.",
+        "c": "The district court committed clear error when it dismissed the case before trial.",
+        "d": "The district court may sanction a party only when it fails to obey a pretrial order."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0088.png"
+    },
+    {
+      "index": 89,
+      "question": "A consumer filed a class action in federal court on behalf of millions of users of a social media site for $100 million, claiming that the corporation that owns the site shared the users' data without their consent. The court certified the class action after determining that common questions of law and fact predominated and that the class action was the best method to fairly and efficiently adjudicate the dispute. Notice was sent by email to users of the social media site, informing them of their right to opt out of the class action. However, due to a technical error, a certain group of users was never sent the notice. The class eventually reached a settlement with the corporation, and the court entered an order dismissing the class action with prejudice.\nTwo months later, the group of users who never received notice of the first class action filed an identical class action against the same corporation in federal court. The corporation moved to dismiss.\nHow will the court likely rule on the corporation's motion?",
+      "choices": {
+        "a": "Deny the motion, because email is not an appropriate means to send notice of a class action.",
+        "b": "Deny the motion, because the group had no opportunity to opt out of the first class action.",
+        "c": "Grant the motion, because notice of the first class action was appropriately provided under the circumstances.",
+        "d": "Grant the motion, because the first class action was dismissed with prejudice."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0089.png"
+    },
+    {
+      "index": 90,
+      "question": "A shopper brought a federal diversity action in federal court against a grocery store for negligence based on a slip and fall on the grocery store's premises. The shopper's complaint alleged that the grocery store negligently failed to clean a liquid spill on the floor—a spill that its employees were aware of. The failure to clean the spill caused the shopper to slip and fall, resulting in permanent injuries to her leg. The grocery store's answer contained a general denial, stating that it denied every allegation in the complaint.\nAfter the shopper received the grocery store's answer, she immediately filed a motion for summary judgment. In support of her motion, the shopper submitted three affidavits—two from other shoppers and one from a former employee of the store, each fully supporting the shopper's version of the event. The grocery store did not submit any affidavits or other evidence in opposition to the motion.\nShould the court grant the shopper's motion for summary judgment?",
+      "choices": {
+        "a": "Yes, because the grocery store failed to submit evidence showing a genuine issue of fact for trial.",
+        "b": "Yes, because the evidence, when viewed in the light most favorable to the shopper, demonstrates the lack of a genuine dispute.",
+        "c": "No, because the general denial in the grocery store's answer is sufficient to demonstrate a genuine dispute for trial.",
+        "d": "No, because the shopper failed to meet the burden of persuasion."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0090.png"
+    },
+    {
+      "index": 91,
+      "question": "A franchisee sued a franchisor in a federal court in State A for breach of contract. The franchisee is domiciled in State B, and the franchisor's headquarters and principal place of business are in State A. The franchisee's complaint included one line about subject-matter jurisdiction that stated: \"The court has subject-matter jurisdiction over this suit.\" In response, the franchisor filed a motion to dismiss for lack of subject-matter jurisdiction.\nUpon reviewing the motion and the complaint, the judge issued an order to show cause to the franchisee's attorney to explain why the attorney should not be sanctioned for failing to adequately plead subject-matter jurisdiction. At the show-cause hearing, the franchisee's attorney arrived with an amended complaint to substitute for the original complaint. The judge accepted the amended complaint and denied the franchisor's motion to dismiss. The judge also imposed sanctions against the franchisee's attorney in the amount of $2,000, payable to the court.\nThe case proceeded, the jury returned a verdict in favor of the franchisee, and the judge issued a final judgment consistent with the verdict.\nThe franchisee's attorney then filed an appeal related to the court's imposition of sanctions.\nWhat is the appellate court's likely response?",
+      "choices": {
+        "a": "Affirm the order imposing sanctions.",
+        "b": "Vacate the order imposing sanctions, because the judge accepted the amended complaint.",
+        "c": "Vacate the order imposing sanctions, because the judge acted sua sponte.",
+        "d": "Vacate the order imposing sanctions, because the judge failed to allow 21 days to pass before imposing sanctions."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0091.png"
+    },
+    {
+      "index": 92,
+      "question": "An attorney representing a defendant filed an answer in which he truthfully asserted that, after a reasonable opportunity for further investigation, it was likely that the evidence would show that the statute of limitations had expired with respect to the plaintiff's claim. The defendant's attorney signed the answer and included his email address and telephone number, but he did not attach an affidavit attesting to the truthfulness of the assertions in the answer. At a pretrial conference, the defendant's attorney asserted that he now had evidence establishing that the statute of limitations had expired. In fact, the defendant's attorney knew that the evidence eliminated the statute of limitations as a defense. The plaintiff's attorney served a motion for sanctions under Rule 11 on the defendant's attorney, but she did not file the motion with the court until a month later.\nMay the court impose sanctions under Rule 11 on the defendant's attorney?",
+      "choices": {
+        "a": "No, because the defendant's attorney truthfully asserted the statute-of-limitations defense in the answer that he signed.",
+        "b": "No, because the plaintiff's attorney failed to timely file her sanctions motion with the court.",
+        "c": "Yes, because the defendant's attorney failed to attach an affidavit to the answer attesting to the truthfulness of the assertions in the answer.",
+        "d": "Yes, because the defendant's attorney presented the statute-of-limitations defense at the pretrial conference."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0092.png"
+    },
+    {
+      "index": 93,
+      "question": "A federal court in State A properly certified a class action against a company incorporated in State A for fraudulently marketing annuities to customers in violation of federal law. The certification was based on the predominance of common questions of law. The court subsequently rendered a judgment in favor of the company.\nOne member of the class who received proper notice of the action and did not elect to opt out initiated a lawsuit against the company in federal court in State B. The class member's suit seeks damages stemming from the company's fraudulent marketing of an annuity that she purchased from the company through its sales representative based in State B. The class member is domiciled in State B. The company has moved to dismiss this suit on the grounds that the class member's claim is precluded by the judgment in the class action.\nHow should the court rule?",
+      "choices": {
+        "a": "For the class member, because she did not expressly agree to be a member of the class action.",
+        "b": "For the class member, because she did not have minimum contacts with State A.",
+        "c": "For the company, because a judgment in this type of class action is enforceable against all members of the class.",
+        "d": "For the company, because the class member did not opt out of the class action."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0093.png"
+    },
+    {
+      "index": 94,
+      "question": "A motorcyclist from State A, who suffered severe injuries in an automobile collision with a driver from State B, filed a complaint against the driver in federal court. In her complaint, the motorcyclist sought to recover special damages for her medical expenses by requesting that the driver pay \"my medical expenses.\" Fifteen days after being served with process, the driver filed a motion for a more definite statement. The motion alleged that the complaint failed to state with specificity the medical expenses incurred by the motorcyclist and set forth the details that needed to be included.\nWill the driver likely succeed on his motion for a more definite statement?",
+      "choices": {
+        "a": "No, because claims for damages may be alleged generally.",
+        "b": "No, because the driver has yet to conduct discovery.",
+        "c": "No, because the driver must file an answer before he can make this motion.",
+        "d": "Yes, because the motorcyclist failed to specifically state her claim for special damages."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0094.png"
+    },
+    {
+      "index": 95,
+      "question": "In a class action lawsuit, the representative members of the certified classes reached a settlement agreement with the defendant. The court held a fairness hearing on the proposed settlement at which a member of one of the certified classes who was not a named representative of the class voiced objections. The court, finding that the settlement was adequate and fair, approved the settlement.\nCan the objecting class member appeal the court's approval of the settlement?",
+      "choices": {
+        "a": "No, because the objecting class member was not a named representative of the class.",
+        "b": "No, because the objecting class member was only permitted to voice his objections at the fairness hearing.",
+        "c": "Yes, because any member of a class that has been certified has the rights of a party during the litigation of the class action lawsuit.",
+        "d": "Yes, because the representative members of the class no longer represent the objecting member's interests."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0095.png"
+    },
+    {
+      "index": 96,
+      "question": "A plaintiff sued a defendant in a federal district court for negligently causing an accident in which the plaintiff suffered severe injuries. The defendant answered the complaint and denied liability.\nThe plaintiff served a request for admission on the defendant. The plaintiff requested that the defendant admit that the defendant failed to stop at the intersection where the collision occurred. The defendant did not respond to the request. At the final pretrial conference two months later, the plaintiff claims that the defendant's failure to stop at the intersection should be deemed conclusively established at trial.\nIs the plaintiff correct?",
+      "choices": {
+        "a": "No, because the defendant denied liability in his answer to the complaint.",
+        "b": "No, because the defendant did not admit that he failed to stop at the intersection.",
+        "c": "Yes, because the defendant failed to respond to the request for admission.",
+        "d": "Yes, but only if the plaintiff demonstrates by a preponderance of the evidence that the defendant failed to stop at the intersection."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0096.png"
+    },
+    {
+      "index": 97,
+      "question": "An employer believed that a former employee had disclosed the employer's trade secrets. As a result, the employer sued the employee in federal court for infringement of trade secrets. The employer sought to conduct an oral deposition of the employee. The employer's attorney sent the employee's attorney written notice of the deposition. On the day of the deposition, the employee and the employee's attorney arrived at the designated location, but the employer and the employer's attorney failed to attend.\nWhat should the federal court do upon request?",
+      "choices": {
+        "a": "Award the employee the reasonable expenses of attending the deposition.",
+        "b": "Dismiss the employer's claim against the employee.",
+        "c": "Enter a protective order that prohibits a future deposition of the employee.",
+        "d": "Hold the employer in contempt of court."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0097.png"
+    },
+    {
+      "index": 98,
+      "question": "An individual filed an action against an acquaintance seeking damages resulting from an alleged assault and battery. Prior to trial, the acquaintance deposed a witness to the altercation. At the deposition, which was attended by the individual, the witness stated that the individual was the initial aggressor. At trial, the individual called the witness to the stand. The witness testified that the acquaintance was the initial aggressor. On cross-examination, after the witness repeated her direct testimony, the acquaintance sought to introduce the witness's deposition testimony to impeach her trial testimony that the acquaintance was the initial aggressor. The individual objected.\nShould the court allow this use of the witness's deposition testimony?",
+      "choices": {
+        "a": "No, because deposition testimony cannot be used unless the deponent is unavailable.",
+        "b": "No, because the witness is not a party in this action.",
+        "c": "Yes, because the deposition is being used to impeach the witness's trial testimony.",
+        "d": "Yes, because the deposition was conducted by the party seeking to use the witness's deposition testimony."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0098.png"
+    },
+    {
+      "index": 99,
+      "question": "An investor who purchased shares of a corporation's stock filed a class action lawsuit against the corporation seeking damages in excess of $75,000 based on violations of federal securities law. The investor sought certification of the class of investors who bought or sold shares in reliance on misrepresentations that materially affected the corporation's stock price. Among the issues that the class would have to establish in order to recover is that the misrepresentations were material. The investor showed that the issue of materiality was common to all of the investors and that this issue predominated over issues that affected individual members of the class. The investor did not present evidence that the misrepresentations were material.\nIs the court prohibited from certifying the class under Federal Rule of Civil Procedure 23(b)(3)?",
+      "choices": {
+        "a": "No, because the investor is seeking damages in excess of $75,000.",
+        "b": "No, because the investor showed that the issue of materiality was common to all of the investors and predominated over issues affecting individual members of the class.",
+        "c": "Yes, because the investor failed to establish a likelihood of success on the issue of materiality.",
+        "d": "Yes, because the investor is not also seeking injunctive or declaratory relief."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0099.png"
+    },
+    {
+      "index": 100,
+      "question": "A husband and wife from State A divorced. As part of their divorce settlement, the husband agreed to keep the wife as the sole beneficiary of his employer-sponsored life insurance policy worth $100,000. A court entered this settlement agreement as part of its divorce decree.\nThe husband remarried and moved with his second wife to State B. The husband then revised his life insurance policy to name the second wife as the sole beneficiary.\nWhen the husband later died, the first and second wife each filed claims with the life insurance company to recover the proceeds from his policy. The insurance company, which is incorporated and has its principal place of business in State B, wants to avoid paying the proceeds twice.\nIf the insurance company files suit in federal district court, what procedure should the insurance company use to avoid double liability?",
+      "choices": {
+        "a": "Class action.",
+        "b": "Intervention.",
+        "c": "Rule interpleader.",
+        "d": "Statutory interpleader."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0100.png"
+    }
+  ]
+}

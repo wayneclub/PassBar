@@ -1,0 +1,248 @@
+{
+  "meta": {
+    "source": "UWorld (captured from DOM #questionText + choices + right-content screenshot)",
+    "capturedAt": "2026-03-04T11:40:50.330Z",
+    "count": 18,
+    "screenshotCount": 18,
+    "url": "https://apps-legal.uworld.com/courseapp/legal/v57/testinterface/launchtest/14822410/405136087/2/1",
+    "examName": "Civil Procedure: Law Applied by Federal Courts",
+    "subject": "Civil Procedure",
+    "chapter": "Law Applied by Federal Courts"
+  },
+  "questions": [
+    {
+      "index": 1,
+      "question": "A man brought a diversity action against a pharmaceutical company in a federal district court in State A. In his complaint, the man alleged that the company violated State A's false advertising law. The company moved to dismiss the man's action for failure to state a claim on the ground that the false advertising law does not apply to advertising by pharmaceutical companies.\nSeveral lower state courts in State A have recognized the company's defense. The highest state court in State A has never ruled or noted in dicta whether this defense is valid. Based on the lower state courts' decisions, the federal district court ruled that the company's defense applies and granted its motion to dismiss. The man appealed.\nState A law permits a federal district court to certify an unsettled question of state substantive law to the state's highest court for clarification.\nIs the federal appellate court likely to overturn the dismissal?",
+      "choices": {
+        "a": "No, because the federal district court properly relied on the rulings issued by the state's lower courts.",
+        "b": "No, because the federal district court's decision was not clearly erroneous.",
+        "c": "Yes, because the federal district court abused its discretion when it dismissed the action.",
+        "d": "Yes, because the federal district court failed to certify the issue to the highest state court in State A."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0001.png"
+    },
+    {
+      "index": 2,
+      "question": "A plaintiff residing in State A sues her former employer for $3 million, alleging employment discrimination in violation of federal law, breach of her employment contract, and infringement of her patent. The suit is filed in a federal court located in State B, which is the employer's state of incorporation and principal place of business.\nUnder State B's choice-of-law rules, State B law applies to all state substantive law claims.\nWhat substantive law should the federal court apply to the plaintiff's various claims?",
+      "choices": {
+        "a": "The court should apply federal law to all three claims.",
+        "b": "The court should apply State B law to all three claims.",
+        "c": "The court should apply State B law to the breach of contract claim and federal law to the employment discrimination and patent claims.",
+        "d": "The court should apply State B law to the employment discrimination and patent claims and federal law to the breach of contract claim."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0002.png"
+    },
+    {
+      "index": 3,
+      "question": "While a consumer was using a product at home in State A, the product malfunctioned. The consumer sued the manufacturer of the product for $100,000 in damages in a federal district court in State A on a products liability claim. The manufacturer wants to transfer venue to a federal district court in State B, the state in which it is incorporated and has its principal place of business. The manufacturer believes that State B's products liability laws afford greater protections to defendants.\nState A's choice-of-law rules require the application of State A's products liability laws. State B's choice-of-law rules require the application of State B's products liability laws.\nIs the manufacturer likely to succeed in having State B's products liability laws apply upon transfer?",
+      "choices": {
+        "a": "No, because State A's products liability laws will apply upon transfer.",
+        "b": "No, because State B is an improper venue.",
+        "c": "Yes, because State A is an improper venue.",
+        "d": "Yes, because State B's choice-of-law rules require the application of State B's products liability laws."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0003.png"
+    },
+    {
+      "index": 4,
+      "question": "A woman brought a diversity action against her former employer in a federal district court in State A. In her complaint, the woman alleged that she contracted a lung disease at work due to her employer's negligence. The employer moved to dismiss the woman's action for failure to state a claim. The court granted the motion because State A does not recognize claims for occupational diseases. The woman appealed.\nWhile the woman's appeal was pending, the highest state court in State A issued a ruling that, for the first time, recognized claims for occupational diseases.\nIs the appellate court likely to overturn the dismissal?",
+      "choices": {
+        "a": "No, because federal law permits a dismissal for failure to state a claim.",
+        "b": "No, because State A did not recognize claims for occupational diseases at the time the action was dismissed.",
+        "c": "Yes, because the district court committed clear error when it dismissed the action.",
+        "d": "Yes, because the recent ruling by State A's highest court controls."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0004.png"
+    },
+    {
+      "index": 5,
+      "question": "A member of Congress fired a female employee because he believed that male employees are better workers. The female employee sued the member of Congress in federal court to recover monetary damages. She claimed that the termination of her employment constituted sex-based discrimination in violation of the Fifth Amendment. No federal statute authorizes an employment discrimination claim for damages against a member of Congress.\nThe member of Congress has moved to dismiss the female employee's suit for failure to state a claim upon which relief can be granted.\nIs the court likely to grant the motion?",
+      "choices": {
+        "a": "No, because the federal court may fill a gap in a federal statutory scheme.",
+        "b": "No, because the female employee's claim presents an implied cause of action.",
+        "c": "Yes, because the female employee's claim is not explicitly authorized by a federal statute.",
+        "d": "Yes, because the member of Congress filed the motion before filing his answer."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0005.png"
+    },
+    {
+      "index": 6,
+      "question": "A bakery incorporated and headquartered in State A had a dispute with a mill incorporated and headquartered in State B over the quality of the flour the mill had delivered to the bakery. The bakery sued the mill in a federal court in State A for breach of contract, seeking $100,000 in damages.\nThe contract between the bakery and the mill contained a clause designating State B courts as the sole venue for litigating disputes arising under the contract. Under precedent of the highest court in State A, forum-selection clauses are unenforceable as against public policy; under U.S. Supreme Court precedent, such clauses are enforceable.\nThe mill has moved to transfer the case to a federal court in State B, citing the forum-selection clause in the parties' contract and asserting the facts that the flour was produced in State B and that the majority of likely witnesses are in State B.\nIs the court likely to grant the mill's motion?",
+      "choices": {
+        "a": "No, because State A law treats forum-selection clauses as unenforceable.",
+        "b": "No, because the mill should have instead filed a motion to dismiss for improper venue.",
+        "c": "Yes, because federal common law makes the forum-selection clause controlling.",
+        "d": "Yes, because federal law governs transfers of venue, and it would be more convenient for the witnesses and parties to litigate the claim in State B."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0006.png"
+    },
+    {
+      "index": 7,
+      "question": "Ten months after surgery in a hospital, a patient who had suffered complications from the surgery sued the surgeon and the hospital in federal court for medical malpractice, seeking $750,000 in damages. Timely personal service was made on the surgeon and the hospital. Three months later, during discovery, the patient learned that the hospital was owned by a national health-care company and moved to amend the complaint to substitute the company for the hospital.\nThe company moved to dismiss, arguing that the forum state had enacted a one-year statute of limitations for medical malpractice actions and that the company had been served after the limitations period had expired. The company also noted that the state's highest court has interpreted the limitations statute as forbidding any relation back of amendments adding parties in medical malpractice actions. The patient argued that the Federal Rules of Civil Procedure control, and that they allow relation back under the circumstances of this case.\nWhich law governs whether relation back will be permitted under these circumstances?",
+      "choices": {
+        "a": "Federal law, because the Federal Rules of Civil Procedure govern over conflicting state rules that deny relation back.",
+        "b": "Federal law, because the state law on relation back is common law and federal courts are bound only by state statutory law.",
+        "c": "State law, because statutes of limitation are substantive and state law controls substantive matters.",
+        "d": "State law, because the Federal Rules of Civil Procedure authorize the use of state law for relation back."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0007.png"
+    },
+    {
+      "index": 8,
+      "question": "A woman domiciled in State A was using a rideshare program while traveling in State B when her driver from State B lost control of his vehicle and collided with a building. The woman suffered serious injuries. A police report determined that the driver was heavily intoxicated at the time of the crash.\nThe woman brought a diversity action against the driver in a federal district court in State A, alleging that the driver's negligence caused her $100,000 in damages. The driver filed a motion to transfer the case to a federal court in State B, which was granted.\nWhat law of negligence should the federal court in State B apply in this action?",
+      "choices": {
+        "a": "The court should apply the federal common law of negligence.",
+        "b": "The court should consider the negligence law of both State A and State B and apply the law that the court finds most appropriate.",
+        "c": "The court should determine which state's negligence law a state court in State A would apply and apply that law.",
+        "d": "The court should determine which state's negligence law a state court in State B would apply and apply that law."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0008.png"
+    },
+    {
+      "index": 9,
+      "question": "A woman brought a diversity action against a man in a federal district court in State A to recover damages for an accident that occurred in State B. The woman hired a process server, who delivered a copy of the summons and complaint to the man's wife at their home. The man filed an answer in which he moved to dismiss the woman's action for improper service of process.\nLaws in State A and State B require that service of process be personally delivered to the defendant, and their choice-of-law rules provide that a court must apply the law of the state where the injury occurred.\nShould the court grant the man's motion to dismiss?",
+      "choices": {
+        "a": "No, because the man waived this defense by failing to assert it in a pre-answer motion.",
+        "b": "No, because the man was served in accordance with federal law.",
+        "c": "Yes, because the man was not served in accordance with State A law.",
+        "d": "Yes, because the man was not served in accordance with State B law."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0009.png"
+    },
+    {
+      "index": 10,
+      "question": "A distributor brought a diversity action against a manufacturer in a federal court in State A for breach of contract. The contract was signed in State B and allegedly breached in State C. The distributor filed this action two years after the alleged breach occurred and nine months after discovering the alleged breach. The manufacturer immediately moved to dismiss the action on the ground that the statute of limitations has expired.\nThe statute of limitations in State A is one year from the date on which the alleged breach occurred, and State A applies the law of the state where the alleged breach occurred.\nThe statute of limitations in State B is six months from the date on which the alleged breach was discovered, and State B applies the law of the state where the alleged breach occurred.\nThe statute of limitations in State C is one year from the date on which the alleged breach was discovered, and State C applies the law of the state where the contract was signed.\nIs the court likely to grant the manufacturer's motion to dismiss the action?",
+      "choices": {
+        "a": "No, because the manufacturer failed to file an answer.",
+        "b": "No, because the statute of limitations under State C law has not expired.",
+        "c": "Yes, because the statute of limitations under State A law has expired.",
+        "d": "Yes, because the statute of limitations under State B law has expired."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0010.png"
+    },
+    {
+      "index": 11,
+      "question": "A plaintiff brought a diversity action in State A federal court for breach of contract and negligence. The jury returned a verdict in favor of the plaintiff and awarded her damages. The court entered judgment accordingly. The defendant moved for a new trial on the ground that the jury awarded excessive damages.\nFederal common law applies a \"shock the conscience\" test in a review of an allegedly excessive jury verdict. However, State A law applies a much more rigorous \"materially deviates\" test to prevent excessive awards.\nWhat body of law should the federal court apply to rule on the defendant's motion for a new trial?",
+      "choices": {
+        "a": "Federal law, because the case was brought in federal court.",
+        "b": "Federal law, because the issue is procedural.",
+        "c": "State law, because a federal court sitting in diversity must apply state law.",
+        "d": "State law, because the issue is substantive."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0011.png"
+    },
+    {
+      "index": 12,
+      "question": "In a federal court diversity action by a beneficiary against an insurance company on an insurance claim, a question arose regarding whether the court should apply a presumption that, where both husband and wife were killed in a common accident, the husband died last.\nWhat body of law determines whether this presumption should be applied?",
+      "choices": {
+        "a": "Federal statutory law.",
+        "b": "The federal common law.",
+        "c": "The law of the state whose substantive law is applied.",
+        "d": "Traditional common law."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0012.png"
+    },
+    {
+      "index": 13,
+      "question": "A truck driver from State A and a bus driver from State B were involved in a collision in State B that injured the truck driver. The truck driver filed a federal diversity action in State B based on negligence, seeking $100,000 in damages from the bus driver.\nWhat law of negligence should the court apply?",
+      "choices": {
+        "a": "The court should apply the federal common law of negligence.",
+        "b": "The court should apply the negligence law of State A, the truck driver's state of citizenship.",
+        "c": "The court should consider the negligence law of both State A and State B and apply the law that the court believes most appropriately governs negligence in this action.",
+        "d": "The court should determine which state's negligence law a state court in State B would apply and apply that law in this action."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "D",
+      "explanationImageFile": "imgs/q0013.png"
+    },
+    {
+      "index": 14,
+      "question": "A buyer brought a diversity suit in State A federal court against a seller for breach of contract. During the case, the seller engaged in fraudulent conduct, attempted to delay the proceedings, ignored several court orders, and unduly oppressed and harassed the buyer. The judge issued an order to show cause as to why the seller should not be held in contempt. After a hearing, the judge held the seller in contempt and ordered him to pay a fine to the court and the buyer.\nAt the conclusion of trial, the seller objected to this fine. The seller argued that State A law does not authorize a fine under these circumstances and that the federal court was bound to follow State A law. The seller also argued that no federal statute or rule authorizes this fine for contempt.\nIf the seller is correct in his arguments, will he likely succeed in his objection?",
+      "choices": {
+        "a": "No, because federal common law allows the court to impose the fine for contempt.",
+        "b": "No, because the case was brought in federal court.",
+        "c": "Yes, because a federal court sitting in diversity must follow state law.",
+        "d": "Yes, because no federal statute or rule authorized the imposition of this fine."
+      },
+      "selectedChoice": "D",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0014.png"
+    },
+    {
+      "index": 15,
+      "question": "A man was injured when a military drone crashed into his house in State A. The drone was manufactured for the U.S. government by a company incorporated and headquartered in State B pursuant to the government's design specifications.\nThe man filed a diversity action against the company in federal court in State A to recover $100,000 in damages. The man claimed that the drone was defectively designed. In its answer, the company asserted a defense that a manufacturer of military equipment for the U.S. government cannot be held liable for injuries caused by defectively designed equipment. The company's defense is not explicitly authorized by a federal statute, but many federal courts in other jurisdictions have recognized this defense as federal common law.\nState A law allows all manufacturers to be held liable for their defectively designed products.\nShould the federal court look to federal law or state law to decide if the company can validly assert this defense?",
+      "choices": {
+        "a": "Federal law, because the man filed the suit in federal court.",
+        "b": "Federal law, because the uniquely federal interest at stake significantly conflicts with state law.",
+        "c": "State law, because the company's defense is not explicitly authorized by a federal statute.",
+        "d": "State law, because there is no federal common law on this issue."
+      },
+      "selectedChoice": "B",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0015.png"
+    },
+    {
+      "index": 16,
+      "question": "A patient from State A sued a doctor from State B in a State A federal court for medical malpractice that allegedly occurred in State B. At the conclusion of trial, the jury found in favor of the patient and awarded him $3,000,000 in damages. The court entered a judgment consistent with the verdict. Fifteen days later, the patient brought an action to enforce the judgment in the same federal court.\nThe Federal Rules of Civil Procedure impose an automatic 30-day stay on all final judgments awarding damages. State A law, in contrast, imposes a 14-day stay on all final judgments awarding damages and provides that the law of the state where the injury occurred must be applied to all malpractice claims. However, State B law imposes a 21-day stay on all final judgments awarding damages and provides that State B law must be applied to all tort claims.\nShould the federal court enter an order to enforce the judgment?",
+      "choices": {
+        "a": "No, because the Federal Rules of Civil Procedure impose a 30-day stay.",
+        "b": "No, because the Federal Rules of Civil Procedure modify a substantive right.",
+        "c": "Yes, because State A substantive law imposes a 14-day stay.",
+        "d": "Yes, because State B substantive law imposes a 21-day stay."
+      },
+      "selectedChoice": "C",
+      "correctAnswer": "A",
+      "explanationImageFile": "imgs/q0016.png"
+    },
+    {
+      "index": 17,
+      "question": "A man brought a diversity action against a woman in a federal court in State A for conversion. The man claimed that the woman stole several historic artifacts from his home and sold them to a pawn shop.\nWhat body of law governs the burden of proof in this action?",
+      "choices": {
+        "a": "Federal common law.",
+        "b": "Federal statutory law.",
+        "c": "State law.",
+        "d": "The Federal Rules of Civil Procedure."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "C",
+      "explanationImageFile": "imgs/q0017.png"
+    },
+    {
+      "index": 18,
+      "question": "A woman filed a class action on behalf of thousands of individuals against an insurance company in a federal court in State A. The individuals sought to recover $20 million in statutory penalties for the company's failure to pay claims within the time specified by State A law. The company moved to dismiss the case based on a State A statute that prohibits class actions seeking statutory penalties against insurance companies.\nWill the federal court likely grant the company's motion to dismiss?",
+      "choices": {
+        "a": "No, because a state cannot prohibit class actions.",
+        "b": "No, because maintenance of a class action in federal court is a procedural issue governed by federal law.",
+        "c": "Yes, because the federal court must apply State A substantive law, and State A prohibits this type of class action.",
+        "d": "Yes, because there is no federal common law pertaining to class action requirements."
+      },
+      "selectedChoice": "A",
+      "correctAnswer": "B",
+      "explanationImageFile": "imgs/q0018.png"
+    }
+  ]
+}
