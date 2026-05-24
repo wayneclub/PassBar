@@ -23,7 +23,7 @@ export function ExplanationView({ question, userAnswer }: ExplanationViewProps) 
       if (question.explanationHtml && !question.apiMatchOk) {
         setExplanation({
           explanationText: '',
-          explanationImage: question.sourceExplanationImageFile
+          explanationImage: question.sourceExplanationImageUrl ?? question.sourceExplanationImageFile
         });
         setLoading(false);
         return;
@@ -34,7 +34,7 @@ export function ExplanationView({ question, userAnswer }: ExplanationViewProps) 
         const result = await generateQuestionExplanation({
           apiMatchOk: question.apiMatchOk,
           explainImgs: question.explainImgs,
-          sourceExplanationImageFile: question.sourceExplanationImageFile,
+          sourceExplanationImageFile: question.sourceExplanationImageUrl ?? question.sourceExplanationImageFile,
           questionText: question.questionText,
           answerChoices: question.options,
           correctAnswer: question.correctAnswer,

@@ -13,6 +13,7 @@ type QuestionRow = {
   api_match_ok: boolean | null;
   explain_imgs: string[] | null;
   source_explanation_image_file: string | null;
+  source_explanation_image_url: string | null;
   explanation_html: string | null;
 };
 
@@ -34,6 +35,7 @@ function toQuestion(row: QuestionRow): Question {
     apiMatchOk: row.api_match_ok ?? true,
     explainImgs: row.explain_imgs ?? [],
     sourceExplanationImageFile: row.source_explanation_image_file ?? undefined,
+    sourceExplanationImageUrl: row.source_explanation_image_url ?? undefined,
     explanationHtml: row.explanation_html ?? undefined,
   };
 }
@@ -87,7 +89,7 @@ export async function getQuestionsByChapterIds(chapterIds: string[], limit: numb
 
   const { data, error } = await supabase
     .from('questions')
-    .select('id, subject, chapter_id, topic, question_text, options, correct_answer, api_match_ok, explain_imgs, source_explanation_image_file, explanation_html')
+    .select('id, subject, chapter_id, topic, question_text, options, correct_answer, api_match_ok, explain_imgs, source_explanation_image_file, source_explanation_image_url, explanation_html')
     .in('chapter_id', chapterIds)
     .limit(limit);
 
@@ -110,7 +112,7 @@ export async function getQuestionsByIds(questionIds: string[]): Promise<Question
 
   const { data, error } = await supabase
     .from('questions')
-    .select('id, subject, chapter_id, topic, question_text, options, correct_answer, api_match_ok, explain_imgs, source_explanation_image_file, explanation_html')
+    .select('id, subject, chapter_id, topic, question_text, options, correct_answer, api_match_ok, explain_imgs, source_explanation_image_file, source_explanation_image_url, explanation_html')
     .in('id', questionIds);
 
   if (error || !data) {

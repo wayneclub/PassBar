@@ -23,6 +23,7 @@ export interface Question {
   apiMatchOk: boolean;
   explainImgs: string[];
   sourceExplanationImageFile?: string;
+  sourceExplanationImageUrl?: string;
   explanationHtml?: string;
 }
 
