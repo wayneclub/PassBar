@@ -23,8 +23,8 @@ import {
   YAxis,
 } from 'recharts';
 import { useAuth } from '@/components/AuthProvider';
+import { getGeminiStatus } from '@/lib/gemini-feedback';
 import { useI18n } from '@/lib/i18n';
-import { withBasePath } from '@/lib/site';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -68,8 +68,6 @@ type DashboardData = {
   timeTodaySeconds: number;
   subjectPerformance: SubjectPerformance[];
 };
-
-type GeminiStatus = 'enabled' | 'disabled' | 'unknown';
 
 const emptyDashboardData: DashboardData = {
   loading: true,
@@ -127,30 +125,6 @@ function displayNameFromProfile(profileName: string | null | undefined, email: s
   if (profileName) return profileName.split(/\s+/)[0] || profileName;
   if (email) return email.split('@')[0];
   return 'there';
-}
-
-async function loadGeminiStatus() {
-  const paths = Array.from(new Set([
-    withBasePath('/api/gemini-feedback/'),
-    '/api/gemini-feedback/',
-  ]));
-
-  for (const path of paths) {
-    try {
-      const response = await fetch(path, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'status' }),
-      });
-      if (!response.ok) continue;
-      const data = (await response.json()) as { enabled?: boolean };
-      return data.enabled ? 'enabled' : 'disabled';
-    } catch {
-      // Try the next path before reporting an unknown status.
-    }
-  }
-
-  return 'unknown';
 }
 
 async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'loading'>> {
@@ -249,7 +223,7 @@ export default function DashboardPage() {
   const { user, profile } = useAuth();
   const { t } = useI18n();
   const [dashboardData, setDashboardData] = useState<DashboardData>(emptyDashboardData);
-  const [geminiStatus, setGeminiStatus] = useState<GeminiStatus>('unknown');
+  const [geminiStatus, setGeminiStatus] = useState<'enabled' | 'disabled' | 'unknown'>('unknown');
 
   useEffect(() => {
     if (!user?.id) return;
@@ -274,7 +248,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     let active = true;
-    loadGeminiStatus()
+    getGeminiStatus()
       .then((status) => {
         if (active) setGeminiStatus(status);
       })

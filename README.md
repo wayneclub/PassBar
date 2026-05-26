@@ -2,9 +2,11 @@
 
 PassBar is a bar exam practice app for building custom MBE-style question sets, taking tutor or timed sessions, and reviewing explanations.
 
+**Demo:** [https://wayneclub.github.io/PassBar/](https://wayneclub.github.io/PassBar/)
+
 ## Stack
 
-- Next.js app in `frontend/`
+- Next.js app in `passbar/`
 - Supabase for the question bank
 - Genkit/Google GenAI for explanation generation helpers
 - Local JSON exports in `questions/` for import and backup
@@ -12,7 +14,7 @@ PassBar is a bar exam practice app for building custom MBE-style question sets, 
 ## Local Setup
 
 ```bash
-cd frontend
+cd passbar
 npm install
 cp .env.example .env.local
 npm run dev
@@ -22,7 +24,7 @@ Open `http://localhost:3000`.
 
 ## Environment Variables
 
-`frontend/.env.local`:
+`passbar/.env.local`:
 
 ```bash
 GOOGLE_GENAI_API_KEY=
@@ -46,8 +48,8 @@ Do not commit real `.env` files or service role keys.
 3. Import the local JSON question files:
 
 ```bash
-npm --prefix frontend install
-cd frontend
+npm --prefix passbar install
+cd passbar
 SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... npm run import:questions
 ```
 
@@ -57,8 +59,8 @@ The app reads from Supabase when `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUP
 
 Large generated artifacts are ignored:
 
-- `frontend/node_modules/`
-- `frontend/.next/`
+- `passbar/node_modules/`
+- `passbar/.next/`
 - `questions/**/*.zip`
 - `questions/**/*.png`
 - `.env*`

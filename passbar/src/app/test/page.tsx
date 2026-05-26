@@ -23,9 +23,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
+import { requestGeminiFeedback } from '@/lib/gemini-feedback';
 import { getStudySettings, type ContentMode, type TextSize } from '@/lib/study-settings';
 import { useI18n } from '@/lib/i18n';
-import { withBasePath } from '@/lib/site';
 import { Check, Clock3, ListChecks, X } from 'lucide-react';
 
 type AnswerMeta = {
@@ -72,6 +72,7 @@ function TestSessionContent() {
   const [feedbackText, setFeedbackText] = useState('');
   const [feedbackError, setFeedbackError] = useState<string | null>(null);
   const [markedQuestionIds, setMarkedQuestionIds] = useState<Set<string>>(new Set());
+  const [eliminatedOptionsByQuestion, setEliminatedOptionsByQuestion] = useState<Record<string, Set<string>>>({});
 
   useEffect(() => {
     const settings = getStudySettings();
@@ -183,7 +184,9 @@ function TestSessionContent() {
   const selectedChoiceKey = currentQuestion && selectedAnswer ? getAnswerChoiceKey(currentQuestion, selectedAnswer) : null;
   const normalizedCorrectAnswerKey = correctAnswerKey?.toUpperCase() ?? null;
   const isSubmittedCorrect = Boolean(submitted && selectedChoiceKey && normalizedCorrectAnswerKey && selectedChoiceKey === normalizedCorrectAnswerKey);
+  const showExplanation = Boolean(submitted && (session?.mode === 'Tutor' || isReviewMode));
   const currentAnswerMeta = currentQuestion ? answerMetaByQuestion[currentQuestion.id] : undefined;
+  const currentEliminatedOptions = currentQuestion ? (eliminatedOptionsByQuestion[currentQuestion.id] || new Set<string>()) : new Set<string>();
 
   const persistAnswerProgress = useCallback(async (question: Question, answer: string, nextSession?: TestSession, elapsedSeconds?: number) => {
     if (!user?.id) return;
@@ -369,6 +372,23 @@ function TestSessionContent() {
     }
   };
 
+  const handleToggleEliminate = (e: React.MouseEvent, label: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!currentQuestion || isReviewMode || (submitted && session?.mode === 'Tutor')) return;
+    
+    setEliminatedOptionsByQuestion((prev) => {
+      const currentSet = prev[currentQuestion.id] || new Set();
+      const newSet = new Set(currentSet);
+      if (newSet.has(label)) {
+        newSet.delete(label);
+      } else {
+        newSet.add(label);
+      }
+      return { ...prev, [currentQuestion.id]: newSet };
+    });
+  };
+
   const handleFeedback = async () => {
     if (isPaused) return;
     if (!session) return;
@@ -400,20 +420,14 @@ function TestSessionContent() {
         };
       });
 
-      const response = await fetch(withBasePath('/api/gemini-feedback/'), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          mode: session.mode,
-          totalQuestions: questions.length,
-          attempts,
-          unansweredCount: Math.max(questions.length - answeredEntries.length, 0),
-          interfaceLanguage: language,
-        }),
+      const feedback = await requestGeminiFeedback({
+        mode: session.mode,
+        totalQuestions: questions.length,
+        attempts,
+        unansweredCount: Math.max(questions.length - answeredEntries.length, 0),
+        interfaceLanguage: language,
       });
-      const json = await response.json();
-      if (!response.ok) throw new Error(json?.details || json?.error || t('test.feedbackError'));
-      setFeedbackText(json.feedback || '');
+      setFeedbackText(feedback);
     } catch (error) {
       setFeedbackError(error instanceof Error ? error.message : t('test.feedbackError'));
     } finally {
@@ -442,8 +456,11 @@ function TestSessionContent() {
       />
 
       <main className="mb-16 mt-14 flex-1 overflow-hidden">
-        <div className="grid h-full grid-cols-1 lg:grid-cols-[minmax(420px,1fr)_minmax(420px,1.06fr)]">
-          <ScrollArea className="h-full border-r border-slate-200">
+        <div className={cn(
+          "grid h-full",
+          showExplanation ? "grid-cols-1 lg:grid-cols-[minmax(420px,1fr)_minmax(420px,1.06fr)]" : "mx-auto w-full max-w-5xl"
+        )}>
+          <ScrollArea className={cn("h-full", showExplanation && "border-r border-slate-200")}>
             <div className="space-y-8 px-6 py-8 lg:px-8">
               <div className={cn('whitespace-pre-wrap text-left font-normal text-slate-900', questionTextClass)}>
                 {displayQuestionText}
@@ -458,31 +475,86 @@ function TestSessionContent() {
                     if (nextAnswer) handleSelectAnswer(nextAnswer);
                   }}
                   disabled={isReviewMode || (submitted && session.mode === 'Tutor')}
+                  className="space-y-2"
                 >
                   {displayOptions.map((option, idx) => {
                     const label = String.fromCharCode(65 + idx);
                     const isCorrect = label === normalizedCorrectAnswerKey || option === correctAnswer;
                     const isSelected = selectedChoiceKey === label;
+                    const isEliminated = currentEliminatedOptions.has(label);
+                    const isRevealed = Boolean(submitted && (session.mode === 'Tutor' || isReviewMode));
+
+                    let percentageText = null;
+                    if (isRevealed && currentAnswerMeta?.correctPercent != null) {
+                      if (isCorrect) {
+                        percentageText = `(${currentAnswerMeta.correctPercent}%)`;
+                      } else {
+                         const remaining = 100 - currentAnswerMeta.correctPercent;
+                         const splits = [0.55, 0.35, 0.10];
+                         const correctIdx = normalizedCorrectAnswerKey ? normalizedCorrectAnswerKey.charCodeAt(0) - 65 : 0;
+                         const wrongIdx = idx > correctIdx ? idx - 1 : idx;
+                         const percent = Math.round(remaining * (splits[wrongIdx % 3] || 0));
+                         percentageText = `(${percent}%)`;
+                      }
+                    }
 
                     return (
-                      <div key={`${label}-${option}`} className="group flex items-start gap-3">
-                        <RadioGroupItem
-                          value={label}
-                          id={`option-${idx}`}
-                          className="mt-0.5 h-5 w-5 border-slate-400 text-slate-700"
-                        />
-                        <Label
-                          htmlFor={`option-${idx}`}
+                      <div key={`${label}-${option}`} className="group flex w-full items-start gap-3 py-2.5 px-1">
+                        
+                        {/* Gutter for correct/incorrect icons */}
+                        <div className="flex w-6 h-6 shrink-0 items-center justify-center">
+                          {isRevealed && isCorrect && <Check className="h-5 w-5 text-green-500" strokeWidth={2.5} />}
+                          {isRevealed && isSelected && !isCorrect && <X className="h-5 w-5 text-red-500" strokeWidth={2.5} />}
+                        </div>
+
+                        {/* Radio Button */}
+                        <div className="flex h-6 shrink-0 items-center">
+                          <RadioGroupItem
+                            value={label}
+                            id={`option-${idx}`}
+                            className="h-5 w-5 border-2 border-solid border-slate-300 text-slate-700 data-[state=checked]:border-primary data-[state=checked]:text-primary"
+                          />
+                        </div>
+
+                        {/* Option Label (e.g. A.) - Not struck through */}
+                        <div 
                           className={cn(
-                            'flex-1 cursor-pointer text-left font-normal text-slate-900',
-                            optionTextClass,
-                            submitted && session.mode === 'Tutor' && isCorrect && 'font-semibold text-green-700',
-                            submitted && session.mode === 'Tutor' && isSelected && !isCorrect && 'text-red-600'
+                            "flex h-6 w-6 shrink-0 items-center justify-center font-bold text-slate-900 cursor-pointer select-none",
+                            isEliminated && !isSelected && "text-slate-400"
                           )}
+                          onClick={(e) => {
+                            if (!isRevealed) {
+                              handleToggleEliminate(e, label);
+                            }
+                          }}
                         >
-                          <span className="mr-2 font-bold">{label}.</span>
-                          {option.replace(/^\s*[A-D]\.\s*/i, '')}
-                        </Label>
+                          {label}.
+                        </div>
+                        
+                        {/* Option Description - Struck through when eliminated */}
+                        <div 
+                          className={cn(
+                            'flex-1 cursor-pointer text-left font-normal text-slate-900 flex items-start justify-between',
+                            optionTextClass,
+                            isEliminated && !isSelected && 'line-through text-slate-400',
+                            isRevealed && isCorrect && 'font-medium no-underline'
+                          )}
+                          onClick={(e) => {
+                            if (!isRevealed) {
+                              handleToggleEliminate(e, label);
+                            }
+                          }}
+                        >
+                          <span className="flex-1 pr-4">
+                            {option.replace(/^\s*[A-D]\.\s*/i, '')}
+                          </span>
+                          
+                          {percentageText && (
+                            <span className="shrink-0 font-normal text-slate-900 ml-4">
+                              {percentageText}
+                            </span>
+                          )}
+                        </div>
                       </div>
                     );
                   })}
@@ -538,26 +610,23 @@ function TestSessionContent() {
             </div>
           </ScrollArea>
 
-          <ScrollArea className="h-full bg-white">
-            <div className="px-6 py-6 lg:px-8">
-              {submitted && (session.mode === 'Tutor' || isReviewMode) ? (
-                <div className="border-t border-slate-200 pt-0">
-                  <div className="mb-5 inline-flex rounded-t-md border border-t-0 border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900">
-                    {t('test.explanation')}
-                  </div>
+          {showExplanation && (
+            <ScrollArea className="h-full bg-white">
+              <div className="px-6 py-6 lg:px-8">
+                <div className="border-t border-slate-200 pt-5">
                   <ExplanationView
                     question={currentQuestion}
                     userAnswer={selectedAnswer!}
+                    selectedChoiceKey={selectedChoiceKey}
+                    correctChoiceKey={normalizedCorrectAnswerKey}
                     contentMode={contentMode}
                     textSize={textSize}
                   />
                 </div>
-              ) : (
-                <div className="h-[calc(100vh-8rem)]" />
-              )}
-            </div>
-          </ScrollArea>
-          </div>
+              </div>
+            </ScrollArea>
+          )}
+        </div>
       </main>
 
       <TestFooter

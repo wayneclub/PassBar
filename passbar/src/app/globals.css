@@ -59,7 +59,11 @@
 }
 
 /* Accordion Specific Styling to match screenshot */
-[data-radix-collection-item] {
+[data-state="open"][data-radix-collection-item],
+[data-state="closed"][data-radix-collection-item] {
+  /* Only apply to things that have state (like accordion) if needed, but safer to remove or scope to accordion */
+}
+.accordion-root [data-radix-collection-item] {
   @apply border-none shadow-none;
 }
 

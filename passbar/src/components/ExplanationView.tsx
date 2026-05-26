@@ -2,8 +2,9 @@
 
 import React, { PointerEvent, useEffect, useRef, useState } from 'react';
 import { ExplanationOcrWord, Question } from '@/lib/types';
-import { Eraser, Highlighter, Image as ImageIcon, RotateCcw, ZoomIn, ZoomOut } from 'lucide-react';
+import { Eraser, Highlighter, Image as ImageIcon, RotateCcw, ZoomIn, ZoomOut, Loader2 } from 'lucide-react';
 import type { ContentMode, TextSize } from '@/lib/study-settings';
+import { requestGeminiQuestionAnalysis } from '@/lib/gemini-feedback';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useI18n } from '@/lib/i18n';
@@ -11,6 +12,8 @@ import { useI18n } from '@/lib/i18n';
 interface ExplanationViewProps {
   question: Question;
   userAnswer: string;
+  selectedChoiceKey?: string | null;
+  correctChoiceKey?: string | null;
   contentMode?: ContentMode;
   textSize?: TextSize;
 }
@@ -239,7 +242,100 @@ function ExplanationImageViewer({
   );
 }
 
-export function ExplanationView({ question, contentMode = 'english', textSize = 'medium' }: ExplanationViewProps) {
+function GeminiQuestionFeedback({
+  question,
+  selectedChoiceKey,
+  correctChoiceKey,
+  textSize
+}: {
+  question: Question;
+  selectedChoiceKey?: string | null;
+  correctChoiceKey?: string | null;
+  textSize?: TextSize;
+}) {
+  const { language } = useI18n();
+  const [loading, setLoading] = useState(true);
+  const [feedback, setFeedback] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    
+    async function loadFeedback() {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        const options = question.options.map((text, idx) => ({
+          key: String.fromCharCode(65 + idx),
+          text
+        }));
+
+        const result = await requestGeminiQuestionAnalysis({
+          questionText: question.questionText,
+          options,
+          selectedChoice: selectedChoiceKey,
+          correctChoice: correctChoiceKey,
+          explanationText: question.explanationHtml || '', // Using html or other available text
+          topic: question.topic,
+          interfaceLanguage: language
+        });
+        
+        if (isMounted) {
+          setFeedback(result);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setError(err instanceof Error ? err.message : 'Failed to load AI feedback');
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    }
+
+    loadFeedback();
+    
+    return () => {
+      isMounted = false;
+    };
+  }, [question, selectedChoiceKey, correctChoiceKey, language]);
+
+  const textClass = {
+    medium: 'text-[16px] leading-7',
+    large: 'text-[18px] leading-8',
+  }[textSize || 'medium'];
+
+  return (
+    <div className="rounded-lg border border-primary/20 bg-primary/5 p-5">
+      <div className="mb-4 flex items-center gap-2">
+        <p className="text-sm font-bold uppercase tracking-wider text-primary">Gemini AI Analysis</p>
+        {loading && <Loader2 className="h-4 w-4 animate-spin text-primary/70" />}
+      </div>
+      
+      {loading && !feedback && (
+        <div className={cn('text-muted-foreground animate-pulse', textClass)}>
+          Analyzing question and your answer...
+        </div>
+      )}
+      
+      {error && !feedback && (
+        <div className={cn('text-red-500', textClass)}>
+          {error}
+        </div>
+      )}
+      
+      {feedback && (
+        <div className={cn('whitespace-pre-wrap text-slate-800', textClass)}>
+          {feedback}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function ExplanationView({ question, userAnswer, selectedChoiceKey, correctChoiceKey, contentMode = 'english', textSize = 'medium' }: ExplanationViewProps) {
   const { t } = useI18n();
   const englishImages = [
     question.sourceExplanationImageUrl,
@@ -263,8 +359,8 @@ export function ExplanationView({ question, contentMode = 'english', textSize = 
 
   return (
     <div className="space-y-5 animate-in fade-in slide-in-from-top-4 duration-500">
-      <div className="text-slate-700">
-        {bilingualHtml ? (
+      {bilingualHtml && (
+        <div className="text-slate-700">
           <iframe
             title="Bilingual explanation"
             srcDoc={bilingualHtml}
@@ -275,10 +371,8 @@ export function ExplanationView({ question, contentMode = 'english', textSize = 
             )}
             sandbox=""
           />
-        ) : (
-          <p className={cn('text-muted-foreground', helperTextClass)}>{t('explanation.reviewSource')}</p>
-        )}
-      </div>
+        </div>
+      )}
 
       {explanationImages.length > 0 && (
         <div className="grid grid-cols-1 gap-4">
@@ -288,12 +382,12 @@ export function ExplanationView({ question, contentMode = 'english', textSize = 
         </div>
       )}
 
-      <div className="rounded-lg border border-primary/10 bg-primary/5 p-4">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{t('explanation.educationalObjective')}</p>
-        <p className={cn('text-muted-foreground', objectiveTextClass)}>
-          {t('explanation.objectiveText', { topic: question.topic })}
-        </p>
-      </div>
+      <GeminiQuestionFeedback
+        question={question}
+        selectedChoiceKey={selectedChoiceKey}
+        correctChoiceKey={correctChoiceKey}
+        textSize={textSize}
+      />
     </div>
   );
 }

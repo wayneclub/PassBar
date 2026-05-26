@@ -104,8 +104,11 @@ type TranslationKey =
   | 'explanation.image'
   | 'explanation.reviewSource'
   | 'explanation.highlight'
-  | 'explanation.educationalObjective'
-  | 'explanation.objectiveText'
+  | 'explanation.geminiFeedback'
+  | 'explanation.geminiLoading'
+  | 'explanation.geminiError'
+  | 'explanation.eliminateChoice'
+  | 'explanation.restoreChoice'
   | 'dashboard.welcome'
   | 'dashboard.loading'
   | 'dashboard.answered'
@@ -277,8 +280,11 @@ const en: Dictionary = {
   'explanation.image': 'Explanation image {index}',
   'explanation.reviewSource': 'Review the source explanation below.',
   'explanation.highlight': 'Highlight',
-  'explanation.educationalObjective': 'Educational Objective',
-  'explanation.objectiveText': 'Master the core concept of {topic} by understanding how it applies to legal scenarios.',
+  'explanation.geminiFeedback': 'Gemini Feedback',
+  'explanation.geminiLoading': 'Analyzing this question...',
+  'explanation.geminiError': 'Gemini feedback could not be loaded.',
+  'explanation.eliminateChoice': 'Eliminate choice {choice}',
+  'explanation.restoreChoice': 'Restore choice {choice}',
   'dashboard.welcome': 'Welcome back, {name}',
   'dashboard.loading': 'Loading your PassBar progress...',
   'dashboard.answered': "You've answered {solved} of {total} imported questions.",
@@ -308,8 +314,8 @@ const en: Dictionary = {
   'dashboard.aiFeedbackEnabledDescription': 'AI study feedback is available during practice sessions.',
   'dashboard.aiFeedbackDisabled': 'Gemini feedback not configured',
   'dashboard.aiFeedbackDisabledDescription': 'Add a Gemini API key on the server to enable AI study feedback.',
-  'dashboard.aiFeedbackUnknown': 'Gemini status could not be checked',
-  'dashboard.aiFeedbackUnknownDescription': 'Refresh the page or restart the local dev server after changing environment variables.',
+  'dashboard.aiFeedbackUnknown': 'Gemini backend could not be reached',
+  'dashboard.aiFeedbackUnknownDescription': 'The API key is configured locally, but this page cannot reach a backend Gemini endpoint. GitHub Pages cannot run Next.js API routes.',
   'dashboard.nextMilestone': 'Next Milestone',
   'dashboard.milestoneText': 'Complete {count} more questions to reach your next practice milestone.',
   'dashboard.startLearning': 'Start Learning',
@@ -450,8 +456,11 @@ const zhHans: Dictionary = {
   'explanation.image': '解析图片 {index}',
   'explanation.reviewSource': '查看下方原始解析。',
   'explanation.highlight': '荧光笔',
-  'explanation.educationalObjective': '学习目标',
-  'explanation.objectiveText': '掌握 {topic} 的核心概念，并理解它如何适用于法律题目。',
+  'explanation.geminiFeedback': 'Gemini 反馈',
+  'explanation.geminiLoading': '正在分析这道题...',
+  'explanation.geminiError': '无法加载 Gemini 反馈。',
+  'explanation.eliminateChoice': '刪去选项 {choice}',
+  'explanation.restoreChoice': '恢复选项 {choice}',
   'dashboard.welcome': '欢迎回来，{name}',
   'dashboard.loading': '正在加载你的学习进度...',
   'dashboard.answered': '你已完成 {solved} / {total} 道导入题目。',
@@ -481,8 +490,8 @@ const zhHans: Dictionary = {
   'dashboard.aiFeedbackEnabledDescription': '做题时可以取得 AI 学习反馈。',
   'dashboard.aiFeedbackDisabled': 'Gemini 反馈尚未设置',
   'dashboard.aiFeedbackDisabledDescription': '请在服务器环境变量加入 Gemini API key，以启用 AI 学习反馈。',
-  'dashboard.aiFeedbackUnknown': '无法检查 Gemini 状态',
-  'dashboard.aiFeedbackUnknownDescription': '修改环境变量后，请刷新页面或重启本机开发服务器。',
+  'dashboard.aiFeedbackUnknown': '无法连接 Gemini 后端',
+  'dashboard.aiFeedbackUnknownDescription': '本机 API key 已设置，但当前页面无法连接 Gemini 后端。GitHub Pages 不能运行 Next.js API routes。',
   'dashboard.nextMilestone': '下一个里程碑',
   'dashboard.milestoneText': '再完成 {count} 题即可达到下一个练习里程碑。',
   'dashboard.startLearning': '开始学习',
@@ -622,8 +631,11 @@ const zhHant: Dictionary = {
   'explanation.image': '解析圖片 {index}',
   'explanation.reviewSource': '查看下方原始解析。',
   'explanation.highlight': '螢光筆',
-  'explanation.educationalObjective': '學習目標',
-  'explanation.objectiveText': '掌握 {topic} 的核心概念，並理解它如何適用於法律題目。',
+  'explanation.geminiFeedback': 'Gemini 回饋',
+  'explanation.geminiLoading': '正在分析這道題...',
+  'explanation.geminiError': '無法載入 Gemini 回饋。',
+  'explanation.eliminateChoice': '刪去選項 {choice}',
+  'explanation.restoreChoice': '恢復選項 {choice}',
   'dashboard.welcome': '歡迎回來，{name}',
   'dashboard.loading': '正在載入你的學習進度...',
   'dashboard.answered': '你已完成 {solved} / {total} 道匯入題目。',
@@ -653,8 +665,8 @@ const zhHant: Dictionary = {
   'dashboard.aiFeedbackEnabledDescription': '做題時可以取得 AI 學習回饋。',
   'dashboard.aiFeedbackDisabled': 'Gemini 回饋尚未設定',
   'dashboard.aiFeedbackDisabledDescription': '請在伺服器環境變數加入 Gemini API key，以啟用 AI 學習回饋。',
-  'dashboard.aiFeedbackUnknown': '無法檢查 Gemini 狀態',
-  'dashboard.aiFeedbackUnknownDescription': '修改環境變數後，請重新整理頁面或重啟本機開發伺服器。',
+  'dashboard.aiFeedbackUnknown': '無法連接 Gemini 後端',
+  'dashboard.aiFeedbackUnknownDescription': '本機 API key 已設定，但目前頁面無法連接 Gemini 後端。GitHub Pages 不能執行 Next.js API routes。',
   'dashboard.nextMilestone': '下一個里程碑',
   'dashboard.milestoneText': '再完成 {count} 題即可達到下一個練習里程碑。',
   'dashboard.startLearning': '開始學習',

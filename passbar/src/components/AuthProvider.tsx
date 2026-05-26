@@ -130,6 +130,31 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     let active = true;
 
+    const isDev = process.env.NODE_ENV === 'development' || typeof window !== 'undefined' && window.location.hostname === 'localhost';
+
+    if (isDev) {
+      const mockUser = {
+        id: 'mock-user-id',
+        email: 'mock@example.com',
+        user_metadata: { name: 'Mock User', full_name: 'Mock User' },
+        app_metadata: {},
+        aud: 'authenticated',
+        created_at: new Date().toISOString(),
+      } as any;
+      const mockSession = {
+        access_token: 'mock-token',
+        token_type: 'bearer',
+        expires_in: 3600,
+        refresh_token: 'mock-refresh-token',
+        user: mockUser,
+      } as Session;
+
+      setSession(mockSession);
+      setProfile(profileFallback(mockUser));
+      setLoading(false);
+      return;
+    }
+
     supabase.auth.getSession().then(({ data }) => {
       if (!active) return;
       setSession(data.session);
