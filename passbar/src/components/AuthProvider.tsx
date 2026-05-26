@@ -54,7 +54,7 @@ async function recordAuthEvent(eventType: AuthEventType, session: Session | null
     },
   });
 
-  if (error) {
+  if (error && error.message !== '204') {
     console.warn('[PassBar] Failed to record auth event:', error.message);
   }
 }

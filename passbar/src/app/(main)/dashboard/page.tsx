@@ -129,6 +129,30 @@ function displayNameFromProfile(profileName: string | null | undefined, email: s
   return 'there';
 }
 
+async function loadGeminiStatus() {
+  const paths = Array.from(new Set([
+    withBasePath('/api/gemini-feedback/'),
+    '/api/gemini-feedback/',
+  ]));
+
+  for (const path of paths) {
+    try {
+      const response = await fetch(path, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'status' }),
+      });
+      if (!response.ok) continue;
+      const data = (await response.json()) as { enabled?: boolean };
+      return data.enabled ? 'enabled' : 'disabled';
+    } catch {
+      // Try the next path before reporting an unknown status.
+    }
+  }
+
+  return 'unknown';
+}
+
 async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'loading'>> {
   if (!supabase) {
     return {
@@ -250,14 +274,9 @@ export default function DashboardPage() {
 
   useEffect(() => {
     let active = true;
-    fetch(withBasePath('/api/gemini-feedback/'), {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'status' }),
-    })
-      .then((response) => response.json())
-      .then((data: { enabled?: boolean }) => {
-        if (active) setGeminiStatus(data.enabled ? 'enabled' : 'disabled');
+    loadGeminiStatus()
+      .then((status) => {
+        if (active) setGeminiStatus(status);
       })
       .catch(() => {
         if (active) setGeminiStatus('unknown');
@@ -406,7 +425,7 @@ export default function DashboardPage() {
           <CardContent>
             {dashboardData.subjectPerformance.length > 0 ? (
               <div className="h-[300px] w-full">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
                   <BarChart data={dashboardData.subjectPerformance}>
                     <XAxis
                       dataKey="name"

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
@@ -43,19 +43,24 @@ export function TestHeader({
   const { t } = useI18n();
   const [localTime, setLocalTime] = useState(timeSpent);
   const [questionMenuOpen, setQuestionMenuOpen] = useState(false);
+  const nextTimeRef = useRef(timeSpent);
   const answeredIndexes = new Set(answeredQuestionIndexes);
   const markedIndexes = new Set(markedQuestionIndexes);
   const currentMarked = markedIndexes.has(questionIndex);
 
   useEffect(() => {
+    setLocalTime(timeSpent);
+    nextTimeRef.current = timeSpent;
+  }, [timeSpent]);
+
+  useEffect(() => {
     if (isPaused) return;
     
     const interval = setInterval(() => {
-      setLocalTime(prev => {
-        const next = prev + 1;
-        onTimeUpdate(next);
-        return next;
-      });
+      nextTimeRef.current += 1;
+      const next = nextTimeRef.current;
+      setLocalTime(next);
+      onTimeUpdate(next);
     }, 1000);
 
     return () => clearInterval(interval);
