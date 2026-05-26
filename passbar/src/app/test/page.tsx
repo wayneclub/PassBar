@@ -457,11 +457,14 @@ function TestSessionContent() {
 
       <main className="mb-16 mt-14 flex-1 overflow-hidden">
         <div className={cn(
-          "grid h-full",
-          showExplanation ? "grid-cols-1 lg:grid-cols-[minmax(420px,1fr)_minmax(420px,1.06fr)]" : "mx-auto w-full max-w-5xl"
+          "grid h-full w-full",
+          showExplanation ? "grid-cols-1 lg:grid-cols-[minmax(420px,1fr)_minmax(420px,1.06fr)]" : ""
         )}>
-          <ScrollArea className={cn("h-full", showExplanation && "border-r border-slate-200")}>
-            <div className="space-y-8 px-6 py-8 lg:px-8">
+          <ScrollArea className={cn("h-full w-full", showExplanation && "border-r border-slate-200")}>
+            <div className={cn(
+              "space-y-8 py-8",
+              showExplanation ? "px-6 lg:px-8" : "mx-auto w-full max-w-5xl px-6 lg:px-8"
+            )}>
               <div className={cn('whitespace-pre-wrap text-left font-normal text-slate-900', questionTextClass)}>
                 {displayQuestionText}
               </div>
@@ -499,27 +502,28 @@ function TestSessionContent() {
                     }
 
                     return (
-                      <div key={`${label}-${option}`} className="group flex w-full items-start gap-3 py-2.5 px-1">
+                      <div key={`${label}-${option}`} className="group flex w-full items-start gap-3 py-3 px-2 rounded-lg transition-colors hover:bg-slate-50 cursor-pointer">
                         
                         {/* Gutter for correct/incorrect icons */}
-                        <div className="flex w-6 h-6 shrink-0 items-center justify-center">
+                        <div className="flex w-6 h-[1.625em] shrink-0 items-center justify-center">
                           {isRevealed && isCorrect && <Check className="h-5 w-5 text-green-500" strokeWidth={2.5} />}
                           {isRevealed && isSelected && !isCorrect && <X className="h-5 w-5 text-red-500" strokeWidth={2.5} />}
                         </div>
 
                         {/* Radio Button */}
-                        <div className="flex h-6 shrink-0 items-center">
+                        <div className="flex h-[1.625em] shrink-0 items-center">
                           <RadioGroupItem
                             value={label}
                             id={`option-${idx}`}
-                            className="h-5 w-5 border-2 border-solid border-slate-300 text-slate-700 data-[state=checked]:border-primary data-[state=checked]:text-primary"
+                            className="h-5 w-5 border-2 border-solid border-slate-300 text-slate-700 transition-colors group-hover:border-slate-400 data-[state=checked]:border-primary data-[state=checked]:text-primary"
                           />
                         </div>
 
                         {/* Option Label (e.g. A.) - Not struck through */}
                         <div 
                           className={cn(
-                            "flex h-6 w-6 shrink-0 items-center justify-center font-bold text-slate-900 cursor-pointer select-none",
+                            "flex h-[1.625em] shrink-0 items-center font-bold text-slate-900 cursor-pointer select-none",
+                            optionTextClass,
                             isEliminated && !isSelected && "text-slate-400"
                           )}
                           onClick={(e) => {
