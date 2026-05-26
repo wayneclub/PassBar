@@ -1,141 +1,297 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { generateQuestionExplanation, GenerateQuestionExplanationOutput } from '@/ai/flows/generate-question-explanation';
-import { Question } from '@/lib/types';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Badge } from '@/components/ui/badge';
-import { Brain, Image as ImageIcon, Sparkles } from 'lucide-react';
-import Image from 'next/image';
+import React, { PointerEvent, useEffect, useRef, useState } from 'react';
+import { ExplanationOcrWord, Question } from '@/lib/types';
+import { Eraser, Highlighter, Image as ImageIcon, RotateCcw, ZoomIn, ZoomOut } from 'lucide-react';
+import type { ContentMode, TextSize } from '@/lib/study-settings';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { useI18n } from '@/lib/i18n';
 
 interface ExplanationViewProps {
   question: Question;
   userAnswer: string;
+  contentMode?: ContentMode;
+  textSize?: TextSize;
 }
 
-export function ExplanationView({ question, userAnswer }: ExplanationViewProps) {
-  const [loading, setLoading] = useState(true);
-  const [explanation, setExplanation] = useState<GenerateQuestionExplanationOutput | null>(null);
+type Point = {
+  x: number;
+  y: number;
+};
 
-  useEffect(() => {
-    async function loadExplanation() {
-      // If we have existing HTML explanation and it's not an AI test, use it
-      if (question.explanationHtml && !question.apiMatchOk) {
-        setExplanation({
-          explanationText: '',
-          explanationImage: question.sourceExplanationImageUrl ?? question.sourceExplanationImageFile
-        });
-        setLoading(false);
-        return;
-      }
+type HighlightStroke = {
+  points: Point[];
+};
 
-      setLoading(true);
-      try {
-        const result = await generateQuestionExplanation({
-          apiMatchOk: question.apiMatchOk,
-          explainImgs: question.explainImgs,
-          sourceExplanationImageFile: question.sourceExplanationImageUrl ?? question.sourceExplanationImageFile,
-          questionText: question.questionText,
-          answerChoices: question.options,
-          correctAnswer: question.correctAnswer,
-          userAnswer: userAnswer,
-        });
-        setExplanation(result);
-      } catch (error) {
-        console.error("Failed to generate explanation:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
+function clamp(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, value));
+}
 
-    loadExplanation();
-  }, [question, userAnswer]);
-
-  if (loading) {
-    return (
-      <div className="space-y-4 p-6 bg-secondary/5 rounded-xl border border-secondary/20">
-        <div className="flex items-center gap-2 mb-2">
-          <Sparkles className="w-4 h-4 text-secondary animate-pulse" />
-          <p className="text-xs font-bold uppercase tracking-widest text-secondary">Generating AI Insight...</p>
-        </div>
-        <Skeleton className="h-4 w-[90%]" />
-        <Skeleton className="h-4 w-[85%]" />
-        <Skeleton className="h-4 w-[95%]" />
-        <Skeleton className="h-40 w-full mt-4" />
-      </div>
-    );
-  }
+function OcrTextLayer({ words }: { words: ExplanationOcrWord[] }) {
+  if (words.length === 0) return null;
 
   return (
-    <div className="space-y-6 mt-8 animate-in fade-in slide-in-from-top-4 duration-500">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="p-1.5 bg-secondary/10 rounded-md">
-            <Brain className="w-5 h-5 text-secondary" />
-          </div>
-          <h3 className="text-xl font-bold text-primary">Explanation</h3>
+    <div className="absolute inset-0 z-10 select-text text-transparent [text-shadow:none]">
+      {words.map((word, index) => (
+        <span
+          key={`${word.text}-${index}`}
+          className="absolute block overflow-visible whitespace-nowrap leading-none selection:bg-yellow-200/80 selection:text-slate-950"
+          style={{
+            left: `${word.bbox.x * 100}%`,
+            top: `${word.bbox.y * 100}%`,
+            width: `${word.bbox.width * 100}%`,
+            height: `${word.bbox.height * 100}%`,
+            fontSize: `${Math.max(word.bbox.height * 100, 1.2)}cqw`,
+          }}
+        >
+          {word.text}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function ExplanationImageViewer({
+  src,
+  index,
+  ocrWords,
+}: {
+  src: string;
+  index: number;
+  ocrWords: ExplanationOcrWord[];
+}) {
+  const { t } = useI18n();
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const imageWrapRef = useRef<HTMLDivElement | null>(null);
+  const [zoom, setZoom] = useState(1);
+  const [highlighting, setHighlighting] = useState(false);
+  const [isDrawing, setIsDrawing] = useState(false);
+  const [strokes, setStrokes] = useState<HighlightStroke[]>([]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const imageWrap = imageWrapRef.current;
+    if (!canvas || !imageWrap) return;
+
+    const render = () => {
+      const rect = imageWrap.getBoundingClientRect();
+      const ratio = window.devicePixelRatio || 1;
+      canvas.width = Math.max(1, Math.floor(rect.width * ratio));
+      canvas.height = Math.max(1, Math.floor(rect.height * ratio));
+      canvas.style.width = `${rect.width}px`;
+      canvas.style.height = `${rect.height}px`;
+
+      const context = canvas.getContext('2d');
+      if (!context) return;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.scale(ratio, ratio);
+      context.lineCap = 'round';
+      context.lineJoin = 'round';
+      context.lineWidth = 18;
+      context.strokeStyle = 'rgba(250, 204, 21, 0.38)';
+      context.globalCompositeOperation = 'multiply';
+
+      strokes.forEach((stroke) => {
+        if (stroke.points.length < 2) return;
+        context.beginPath();
+        context.moveTo(stroke.points[0].x * rect.width, stroke.points[0].y * rect.height);
+        stroke.points.slice(1).forEach((point) => {
+          context.lineTo(point.x * rect.width, point.y * rect.height);
+        });
+        context.stroke();
+      });
+    };
+
+    render();
+    const resizeObserver = new ResizeObserver(render);
+    resizeObserver.observe(imageWrap);
+    return () => resizeObserver.disconnect();
+  }, [strokes, zoom]);
+
+  const pointFromEvent = (event: PointerEvent<HTMLCanvasElement>): Point | null => {
+    const canvas = canvasRef.current;
+    if (!canvas) return null;
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: clamp((event.clientX - rect.left) / rect.width, 0, 1),
+      y: clamp((event.clientY - rect.top) / rect.height, 0, 1),
+    };
+  };
+
+  const handlePointerDown = (event: PointerEvent<HTMLCanvasElement>) => {
+    if (!highlighting) return;
+    const point = pointFromEvent(event);
+    if (!point) return;
+    event.currentTarget.setPointerCapture(event.pointerId);
+    setIsDrawing(true);
+    setStrokes((current) => [...current, { points: [point] }]);
+  };
+
+  const handlePointerMove = (event: PointerEvent<HTMLCanvasElement>) => {
+    if (!highlighting || !isDrawing) return;
+    const point = pointFromEvent(event);
+    if (!point) return;
+    setStrokes((current) => current.map((stroke, strokeIndex) => (
+      strokeIndex === current.length - 1
+        ? { points: [...stroke.points, point] }
+        : stroke
+    )));
+  };
+
+  const stopDrawing = () => {
+    setIsDrawing(false);
+  };
+
+  return (
+    <div className="rounded-md border bg-white shadow-sm">
+      <div className="sticky top-0 z-10 flex flex-wrap items-center justify-between gap-2 border-b bg-white/95 px-3 py-2 backdrop-blur">
+        <div className="flex items-center gap-1 text-xs font-semibold text-slate-600">
+          <ImageIcon className="h-4 w-4 text-primary" />
+          {t('explanation.image', { index: index + 1 })}
         </div>
-        {question.apiMatchOk ? (
-          <Badge className="bg-secondary text-white font-bold px-3 py-1 gap-1.5 border-none">
-            <Sparkles className="w-3 h-3" />
-            AI GENERATED
-          </Badge>
-        ) : (
-          <Badge variant="outline" className="border-muted text-muted-foreground px-3 py-1 gap-1.5">
-            <ImageIcon className="w-3 h-3" />
-            VISUAL GUIDE
-          </Badge>
-        )}
+        <div className="flex items-center gap-1">
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8"
+            onClick={() => setZoom((value) => clamp(value - 0.15, 0.65, 2.5))}
+            aria-label="Zoom out"
+          >
+            <ZoomOut className="h-4 w-4" />
+          </Button>
+          <span className="w-12 text-center text-xs font-semibold tabular-nums text-slate-600">
+            {Math.round(zoom * 100)}%
+          </span>
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8"
+            onClick={() => setZoom((value) => clamp(value + 0.15, 0.65, 2.5))}
+            aria-label="Zoom in"
+          >
+            <ZoomIn className="h-4 w-4" />
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8"
+            onClick={() => setZoom(1)}
+            aria-label="Reset zoom"
+          >
+            <RotateCcw className="h-4 w-4" />
+          </Button>
+          <Button
+            type="button"
+            variant={highlighting ? 'default' : 'outline'}
+            size="sm"
+            className="h-8 gap-1.5"
+            onClick={() => setHighlighting((value) => !value)}
+          >
+            <Highlighter className="h-4 w-4" />
+            {t('explanation.highlight')}
+          </Button>
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            className="h-8 w-8"
+            onClick={() => setStrokes([])}
+            aria-label="Clear highlights"
+          >
+            <Eraser className="h-4 w-4" />
+          </Button>
+        </div>
       </div>
 
-      <div className="prose prose-blue max-w-none text-muted-foreground leading-relaxed">
-        {question.explanationHtml ? (
-          <div 
-            className="whitespace-normal" 
-            dangerouslySetInnerHTML={{ __html: question.explanationHtml }} 
+      <div className="max-h-[calc(100vh-12rem)] overflow-auto bg-slate-50 p-3">
+        <div
+          ref={imageWrapRef}
+          className="relative mx-auto origin-top rounded-sm bg-white shadow-sm [container-type:inline-size]"
+          style={{ width: `${zoom * 100}%`, minWidth: zoom > 1 ? `${zoom * 100}%` : undefined }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={src}
+            alt={`Explanation visual aid ${index + 1}`}
+            className="block h-auto w-full select-none"
+            draggable={false}
           />
-        ) : (
-          <div className="whitespace-pre-wrap">
-            {explanation?.explanationText || (
-              <p className="italic">Review the visual explanation below for this question.</p>
+          <OcrTextLayer words={ocrWords} />
+          <canvas
+            ref={canvasRef}
+            className={cn(
+              'absolute inset-0 z-20 h-full w-full',
+              highlighting ? 'cursor-crosshair touch-none' : 'pointer-events-none',
             )}
-          </div>
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={stopDrawing}
+            onPointerCancel={stopDrawing}
+            onPointerLeave={stopDrawing}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function ExplanationView({ question, contentMode = 'english', textSize = 'medium' }: ExplanationViewProps) {
+  const { t } = useI18n();
+  const englishImages = [
+    question.sourceExplanationImageUrl,
+    ...question.explainImgs,
+  ].filter((src, index, list): src is string => Boolean(src) && list.indexOf(src) === index);
+  const bilingualImages = [
+    ...englishImages,
+    ...(question.zhExplainImgs ?? []),
+  ].filter((src, index, list): src is string => Boolean(src) && list.indexOf(src) === index);
+  const explanationImages = contentMode === 'bilingual' ? bilingualImages : englishImages;
+  const bilingualHtml = contentMode === 'bilingual' ? question.explanationHtml : undefined;
+  const ocrByUrl = new Map((question.explanationOcr ?? []).map((ocr) => [ocr.publicUrl, ocr.words]));
+  const helperTextClass = {
+    medium: 'text-lg leading-8',
+    large: 'text-xl leading-9',
+  }[textSize];
+  const objectiveTextClass = {
+    medium: 'text-lg leading-8',
+    large: 'text-xl leading-9',
+  }[textSize];
+
+  return (
+    <div className="space-y-5 animate-in fade-in slide-in-from-top-4 duration-500">
+      <div className="text-slate-700">
+        {bilingualHtml ? (
+          <iframe
+            title="Bilingual explanation"
+            srcDoc={bilingualHtml}
+            className={cn(
+              'w-full rounded-md border bg-white',
+              textSize === 'medium' && 'h-[760px]',
+              textSize === 'large' && 'h-[860px]',
+            )}
+            sandbox=""
+          />
+        ) : (
+          <p className={cn('text-muted-foreground', helperTextClass)}>{t('explanation.reviewSource')}</p>
         )}
       </div>
 
-      {explanation?.explanationImage && (
-        <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-lg border-2 border-muted bg-muted/20">
-          <Image 
-            src={explanation.explanationImage} 
-            alt="Explanation visual aid" 
-            fill 
-            className="object-contain"
-          />
-        </div>
-      )}
-
-      {question.explainImgs.length > 0 && question.apiMatchOk && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-          {question.explainImgs.map((img, idx) => (
-            <div key={idx} className="relative aspect-video rounded-lg overflow-hidden border shadow-sm group">
-              <Image 
-                src={img} 
-                alt={`Explanation visual aid ${idx + 1}`} 
-                fill 
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-x-0 bottom-0 bg-black/60 p-2 text-white text-[10px] font-medium backdrop-blur-sm">
-                Reference Image {idx + 1}
-              </div>
-            </div>
+      {explanationImages.length > 0 && (
+        <div className="grid grid-cols-1 gap-4">
+          {explanationImages.map((img, idx) => (
+            <ExplanationImageViewer key={img} src={img} index={idx} ocrWords={ocrByUrl.get(img) ?? []} />
           ))}
         </div>
       )}
 
-      <div className="p-4 rounded-lg bg-primary/5 border border-primary/10">
-        <p className="text-xs font-bold text-primary mb-1 uppercase tracking-wider">Educational Objective</p>
-        <p className="text-sm text-muted-foreground">
-          Master the core concept of {question.topic} by understanding how it applies to legal scenarios.
+      <div className="rounded-lg border border-primary/10 bg-primary/5 p-4">
+        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{t('explanation.educationalObjective')}</p>
+        <p className={cn('text-muted-foreground', objectiveTextClass)}>
+          {t('explanation.objectiveText', { topic: question.topic })}
         </p>
       </div>
     </div>

@@ -7,10 +7,12 @@
     "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
     "genkit:watch": "genkit start -- tsx --watch src/ai/dev.ts",
     "build": "NODE_ENV=production next build",
+    "build:github": "GITHUB_PAGES=true NEXT_PUBLIC_BASE_PATH=/PassBar NODE_ENV=production next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "import:questions": "node scripts/import_questions_to_supabase.mjs"
+    "import:questions": "node scripts/import_questions_to_supabase.mjs",
+    "ocr:explanations": "node scripts/ocr_explanation_images.mjs"
   },
   "dependencies": {
     "@genkit-ai/google-genai": "^1.32.0",
@@ -45,6 +47,7 @@
     "eslint-config-next": "^16.2.4",
     "firebase": "^12.12.0",
     "genkit": "^1.32.0",
+    "image-size": "^2.0.2",
     "lucide-react": "^1.8.0",
     "next": "^16.2.4",
     "patch-package": "^8.0.1",
@@ -55,6 +58,7 @@
     "recharts": "^3.8.1",
     "tailwind-merge": "^3.5.0",
     "tailwindcss-animate": "^1.0.7",
+    "tesseract.js": "^7.0.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {

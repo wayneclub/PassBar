@@ -102,7 +102,7 @@ export const MOCK_QUESTIONS: Question[] = [
     ],
     correctAnswer: "No, because the federal district court properly relied on the rulings issued by the state's lower courts.",
     apiMatchOk: true,
-    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881171.jpg", "https://getbar.link/admin-api/infra/file/2/get/q88117ai.png"],
+    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881171.jpg",],
     explanationHtml: ""
   },
   {
@@ -118,7 +118,7 @@ export const MOCK_QUESTIONS: Question[] = [
     ],
     correctAnswer: "The court should apply State B law to the breach of contract claim and federal law to the employment discrimination and patent claims.",
     apiMatchOk: true,
-    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q88120ai.png"],
+    explainImgs: [],
     explanationHtml: ""
   },
   {
@@ -134,7 +134,7 @@ export const MOCK_QUESTIONS: Question[] = [
     ],
     correctAnswer: "No, because State A's products liability laws will apply upon transfer.",
     apiMatchOk: true,
-    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881181.jpg", "https://getbar.link/admin-api/infra/file/2/get/q88118ai.png"],
+    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881181.jpg",],
     explanationHtml: ""
   },
   {
@@ -150,7 +150,7 @@ export const MOCK_QUESTIONS: Question[] = [
     ],
     correctAnswer: "No, because the female employee's claim presents an implied cause of action.",
     apiMatchOk: true,
-    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q88119ai.png"],
+    explainImgs: [],
     explanationHtml: ""
   },
   {
@@ -166,7 +166,7 @@ export const MOCK_QUESTIONS: Question[] = [
     ],
     correctAnswer: "Yes, because federal law governs transfers of venue, and it would be more convenient for the witnesses and parties to litigate the claim in State B.",
     apiMatchOk: true,
-    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q88818ai.png"],
+    explainImgs: [],
     explanationHtml: ""
   },
   {
@@ -182,7 +182,7 @@ export const MOCK_QUESTIONS: Question[] = [
     ],
     correctAnswer: "Federal law, because the Federal Rules of Civil Procedure govern over conflicting state rules that deny relation back.",
     apiMatchOk: true,
-    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881081.jpg", "https://getbar.link/admin-api/infra/file/2/get/q88108ai.png"],
+    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881081.jpg",],
     explanationHtml: ""
   },
   {
@@ -198,7 +198,7 @@ export const MOCK_QUESTIONS: Question[] = [
     ],
     correctAnswer: "The court should determine which state's negligence law a state court in State B would apply and apply that law.",
     apiMatchOk: true,
-    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881151.jpg", "https://getbar.link/admin-api/infra/file/2/get/q88115ai.png"],
+    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881151.jpg",],
     explanationHtml: ""
   },
   {
@@ -214,7 +214,7 @@ export const MOCK_QUESTIONS: Question[] = [
     ],
     correctAnswer: "No, because the man was served in accordance with federal law.",
     apiMatchOk: true,
-    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q88109ai.png"],
+    explainImgs: [],
     explanationHtml: ""
   },
   {
@@ -230,7 +230,7 @@ export const MOCK_QUESTIONS: Question[] = [
     ],
     correctAnswer: "No, because the statute of limitations under State C law has not expired.",
     apiMatchOk: true,
-    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q88111ai.png"],
+    explainImgs: [],
     explanationHtml: ""
   },
   {
@@ -246,7 +246,7 @@ export const MOCK_QUESTIONS: Question[] = [
     ],
     correctAnswer: "State law, because the issue is substantive.",
     apiMatchOk: true,
-    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881161.jpg", "https://getbar.link/admin-api/infra/file/2/get/q88116ai.png"],
+    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881161.jpg",],
     explanationHtml: ""
   },
   {
@@ -262,7 +262,7 @@ export const MOCK_QUESTIONS: Question[] = [
     ],
     correctAnswer: "The law of the state whose substantive law is applied.",
     apiMatchOk: true,
-    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881211.jpg", "https://getbar.link/admin-api/infra/file/2/get/q88121ai.png"],
+    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881211.jpg",],
     explanationHtml: ""
   },
   {
@@ -278,7 +278,7 @@ export const MOCK_QUESTIONS: Question[] = [
     ],
     correctAnswer: "No, because federal common law allows the court to impose the fine for contempt.",
     apiMatchOk: true,
-    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881221.jpg", "https://getbar.link/admin-api/infra/file/2/get/q88122ai.png"],
+    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881221.jpg",],
     explanationHtml: ""
   },
   {
@@ -294,7 +294,7 @@ export const MOCK_QUESTIONS: Question[] = [
     ],
     correctAnswer: "No, because maintenance of a class action in federal court is a procedural issue governed by federal law.",
     apiMatchOk: true,
-    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881231.jpg", "https://getbar.link/admin-api/infra/file/2/get/q88123ai.png"],
+    explainImgs: ["https://getbar.link/admin-api/infra/file/2/get/q881231.jpg",],
     explanationHtml: ""
   }
 ];

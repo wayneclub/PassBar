@@ -1020,7 +1020,8 @@ def create_markdown_from_result_json(
         qmd.append("---")
         qmd.append("")
 
-        ans = _extract_source_correct_answer(q) or _extract_item_correct_answer(item)
+        ans = _extract_source_correct_answer(
+            q) or _extract_item_correct_answer(item)
         if ans:
             qmd.append(f"**Correct Answer:** {ans}")
             qmd.append("")
@@ -1177,7 +1178,8 @@ class _HTMLToMarkdownParser(HTMLParser):
 
         if t == "li":
             depth = max(1, len(self.list_stack))
-            top = self.list_stack[-1] if self.list_stack else {"type": "ul", "idx": 1}
+            top = self.list_stack[-1] if self.list_stack else {
+                "type": "ul", "idx": 1}
             indent = "  " * (depth - 1)
             if top.get("type") == "ol":
                 bullet = f"{int(top.get('idx', 1))}. "
@@ -1270,18 +1272,21 @@ class _HTMLToMarkdownParser(HTMLParser):
         self._write(txt)
 
     def _render_table(self) -> str:
-        rows = [r for r in self.table_rows if isinstance(r, list) and any(c.strip() for c in r)]
+        rows = [r for r in self.table_rows if isinstance(
+            r, list) and any(c.strip() for c in r)]
         if not rows:
             return ""
         col_count = max(len(r) for r in rows)
         norm = [r + [""] * (col_count - len(r)) for r in rows]
         header = norm[0]
         body = norm[1:]
-        header_line = "| " + " | ".join(_escape_md_table_cell(c) for c in header) + " |"
+        header_line = "| " + " | ".join(_escape_md_table_cell(c)
+                                        for c in header) + " |"
         sep_line = "| " + " | ".join(["---"] * col_count) + " |"
         lines = [header_line, sep_line]
         for r in body:
-            lines.append("| " + " | ".join(_escape_md_table_cell(c) for c in r) + " |")
+            lines.append("| " + " | ".join(_escape_md_table_cell(c)
+                         for c in r) + " |")
         return "\n".join(lines)
 
     def markdown(self) -> str:
@@ -1592,7 +1597,8 @@ def create_flashcards_from_result_json(
                 if src_img:
                     lines.append(src_img)
                 else:
-                    exp_md = html_to_markdown(_extract_source_explanation_html(q))
+                    exp_md = html_to_markdown(
+                        _extract_source_explanation_html(q))
                     if exp_md:
                         lines.extend(exp_md.split("\n"))
                     else:

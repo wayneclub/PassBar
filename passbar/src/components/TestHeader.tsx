@@ -1,7 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { useI18n } from '@/lib/i18n';
+import { cn } from '@/lib/utils';
 import { 
   Settings, 
   Layout, 
@@ -16,19 +20,32 @@ import {
 interface TestHeaderProps {
   questionIndex: number;
   totalQuestions: number;
+  answeredQuestionIndexes: number[];
+  markedQuestionIndexes: number[];
   timeSpent: number;
   onTimeUpdate: (time: number) => void;
+  onQuestionSelect: (index: number) => void;
+  onToggleMark: () => void;
   isPaused: boolean;
 }
 
 export function TestHeader({ 
   questionIndex, 
   totalQuestions, 
+  answeredQuestionIndexes,
+  markedQuestionIndexes,
   timeSpent, 
   onTimeUpdate,
+  onQuestionSelect,
+  onToggleMark,
   isPaused 
 }: TestHeaderProps) {
+  const { t } = useI18n();
   const [localTime, setLocalTime] = useState(timeSpent);
+  const [questionMenuOpen, setQuestionMenuOpen] = useState(false);
+  const answeredIndexes = new Set(answeredQuestionIndexes);
+  const markedIndexes = new Set(markedQuestionIndexes);
+  const currentMarked = markedIndexes.has(questionIndex);
 
   useEffect(() => {
     if (isPaused) return;
@@ -55,8 +72,18 @@ export function TestHeader({
     <header className="h-14 bg-[#1a2b3c] text-white flex items-center justify-between px-4 fixed top-0 w-full z-50">
       {/* Left Icons */}
       <div className="flex items-center gap-1">
-        <Button variant="ghost" size="icon" className="hover:bg-white/10 text-blue-400">
-          <Bookmark className="w-5 h-5" />
+        <Button
+          variant="ghost"
+          size="icon"
+          aria-pressed={currentMarked}
+          aria-label={currentMarked ? t('test.unmarkQuestion') : t('test.markQuestion')}
+          className={cn(
+            'hover:bg-white/10',
+            currentMarked ? 'bg-blue-400/15 text-blue-300' : 'text-blue-400',
+          )}
+          onClick={onToggleMark}
+        >
+          <Bookmark className={cn('w-5 h-5', currentMarked && 'fill-current')} />
         </Button>
         <Button variant="ghost" size="icon" className="hover:bg-white/10 text-blue-400">
           <Zap className="w-5 h-5" />
@@ -69,11 +96,56 @@ export function TestHeader({
         </Button>
       </div>
 
-      {/* Center Navigation */}
-      <div className="flex items-center gap-1 cursor-pointer hover:bg-white/5 px-3 py-1 rounded transition-colors">
-        <span className="text-sm font-medium">{questionIndex + 1}/{totalQuestions}</span>
-        <ChevronDown className="w-4 h-4 text-slate-400" />
-      </div>
+      <Popover open={questionMenuOpen} onOpenChange={setQuestionMenuOpen}>
+        <PopoverTrigger asChild>
+          <button className="flex items-center gap-2 rounded px-4 py-2 text-white transition-colors hover:bg-white/10">
+            <span className="text-lg font-semibold tabular-nums">{questionIndex + 1}/{totalQuestions}</span>
+            <ChevronDown className={cn('h-5 w-5 text-blue-400 transition-transform', questionMenuOpen && 'rotate-180')} />
+          </button>
+        </PopoverTrigger>
+        <PopoverContent className="w-[360px] border-slate-200 bg-white p-4 text-slate-900" sideOffset={10}>
+          <div className="mb-3 flex items-center justify-between">
+            <div className="text-sm font-semibold text-slate-800">{t('test.questions')}</div>
+            <div className="text-xs text-slate-500">
+              {t('test.answeredCount', { answered: answeredIndexes.size, total: totalQuestions })}
+            </div>
+          </div>
+          <div className="grid max-h-[340px] grid-cols-6 gap-2 overflow-y-auto pr-1">
+            {Array.from({ length: totalQuestions }, (_, index) => {
+              const isCurrent = index === questionIndex;
+              const isAnswered = answeredIndexes.has(index);
+              const isMarked = markedIndexes.has(index);
+              return (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => {
+                    onQuestionSelect(index);
+                    setQuestionMenuOpen(false);
+                  }}
+                  className={cn(
+                    'flex h-10 items-center justify-center rounded-md border text-sm font-semibold transition-colors',
+                    isCurrent && 'border-[#1a2b3c] bg-[#1a2b3c] text-white',
+                    !isCurrent && isAnswered && 'border-primary/30 bg-primary/10 text-primary hover:bg-primary/15',
+                    !isCurrent && !isAnswered && 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50',
+                  )}
+                >
+                  <span className="relative">
+                    {index + 1}
+                    {isMarked ? <span className="absolute -right-2 -top-1 h-2 w-2 rounded-full bg-amber-400" /> : null}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="mt-4 flex gap-4 text-xs text-slate-500">
+            <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#1a2b3c]" /> {t('test.current')}</span>
+            <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-primary" /> {t('test.answered')}</span>
+            <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-amber-400" /> {t('test.marked')}</span>
+            <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full border border-slate-300" /> {t('test.unanswered')}</span>
+          </div>
+        </PopoverContent>
+      </Popover>
 
       {/* Right Icons */}
       <div className="flex items-center gap-4">
@@ -81,8 +153,10 @@ export function TestHeader({
           <Button variant="ghost" size="icon" className="hover:bg-white/10 text-blue-400 h-9 w-9">
             <HelpCircle className="w-5 h-5" />
           </Button>
-          <Button variant="ghost" size="icon" className="hover:bg-white/10 text-blue-400 h-9 w-9">
-            <Settings className="w-5 h-5" />
+          <Button asChild variant="ghost" size="icon" className="hover:bg-white/10 text-blue-400 h-9 w-9">
+            <Link href="/settings" aria-label={t('nav.settings')}>
+              <Settings className="w-5 h-5" />
+            </Link>
           </Button>
           <Button variant="ghost" size="icon" className="hover:bg-white/10 text-blue-400 h-9 w-9">
             <Layout className="w-5 h-5" />

@@ -18,13 +18,36 @@ export interface Question {
   subject: string;
   topic: string;
   questionText: string;
+  bilingualQuestionText?: string;
   options: string[];
+  bilingualOptions?: string[];
   correctAnswer: string;
+  correctAnswerLetter?: string;
+  apiAnswerKey?: string;
   apiMatchOk: boolean;
   explainImgs: string[];
+  zhExplainImgs?: string[];
   sourceExplanationImageFile?: string;
   sourceExplanationImageUrl?: string;
   explanationHtml?: string;
+  explanationOcr?: ExplanationOcr[];
+}
+
+export interface ExplanationOcrWord {
+  text: string;
+  confidence?: number | null;
+  bbox: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
+}
+
+export interface ExplanationOcr {
+  publicUrl: string;
+  text: string | null;
+  words: ExplanationOcrWord[];
 }
 
 export type TestMode = 'Tutor' | 'Timed';
@@ -39,6 +62,7 @@ export interface TestSession {
   questionCount: number;
   questionIds: string[];
   userAnswers: Record<string, string>; // questionId -> answer
+  userAnswerChoices?: Record<string, string>; // questionId -> selected choice key
   status: 'In-Progress' | 'Completed' | 'Suspended';
   timeSpent: number; // in seconds
 }

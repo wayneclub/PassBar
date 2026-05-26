@@ -44,6 +44,12 @@
   * {
     @apply border-border;
   }
+  html[data-passbar-text-size="medium"] {
+    font-size: 18px;
+  }
+  html[data-passbar-text-size="large"] {
+    font-size: 20px;
+  }
   body {
     @apply bg-background text-foreground font-body antialiased;
   }
@@ -55,4 +61,29 @@
 /* Accordion Specific Styling to match screenshot */
 [data-radix-collection-item] {
   @apply border-none shadow-none;
+}
+
+@layer utilities {
+  html[data-passbar-text-size="medium"] .passbar-main :where(.text-\[9px\], .text-\[10px\], .text-\[11px\], .text-\[12px\]) {
+    font-size: 0.875rem;
+  }
+  html[data-passbar-text-size="medium"] .passbar-main :where(.text-xs) {
+    font-size: 0.875rem;
+    line-height: 1.35rem;
+  }
+  html[data-passbar-text-size="medium"] .passbar-main :where(.text-sm) {
+    font-size: 1rem;
+    line-height: 1.6rem;
+  }
+  html[data-passbar-text-size="large"] .passbar-main :where(.text-\[9px\], .text-\[10px\], .text-\[11px\], .text-\[12px\]) {
+    font-size: 1rem;
+  }
+  html[data-passbar-text-size="large"] .passbar-main :where(.text-xs) {
+    font-size: 1rem;
+    line-height: 1.6rem;
+  }
+  html[data-passbar-text-size="large"] .passbar-main :where(.text-sm) {
+    font-size: 1.125rem;
+    line-height: 1.8rem;
+  }
 }

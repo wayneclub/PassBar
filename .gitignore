@@ -36,5 +36,8 @@ __pycache__/
 .vercel/
 
 # Large exported question artifacts
+out/
+out.zip
+questions/
 questions/**/*.zip
 questions/**/*.png
