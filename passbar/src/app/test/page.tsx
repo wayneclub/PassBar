@@ -20,7 +20,7 @@ import {
 import { getPracticeSessionRecord, savePracticeAnswer, updatePracticeSessionRecord } from '@/lib/practice-sessions';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
@@ -74,6 +74,8 @@ function TestSessionContent() {
   const [feedbackError, setFeedbackError] = useState<string | null>(null);
   const [markedQuestionIds, setMarkedQuestionIds] = useState<Set<string>>(new Set());
   const [eliminatedOptionsByQuestion, setEliminatedOptionsByQuestion] = useState<Record<string, Set<string>>>({});
+  const [endConfirmOpen, setEndConfirmOpen] = useState(false);
+  const [ending, setEnding] = useState(false);
 
   useEffect(() => {
     const settings = getStudySettings();
@@ -255,6 +257,18 @@ function TestSessionContent() {
     }
   }, [id]);
 
+  const sessionWithCurrentProgress = useCallback(() => {
+    if (!session) return null;
+    const nextSession = {
+      ...session,
+      userAnswers: { ...session.userAnswers },
+    };
+    if (selectedAnswer && currentQuestion) {
+      nextSession.userAnswers[currentQuestion.id] = selectedAnswer;
+    }
+    return nextSession;
+  }, [currentQuestion, selectedAnswer, session]);
+
   const handleSelectAnswer = (answer: string) => {
     if (isPaused) return;
     if (isReviewMode || (submitted && session?.mode === 'Tutor')) return;
@@ -295,44 +309,70 @@ function TestSessionContent() {
     }));
   };
 
-  const handleEnd = async () => {
+  const handleEndRequest = async () => {
     if (!session || !user?.id) {
       router.push('/review');
       return;
     }
 
-    const nextSession = { ...session };
-    if (selectedAnswer && currentQuestion) {
-      nextSession.userAnswers[currentQuestion.id] = selectedAnswer;
-    }
+    const nextSession = sessionWithCurrentProgress();
+    if (!nextSession) return;
 
-    if (session.mode === 'Timed' && !isReviewMode) {
-      const answeredCount = Object.keys(nextSession.userAnswers).length;
-      if (answeredCount < questions.length) {
-        window.alert(t('test.completeTimedBeforeReview', {
-          answered: answeredCount,
-          total: questions.length,
-        }));
-        return;
-      }
-    }
-
-    nextSession.status = 'Completed';
     setSession(nextSession);
     persistSession(nextSession);
-    await persistSessionAnswers(nextSession);
+    if (!isReviewMode) {
+      await updatePracticeSessionRecord({
+        session: nextSession,
+        userId: user.id,
+        status: nextSession.status === 'Suspended' ? 'suspended' : 'in_progress',
+      });
+    }
+    setEndConfirmOpen(true);
+  };
 
-    const answeredIds = new Set(Object.keys(nextSession.userAnswers));
-    await saveOmittedQuestionProgress({
-      userId: user.id,
-      questionIds: nextSession.questionIds.filter((questionId) => !answeredIds.has(questionId)),
-    });
-    await updatePracticeSessionRecord({
-      session: nextSession,
-      userId: user.id,
-      status: 'completed',
-    });
-    router.push(session.mode === 'Timed' ? `/test?id=${session.id}&review=1` : '/review');
+  const handleEnd = async () => {
+    if (!session || !user?.id || ending) {
+      if (!session || !user?.id) router.push('/review');
+      return;
+    }
+
+    const nextSession = sessionWithCurrentProgress();
+    if (!nextSession) return;
+    setEnding(true);
+
+    try {
+      if (session.mode === 'Timed' && !isReviewMode) {
+        const answeredCount = Object.keys(nextSession.userAnswers).length;
+        if (answeredCount < questions.length) {
+          window.alert(t('test.completeTimedBeforeReview', {
+            answered: answeredCount,
+            total: questions.length,
+          }));
+          setEndConfirmOpen(false);
+          return;
+        }
+      }
+
+      nextSession.status = 'Completed';
+      setSession(nextSession);
+      persistSession(nextSession);
+      await persistSessionAnswers(nextSession);
+
+      const answeredIds = new Set(Object.keys(nextSession.userAnswers));
+      await saveOmittedQuestionProgress({
+        userId: user.id,
+        questionIds: nextSession.questionIds.filter((questionId) => !answeredIds.has(questionId)),
+      });
+      await updatePracticeSessionRecord({
+        session: nextSession,
+        userId: user.id,
+        status: 'completed',
+      });
+      setEndConfirmOpen(false);
+      router.push(session.mode === 'Timed' ? `/test?id=${session.id}&review=1` : '/review');
+    } finally {
+      setEnding(false);
+    }
   };
 
   const handleSuspend = () => {
@@ -667,7 +707,7 @@ function TestSessionContent() {
         onBack={() => handleNavigate(currentIndex - 1)}
         onForward={() => handleNavigate(currentIndex + 1)}
         onSuspend={handleSuspend}
-        onEnd={handleEnd}
+        onEnd={handleEndRequest}
         onSubmit={handleSubmit}
         onFeedback={handleFeedback}
         showSubmit={session.mode === 'Tutor' && !isPaused && !submitted && Boolean(selectedAnswer)}
@@ -698,6 +738,28 @@ function TestSessionContent() {
           <div className="flex justify-end">
             <Button variant="outline" onClick={() => setFeedbackOpen(false)}>
               {t('test.close')}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={endConfirmOpen} onOpenChange={(open) => !ending && setEndConfirmOpen(open)}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>{t('test.confirmEndTitle')}</DialogTitle>
+            <DialogDescription>
+              {t('test.confirmEndDescription', {
+                answered: Object.keys(session.userAnswers).length,
+                total: questions.length,
+              })}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+            <Button variant="outline" onClick={() => setEndConfirmOpen(false)} disabled={ending}>
+              {t('test.cancelEnd')}
+            </Button>
+            <Button onClick={handleEnd} disabled={ending}>
+              {ending ? t('test.ending') : t('test.confirmEnd')}
             </Button>
           </div>
         </DialogContent>

@@ -103,6 +103,11 @@ type TranslationKey =
   | 'test.feedbackError'
   | 'test.feedbackEmpty'
   | 'test.completeTimedBeforeReview'
+  | 'test.confirmEndTitle'
+  | 'test.confirmEndDescription'
+  | 'test.cancelEnd'
+  | 'test.confirmEnd'
+  | 'test.ending'
   | 'test.close'
   | 'explanation.title'
   | 'explanation.visualGuide'
@@ -284,6 +289,11 @@ const en: Dictionary = {
   'test.feedbackError': 'Could not generate feedback. Check your Gemini API key and model settings.',
   'test.feedbackEmpty': 'Answer at least one question before requesting feedback.',
   'test.completeTimedBeforeReview': 'Timed mode is a simulated exam. Answer all questions before reviewing explanations. Answered {answered}/{total}.',
+  'test.confirmEndTitle': 'End this practice session?',
+  'test.confirmEndDescription': 'Your current progress has been saved. You have answered {answered}/{total} questions. Confirm to finish this session.',
+  'test.cancelEnd': 'Keep practicing',
+  'test.confirmEnd': 'End session',
+  'test.ending': 'Ending...',
   'test.close': 'Close',
   'explanation.title': 'Explanation',
   'explanation.visualGuide': 'Visual Guide',
@@ -465,6 +475,11 @@ const zhHans: Dictionary = {
   'test.feedbackError': '无法生成反馈。请检查 Gemini API key 和模型设置。',
   'test.feedbackEmpty': '请至少作答一题后再请求反馈。',
   'test.completeTimedBeforeReview': '计时模式是模拟考试。请先完成所有题目，再查看解析。已作答 {answered}/{total}。',
+  'test.confirmEndTitle': '结束这次练习？',
+  'test.confirmEndDescription': '当前进度已保存。你已作答 {answered}/{total} 题。确认后将结束本次练习。',
+  'test.cancelEnd': '继续练习',
+  'test.confirmEnd': '结束练习',
+  'test.ending': '正在结束...',
   'test.close': '关闭',
   'explanation.title': '解析',
   'explanation.visualGuide': '图片解析',
@@ -645,6 +660,11 @@ const zhHant: Dictionary = {
   'test.feedbackError': '無法產生回饋。請檢查 Gemini API key 和模型設定。',
   'test.feedbackEmpty': '請至少作答一題後再請求回饋。',
   'test.completeTimedBeforeReview': '計時模式是模擬考試。請先完成所有題目，再查看解析。已作答 {answered}/{total}。',
+  'test.confirmEndTitle': '結束這次練習？',
+  'test.confirmEndDescription': '目前進度已儲存。你已作答 {answered}/{total} 題。確認後將結束本次練習。',
+  'test.cancelEnd': '繼續練習',
+  'test.confirmEnd': '結束練習',
+  'test.ending': '正在結束...',
   'test.close': '關閉',
   'explanation.title': '解析',
   'explanation.visualGuide': '圖片解析',
