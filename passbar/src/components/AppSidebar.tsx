@@ -9,7 +9,7 @@ import {
   BookOpen,
   ChevronDown,
   LayoutGrid,
-  ClipboardCheck,
+  CirclePlay,
   Wrench,
   HelpCircle,
   LogOut,
@@ -48,7 +48,7 @@ export function AppSidebar() {
         { name: t('nav.performance'), href: '/performance', icon: BookOpen },
       ],
     },
-    { name: t('nav.assessments'), icon: ClipboardCheck, items: [] },
+    { name: t('nav.tutorial'), href: '/tutorial', icon: CirclePlay, items: [] },
     { name: t('nav.tools'), icon: Wrench, items: [
       { name: t('nav.settings'), href: '/settings', icon: Settings },
     ] },
@@ -72,7 +72,6 @@ export function AppSidebar() {
           <BrandLogo className="mb-2 h-14 w-14 rounded-xl bg-white p-2 shadow-sm" />
           <span className="text-xl font-bold tracking-tight text-white">PassBar</span>
           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">MBE QBank</span>
-          <span className="text-xs text-slate-400 mt-2">{t('app.tagline')}</span>
         </Link>
       </SidebarHeader>
       
@@ -110,11 +109,22 @@ export function AppSidebar() {
                     </div>
                   </CollapsibleContent>
                 </Collapsible>
+              ) : section.href ? (
+                <Link
+                  href={section.href}
+                  onClick={handleNavigate}
+                  className={cn(
+                    "flex items-center gap-3 py-6 px-4 text-slate-300 transition-colors hover:bg-white/5 hover:text-white",
+                    pathname === section.href && "bg-white/10 text-white border-l-2 border-primary"
+                  )}
+                >
+                  <section.icon className="w-4 h-4" />
+                  <span className="flex-1 font-semibold text-xs uppercase tracking-wider">{section.name}</span>
+                </Link>
               ) : (
                 <SidebarMenuButton className="text-slate-300 hover:text-white hover:bg-white/5 py-6 px-4">
                   <section.icon className="w-4 h-4" />
                   <span className="flex-1 font-semibold text-xs uppercase tracking-wider">{section.name}</span>
-                  <ChevronDown className="w-3 h-3 text-slate-500 rotate-270" />
                 </SidebarMenuButton>
               )}
             </SidebarMenuItem>

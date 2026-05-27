@@ -7,25 +7,47 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useAuth } from '@/components/AuthProvider';
 import { useI18n } from '@/lib/i18n';
 import { getQuestionsByChapterIds, getSubjects } from '@/lib/question-bank';
-import { Subject, TestMode, QuestionSelectionMode, TestSession } from '@/lib/types';
+import { Subject, TestMode, TestSession } from '@/lib/types';
 import { emptyQuestionStatusCounts, getQuestionStatusCounts, QuestionStatusCounts } from '@/lib/question-progress';
 import { createPracticeSessionRecord } from '@/lib/practice-sessions';
-import { ClipboardList, Info, HelpCircle, User, Calendar as CalendarIcon, Zap } from 'lucide-react';
+import { Info, HelpCircle, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+function HintIcon({ children }: { children: React.ReactNode }) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span
+          className="inline-flex cursor-help items-center text-primary"
+          onClick={(event) => event.stopPropagation()}
+          onPointerDown={(event) => event.stopPropagation()}
+        >
+          <Info className="h-3.5 w-3.5" />
+        </span>
+      </TooltipTrigger>
+      <TooltipContent
+        side="right"
+        align="start"
+        sideOffset={10}
+        className="max-w-[calc(100vw-2rem)] border-slate-200 bg-white p-0 text-slate-600 shadow-xl"
+      >
+        {children}
+      </TooltipContent>
+    </Tooltip>
+  );
+}
 
 export default function CreateTestPage() {
   const router = useRouter();
   const { user } = useAuth();
   const { t } = useI18n();
-  const [testDate, setTestDate] = useState('');
   const [testMode, setTestMode] = useState<TestMode>('Tutor');
-  const [questionMode, setQuestionMode] = useState<QuestionSelectionMode>('Standard');
   const [statusFilters, setStatusFilters] = useState({
     Unused: true,
     Incorrect: false,
@@ -41,11 +63,6 @@ export default function CreateTestPage() {
 
   useEffect(() => {
     getSubjects().then(setSubjects);
-    setTestDate(new Intl.DateTimeFormat(undefined, {
-      month: 'short',
-      day: '2-digit',
-      year: 'numeric',
-    }).format(new Date()));
   }, []);
 
   const totalQuestionCount = useMemo(() => (
@@ -164,30 +181,17 @@ export default function CreateTestPage() {
   };
 
   return (
+    <TooltipProvider delayDuration={120}>
     <div className="mx-auto max-w-6xl space-y-6 pb-28 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="rounded-lg border border-slate-200 bg-white px-5 py-5 shadow-sm md:px-6">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-4">
-            <div className="flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 text-primary ring-1 ring-primary/20">
-              <ClipboardList className="h-6 w-6" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-semibold text-slate-800">{t('create.title')}</h1>
-            </div>
-          </div>
-          <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500">
-            <div className="flex items-center gap-2 rounded-md border border-slate-200 bg-slate-50 px-3 py-2">
-              <CalendarIcon className="h-4 w-4" />
-              <span>{t('create.testDate')} : {testDate || t('create.today')}</span>
-            </div>
-            <Button variant="ghost" className="gap-2 text-primary">
-              <Zap className="h-4 w-4" />
-              {t('create.launchTutorial')}
-            </Button>
-            <User className="h-5 w-5" />
-          </div>
+      <header className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <h1 className="text-4xl font-bold text-primary">{t('create.title')}</h1>
+        <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500">
+          <Button variant="ghost" className="gap-2 text-primary">
+            <Zap className="h-4 w-4" />
+            {t('create.launchTutorial')}
+          </Button>
         </div>
-      </div>
+      </header>
 
       <div className="grid gap-4 md:grid-cols-3">
         <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
@@ -209,7 +213,19 @@ export default function CreateTestPage() {
           <AccordionTrigger className="py-4 hover:no-underline">
             <div className="flex items-center gap-2 text-base font-bold text-slate-700">
               {t('create.testMode')}
-              <Info className="w-3.5 h-3.5 text-primary" />
+              <HintIcon>
+                <div className="w-[min(28rem,calc(100vw-2rem))] p-1">
+                  <p className="px-4 py-3 text-sm leading-relaxed text-slate-500">{t('create.testModeHint')}</p>
+                  <div className="grid grid-cols-[5rem_1fr] gap-4 border-t border-slate-200 px-4 py-3">
+                    <div className="font-bold text-slate-700">{t('create.tutor')}</div>
+                    <div>{t('create.tutorModeHint')}</div>
+                  </div>
+                  <div className="grid grid-cols-[5rem_1fr] gap-4 border-t border-slate-200 px-4 py-3">
+                    <div className="font-bold text-slate-700">{t('create.timed')}</div>
+                    <div>{t('create.timedModeHint')}</div>
+                  </div>
+                </div>
+              </HintIcon>
             </div>
           </AccordionTrigger>
           <AccordionContent className="border-t pb-6 pt-4">
@@ -233,21 +249,26 @@ export default function CreateTestPage() {
           <AccordionTrigger className="py-4 hover:no-underline">
             <div className="flex items-center gap-2 text-base font-bold text-slate-700">
               {t('create.questionMode')}
-              <Info className="w-3.5 h-3.5 text-primary" />
+              <HintIcon>
+                <div className="w-[min(40rem,calc(100vw-2rem))] p-1">
+                  <p className="px-4 py-3 text-sm leading-relaxed text-slate-500">{t('create.questionModeHint')}</p>
+                  {[
+                    ['create.unused', 'create.unusedHint'],
+                    ['create.incorrect', 'create.incorrectHint'],
+                    ['create.marked', 'create.markedHint'],
+                    ['create.omitted', 'create.omittedHint'],
+                    ['create.correct', 'create.correctHint'],
+                  ].map(([labelKey, hintKey]) => (
+                    <div key={labelKey} className="grid grid-cols-[7rem_1fr] gap-4 border-t border-slate-200 px-4 py-3">
+                      <div className="font-bold text-slate-700">{t(labelKey as Parameters<typeof t>[0])}</div>
+                      <div>{t(hintKey as Parameters<typeof t>[0])}</div>
+                    </div>
+                  ))}
+                </div>
+              </HintIcon>
             </div>
           </AccordionTrigger>
           <AccordionContent className="border-t pb-6 pt-4">
-            <Tabs 
-              value={questionMode} 
-              onValueChange={(v) => setQuestionMode(v as QuestionSelectionMode)} 
-              className="mb-6 w-[240px]"
-            >
-              <TabsList className="grid h-10 w-full grid-cols-2">
-                <TabsTrigger value="Standard" className="text-sm">{t('create.standard')}</TabsTrigger>
-                <TabsTrigger value="Custom" className="text-sm">{t('create.custom')}</TabsTrigger>
-              </TabsList>
-            </Tabs>
-
             <div className="flex flex-wrap gap-x-8 gap-y-4 rounded-md bg-slate-50 p-4">
               <div className="flex items-center gap-2">
                 <Checkbox id="filter-unused" checked={statusFilters.Unused} onCheckedChange={() => toggleStatus('Unused')} />
@@ -419,5 +440,6 @@ export default function CreateTestPage() {
         </AccordionItem>
       </Accordion>
     </div>
+    </TooltipProvider>
   );
 }

@@ -14,6 +14,7 @@ type TranslationKey =
   | 'nav.assessments'
   | 'nav.tools'
   | 'nav.settings'
+  | 'nav.tutorial'
   | 'nav.resetOptions'
   | 'nav.help'
   | 'auth.signOut'
@@ -52,16 +53,25 @@ type TranslationKey =
   | 'create.today'
   | 'create.launchTutorial'
   | 'create.testMode'
+  | 'create.testModeHint'
+  | 'create.tutorModeHint'
+  | 'create.timedModeHint'
   | 'create.tutor'
   | 'create.timed'
   | 'create.questionMode'
+  | 'create.questionModeHint'
   | 'create.standard'
   | 'create.custom'
   | 'create.unused'
+  | 'create.unusedHint'
   | 'create.incorrect'
+  | 'create.incorrectHint'
   | 'create.marked'
+  | 'create.markedHint'
   | 'create.omitted'
+  | 'create.omittedHint'
   | 'create.correct'
+  | 'create.correctHint'
   | 'create.subjectsAndChapters'
   | 'create.collapseAll'
   | 'create.noOfQuestions'
@@ -200,6 +210,7 @@ const en: Dictionary = {
   'nav.assessments': 'Assessments',
   'nav.tools': 'Tools',
   'nav.settings': 'Settings',
+  'nav.tutorial': 'Tutorial',
   'nav.resetOptions': 'Reset Options',
   'nav.help': 'Help',
   'auth.signOut': 'Sign out',
@@ -238,16 +249,25 @@ const en: Dictionary = {
   'create.today': 'Today',
   'create.launchTutorial': 'Launch Tutorial',
   'create.testMode': 'Test Mode',
+  'create.testModeHint': 'Choose how answers and explanations are shown during a test.',
+  'create.tutorModeHint': 'Submit each question and review the explanation immediately.',
+  'create.timedModeHint': 'Simulate exam mode. Answer all questions before reviewing explanations.',
   'create.tutor': 'Tutor',
   'create.timed': 'Timed',
   'create.questionMode': 'Question Mode',
+  'create.questionModeHint': 'Choose which question history buckets are eligible for this test.',
   'create.standard': 'Standard',
   'create.custom': 'Custom',
   'create.unused': 'Unused',
+  'create.unusedHint': 'Selects questions from a set of new/unseen questions',
   'create.incorrect': 'Incorrect',
+  'create.incorrectHint': 'Selects questions that were previously answered incorrectly',
   'create.marked': 'Marked',
+  'create.markedHint': 'Selects questions that were previously marked/flagged for review',
   'create.omitted': 'Omitted',
+  'create.omittedHint': 'Selects questions that were omitted previously',
   'create.correct': 'Correct',
+  'create.correctHint': 'Selects questions that were previously answered correctly',
   'create.subjectsAndChapters': 'Subjects and Chapters',
   'create.collapseAll': 'Collapse All',
   'create.noOfQuestions': 'No. of Questions',
@@ -339,7 +359,7 @@ const en: Dictionary = {
   'dashboard.nextMilestone': 'Next Milestone',
   'dashboard.milestoneText': 'Complete {count} more questions to reach your next practice milestone.',
   'dashboard.startLearning': 'Start Learning',
-  'review.title': 'Test History',
+  'review.title': 'Previous Test',
   'review.description': 'Review your past performance and study incorrect answers.',
   'review.searchPlaceholder': 'Search topics...',
   'review.noSessions': 'No sessions yet',
@@ -386,6 +406,7 @@ const zhHans: Dictionary = {
   'nav.assessments': '测评',
   'nav.tools': '工具',
   'nav.settings': '设置',
+  'nav.tutorial': '教程',
   'nav.resetOptions': '重置选项',
   'nav.help': '帮助',
   'auth.signOut': '退出登录',
@@ -424,16 +445,25 @@ const zhHans: Dictionary = {
   'create.today': '今天',
   'create.launchTutorial': '打开教程',
   'create.testMode': '练习模式',
+  'create.testModeHint': '选择测验过程中答案与解析的显示方式。',
+  'create.tutorModeHint': '每做一题即可提交，并立即查看解析。',
+  'create.timedModeHint': '模拟考试模式。完成所有题目后才能查看解析。',
   'create.tutor': '教学',
   'create.timed': '计时',
   'create.questionMode': '题目模式',
+  'create.questionModeHint': '选择本次测验可抽取的题目记录类型。',
   'create.standard': '标准',
   'create.custom': '自定义',
   'create.unused': '未做',
+  'create.unusedHint': '从未做过的新题中抽题',
   'create.incorrect': '错误',
+  'create.incorrectHint': '从之前答错的题目中抽题',
   'create.marked': '标记',
+  'create.markedHint': '从之前标记/收藏待复习的题目中抽题',
   'create.omitted': '略过',
+  'create.omittedHint': '从之前略过的题目中抽题',
   'create.correct': '正确',
+  'create.correctHint': '从之前答对的题目中抽题',
   'create.subjectsAndChapters': '科目与章节',
   'create.collapseAll': '全部收起',
   'create.noOfQuestions': '题目数量',
@@ -525,7 +555,7 @@ const zhHans: Dictionary = {
   'dashboard.nextMilestone': '下一个里程碑',
   'dashboard.milestoneText': '再完成 {count} 题即可达到下一个练习里程碑。',
   'dashboard.startLearning': '开始学习',
-  'review.title': '练习历史',
+  'review.title': '历史测验',
   'review.description': '回顾过去表现，并复习答错的题目。',
   'review.searchPlaceholder': '搜索科目或章节...',
   'review.noSessions': '还没有练习记录',
@@ -571,6 +601,7 @@ const zhHant: Dictionary = {
   'nav.assessments': '測評',
   'nav.tools': '工具',
   'nav.settings': '設定',
+  'nav.tutorial': '教學',
   'nav.resetOptions': '重設選項',
   'nav.help': '幫助',
   'auth.signOut': '登出',
@@ -609,16 +640,25 @@ const zhHant: Dictionary = {
   'create.today': '今天',
   'create.launchTutorial': '開啟教學',
   'create.testMode': '練習模式',
+  'create.testModeHint': '選擇測驗過程中答案與解析的顯示方式。',
+  'create.tutorModeHint': '每做一題即可提交，並立即查看解析。',
+  'create.timedModeHint': '模擬考試模式。完成所有題目後才能查看解析。',
   'create.tutor': '教學',
   'create.timed': '計時',
   'create.questionMode': '題目模式',
+  'create.questionModeHint': '選擇本次測驗可抽取的題目紀錄類型。',
   'create.standard': '標準',
   'create.custom': '自訂',
   'create.unused': '未做',
+  'create.unusedHint': '從未做過的新題中抽題',
   'create.incorrect': '錯誤',
+  'create.incorrectHint': '從之前答錯的題目中抽題',
   'create.marked': '標記',
+  'create.markedHint': '從之前標記/收藏待複習的題目中抽題',
   'create.omitted': '略過',
+  'create.omittedHint': '從之前略過的題目中抽題',
   'create.correct': '正確',
+  'create.correctHint': '從之前答對的題目中抽題',
   'create.subjectsAndChapters': '科目與章節',
   'create.collapseAll': '全部收起',
   'create.noOfQuestions': '題目數量',
@@ -710,7 +750,7 @@ const zhHant: Dictionary = {
   'dashboard.nextMilestone': '下一個里程碑',
   'dashboard.milestoneText': '再完成 {count} 題即可達到下一個練習里程碑。',
   'dashboard.startLearning': '開始學習',
-  'review.title': '練習歷史',
+  'review.title': '歷史測驗',
   'review.description': '回顧過去表現，並複習答錯的題目。',
   'review.searchPlaceholder': '搜尋科目或章節...',
   'review.noSessions': '還沒有練習紀錄',
