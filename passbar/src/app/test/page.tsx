@@ -32,6 +32,7 @@ import { Check, Clock3, ListChecks, X } from 'lucide-react';
 type AnswerMeta = {
   elapsedSeconds: number;
   correctPercent: number | null;
+  choicePercents: Partial<Record<'A' | 'B' | 'C' | 'D', number>>;
 };
 
 function formatAnswerTime(seconds: number) {
@@ -239,6 +240,7 @@ function TestSessionContent() {
           [currentQuestion.id]: {
             elapsedSeconds: 0,
             correctPercent: stats.correctPercent,
+            choicePercents: stats.choicePercents,
           },
         };
       });
@@ -306,6 +308,7 @@ function TestSessionContent() {
       [currentQuestion.id]: {
         elapsedSeconds,
         correctPercent: stats.correctPercent,
+        choicePercents: stats.choicePercents,
       },
     }));
   };
@@ -555,17 +558,11 @@ function TestSessionContent() {
                     const isRevealed = Boolean(submitted && (session.mode === 'Tutor' || isReviewMode));
 
                     let percentageText = null;
-                    if (isRevealed && currentAnswerMeta?.correctPercent != null) {
-                      if (isCorrect) {
-                        percentageText = `(${currentAnswerMeta.correctPercent}%)`;
-                      } else {
-                         const remaining = 100 - currentAnswerMeta.correctPercent;
-                         const splits = [0.55, 0.35, 0.10];
-                         const correctIdx = normalizedCorrectAnswerKey ? normalizedCorrectAnswerKey.charCodeAt(0) - 65 : 0;
-                         const wrongIdx = idx > correctIdx ? idx - 1 : idx;
-                         const percent = Math.round(remaining * (splits[wrongIdx % 3] || 0));
-                         percentageText = `(${percent}%)`;
-                      }
+                    const realChoicePercent = currentAnswerMeta?.choicePercents[label as 'A' | 'B' | 'C' | 'D'];
+                    if (isRevealed && realChoicePercent != null) {
+                      percentageText = `(${realChoicePercent}%)`;
+                    } else if (isRevealed && isCorrect && currentAnswerMeta?.correctPercent != null) {
+                      percentageText = `(${currentAnswerMeta.correctPercent}%)`;
                     }
 
                     return (

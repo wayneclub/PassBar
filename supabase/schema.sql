@@ -582,6 +582,45 @@ $$;
 
 grant execute on function public.get_question_answer_stats(text) to authenticated;
 
+create or replace function public.get_question_choice_stats(p_question_id text)
+returns table (
+  selected_choice text,
+  answer_count bigint,
+  answer_percent int
+)
+language sql
+stable
+security definer set search_path = public
+as $$
+  with choices(choice) as (
+    values ('A'), ('B'), ('C'), ('D')
+  ),
+  totals as (
+    select count(*)::numeric as total_answers
+    from public.practice_answers
+    where question_id = p_question_id
+  ),
+  counts as (
+    select selected_choice, count(*) as answer_count
+    from public.practice_answers
+    where question_id = p_question_id
+    group by selected_choice
+  )
+  select
+    choices.choice as selected_choice,
+    coalesce(counts.answer_count, 0) as answer_count,
+    case
+      when totals.total_answers = 0 then 0
+      else round(coalesce(counts.answer_count, 0)::numeric * 100 / totals.total_answers)::int
+    end as answer_percent
+  from choices
+  cross join totals
+  left join counts on counts.selected_choice = choices.choice
+  order by choices.choice;
+$$;
+
+grant execute on function public.get_question_choice_stats(text) to authenticated;
+
 drop policy if exists "Allow public read access to subjects" on public.subjects;
 create policy "Allow public read access to subjects"
 on public.subjects for select using (true);

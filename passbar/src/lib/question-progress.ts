@@ -85,8 +85,25 @@ export async function getQuestionAnswerStats(questionId: string): Promise<{
   totalAnswers: number;
   correctAnswers: number;
   correctPercent: number | null;
+  choicePercents: Partial<Record<'A' | 'B' | 'C' | 'D', number>>;
 }> {
-  if (!supabase) return { totalAnswers: 0, correctAnswers: 0, correctPercent: null };
+  if (!supabase) return { totalAnswers: 0, correctAnswers: 0, correctPercent: null, choicePercents: {} };
+
+  const choicePercents: Partial<Record<'A' | 'B' | 'C' | 'D', number>> = {};
+  const { data: choiceData, error: choiceError } = await supabase.rpc('get_question_choice_stats', {
+    p_question_id: questionId,
+  });
+
+  if (!choiceError && Array.isArray(choiceData)) {
+    choiceData.forEach((row) => {
+      const choice = String((row as { selected_choice?: string | null }).selected_choice ?? '').toUpperCase();
+      if (choice === 'A' || choice === 'B' || choice === 'C' || choice === 'D') {
+        choicePercents[choice] = (row as { answer_percent?: number | null }).answer_percent ?? 0;
+      }
+    });
+  } else if (choiceError) {
+    console.warn('[PassBar] Failed to load question choice stats:', choiceError.message);
+  }
 
   const { data: rpcData, error: rpcError } = await supabase.rpc('get_question_answer_stats', {
     p_question_id: questionId,
@@ -102,6 +119,7 @@ export async function getQuestionAnswerStats(questionId: string): Promise<{
       totalAnswers: row.total_answers ?? 0,
       correctAnswers: row.correct_answers ?? 0,
       correctPercent: row.correct_percent,
+      choicePercents,
     };
   }
 
@@ -119,7 +137,7 @@ export async function getQuestionAnswerStats(questionId: string): Promise<{
 
   if (totalResult.error || correctResult.error) {
     console.warn('[PassBar] Failed to load question answer stats:', totalResult.error?.message ?? correctResult.error?.message);
-    return { totalAnswers: 0, correctAnswers: 0, correctPercent: null };
+    return { totalAnswers: 0, correctAnswers: 0, correctPercent: null, choicePercents };
   }
 
   const totalAnswers = totalResult.count ?? 0;
@@ -128,6 +146,7 @@ export async function getQuestionAnswerStats(questionId: string): Promise<{
     totalAnswers,
     correctAnswers,
     correctPercent: totalAnswers > 0 ? Math.round((correctAnswers / totalAnswers) * 100) : null,
+    choicePercents,
   };
 }
 
