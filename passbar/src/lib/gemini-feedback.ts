@@ -24,6 +24,7 @@ export type GeminiStatus = 'enabled' | 'disabled' | 'unknown';
 type GeminiResponse = {
   enabled?: boolean;
   model?: string | null;
+  action?: 'status' | 'feedback' | 'question-analysis';
   feedback?: string;
   error?: string;
   details?: string;
@@ -36,13 +37,19 @@ export type GeminiQuestionAnalysisRequest = {
   correctChoice?: string | null;
   isCorrect?: boolean;
   explanationText?: string | null;
+  explanationImageUrls?: string[];
   topic?: string | null;
   interfaceLanguage?: string;
 };
 
 async function invokeSupabaseFunction(body: Record<string, unknown>) {
   if (!supabase) throw new Error('Supabase is not configured.');
-  const { data, error } = await supabase.functions.invoke<GeminiResponse>('gemini-feedback', { body });
+  const { data: sessionData } = await supabase.auth.getSession();
+  const accessToken = sessionData.session?.access_token;
+  const { data, error } = await supabase.functions.invoke<GeminiResponse>('gemini-feedback', {
+    body,
+    headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : undefined,
+  });
   if (error) throw error;
   return data ?? {};
 }
@@ -96,5 +103,8 @@ export async function requestGeminiFeedback(input: GeminiFeedbackRequest) {
 export async function requestGeminiQuestionAnalysis(input: GeminiQuestionAnalysisRequest) {
   const data = await invokeGemini({ action: 'question-analysis', ...input });
   if (!data.feedback) throw new Error(data.details || data.error || 'Unable to generate Gemini question analysis.');
+  if (data.action !== 'question-analysis') {
+    throw new Error('Gemini question analysis backend is stale. Redeploy the Supabase Edge Function so question-analysis requests are handled as single-question feedback.');
+  }
   return data.feedback;
 }

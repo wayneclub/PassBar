@@ -15,7 +15,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "import:questions": "node scripts/import_questions_to_supabase.mjs",
-    "ocr:explanations": "node scripts/ocr_explanation_images.mjs"
+    "ocr:explanations": "node scripts/ocr_explanation_images.mjs",
+    "gemini:check-question": "node scripts/check_gemini_question_analysis.mjs"
   },
   "dependencies": {
     "@genkit-ai/google-genai": "^1.32.0",

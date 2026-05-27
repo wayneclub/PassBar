@@ -1,6 +1,6 @@
 import { supabase } from './supabase';
 
-export const QUESTION_AI_PROMPT_VERSION = 'question-analysis-v2';
+export const QUESTION_AI_PROMPT_VERSION = 'question-analysis-v3';
 
 type QuestionAiAnalysisRow = {
   analysis_markdown: string;
@@ -20,6 +20,23 @@ type QuestionAiAnalysisInput = {
 
 function normalizeChoice(choice?: string | null) {
   return choice ? choice.toUpperCase() : null;
+}
+
+function looksLikeSessionFeedback(value: string) {
+  const normalized = value.toLowerCase();
+  return [
+    'overall diagnosis',
+    'session summary',
+    '本次練習尚未開始',
+    '本次练习尚未开始',
+    '整體診斷',
+    '整体诊断',
+    '弱點科目',
+    '弱点科目',
+    '沒有任何作答數據',
+    '没有任何作答数据',
+    '尚未作答',
+  ].some((snippet) => normalized.includes(snippet.toLowerCase()));
 }
 
 export async function getCachedQuestionAiAnalysis(input: QuestionAiAnalysisInput) {
@@ -44,7 +61,9 @@ export async function getCachedQuestionAiAnalysis(input: QuestionAiAnalysisInput
     return null;
   }
 
-  return data?.analysis_markdown ?? null;
+  if (!data?.analysis_markdown) return null;
+  if (looksLikeSessionFeedback(data.analysis_markdown)) return null;
+  return data.analysis_markdown;
 }
 
 export async function saveQuestionAiAnalysis(input: QuestionAiAnalysisInput) {

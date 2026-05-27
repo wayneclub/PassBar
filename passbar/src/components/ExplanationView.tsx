@@ -32,6 +32,14 @@ type HighlightStroke = {
   points: Point[];
 };
 
+type OcrTextLine = {
+  text: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+
 function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
 }
@@ -45,24 +53,64 @@ function stripHtml(value: string) {
     .trim();
 }
 
+function buildOcrTextLines(words: ExplanationOcrWord[]): OcrTextLine[] {
+  const sortedWords = [...words]
+    .filter((word) => word.text.trim())
+    .sort((a, b) => {
+      const yDiff = a.bbox.y - b.bbox.y;
+      if (Math.abs(yDiff) > Math.max(a.bbox.height, b.bbox.height) * 0.6) return yDiff;
+      return a.bbox.x - b.bbox.x;
+    });
+
+  const lines: ExplanationOcrWord[][] = [];
+  sortedWords.forEach((word) => {
+    const centerY = word.bbox.y + word.bbox.height / 2;
+    const matchingLine = lines.find((line) => {
+      const lineCenterY = line.reduce((sum, item) => sum + item.bbox.y + item.bbox.height / 2, 0) / line.length;
+      const averageHeight = line.reduce((sum, item) => sum + item.bbox.height, 0) / line.length;
+      return Math.abs(centerY - lineCenterY) <= Math.max(averageHeight, word.bbox.height) * 0.75;
+    });
+
+    if (matchingLine) matchingLine.push(word);
+    else lines.push([word]);
+  });
+
+  return lines.map((line) => {
+    const ordered = [...line].sort((a, b) => a.bbox.x - b.bbox.x);
+    const minX = Math.min(...ordered.map((word) => word.bbox.x));
+    const minY = Math.min(...ordered.map((word) => word.bbox.y));
+    const maxX = Math.max(...ordered.map((word) => word.bbox.x + word.bbox.width));
+    const maxY = Math.max(...ordered.map((word) => word.bbox.y + word.bbox.height));
+
+    return {
+      text: ordered.map((word) => word.text.trim()).join(' '),
+      x: minX,
+      y: minY,
+      width: maxX - minX,
+      height: maxY - minY,
+    };
+  });
+}
+
 function OcrTextLayer({ words }: { words: ExplanationOcrWord[] }) {
   if (words.length === 0) return null;
+  const lines = buildOcrTextLines(words);
 
   return (
     <div className="absolute inset-0 z-10 select-text text-transparent [text-shadow:none]">
-      {words.map((word, index) => (
+      {lines.map((line, index) => (
         <span
-          key={`${word.text}-${index}`}
+          key={`${line.text}-${index}`}
           className="absolute block overflow-visible whitespace-nowrap leading-none selection:bg-yellow-200/80 selection:text-slate-950"
           style={{
-            left: `${word.bbox.x * 100}%`,
-            top: `${word.bbox.y * 100}%`,
-            width: `${word.bbox.width * 100}%`,
-            height: `${word.bbox.height * 100}%`,
-            fontSize: `${Math.max(word.bbox.height * 100, 1.2)}cqw`,
+            left: `${line.x * 100}%`,
+            top: `${line.y * 100}%`,
+            width: `${line.width * 100}%`,
+            height: `${line.height * 100}%`,
+            fontSize: `${Math.max(line.height * 100, 1.2)}cqw`,
           }}
         >
-          {word.text}
+          {line.text}
         </span>
       ))}
     </div>
@@ -322,6 +370,7 @@ function GeminiQuestionFeedback({
           correctChoice: correctChoiceKey,
           isCorrect,
           explanationText,
+          explanationImageUrls: Array.from(englishImageUrls).filter((url): url is string => Boolean(url)),
           topic: question.topic,
           interfaceLanguage: language
         });

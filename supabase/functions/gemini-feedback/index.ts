@@ -21,6 +21,7 @@ type FeedbackRequest = {
   correctChoice?: string | null;
   isCorrect?: boolean;
   explanationText?: string | null;
+  explanationImageUrls?: string[];
   topic?: string | null;
 };
 
@@ -123,6 +124,8 @@ function buildQuestionAnalysisPrompt(input: FeedbackRequest) {
 - Explain the legal reason this answer is correct, tied to the source explanation.
 ## 陷阱檢查
 - Identify tempting traps or facts that could mislead the student, and why they do not change the result.
+## 延伸考點
+- Identify 1-2 closely related MBE rules or variations that could be tested next.
 ## 考試提醒
 - Give one concise MBE takeaway.`
     : `The student answered incorrectly. Write practical feedback with this exact structure:
@@ -130,10 +133,14 @@ function buildQuestionAnalysisPrompt(input: FeedbackRequest) {
 - Explain why selected choice ${selected} is wrong, tied directly to the facts.
 ## 正確答案
 - Explain why choice ${correct} is correct, using the source explanation.
+## 選項分析
+- Analyze every answer choice A-D. For each choice, state whether it is correct or incorrect and the precise legal reason.
 ## 關鍵字
 - List the decisive words, dates, relationships, or procedural posture from the English question.
 ## 陷阱檢查
 - Identify the trap that likely caused the mistake.
+## 延伸考點
+- Identify 1-2 closely related MBE rules or variations that could be tested next.
 ## 考試提醒
 - Give one concise MBE takeaway.`;
 
@@ -141,7 +148,7 @@ function buildQuestionAnalysisPrompt(input: FeedbackRequest) {
 
 ${languageInstruction}
 
-Use only these inputs: the English question, answer choices, correct answer, selected answer, and source English explanation/OCR. If the explanation/OCR is incomplete, rely on the English question and choices and say nothing about missing data.
+Use only these inputs: the English question, answer choices, correct answer, selected answer, source English explanation/OCR, and any attached source explanation images. Treat attached images as authoritative source explanation material.
 
 Question topic: ${input.topic ?? 'Unknown'}
 Question:
@@ -161,7 +168,44 @@ ${structureInstruction}
 Use Markdown. Keep it focused on this question. Do not mention that you are an AI model.`;
 }
 
-async function callGemini(model: string, prompt: string, key: string) {
+type GeminiPart = { text: string } | { inlineData: { mimeType: string; data: string } };
+
+async function imageUrlToPart(url: string): Promise<GeminiPart | null> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) return null;
+    const contentType = response.headers.get('content-type') ?? 'image/png';
+    if (!contentType.startsWith('image/')) return null;
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    if (bytes.byteLength > 7_000_000) return null;
+    let binary = '';
+    const chunkSize = 0x8000;
+    for (let index = 0; index < bytes.length; index += chunkSize) {
+      binary += String.fromCharCode(...bytes.subarray(index, index + chunkSize));
+    }
+    return {
+      inlineData: {
+        mimeType: contentType,
+        data: btoa(binary),
+      },
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function buildGeminiParts(input: FeedbackRequest, prompt: string): Promise<GeminiPart[]> {
+  const parts: GeminiPart[] = [{ text: prompt }];
+  if (input.action !== 'question-analysis') return parts;
+
+  const imageParts = await Promise.all(
+    (input.explanationImageUrls ?? []).slice(0, 2).map((url) => imageUrlToPart(url)),
+  );
+  imageParts.filter((part): part is GeminiPart => Boolean(part)).forEach((part) => parts.push(part));
+  return parts;
+}
+
+async function callGemini(model: string, parts: GeminiPart[], key: string) {
   const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(key)}`, {
     method: 'POST',
     headers: {
@@ -171,7 +215,7 @@ async function callGemini(model: string, prompt: string, key: string) {
       contents: [
         {
           role: 'user',
-          parts: [{ text: prompt }],
+          parts,
         },
       ],
       generationConfig: {
@@ -205,6 +249,7 @@ Deno.serve(async (request) => {
 
   if (input.action === 'status') {
     return json({
+      action: 'status',
       enabled: Boolean(key),
       model: key ? modelsToTry()[0] : null,
     });
@@ -215,12 +260,13 @@ Deno.serve(async (request) => {
   const prompt = input.action === 'question-analysis'
     ? buildQuestionAnalysisPrompt(input)
     : buildPrompt(input);
+  const parts = await buildGeminiParts(input, prompt);
   const errors: string[] = [];
 
   for (const model of modelsToTry()) {
     try {
-      const feedback = await callGemini(model, prompt, key);
-      return json({ feedback, model });
+      const feedback = await callGemini(model, parts, key);
+      return json({ action: input.action ?? 'feedback', feedback, model });
     } catch (error) {
       errors.push(`${model}: ${error instanceof Error ? error.message : String(error)}`);
     }

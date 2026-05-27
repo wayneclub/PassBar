@@ -71,26 +71,34 @@ function AuthContent() {
       <div className="mx-auto grid min-h-screen max-w-6xl grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]">
         <section className="flex flex-col justify-between bg-secondary p-8 text-white lg:p-12">
           <div>
-            <div className="mb-10 flex items-center gap-3">
-              <BrandLogo className="h-12 w-12 rounded-xl bg-white p-2 shadow-sm" />
-              <BrandLogo variant="wordmark" className="h-12 w-32 rounded-md bg-white/95 px-2" />
+            <div className="mb-12 flex items-center gap-4">
+              <BrandLogo className="h-14 w-14 rounded-2xl bg-white p-2.5 shadow-[0_14px_36px_rgba(0,0,0,0.28)]" />
+              <div className="leading-none">
+                <div className="text-3xl font-extrabold tracking-tight">
+                  <span className="text-white">Pass</span><span className="text-primary">Bar</span>
+                  <span className="ml-1 text-primary">✦</span>
+                </div>
+                <div className="mt-2 text-xs font-bold uppercase tracking-[0.22em] text-primary/80">MBE QBank</div>
+              </div>
             </div>
-            <h1 className="max-w-md text-4xl font-semibold leading-tight">Sign in with Google to sync your bar prep progress.</h1>
-            <p className="mt-4 max-w-md text-sm leading-6 text-slate-300">
-              Your sessions, answers, marked questions, and performance history will attach to your Google account.
+            <h1 className="max-w-md text-4xl font-semibold leading-tight lg:text-5xl">
+              Practice smarter for the bar exam.
+            </h1>
+            <p className="mt-5 max-w-md text-base leading-7 text-slate-300">
+              Build custom MBE-style question sets, review every answer with an AI tutor, and focus your study time on the rules that matter most.
             </p>
           </div>
-          <div className="mt-12 border-t border-white/10 pt-6 text-xs text-slate-400">
-            One Google account for sign in and registration.
+          <div className="mt-12 border-t border-primary/25 pt-6 text-sm leading-6 text-slate-400">
+            Google sign-in keeps your sessions, answers, marked questions, and performance history synced across devices.
           </div>
         </section>
 
         <section className="flex items-center justify-center p-6 lg:p-12">
           <Card className="w-full max-w-md border-slate-200 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-2xl">Continue to PassBar</CardTitle>
+              <CardTitle className="text-2xl">Continue with Google</CardTitle>
               <CardDescription>
-                New users are registered automatically after Google authorization.
+                One click signs you in or creates your PassBar account.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-5">
