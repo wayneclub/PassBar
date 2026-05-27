@@ -9,11 +9,11 @@ import {
   BookOpen,
   ChevronDown,
   LayoutGrid,
-  CirclePlay,
   Wrench,
   HelpCircle,
   LogOut,
-  Settings
+  Settings,
+  type LucideIcon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/components/AuthProvider';
@@ -33,22 +33,35 @@ import {
 } from '@/components/ui/sidebar';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
+type NavigationItem = {
+  name: string;
+  icon: LucideIcon;
+  href?: string;
+  tourId?: string;
+  items: Array<{
+    name: string;
+    href: string;
+    icon: LucideIcon;
+    tourId?: string;
+  }>;
+};
+
 export function AppSidebar() {
   const pathname = usePathname();
   const { user, profile, signOut } = useAuth();
   const { isMobile, setOpenMobile } = useSidebar();
   const { t } = useI18n();
-  const navigationItems = [
+  const navigationItems: NavigationItem[] = [
     {
       name: t('nav.qbank'),
       icon: LayoutGrid,
+      tourId: 'qbank',
       items: [
-        { name: t('nav.createTest'), href: '/create', icon: PlusCircle },
+        { name: t('nav.createTest'), href: '/create', icon: PlusCircle, tourId: 'create-test' },
         { name: t('nav.previousTests'), href: '/review', icon: History },
         { name: t('nav.performance'), href: '/performance', icon: BookOpen },
       ],
     },
-    { name: t('nav.tutorial'), href: '/tutorial', icon: CirclePlay, items: [] },
     { name: t('nav.tools'), icon: Wrench, items: [
       { name: t('nav.settings'), href: '/settings', icon: Settings },
     ] },
@@ -82,7 +95,7 @@ export function AppSidebar() {
               {section.items.length > 0 ? (
                 <Collapsible defaultOpen className="w-full">
                   <CollapsibleTrigger asChild>
-                    <SidebarMenuButton className="text-slate-300 hover:text-white hover:bg-white/5 py-6 px-4">
+                    <SidebarMenuButton data-tour={section.tourId} className="text-slate-300 hover:text-white hover:bg-white/5 py-6 px-4">
                       <section.icon className="w-4 h-4" />
                       <span className="flex-1 font-semibold text-xs uppercase tracking-wider">{section.name}</span>
                       <ChevronDown className="w-3 h-3 text-slate-500" />
@@ -94,6 +107,7 @@ export function AppSidebar() {
                         <Link 
                           key={item.href} 
                           href={item.href}
+                          data-tour={item.tourId}
                           onClick={handleNavigate}
                           className={cn(
                             "flex items-center gap-3 pl-10 pr-4 py-3 text-xs transition-colors",

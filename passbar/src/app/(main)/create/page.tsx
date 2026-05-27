@@ -11,6 +11,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
 import { Badge } from '@/components/ui/badge';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useAuth } from '@/components/AuthProvider';
+import { GuidedTour, GuidedTourStep } from '@/components/GuidedTour';
 import { useI18n } from '@/lib/i18n';
 import { getQuestionsByChapterIds, getSubjects } from '@/lib/question-bank';
 import { Subject, TestMode, TestSession } from '@/lib/types';
@@ -60,6 +61,7 @@ export default function CreateTestPage() {
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [statusCounts, setStatusCounts] = useState<QuestionStatusCounts>(emptyQuestionStatusCounts);
   const [isStarting, setIsStarting] = useState(false);
+  const [tourOpen, setTourOpen] = useState(false);
 
   useEffect(() => {
     getSubjects().then(setSubjects);
@@ -93,6 +95,38 @@ export default function CreateTestPage() {
   const requestedQuestionCount = Number.parseInt(questionCount, 10) || 0;
   const practicedQuestionCount = statusCounts.Correct + statusCounts.Incorrect;
   const unpracticedQuestionCount = Math.max(totalQuestionCount - practicedQuestionCount, 0);
+  const tourSteps = useMemo<GuidedTourStep[]>(() => [
+    {
+      selector: '[data-tour="qbank"]',
+      title: t('tour.qbankTitle'),
+      description: t('tour.qbankDescription'),
+    },
+    {
+      selector: '[data-tour="create-test"]',
+      title: t('tour.createTestTitle'),
+      description: t('tour.createTestDescription'),
+    },
+    {
+      selector: '[data-tour="test-mode"]',
+      title: t('tour.testModeTitle'),
+      description: t('tour.testModeDescription'),
+    },
+    {
+      selector: '[data-tour="question-mode"]',
+      title: t('tour.questionModeTitle'),
+      description: t('tour.questionModeDescription'),
+    },
+    {
+      selector: '[data-tour="subjects"]',
+      title: t('tour.subjectsTitle'),
+      description: t('tour.subjectsDescription'),
+    },
+    {
+      selector: '[data-tour="generate"]',
+      title: t('tour.generateTitle'),
+      description: t('tour.generateDescription'),
+    },
+  ], [t]);
 
   useEffect(() => {
     setQuestionCount(currentAvailableQuestions.toString());
@@ -186,7 +220,7 @@ export default function CreateTestPage() {
       <header className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <h1 className="text-4xl font-bold text-primary">{t('create.title')}</h1>
         <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500">
-          <Button variant="ghost" className="gap-2 text-primary">
+          <Button variant="ghost" className="gap-2 text-primary" onClick={() => setTourOpen(true)}>
             <Zap className="h-4 w-4" />
             {t('create.launchTutorial')}
           </Button>
@@ -209,7 +243,7 @@ export default function CreateTestPage() {
       </div>
 
       <Accordion type="multiple" defaultValue={['test-mode', 'question-mode', 'subjects', 'no-questions']} className="space-y-4">
-        <AccordionItem value="test-mode" className="overflow-hidden rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
+        <AccordionItem value="test-mode" data-tour="test-mode" className="overflow-hidden rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
           <AccordionTrigger className="py-4 hover:no-underline">
             <div className="flex items-center gap-2 text-base font-bold text-slate-700">
               {t('create.testMode')}
@@ -245,7 +279,7 @@ export default function CreateTestPage() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="question-mode" className="overflow-hidden rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
+        <AccordionItem value="question-mode" data-tour="question-mode" className="overflow-hidden rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
           <AccordionTrigger className="py-4 hover:no-underline">
             <div className="flex items-center gap-2 text-base font-bold text-slate-700">
               {t('create.questionMode')}
@@ -319,7 +353,7 @@ export default function CreateTestPage() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="subjects" className="overflow-hidden rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
+        <AccordionItem value="subjects" data-tour="subjects" className="overflow-hidden rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
           <AccordionTrigger className="py-4 hover:no-underline">
             <div className="flex items-center justify-between w-full pr-4">
               <div className="flex items-center gap-2 text-base font-bold text-slate-700">
@@ -386,7 +420,7 @@ export default function CreateTestPage() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="no-questions" className="overflow-hidden rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
+        <AccordionItem value="no-questions" data-tour="generate" className="overflow-hidden rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
           <AccordionTrigger className="py-4 hover:no-underline">
             <div className="text-base font-bold text-slate-700">{t('create.noOfQuestions')}</div>
           </AccordionTrigger>
@@ -439,6 +473,15 @@ export default function CreateTestPage() {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
+      <GuidedTour
+        open={tourOpen}
+        steps={tourSteps}
+        onOpenChange={setTourOpen}
+        stepLabel={(current, total) => t('tour.stepOf', { current, total })}
+        backLabel={t('tour.back')}
+        nextLabel={t('tour.next')}
+        doneLabel={t('tour.done')}
+      />
     </div>
     </TooltipProvider>
   );

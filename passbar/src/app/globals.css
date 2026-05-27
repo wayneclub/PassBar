@@ -56,6 +56,29 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-headline;
   }
+
+  [data-sidebar="content"] {
+    scrollbar-color: hsl(var(--sidebar-border)) hsl(var(--sidebar-background));
+    scrollbar-width: thin;
+  }
+
+  [data-sidebar="content"]::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  [data-sidebar="content"]::-webkit-scrollbar-track {
+    background: hsl(var(--sidebar-background));
+  }
+
+  [data-sidebar="content"]::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--sidebar-border));
+    border: 3px solid hsl(var(--sidebar-background));
+    border-radius: 999px;
+  }
+
+  [data-sidebar="content"]::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--sidebar-primary));
+  }
 }
 
 /* Accordion Specific Styling to match screenshot */

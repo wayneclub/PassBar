@@ -17,6 +17,22 @@ type TranslationKey =
   | 'nav.tutorial'
   | 'nav.resetOptions'
   | 'nav.help'
+  | 'tour.stepOf'
+  | 'tour.back'
+  | 'tour.next'
+  | 'tour.done'
+  | 'tour.qbankTitle'
+  | 'tour.qbankDescription'
+  | 'tour.createTestTitle'
+  | 'tour.createTestDescription'
+  | 'tour.testModeTitle'
+  | 'tour.testModeDescription'
+  | 'tour.questionModeTitle'
+  | 'tour.questionModeDescription'
+  | 'tour.subjectsTitle'
+  | 'tour.subjectsDescription'
+  | 'tour.generateTitle'
+  | 'tour.generateDescription'
   | 'auth.signOut'
   | 'profile.open'
   | 'profile.details'
@@ -213,6 +229,22 @@ const en: Dictionary = {
   'nav.tutorial': 'Tutorial',
   'nav.resetOptions': 'Reset Options',
   'nav.help': 'Help',
+  'tour.stepOf': '{current} of {total}',
+  'tour.back': 'Back',
+  'tour.next': 'Next',
+  'tour.done': 'Done',
+  'tour.qbankTitle': 'QBank',
+  'tour.qbankDescription': 'Create custom practice tests and revisit previous ones to sharpen your skills and track your progress.',
+  'tour.createTestTitle': 'Create Test',
+  'tour.createTestDescription': 'Start here when you want to build a custom MBE-style practice set from selected subjects and chapters.',
+  'tour.testModeTitle': 'Test Mode',
+  'tour.testModeDescription': 'Tutor mode lets you submit each question and review the explanation immediately. Timed mode simulates an exam and shows explanations after completion.',
+  'tour.questionModeTitle': 'Question Mode',
+  'tour.questionModeDescription': 'Choose whether the test should use new questions, incorrect questions, marked questions, omitted questions, or questions you previously answered correctly.',
+  'tour.subjectsTitle': 'Subjects and Chapters',
+  'tour.subjectsDescription': 'Select the MBE subjects and chapters you want to practice. The question counts update from your imported database.',
+  'tour.generateTitle': 'Generate Test',
+  'tour.generateDescription': 'Confirm the number of questions and generate the test. PassBar will save your progress and answer history as you practice.',
   'auth.signOut': 'Sign out',
   'profile.open': 'Open profile',
   'profile.details': 'Profile details',
@@ -409,6 +441,22 @@ const zhHans: Dictionary = {
   'nav.tutorial': '教程',
   'nav.resetOptions': '重置选项',
   'nav.help': '帮助',
+  'tour.stepOf': '{current} / {total}',
+  'tour.back': '上一步',
+  'tour.next': '下一步',
+  'tour.done': '完成',
+  'tour.qbankTitle': '题库',
+  'tour.qbankDescription': '建立自定义测验，复习过去练习，并持续追踪你的备考进度。',
+  'tour.createTestTitle': '创建测验',
+  'tour.createTestDescription': '从这里开始选择科目与章节，生成适合自己的 MBE 风格练习。',
+  'tour.testModeTitle': '练习模式',
+  'tour.testModeDescription': '教学模式可以每题提交后立即看解析；计时模式模拟考试，完成后才查看所有解析。',
+  'tour.questionModeTitle': '题目模式',
+  'tour.questionModeDescription': '选择本次测验要抽取未做、错误、标记、略过或之前答对的题目。',
+  'tour.subjectsTitle': '科目与章节',
+  'tour.subjectsDescription': '选择想练习的 MBE 科目与章节。题目数量会从已导入的数据库自动统计。',
+  'tour.generateTitle': '生成测验',
+  'tour.generateDescription': '确认题目数量后生成测验。练习过程中 PassBar 会保存你的进度与作答纪录。',
   'auth.signOut': '退出登录',
   'profile.open': '打开个人资料',
   'profile.details': '个人资料',
@@ -604,6 +652,22 @@ const zhHant: Dictionary = {
   'nav.tutorial': '教學',
   'nav.resetOptions': '重設選項',
   'nav.help': '幫助',
+  'tour.stepOf': '{current} / {total}',
+  'tour.back': '上一步',
+  'tour.next': '下一步',
+  'tour.done': '完成',
+  'tour.qbankTitle': '題庫',
+  'tour.qbankDescription': '建立自訂測驗，複習過去練習，並持續追蹤你的備考進度。',
+  'tour.createTestTitle': '建立測驗',
+  'tour.createTestDescription': '從這裡開始選擇科目與章節，產生適合自己的 MBE 風格練習。',
+  'tour.testModeTitle': '練習模式',
+  'tour.testModeDescription': '教學模式可以每題提交後立即看解析；計時模式模擬考試，完成後才查看所有解析。',
+  'tour.questionModeTitle': '題目模式',
+  'tour.questionModeDescription': '選擇本次測驗要抽取未做、錯誤、標記、略過或之前答對的題目。',
+  'tour.subjectsTitle': '科目與章節',
+  'tour.subjectsDescription': '選擇想練習的 MBE 科目與章節。題目數量會從已匯入的資料庫自動統計。',
+  'tour.generateTitle': '產生測驗',
+  'tour.generateDescription': '確認題目數量後產生測驗。練習過程中 PassBar 會儲存你的進度與作答紀錄。',
   'auth.signOut': '登出',
   'profile.open': '開啟個人資料',
   'profile.details': '個人資料',
