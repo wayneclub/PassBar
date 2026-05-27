@@ -9,7 +9,7 @@ type FeedbackAttempt = {
 };
 
 type FeedbackRequest = {
-  action?: 'status' | 'feedback';
+  action?: 'status' | 'feedback' | 'question-analysis';
   mode?: string;
   totalQuestions?: number;
   attempts?: FeedbackAttempt[];
@@ -19,6 +19,7 @@ type FeedbackRequest = {
   options?: Array<{ key: string; text: string }>;
   selectedChoice?: string | null;
   correctChoice?: string | null;
+  isCorrect?: boolean;
   explanationText?: string | null;
   topic?: string | null;
 };
@@ -107,13 +108,40 @@ function buildQuestionAnalysisPrompt(input: FeedbackRequest) {
 
   const selected = input.selectedChoice ?? 'N/A';
   const correct = input.correctChoice ?? 'N/A';
+  const isCorrect = typeof input.isCorrect === 'boolean'
+    ? input.isCorrect
+    : Boolean(input.selectedChoice && input.correctChoice && input.selectedChoice === input.correctChoice);
   const options = (input.options ?? [])
     .map((option) => `${option.key}. ${trimText(option.text, 700)}`)
     .join('\n');
 
-  return `You are PassBar's MBE tutor. Help the student fully understand this single question.
+  const structureInstruction = isCorrect
+    ? `The student answered correctly. Write practical feedback with this exact structure:
+## 關鍵字
+- List the decisive words, dates, relationships, or procedural posture from the English question.
+## 為什麼選 ${correct}
+- Explain the legal reason this answer is correct, tied to the source explanation.
+## 陷阱檢查
+- Identify tempting traps or facts that could mislead the student, and why they do not change the result.
+## 考試提醒
+- Give one concise MBE takeaway.`
+    : `The student answered incorrectly. Write practical feedback with this exact structure:
+## 錯誤原因
+- Explain why selected choice ${selected} is wrong, tied directly to the facts.
+## 正確答案
+- Explain why choice ${correct} is correct, using the source explanation.
+## 關鍵字
+- List the decisive words, dates, relationships, or procedural posture from the English question.
+## 陷阱檢查
+- Identify the trap that likely caused the mistake.
+## 考試提醒
+- Give one concise MBE takeaway.`;
+
+  return `You are PassBar's MBE tutor. Analyze this exact single MBE question, not the overall study session.
 
 ${languageInstruction}
+
+Use only these inputs: the English question, answer choices, correct answer, selected answer, and source English explanation/OCR. If the explanation/OCR is incomplete, rely on the English question and choices and say nothing about missing data.
 
 Question topic: ${input.topic ?? 'Unknown'}
 Question:
@@ -125,16 +153,12 @@ ${options}
 Student selected: ${selected}
 Correct answer: ${correct}
 
-Source explanation or OCR excerpt:
-${trimText(input.explanationText ?? '', 2400)}
+Source English explanation or OCR excerpt:
+${trimText(input.explanationText ?? '', 3200)}
 
-Write concise but complete feedback with this structure:
-1. Why the selected answer is wrong, tied directly to the facts.
-2. Why the correct answer is right.
-3. Key words or facts the student should have noticed.
-4. Test-taking takeaway for similar MBE questions.
+${structureInstruction}
 
-Use bullets. Do not mention that you are an AI model.`;
+Use Markdown. Keep it focused on this question. Do not mention that you are an AI model.`;
 }
 
 async function callGemini(model: string, prompt: string, key: string) {

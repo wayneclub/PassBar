@@ -13,12 +13,12 @@ import {
   Wrench,
   HelpCircle,
   LogOut,
-  Settings,
-  Zap
+  Settings
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/components/AuthProvider';
 import { useI18n } from '@/lib/i18n';
+import { BrandLogo } from '@/components/BrandLogo';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -29,12 +29,14 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarFooter,
+  useSidebar,
 } from '@/components/ui/sidebar';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 export function AppSidebar() {
   const pathname = usePathname();
   const { user, profile, signOut } = useAuth();
+  const { isMobile, setOpenMobile } = useSidebar();
   const { t } = useI18n();
   const navigationItems = [
     {
@@ -59,14 +61,15 @@ export function AppSidebar() {
     .join('')
     .slice(0, 2)
     .toUpperCase() || 'PB';
+  const handleNavigate = () => {
+    if (isMobile) setOpenMobile(false);
+  };
 
   return (
-    <Sidebar className="bg-[#1a2b3c] border-r-0">
+    <Sidebar className="bg-secondary border-r-0">
       <SidebarHeader className="p-6">
         <Link href="/" className="flex flex-col gap-1 items-center mb-8">
-          <div className="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center text-white font-bold mb-2">
-            <Zap className="w-8 h-8" />
-          </div>
+          <BrandLogo className="mb-2 h-14 w-14 rounded-xl bg-white p-2 shadow-sm" />
           <span className="text-xl font-bold tracking-tight text-white">PassBar</span>
           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">MBE QBank</span>
           <span className="text-xs text-slate-400 mt-2">{t('app.tagline')}</span>
@@ -92,6 +95,7 @@ export function AppSidebar() {
                         <Link 
                           key={item.href} 
                           href={item.href}
+                          onClick={handleNavigate}
                           className={cn(
                             "flex items-center gap-3 pl-10 pr-4 py-3 text-xs transition-colors",
                             pathname === item.href 
@@ -124,10 +128,10 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarContent>
 
-      <SidebarFooter className="space-y-3 bg-black/20 p-4">
+      <SidebarFooter className="hidden space-y-3 bg-black/20 p-4 md:flex">
         <div className="flex items-center gap-3 rounded-md bg-white/5 p-2 text-left">
           <Avatar className="h-9 w-9 border border-white/10">
-            <AvatarFallback className="bg-primary text-xs font-bold text-white">
+            <AvatarFallback className="bg-primary text-xs font-bold text-primary-foreground">
               {initials}
             </AvatarFallback>
           </Avatar>

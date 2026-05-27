@@ -1,6 +1,7 @@
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
 import { AuthGuard } from '@/components/AuthGuard';
+import { MobileAppHeader } from '@/components/MobileAppHeader';
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -9,7 +10,8 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         <div className="flex h-screen min-h-0 w-full overflow-hidden bg-background">
           <AppSidebar />
           <SidebarInset className="h-screen min-h-0 flex-1 overflow-y-auto">
-            <main className="passbar-main mx-auto w-full max-w-7xl p-4 md:p-8">
+            <MobileAppHeader />
+            <main className="passbar-main mx-auto w-full max-w-7xl px-4 pb-4 pt-5 md:p-8">
               {children}
             </main>
           </SidebarInset>

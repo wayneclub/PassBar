@@ -74,7 +74,7 @@ export function TestHeader({
   };
 
   return (
-    <header className="h-14 bg-[#1a2b3c] text-white flex items-center justify-between px-4 fixed top-0 w-full z-50">
+    <header className="h-14 bg-secondary text-white flex items-center justify-between px-4 fixed top-0 w-full z-50">
       {/* Left Icons */}
       <div className="flex items-center gap-1">
         <Button
@@ -84,19 +84,19 @@ export function TestHeader({
           aria-label={currentMarked ? t('test.unmarkQuestion') : t('test.markQuestion')}
           className={cn(
             'hover:bg-white/10',
-            currentMarked ? 'bg-blue-400/15 text-blue-300' : 'text-blue-400',
+            currentMarked ? 'bg-primary/15 text-primary' : 'text-primary',
           )}
           onClick={onToggleMark}
         >
           <Bookmark className={cn('w-5 h-5', currentMarked && 'fill-current')} />
         </Button>
-        <Button variant="ghost" size="icon" className="hover:bg-white/10 text-blue-400">
+        <Button variant="ghost" size="icon" className="hover:bg-white/10 text-primary">
           <Zap className="w-5 h-5" />
         </Button>
-        <Button variant="ghost" size="icon" className="hover:bg-white/10 text-blue-400">
+        <Button variant="ghost" size="icon" className="hover:bg-white/10 text-primary">
           <FileText className="w-5 h-5" />
         </Button>
-        <Button variant="ghost" size="icon" className="hover:bg-white/10 text-blue-400">
+        <Button variant="ghost" size="icon" className="hover:bg-white/10 text-primary">
           <SquarePen className="w-5 h-5" />
         </Button>
       </div>
@@ -105,7 +105,7 @@ export function TestHeader({
         <PopoverTrigger asChild>
           <button className="flex items-center gap-2 rounded px-4 py-2 text-white transition-colors hover:bg-white/10">
             <span className="text-lg font-semibold tabular-nums">{questionIndex + 1}/{totalQuestions}</span>
-            <ChevronDown className={cn('h-5 w-5 text-blue-400 transition-transform', questionMenuOpen && 'rotate-180')} />
+            <ChevronDown className={cn('h-5 w-5 text-primary transition-transform', questionMenuOpen && 'rotate-180')} />
           </button>
         </PopoverTrigger>
         <PopoverContent className="w-[360px] border-slate-200 bg-white p-4 text-slate-900" sideOffset={10}>
@@ -130,7 +130,7 @@ export function TestHeader({
                   }}
                   className={cn(
                     'flex h-10 items-center justify-center rounded-md border text-sm font-semibold transition-colors',
-                    isCurrent && 'border-[#1a2b3c] bg-[#1a2b3c] text-white',
+                    isCurrent && 'border-secondary bg-secondary text-white',
                     !isCurrent && isAnswered && 'border-primary/30 bg-primary/10 text-primary hover:bg-primary/15',
                     !isCurrent && !isAnswered && 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50',
                   )}
@@ -144,7 +144,7 @@ export function TestHeader({
             })}
           </div>
           <div className="mt-4 flex gap-4 text-xs text-slate-500">
-            <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#1a2b3c]" /> {t('test.current')}</span>
+            <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-secondary" /> {t('test.current')}</span>
             <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-primary" /> {t('test.answered')}</span>
             <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-amber-400" /> {t('test.marked')}</span>
             <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full border border-slate-300" /> {t('test.unanswered')}</span>
@@ -155,15 +155,15 @@ export function TestHeader({
       {/* Right Icons */}
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-1">
-          <Button variant="ghost" size="icon" className="hover:bg-white/10 text-blue-400 h-9 w-9">
+          <Button variant="ghost" size="icon" className="hover:bg-white/10 text-primary h-9 w-9">
             <HelpCircle className="w-5 h-5" />
           </Button>
-          <Button asChild variant="ghost" size="icon" className="hover:bg-white/10 text-blue-400 h-9 w-9">
+          <Button asChild variant="ghost" size="icon" className="hover:bg-white/10 text-primary h-9 w-9">
             <Link href="/settings" aria-label={t('nav.settings')}>
               <Settings className="w-5 h-5" />
             </Link>
           </Button>
-          <Button variant="ghost" size="icon" className="hover:bg-white/10 text-blue-400 h-9 w-9">
+          <Button variant="ghost" size="icon" className="hover:bg-white/10 text-primary h-9 w-9">
             <Layout className="w-5 h-5" />
           </Button>
         </div>

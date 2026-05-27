@@ -34,6 +34,7 @@ export type GeminiQuestionAnalysisRequest = {
   options?: Array<{ key: string; text: string }>;
   selectedChoice?: string | null;
   correctChoice?: string | null;
+  isCorrect?: boolean;
   explanationText?: string | null;
   topic?: string | null;
   interfaceLanguage?: string;

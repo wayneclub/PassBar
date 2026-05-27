@@ -352,37 +352,37 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/50 border-orange-100 shadow-sm">
+        <Card className="bg-white/50 border-primary/20 shadow-sm">
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t('dashboard.studyStreak')}</p>
                 <h3 className="text-2xl font-bold mt-1">{dashboardData.streakDays} {t('dashboard.days')}</h3>
               </div>
-              <div className="p-2 bg-orange-50 rounded-full">
-                <Flame className="w-5 h-5 text-orange-500" />
+              <div className="p-2 bg-primary/10 rounded-full">
+                <Flame className="w-5 h-5 text-primary" />
               </div>
             </div>
             <div className="flex gap-1 mt-4">
               {[1, 2, 3, 4, 5, 6, 7].map((day) => (
                 <div
                   key={day}
-                  className={cn('flex-1 h-1.5 rounded-full', day <= dashboardData.streakDays ? 'bg-orange-500' : 'bg-muted')}
+                  className={cn('flex-1 h-1.5 rounded-full', day <= dashboardData.streakDays ? 'bg-primary' : 'bg-muted')}
                 />
               ))}
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-white/50 border-blue-100 shadow-sm">
+        <Card className="bg-white/50 border-secondary/10 shadow-sm">
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t('dashboard.timeToday')}</p>
                 <h3 className="text-2xl font-bold mt-1">{formatDuration(dashboardData.timeTodaySeconds)}</h3>
               </div>
-              <div className="p-2 bg-blue-50 rounded-full">
-                <Clock className="w-5 h-5 text-blue-500" />
+              <div className="p-2 bg-secondary/10 rounded-full">
+                <Clock className="w-5 h-5 text-secondary" />
               </div>
             </div>
             <p className="text-xs text-muted-foreground mt-4">{t('dashboard.remaining', { count: remainingQuestions.toLocaleString() })}</p>
@@ -473,11 +473,11 @@ export default function DashboardPage() {
                   </div>
                 </div>
               ) : (
-                <div className="flex items-start gap-3 p-3 rounded-lg bg-blue-50 border border-blue-100">
-                  <BookOpen className="w-5 h-5 text-blue-600 mt-0.5" />
+                <div className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20">
+                  <BookOpen className="w-5 h-5 text-primary mt-0.5" />
                   <div>
-                    <p className="text-sm font-semibold text-blue-900">{t('dashboard.noAnswers')}</p>
-                    <p className="text-xs text-blue-700">{t('dashboard.noAnswersDescription')}</p>
+                    <p className="text-sm font-semibold text-secondary">{t('dashboard.noAnswers')}</p>
+                    <p className="text-xs text-muted-foreground">{t('dashboard.noAnswersDescription')}</p>
                   </div>
                 </div>
               )}
@@ -501,7 +501,7 @@ export default function DashboardPage() {
               <div
                 className={cn(
                   'flex items-start gap-3 rounded-lg border p-3',
-                  geminiStatus === 'enabled' && 'border-sky-100 bg-sky-50',
+                  geminiStatus === 'enabled' && 'border-primary/20 bg-primary/5',
                   geminiStatus === 'disabled' && 'border-amber-100 bg-amber-50',
                   geminiStatus === 'unknown' && 'border-slate-200 bg-slate-50',
                 )}
@@ -509,7 +509,7 @@ export default function DashboardPage() {
                 <Sparkles
                   className={cn(
                     'mt-0.5 h-5 w-5',
-                    geminiStatus === 'enabled' && 'text-sky-600',
+                    geminiStatus === 'enabled' && 'text-primary',
                     geminiStatus === 'disabled' && 'text-amber-600',
                     geminiStatus === 'unknown' && 'text-slate-500',
                   )}
@@ -518,7 +518,7 @@ export default function DashboardPage() {
                   <p
                     className={cn(
                       'text-sm font-semibold',
-                      geminiStatus === 'enabled' && 'text-sky-900',
+                      geminiStatus === 'enabled' && 'text-secondary',
                       geminiStatus === 'disabled' && 'text-amber-900',
                       geminiStatus === 'unknown' && 'text-slate-800',
                     )}
@@ -532,7 +532,7 @@ export default function DashboardPage() {
                   <p
                     className={cn(
                       'text-xs',
-                      geminiStatus === 'enabled' && 'text-sky-700',
+                      geminiStatus === 'enabled' && 'text-muted-foreground',
                       geminiStatus === 'disabled' && 'text-amber-700',
                       geminiStatus === 'unknown' && 'text-slate-600',
                     )}

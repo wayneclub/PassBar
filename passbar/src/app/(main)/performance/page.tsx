@@ -333,7 +333,7 @@ export default function PerformanceDetail() {
         </Card>
         <Card>
           <CardContent className="flex items-center gap-4 p-5">
-            <Activity className="h-9 w-9 text-sky-600" />
+            <Activity className="h-9 w-9 text-primary" />
             <div>
               <p className="text-sm text-muted-foreground">{t('performance.subjectsPracticed')}</p>
               <p className="text-3xl font-bold">{data.subjectStats.length}</p>
@@ -443,7 +443,7 @@ export default function PerformanceDetail() {
               <div key={chapter.key} className="rounded-md border border-green-100 bg-green-50/60 p-4">
                 <div className="flex items-center justify-between gap-3">
                   <div className="font-semibold text-slate-900">{chapter.label}</div>
-                  <Badge className="bg-green-600 text-white hover:bg-green-600">{accuracy}%</Badge>
+                  <Badge className="bg-primary text-primary-foreground hover:bg-primary">{accuracy}%</Badge>
                 </div>
                 <div className="mt-1 text-sm text-green-800">{chapter.subject}</div>
                 <div className="mt-3 text-sm text-muted-foreground">

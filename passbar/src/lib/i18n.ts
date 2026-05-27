@@ -5,6 +5,8 @@ import { getStudySettings, InterfaceLanguage } from './study-settings';
 
 type TranslationKey =
   | 'app.tagline'
+  | 'nav.dashboard'
+  | 'nav.openNavigation'
   | 'nav.qbank'
   | 'nav.createTest'
   | 'nav.previousTests'
@@ -15,6 +17,8 @@ type TranslationKey =
   | 'nav.resetOptions'
   | 'nav.help'
   | 'auth.signOut'
+  | 'profile.open'
+  | 'profile.details'
   | 'role.student'
   | 'settings.title'
   | 'settings.description'
@@ -98,6 +102,7 @@ type TranslationKey =
   | 'test.generatingFeedback'
   | 'test.feedbackError'
   | 'test.feedbackEmpty'
+  | 'test.completeTimedBeforeReview'
   | 'test.close'
   | 'explanation.title'
   | 'explanation.visualGuide'
@@ -181,6 +186,8 @@ type Dictionary = Record<TranslationKey, string>;
 
 const en: Dictionary = {
   'app.tagline': 'Bar prep workspace',
+  'nav.dashboard': 'Dashboard',
+  'nav.openNavigation': 'Open navigation',
   'nav.qbank': 'QBank',
   'nav.createTest': 'Create Test',
   'nav.previousTests': 'Previous Tests',
@@ -191,6 +198,8 @@ const en: Dictionary = {
   'nav.resetOptions': 'Reset Options',
   'nav.help': 'Help',
   'auth.signOut': 'Sign out',
+  'profile.open': 'Open profile',
+  'profile.details': 'Profile details',
   'role.student': 'Student',
   'settings.title': 'Settings',
   'settings.description': 'Choose how questions and explanations appear during practice.',
@@ -274,13 +283,14 @@ const en: Dictionary = {
   'test.generatingFeedback': 'Analyzing your answers...',
   'test.feedbackError': 'Could not generate feedback. Check your Gemini API key and model settings.',
   'test.feedbackEmpty': 'Answer at least one question before requesting feedback.',
+  'test.completeTimedBeforeReview': 'Timed mode is a simulated exam. Answer all questions before reviewing explanations. Answered {answered}/{total}.',
   'test.close': 'Close',
   'explanation.title': 'Explanation',
   'explanation.visualGuide': 'Visual Guide',
   'explanation.image': 'Explanation image {index}',
   'explanation.reviewSource': 'Review the source explanation below.',
   'explanation.highlight': 'Highlight',
-  'explanation.geminiFeedback': 'Gemini Feedback',
+  'explanation.geminiFeedback': 'AI Explanation',
   'explanation.geminiLoading': 'Analyzing this question...',
   'explanation.geminiError': 'Gemini feedback could not be loaded.',
   'explanation.eliminateChoice': 'Eliminate choice {choice}',
@@ -357,6 +367,8 @@ const en: Dictionary = {
 const zhHans: Dictionary = {
   ...en,
   'app.tagline': '法考备考工作区',
+  'nav.dashboard': '首页',
+  'nav.openNavigation': '打开导航',
   'nav.qbank': '题库',
   'nav.createTest': '创建练习',
   'nav.previousTests': '历史练习',
@@ -367,6 +379,8 @@ const zhHans: Dictionary = {
   'nav.resetOptions': '重置选项',
   'nav.help': '帮助',
   'auth.signOut': '退出登录',
+  'profile.open': '打开个人资料',
+  'profile.details': '个人资料',
   'role.student': '学生',
   'settings.title': '设置',
   'settings.description': '选择练习时题目与解析的显示方式。',
@@ -450,13 +464,14 @@ const zhHans: Dictionary = {
   'test.generatingFeedback': '正在分析你的作答...',
   'test.feedbackError': '无法生成反馈。请检查 Gemini API key 和模型设置。',
   'test.feedbackEmpty': '请至少作答一题后再请求反馈。',
+  'test.completeTimedBeforeReview': '计时模式是模拟考试。请先完成所有题目，再查看解析。已作答 {answered}/{total}。',
   'test.close': '关闭',
   'explanation.title': '解析',
   'explanation.visualGuide': '图片解析',
   'explanation.image': '解析图片 {index}',
   'explanation.reviewSource': '查看下方原始解析。',
   'explanation.highlight': '荧光笔',
-  'explanation.geminiFeedback': 'Gemini 反馈',
+  'explanation.geminiFeedback': 'AI 解析',
   'explanation.geminiLoading': '正在分析这道题...',
   'explanation.geminiError': '无法加载 Gemini 反馈。',
   'explanation.eliminateChoice': '刪去选项 {choice}',
@@ -532,6 +547,8 @@ const zhHans: Dictionary = {
 
 const zhHant: Dictionary = {
   'app.tagline': '法考備考工作區',
+  'nav.dashboard': '首頁',
+  'nav.openNavigation': '開啟導覽',
   'nav.qbank': '題庫',
   'nav.createTest': '建立練習',
   'nav.previousTests': '歷史練習',
@@ -542,6 +559,8 @@ const zhHant: Dictionary = {
   'nav.resetOptions': '重設選項',
   'nav.help': '幫助',
   'auth.signOut': '登出',
+  'profile.open': '開啟個人資料',
+  'profile.details': '個人資料',
   'role.student': '學生',
   'settings.title': '設定',
   'settings.description': '選擇練習時題目與解析的顯示方式。',
@@ -625,13 +644,14 @@ const zhHant: Dictionary = {
   'test.generatingFeedback': '正在分析你的作答...',
   'test.feedbackError': '無法產生回饋。請檢查 Gemini API key 和模型設定。',
   'test.feedbackEmpty': '請至少作答一題後再請求回饋。',
+  'test.completeTimedBeforeReview': '計時模式是模擬考試。請先完成所有題目，再查看解析。已作答 {answered}/{total}。',
   'test.close': '關閉',
   'explanation.title': '解析',
   'explanation.visualGuide': '圖片解析',
   'explanation.image': '解析圖片 {index}',
   'explanation.reviewSource': '查看下方原始解析。',
   'explanation.highlight': '螢光筆',
-  'explanation.geminiFeedback': 'Gemini 回饋',
+  'explanation.geminiFeedback': 'AI 解析',
   'explanation.geminiLoading': '正在分析這道題...',
   'explanation.geminiError': '無法載入 Gemini 回饋。',
   'explanation.eliminateChoice': '刪去選項 {choice}',

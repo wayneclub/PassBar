@@ -130,9 +130,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     let active = true;
 
-    const isDev = process.env.NODE_ENV === 'development' || typeof window !== 'undefined' && window.location.hostname === 'localhost';
+    const useMockAuth = process.env.NEXT_PUBLIC_USE_MOCK_AUTH === 'true';
 
-    if (isDev) {
+    if (useMockAuth) {
       const mockUser = {
         id: 'mock-user-id',
         email: 'mock@example.com',

@@ -38,17 +38,18 @@ export function TestFooter({
   showSubmit,
   feedbackLoading = false,
   isPaused,
+  isTutorMode,
 }: TestFooterProps) {
   const { t } = useI18n();
   return (
-    <footer className="fixed bottom-0 z-50 grid h-20 w-full grid-cols-[1fr_auto_1fr] items-center border-t border-slate-700 bg-[#1a2b3c] px-6 text-white shadow-lg">
+    <footer className="fixed bottom-0 z-50 grid h-20 w-full grid-cols-[1fr_auto_1fr] items-center border-t border-primary/30 bg-secondary px-6 text-white shadow-lg">
       <div className="flex items-center gap-5">
         <button 
           onClick={onEnd}
           className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
         >
-          <div className="w-5 h-5 rounded-full border border-blue-400 flex items-center justify-center">
-            <div className="w-2 h-2 rounded-full bg-blue-400" />
+          <div className="w-5 h-5 rounded-full border border-primary flex items-center justify-center">
+            <div className="w-2 h-2 rounded-full bg-primary" />
           </div>
           {t('test.end')}
         </button>
@@ -56,7 +57,7 @@ export function TestFooter({
           onClick={onSuspend}
           className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
         >
-          {isPaused ? <PlayCircle className="w-5 h-5 text-blue-400" /> : <PauseCircle className="w-5 h-5 text-blue-400" />}
+          {isPaused ? <PlayCircle className="w-5 h-5 text-primary" /> : <PauseCircle className="w-5 h-5 text-primary" />}
           {isPaused ? t('test.resume') : t('test.suspend')}
         </button>
       </div>
@@ -65,22 +66,22 @@ export function TestFooter({
         {showSubmit ? (
           <button
             onClick={onSubmit}
-            className="flex h-12 min-w-[220px] items-center justify-center gap-2 rounded-md bg-primary px-8 text-base font-bold text-white shadow-md transition-colors hover:bg-primary/90"
+            className="flex h-12 min-w-[220px] items-center justify-center gap-2 rounded-md bg-primary px-8 text-base font-bold text-primary-foreground shadow-md transition-colors hover:bg-primary/90"
           >
             <Send className="h-5 w-5" />
             {t('test.submit')}
           </button>
-        ) : (
+        ) : isTutorMode ? (
           <button
             type="button"
             onClick={onFeedback}
             disabled={feedbackLoading || isPaused}
             className="flex items-center gap-2 text-sm font-medium text-slate-300 transition-colors hover:text-white disabled:cursor-wait disabled:opacity-60"
           >
-            <MessageSquare className="w-5 h-5 text-blue-400" />
+            <MessageSquare className="w-5 h-5 text-primary" />
             {feedbackLoading ? t('test.generatingFeedback') : t('test.feedback')}
           </button>
-        )}
+        ) : null}
       </div>
 
       <div className="flex items-center justify-end gap-6">

@@ -18,6 +18,7 @@ import { emptyQuestionStatusCounts, getQuestionStatusCounts, QuestionStatusCount
 import { createPracticeSessionRecord } from '@/lib/practice-sessions';
 import { Info, HelpCircle, User, Calendar as CalendarIcon, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { BrandLogo } from '@/components/BrandLogo';
 
 export default function CreateTestPage() {
   const router = useRouter();
@@ -168,12 +169,9 @@ export default function CreateTestPage() {
       <div className="rounded-lg border border-slate-200 bg-white px-5 py-5 shadow-sm md:px-6">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
-            <div className="flex h-11 w-11 items-center justify-center rounded-md bg-primary text-white shadow-sm">
-              <Zap className="h-6 w-6" />
-            </div>
+            <BrandLogo className="h-11 w-11 rounded-md bg-white p-1.5 shadow-sm ring-1 ring-slate-200" />
             <div>
               <h1 className="text-2xl font-semibold text-slate-800">{t('create.title')}</h1>
-              <p className="text-sm text-slate-500">PassBar question bank</p>
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500">
@@ -254,7 +252,7 @@ export default function CreateTestPage() {
                 <Checkbox id="filter-unused" checked={statusFilters.Unused} onCheckedChange={() => toggleStatus('Unused')} />
                 <Label htmlFor="filter-unused" className="flex cursor-pointer items-center gap-1.5 text-sm font-medium text-slate-600">
                   {t('create.unused')}
-                  <Badge className="rounded-full border-none bg-primary px-2 py-0.5 text-xs font-bold text-white">
+                  <Badge className="rounded-full border-none bg-primary px-2 py-0.5 text-xs font-bold text-primary-foreground">
                     {statusCounts.Unused}
                   </Badge>
                 </Label>
@@ -386,8 +384,8 @@ export default function CreateTestPage() {
         </AccordionItem>
       </Accordion>
 
-      <div className="sticky bottom-0 z-20 -mx-4 border-t border-slate-200 bg-background/95 px-4 py-4 backdrop-blur md:-mx-8 md:px-8">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 rounded-lg border border-slate-200 bg-white p-4 shadow-lg md:flex-row md:items-center md:justify-between">
+      <div className="pt-2 pb-8">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm md:flex-row md:items-center md:justify-between">
           <div className="grid grid-cols-2 gap-4 text-sm md:grid-cols-4">
             <div>
               <div className="text-slate-500">{t('create.selectedChapters')}</div>
@@ -412,7 +410,7 @@ export default function CreateTestPage() {
             <Button
               onClick={handleStartTest}
               disabled={isStarting || requestedQuestionCount <= 0}
-              className="h-12 min-w-[190px] rounded-md bg-primary px-8 text-base font-bold text-white shadow-sm hover:bg-primary/90 disabled:opacity-50"
+              className="h-12 min-w-[190px] rounded-md bg-primary px-8 text-base font-bold text-primary-foreground shadow-sm hover:bg-primary/90 disabled:opacity-50"
             >
               {isStarting ? t('create.generating') : t('create.generateTest')}
             </Button>

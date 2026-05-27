@@ -161,6 +161,48 @@ alter table public.question_explanation_ocr add column if not exists words jsonb
 alter table public.question_explanation_ocr add column if not exists raw jsonb;
 alter table public.question_explanation_ocr add column if not exists updated_at timestamptz default now();
 
+create table if not exists public.question_ai_explanations (
+  id bigserial primary key,
+  question_id text not null references public.question_items(id) on delete cascade,
+  selected_choice text check (selected_choice is null or selected_choice ~ '^[A-D]$'),
+  correct_choice text check (correct_choice is null or correct_choice ~ '^[A-D]$'),
+  is_correct boolean not null default false,
+  interface_language text not null default 'zh-Hant' check (interface_language in ('en', 'zh-Hans', 'zh-Hant')),
+  prompt_version text not null default 'question-analysis-v2',
+  source text not null default 'gemini',
+  model text,
+  analysis_markdown text not null,
+  raw jsonb,
+  created_at timestamptz default now(),
+  updated_at timestamptz default now(),
+  unique (question_id, selected_choice, correct_choice, interface_language, prompt_version)
+);
+
+alter table public.question_ai_explanations add column if not exists selected_choice text;
+alter table public.question_ai_explanations add column if not exists correct_choice text;
+alter table public.question_ai_explanations add column if not exists is_correct boolean not null default false;
+alter table public.question_ai_explanations add column if not exists interface_language text not null default 'zh-Hant';
+alter table public.question_ai_explanations add column if not exists prompt_version text not null default 'question-analysis-v2';
+alter table public.question_ai_explanations add column if not exists source text not null default 'gemini';
+alter table public.question_ai_explanations add column if not exists model text;
+alter table public.question_ai_explanations add column if not exists analysis_markdown text;
+alter table public.question_ai_explanations add column if not exists raw jsonb;
+alter table public.question_ai_explanations add column if not exists updated_at timestamptz default now();
+
+do $$
+begin
+  if not exists (
+    select 1
+    from pg_constraint
+    where conrelid = 'public.question_ai_explanations'::regclass
+      and conname = 'question_ai_explanations_lookup_key'
+  ) then
+    alter table public.question_ai_explanations
+      add constraint question_ai_explanations_lookup_key
+      unique (question_id, selected_choice, correct_choice, interface_language, prompt_version);
+  end if;
+end $$;
+
 do $$
 begin
   if exists (
@@ -286,6 +328,8 @@ create index if not exists question_explanations_question_id_idx on public.quest
 create index if not exists question_explanations_language_idx on public.question_explanations (language);
 create index if not exists question_explanation_ocr_question_id_idx on public.question_explanation_ocr (question_id);
 create index if not exists question_explanation_ocr_public_url_idx on public.question_explanation_ocr (public_url);
+create index if not exists question_ai_explanations_question_id_idx on public.question_ai_explanations (question_id);
+create index if not exists question_ai_explanations_lookup_idx on public.question_ai_explanations (question_id, selected_choice, correct_choice, interface_language, prompt_version);
 create index if not exists profiles_email_idx on public.profiles (email);
 create index if not exists profiles_last_seen_at_idx on public.profiles (last_seen_at);
 create index if not exists practice_sessions_user_id_idx on public.practice_sessions (user_id);
@@ -397,6 +441,7 @@ alter table public.question_texts enable row level security;
 alter table public.question_choices enable row level security;
 alter table public.question_explanations enable row level security;
 alter table public.question_explanation_ocr enable row level security;
+alter table public.question_ai_explanations enable row level security;
 alter table public.profiles enable row level security;
 alter table public.practice_sessions enable row level security;
 alter table public.practice_answers enable row level security;
@@ -564,6 +609,21 @@ on public.question_explanations for select using (true);
 drop policy if exists "Allow public read access to question explanation OCR" on public.question_explanation_ocr;
 create policy "Allow public read access to question explanation OCR"
 on public.question_explanation_ocr for select using (true);
+
+drop policy if exists "Allow public read access to question AI explanations" on public.question_ai_explanations;
+create policy "Allow public read access to question AI explanations"
+on public.question_ai_explanations for select using (true);
+
+drop policy if exists "Authenticated users can insert question AI explanations" on public.question_ai_explanations;
+create policy "Authenticated users can insert question AI explanations"
+on public.question_ai_explanations for insert
+with check (auth.role() = 'authenticated');
+
+drop policy if exists "Authenticated users can update question AI explanations" on public.question_ai_explanations;
+create policy "Authenticated users can update question AI explanations"
+on public.question_ai_explanations for update
+using (auth.role() = 'authenticated')
+with check (auth.role() = 'authenticated');
 
 drop policy if exists "Users can read their profile" on public.profiles;
 create policy "Users can read their profile"

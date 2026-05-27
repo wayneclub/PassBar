@@ -6,6 +6,18 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'PassBar | Bar Exam Practice',
   description: 'Practice MBE-style questions with a Supabase-backed question bank and focused explanations.',
+  icons: {
+    icon: [
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/passbar-icon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: ['/favicon-32x32.png'],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  manifest: '/manifest.webmanifest',
 };
 
 export default function RootLayout({

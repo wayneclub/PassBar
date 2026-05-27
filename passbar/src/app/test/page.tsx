@@ -1,6 +1,7 @@
 "use client";
 
 import React, { Suspense, useCallback, useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { TestHeader } from '@/components/TestHeader';
 import { TestFooter } from '@/components/TestFooter';
@@ -258,11 +259,24 @@ function TestSessionContent() {
     if (isPaused) return;
     if (isReviewMode || (submitted && session?.mode === 'Tutor')) return;
     setSelectedAnswer(answer);
+
+    if (session?.mode === 'Timed' && currentQuestion) {
+      const nextSession = {
+        ...session,
+        userAnswers: {
+          ...session.userAnswers,
+          [currentQuestion.id]: answer,
+        },
+      };
+      setSession(nextSession);
+      persistSession(nextSession);
+    }
   };
 
   const handleSubmit = async () => {
     if (isPaused) return;
     if (!selectedAnswer || !session || !currentQuestion) return;
+    if (session.mode !== 'Tutor' && !isReviewMode) return;
     setSubmitted(true);
 
     const updatedSession = { ...session };
@@ -291,6 +305,18 @@ function TestSessionContent() {
     if (selectedAnswer && currentQuestion) {
       nextSession.userAnswers[currentQuestion.id] = selectedAnswer;
     }
+
+    if (session.mode === 'Timed' && !isReviewMode) {
+      const answeredCount = Object.keys(nextSession.userAnswers).length;
+      if (answeredCount < questions.length) {
+        window.alert(t('test.completeTimedBeforeReview', {
+          answered: answeredCount,
+          total: questions.length,
+        }));
+        return;
+      }
+    }
+
     nextSession.status = 'Completed';
     setSession(nextSession);
     persistSession(nextSession);
@@ -306,7 +332,7 @@ function TestSessionContent() {
       userId: user.id,
       status: 'completed',
     });
-    router.push('/review');
+    router.push(session.mode === 'Timed' ? `/test?id=${session.id}&review=1` : '/review');
   };
 
   const handleSuspend = () => {
@@ -505,13 +531,15 @@ function TestSessionContent() {
                       <div key={`${label}-${option}`} className="group flex w-full items-start gap-3 py-3 px-2 rounded-lg transition-colors hover:bg-slate-50 cursor-pointer">
                         
                         {/* Gutter for correct/incorrect icons */}
-                        <div className="flex w-6 h-[1.625em] shrink-0 items-center justify-center">
+                        <div className={cn("flex w-6 shrink-0 items-center justify-center", optionTextClass)}>
+                          <span className="invisible w-0">&#8203;</span>
                           {isRevealed && isCorrect && <Check className="h-5 w-5 text-green-500" strokeWidth={2.5} />}
                           {isRevealed && isSelected && !isCorrect && <X className="h-5 w-5 text-red-500" strokeWidth={2.5} />}
                         </div>
 
                         {/* Radio Button */}
-                        <div className="flex h-[1.625em] shrink-0 items-center">
+                        <div className={cn("flex shrink-0 items-center", optionTextClass)}>
+                          <span className="invisible w-0">&#8203;</span>
                           <RadioGroupItem
                             value={label}
                             id={`option-${idx}`}
@@ -522,7 +550,7 @@ function TestSessionContent() {
                         {/* Option Label (e.g. A.) - Not struck through */}
                         <div 
                           className={cn(
-                            "flex h-[1.625em] shrink-0 items-center font-bold text-slate-900 cursor-pointer select-none",
+                            "shrink-0 font-bold text-slate-900 cursor-pointer select-none",
                             optionTextClass,
                             isEliminated && !isSelected && "text-slate-400"
                           )}
@@ -642,7 +670,7 @@ function TestSessionContent() {
         onEnd={handleEnd}
         onSubmit={handleSubmit}
         onFeedback={handleFeedback}
-        showSubmit={!isPaused && !submitted && Boolean(selectedAnswer)}
+        showSubmit={session.mode === 'Tutor' && !isPaused && !submitted && Boolean(selectedAnswer)}
         feedbackLoading={feedbackLoading}
         isPaused={isPaused}
         isTutorMode={session.mode === 'Tutor'}
@@ -662,7 +690,9 @@ function TestSessionContent() {
                 <p className="whitespace-pre-wrap text-sm text-red-500">{feedbackError}</p>
               </div>
             ) : (
-              <div className="whitespace-pre-wrap text-sm leading-7 text-slate-800">{feedbackText}</div>
+              <div className="prose prose-sm max-w-none leading-7 text-slate-800">
+                <ReactMarkdown>{feedbackText || ''}</ReactMarkdown>
+              </div>
             )}
           </div>
           <div className="flex justify-end">

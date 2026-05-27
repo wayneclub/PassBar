@@ -5,9 +5,14 @@ import { ExplanationOcrWord, Question } from '@/lib/types';
 import { Eraser, Highlighter, Image as ImageIcon, RotateCcw, ZoomIn, ZoomOut, Loader2 } from 'lucide-react';
 import type { ContentMode, TextSize } from '@/lib/study-settings';
 import { requestGeminiQuestionAnalysis } from '@/lib/gemini-feedback';
+import {
+  getCachedQuestionAiAnalysis,
+  saveQuestionAiAnalysis,
+} from '@/lib/question-ai-analysis';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useI18n } from '@/lib/i18n';
+import ReactMarkdown from 'react-markdown';
 
 interface ExplanationViewProps {
   question: Question;
@@ -29,6 +34,15 @@ type HighlightStroke = {
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
+}
+
+function stripHtml(value: string) {
+  return value
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function OcrTextLayer({ words }: { words: ExplanationOcrWord[] }) {
@@ -151,7 +165,7 @@ function ExplanationImageViewer({
       <div className="sticky top-0 z-10 flex flex-wrap items-center justify-between gap-2 border-b bg-white/95 px-3 py-2 backdrop-blur">
         <div className="flex items-center gap-1 text-xs font-semibold text-slate-600">
           <ImageIcon className="h-4 w-4 text-primary" />
-          {t('explanation.image', { index: index + 1 })}
+          {t('explanation.title')}
         </div>
         <div className="flex items-center gap-1">
           <Button
@@ -253,7 +267,7 @@ function GeminiQuestionFeedback({
   correctChoiceKey?: string | null;
   textSize?: TextSize;
 }) {
-  const { language } = useI18n();
+  const { t, language } = useI18n();
   const [loading, setLoading] = useState(true);
   const [feedback, setFeedback] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -266,17 +280,48 @@ function GeminiQuestionFeedback({
         setLoading(true);
         setError(null);
         
+        setFeedback(null);
+
         const options = question.options.map((text, idx) => ({
           key: String.fromCharCode(65 + idx),
           text
         }));
+        const englishImageUrls = new Set([
+          question.sourceExplanationImageUrl,
+          ...question.explainImgs,
+        ].filter(Boolean));
+        const sourceOcrText = (question.explanationOcr ?? [])
+          .filter((ocr) => englishImageUrls.size === 0 || englishImageUrls.has(ocr.publicUrl))
+          .map((ocr) => ocr.text || ocr.words.map((word) => word.text).join(' '))
+          .filter(Boolean)
+          .join('\n\n');
+        const explanationText = sourceOcrText || stripHtml(question.explanationHtml ?? '');
+        const isCorrect = Boolean(
+          selectedChoiceKey
+          && correctChoiceKey
+          && selectedChoiceKey.toUpperCase() === correctChoiceKey.toUpperCase()
+        );
+
+        const cached = await getCachedQuestionAiAnalysis({
+          questionId: question.id,
+          selectedChoice: selectedChoiceKey,
+          correctChoice: correctChoiceKey,
+          isCorrect,
+          interfaceLanguage: language,
+        });
+
+        if (cached) {
+          if (isMounted) setFeedback(cached);
+          return;
+        }
 
         const result = await requestGeminiQuestionAnalysis({
           questionText: question.questionText,
           options,
           selectedChoice: selectedChoiceKey,
           correctChoice: correctChoiceKey,
-          explanationText: question.explanationHtml || '', // Using html or other available text
+          isCorrect,
+          explanationText,
           topic: question.topic,
           interfaceLanguage: language
         });
@@ -284,9 +329,18 @@ function GeminiQuestionFeedback({
         if (isMounted) {
           setFeedback(result);
         }
+
+        await saveQuestionAiAnalysis({
+          questionId: question.id,
+          selectedChoice: selectedChoiceKey,
+          correctChoice: correctChoiceKey,
+          isCorrect,
+          interfaceLanguage: language,
+          analysisMarkdown: result,
+        });
       } catch (err) {
         if (isMounted) {
-          setError(err instanceof Error ? err.message : 'Failed to load AI feedback');
+          setError(err instanceof Error ? err.message : t('explanation.geminiError'));
         }
       } finally {
         if (isMounted) {
@@ -310,13 +364,13 @@ function GeminiQuestionFeedback({
   return (
     <div className="rounded-lg border border-primary/20 bg-primary/5 p-5">
       <div className="mb-4 flex items-center gap-2">
-        <p className="text-sm font-bold uppercase tracking-wider text-primary">Gemini AI Analysis</p>
+        <p className="text-sm font-bold uppercase tracking-wider text-primary">{t('explanation.geminiFeedback')}</p>
         {loading && <Loader2 className="h-4 w-4 animate-spin text-primary/70" />}
       </div>
       
       {loading && !feedback && (
         <div className={cn('text-muted-foreground animate-pulse', textClass)}>
-          Analyzing question and your answer...
+          {t('explanation.geminiLoading')}
         </div>
       )}
       
@@ -327,8 +381,8 @@ function GeminiQuestionFeedback({
       )}
       
       {feedback && (
-        <div className={cn('whitespace-pre-wrap text-slate-800', textClass)}>
-          {feedback}
+        <div className={cn('prose prose-sm max-w-none text-slate-800', textClass)}>
+          <ReactMarkdown>{feedback}</ReactMarkdown>
         </div>
       )}
     </div>

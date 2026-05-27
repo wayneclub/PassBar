@@ -2,11 +2,12 @@
 
 import React, { Suspense, useEffect, useMemo, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { AlertCircle, Zap } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useAuth } from '@/components/AuthProvider';
+import { BrandLogo } from '@/components/BrandLogo';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 import { absoluteAppUrl } from '@/lib/site';
 
@@ -68,16 +69,11 @@ function AuthContent() {
   return (
     <main className="min-h-screen bg-slate-50">
       <div className="mx-auto grid min-h-screen max-w-6xl grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]">
-        <section className="flex flex-col justify-between bg-[#1a2b3c] p-8 text-white lg:p-12">
+        <section className="flex flex-col justify-between bg-secondary p-8 text-white lg:p-12">
           <div>
             <div className="mb-10 flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/40">
-                <Zap className="h-7 w-7" />
-              </div>
-              <div>
-                <div className="text-xl font-bold">PassBar</div>
-                <div className="text-xs uppercase tracking-widest text-slate-300">MBE QBank</div>
-              </div>
+              <BrandLogo className="h-12 w-12 rounded-xl bg-white p-2 shadow-sm" />
+              <BrandLogo variant="wordmark" className="h-12 w-32 rounded-md bg-white/95 px-2" />
             </div>
             <h1 className="max-w-md text-4xl font-semibold leading-tight">Sign in with Google to sync your bar prep progress.</h1>
             <p className="mt-4 max-w-md text-sm leading-6 text-slate-300">
