@@ -1,6 +1,6 @@
 import { supabase } from './supabase';
 
-export const QUESTION_AI_PROMPT_VERSION = 'question-analysis-v3';
+export const QUESTION_AI_PROMPT_VERSION = 'question-analysis-v4';
 
 type QuestionAiAnalysisRow = {
   analysis_markdown: string;

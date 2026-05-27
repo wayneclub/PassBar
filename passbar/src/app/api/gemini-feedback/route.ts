@@ -202,7 +202,7 @@ async function callGemini(model: string, parts: GeminiPart[], key: string) {
       ],
       generationConfig: {
         temperature: 0.35,
-        maxOutputTokens: 1400,
+        maxOutputTokens: 3600,
       },
     }),
   });

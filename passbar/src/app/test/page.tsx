@@ -75,6 +75,7 @@ function TestSessionContent() {
   const [markedQuestionIds, setMarkedQuestionIds] = useState<Set<string>>(new Set());
   const [eliminatedOptionsByQuestion, setEliminatedOptionsByQuestion] = useState<Record<string, Set<string>>>({});
   const [endConfirmOpen, setEndConfirmOpen] = useState(false);
+  const [pendingEndSession, setPendingEndSession] = useState<TestSession | null>(null);
   const [ending, setEnding] = useState(false);
 
   useEffect(() => {
@@ -309,25 +310,24 @@ function TestSessionContent() {
     }));
   };
 
-  const handleEndRequest = async () => {
-    if (!session || !user?.id) {
-      router.push('/review');
-      return;
-    }
+  const handleEndRequest = () => {
+    if (!session) return;
 
     const nextSession = sessionWithCurrentProgress();
     if (!nextSession) return;
 
+    setPendingEndSession(nextSession);
+    setEndConfirmOpen(true);
     setSession(nextSession);
     persistSession(nextSession);
-    if (!isReviewMode) {
-      await updatePracticeSessionRecord({
+
+    if (!isReviewMode && user?.id) {
+      void updatePracticeSessionRecord({
         session: nextSession,
         userId: user.id,
         status: nextSession.status === 'Suspended' ? 'suspended' : 'in_progress',
       });
     }
-    setEndConfirmOpen(true);
   };
 
   const handleEnd = async () => {
@@ -336,7 +336,7 @@ function TestSessionContent() {
       return;
     }
 
-    const nextSession = sessionWithCurrentProgress();
+    const nextSession = pendingEndSession ?? sessionWithCurrentProgress();
     if (!nextSession) return;
     setEnding(true);
 
@@ -369,6 +369,7 @@ function TestSessionContent() {
         status: 'completed',
       });
       setEndConfirmOpen(false);
+      setPendingEndSession(null);
       router.push(session.mode === 'Timed' ? `/test?id=${session.id}&review=1` : '/review');
     } finally {
       setEnding(false);
@@ -743,19 +744,30 @@ function TestSessionContent() {
         </DialogContent>
       </Dialog>
 
-      <Dialog open={endConfirmOpen} onOpenChange={(open) => !ending && setEndConfirmOpen(open)}>
+      <Dialog open={endConfirmOpen} onOpenChange={(open) => {
+        if (ending) return;
+        setEndConfirmOpen(open);
+        if (!open) setPendingEndSession(null);
+      }}>
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>{t('test.confirmEndTitle')}</DialogTitle>
             <DialogDescription>
               {t('test.confirmEndDescription', {
-                answered: Object.keys(session.userAnswers).length,
+                answered: Object.keys((pendingEndSession ?? session).userAnswers).length,
                 total: questions.length,
               })}
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-            <Button variant="outline" onClick={() => setEndConfirmOpen(false)} disabled={ending}>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setEndConfirmOpen(false);
+                setPendingEndSession(null);
+              }}
+              disabled={ending}
+            >
               {t('test.cancelEnd')}
             </Button>
             <Button onClick={handleEnd} disabled={ending}>
