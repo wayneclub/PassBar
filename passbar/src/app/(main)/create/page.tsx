@@ -16,9 +16,8 @@ import { getQuestionsByChapterIds, getSubjects } from '@/lib/question-bank';
 import { Subject, TestMode, QuestionSelectionMode, TestSession } from '@/lib/types';
 import { emptyQuestionStatusCounts, getQuestionStatusCounts, QuestionStatusCounts } from '@/lib/question-progress';
 import { createPracticeSessionRecord } from '@/lib/practice-sessions';
-import { Info, HelpCircle, User, Calendar as CalendarIcon, Zap } from 'lucide-react';
+import { ClipboardList, Info, HelpCircle, User, Calendar as CalendarIcon, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { BrandLogo } from '@/components/BrandLogo';
 
 export default function CreateTestPage() {
   const router = useRouter();
@@ -169,7 +168,9 @@ export default function CreateTestPage() {
       <div className="rounded-lg border border-slate-200 bg-white px-5 py-5 shadow-sm md:px-6">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
-            <BrandLogo className="h-11 w-11 rounded-md bg-white p-1.5 shadow-sm ring-1 ring-slate-200" />
+            <div className="flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 text-primary ring-1 ring-primary/20">
+              <ClipboardList className="h-6 w-6" />
+            </div>
             <div>
               <h1 className="text-2xl font-semibold text-slate-800">{t('create.title')}</h1>
             </div>
@@ -369,54 +370,54 @@ export default function CreateTestPage() {
             <div className="text-base font-bold text-slate-700">{t('create.noOfQuestions')}</div>
           </AccordionTrigger>
           <AccordionContent className="border-t pb-6 pt-4">
-            <div className="flex items-center gap-4">
-              <Input 
-                type="text" 
-                value={questionCount} 
-                onChange={(e) => setQuestionCount(e.target.value)}
-                className="h-11 w-28 border-slate-200 bg-slate-50 text-center text-base font-semibold"
-              />
-              <div className="text-sm text-slate-500">
-                {t('create.maxAllowed', { count: currentAvailableQuestions })}
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                <Input 
+                  type="text" 
+                  value={questionCount} 
+                  onChange={(e) => setQuestionCount(e.target.value)}
+                  className="h-12 w-full border-slate-200 bg-slate-50 text-center text-lg font-semibold sm:w-32"
+                />
+                <div className="text-sm text-slate-500">
+                  {t('create.maxAllowed', { count: currentAvailableQuestions })}
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-5 border-t border-slate-100 pt-5 md:flex-row md:items-center md:justify-between">
+                <div className="grid grid-cols-2 gap-4 text-sm md:grid-cols-4 md:gap-8">
+                  <div>
+                    <div className="text-slate-500">{t('create.selectedChapters')}</div>
+                    <div className="text-lg font-bold text-slate-800">{selectedChapterCount}</div>
+                  </div>
+                  <div>
+                    <div className="text-slate-500">{t('create.availableQuestions')}</div>
+                    <div className="text-lg font-bold text-slate-800">{currentAvailableQuestions.toLocaleString()}</div>
+                  </div>
+                  <div>
+                    <div className="text-slate-500">{t('create.totalQuestions')}</div>
+                    <div className="text-lg font-bold text-slate-800">{totalQuestionCount.toLocaleString()}</div>
+                  </div>
+                  <div>
+                    <div className="text-slate-500">{t('create.readyToGenerate')}</div>
+                    <div className="text-lg font-bold text-slate-800">{requestedQuestionCount}</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 md:shrink-0">
+                  <HelpCircle className="h-5 w-5 cursor-pointer text-primary" />
+                  <Button
+                    onClick={handleStartTest}
+                    disabled={isStarting || requestedQuestionCount <= 0}
+                    className="h-12 min-w-[190px] flex-1 rounded-md bg-primary px-8 text-base font-bold text-primary-foreground shadow-sm hover:bg-primary/90 disabled:opacity-50 md:flex-none"
+                  >
+                    {isStarting ? t('create.generating') : t('create.generateTest')}
+                  </Button>
+                </div>
               </div>
             </div>
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-
-      <div className="pt-2 pb-8">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm md:flex-row md:items-center md:justify-between">
-          <div className="grid grid-cols-2 gap-4 text-sm md:grid-cols-4">
-            <div>
-              <div className="text-slate-500">{t('create.selectedChapters')}</div>
-              <div className="text-lg font-bold text-slate-800">{selectedChapterCount}</div>
-            </div>
-            <div>
-              <div className="text-slate-500">{t('create.availableQuestions')}</div>
-              <div className="text-lg font-bold text-slate-800">{currentAvailableQuestions.toLocaleString()}</div>
-            </div>
-            <div>
-              <div className="text-slate-500">{t('create.totalQuestions')}</div>
-              <div className="text-lg font-bold text-slate-800">{totalQuestionCount.toLocaleString()}</div>
-            </div>
-            <div>
-              <div className="text-slate-500">{t('create.readyToGenerate')}</div>
-              <div className="text-lg font-bold text-slate-800">{requestedQuestionCount}</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <HelpCircle className="h-5 w-5 cursor-pointer text-primary" />
-            <Button
-              onClick={handleStartTest}
-              disabled={isStarting || requestedQuestionCount <= 0}
-              className="h-12 min-w-[190px] rounded-md bg-primary px-8 text-base font-bold text-primary-foreground shadow-sm hover:bg-primary/90 disabled:opacity-50"
-            >
-              {isStarting ? t('create.generating') : t('create.generateTest')}
-            </Button>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
