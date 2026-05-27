@@ -83,20 +83,20 @@ export function TestHeader({
           aria-pressed={currentMarked}
           aria-label={currentMarked ? t('test.unmarkQuestion') : t('test.markQuestion')}
           className={cn(
-            'hover:bg-white/10',
+            'hover:bg-white/10 hover:text-white',
             currentMarked ? 'bg-primary/15 text-primary' : 'text-primary',
           )}
           onClick={onToggleMark}
         >
           <Bookmark className={cn('w-5 h-5', currentMarked && 'fill-current')} />
         </Button>
-        <Button variant="ghost" size="icon" className="hover:bg-white/10 text-primary">
+        <Button variant="ghost" size="icon" className="text-primary hover:bg-white/10 hover:text-white">
           <Zap className="w-5 h-5" />
         </Button>
-        <Button variant="ghost" size="icon" className="hover:bg-white/10 text-primary">
+        <Button variant="ghost" size="icon" className="text-primary hover:bg-white/10 hover:text-white">
           <FileText className="w-5 h-5" />
         </Button>
-        <Button variant="ghost" size="icon" className="hover:bg-white/10 text-primary">
+        <Button variant="ghost" size="icon" className="text-primary hover:bg-white/10 hover:text-white">
           <SquarePen className="w-5 h-5" />
         </Button>
       </div>
@@ -155,15 +155,15 @@ export function TestHeader({
       {/* Right Icons */}
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-1">
-          <Button variant="ghost" size="icon" className="hover:bg-white/10 text-primary h-9 w-9">
+          <Button variant="ghost" size="icon" className="h-9 w-9 text-primary hover:bg-white/10 hover:text-white">
             <HelpCircle className="w-5 h-5" />
           </Button>
-          <Button asChild variant="ghost" size="icon" className="hover:bg-white/10 text-primary h-9 w-9">
+          <Button asChild variant="ghost" size="icon" className="h-9 w-9 text-primary hover:bg-white/10 hover:text-white">
             <Link href="/settings" aria-label={t('nav.settings')}>
               <Settings className="w-5 h-5" />
             </Link>
           </Button>
-          <Button variant="ghost" size="icon" className="hover:bg-white/10 text-primary h-9 w-9">
+          <Button variant="ghost" size="icon" className="h-9 w-9 text-primary hover:bg-white/10 hover:text-white">
             <Layout className="w-5 h-5" />
           </Button>
         </div>
