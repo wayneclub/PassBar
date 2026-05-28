@@ -52,8 +52,8 @@ export function MobileAppHeader() {
             className="shrink-0 rounded-full outline-none ring-primary/20 transition focus-visible:ring-4"
             aria-label={t('profile.open')}
           >
-            <Avatar className="h-11 w-11 border border-slate-200 bg-slate-100" title={displayName}>
-              <AvatarFallback className="bg-slate-400 text-sm font-semibold text-white">
+            <Avatar className="h-11 w-11 border border-primary/25 bg-primary shadow-sm" title={displayName}>
+              <AvatarFallback className="bg-primary text-sm font-semibold text-primary-foreground">
                 {initials}
               </AvatarFallback>
             </Avatar>
@@ -62,7 +62,7 @@ export function MobileAppHeader() {
         <DropdownMenuContent align="end" className="w-64">
           <DropdownMenuLabel className="space-y-1">
             <div className="flex items-center gap-3">
-              <Avatar className="h-10 w-10 border border-slate-200">
+              <Avatar className="h-10 w-10 border border-primary/25 bg-primary">
                 <AvatarFallback className="bg-primary text-sm font-semibold text-primary-foreground">
                   {initials}
                 </AvatarFallback>
