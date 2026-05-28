@@ -406,31 +406,38 @@ function GeminiQuestionFeedback({
   }, [question, selectedChoiceKey, correctChoiceKey, language]);
 
   const textClass = {
-    medium: 'text-[16px] leading-7',
-    large: 'text-[18px] leading-8',
+    medium: 'text-[16px] leading-[1.8]',
+    large: 'text-[18px] leading-[1.9]',
   }[textSize || 'medium'];
 
   return (
-    <div className="rounded-lg border border-primary/20 bg-primary/5 p-5">
-      <div className="mb-4 flex items-center gap-2">
+    <div className="space-y-4">
+      <div className="flex items-center gap-2 border-b border-primary/20 pb-3">
         <p className="text-sm font-bold uppercase tracking-wider text-primary">{t('explanation.geminiFeedback')}</p>
         {loading && <Loader2 className="h-4 w-4 animate-spin text-primary/70" />}
       </div>
-      
+
       {loading && !feedback && (
         <div className={cn('text-muted-foreground animate-pulse', textClass)}>
           {t('explanation.geminiLoading')}
         </div>
       )}
-      
+
       {error && !feedback && (
         <div className={cn('text-red-500', textClass)}>
           {error}
         </div>
       )}
-      
+
       {feedback && (
-        <div className={cn('prose prose-sm max-w-none text-slate-800', textClass)}>
+        <div className={cn(
+          'prose prose-slate max-w-none text-slate-800',
+          'prose-headings:font-bold prose-headings:text-slate-900',
+          'prose-strong:text-slate-900 prose-strong:font-semibold',
+          'prose-li:my-1 prose-ul:my-3 prose-ol:my-3',
+          'prose-p:my-3',
+          textClass,
+        )}>
           <ReactMarkdown>{feedback}</ReactMarkdown>
         </div>
       )}
@@ -461,7 +468,7 @@ export function ExplanationView({ question, userAnswer, selectedChoiceKey, corre
   }[textSize];
 
   return (
-    <div className="space-y-5 animate-in fade-in slide-in-from-top-4 duration-500">
+    <div className="space-y-6 animate-in fade-in slide-in-from-top-4 duration-500">
       {bilingualHtml && (
         <div className="text-slate-700">
           <iframe

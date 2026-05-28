@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { TestHeader } from '@/components/TestHeader';
 import { TestFooter } from '@/components/TestFooter';
 import { ExplanationView } from '@/components/ExplanationView';
+import { RichText } from '@/components/RichText';
 import { AuthGuard } from '@/components/AuthGuard';
 import { useAuth } from '@/components/AuthProvider';
 import { Question, TestSession } from '@/lib/types';
@@ -524,21 +525,26 @@ function TestSessionContent() {
         onQuestionSelect={handleNavigate}
         onToggleMark={handleToggleMark}
         isPaused={isPaused}
+        contentMode={contentMode}
+        onToggleContentMode={() => setContentMode((prev) => prev === 'bilingual' ? 'english' : 'bilingual')}
       />
 
       <main className="mb-16 mt-14 flex-1 overflow-hidden">
         <div className={cn(
           "grid h-full w-full",
-          showExplanation ? "grid-cols-1 lg:grid-cols-[minmax(420px,1fr)_minmax(420px,1.06fr)]" : ""
+          showExplanation
+            ? "grid-cols-1 lg:grid-cols-[minmax(420px,1fr)_minmax(420px,1.06fr)] xl:grid-cols-[minmax(380px,2fr)_minmax(480px,3fr)] 2xl:grid-cols-[minmax(360px,1fr)_minmax(560px,2fr)]"
+            : ""
         )}>
           <ScrollArea className={cn("h-full w-full", showExplanation && "border-r border-slate-200")}>
             <div className={cn(
               "space-y-8 py-8",
               showExplanation ? "px-6 lg:px-8" : "mx-auto w-full max-w-5xl px-6 lg:px-8"
             )}>
-              <div className={cn('whitespace-pre-wrap text-left font-normal text-slate-900', questionTextClass)}>
-                {displayQuestionText}
-              </div>
+              <RichText
+                text={displayQuestionText ?? ''}
+                className={cn('text-left font-normal text-slate-900', questionTextClass)}
+              />
 
               <div className="space-y-6">
                 <RadioGroup
@@ -683,7 +689,7 @@ function TestSessionContent() {
 
           {showExplanation && (
             <ScrollArea className="h-full bg-white">
-              <div className="px-6 py-6 lg:px-8">
+              <div className="px-6 py-6 lg:px-10 xl:px-14 2xl:px-16">
                 <div className="border-t border-slate-200 pt-5">
                   <ExplanationView
                     question={currentQuestion}

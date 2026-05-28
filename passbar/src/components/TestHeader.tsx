@@ -6,16 +6,18 @@ import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useI18n } from '@/lib/i18n';
 import { cn } from '@/lib/utils';
-import { 
-  Settings, 
-  Layout, 
-  HelpCircle, 
-  Bookmark, 
-  Zap, 
-  FileText, 
+import {
+  Settings,
+  Layout,
+  HelpCircle,
+  Bookmark,
+  Zap,
+  FileText,
   SquarePen,
-  ChevronDown
+  ChevronDown,
+  Languages,
 } from 'lucide-react';
+import type { ContentMode } from '@/lib/study-settings';
 
 interface TestHeaderProps {
   questionIndex: number;
@@ -27,18 +29,22 @@ interface TestHeaderProps {
   onQuestionSelect: (index: number) => void;
   onToggleMark: () => void;
   isPaused: boolean;
+  contentMode: ContentMode;
+  onToggleContentMode: () => void;
 }
 
-export function TestHeader({ 
-  questionIndex, 
-  totalQuestions, 
+export function TestHeader({
+  questionIndex,
+  totalQuestions,
   answeredQuestionIndexes,
   markedQuestionIndexes,
-  timeSpent, 
+  timeSpent,
   onTimeUpdate,
   onQuestionSelect,
   onToggleMark,
-  isPaused 
+  isPaused,
+  contentMode,
+  onToggleContentMode,
 }: TestHeaderProps) {
   const { t } = useI18n();
   const [localTime, setLocalTime] = useState(timeSpent);
@@ -98,6 +104,27 @@ export function TestHeader({
         </Button>
         <Button variant="ghost" size="icon" className="text-primary hover:bg-white/10 hover:text-white">
           <SquarePen className="w-5 h-5" />
+        </Button>
+
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onToggleContentMode}
+          aria-label={contentMode === 'bilingual' ? 'Switch to English' : 'Switch to bilingual'}
+          className={cn(
+            'relative h-9 w-9 hover:bg-white/10 hover:text-white transition-colors',
+            contentMode === 'bilingual'
+              ? 'bg-primary/20 text-white'
+              : 'text-primary',
+          )}
+        >
+          <Languages className="w-5 h-5" />
+          <span className={cn(
+            'absolute bottom-0.5 right-0.5 text-[9px] font-bold leading-none',
+            contentMode === 'bilingual' ? 'text-white' : 'text-primary',
+          )}>
+            {contentMode === 'bilingual' ? '中' : 'EN'}
+          </span>
         </Button>
       </div>
 
