@@ -108,7 +108,7 @@ export function GuidedTour({
       left: `${left}px`,
       width: `${width}px`,
       height: `${height}px`,
-      boxShadow: 'inset 0 0 0 2px rgb(201, 151, 35), 0 0 0 9999px rgba(0, 0, 0, 0.45)',
+      boxShadow: 'inset 0 0 0 2px rgb(201, 151, 35)',
     };
   }, [targetRect]);
 
