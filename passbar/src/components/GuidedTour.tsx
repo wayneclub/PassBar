@@ -96,12 +96,19 @@ export function GuidedTour({
   }, [open, activeIndex, activeStep?.selector]);
 
   const highlightStyle = useMemo(() => {
-    const padding = 10;
+    const padding = 12;
+    const margin = 8;
+    const top = Math.max(targetRect.top - padding - margin, 0);
+    const left = Math.max(targetRect.left - padding - margin, 0);
+    const width = targetRect.width + padding * 2 + margin * 2;
+    const height = targetRect.height + padding * 2 + margin * 2;
+
     return {
-      top: `${Math.max(targetRect.top - padding, 12)}px`,
-      left: `${Math.max(targetRect.left - padding, 12)}px`,
-      width: `${Math.max(targetRect.width + padding * 2, 140)}px`,
-      height: `${Math.max(targetRect.height + padding * 2, 54)}px`,
+      top: `${top}px`,
+      left: `${left}px`,
+      width: `${width}px`,
+      height: `${height}px`,
+      boxShadow: 'inset 0 0 0 2px rgb(201, 151, 35), 0 0 0 9999px rgba(0, 0, 0, 0.45)',
     };
   }, [targetRect]);
 
@@ -133,7 +140,7 @@ export function GuidedTour({
     <div className="fixed inset-0 z-[80]">
       <div className="absolute inset-0 bg-black/45" />
       <div
-        className="pointer-events-none absolute rounded-lg border-2 border-primary bg-primary/5 shadow-[0_0_0_4px_rgba(201,151,35,0.18),0_0_24px_rgba(201,151,35,0.78)]"
+        className="pointer-events-none absolute rounded-lg"
         style={highlightStyle}
       />
       <div
