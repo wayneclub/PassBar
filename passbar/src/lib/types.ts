@@ -50,7 +50,7 @@ export interface ExplanationOcr {
   words: ExplanationOcrWord[];
 }
 
-export type TestMode = 'Tutor' | 'Timed';
+export type TestMode = 'Tutor' | 'Timed' | 'Browse';
 export type QuestionSelectionMode = 'Standard' | 'Custom';
 
 export interface TestSession {

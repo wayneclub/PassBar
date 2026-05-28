@@ -149,8 +149,9 @@ function TestSessionContent() {
         const existingAnswer = hydratedSession.userAnswers[sessionQuestions[0].id];
         if (existingAnswer) {
           setSelectedAnswer(existingAnswer);
-          if (hydratedSession.mode === 'Tutor' || isReviewMode) setSubmitted(true);
+          if (hydratedSession.mode === 'Tutor' || hydratedSession.mode === 'Browse' || isReviewMode) setSubmitted(true);
         }
+        if (hydratedSession.mode === 'Browse') setSubmitted(true);
       }
     };
 
@@ -189,7 +190,7 @@ function TestSessionContent() {
   const selectedChoiceKey = currentQuestion && selectedAnswer ? getAnswerChoiceKey(currentQuestion, selectedAnswer) : null;
   const normalizedCorrectAnswerKey = correctAnswerKey?.toUpperCase() ?? null;
   const isSubmittedCorrect = Boolean(submitted && selectedChoiceKey && normalizedCorrectAnswerKey && selectedChoiceKey === normalizedCorrectAnswerKey);
-  const showExplanation = Boolean(submitted && (session?.mode === 'Tutor' || isReviewMode));
+  const showExplanation = Boolean(session?.mode === 'Browse' || (submitted && (session?.mode === 'Tutor' || isReviewMode)));
   const currentAnswerMeta = currentQuestion ? answerMetaByQuestion[currentQuestion.id] : undefined;
   const currentEliminatedOptions = currentQuestion ? (eliminatedOptionsByQuestion[currentQuestion.id] || new Set<string>()) : new Set<string>();
 
@@ -274,7 +275,7 @@ function TestSessionContent() {
 
   const handleSelectAnswer = (answer: string) => {
     if (isPaused) return;
-    if (isReviewMode || (submitted && session?.mode === 'Tutor')) return;
+    if (isReviewMode || session?.mode === 'Browse' || (submitted && session?.mode === 'Tutor')) return;
     setSelectedAnswer(answer);
 
     if (session?.mode === 'Timed' && currentQuestion) {
@@ -293,7 +294,7 @@ function TestSessionContent() {
   const handleSubmit = async () => {
     if (isPaused) return;
     if (!selectedAnswer || !session || !currentQuestion) return;
-    if (session.mode !== 'Tutor' && !isReviewMode) return;
+    if (session.mode !== 'Tutor' && session.mode !== 'Browse' && !isReviewMode) return;
     setSubmitted(true);
 
     const updatedSession = { ...session };
@@ -413,7 +414,7 @@ function TestSessionContent() {
     const nextQuestionId = questions[newIndex].id;
     const nextAnswer = nextSession.userAnswers[nextQuestionId] || null;
     setSelectedAnswer(nextAnswer);
-    setSubmitted(Boolean(nextAnswer) && (nextSession.mode === 'Tutor' || isReviewMode));
+    setSubmitted(nextSession.mode === 'Browse' || (Boolean(nextAnswer) && (nextSession.mode === 'Tutor' || isReviewMode)));
   };
 
   const handleToggleMark = async () => {
@@ -445,7 +446,7 @@ function TestSessionContent() {
   const handleToggleEliminate = (e: React.MouseEvent, label: string) => {
     e.preventDefault();
     e.stopPropagation();
-    if (!currentQuestion || isReviewMode || (submitted && session?.mode === 'Tutor')) return;
+    if (!currentQuestion || isReviewMode || session?.mode === 'Browse' || (submitted && session?.mode === 'Tutor')) return;
     
     setEliminatedOptionsByQuestion((prev) => {
       const currentSet = prev[currentQuestion.id] || new Set();
@@ -547,7 +548,7 @@ function TestSessionContent() {
                     const nextAnswer = displayOptions[optionIndex];
                     if (nextAnswer) handleSelectAnswer(nextAnswer);
                   }}
-                  disabled={isReviewMode || (submitted && session.mode === 'Tutor')}
+                  disabled={isReviewMode || session.mode === 'Browse' || (submitted && session.mode === 'Tutor')}
                   className="space-y-2"
                 >
                   {displayOptions.map((option, idx) => {
@@ -555,7 +556,7 @@ function TestSessionContent() {
                     const isCorrect = label === normalizedCorrectAnswerKey || option === correctAnswer;
                     const isSelected = selectedChoiceKey === label;
                     const isEliminated = currentEliminatedOptions.has(label);
-                    const isRevealed = Boolean(submitted && (session.mode === 'Tutor' || isReviewMode));
+                    const isRevealed = Boolean(session.mode === 'Browse' || (submitted && (session.mode === 'Tutor' || isReviewMode)));
 
                     let percentageText = null;
                     const realChoicePercent = currentAnswerMeta?.choicePercents[label as 'A' | 'B' | 'C' | 'D'];

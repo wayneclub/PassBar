@@ -6,7 +6,6 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Switch } from '@/components/ui/switch';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -17,7 +16,7 @@ import { getQuestionsByChapterIds, getSubjects } from '@/lib/question-bank';
 import { Subject, TestMode, TestSession } from '@/lib/types';
 import { emptyQuestionStatusCounts, getQuestionStatusCounts, QuestionStatusCounts } from '@/lib/question-progress';
 import { createPracticeSessionRecord } from '@/lib/practice-sessions';
-import { Info, HelpCircle, Zap } from 'lucide-react';
+import { Info, HelpCircle, Zap, BookOpen, Clock, Eye } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 function HintIcon({ children }: { children: React.ReactNode }) {
@@ -258,23 +257,36 @@ export default function CreateTestPage() {
                     <div className="font-bold text-slate-700">{t('create.timed')}</div>
                     <div>{t('create.timedModeHint')}</div>
                   </div>
+                  <div className="grid grid-cols-[5rem_1fr] gap-4 border-t border-slate-200 px-4 py-3">
+                    <div className="font-bold text-slate-700">{t('create.browse')}</div>
+                    <div>{t('create.browseModeHint')}</div>
+                  </div>
                 </div>
               </HintIcon>
             </div>
           </AccordionTrigger>
           <AccordionContent className="border-t pb-6 pt-4">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-3">
-                <Switch 
-                  id="mode-switch" 
-                  checked={testMode === 'Timed'} 
-                  onCheckedChange={(checked) => setTestMode(checked ? 'Timed' : 'Tutor')}
-                />
-                <div className="flex gap-4 text-base font-medium">
-                  <span className={cn(testMode === 'Tutor' ? "text-primary" : "text-slate-400")}>{t('create.tutor')}</span>
-                  <span className={cn(testMode === 'Timed' ? "text-primary" : "text-slate-400")}>{t('create.timed')}</span>
-                </div>
-              </div>
+            <div className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 p-1">
+              {([
+                { mode: 'Tutor', icon: BookOpen },
+                { mode: 'Timed', icon: Clock },
+                { mode: 'Browse', icon: Eye },
+              ] as const).map(({ mode, icon: Icon }) => (
+                <button
+                  key={mode}
+                  type="button"
+                  onClick={() => setTestMode(mode)}
+                  className={cn(
+                    "flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold transition-all duration-150",
+                    testMode === mode
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-slate-500 hover:text-slate-700"
+                  )}
+                >
+                  <Icon className="h-4 w-4" />
+                  {t(`create.${mode.toLowerCase()}` as 'create.tutor' | 'create.timed' | 'create.browse')}
+                </button>
+              ))}
             </div>
           </AccordionContent>
         </AccordionItem>
