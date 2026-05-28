@@ -243,7 +243,7 @@ export default function CreateTestPage() {
       </div>
 
       <Accordion type="multiple" defaultValue={['test-mode', 'question-mode', 'subjects', 'no-questions']} className="space-y-4">
-        <AccordionItem value="test-mode" data-tour="test-mode" className="overflow-hidden rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
+        <AccordionItem value="test-mode" data-tour="test-mode" className="rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
           <AccordionTrigger className="py-4 hover:no-underline">
             <div className="flex items-center gap-2 text-base font-bold text-slate-700">
               {t('create.testMode')}
@@ -279,7 +279,7 @@ export default function CreateTestPage() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="question-mode" data-tour="question-mode" className="overflow-hidden rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
+        <AccordionItem value="question-mode" data-tour="question-mode" className="rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
           <AccordionTrigger className="py-4 hover:no-underline">
             <div className="flex items-center gap-2 text-base font-bold text-slate-700">
               {t('create.questionMode')}
@@ -353,7 +353,7 @@ export default function CreateTestPage() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="subjects" data-tour="subjects" className="overflow-hidden rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
+        <AccordionItem value="subjects" data-tour="subjects" className="rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
           <AccordionTrigger className="py-4 hover:no-underline">
             <div className="flex items-center justify-between w-full pr-4">
               <div className="flex items-center gap-2 text-base font-bold text-slate-700">
@@ -420,55 +420,70 @@ export default function CreateTestPage() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="no-questions" data-tour="generate" className="overflow-hidden rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
+        <AccordionItem value="no-questions" data-tour="generate" className="rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
           <AccordionTrigger className="py-4 hover:no-underline">
             <div className="text-base font-bold text-slate-700">{t('create.noOfQuestions')}</div>
           </AccordionTrigger>
-          <AccordionContent className="border-t pb-6 pt-4">
+          <AccordionContent className="border-t pb-6 pt-5">
             <div className="flex flex-col gap-6">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Input 
-                  type="text" 
-                  value={questionCount} 
+
+              {/* Input + availability */}
+              <div className="flex flex-wrap items-center gap-3 py-1">
+                <Input
+                  type="text"
+                  value={questionCount}
                   onChange={(e) => setQuestionCount(e.target.value)}
-                  className="h-12 w-full border-slate-200 bg-slate-50 text-center text-lg font-semibold sm:w-32"
+                  className="h-12 w-32 border border-slate-300 bg-white text-center text-xl font-bold rounded-lg shadow-sm hover:border-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-white transition-all duration-200"
                 />
-                <div className="text-sm text-slate-500">
+                <span className="text-sm text-slate-500">
                   {t('create.maxAllowed', { count: currentAvailableQuestions })}
-                </div>
+                </span>
               </div>
 
-              <div className="flex flex-col gap-5 border-t border-slate-100 pt-5 md:flex-row md:items-center md:justify-between">
-                <div className="grid grid-cols-2 gap-4 text-sm md:grid-cols-4 md:gap-8">
-                  <div>
-                    <div className="text-slate-500">{t('create.selectedChapters')}</div>
-                    <div className="text-lg font-bold text-slate-800">{selectedChapterCount}</div>
-                  </div>
-                  <div>
-                    <div className="text-slate-500">{t('create.availableQuestions')}</div>
-                    <div className="text-lg font-bold text-slate-800">{currentAvailableQuestions.toLocaleString()}</div>
-                  </div>
-                  <div>
-                    <div className="text-slate-500">{t('create.totalQuestions')}</div>
-                    <div className="text-lg font-bold text-slate-800">{totalQuestionCount.toLocaleString()}</div>
-                  </div>
-                  <div>
-                    <div className="text-slate-500">{t('create.readyToGenerate')}</div>
-                    <div className="text-lg font-bold text-slate-800">{requestedQuestionCount}</div>
-                  </div>
+              {/* Stats + Action */}
+              <div className="flex flex-col md:flex-row md:items-end gap-5">
+                {/* Stats */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-4 flex-1">
+                  {[
+                    { label: t('create.selectedChapters'), value: selectedChapterCount, highlight: false },
+                    { label: t('create.availableQuestions'), value: currentAvailableQuestions.toLocaleString(), highlight: false },
+                    { label: t('create.totalQuestions'), value: totalQuestionCount.toLocaleString(), highlight: false },
+                    { label: t('create.readyToGenerate'), value: requestedQuestionCount, highlight: true },
+                  ].map((stat, idx) => (
+                    <div key={idx} className="flex flex-col gap-0.5">
+                      <div className="text-xs font-semibold text-slate-400 uppercase tracking-wide">{stat.label}</div>
+                      <div className={cn("text-2xl font-bold", stat.highlight ? "text-primary" : "text-slate-800")}>{stat.value}</div>
+                    </div>
+                  ))}
                 </div>
 
-                <div className="flex items-center gap-3 md:shrink-0">
-                  <HelpCircle className="h-5 w-5 cursor-pointer text-primary" />
+                {/* Action */}
+                <div className="flex items-center gap-3 shrink-0">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        type="button"
+                        className="text-primary/75 hover:text-primary transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <HelpCircle className="h-5 w-5" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" className="max-w-[220px] text-xs">
+                      {t('tour.generateDescription')}
+                    </TooltipContent>
+                  </Tooltip>
                   <Button
                     onClick={handleStartTest}
                     disabled={isStarting || requestedQuestionCount <= 0}
-                    className="h-12 min-w-[190px] flex-1 rounded-md bg-primary px-8 text-base font-bold text-primary-foreground shadow-sm hover:bg-primary/90 disabled:opacity-50 md:flex-none"
+                    className="h-12 w-full md:w-auto min-w-[160px] rounded-xl bg-primary px-8 text-base font-bold text-primary-foreground shadow-md hover:bg-primary/95 active:scale-[0.98] transition-all duration-200 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center gap-2"
                   >
-                    {isStarting ? t('create.generating') : t('create.generateTest')}
+                    {isStarting && <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />}
+                    <span>{isStarting ? t('create.generating') : t('create.generateTest')}</span>
                   </Button>
                 </div>
               </div>
+
             </div>
           </AccordionContent>
         </AccordionItem>

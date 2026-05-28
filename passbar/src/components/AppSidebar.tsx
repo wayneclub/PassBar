@@ -154,8 +154,8 @@ export function AppSidebar() {
 
       <SidebarFooter className="hidden space-y-3 bg-black/20 p-4 md:flex">
         <div className="flex items-center gap-3 rounded-md bg-white/5 p-2 text-left">
-          <Avatar className="h-9 w-9 border border-white/10">
-            <AvatarFallback className="bg-primary text-xs font-bold text-primary-foreground">
+          <Avatar className="h-9 w-9 border border-white/10 !bg-primary">
+            <AvatarFallback className="!bg-primary text-xs font-bold !text-primary-foreground">
               {initials}
             </AvatarFallback>
           </Avatar>
