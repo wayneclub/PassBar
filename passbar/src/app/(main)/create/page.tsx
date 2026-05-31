@@ -174,13 +174,8 @@ export default function CreateTestPage() {
     const matchingQuestions = await getQuestionsByChapterIds(Array.from(selectedChapters), count);
     const ordered = questionOrder === 'random'
       ? [...matchingQuestions].sort(() => 0.5 - Math.random())
-      : [...matchingQuestions].sort((a, b) => {
-          // Sort by chapter order first, then by index within chapter
-          if (a.topic !== b.topic) return a.topic.localeCompare(b.topic);
-          const aIdx = (a as { index?: number }).index ?? 0;
-          const bIdx = (b as { index?: number }).index ?? 0;
-          return aIdx - bIdx;
-        });
+      // Sequential: already ordered by chapter_id + index from DB, just use as-is
+      : matchingQuestions;
     const selectedIds = ordered.map(q => q.id);
 
     if (selectedIds.length === 0) {

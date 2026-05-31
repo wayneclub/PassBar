@@ -455,6 +455,7 @@ zh_choice_rows as (
 )
 select
   q.id,
+  q."index",
   s.subject,
   ch.id as chapter_id,
   ch.chapter as topic,

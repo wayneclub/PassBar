@@ -15,6 +15,7 @@ export interface Subject {
 
 export interface Question {
   id: string;
+  index: number;
   subject: string;
   topic: string;
   questionText: string;

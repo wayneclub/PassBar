@@ -4,6 +4,7 @@ import { ExplanationOcr, Question, Subject } from './types';
 
 type QuestionRow = {
   id: string;
+  index: number;
   subject: string;
   chapter_id: string;
   topic: string;
@@ -44,13 +45,14 @@ type ExplanationOcrRow = {
   words: ExplanationOcr['words'];
 };
 
-const questionSelectFields = 'id, subject, chapter_id, topic, question_text, fetched_question_stem, zh_question_stem, options, bilingual_options, zh_options, correct_answer, correct_answer_letter, api_answer_key, api_match_ok, explain_imgs, source_explanation_image_file, source_explanation_image_url, en_explanation_html, explanation_html';
+const questionSelectFields = 'id, index, subject, chapter_id, topic, question_text, fetched_question_stem, zh_question_stem, options, bilingual_options, zh_options, correct_answer, correct_answer_letter, api_answer_key, api_match_ok, explain_imgs, source_explanation_image_file, source_explanation_image_url, en_explanation_html, explanation_html';
 
 function toQuestion(row: QuestionRow, ocrByQuestion = new Map<string, ExplanationOcr[]>()) : Question {
   // Prefer gemini-generated English HTML over raw source image when available
   const hasEnHtml = row.en_explanation_html && !row.en_explanation_html.startsWith('<!-- ERROR:');
   return {
     id: row.id,
+    index: row.index,
     subject: row.subject,
     topic: row.topic,
     questionText: row.question_text,
@@ -184,6 +186,8 @@ export async function getQuestionsByChapterIds(chapterIds: string[], limit: numb
     .from('questions')
     .select(questionSelectFields)
     .in('chapter_id', chapterIds)
+    .order('chapter_id', { ascending: true })
+    .order('index', { ascending: true })
     .limit(limit);
 
   if (error || !data) {
