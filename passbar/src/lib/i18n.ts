@@ -50,6 +50,17 @@ type TranslationKey =
   | 'settings.englishQuestionDescription'
   | 'settings.bilingualQuestion'
   | 'settings.bilingualQuestionDescription'
+  | 'settings.chinese'
+  | 'settings.displayQA'
+  | 'settings.displayExplanation'
+  | 'settings.displayZhQuestion'
+  | 'settings.displayZhQuestionDesc'
+  | 'settings.displayZhChoices'
+  | 'settings.displayZhChoicesDesc'
+  | 'settings.displayZhExplanation'
+  | 'settings.displayZhExplanationDesc'
+  | 'settings.displayEnExplanation'
+  | 'settings.displayEnExplanationDesc'
   | 'settings.textSize'
   | 'settings.textSizeDescription'
   | 'settings.small'
@@ -264,6 +275,17 @@ const en: Dictionary = {
   'settings.englishQuestionDescription': 'Show the original English stem, English options, and source explanation images.',
   'settings.bilingualQuestion': 'Chinese-English question + bilingual explanation',
   'settings.bilingualQuestionDescription': 'Show fetched Chinese-English stem/options and bilingual explanation when available.',
+  'settings.chinese':               'Chinese',
+  'settings.displayQA':             'Question & Choices',
+  'settings.displayExplanation':    'Explanation',
+  'settings.displayZhQuestion':     'Chinese question text',
+  'settings.displayZhQuestionDesc': 'Replace question stem with pure Chinese translation.',
+  'settings.displayZhChoices':      'Chinese answer choices',
+  'settings.displayZhChoicesDesc':  'Replace answer options with pure Chinese translation.',
+  'settings.displayZhExplanation':  'Chinese explanation',
+  'settings.displayZhExplanationDesc': 'Show the Chinese HTML explanation card.',
+  'settings.displayEnExplanation':  'English explanation',
+  'settings.displayEnExplanationDesc': 'Show the English interactive HTML explanation.',
   'settings.textSize': 'Text Size',
   'settings.textSizeDescription': 'Adjust reading size for questions, answer choices, and explanations.',
   'settings.small': 'Small',
@@ -478,6 +500,17 @@ const zhHans: Dictionary = {
   'settings.englishQuestionDescription': '显示原始英文题干、英文选项与原始解析图片。',
   'settings.bilingualQuestion': '中英题目 + 中英解析',
   'settings.bilingualQuestionDescription': '有 fetch 结果时显示中英题干、选项与中英解析。',
+  'settings.chinese':               '中文',
+  'settings.displayQA':             '题目 & 选项',
+  'settings.displayExplanation':    '解析',
+  'settings.displayZhQuestion':     '中文题目',
+  'settings.displayZhQuestionDesc': '将题干替换为纯中文翻译。',
+  'settings.displayZhChoices':      '中文选项',
+  'settings.displayZhChoicesDesc':  '将答案选项替换为纯中文翻译。',
+  'settings.displayZhExplanation':  '中文解析',
+  'settings.displayZhExplanationDesc': '显示中文 HTML 解析卡片。',
+  'settings.displayEnExplanation':  '英文解析',
+  'settings.displayEnExplanationDesc': '显示英文互动 HTML 解析。',
   'settings.textSize': '文字大小',
   'settings.textSizeDescription': '调整题干、选项与解析的阅读字号。',
   'settings.small': '小',
@@ -691,6 +724,17 @@ const zhHant: Dictionary = {
   'settings.englishQuestionDescription': '顯示原始英文題幹、英文選項與原始解析圖片。',
   'settings.bilingualQuestion': '中英題目 + 中英解析',
   'settings.bilingualQuestionDescription': '有 fetch 結果時顯示中英題幹、選項與中英解析。',
+  'settings.chinese':               '中文',
+  'settings.displayQA':             '題目 & 選項',
+  'settings.displayExplanation':    '解析',
+  'settings.displayZhQuestion':     '中文題目',
+  'settings.displayZhQuestionDesc': '將題幹替換為純中文翻譯。',
+  'settings.displayZhChoices':      '中文選項',
+  'settings.displayZhChoicesDesc':  '將答案選項替換為純中文翻譯。',
+  'settings.displayZhExplanation':  '中文解析',
+  'settings.displayZhExplanationDesc': '顯示中文 HTML 解析卡片。',
+  'settings.displayEnExplanation':  '英文解析',
+  'settings.displayEnExplanationDesc': '顯示英文互動 HTML 解析。',
   'settings.textSize': '文字大小',
   'settings.textSizeDescription': '調整題幹、選項與解析的閱讀字號。',
   'settings.small': '小',

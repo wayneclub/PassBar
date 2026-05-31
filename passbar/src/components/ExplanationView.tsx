@@ -1,9 +1,11 @@
 "use client";
 
 import React, { PointerEvent, useEffect, useRef, useState } from 'react';
+
 import { ExplanationOcrWord, Question } from '@/lib/types';
 import { Eraser, Highlighter, Image as ImageIcon, RotateCcw, ZoomIn, ZoomOut, Loader2 } from 'lucide-react';
-import type { ContentMode, TextSize } from '@/lib/study-settings';
+import type { ContentMode, DisplayOptions, TextSize } from '@/lib/study-settings';
+import { defaultStudySettings } from '@/lib/study-settings';
 import { requestGeminiQuestionAnalysis } from '@/lib/gemini-feedback';
 import {
   getCachedQuestionAiAnalysis,
@@ -19,6 +21,7 @@ interface ExplanationViewProps {
   userAnswer: string;
   selectedChoiceKey?: string | null;
   correctChoiceKey?: string | null;
+  display?: DisplayOptions;
   contentMode?: ContentMode;
   textSize?: TextSize;
 }
@@ -423,9 +426,9 @@ function GeminiQuestionFeedback({
         </div>
       )}
 
-      {error && !feedback && (
-        <div className={cn('text-red-500', textClass)}>
-          {error}
+      {error && !feedback && !loading && (
+        <div className={cn('text-sm text-muted-foreground italic', textClass)}>
+          {/* Silently hide backend errors — user sees HTML explanation instead */}
         </div>
       )}
 
@@ -445,18 +448,130 @@ function GeminiQuestionFeedback({
   );
 }
 
-export function ExplanationView({ question, userAnswer, selectedChoiceKey, correctChoiceKey, contentMode = 'english', textSize = 'medium' }: ExplanationViewProps) {
+// Each iframe gets a unique channel ID so postMessage doesn't cross-contaminate
+function buildIframeInject(channelId: string): string {
+  return `
+<style>
+/* ── PassBar iframe reset ── */
+html, body {
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 0 24px 0 !important;
+  overflow: visible !important;
+  min-height: 0 !important;
+  height: auto !important;
+  display: block !important;
+}
+/* Tailwind min-h-screen sets min-height:100vh on body or outer wrappers.
+   We override all elements that could create large vertical space. */
+body, body > div, body > main, body > section, body > article {
+  min-height: 0 !important;
+  height: auto !important;
+  /* Remove flex centering that pushes content down */
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+/* Fluid container — remove fixed 480px width */
+.container, [class*="container"] {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+</style>
+<script>
+(function(){
+  var ch = ${JSON.stringify(channelId)};
+  var lastH = 0;
+  function send(){
+    var h = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight,
+      document.documentElement.offsetHeight,
+      document.body.offsetHeight
+    );
+    if(h !== lastH){ lastH = h; window.parent.postMessage({type:'iframe-resize',ch:ch,height:h},'*'); }
+  }
+  window.addEventListener('load', send);
+  document.addEventListener('DOMContentLoaded', send);
+  new MutationObserver(send).observe(document.documentElement,{childList:true,subtree:true,attributes:true,characterData:true});
+  [100,300,600,1000,2000].forEach(function(t){ setTimeout(send,t); });
+})();
+<\/script>`;
+}
+
+function injectHelpers(html: string, channelId: string): string {
+  const inject = buildIframeInject(channelId);
+  if (/<head(\s[^>]*)?>/i.test(html)) {
+    return html.replace(/(<head(\s[^>]*)?>)/i, `$1${inject}`);
+  }
+  return inject + html;
+}
+
+function AutoHeightIframe({ html, title, minHeight = 480 }: { html: string; title: string; minHeight?: number }) {
+  // New channelId whenever html changes, so stale messages from previous render are ignored
+  const channelId = useRef(`ch-${Math.random().toString(36).slice(2)}`);
+  const [height, setHeight] = useState(minHeight);
+
+  // ⬇ Reset height and rotate channelId when html content changes (new question / new topic)
+  const prevHtml = useRef(html);
+  if (prevHtml.current !== html) {
+    prevHtml.current = html;
+    channelId.current = `ch-${Math.random().toString(36).slice(2)}`;
+    // Reset height synchronously before render so no stale large height is shown
+    // (direct mutation is intentional — avoids an extra render cycle)
+  }
+  const [resetKey, setResetKey] = useState(0);
+  useEffect(() => {
+    setHeight(minHeight);
+    setResetKey((k) => k + 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [html]);
+
+  useEffect(() => {
+    const id = channelId.current;
+    const handler = (e: MessageEvent) => {
+      if (e.data?.type === 'iframe-resize' && e.data.ch === id && typeof e.data.height === 'number' && e.data.height > 0) {
+        setHeight((prev) => Math.max(prev, e.data.height + 32));
+      }
+    };
+    window.addEventListener('message', handler);
+    return () => window.removeEventListener('message', handler);
+  }, [resetKey]);
+
+  return (
+    <iframe
+      key={resetKey}
+      title={title}
+      srcDoc={injectHelpers(html, channelId.current)}
+      className="w-full"
+      style={{ height, background: 'transparent', display: 'block' }}
+      scrolling="no"
+      sandbox="allow-scripts"
+    />
+  );
+}
+
+export function ExplanationView({ question, userAnswer, selectedChoiceKey, correctChoiceKey, display = defaultStudySettings.display, contentMode = 'english', textSize = 'medium' }: ExplanationViewProps) {
   const { t } = useI18n();
   const ocrByUrl = new Map((question.explanationOcr ?? []).map((ocr) => [ocr.publicUrl, ocr.words]));
 
-  // ── Determine what to show based on contentMode ───────────────────────────
-  // Chinese mode: prefer zh-explanation HTML (enriched) → fallback to images
-  // English mode: prefer en-explanation HTML (enriched) → fallback to source images
-  const isChinese = contentMode === 'bilingual';
+  // ── Determine what to show based on display flags ─────────────────────────
+  // display.zhExplanation → show zh HTML; display.enExplanation → show en HTML
+  // fallback to legacy contentMode if display flags aren't set
+  const showZhHtml = display.zhExplanation ?? (contentMode === 'bilingual');
+  const showEnHtml = display.enExplanation ?? (contentMode !== 'bilingual');
+  const isChinese = showZhHtml && !showEnHtml;
 
-  const htmlToShow = isChinese
-    ? (question.explanationHtml || undefined)          // zh-explanation from enriched
-    : (question.enExplanationHtml || undefined);       // en-explanation from enriched
+  // Build list of HTML panels to show (can be both at once)
+  const htmlPanels: Array<{ key: string; html: string; title: string }> = [];
+  if (showEnHtml && question.enExplanationHtml) {
+    htmlPanels.push({ key: 'en', html: question.enExplanationHtml, title: 'English explanation' });
+  }
+  if (showZhHtml && question.explanationHtml) {
+    htmlPanels.push({ key: 'zh', html: question.explanationHtml, title: 'Chinese explanation' });
+  }
+  const htmlToShow = htmlPanels.length > 0 ? true : false;
 
   // Only show images when no HTML explanation is available
   const englishImages = [
@@ -468,27 +583,21 @@ export function ExplanationView({ question, userAnswer, selectedChoiceKey, corre
     .filter((src, index, list): src is string => Boolean(src) && list.indexOf(src) === index);
 
   const fallbackImages = !htmlToShow
-    ? (isChinese
+    ? (showZhHtml
         ? [...englishImages, ...chineseImages].filter((src, i, list) => list.indexOf(src) === i)
         : englishImages)
     : [];
 
-  const iframeHeight = textSize === 'large' ? 'h-[860px]' : 'h-[760px]';
 
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-top-4 duration-500">
+    <div className="space-y-4">
 
-      {/* HTML explanation from enriched JSON (en or zh) */}
-      {htmlToShow && (
-        <div className="text-slate-700">
-          <iframe
-            title={isChinese ? 'Chinese explanation' : 'English explanation'}
-            srcDoc={htmlToShow}
-            className={cn('w-full rounded-md border bg-white', iframeHeight)}
-            sandbox=""
-          />
+      {/* HTML explanation panels — can show en, zh, or both; height auto-adjusts */}
+      {htmlPanels.map(({ key, html, title }) => (
+        <div key={key} className="text-slate-700">
+          <AutoHeightIframe html={html} title={title} minHeight={480} />
         </div>
-      )}
+      ))}
 
       {/* Fallback: source images (only when no HTML available) */}
       {fallbackImages.length > 0 && (
@@ -499,12 +608,15 @@ export function ExplanationView({ question, userAnswer, selectedChoiceKey, corre
         </div>
       )}
 
-      <GeminiQuestionFeedback
-        question={question}
-        selectedChoiceKey={selectedChoiceKey}
-        correctChoiceKey={correctChoiceKey}
-        textSize={textSize}
-      />
+      {/* Only show AI analysis when no enriched HTML explanation is available */}
+      {!htmlToShow && (
+        <GeminiQuestionFeedback
+          question={question}
+          selectedChoiceKey={selectedChoiceKey}
+          correctChoiceKey={correctChoiceKey}
+          textSize={textSize}
+        />
+      )}
     </div>
   );
 }

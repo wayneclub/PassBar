@@ -23,10 +23,11 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { ResizablePanels } from '@/components/ResizablePanels';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { requestGeminiFeedback } from '@/lib/gemini-feedback';
-import { getStudySettings, type ContentMode, type TextSize } from '@/lib/study-settings';
+import { defaultStudySettings, getStudySettings, type ContentMode, type DisplayOptions, type TextSize } from '@/lib/study-settings';
 import { useI18n } from '@/lib/i18n';
 import { Check, Clock3, ListChecks, X } from 'lucide-react';
 
@@ -65,6 +66,7 @@ function TestSessionContent() {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [contentMode, setContentMode] = useState<ContentMode>('english');
+  const [display, setDisplay] = useState<DisplayOptions>(defaultStudySettings.display);
   const [textSize, setTextSize] = useState<TextSize>('medium');
   const [questionStartedAt, setQuestionStartedAt] = useState(() => Date.now());
   const [isPaused, setIsPaused] = useState(false);
@@ -83,11 +85,13 @@ function TestSessionContent() {
   useEffect(() => {
     const settings = getStudySettings();
     setContentMode(settings.contentMode);
+    setDisplay(settings.display);
     setTextSize(settings.textSize);
 
     const handleSettingsChange = (event: Event) => {
-      const next = (event as CustomEvent<{ contentMode: ContentMode; textSize: TextSize }>).detail;
+      const next = (event as CustomEvent<{ contentMode: ContentMode; display: DisplayOptions; textSize: TextSize }>).detail;
       if (next?.contentMode) setContentMode(next.contentMode);
+      if (next?.display) setDisplay(next.display);
       if (next?.textSize) setTextSize(next.textSize);
     };
 
@@ -160,18 +164,21 @@ function TestSessionContent() {
   }, [id, isReviewMode, router, user?.id]);
 
   const currentQuestion = questions[currentIndex];
-  // Priority for Chinese mode: zhQuestionText (pure zh, enriched) > bilingualQuestionText (mixed) > English
-  const displayQuestionText = contentMode === 'bilingual'
-    ? (currentQuestion?.zhQuestionText || currentQuestion?.bilingualQuestionText || currentQuestion?.questionText)
-    : currentQuestion?.questionText;
-  // Priority for Chinese mode: zhOptions (pure zh, enriched) > bilingualOptions (mixed) > English
-  const displayOptions = contentMode === 'bilingual'
-    ? (currentQuestion?.zhOptions?.length
-        ? currentQuestion.zhOptions
-        : currentQuestion?.bilingualOptions?.length
-          ? currentQuestion.bilingualOptions
-          : currentQuestion?.options ?? [])
-    : currentQuestion?.options ?? [];
+  const enQuestionText = currentQuestion?.questionText ?? '';
+  const zhQuestionText = currentQuestion?.zhQuestionText || currentQuestion?.bilingualQuestionText || '';
+  const enOptions = currentQuestion?.options ?? [];
+  const zhOptionsArr = currentQuestion?.zhOptions?.length
+    ? currentQuestion.zhOptions
+    : (currentQuestion?.bilingualOptions ?? []);
+
+  // Primary display text (for stats/review refs) — prefer zh if only zh is on
+  const displayQuestionText = display.zhQA && !display.enQA
+    ? (zhQuestionText || enQuestionText)
+    : enQuestionText;
+  // Primary options list — used for RadioGroup value matching
+  const displayOptions = display.zhQA && !display.enQA
+    ? (zhOptionsArr.length ? zhOptionsArr : enOptions)
+    : enOptions;
   const correctAnswerKey = currentQuestion?.apiAnswerKey ?? currentQuestion?.correctAnswerLetter;
   const correctAnswer = displayOptions.find((option, index) => {
     const key = String.fromCharCode(65 + index);
@@ -198,6 +205,7 @@ function TestSessionContent() {
   const normalizedCorrectAnswerKey = correctAnswerKey?.toUpperCase() ?? null;
   const isSubmittedCorrect = Boolean(submitted && selectedChoiceKey && normalizedCorrectAnswerKey && selectedChoiceKey === normalizedCorrectAnswerKey);
   const showExplanation = Boolean(session?.mode === 'Browse' || (submitted && (session?.mode === 'Tutor' || isReviewMode)));
+  const showSubmitBtn = Boolean(session?.mode === 'Tutor' && !isPaused && !submitted && selectedAnswer);
   const currentAnswerMeta = currentQuestion ? answerMetaByQuestion[currentQuestion.id] : undefined;
   const currentEliminatedOptions = currentQuestion ? (eliminatedOptionsByQuestion[currentQuestion.id] || new Set<string>()) : new Set<string>();
 
@@ -535,22 +543,37 @@ function TestSessionContent() {
         onToggleContentMode={() => setContentMode((prev) => prev === 'bilingual' ? 'english' : 'bilingual')}
       />
 
-      <main className="mb-16 mt-14 flex-1 overflow-hidden">
-        <div className={cn(
-          "grid h-full w-full",
-          showExplanation
-            ? "grid-cols-1 lg:grid-cols-[minmax(420px,1fr)_minmax(420px,1.06fr)] xl:grid-cols-[minmax(380px,2fr)_minmax(480px,3fr)] 2xl:grid-cols-[minmax(360px,1fr)_minmax(560px,2fr)]"
-            : ""
-        )}>
-          <ScrollArea className={cn("h-full w-full", showExplanation && "border-r border-slate-200")}>
+      {/* Bottom padding: mobile footer = nav row (56px) + optional submit row (~60px) */}
+      <main className={cn(
+        "mt-14 flex-1 overflow-hidden",
+        showSubmitBtn ? "mb-36 sm:mb-20" : "mb-20 sm:mb-20"
+      )}>
+        <ResizablePanels
+          enabled={showExplanation}
+          defaultLeftPct={50}
+          minPx={300}
+          className="h-full w-full"
+          left={
+            <div className="h-full overflow-y-auto overflow-x-hidden">
             <div className={cn(
               "space-y-8 py-8",
               showExplanation ? "px-6 lg:px-8" : "mx-auto w-full max-w-5xl px-6 lg:px-8"
             )}>
-              <RichText
-                text={displayQuestionText ?? ''}
-                className={cn('text-left font-normal text-slate-900', questionTextClass)}
-              />
+              {/* ── Question text ── EN / ZH / both stacked ─────────────── */}
+              <div className="space-y-3">
+                {(display.enQA || (!display.enQA && !display.zhQA)) && (
+                  <RichText
+                    text={enQuestionText}
+                    className={cn('text-left font-normal text-slate-900', questionTextClass)}
+                  />
+                )}
+                {display.zhQA && zhQuestionText && (
+                  <RichText
+                    text={zhQuestionText}
+                    className={cn('text-left font-normal text-slate-600', questionTextClass)}
+                  />
+                )}
+              </div>
 
               <div className="space-y-6">
                 <RadioGroup
@@ -579,61 +602,106 @@ function TestSessionContent() {
                     }
 
                     return (
-                      <div key={`${label}-${option}`} className="group flex w-full items-start gap-3 py-3 px-2 rounded-lg transition-colors hover:bg-slate-50 cursor-pointer">
-                        
-                        {/* Gutter for correct/incorrect icons */}
-                        <div className={cn("flex w-6 shrink-0 items-center justify-center", optionTextClass)}>
-                          <span className="invisible w-0">&#8203;</span>
+                      <div key={`${label}-${option}`} className={cn(
+                        "group flex w-full items-start gap-2 sm:gap-3 py-3 px-1 sm:px-2 rounded-lg transition-colors cursor-pointer",
+                        // Highlight background when revealed
+                        isRevealed && isCorrect
+                          ? "bg-green-50 border border-green-200 hover:bg-green-50"
+                          : isRevealed && isSelected && !isCorrect
+                            ? "bg-red-50 border border-red-200 hover:bg-red-50"
+                            : "hover:bg-slate-50 border border-transparent",
+                      )}>
+
+                        {/* Desktop-only ✓/✗ gutter — same mt offset as radio to stay aligned */}
+                        <div className={cn(
+                          "hidden sm:flex w-6 shrink-0 items-center justify-center",
+                          textSize === 'large' ? 'mt-[10px]' : 'mt-2',
+                        )}>
                           {isRevealed && isCorrect && <Check className="h-5 w-5 text-green-500" strokeWidth={2.5} />}
                           {isRevealed && isSelected && !isCorrect && <X className="h-5 w-5 text-red-500" strokeWidth={2.5} />}
                         </div>
 
-                        {/* Radio Button */}
-                        <div className={cn("flex shrink-0 items-center", optionTextClass)}>
-                          <span className="invisible w-0">&#8203;</span>
+                        {/* Radio + result icon stacked vertically (mobile) / radio only (desktop) */}
+                        {/* mt aligns radio to vertical centre of first text line:
+                            medium: (leading-9 36px - h-5 20px) / 2 = 8px
+                            large:  (leading-10 40px - h-5 20px) / 2 = 10px           */}
+                        <div className={cn(
+                          "flex w-6 shrink-0 flex-col items-center gap-1",
+                          textSize === 'large' ? 'mt-[10px]' : 'mt-2',
+                        )}>
                           <RadioGroupItem
                             value={label}
                             id={`option-${idx}`}
                             className="h-5 w-5 border-2 border-solid border-slate-300 text-slate-700 transition-colors group-hover:border-slate-400 data-[state=checked]:border-primary data-[state=checked]:text-primary"
                           />
+                          {/* ✓/✗ below radio — mobile only */}
+                          {isRevealed && isCorrect && (
+                            <Check className="sm:hidden h-4 w-4 text-green-500" strokeWidth={3} />
+                          )}
+                          {isRevealed && isSelected && !isCorrect && (
+                            <X className="sm:hidden h-4 w-4 text-red-500" strokeWidth={3} />
+                          )}
+                          {/* Spacer to keep alignment when no icon */}
+                          {isRevealed && !isCorrect && !isSelected && (
+                            <span className="sm:hidden h-4 w-4" />
+                          )}
                         </div>
 
-                        {/* Option Label (e.g. A.) - Not struck through */}
-                        <div 
+                        {/* Option Label (e.g. A.) */}
+                        <div
                           className={cn(
                             "shrink-0 font-bold text-slate-900 cursor-pointer select-none",
                             optionTextClass,
                             isEliminated && !isSelected && "text-slate-400"
                           )}
                           onClick={(e) => {
-                            if (!isRevealed) {
-                              handleToggleEliminate(e, label);
-                            }
+                            if (!isRevealed) handleToggleEliminate(e, label);
                           }}
                         >
                           {label}.
                         </div>
                         
-                        {/* Option Description - Struck through when eliminated */}
-                        <div 
+                        {/* Option Description — EN + optional ZH stacked; % below on mobile */}
+                        <div
                           className={cn(
-                            'flex-1 cursor-pointer text-left font-normal text-slate-900 flex items-start justify-between',
+                            'flex-1 cursor-pointer text-left font-normal text-slate-900',
                             optionTextClass,
                             isEliminated && !isSelected && 'line-through text-slate-400',
                             isRevealed && isCorrect && 'font-medium no-underline'
                           )}
                           onClick={(e) => {
-                            if (!isRevealed) {
-                              handleToggleEliminate(e, label);
-                            }
+                            if (!isRevealed) handleToggleEliminate(e, label);
                           }}
                         >
-                          <span className="flex-1 pr-4">
-                            {option.replace(/^\s*[A-D]\.\s*/i, '')}
+                          {/* Text + % in one row on desktop, stacked on mobile */}
+                          <span className="flex items-start justify-between gap-2">
+                            <span className="flex-1">
+                              {/* EN option text */}
+                              {(display.enQA || (!display.enQA && !display.zhQA)) && (
+                                <span className="block">
+                                  {enOptions[idx]?.replace(/^\s*[A-D]\.\s*/i, '') ?? option.replace(/^\s*[A-D]\.\s*/i, '')}
+                                </span>
+                              )}
+                              {/* ZH option text stacked below */}
+                              {display.zhQA && zhOptionsArr[idx] && (
+                                <span className={cn(
+                                  'block text-slate-500',
+                                  display.enQA && 'mt-0.5 text-[0.9em]'
+                                )}>
+                                  {zhOptionsArr[idx].replace(/^\s*[A-D]\.\s*/i, '')}
+                                </span>
+                              )}
+                            </span>
+                            {/* % — inline on desktop, hidden here shown below on mobile */}
+                            {percentageText && (
+                              <span className="hidden sm:block shrink-0 text-sm font-normal text-slate-500 mt-0.5">
+                                {percentageText}
+                              </span>
+                            )}
                           </span>
-                          
+                          {/* % below text on mobile only */}
                           {percentageText && (
-                            <span className="shrink-0 font-normal text-slate-900 ml-4">
+                            <span className="sm:hidden mt-1 block text-sm font-normal text-slate-500">
                               {percentageText}
                             </span>
                           )}
@@ -691,25 +759,24 @@ function TestSessionContent() {
                 ) : null}
               </div>
             </div>
-          </ScrollArea>
-
-          {showExplanation && (
-            <ScrollArea className="h-full bg-white">
-              <div className="px-6 py-6 lg:px-10 xl:px-14 2xl:px-16">
-                <div className="border-t border-slate-200 pt-5">
-                  <ExplanationView
+            </div>
+          }
+          right={showExplanation ? (
+            <div className="h-full overflow-y-auto overflow-x-hidden bg-white">
+              <div className="px-4 py-4 lg:px-6">
+                <ExplanationView
                     question={currentQuestion}
                     userAnswer={selectedAnswer!}
                     selectedChoiceKey={selectedChoiceKey}
                     correctChoiceKey={normalizedCorrectAnswerKey}
+                    display={display}
                     contentMode={contentMode}
                     textSize={textSize}
                   />
-                </div>
               </div>
-            </ScrollArea>
-          )}
-        </div>
+            </div>
+          ) : <div />}
+        />
       </main>
 
       <TestFooter
@@ -721,7 +788,7 @@ function TestSessionContent() {
         onEnd={handleEndRequest}
         onSubmit={handleSubmit}
         onFeedback={handleFeedback}
-        showSubmit={session.mode === 'Tutor' && !isPaused && !submitted && Boolean(selectedAnswer)}
+        showSubmit={showSubmitBtn}
         feedbackLoading={feedbackLoading}
         isPaused={isPaused}
         isTutorMode={session.mode === 'Tutor'}

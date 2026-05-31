@@ -14,6 +14,7 @@ import {
   getStudySettings,
   saveStudySettings,
   type ContentMode,
+  type DisplayOptions,
   type InterfaceLanguage,
   type StudySettings,
   type TextSize,
@@ -28,6 +29,7 @@ export default function SettingsPage() {
   const { user } = useAuth();
   const [interfaceLanguage, setInterfaceLanguage] = useState<InterfaceLanguage>('en');
   const [contentMode, setContentMode] = useState<ContentMode>('english');
+  const [display, setDisplay] = useState<DisplayOptions>(defaultStudySettings.display);
   const [textSize, setTextSize] = useState<TextSize>('medium');
   const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle');
   const saveTimerRef = useRef<number | null>(null);
@@ -36,6 +38,7 @@ export default function SettingsPage() {
     const settings = getStudySettings();
     setInterfaceLanguage(settings.interfaceLanguage);
     setContentMode(settings.contentMode);
+    setDisplay(settings.display);
     setTextSize(settings.textSize);
 
     const handleSettingsChange = (event: Event) => {
@@ -43,6 +46,7 @@ export default function SettingsPage() {
       if (!next) return;
       setInterfaceLanguage(next.interfaceLanguage);
       setContentMode(next.contentMode);
+      setDisplay(next.display);
       setTextSize(next.textSize);
     };
 
@@ -57,6 +61,7 @@ export default function SettingsPage() {
     saveStudySettings(nextSettings);
     setInterfaceLanguage(nextSettings.interfaceLanguage);
     setContentMode(nextSettings.contentMode);
+    setDisplay(nextSettings.display);
     setTextSize(nextSettings.textSize);
     setSaveStatus('saving');
 
@@ -73,27 +78,35 @@ export default function SettingsPage() {
     }, 500);
   };
 
-  const currentSettings: StudySettings = { interfaceLanguage, contentMode, textSize };
+  const currentSettings: StudySettings = { interfaceLanguage, contentMode, display, textSize };
 
-  const contentModes: Array<{
-    value: ContentMode;
-    title: string;
-    description: string;
-    icon: React.ComponentType<{ className?: string }>;
-  }> = [
-    {
-      value: 'english',
-      title: t('settings.englishQuestion'),
-      description: t('settings.englishQuestionDescription'),
-      icon: BookOpen,
-    },
-    {
-      value: 'bilingual',
-      title: t('settings.bilingualQuestion'),
-      description: t('settings.bilingualQuestionDescription'),
-      icon: Languages,
-    },
-  ];
+  function DisplayCheckbox({ flagKey, label }: { flagKey: keyof DisplayOptions; label: string }) {
+    const checked = display[flagKey];
+    return (
+      <button
+        type="button"
+        role="checkbox"
+        aria-checked={checked}
+        onClick={() => commitSettings({ ...currentSettings, display: { ...display, [flagKey]: !checked } })}
+        className={cn(
+          'flex w-full items-center gap-3 rounded-md border px-4 py-3 text-left text-sm font-medium transition-colors',
+          checked ? 'border-primary bg-primary/5 text-slate-900' : 'border-slate-200 bg-white text-slate-500 hover:bg-slate-50',
+        )}
+      >
+        <div className={cn(
+          'flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-colors',
+          checked ? 'border-primary bg-primary text-primary-foreground' : 'border-slate-300 bg-white',
+        )}>
+          {checked && (
+            <svg className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 12 12">
+              <path d="M2 6l3 3 5-5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          )}
+        </div>
+        {label}
+      </button>
+    );
+  }
 
   return (
     <div className="mx-auto max-w-4xl space-y-6 pb-20 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -143,39 +156,28 @@ export default function SettingsPage() {
           <CardTitle>{t('settings.questionDisplay')}</CardTitle>
           <CardDescription>{t('settings.questionDisplayDescription')}</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
-          <RadioGroup
-            value={contentMode}
-            onValueChange={(value) => commitSettings({ ...currentSettings, contentMode: value as ContentMode })}
-          >
-            <div className="grid gap-4 md:grid-cols-2">
-              {contentModes.map((mode) => {
-                const Icon = mode.icon;
-                const selected = contentMode === mode.value;
-
-                return (
-                  <Label
-                    key={mode.value}
-                    htmlFor={mode.value}
-                    className={cn(
-                      'flex cursor-pointer gap-4 rounded-md border p-4 transition-colors',
-                      selected ? 'border-primary bg-primary/5' : 'border-slate-200 bg-white hover:bg-slate-50',
-                    )}
-                  >
-                    <RadioGroupItem id={mode.value} value={mode.value} className="mt-1" />
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        <Icon className={cn('h-5 w-5', selected ? 'text-primary' : 'text-slate-500')} />
-                        <span className="text-sm font-semibold text-slate-900">{mode.title}</span>
-                      </div>
-                      <p className="text-xs leading-5 text-muted-foreground">{mode.description}</p>
-                    </div>
-                  </Label>
-                );
-              })}
+        <CardContent>
+          <div className="grid grid-cols-2 gap-4">
+            {/* EN column */}
+            <div className="space-y-2">
+              <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <BookOpen className="h-3.5 w-3.5" />
+                {t('settings.english')}
+              </p>
+              <DisplayCheckbox flagKey="enQA"          label={t('settings.displayQA')} />
+              <DisplayCheckbox flagKey="enExplanation" label={t('settings.displayExplanation')} />
             </div>
-          </RadioGroup>
 
+            {/* ZH column */}
+            <div className="space-y-2">
+              <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <Languages className="h-3.5 w-3.5" />
+                {t('settings.chinese')}
+              </p>
+              <DisplayCheckbox flagKey="zhQA"          label={t('settings.displayQA')} />
+              <DisplayCheckbox flagKey="zhExplanation" label={t('settings.displayExplanation')} />
+            </div>
+          </div>
         </CardContent>
       </Card>
 
