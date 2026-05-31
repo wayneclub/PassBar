@@ -19,8 +19,10 @@ export interface Question {
   topic: string;
   questionText: string;
   bilingualQuestionText?: string;
+  zhQuestionText?: string;          // pure Chinese question (from enriched json)
   options: string[];
   bilingualOptions?: string[];
+  zhOptions?: string[];             // pure Chinese choices (from enriched json)
   correctAnswer: string;
   correctAnswerLetter?: string;
   apiAnswerKey?: string;
@@ -29,7 +31,8 @@ export interface Question {
   zhExplainImgs?: string[];
   sourceExplanationImageFile?: string;
   sourceExplanationImageUrl?: string;
-  explanationHtml?: string;
+  enExplanationHtml?: string;       // gemini-generated English interactive HTML
+  explanationHtml?: string;         // zh explanation html
   explanationOcr?: ExplanationOcr[];
 }
 

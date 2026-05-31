@@ -88,7 +88,7 @@ alter table public.question_items add column if not exists api_status int;
 create table if not exists public.question_texts (
   question_id text not null references public.question_items(id) on delete cascade,
   language text not null check (language in ('en', 'zh', 'mixed')),
-  source text not null check (source in ('uworld', 'castudy')),
+  source text not null check (source in ('uworld', 'castudy', 'enriched')),
   question_stem text not null,
   raw jsonb,
   created_at timestamptz default now(),
@@ -98,7 +98,7 @@ create table if not exists public.question_texts (
 create table if not exists public.question_choices (
   question_id text not null references public.question_items(id) on delete cascade,
   language text not null default 'en' check (language in ('en', 'zh', 'mixed')),
-  source text not null default 'uworld' check (source in ('uworld', 'castudy')),
+  source text not null default 'uworld' check (source in ('uworld', 'castudy', 'enriched')),
   choice_key text not null check (choice_key ~ '^[a-d]$'),
   choice text not null,
   sort_order int not null,
@@ -111,12 +111,33 @@ create table if not exists public.question_choices (
 alter table public.question_choices add column if not exists language text not null default 'en';
 alter table public.question_choices add column if not exists source text not null default 'uworld';
 alter table public.question_choices add column if not exists raw jsonb;
+-- allow 'zh' language and 'enriched' source (from enriched json zh-choices)
+alter table public.question_choices
+  drop constraint if exists question_choices_language_check;
+alter table public.question_choices
+  add constraint question_choices_language_check
+  check (language in ('en', 'zh', 'mixed'));
+alter table public.question_choices
+  drop constraint if exists question_choices_source_check;
+alter table public.question_choices
+  add constraint question_choices_source_check
+  check (source in ('uworld', 'castudy', 'enriched'));
+-- same for question_texts
+alter table public.question_texts
+  drop constraint if exists question_texts_source_check;
+alter table public.question_texts
+  add constraint question_texts_source_check
+  check (source in ('uworld', 'castudy', 'enriched'));
 
 create table if not exists public.question_explanations (
   id bigserial primary key,
   question_id text not null references public.question_items(id) on delete cascade,
   language text not null check (language in ('en', 'zh')),
-  source text not null default 'uworld' check (source in ('uworld', 'castudy')),
+  -- 'uworld'   = original source image/html from UWorld
+  -- 'castudy'  = bilingual API html from CasStudy
+  -- 'gemini'   = AI-generated analysis (question_ai_explanations)
+  -- 'enriched' = processed final version from enriched JSON (authoritative)
+  source text not null default 'uworld' check (source in ('uworld', 'castudy', 'gemini', 'enriched')),
   explanation_text text,
   explanation_html text,
   explanation_image_file text,
@@ -131,6 +152,12 @@ create table if not exists public.question_explanations (
 );
 
 alter table public.question_explanations add column if not exists source text not null default 'uworld';
+-- allow 'gemini' as a valid source value
+alter table public.question_explanations
+  drop constraint if exists question_explanations_source_check;
+alter table public.question_explanations
+  add constraint question_explanations_source_check
+  check (source in ('uworld', 'castudy', 'gemini', 'enriched'));
 
 create table if not exists public.question_explanation_ocr (
   id bigserial primary key,
@@ -389,7 +416,9 @@ en_explanation_rows as (
     question_id,
     array_agg(public_url order by sort_order) filter (where public_url is not null) as explain_imgs,
     min(explanation_image_file) as source_explanation_image_file,
-    min(public_url) as source_explanation_image_url
+    min(public_url) as source_explanation_image_url,
+    -- enriched-JSON English interactive HTML (source='enriched', language='en')
+    max(explanation_html) filter (where source = 'enriched') as en_explanation_html
   from public.question_explanations
   where language = 'en'
   group by question_id
@@ -397,9 +426,30 @@ en_explanation_rows as (
 zh_explanation_rows as (
   select
     question_id,
-    max(explanation_html) as explanation_html,
+    -- enriched JSON is the authoritative source; when imported it replaces any
+    -- prior castudy record, so there is at most one zh explanation per question.
+    -- coalesce order: enriched (final processed) → castudy (raw API) → fallback
+    coalesce(
+      max(explanation_html) filter (where source = 'enriched'),
+      max(explanation_html) filter (where source = 'castudy')
+    ) as explanation_html,
     array_agg(public_url order by sort_order) filter (where public_url is not null) as zh_explain_imgs
   from public.question_explanations
+  where language = 'zh'
+  group by question_id
+),
+zh_text_rows as (
+  select
+    question_id,
+    max(question_stem) filter (where language = 'zh') as zh_question_stem
+  from public.question_texts
+  group by question_id
+),
+zh_choice_rows as (
+  select
+    question_id,
+    array_agg(choice order by sort_order) as zh_options
+  from public.question_choices
   where language = 'zh'
   group by question_id
 )
@@ -410,8 +460,12 @@ select
   ch.chapter as topic,
   coalesce(tr.source_question_stem, q.source_question, q.question) as question_text,
   tr.fetched_question_stem,
+  -- zh_question_stem: pure Chinese question (from enriched json zh-question)
+  ztr.zh_question_stem,
   coalesce(cr.options, '{}') as options,
   coalesce(mcr.bilingual_options, '{}') as bilingual_options,
+  -- zh_options: pure Chinese choices (from enriched json zh-choices)
+  coalesce(zcr.zh_options, '{}') as zh_options,
   cr.correct_answer,
   mcr.bilingual_correct_answer,
   q.correct_answer as correct_answer_letter,
@@ -422,6 +476,8 @@ select
   coalesce(er.explain_imgs, '{}') as explain_imgs,
   er.source_explanation_image_file,
   er.source_explanation_image_url,
+  -- en_explanation_html: gemini-generated English interactive HTML
+  er.en_explanation_html,
   zh.explanation_html,
   coalesce(zh.zh_explain_imgs, '{}') as zh_explain_imgs,
   q.raw
@@ -431,6 +487,8 @@ join public.subjects s on s.id = ch.subject_id
 left join choice_rows cr on cr.question_id = q.id
 left join mixed_choice_rows mcr on mcr.question_id = q.id
 left join text_rows tr on tr.question_id = q.id
+left join zh_text_rows ztr on ztr.question_id = q.id
+left join zh_choice_rows zcr on zcr.question_id = q.id
 left join en_explanation_rows er on er.question_id = q.id
 left join zh_explanation_rows zh on zh.question_id = q.id;
 

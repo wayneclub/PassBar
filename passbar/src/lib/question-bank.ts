@@ -9,8 +9,10 @@ type QuestionRow = {
   topic: string;
   question_text: string;
   fetched_question_stem: string | null;
+  zh_question_stem: string | null;
   options: string[];
   bilingual_options: string[];
+  zh_options: string[];
   correct_answer: string;
   correct_answer_letter: string;
   api_answer_key: string | null;
@@ -19,7 +21,8 @@ type QuestionRow = {
   zh_explain_imgs: string[] | null;
   source_explanation_image_file: string | null;
   source_explanation_image_url: string | null;
-  explanation_html: string | null;
+  en_explanation_html: string | null;  // gemini-generated English interactive HTML
+  explanation_html: string | null;      // zh explanation html
 };
 
 type ChapterSummaryRow = {
@@ -41,25 +44,31 @@ type ExplanationOcrRow = {
   words: ExplanationOcr['words'];
 };
 
-const questionSelectFields = 'id, subject, chapter_id, topic, question_text, fetched_question_stem, options, bilingual_options, correct_answer, correct_answer_letter, api_answer_key, api_match_ok, explain_imgs, source_explanation_image_file, source_explanation_image_url, explanation_html';
+const questionSelectFields = 'id, subject, chapter_id, topic, question_text, fetched_question_stem, zh_question_stem, options, bilingual_options, zh_options, correct_answer, correct_answer_letter, api_answer_key, api_match_ok, explain_imgs, source_explanation_image_file, source_explanation_image_url, en_explanation_html, explanation_html';
 
 function toQuestion(row: QuestionRow, ocrByQuestion = new Map<string, ExplanationOcr[]>()) : Question {
+  // Prefer gemini-generated English HTML over raw source image when available
+  const hasEnHtml = row.en_explanation_html && !row.en_explanation_html.startsWith('<!-- ERROR:');
   return {
     id: row.id,
     subject: row.subject,
     topic: row.topic,
     questionText: row.question_text,
     bilingualQuestionText: row.fetched_question_stem ?? undefined,
+    zhQuestionText: row.zh_question_stem ?? undefined,
     options: row.options,
     bilingualOptions: row.bilingual_options ?? undefined,
+    zhOptions: row.zh_options?.length ? row.zh_options : undefined,
     correctAnswer: row.correct_answer,
     correctAnswerLetter: row.correct_answer_letter,
     apiAnswerKey: row.api_answer_key ?? undefined,
     apiMatchOk: row.api_match_ok ?? true,
-    explainImgs: row.explain_imgs ?? [],
+    // If en_explanation_html exists, no need to load source images
+    explainImgs: hasEnHtml ? [] : (row.explain_imgs ?? []),
     zhExplainImgs: row.zh_explain_imgs ?? [],
-    sourceExplanationImageFile: row.source_explanation_image_file ?? undefined,
-    sourceExplanationImageUrl: row.source_explanation_image_url ?? undefined,
+    sourceExplanationImageFile: hasEnHtml ? undefined : (row.source_explanation_image_file ?? undefined),
+    sourceExplanationImageUrl: hasEnHtml ? undefined : (row.source_explanation_image_url ?? undefined),
+    enExplanationHtml: row.en_explanation_html ?? undefined,
     explanationHtml: row.explanation_html ?? undefined,
     explanationOcr: ocrByQuestion.get(row.id) ?? [],
   };

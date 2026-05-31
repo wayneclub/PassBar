@@ -82,7 +82,12 @@ async function listJsonFiles(dir) {
   const files = await Promise.all(entries.map(async (entry) => {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) return listJsonFiles(fullPath);
-    if (entry.isFile() && entry.name.endsWith('.json') && !entry.name.endsWith('.failed.json')) {
+    if (
+      entry.isFile() &&
+      entry.name.endsWith('.json') &&
+      !entry.name.endsWith('.failed.json') &&
+      !entry.name.endsWith('_enriched.json')   // enriched files handled in Phase 2
+    ) {
       return [fullPath];
     }
     return [];
@@ -432,3 +437,218 @@ for (const file of files) {
 
 const verb = dryRun ? 'Validated' : 'Imported';
 console.log(`${verb} ${importedQuestions} questions (${fetchedQuestions} with fetched data), ${importedTexts} question texts, ${importedChoices} choices, and ${importedExplanations} explanations/assets from ${files.length} JSON files in ${outDir}.`);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Phase 2: import enriched JSON fields
+// (zh-question, zh-choices, explanation HTML, zh-explanation HTML)
+//
+// Enriched JSONs use a flat array and do NOT carry apiResult / qid, so we
+// can't recompute the original question ID.  Instead we query the DB for the
+// real ID via (chapter_id, index), then upsert only the new / updated fields.
+// ─────────────────────────────────────────────────────────────────────────────
+
+function isErrorHtml(html) {
+  return !html || String(html).trimStart().startsWith('<!-- ERROR:');
+}
+
+async function listEnrichedFiles(dir) {
+  const entries = await readdir(dir, { withFileTypes: true });
+  const files = await Promise.all(entries.map(async (entry) => {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) return listEnrichedFiles(fullPath);
+    if (entry.isFile() && entry.name.endsWith('_enriched.json')) return [fullPath];
+    return [];
+  }));
+  return files.flat().sort();
+}
+
+/** Fetch the real question IDs from the DB for a given chapter, keyed by index. */
+async function fetchQuestionIdsByIndex(chapId, items) {
+  if (dryRun) {
+    // In dry-run, generate fallback IDs so the rest of the logic can run
+    return new Map(items.map((item) => [
+      item.index,
+      `${chapId}-${String(item.index).padStart(4, '0')}`,
+    ]));
+  }
+  const { data, error } = await supabase
+    .from('question_items')
+    .select('id, index')
+    .eq('chapter_id', chapId);
+  if (error) throw error;
+  return new Map((data ?? []).map((row) => [row.index, row.id]));
+}
+
+const enrichedFiles = await listEnrichedFiles(outDir);
+
+if (enrichedFiles.length === 0) {
+  console.log('\nNo enriched JSON files found — skipping Phase 2.');
+} else {
+  console.log(`\n${'─'.repeat(60)}`);
+  console.log(`Phase 2: importing enriched fields from ${enrichedFiles.length} file(s) …`);
+  console.log('─'.repeat(60));
+
+  let enrichedTexts = 0;
+  let enrichedChoices = 0;
+  let enrichedExplanations = 0;
+  let enrichedSkipped = 0;
+
+  for (const file of enrichedFiles) {
+    const items = JSON.parse(await readFile(file, 'utf8'));
+    if (!Array.isArray(items) || items.length === 0) continue;
+
+    const relativeFile = path.relative(outDir, file);
+    const firstItem = items[0];
+    const subject = firstItem.subject ?? '';
+    const chapter = firstItem.chapter ?? '';
+    const meta = { subject, chapter };
+    const chapId = chapterId(meta);
+
+    console.log(`  [${enrichedFiles.indexOf(file) + 1}/${enrichedFiles.length}] ${relativeFile}`);
+
+    // Look up real question IDs (index → question_id)
+    let idByIndex;
+    try {
+      idByIndex = await fetchQuestionIdsByIndex(chapId, items);
+    } catch (err) {
+      console.error(`    WARN: cannot fetch question IDs for ${chapId}: ${err.message} — skipping`);
+      enrichedSkipped += items.length;
+      continue;
+    }
+
+    const texts = [];
+    const choices = [];
+    const explanations = [];
+    // All question IDs found in enriched JSON (authoritative: will replace old records)
+    const enrichedQuestionIds = [];
+
+    for (const item of items) {
+      const questionId = idByIndex.get(item.index);
+      if (!questionId) {
+        // Question not yet in DB — castudy import hasn't run yet for this chapter
+        enrichedSkipped += 1;
+        continue;
+      }
+
+      // This question exists in enriched JSON → it is the authoritative version.
+      // We will delete old mixed/castudy records for it after upserting new ones.
+      enrichedQuestionIds.push(questionId);
+
+      // ── zh question stem ──────────────────────────────────────────────────
+      const zhQuestion = (item['zh-question'] ?? '').trim();
+      if (zhQuestion) {
+        texts.push({
+          question_id: questionId,
+          language: 'zh',
+          source: 'enriched',
+          question_stem: zhQuestion,
+          raw: null,
+        });
+      }
+
+      // ── zh choices ────────────────────────────────────────────────────────
+      const zhChoices = item['zh-choices'] ?? {};
+      choiceOrder.forEach((key, sortOrder) => {
+        const text = zhChoices[key] ?? zhChoices[key.toLowerCase()] ?? '';
+        if (!text) return;
+        choices.push({
+          question_id: questionId,
+          language: 'zh',
+          source: 'enriched',
+          choice_key: key.toLowerCase(),
+          choice: text,
+          sort_order: sortOrder,
+          is_correct: key === String(item.answer ?? '').toUpperCase(),
+          raw: null,
+        });
+      });
+
+      // ── en explanation HTML (enriched: gemini-generated interactive HTML) ─
+      const enHtml = item.explanation ?? '';
+      if (!isErrorHtml(enHtml)) {
+        explanations.push({
+          question_id: questionId,
+          language: 'en',
+          source: 'enriched',
+          explanation_text: null,
+          explanation_html: enHtml,
+          explanation_image_file: item.source_img ?? null,
+          storage_bucket: null,
+          storage_path: null,
+          public_url: null,
+          mime_type: 'text/html',
+          sort_order: 0,
+          raw: { source_img: item.source_img ?? null },
+        });
+      }
+
+      // ── zh explanation HTML (enriched: castudy htmlContent or gemini) ─────
+      const zhHtml = item['zh-explanation'] ?? '';
+      if (!isErrorHtml(zhHtml)) {
+        explanations.push({
+          question_id: questionId,
+          language: 'zh',
+          source: 'enriched',
+          explanation_text: null,
+          explanation_html: zhHtml,
+          explanation_image_file: null,
+          storage_bucket: null,
+          storage_path: null,
+          public_url: null,
+          mime_type: 'text/html',
+          sort_order: 0,
+          raw: null,
+        });
+      }
+    }
+
+    try {
+      // 1. Upsert enriched records (source='enriched' is the authoritative version)
+      await upsert('question_texts',        texts,        'question_id,language,source');
+      await upsert('question_choices',      choices,      'question_id,language,choice_key');
+      await upsert('question_explanations', explanations, 'question_id,language,source,sort_order');
+
+      if (!dryRun && enrichedQuestionIds.length > 0) {
+        // 2. For every question present in enriched JSON, delete the old
+        //    mixed-language records (bilingual stem/choices from castudy API)
+        //    — enriched JSON has replaced them with pure-language versions.
+        const { error: e1 } = await supabase
+          .from('question_texts')
+          .delete()
+          .in('question_id', enrichedQuestionIds)
+          .eq('language', 'mixed');
+        if (e1) throw e1;
+
+        const { error: e2 } = await supabase
+          .from('question_choices')
+          .delete()
+          .in('question_id', enrichedQuestionIds)
+          .eq('language', 'mixed');
+        if (e2) throw e2;
+
+        // 3. Delete old castudy zh explanation — enriched JSON's zh-explanation
+        //    is now the single authoritative zh record (source='enriched').
+        const { error: e3 } = await supabase
+          .from('question_explanations')
+          .delete()
+          .in('question_id', enrichedQuestionIds)
+          .eq('language', 'zh')
+          .eq('source', 'castudy');
+        if (e3) throw e3;
+      }
+    } catch (err) {
+      console.error(`    Failed importing enriched data for ${relativeFile}:`, err.message);
+      continue;
+    }
+
+    enrichedTexts        += texts.length;
+    enrichedChoices      += choices.length;
+    enrichedExplanations += explanations.length;
+    const tag = dryRun ? '[dry-run] ' : '';
+    console.log(`    ↳ ${tag}upsert  zh_texts:${texts.length}  zh_choices:${choices.length}  explanations:${explanations.length}`);
+    console.log(`    ↳ ${tag}replace mixed/castudy records for ${enrichedQuestionIds.length} questions  (skipped:${enrichedSkipped})`);
+  }
+
+  const verb2 = dryRun ? 'Would upsert' : 'Upserted';
+  console.log(`\nPhase 2 done. ${verb2} ${enrichedTexts} zh texts, ${enrichedChoices} zh choices, ${enrichedExplanations} explanation HTMLs. Skipped ${enrichedSkipped} (question not in DB yet).`);
+}
