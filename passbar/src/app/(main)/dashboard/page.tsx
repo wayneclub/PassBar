@@ -318,16 +318,10 @@ function isValidDisplayDate(s: string): boolean {
 
 function ExamCountdownInline({
   examDate,
-  loading,
-  solvedQuestions,
-  totalQuestions,
   onSetDate,
   t,
 }: {
   examDate: string | null;
-  loading: boolean;
-  solvedQuestions: number;
-  totalQuestions: number;
   onSetDate: () => void;
   t: (key: Parameters<ReturnType<typeof useI18n>['t']>[0], params?: Record<string, string | number>) => string;
 }) {
@@ -355,36 +349,20 @@ function ExamCountdownInline({
               ? 'text-orange-500'
               : 'text-slate-600';
 
-  const subtitleText = loading
-    ? t('dashboard.loading')
-    : solvedQuestions > 0
-      ? t('dashboard.answered', { solved: solvedQuestions.toLocaleString(), total: totalQuestions.toLocaleString() })
-      : t('dashboard.ready', { total: totalQuestions.toLocaleString() });
-
   return (
     <div className="flex items-center gap-2 mt-1 flex-wrap">
-      {countdownText ? (
+      {countdownText && (
         <>
           <CalendarDays className="w-3.5 h-3.5 text-slate-400 shrink-0" />
           <span className={cn('text-sm font-medium', countdownColor)}>{countdownText}</span>
-          <button
-            onClick={onSetDate}
-            className="text-xs text-primary hover:underline font-medium transition-colors"
-          >
-            {t('dashboard.setExamDate')}
-          </button>
-        </>
-      ) : (
-        <>
-          <p className="text-muted-foreground text-sm">{subtitleText}</p>
-          <button
-            onClick={onSetDate}
-            className="text-xs text-primary hover:underline font-medium transition-colors"
-          >
-            {t('dashboard.setExamDate')}
-          </button>
         </>
       )}
+      <button
+        onClick={onSetDate}
+        className="text-xs text-primary hover:underline font-medium transition-colors"
+      >
+        {t('dashboard.setExamDate')}
+      </button>
     </div>
   );
 }
@@ -860,9 +838,6 @@ export default function DashboardPage() {
             {/* Subtitle line: exam countdown inline */}
             <ExamCountdownInline
               examDate={examDate}
-              loading={dashboardData.loading}
-              solvedQuestions={dashboardData.solvedQuestions}
-              totalQuestions={dashboardData.totalQuestions}
               onSetDate={() => setShowExamDialog(true)}
               t={t}
             />
