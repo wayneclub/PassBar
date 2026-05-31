@@ -86,6 +86,9 @@ type TranslationKey =
   | 'create.tutor'
   | 'create.timed'
   | 'create.browse'
+  | 'create.questionOrder'
+  | 'create.orderRandom'
+  | 'create.orderSequential'
   | 'create.browseModeHint'
   | 'create.questionMode'
   | 'create.questionModeHint'
@@ -311,6 +314,9 @@ const en: Dictionary = {
   'create.tutor': 'Tutor',
   'create.timed': 'Timed',
   'create.browse': 'Browse',
+  'create.questionOrder': 'Question Order',
+  'create.orderRandom': 'Random',
+  'create.orderSequential': 'Sequential',
   'create.browseModeHint': 'Instantly view the correct answer and explanation for every question — no answering required.',
   'create.questionMode': 'Question Mode',
   'create.questionModeHint': 'Choose which question history buckets are eligible for this test.',
@@ -536,6 +542,9 @@ const zhHans: Dictionary = {
   'create.tutor': '教学',
   'create.timed': '计时',
   'create.browse': '速览',
+  'create.questionOrder': '题目顺序',
+  'create.orderRandom': '随机',
+  'create.orderSequential': '顺序',
   'create.browseModeHint': '直接查看每道题的正确答案与解析，无需作答。',
   'create.questionMode': '题目模式',
   'create.questionModeHint': '选择本次测验可抽取的题目记录类型。',
@@ -760,6 +769,9 @@ const zhHant: Dictionary = {
   'create.tutor': '教學',
   'create.timed': '計時',
   'create.browse': '速覽',
+  'create.questionOrder': '題目順序',
+  'create.orderRandom': '隨機',
+  'create.orderSequential': '依序',
   'create.browseModeHint': '直接查看每道題的正確答案與解析，無需作答。',
   'create.questionMode': '題目模式',
   'create.questionModeHint': '選擇本次測驗可抽取的題目紀錄類型。',

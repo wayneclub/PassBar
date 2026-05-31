@@ -541,6 +541,8 @@ function TestSessionContent() {
         isPaused={isPaused}
         contentMode={contentMode}
         onToggleContentMode={() => setContentMode((prev) => prev === 'bilingual' ? 'english' : 'bilingual')}
+        subject={currentQuestion?.subject}
+        topic={currentQuestion?.topic}
       />
 
       {/* Bottom padding: mobile footer = nav row (56px) + optional submit row (~60px) */}
@@ -559,6 +561,22 @@ function TestSessionContent() {
               "space-y-8 py-8",
               showExplanation ? "px-6 lg:px-8" : "mx-auto w-full max-w-5xl px-6 lg:px-8"
             )}>
+              {/* ── Mobile-only subject · chapter tag ─────────────────────── */}
+              {(currentQuestion?.subject || currentQuestion?.topic) && (
+                <div className="sm:hidden flex flex-wrap items-center gap-1.5 -mt-4 mb-0">
+                  {currentQuestion.subject && (
+                    <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
+                      {currentQuestion.subject}
+                    </span>
+                  )}
+                  {currentQuestion.topic && (
+                    <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-500">
+                      {currentQuestion.topic}
+                    </span>
+                  )}
+                </div>
+              )}
+
               {/* ── Question text ── EN / ZH / both stacked ─────────────── */}
               <div className="space-y-3">
                 {(display.enQA || (!display.enQA && !display.zhQA)) && (

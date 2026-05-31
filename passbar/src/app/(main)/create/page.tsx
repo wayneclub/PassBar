@@ -16,7 +16,7 @@ import { getQuestionsByChapterIds, getSubjects } from '@/lib/question-bank';
 import { Subject, TestMode, TestSession } from '@/lib/types';
 import { emptyQuestionStatusCounts, getQuestionStatusCounts, QuestionStatusCounts } from '@/lib/question-progress';
 import { createPracticeSessionRecord } from '@/lib/practice-sessions';
-import { Info, HelpCircle, Zap, BookOpen, Clock, Eye } from 'lucide-react';
+import { Info, HelpCircle, Zap, BookOpen, Clock, Eye, Shuffle, ListOrdered } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 function HintIcon({ children }: { children: React.ReactNode }) {
@@ -59,6 +59,7 @@ export default function CreateTestPage() {
   const [questionCount, setQuestionCount] = useState<string>("0");
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [statusCounts, setStatusCounts] = useState<QuestionStatusCounts>(emptyQuestionStatusCounts);
+  const [questionOrder, setQuestionOrder] = useState<'random' | 'sequential'>('random');
   const [isStarting, setIsStarting] = useState(false);
   const [tourOpen, setTourOpen] = useState(false);
 
@@ -171,8 +172,16 @@ export default function CreateTestPage() {
 
     setIsStarting(true);
     const matchingQuestions = await getQuestionsByChapterIds(Array.from(selectedChapters), count);
-    const shuffled = [...matchingQuestions].sort(() => 0.5 - Math.random());
-    const selectedIds = shuffled.map(q => q.id);
+    const ordered = questionOrder === 'random'
+      ? [...matchingQuestions].sort(() => 0.5 - Math.random())
+      : [...matchingQuestions].sort((a, b) => {
+          // Sort by chapter order first, then by index within chapter
+          if (a.topic !== b.topic) return a.topic.localeCompare(b.topic);
+          const aIdx = (a as { index?: number }).index ?? 0;
+          const bIdx = (b as { index?: number }).index ?? 0;
+          return aIdx - bIdx;
+        });
+    const selectedIds = ordered.map(q => q.id);
 
     if (selectedIds.length === 0) {
       setIsStarting(false);
@@ -226,22 +235,22 @@ export default function CreateTestPage() {
         </div>
       </header>
 
-      <div className="grid gap-4 md:grid-cols-3">
-        <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-          <div className="text-sm font-medium text-slate-500">{t('create.totalQuestions')}</div>
-          <div className="mt-2 text-3xl font-bold text-slate-800">{totalQuestionCount.toLocaleString()}</div>
+      <div className="grid grid-cols-3 gap-2 sm:gap-4">
+        <div className="rounded-lg border border-slate-200 bg-white p-3 sm:p-5 shadow-sm">
+          <div className="text-xs sm:text-sm font-medium text-slate-500">{t('create.totalQuestions')}</div>
+          <div className="mt-1 sm:mt-2 text-xl sm:text-3xl font-bold text-slate-800">{totalQuestionCount.toLocaleString()}</div>
         </div>
-        <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-          <div className="text-sm font-medium text-slate-500">{t('create.practicedQuestions')}</div>
-          <div className="mt-2 text-3xl font-bold text-primary">{practicedQuestionCount.toLocaleString()}</div>
+        <div className="rounded-lg border border-slate-200 bg-white p-3 sm:p-5 shadow-sm">
+          <div className="text-xs sm:text-sm font-medium text-slate-500">{t('create.practicedQuestions')}</div>
+          <div className="mt-1 sm:mt-2 text-xl sm:text-3xl font-bold text-primary">{practicedQuestionCount.toLocaleString()}</div>
         </div>
-        <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-          <div className="text-sm font-medium text-slate-500">{t('create.unpracticedQuestions')}</div>
-          <div className="mt-2 text-3xl font-bold text-slate-800">{unpracticedQuestionCount.toLocaleString()}</div>
+        <div className="rounded-lg border border-slate-200 bg-white p-3 sm:p-5 shadow-sm">
+          <div className="text-xs sm:text-sm font-medium text-slate-500">{t('create.unpracticedQuestions')}</div>
+          <div className="mt-1 sm:mt-2 text-xl sm:text-3xl font-bold text-slate-800">{unpracticedQuestionCount.toLocaleString()}</div>
         </div>
       </div>
 
-      <Accordion type="multiple" defaultValue={['test-mode', 'question-mode', 'subjects', 'no-questions']} className="space-y-4">
+      <Accordion type="multiple" defaultValue={['test-mode', 'question-order', 'question-mode', 'subjects', 'no-questions']} className="space-y-4">
         <AccordionItem value="test-mode" data-tour="test-mode" className="rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
           <AccordionTrigger className="py-4 hover:no-underline">
             <div className="flex items-center gap-2 text-base font-bold text-slate-700">
@@ -285,6 +294,36 @@ export default function CreateTestPage() {
                 >
                   <Icon className="h-4 w-4" />
                   {t(`create.${mode.toLowerCase()}` as 'create.tutor' | 'create.timed' | 'create.browse')}
+                </button>
+              ))}
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+
+        {/* ── 題目順序 ─────────────────────────────────────────────────── */}
+        <AccordionItem value="question-order" className="rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
+          <AccordionTrigger className="py-4 hover:no-underline">
+            <span className="text-base font-bold text-slate-700">{t('create.questionOrder')}</span>
+          </AccordionTrigger>
+          <AccordionContent className="border-t pb-6 pt-4">
+            <div className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 p-1">
+              {([
+                { value: 'random',     icon: Shuffle,      labelKey: 'create.orderRandom' },
+                { value: 'sequential', icon: ListOrdered,  labelKey: 'create.orderSequential' },
+              ] as const).map(({ value, icon: Icon, labelKey }) => (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => setQuestionOrder(value)}
+                  className={cn(
+                    "flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold transition-all duration-150",
+                    questionOrder === value
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-slate-500 hover:text-slate-700"
+                  )}
+                >
+                  <Icon className="h-4 w-4" />
+                  {t(labelKey)}
                 </button>
               ))}
             </div>

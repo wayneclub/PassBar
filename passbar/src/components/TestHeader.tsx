@@ -31,6 +31,10 @@ interface TestHeaderProps {
   isPaused: boolean;
   contentMode: ContentMode;
   onToggleContentMode: () => void;
+  /** Current question subject name */
+  subject?: string;
+  /** Current question chapter/topic name */
+  topic?: string;
 }
 
 export function TestHeader({
@@ -45,6 +49,8 @@ export function TestHeader({
   isPaused,
   contentMode,
   onToggleContentMode,
+  subject,
+  topic,
 }: TestHeaderProps) {
   const { t } = useI18n();
   const [localTime, setLocalTime] = useState(timeSpent);
@@ -81,7 +87,7 @@ export function TestHeader({
 
   return (
     <header className="h-14 bg-secondary text-white flex items-center justify-between px-4 fixed top-0 w-full z-50">
-      {/* Left Icons */}
+      {/* Left: icons + subject */}
       <div className="flex items-center gap-1">
         <Button
           variant="ghost"
@@ -126,13 +132,28 @@ export function TestHeader({
             {contentMode === 'bilingual' ? '中' : 'EN'}
           </span>
         </Button>
+
       </div>
 
       <Popover open={questionMenuOpen} onOpenChange={setQuestionMenuOpen}>
         <PopoverTrigger asChild>
-          <button className="flex items-center gap-2 rounded px-4 py-2 text-white transition-colors hover:bg-white/10">
-            <span className="text-lg font-semibold tabular-nums">{questionIndex + 1}/{totalQuestions}</span>
-            <ChevronDown className={cn('h-5 w-5 text-primary transition-transform', questionMenuOpen && 'rotate-180')} />
+          <button className="flex flex-col items-center gap-0.5 rounded px-4 py-1.5 text-white transition-colors hover:bg-white/10">
+            <span className="flex items-center gap-1.5">
+              <span className="text-lg font-semibold tabular-nums">{questionIndex + 1}/{totalQuestions}</span>
+              <ChevronDown className={cn('h-4 w-4 text-primary transition-transform', questionMenuOpen && 'rotate-180')} />
+            </span>
+            {/* Subject · Chapter together — desktop only */}
+            {(subject || topic) && (
+              <span className="hidden sm:flex items-center gap-1.5 text-xs text-slate-400 max-w-[320px]">
+                {subject && (
+                  <span className="truncate max-w-[140px] font-medium text-slate-300">{subject}</span>
+                )}
+                {subject && topic && <span className="text-slate-600">·</span>}
+                {topic && (
+                  <span className="truncate max-w-[160px] font-medium text-primary/80">{topic}</span>
+                )}
+              </span>
+            )}
           </button>
         </PopoverTrigger>
         <PopoverContent className="w-[360px] border-slate-200 bg-white p-4 text-slate-900" sideOffset={10}>
