@@ -462,6 +462,7 @@ function ExamDateDialog({
 }) {
   const { t } = useI18n();
   const [tab, setTab] = useState<BarTab>('ca');
+  const [otherState, setOtherState] = useState<string>('');
   // dateInput is in display format YYYY/MM/DD
   const [dateInput, setDateInput] = useState('');
   const [showCal, setShowCal] = useState(false);
@@ -574,48 +575,47 @@ function ExamDateDialog({
             <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2">
               {t('dashboard.examBarType')}
             </p>
-            <div className="flex gap-2">
-              {/* CA button */}
+            {/* Joined button group: CA | NY | Other */}
+            <div className="flex w-full rounded-lg border border-slate-200 overflow-hidden divide-x divide-slate-200">
               <button
                 onClick={() => setTab('ca')}
                 className={cn(
-                  'flex-1 py-2 rounded-lg text-sm font-semibold border transition-all duration-150',
+                  'flex-1 py-2.5 text-sm font-semibold transition-all duration-150',
                   tab === 'ca'
-                    ? 'bg-slate-700 text-white border-slate-700 shadow-sm'
-                    : 'bg-white text-slate-600 border-slate-200 hover:border-slate-400',
+                    ? 'bg-slate-700 text-white'
+                    : 'bg-white text-slate-600 hover:bg-slate-50',
                 )}
               >
-                California
+                CA
               </button>
-              {/* NY button */}
               <button
                 onClick={() => setTab('ny')}
                 className={cn(
-                  'flex-1 py-2 rounded-lg text-sm font-semibold border transition-all duration-150',
+                  'flex-1 py-2.5 text-sm font-semibold transition-all duration-150',
                   tab === 'ny'
-                    ? 'bg-slate-700 text-white border-slate-700 shadow-sm'
-                    : 'bg-white text-slate-600 border-slate-200 hover:border-slate-400',
+                    ? 'bg-slate-700 text-white'
+                    : 'bg-white text-slate-600 hover:bg-slate-50',
                 )}
               >
-                New York
+                NY
               </button>
-              {/* Other states dropdown */}
               <select
-                value={tab === 'other' ? '' : ''}
+                value={tab === 'other' ? otherState : ''}
                 onChange={(e) => {
                   if (e.target.value) {
                     setTab('other');
+                    setOtherState(e.target.value);
                     setDateInput('');
                   }
                 }}
                 className={cn(
-                  'flex-1 py-2 px-2 rounded-lg text-sm border transition-all duration-150 cursor-pointer appearance-none text-center',
+                  'flex-1 py-2.5 px-2 text-sm font-semibold transition-all duration-150 cursor-pointer appearance-none text-center',
                   tab === 'other'
-                    ? 'bg-slate-700 text-white border-slate-700'
-                    : 'bg-white text-slate-600 border-slate-200 hover:border-slate-400',
+                    ? 'bg-slate-700 text-white'
+                    : 'bg-white text-slate-600 hover:bg-slate-50',
                 )}
               >
-                <option value="" disabled>Other ▾</option>
+                <option value="" disabled>{tab === 'other' && otherState ? otherState : 'Other ▾'}</option>
                 {US_BAR_STATES.map((s) => (
                   <option key={s.code} value={s.code}>{s.name}</option>
                 ))}
@@ -641,27 +641,26 @@ function ExamDateDialog({
           {/* Date input + calendar toggle */}
           <div>
             <label className="block text-xs font-medium text-muted-foreground mb-1.5">{t('dashboard.examDateInput')}</label>
-            <div className="flex items-center gap-2 relative">
+            {/* Joined input + calendar button group */}
+            <div className={cn(
+              'flex items-stretch w-full rounded-lg border overflow-hidden transition-all',
+              isValid || dateInput === '' ? 'border-slate-200' : 'border-red-300',
+            )}>
               <input
                 type="text"
                 placeholder="YYYY/MM/DD"
                 maxLength={10}
                 value={dateInput}
                 onChange={(e) => handleDateInputChange(e.target.value)}
-                className={cn(
-                  'flex-1 rounded-lg border px-3 py-2.5 text-sm font-mono focus:outline-none focus:ring-2 transition-all',
-                  isValid || dateInput === ''
-                    ? 'border-slate-200 focus:ring-slate-400/40'
-                    : 'border-red-300 focus:ring-red-300/40',
-                )}
+                className="flex-1 px-3 py-2.5 text-sm font-mono focus:outline-none bg-white"
               />
               <button
                 onClick={() => setShowCal((v) => !v)}
                 className={cn(
-                  'p-2.5 rounded-lg border transition-all',
+                  'px-3 border-l border-slate-200 transition-all shrink-0',
                   showCal
                     ? 'bg-slate-700 text-white border-slate-700'
-                    : 'bg-white border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-700',
+                    : 'bg-white text-slate-400 hover:bg-slate-50 hover:text-slate-700',
                 )}
               >
                 <Calendar className="w-4 h-4" />
