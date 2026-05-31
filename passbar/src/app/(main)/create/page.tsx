@@ -230,18 +230,21 @@ export default function CreateTestPage() {
         </div>
       </header>
 
-      <div className="grid grid-cols-3 gap-2 sm:gap-4">
-        <div className="rounded-lg border border-slate-200 bg-white p-3 sm:p-5 shadow-sm">
-          <div className="text-xs sm:text-sm font-medium text-slate-500">{t('create.totalQuestions')}</div>
-          <div className="mt-1 sm:mt-2 text-xl sm:text-3xl font-bold text-slate-800">{totalQuestionCount.toLocaleString()}</div>
+      {/* Stats: total full-width on top, practiced + unpracticed below */}
+      <div className="space-y-3">
+        <div className="rounded-lg border border-slate-200 bg-white px-6 py-5 shadow-sm">
+          <div className="text-sm font-medium text-slate-500">{t('create.totalQuestions')}</div>
+          <div className="mt-1.5 text-4xl font-bold text-slate-800">{totalQuestionCount.toLocaleString()}</div>
         </div>
-        <div className="rounded-lg border border-slate-200 bg-white p-3 sm:p-5 shadow-sm">
-          <div className="text-xs sm:text-sm font-medium text-slate-500">{t('create.practicedQuestions')}</div>
-          <div className="mt-1 sm:mt-2 text-xl sm:text-3xl font-bold text-primary">{practicedQuestionCount.toLocaleString()}</div>
-        </div>
-        <div className="rounded-lg border border-slate-200 bg-white p-3 sm:p-5 shadow-sm">
-          <div className="text-xs sm:text-sm font-medium text-slate-500">{t('create.unpracticedQuestions')}</div>
-          <div className="mt-1 sm:mt-2 text-xl sm:text-3xl font-bold text-slate-800">{unpracticedQuestionCount.toLocaleString()}</div>
+        <div className="grid grid-cols-2 gap-3">
+          <div className="rounded-lg border border-slate-200 bg-white px-6 py-5 shadow-sm">
+            <div className="text-sm font-medium text-slate-500">{t('create.practicedQuestions')}</div>
+            <div className="mt-1.5 text-3xl font-bold text-primary">{practicedQuestionCount.toLocaleString()}</div>
+          </div>
+          <div className="rounded-lg border border-slate-200 bg-white px-6 py-5 shadow-sm">
+            <div className="text-sm font-medium text-slate-500">{t('create.unpracticedQuestions')}</div>
+            <div className="mt-1.5 text-3xl font-bold text-slate-800">{unpracticedQuestionCount.toLocaleString()}</div>
+          </div>
         </div>
       </div>
 

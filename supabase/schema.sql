@@ -22,6 +22,7 @@ create table if not exists public.profiles (
 
 alter table public.profiles add column if not exists last_seen_at timestamptz;
 alter table public.profiles add column if not exists study_settings jsonb not null default '{"contentMode":"english","textSize":"medium","interfaceLanguage":"en"}'::jsonb;
+alter table public.profiles add column if not exists exam_date date;
 
 create table if not exists public.subjects (
   id text primary key,
@@ -362,6 +363,7 @@ create index if not exists profiles_last_seen_at_idx on public.profiles (last_se
 create index if not exists practice_sessions_user_id_idx on public.practice_sessions (user_id);
 create index if not exists practice_answers_session_id_idx on public.practice_answers (session_id);
 create index if not exists practice_answers_user_id_idx on public.practice_answers (user_id);
+alter table public.practice_answers add column if not exists previous_is_correct boolean;
 create index if not exists practice_answers_question_id_idx on public.practice_answers (question_id);
 create index if not exists user_question_progress_user_id_idx on public.user_question_progress (user_id);
 create index if not exists user_question_progress_question_id_idx on public.user_question_progress (question_id);

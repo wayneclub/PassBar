@@ -13,6 +13,7 @@ export type UserProfile = {
   role: string | null;
   last_seen_at: string | null;
   study_settings: StudySettings | null;
+  exam_date: string | null;
 };
 
 type AuthContextValue = {
@@ -95,6 +96,7 @@ function profileFallback(user: User): UserProfile {
     role: 'student',
     last_seen_at: null,
     study_settings: null,
+    exam_date: null,
   };
 }
 

@@ -195,6 +195,22 @@ type TranslationKey =
   | 'dashboard.nextMilestone'
   | 'dashboard.milestoneText'
   | 'dashboard.startLearning'
+  | 'dashboard.examCountdown'
+  | 'dashboard.examCountdownDays'
+  | 'dashboard.examCountdownToday'
+  | 'dashboard.examCountdownPast'
+  | 'dashboard.setExamDate'
+  | 'dashboard.examDateLabel'
+  | 'dashboard.examDateSave'
+  | 'dashboard.examDateCancel'
+  | 'dashboard.examDatePlaceholder'
+  | 'dashboard.examBarType'
+  | 'dashboard.examBarNY'
+  | 'dashboard.examBarCA'
+  | 'dashboard.examBarCustom'
+  | 'dashboard.examBarNextSession'
+  | 'dashboard.examBarAutoFill'
+  | 'dashboard.examDateInput'
   | 'review.title'
   | 'review.description'
   | 'review.searchPlaceholder'
@@ -227,7 +243,24 @@ type TranslationKey =
   | 'performance.strongChaptersDescription'
   | 'performance.correctCount'
   | 'performance.unknownSubject'
-  | 'performance.unknownChapter';
+  | 'performance.unknownChapter'
+  | 'performance.overallPerformance'
+  | 'performance.yourScore'
+  | 'performance.totalCorrect'
+  | 'performance.totalIncorrect'
+  | 'performance.totalOmitted'
+  | 'performance.answerChanges'
+  | 'performance.correctToIncorrect'
+  | 'performance.incorrectToCorrect'
+  | 'performance.incorrectToIncorrect'
+  | 'performance.qbankUsage'
+  | 'performance.usedQuestions'
+  | 'performance.unusedQuestions'
+  | 'performance.totalQuestions'
+  | 'performance.testCount'
+  | 'performance.testsCreated'
+  | 'performance.testsCompleted'
+  | 'performance.suspendedTests';
 
 type Dictionary = Record<TranslationKey, string>;
 
@@ -423,6 +456,22 @@ const en: Dictionary = {
   'dashboard.nextMilestone': 'Next Milestone',
   'dashboard.milestoneText': 'Complete {count} more questions to reach your next practice milestone.',
   'dashboard.startLearning': 'Start Learning',
+  'dashboard.examCountdown': 'Exam Countdown',
+  'dashboard.examCountdownDays': '{days} days until exam',
+  'dashboard.examCountdownToday': 'Exam is today — Good luck!',
+  'dashboard.examCountdownPast': 'Exam date has passed',
+  'dashboard.setExamDate': 'Set Exam Date',
+  'dashboard.examDateLabel': 'Exam Date',
+  'dashboard.examDateSave': 'Save',
+  'dashboard.examDateCancel': 'Cancel',
+  'dashboard.examDatePlaceholder': 'Pick a date',
+  'dashboard.examBarType': 'Bar Exam Type',
+  'dashboard.examBarNY': 'New York Bar',
+  'dashboard.examBarCA': 'California Bar',
+  'dashboard.examBarCustom': 'Custom',
+  'dashboard.examBarNextSession': 'Next session: {date}',
+  'dashboard.examBarAutoFill': 'Auto-fill next exam',
+  'dashboard.examDateInput': 'Exam Date (YYYY/MM/DD)',
   'review.title': 'Previous Test',
   'review.description': 'Review your past performance and study incorrect answers.',
   'review.searchPlaceholder': 'Search topics...',
@@ -456,6 +505,23 @@ const en: Dictionary = {
   'performance.correctCount': '{correct}/{total} correct',
   'performance.unknownSubject': 'Unknown Subject',
   'performance.unknownChapter': 'Unknown Chapter',
+  'performance.overallPerformance': 'Overall Performance',
+  'performance.yourScore': 'Your Score',
+  'performance.totalCorrect': 'Total Correct',
+  'performance.totalIncorrect': 'Total Incorrect',
+  'performance.totalOmitted': 'Total Omitted',
+  'performance.answerChanges': 'Answer Changes',
+  'performance.correctToIncorrect': 'Correct to Incorrect',
+  'performance.incorrectToCorrect': 'Incorrect to Correct',
+  'performance.incorrectToIncorrect': 'Incorrect to Incorrect',
+  'performance.qbankUsage': 'QBank Usage',
+  'performance.usedQuestions': 'Used Questions',
+  'performance.unusedQuestions': 'Unused Questions',
+  'performance.totalQuestions': 'Total Questions',
+  'performance.testCount': 'Test Count',
+  'performance.testsCreated': 'Tests Created',
+  'performance.testsCompleted': 'Tests Completed',
+  'performance.suspendedTests': 'Suspended Tests',
 };
 
 const zhHans: Dictionary = {
@@ -651,6 +717,22 @@ const zhHans: Dictionary = {
   'dashboard.nextMilestone': '下一个里程碑',
   'dashboard.milestoneText': '再完成 {count} 题即可达到下一个练习里程碑。',
   'dashboard.startLearning': '开始学习',
+  'dashboard.examCountdown': '考试倒计时',
+  'dashboard.examCountdownDays': '距离考试还剩 {days} 天',
+  'dashboard.examCountdownToday': '今天就是考试日——加油！',
+  'dashboard.examCountdownPast': '考试日期已过',
+  'dashboard.setExamDate': '设置考试日期',
+  'dashboard.examDateLabel': '考试日期',
+  'dashboard.examDateSave': '保存',
+  'dashboard.examDateCancel': '取消',
+  'dashboard.examDatePlaceholder': '选择日期',
+  'dashboard.examBarType': '考试类型',
+  'dashboard.examBarNY': '纽约州律师考试',
+  'dashboard.examBarCA': '加州律师考试',
+  'dashboard.examBarCustom': '自定义',
+  'dashboard.examBarNextSession': '下次考试：{date}',
+  'dashboard.examBarAutoFill': '自动填入下次考试日期',
+  'dashboard.examDateInput': '考试日期（YYYY/MM/DD）',
   'review.title': '历史测验',
   'review.description': '回顾过去表现，并复习答错的题目。',
   'review.searchPlaceholder': '搜索科目或章节...',
@@ -684,6 +766,23 @@ const zhHans: Dictionary = {
   'performance.correctCount': '{correct}/{total} 正确',
   'performance.unknownSubject': '未知科目',
   'performance.unknownChapter': '未知章节',
+  'performance.overallPerformance': '总体表现',
+  'performance.yourScore': '你的成绩',
+  'performance.totalCorrect': '答对总数',
+  'performance.totalIncorrect': '答错总数',
+  'performance.totalOmitted': '略过总数',
+  'performance.answerChanges': '答案变更',
+  'performance.correctToIncorrect': '由对改错',
+  'performance.incorrectToCorrect': '由错改对',
+  'performance.incorrectToIncorrect': '错改仍错',
+  'performance.qbankUsage': '题库使用',
+  'performance.usedQuestions': '已做题数',
+  'performance.unusedQuestions': '未做题数',
+  'performance.totalQuestions': '题库总数',
+  'performance.testCount': '测验统计',
+  'performance.testsCreated': '已创建测验',
+  'performance.testsCompleted': '已完成测验',
+  'performance.suspendedTests': '已暂停测验',
 };
 
 const zhHant: Dictionary = {
@@ -878,6 +977,22 @@ const zhHant: Dictionary = {
   'dashboard.nextMilestone': '下一個里程碑',
   'dashboard.milestoneText': '再完成 {count} 題即可達到下一個練習里程碑。',
   'dashboard.startLearning': '開始學習',
+  'dashboard.examCountdown': '考試倒數',
+  'dashboard.examCountdownDays': '距離考試還剩 {days} 天',
+  'dashboard.examCountdownToday': '今天就是考試日——加油！',
+  'dashboard.examCountdownPast': '考試日期已過',
+  'dashboard.setExamDate': '設定考試日期',
+  'dashboard.examDateLabel': '考試日期',
+  'dashboard.examDateSave': '儲存',
+  'dashboard.examDateCancel': '取消',
+  'dashboard.examDatePlaceholder': '選擇日期',
+  'dashboard.examBarType': '考試類型',
+  'dashboard.examBarNY': '紐約州律師考試',
+  'dashboard.examBarCA': '加州律師考試',
+  'dashboard.examBarCustom': '自訂',
+  'dashboard.examBarNextSession': '下次考試：{date}',
+  'dashboard.examBarAutoFill': '自動填入下次考試日期',
+  'dashboard.examDateInput': '考試日期（YYYY/MM/DD）',
   'review.title': '歷史測驗',
   'review.description': '回顧過去表現，並複習答錯的題目。',
   'review.searchPlaceholder': '搜尋科目或章節...',
@@ -911,6 +1026,23 @@ const zhHant: Dictionary = {
   'performance.correctCount': '{correct}/{total} 正確',
   'performance.unknownSubject': '未知科目',
   'performance.unknownChapter': '未知章節',
+  'performance.overallPerformance': '總體表現',
+  'performance.yourScore': '你的成績',
+  'performance.totalCorrect': '答對總數',
+  'performance.totalIncorrect': '答錯總數',
+  'performance.totalOmitted': '略過總數',
+  'performance.answerChanges': '答案變更',
+  'performance.correctToIncorrect': '由對改錯',
+  'performance.incorrectToCorrect': '由錯改對',
+  'performance.incorrectToIncorrect': '錯改仍錯',
+  'performance.qbankUsage': '題庫使用',
+  'performance.usedQuestions': '已做題數',
+  'performance.unusedQuestions': '未做題數',
+  'performance.totalQuestions': '題庫總數',
+  'performance.testCount': '測驗統計',
+  'performance.testsCreated': '已建立測驗',
+  'performance.testsCompleted': '已完成測驗',
+  'performance.suspendedTests': '已暫停測驗',
 };
 
 const dictionaries: Record<InterfaceLanguage, Dictionary> = {
