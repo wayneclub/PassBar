@@ -160,11 +160,17 @@ function TestSessionContent() {
   }, [id, isReviewMode, router, user?.id]);
 
   const currentQuestion = questions[currentIndex];
-  const displayQuestionText = contentMode === 'bilingual' && currentQuestion?.bilingualQuestionText
-    ? currentQuestion.bilingualQuestionText
+  // Priority for Chinese mode: zhQuestionText (pure zh, enriched) > bilingualQuestionText (mixed) > English
+  const displayQuestionText = contentMode === 'bilingual'
+    ? (currentQuestion?.zhQuestionText || currentQuestion?.bilingualQuestionText || currentQuestion?.questionText)
     : currentQuestion?.questionText;
-  const displayOptions = contentMode === 'bilingual' && currentQuestion?.bilingualOptions?.length
-    ? currentQuestion.bilingualOptions
+  // Priority for Chinese mode: zhOptions (pure zh, enriched) > bilingualOptions (mixed) > English
+  const displayOptions = contentMode === 'bilingual'
+    ? (currentQuestion?.zhOptions?.length
+        ? currentQuestion.zhOptions
+        : currentQuestion?.bilingualOptions?.length
+          ? currentQuestion.bilingualOptions
+          : currentQuestion?.options ?? [])
     : currentQuestion?.options ?? [];
   const correctAnswerKey = currentQuestion?.apiAnswerKey ?? currentQuestion?.correctAnswerLetter;
   const correctAnswer = displayOptions.find((option, index) => {

@@ -447,46 +447,53 @@ function GeminiQuestionFeedback({
 
 export function ExplanationView({ question, userAnswer, selectedChoiceKey, correctChoiceKey, contentMode = 'english', textSize = 'medium' }: ExplanationViewProps) {
   const { t } = useI18n();
+  const ocrByUrl = new Map((question.explanationOcr ?? []).map((ocr) => [ocr.publicUrl, ocr.words]));
+
+  // ── Determine what to show based on contentMode ───────────────────────────
+  // Chinese mode: prefer zh-explanation HTML (enriched) → fallback to images
+  // English mode: prefer en-explanation HTML (enriched) → fallback to source images
+  const isChinese = contentMode === 'bilingual';
+
+  const htmlToShow = isChinese
+    ? (question.explanationHtml || undefined)          // zh-explanation from enriched
+    : (question.enExplanationHtml || undefined);       // en-explanation from enriched
+
+  // Only show images when no HTML explanation is available
   const englishImages = [
     question.sourceExplanationImageUrl,
     ...question.explainImgs,
   ].filter((src, index, list): src is string => Boolean(src) && list.indexOf(src) === index);
-  const bilingualImages = [
-    ...englishImages,
-    ...(question.zhExplainImgs ?? []),
-  ].filter((src, index, list): src is string => Boolean(src) && list.indexOf(src) === index);
-  const explanationImages = contentMode === 'bilingual' ? bilingualImages : englishImages;
-  const bilingualHtml = contentMode === 'bilingual' ? question.explanationHtml : undefined;
-  const ocrByUrl = new Map((question.explanationOcr ?? []).map((ocr) => [ocr.publicUrl, ocr.words]));
-  const helperTextClass = {
-    medium: 'text-lg leading-8',
-    large: 'text-xl leading-9',
-  }[textSize];
-  const objectiveTextClass = {
-    medium: 'text-lg leading-8',
-    large: 'text-xl leading-9',
-  }[textSize];
+
+  const chineseImages = (question.zhExplainImgs ?? [])
+    .filter((src, index, list): src is string => Boolean(src) && list.indexOf(src) === index);
+
+  const fallbackImages = !htmlToShow
+    ? (isChinese
+        ? [...englishImages, ...chineseImages].filter((src, i, list) => list.indexOf(src) === i)
+        : englishImages)
+    : [];
+
+  const iframeHeight = textSize === 'large' ? 'h-[860px]' : 'h-[760px]';
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-top-4 duration-500">
-      {bilingualHtml && (
+
+      {/* HTML explanation from enriched JSON (en or zh) */}
+      {htmlToShow && (
         <div className="text-slate-700">
           <iframe
-            title="Bilingual explanation"
-            srcDoc={bilingualHtml}
-            className={cn(
-              'w-full rounded-md border bg-white',
-              textSize === 'medium' && 'h-[760px]',
-              textSize === 'large' && 'h-[860px]',
-            )}
+            title={isChinese ? 'Chinese explanation' : 'English explanation'}
+            srcDoc={htmlToShow}
+            className={cn('w-full rounded-md border bg-white', iframeHeight)}
             sandbox=""
           />
         </div>
       )}
 
-      {explanationImages.length > 0 && (
+      {/* Fallback: source images (only when no HTML available) */}
+      {fallbackImages.length > 0 && (
         <div className="grid grid-cols-1 gap-4">
-          {explanationImages.map((img, idx) => (
+          {fallbackImages.map((img, idx) => (
             <ExplanationImageViewer key={img} src={img} index={idx} ocrWords={ocrByUrl.get(img) ?? []} />
           ))}
         </div>
