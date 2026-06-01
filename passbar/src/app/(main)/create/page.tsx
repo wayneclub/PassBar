@@ -350,51 +350,26 @@ export default function CreateTestPage() {
           </AccordionTrigger>
           <AccordionContent className="border-t pb-6 pt-4">
             <div className="flex flex-wrap gap-x-8 gap-y-4 rounded-md bg-slate-50 p-4">
-              <div className="flex items-center gap-2">
-                <Checkbox id="filter-unused" checked={statusFilters.Unused} onCheckedChange={() => toggleStatus('Unused')} />
-                <Label htmlFor="filter-unused" className="flex cursor-pointer items-center gap-1.5 text-sm font-medium text-slate-600">
-                  {t('create.unused')}
-                  <Badge className="rounded-full border-none bg-primary px-2 py-0.5 text-xs font-bold text-primary-foreground">
-                    {statusCounts.Unused}
-                  </Badge>
-                </Label>
-              </div>
-              <div className="flex items-center gap-2">
-                <Checkbox id="filter-incorrect" checked={statusFilters.Incorrect} onCheckedChange={() => toggleStatus('Incorrect')} />
-                <Label htmlFor="filter-incorrect" className="flex cursor-pointer items-center gap-1.5 text-sm font-medium text-slate-600">
-                  {t('create.incorrect')}
-                  <Badge className="rounded-full border-none bg-slate-300 px-2 py-0.5 text-xs font-bold text-white">
-                    {statusCounts.Incorrect}
-                  </Badge>
-                </Label>
-              </div>
-              <div className="flex items-center gap-2">
-                <Checkbox id="filter-marked" checked={statusFilters.Marked} onCheckedChange={() => toggleStatus('Marked')} />
-                <Label htmlFor="filter-marked" className="flex cursor-pointer items-center gap-1.5 text-sm font-medium text-slate-600">
-                  {t('create.marked')}
-                  <Badge className="rounded-full border-none bg-slate-300 px-2 py-0.5 text-xs font-bold text-white">
-                    {statusCounts.Marked}
-                  </Badge>
-                </Label>
-              </div>
-              <div className="flex items-center gap-2">
-                <Checkbox id="filter-omitted" checked={statusFilters.Omitted} onCheckedChange={() => toggleStatus('Omitted')} />
-                <Label htmlFor="filter-omitted" className="flex cursor-pointer items-center gap-1.5 text-sm font-medium text-slate-600">
-                  {t('create.omitted')}
-                  <Badge className="rounded-full border-none bg-slate-300 px-2 py-0.5 text-xs font-bold text-white">
-                    {statusCounts.Omitted}
-                  </Badge>
-                </Label>
-              </div>
-              <div className="flex items-center gap-2">
-                <Checkbox id="filter-correct" checked={statusFilters.Correct} onCheckedChange={() => toggleStatus('Correct')} />
-                <Label htmlFor="filter-correct" className="flex cursor-pointer items-center gap-1.5 text-sm font-medium text-slate-600">
-                  {t('create.correct')}
-                  <Badge className="rounded-full border-none bg-slate-300 px-2 py-0.5 text-xs font-bold text-white">
-                    {statusCounts.Correct}
-                  </Badge>
-                </Label>
-              </div>
+              {([
+                { id: 'filter-unused',    key: 'Unused',    labelKey: 'create.unused',    count: statusCounts.Unused,    activeClass: 'bg-primary text-primary-foreground' },
+                { id: 'filter-incorrect', key: 'Incorrect', labelKey: 'create.incorrect', count: statusCounts.Incorrect, activeClass: 'bg-red-500 text-white' },
+                { id: 'filter-marked',    key: 'Marked',    labelKey: 'create.marked',    count: statusCounts.Marked,    activeClass: 'bg-amber-400 text-white' },
+                { id: 'filter-omitted',   key: 'Omitted',   labelKey: 'create.omitted',   count: statusCounts.Omitted,   activeClass: 'bg-slate-500 text-white' },
+                { id: 'filter-correct',   key: 'Correct',   labelKey: 'create.correct',   count: statusCounts.Correct,   activeClass: 'bg-green-500 text-white' },
+              ] as const).map(({ id, key, labelKey, count, activeClass }) => (
+                <div key={id} className="flex items-center gap-2">
+                  <Checkbox id={id} checked={statusFilters[key]} onCheckedChange={() => toggleStatus(key)} />
+                  <Label htmlFor={id} className="flex cursor-pointer items-center gap-1.5 text-sm font-medium text-slate-600">
+                    {t(labelKey)}
+                    <Badge className={cn(
+                      'rounded-full border-none px-2 py-0.5 text-xs font-bold transition-colors',
+                      count > 0 ? activeClass : 'bg-slate-200 text-slate-400',
+                    )}>
+                      {count}
+                    </Badge>
+                  </Label>
+                </div>
+              ))}
             </div>
           </AccordionContent>
         </AccordionItem>

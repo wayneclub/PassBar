@@ -69,6 +69,7 @@ type DashboardData = {
   streakDays: number;
   timeTodaySeconds: number;
   subjectPerformance: SubjectPerformance[];
+  dailyCounts: Record<string, number>; // "YYYY-MM-DD" → count
 };
 
 const emptyDashboardData: DashboardData = {
@@ -81,6 +82,7 @@ const emptyDashboardData: DashboardData = {
   mastery: 0,
   streakDays: 0,
   timeTodaySeconds: 0,
+  dailyCounts: {},
   subjectPerformance: [],
 };
 
@@ -147,6 +149,7 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
       streakDays: 0,
       timeTodaySeconds: 0,
       subjectPerformance: [],
+      dailyCounts: {},
     };
   }
 
@@ -189,6 +192,13 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
     .map((answer) => answer.last_answered_at)
     .filter((value): value is string => Boolean(value));
 
+  // Build daily counts map for heatmap
+  const dailyCounts: Record<string, number> = {};
+  answeredDates.forEach((dateStr) => {
+    const key = startOfLocalDay(new Date(dateStr)).toISOString().slice(0, 10);
+    dailyCounts[key] = (dailyCounts[key] ?? 0) + 1;
+  });
+
   const subjectStats = new Map<string, { correct: number; total: number }>();
   answers.forEach((answer) => {
     const subject = answer.question_items?.chapters?.subject ?? 'Uncategorized';
@@ -224,6 +234,7 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
     streakDays: calculateStreak(answeredDates),
     timeTodaySeconds: todaysAnswers.reduce((sum, answer) => sum + (answer.time_spent_seconds ?? 0), 0),
     subjectPerformance,
+    dailyCounts,
   };
 }
 
@@ -315,6 +326,212 @@ function isValidDisplayDate(s: string): boolean {
 }
 
 // ─── Exam Countdown Badge (inline in header) ─────────────────────────────────
+
+// ─── Activity Heatmap ────────────────────────────────────────────────────────
+
+const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAYS_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+function getCellColor(count: number, max: number): string {
+  if (count === 0) return 'bg-slate-100';
+  if (max === 0) return 'bg-slate-100';
+  const ratio = count / max;
+  if (ratio < 0.15) return 'bg-primary/20';
+  if (ratio < 0.35) return 'bg-primary/40';
+  if (ratio < 0.60) return 'bg-primary/65';
+  if (ratio < 0.85) return 'bg-primary/85';
+  return 'bg-primary';
+}
+
+function buildHeatmapGrid(dailyCounts: Record<string, number>) {
+  // Always show exactly 53 weeks ending at the current week
+  const today = startOfLocalDay(new Date());
+  // Find the Sunday of the current week
+  const dow = today.getDay(); // 0=Sun
+  const weekEnd = new Date(today);
+  weekEnd.setDate(today.getDate() + (6 - dow)); // Saturday of current week
+
+  const TOTAL_WEEKS = 53;
+  const weekStart = new Date(weekEnd);
+  weekStart.setDate(weekEnd.getDate() - TOTAL_WEEKS * 7 + 1);
+  // Align to Sunday
+  const startDow = weekStart.getDay();
+  weekStart.setDate(weekStart.getDate() - startDow);
+
+  // Build weeks array
+  type Cell = { date: string; count: number; isCurrentDay: boolean; isFuture: boolean };
+  const weeks: Cell[][] = [];
+  const cursor = new Date(weekStart);
+  const todayKey = today.toISOString().slice(0, 10);
+
+  for (let w = 0; w < TOTAL_WEEKS; w++) {
+    const week: Cell[] = [];
+    for (let d = 0; d < 7; d++) {
+      const key = cursor.toISOString().slice(0, 10);
+      week.push({
+        date: key,
+        count: dailyCounts[key] ?? 0,
+        isCurrentDay: key === todayKey,
+        isFuture: cursor > today,
+      });
+      cursor.setDate(cursor.getDate() + 1);
+    }
+    weeks.push(week);
+  }
+
+  // Month labels: find where each month starts
+  const monthLabels: { weekIndex: number; label: string }[] = [];
+  let lastMonth = -1;
+  weeks.forEach((week, wi) => {
+    const month = new Date(week[0].date + 'T00:00:00').getMonth();
+    if (month !== lastMonth) {
+      monthLabels.push({ weekIndex: wi, label: MONTHS_SHORT[month] });
+      lastMonth = month;
+    }
+  });
+
+  return { weeks, monthLabels };
+}
+
+function ActivityHeatmap({
+  dailyCounts,
+  loading,
+  t,
+}: {
+  dailyCounts: Record<string, number>;
+  loading: boolean;
+  t: (key: Parameters<ReturnType<typeof useI18n>['t']>[0], params?: Record<string, string | number>) => string;
+}) {
+  const [tooltip, setTooltip] = useState<{ x: number; y: number; date: string; count: number } | null>(null);
+
+  const { weeks, monthLabels } = useMemo(
+    () => buildHeatmapGrid(dailyCounts),
+    [dailyCounts],
+  );
+
+  const maxCount = useMemo(
+    () => Math.max(1, ...Object.values(dailyCounts)),
+    [dailyCounts],
+  );
+
+  const CELL = 13;   // cell size px
+  const GAP  = 2;    // gap px
+  const STEP = CELL + GAP;
+
+  return (
+    <Card className="shadow-md transition-all duration-500 hover:shadow-lg overflow-hidden">
+      <CardHeader className="pb-2">
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-base flex items-center gap-2">
+            {t('dashboard.dailyActivity')}
+          </CardTitle>
+          {/* Legend */}
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <span>{t('dashboard.activityMore')}</span>
+            {[0, 0.2, 0.45, 0.7, 1].map((r, i) => (
+              <div
+                key={i}
+                className={cn('rounded-sm', r === 0 ? 'bg-slate-100' : r < 0.3 ? 'bg-primary/25' : r < 0.55 ? 'bg-primary/55' : r < 0.85 ? 'bg-primary/80' : 'bg-primary')}
+                style={{ width: CELL, height: CELL }}
+              />
+            ))}
+            <span>{t('dashboard.activityLess')}</span>
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent className="pb-5 pt-1">
+        {loading ? (
+          <div className="h-[120px] animate-pulse rounded-md bg-muted/30" />
+        ) : (
+          <div className="relative w-full overflow-x-auto">
+            {/* Outer container with day-label gutter */}
+            <div className="inline-flex gap-0" style={{ paddingLeft: 32 }}>
+              {/* Day-of-week labels column */}
+              <div
+                className="absolute left-0 top-0 flex flex-col"
+                style={{ gap: GAP, paddingTop: 20 }}
+              >
+                {DAYS_SHORT.map((d, i) => (
+                  <div
+                    key={d}
+                    className="text-[10px] text-muted-foreground text-right pr-1.5 leading-none"
+                    style={{
+                      height: CELL,
+                      lineHeight: `${CELL}px`,
+                      visibility: i % 2 === 0 ? 'visible' : 'hidden',
+                    }}
+                  >
+                    {d}
+                  </div>
+                ))}
+              </div>
+
+              {/* Grid */}
+              <div className="flex flex-col">
+                {/* Month labels row */}
+                <div className="relative h-5" style={{ marginBottom: 2 }}>
+                  {monthLabels.map(({ weekIndex, label }) => (
+                    <span
+                      key={`${weekIndex}-${label}`}
+                      className="absolute text-[10px] text-muted-foreground"
+                      style={{ left: weekIndex * STEP }}
+                    >
+                      {label}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Weeks × days grid */}
+                <div className="flex" style={{ gap: GAP }}>
+                  {weeks.map((week, wi) => (
+                    <div key={wi} className="flex flex-col" style={{ gap: GAP }}>
+                      {week.map((cell) => (
+                        <div
+                          key={cell.date}
+                          className={cn(
+                            'rounded-sm cursor-default transition-opacity duration-150',
+                            cell.isFuture ? 'opacity-0' : getCellColor(cell.count, maxCount),
+                            cell.isCurrentDay && 'ring-1 ring-offset-1 ring-primary/60',
+                          )}
+                          style={{ width: CELL, height: CELL }}
+                          onMouseEnter={(e) => {
+                            const rect = (e.target as HTMLElement).getBoundingClientRect();
+                            setTooltip({
+                              x: rect.left + rect.width / 2,
+                              y: rect.top,
+                              date: cell.date,
+                              count: cell.count,
+                            });
+                          }}
+                          onMouseLeave={() => setTooltip(null)}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Tooltip */}
+            {tooltip && (
+              <div
+                className="fixed z-50 rounded-lg border bg-white px-3 py-2 text-xs shadow-xl pointer-events-none -translate-x-1/2 -translate-y-full -mt-1.5"
+                style={{ left: tooltip.x, top: tooltip.y - 8 }}
+              >
+                <p className="font-semibold text-slate-700">
+                  {tooltip.date.replace(/-/g, '.')}
+                </p>
+                <p className="text-muted-foreground mt-0.5">
+                  {t('dashboard.activityCount', { count: tooltip.count })}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
 
 function ExamCountdownInline({
   examDate,
@@ -962,6 +1179,13 @@ export default function DashboardPage() {
           </Card>
 
         </div>
+
+        {/* Activity Heatmap */}
+        <ActivityHeatmap
+          dailyCounts={dashboardData.dailyCounts}
+          loading={dashboardData.loading}
+          t={t}
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <Card className="lg:col-span-2 shadow-md transition-all duration-700 hover:shadow-lg" style={{ transitionDelay: '300ms' }}>

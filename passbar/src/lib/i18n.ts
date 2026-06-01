@@ -204,6 +204,10 @@ type TranslationKey =
   | 'dashboard.examDateSave'
   | 'dashboard.examDateCancel'
   | 'dashboard.examDatePlaceholder'
+  | 'dashboard.dailyActivity'
+  | 'dashboard.activityMore'
+  | 'dashboard.activityLess'
+  | 'dashboard.activityCount'
   | 'dashboard.examBarType'
   | 'dashboard.examBarNY'
   | 'dashboard.examBarCA'
@@ -465,6 +469,10 @@ const en: Dictionary = {
   'dashboard.examDateSave': 'Save',
   'dashboard.examDateCancel': 'Cancel',
   'dashboard.examDatePlaceholder': 'Pick a date',
+  'dashboard.dailyActivity': 'Daily Activity',
+  'dashboard.activityMore': 'More',
+  'dashboard.activityLess': 'Less',
+  'dashboard.activityCount': '{count} questions answered',
   'dashboard.examBarType': 'Bar Exam Type',
   'dashboard.examBarNY': 'New York Bar',
   'dashboard.examBarCA': 'California Bar',
@@ -726,6 +734,10 @@ const zhHans: Dictionary = {
   'dashboard.examDateSave': '保存',
   'dashboard.examDateCancel': '取消',
   'dashboard.examDatePlaceholder': '选择日期',
+  'dashboard.dailyActivity': '每日表现',
+  'dashboard.activityMore': '多',
+  'dashboard.activityLess': '少',
+  'dashboard.activityCount': '累计答题：{count}',
   'dashboard.examBarType': '考试类型',
   'dashboard.examBarNY': '纽约州律师考试',
   'dashboard.examBarCA': '加州律师考试',
@@ -986,6 +998,10 @@ const zhHant: Dictionary = {
   'dashboard.examDateSave': '儲存',
   'dashboard.examDateCancel': '取消',
   'dashboard.examDatePlaceholder': '選擇日期',
+  'dashboard.dailyActivity': '每日表現',
+  'dashboard.activityMore': '多',
+  'dashboard.activityLess': '少',
+  'dashboard.activityCount': '累計答題：{count}',
   'dashboard.examBarType': '考試類型',
   'dashboard.examBarNY': '紐約州律師考試',
   'dashboard.examBarCA': '加州律師考試',

@@ -9,7 +9,6 @@ import {
   BookOpen,
   ChevronDown,
   LayoutGrid,
-  Wrench,
   HelpCircle,
   LogOut,
   Settings,
@@ -62,9 +61,7 @@ export function AppSidebar() {
         { name: t('nav.performance'), href: '/performance', icon: BookOpen },
       ],
     },
-    { name: t('nav.tools'), icon: Wrench, items: [
-      { name: t('nav.settings'), href: '/settings', icon: Settings },
-    ] },
+    { name: t('nav.settings'), href: '/settings', icon: Settings, items: [] },
   ];
   const displayName = profile?.full_name || profile?.email || user?.email || 'Signed in';
   const role = profile?.role || 'student';
