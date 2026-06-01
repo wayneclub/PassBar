@@ -100,6 +100,32 @@ export async function requestGeminiFeedback(input: GeminiFeedbackRequest) {
   return data.feedback;
 }
 
+export type PerformanceDiagnosisRequest = {
+  interfaceLanguage?: string;
+  performanceStats: {
+    totalAttempts: number;
+    correctAttempts: number;
+    avgTimeSeconds: number;
+    weakConcepts: Array<{
+      concept: string;
+      subject: string;
+      topic: string;
+      attempts: number;
+      correct: number;
+      avgTime: number;
+    }>;
+    errorTypeBreakdown: Record<string, number>;
+    recentTrend: number[];
+    streakDays: number;
+  };
+};
+
+export async function requestPerformanceDiagnosis(input: PerformanceDiagnosisRequest): Promise<string> {
+  const data = await invokeGemini({ action: 'performance-diagnosis', ...input });
+  if (!data.feedback) throw new Error(data.details || data.error || 'Unable to generate diagnosis.');
+  return data.feedback;
+}
+
 export async function requestGeminiQuestionAnalysis(input: GeminiQuestionAnalysisRequest) {
   const data = await invokeGemini({ action: 'question-analysis', ...input });
   if (!data.feedback) throw new Error(data.details || data.error || 'Unable to generate Gemini question analysis.');

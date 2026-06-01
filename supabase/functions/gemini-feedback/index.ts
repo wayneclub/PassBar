@@ -8,9 +8,20 @@ type FeedbackAttempt = {
   timeSpentSeconds?: number | null;
 };
 
+type PerformanceStats = {
+  totalAttempts: number;
+  correctAttempts: number;
+  avgTimeSeconds: number;
+  weakConcepts: Array<{ concept: string; subject: string; topic: string; attempts: number; correct: number; avgTime: number }>;
+  errorTypeBreakdown: Record<string, number>;
+  recentTrend: number[];
+  streakDays: number;
+};
+
 type FeedbackRequest = {
-  action?: 'status' | 'feedback' | 'question-analysis';
+  action?: 'status' | 'feedback' | 'question-analysis' | 'performance-diagnosis';
   mode?: string;
+  performanceStats?: PerformanceStats;
   totalQuestions?: number;
   attempts?: FeedbackAttempt[];
   unansweredCount?: number;
@@ -168,6 +179,64 @@ ${structureInstruction}
 Use Markdown. Keep it focused on this question. Do not mention that you are an AI model.`;
 }
 
+function buildPerformanceDiagnosisPrompt(input: FeedbackRequest) {
+  const stats = input.performanceStats!;
+  const languageInstruction = input.interfaceLanguage === 'zh-Hant'
+    ? 'Respond in Traditional Chinese.'
+    : input.interfaceLanguage === 'zh-Hans'
+      ? 'Respond in Simplified Chinese.'
+      : 'Respond in English.';
+
+  const accuracy = stats.totalAttempts > 0
+    ? Math.round((stats.correctAttempts / stats.totalAttempts) * 100)
+    : 0;
+  const weakConceptsList = stats.weakConcepts.slice(0, 6)
+    .map((c) => `- ${c.concept} (${c.subject}/${c.topic}): ${c.attempts} attempts, ${Math.round((c.correct / Math.max(c.attempts, 1)) * 100)}% accuracy, avg ${c.avgTime}s`)
+    .join('\n');
+  const errorList = Object.entries(stats.errorTypeBreakdown)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5)
+    .map(([type, count]) => `- ${type}: ${count}`)
+    .join('\n');
+
+  return `You are PassBar's AI bar-exam coach. Analyze this student's learning data and produce a structured JSON diagnosis.
+
+${languageInstruction}
+
+Student performance summary:
+- Total attempts: ${stats.totalAttempts}
+- Correct: ${stats.correctAttempts} (${accuracy}%)
+- Average time per question: ${stats.avgTimeSeconds}s
+- Study streak: ${stats.streakDays} days
+- Recent accuracy trend (last 10 sessions, 0-100): [${stats.recentTrend.join(', ')}]
+
+Weakest concepts:
+${weakConceptsList || 'No concept data yet.'}
+
+Error type breakdown:
+${errorList || 'No error type data yet.'}
+
+Return ONLY a JSON object (no markdown, no explanation) with this exact structure:
+{
+  "diagnosis": "2-3 sentence personalized diagnosis of current state",
+  "topPriorities": [
+    {"concept": "concept name", "subject": "subject", "reason": "why this is urgent", "suggestedMinutes": 15}
+  ],
+  "studyPlan": [
+    {"step": 1, "action": "specific action", "duration": "5 min"}
+  ],
+  "encouragement": "one motivating sentence tailored to their progress",
+  "readinessScore": 65
+}
+
+Rules:
+- topPriorities: 2-3 items, ranked by urgency
+- studyPlan: 3-5 steps, concrete and actionable
+- readinessScore: 0-100 integer, honest assessment
+- All text fields must be in the requested language
+- Do not mention being an AI`;
+}
+
 type GeminiPart = { text: string } | { inlineData: { mimeType: string; data: string } };
 
 async function imageUrlToPart(url: string): Promise<GeminiPart | null> {
@@ -259,7 +328,9 @@ Deno.serve(async (request) => {
 
   const prompt = input.action === 'question-analysis'
     ? buildQuestionAnalysisPrompt(input)
-    : buildPrompt(input);
+    : input.action === 'performance-diagnosis'
+      ? buildPerformanceDiagnosisPrompt(input)
+      : buildPrompt(input);
   const parts = await buildGeminiParts(input, prompt);
   const errors: string[] = [];
 

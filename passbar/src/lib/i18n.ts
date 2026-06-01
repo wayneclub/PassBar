@@ -264,7 +264,43 @@ type TranslationKey =
   | 'performance.testCount'
   | 'performance.testsCreated'
   | 'performance.testsCompleted'
-  | 'performance.suspendedTests';
+  | 'performance.suspendedTests'
+  | 'performance.tabs.prescription'
+  | 'performance.tabs.conceptMap'
+  | 'performance.tabs.errorPattern'
+  | 'performance.tabs.trapIntel'
+  | 'performance.tabs.progress'
+  | 'performance.aiDiagnosis'
+  | 'performance.studyPlan'
+  | 'performance.topPriorities'
+  | 'performance.startSmartTraining'
+  | 'performance.readinessScore'
+  | 'performance.conceptMastery'
+  | 'performance.mastered'
+  | 'performance.stabilizing'
+  | 'performance.repairing'
+  | 'performance.struggling'
+  | 'performance.underSampled'
+  | 'performance.decaying'
+  | 'performance.errorTypes'
+  | 'performance.trapAnalysis'
+  | 'performance.recentTrend'
+  | 'performance.generateDiagnosis'
+  | 'performance.diagnosisLoading'
+  | 'performance.noDataYet'
+  | 'performance.sampleTooSmall'
+  | 'performance.accuracy'
+  | 'performance.avgTimeLabel'
+  | 'performance.repairAction'
+  | 'performance.errorIssueSpot'
+  | 'performance.errorRuleRecall'
+  | 'performance.errorRuleApply'
+  | 'performance.errorException'
+  | 'performance.errorFactTrigger'
+  | 'performance.errorConfusion'
+  | 'performance.errorDistractor'
+  | 'performance.errorTimePressure'
+  | 'performance.errorChangedAnswer';
 
 type Dictionary = Record<TranslationKey, string>;
 
@@ -530,6 +566,42 @@ const en: Dictionary = {
   'performance.testsCreated': 'Tests Created',
   'performance.testsCompleted': 'Tests Completed',
   'performance.suspendedTests': 'Suspended Tests',
+  'performance.tabs.prescription': 'Today\'s Study Rx',
+  'performance.tabs.conceptMap': 'Concept Mastery Map',
+  'performance.tabs.errorPattern': 'Error Pattern Analysis',
+  'performance.tabs.trapIntel': 'Trap Intelligence',
+  'performance.tabs.progress': 'Progress & Readiness',
+  'performance.aiDiagnosis': 'AI Learning Diagnosis',
+  'performance.studyPlan': 'Today\'s Study Plan',
+  'performance.topPriorities': 'Top Priority Concepts',
+  'performance.startSmartTraining': 'Start Smart Training',
+  'performance.readinessScore': 'Exam Readiness Score',
+  'performance.conceptMastery': 'Concept Mastery Status',
+  'performance.mastered': 'Mastered',
+  'performance.stabilizing': 'Stabilizing',
+  'performance.repairing': 'Repairing',
+  'performance.struggling': 'Struggling',
+  'performance.underSampled': 'Under-sampled',
+  'performance.decaying': 'Needs Review',
+  'performance.errorTypes': 'Error Type Distribution',
+  'performance.trapAnalysis': 'Trap Type Analysis',
+  'performance.recentTrend': 'Recent Trend',
+  'performance.generateDiagnosis': 'Generate AI Diagnosis',
+  'performance.diagnosisLoading': 'Analyzing your learning data...',
+  'performance.noDataYet': 'Complete more practice to see smart analysis here',
+  'performance.sampleTooSmall': 'Sample size: {count} questions (suggest at least 5)',
+  'performance.accuracy': '{pct}% accuracy',
+  'performance.avgTimeLabel': 'Avg {sec}s',
+  'performance.repairAction': 'Quick Repair',
+  'performance.errorIssueSpot': 'Issue Spotting Error',
+  'performance.errorRuleRecall': 'Rule Recall Error',
+  'performance.errorRuleApply': 'Rule Application Error',
+  'performance.errorException': 'Exception Missed',
+  'performance.errorFactTrigger': 'Fact Trigger Missed',
+  'performance.errorConfusion': 'Similar Concept Confusion',
+  'performance.errorDistractor': 'Distractor Trap',
+  'performance.errorTimePressure': 'Time Pressure Guess',
+  'performance.errorChangedAnswer': 'Changed Correct to Wrong',
 };
 
 const zhHans: Dictionary = {
@@ -795,6 +867,42 @@ const zhHans: Dictionary = {
   'performance.testsCreated': '已创建测验',
   'performance.testsCompleted': '已完成测验',
   'performance.suspendedTests': '已暂停测验',
+  'performance.tabs.prescription': '今日学习处方',
+  'performance.tabs.conceptMap': '观念掌握地图',
+  'performance.tabs.errorPattern': '错误模式分析',
+  'performance.tabs.trapIntel': '陷阱洞察',
+  'performance.tabs.progress': '进步与准备度',
+  'performance.aiDiagnosis': 'AI 学习诊断',
+  'performance.studyPlan': '今日学习计划',
+  'performance.topPriorities': '优先修复观念',
+  'performance.startSmartTraining': '开始智能训练',
+  'performance.readinessScore': '备考就绪度',
+  'performance.conceptMastery': '观念掌握状态',
+  'performance.mastered': '已掌握',
+  'performance.stabilizing': '趋于稳定',
+  'performance.repairing': '修复中',
+  'performance.struggling': '需加强',
+  'performance.underSampled': '样本不足',
+  'performance.decaying': '需复习',
+  'performance.errorTypes': '错误类型分布',
+  'performance.trapAnalysis': '陷阱类型分析',
+  'performance.recentTrend': '最近趋势',
+  'performance.generateDiagnosis': '生成 AI 诊断',
+  'performance.diagnosisLoading': '正在分析你的学习数据...',
+  'performance.noDataYet': '完成更多练习后，这里会出现智能分析',
+  'performance.sampleTooSmall': '样本数：{count} 题（建议至少 5 题）',
+  'performance.accuracy': '正确率 {pct}%',
+  'performance.avgTimeLabel': '均时 {sec}s',
+  'performance.repairAction': '一键修复',
+  'performance.errorIssueSpot': 'Issue Spotting Error',
+  'performance.errorRuleRecall': 'Rule Recall Error',
+  'performance.errorRuleApply': 'Rule Application Error',
+  'performance.errorException': 'Exception Missed',
+  'performance.errorFactTrigger': 'Fact Trigger Missed',
+  'performance.errorConfusion': 'Similar Concept Confusion',
+  'performance.errorDistractor': 'Distractor Trap',
+  'performance.errorTimePressure': 'Time Pressure Guess',
+  'performance.errorChangedAnswer': 'Changed Correct to Wrong',
 };
 
 const zhHant: Dictionary = {
@@ -1059,6 +1167,42 @@ const zhHant: Dictionary = {
   'performance.testsCreated': '已建立測驗',
   'performance.testsCompleted': '已完成測驗',
   'performance.suspendedTests': '已暫停測驗',
+  'performance.tabs.prescription': '今日學習處方',
+  'performance.tabs.conceptMap': '觀念掌握地圖',
+  'performance.tabs.errorPattern': '錯誤模式分析',
+  'performance.tabs.trapIntel': '陷阱洞察',
+  'performance.tabs.progress': '進步與準備度',
+  'performance.aiDiagnosis': 'AI 學習診斷',
+  'performance.studyPlan': '今日學習計劃',
+  'performance.topPriorities': '優先修復觀念',
+  'performance.startSmartTraining': '開始智能訓練',
+  'performance.readinessScore': '備考就緒度',
+  'performance.conceptMastery': '觀念掌握狀態',
+  'performance.mastered': '已掌握',
+  'performance.stabilizing': '趨於穩定',
+  'performance.repairing': '修復中',
+  'performance.struggling': '需加強',
+  'performance.underSampled': '樣本不足',
+  'performance.decaying': '需複習',
+  'performance.errorTypes': '錯誤類型分布',
+  'performance.trapAnalysis': '陷阱類型分析',
+  'performance.recentTrend': '最近趨勢',
+  'performance.generateDiagnosis': '生成 AI 診斷',
+  'performance.diagnosisLoading': '正在分析你的學習數據...',
+  'performance.noDataYet': '完成更多練習後，這裡會出現智能分析',
+  'performance.sampleTooSmall': '樣本數：{count} 題（建議至少 5 題）',
+  'performance.accuracy': '正確率 {pct}%',
+  'performance.avgTimeLabel': '均時 {sec}s',
+  'performance.repairAction': '一鍵修復',
+  'performance.errorIssueSpot': 'Issue Spotting Error',
+  'performance.errorRuleRecall': 'Rule Recall Error',
+  'performance.errorRuleApply': 'Rule Application Error',
+  'performance.errorException': 'Exception Missed',
+  'performance.errorFactTrigger': 'Fact Trigger Missed',
+  'performance.errorConfusion': 'Similar Concept Confusion',
+  'performance.errorDistractor': 'Distractor Trap',
+  'performance.errorTimePressure': 'Time Pressure Guess',
+  'performance.errorChangedAnswer': 'Changed Correct to Wrong',
 };
 
 const dictionaries: Record<InterfaceLanguage, Dictionary> = {

@@ -58,9 +58,9 @@ export function AppSidebar() {
       items: [
         { name: t('nav.createTest'), href: '/create', icon: PlusCircle, tourId: 'create-test' },
         { name: t('nav.previousTests'), href: '/review', icon: History },
-        { name: t('nav.performance'), href: '/performance', icon: BookOpen },
       ],
     },
+    { name: t('nav.performance'), href: '/performance', icon: BookOpen, items: [] },
     { name: t('nav.settings'), href: '/settings', icon: Settings, items: [] },
   ];
   const displayName = profile?.full_name || profile?.email || user?.email || 'Signed in';

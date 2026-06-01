@@ -798,3 +798,35 @@ create policy "Users can update their question progress"
 on public.user_question_progress for update
 using (auth.uid() = user_id)
 with check (auth.uid() = user_id);
+
+-- question_items enrichment for AI coaching
+alter table public.question_items add column if not exists micro_concept text;
+alter table public.question_items add column if not exists trap_type text;
+alter table public.question_items add column if not exists skill_tested text;
+alter table public.question_items add column if not exists difficulty text check (difficulty is null or difficulty in ('easy','medium','hard'));
+
+-- practice_answers enrichment
+alter table public.practice_answers add column if not exists confidence text check (confidence is null or confidence in ('low','medium','high'));
+alter table public.practice_answers add column if not exists changed_answer boolean default false;
+alter table public.practice_answers add column if not exists error_type text;
+
+-- User concept mastery tracking
+create table if not exists public.user_concept_mastery (
+  user_id uuid not null references public.profiles(id) on delete cascade,
+  subject text not null,
+  topic text not null,
+  micro_concept text not null,
+  attempts int not null default 0,
+  correct int not null default 0,
+  last_attempt_at timestamptz,
+  status text not null default 'under-sampled' check (status in ('under-sampled','struggling','repairing','stabilizing','mastered','decaying')),
+  updated_at timestamptz default now(),
+  primary key (user_id, subject, topic, micro_concept)
+);
+create index if not exists user_concept_mastery_user_id_idx on public.user_concept_mastery (user_id);
+alter table public.user_concept_mastery enable row level security;
+drop policy if exists "Users can manage their concept mastery" on public.user_concept_mastery;
+create policy "Users can manage their concept mastery"
+on public.user_concept_mastery for all
+using (auth.uid() = user_id)
+with check (auth.uid() = user_id);

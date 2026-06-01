@@ -1,19 +1,20 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/components/AuthProvider';
 import { useI18n } from '@/lib/i18n';
 import { supabase } from '@/lib/supabase';
 import { cn } from '@/lib/utils';
+import { requestPerformanceDiagnosis } from '@/lib/gemini-feedback';
 import {
-  Bar,
-  BarChart,
-  CartesianGrid,
   Cell,
   Legend,
+  Line,
+  LineChart,
   Pie,
   PieChart,
   ResponsiveContainer,
@@ -21,14 +22,37 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { Activity, AlertTriangle, CheckCircle2, Clock3, Target, TrendingDown, TrendingUp } from 'lucide-react';
+import {
+  Activity,
+  AlertTriangle,
+  BookOpen,
+  Brain,
+  CheckCircle2,
+  ChevronDown,
+  ChevronRight,
+  Clock3,
+  Flame,
+  Lightbulb,
+  Loader2,
+  Map as MapIcon,
+  Sparkles,
+  Target,
+  TrendingUp,
+  Wrench,
+  Zap,
+} from 'lucide-react';
 import Link from 'next/link';
+
+// ─── Types ─────────────────────────────────────────────────────────────────
 
 type AnswerRow = {
   question_id: string;
   is_correct: boolean;
   answered_at: string | null;
   time_spent_seconds: number | null;
+  confidence: string | null;
+  changed_answer: boolean | null;
+  error_type: string | null;
 };
 
 type QuestionMetaRow = {
@@ -36,436 +60,865 @@ type QuestionMetaRow = {
   subject: string;
   chapter_id: string;
   topic: string;
+  micro_concept: string | null;
+  trap_type: string | null;
+  skill_tested: string | null;
 };
 
-type StatBucket = {
-  key: string;
-  label: string;
-  subject?: string;
+type ConceptMasteryRow = {
+  subject: string;
+  topic: string;
+  micro_concept: string;
   attempts: number;
   correct: number;
-  seconds: number;
+  status: string;
+  last_attempt_at: string | null;
 };
 
-type AnswerChanges = {
-  correctToIncorrect: number;
-  incorrectToCorrect: number;
-  incorrectToIncorrect: number;
+type DiagnosisResult = {
+  diagnosis: string;
+  topPriorities: Array<{ concept: string; subject: string; reason: string; suggestedMinutes: number }>;
+  studyPlan: Array<{ step: number; action: string; duration: string }>;
+  encouragement: string;
+  readinessScore: number;
 };
 
-type OverallStats = {
-  totalCorrect: number;
-  totalIncorrect: number;
-  totalOmitted: number;
-  answerChanges: AnswerChanges;
-  usedQuestions: number;
-  unusedQuestions: number;
-  totalQuestions: number;
-  testsCreated: number;
-  testsCompleted: number;
-  suspendedTests: number;
-};
-
-type PerformanceData = {
+type PageData = {
+  answers: AnswerRow[];
+  metadata: Map<string, QuestionMetaRow>;
+  conceptMastery: ConceptMasteryRow[];
   totalAttempts: number;
   correctAttempts: number;
-  averageSeconds: number;
-  subjectStats: StatBucket[];
-  chapterStats: StatBucket[];
-  weeklyRows: Array<Record<string, string | number>>;
-  weeklySubjects: string[];
-  overall: OverallStats;
+  avgTimeSeconds: number;
+  streakDays: number;
+  errorTypeBreakdown: Record<string, number>;
+  recentTrend: number[];
+  weakConcepts: Array<{ concept: string; subject: string; topic: string; attempts: number; correct: number; avgTime: number }>;
 };
 
-const chartColors = [
-  'hsl(var(--chart-1))',
-  'hsl(var(--chart-2))',
-  'hsl(var(--chart-3))',
-  'hsl(var(--chart-4))',
-  'hsl(var(--chart-5))',
-];
+// ─── Helpers ────────────────────────────────────────────────────────────────
 
-function percent(correct: number, attempts: number) {
+function pct(correct: number, attempts: number) {
   return attempts > 0 ? Math.round((correct / attempts) * 100) : 0;
 }
 
-function formatSeconds(seconds: number) {
-  if (!Number.isFinite(seconds) || seconds <= 0) return '0s';
-  const minutes = Math.floor(seconds / 60);
-  const remaining = Math.round(seconds % 60);
-  return minutes > 0 ? `${minutes}m ${remaining}s` : `${remaining}s`;
+function chunk<T>(items: T[], size: number): T[][] {
+  const out: T[][] = [];
+  for (let i = 0; i < items.length; i += size) out.push(items.slice(i, i + size));
+  return out;
 }
 
-function weekStart(date: Date) {
-  const next = new Date(date);
-  const day = next.getDay();
-  const diff = day === 0 ? -6 : 1 - day;
-  next.setDate(next.getDate() + diff);
-  next.setHours(0, 0, 0, 0);
-  return next;
-}
-
-function weekKey(date: Date) {
-  const start = weekStart(date);
-  return start.toISOString().slice(0, 10);
-}
-
-function weekLabel(key: string, locale: string) {
-  const date = new Date(`${key}T00:00:00`);
-  return new Intl.DateTimeFormat(locale, { month: 'short', day: 'numeric' }).format(date);
-}
-
-function chunk<T>(items: T[], size: number) {
-  const chunks: T[][] = [];
-  for (let index = 0; index < items.length; index += size) {
-    chunks.push(items.slice(index, index + size));
+function computeStreakDays(answers: AnswerRow[]): number {
+  if (answers.length === 0) return 0;
+  const days = new Set(
+    answers.filter((a) => a.answered_at).map((a) => a.answered_at!.slice(0, 10)),
+  );
+  const today = new Date().toISOString().slice(0, 10);
+  let streak = 0;
+  let cursor = new Date(today);
+  while (true) {
+    const key = cursor.toISOString().slice(0, 10);
+    if (!days.has(key)) break;
+    streak++;
+    cursor.setDate(cursor.getDate() - 1);
   }
-  return chunks;
+  return streak;
 }
 
-async function getQuestionMetadata(questionIds: string[]) {
-  if (!supabase || questionIds.length === 0) return new Map<string, QuestionMetaRow>();
-
-  const rows: QuestionMetaRow[] = [];
-  for (const ids of chunk(Array.from(new Set(questionIds)), 400)) {
-    const { data, error } = await supabase
-      .from('questions')
-      .select('id, subject, chapter_id, topic')
-      .in('id', ids);
-
-    if (error) {
-      console.warn('[PassBar] Failed to load performance question metadata:', error.message);
-      continue;
-    }
-    rows.push(...((data ?? []) as QuestionMetaRow[]));
-  }
-
-  return new Map(rows.map((row) => [row.id, row]));
-}
-
-function computeAnswerChanges(answers: AnswerRow[]): AnswerChanges {
-  const byQuestion = new Map<string, AnswerRow[]>();
-  answers.forEach((answer) => {
-    const list = byQuestion.get(answer.question_id) ?? [];
-    list.push(answer);
-    byQuestion.set(answer.question_id, list);
+function computeRecentTrend(answers: AnswerRow[]): number[] {
+  if (answers.length === 0) return [];
+  // group by day, last 10 days with activity
+  const dayMap = new Map<string, { correct: number; total: number }>();
+  answers.forEach((a) => {
+    if (!a.answered_at) return;
+    const day = a.answered_at.slice(0, 10);
+    const bucket = dayMap.get(day) ?? { correct: 0, total: 0 };
+    bucket.total++;
+    if (a.is_correct) bucket.correct++;
+    dayMap.set(day, bucket);
   });
+  const sorted = ([...dayMap.entries()] as [string, { correct: number; total: number }][])
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .slice(-10);
+  return sorted.map(([, v]) => Math.round((v.correct / v.total) * 100));
+}
 
-  let correctToIncorrect = 0;
-  let incorrectToCorrect = 0;
-  let incorrectToIncorrect = 0;
-
-  byQuestion.forEach((list) => {
-    const sorted = [...list].sort((a, b) =>
-      (a.answered_at ?? '').localeCompare(b.answered_at ?? ''),
-    );
-    for (let i = 1; i < sorted.length; i++) {
-      const prev = sorted[i - 1].is_correct;
-      const curr = sorted[i].is_correct;
-      if (prev && !curr) correctToIncorrect += 1;
-      else if (!prev && curr) incorrectToCorrect += 1;
-      else if (!prev && !curr) incorrectToIncorrect += 1;
+function computeErrorTypeBreakdown(answers: AnswerRow[]): Record<string, number> {
+  const breakdown: Record<string, number> = {};
+  answers.forEach((a) => {
+    if (!a.is_correct) {
+      let type = a.error_type ?? '';
+      if (!type) {
+        if (a.changed_answer) type = 'Changed Correct to Wrong';
+        else if ((a.time_spent_seconds ?? 999) < 30) type = 'Time Pressure Guess';
+        else type = 'Unknown';
+      }
+      breakdown[type] = (breakdown[type] ?? 0) + 1;
     }
   });
-
-  return { correctToIncorrect, incorrectToCorrect, incorrectToIncorrect };
+  return breakdown;
 }
 
-function buildPerformanceData(
-  answers: AnswerRow[],
-  metadata: Map<string, QuestionMetaRow>,
-  labels: { unknownSubject: string; unknownChapter: string; locale: string },
-  overall: OverallStats,
-): PerformanceData {
-  const subjectMap = new Map<string, StatBucket>();
-  const chapterMap = new Map<string, StatBucket>();
-  const weeklyMap = new Map<string, Record<string, string | number>>();
-  let correctAttempts = 0;
-  let totalSeconds = 0;
+// ─── Skeleton ────────────────────────────────────────────────────────────────
 
-  answers.forEach((answer) => {
-    const meta = metadata.get(answer.question_id);
-    const subject = meta?.subject ?? labels.unknownSubject;
-    const topic = meta?.topic ?? labels.unknownChapter;
-    const chapterKey = `${subject}::${meta?.chapter_id ?? topic}`;
-    const seconds = answer.time_spent_seconds ?? 0;
-
-    if (answer.is_correct) correctAttempts += 1;
-    totalSeconds += seconds;
-
-    const subjectBucket = subjectMap.get(subject) ?? {
-      key: subject,
-      label: subject,
-      attempts: 0,
-      correct: 0,
-      seconds: 0,
-    };
-    subjectBucket.attempts += 1;
-    subjectBucket.correct += answer.is_correct ? 1 : 0;
-    subjectBucket.seconds += seconds;
-    subjectMap.set(subject, subjectBucket);
-
-    const chapterBucket = chapterMap.get(chapterKey) ?? {
-      key: chapterKey,
-      label: topic,
-      subject,
-      attempts: 0,
-      correct: 0,
-      seconds: 0,
-    };
-    chapterBucket.attempts += 1;
-    chapterBucket.correct += answer.is_correct ? 1 : 0;
-    chapterBucket.seconds += seconds;
-    chapterMap.set(chapterKey, chapterBucket);
-
-    const answeredAt = answer.answered_at ? new Date(answer.answered_at) : new Date();
-    const key = weekKey(answeredAt);
-    const weeklyRow = weeklyMap.get(key) ?? { key, week: weekLabel(key, labels.locale) };
-    weeklyRow[subject] = Number(weeklyRow[subject] ?? 0) + 1;
-    weeklyMap.set(key, weeklyRow);
-  });
-
-  const subjectStats = Array.from(subjectMap.values()).sort((a, b) => b.attempts - a.attempts);
-  const chapterStats = Array.from(chapterMap.values()).sort((a, b) => {
-    const accuracyDelta = percent(a.correct, a.attempts) - percent(b.correct, b.attempts);
-    return accuracyDelta || b.attempts - a.attempts;
-  });
-  const weeklySubjects = subjectStats.slice(0, 5).map((item) => item.label);
-  const weeklyRows = Array.from(weeklyMap.values())
-    .sort((a, b) => String(a.key).localeCompare(String(b.key)))
-    .slice(-8)
-    .map((row) => {
-      const next = { ...row };
-      weeklySubjects.forEach((subject) => {
-        next[subject] = Number(next[subject] ?? 0);
-      });
-      return next;
-    });
-
-  return {
-    totalAttempts: answers.length,
-    correctAttempts,
-    averageSeconds: answers.length > 0 ? Math.round(totalSeconds / answers.length) : 0,
-    subjectStats,
-    chapterStats,
-    weeklyRows,
-    weeklySubjects,
-    overall,
-  };
+function Skeleton({ className }: { className?: string }) {
+  return <div className={cn('animate-pulse rounded-md bg-muted/30', className)} />;
 }
 
-function useCountUp(target: number, duration = 900) {
-  const [value, setValue] = useState(0);
-  const prevTarget = useRef(0);
-
-  useEffect(() => {
-    if (target === prevTarget.current) return;
-    prevTarget.current = target;
-    if (target === 0) { setValue(0); return; }
-
-    const start = Date.now();
-    const from = value;
-    const diff = target - from;
-    const tick = () => {
-      const elapsed = Date.now() - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setValue(from + diff * eased);
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [target, duration]);
-
-  return Math.round(value);
+function LoadingSkeleton() {
+  return (
+    <div className="space-y-6">
+      <Skeleton className="h-10 w-64" />
+      <Skeleton className="h-12 w-full" />
+      <div className="grid gap-4 md:grid-cols-4">
+        {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-32" />)}
+      </div>
+      <Skeleton className="h-96" />
+    </div>
+  );
 }
 
-function AnimatedStat({ value, delay = 0 }: { value: number; delay?: number }) {
-  const [started, setStarted] = useState(false);
-  useEffect(() => {
-    const t = setTimeout(() => setStarted(true), delay);
-    return () => clearTimeout(t);
-  }, [delay]);
-  const count = useCountUp(started ? value : 0);
-  return <>{count.toLocaleString()}</>;
-}
+// ─── Readiness Gauge ─────────────────────────────────────────────────────────
 
-function DonutChart({
-  data,
-  label,
-  total,
-}: {
-  data: Array<{ name: string; value: number; color: string }>;
-  label: string;
-  total: number;
-}) {
+function ReadinessGauge({ score }: { score: number }) {
+  const clamped = Math.max(0, Math.min(100, score));
+  const radius = 54;
+  const circumference = Math.PI * radius; // half circle
+  const offset = circumference * (1 - clamped / 100);
+  const color = clamped >= 75 ? '#22c55e' : clamped >= 50 ? '#f59e0b' : '#ef4444';
+
   return (
     <div className="flex flex-col items-center">
-      <div className="relative w-32 h-32">
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              data={data.filter((d) => d.value > 0)}
-              cx="50%"
-              cy="50%"
-              innerRadius={44}
-              outerRadius={60}
-              dataKey="value"
-              startAngle={90}
-              endAngle={-270}
-              isAnimationActive
-              animationDuration={1000}
-              animationEasing="ease-out"
-            >
-              {data.filter((d) => d.value > 0).map((entry) => (
-                <Cell key={entry.name} fill={entry.color} />
-              ))}
-            </Pie>
-            <Tooltip formatter={(val) => [val, '']} />
-          </PieChart>
-        </ResponsiveContainer>
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <span className="text-xl font-bold text-slate-800">
-            {total > 0 ? `${Math.round((data[0]?.value ?? 0) / total * 100)}%` : '—'}
-          </span>
-          <span className="text-[10px] text-muted-foreground">{label}</span>
-        </div>
-      </div>
+      <svg width="140" height="80" viewBox="0 0 140 80">
+        {/* track */}
+        <path
+          d="M 14 70 A 56 56 0 0 1 126 70"
+          fill="none"
+          stroke="#e2e8f0"
+          strokeWidth="10"
+          strokeLinecap="round"
+        />
+        {/* fill */}
+        <path
+          d="M 14 70 A 56 56 0 0 1 126 70"
+          fill="none"
+          stroke={color}
+          strokeWidth="10"
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+          style={{ transition: 'stroke-dashoffset 1s ease-out' }}
+        />
+        <text x="70" y="62" textAnchor="middle" fontSize="22" fontWeight="bold" fill={color}>
+          {clamped}
+        </text>
+        <text x="70" y="76" textAnchor="middle" fontSize="10" fill="#94a3b8">
+          / 100
+        </text>
+      </svg>
     </div>
   );
 }
 
-function StatRow({
-  label,
-  value,
-  delay,
-  highlight,
+// ─── Tab 1: Prescription ─────────────────────────────────────────────────────
+
+function PrescriptionTab({
+  data,
+  t,
+  language,
 }: {
-  label: string;
-  value: number;
-  delay?: number;
-  highlight?: 'green' | 'red' | 'none';
+  data: PageData;
+  t: ReturnType<typeof useI18n>['t'];
+  language: string;
 }) {
-  return (
-    <div className="flex items-center justify-between py-2 border-b border-slate-100 last:border-0">
-      <span className="text-sm text-slate-700">{label}</span>
-      <span
-        className={cn(
-          'inline-flex items-center justify-center w-8 h-8 rounded-full text-sm font-semibold',
-          highlight === 'green' && 'bg-green-100 text-green-700',
-          highlight === 'red' && 'bg-red-100 text-red-700',
-          (!highlight || highlight === 'none') && 'bg-slate-100 text-slate-700',
-        )}
-      >
-        <AnimatedStat value={value} delay={delay} />
-      </span>
-    </div>
-  );
-}
+  const [diagnosis, setDiagnosis] = useState<DiagnosisResult | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-function OverallPerformanceSection({ overall, t }: { overall: OverallStats; t: (key: Parameters<ReturnType<typeof useI18n>['t']>[0], params?: Record<string, string | number>) => string }) {
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
+  const generateDiagnosis = useCallback(async () => {
+    setLoading(true);
+    setError('');
+    try {
+      const raw = await requestPerformanceDiagnosis({
+        interfaceLanguage: language,
+        performanceStats: {
+          totalAttempts: data.totalAttempts,
+          correctAttempts: data.correctAttempts,
+          avgTimeSeconds: data.avgTimeSeconds,
+          weakConcepts: data.weakConcepts,
+          errorTypeBreakdown: data.errorTypeBreakdown,
+          recentTrend: data.recentTrend,
+          streakDays: data.streakDays,
+        },
+      });
+      // strip potential markdown fences
+      const cleaned = raw.replace(/^```json\s*/i, '').replace(/```\s*$/, '').trim();
+      const parsed = JSON.parse(cleaned) as DiagnosisResult;
+      setDiagnosis(parsed);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Error generating diagnosis');
+    } finally {
+      setLoading(false);
+    }
+  }, [data, language]);
 
-  const total = overall.totalCorrect + overall.totalIncorrect + overall.totalOmitted;
-
-  const scoreData = [
-    { name: 'Correct', value: overall.totalCorrect, color: '#22c55e' },
-    { name: 'Incorrect', value: overall.totalIncorrect, color: '#ef4444' },
-    { name: 'Omitted', value: overall.totalOmitted, color: '#cbd5e1' },
-  ];
-
-  const usageData = [
-    { name: 'Used', value: overall.usedQuestions, color: '#3b82f6' },
-    { name: 'Unused', value: overall.unusedQuestions, color: '#e2e8f0' },
-  ];
+  const readiness = diagnosis?.readinessScore ?? Math.round(pct(data.correctAttempts, data.totalAttempts) * 0.85);
 
   return (
-    <div
-      className={cn(
-        'transition-all duration-700',
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6',
+    <div className="space-y-6 animate-in fade-in duration-500">
+      {/* Header + CTA */}
+      <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+        <div>
+          <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
+            <Sparkles className="h-5 w-5 text-primary" />
+            {t('performance.aiDiagnosis')}
+          </h2>
+          {data.totalAttempts < 5 && (
+            <p className="text-sm text-muted-foreground mt-1">
+              {t('performance.sampleTooSmall', { count: data.totalAttempts })}
+            </p>
+          )}
+        </div>
+        <Button
+          onClick={generateDiagnosis}
+          disabled={loading || data.totalAttempts === 0}
+          className="gap-2"
+        >
+          {loading ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              {t('performance.diagnosisLoading')}
+            </>
+          ) : (
+            <>
+              <Brain className="h-4 w-4" />
+              {t('performance.generateDiagnosis')}
+            </>
+          )}
+        </Button>
+      </div>
+
+      {error && (
+        <Card className="border-red-200 bg-red-50">
+          <CardContent className="p-4 text-sm text-red-700">{error}</CardContent>
+        </Card>
       )}
-    >
-      <Card className="shadow-md overflow-hidden">
-        <CardHeader className="border-b bg-slate-50/60">
-          <CardTitle className="text-lg">{t('performance.overallPerformance')}</CardTitle>
-        </CardHeader>
-        <CardContent className="p-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-100">
-            {/* Your Score */}
-            <div className="p-6 flex flex-col gap-4">
-              <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-slate-800">{t('performance.yourScore')}</h3>
-                <DonutChart data={scoreData} label="Correct" total={total} />
-              </div>
-              <div>
-                <StatRow label={t('performance.totalCorrect')} value={overall.totalCorrect} delay={0} highlight="green" />
-                <StatRow label={t('performance.totalIncorrect')} value={overall.totalIncorrect} delay={80} highlight="red" />
-                <StatRow label={t('performance.totalOmitted')} value={overall.totalOmitted} delay={160} />
-              </div>
-            </div>
 
-            {/* Answer Changes */}
-            <div className="p-6 flex flex-col gap-4">
-              <h3 className="font-semibold text-slate-800">{t('performance.answerChanges')}</h3>
-              <div className="flex items-center gap-3 mb-2">
-                <TrendingDown className="h-8 w-8 text-red-400" />
-                <TrendingUp className="h-8 w-8 text-green-400" />
-              </div>
-              <div>
-                <StatRow label={t('performance.correctToIncorrect')} value={overall.answerChanges.correctToIncorrect} delay={0} highlight="red" />
-                <StatRow label={t('performance.incorrectToCorrect')} value={overall.answerChanges.incorrectToCorrect} delay={80} highlight="green" />
-                <StatRow label={t('performance.incorrectToIncorrect')} value={overall.answerChanges.incorrectToIncorrect} delay={160} />
-              </div>
-            </div>
+      {data.totalAttempts === 0 && (
+        <Card className="border-dashed">
+          <CardContent className="flex flex-col items-center justify-center gap-3 py-12 text-center">
+            <Activity className="h-10 w-10 text-muted-foreground" />
+            <p className="text-muted-foreground">{t('performance.noDataYet')}</p>
+            <Button asChild size="sm">
+              <Link href="/create">{t('performance.startPractice')}</Link>
+            </Button>
+          </CardContent>
+        </Card>
+      )}
 
-            {/* QBank Usage */}
-            <div className="p-6 flex flex-col gap-4">
-              <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-slate-800">{t('performance.qbankUsage')}</h3>
-                <DonutChart data={usageData} label="Used" total={overall.totalQuestions} />
-              </div>
-              <div>
-                <StatRow label={t('performance.usedQuestions')} value={overall.usedQuestions} delay={0} />
-                <StatRow label={t('performance.unusedQuestions')} value={overall.unusedQuestions} delay={80} />
-                <StatRow label={t('performance.totalQuestions')} value={overall.totalQuestions} delay={160} />
-              </div>
-            </div>
+      {diagnosis && (
+        <div className="space-y-4">
+          {/* Diagnosis text */}
+          <Card className="border-primary/20 bg-primary/5 hover:shadow-md transition">
+            <CardContent className="p-5">
+              <p className="text-slate-700 leading-relaxed">{diagnosis.diagnosis}</p>
+              {diagnosis.encouragement && (
+                <p className="mt-3 text-primary font-medium flex items-center gap-2">
+                  <Flame className="h-4 w-4" />
+                  {diagnosis.encouragement}
+                </p>
+              )}
+            </CardContent>
+          </Card>
 
-            {/* Test Count */}
-            <div className="p-6 flex flex-col gap-4">
-              <h3 className="font-semibold text-slate-800">{t('performance.testCount')}</h3>
-              <div className="flex items-center justify-center h-20">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-primary">
-                    <AnimatedStat value={overall.testsCompleted} delay={0} />
+          <div className="grid gap-4 md:grid-cols-2">
+            {/* Top priorities */}
+            <Card className="hover:shadow-md transition">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base flex items-center gap-2">
+                  <Target className="h-4 w-4 text-red-500" />
+                  {t('performance.topPriorities')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {diagnosis.topPriorities.map((priority, i) => (
+                  <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
+                    <span className="flex-none mt-0.5 w-6 h-6 rounded-full bg-red-100 text-red-700 text-xs font-bold flex items-center justify-center">
+                      {i + 1}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium text-slate-900 truncate">{priority.concept}</div>
+                      <div className="text-xs text-muted-foreground">{priority.subject}</div>
+                      <div className="text-xs text-slate-600 mt-1">{priority.reason}</div>
+                    </div>
+                    <Badge variant="outline" className="shrink-0 text-xs">
+                      ~{priority.suggestedMinutes}min
+                    </Badge>
                   </div>
-                  <div className="text-xs text-muted-foreground mt-1">{t('performance.testsCompleted')}</div>
-                </div>
-              </div>
-              <div>
-                <StatRow label={t('performance.testsCreated')} value={overall.testsCreated} delay={0} />
-                <StatRow label={t('performance.testsCompleted')} value={overall.testsCompleted} delay={80} highlight="green" />
-                <StatRow label={t('performance.suspendedTests')} value={overall.suspendedTests} delay={160} />
-              </div>
-            </div>
+                ))}
+              </CardContent>
+            </Card>
+
+            {/* Study plan */}
+            <Card className="hover:shadow-md transition">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base flex items-center gap-2">
+                  <BookOpen className="h-4 w-4 text-primary" />
+                  {t('performance.studyPlan')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                {diagnosis.studyPlan.map((step, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <span className="flex-none mt-0.5 w-5 h-5 rounded-full bg-primary/10 text-primary text-xs font-bold flex items-center justify-center">
+                      {step.step}
+                    </span>
+                    <div className="flex-1">
+                      <span className="text-sm text-slate-700">{step.action}</span>
+                      <span className="ml-2 text-xs text-muted-foreground">({step.duration})</span>
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
           </div>
+        </div>
+      )}
+
+      {/* Readiness gauge */}
+      <Card className="hover:shadow-md transition">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base flex items-center gap-2">
+            <TrendingUp className="h-4 w-4 text-green-600" />
+            {t('performance.readinessScore')}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col items-center gap-4 pb-6">
+          <ReadinessGauge score={readiness} />
+          <Button asChild size="lg" className="gap-2 w-full max-w-xs">
+            <Link href="/create">
+              <Zap className="h-4 w-4" />
+              {t('performance.startSmartTraining')}
+            </Link>
+          </Button>
         </CardContent>
       </Card>
     </div>
   );
 }
 
-export default function PerformanceDetail() {
+// ─── Tab 2: Concept Map ───────────────────────────────────────────────────────
+
+type ConceptEntry = {
+  concept: string;
+  subject: string;
+  topic: string;
+  attempts: number;
+  correct: number;
+  avgTime: number;
+  status: string;
+};
+
+const statusConfig: Record<string, { label: string; colorClass: string; badgeClass: string }> = {
+  mastered: { label: 'mastered', colorClass: 'text-green-700', badgeClass: 'bg-green-100 text-green-700' },
+  stabilizing: { label: 'stabilizing', colorClass: 'text-blue-700', badgeClass: 'bg-blue-100 text-blue-700' },
+  repairing: { label: 'repairing', colorClass: 'text-orange-700', badgeClass: 'bg-orange-100 text-orange-700' },
+  struggling: { label: 'struggling', colorClass: 'text-red-700', badgeClass: 'bg-red-100 text-red-700' },
+  'under-sampled': { label: 'underSampled', colorClass: 'text-slate-500', badgeClass: 'bg-slate-100 text-slate-600' },
+  decaying: { label: 'decaying', colorClass: 'text-yellow-700', badgeClass: 'bg-yellow-100 text-yellow-700' },
+};
+
+function ConceptMapTab({
+  data,
+  t,
+}: {
+  data: PageData;
+  t: ReturnType<typeof useI18n>['t'];
+}) {
+  const [expanded, setExpanded] = useState<Set<string>>(new Set());
+
+  // Build concept entries from mastery table or fallback to computed
+  const conceptEntries = useMemo<ConceptEntry[]>(() => {
+    if (data.conceptMastery.length > 0) {
+      return data.conceptMastery.map((row) => ({
+        concept: row.micro_concept,
+        subject: row.subject,
+        topic: row.topic,
+        attempts: row.attempts,
+        correct: row.correct,
+        avgTime: 0,
+        status: row.status,
+      }));
+    }
+    // fallback: compute from answers + metadata
+    const map = new Map<string, ConceptEntry>();
+    data.answers.forEach((a) => {
+      const meta = data.metadata.get(a.question_id);
+      if (!meta) return;
+      const key = `${meta.subject}::${meta.topic}::${meta.micro_concept ?? meta.topic}`;
+      const entry = map.get(key) ?? {
+        concept: meta.micro_concept ?? meta.topic,
+        subject: meta.subject,
+        topic: meta.topic,
+        attempts: 0,
+        correct: 0,
+        avgTime: 0,
+        status: 'under-sampled',
+      };
+      entry.attempts++;
+      if (a.is_correct) entry.correct++;
+      entry.avgTime = (entry.avgTime * (entry.attempts - 1) + (a.time_spent_seconds ?? 0)) / entry.attempts;
+      const acc = pct(entry.correct, entry.attempts);
+      entry.status = entry.attempts < 3 ? 'under-sampled' : acc >= 80 ? 'mastered' : acc >= 65 ? 'stabilizing' : acc >= 50 ? 'repairing' : 'struggling';
+      map.set(key, entry);
+    });
+    return [...map.values()] as ConceptEntry[];
+  }, [data]);
+
+  const bySubject = useMemo(() => {
+    const m = new Map<string, Map<string, ConceptEntry[]>>();
+    conceptEntries.forEach((e) => {
+      const topics = m.get(e.subject) ?? new Map<string, ConceptEntry[]>();
+      const list = topics.get(e.topic) ?? [];
+      list.push(e);
+      topics.set(e.topic, list);
+      m.set(e.subject, topics);
+    });
+    return m;
+  }, [conceptEntries]);
+
+  const subjectEntries = [...bySubject.entries()] as [string, Map<string, ConceptEntry[]>][];
+
+  if (conceptEntries.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16 gap-3">
+        <MapIcon className="h-10 w-10 text-muted-foreground" />
+        <p className="text-muted-foreground">{t('performance.noDataYet')}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-3 animate-in fade-in duration-500">
+      <h2 className="text-lg font-bold text-slate-800">{t('performance.conceptMastery')}</h2>
+      {subjectEntries.map(([subject, topics]) => {
+        const isOpen = expanded.has(subject);
+        const topicEntries = [...topics.entries()] as [string, ConceptEntry[]][];
+        return (
+          <Card key={subject} className="overflow-hidden hover:shadow-md transition">
+            <button
+              className="w-full flex items-center justify-between p-4 text-left hover:bg-slate-50 transition"
+              onClick={() => {
+                const next = new Set(expanded);
+                isOpen ? next.delete(subject) : next.add(subject);
+                setExpanded(next);
+              }}
+            >
+              <div className="flex items-center gap-2">
+                {isOpen ? <ChevronDown className="h-4 w-4 text-muted-foreground" /> : <ChevronRight className="h-4 w-4 text-muted-foreground" />}
+                <span className="font-semibold text-slate-800">{subject}</span>
+                <Badge variant="outline" className="text-xs">{[...topics.values()].flat().length} concepts</Badge>
+              </div>
+            </button>
+            {isOpen && (
+              <div className="border-t">
+                {topicEntries.map(([topic, concepts]) => (
+                  <div key={topic} className="p-4 border-b last:border-0">
+                    <div className="text-sm font-medium text-slate-600 mb-3">{topic}</div>
+                    <div className="space-y-2">
+                      {concepts.map((c: ConceptEntry, i: number) => {
+                        const accuracy = pct(c.correct, c.attempts);
+                        const cfg = statusConfig[c.status] ?? statusConfig['under-sampled'];
+                        return (
+                          <div key={i} className="flex items-center gap-3 p-2 rounded-lg bg-slate-50 hover:bg-slate-100 transition">
+                            <div className="flex-1 min-w-0">
+                              <div className="text-sm font-medium text-slate-800 truncate">{c.concept}</div>
+                              <div className="flex items-center gap-3 text-xs text-muted-foreground mt-0.5">
+                                <span>{t('performance.accuracy', { pct: accuracy })}</span>
+                                <span>{c.attempts} attempts</span>
+                                {c.avgTime > 0 && <span>{t('performance.avgTimeLabel', { sec: Math.round(c.avgTime) })}</span>}
+                              </div>
+                            </div>
+                            <Badge className={cn('shrink-0 text-xs', cfg.badgeClass)}>
+                              {t(`performance.${cfg.label}` as Parameters<typeof t>[0])}
+                            </Badge>
+                            <Button asChild size="sm" variant="outline" className="shrink-0 h-7 text-xs gap-1">
+                              <Link href="/create">
+                                <Wrench className="h-3 w-3" />
+                                {t('performance.repairAction')}
+                              </Link>
+                            </Button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </Card>
+        );
+      })}
+    </div>
+  );
+}
+
+// ─── Tab 3: Error Pattern ────────────────────────────────────────────────────
+
+const ERROR_COLORS: Record<string, string> = {
+  'Issue Spotting Error': '#ef4444',
+  'Rule Recall Error': '#f97316',
+  'Rule Application Error': '#f59e0b',
+  'Exception Missed': '#eab308',
+  'Fact Trigger Missed': '#84cc16',
+  'Similar Concept Confusion': '#06b6d4',
+  'Distractor Trap': '#8b5cf6',
+  'Time Pressure Guess': '#ec4899',
+  'Changed Correct to Wrong': '#64748b',
+  Unknown: '#cbd5e1',
+};
+
+function ErrorPatternTab({
+  data,
+  t,
+}: {
+  data: PageData;
+  t: ReturnType<typeof useI18n>['t'];
+}) {
+  const errorEntries = useMemo(() => {
+    return Object.entries(data.errorTypeBreakdown)
+      .sort((a, b) => b[1] - a[1])
+      .map(([type, count]) => ({
+        type,
+        count,
+        color: ERROR_COLORS[type] ?? '#94a3b8',
+      }));
+  }, [data.errorTypeBreakdown]);
+
+  const totalErrors = errorEntries.reduce((s, e) => s + e.count, 0);
+  const pieData = errorEntries.map((e) => ({ name: e.type, value: e.count, color: e.color }));
+
+  if (totalErrors === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16 gap-3">
+        <CheckCircle2 className="h-10 w-10 text-green-400" />
+        <p className="text-muted-foreground">{t('performance.noDataYet')}</p>
+      </div>
+    );
+  }
+
+  const topError = errorEntries[0];
+
+  return (
+    <div className="space-y-6 animate-in fade-in duration-500">
+      <h2 className="text-lg font-bold text-slate-800">{t('performance.errorTypes')}</h2>
+      <div className="grid gap-6 md:grid-cols-2">
+        {/* Donut chart */}
+        <Card className="hover:shadow-md transition">
+          <CardContent className="pt-6">
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={pieData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={90}
+                    dataKey="value"
+                    isAnimationActive
+                    animationDuration={800}
+                  >
+                    {pieData.map((entry, i) => (
+                      <Cell key={i} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip formatter={(val) => [`${val} (${Math.round(Number(val) / totalErrors * 100)}%)`, '']} />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Ranked list */}
+        <Card className="hover:shadow-md transition">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base">{t('performance.errorTypes')}</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {errorEntries.map((entry, i) => (
+              <div key={i} className="space-y-1">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-slate-700 truncate">{entry.type}</span>
+                  <span className="text-muted-foreground ml-2 shrink-0">{entry.count} ({Math.round(entry.count / totalErrors * 100)}%)</span>
+                </div>
+                <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                  <div
+                    className="h-full rounded-full transition-all duration-700"
+                    style={{ width: `${(entry.count / totalErrors) * 100}%`, backgroundColor: entry.color }}
+                  />
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Insight text */}
+      {topError && (
+        <Card className="border-amber-200 bg-amber-50 hover:shadow-md transition">
+          <CardContent className="p-4 flex items-start gap-3">
+            <Lightbulb className="h-5 w-5 text-amber-600 mt-0.5 shrink-0" />
+            <p className="text-sm text-amber-900">
+              Your most common error pattern is <strong>{topError.type}</strong> ({Math.round(topError.count / totalErrors * 100)}% of errors).
+              Focus on this type during your next review session.
+            </p>
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+}
+
+// ─── Tab 4: Trap Intelligence ─────────────────────────────────────────────────
+
+function TrapIntelTab({
+  data,
+  t,
+}: {
+  data: PageData;
+  t: ReturnType<typeof useI18n>['t'];
+}) {
+  type TrapEntry = { trap: string; count: number; examples: string[] };
+  type ConfusionPair = { pair: string; count: number };
+
+  const trapEntries = useMemo<TrapEntry[]>(() => {
+    const trapMap = new Map<string, { count: number; examples: string[] }>();
+    data.answers.forEach((a) => {
+      if (!a.is_correct) {
+        const meta = data.metadata.get(a.question_id);
+        const trap = meta?.trap_type;
+        if (trap) {
+          const entry = trapMap.get(trap) ?? { count: 0, examples: [] };
+          entry.count++;
+          if (entry.examples.length < 2 && meta?.topic) entry.examples.push(meta.topic);
+          trapMap.set(trap, entry);
+        }
+      }
+    });
+    return ([...trapMap.entries()] as [string, { count: number; examples: string[] }][])
+      .sort((a, b) => b[1].count - a[1].count)
+      .map(([trap, info]) => ({ trap, ...info }));
+  }, [data]);
+
+  // Confusion pairs: concepts where user keeps getting wrong after being right
+  const confusionPairs = useMemo<ConfusionPair[]>(() => {
+    const pairMap = new Map<string, { count: number }>();
+    data.answers.forEach((a) => {
+      if (!a.is_correct) {
+        const meta = data.metadata.get(a.question_id);
+        if (meta?.micro_concept && meta?.topic) {
+          const key = `${meta.topic} ↔ ${meta.micro_concept}`;
+          const p = pairMap.get(key) ?? { count: 0 };
+          p.count++;
+          pairMap.set(key, p);
+        }
+      }
+    });
+    return ([...pairMap.entries()] as [string, { count: number }][])
+      .filter(([, v]) => v.count >= 2)
+      .sort((a, b) => b[1].count - a[1].count)
+      .slice(0, 8)
+      .map(([pair, info]) => ({ pair, ...info }));
+  }, [data]);
+
+  if (trapEntries.length === 0 && confusionPairs.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16 gap-3 animate-in fade-in duration-500">
+        <AlertTriangle className="h-10 w-10 text-muted-foreground" />
+        <p className="text-muted-foreground">{t('performance.noDataYet')}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6 animate-in fade-in duration-500">
+      <h2 className="text-lg font-bold text-slate-800">{t('performance.trapAnalysis')}</h2>
+
+      {trapEntries.length > 0 && (
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {trapEntries.map((entry, i) => (
+            <Card key={i} className="hover:shadow-md transition hover:-translate-y-0.5">
+              <CardContent className="p-5">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <AlertTriangle className="h-5 w-5 text-amber-500" />
+                    <span className="font-semibold text-slate-800">{entry.trap}</span>
+                  </div>
+                  <Badge className="bg-red-100 text-red-700 hover:bg-red-100 shrink-0">
+                    {entry.count}×
+                  </Badge>
+                </div>
+                {entry.examples.length > 0 && (
+                  <div className="mt-3 space-y-1">
+                    {entry.examples.map((ex, j) => (
+                      <div key={j} className="text-xs text-muted-foreground flex items-center gap-1">
+                        <ChevronRight className="h-3 w-3" />
+                        {ex}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
+
+      {confusionPairs.length > 0 && (
+        <Card className="hover:shadow-md transition">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base flex items-center gap-2">
+              <Brain className="h-4 w-4 text-purple-500" />
+              Most Confused Concept Pairs
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            {confusionPairs.map((cp, i) => (
+              <div key={i} className="flex items-center justify-between p-2 rounded bg-slate-50">
+                <span className="text-sm text-slate-700">{cp.pair}</span>
+                <Badge variant="outline">{cp.count}×</Badge>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+}
+
+// ─── Tab 5: Progress ──────────────────────────────────────────────────────────
+
+function ProgressTab({
+  data,
+  t,
+}: {
+  data: PageData;
+  t: ReturnType<typeof useI18n>['t'];
+}) {
+  const trendData = data.recentTrend.map((acc, i) => ({ session: `S${i + 1}`, accuracy: acc }));
+  const readiness = Math.round(pct(data.correctAttempts, data.totalAttempts) * 0.85);
+  const masteredCount = data.conceptMastery.filter((c) => c.status === 'mastered').length;
+  const repairRate = data.conceptMastery.length > 0
+    ? Math.round((masteredCount / data.conceptMastery.length) * 100)
+    : 0;
+  const totalMinutes = Math.round((data.answers.reduce((s, a) => s + (a.time_spent_seconds ?? 0), 0)) / 60);
+
+  const statCards = [
+    { icon: <Flame className="h-7 w-7 text-orange-500" />, label: 'Study Streak', value: `${data.streakDays}d` },
+    { icon: <CheckCircle2 className="h-7 w-7 text-green-600" />, label: t('performance.correctTotal'), value: `${data.correctAttempts}/${data.totalAttempts}` },
+    { icon: <Clock3 className="h-7 w-7 text-blue-500" />, label: 'Time Invested', value: `${totalMinutes}m` },
+    { icon: <Target className="h-7 w-7 text-primary" />, label: t('performance.overallAccuracy'), value: `${pct(data.correctAttempts, data.totalAttempts)}%` },
+  ];
+
+  return (
+    <div className="space-y-6 animate-in fade-in duration-500">
+      {/* Stat cards */}
+      <div className="grid gap-4 md:grid-cols-4">
+        {statCards.map((card, i) => (
+          <Card key={i} className="hover:shadow-md transition hover:-translate-y-0.5">
+            <CardContent className="flex items-center gap-3 p-5">
+              {card.icon}
+              <div>
+                <p className="text-xs text-muted-foreground">{card.label}</p>
+                <p className="text-2xl font-bold">{card.value}</p>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Trend chart */}
+      {trendData.length > 1 && (
+        <Card className="hover:shadow-md transition">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base flex items-center gap-2">
+              <TrendingUp className="h-4 w-4 text-green-600" />
+              {t('performance.recentTrend')}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="h-56">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={trendData}>
+                  <XAxis dataKey="session" />
+                  <YAxis domain={[0, 100]} unit="%" />
+                  <Tooltip formatter={(v) => [`${v}%`, 'Accuracy']} />
+                  <Line
+                    type="monotone"
+                    dataKey="accuracy"
+                    stroke="hsl(var(--primary))"
+                    strokeWidth={2}
+                    dot={{ r: 4 }}
+                    isAnimationActive
+                    animationDuration={800}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Concept repair rate */}
+      {data.conceptMastery.length > 0 && (
+        <Card className="hover:shadow-md transition">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base">Concept Mastery Progress</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span className="text-muted-foreground">Mastered concepts</span>
+                <span className="font-semibold">{masteredCount} / {data.conceptMastery.length} ({repairRate}%)</span>
+              </div>
+              <div className="h-3 rounded-full bg-slate-100 overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-green-500 transition-all duration-1000"
+                  style={{ width: `${repairRate}%` }}
+                />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Readiness */}
+      <Card className="hover:shadow-md transition">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base flex items-center gap-2">
+            <TrendingUp className="h-4 w-4 text-green-600" />
+            {t('performance.readinessScore')}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col items-center">
+          <ReadinessGauge score={readiness} />
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+// ─── Main Page ────────────────────────────────────────────────────────────────
+
+export default function PerformancePage() {
   const { user } = useAuth();
   const { t, language } = useI18n();
-  const [data, setData] = useState<PerformanceData | null>(null);
+  const [pageData, setPageData] = useState<PageData | null>(null);
   const [loading, setLoading] = useState(true);
   const [visible, setVisible] = useState(false);
+  const mounted = useRef(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 50);
@@ -473,129 +926,99 @@ export default function PerformanceDetail() {
   }, []);
 
   useEffect(() => {
-    const labels = {
-      unknownSubject: t('performance.unknownSubject'),
-      unknownChapter: t('performance.unknownChapter'),
-      locale: language === 'en' ? 'en-US' : language,
-    };
+    if (mounted.current) return;
+    mounted.current = true;
 
-    const loadPerformance = async () => {
+    const load = async () => {
       if (!supabase || !user?.id) {
-        const emptyOverall: OverallStats = {
-          totalCorrect: 0, totalIncorrect: 0, totalOmitted: 0,
-          answerChanges: { correctToIncorrect: 0, incorrectToCorrect: 0, incorrectToIncorrect: 0 },
-          usedQuestions: 0, unusedQuestions: 0, totalQuestions: 0,
-          testsCreated: 0, testsCompleted: 0, suspendedTests: 0,
-        };
-        setData(buildPerformanceData([], new Map(), labels, emptyOverall));
+        setPageData({
+          answers: [], metadata: new Map(), conceptMastery: [],
+          totalAttempts: 0, correctAttempts: 0, avgTimeSeconds: 0,
+          streakDays: 0, errorTypeBreakdown: {}, recentTrend: [], weakConcepts: [],
+        });
         setLoading(false);
         return;
       }
 
       setLoading(true);
 
-      const [answerRowsResult, progressResult, sessionsResult, questionCountResult] = await Promise.all([
+      const [answersResult, masteryResult] = await Promise.all([
         supabase
           .from('practice_answers')
-          .select('question_id, is_correct, answered_at, time_spent_seconds')
+          .select('question_id, is_correct, answered_at, time_spent_seconds, confidence, changed_answer, error_type')
           .eq('user_id', user.id)
           .order('answered_at', { ascending: true })
           .limit(5000),
         supabase
-          .from('user_question_progress')
-          .select('status')
+          .from('user_concept_mastery')
+          .select('*')
           .eq('user_id', user.id),
-        supabase
-          .from('practice_sessions')
-          .select('id, status')
-          .eq('user_id', user.id),
-        supabase
-          .from('question_chapter_counts')
-          .select('count'),
       ]);
 
-      if (answerRowsResult.error) {
-        console.warn('[PassBar] Failed to load performance answers:', answerRowsResult.error.message);
-        const emptyOverall: OverallStats = {
-          totalCorrect: 0, totalIncorrect: 0, totalOmitted: 0,
-          answerChanges: { correctToIncorrect: 0, incorrectToCorrect: 0, incorrectToIncorrect: 0 },
-          usedQuestions: 0, unusedQuestions: 0, totalQuestions: 0,
-          testsCreated: 0, testsCompleted: 0, suspendedTests: 0,
-        };
-        setData(buildPerformanceData([], new Map(), labels, emptyOverall));
-        setLoading(false);
-        return;
+      const answers = (answersResult.data ?? []) as AnswerRow[];
+      const conceptMastery = (masteryResult.data ?? []) as ConceptMasteryRow[];
+
+      // Load question metadata
+      const questionIds = [...new Set(answers.map((a) => a.question_id))];
+      const metaRows: QuestionMetaRow[] = [];
+      for (const ids of chunk(questionIds, 400)) {
+        const { data: rows } = await supabase
+          .from('questions')
+          .select('id, subject, chapter_id, topic, micro_concept, trap_type, skill_tested')
+          .in('id', ids);
+        if (rows) metaRows.push(...(rows as QuestionMetaRow[]));
       }
+      const metadata = new Map(metaRows.map((r) => [r.id, r]));
 
-      const answers = (answerRowsResult.data ?? []) as AnswerRow[];
-      const progressRows = (progressResult.data ?? []) as Array<{ status: string }>;
-      const sessions = (sessionsResult.data ?? []) as Array<{ id: string; status: string }>;
-      const questionCounts = (questionCountResult.data ?? []) as Array<{ count: number }>;
+      // Compute stats
+      const correct = answers.filter((a) => a.is_correct).length;
+      const totalSecs = answers.reduce((s, a) => s + (a.time_spent_seconds ?? 0), 0);
+      const avgTime = answers.length > 0 ? Math.round(totalSecs / answers.length) : 0;
 
-      const totalCorrect = progressRows.filter((r) => r.status === 'correct').length;
-      const totalIncorrect = progressRows.filter((r) => r.status === 'incorrect').length;
-      const totalOmitted = progressRows.filter((r) => r.status === 'omitted').length;
-      const usedQuestions = progressRows.filter((r) => r.status !== 'omitted').length;
-      const totalQuestions = questionCounts.reduce((sum, r) => sum + (r.count ?? 0), 0);
-      const unusedQuestions = Math.max(0, totalQuestions - progressRows.length);
+      const errorTypeBreakdown = computeErrorTypeBreakdown(answers);
+      const recentTrend = computeRecentTrend(answers);
+      const streakDays = computeStreakDays(answers);
 
-      const testsCreated = sessions.length;
-      const testsCompleted = sessions.filter((s) => s.status === 'completed').length;
-      const suspendedTests = sessions.filter((s) => s.status === 'suspended').length;
+      // Weak concepts
+      const conceptMap = new Map<string, { concept: string; subject: string; topic: string; attempts: number; correct: number; totalTime: number }>();
+      answers.forEach((a) => {
+        const meta = metadata.get(a.question_id);
+        if (!meta) return;
+        const key = `${meta.subject}::${meta.topic}::${meta.micro_concept ?? meta.topic}`;
+        const entry = conceptMap.get(key) ?? { concept: meta.micro_concept ?? meta.topic, subject: meta.subject, topic: meta.topic, attempts: 0, correct: 0, totalTime: 0 };
+        entry.attempts++;
+        if (a.is_correct) entry.correct++;
+        entry.totalTime += a.time_spent_seconds ?? 0;
+        conceptMap.set(key, entry);
+      });
+      type ConceptBucket = { concept: string; subject: string; topic: string; attempts: number; correct: number; totalTime: number };
+      const weakConcepts = ([...conceptMap.values()] as ConceptBucket[])
+        .filter((c) => c.attempts >= 2 && pct(c.correct, c.attempts) < 65)
+        .sort((a, b) => pct(a.correct, a.attempts) - pct(b.correct, b.attempts))
+        .slice(0, 10)
+        .map((c) => ({ ...c, avgTime: Math.round(c.totalTime / c.attempts) }));
 
-      const overall: OverallStats = {
-        totalCorrect,
-        totalIncorrect,
-        totalOmitted,
-        answerChanges: computeAnswerChanges(answers),
-        usedQuestions,
-        unusedQuestions,
-        totalQuestions,
-        testsCreated,
-        testsCompleted,
-        suspendedTests,
-      };
-
-      const metadata = await getQuestionMetadata(answers.map((answer) => answer.question_id));
-      setData(buildPerformanceData(answers, metadata, labels, overall));
+      setPageData({
+        answers,
+        metadata,
+        conceptMastery,
+        totalAttempts: answers.length,
+        correctAttempts: correct,
+        avgTimeSeconds: avgTime,
+        streakDays,
+        errorTypeBreakdown,
+        recentTrend,
+        weakConcepts,
+      });
       setLoading(false);
     };
 
-    loadPerformance();
-  }, [language, t, user?.id]);
+    load();
+  }, [user?.id]);
 
-  const weakChapters = useMemo(() => (
-    (data?.chapterStats ?? []).filter((chapter) => chapter.attempts >= 1).slice(0, 8)
-  ), [data?.chapterStats]);
+  if (loading) return <LoadingSkeleton />;
 
-  const strongChapters = useMemo(() => (
-    [...(data?.chapterStats ?? [])]
-      .filter((chapter) => chapter.attempts >= 1)
-      .sort((a, b) => percent(b.correct, b.attempts) - percent(a.correct, a.attempts) || b.attempts - a.attempts)
-      .slice(0, 5)
-  ), [data?.chapterStats]);
-
-  const overallAccuracy = data ? percent(data.correctAttempts, data.totalAttempts) : 0;
-  const accuracyCount = useCountUp(loading ? 0 : overallAccuracy);
-
-  if (loading) {
-    return (
-      <div className="space-y-6">
-        <header>
-          <h1 className="text-4xl font-bold text-primary">{t('performance.title')}</h1>
-          <p className="text-lg text-muted-foreground">{t('performance.loading')}</p>
-        </header>
-        <Card>
-          <CardContent className="h-[200px] animate-pulse bg-muted/20" />
-        </Card>
-        <Card>
-          <CardContent className="h-[420px] animate-pulse bg-muted/20" />
-        </Card>
-      </div>
-    );
-  }
-
-  if (!data || data.totalAttempts === 0) {
+  if (!pageData || pageData.totalAttempts === 0) {
     return (
       <div className="space-y-6">
         <header>
@@ -607,9 +1030,7 @@ export default function PerformanceDetail() {
             <Activity className="h-10 w-10 text-muted-foreground" />
             <div>
               <h2 className="text-2xl font-semibold">{t('performance.noAnswersTitle')}</h2>
-              <p className="mt-2 max-w-xl text-muted-foreground">
-                {t('performance.noAnswersDescription')}
-              </p>
+              <p className="mt-2 max-w-xl text-muted-foreground">{t('performance.noAnswersDescription')}</p>
             </div>
             <Button asChild>
               <Link href="/create">{t('performance.startPractice')}</Link>
@@ -620,6 +1041,14 @@ export default function PerformanceDetail() {
     );
   }
 
+  const tabItems = [
+    { value: 'prescription', label: t('performance.tabs.prescription'), icon: <Sparkles className="h-4 w-4" /> },
+    { value: 'conceptMap', label: t('performance.tabs.conceptMap'), icon: <MapIcon className="h-4 w-4" /> },
+    { value: 'errorPattern', label: t('performance.tabs.errorPattern'), icon: <AlertTriangle className="h-4 w-4" /> },
+    { value: 'trapIntel', label: t('performance.tabs.trapIntel'), icon: <Lightbulb className="h-4 w-4" /> },
+    { value: 'progress', label: t('performance.tabs.progress'), icon: <TrendingUp className="h-4 w-4" /> },
+  ];
+
   return (
     <div
       className={cn(
@@ -629,161 +1058,39 @@ export default function PerformanceDetail() {
     >
       <header>
         <h1 className="text-4xl font-bold text-primary">{t('performance.title')}</h1>
+        <p className="text-muted-foreground mt-1">{t('performance.description')}</p>
       </header>
 
-      {/* Overall Performance — UWorld-style summary */}
-      <OverallPerformanceSection overall={data.overall} t={t} />
+      <Tabs defaultValue="prescription">
+        <TabsList className="flex flex-wrap h-auto gap-1 mb-2">
+          {tabItems.map((tab) => (
+            <TabsTrigger key={tab.value} value={tab.value} className="flex items-center gap-1.5">
+              {tab.icon}
+              <span className="hidden sm:inline">{tab.label}</span>
+            </TabsTrigger>
+          ))}
+        </TabsList>
 
-      {/* Summary stat cards */}
-      <div className="grid gap-4 md:grid-cols-4">
-        {[
-          { icon: <Target className="h-9 w-9 text-primary" />, label: t('performance.overallAccuracy'), value: `${accuracyCount}%`, delay: 0 },
-          { icon: <CheckCircle2 className="h-9 w-9 text-green-600" />, label: t('performance.correctTotal'), value: `${data.correctAttempts} / ${data.totalAttempts}`, delay: 80 },
-          { icon: <Clock3 className="h-9 w-9 text-slate-600" />, label: t('performance.avgTime'), value: formatSeconds(data.averageSeconds), delay: 160 },
-          { icon: <Activity className="h-9 w-9 text-primary" />, label: t('performance.subjectsPracticed'), value: String(data.subjectStats.length), delay: 240 },
-        ].map((item, i) => (
-          <Card
-            key={i}
-            className="transition-all duration-500 hover:shadow-md hover:-translate-y-0.5"
-            style={{ transitionDelay: `${item.delay}ms` }}
-          >
-            <CardContent className="flex items-center gap-4 p-5">
-              {item.icon}
-              <div>
-                <p className="text-sm text-muted-foreground">{item.label}</p>
-                <p className="text-3xl font-bold">{item.value}</p>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+        <TabsContent value="prescription">
+          <PrescriptionTab data={pageData} t={t} language={language} />
+        </TabsContent>
 
-      <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
-        <Card className="transition-all duration-500 hover:shadow-md">
-          <CardHeader>
-            <CardTitle>{t('performance.subjectAccuracy')}</CardTitle>
-            <CardDescription>{t('performance.subjectAccuracyDescription')}</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {data.subjectStats.map((subject, index) => {
-              const accuracy = percent(subject.correct, subject.attempts);
-              return (
-                <div key={subject.key} className="space-y-2">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <div className="font-semibold text-slate-800">{subject.label}</div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Badge variant="outline">{subject.correct}/{subject.attempts}</Badge>
-                      <span>{accuracy}%</span>
-                    </div>
-                  </div>
-                  <div className="h-3 overflow-hidden rounded-full bg-slate-100">
-                    <div
-                      className="h-full rounded-full transition-all duration-700"
-                      style={{
-                        width: `${accuracy}%`,
-                        backgroundColor: chartColors[index % chartColors.length],
-                        transitionDelay: `${index * 80}ms`,
-                      }}
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </CardContent>
-        </Card>
+        <TabsContent value="conceptMap">
+          <ConceptMapTab data={pageData} t={t} />
+        </TabsContent>
 
-        <Card className="transition-all duration-500 hover:shadow-md">
-          <CardHeader>
-            <CardTitle>{t('performance.highestYieldReview')}</CardTitle>
-            <CardDescription>{t('performance.highestYieldDescription')}</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {weakChapters.map((chapter) => {
-              const accuracy = percent(chapter.correct, chapter.attempts);
-              return (
-                <div key={chapter.key} className="rounded-md border border-slate-200 p-3 transition-all duration-300 hover:border-slate-300 hover:shadow-sm">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <div className="font-semibold text-slate-900">{chapter.label}</div>
-                      <div className="text-sm text-muted-foreground">{chapter.subject}</div>
-                    </div>
-                    <Badge className={cn(
-                      'shrink-0',
-                      accuracy < 50 ? 'bg-red-100 text-red-700 hover:bg-red-100' : 'bg-amber-100 text-amber-700 hover:bg-amber-100',
-                    )}>
-                      {accuracy}%
-                    </Badge>
-                  </div>
-                  <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
-                    <AlertTriangle className="h-4 w-4" />
-                    {t('performance.correctCount', { correct: chapter.correct, total: chapter.attempts })}
-                  </div>
-                </div>
-              );
-            })}
-          </CardContent>
-        </Card>
-      </div>
+        <TabsContent value="errorPattern">
+          <ErrorPatternTab data={pageData} t={t} />
+        </TabsContent>
 
-      <Card className="transition-all duration-500 hover:shadow-md">
-        <CardHeader>
-          <CardTitle>{t('performance.questionsOverTime')}</CardTitle>
-          <CardDescription>{t('performance.questionsOverTimeDescription')}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="h-[420px] min-w-0 w-full">
-            <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
-              <BarChart data={data.weeklyRows}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                <XAxis dataKey="week" />
-                <YAxis allowDecimals={false} />
-                <Tooltip />
-                <Legend />
-                {data.weeklySubjects.map((subject, index) => (
-                  <Bar
-                    key={subject}
-                    dataKey={subject}
-                    fill={chartColors[index % chartColors.length]}
-                    radius={[4, 4, 0, 0]}
-                    isAnimationActive
-                    animationDuration={800}
-                    animationEasing="ease-out"
-                    animationBegin={index * 100}
-                  />
-                ))}
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </CardContent>
-      </Card>
+        <TabsContent value="trapIntel">
+          <TrapIntelTab data={pageData} t={t} />
+        </TabsContent>
 
-      <Card className="transition-all duration-500 hover:shadow-md">
-        <CardHeader>
-          <CardTitle>{t('performance.strongChapters')}</CardTitle>
-          <CardDescription>{t('performance.strongChaptersDescription')}</CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {strongChapters.map((chapter, i) => {
-            const accuracy = percent(chapter.correct, chapter.attempts);
-            return (
-              <div
-                key={chapter.key}
-                className="rounded-md border border-green-100 bg-green-50/60 p-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
-                style={{ transitionDelay: `${i * 60}ms` }}
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <div className="font-semibold text-slate-900">{chapter.label}</div>
-                  <Badge className="bg-primary text-primary-foreground hover:bg-primary">{accuracy}%</Badge>
-                </div>
-                <div className="mt-1 text-sm text-green-800">{chapter.subject}</div>
-                <div className="mt-3 text-sm text-muted-foreground">
-                  {t('performance.correctCount', { correct: chapter.correct, total: chapter.attempts })}
-                </div>
-              </div>
-            );
-          })}
-        </CardContent>
-      </Card>
+        <TabsContent value="progress">
+          <ProgressTab data={pageData} t={t} />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
