@@ -3,9 +3,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { 
-  PlusCircle, 
-  History, 
+import {
+  PlusCircle,
+  History,
   BookOpen,
   ChevronDown,
   LayoutGrid,
@@ -101,15 +101,15 @@ export function AppSidebar() {
                   <CollapsibleContent>
                     <div className="space-y-1">
                       {section.items.map((item) => (
-                        <Link 
-                          key={item.href} 
+                        <Link
+                          key={item.href}
                           href={item.href}
                           data-tour={item.tourId}
                           onClick={handleNavigate}
                           className={cn(
                             "flex items-center gap-3 pl-10 pr-4 py-3 text-xs transition-colors",
-                            pathname === item.href 
-                              ? "bg-white/10 text-white border-l-2 border-primary" 
+                            pathname === item.href
+                              ? "bg-white/10 text-white border-l-2 border-primary"
                               : "text-slate-400 hover:text-white hover:bg-white/5"
                           )}
                         >

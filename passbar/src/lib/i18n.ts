@@ -269,6 +269,7 @@ type TranslationKey =
   | 'performance.tabs.conceptMap'
   | 'performance.tabs.errorPattern'
   | 'performance.tabs.trapIntel'
+  | 'performance.tabs.errorTrap'
   | 'performance.tabs.progress'
   | 'performance.aiDiagnosis'
   | 'performance.studyPlan'
@@ -300,7 +301,32 @@ type TranslationKey =
   | 'performance.errorConfusion'
   | 'performance.errorDistractor'
   | 'performance.errorTimePressure'
-  | 'performance.errorChangedAnswer';
+  | 'performance.errorChangedAnswer'
+  | 'performance.intelligentDiagnosis'
+  | 'performance.totalAnswered'
+  | 'performance.overallAccuracyLabel'
+  | 'performance.taskListTitle'
+  | 'performance.urgentBreakthrough'
+  | 'performance.mindsetDesensitize'
+  | 'performance.routineConsolidate'
+  | 'performance.executeRx'
+  | 'performance.reviewChanged'
+  | 'performance.scaledScoreSimulator'
+  | 'performance.fatigueChart'
+  | 'performance.bllFocusInfo'
+  | 'performance.createFocusDrill'
+  | 'performance.errorOriginTitle'
+  | 'performance.overthinkingIndex'
+  | 'performance.trapDissection'
+  | 'performance.discoveryLabel'
+  | 'performance.mindsetLabel'
+  | 'performance.phaseView'
+  | 'performance.notActivated'
+  | 'performance.questionsAttempted'
+  | 'performance.aiUpdatedAt'
+  | 'performance.distanceToNY'
+  | 'performance.simulatedScore'
+  | 'performance.estimatedBoostTo';
 
 type Dictionary = Record<TranslationKey, string>;
 
@@ -570,6 +596,7 @@ const en: Dictionary = {
   'performance.tabs.conceptMap': 'Concept Mastery Map',
   'performance.tabs.errorPattern': 'Error Pattern Analysis',
   'performance.tabs.trapIntel': 'Trap Intelligence',
+  'performance.tabs.errorTrap': 'Errors & Trap Insights',
   'performance.tabs.progress': 'Progress & Readiness',
   'performance.aiDiagnosis': 'AI Learning Diagnosis',
   'performance.studyPlan': 'Today\'s Study Plan',
@@ -602,6 +629,31 @@ const en: Dictionary = {
   'performance.errorDistractor': 'Distractor Trap',
   'performance.errorTimePressure': 'Time Pressure Guess',
   'performance.errorChangedAnswer': 'Changed Correct to Wrong',
+  'performance.intelligentDiagnosis': 'Intelligent Exam Diagnosis',
+  'performance.totalAnswered': 'Total Answered',
+  'performance.overallAccuracyLabel': 'Overall Accuracy',
+  'performance.taskListTitle': "Today's Prescription Tasks",
+  'performance.urgentBreakthrough': 'Urgent Breakthrough',
+  'performance.mindsetDesensitize': 'Mindset Reset',
+  'performance.routineConsolidate': 'Routine Consolidation',
+  'performance.executeRx': 'Start ({count} Qs)',
+  'performance.reviewChanged': 'Review Changed ({count} Qs)',
+  'performance.scaledScoreSimulator': 'MBE Scaled Score Simulator',
+  'performance.fatigueChart': 'Stamina & Fatigue Curve (100Q Simulation)',
+  'performance.bllFocusInfo': 'BLL FOCUS INFO',
+  'performance.createFocusDrill': 'Create Focused Drill',
+  'performance.errorOriginTitle': 'MBE Error Origin Model',
+  'performance.overthinkingIndex': 'Overthinking Index',
+  'performance.trapDissection': 'Trap Dissection',
+  'performance.discoveryLabel': 'Core Discovery',
+  'performance.mindsetLabel': 'Combat Mindset',
+  'performance.phaseView': 'Phase View',
+  'performance.notActivated': 'Not Activated',
+  'performance.questionsAttempted': '{count} Qs Attempted',
+  'performance.aiUpdatedAt': 'Updated: {time}',
+  'performance.distanceToNY': 'Distance to NY pass ({score}): {diff} pts',
+  'performance.simulatedScore': 'Simulated Scaled Score',
+  'performance.estimatedBoostTo': 'Estimated boost to',
 };
 
 const zhHans: Dictionary = {
@@ -871,6 +923,7 @@ const zhHans: Dictionary = {
   'performance.tabs.conceptMap': '观念掌握地图',
   'performance.tabs.errorPattern': '错误模式分析',
   'performance.tabs.trapIntel': '陷阱洞察',
+  'performance.tabs.errorTrap': '错误与陷阱洞察',
   'performance.tabs.progress': '进步与准备度',
   'performance.aiDiagnosis': 'AI 学习诊断',
   'performance.studyPlan': '今日学习计划',
@@ -903,6 +956,31 @@ const zhHans: Dictionary = {
   'performance.errorDistractor': 'Distractor Trap',
   'performance.errorTimePressure': 'Time Pressure Guess',
   'performance.errorChangedAnswer': 'Changed Correct to Wrong',
+  'performance.intelligentDiagnosis': '智能备考表现诊断',
+  'performance.totalAnswered': '累计已做',
+  'performance.overallAccuracyLabel': '综合正确率',
+  'performance.taskListTitle': '今日处方任务清单',
+  'performance.urgentBreakthrough': '急需突破',
+  'performance.mindsetDesensitize': '心态脱敏',
+  'performance.routineConsolidate': '常规巩固',
+  'performance.executeRx': '执行此处方 ({count} 题)',
+  'performance.reviewChanged': '重温纠结题 ({count} 题)',
+  'performance.scaledScoreSimulator': '智慧预测：MBE Scaled Score 达标沙盘预演',
+  'performance.fatigueChart': '考场续航力与抗疲劳诊断曲线 (100题模拟)',
+  'performance.bllFocusInfo': 'BLL 考点精要',
+  'performance.createFocusDrill': '一键创建专项练习',
+  'performance.errorOriginTitle': 'MBE 做错根源归因模型 (Error Origin)',
+  'performance.overthinkingIndex': '二选一心理指标',
+  'performance.trapDissection': '智慧陷阱剖析：拆解你踩过的「完美干扰项」',
+  'performance.discoveryLabel': '核心发现 (Discovery)',
+  'performance.mindsetLabel': '实战心态 (Mindset)',
+  'performance.phaseView': '程序演进全景图',
+  'performance.notActivated': '未激活',
+  'performance.questionsAttempted': '已做 {count} 题',
+  'performance.aiUpdatedAt': '更新于：{time}',
+  'performance.distanceToNY': '距离 NY 通过标准 ({score}) 还差 {diff} 分',
+  'performance.simulatedScore': '模拟 SCALED SCORE 落点',
+  'performance.estimatedBoostTo': '预估提升至',
 };
 
 const zhHant: Dictionary = {
@@ -1171,6 +1249,7 @@ const zhHant: Dictionary = {
   'performance.tabs.conceptMap': '觀念掌握地圖',
   'performance.tabs.errorPattern': '錯誤模式分析',
   'performance.tabs.trapIntel': '陷阱洞察',
+  'performance.tabs.errorTrap': '錯誤與陷阱洞察',
   'performance.tabs.progress': '進步與準備度',
   'performance.aiDiagnosis': 'AI 學習診斷',
   'performance.studyPlan': '今日學習計劃',
@@ -1203,6 +1282,31 @@ const zhHant: Dictionary = {
   'performance.errorDistractor': 'Distractor Trap',
   'performance.errorTimePressure': 'Time Pressure Guess',
   'performance.errorChangedAnswer': 'Changed Correct to Wrong',
+  'performance.intelligentDiagnosis': '智能備考表現診斷',
+  'performance.totalAnswered': '累計已做',
+  'performance.overallAccuracyLabel': '綜合正確率',
+  'performance.taskListTitle': '今日處方任務清單',
+  'performance.urgentBreakthrough': '急需突破',
+  'performance.mindsetDesensitize': '心態脫敏',
+  'performance.routineConsolidate': '常規鞏固',
+  'performance.executeRx': '執行此處方 ({count} 題)',
+  'performance.reviewChanged': '重溫糾結題 ({count} 題)',
+  'performance.scaledScoreSimulator': '智慧預測：MBE Scaled Score 達標沙盤預演',
+  'performance.fatigueChart': '考場續航力與抗疲勞診斷曲線 (100題模擬)',
+  'performance.bllFocusInfo': 'BLL 考點精要',
+  'performance.createFocusDrill': '一鍵創建專項練習',
+  'performance.errorOriginTitle': 'MBE 做錯根源歸因模型 (Error Origin)',
+  'performance.overthinkingIndex': '二選一心理指標',
+  'performance.trapDissection': '智慧陷阱剖析：拆解你踩過的「完美干擾項」',
+  'performance.discoveryLabel': '核心發現 (Discovery)',
+  'performance.mindsetLabel': '實戰心態 (Mindset)',
+  'performance.phaseView': '程序演進全景圖',
+  'performance.notActivated': '未激活',
+  'performance.questionsAttempted': '已做 {count} 題',
+  'performance.aiUpdatedAt': '更新於：{time}',
+  'performance.distanceToNY': '距離 NY 通過標準 ({score}) 還差 {diff} 分',
+  'performance.simulatedScore': '模擬 SCALED SCORE 落點',
+  'performance.estimatedBoostTo': '預估提升至',
 };
 
 const dictionaries: Record<InterfaceLanguage, Dictionary> = {
