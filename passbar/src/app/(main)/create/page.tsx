@@ -14,7 +14,7 @@ import { GuidedTour, GuidedTourStep } from '@/components/GuidedTour';
 import { useI18n } from '@/lib/i18n';
 import { getQuestionsByChapterIds, getSubjects } from '@/lib/question-bank';
 import { Subject, TestMode, TestSession } from '@/lib/types';
-import { emptyQuestionStatusCounts, getQuestionStatusCounts, QuestionStatusCounts } from '@/lib/question-progress';
+import { emptyQuestionStatusCounts, getQuestionStatusCounts, QuestionStatusCounts, filterQuestionIdsByStatus } from '@/lib/question-progress';
 import { createPracticeSessionRecord } from '@/lib/practice-sessions';
 import { Info, HelpCircle, Zap, BookOpen, Clock, Eye, Shuffle, ListOrdered } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -171,7 +171,15 @@ export default function CreateTestPage() {
     }
 
     setIsStarting(true);
-    const matchingQuestions = await getQuestionsByChapterIds(Array.from(selectedChapters), count);
+    // Fetch all questions in the selected chapters (no limit yet — we filter by status first)
+    const allChapterQuestions = await getQuestionsByChapterIds(Array.from(selectedChapters), 99999);
+    const filteredIds = await filterQuestionIdsByStatus(
+      user?.id,
+      allChapterQuestions.map(q => q.id),
+      statusFilters,
+    );
+    const filteredSet = new Set(filteredIds);
+    const matchingQuestions = allChapterQuestions.filter(q => filteredSet.has(q.id)).slice(0, count);
     const ordered = questionOrder === 'random'
       ? [...matchingQuestions].sort(() => 0.5 - Math.random())
       // Sequential: already ordered by chapter_id + index from DB, just use as-is

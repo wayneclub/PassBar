@@ -150,6 +150,59 @@ export async function getQuestionAnswerStats(questionId: string): Promise<{
   };
 }
 
+export type QuestionStatusFilter = {
+  Unused: boolean;
+  Incorrect: boolean;
+  Marked: boolean;
+  Omitted: boolean;
+  Correct: boolean;
+};
+
+/**
+ * Returns the subset of questionIds that match any of the enabled status filters.
+ * If no filters are enabled, returns all questionIds (fallback).
+ */
+export async function filterQuestionIdsByStatus(
+  userId: string | undefined,
+  questionIds: string[],
+  filters: QuestionStatusFilter,
+): Promise<string[]> {
+  const anyEnabled = Object.values(filters).some(Boolean);
+  if (!anyEnabled) return questionIds;
+
+  // If no user or no supabase, treat everything as Unused
+  if (!userId || !supabase) {
+    return filters.Unused ? questionIds : [];
+  }
+
+  const { data, error } = await supabase
+    .from('user_question_progress')
+    .select('question_id, status, is_marked')
+    .eq('user_id', userId)
+    .in('question_id', questionIds);
+
+  if (error || !data) {
+    console.warn('[PassBar] Failed to load question statuses for filtering:', error?.message);
+    return questionIds;
+  }
+
+  const progressMap = new Map<string, { status: string; is_marked: boolean }>(
+    (data as Array<{ question_id: string; status: string; is_marked: boolean | null }>).map(
+      (row) => [row.question_id, { status: row.status, is_marked: Boolean(row.is_marked) }]
+    )
+  );
+
+  return questionIds.filter((id) => {
+    const progress = progressMap.get(id);
+    if (!progress) return filters.Unused; // not in progress table → Unused
+    if (filters.Marked && progress.is_marked) return true;
+    if (filters.Correct && progress.status === 'correct') return true;
+    if (filters.Incorrect && progress.status === 'incorrect') return true;
+    if (filters.Omitted && progress.status === 'omitted') return true;
+    return false;
+  });
+}
+
 export async function getMarkedQuestionIds(userId: string, questionIds: string[]): Promise<Set<string>> {
   if (!supabase || questionIds.length === 0) return new Set();
 
