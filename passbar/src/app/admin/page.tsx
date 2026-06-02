@@ -3,10 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import { Users, Clock, CheckCircle, TrendingUp, Activity, BookOpen } from 'lucide-react';
 import Link from 'next/link';
-import { useAuth } from '@/components/AuthProvider';
-import { fetchAdminStats, type AdminStats } from '@/lib/admin-api';
+import { getAdminDb } from '@/lib/admin-client';
 
-type Stats = AdminStats;
+type Stats = {
+  total: number; pending: number; approved: number;
+  rejected: number; activeToday: number; totalSessions: number;
+};
 
 function StatCard({
   icon: Icon,
@@ -41,17 +43,33 @@ function StatCard({
 }
 
 export default function AdminDashboardPage() {
-  const { user } = useAuth();
   const [stats, setStats] = useState<Stats>({ total: 0, pending: 0, approved: 0, rejected: 0, activeToday: 0, totalSessions: 0 });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user?.id) return;
-    fetchAdminStats(user.id)
-      .then(setStats)
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, [user?.id]);
+    async function load() {
+      const db = getAdminDb();
+      if (!db) { setLoading(false); return; }
+      const todayStart = new Date();
+      todayStart.setHours(0, 0, 0, 0);
+      const [{ data: profiles }, { data: active }, { count: sessionCount }] = await Promise.all([
+        db.from('profiles').select('status'),
+        db.from('profiles').select('id').gte('last_seen_at', todayStart.toISOString()),
+        db.from('practice_sessions').select('*', { count: 'exact', head: true }),
+      ]);
+      const rows = (profiles ?? []) as { status: string }[];
+      setStats({
+        total: rows.length,
+        pending: rows.filter((r) => r.status === 'pending').length,
+        approved: rows.filter((r) => r.status === 'approved').length,
+        rejected: rows.filter((r) => r.status === 'rejected').length,
+        activeToday: (active ?? []).length,
+        totalSessions: sessionCount ?? 0,
+      });
+      setLoading(false);
+    }
+    load().catch(console.error);
+  }, []);
 
   return (
     <div className="space-y-8">

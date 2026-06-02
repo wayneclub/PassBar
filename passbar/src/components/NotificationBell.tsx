@@ -9,7 +9,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/components/AuthProvider';
-import { fetchAdminUsers, type AdminUser } from '@/lib/admin-api';
+import { getAdminDb } from '@/lib/admin-client';
+import type { AdminUser } from '@/app/admin/users/page';
 
 type Notification = {
   id: string;
@@ -34,18 +35,18 @@ export function NotificationBell({ variant = 'light', size = 'md' }: { variant?:
   const isAdmin = profile?.role === 'admin';
 
   const load = useCallback(async () => {
-    if (!user?.id || !isAdmin) return;
+    if (!isAdmin) return;
     try {
-      const users = await fetchAdminUsers(user.id);
-      const pending = users.filter((u) => u.status === 'pending');
-      setNotifications(
-        pending.map((u) => ({
-          id: u.id,
-          type: 'pending_user',
-          user: u,
-          createdAt: u.created_at ?? new Date().toISOString(),
-        })),
-      );
+      const db = getAdminDb();
+      if (!db) return;
+      const { data } = await db.from('profiles').select('id, email, full_name, avatar_url, role, status, last_seen_at, created_at').eq('status', 'pending');
+      const pending = (data ?? []) as AdminUser[];
+      setNotifications(pending.map((u) => ({
+        id: u.id,
+        type: 'pending_user' as const,
+        user: u,
+        createdAt: u.created_at ?? new Date().toISOString(),
+      })));
     } catch {
       // silently ignore
     }

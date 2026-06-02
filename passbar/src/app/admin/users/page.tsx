@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { Suspense, useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
   Check, X, Clock, RefreshCw, Search,
@@ -14,11 +14,20 @@ import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem,
   DropdownMenuTrigger, DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
-import { useAuth } from '@/components/AuthProvider';
-import { fetchAdminUsers, updateUserStatus, type AdminUser } from '@/lib/admin-api';
+import { getAdminDb } from '@/lib/admin-client';
 
 type ProfileStatus = 'pending' | 'approved' | 'rejected';
 type FilterType = 'all' | ProfileStatus;
+export type AdminUser = {
+  id: string;
+  email: string | null;
+  full_name: string | null;
+  avatar_url: string | null;
+  role: string;
+  status: ProfileStatus;
+  last_seen_at: string | null;
+  created_at: string | null;
+};
 type UserRow = AdminUser;
 
 const STATUS_META: Record<ProfileStatus, { label: string; dot: string; badge: string }> = {
@@ -48,11 +57,9 @@ function formatDate(v: string | null) {
   return d.toLocaleDateString('zh-TW', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
-export default function AdminUsersPage() {
+function AdminUsersContent() {
   const searchParams = useSearchParams();
   const initialFilter = (searchParams.get('filter') as FilterType) ?? 'all';
-  const { user } = useAuth();
-
   const [users, setUsers] = useState<UserRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -61,26 +68,27 @@ export default function AdminUsersPage() {
   const [search, setSearch] = useState('');
 
   const loadUsers = useCallback(async () => {
-    if (!user?.id) return;
+    const db = getAdminDb();
+    if (!db) { setLoading(false); return; }
     setLoading(true);
-    try {
-      setError(null);
-      const data = await fetchAdminUsers(user.id);
-      setUsers(data);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : '載入失敗');
-    } finally {
-      setLoading(false);
-    }
-  }, [user?.id]);
+    setError(null);
+    const { data, error: err } = await db
+      .from('profiles')
+      .select('id, email, full_name, avatar_url, role, status, last_seen_at, created_at')
+      .order('created_at', { ascending: false });
+    if (err) setError(err.message);
+    else setUsers((data ?? []) as UserRow[]);
+    setLoading(false);
+  }, []);
 
   useEffect(() => { loadUsers(); }, [loadUsers]);
 
   async function doUpdateStatus(userId: string, status: ProfileStatus) {
-    if (!user?.id) return;
+    const db = getAdminDb();
+    if (!db) return;
     setUpdating(userId);
     try {
-      await updateUserStatus(user.id, userId, status);
+      await db.from('profiles').update({ status, updated_at: new Date().toISOString() }).eq('id', userId);
       setUsers((prev) => prev.map((u) => u.id === userId ? { ...u, status } : u));
     } catch (err) {
       console.error(err);
@@ -329,5 +337,17 @@ export default function AdminUsersPage() {
         </p>
       )}
     </div>
+  );
+}
+
+export default function AdminUsersPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex justify-center py-20">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+      </div>
+    }>
+      <AdminUsersContent />
+    </Suspense>
   );
 }
