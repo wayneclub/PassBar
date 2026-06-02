@@ -865,3 +865,33 @@ with check (public.is_admin());
 update public.profiles
 set role = 'admin', status = 'approved'
 where email = 'me@wayneclub.com';
+
+-- Dev seed: mock user for local testing (NEXT_PUBLIC_USE_MOCK_AUTH=true)
+-- Must bypass FK by inserting into auth.users first
+insert into auth.users (
+  id, email, encrypted_password, email_confirmed_at,
+  raw_user_meta_data, created_at, updated_at, aud, role
+)
+values (
+  '00000000-0000-0000-0000-000000000001',
+  'mock@example.com',
+  '',
+  now(),
+  '{"name": "Mock User", "full_name": "Mock User"}'::jsonb,
+  now(), now(), 'authenticated', 'authenticated'
+)
+on conflict (id) do nothing;
+
+insert into public.profiles (id, email, full_name, role, status, last_seen_at)
+values (
+  '00000000-0000-0000-0000-000000000001',
+  'mock@example.com',
+  'Mock User',
+  'admin',
+  'approved',
+  now()
+)
+on conflict (id) do update set
+  role = 'admin',
+  status = 'approved',
+  updated_at = now();

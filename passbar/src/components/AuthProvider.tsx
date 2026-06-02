@@ -137,8 +137,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const useMockAuth = process.env.NEXT_PUBLIC_USE_MOCK_AUTH === 'true';
 
     if (useMockAuth) {
+      const mockUserId = process.env.NEXT_PUBLIC_MOCK_USER_ID ?? '00000000-0000-0000-0000-000000000001';
       const mockUser = {
-        id: '00000000-0000-0000-0000-000000000001',
+        id: mockUserId,
         email: 'mock@example.com',
         user_metadata: { name: 'Mock User', full_name: 'Mock User' },
         app_metadata: {},

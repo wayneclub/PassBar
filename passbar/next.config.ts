@@ -4,7 +4,7 @@ const isGithubPages = process.env.GITHUB_PAGES === 'true';
 const basePath = isGithubPages ? '/PassBar' : '';
 
 const nextConfig: NextConfig = {
-  output: 'export',
+  ...(isGithubPages ? { output: 'export' } : {}),
   trailingSlash: true,
   basePath,
   assetPrefix: basePath ? `${basePath}/` : undefined,

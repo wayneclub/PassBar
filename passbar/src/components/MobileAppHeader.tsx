@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { LogOut, Menu, Settings, UserRound } from 'lucide-react';
+import { NotificationBell } from '@/components/NotificationBell';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/components/AuthProvider';
@@ -31,7 +32,7 @@ export function MobileAppHeader() {
     .toUpperCase() || 'PB';
 
   return (
-    <header className="sticky top-0 z-40 grid min-h-16 grid-cols-[3rem_1fr_3rem] items-center gap-3 border-b border-slate-200 bg-white px-4 py-2 shadow-sm md:hidden">
+    <header className="sticky top-0 z-40 grid min-h-16 grid-cols-[3rem_1fr_auto] items-center gap-3 border-b border-slate-200 bg-white px-4 py-2 shadow-sm md:hidden">
       <Button
         type="button"
         aria-label={t('nav.openNavigation')}
@@ -45,7 +46,9 @@ export function MobileAppHeader() {
         <BrandLogo variant="wordmark" className="h-12 w-48 max-w-full" />
       </Link>
 
-      <DropdownMenu>
+      <div className="flex items-center gap-2">
+        <NotificationBell variant="light" />
+        <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button
             type="button"
@@ -93,6 +96,7 @@ export function MobileAppHeader() {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      </div>
     </header>
   );
 }

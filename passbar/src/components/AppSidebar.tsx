@@ -13,12 +13,15 @@ import {
   LogOut,
   Settings,
   Shield,
+  Users,
+  LayoutDashboard,
   type LucideIcon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/components/AuthProvider';
 import { useI18n } from '@/lib/i18n';
 import { BrandLogo } from '@/components/BrandLogo';
+import { NotificationBell } from '@/components/NotificationBell';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -148,25 +151,49 @@ export function AppSidebar() {
             </SidebarMenuButton>
           </SidebarMenuItem>
           {profile?.role === 'admin' && (
-            <SidebarMenuItem>
-              <Link
-                href="/admin"
-                onClick={handleNavigate}
-                className={cn(
-                  "flex items-center gap-3 py-6 px-4 text-amber-400 transition-colors hover:bg-white/5 hover:text-amber-300",
-                  pathname === '/admin' && "bg-white/10 border-l-2 border-amber-400"
-                )}
-              >
-                <Shield className="w-4 h-4" />
-                <span className="flex-1 font-semibold text-xs uppercase tracking-wider">管理後台</span>
-              </Link>
+            <SidebarMenuItem className="px-0">
+              <Collapsible defaultOpen={pathname.startsWith('/admin')} className="w-full">
+                <CollapsibleTrigger asChild>
+                  <SidebarMenuButton className="text-amber-400 hover:text-amber-300 hover:bg-white/5 py-6 px-4">
+                    <Shield className="w-4 h-4" />
+                    <span className="flex-1 font-semibold text-xs uppercase tracking-wider">管理後台</span>
+                    <ChevronDown className="w-3 h-3 text-amber-600" />
+                  </SidebarMenuButton>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <div className="space-y-1">
+                    {[
+                      { href: '/admin', label: '數據總覽', icon: LayoutDashboard, exact: true },
+                      { href: '/admin/users', label: '使用者管理', icon: Users, exact: false },
+                    ].map((item) => {
+                      const active = item.exact ? pathname === item.href : pathname.startsWith(item.href);
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={handleNavigate}
+                          className={cn(
+                            "flex items-center gap-3 pl-10 pr-4 py-3 text-xs transition-colors",
+                            active
+                              ? "bg-amber-500/10 text-amber-300 border-l-2 border-amber-400"
+                              : "text-amber-500/60 hover:text-amber-300 hover:bg-white/5"
+                          )}
+                        >
+                          <item.icon className="w-4 h-4" />
+                          <span>{item.label}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
             </SidebarMenuItem>
           )}
         </SidebarMenu>
       </SidebarContent>
 
       <SidebarFooter className="hidden space-y-3 bg-black/20 p-4 md:flex">
-        <div className="flex items-center gap-3 rounded-md bg-white/5 p-2 text-left">
+        <div className="flex items-center gap-2 rounded-md bg-white/5 p-2">
           <Avatar className="h-9 w-9 border border-white/10 !bg-primary">
             <AvatarFallback className="!bg-primary text-xs font-bold !text-primary-foreground">
               {initials}
@@ -176,6 +203,7 @@ export function AppSidebar() {
             <p className="truncate text-xs font-semibold text-slate-200">{displayName}</p>
             <p className="text-[10px] uppercase tracking-widest text-slate-500">{role === 'student' ? t('role.student') : role}</p>
           </div>
+          <NotificationBell variant="dark" size="sm" />
         </div>
         <Button
           className="w-full justify-start gap-2 border-white/10 bg-transparent text-slate-300 hover:bg-white/10 hover:text-white"
