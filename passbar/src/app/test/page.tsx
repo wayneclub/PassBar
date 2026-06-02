@@ -30,6 +30,7 @@ import { requestGeminiFeedback } from '@/lib/gemini-feedback';
 import { defaultStudySettings, getStudySettings, type ContentMode, type DisplayOptions, type TextSize } from '@/lib/study-settings';
 import { useI18n } from '@/lib/i18n';
 import { Check, Clock3, ListChecks, X } from 'lucide-react';
+import { ReportQuestionDialog } from '@/components/ReportQuestionDialog';
 
 type AnswerMeta = {
   elapsedSeconds: number;
@@ -133,10 +134,14 @@ function TestSessionContent() {
             })
             .filter((entry): entry is [string, string] => Boolean(entry)),
         );
+        // Only keep questions that were actually answered
+        const answeredQuestionIds = sessionQuestions
+          .map((q) => q.id)
+          .filter((id) => id in dbAnswers);
         hydratedSession = {
           ...currentSession,
-          questionIds: sessionQuestions.map((question) => question.id),
-          questionCount: sessionQuestions.length,
+          questionIds: answeredQuestionIds,
+          questionCount: answeredQuestionIds.length,
           userAnswers: dbAnswers,
           status: 'Completed',
         };
@@ -152,11 +157,10 @@ function TestSessionContent() {
 
       if (sessionQuestions.length > 0) {
         const existingAnswer = hydratedSession.userAnswers[sessionQuestions[0].id];
-        if (existingAnswer) {
-          setSelectedAnswer(existingAnswer);
-          if (hydratedSession.mode === 'Tutor' || hydratedSession.mode === 'Browse' || isReviewMode) setSubmitted(true);
-        }
-        if (hydratedSession.mode === 'Browse') setSubmitted(true);
+        if (existingAnswer) setSelectedAnswer(existingAnswer);
+        // In review mode always show answers/explanations regardless of whether this question was answered
+        if (isReviewMode || hydratedSession.mode === 'Browse') setSubmitted(true);
+        else if (existingAnswer && hydratedSession.mode === 'Tutor') setSubmitted(true);
       }
     };
 
@@ -372,20 +376,27 @@ function TestSessionContent() {
         }
       }
 
-      nextSession.status = 'Completed';
+      const answeredIds = new Set(Object.keys(nextSession.userAnswers));
+      const isComplete = answeredIds.size >= nextSession.questionIds.length;
+      const dbStatus = isComplete ? 'completed' : 'suspended';
+
+      nextSession.status = isComplete ? 'Completed' : 'Suspended';
       setSession(nextSession);
       persistSession(nextSession);
       await persistSessionAnswers(nextSession);
 
-      const answeredIds = new Set(Object.keys(nextSession.userAnswers));
+      // Only mark questions as omitted if the user actually reached them (index ≤ currentIndex).
+      // Questions beyond currentIndex were never seen — leave them as Unused.
+      const reachedIds = nextSession.questionIds.slice(0, currentIndex + 1);
+      const omittedIds = reachedIds.filter((questionId) => !answeredIds.has(questionId));
       await saveOmittedQuestionProgress({
         userId: user.id,
-        questionIds: nextSession.questionIds.filter((questionId) => !answeredIds.has(questionId)),
+        questionIds: omittedIds,
       });
       await updatePracticeSessionRecord({
         session: nextSession,
         userId: user.id,
-        status: 'completed',
+        status: dbStatus,
       });
       setEndConfirmOpen(false);
       setPendingEndSession(null);
@@ -429,7 +440,8 @@ function TestSessionContent() {
     const nextQuestionId = questions[newIndex].id;
     const nextAnswer = nextSession.userAnswers[nextQuestionId] || null;
     setSelectedAnswer(nextAnswer);
-    setSubmitted(nextSession.mode === 'Browse' || (Boolean(nextAnswer) && (nextSession.mode === 'Tutor' || isReviewMode)));
+    // Review mode: always show answer/explanation; Browse: always; Tutor: only if answered
+    setSubmitted(isReviewMode || nextSession.mode === 'Browse' || (Boolean(nextAnswer) && nextSession.mode === 'Tutor'));
   };
 
   const handleToggleMark = async () => {
@@ -538,7 +550,7 @@ function TestSessionContent() {
         onTimeUpdate={handleTimeUpdate}
         onQuestionSelect={handleNavigate}
         onToggleMark={handleToggleMark}
-        isPaused={isPaused}
+        isPaused={isPaused || isReviewMode}
         contentMode={contentMode}
         onToggleContentMode={() => setContentMode((prev) => prev === 'bilingual' ? 'english' : 'bilingual')}
         subject={currentQuestion?.subject}
@@ -775,6 +787,16 @@ function TestSessionContent() {
                     </div>
                   </div>
                 ) : null}
+
+                {/* Report button — visible after submitting an answer */}
+                {submitted && user?.id && currentQuestion && (
+                  <div className="flex justify-end pt-2">
+                    <ReportQuestionDialog
+                      questionId={currentQuestion.id}
+                      userId={user.id}
+                    />
+                  </div>
+                )}
               </div>
             </div>
             </div>
@@ -808,7 +830,7 @@ function TestSessionContent() {
         onFeedback={handleFeedback}
         showSubmit={showSubmitBtn}
         feedbackLoading={feedbackLoading}
-        isPaused={isPaused}
+        isPaused={isPaused || isReviewMode}
         isTutorMode={session.mode === 'Tutor'}
       />
 

@@ -75,6 +75,23 @@ type TranslationKey =
   | 'settings.savedDescription'
   | 'settings.saveFailed'
   | 'settings.autoSaveHint'
+  | 'settings.profile'
+  | 'settings.profileDescription'
+  | 'settings.displayName'
+  | 'settings.displayNamePlaceholder'
+  | 'settings.updateName'
+  | 'settings.updating'
+  | 'settings.nameUpdated'
+  | 'settings.nameUpdateFailed'
+  | 'settings.clearProgress'
+  | 'settings.clearProgressDescription'
+  | 'settings.clearProgressConfirmTitle'
+  | 'settings.clearProgressConfirmDescription'
+  | 'settings.clearProgressConfirmPlaceholder'
+  | 'settings.clearProgressConfirmHint'
+  | 'settings.clearProgressSuccess'
+  | 'settings.clearProgressFailed'
+  | 'settings.clearing'
   | 'create.title'
   | 'create.testDate'
   | 'create.today'
@@ -94,6 +111,7 @@ type TranslationKey =
   | 'create.questionModeHint'
   | 'create.standard'
   | 'create.custom'
+  | 'create.all'
   | 'create.unused'
   | 'create.unusedHint'
   | 'create.incorrect'
@@ -227,6 +245,10 @@ type TranslationKey =
   | 'review.reviewQuestions'
   | 'review.mixedSubjects'
   | 'review.loading'
+  | 'review.filterAll'
+  | 'review.filterMode'
+  | 'review.answered'
+  | 'review.suspended'
   | 'performance.title'
   | 'performance.description'
   | 'performance.loading'
@@ -402,6 +424,23 @@ const en: Dictionary = {
   'settings.savedDescription': 'Your settings were saved and will apply next time you sign in.',
   'settings.saveFailed': 'Settings were saved locally, but cloud sync failed.',
   'settings.autoSaveHint': 'Changes save automatically.',
+  'settings.profile': 'Profile',
+  'settings.profileDescription': 'Update your display name shown across the app.',
+  'settings.displayName': 'Display Name',
+  'settings.displayNamePlaceholder': 'Your name',
+  'settings.updateName': 'Update Name',
+  'settings.updating': 'Updating…',
+  'settings.nameUpdated': 'Name updated',
+  'settings.nameUpdateFailed': 'Failed to update name',
+  'settings.clearProgress': 'Clear Progress Data',
+  'settings.clearProgressDescription': 'Permanently delete all your question progress, answers, and session history.',
+  'settings.clearProgressConfirmTitle': 'Clear All Progress?',
+  'settings.clearProgressConfirmDescription': 'This will permanently delete all your answers, omitted/correct/incorrect records, and practice session history. This cannot be undone.',
+  'settings.clearProgressConfirmPlaceholder': 'Type RESET to confirm',
+  'settings.clearProgressConfirmHint': 'Type RESET (case-insensitive) to enable the button.',
+  'settings.clearProgressSuccess': 'Progress cleared successfully.',
+  'settings.clearProgressFailed': 'Failed to clear progress.',
+  'settings.clearing': 'Clearing…',
   'create.title': 'Create Test',
   'create.testDate': 'Test Date',
   'create.today': 'Today',
@@ -421,6 +460,7 @@ const en: Dictionary = {
   'create.questionModeHint': 'Choose which question history buckets are eligible for this test.',
   'create.standard': 'Standard',
   'create.custom': 'Custom',
+  'create.all': 'All',
   'create.unused': 'Unused',
   'create.unusedHint': 'Selects questions from a set of new/unseen questions',
   'create.incorrect': 'Incorrect',
@@ -438,7 +478,7 @@ const en: Dictionary = {
   'create.generateTest': 'Generate Test',
   'create.generating': 'Generating...',
   'create.selectChapterAlert': 'Please select at least one chapter with questions.',
-  'create.noQuestionsAlert': 'No questions found for the selected chapters. Check your Supabase import or choose another chapter.',
+  'create.noQuestionsAlert': 'No questions match your current filters. Try enabling Correct, Incorrect, or Omitted to include questions you\'ve already answered.',
   'create.selectedChapters': 'Selected chapters',
   'create.availableQuestions': 'Available questions',
   'create.readyToGenerate': 'Ready to generate',
@@ -554,6 +594,10 @@ const en: Dictionary = {
   'review.reviewQuestions': 'Review Questions',
   'review.mixedSubjects': 'Mixed Subjects',
   'review.loading': 'Loading test history...',
+  'review.suspended': 'Interrupted',
+  'review.filterAll': 'Clear Filters',
+  'review.filterMode': 'Filter',
+  'review.answered': 'answered',
   'performance.title': 'Performance Analytics',
   'performance.description': 'Detailed breakdown of your strengths and opportunities.',
   'performance.loading': 'Loading your saved answer history...',
@@ -729,6 +773,23 @@ const zhHans: Dictionary = {
   'settings.savedDescription': '设置已保存，下次登录会自动套用。',
   'settings.saveFailed': '设置已保存到本机，但云端同步失败。',
   'settings.autoSaveHint': '更改会自动保存。',
+  'settings.profile': '个人资料',
+  'settings.profileDescription': '更新在应用中显示的名称。',
+  'settings.displayName': '显示名称',
+  'settings.displayNamePlaceholder': '您的姓名',
+  'settings.updateName': '更新名称',
+  'settings.updating': '更新中…',
+  'settings.nameUpdated': '名称已更新',
+  'settings.nameUpdateFailed': '更新失败',
+  'settings.clearProgress': '清空做題紀錄',
+  'settings.clearProgressDescription': '永久刪除所有做題進度、答案與練習歷史。',
+  'settings.clearProgressConfirmTitle': '確認清空所有紀錄？',
+  'settings.clearProgressConfirmDescription': '此操作將永久刪除你的所有答題記錄（答對/答錯/略過）及練習歷史，且無法復原。',
+  'settings.clearProgressConfirmPlaceholder': '輸入 RESET 確認',
+  'settings.clearProgressConfirmHint': '輸入 RESET（不區分大小寫）以啟用按鈕。',
+  'settings.clearProgressSuccess': '做題紀錄已清空。',
+  'settings.clearProgressFailed': '清空失敗，請再試一次。',
+  'settings.clearing': '清空中…',
   'create.title': '创建测验',
   'create.testDate': '练习日期',
   'create.today': '今天',
@@ -748,6 +809,7 @@ const zhHans: Dictionary = {
   'create.questionModeHint': '选择本次测验可抽取的题目记录类型。',
   'create.standard': '标准',
   'create.custom': '自定义',
+  'create.all': '全部',
   'create.unused': '未做',
   'create.unusedHint': '从未做过的新题中抽题',
   'create.incorrect': '错误',
@@ -765,7 +827,7 @@ const zhHans: Dictionary = {
   'create.generateTest': '生成练习',
   'create.generating': '生成中...',
   'create.selectChapterAlert': '请选择至少一个有题目的章节。',
-  'create.noQuestionsAlert': '所选章节没有找到题目。请检查 Supabase 导入或选择其他章节。',
+  'create.noQuestionsAlert': '目前的篩選條件找不到題目。請嘗試勾選「答對」、「答錯」或「略過」以包含已答過的題目。',
   'create.selectedChapters': '已选章节',
   'create.availableQuestions': '可用题目',
   'create.readyToGenerate': '准备生成',
@@ -881,6 +943,10 @@ const zhHans: Dictionary = {
   'review.reviewQuestions': '复习题目',
   'review.mixedSubjects': '综合科目',
   'review.loading': '正在加载练习历史...',
+  'review.suspended': '中斷',
+  'review.filterAll': '清除筛选',
+  'review.filterMode': '篩選',
+  'review.answered': '已作答',
   'performance.title': '学习表现分析',
   'performance.description': '细分你的强项与需要加强的地方。',
   'performance.loading': '正在加载已保存的作答记录...',
@@ -1055,6 +1121,23 @@ const zhHant: Dictionary = {
   'settings.savedDescription': '設定已儲存，下次登入會自動套用。',
   'settings.saveFailed': '設定已儲存到本機，但雲端同步失敗。',
   'settings.autoSaveHint': '更改會自動儲存。',
+  'settings.profile': '個人資料',
+  'settings.profileDescription': '更新在應用程式中顯示的名稱。',
+  'settings.displayName': '顯示名稱',
+  'settings.displayNamePlaceholder': '您的姓名',
+  'settings.updateName': '更新名稱',
+  'settings.updating': '更新中…',
+  'settings.nameUpdated': '名稱已更新',
+  'settings.nameUpdateFailed': '更新失敗',
+  'settings.clearProgress': '清空做題紀錄',
+  'settings.clearProgressDescription': '永久刪除所有做題進度、答案與練習歷史。',
+  'settings.clearProgressConfirmTitle': '確認清空所有紀錄？',
+  'settings.clearProgressConfirmDescription': '此操作將永久刪除你的所有答題記錄（答對/答錯/略過）及練習歷史，且無法復原。',
+  'settings.clearProgressConfirmPlaceholder': '輸入 RESET 確認',
+  'settings.clearProgressConfirmHint': '輸入 RESET（不區分大小寫）以啟用按鈕。',
+  'settings.clearProgressSuccess': '做題紀錄已清空。',
+  'settings.clearProgressFailed': '清空失敗，請再試一次。',
+  'settings.clearing': '清空中…',
   'create.title': '建立測驗',
   'create.testDate': '練習日期',
   'create.today': '今天',
@@ -1074,6 +1157,7 @@ const zhHant: Dictionary = {
   'create.questionModeHint': '選擇本次測驗可抽取的題目紀錄類型。',
   'create.standard': '標準',
   'create.custom': '自訂',
+  'create.all': '全部',
   'create.unused': '未做',
   'create.unusedHint': '從未做過的新題中抽題',
   'create.incorrect': '錯誤',
@@ -1091,7 +1175,7 @@ const zhHant: Dictionary = {
   'create.generateTest': '產生練習',
   'create.generating': '產生中...',
   'create.selectChapterAlert': '請選擇至少一個有題目的章節。',
-  'create.noQuestionsAlert': '所選章節沒有找到題目。請檢查 Supabase 匯入或選擇其他章節。',
+  'create.noQuestionsAlert': '目前的篩選條件找不到題目。請嘗試勾選「答對」、「答錯」或「略過」以包含已答過的題目。',
   'create.selectedChapters': '已選章節',
   'create.availableQuestions': '可用題目',
   'create.readyToGenerate': '準備產生',
@@ -1207,6 +1291,10 @@ const zhHant: Dictionary = {
   'review.reviewQuestions': '複習題目',
   'review.mixedSubjects': '綜合科目',
   'review.loading': '正在載入練習歷史...',
+  'review.suspended': '中斷',
+  'review.filterAll': '清除篩選',
+  'review.filterMode': '篩選',
+  'review.answered': '已作答',
   'performance.title': '學習表現分析',
   'performance.description': '細分你的強項與需要加強的地方。',
   'performance.loading': '正在載入已儲存的作答紀錄...',

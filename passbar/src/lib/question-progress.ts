@@ -158,6 +158,25 @@ export type QuestionStatusFilter = {
   Correct: boolean;
 };
 
+/** Returns a map of question_id → {status, is_marked} for all answered questions for the user. */
+export async function getAllUserProgress(
+  userId: string,
+): Promise<Map<string, { status: string; is_marked: boolean }>> {
+  if (!supabase) return new Map();
+
+  const { data, error } = await supabase
+    .from('user_question_progress')
+    .select('question_id, status, is_marked')
+    .eq('user_id', userId);
+
+  if (error || !data) return new Map();
+  return new Map(
+    (data as Array<{ question_id: string; status: string; is_marked: boolean | null }>).map(
+      (r) => [r.question_id, { status: r.status, is_marked: Boolean(r.is_marked) }],
+    ),
+  );
+}
+
 /**
  * Returns the subset of questionIds that match any of the enabled status filters.
  * If no filters are enabled, returns all questionIds (fallback).
@@ -301,5 +320,42 @@ export async function saveOmittedQuestionProgress(input: {
 
   if (error) {
     console.warn('[PassBar] Failed to save omitted progress:', error.message);
+  }
+}
+
+/** Deletes all question progress and practice sessions for the given user via server API (bypasses RLS). */
+export async function clearUserProgress(userId: string): Promise<boolean> {
+  // Also clear localStorage sessions
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('passbar_sessions');
+    localStorage.removeItem('uprep_sessions');
+  }
+
+  try {
+    // Get current session token to authenticate the API call
+    const token = supabase ? (await supabase.auth.getSession()).data.session?.access_token : null;
+    if (!token) {
+      console.warn('[PassBar] No auth token for clear-progress');
+      return false;
+    }
+
+    const res = await fetch('/api/clear-progress', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({ userId }),
+    });
+
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      console.warn('[PassBar] clear-progress API error:', data.error);
+      return false;
+    }
+    return Boolean(data.ok);
+  } catch (err) {
+    console.warn('[PassBar] clear-progress fetch failed:', err);
+    return false;
   }
 }

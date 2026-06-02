@@ -175,6 +175,68 @@ export async function getSubjects(): Promise<Subject[]> {
   return Array.from(grouped.values());
 }
 
+export async function getQuestionIdsByChapterIds(chapterIds: string[]): Promise<string[]> {
+  if (!supabase) {
+    return MOCK_QUESTIONS
+      .filter((q) => chapterIds.includes(getMockChapterId(q.id)))
+      .map((q) => q.id);
+  }
+
+  const PAGE = 1000;
+  const allIds: string[] = [];
+  let offset = 0;
+
+  while (true) {
+    const { data, error } = await supabase
+      .from('questions')
+      .select('id')
+      .in('chapter_id', chapterIds)
+      .range(offset, offset + PAGE - 1);
+
+    if (error || !data || data.length === 0) break;
+    allIds.push(...(data as Array<{ id: string }>).map((r) => r.id));
+    if (data.length < PAGE) break;
+    offset += PAGE;
+  }
+
+  return allIds;
+}
+
+/** Returns a map of chapter_id → question IDs for all questions. Lightweight (id + chapter_id only).
+ *  Paginates in batches of 1000 to work around Supabase max_rows server limit. */
+export async function getAllQuestionIdsByChapter(): Promise<Record<string, string[]>> {
+  if (!supabase) {
+    const map: Record<string, string[]> = {};
+    for (const q of MOCK_QUESTIONS) {
+      const cid = getMockChapterId(q.id);
+      (map[cid] ??= []).push(q.id);
+    }
+    return map;
+  }
+
+  const PAGE = 1000;
+  const map: Record<string, string[]> = {};
+  let offset = 0;
+
+  while (true) {
+    const { data, error } = await supabase
+      .from('questions')
+      .select('id, chapter_id')
+      .range(offset, offset + PAGE - 1);
+
+    if (error || !data || data.length === 0) break;
+
+    for (const r of data as Array<{ id: string; chapter_id: string }>) {
+      (map[r.chapter_id] ??= []).push(r.id);
+    }
+
+    if (data.length < PAGE) break;
+    offset += PAGE;
+  }
+
+  return map;
+}
+
 export async function getQuestionsByChapterIds(chapterIds: string[], limit: number): Promise<Question[]> {
   if (!supabase) {
     return MOCK_QUESTIONS

@@ -23,6 +23,7 @@ type AuthContextValue = {
   user: User | null;
   profile: UserProfile | null;
   signOut: () => Promise<void>;
+  refreshProfile: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -56,7 +57,7 @@ async function recordAuthEvent(eventType: AuthEventType, session: Session | null
     },
   });
 
-  if (error && error.message !== '204') {
+  if (error && !error.message.includes('204')) {
     console.warn('[PassBar] Failed to record auth event:', error.message);
   }
 }
@@ -102,8 +103,19 @@ function profileFallback(user: User): UserProfile {
   };
 }
 
+async function touchLastSeen(userId: string) {
+  if (!supabase) return;
+  await supabase
+    .from('profiles')
+    .update({ last_seen_at: new Date().toISOString() })
+    .eq('id', userId);
+}
+
 async function getProfile(user: User): Promise<UserProfile> {
   if (!supabase) return profileFallback(user);
+
+  // Update last_seen_at on every session load / sign-in
+  void touchLastSeen(user.id);
 
   const { data, error } = await supabase
     .from('profiles')
@@ -133,32 +145,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     let active = true;
-
-    const useMockAuth = process.env.NEXT_PUBLIC_USE_MOCK_AUTH === 'true';
-
-    if (useMockAuth) {
-      const mockUserId = process.env.NEXT_PUBLIC_MOCK_USER_ID ?? '00000000-0000-0000-0000-000000000001';
-      const mockUser = {
-        id: mockUserId,
-        email: 'mock@example.com',
-        user_metadata: { name: 'Mock User', full_name: 'Mock User' },
-        app_metadata: {},
-        aud: 'authenticated',
-        created_at: new Date().toISOString(),
-      } as any;
-      const mockSession = {
-        access_token: 'mock-token',
-        token_type: 'bearer',
-        expires_in: 3600,
-        refresh_token: 'mock-refresh-token',
-        user: mockUser,
-      } as Session;
-
-      setSession(mockSession);
-      setProfile({ ...profileFallback(mockUser), role: 'admin', status: 'approved' });
-      setLoading(false);
-      return;
-    }
 
     supabase.auth.getSession().then(({ data }) => {
       if (!active) return;
@@ -209,6 +195,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       clearLocalSupabaseSession();
       setSession(null);
       setProfile(null);
+    },
+    refreshProfile: async () => {
+      if (!session?.user) return;
+      const nextProfile = await getProfile(session.user);
+      setProfile(nextProfile);
     },
   }), [loading, session, profile]);
 

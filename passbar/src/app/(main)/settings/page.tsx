@@ -1,14 +1,19 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from 'react';
-import { BookOpen, CheckCircle2, Cloud, Languages, Loader2, RotateCcw } from 'lucide-react';
+import { BookOpen, CheckCircle2, Cloud, Languages, Loader2, RotateCcw, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle,
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useAuth } from '@/components/AuthProvider';
 import { toast } from '@/hooks/use-toast';
 import { useI18n } from '@/lib/i18n';
+import { clearUserProgress } from '@/lib/question-progress';
 import {
   defaultStudySettings,
   getStudySettings,
@@ -33,6 +38,9 @@ export default function SettingsPage() {
   const [textSize, setTextSize] = useState<TextSize>('medium');
   const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle');
   const saveTimerRef = useRef<number | null>(null);
+  const [clearDialogOpen, setClearDialogOpen] = useState(false);
+  const [clearConfirmText, setClearConfirmText] = useState('');
+  const [clearing, setClearing] = useState(false);
 
   useEffect(() => {
     const settings = getStudySettings();
@@ -123,7 +131,14 @@ export default function SettingsPage() {
         <CardContent>
           <RadioGroup
             value={interfaceLanguage}
-            onValueChange={(value) => commitSettings({ ...currentSettings, interfaceLanguage: value as InterfaceLanguage })}
+            onValueChange={(value) => {
+              const lang = value as InterfaceLanguage;
+              const isChinese = lang === 'zh-Hans' || lang === 'zh-Hant';
+              const nextDisplay = isChinese
+                ? { ...currentSettings.display, zhQA: true, zhExplanation: true }
+                : { ...currentSettings.display, enQA: true, enExplanation: true };
+              commitSettings({ ...currentSettings, interfaceLanguage: lang, display: nextDisplay });
+            }}
           >
             <div className="grid gap-3 md:grid-cols-3">
               {[
@@ -246,6 +261,75 @@ export default function SettingsPage() {
           </Button>
         </CardContent>
       </Card>
+
+      {/* Clear Progress Card */}
+      <Card className="border-red-100 shadow-sm">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-red-600">
+            <Trash2 className="h-4 w-4" />
+            {t('settings.clearProgress')}
+          </CardTitle>
+          <CardDescription>{t('settings.clearProgressDescription')}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Button
+            type="button"
+            variant="outline"
+            className="gap-2 border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300"
+            onClick={() => { setClearConfirmText(''); setClearDialogOpen(true); }}
+          >
+            <Trash2 className="h-4 w-4" />
+            {t('settings.clearProgress')}
+          </Button>
+        </CardContent>
+      </Card>
+
+      {/* Clear Progress Confirmation Dialog */}
+      <Dialog open={clearDialogOpen} onOpenChange={(open) => { if (!clearing) { setClearDialogOpen(open); setClearConfirmText(''); } }}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-red-600">{t('settings.clearProgressConfirmTitle')}</DialogTitle>
+            <DialogDescription>{t('settings.clearProgressConfirmDescription')}</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-2 py-2">
+            <p className="text-xs text-slate-500">{t('settings.clearProgressConfirmHint')}</p>
+            <Input
+              value={clearConfirmText}
+              onChange={(e) => setClearConfirmText(e.target.value)}
+              placeholder={t('settings.clearProgressConfirmPlaceholder')}
+              autoFocus
+              onKeyDown={async (e) => {
+                if (e.key === 'Enter' && clearConfirmText.trim().toLowerCase() === 'reset') {
+                  setClearing(true);
+                  const ok = await clearUserProgress(user!.id);
+                  setClearing(false);
+                  setClearDialogOpen(false);
+                  toast({ title: ok ? t('settings.clearProgressSuccess') : t('settings.clearProgressFailed'), variant: ok ? 'default' : 'destructive' });
+                  if (ok) setTimeout(() => window.location.reload(), 800);
+                }
+              }}
+            />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setClearDialogOpen(false)} disabled={clearing}>
+              {t('dashboard.examDateCancel')}
+            </Button>
+            <Button
+              variant="destructive"
+              disabled={clearing || clearConfirmText.trim().toLowerCase() !== 'reset'}
+              onClick={async () => {
+                setClearing(true);
+                const ok = await clearUserProgress(user!.id);
+                setClearing(false);
+                setClearDialogOpen(false);
+                toast({ title: ok ? t('settings.clearProgressSuccess') : t('settings.clearProgressFailed'), variant: ok ? 'default' : 'destructive' });
+              }}
+            >
+              {clearing ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />{t('settings.clearing')}</> : <><Trash2 className="mr-2 h-4 w-4" />{t('settings.clearProgress')}</>}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <div className="sticky bottom-4 z-10 flex justify-end">
         <div className="flex items-center gap-3 rounded-md border border-slate-200 bg-white/95 px-4 py-3 text-sm font-medium text-slate-600 shadow-sm backdrop-blur">

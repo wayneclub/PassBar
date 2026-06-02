@@ -15,6 +15,7 @@ import {
   Shield,
   Users,
   LayoutDashboard,
+  Pencil,
   type LucideIcon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -35,6 +36,7 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { EditDisplayNameDialog } from '@/components/EditDisplayNameDialog';
 
 type NavigationItem = {
   name: string;
@@ -96,14 +98,14 @@ export function AppSidebar() {
               {section.items.length > 0 ? (
                 <Collapsible defaultOpen className="w-full">
                   <CollapsibleTrigger asChild>
-                    <SidebarMenuButton data-tour={section.tourId} className="text-slate-300 hover:text-white hover:bg-white/5 py-6 px-4">
-                      <section.icon className="w-4 h-4" />
+                    <SidebarMenuButton data-tour={section.tourId} className="h-auto text-slate-300 hover:text-white hover:bg-white/5 py-4 px-4">
+                      <section.icon className="w-4 h-4 shrink-0" />
                       <span className="flex-1 font-semibold text-xs uppercase tracking-wider">{section.name}</span>
                       <ChevronDown className="w-3 h-3 text-slate-500" />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
                   <CollapsibleContent>
-                    <div className="space-y-1">
+                    <div className="space-y-0.5 pb-1">
                       {section.items.map((item) => (
                         <Link
                           key={item.href}
@@ -111,13 +113,13 @@ export function AppSidebar() {
                           data-tour={item.tourId}
                           onClick={handleNavigate}
                           className={cn(
-                            "flex items-center gap-3 pl-10 pr-4 py-3 text-xs transition-colors",
+                            "flex items-center gap-3 pl-10 pr-4 py-3.5 text-xs transition-colors",
                             pathname === item.href
                               ? "bg-white/10 text-white border-l-2 border-primary"
                               : "text-slate-400 hover:text-white hover:bg-white/5"
                           )}
                         >
-                          <item.icon className="w-4 h-4" />
+                          <item.icon className="w-4 h-4 shrink-0" />
                           <span>{item.name}</span>
                         </Link>
                       ))}
@@ -129,39 +131,40 @@ export function AppSidebar() {
                   href={section.href}
                   onClick={handleNavigate}
                   className={cn(
-                    "flex items-center gap-3 py-6 px-4 text-slate-300 transition-colors hover:bg-white/5 hover:text-white",
+                    "flex items-center gap-3 py-4 px-4 text-slate-300 transition-colors hover:bg-white/5 hover:text-white",
                     pathname === section.href && "bg-white/10 text-white border-l-2 border-primary"
                   )}
                 >
-                  <section.icon className="w-4 h-4" />
+                  <section.icon className="w-4 h-4 shrink-0" />
                   <span className="flex-1 font-semibold text-xs uppercase tracking-wider">{section.name}</span>
                 </Link>
               ) : (
-                <SidebarMenuButton className="text-slate-300 hover:text-white hover:bg-white/5 py-6 px-4">
-                  <section.icon className="w-4 h-4" />
+                <SidebarMenuButton className="h-auto text-slate-300 hover:text-white hover:bg-white/5 py-4 px-4">
+                  <section.icon className="w-4 h-4 shrink-0" />
                   <span className="flex-1 font-semibold text-xs uppercase tracking-wider">{section.name}</span>
                 </SidebarMenuButton>
               )}
             </SidebarMenuItem>
           ))}
           <SidebarMenuItem>
-            <SidebarMenuButton className="text-slate-300 hover:text-white hover:bg-white/5 py-6 px-4">
-              <HelpCircle className="w-4 h-4" />
+            <SidebarMenuButton className="h-auto text-slate-300 hover:text-white hover:bg-white/5 py-4 px-4">
+              <HelpCircle className="w-4 h-4 shrink-0" />
               <span className="flex-1 font-semibold text-xs uppercase tracking-wider">{t('nav.help')}</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
           {profile?.role === 'admin' && (
-            <SidebarMenuItem className="px-0">
-              <Collapsible defaultOpen={pathname.startsWith('/admin')} className="w-full">
+            <SidebarMenuItem className="px-0 pt-1">
+              <div className="mx-4 mb-1 border-t border-white/10" />
+              <Collapsible defaultOpen className="w-full">
                 <CollapsibleTrigger asChild>
-                  <SidebarMenuButton className="text-amber-400 hover:text-amber-300 hover:bg-white/5 py-6 px-4">
+                  <SidebarMenuButton className="h-auto text-amber-400 hover:text-amber-300 hover:bg-white/5 py-4 px-4">
                     <Shield className="w-4 h-4" />
                     <span className="flex-1 font-semibold text-xs uppercase tracking-wider">管理後台</span>
                     <ChevronDown className="w-3 h-3 text-amber-600" />
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-                  <div className="space-y-1">
+                  <div className="space-y-0.5 pb-1">
                     {[
                       { href: '/admin', label: '數據總覽', icon: LayoutDashboard, exact: true },
                       { href: '/admin/users', label: '使用者管理', icon: Users, exact: false },
@@ -173,13 +176,13 @@ export function AppSidebar() {
                           href={item.href}
                           onClick={handleNavigate}
                           className={cn(
-                            "flex items-center gap-3 pl-10 pr-4 py-3 text-xs transition-colors",
+                            "flex items-center gap-3 pl-10 pr-4 py-3.5 text-xs transition-colors",
                             active
                               ? "bg-amber-500/10 text-amber-300 border-l-2 border-amber-400"
                               : "text-amber-500/60 hover:text-amber-300 hover:bg-white/5"
                           )}
                         >
-                          <item.icon className="w-4 h-4" />
+                          <item.icon className="w-4 h-4 shrink-0" />
                           <span>{item.label}</span>
                         </Link>
                       );
@@ -200,7 +203,14 @@ export function AppSidebar() {
             </AvatarFallback>
           </Avatar>
           <div className="min-w-0 flex-1">
-            <p className="truncate text-xs font-semibold text-slate-200">{displayName}</p>
+            <div className="flex items-center gap-1">
+              <p className="truncate text-xs font-semibold text-slate-200">{displayName}</p>
+              <EditDisplayNameDialog>
+                <button type="button" className="shrink-0 rounded p-0.5 text-slate-500 hover:text-slate-200 transition-colors">
+                  <Pencil className="h-2.5 w-2.5" />
+                </button>
+              </EditDisplayNameDialog>
+            </div>
             <p className="text-[10px] uppercase tracking-widest text-slate-500">{role === 'student' ? t('role.student') : role}</p>
           </div>
           <NotificationBell variant="dark" size="sm" />

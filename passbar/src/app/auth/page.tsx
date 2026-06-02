@@ -66,34 +66,44 @@ function AuthContent() {
     }
   };
 
+  const cookieNotice = (
+    <p className="text-xs leading-5 text-slate-400">
+      By continuing, you agree to our use of cookies to keep you signed in, remember your preferences, and analyse usage.{' '}
+      <a href="/privacy" className="underline underline-offset-2 hover:text-slate-300">Privacy Policy</a>.
+    </p>
+  );
+
   return (
-    <main className="min-h-screen bg-slate-50">
-      <div className="mx-auto grid min-h-screen max-w-6xl grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]">
-        <section className="flex flex-col justify-between bg-secondary p-8 text-white lg:p-12">
+    <main className="flex min-h-dvh flex-col lg:min-h-screen">
+      <div className="mx-auto grid w-full max-w-6xl flex-1 grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]">
+
+        {/* Hero section */}
+        <section className="flex flex-col bg-secondary p-8 text-white lg:justify-between lg:p-12">
           <div>
-            <div className="mb-12 flex items-center gap-4">
-              <BrandLogo className="h-14 w-14 rounded-2xl bg-white p-2.5 shadow-[0_14px_36px_rgba(0,0,0,0.28)]" />
+            <div className="mb-8 flex items-center gap-3 lg:mb-12">
+              <BrandLogo className="h-12 w-12 rounded-2xl bg-white p-2.5 shadow-[0_14px_36px_rgba(0,0,0,0.28)]" />
               <div className="leading-none">
-                <div className="text-3xl font-extrabold tracking-tight">
+                <div className="text-2xl font-extrabold tracking-tight">
                   <span className="text-white">Pass</span><span className="text-primary">Bar</span>
                   <span className="ml-1 text-primary">✦</span>
                 </div>
-                <div className="mt-2 text-xs font-bold uppercase tracking-[0.22em] text-primary/80">MBE QBank</div>
               </div>
             </div>
-            <h1 className="max-w-md text-4xl font-semibold leading-tight lg:text-5xl">
+            <h1 className="max-w-md text-3xl font-semibold leading-tight lg:text-5xl">
               Practice smarter for the bar exam.
             </h1>
-            <p className="mt-5 max-w-md text-base leading-7 text-slate-300">
+            <p className="mt-4 max-w-md text-sm leading-6 text-slate-300 lg:mt-5 lg:text-base lg:leading-7">
               Build custom MBE-style question sets, review every answer with an AI tutor, and focus your study time on the rules that matter most.
             </p>
           </div>
-          <div className="mt-12 border-t border-primary/25 pt-6 text-sm leading-6 text-slate-400">
-            Google sign-in keeps your sessions, answers, marked questions, and performance history synced across devices.
+          {/* Cookie notice — desktop only, inside hero */}
+          <div className="mt-12 hidden border-t border-primary/25 pt-5 lg:block">
+            {cookieNotice}
           </div>
         </section>
 
-        <section className="flex items-center justify-center p-6 lg:p-12">
+        {/* Login section */}
+        <section className="flex items-start justify-center p-6 pt-8 lg:items-center lg:p-12">
           <Card className="w-full max-w-md border-slate-200 shadow-lg">
             <CardHeader>
               <CardTitle className="text-2xl">Continue with Google</CardTitle>
@@ -111,9 +121,7 @@ function AuthContent() {
                   </AlertDescription>
                 </Alert>
               )}
-
               {error && <p className="text-sm font-medium text-destructive">{error}</p>}
-
               <Button
                 className="h-11 w-full gap-3 border-slate-300 bg-white text-slate-800 hover:bg-slate-50"
                 variant="outline"
@@ -126,7 +134,13 @@ function AuthContent() {
             </CardContent>
           </Card>
         </section>
+
       </div>
+
+      {/* Cookie notice — mobile footer */}
+      <footer className="border-t border-slate-200 bg-slate-50 px-6 py-4 text-center lg:hidden">
+        {cookieNotice}
+      </footer>
     </main>
   );
 }

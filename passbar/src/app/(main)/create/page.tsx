@@ -12,9 +12,9 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { useAuth } from '@/components/AuthProvider';
 import { GuidedTour, GuidedTourStep } from '@/components/GuidedTour';
 import { useI18n } from '@/lib/i18n';
-import { getQuestionsByChapterIds, getSubjects } from '@/lib/question-bank';
+import { getAllQuestionIdsByChapter, getQuestionIdsByChapterIds, getQuestionsByChapterIds, getSubjects } from '@/lib/question-bank';
 import { Subject, TestMode, TestSession } from '@/lib/types';
-import { emptyQuestionStatusCounts, getQuestionStatusCounts, QuestionStatusCounts, filterQuestionIdsByStatus } from '@/lib/question-progress';
+import { emptyQuestionStatusCounts, getAllUserProgress, getQuestionStatusCounts, QuestionStatusCounts, filterQuestionIdsByStatus } from '@/lib/question-progress';
 import { createPracticeSessionRecord } from '@/lib/practice-sessions';
 import { Info, HelpCircle, Zap, BookOpen, Clock, Eye, Shuffle, ListOrdered } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -62,10 +62,21 @@ export default function CreateTestPage() {
   const [questionOrder, setQuestionOrder] = useState<'random' | 'sequential'>('random');
   const [isStarting, setIsStarting] = useState(false);
   const [tourOpen, setTourOpen] = useState(false);
+  // Cache of question IDs for currently-selected chapters (avoids re-fetch on filter changes)
+  const [cachedChapterIds, setCachedChapterIds] = useState<string[]>([]);
+  const [filteredAvailableCount, setFilteredAvailableCount] = useState(0);
+  // Per-chapter question IDs + user progress for badge counts
+  const [allChapterQIds, setAllChapterQIds] = useState<Record<string, string[]>>({});
+  const [userProgress, setUserProgress] = useState<Map<string, { status: string; is_marked: boolean }>>(new Map());
 
   useEffect(() => {
     getSubjects().then(setSubjects);
+    getAllQuestionIdsByChapter().then(setAllChapterQIds);
   }, []);
+
+  useEffect(() => {
+    if (user?.id) getAllUserProgress(user.id).then(setUserProgress);
+  }, [user?.id]);
 
   const totalQuestionCount = useMemo(() => (
     subjects.reduce((sum, subject) => sum + subject.count, 0)
@@ -80,18 +91,23 @@ export default function CreateTestPage() {
     getQuestionStatusCounts(user.id, totalQuestionCount).then(setStatusCounts);
   }, [user?.id, totalQuestionCount]);
 
-  const currentAvailableQuestions = useMemo(() => {
-    let count = 0;
-    subjects.forEach(subject => {
-      subject.chapters.forEach(chapter => {
-        if (selectedChapters.has(chapter.id)) {
-          count += chapter.count;
-        }
-      });
-    });
-    return count;
-  }, [subjects, selectedChapters]);
   const selectedChapterCount = selectedChapters.size;
+
+  const getChapterFilteredCount = (chapterId: string): number => {
+    const ids = allChapterQIds[chapterId];
+    if (!ids) return 0;
+    const anyEnabled = Object.values(statusFilters).some(Boolean);
+    if (!anyEnabled) return ids.length;
+    return ids.filter((id) => {
+      const p = userProgress.get(id);
+      if (!p) return statusFilters.Unused;
+      if (statusFilters.Marked && p.is_marked) return true;
+      if (statusFilters.Correct && p.status === 'correct') return true;
+      if (statusFilters.Incorrect && p.status === 'incorrect') return true;
+      if (statusFilters.Omitted && p.status === 'omitted') return true;
+      return false;
+    }).length;
+  };
   const requestedQuestionCount = Number.parseInt(questionCount, 10) || 0;
   const practicedQuestionCount = statusCounts.Correct + statusCounts.Incorrect;
   const unpracticedQuestionCount = Math.max(totalQuestionCount - practicedQuestionCount, 0);
@@ -128,9 +144,36 @@ export default function CreateTestPage() {
     },
   ], [t]);
 
+  // When selected chapters change, re-fetch their question IDs (lightweight)
   useEffect(() => {
-    setQuestionCount(currentAvailableQuestions.toString());
-  }, [currentAvailableQuestions]);
+    const chapters = Array.from(selectedChapters);
+    if (chapters.length === 0) {
+      setCachedChapterIds([]);
+      setFilteredAvailableCount(0);
+      setQuestionCount('0');
+      return;
+    }
+    getQuestionIdsByChapterIds(chapters).then(setCachedChapterIds);
+  }, [selectedChapters]);  // eslint-disable-line react-hooks/exhaustive-deps
+
+  // When cached IDs or filters change, recompute the available count
+  useEffect(() => {
+    if (cachedChapterIds.length === 0) {
+      setFilteredAvailableCount(0);
+      setQuestionCount('0');
+      return;
+    }
+    const anyEnabled = Object.values(statusFilters).some(Boolean);
+    if (!anyEnabled) {
+      setFilteredAvailableCount(cachedChapterIds.length);
+      setQuestionCount(cachedChapterIds.length.toString());
+      return;
+    }
+    filterQuestionIdsByStatus(user?.id, cachedChapterIds, statusFilters).then((ids) => {
+      setFilteredAvailableCount(ids.length);
+      setQuestionCount(ids.length.toString());
+    });
+  }, [cachedChapterIds, statusFilters, user?.id]);  // eslint-disable-line react-hooks/exhaustive-deps
 
   const toggleStatus = (status: keyof typeof statusFilters) => {
     setStatusFilters(prev => ({ ...prev, [status]: !prev[status] }));
@@ -358,6 +401,28 @@ export default function CreateTestPage() {
           </AccordionTrigger>
           <AccordionContent className="border-t pb-6 pt-4">
             <div className="flex flex-wrap gap-x-8 gap-y-4 rounded-md bg-slate-50 p-4">
+              {/* All — clears all filters so every question is eligible */}
+              {(() => {
+                const isAll = !Object.values(statusFilters).some(Boolean);
+                return (
+                  <div className="flex items-center gap-2">
+                    <Checkbox
+                      id="filter-all"
+                      checked={isAll}
+                      onCheckedChange={() => setStatusFilters({ Unused: false, Incorrect: false, Marked: false, Omitted: false, Correct: false })}
+                    />
+                    <Label htmlFor="filter-all" className="flex cursor-pointer items-center gap-1.5 text-sm font-medium text-slate-600">
+                      {t('create.all')}
+                      <Badge className={cn(
+                        'rounded-full border-none px-2 py-0.5 text-xs font-bold transition-colors',
+                        isAll ? 'bg-slate-700 text-white' : 'bg-slate-200 text-slate-400',
+                      )}>
+                        {totalQuestionCount}
+                      </Badge>
+                    </Label>
+                  </div>
+                );
+              })()}
               {([
                 { id: 'filter-unused',    key: 'Unused',    labelKey: 'create.unused',    count: statusCounts.Unused,    activeClass: 'bg-primary text-primary-foreground' },
                 { id: 'filter-incorrect', key: 'Incorrect', labelKey: 'create.incorrect', count: statusCounts.Incorrect, activeClass: 'bg-red-500 text-white' },
@@ -419,7 +484,7 @@ export default function CreateTestPage() {
                       <Label htmlFor={subject.id} className="flex cursor-pointer items-center gap-2 text-base font-bold text-slate-700">
                         {subject.name}
                         <Badge variant="secondary" className="h-5 rounded-full border-none bg-primary/10 px-2 text-xs font-bold text-primary hover:bg-primary/15">
-                          {subject.count}
+                          {subject.chapters.reduce((s, c) => s + getChapterFilteredCount(c.id), 0)}
                         </Badge>
                       </Label>
                     </div>
@@ -436,7 +501,7 @@ export default function CreateTestPage() {
                           <Label htmlFor={chapter.id} className="flex cursor-pointer items-center gap-2 text-sm font-medium text-slate-500">
                             {chapter.name}
                             <Badge variant="outline" className="h-5 rounded-full border-primary/20 bg-primary/5 px-2 text-xs font-bold text-primary">
-                              {chapter.count}
+                              {getChapterFilteredCount(chapter.id)}
                             </Badge>
                           </Label>
                         </div>
@@ -465,7 +530,7 @@ export default function CreateTestPage() {
                   className="h-12 w-32 border border-slate-300 bg-white text-center text-xl font-bold rounded-lg shadow-sm hover:border-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-white transition-all duration-200"
                 />
                 <span className="text-sm text-slate-500">
-                  {t('create.maxAllowed', { count: currentAvailableQuestions })}
+                  {t('create.maxAllowed', { count: filteredAvailableCount })}
                 </span>
               </div>
 
@@ -475,7 +540,7 @@ export default function CreateTestPage() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-4 flex-1">
                   {[
                     { label: t('create.selectedChapters'), value: selectedChapterCount, highlight: false },
-                    { label: t('create.availableQuestions'), value: currentAvailableQuestions.toLocaleString(), highlight: false },
+                    { label: t('create.availableQuestions'), value: filteredAvailableCount.toLocaleString(), highlight: false },
                     { label: t('create.totalQuestions'), value: totalQuestionCount.toLocaleString(), highlight: false },
                     { label: t('create.readyToGenerate'), value: requestedQuestionCount, highlight: true },
                   ].map((stat, idx) => (

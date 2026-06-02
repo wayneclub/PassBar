@@ -45,6 +45,7 @@ export async function createPracticeSessionRecord(input: {
       chapter_ids: input.chapterIds,
       question_count: input.questionIds.length,
       started_at: new Date(now).toISOString(),
+      user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : null,
       raw: {
         questionIds: input.questionIds,
         subjects: input.subjectNames,

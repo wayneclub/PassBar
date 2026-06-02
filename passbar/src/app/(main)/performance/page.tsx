@@ -1048,7 +1048,7 @@ function ProgressTab({
         <Card className="hover:shadow-md transition">
           <CardContent className="p-5">
             <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
                 <BarChart data={fatigueData} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
                   <XAxis dataKey="group" tick={{ fontSize: 12 }} />
                   <YAxis unit="%" domain={[0, 100]} tick={{ fontSize: 12 }} />
@@ -1079,7 +1079,7 @@ function ProgressTab({
           </CardHeader>
           <CardContent>
             <div className="h-48">
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
                 <LineChart data={trendData}>
                   <XAxis dataKey="session" tick={{ fontSize: 12 }} />
                   <YAxis domain={[0, 100]} unit="%" tick={{ fontSize: 12 }} />
