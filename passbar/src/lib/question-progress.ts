@@ -339,7 +339,8 @@ export async function clearUserProgress(userId: string): Promise<boolean> {
       return false;
     }
 
-    const res = await fetch('/api/clear-progress', {
+    const base = typeof window !== 'undefined' ? window.location.origin : '';
+    const res = await fetch(`${base}/api/clear-progress`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

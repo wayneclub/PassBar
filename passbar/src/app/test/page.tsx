@@ -73,6 +73,7 @@ function TestSessionContent() {
   const [isPaused, setIsPaused] = useState(false);
   const [pauseStartedAt, setPauseStartedAt] = useState<number | null>(null);
   const [answerMetaByQuestion, setAnswerMetaByQuestion] = useState<Record<string, AnswerMeta>>({});
+  const [reportOpen, setReportOpen] = useState(false);
   const [feedbackOpen, setFeedbackOpen] = useState(false);
   const [feedbackLoading, setFeedbackLoading] = useState(false);
   const [feedbackText, setFeedbackText] = useState('');
@@ -336,6 +337,12 @@ function TestSessionContent() {
   const handleEndRequest = () => {
     if (!session) return;
 
+    // In review mode skip confirmation and go straight back
+    if (isReviewMode) {
+      router.push('/review');
+      return;
+    }
+
     const nextSession = sessionWithCurrentProgress();
     if (!nextSession) return;
 
@@ -487,50 +494,9 @@ function TestSessionContent() {
     });
   };
 
-  const handleFeedback = async () => {
-    if (isPaused) return;
-    if (!session) return;
-    const answeredEntries = Object.entries(session.userAnswers);
-    if (answeredEntries.length === 0) {
-      setFeedbackText(t('test.feedbackEmpty'));
-      setFeedbackError(null);
-      setFeedbackOpen(true);
-      return;
-    }
-
-    setFeedbackOpen(true);
-    setFeedbackLoading(true);
-    setFeedbackError(null);
-
-    try {
-      const attempts = answeredEntries.map(([questionId, answer]) => {
-        const question = questions.find((item) => item.id === questionId);
-        const selectedChoice = question ? getAnswerChoiceKey(question, answer) : null;
-        const correctChoice = (question?.apiAnswerKey ?? question?.correctAnswerLetter)?.toUpperCase() ?? null;
-        return {
-          subject: question?.subject,
-          topic: question?.topic,
-          questionText: question?.questionText,
-          selectedChoice,
-          correctChoice,
-          isCorrect: Boolean(selectedChoice && correctChoice && selectedChoice === correctChoice),
-          timeSpentSeconds: answerMetaByQuestion[questionId]?.elapsedSeconds ?? null,
-        };
-      });
-
-      const feedback = await requestGeminiFeedback({
-        mode: session.mode,
-        totalQuestions: questions.length,
-        attempts,
-        unansweredCount: Math.max(questions.length - answeredEntries.length, 0),
-        interfaceLanguage: language,
-      });
-      setFeedbackText(feedback);
-    } catch (error) {
-      setFeedbackError(error instanceof Error ? error.message : t('test.feedbackError'));
-    } finally {
-      setFeedbackLoading(false);
-    }
+  const handleFeedback = () => {
+    if (isPaused || !currentQuestion) return;
+    setReportOpen(true);
   };
 
   if (!session || !currentQuestion) return null;
@@ -829,37 +795,20 @@ function TestSessionContent() {
         onSubmit={handleSubmit}
         onFeedback={handleFeedback}
         showSubmit={showSubmitBtn}
-        feedbackLoading={feedbackLoading}
+        feedbackLoading={false}
         isPaused={isPaused || isReviewMode}
         isTutorMode={session.mode === 'Tutor'}
+        isReviewMode={isReviewMode}
       />
 
-      <Dialog open={feedbackOpen} onOpenChange={setFeedbackOpen}>
-        <DialogContent className="max-h-[82vh] max-w-3xl overflow-hidden">
-          <DialogHeader>
-            <DialogTitle>{t('test.aiFeedback')}</DialogTitle>
-          </DialogHeader>
-          <div className="max-h-[62vh] overflow-y-auto rounded-md border border-slate-200 bg-slate-50 p-4">
-            {feedbackLoading ? (
-              <p className="text-sm text-slate-600">{t('test.generatingFeedback')}</p>
-            ) : feedbackError ? (
-              <div className="space-y-2">
-                <p className="font-semibold text-red-600">{t('test.feedbackError')}</p>
-                <p className="whitespace-pre-wrap text-sm text-red-500">{feedbackError}</p>
-              </div>
-            ) : (
-              <div className="prose prose-sm max-w-none leading-7 text-slate-800">
-                <ReactMarkdown>{feedbackText || ''}</ReactMarkdown>
-              </div>
-            )}
-          </div>
-          <div className="flex justify-end">
-            <Button variant="outline" onClick={() => setFeedbackOpen(false)}>
-              {t('test.close')}
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      {user?.id && currentQuestion && (
+        <ReportQuestionDialog
+          questionId={currentQuestion.id}
+          userId={user.id}
+          open={reportOpen}
+          onOpenChange={setReportOpen}
+        />
+      )}
 
       <Dialog open={endConfirmOpen} onOpenChange={(open) => {
         if (ending) return;

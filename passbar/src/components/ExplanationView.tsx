@@ -532,7 +532,7 @@ function AutoHeightIframe({ html, title, minHeight = 480 }: { html: string; titl
     const id = channelId.current;
     const handler = (e: MessageEvent) => {
       if (e.data?.type === 'iframe-resize' && e.data.ch === id && typeof e.data.height === 'number' && e.data.height > 0) {
-        setHeight((prev) => Math.max(prev, e.data.height + 32));
+        setHeight(e.data.height + 16);
       }
     };
     window.addEventListener('message', handler);
@@ -595,7 +595,7 @@ export function ExplanationView({ question, userAnswer, selectedChoiceKey, corre
       {/* HTML explanation panels — can show en, zh, or both; height auto-adjusts */}
       {htmlPanels.map(({ key, html, title }) => (
         <div key={key} className="text-slate-700">
-          <AutoHeightIframe html={html} title={title} minHeight={480} />
+          <AutoHeightIframe html={html} title={title} minHeight={80} />
         </div>
       ))}
 

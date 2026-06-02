@@ -15,12 +15,21 @@ import { cn } from '@/lib/utils';
 interface ReportQuestionDialogProps {
   questionId: string;
   userId: string;
-  /** Pass className to the trigger button */
+  /** If provided, the dialog is controlled externally (no internal trigger button shown) */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  /** Pass className to the trigger button (only used when uncontrolled) */
   triggerClassName?: string;
 }
 
-export function ReportQuestionDialog({ questionId, userId, triggerClassName }: ReportQuestionDialogProps) {
-  const [open, setOpen] = useState(false);
+export function ReportQuestionDialog({ questionId, userId, open: openProp, onOpenChange, triggerClassName }: ReportQuestionDialogProps) {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const isControlled = openProp !== undefined;
+  const open = isControlled ? openProp : internalOpen;
+  const setOpen = (v: boolean) => {
+    if (isControlled) onOpenChange?.(v);
+    else setInternalOpen(v);
+  };
   const [category, setCategory] = useState<ReportCategory>('wrong_answer');
   const [message, setMessage] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -35,16 +44,18 @@ export function ReportQuestionDialog({ questionId, userId, triggerClassName }: R
 
   return (
     <>
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        onClick={() => setOpen(true)}
-        className={cn('gap-1.5 text-xs text-slate-400 hover:text-slate-600', triggerClassName)}
-      >
-        <Flag className="h-3.5 w-3.5" />
-        回報題目問題
-      </Button>
+      {!isControlled && (
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={() => setOpen(true)}
+          className={cn('gap-1.5 text-xs text-slate-400 hover:text-slate-600', triggerClassName)}
+        >
+          <Flag className="h-3.5 w-3.5" />
+          回報題目問題
+        </Button>
+      )}
 
       <Dialog open={open} onOpenChange={(v) => { if (!submitting) setOpen(v); }}>
         <DialogContent className="max-w-sm">

@@ -26,6 +26,7 @@ interface TestFooterProps {
   feedbackLoading?: boolean;
   isPaused: boolean;
   isTutorMode: boolean;
+  isReviewMode?: boolean;
 }
 
 export function TestFooter({
@@ -41,6 +42,7 @@ export function TestFooter({
   feedbackLoading = false,
   isPaused,
   isTutorMode,
+  isReviewMode = false,
 }: TestFooterProps) {
   const { t } = useI18n();
 
@@ -58,13 +60,15 @@ export function TestFooter({
             <StopCircle className="w-5 h-5 text-primary" />
             {t('test.end')}
           </button>
-          <button
-            onClick={onSuspend}
-            className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
-          >
-            {isPaused ? <PlayCircle className="w-5 h-5 text-primary" /> : <PauseCircle className="w-5 h-5 text-primary" />}
-            {isPaused ? t('test.resume') : t('test.suspend')}
-          </button>
+          {!isReviewMode && (
+            <button
+              onClick={onSuspend}
+              className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+            >
+              {isPaused ? <PlayCircle className="w-5 h-5 text-primary" /> : <PauseCircle className="w-5 h-5 text-primary" />}
+              {isPaused ? t('test.resume') : t('test.suspend')}
+            </button>
+          )}
         </div>
 
         {/* Center: Submit / Feedback */}
