@@ -12,6 +12,7 @@ import {
   HelpCircle,
   LogOut,
   Settings,
+  Shield,
   type LucideIcon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -146,6 +147,21 @@ export function AppSidebar() {
               <span className="flex-1 font-semibold text-xs uppercase tracking-wider">{t('nav.help')}</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
+          {profile?.role === 'admin' && (
+            <SidebarMenuItem>
+              <Link
+                href="/admin"
+                onClick={handleNavigate}
+                className={cn(
+                  "flex items-center gap-3 py-6 px-4 text-amber-400 transition-colors hover:bg-white/5 hover:text-amber-300",
+                  pathname === '/admin' && "bg-white/10 border-l-2 border-amber-400"
+                )}
+              >
+                <Shield className="w-4 h-4" />
+                <span className="flex-1 font-semibold text-xs uppercase tracking-wider">管理後台</span>
+              </Link>
+            </SidebarMenuItem>
+          )}
         </SidebarMenu>
       </SidebarContent>
 

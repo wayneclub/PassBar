@@ -72,45 +72,80 @@ def main():
 
     report_dir = os.path.abspath(args.report_dir) if args.report_dir else out_dir
 
-    # 收集所有 enriched JSON
-    pattern = os.path.join(out_dir, "*", "*", "*_enriched.json")
-    enriched_files = sorted(glob.glob(pattern))
+    # 收集所有 subject/chapter 目錄
+    all_chapter_dirs = sorted([
+        d for d in glob.glob(os.path.join(out_dir, "*", "*"))
+        if os.path.isdir(d)
+    ])
 
     if args.subject:
-        enriched_files = [f for f in enriched_files if args.subject.lower() in f.lower()]
+        all_chapter_dirs = [d for d in all_chapter_dirs if args.subject.lower() in d.lower()]
     if args.chapter:
-        enriched_files = [f for f in enriched_files if args.chapter.lower() in f.lower()]
+        all_chapter_dirs = [d for d in all_chapter_dirs if args.chapter.lower() in d.lower()]
 
-    if not enriched_files:
-        print("No enriched JSON files found.")
+    if not all_chapter_dirs:
+        print("No chapter directories found.")
         sys.exit(0)
 
     # 統計
-    total_questions   = 0
-    total_missing_any = 0
+    total_questions        = 0
+    total_missing_any      = 0
+    total_no_enriched      = 0
 
     # 按 subject/chapter 的摘要
     chapter_stats: list[dict] = []
     # 完整缺失清單（給 JSON/CSV）
     missing_records: list[dict] = []
 
-    for fpath in enriched_files:
-        try:
-            with open(fpath, encoding="utf-8") as f:
-                questions = json.load(f)
-            if not isinstance(questions, list):
-                questions = questions.get("questions", [])
-        except Exception as e:
-            print(f"  WARN: cannot read {fpath}: {e}")
+    for chapter_dir in all_chapter_dirs:
+        parts = Path(chapter_dir).parts
+        subject = parts[-2]
+        chapter = parts[-1]
+
+        # 找該 chapter 下的 enriched JSON（可能有多個，取最新）
+        enriched_files = sorted(glob.glob(os.path.join(chapter_dir, "*_enriched.json")))
+
+        if not enriched_files:
+            total_no_enriched += 1
+            chapter_stats.append({
+                "subject":              subject,
+                "chapter":              chapter,
+                "total":                0,
+                "missing_any":          0,
+                "no_enriched_file":     True,
+                "missing_zh_question":  0,
+                "missing_zh_choices":   0,
+                "missing_zh_explanation": 0,
+                "missing_en_explanation": 0,
+            })
             continue
 
-        if not questions:
+        # 合併該 chapter 所有 enriched 檔案的題目
+        all_questions: list[dict] = []
+        for fpath in enriched_files:
+            try:
+                with open(fpath, encoding="utf-8") as f:
+                    data = json.load(f)
+                qs = data if isinstance(data, list) else data.get("questions", [])
+                all_questions.extend(qs)
+            except Exception as e:
+                print(f"  WARN: cannot read {fpath}: {e}")
+
+        if not all_questions:
+            chapter_stats.append({
+                "subject":              subject,
+                "chapter":              chapter,
+                "total":                0,
+                "missing_any":          0,
+                "no_enriched_file":     False,
+                "missing_zh_question":  0,
+                "missing_zh_choices":   0,
+                "missing_zh_explanation": 0,
+                "missing_en_explanation": 0,
+            })
             continue
 
-        subject = questions[0].get("subject", "?")
-        chapter = questions[0].get("chapter", "?")
-
-        ch_total       = len(questions)
+        ch_total       = len(all_questions)
         ch_missing_any = 0
         ch_missing: dict[str, int] = {
             "missing_zh_question": 0,
@@ -119,7 +154,7 @@ def main():
             "missing_en_explanation": 0,
         }
 
-        for q in questions:
+        for q in all_questions:
             flags = check_question(q)
             if any(flags.values()):
                 ch_missing_any += 1
@@ -132,27 +167,30 @@ def main():
                     "index":                q.get("index", "?"),
                     "question_preview":     q.get("question", "")[:80],
                     **{k: "Y" if v else "" for k, v in flags.items()},
-                    "enriched_file":        os.path.relpath(fpath, out_dir),
+                    "enriched_file":        os.path.relpath(enriched_files[-1], out_dir),
                 })
 
         total_questions   += ch_total
         total_missing_any += ch_missing_any
 
         chapter_stats.append({
-            "subject":   subject,
-            "chapter":   chapter,
-            "total":     ch_total,
-            "missing_any": ch_missing_any,
+            "subject":          subject,
+            "chapter":          chapter,
+            "total":            ch_total,
+            "missing_any":      ch_missing_any,
+            "no_enriched_file": False,
             **ch_missing,
         })
 
     # ── 終端機輸出 ────────────────────────────────────────────────────────────
+    pct = f"{total_missing_any/total_questions*100:.1f}%" if total_questions else "N/A"
     print(f"\n{'='*70}")
     print(f"  MBE Enriched JSON — 中文解析缺失報告")
     print(f"{'='*70}")
-    print(f"  掃描章節數 : {len(enriched_files)}")
-    print(f"  總題目數   : {total_questions}")
-    print(f"  有缺失題數 : {total_missing_any}  ({total_missing_any/total_questions*100:.1f}%)")
+    print(f"  掃描章節數     : {len(all_chapter_dirs)}")
+    print(f"  無 enriched 檔 : {total_no_enriched}")
+    print(f"  總題目數       : {total_questions}")
+    print(f"  有缺失題數     : {total_missing_any}  ({pct})")
     print()
 
     # 按 subject 分組列印
@@ -161,18 +199,29 @@ def main():
         if cs["subject"] != current_subject:
             current_subject = cs["subject"]
             print(f"  📚 {current_subject}")
-        if cs["missing_any"] == 0:
+        if cs.get("no_enriched_file"):
+            status = "🔲"
+            print(f"     {status} {cs['chapter']:<45}  (no enriched file)")
+        elif cs["missing_any"] == 0:
             status = "✅"
+            print(f"     {status} {cs['chapter']:<45} "
+                  f"{cs['missing_any']:>3}/{cs['total']:>3}  all ok")
         elif cs["missing_any"] == cs["total"]:
             status = "❌"
+            print(f"     {status} {cs['chapter']:<45} "
+                  f"{cs['missing_any']:>3}/{cs['total']:>3}  "
+                  f"[zh_q:{cs['missing_zh_question']} "
+                  f"zh_c:{cs['missing_zh_choices']} "
+                  f"zh_html:{cs['missing_zh_explanation']} "
+                  f"en_html:{cs['missing_en_explanation']}]")
         else:
             status = "⚠️ "
-        print(f"     {status} {cs['chapter']:<45} "
-              f"{cs['missing_any']:>3}/{cs['total']:>3}  "
-              f"[zh_q:{cs['missing_zh_question']} "
-              f"zh_c:{cs['missing_zh_choices']} "
-              f"zh_html:{cs['missing_zh_explanation']} "
-              f"en_html:{cs['missing_en_explanation']}]")
+            print(f"     {status} {cs['chapter']:<45} "
+                  f"{cs['missing_any']:>3}/{cs['total']:>3}  "
+                  f"[zh_q:{cs['missing_zh_question']} "
+                  f"zh_c:{cs['missing_zh_choices']} "
+                  f"zh_html:{cs['missing_zh_explanation']} "
+                  f"en_html:{cs['missing_en_explanation']}]")
     print()
 
     # ── 寫出報告檔 ────────────────────────────────────────────────────────────
@@ -183,9 +232,10 @@ def main():
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump({
             "summary": {
-                "total_chapters":  len(enriched_files),
-                "total_questions": total_questions,
-                "missing_any":     total_missing_any,
+                "total_chapters":      len(all_chapter_dirs),
+                "no_enriched_file":    total_no_enriched,
+                "total_questions":     total_questions,
+                "missing_any":         total_missing_any,
             },
             "chapter_stats": chapter_stats,
             "missing_questions": missing_records,

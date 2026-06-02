@@ -14,11 +14,14 @@ create table if not exists public.profiles (
   full_name text,
   avatar_url text,
   role text not null default 'student' check (role in ('student', 'admin')),
+  status text not null default 'pending' check (status in ('pending', 'approved', 'rejected')),
   study_settings jsonb not null default '{"contentMode":"english","textSize":"medium","interfaceLanguage":"en"}'::jsonb,
   last_seen_at timestamptz,
   created_at timestamptz default now(),
   updated_at timestamptz default now()
 );
+
+alter table public.profiles add column if not exists status text not null default 'pending' check (status in ('pending', 'approved', 'rejected'));
 
 alter table public.profiles add column if not exists last_seen_at timestamptz;
 alter table public.profiles add column if not exists study_settings jsonb not null default '{"contentMode":"english","textSize":"medium","interfaceLanguage":"en"}'::jsonb;
@@ -830,3 +833,35 @@ create policy "Users can manage their concept mastery"
 on public.user_concept_mastery for all
 using (auth.uid() = user_id)
 with check (auth.uid() = user_id);
+
+-- Admin helper: returns true if the calling user has role = 'admin'
+create or replace function public.is_admin()
+returns boolean
+language sql
+stable
+security definer set search_path = public
+as $$
+  select exists (
+    select 1 from public.profiles
+    where id = auth.uid() and role = 'admin'
+  );
+$$;
+
+grant execute on function public.is_admin() to authenticated;
+
+-- Admin RLS: admins can read all profiles and update status/role
+drop policy if exists "Admins can read all profiles" on public.profiles;
+create policy "Admins can read all profiles"
+on public.profiles for select
+using (auth.uid() = id or public.is_admin());
+
+drop policy if exists "Admins can update any profile" on public.profiles;
+create policy "Admins can update any profile"
+on public.profiles for update
+using (public.is_admin())
+with check (public.is_admin());
+
+-- Seed: set me@wayneclub.com as admin + approved
+update public.profiles
+set role = 'admin', status = 'approved'
+where email = 'me@wayneclub.com';

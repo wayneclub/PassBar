@@ -11,15 +11,12 @@ export const metadata: Metadata = {
   description: 'Practice MBE-style questions with a Supabase-backed question bank and focused explanations.',
   icons: {
     icon: [
-      { url: publicAsset('/favicon.ico'), sizes: 'any' },
-      { url: publicAsset('/favicon-32x32.png'), sizes: '32x32', type: 'image/png' },
-      { url: publicAsset('/favicon-16x16.png'), sizes: '16x16', type: 'image/png' },
-      { url: publicAsset('/passbar-icon.svg'), type: 'image/svg+xml' },
+      { url: publicAsset('/favicon.svg'), type: 'image/svg+xml' },
+      { url: publicAsset('/favicon-96x96.png'), sizes: '96x96', type: 'image/png' },
+      { url: publicAsset('/favicon.ico'), sizes: '48x48' },
     ],
-    shortcut: [publicAsset('/favicon.ico'), publicAsset('/favicon-32x32.png')],
-    apple: [
-      { url: publicAsset('/apple-touch-icon.png'), sizes: '180x180', type: 'image/png' },
-    ],
+    shortcut: publicAsset('/favicon.ico'),
+    apple: publicAsset('/apple-touch-icon.png'),
   },
   manifest: publicAsset('/manifest.webmanifest'),
 };

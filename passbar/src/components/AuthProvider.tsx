@@ -11,6 +11,7 @@ export type UserProfile = {
   full_name: string | null;
   avatar_url: string | null;
   role: string | null;
+  status: 'pending' | 'approved' | 'rejected' | null;
   last_seen_at: string | null;
   study_settings: StudySettings | null;
   exam_date: string | null;
@@ -94,6 +95,7 @@ function profileFallback(user: User): UserProfile {
         : null,
     avatar_url: typeof user.user_metadata?.avatar_url === 'string' ? user.user_metadata.avatar_url : null,
     role: 'student',
+    status: 'approved',
     last_seen_at: null,
     study_settings: null,
     exam_date: null,
@@ -105,7 +107,7 @@ async function getProfile(user: User): Promise<UserProfile> {
 
   const { data, error } = await supabase
     .from('profiles')
-    .select('id, email, full_name, avatar_url, role, last_seen_at, study_settings, exam_date')
+    .select('id, email, full_name, avatar_url, role, status, last_seen_at, study_settings, exam_date')
     .eq('id', user.id)
     .maybeSingle();
 
@@ -136,7 +138,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     if (useMockAuth) {
       const mockUser = {
-        id: 'mock-user-id',
+        id: '00000000-0000-0000-0000-000000000001',
         email: 'mock@example.com',
         user_metadata: { name: 'Mock User', full_name: 'Mock User' },
         app_metadata: {},
@@ -152,7 +154,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } as Session;
 
       setSession(mockSession);
-      setProfile(profileFallback(mockUser));
+      setProfile({ ...profileFallback(mockUser), role: 'admin', status: 'approved' });
       setLoading(false);
       return;
     }

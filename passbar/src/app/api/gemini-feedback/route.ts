@@ -27,7 +27,7 @@ type FeedbackRequest = {
   topic?: string | null;
 };
 
-const fallbackModels = ['gemini-2.5-flash'];
+const fallbackModels = ['gemini-3.5-flash'];
 
 function apiKey() {
   return process.env.GEMINI_API_KEY || process.env.GOOGLE_GENAI_API_KEY || '';
