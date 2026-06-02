@@ -76,7 +76,7 @@ export async function saveQuestionAnswerProgress(input: {
       last_answered_at: new Date().toISOString(),
     }, { onConflict: 'user_id,question_id' });
 
-  if (error) {
+  if (error && !error.message.includes('201')) {
     console.warn('[PassBar] Failed to save answer progress:', error.message);
   }
 }
@@ -318,7 +318,7 @@ export async function saveOmittedQuestionProgress(input: {
     .from('user_question_progress')
     .upsert(rows, { onConflict: 'user_id,question_id' });
 
-  if (error) {
+  if (error && !error.message.includes('201')) {
     console.warn('[PassBar] Failed to save omitted progress:', error.message);
   }
 }

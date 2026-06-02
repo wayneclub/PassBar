@@ -191,7 +191,8 @@ export default function ReviewHistoryPage() {
         };
       });
 
-      setSessions(next);
+      // Hide in_progress sessions with 0 answers (abandoned without answering anything)
+      setSessions(next.filter((s) => s.status !== 'in_progress' || s.answered > 0));
       setIsLoading(false);
     };
     loadHistory();

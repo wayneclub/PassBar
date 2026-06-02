@@ -35,9 +35,11 @@ export async function createPracticeSessionRecord(input: {
   if (!supabase) return null;
 
   const now = Date.now();
-  const { data, error } = await supabase
+  const sessionId = crypto.randomUUID();
+  const { error } = await supabase
     .from('practice_sessions')
     .insert({
+      id: sessionId,
       user_id: input.userId,
       mode: input.mode,
       status: 'in_progress',
@@ -53,12 +55,16 @@ export async function createPracticeSessionRecord(input: {
         userAnswers: {},
         createdAt: now,
       },
-    })
-    .select('id')
-    .single();
+    });
+  const data = { id: sessionId };
 
-  if (error) {
+  if (error && !error.message.includes('201')) {
     console.warn('Unable to create practice session in Supabase:', error.message);
+    return null;
+  }
+
+  if (!data?.id) {
+    console.warn('Unable to create practice session in Supabase: no id returned');
     return null;
   }
 
@@ -91,7 +97,7 @@ export async function savePracticeAnswer(input: {
       onConflict: 'session_id,question_id',
     });
 
-  if (error) {
+  if (error && !error.message.includes('201')) {
     console.warn('Unable to save practice answer in Supabase:', error.message);
   }
 }
@@ -121,7 +127,7 @@ export async function updatePracticeSessionRecord(input: {
     .eq('id', input.session.id)
     .eq('user_id', input.userId);
 
-  if (error) {
+  if (error && !error.message.includes('204')) {
     console.warn('Unable to update practice session in Supabase:', error.message);
   }
 }

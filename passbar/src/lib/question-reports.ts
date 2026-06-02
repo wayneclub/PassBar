@@ -35,7 +35,7 @@ export async function submitQuestionReport(input: {
     category: input.category,
     message: input.message?.trim() || null,
   });
-  if (error) { console.warn('submitQuestionReport:', error.message); return false; }
+  if (error && !error.message.includes('201')) { console.warn('submitQuestionReport:', error.message); return false; }
   return true;
 }
 
