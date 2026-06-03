@@ -323,40 +323,35 @@ export async function saveOmittedQuestionProgress(input: {
   }
 }
 
-/** Deletes all question progress and practice sessions for the given user via server API (bypasses RLS). */
+/** Deletes all question progress and practice sessions for the signed-in user. */
 export async function clearUserProgress(userId: string): Promise<boolean> {
-  // Also clear localStorage sessions
   if (typeof window !== 'undefined') {
     localStorage.removeItem('passbar_sessions');
     localStorage.removeItem('uprep_sessions');
   }
 
+  if (!supabase) return true;
+
   try {
-    // Get current session token to authenticate the API call
-    const token = supabase ? (await supabase.auth.getSession()).data.session?.access_token : null;
-    if (!token) {
-      console.warn('[PassBar] No auth token for clear-progress');
+    const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+    if (sessionError || !session?.user?.id || session.user.id !== userId) {
+      console.warn('[PassBar] Unable to verify current user before clearing progress:', sessionError?.message);
       return false;
     }
 
-    const base = typeof window !== 'undefined' ? window.location.origin : '';
-    const res = await fetch(`${base}/api/clear-progress`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-      body: JSON.stringify({ userId }),
-    });
-
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) {
-      console.warn('[PassBar] clear-progress API error:', data.error);
+    const results = await Promise.all([
+      supabase.from('practice_answers').delete().eq('user_id', userId),
+      supabase.from('practice_sessions').delete().eq('user_id', userId),
+      supabase.from('user_question_progress').delete().eq('user_id', userId),
+    ]);
+    const failed = results.find((result) => result.error);
+    if (failed?.error) {
+      console.warn('[PassBar] Failed to clear user progress:', failed.error.message);
       return false;
     }
-    return Boolean(data.ok);
+    return true;
   } catch (err) {
-    console.warn('[PassBar] clear-progress fetch failed:', err);
+    console.warn('[PassBar] clear-progress failed:', err);
     return false;
   }
 }

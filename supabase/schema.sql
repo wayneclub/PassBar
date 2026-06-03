@@ -784,6 +784,11 @@ on public.practice_sessions for update
 using (auth.uid() = user_id)
 with check (auth.uid() = user_id);
 
+drop policy if exists "Users can delete their practice sessions" on public.practice_sessions;
+create policy "Users can delete their practice sessions"
+on public.practice_sessions for delete
+using (auth.uid() = user_id);
+
 drop policy if exists "Users can read their practice answers" on public.practice_answers;
 create policy "Users can read their practice answers"
 on public.practice_answers for select
@@ -800,6 +805,11 @@ on public.practice_answers for update
 using (auth.uid() = user_id)
 with check (auth.uid() = user_id);
 
+drop policy if exists "Users can delete their practice answers" on public.practice_answers;
+create policy "Users can delete their practice answers"
+on public.practice_answers for delete
+using (auth.uid() = user_id);
+
 drop policy if exists "Users can read their question progress" on public.user_question_progress;
 create policy "Users can read their question progress"
 on public.user_question_progress for select
@@ -815,6 +825,11 @@ create policy "Users can update their question progress"
 on public.user_question_progress for update
 using (auth.uid() = user_id)
 with check (auth.uid() = user_id);
+
+drop policy if exists "Users can delete their question progress" on public.user_question_progress;
+create policy "Users can delete their question progress"
+on public.user_question_progress for delete
+using (auth.uid() = user_id);
 
 -- question_items enrichment for AI coaching
 alter table public.question_items add column if not exists micro_concept text;
