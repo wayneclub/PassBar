@@ -115,7 +115,7 @@ export async function upsertBrowseQuestionState(input: {
       { onConflict: 'user_id,question_id' },
     );
 
-  if (error) {
+  if (error && !error.message.includes('201')) {
     console.warn('[PassBar] Failed to upsert browse question state:', error.message);
     return false;
   }

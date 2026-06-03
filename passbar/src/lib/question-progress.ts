@@ -283,7 +283,7 @@ export async function setQuestionMarked(input: {
       last_answered_at: existing?.last_answered_at ?? null,
     }, { onConflict: 'user_id,question_id' });
 
-  if (error) {
+  if (error && !error.message.includes('201')) {
     console.warn('[PassBar] Failed to update marked question:', error.message);
     return false;
   }
