@@ -68,15 +68,15 @@ export default function BrowsePage() {
   }, [subjects, learnFilter, progressByChapter, markedChapterIds]);
 
   const learnedCount = useMemo(
-    () => subjects.reduce((s, sub) => s + sub.chapters.filter((ch) => progressByChapter.has(ch.id)).length, 0),
+    () => subjects.reduce((s, sub) => s + sub.chapters.filter((ch) => progressByChapter.has(ch.id)).reduce((cs, ch) => cs + ch.count, 0), 0),
     [subjects, progressByChapter]
   );
   const unlearnedCount = useMemo(
-    () => subjects.reduce((s, sub) => s + sub.chapters.filter((ch) => !progressByChapter.has(ch.id)).length, 0),
+    () => subjects.reduce((s, sub) => s + sub.chapters.filter((ch) => !progressByChapter.has(ch.id)).reduce((cs, ch) => cs + ch.count, 0), 0),
     [subjects, progressByChapter]
   );
   const markedCount = useMemo(
-    () => subjects.reduce((s, sub) => s + sub.chapters.filter((ch) => markedChapterIds.has(ch.id)).length, 0),
+    () => subjects.reduce((s, sub) => s + sub.chapters.filter((ch) => markedChapterIds.has(ch.id)).reduce((cs, ch) => cs + ch.count, 0), 0),
     [subjects, markedChapterIds]
   );
 
@@ -177,12 +177,38 @@ export default function BrowsePage() {
         </Link>
       </header>
 
+      {/* Reading order */}
+      <div className="rounded-lg border border-slate-200 bg-white px-5 py-4 shadow-sm">
+        <div className="mb-3 text-base font-bold text-slate-700">{t('browse.questionOrder')}</div>
+        <div className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 p-1">
+          {([
+            { value: 'sequential', icon: ListOrdered, labelKey: 'browse.orderSequential' },
+            { value: 'random', icon: Shuffle, labelKey: 'browse.orderRandom' },
+          ] as const).map(({ value, icon: Icon, labelKey }) => (
+            <button
+              key={value}
+              type="button"
+              onClick={() => setQuestionOrder(value)}
+              className={cn(
+                'flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold transition-all duration-150',
+                questionOrder === value
+                  ? 'bg-primary text-primary-foreground shadow-sm'
+                  : 'text-slate-500 hover:text-slate-700'
+              )}
+            >
+              <Icon className="h-4 w-4" />
+              {t(labelKey)}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Learning status */}
       <div className="rounded-lg border border-slate-200 bg-white px-5 py-4 shadow-sm">
         <div className="mb-3 text-base font-bold text-slate-700">{t('browse.learningStatus')}</div>
         <div className="flex flex-wrap gap-x-8 gap-y-4 rounded-md bg-slate-50 p-4">
           {([
-            { value: 'all' as const, label: t('browse.filterAll'), count: subjects.reduce((s, sub) => s + sub.chapters.length, 0), activeClass: 'bg-slate-700 text-white' },
+            { value: 'all' as const, label: t('browse.filterAll'), count: totalQuestions, activeClass: 'bg-slate-700 text-white' },
             { value: 'unlearned' as const, label: t('browse.filterUnlearned'), count: unlearnedCount, activeClass: 'bg-primary text-primary-foreground' },
             { value: 'learned' as const, label: t('browse.filterLearned'), count: learnedCount, activeClass: 'bg-green-500 text-white' },
             { value: 'marked' as const, label: t('browse.filterMarked'), count: markedCount, activeClass: 'bg-amber-500 text-white' },
@@ -216,32 +242,6 @@ export default function BrowsePage() {
               </div>
             );
           })}
-        </div>
-      </div>
-
-      {/* Reading order */}
-      <div className="rounded-lg border border-slate-200 bg-white px-5 py-4 shadow-sm">
-        <div className="mb-3 text-base font-bold text-slate-700">{t('browse.questionOrder')}</div>
-        <div className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 p-1">
-          {([
-            { value: 'sequential', icon: ListOrdered, labelKey: 'browse.orderSequential' },
-            { value: 'random', icon: Shuffle, labelKey: 'browse.orderRandom' },
-          ] as const).map(({ value, icon: Icon, labelKey }) => (
-            <button
-              key={value}
-              type="button"
-              onClick={() => setQuestionOrder(value)}
-              className={cn(
-                'flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold transition-all duration-150',
-                questionOrder === value
-                  ? 'bg-primary text-primary-foreground shadow-sm'
-                  : 'text-slate-500 hover:text-slate-700'
-              )}
-            >
-              <Icon className="h-4 w-4" />
-              {t(labelKey)}
-            </button>
-          ))}
         </div>
       </div>
 
