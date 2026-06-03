@@ -26,6 +26,7 @@ import csv
 import glob
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -38,6 +39,25 @@ OUT_DIR = os.environ.get("OUT_DIR", os.path.join(
 
 def is_error_html(html: str) -> bool:
     return not html or html.strip().startswith("<!-- ERROR:")
+
+
+def load_enriched_questions(path: str) -> list[dict]:
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    return data if isinstance(data, list) else data.get("questions", [])
+
+
+def enriched_score(path: str) -> tuple[int, int, str]:
+    """優先固定檔名，其次題數較完整，最後檔名排序。"""
+    try:
+        questions = load_enriched_questions(path)
+    except Exception:
+        questions = []
+    dated = re.search(
+        r"_\d{4}-\d{2}-\d{2}_castudy_enriched\.json$",
+        os.path.basename(path),
+    )
+    return (0 if dated else 1, len(questions), path)
 
 
 def check_question(q: dict) -> dict[str, bool]:
@@ -102,7 +122,7 @@ def main():
         subject = parts[-2]
         chapter = parts[-1]
 
-        # 找該 chapter 下的 enriched JSON（可能有多個，取最新）
+        # 找該 chapter 下的 enriched JSON；每章只取 canonical/最完整的一份
         enriched_files = sorted(glob.glob(os.path.join(chapter_dir, "*_enriched.json")))
 
         if not enriched_files:
@@ -120,16 +140,12 @@ def main():
             })
             continue
 
-        # 合併該 chapter 所有 enriched 檔案的題目
-        all_questions: list[dict] = []
-        for fpath in enriched_files:
-            try:
-                with open(fpath, encoding="utf-8") as f:
-                    data = json.load(f)
-                qs = data if isinstance(data, list) else data.get("questions", [])
-                all_questions.extend(qs)
-            except Exception as e:
-                print(f"  WARN: cannot read {fpath}: {e}")
+        selected_enriched = max(enriched_files, key=enriched_score)
+        try:
+            all_questions = load_enriched_questions(selected_enriched)
+        except Exception as e:
+            print(f"  WARN: cannot read {selected_enriched}: {e}")
+            all_questions = []
 
         if not all_questions:
             chapter_stats.append({
@@ -167,7 +183,7 @@ def main():
                     "index":                q.get("index", "?"),
                     "question_preview":     q.get("question", "")[:80],
                     **{k: "Y" if v else "" for k, v in flags.items()},
-                    "enriched_file":        os.path.relpath(enriched_files[-1], out_dir),
+                    "enriched_file":        os.path.relpath(selected_enriched, out_dir),
                 })
 
         total_questions   += ch_total

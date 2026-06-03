@@ -488,23 +488,57 @@ async function listEnrichedFiles(dir) {
   return files.flat().sort();
 }
 
+function parseEnrichedDocument(raw) {
+  if (Array.isArray(raw)) {
+    const firstItem = raw[0] ?? {};
+    return {
+      meta: {
+        subject: firstItem.subject ?? '',
+        chapter: firstItem.chapter ?? '',
+        count: firstItem.count ?? raw.length,
+      },
+      items: raw,
+    };
+  }
+  const items = Array.isArray(raw?.questions) ? raw.questions : [];
+  const firstItem = items[0] ?? {};
+  return {
+    meta: {
+      subject: raw?.meta?.subject ?? firstItem.subject ?? '',
+      chapter: raw?.meta?.chapter ?? firstItem.chapter ?? '',
+      count: raw?.meta?.count ?? firstItem.count ?? items.length,
+    },
+    items,
+  };
+}
+
+function enrichedQuality(items) {
+  let zhQuestions = 0;
+  let zhChoices = 0;
+  let usableZhHtml = 0;
+  let usableEnHtml = 0;
+  for (const item of items) {
+    if (String(item['zh-question'] ?? '').trim()) zhQuestions += 1;
+    if (item['zh-choices'] && Object.keys(item['zh-choices']).length > 0) zhChoices += 1;
+    if (!isErrorHtml(item['zh-explanation'])) usableZhHtml += 1;
+    if (!isErrorHtml(item.explanation)) usableEnHtml += 1;
+  }
+  return zhQuestions + zhChoices + usableZhHtml + usableEnHtml;
+}
+
 async function selectCanonicalEnrichedFiles(files) {
   const bestByChapter = new Map();
 
   for (const file of files) {
-    const items = JSON.parse(await readFile(file, 'utf8'));
-    if (!Array.isArray(items) || items.length === 0) continue;
+    const { meta, items } = parseEnrichedDocument(JSON.parse(await readFile(file, 'utf8')));
+    if (items.length === 0) continue;
 
-    const firstItem = items[0];
-    const meta = {
-      subject: firstItem.subject ?? '',
-      chapter: firstItem.chapter ?? '',
-    };
-    const expectedCount = Number.isFinite(firstItem.count) ? firstItem.count : items.length;
+    const expectedCount = Number.isFinite(meta.count) ? meta.count : items.length;
     const candidate = {
       file,
       count: items.length,
       completeness: expectedCount > 0 ? items.length / expectedCount : 1,
+      quality: enrichedQuality(items),
     };
     const key = chapterId(meta);
     const current = bestByChapter.get(key);
@@ -513,7 +547,8 @@ async function selectCanonicalEnrichedFiles(files) {
       !current ||
       candidate.completeness > current.completeness ||
       (candidate.completeness === current.completeness && candidate.count > current.count) ||
-      (candidate.completeness === current.completeness && candidate.count === current.count && candidate.file > current.file)
+      (candidate.completeness === current.completeness && candidate.count === current.count && candidate.quality > current.quality) ||
+      (candidate.completeness === current.completeness && candidate.count === current.count && candidate.quality === current.quality && candidate.file > current.file)
     ) {
       bestByChapter.set(key, candidate);
     }
@@ -650,14 +685,10 @@ if (enrichedFiles.length === 0) {
   let enrichedSkipped = 0;
 
   for (const file of enrichedFiles) {
-    const items = JSON.parse(await readFile(file, 'utf8'));
-    if (!Array.isArray(items) || items.length === 0) continue;
+    const { meta, items } = parseEnrichedDocument(JSON.parse(await readFile(file, 'utf8')));
+    if (items.length === 0) continue;
 
     const relativeFile = path.relative(outDir, file);
-    const firstItem = items[0];
-    const subject = firstItem.subject ?? '';
-    const chapter = firstItem.chapter ?? '';
-    const meta = { subject, chapter };
     const chapId = chapterId(meta);
 
     console.log(`  [${enrichedFiles.indexOf(file) + 1}/${enrichedFiles.length}] ${relativeFile}`);

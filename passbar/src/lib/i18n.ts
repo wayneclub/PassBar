@@ -12,6 +12,7 @@ type TranslationKey =
   | 'nav.openNavigation'
   | 'nav.qbank'
   | 'nav.createTest'
+  | 'nav.simExam'
   | 'nav.previousTests'
   | 'nav.performance'
   | 'nav.assessments'
@@ -109,6 +110,28 @@ type TranslationKey =
   | 'create.simExam'
   | 'create.simExamModeHint'
   | 'create.simExamBadge'
+  | 'simExam.title'
+  | 'simExam.description'
+  | 'simExam.start'
+  | 'simExam.starting'
+  | 'simExam.badge'
+  | 'simExam.featureQuestions'
+  | 'simExam.featureTime'
+  | 'simExam.featureSubjects'
+  | 'simExam.featureQuestionsDesc'
+  | 'simExam.featureTimeDesc'
+  | 'simExam.featureSubjectsDesc'
+  | 'simExam.howItWorksTitle'
+  | 'simExam.step1Title'
+  | 'simExam.step1Desc'
+  | 'simExam.step2Title'
+  | 'simExam.step2Desc'
+  | 'simExam.step3Title'
+  | 'simExam.step3Desc'
+  | 'simExam.totalQuestions'
+  | 'simExam.practicedQuestions'
+  | 'simExam.unpracticedQuestions'
+  | 'simExam.noQuestionsAlert'
   | 'create.questionOrder'
   | 'create.orderRandom'
   | 'create.orderSequential'
@@ -391,6 +414,7 @@ const en: Dictionary = {
   'nav.openNavigation': 'Open navigation',
   'nav.qbank': 'QBank',
   'nav.createTest': 'Create Test',
+  'nav.simExam': 'Mock Exam',
   'nav.previousTests': 'Previous Tests',
   'nav.performance': 'Performance',
   'nav.assessments': 'Assessments',
@@ -665,6 +689,28 @@ const en: Dictionary = {
   'create.simExam': 'Simulated Exam',
   'create.simExamModeHint': '100 questions, 3-hour countdown. Subjects and chapters are auto-selected proportionally for a realistic exam experience.',
   'create.simExamBadge': '100 Qs · 3 hrs',
+  'simExam.title': 'Mock Exam',
+  'simExam.description': 'Simulate the real bar exam with 100 questions distributed proportionally across all subjects.',
+  'simExam.start': 'Start Mock Exam',
+  'simExam.starting': 'Generating...',
+  'simExam.badge': '100 Qs · 3 hrs',
+  'simExam.featureQuestions': '100 Questions',
+  'simExam.featureTime': '3-Hour Timer',
+  'simExam.featureSubjects': 'All Subjects',
+  'simExam.featureQuestionsDesc': 'Selected proportionally from each subject to match real exam distribution',
+  'simExam.featureTimeDesc': 'Timed countdown exactly as in the actual bar exam',
+  'simExam.featureSubjectsDesc': 'Questions from every tested subject, no manual selection needed',
+  'simExam.howItWorksTitle': 'How It Works',
+  'simExam.step1Title': 'Proportional Selection',
+  'simExam.step1Desc': 'Questions are drawn from each subject in the same proportion as the real bar exam',
+  'simExam.step2Title': 'Full Time Pressure',
+  'simExam.step2Desc': 'A 3-hour countdown starts immediately — just like exam day',
+  'simExam.step3Title': 'Review After Submission',
+  'simExam.step3Desc': 'Detailed explanations and performance breakdown available after you finish',
+  'simExam.totalQuestions': 'Total Questions',
+  'simExam.practicedQuestions': 'Practiced',
+  'simExam.unpracticedQuestions': 'Remaining',
+  'simExam.noQuestionsAlert': 'No questions available. Please try again.',
   'create.questionOrder': 'Question Order',
   'create.orderRandom': 'Random',
   'create.orderSequential': 'Sequential',
@@ -1001,6 +1047,7 @@ const zhHans: Dictionary = {
   'nav.openNavigation': '打开导航',
   'nav.qbank': '题库',
   'nav.createTest': '创建测验',
+  'nav.simExam': '模拟测验',
   'nav.previousTests': '历史练习',
   'nav.performance': '学习表现',
   'nav.assessments': '测评',
@@ -1275,6 +1322,28 @@ const zhHans: Dictionary = {
   'create.simExam': '模拟真实考试',
   'create.simExamModeHint': '100 题，3 小时倒计时。系统按比例自动分配各科目与章节，模拟真实考试体验。',
   'create.simExamBadge': '100 题 · 3 小时',
+  'simExam.title': '模拟测验',
+  'simExam.description': '模拟真实司法考试，100 道题按各科比例自动分配。',
+  'simExam.start': '开始模拟测验',
+  'simExam.starting': '生成中...',
+  'simExam.badge': '100 题 · 3 小时',
+  'simExam.featureQuestions': '100 道题',
+  'simExam.featureTime': '3 小时计时',
+  'simExam.featureSubjects': '涵盖所有科目',
+  'simExam.featureQuestionsDesc': '按各科目真实比例抽题，贴近正式考试分布',
+  'simExam.featureTimeDesc': '与真实考试完全相同的倒数计时',
+  'simExam.featureSubjectsDesc': '无需手动选择，自动覆盖所有考试科目',
+  'simExam.howItWorksTitle': '运作方式',
+  'simExam.step1Title': '比例抽题',
+  'simExam.step1Desc': '根据真实考试中各科目的比例，从题库中自动选取题目',
+  'simExam.step2Title': '全程计时',
+  'simExam.step2Desc': '3 小时倒计时立即开始，完全模拟正式考试当天情境',
+  'simExam.step3Title': '交卷后复盘',
+  'simExam.step3Desc': '完成后可查看详细解析与各科目得分分析',
+  'simExam.totalQuestions': '题库总题数',
+  'simExam.practicedQuestions': '已练习',
+  'simExam.unpracticedQuestions': '待练习',
+  'simExam.noQuestionsAlert': '找不到可用题目，请稍后再试。',
   'create.questionOrder': '题目顺序',
   'create.orderRandom': '随机',
   'create.orderSequential': '顺序',
@@ -1610,6 +1679,7 @@ const zhHant: Dictionary = {
   'nav.openNavigation': '開啟導覽',
   'nav.qbank': '題庫',
   'nav.createTest': '建立測驗',
+  'nav.simExam': '模擬測驗',
   'nav.previousTests': '歷史練習',
   'nav.performance': '學習表現',
   'nav.assessments': '測評',
@@ -1884,6 +1954,28 @@ const zhHant: Dictionary = {
   'create.simExam': '模擬真實測驗',
   'create.simExamModeHint': '100 題，3 小時倒數。系統按比例自動分配各科目與章節，模擬真實考試體驗。',
   'create.simExamBadge': '100 題 · 3 小時',
+  'simExam.title': '模擬測驗',
+  'simExam.description': '模擬真實律師考試，100 題按各科比例自動分配，全程限時作答。',
+  'simExam.start': '開始模擬測驗',
+  'simExam.starting': '生成中...',
+  'simExam.badge': '100 題 · 3 小時',
+  'simExam.featureQuestions': '100 道題',
+  'simExam.featureTime': '3 小時計時',
+  'simExam.featureSubjects': '涵蓋所有科目',
+  'simExam.featureQuestionsDesc': '按各科目真實比例抽題，貼近正式考試分布',
+  'simExam.featureTimeDesc': '與真實考試完全相同的倒數計時',
+  'simExam.featureSubjectsDesc': '無需手動選擇，自動涵蓋所有考試科目',
+  'simExam.howItWorksTitle': '運作方式',
+  'simExam.step1Title': '比例抽題',
+  'simExam.step1Desc': '根據真實考試各科目比例，從題庫中自動選取題目',
+  'simExam.step2Title': '全程計時',
+  'simExam.step2Desc': '3 小時倒數立即開始，完全模擬正式考試當天情境',
+  'simExam.step3Title': '交卷後複盤',
+  'simExam.step3Desc': '完成後可查看詳細解析與各科目得分分析',
+  'simExam.totalQuestions': '題庫總題數',
+  'simExam.practicedQuestions': '已練習',
+  'simExam.unpracticedQuestions': '待練習',
+  'simExam.noQuestionsAlert': '找不到可用題目，請稍後再試。',
   'create.questionOrder': '題目順序',
   'create.orderRandom': '隨機',
   'create.orderSequential': '依序',

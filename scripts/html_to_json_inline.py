@@ -29,18 +29,25 @@ def read_html(path: str) -> str:
         return f.read().strip()
 
 
-def load_enriched(json_path: str) -> list[dict]:
+def load_enriched_doc(json_path: str) -> tuple[object, list[dict]]:
     with open(json_path, encoding="utf-8") as f:
         data = json.load(f)
     if isinstance(data, list):
-        return data
-    # 舊格式相容
-    return data.get("questions", [])
+        return data, data
+    return data, data.get("questions", [])
 
 
-def save_enriched(json_path: str, questions: list[dict]) -> None:
+def load_enriched(json_path: str) -> list[dict]:
+    _doc, questions = load_enriched_doc(json_path)
+    return questions
+
+
+def save_enriched(json_path: str, questions: list[dict], doc: object | None = None) -> None:
+    payload = questions
+    if isinstance(doc, dict):
+        payload = {**doc, "questions": questions}
     with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(questions, f, ensure_ascii=False, indent=2)
+        json.dump(payload, f, ensure_ascii=False, indent=2)
 
 
 def main():
@@ -77,7 +84,7 @@ def main():
             )
             sys.exit(1)
 
-        questions = load_enriched(args.json)
+        doc, questions = load_enriched_doc(args.json)
         index_map: dict[int, dict] = {q.get("index"): q for q in questions}
 
         for i, html_path in enumerate(args.files):
@@ -104,7 +111,7 @@ def main():
                 print(f"✅ Q{target_index:04d}.{args.field} ← {html_path}")
 
         if not args.dry_run:
-            save_enriched(args.json, questions)
+            save_enriched(args.json, questions, doc)
             print(f"\n💾 Saved → {args.json}")
 
     # ── 模式 2：無 enriched JSON → 印出 JSON 片段供手動貼入 ───────────────

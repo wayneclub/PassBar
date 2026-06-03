@@ -16,6 +16,7 @@ import {
   Users,
   LayoutDashboard,
   Pencil,
+  GraduationCap,
   type LucideIcon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -63,6 +64,7 @@ export function AppSidebar() {
       tourId: 'qbank',
       items: [
         { name: t('nav.createTest'), href: '/create', icon: PlusCircle, tourId: 'create-test' },
+        { name: t('nav.simExam'), href: '/sim-exam', icon: GraduationCap },
         { name: t('nav.previousTests'), href: '/review', icon: History },
       ],
     },

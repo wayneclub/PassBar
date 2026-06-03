@@ -28,6 +28,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+from datetime import datetime
 from pathlib import Path
 
 
@@ -65,7 +66,11 @@ _GEMINI_API_KEYS: list[str] = [
     ] if k
 ]
 
-if not _GEMINI_API_KEYS:
+if (
+    not _GEMINI_API_KEYS
+    and "--dry-run" not in sys.argv
+    and "--no-gemini" not in sys.argv
+):
     print("ERROR: No GEMINI_API_KEY_1 ~ GEMINI_API_KEY_N found in environment or .env file.")
     print("  Create scripts/.env and add:")
     print("  GEMINI_API_KEY_1=your_key_here")
@@ -380,6 +385,52 @@ def _has_error(record: dict) -> bool:
     )
 
 
+def canonical_enriched_path(json_path: str) -> str:
+    """同一章節固定寫入同一份 enriched JSON，不跟 castudy 日期產生新檔。"""
+    chapter_dir = os.path.dirname(json_path)
+    base_name = os.path.splitext(os.path.basename(json_path))[0]
+    canonical_name = re.sub(r"_\d{4}-\d{2}-\d{2}_castudy$", "_castudy", base_name)
+    return os.path.join(chapter_dir, f"{canonical_name}_enriched.json")
+
+
+def load_enriched_questions(path: str) -> list[dict]:
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    if isinstance(data, list):
+        return data
+    return data.get("questions", [])
+
+
+def enriched_completeness_score(path: str, expected_count: int) -> tuple[float, int, int, int, int, str]:
+    try:
+        questions = load_enriched_questions(path)
+    except Exception:
+        return (0.0, 0, 0, 0, 0, path)
+    count = len(questions)
+    completeness = count / expected_count if expected_count > 0 else 1.0
+    zh_questions = sum(1 for q in questions if str(q.get("zh-question", "")).strip())
+    zh_choices = sum(1 for q in questions if q.get("zh-choices"))
+    usable_zh_html = sum(
+        1 for q in questions if not _is_error_html(q.get("zh-explanation", ""))
+    )
+    return (completeness, count, zh_questions, zh_choices, usable_zh_html, path)
+
+
+def find_existing_enriched_source(output_path: str, json_path: str, expected_count: int) -> str | None:
+    """找可沿用的 enriched 來源；優先 canonical，否則挑最完整的舊 dated 檔。"""
+    if os.path.exists(output_path):
+        return output_path
+
+    chapter_dir = os.path.dirname(json_path)
+    candidates = [
+        path for path in glob.glob(os.path.join(chapter_dir, "*_enriched.json"))
+        if os.path.abspath(path) != os.path.abspath(output_path)
+    ]
+    if not candidates:
+        return None
+    return max(candidates, key=lambda path: enriched_completeness_score(path, expected_count))
+
+
 def extract_html_from_response(text: str) -> str:
     """從 Gemini 回覆中取出 HTML（可能包在 ```html ``` 中）。"""
     m = re.search(r"```html\s*([\s\S]*?)\s*```", text, re.IGNORECASE)
@@ -517,6 +568,7 @@ def process_question(
     count: int,
     dry_run: bool = False,
     existing_record: dict | None = None,
+    no_gemini: bool = False,
 ) -> dict:
     """將一道題目轉為結構化格式，必要時呼叫 Gemini。"""
 
@@ -593,7 +645,9 @@ def process_question(
         if not dry_run:
             # 英文解析 HTML：新記錄才用 source_imgs 生成；修補舊 enriched 時避免
             # 因為舊 explanation error 觸發不必要的 Gemini 呼叫。
-            if not existing_record and _is_error_html(en_explanation_html):
+            if no_gemini:
+                en_explanation_html = en_explanation_html or ""
+            elif not existing_record and _is_error_html(en_explanation_html):
                 en_explanation_html = generate_explanation_html(
                     collect_img_paths(api_data))
 
@@ -605,49 +659,55 @@ def process_question(
                 source_tag = "api"
             else:
                 source_tag = "api_no_html"
-                prompt = GEMINI_PROMPT_TEMPLATE.format(
-                    subject=subject,
-                    chapter=chapter,
-                    question=en_question,
-                    choices=format_choices_for_prompt(en_options),
-                    correct_answer=correct_answer,
-                )
-                print(
-                    f"  Gemini(zh-html) → Q{index:04d}: {en_question[:55]}…", end=" ", flush=True)
-                try:
-                    raw_response = call_gemini_rest(
-                        prompt, collect_img_paths(api_data))
-                    zh_explanation = extract_html_from_response(raw_response)
-                    print("✓")
-                    source_tag = "api+gemini_html"
-                    time.sleep(RATE_LIMIT_DELAY)
-                except RateLimitedError:
-                    raise  # 向上傳遞，整題跳過
-                except Exception as exc:
-                    print(f"✗ ERROR: {exc}")
-                    source_tag = "error"
-                    zh_explanation = f"<!-- ERROR: {exc} -->"
+                if no_gemini:
+                    print(f"  ⏭ Q{index:04d} missing zh HTML (no-gemini)")
+                else:
+                    prompt = GEMINI_PROMPT_TEMPLATE.format(
+                        subject=subject,
+                        chapter=chapter,
+                        question=en_question,
+                        choices=format_choices_for_prompt(en_options),
+                        correct_answer=correct_answer,
+                    )
+                    print(
+                        f"  Gemini(zh-html) → Q{index:04d}: {en_question[:55]}…", end=" ", flush=True)
+                    try:
+                        raw_response = call_gemini_rest(
+                            prompt, collect_img_paths(api_data))
+                        zh_explanation = extract_html_from_response(raw_response)
+                        print("✓")
+                        source_tag = "api+gemini_html"
+                        time.sleep(RATE_LIMIT_DELAY)
+                    except RateLimitedError:
+                        raise  # 向上傳遞，整題跳過
+                    except Exception as exc:
+                        print(f"✗ ERROR: {exc}")
+                        source_tag = "error"
+                        zh_explanation = f"<!-- ERROR: {exc} -->"
 
             # 缺哪個中文欄位才呼叫 Gemini 補哪個；castudy 已有的直接沿用。
             missing_choice_keys = missing_zh_choice_keys(
                 {"zh-choices": zh_choices}, en_options)
             if not zh_question or missing_choice_keys:
-                print(
-                    f"  Gemini(translate) → Q{index:04d}: missing zh_question/choices", end=" ", flush=True)
-                try:
-                    tq, tc = call_gemini_translate(
-                        subject, chapter, en_question, en_options)
-                    if not zh_question:
-                        zh_question = tq
-                    for k, v in tc.items():
-                        if k in missing_choice_keys and not zh_choices.get(k):
-                            zh_choices[k] = v
-                    print("✓")
-                    time.sleep(RATE_LIMIT_DELAY)
-                except RateLimitedError:
-                    raise  # 向上傳遞，整題跳過
-                except Exception as exc:
-                    print(f"✗ TRANSLATE ERROR: {exc}")
+                if no_gemini:
+                    print(f"  ⏭ Q{index:04d} missing zh question/choices (no-gemini)")
+                else:
+                    print(
+                        f"  Gemini(translate) → Q{index:04d}: missing zh_question/choices", end=" ", flush=True)
+                    try:
+                        tq, tc = call_gemini_translate(
+                            subject, chapter, en_question, en_options)
+                        if not zh_question:
+                            zh_question = tq
+                        for k, v in tc.items():
+                            if k in missing_choice_keys and not zh_choices.get(k):
+                                zh_choices[k] = v
+                        print("✓")
+                        time.sleep(RATE_LIMIT_DELAY)
+                    except RateLimitedError:
+                        raise  # 向上傳遞，整題跳過
+                    except Exception as exc:
+                        print(f"✗ TRANSLATE ERROR: {exc}")
         else:
             source_tag = "api"
 
@@ -661,55 +721,63 @@ def process_question(
             img_paths = collect_img_paths()
 
             # 1) 英文解析 HTML
-            if not existing_record and _is_error_html(en_explanation_html):
+            if no_gemini:
+                en_explanation_html = en_explanation_html or ""
+            elif not existing_record and _is_error_html(en_explanation_html):
                 en_explanation_html = generate_explanation_html(img_paths)
 
             # 2) 翻譯題目與選項
             missing_choice_keys = missing_zh_choice_keys(
                 {"zh-choices": zh_choices}, en_options)
             if not zh_question or missing_choice_keys:
-                print(
-                    f"  Gemini(translate) → Q{index:04d}: {en_question[:55]}…", end=" ", flush=True)
-                try:
-                    tq, tc = call_gemini_translate(
-                        subject, chapter, en_question, en_options)
-                    if not zh_question:
-                        zh_question = tq
-                    for k, v in tc.items():
-                        if k in missing_choice_keys and not zh_choices.get(k):
-                            zh_choices[k] = v
-                    print("✓")
-                    time.sleep(RATE_LIMIT_DELAY)
-                except RateLimitedError:
-                    raise  # 向上傳遞，整題跳過
-                except Exception as exc:
-                    print(f"✗ TRANSLATE ERROR: {exc}")
+                if no_gemini:
+                    print(f"  ⏭ Q{index:04d} missing zh question/choices (no-gemini)")
+                else:
+                    print(
+                        f"  Gemini(translate) → Q{index:04d}: {en_question[:55]}…", end=" ", flush=True)
+                    try:
+                        tq, tc = call_gemini_translate(
+                            subject, chapter, en_question, en_options)
+                        if not zh_question:
+                            zh_question = tq
+                        for k, v in tc.items():
+                            if k in missing_choice_keys and not zh_choices.get(k):
+                                zh_choices[k] = v
+                        print("✓")
+                        time.sleep(RATE_LIMIT_DELAY)
+                    except RateLimitedError:
+                        raise  # 向上傳遞，整題跳過
+                    except Exception as exc:
+                        print(f"✗ TRANSLATE ERROR: {exc}")
 
             # 3) 中文解析 HTML
             if not _is_error_html(zh_explanation):
                 source_tag = "cached"
             else:
-                prompt = GEMINI_PROMPT_TEMPLATE.format(
-                    subject=subject,
-                    chapter=chapter,
-                    question=en_question,
-                    choices=format_choices_for_prompt(en_options),
-                    correct_answer=correct_answer,
-                )
-                print(
-                    f"  Gemini(zh-html) → Q{index:04d}: {en_question[:60]}…", end=" ", flush=True)
-                try:
-                    raw_response = call_gemini_rest(prompt, img_paths)
-                    zh_explanation = extract_html_from_response(raw_response)
-                    print("✓")
-                    source_tag = "gemini"
-                    time.sleep(RATE_LIMIT_DELAY)
-                except RateLimitedError:
-                    raise  # 向上傳遞，整題跳過
-                except Exception as exc:
-                    print(f"✗ ERROR: {exc}")
-                    source_tag = "error"
-                    zh_explanation = f"<!-- ERROR: {exc} -->"
+                if no_gemini:
+                    print(f"  ⏭ Q{index:04d} missing zh HTML (no-gemini)")
+                else:
+                    prompt = GEMINI_PROMPT_TEMPLATE.format(
+                        subject=subject,
+                        chapter=chapter,
+                        question=en_question,
+                        choices=format_choices_for_prompt(en_options),
+                        correct_answer=correct_answer,
+                    )
+                    print(
+                        f"  Gemini(zh-html) → Q{index:04d}: {en_question[:60]}…", end=" ", flush=True)
+                    try:
+                        raw_response = call_gemini_rest(prompt, img_paths)
+                        zh_explanation = extract_html_from_response(raw_response)
+                        print("✓")
+                        source_tag = "gemini"
+                        time.sleep(RATE_LIMIT_DELAY)
+                    except RateLimitedError:
+                        raise  # 向上傳遞，整題跳過
+                    except Exception as exc:
+                        print(f"✗ ERROR: {exc}")
+                        source_tag = "error"
+                        zh_explanation = f"<!-- ERROR: {exc} -->"
 
     return {
         "index": index,
@@ -734,12 +802,12 @@ def process_json_file(
     dry_run: bool = False,
     force: bool = False,
     limit: int = 0,
+    no_gemini: bool = False,
 ) -> str | None:
     """處理一個章節的 castudy JSON，輸出 _enriched.json。"""
 
     chapter_dir = os.path.dirname(json_path)
-    base_name = os.path.splitext(os.path.basename(json_path))[0]
-    output_path = os.path.join(chapter_dir, f"{base_name}_enriched.json")
+    output_path = canonical_enriched_path(json_path)
 
     # 載入原始 JSON
     with open(json_path, encoding="utf-8") as f:
@@ -762,12 +830,12 @@ def process_json_file(
     existing_error: set[int] = set()      # enriched 裡有但是 ERROR 的
     existing_all_indices: set[int] = set()
 
-    if not force and os.path.exists(output_path):
+    existing_source = None if force else find_existing_enriched_source(
+        output_path, json_path, len(questions)
+    )
+    if existing_source:
         try:
-            with open(output_path, encoding="utf-8") as f:
-                enriched_raw = json.load(f)
-            if not isinstance(enriched_raw, list):
-                enriched_raw = enriched_raw.get("questions", [])
+            enriched_raw = load_enriched_questions(existing_source)
             for eq in enriched_raw:
                 idx = eq.get("index")
                 if idx is None:
@@ -779,7 +847,7 @@ def process_json_file(
                 else:
                     existing_good[idx] = eq
         except Exception as e:
-            print(f"  WARN: cannot read enriched JSON ({e}), will reprocess all")
+            print(f"  WARN: cannot read enriched JSON {existing_source} ({e}), will reprocess all")
 
     # 從 castudy 角度，找出完全不在 enriched 裡的題目
     missing_indices = sorted(castudy_indices - existing_all_indices)
@@ -793,6 +861,9 @@ def process_json_file(
           f"✅ 已完成 {len(existing_good)}  "
           f"❌ 有錯誤 {len(existing_error)}  "
           f"⬜ 完全缺失 {len(missing_indices)}")
+    if existing_source and os.path.abspath(existing_source) != os.path.abspath(output_path):
+        print(f"   ↳ 沿用舊檔    : {os.path.basename(existing_source)}")
+        print(f"   ↳ 固定輸出    : {os.path.basename(output_path)}")
     if missing_indices:
         print(f"   ⬜ 缺失 indices  : {missing_indices}")
     if existing_error:
@@ -818,8 +889,19 @@ def process_json_file(
             {k: v for k, v in eq.items() if k not in _internal}
             for eq in enriched_questions
         ]
+        payload = {
+            "meta": {
+                "subject": subject,
+                "chapter": chapter,
+                "count": count,
+                "updatedAt": datetime.now().isoformat(timespec="seconds"),
+                "sourceCastudyFile": os.path.basename(json_path),
+                "schema": "passbar.enriched.v2",
+            },
+            "questions": output_questions,
+        }
         with open(output_path, "w", encoding="utf-8") as f:
-            json.dump(output_questions, f, ensure_ascii=False, indent=2)
+            json.dump(payload, f, ensure_ascii=False, indent=2)
 
     def write_zh_html(idx: int, record: dict) -> None:
         if not record.get("zh-explanation"):
@@ -856,6 +938,7 @@ def process_json_file(
                 count=count,
                 dry_run=dry_run,
                 existing_record=existing_records.get(idx),
+                no_gemini=no_gemini,
             )
         except RateLimitedError:
             print(f"  ⏭ Q{idx:04d} SKIPPED (all keys rate limited, will retry next run)")
@@ -897,8 +980,7 @@ def process_json_file(
     else:
         print(f"  ✅ 驗證通過：輸出題數 {len(enriched_questions)} 題，與 castudy 完全一致")
 
-    if output_dirty:
-        write_enriched_output()
+    write_enriched_output()
 
     print(f"  ✅ Saved → {output_path}")
     return output_path
@@ -921,6 +1003,8 @@ def main():
                         help="Path to out/ directory")
     parser.add_argument("--limit", type=int, default=0,
                         help="Only process first N questions per chapter (0 = all)")
+    parser.add_argument("--no-gemini", action="store_true",
+                        help="Write only cached/castudy data; do not call Gemini for missing fields")
     args = parser.parse_args()
 
     out_dir = os.path.abspath(args.out_dir)
@@ -955,7 +1039,8 @@ def main():
 
     for json_file in json_files:
         process_json_file(json_file, dry_run=args.dry_run,
-                          force=args.force, limit=args.limit)
+                          force=args.force, limit=args.limit,
+                          no_gemini=args.no_gemini)
 
     print("\n🎉 Done.")
 
