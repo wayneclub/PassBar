@@ -18,6 +18,8 @@ import {
   Pencil,
   GraduationCap,
   Flag,
+  Footprints,
+  BarChart2,
   type LucideIcon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -64,12 +66,20 @@ export function AppSidebar() {
       icon: LayoutGrid,
       tourId: 'qbank',
       items: [
+        { name: t('nav.browse'), href: '/browse', icon: BookOpen },
         { name: t('nav.createTest'), href: '/create', icon: PlusCircle, tourId: 'create-test' },
         { name: t('nav.simExam'), href: '/sim-exam', icon: GraduationCap },
-        { name: t('nav.previousTests'), href: '/review', icon: History },
       ],
     },
-    { name: t('nav.performance'), href: '/performance', icon: BookOpen, items: [] },
+    {
+      name: t('nav.dataPerformance'),
+      icon: BarChart2,
+      items: [
+        { name: t('nav.footprint'), href: '/footprint', icon: Footprints },
+        { name: t('nav.previousTests'), href: '/review', icon: History },
+        { name: t('nav.performance'), href: '/performance', icon: BarChart2 },
+      ],
+    },
     { name: t('nav.settings'), href: '/settings', icon: Settings, items: [] },
   ];
   const displayName = profile?.full_name || profile?.email || user?.email || 'Signed in';

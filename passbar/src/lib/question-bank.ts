@@ -55,6 +55,7 @@ function toQuestion(row: QuestionRow, ocrByQuestion = new Map<string, Explanatio
     index: row.index,
     subject: row.subject,
     topic: row.topic,
+    chapterId: row.chapter_id,
     questionText: row.question_text,
     bilingualQuestionText: row.fetched_question_stem ?? undefined,
     zhQuestionText: row.zh_question_stem ?? undefined,
@@ -172,7 +173,7 @@ export async function getSubjects(): Promise<Subject[]> {
     grouped.set(row.subject, existing);
   });
 
-  return Array.from(grouped.values());
+  return Array.from(grouped.values()).filter((s) => s.count > 0);
 }
 
 export async function getQuestionIdsByChapterIds(chapterIds: string[]): Promise<string[]> {

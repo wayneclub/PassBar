@@ -19,6 +19,13 @@ import {
   setQuestionMarked,
 } from '@/lib/question-progress';
 import { getPracticeSessionRecord, savePracticeAnswer, updatePracticeSessionRecord } from '@/lib/practice-sessions';
+import { upsertBrowseProgress } from '@/lib/browse-progress';
+import {
+  addPendingAnswerSync,
+  getTestQuestionSnapshot,
+  saveTestQuestionSnapshot,
+  syncPendingAnswerProgress,
+} from '@/lib/offline-cache';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -60,15 +67,25 @@ function isTypingTarget(target: EventTarget | null) {
   return tagName === 'input' || tagName === 'textarea' || tagName === 'select' || target.isContentEditable;
 }
 
+function getCachedSessionQuestions(questionIds: string[], cachedQuestions: Question[] | null) {
+  if (!cachedQuestions?.length) return null;
+  const byId = new Map(cachedQuestions.map((question) => [question.id, question]));
+  const ordered = questionIds
+    .map((questionId) => byId.get(questionId))
+    .filter((question): question is Question => Boolean(question));
+  return ordered.length === questionIds.length ? ordered : null;
+}
+
 function TestSessionContent() {
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
   const isReviewMode = searchParams.get('review') === '1';
+  const startIndexParam = parseInt(searchParams.get('startIndex') ?? '0', 10) || 0;
   const router = useRouter();
   const { user } = useAuth();
   const { t, language } = useI18n();
   const [session, setSession] = useState<TestSession | null>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(startIndexParam);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
@@ -80,10 +97,6 @@ function TestSessionContent() {
   const [pauseStartedAt, setPauseStartedAt] = useState<number | null>(null);
   const [answerMetaByQuestion, setAnswerMetaByQuestion] = useState<Record<string, AnswerMeta>>({});
   const [reportOpen, setReportOpen] = useState(false);
-  const [feedbackOpen, setFeedbackOpen] = useState(false);
-  const [feedbackLoading, setFeedbackLoading] = useState(false);
-  const [feedbackText, setFeedbackText] = useState('');
-  const [feedbackError, setFeedbackError] = useState<string | null>(null);
   const [markedQuestionIds, setMarkedQuestionIds] = useState<Set<string>>(new Set());
   const [eliminatedOptionsByQuestion, setEliminatedOptionsByQuestion] = useState<Record<string, Set<string>>>({});
   const [endConfirmOpen, setEndConfirmOpen] = useState(false);
@@ -109,6 +122,18 @@ function TestSessionContent() {
   }, []);
 
   useEffect(() => {
+    if (!user?.id) return;
+
+    const sync = () => {
+      void syncPendingAnswerProgress();
+    };
+
+    sync();
+    window.addEventListener('online', sync);
+    return () => window.removeEventListener('online', sync);
+  }, [user?.id]);
+
+  useEffect(() => {
     const loadSession = async () => {
       if (!id) {
         router.push('/dashboard');
@@ -130,7 +155,14 @@ function TestSessionContent() {
         }
       }
 
-      const sessionQuestions = await getQuestionsByIds(currentSession.questionIds);
+      const cachedQuestions = getCachedSessionQuestions(
+        currentSession.questionIds,
+        await getTestQuestionSnapshot(currentSession.id),
+      );
+      const sessionQuestions = cachedQuestions ?? await getQuestionsByIds(currentSession.questionIds);
+      if (!cachedQuestions && sessionQuestions.length > 0) {
+        await saveTestQuestionSnapshot(currentSession.id, sessionQuestions);
+      }
       let hydratedSession = currentSession;
       if (isReviewMode) {
         const dbAnswers = Object.fromEntries(
@@ -228,7 +260,7 @@ function TestSessionContent() {
     if (!selectedChoice || !correctChoice) return;
     const isCorrect = selectedChoice === correctChoice;
 
-    await saveQuestionAnswerProgress({
+    const progressSaved = await saveQuestionAnswerProgress({
       userId: user.id,
       questionId: question.id,
       selectedChoice,
@@ -238,7 +270,7 @@ function TestSessionContent() {
     });
 
     if (nextSession) {
-      await savePracticeAnswer({
+      const answerSaved = await savePracticeAnswer({
         sessionId: nextSession.id,
         userId: user.id,
         questionId: question.id,
@@ -247,6 +279,19 @@ function TestSessionContent() {
         isCorrect,
         timeSpentSeconds: elapsedSeconds,
       });
+      if (!progressSaved || !answerSaved) {
+        await addPendingAnswerSync({
+          sessionId: nextSession.id,
+          userId: user.id,
+          questionId: question.id,
+          selectedChoice,
+          correctAnswer: correctChoice,
+          isCorrect,
+          timeSpentSeconds: elapsedSeconds,
+          progressSynced: progressSaved,
+          answerSynced: answerSaved,
+        });
+      }
     }
   }, [getAnswerChoiceKey, user?.id]);
 
@@ -350,6 +395,12 @@ function TestSessionContent() {
       return;
     }
 
+    // Browse mode: skip confirmation dialog, just end immediately
+    if (session.mode === 'Browse') {
+      void handleEnd();
+      return;
+    }
+
     const nextSession = sessionWithCurrentProgress();
     if (!nextSession) return;
 
@@ -365,6 +416,23 @@ function TestSessionContent() {
         status: nextSession.status === 'Suspended' ? 'suspended' : 'in_progress',
       });
     }
+  };
+
+  const handleSaveAndExit = async () => {
+    if (!session || !user?.id) { router.push('/review'); return; }
+    const nextSession = pendingEndSession ?? sessionWithCurrentProgress();
+    if (!nextSession) return;
+    nextSession.status = 'In-Progress';
+    setSession(nextSession);
+    persistSession(nextSession);
+    await updatePracticeSessionRecord({
+      session: nextSession,
+      userId: user.id,
+      status: 'in_progress',
+    });
+    setEndConfirmOpen(false);
+    setPendingEndSession(null);
+    router.push('/review');
   };
 
   const handleEnd = async () => {
@@ -388,6 +456,35 @@ function TestSessionContent() {
           setEndConfirmOpen(false);
           return;
         }
+      }
+
+      // Browse mode: update browse_progress, clean up localStorage, redirect to footprint
+      if (session.mode === 'Browse') {
+        const lastQuestion = questions[currentIndex];
+        const chapterIds = nextSession.chapters;
+        // Per-chapter viewed count: count how many questions from each chapter were reached
+        await Promise.all(chapterIds.map((chapterId) => {
+          const chapterQuestions = questions.filter((q) => q.chapterId === chapterId);
+          // If this session mixes chapters, approximate by questions reached that belong to this chapter
+          const reachedQIds = new Set(questions.slice(0, currentIndex + 1).map((q) => q.id));
+          const viewedCount = chapterQuestions.length > 0
+            ? chapterQuestions.filter((q) => reachedQIds.has(q.id)).length
+            : currentIndex + 1;
+          return upsertBrowseProgress({
+            userId: user.id!,
+            chapterId,
+            viewedCount: Math.max(viewedCount, 1),
+            lastQuestionId: lastQuestion?.id ?? null,
+            lastQuestionIndex: currentIndex,
+          });
+        }));
+        // Remove Browse session from localStorage — it has no DB record and shouldn't persist
+        const stored: TestSession[] = JSON.parse(localStorage.getItem('passbar_sessions') || '[]');
+        localStorage.setItem('passbar_sessions', JSON.stringify(stored.filter((s) => s.id !== session.id)));
+        setEndConfirmOpen(false);
+        setPendingEndSession(null);
+        router.push('/footprint');
+        return;
       }
 
       const answeredIds = new Set(Object.keys(nextSession.userAnswers));
@@ -464,6 +561,25 @@ function TestSessionContent() {
       persistSession(nextSession);
     }
 
+    // Browse mode: auto-save progress after viewing each question
+    if (session.mode === 'Browse' && user?.id) {
+      const viewedIndex = Math.max(currentIndex, newIndex);
+      const reachedQIds = new Set(questions.slice(0, viewedIndex + 1).map((q) => q.id));
+      void Promise.all(session.chapters.map((chapterId) => {
+        const chapterQuestions = questions.filter((q) => q.chapterId === chapterId);
+        const viewedCount = chapterQuestions.length > 0
+          ? chapterQuestions.filter((q) => reachedQIds.has(q.id)).length
+          : viewedIndex + 1;
+        return upsertBrowseProgress({
+          userId: user.id!,
+          chapterId,
+          viewedCount: Math.max(viewedCount, 1),
+          lastQuestionId: questions[viewedIndex]?.id ?? null,
+          lastQuestionIndex: viewedIndex,
+        });
+      }));
+    }
+
     setCurrentIndex(newIndex);
     setQuestionStartedAt(Date.now());
     const nextQuestionId = questions[newIndex].id;
@@ -527,7 +643,7 @@ function TestSessionContent() {
       if (event.metaKey || event.ctrlKey || event.altKey || event.repeat) return;
 
       const key = event.key.toLowerCase();
-      const modalOpen = endConfirmOpen || reportOpen || feedbackOpen;
+      const modalOpen = endConfirmOpen || reportOpen || Boolean(document.querySelector('[role="dialog"]'));
 
       if (modalOpen) return;
 
@@ -596,7 +712,6 @@ function TestSessionContent() {
     currentQuestion,
     displayOptions,
     endConfirmOpen,
-    feedbackOpen,
     isReviewMode,
     reportOpen,
     session,
@@ -872,15 +987,6 @@ function TestSessionContent() {
                   </div>
                 ) : null}
 
-                {/* Report button — visible after submitting an answer */}
-                {submitted && user?.id && currentQuestion && (
-                  <div className="flex justify-end pt-2">
-                    <ReportQuestionDialog
-                      questionId={currentQuestion.id}
-                      userId={user.id}
-                    />
-                  </div>
-                )}
               </div>
             </div>
             </div>
@@ -911,11 +1017,8 @@ function TestSessionContent() {
         onSuspend={handleSuspend}
         onEnd={handleEndRequest}
         onSubmit={handleSubmit}
-        onFeedback={handleFeedback}
         showSubmit={showSubmitBtn}
-        feedbackLoading={false}
         isPaused={isPaused || isReviewMode}
-        isTutorMode={session.mode === 'Tutor'}
         isReviewMode={isReviewMode}
       />
 
@@ -953,6 +1056,13 @@ function TestSessionContent() {
               disabled={ending}
             >
               {t('test.cancelEnd')}
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => void handleSaveAndExit()}
+              disabled={ending}
+            >
+              {t('test.saveDraft')}
             </Button>
             <Button onClick={handleEnd} disabled={ending}>
               {ending ? t('test.ending') : t('test.confirmEnd')}

@@ -457,19 +457,23 @@ html, body {
   background: transparent !important;
   margin: 0 !important;
   padding: 0 0 24px 0 !important;
-  overflow: visible !important;
+  overflow: hidden !important;
   min-height: 0 !important;
   height: auto !important;
+  /* block prevents body-level flex/grid from centering content */
   display: block !important;
 }
-/* Tailwind min-h-screen sets min-height:100vh on body or outer wrappers.
-   We override all elements that could create large vertical space. */
-body, body > div, body > main, body > section, body > article {
+/* Kill any min-height that creates blank space before content */
+body, body * {
   min-height: 0 !important;
+}
+/* Remove flex/grid vertical centering on wrappers that could push content down */
+body > div, body > main, body > section, body > article,
+body > div > div, body > main > div {
   height: auto !important;
-  /* Remove flex centering that pushes content down */
   align-items: flex-start !important;
   justify-content: flex-start !important;
+  align-content: flex-start !important;
 }
 /* Fluid container — remove fixed 480px width */
 .container, [class*="container"] {
@@ -484,6 +488,7 @@ body, body > div, body > main, body > section, body > article {
   var ch = ${JSON.stringify(channelId)};
   var lastH = 0;
   function send(){
+    if (!document.body) return;
     var h = Math.max(
       document.documentElement.scrollHeight,
       document.body.scrollHeight,

@@ -24,6 +24,10 @@ export function isUuid(value: string | null | undefined) {
   return Boolean(value && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value));
 }
 
+function isNoContentSuccess(error: { message?: string } | null | undefined) {
+  return Boolean(error?.message?.includes('204'));
+}
+
 
 export async function createPracticeSessionRecord(input: {
   userId: string;
@@ -80,7 +84,7 @@ export async function savePracticeAnswer(input: {
   isCorrect: boolean;
   timeSpentSeconds?: number;
 }) {
-  if (!supabase || !isUuid(input.sessionId)) return;
+  if (!supabase || !isUuid(input.sessionId)) return false;
 
   const { error } = await supabase
     .from('practice_answers')
@@ -99,7 +103,10 @@ export async function savePracticeAnswer(input: {
 
   if (error && !error.message.includes('201')) {
     console.warn('Unable to save practice answer in Supabase:', error.message);
+    return false;
   }
+
+  return true;
 }
 
 export async function updatePracticeSessionRecord(input: {
@@ -130,6 +137,37 @@ export async function updatePracticeSessionRecord(input: {
   if (error && !error.message.includes('204')) {
     console.warn('Unable to update practice session in Supabase:', error.message);
   }
+}
+
+export async function deletePracticeSessionRecord(input: {
+  sessionId: string;
+  userId: string;
+}) {
+  if (!supabase || !isUuid(input.sessionId)) return false;
+
+  const { error: answersError } = await supabase
+    .from('practice_answers')
+    .delete()
+    .eq('session_id', input.sessionId)
+    .eq('user_id', input.userId);
+
+  if (answersError && !isNoContentSuccess(answersError)) {
+    console.warn('Unable to delete practice answers in Supabase:', answersError.message);
+    return false;
+  }
+
+  const { error: sessionError } = await supabase
+    .from('practice_sessions')
+    .delete()
+    .eq('id', input.sessionId)
+    .eq('user_id', input.userId);
+
+  if (sessionError && !isNoContentSuccess(sessionError)) {
+    console.warn('Unable to delete practice session in Supabase:', sessionError.message);
+    return false;
+  }
+
+  return true;
 }
 
 export async function getPracticeAnswersForSession(sessionId: string, userId: string): Promise<PracticeAnswerRecord[]> {

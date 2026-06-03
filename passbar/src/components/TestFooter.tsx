@@ -5,7 +5,6 @@ import { useI18n } from '@/lib/i18n';
 import {
   ChevronLeft,
   ChevronRight,
-  MessageSquare,
   PauseCircle,
   PlayCircle,
   Send,
@@ -21,11 +20,8 @@ interface TestFooterProps {
   onSuspend: () => void;
   onEnd: () => void;
   onSubmit: () => void;
-  onFeedback: () => void;
   showSubmit: boolean;
-  feedbackLoading?: boolean;
   isPaused: boolean;
-  isTutorMode: boolean;
   isReviewMode?: boolean;
 }
 
@@ -37,11 +33,8 @@ export function TestFooter({
   onSuspend,
   onEnd,
   onSubmit,
-  onFeedback,
   showSubmit,
-  feedbackLoading = false,
   isPaused,
-  isTutorMode,
   isReviewMode = false,
 }: TestFooterProps) {
   const { t } = useI18n();
@@ -71,7 +64,7 @@ export function TestFooter({
           )}
         </div>
 
-        {/* Center: Submit / Feedback */}
+        {/* Center: Submit */}
         <div className="flex min-w-[260px] justify-center">
           {showSubmit ? (
             <button
@@ -80,16 +73,6 @@ export function TestFooter({
             >
               <Send className="h-5 w-5" />
               {t('test.submit')}
-            </button>
-          ) : isTutorMode ? (
-            <button
-              type="button"
-              onClick={onFeedback}
-              disabled={feedbackLoading || isPaused}
-              className="flex items-center gap-2 text-sm font-medium text-slate-300 transition-colors hover:text-white disabled:cursor-wait disabled:opacity-60"
-            >
-              <MessageSquare className="w-5 h-5 text-primary" />
-              {feedbackLoading ? t('test.generatingFeedback') : t('test.feedback')}
             </button>
           ) : null}
         </div>
@@ -117,28 +100,16 @@ export function TestFooter({
 
       {/* ── Mobile layout (<sm): two rows ─────────────────────────────── */}
       <div className="sm:hidden">
-        {/* Row 1: Submit (full-width) or Feedback */}
-        {(showSubmit || isTutorMode) && (
+        {/* Row 1: Submit (full-width) */}
+        {showSubmit && (
           <div className="border-b border-white/10 px-4 py-2">
-            {showSubmit ? (
-              <button
-                onClick={onSubmit}
-                className="flex w-full items-center justify-center gap-2 rounded-md bg-primary py-3 text-base font-bold text-primary-foreground shadow-md transition-colors hover:bg-primary/90 active:scale-[0.98]"
-              >
-                <Send className="h-5 w-5" />
-                {t('test.submit')}
-              </button>
-            ) : isTutorMode ? (
-              <button
-                type="button"
-                onClick={onFeedback}
-                disabled={feedbackLoading || isPaused}
-                className="flex w-full items-center justify-center gap-2 rounded-md border border-white/20 py-2.5 text-sm font-medium text-slate-300 transition-colors hover:text-white disabled:cursor-wait disabled:opacity-60"
-              >
-                <MessageSquare className="h-5 w-5 text-primary" />
-                {feedbackLoading ? t('test.generatingFeedback') : t('test.feedback')}
-              </button>
-            ) : null}
+            <button
+              onClick={onSubmit}
+              className="flex w-full items-center justify-center gap-2 rounded-md bg-primary py-3 text-base font-bold text-primary-foreground shadow-md transition-colors hover:bg-primary/90 active:scale-[0.98]"
+            >
+              <Send className="h-5 w-5" />
+              {t('test.submit')}
+            </button>
           </div>
         )}
 

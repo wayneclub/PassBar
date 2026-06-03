@@ -64,7 +64,8 @@ export async function resolveQuestionReport(reportId: string): Promise<boolean> 
   const { error } = await supabase
     .from('question_reports')
     .update({ resolved: true, resolved_at: new Date().toISOString() })
-    .eq('id', reportId);
+    .eq('id', reportId)
+    .select('id');
   if (error) { console.warn('resolveQuestionReport:', error.message); return false; }
   return true;
 }

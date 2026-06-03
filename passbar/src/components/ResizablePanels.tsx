@@ -61,12 +61,18 @@ export function ResizablePanels({
     };
   }, [onPointerMove, stopDrag]);
 
-  // Mobile or disabled: vertical stack, both panels scroll naturally
+  // Mobile or disabled: vertical stack with single unified scroll.
+  // Override h-full / overflow-y-auto on the direct div children passed
+  // as props so they flow naturally instead of creating nested scroll areas.
   if (!enabled || isMobile) {
     return (
       <div className={cn('h-full w-full overflow-y-auto', className)}>
-        {left}
-        {right}
+        <div className="[&>div]:!h-auto [&>div]:!overflow-y-visible">
+          {left}
+        </div>
+        <div className="[&>div]:!h-auto [&>div]:!overflow-y-visible">
+          {right}
+        </div>
       </div>
     );
   }

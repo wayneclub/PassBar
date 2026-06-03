@@ -18,6 +18,7 @@ export interface Question {
   index: number;
   subject: string;
   topic: string;
+  chapterId?: string;
   questionText: string;
   bilingualQuestionText?: string;
   zhQuestionText?: string;          // pure Chinese question (from enriched json)

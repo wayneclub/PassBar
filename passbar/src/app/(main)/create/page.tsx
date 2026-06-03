@@ -17,7 +17,8 @@ import { getAllQuestionIdsByChapter, getQuestionIdsByChapterIds, getQuestionsByC
 import { Subject, TestMode, TestSession } from '@/lib/types';
 import { emptyQuestionStatusCounts, getAllUserProgress, getQuestionStatusCounts, QuestionStatusCounts, filterQuestionIdsByStatus } from '@/lib/question-progress';
 import { createPracticeSessionRecord } from '@/lib/practice-sessions';
-import { Info, HelpCircle, Zap, BookOpen, Clock, Eye, Shuffle, ListOrdered } from 'lucide-react';
+import { saveTestQuestionSnapshot } from '@/lib/offline-cache';
+import { Info, HelpCircle, Zap, BookOpen, Clock, Shuffle, ListOrdered } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 function HintIcon({ children }: { children: React.ReactNode }) {
@@ -48,7 +49,7 @@ export default function CreateTestPage() {
   const router = useRouter();
   const { user } = useAuth();
   const { t, language } = useI18n();
-  const [testMode, setTestMode] = useState<TestMode>('Tutor');
+  const [testMode, setTestMode] = useState<'Tutor' | 'Timed'>('Tutor');
   const [statusFilters, setStatusFilters] = useState({
     Unused: true,
     Incorrect: false,
@@ -264,6 +265,7 @@ export default function CreateTestPage() {
     const sessions = JSON.parse(localStorage.getItem('passbar_sessions') || localStorage.getItem('uprep_sessions') || '[]');
     sessions.push(newSession);
     localStorage.setItem('passbar_sessions', JSON.stringify(sessions));
+    await saveTestQuestionSnapshot(newSession.id, ordered);
 
     setIsStarting(false);
     router.push(`/test?id=${encodeURIComponent(newSession.id)}`);
@@ -313,10 +315,6 @@ export default function CreateTestPage() {
                     <div className="font-bold text-slate-700">{t('create.timed')}</div>
                     <div>{t('create.timedModeHint')}</div>
                   </div>
-                  <div className="grid grid-cols-[5rem_1fr] gap-4 border-t border-slate-200 px-4 py-3">
-                    <div className="font-bold text-slate-700">{t('create.browse')}</div>
-                    <div>{t('create.browseModeHint')}</div>
-                  </div>
                 </div>
               </HintIcon>
             </div>
@@ -326,7 +324,6 @@ export default function CreateTestPage() {
               {([
                 { mode: 'Tutor', icon: BookOpen },
                 { mode: 'Timed', icon: Clock },
-                { mode: 'Browse', icon: Eye },
               ] as const).map(({ mode, icon: Icon }) => (
                 <button
                   key={mode}
@@ -340,7 +337,7 @@ export default function CreateTestPage() {
                   )}
                 >
                   <Icon className="h-4 w-4" />
-                  {t(`create.${mode.toLowerCase()}` as 'create.tutor' | 'create.timed' | 'create.browse')}
+                  {t(`create.${mode.toLowerCase()}` as 'create.tutor' | 'create.timed')}
                 </button>
               ))}
             </div>

@@ -44,20 +44,25 @@ shadcn `CardTitle` 預設 `text-2xl`，**一律覆寫**：
 
 ### Page wrapper
 
-每個頁面的根元素，帶入場動畫：
+`layout.tsx` 的 `<main>` 已套用 `mx-auto w-full max-w-7xl px-4 pb-4 pt-5 md:p-8`。
+
+**頁面根元素絕對不加** `mx-auto`、`max-w-*`、`px-*`、`py-*`，只加動畫與間距：
 
 ```tsx
+// ✅ 標準頁面
 <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-```
 
-Dashboard 頁因有 stagger 動畫改用：
-
-```tsx
+// ✅ Dashboard（stagger 動畫）
 <div className={cn(
   'space-y-8 transition-all duration-700',
   visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
 )}>
+
+// ❌ 錯誤：不要加 mx-auto max-w-* — layout 已處理
+<div className="mx-auto max-w-4xl space-y-6 ...">
 ```
+
+> **根本原因**：layout.tsx 第 14 行已有 `max-w-7xl mx-auto px-4 pb-4 pt-5 md:p-8`。頁面若再加自己的 `mx-auto max-w-*`，會產生雙層 constraint，導致左右 padding 比其他頁面窄，視覺上像是「縮在中間」。
 
 ### Page header
 
@@ -76,7 +81,7 @@ Dashboard 頁因有 stagger 動畫改用：
 ```
 mobile:  px-4 pb-4 pt-5
 desktop: p-8
-max-width: max-w-7xl mx-auto
+max-width: max-w-7xl mx-auto  ← layout 處理，頁面不重複
 ```
 
 ### Grid patterns

@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import {
-  Calendar, Clock, CheckCircle2, ArrowRight, Search, SlidersHorizontal, X, ChevronDown,
+  Calendar, Clock, CheckCircle2, ArrowRight, Search, SlidersHorizontal, X, ChevronDown, Trash2,
 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
@@ -16,6 +16,19 @@ import { getQuestionsByIds } from '@/lib/question-bank';
 import { supabase } from '@/lib/supabase';
 import { cn } from '@/lib/utils';
 import type { Question } from '@/lib/types';
+import { deletePracticeSessionRecord } from '@/lib/practice-sessions';
+import { deletePendingAnswerSyncItemsForSession, deleteTestQuestionSnapshot } from '@/lib/offline-cache';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 type PracticeSessionRow = {
   id: string;
@@ -89,7 +102,7 @@ function getAnswerChoiceKey(question: Question, answer: string) {
   return answer.match(/^\s*([A-D])\./i)?.[1]?.toUpperCase() ?? null;
 }
 
-const MODES = ['Tutor', 'Timed', 'Browse'] as const;
+const MODES = ['Tutor', 'Timed', 'SimExam'] as const;
 
 function toSlug(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -141,6 +154,8 @@ export default function ReviewHistoryPage() {
   const [chapterNameMapGlobal, setChapterNameMapGlobal] = useState<Map<string, string>>(new Map());
   const [filterOpen, setFilterOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [historyVersion, setHistoryVersion] = useState(0);
+  const [deletingSessionId, setDeletingSessionId] = useState<string | null>(null);
 
   // Lightweight fetch to populate filter options (subject/chapter lists) once on mount.
   useEffect(() => {
@@ -149,6 +164,7 @@ export default function ReviewHistoryPage() {
       .from('practice_sessions')
       .select('subject_ids, chapter_ids, raw')
       .eq('user_id', user.id)
+      .neq('mode', 'Browse')
       .then(({ data }) => {
         const rows = (data ?? []) as Pick<PracticeSessionRow, 'subject_ids' | 'chapter_ids' | 'raw'>[];
         const subjectSet = new Set<string>();
@@ -167,7 +183,7 @@ export default function ReviewHistoryPage() {
         setAllChaptersGlobal([...chapterSet].sort());
         setChapterNameMapGlobal(nameMap);
       });
-  }, [user?.id]);
+  }, [user?.id, historyVersion]);
 
   useEffect(() => {
     const loadHistory = async () => {
@@ -178,6 +194,7 @@ export default function ReviewHistoryPage() {
         .from('practice_sessions')
         .select('id, mode, status, subject_ids, chapter_ids, question_count, started_at, completed_at, total_time_seconds, raw', { count: 'exact' })
         .eq('user_id', user.id)
+        .neq('mode', 'Browse')
         .order('started_at', { ascending: false })
         .range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1);
 
@@ -245,7 +262,7 @@ export default function ReviewHistoryPage() {
       setIsLoading(false);
     };
     loadHistory();
-  }, [t, user?.id, page, dateRange]);
+  }, [t, user?.id, page, dateRange, historyVersion]);
 
   // Reset to page 0 when date range changes
   const handleDateRange = (v: 'all' | '7d' | '30d') => { setDateRange(v); setPage(0); };
@@ -265,7 +282,7 @@ export default function ReviewHistoryPage() {
   const modeLabel = (mode: string) => {
     if (mode === 'Tutor') return t('create.tutor');
     if (mode === 'Timed') return t('create.timed');
-    if (mode === 'Browse') return t('create.browse');
+    if (mode === 'SimExam') return t('nav.simExam');
     return mode;
   };
 
@@ -289,6 +306,32 @@ export default function ReviewHistoryPage() {
     const next = new Set(set);
     next.has(value) ? next.delete(value) : next.add(value);
     setFn(next);
+  };
+
+  const removeLocalSession = (sessionId: string) => {
+    (['passbar_sessions', 'uprep_sessions'] as const).forEach((key) => {
+      const sessions = JSON.parse(localStorage.getItem(key) || '[]') as Array<{ id?: string }>;
+      const next = sessions.filter((session) => session.id !== sessionId);
+      if (next.length !== sessions.length) localStorage.setItem(key, JSON.stringify(next));
+    });
+  };
+
+  const handleDeleteSession = async (sessionId: string) => {
+    if (!user?.id || deletingSessionId) return;
+    setDeletingSessionId(sessionId);
+    try {
+      const ok = await deletePracticeSessionRecord({ sessionId, userId: user.id });
+      if (!ok) return;
+      removeLocalSession(sessionId);
+      await deleteTestQuestionSnapshot(sessionId);
+      await deletePendingAnswerSyncItemsForSession(sessionId);
+      setSessions((current) => current.filter((session) => session.id !== sessionId));
+      setTotalCount((count) => Math.max(0, count - 1));
+      if (sessions.length === 1 && page > 0) setPage((current) => Math.max(0, current - 1));
+      setHistoryVersion((version) => version + 1);
+    } finally {
+      setDeletingSessionId(null);
+    }
   };
 
   const dateFormatter = useMemo(() => new Intl.DateTimeFormat(language === 'en' ? 'en-US' : language, {
@@ -484,6 +527,11 @@ export default function ReviewHistoryPage() {
                         <Badge variant="outline" className="border-secondary text-secondary font-bold text-xs">
                           {modeLabel(session.mode)}
                         </Badge>
+                        {session.status === 'in_progress' && (
+                          <Badge variant="outline" className="border-blue-400 text-blue-600 font-bold text-xs">
+                            {t('review.draft')}
+                          </Badge>
+                        )}
                         {session.status === 'suspended' && (
                           <Badge variant="outline" className="border-amber-400 text-amber-600 font-bold text-xs">
                             {t('review.suspended')}
@@ -502,12 +550,61 @@ export default function ReviewHistoryPage() {
                           <span>{t('review.correct')}</span>
                         </span>
                       </div>
-                      <Button variant="ghost" className="group-hover:text-primary gap-1.5 shrink-0 h-8 px-3 text-sm" asChild>
-                        <Link href={`/test?id=${encodeURIComponent(session.id)}&review=1`}>
-                          {t('review.reviewQuestions')}
-                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                      </Button>
+                      <div className="flex items-center gap-1.5">
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8 text-slate-400 hover:bg-red-50 hover:text-red-600"
+                              aria-label={t('review.deleteSession')}
+                              disabled={deletingSessionId === session.id}
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>{t('review.deleteSessionTitle')}</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                {t('review.deleteSessionDescription')}
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel disabled={deletingSessionId === session.id}>
+                                {t('review.cancelDelete')}
+                              </AlertDialogCancel>
+                              <AlertDialogAction
+                                className="bg-red-600 text-white hover:bg-red-700"
+                                disabled={deletingSessionId === session.id}
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  void handleDeleteSession(session.id);
+                                }}
+                              >
+                                {deletingSessionId === session.id ? t('review.deletingSession') : t('review.confirmDelete')}
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+
+                        {session.status === 'in_progress' ? (
+                          <Button variant="ghost" className="group-hover:text-primary gap-1.5 shrink-0 h-8 px-3 text-sm" asChild>
+                            <Link href={`/test?id=${encodeURIComponent(session.id)}`}>
+                              {t('review.continueDraft')}
+                              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                          </Button>
+                        ) : (
+                          <Button variant="ghost" className="group-hover:text-primary gap-1.5 shrink-0 h-8 px-3 text-sm" asChild>
+                            <Link href={`/test?id=${encodeURIComponent(session.id)}&review=1`}>
+                              {t('review.reviewQuestions')}
+                              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

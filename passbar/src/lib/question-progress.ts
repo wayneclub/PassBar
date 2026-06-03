@@ -52,7 +52,7 @@ export async function saveQuestionAnswerProgress(input: {
   isCorrect: boolean;
   timeSpentSeconds?: number;
 }) {
-  if (!supabase) return;
+  if (!supabase) return false;
 
   const { data: existing } = await supabase
     .from('user_question_progress')
@@ -82,7 +82,10 @@ export async function saveQuestionAnswerProgress(input: {
 
   if (error && !error.message.includes('201')) {
     console.warn('[PassBar] Failed to save answer progress:', error.message);
+    return false;
   }
+
+  return true;
 }
 
 export async function getQuestionAnswerStats(questionId: string): Promise<{
@@ -328,12 +331,10 @@ export async function saveOmittedQuestionProgress(input: {
 }
 
 /** Deletes all question progress and practice sessions for the signed-in user. */
-export async function clearUserProgress(userId: string): Promise<boolean> {
-  if (typeof window !== 'undefined') {
-    localStorage.removeItem('passbar_sessions');
-    localStorage.removeItem('uprep_sessions');
-  }
-
+export async function clearUserProgress(
+  userId: string,
+  scope: 'practice' | 'browse' | 'all' = 'all',
+): Promise<boolean> {
   if (!supabase) return true;
 
   try {
@@ -343,11 +344,25 @@ export async function clearUserProgress(userId: string): Promise<boolean> {
       return false;
     }
 
-    const results = await Promise.all([
-      supabase.from('practice_answers').delete().eq('user_id', userId),
-      supabase.from('practice_sessions').delete().eq('user_id', userId),
-      supabase.from('user_question_progress').delete().eq('user_id', userId),
-    ]);
+    const ops = [];
+
+    if (scope === 'practice' || scope === 'all') {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('passbar_sessions');
+        localStorage.removeItem('uprep_sessions');
+      }
+      ops.push(
+        supabase.from('practice_answers').delete().eq('user_id', userId).then((r) => r),
+        supabase.from('practice_sessions').delete().eq('user_id', userId).then((r) => r),
+        supabase.from('user_question_progress').delete().eq('user_id', userId).then((r) => r),
+      );
+    }
+
+    if (scope === 'browse' || scope === 'all') {
+      ops.push(supabase.from('browse_progress').delete().eq('user_id', userId).then((r) => r));
+    }
+
+    const results = await Promise.all(ops);
     const failed = results.find((result) => result.error && !isNoContentError(result.error));
     if (failed?.error) {
       console.warn('[PassBar] Failed to clear user progress:', failed.error.message);
