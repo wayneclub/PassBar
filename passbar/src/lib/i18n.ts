@@ -201,6 +201,15 @@ type TranslationKey =
   | 'test.timeRemaining'
   | 'test.timeUp'
   | 'test.timeUpDescription'
+  | 'test.keyboardShortcuts'
+  | 'test.keyboardShortcutsDescription'
+  | 'test.shortcutAnswerChoices'
+  | 'test.shortcutNumberChoices'
+  | 'test.shortcutSubmit'
+  | 'test.shortcutNavigate'
+  | 'test.shortcutMark'
+  | 'test.shortcutPause'
+  | 'test.shortcutHelp'
   | 'explanation.title'
   | 'explanation.visualGuide'
   | 'explanation.image'
@@ -499,6 +508,8 @@ const en: Dictionary = {
   'admin.noNotifications': 'No notifications',
   'admin.pendingUserNotification': '{name} requested access',
   'admin.goToUserManagement': 'Go to User Management',
+  'admin.questionReportNotification': 'Question feedback: {category}',
+  'admin.goToReports': 'Go to Reports',
   'admin.unknown': 'Unknown',
   'admin.other': 'Other',
   'admin.windowsLegacy': 'Windows (Legacy)',
@@ -780,6 +791,15 @@ const en: Dictionary = {
   'test.timeRemaining': 'Remaining',
   'test.timeUp': 'Time\'s Up',
   'test.timeUpDescription': 'The 3-hour exam time has ended. Your answers have been saved.',
+  'test.keyboardShortcuts': 'Keyboard Shortcuts',
+  'test.keyboardShortcutsDescription': 'Use these shortcuts while taking a test. They are disabled while typing or when a dialog is open.',
+  'test.shortcutAnswerChoices': 'Select answer choice',
+  'test.shortcutNumberChoices': 'Select answer choice',
+  'test.shortcutSubmit': 'Submit in Tutor mode',
+  'test.shortcutNavigate': 'Previous / next question',
+  'test.shortcutMark': 'Mark or unmark question',
+  'test.shortcutPause': 'Pause or resume',
+  'test.shortcutHelp': 'Show or hide this guide',
   'explanation.title': 'Explanation',
   'explanation.visualGuide': 'Visual Guide',
   'explanation.image': 'Explanation image {index}',
@@ -1132,6 +1152,8 @@ const zhHans: Dictionary = {
   'admin.noNotifications': '目前没有通知',
   'admin.pendingUserNotification': '{name} 申请加入',
   'admin.goToUserManagement': '前往用户管理',
+  'admin.questionReportNotification': '題目反饋：{category}',
+  'admin.goToReports': '前往勘誤回報',
   'admin.unknown': '未知',
   'admin.other': '其他',
   'admin.windowsLegacy': 'Windows (旧版)',
@@ -1413,6 +1435,15 @@ const zhHans: Dictionary = {
   'test.timeRemaining': '剩余时间',
   'test.timeUp': '时间到',
   'test.timeUpDescription': '3 小时考试时间已结束，你的作答已自动保存。',
+  'test.keyboardShortcuts': '键盘快捷键',
+  'test.keyboardShortcutsDescription': '测验中可使用这些快捷键。输入文字或对话框开启时会暂停触发。',
+  'test.shortcutAnswerChoices': '选择答案选项',
+  'test.shortcutNumberChoices': '选择答案选项',
+  'test.shortcutSubmit': '导师模式中提交答案',
+  'test.shortcutNavigate': '上一题 / 下一题',
+  'test.shortcutMark': '标记或取消标记题目',
+  'test.shortcutPause': '暂停或继续',
+  'test.shortcutHelp': '显示或隐藏此提示',
   'explanation.title': '解析',
   'explanation.visualGuide': '图片解析',
   'explanation.image': '解析图片 {index}',
@@ -1764,6 +1795,8 @@ const zhHant: Dictionary = {
   'admin.noNotifications': '目前沒有通知',
   'admin.pendingUserNotification': '{name} 申請加入',
   'admin.goToUserManagement': '前往使用者管理',
+  'admin.questionReportNotification': '題目反饋：{category}',
+  'admin.goToReports': '前往勘誤回報',
   'admin.unknown': '未知',
   'admin.other': '其他',
   'admin.windowsLegacy': 'Windows (舊版)',
@@ -2045,6 +2078,15 @@ const zhHant: Dictionary = {
   'test.timeRemaining': '剩餘時間',
   'test.timeUp': '時間到',
   'test.timeUpDescription': '3 小時考試時間已結束，你的作答已自動儲存。',
+  'test.keyboardShortcuts': '鍵盤快捷鍵',
+  'test.keyboardShortcutsDescription': '測驗中可使用這些快捷鍵。輸入文字或對話框開啟時會暫停觸發。',
+  'test.shortcutAnswerChoices': '選擇答案選項',
+  'test.shortcutNumberChoices': '選擇答案選項',
+  'test.shortcutSubmit': '導師模式中提交答案',
+  'test.shortcutNavigate': '上一題 / 下一題',
+  'test.shortcutMark': '標記或取消標記題目',
+  'test.shortcutPause': '暫停或繼續',
+  'test.shortcutHelp': '顯示或隱藏此提示',
   'explanation.title': '解析',
   'explanation.visualGuide': '圖片解析',
   'explanation.image': '解析圖片 {index}',

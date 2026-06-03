@@ -17,6 +17,7 @@ import {
   LayoutDashboard,
   Pencil,
   GraduationCap,
+  Flag,
   type LucideIcon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -177,6 +178,7 @@ export function AppSidebar() {
                     {[
                       { href: '/admin', label: t('admin.dashboardTitle'), icon: LayoutDashboard, exact: true },
                       { href: '/admin/users', label: t('admin.usersTitle'), icon: Users, exact: false },
+                      { href: '/admin/questions', label: t('admin.reportsTitle'), icon: Flag, exact: false },
                     ].map((item) => {
                       const active = item.exact ? pathname === item.href : pathname.startsWith(item.href);
                       return (

@@ -27,7 +27,7 @@ import { ResizablePanels } from '@/components/ResizablePanels';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { requestGeminiFeedback } from '@/lib/gemini-feedback';
-import { defaultStudySettings, getStudySettings, type ContentMode, type DisplayOptions, type TextSize } from '@/lib/study-settings';
+import { defaultStudySettings, getStudySettings, saveStudySettings, type ContentMode, type DisplayOptions, type TextSize } from '@/lib/study-settings';
 import { useI18n } from '@/lib/i18n';
 import { Check, Clock3, ListChecks, X } from 'lucide-react';
 import { ReportQuestionDialog } from '@/components/ReportQuestionDialog';
@@ -52,6 +52,12 @@ function getAnswerFromChoiceKey(question: Question, choiceKey: string | null | u
   const index = choiceKey.toUpperCase().charCodeAt(0) - 65;
   if (index < 0) return null;
   return question.options[index] ?? question.bilingualOptions?.[index] ?? null;
+}
+
+function isTypingTarget(target: EventTarget | null) {
+  if (!(target instanceof HTMLElement)) return false;
+  const tagName = target.tagName.toLowerCase();
+  return tagName === 'input' || tagName === 'textarea' || tagName === 'select' || target.isContentEditable;
 }
 
 function TestSessionContent() {
@@ -83,6 +89,7 @@ function TestSessionContent() {
   const [endConfirmOpen, setEndConfirmOpen] = useState(false);
   const [pendingEndSession, setPendingEndSession] = useState<TestSession | null>(null);
   const [ending, setEnding] = useState(false);
+  const [shortcutHelpOpen, setShortcutHelpOpen] = useState(false);
 
   useEffect(() => {
     const settings = getStudySettings();
@@ -514,6 +521,89 @@ function TestSessionContent() {
     setReportOpen(true);
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!session || !currentQuestion || isTypingTarget(event.target)) return;
+      if (event.metaKey || event.ctrlKey || event.altKey || event.repeat) return;
+
+      const key = event.key.toLowerCase();
+      const modalOpen = endConfirmOpen || reportOpen || feedbackOpen;
+
+      if (modalOpen) return;
+
+      if (key === 'escape' && shortcutHelpOpen) {
+        event.preventDefault();
+        setShortcutHelpOpen(false);
+        return;
+      }
+
+      if (event.key === '?') {
+        event.preventDefault();
+        setShortcutHelpOpen((open) => !open);
+        return;
+      }
+
+      if (key === 'arrowleft') {
+        event.preventDefault();
+        handleNavigate(currentIndex - 1);
+        return;
+      }
+
+      if (key === 'arrowright') {
+        event.preventDefault();
+        handleNavigate(currentIndex + 1);
+        return;
+      }
+
+      if (key === 'enter' && showSubmitBtn) {
+        event.preventDefault();
+        void handleSubmit();
+        return;
+      }
+
+      if (key === 'm') {
+        event.preventDefault();
+        void handleToggleMark();
+        return;
+      }
+
+      if (key === 'p' && !isReviewMode) {
+        event.preventDefault();
+        handleSuspend();
+        return;
+      }
+
+      const choiceKey = /^[a-d]$/.test(key)
+        ? key
+        : /^[1-4]$/.test(key)
+          ? String.fromCharCode(96 + Number(key))
+          : null;
+
+      if (choiceKey) {
+        const optionIndex = choiceKey.charCodeAt(0) - 97;
+        const nextAnswer = displayOptions[optionIndex];
+        if (nextAnswer) {
+          event.preventDefault();
+          handleSelectAnswer(nextAnswer);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [
+    currentIndex,
+    currentQuestion,
+    displayOptions,
+    endConfirmOpen,
+    feedbackOpen,
+    isReviewMode,
+    reportOpen,
+    session,
+    shortcutHelpOpen,
+    showSubmitBtn,
+  ]);
+
   if (!session || !currentQuestion) return null;
 
   return (
@@ -532,12 +622,23 @@ function TestSessionContent() {
         onQuestionSelect={handleNavigate}
         onToggleMark={handleToggleMark}
         isPaused={isPaused || isReviewMode}
-        contentMode={contentMode}
-        onToggleContentMode={() => setContentMode((prev) => prev === 'bilingual' ? 'english' : 'bilingual')}
+        textSize={textSize}
+        onTextSizeChange={(size) => {
+          setTextSize(size);
+          saveStudySettings({ ...getStudySettings(), textSize: size });
+        }}
+        display={display}
+        onDisplayChange={(next) => {
+          setDisplay(next);
+          saveStudySettings({ ...getStudySettings(), display: next });
+        }}
+        onFeedback={handleFeedback}
         subject={currentQuestion?.subject}
         topic={currentQuestion?.topic}
         timeLimitSeconds={session.timeLimitSeconds}
         onTimeUp={session.mode === 'SimExam' && !isReviewMode ? handleTimeUp : undefined}
+        shortcutHelpOpen={shortcutHelpOpen}
+        onShortcutHelpOpenChange={setShortcutHelpOpen}
       />
 
       {/* Bottom padding: mobile footer = nav row (56px) + optional submit row (~60px) */}

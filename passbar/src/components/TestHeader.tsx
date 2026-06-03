@@ -1,23 +1,21 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Switch } from '@/components/ui/switch';
 import { useI18n } from '@/lib/i18n';
 import { cn } from '@/lib/utils';
 import {
   Settings,
-  Layout,
   HelpCircle,
   Bookmark,
-  Zap,
-  FileText,
-  SquarePen,
   ChevronDown,
-  Languages,
+  Flag,
+  Minus,
+  Plus,
 } from 'lucide-react';
-import type { ContentMode } from '@/lib/study-settings';
+import type { DisplayOptions, TextSize } from '@/lib/study-settings';
 
 interface TestHeaderProps {
   questionIndex: number;
@@ -29,8 +27,11 @@ interface TestHeaderProps {
   onQuestionSelect: (index: number) => void;
   onToggleMark: () => void;
   isPaused: boolean;
-  contentMode: ContentMode;
-  onToggleContentMode: () => void;
+  textSize: TextSize;
+  onTextSizeChange: (size: TextSize) => void;
+  display: DisplayOptions;
+  onDisplayChange: (display: DisplayOptions) => void;
+  onFeedback: () => void;
   /** Current question subject name */
   subject?: string;
   /** Current question chapter/topic name */
@@ -39,6 +40,8 @@ interface TestHeaderProps {
   timeLimitSeconds?: number;
   /** Called when countdown reaches zero */
   onTimeUp?: () => void;
+  shortcutHelpOpen?: boolean;
+  onShortcutHelpOpenChange?: (open: boolean) => void;
 }
 
 export function TestHeader({
@@ -51,22 +54,40 @@ export function TestHeader({
   onQuestionSelect,
   onToggleMark,
   isPaused,
-  contentMode,
-  onToggleContentMode,
+  textSize,
+  onTextSizeChange,
+  display,
+  onDisplayChange,
+  onFeedback,
   subject,
   topic,
   timeLimitSeconds,
   onTimeUp,
+  shortcutHelpOpen,
+  onShortcutHelpOpenChange,
 }: TestHeaderProps) {
   const { t } = useI18n();
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const isCountdown = timeLimitSeconds !== undefined;
   const [localTime, setLocalTime] = useState(timeSpent);
   const [questionMenuOpen, setQuestionMenuOpen] = useState(false);
+  const [localShortcutHelpOpen, setLocalShortcutHelpOpen] = useState(false);
   const nextTimeRef = useRef(timeSpent);
   const timeUpFiredRef = useRef(false);
   const answeredIndexes = new Set(answeredQuestionIndexes);
   const markedIndexes = new Set(markedQuestionIndexes);
   const currentMarked = markedIndexes.has(questionIndex);
+  const isShortcutHelpOpen = shortcutHelpOpen ?? localShortcutHelpOpen;
+  const setShortcutHelpOpen = onShortcutHelpOpenChange ?? setLocalShortcutHelpOpen;
+  const shortcutRows = [
+    { keys: 'A / B / C / D', action: t('test.shortcutAnswerChoices') },
+    { keys: '1 / 2 / 3 / 4', action: t('test.shortcutNumberChoices') },
+    { keys: 'Enter', action: t('test.shortcutSubmit') },
+    { keys: '← / →', action: t('test.shortcutNavigate') },
+    { keys: 'M', action: t('test.shortcutMark') },
+    { keys: 'P', action: t('test.shortcutPause') },
+    { keys: '?', action: t('test.shortcutHelp') },
+  ];
 
   useEffect(() => {
     setLocalTime(timeSpent);
@@ -119,37 +140,15 @@ export function TestHeader({
         >
           <Bookmark className={cn('w-5 h-5', currentMarked && 'fill-current')} />
         </Button>
-        <Button variant="ghost" size="icon" className="text-primary hover:bg-white/10 hover:text-white">
-          <Zap className="w-5 h-5" />
-        </Button>
-        <Button variant="ghost" size="icon" className="text-primary hover:bg-white/10 hover:text-white">
-          <FileText className="w-5 h-5" />
-        </Button>
-        <Button variant="ghost" size="icon" className="text-primary hover:bg-white/10 hover:text-white">
-          <SquarePen className="w-5 h-5" />
-        </Button>
-
         <Button
           variant="ghost"
           size="icon"
-          onClick={onToggleContentMode}
-          aria-label={contentMode === 'bilingual' ? 'Switch to English' : 'Switch to bilingual'}
-          className={cn(
-            'relative h-9 w-9 hover:bg-white/10 hover:text-white transition-colors',
-            contentMode === 'bilingual'
-              ? 'bg-primary/20 text-white'
-              : 'text-primary',
-          )}
+          onClick={onFeedback}
+          aria-label={t('test.feedback')}
+          className="text-primary hover:bg-white/10 hover:text-white"
         >
-          <Languages className="w-5 h-5" />
-          <span className={cn(
-            'absolute bottom-0.5 right-0.5 text-[9px] font-bold leading-none',
-            contentMode === 'bilingual' ? 'text-white' : 'text-primary',
-          )}>
-            {contentMode === 'bilingual' ? '中' : 'EN'}
-          </span>
+          <Flag className="w-5 h-5" />
         </Button>
-
       </div>
 
       <Popover open={questionMenuOpen} onOpenChange={setQuestionMenuOpen}>
@@ -220,17 +219,121 @@ export function TestHeader({
       {/* Right Icons */}
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-1">
-          <Button variant="ghost" size="icon" className="h-9 w-9 text-primary hover:bg-white/10 hover:text-white">
-            <HelpCircle className="w-5 h-5" />
-          </Button>
-          <Button asChild variant="ghost" size="icon" className="h-9 w-9 text-primary hover:bg-white/10 hover:text-white">
-            <Link href="/settings" aria-label={t('nav.settings')}>
-              <Settings className="w-5 h-5" />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" className="h-9 w-9 text-primary hover:bg-white/10 hover:text-white">
-            <Layout className="w-5 h-5" />
-          </Button>
+          <Popover open={isShortcutHelpOpen} onOpenChange={setShortcutHelpOpen}>
+            <PopoverTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label={t('test.keyboardShortcuts')}
+                className={cn(
+                  'h-9 w-9 text-primary hover:bg-white/10 hover:text-white',
+                  isShortcutHelpOpen && 'bg-primary/15 text-white',
+                )}
+              >
+                <HelpCircle className="w-5 h-5" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent align="end" className="w-80 border-slate-200 bg-white p-4 text-slate-900" sideOffset={10}>
+              <div className="mb-3">
+                <div className="text-sm font-semibold text-slate-900">{t('test.keyboardShortcuts')}</div>
+                <div className="mt-1 text-xs leading-5 text-slate-500">{t('test.keyboardShortcutsDescription')}</div>
+              </div>
+              <div className="space-y-2">
+                {shortcutRows.map((row) => (
+                  <div key={row.keys} className="flex items-center justify-between gap-3 rounded-md bg-slate-50 px-3 py-2">
+                    <kbd className="shrink-0 rounded border border-slate-300 bg-white px-2 py-1 font-mono text-xs font-semibold text-slate-700 shadow-sm">
+                      {row.keys}
+                    </kbd>
+                    <span className="text-right text-xs font-medium leading-5 text-slate-600">{row.action}</span>
+                  </div>
+                ))}
+              </div>
+            </PopoverContent>
+          </Popover>
+          <Popover open={settingsOpen} onOpenChange={setSettingsOpen}>
+            <PopoverTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label={t('nav.settings')}
+                className={cn(
+                  'h-9 w-9 text-primary hover:bg-white/10 hover:text-white',
+                  settingsOpen && 'bg-primary/15 text-white',
+                )}
+              >
+                <Settings className="w-5 h-5" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent align="end" className="w-72 border-slate-200 bg-white p-4 text-slate-900" sideOffset={10}>
+              {/* Font Size */}
+              <div className="mb-4">
+                <div className="mb-2 text-sm font-semibold text-slate-800">{t('settings.textSize')}</div>
+                <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 text-slate-600 hover:bg-slate-200 hover:text-slate-900 disabled:opacity-30"
+                    disabled={textSize === 'medium'}
+                    onClick={() => onTextSizeChange('medium')}
+                  >
+                    <Minus className="h-4 w-4" />
+                  </Button>
+                  <span className="font-semibold text-slate-800">
+                    {textSize === 'medium' ? t('settings.medium') : t('settings.large')}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 text-slate-600 hover:bg-slate-200 hover:text-slate-900 disabled:opacity-30"
+                    disabled={textSize === 'large'}
+                    onClick={() => onTextSizeChange('large')}
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+
+              <div className="mb-1 border-t border-slate-100 pt-4">
+                <div className="mb-3 text-sm font-semibold text-slate-800">{t('settings.displayQA')}</div>
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-700">{t('settings.english')}</span>
+                    <Switch
+                      checked={display.enQA}
+                      onCheckedChange={(checked) => onDisplayChange({ ...display, enQA: checked })}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-700">{t('settings.chinese')}</span>
+                    <Switch
+                      checked={display.zhQA}
+                      onCheckedChange={(checked) => onDisplayChange({ ...display, zhQA: checked })}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 border-t border-slate-100 pt-4">
+                <div className="mb-3 text-sm font-semibold text-slate-800">{t('settings.displayExplanation')}</div>
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-700">{t('settings.english')}</span>
+                    <Switch
+                      checked={display.enExplanation}
+                      onCheckedChange={(checked) => onDisplayChange({ ...display, enExplanation: checked })}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-700">{t('settings.chinese')}</span>
+                    <Switch
+                      checked={display.zhExplanation}
+                      onCheckedChange={(checked) => onDisplayChange({ ...display, zhExplanation: checked })}
+                    />
+                  </div>
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
         
         <div className={cn(

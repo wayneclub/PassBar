@@ -159,49 +159,134 @@ Your task is to take the “original English legal analysis materials” I provi
 【HTML Visual and Layout Requirements】
 Please strictly follow the CSS visual requirements below. Embed refined styles directly inside the HTML, and ensure an excellent responsive experience on both mobile and desktop:
 
-1. CSS variable theme control (`:root`):
-   To make future theme changes easier, define the following variables inside `:root` in the `<style>` block and apply them globally:
-   - `--primary-color`: dark blue-gray (#2c3e50, or adjust based on the subject area, e.g., deep blue for Civil Procedure, deep red #7a1b1b for Criminal Law, deep green #1b4d3e for Contracts)
-   - `--accent-color`: marker blue (#3498db, used for subtitles, step labels, and card borders)
-   - `--highlight-bg`: light blue background for core issues (#e8f4f8)
-   - `--correct-bg`: green background for correct answers (#d4edda)
-   - `--correct-text`: green text for correct answers (#155724)
-   - `--wrong-bg`: red background for wrong answer choices (#f8d7da)
-   - `--wrong-text`: red text for wrong answer choices (#721c24)
-   - `--text-color`: main text color (#333333)
-   - `--card-bg`: #ffffff
-   - `--bg-color`: #f4f4f9 (full-page background color)
+1. Mandatory unified visual design system (must be used exactly):
+   The final HTML must look like the approved blue-gray reference style, not the rejected red/maroon style.
+   Do not change the page theme by subject. Criminal Law/Procedure pages must still use the same blue-gray header.
+   Red/maroon colors are forbidden for the page header, section headings, core issue boxes, diagrams, tables, and primary emphasis. Use red only inside wrong-answer cards or tiny error labels.
 
-2. Tags and global typography:
-   - Global font: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`.
-   - The page background color must be `var(--bg-color)`. The card should be horizontally and vertically centered, with a maximum width of `480px` wrapped by a `container` class.
-   - The card must have rounded corners (`border-radius: 12px`) and an elegant shadow (`box-shadow: 0 4px 15px rgba(0,0,0,0.1)`).
-   - Force bold/strong tags to wrap properly and prevent overflow beyond the border:
-     `strong, b {{ display: inline !important; white-space: normal !important; word-break: normal !important; overflow-wrap: break-word !important; }}`
-   - For statutes, legal provisions, and rule numbers, such as 28 U.S.C. § 1332, always wrap them in `<code>` tags and give them a soft background:
-     `code {{ background: rgba(0,0,0,0.05); padding: 2px 4px; border-radius: 4px; font-family: monospace; font-size: 0.92em; }}`
-   - Introduce a dedicated highlight tag for legal terms, `.term`:
-     `.term {{ background-color: #e1ecf4; color: #2980b9; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; font-weight: 500; }}`
+   Required CSS variables in `:root`:
+   - `--primary-color`: #2c3e50;
+   - `--primary-ink`: #243447;
+   - `--accent-color`: #3498db;
+   - `--accent-strong`: #2980d9;
+   - `--highlight-bg`: #e8f4f8;
+   - `--correct-bg`: #dff0d8;
+   - `--correct-border`: #27ae60;
+   - `--correct-text`: #1f8f4d;
+   - `--wrong-bg`: #f8d7da;
+   - `--wrong-border`: #f5c6cb;
+   - `--wrong-text`: #721c24;
+   - `--warning-bg`: #fff8e1;
+   - `--warning-border`: #ffb300;
+   - `--text-color`: #333333;
+   - `--muted-text`: #666666;
+   - `--border-color`: #dddddd;
+   - `--card-bg`: #ffffff;
+   - `--bg-color`: #ffffff;
 
-3. Core sections for the multi-dimensional deep analysis card (⚠️ all sections must be fully included; deleting or merging them is strictly prohibited):
-   - 【Card Top Header】: background color must be `var(--primary-color)`. Include a main title `<h1>` such as “MBE Issue Analysis” and a subtitle `.sub-title` in all caps, e.g., `CIVIL PROCEDURE: SUBJECT-MATTER JURISDICTION`.
-   - 【💡 Core Issue Box (.concept-box)】: background must be `var(--highlight-bg)`, with a 5px solid left border using `var(--accent-color)`. It must include a prominent title: “Core Issue: [Chinese issue title]”, and one italic `.latin` line containing the core English legal term, e.g., *The Well-Pleaded Complaint Rule*.
-   - 【📊 Concept Comparison Table (.comparison-table)】: used to compare two commonly confused concepts, such as TRO vs. Preliminary Injunction / General vs. Specific Jurisdiction. The table must have 100% width, border color `#ddd`, and header background `#f8f9fa`.
-   - 【🎨 Adaptive Multi-Function Diagram Section (.diagram)】:
-     * Background color must be `#f9f9f9`, with a `1px dashed #ccc` dashed border.
-     * Based on the facts, automatically determine whether to generate a “relationship diagram,” such as citizens of State A vs. citizens of State B plus additional foreign parties, or a “timeline/litigation flow diagram.”
-     * Key nodes in the diagram should use `.party-box` and `.flow-node`, such as `.flow-node.active` to emphasize the current disputed point, and `.flow-node.highlight-node` to emphasize the answer’s corresponding result.
-   - 【⚖️ Legal Authority and Reasoning <h3> and 🧠 Progressive Analysis Steps (.analysis-step)】:
-     * Place a compact `.step-label` tag on the left side of each step. The background color should be `var(--primary-color)`, with white text, such as Step 1, Step 2, for progressive analysis.
-     * This section must provide deep analysis of the facts and legal elements.
-   - 【⚠️ Core Rule / Trap Alert (.rule-block or .trap-alert)】: background color must be warm light yellow (#fff3cd), border color `#ffeeba`, and text color `#856404`. Use this section to highlight the most dangerous MBE trap or a specific turning-point rule.
-   - 【🔑 Independent Case / Extended Scenario Box (.case-box)】: background color must be `#e3f2fd` (light blue), with a `1px solid #bbdefb` border. Use this section for core cases, such as Louisville, Mohawk, etc., or for “extended comparative scenarios” showing how the result changes if the conditions are modified.
-   - 【❌ Deep Answer-Choice Breakdown (.option-analysis / .option)】:
-     * The section title must be “✅ Correct Answer and Elimination of Distractors”.
-     * The correct answer card must use the `.option.correct` style, with green background, green text, and border `#c3e6cb`.
-     * Wrong answer cards must use the `.option.wrong` style, with red background, red text, and border `#f5c6cb`.
-     * ⚠️ At the beginning of each answer-choice card, you must write the original English text of that choice in bold, for example: <b>Choice A is wrong: No, because...</b>. Then insert a line break and provide a deep Chinese explanation.
-   - 【🎓 Bottom Exam Tip (.footer-tip)】: background color must be `#fff8e1`, with a top border of `2px solid #ffb300`. Provide an exam shortcut, Exam Tip/Exam Trick, or a practical decision-flow mnemonic.
+2. Mandatory CSS scaffold:
+   The HTML must include CSS equivalent to the following contract. You may add selectors, but do not override these values with another theme:
+   ```css
+   * {{ box-sizing: border-box; }}
+   body {{
+     margin: 0;
+     padding: 24px 18px;
+     background: var(--bg-color);
+     color: var(--text-color);
+     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+     font-size: 18px;
+     line-height: 1.72;
+     letter-spacing: 0;
+   }}
+   .container {{
+     width: min(100%, 960px);
+     margin: 0 auto;
+     background: var(--card-bg);
+   }}
+   .header {{
+     background: var(--primary-color);
+     color: #ffffff;
+     border-radius: 12px 12px 0 0;
+     padding: 34px 24px 32px;
+     text-align: center;
+     margin-bottom: 26px;
+   }}
+   .header h1 {{
+     margin: 0 0 12px;
+     font-size: clamp(30px, 4vw, 42px);
+     line-height: 1.15;
+     font-weight: 800;
+     letter-spacing: 0;
+   }}
+   .sub-title {{
+     margin: 0;
+     font-size: clamp(18px, 2.4vw, 24px);
+     line-height: 1.35;
+     font-weight: 700;
+     color: rgba(255,255,255,0.92);
+   }}
+   h2, h3 {{
+     color: var(--primary-ink);
+     font-weight: 800;
+     line-height: 1.3;
+     letter-spacing: 0;
+   }}
+   h2 {{
+     font-size: clamp(24px, 3vw, 32px);
+     border-bottom: 3px solid var(--accent-color);
+     padding-bottom: 10px;
+     margin: 34px 0 20px;
+   }}
+   h3 {{
+     font-size: clamp(21px, 2.4vw, 26px);
+     margin: 28px 0 16px;
+   }}
+   p, li {{
+     font-size: 18px;
+     line-height: 1.72;
+   }}
+   strong, b {{
+     display: inline !important;
+     white-space: normal !important;
+     word-break: normal !important;
+     overflow-wrap: break-word !important;
+     font-weight: 800;
+   }}
+   ```
+
+3. Required component styles:
+   - `.answer-box`: green success card like the approved reference. Use `background: var(--correct-bg)`, `border-left: 6px solid var(--correct-border)`, `border-radius: 6px`, `padding: 20px 24px`, `margin: 22px 0 30px`, `font-size: 20px`, `font-weight: 700`.
+   - `.concept-box`: light blue card. Use `background: var(--highlight-bg)`, `border-left: 6px solid var(--accent-color)`, `border-radius: 8px`, `padding: 22px 24px`, `margin: 24px 0`.
+   - `.concept-box .concept-title`: blue title, `font-size: 24px`, `font-weight: 800`, `color: var(--accent-strong)`.
+   - `.latin`: italic, `font-size: 18px`, `color: #555555`, `font-weight: 500`.
+   - `.comparison-table`: full width, `border-collapse: collapse`, `margin: 24px 0`, `font-size: 17px`.
+   - `.comparison-table th`: `background: #f8f9fa`, `color: var(--primary-color)`, `font-weight: 800`, `padding: 14px`, `border: 1px solid var(--border-color)`, `text-align: left`.
+   - `.comparison-table td`: `padding: 14px`, `border: 1px solid var(--border-color)`, `vertical-align: top`.
+   - `.diagram`: white or very light gray panel, not a colored poster. Use `background: #ffffff`, `border: 1px dashed #cccccc`, `border-radius: 8px`, `padding: 22px`, `margin: 28px 0`, `text-align: center`.
+   - `.flow-node` / `.party-box`: light cyan chips with teal text, `background: #e8fcff`, `border: 1px solid #22b8cf`, `border-radius: 6px`, `padding: 10px 14px`, `font-weight: 700`, `color: #05606a`.
+   - `.flow-node.active` or `.flow-node.highlight-node`: blue chip, `background: var(--accent-color)`, `border-color: var(--accent-color)`, `color: #ffffff`.
+   - `.rule-block`, `.trap-alert`, `.footer-tip`: warm yellow only, never red. Use `background: var(--warning-bg)`, `border-left: 5px solid var(--warning-border)`, `border-radius: 6px`, `padding: 18px 20px`.
+   - `.case-box`: light blue card, `background: var(--highlight-bg)`, `border-radius: 8px`, `padding: 20px 22px`, `margin: 20px 0`.
+   - `.option.correct`: green card with `background: var(--correct-bg)`, `border-left: 5px solid var(--correct-border)`.
+   - `.option.wrong`: red may appear only here, with `background: var(--wrong-bg)`, `border-left: 5px solid var(--wrong-border)`, `color: var(--wrong-text)`.
+   - `code`: `background: rgba(0,0,0,0.05)`, `padding: 2px 4px`, `border-radius: 4px`, `font-size: 0.92em`.
+   - `.term`: `background: #e1ecf4`, `color: #2980b9`, `padding: 2px 6px`, `border-radius: 4px`, `font-size: 0.92em`, `font-weight: 700`.
+
+4. Responsive rules:
+   - At `max-width: 640px`, set `body` padding to `12px`, `.header` padding to `26px 16px`, `body/p/li` font size to `16px`, and make wide tables/diagrams horizontally scroll with `overflow-x: auto`.
+   - Text must never overflow its container. Long legal terms must wrap naturally. Do not use negative letter spacing or viewport-width-based body font scaling.
+   - Do not create nested cards inside cards. Repeated answer-choice cards and standalone section boxes are allowed.
+
+5. Core sections for the multi-dimensional deep analysis card (all sections must be included; do not delete or merge):
+   - 【Card Top Header】: Use class `.header`, fixed navy `var(--primary-color)`, title text exactly “MBE 考点解析”, and subtitle as `[Subject]: [Chapter or Issue]`.
+   - 【Correct Answer Box (.answer-box)】: Put the correct answer and one-sentence holding near the top, immediately after the header.
+   - 【Core Legal Rule <h2> + .concept-box】: Explain the governing doctrine in Chinese, preserving essential English terms.
+   - 【Concept Comparison Table (.comparison-table)】: Compare the tested rule with a commonly confused rule when useful.
+   - 【Fact/Application Logic <h2> + .analysis-step】: Apply rule elements to the facts in progressive steps.
+   - 【Diagram (.diagram)】: Include a simple flow/timeline/relationship diagram only when it clarifies the analysis. Use the standardized `.flow-node`/`.party-box` styles above.
+   - 【Trap Alert (.trap-alert or .rule-block)】: Explain the MBE trap in warm yellow.
+   - 【Answer-Choice Breakdown (.option-analysis / .option)】: The section title must be “正确答案与干扰项排除”. Correct card green; wrong cards red only inside `.option.wrong`.
+   - 【Exam Tip (.footer-tip)】: End with a concise exam shortcut or decision rule.
 
 【Special Restrictions and Quality Assurance】
 - ⚠️ Absolutely do not include the original English question text or English answer-choice buttons, such as A/B/C/D buttons, from the source materials in the HTML!
@@ -359,7 +444,7 @@ def fill_zh_from_castudy(record: dict, q: dict) -> bool:
         and zh_html_content.strip().startswith("<")
         and _is_error_html(record.get("zh-explanation", ""))
     ):
-        record["zh-explanation"] = zh_html_content
+        record["zh-explanation"] = strip_copyright_footers(zh_html_content)
         changed = True
 
     return changed
@@ -431,15 +516,40 @@ def find_existing_enriched_source(output_path: str, json_path: str, expected_cou
     return max(candidates, key=lambda path: enriched_completeness_score(path, expected_count))
 
 
+_COPYRIGHT_PATTERN = re.compile(
+    r"©\s*MBE[^<\n]*",
+    re.IGNORECASE,
+)
+
+
+def strip_copyright_footers(html: str) -> str:
+    """移除 HTML 中所有 MBE 版權 footer 字樣（包括包裹它們的 HTML 元素）。"""
+    if not html:
+        return html
+
+    # 移除包含 © MBE 的整個 HTML 標籤區塊（<footer>, <div>, <p>, <small> 等）
+    html = re.sub(
+        r'<(footer|div|p|small|span)[^>]*>(?:[^<]|<(?!(?:footer|div|p|small|span)[^>]*>))*?©\s*MBE[^<]*?</\1>',
+        '',
+        html,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    # 移除剩餘的裸文字行
+    html = _COPYRIGHT_PATTERN.sub('', html)
+    # 清理連續空行
+    html = re.sub(r'\n{3,}', '\n\n', html)
+    return html.strip()
+
+
 def extract_html_from_response(text: str) -> str:
     """從 Gemini 回覆中取出 HTML（可能包在 ```html ``` 中）。"""
     m = re.search(r"```html\s*([\s\S]*?)\s*```", text, re.IGNORECASE)
     if m:
-        return m.group(1).strip()
+        return strip_copyright_footers(m.group(1).strip())
     m = re.search(r"(<!DOCTYPE\s+html[\s\S]*)", text, re.IGNORECASE)
     if m:
-        return m.group(1).strip()
-    return text.strip()
+        return strip_copyright_footers(m.group(1).strip())
+    return strip_copyright_footers(text.strip())
 
 
 # ── Gemini API ────────────────────────────────────────────────────────────────
@@ -655,7 +765,7 @@ def process_question(
             if not _is_error_html(zh_explanation):
                 source_tag = "cached"
             elif castudy_zh_html and castudy_zh_html.strip().startswith("<"):
-                zh_explanation = castudy_zh_html
+                zh_explanation = strip_copyright_footers(castudy_zh_html)
                 source_tag = "api"
             else:
                 source_tag = "api_no_html"
