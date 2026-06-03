@@ -13,7 +13,7 @@ import { getMbeChineseLabel } from '@/lib/mbe-labels';
 import { getAllQuestionIdsByChapter, getQuestionsByChapterIds, getSubjects } from '@/lib/question-bank';
 import { Subject, TestSession } from '@/lib/types';
 import { getBrowseProgressByUser, BrowseProgressRow } from '@/lib/topic-study-progress';
-import { getBrowseMarkedChapterIds } from '@/lib/topic-study-question-states';
+import { getBrowseMarkedChapterIds, getBrowseChapterStateCounts } from '@/lib/topic-study-question-states';
 import { saveTestQuestionSnapshot } from '@/lib/offline-cache';
 import { BookOpen, ListOrdered, Shuffle, ArrowRight, Footprints } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -29,6 +29,8 @@ export default function BrowsePage() {
   const [questionOrder, setQuestionOrder] = useState<'sequential' | 'random'>('sequential');
   const [learnFilter, setLearnFilter] = useState<'all' | 'learned' | 'unlearned' | 'marked'>('all');
   const [markedChapterIds, setMarkedChapterIds] = useState<Set<string>>(new Set());
+  const [learnedQuestionCount, setLearnedQuestionCount] = useState(0);
+  const [markedQuestionCount, setMarkedQuestionCount] = useState(0);
   const [isStarting, setIsStarting] = useState(false);
   const [allChapterQIds, setAllChapterQIds] = useState<Record<string, string[]>>({});
   const [browseProgress, setBrowseProgress] = useState<BrowseProgressRow[]>([]);
@@ -45,6 +47,13 @@ export default function BrowsePage() {
     if (Object.keys(allChapterQIds).length > 0) {
       getBrowseMarkedChapterIds(user.id, allChapterQIds).then(setMarkedChapterIds);
     }
+    getBrowseChapterStateCounts(user.id).then((counts) => {
+      let learned = 0;
+      let marked = 0;
+      counts.forEach((v) => { learned += v.learnedCount; marked += v.markedCount; });
+      setLearnedQuestionCount(learned);
+      setMarkedQuestionCount(marked);
+    });
   }, [user?.id, allChapterQIds]);
 
   const progressByChapter = useMemo(() => {
@@ -67,18 +76,12 @@ export default function BrowsePage() {
     })).filter((s) => s.chapters.length > 0);
   }, [subjects, learnFilter, progressByChapter, markedChapterIds]);
 
-  const learnedCount = useMemo(
-    () => subjects.reduce((s, sub) => s + sub.chapters.filter((ch) => progressByChapter.has(ch.id)).reduce((cs, ch) => cs + ch.count, 0), 0),
-    [subjects, progressByChapter]
-  );
+  const learnedCount = learnedQuestionCount;
   const unlearnedCount = useMemo(
-    () => subjects.reduce((s, sub) => s + sub.chapters.filter((ch) => !progressByChapter.has(ch.id)).reduce((cs, ch) => cs + ch.count, 0), 0),
-    [subjects, progressByChapter]
+    () => subjects.reduce((s, sub) => s + sub.count, 0) - learnedQuestionCount,
+    [subjects, learnedQuestionCount]
   );
-  const markedCount = useMemo(
-    () => subjects.reduce((s, sub) => s + sub.chapters.filter((ch) => markedChapterIds.has(ch.id)).reduce((cs, ch) => cs + ch.count, 0), 0),
-    [subjects, markedChapterIds]
-  );
+  const markedCount = markedQuestionCount;
 
   const totalQuestions = useMemo(
     () => subjects.reduce((s, sub) => s + sub.count, 0),
