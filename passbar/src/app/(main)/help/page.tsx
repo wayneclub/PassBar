@@ -488,72 +488,29 @@ function InteractiveStepGuide() {
 
 // ─── FAQ ─────────────────────────────────────────────────────────────────────
 
-const FAQ_ITEMS: { q: string; a: string; cat: Exclude<FaqCategory, 'all'> }[] = [
-  {
-    cat: 'tech',
-    q: '為什麼我無法登入？',
-    a: 'PassBar 使用 Google 帳號登入。請確認您點擊的是「使用 Google 登入」按鈕，並在彈出視窗中選取正確的 Google 帳號。若彈出視窗被瀏覽器封鎖，請允許彈出視窗後再試。若帳號已申請但顯示「待審核」，請等候管理員核准通知。',
-  },
-  {
-    cat: 'tech',
-    q: '支援在 iPad 或手機瀏覽器上刷題嗎？',
-    a: '支援！PassBar 採用完整 RWD 響應式設計，iOS Safari、iPadOS Chrome、Android 瀏覽器均可正常使用，觸控手感亦有針對行動裝置優化。',
-  },
-  {
-    cat: 'tech',
-    q: '如果遇到系統頁面卡死或按鈕沒反應，該如何排除？',
-    a: '請嘗試：\n1. Ctrl+F5（Windows）或 Cmd+Shift+R（Mac）強制重整。\n2. 清除瀏覽器 Cookie 與快取後重新開啟。\n3. 若仍有問題，請透過下方系統建議表單回報。',
-  },
-  {
-    cat: 'tech',
-    q: '可以多台裝置同時登入同一個帳號嗎？',
-    a: '可以，但建議不要同時在多台裝置上寫同一份考卷，否則可能因兩端同時寫入而導致答題歷程不同步。建議同一時間僅在單一裝置上完成練習。',
-  },
-  {
-    cat: 'feature',
-    q: '寫題寫到一半關閉頁面，答題記錄會消失嗎？',
-    a: '不會！每次點選選項，系統都會即時同步至雲端。即使意外關閉頁面，下次進入「歷史練習」仍可找到未完成的考卷並繼續作答。',
-  },
-  {
-    cat: 'feature',
-    q: '什麼是「錯題本自動歸檔」？',
-    a: '每當您答錯一題，系統會自動將其標記並歸檔於「學習表現」的錯題本中。您可按科目篩選錯題、重新抽考，直到答對才降級。詳讀附帶的考點大綱是備考中後期提高正確率的關鍵方法。',
-  },
-  {
-    cat: 'feature',
-    q: '可以只篩選「還沒寫過」的新題目嗎？',
-    a: '可以！在「建立測驗」中選擇 Unused 篩選條件，系統會排除所有做過的題目，只抽出全新題目組成考卷，適合考前做盲測評估真實實力。',
-  },
-  {
-    cat: 'feature',
-    q: '歷史練習與學習表現可以清空重來嗎？',
-    a: '可以。前往「設定」頁面最下方找到「重設所有練習數據」。請注意此操作不可還原，所有歷程與錯題歸檔將完全抹除，建議完成一整輪刷題後再考慮使用。',
-  },
-  {
-    cat: 'exam',
-    q: '題目來源是什麼？是否符合最新 MBE 考試大綱？',
-    a: '所有題目依據 NCBE（National Conference of Bar Examiners）最新發布的考試大綱設計，涵蓋全部七大科目，並針對近年越考越靈活的長難題型重點收錄。All questions are reviewed to align with recent exam trends.',
-  },
-  {
-    cat: 'exam',
-    q: 'MBE 考試一題只有 108 秒，該如何平時訓練？',
-    a: '建議分兩階段：\n1. 前中期（打底）：不限時，專注讀懂 Fact Pattern 並找出隱藏考點。\n2. 中後期（衝刺）：開啟計時模式，每題強迫自己在 1.8 分鐘內決定，訓練刪除誘餌選項的直覺。',
-  },
-  {
-    cat: 'exam',
-    q: 'AI 學習表現分析是什麼？如何有效針對弱點補強？',
-    a: '在「學習表現」頁面，系統會根據您的答題歷程自動產生 AI 診斷報告，分析各科目的正確率趨勢、高頻出錯考點，並給出具體的補強建議。\n\n有效利用方式：\n1. 優先處理正確率低於 50% 的科目，點擊「生成 AI 診斷」獲得針對性分析。\n2. 搭配錯題本，對 AI 指出的弱點考點重新抽考直到穩定答對。\n3. 每完成一輪 50 題後重新查看報告，追蹤進步曲線。',
-  },
+const FAQ_ITEMS: { qKey: string; aKey: string; cat: Exclude<FaqCategory, 'all'> }[] = [
+  { cat: 'tech', qKey: 'help.faq.login.q', aKey: 'help.faq.login.a' },
+  { cat: 'tech', qKey: 'help.faq.mobile.q', aKey: 'help.faq.mobile.a' },
+  { cat: 'tech', qKey: 'help.faq.troubleshoot.q', aKey: 'help.faq.troubleshoot.a' },
+  { cat: 'tech', qKey: 'help.faq.multiDevice.q', aKey: 'help.faq.multiDevice.a' },
+  { cat: 'feature', qKey: 'help.faq.closePage.q', aKey: 'help.faq.closePage.a' },
+  { cat: 'feature', qKey: 'help.faq.wrongBook.q', aKey: 'help.faq.wrongBook.a' },
+  { cat: 'feature', qKey: 'help.faq.unused.q', aKey: 'help.faq.unused.a' },
+  { cat: 'feature', qKey: 'help.faq.clearData.q', aKey: 'help.faq.clearData.a' },
+  { cat: 'exam', qKey: 'help.faq.source.q', aKey: 'help.faq.source.a' },
+  { cat: 'exam', qKey: 'help.faq.pacing.q', aKey: 'help.faq.pacing.a' },
+  { cat: 'exam', qKey: 'help.faq.ai.q', aKey: 'help.faq.ai.a' },
 ];
 
-const FAQ_PILLS: { key: FaqCategory; label: string }[] = [
-  { key: 'all', label: '全部' },
-  { key: 'tech', label: '帳號與技術' },
-  { key: 'feature', label: '題庫功能' },
-  { key: 'exam', label: '題目與考點' },
+const FAQ_PILLS: { key: FaqCategory; labelKey: string }[] = [
+  { key: 'all', labelKey: 'help.faq.all' },
+  { key: 'tech', labelKey: 'help.faq.tech' },
+  { key: 'feature', labelKey: 'help.faq.feature' },
+  { key: 'exam', labelKey: 'help.faq.exam' },
 ];
 
 function FaqSection() {
+  const { t } = useI18n();
   const [activeCategory, setActiveCategory] = useState<FaqCategory>('all');
   const [search, setSearch] = useState('');
   const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
@@ -568,18 +525,20 @@ function FaqSection() {
   const filtered = FAQ_ITEMS.filter((item) => {
     const matchesCat = activeCategory === 'all' || item.cat === activeCategory;
     const q = search.toLowerCase();
-    const matchesSearch = !q || item.q.toLowerCase().includes(q) || item.a.toLowerCase().includes(q);
+    const question = t(item.qKey).toLowerCase();
+    const answer = t(item.aKey).toLowerCase();
+    const matchesSearch = !q || question.includes(q) || answer.includes(q);
     return matchesCat && matchesSearch;
   });
 
   return (
     <section className="space-y-4">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <h2 className="text-lg font-semibold text-foreground">常見問答</h2>
+        <h2 className="text-lg font-semibold text-foreground">{t('help.faqTitle')}</h2>
         <div className="relative w-full sm:w-56">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
           <Input
-            placeholder="搜尋問題..."
+            placeholder={t('help.searchFaqPlaceholder')}
             value={search}
             onChange={(e) => { setSearch(e.target.value); setOpenIndices(new Set()); }}
             className="pl-8 text-xs h-9"
@@ -588,7 +547,7 @@ function FaqSection() {
       </div>
 
       <div className="flex flex-wrap gap-2">
-        {FAQ_PILLS.map(({ key, label }) => (
+        {FAQ_PILLS.map(({ key, labelKey }) => (
           <button key={key} onClick={() => { setActiveCategory(key); setOpenIndices(new Set()); }}
             className={cn(
               'px-3 py-1.5 text-xs font-medium rounded-full border transition-all duration-150',
@@ -596,14 +555,14 @@ function FaqSection() {
                 ? 'bg-primary text-primary-foreground border-primary shadow-sm'
                 : 'bg-card text-muted-foreground border-border hover:text-foreground hover:border-foreground/30',
             )}>
-            {label}
+            {t(labelKey)}
           </button>
         ))}
       </div>
 
       {filtered.length === 0 ? (
         <div className="text-center py-10 bg-card border border-border rounded-2xl">
-          <p className="text-sm text-muted-foreground">找不到相關問答，試試其他關鍵字。</p>
+          <p className="text-sm text-muted-foreground">{t('help.noFaqResults')}</p>
         </div>
       ) : (
         <div className="bg-card rounded-2xl border border-border shadow-sm overflow-hidden divide-y divide-border">
@@ -613,13 +572,13 @@ function FaqSection() {
                 <span className={cn('text-sm font-medium transition-colors flex items-center gap-2',
                   openIndices.has(i) ? 'text-primary' : 'text-foreground hover:text-primary')}>
                   <span className="text-primary font-bold shrink-0">Q.</span>
-                  {item.q}
+                  {t(item.qKey)}
                 </span>
                 <ChevronDown className={cn('w-4 h-4 text-muted-foreground shrink-0 transition-transform duration-200', openIndices.has(i) && 'rotate-180')} />
               </div>
               {openIndices.has(i) && (
                 <div className="text-sm text-muted-foreground leading-relaxed pb-4 pl-6 border-l-2 border-primary/30 whitespace-pre-line">
-                  {item.a}
+                  {t(item.aKey)}
                 </div>
               )}
             </div>
@@ -634,15 +593,13 @@ function FaqSection() {
 
 function FeedbackForm() {
   const { user, profile } = useAuth();
-  const { language } = useI18n();
+  const { t } = useI18n();
   const { toast } = useToast();
 
-  const isZh = language === 'zh-Hans' || language === 'zh-Hant';
-
   const FEEDBACK_CATEGORIES: { value: FeedbackCategory; label: string }[] = [
-    { value: 'content', label: isZh ? '題目勘誤與錯字' : 'Content Correction' },
-    { value: 'bug',     label: isZh ? '程式 Bug 反饋'   : 'Technical Issue' },
-    { value: 'feature', label: isZh ? '功能改良建議'     : 'Feature Request' },
+    { value: 'content', label: t('help.feedbackCategoryContent') },
+    { value: 'bug',     label: t('help.feedbackCategoryBug') },
+    { value: 'feature', label: t('help.feedbackCategoryFeature') },
   ];
 
   const [category, setCategory] = useState<FeedbackCategory>('content');
@@ -686,12 +643,12 @@ function FeedbackForm() {
       });
       if (error) throw error;
       const label = FEEDBACK_CATEGORIES.find((c) => c.value === category)?.label ?? category;
-      toast({ title: `「${subject}」已送出，感謝您的回報！（${label}）` });
+      toast({ title: t('help.feedbackSuccessToast', { subject, label }) });
       setSubject('');
       resetRefFields();
       setMessage('');
     } catch {
-      toast({ title: '送出失敗，請稍後再試。', variant: 'destructive' });
+      toast({ title: t('help.feedbackErrorToast'), variant: 'destructive' });
     } finally {
       setSubmitting(false);
     }
@@ -699,14 +656,14 @@ function FeedbackForm() {
 
   return (
     <section className="space-y-4">
-      <h2 className="text-lg font-semibold text-foreground">系統建議</h2>
+      <h2 className="text-lg font-semibold text-foreground">{t('help.feedbackTitle')}</h2>
       <div className="bg-card border border-border rounded-2xl shadow-sm p-6">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Row 1: Category + Email */}
             <div className="space-y-1.5">
               <Label className="text-xs font-semibold">
-                {isZh ? '回報類別' : 'Category'} <span className="text-destructive">*</span>
+                {t('help.feedbackCategory')} <span className="text-destructive">*</span>
               </Label>
               <Select value={category} onValueChange={(v) => { setCategory(v as FeedbackCategory); resetRefFields(); }}>
                 <SelectTrigger className="text-sm h-9">
@@ -722,7 +679,7 @@ function FeedbackForm() {
 
             <div className="space-y-1.5">
               <Label className="text-xs font-semibold">
-                {isZh ? '聯絡 Email' : 'Contact Email'} <span className="text-destructive">*</span>
+                {t('help.contactEmail')} <span className="text-destructive">*</span>
               </Label>
               <Input type="email" value={email} readOnly className="text-sm h-9 bg-muted/60 text-muted-foreground cursor-not-allowed" />
             </div>
@@ -730,10 +687,10 @@ function FeedbackForm() {
             {/* Row 2: Topic (always full width or half depending on category) */}
             <div className="sm:col-span-2 space-y-1.5">
               <Label className="text-xs font-semibold">
-                {isZh ? '主題' : 'Subject'} <span className="text-destructive">*</span>
+                {t('help.feedbackSubject')} <span className="text-destructive">*</span>
               </Label>
               <Input
-                placeholder={isZh ? '簡述您的回報或建議' : 'Brief summary of your report'}
+                placeholder={t('help.feedbackSubjectPlaceholder')}
                 value={subject} onChange={(e) => setSubject(e.target.value)} required className="text-sm h-9" />
             </div>
 
@@ -743,18 +700,18 @@ function FeedbackForm() {
                 {/* Subject dropdown */}
                 <div className="space-y-1.5">
                   <Label className="text-xs font-semibold text-muted-foreground">
-                    {isZh ? '科目（選填）' : 'Subject (optional)'}
+                    {t('help.refSubjectOptional')}
                   </Label>
                   <Select
                     value={refSubject}
                     onValueChange={(v) => { setRefSubject(v === '__none__' ? '' : v); setRefChapter(''); }}
                   >
                     <SelectTrigger className="text-sm h-9">
-                      <SelectValue placeholder={isZh ? '選擇科目…' : 'Select subject…'} />
+                      <SelectValue placeholder={t('help.selectSubjectPlaceholder')} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="__none__" className="text-sm text-muted-foreground">
-                        {isZh ? '— 不指定 —' : '— None —'}
+                        {t('help.noneOption')}
                       </SelectItem>
                       {subjects.map((s) => (
                         <SelectItem key={s.id} value={s.name} className="text-sm">{s.name}</SelectItem>
@@ -766,7 +723,7 @@ function FeedbackForm() {
                 {/* Chapter dropdown — depends on selected subject */}
                 <div className="space-y-1.5">
                   <Label className="text-xs font-semibold text-muted-foreground">
-                    {isZh ? '章節（選填）' : 'Chapter (optional)'}
+                    {t('help.refChapterOptional')}
                   </Label>
                   <Select
                     value={refChapter}
@@ -776,13 +733,13 @@ function FeedbackForm() {
                     <SelectTrigger className="text-sm h-9">
                       <SelectValue placeholder={
                         availableChapters.length === 0
-                          ? (isZh ? '請先選擇科目' : 'Select subject first')
-                          : (isZh ? '選擇章節…' : 'Select chapter…')
+                          ? t('help.selectSubjectFirst')
+                          : t('help.selectChapterPlaceholder')
                       } />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="__none__" className="text-sm text-muted-foreground">
-                        {isZh ? '— 不指定 —' : '— None —'}
+                        {t('help.noneOption')}
                       </SelectItem>
                       {availableChapters.map((c) => (
                         <SelectItem key={c.id} value={c.name} className="text-sm">{c.name}</SelectItem>
@@ -794,7 +751,7 @@ function FeedbackForm() {
                 {/* QID text input */}
                 <div className="space-y-1.5">
                   <Label className="text-xs font-semibold text-muted-foreground">
-                    {isZh ? '題號 QID（選填）' : 'Question ID (optional)'}
+                    {t('help.qidOptional')}
                   </Label>
                   <Input
                     type="number" placeholder="1024"
@@ -807,17 +764,17 @@ function FeedbackForm() {
 
           <div className="space-y-1.5">
             <Label className="text-xs font-semibold">
-              {isZh ? '詳細說明' : 'Description'} <span className="text-destructive">*</span>
+              {t('help.description')} <span className="text-destructive">*</span>
             </Label>
             <Textarea
-              placeholder={isZh ? '請具體描述您發現的問題或建議...' : 'Describe the issue or suggestion in detail...'}
+              placeholder={t('help.descriptionPlaceholder')}
               value={message} onChange={(e) => setMessage(e.target.value)} rows={4} required className="text-sm" />
           </div>
 
           <div className="flex justify-end pt-1">
             <Button type="submit" disabled={submitting} className="gap-1.5 text-sm px-5">
               <Send className="w-3.5 h-3.5" />
-              {submitting ? (isZh ? '送出中...' : 'Submitting...') : (isZh ? '送出建議' : 'Submit')}
+              {submitting ? t('help.submitting') : t('help.submitFeedback')}
             </Button>
           </div>
         </form>
@@ -829,16 +786,17 @@ function FeedbackForm() {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function HelpPage() {
+  const { t } = useI18n();
   return (
     <div className="space-y-10">
       {/* Page Header */}
       <div>
-        <h1 className="text-3xl font-bold text-primary">幫助與備考指引中心</h1>
+        <h1 className="text-3xl font-bold text-primary">{t('help.title')}</h1>
       </div>
 
       {/* Quick start — full width, timer embedded in step 2 */}
       <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-foreground">快速上手指引</h2>
+        <h2 className="text-lg font-semibold text-foreground">{t('help.quickStartTitle')}</h2>
         <InteractiveStepGuide />
       </section>
 
