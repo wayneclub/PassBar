@@ -16,6 +16,10 @@ type ProgressRow = {
   is_marked: boolean | null;
 };
 
+function isNoContentError(error: { message?: string } | null | undefined) {
+  return Boolean(error?.message?.includes('204'));
+}
+
 export async function getQuestionStatusCounts(userId: string, totalQuestions: number): Promise<QuestionStatusCounts> {
   if (!supabase) return { ...emptyQuestionStatusCounts, Unused: totalQuestions };
 
@@ -344,7 +348,7 @@ export async function clearUserProgress(userId: string): Promise<boolean> {
       supabase.from('practice_sessions').delete().eq('user_id', userId),
       supabase.from('user_question_progress').delete().eq('user_id', userId),
     ]);
-    const failed = results.find((result) => result.error);
+    const failed = results.find((result) => result.error && !isNoContentError(result.error));
     if (failed?.error) {
       console.warn('[PassBar] Failed to clear user progress:', failed.error.message);
       return false;
