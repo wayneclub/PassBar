@@ -460,20 +460,12 @@ html, body {
   overflow: hidden !important;
   min-height: 0 !important;
   height: auto !important;
-  /* block prevents body-level flex/grid from centering content */
   display: block !important;
 }
-/* Kill any min-height that creates blank space before content */
-body, body * {
+/* Collapse min-height on direct body children only (safe) */
+body > div, body > main, body > section, body > article {
   min-height: 0 !important;
-}
-/* Remove flex/grid vertical centering on wrappers that could push content down */
-body > div, body > main, body > section, body > article,
-body > div > div, body > main > div {
   height: auto !important;
-  align-items: flex-start !important;
-  justify-content: flex-start !important;
-  align-content: flex-start !important;
 }
 /* Fluid container — remove fixed 480px width */
 .container, [class*="container"] {
@@ -487,6 +479,46 @@ body > div > div, body > main > div {
 (function(){
   var ch = ${JSON.stringify(channelId)};
   var lastH = 0;
+
+  function fixLayout() {
+    if (!document.body) return;
+    var all = document.body.querySelectorAll('*');
+    for (var i = 0; i < all.length; i++) {
+      var el = all[i];
+      var cs = window.getComputedStyle(el);
+      // Collapse large min-heights that inflate iframe (e.g. min-h-screen)
+      if (parseFloat(cs.minHeight) > 50) {
+        el.style.minHeight = '0';
+      }
+      // Fix flex column containers that push content away from top
+      if (cs.display === 'flex' || cs.display === 'inline-flex') {
+        if (cs.flexDirection === 'column' || cs.flexDirection === 'column-reverse') {
+          var jc = cs.justifyContent;
+          if (jc === 'center' || jc === 'flex-end' || jc === 'space-around' || jc === 'space-between' || jc === 'space-evenly') {
+            el.style.justifyContent = 'flex-start';
+          }
+        } else {
+          // Row flex: fix cross-axis (vertical) centering
+          var ai = cs.alignItems;
+          if (ai === 'center') {
+            el.style.alignItems = 'flex-start';
+          }
+        }
+        // Collapse flex-grow that steals height in column containers
+        if (cs.flexDirection === 'column' || cs.flexDirection === 'column-reverse') {
+          if (parseFloat(cs.flexGrow) > 0) {
+            el.style.flex = '0 0 auto';
+          }
+        }
+      }
+      // Collapse grid rows that inflate height
+      if (cs.display === 'grid' || cs.display === 'inline-grid') {
+        el.style.gridTemplateRows = 'auto';
+        el.style.alignContent = 'flex-start';
+      }
+    }
+  }
+
   function send(){
     if (!document.body) return;
     var h = Math.max(
@@ -497,10 +529,13 @@ body > div > div, body > main > div {
     );
     if(h !== lastH){ lastH = h; window.parent.postMessage({type:'iframe-resize',ch:ch,height:h},'*'); }
   }
-  window.addEventListener('load', send);
-  document.addEventListener('DOMContentLoaded', send);
+
+  function fixAndSend() { fixLayout(); send(); }
+
+  window.addEventListener('load', fixAndSend);
+  document.addEventListener('DOMContentLoaded', fixAndSend);
   new MutationObserver(send).observe(document.documentElement,{childList:true,subtree:true,attributes:true,characterData:true});
-  [100,300,600,1000,2000].forEach(function(t){ setTimeout(send,t); });
+  [100,300,600,1000,2000].forEach(function(t){ setTimeout(fixAndSend,t); });
 })();
 <\/script>`;
 }

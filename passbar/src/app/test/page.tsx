@@ -18,8 +18,9 @@ import {
   saveQuestionAnswerProgress,
   setQuestionMarked,
 } from '@/lib/question-progress';
-import { getPracticeSessionRecord, savePracticeAnswer, updatePracticeSessionRecord } from '@/lib/practice-sessions';
-import { upsertBrowseProgress } from '@/lib/browse-progress';
+import { deletePracticeSessionRecord, getPracticeSessionRecord, savePracticeAnswer, updatePracticeSessionRecord } from '@/lib/practice-sessions';
+import { getBrowseProgressByUser, upsertBrowseProgress } from '@/lib/topic-study-progress';
+import { getBrowseMarkedQuestionIds, getBrowseQuestionStates, upsertBrowseQuestionState } from '@/lib/topic-study-question-states';
 import {
   addPendingAnswerSync,
   getTestQuestionSnapshot,
@@ -98,6 +99,8 @@ function TestSessionContent() {
   const [answerMetaByQuestion, setAnswerMetaByQuestion] = useState<Record<string, AnswerMeta>>({});
   const [reportOpen, setReportOpen] = useState(false);
   const [markedQuestionIds, setMarkedQuestionIds] = useState<Set<string>>(new Set());
+  // Browse mode: tracks which question IDs have been viewed (loaded from DB + updated on navigate)
+  const [viewedQuestionIds, setViewedQuestionIds] = useState<Set<string>>(new Set());
   const [eliminatedOptionsByQuestion, setEliminatedOptionsByQuestion] = useState<Record<string, Set<string>>>({});
   const [endConfirmOpen, setEndConfirmOpen] = useState(false);
   const [pendingEndSession, setPendingEndSession] = useState<TestSession | null>(null);
@@ -141,6 +144,7 @@ function TestSessionContent() {
       }
 
       const sessions: TestSession[] = JSON.parse(localStorage.getItem('passbar_sessions') || localStorage.getItem('uprep_sessions') || '[]');
+      sessions.forEach((s) => { if ((s.mode as string) === 'Browse') s.mode = 'TopicStudy'; });
       let currentSession = isReviewMode ? null : sessions.find((item) => item.id === id) ?? null;
 
       if (!currentSession) {
@@ -191,15 +195,52 @@ function TestSessionContent() {
       setQuestions(sessionQuestions);
       setQuestionStartedAt(Date.now());
       if (user?.id) {
-        const markedIds = await getMarkedQuestionIds(user.id, hydratedSession.questionIds);
+        // Browse mode uses its own marks table; test modes use user_question_progress.is_marked
+        const markedIds = hydratedSession.mode === 'TopicStudy'
+          ? await getBrowseMarkedQuestionIds(user.id, hydratedSession.questionIds)
+          : await getMarkedQuestionIds(user.id, hydratedSession.questionIds);
         setMarkedQuestionIds(markedIds);
+
+        // Browse mode: load previously viewed question IDs from browse_progress + learned states
+        if (hydratedSession.mode === 'TopicStudy') {
+          const [progressRows, questionStates] = await Promise.all([
+            getBrowseProgressByUser(user.id),
+            getBrowseQuestionStates(user.id, hydratedSession.questionIds),
+          ]);
+          const chapterSet = new Set(hydratedSession.chapters ?? []);
+          const viewedIds = new Set<string>();
+          progressRows
+            .filter((row) => chapterSet.has(row.chapter_id))
+            .forEach((row) => {
+              // Mark all questions up to and including lastQuestionIndex as viewed
+              const lastIdx = row.last_question_index ?? -1;
+              sessionQuestions.slice(0, lastIdx + 1).forEach((q) => viewedIds.add(q.id));
+              // Also mark the specific lastQuestionId
+              if (row.last_question_id) viewedIds.add(row.last_question_id);
+            });
+          // Also add questions that are marked as learned in browse_question_states
+          questionStates.forEach((state, questionId) => {
+            if (state.isLearned) viewedIds.add(questionId);
+          });
+          setViewedQuestionIds(viewedIds);
+        }
       }
 
       if (sessionQuestions.length > 0) {
         const existingAnswer = hydratedSession.userAnswers[sessionQuestions[0].id];
         if (existingAnswer) setSelectedAnswer(existingAnswer);
         // In review mode always show answers/explanations regardless of whether this question was answered
-        if (isReviewMode || hydratedSession.mode === 'Browse') setSubmitted(true);
+        if (isReviewMode || hydratedSession.mode === 'TopicStudy') {
+          setSubmitted(true);
+          // Mark the starting question as viewed immediately
+          if (hydratedSession.mode === 'TopicStudy') {
+            setViewedQuestionIds((prev) => {
+              const next = new Set(prev);
+              next.add(sessionQuestions[startIndexParam]?.id ?? sessionQuestions[0].id);
+              return next;
+            });
+          }
+        }
         else if (existingAnswer && hydratedSession.mode === 'Tutor') setSubmitted(true);
       }
     };
@@ -248,7 +289,7 @@ function TestSessionContent() {
   const selectedChoiceKey = currentQuestion && selectedAnswer ? getAnswerChoiceKey(currentQuestion, selectedAnswer) : null;
   const normalizedCorrectAnswerKey = correctAnswerKey?.toUpperCase() ?? null;
   const isSubmittedCorrect = Boolean(submitted && selectedChoiceKey && normalizedCorrectAnswerKey && selectedChoiceKey === normalizedCorrectAnswerKey);
-  const showExplanation = Boolean(session?.mode === 'Browse' || (submitted && (session?.mode === 'Tutor' || isReviewMode)));
+  const showExplanation = Boolean(session?.mode === 'TopicStudy' || (submitted && (session?.mode === 'Tutor' || isReviewMode)));
   const showSubmitBtn = Boolean(session?.mode === 'Tutor' && !isPaused && !submitted && selectedAnswer);
   const currentAnswerMeta = currentQuestion ? answerMetaByQuestion[currentQuestion.id] : undefined;
   const currentEliminatedOptions = currentQuestion ? (eliminatedOptionsByQuestion[currentQuestion.id] || new Set<string>()) : new Set<string>();
@@ -347,7 +388,7 @@ function TestSessionContent() {
 
   const handleSelectAnswer = (answer: string) => {
     if (isPaused) return;
-    if (isReviewMode || session?.mode === 'Browse' || (submitted && session?.mode === 'Tutor')) return;
+    if (isReviewMode || session?.mode === 'TopicStudy' || (submitted && session?.mode === 'Tutor')) return;
     setSelectedAnswer(answer);
 
     if ((session?.mode === 'Timed' || session?.mode === 'SimExam') && currentQuestion) {
@@ -366,7 +407,7 @@ function TestSessionContent() {
   const handleSubmit = async () => {
     if (isPaused) return;
     if (!selectedAnswer || !session || !currentQuestion) return;
-    if (session.mode !== 'Tutor' && session.mode !== 'Browse' && !isReviewMode) return;
+    if (session.mode !== 'Tutor' && session.mode !== 'TopicStudy' && !isReviewMode) return;
     setSubmitted(true);
 
     const updatedSession = { ...session };
@@ -396,7 +437,7 @@ function TestSessionContent() {
     }
 
     // Browse mode: skip confirmation dialog, just end immediately
-    if (session.mode === 'Browse') {
+    if (session.mode === 'TopicStudy') {
       void handleEnd();
       return;
     }
@@ -422,6 +463,16 @@ function TestSessionContent() {
     if (!session || !user?.id) { router.push('/review'); return; }
     const nextSession = pendingEndSession ?? sessionWithCurrentProgress();
     if (!nextSession) return;
+    // Zero answers: nothing worth saving — delete and exit cleanly
+    if (Object.keys(nextSession.userAnswers).length === 0) {
+      await deletePracticeSessionRecord({ sessionId: nextSession.id, userId: user.id });
+      const stored: TestSession[] = JSON.parse(localStorage.getItem('passbar_sessions') || '[]');
+      localStorage.setItem('passbar_sessions', JSON.stringify(stored.filter((s) => s.id !== session.id)));
+      setEndConfirmOpen(false);
+      setPendingEndSession(null);
+      router.push('/review');
+      return;
+    }
     nextSession.status = 'In-Progress';
     setSession(nextSession);
     persistSession(nextSession);
@@ -446,8 +497,53 @@ function TestSessionContent() {
     setEnding(true);
 
     try {
+      // Browse mode: only save progress if user actually navigated (currentIndex > 0 means they moved past the first question)
+      if (session.mode === 'TopicStudy') {
+        const stored: TestSession[] = JSON.parse(localStorage.getItem('passbar_sessions') || '[]');
+        localStorage.setItem('passbar_sessions', JSON.stringify(stored.filter((s) => s.id !== session.id)));
+        setEndConfirmOpen(false);
+        setPendingEndSession(null);
+        if (currentIndex > 0) {
+          const lastQuestion = questions[currentIndex];
+          const chapterIds = nextSession.chapters;
+          await Promise.all(chapterIds.map((chapterId) => {
+            const chapterQuestions = questions.filter((q) => q.chapterId === chapterId);
+            const reachedQIds = new Set(questions.slice(0, currentIndex + 1).map((q) => q.id));
+            const viewedCount = chapterQuestions.length > 0
+              ? chapterQuestions.filter((q) => reachedQIds.has(q.id)).length
+              : currentIndex + 1;
+            return upsertBrowseProgress({
+              userId: user.id!,
+              chapterId,
+              viewedCount: Math.max(viewedCount, 1),
+              lastQuestionId: lastQuestion?.id ?? null,
+              lastQuestionIndex: currentIndex,
+            });
+          }));
+        }
+        router.push('/footprint');
+        return;
+      }
+
+      const answeredIds = new Set(Object.keys(nextSession.userAnswers));
+
+      const cleanUpAndExit = async (redirectTo: string) => {
+        await deletePracticeSessionRecord({ sessionId: nextSession.id, userId: user.id! });
+        const stored: TestSession[] = JSON.parse(localStorage.getItem('passbar_sessions') || '[]');
+        localStorage.setItem('passbar_sessions', JSON.stringify(stored.filter((s) => s.id !== session.id)));
+        setEndConfirmOpen(false);
+        setPendingEndSession(null);
+        router.push(redirectTo);
+      };
+
+      // Zero answers: delete the session entirely — don't leave an empty record in history
+      if (answeredIds.size === 0) {
+        await cleanUpAndExit('/review');
+        return;
+      }
+
       if ((session.mode === 'Timed' || session.mode === 'SimExam') && !isReviewMode) {
-        const answeredCount = Object.keys(nextSession.userAnswers).length;
+        const answeredCount = answeredIds.size;
         if (answeredCount < questions.length) {
           window.alert(t('test.completeTimedBeforeReview', {
             answered: answeredCount,
@@ -458,36 +554,6 @@ function TestSessionContent() {
         }
       }
 
-      // Browse mode: update browse_progress, clean up localStorage, redirect to footprint
-      if (session.mode === 'Browse') {
-        const lastQuestion = questions[currentIndex];
-        const chapterIds = nextSession.chapters;
-        // Per-chapter viewed count: count how many questions from each chapter were reached
-        await Promise.all(chapterIds.map((chapterId) => {
-          const chapterQuestions = questions.filter((q) => q.chapterId === chapterId);
-          // If this session mixes chapters, approximate by questions reached that belong to this chapter
-          const reachedQIds = new Set(questions.slice(0, currentIndex + 1).map((q) => q.id));
-          const viewedCount = chapterQuestions.length > 0
-            ? chapterQuestions.filter((q) => reachedQIds.has(q.id)).length
-            : currentIndex + 1;
-          return upsertBrowseProgress({
-            userId: user.id!,
-            chapterId,
-            viewedCount: Math.max(viewedCount, 1),
-            lastQuestionId: lastQuestion?.id ?? null,
-            lastQuestionIndex: currentIndex,
-          });
-        }));
-        // Remove Browse session from localStorage — it has no DB record and shouldn't persist
-        const stored: TestSession[] = JSON.parse(localStorage.getItem('passbar_sessions') || '[]');
-        localStorage.setItem('passbar_sessions', JSON.stringify(stored.filter((s) => s.id !== session.id)));
-        setEndConfirmOpen(false);
-        setPendingEndSession(null);
-        router.push('/footprint');
-        return;
-      }
-
-      const answeredIds = new Set(Object.keys(nextSession.userAnswers));
       const isComplete = answeredIds.size >= nextSession.questionIds.length;
       const dbStatus = isComplete ? 'completed' : 'suspended';
 
@@ -496,9 +562,10 @@ function TestSessionContent() {
       persistSession(nextSession);
       await persistSessionAnswers(nextSession);
 
-      // Only mark questions as omitted if the user actually reached them (index ≤ currentIndex).
+      // Only mark questions as omitted if the user navigated away from them (index < currentIndex).
+      // The current question was never "skipped" — the user is still on it.
       // Questions beyond currentIndex were never seen — leave them as Unused.
-      const reachedIds = nextSession.questionIds.slice(0, currentIndex + 1);
+      const reachedIds = nextSession.questionIds.slice(0, currentIndex);
       const omittedIds = reachedIds.filter((questionId) => !answeredIds.has(questionId));
       await saveOmittedQuestionProgress({
         userId: user.id,
@@ -542,7 +609,7 @@ function TestSessionContent() {
     persistSession(nextSession);
     await persistSessionAnswers(nextSession);
     const answeredIds = new Set(Object.keys(nextSession.userAnswers));
-    const reachedIds = nextSession.questionIds.slice(0, currentIndex + 1);
+    const reachedIds = nextSession.questionIds.slice(0, currentIndex);
     const omittedIds = reachedIds.filter((qId) => !answeredIds.has(qId));
     await saveOmittedQuestionProgress({ userId: user.id, questionIds: omittedIds });
     await updatePracticeSessionRecord({ session: nextSession, userId: user.id, status: 'completed' });
@@ -561,8 +628,18 @@ function TestSessionContent() {
       persistSession(nextSession);
     }
 
+    // Browse mode: mark questions up to max(current, new) as viewed in local state
+    if (session.mode === 'TopicStudy') {
+      const viewedIndex = Math.max(currentIndex, newIndex);
+      setViewedQuestionIds((prev) => {
+        const next = new Set(prev);
+        questions.slice(0, viewedIndex + 1).forEach((q) => next.add(q.id));
+        return next;
+      });
+    }
+
     // Browse mode: auto-save progress after viewing each question
-    if (session.mode === 'Browse' && user?.id) {
+    if (session.mode === 'TopicStudy' && user?.id) {
       const viewedIndex = Math.max(currentIndex, newIndex);
       const reachedQIds = new Set(questions.slice(0, viewedIndex + 1).map((q) => q.id));
       void Promise.all(session.chapters.map((chapterId) => {
@@ -578,6 +655,16 @@ function TestSessionContent() {
           lastQuestionIndex: viewedIndex,
         });
       }));
+      // Mark the question being left as learned
+      const leavingQuestion = questions[currentIndex];
+      if (leavingQuestion) {
+        void upsertBrowseQuestionState({
+          userId: user.id,
+          questionId: leavingQuestion.id,
+          chapterId: leavingQuestion.chapterId,
+          isLearned: true,
+        });
+      }
     }
 
     setCurrentIndex(newIndex);
@@ -586,7 +673,7 @@ function TestSessionContent() {
     const nextAnswer = nextSession.userAnswers[nextQuestionId] || null;
     setSelectedAnswer(nextAnswer);
     // Review mode: always show answer/explanation; Browse: always; Tutor: only if answered
-    setSubmitted(isReviewMode || nextSession.mode === 'Browse' || (Boolean(nextAnswer) && nextSession.mode === 'Tutor'));
+    setSubmitted(isReviewMode || nextSession.mode === 'TopicStudy' || (Boolean(nextAnswer) && nextSession.mode === 'Tutor'));
   };
 
   const handleToggleMark = async () => {
@@ -599,11 +686,10 @@ function TestSessionContent() {
       return next;
     });
 
-    const ok = await setQuestionMarked({
-      userId: user.id,
-      questionId: currentQuestion.id,
-      isMarked: nextMarked,
-    });
+    // Browse mode writes to browse_question_states; other modes write to user_question_progress
+    const ok = session?.mode === 'TopicStudy'
+      ? await upsertBrowseQuestionState({ userId: user.id, questionId: currentQuestion.id, isMarked: nextMarked })
+      : await setQuestionMarked({ userId: user.id, questionId: currentQuestion.id, isMarked: nextMarked });
 
     if (!ok) {
       setMarkedQuestionIds((current) => {
@@ -618,7 +704,7 @@ function TestSessionContent() {
   const handleToggleEliminate = (e: React.MouseEvent, label: string) => {
     e.preventDefault();
     e.stopPropagation();
-    if (!currentQuestion || isReviewMode || session?.mode === 'Browse' || (submitted && session?.mode === 'Tutor')) return;
+    if (!currentQuestion || isReviewMode || session?.mode === 'TopicStudy' || (submitted && session?.mode === 'Tutor')) return;
     
     setEliminatedOptionsByQuestion((prev) => {
       const currentSet = prev[currentQuestion.id] || new Set();
@@ -726,9 +812,10 @@ function TestSessionContent() {
       <TestHeader
         questionIndex={currentIndex}
         totalQuestions={questions.length}
-        answeredQuestionIndexes={questions
-          .map((question, index) => session.userAnswers[question.id] ? index : -1)
-          .filter((index) => index !== -1)}
+        answeredQuestionIndexes={session.mode === 'TopicStudy'
+          ? questions.map((question, index) => viewedQuestionIds.has(question.id) ? index : -1).filter((index) => index !== -1)
+          : questions.map((question, index) => session.userAnswers[question.id] ? index : -1).filter((index) => index !== -1)
+        }
         markedQuestionIndexes={questions
           .map((question, index) => markedQuestionIds.has(question.id) ? index : -1)
           .filter((index) => index !== -1)}
@@ -748,6 +835,7 @@ function TestSessionContent() {
           saveStudySettings({ ...getStudySettings(), display: next });
         }}
         onFeedback={handleFeedback}
+        isBrowse={session.mode === 'TopicStudy'}
         subject={currentQuestion?.subject}
         topic={currentQuestion?.topic}
         timeLimitSeconds={session.timeLimitSeconds}
@@ -812,7 +900,7 @@ function TestSessionContent() {
                     const nextAnswer = displayOptions[optionIndex];
                     if (nextAnswer) handleSelectAnswer(nextAnswer);
                   }}
-                  disabled={isReviewMode || session.mode === 'Browse' || (submitted && session.mode === 'Tutor')}
+                  disabled={isReviewMode || session.mode === 'TopicStudy' || (submitted && session.mode === 'Tutor')}
                   className="space-y-2"
                 >
                   {displayOptions.map((option, idx) => {
@@ -820,7 +908,7 @@ function TestSessionContent() {
                     const isCorrect = label === normalizedCorrectAnswerKey || option === correctAnswer;
                     const isSelected = selectedChoiceKey === label;
                     const isEliminated = currentEliminatedOptions.has(label);
-                    const isRevealed = Boolean(session.mode === 'Browse' || (submitted && (session.mode === 'Tutor' || isReviewMode)));
+                    const isRevealed = Boolean(session.mode === 'TopicStudy' || (submitted && (session.mode === 'Tutor' || isReviewMode)));
 
                     let percentageText = null;
                     const realChoicePercent = currentAnswerMeta?.choicePercents[label as 'A' | 'B' | 'C' | 'D'];

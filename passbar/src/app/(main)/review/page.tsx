@@ -164,7 +164,7 @@ export default function ReviewHistoryPage() {
       .from('practice_sessions')
       .select('subject_ids, chapter_ids, raw')
       .eq('user_id', user.id)
-      .neq('mode', 'Browse')
+      .neq('mode', 'TopicStudy')
       .then(({ data }) => {
         const rows = (data ?? []) as Pick<PracticeSessionRow, 'subject_ids' | 'chapter_ids' | 'raw'>[];
         const subjectSet = new Set<string>();
@@ -194,7 +194,7 @@ export default function ReviewHistoryPage() {
         .from('practice_sessions')
         .select('id, mode, status, subject_ids, chapter_ids, question_count, started_at, completed_at, total_time_seconds, raw', { count: 'exact' })
         .eq('user_id', user.id)
-        .neq('mode', 'Browse')
+        .neq('mode', 'TopicStudy')
         .order('started_at', { ascending: false })
         .range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1);
 

@@ -85,7 +85,7 @@ const DEMO_SUBJECTS = [
   },
 ];
 
-type DemoTestMode = 'Tutor' | 'Timed' | 'Browse';
+type DemoTestMode = 'Tutor' | 'Timed' | 'TopicStudy';
 
 function InteractiveStepGuide() {
   const { toast } = useToast();
@@ -146,7 +146,7 @@ function InteractiveStepGuide() {
   const testModes: { key: DemoTestMode; label: string; desc: string }[] = [
     { key: 'Tutor',  label: 'Tutor',  desc: t('help.demoTutorDesc') },
     { key: 'Timed',  label: 'Timed',  desc: t('help.demoTimedDesc') },
-    { key: 'Browse', label: 'Browse', desc: t('help.demoBrowseDesc') },
+    { key: 'TopicStudy', label: 'TopicStudy', desc: t('help.demoBrowseDesc') },
   ];
 
   const steps = [

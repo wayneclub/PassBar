@@ -32,6 +32,7 @@ interface TestHeaderProps {
   display: DisplayOptions;
   onDisplayChange: (display: DisplayOptions) => void;
   onFeedback: () => void;
+  isBrowse?: boolean;
   /** Current question subject name */
   subject?: string;
   /** Current question chapter/topic name */
@@ -59,6 +60,7 @@ export function TestHeader({
   display,
   onDisplayChange,
   onFeedback,
+  isBrowse = false,
   subject,
   topic,
   timeLimitSeconds,
@@ -176,7 +178,7 @@ export function TestHeader({
           <div className="mb-3 flex items-center justify-between">
             <div className="text-sm font-semibold text-slate-800">{t('test.questions')}</div>
             <div className="text-xs text-slate-500">
-              {t('test.answeredCount', { answered: answeredIndexes.size, total: totalQuestions })}
+              {t(isBrowse ? 'test.viewedCount' : 'test.answeredCount', { answered: answeredIndexes.size, total: totalQuestions })}
             </div>
           </div>
           <div className="grid max-h-[340px] grid-cols-6 gap-2 overflow-y-auto pr-1">
@@ -209,9 +211,9 @@ export function TestHeader({
           </div>
           <div className="mt-4 flex gap-4 text-xs text-slate-500">
             <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-secondary" /> {t('test.current')}</span>
-            <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-primary" /> {t('test.answered')}</span>
+            <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-primary" /> {t(isBrowse ? 'test.viewed' : 'test.answered')}</span>
             <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-amber-400" /> {t('test.marked')}</span>
-            <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full border border-slate-300" /> {t('test.unanswered')}</span>
+            <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full border border-slate-300" /> {t(isBrowse ? 'test.unviewed' : 'test.unanswered')}</span>
           </div>
         </PopoverContent>
       </Popover>

@@ -55,7 +55,7 @@ export interface ExplanationOcr {
   words: ExplanationOcrWord[];
 }
 
-export type TestMode = 'Tutor' | 'Timed' | 'Browse' | 'SimExam';
+export type TestMode = 'Tutor' | 'Timed' | 'TopicStudy' | 'SimExam';
 export type QuestionSelectionMode = 'Standard' | 'Custom';
 
 export interface TestSession {

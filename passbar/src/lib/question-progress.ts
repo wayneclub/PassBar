@@ -359,7 +359,8 @@ export async function clearUserProgress(
     }
 
     if (scope === 'browse' || scope === 'all') {
-      ops.push(supabase.from('browse_progress').delete().eq('user_id', userId).then((r) => r));
+      ops.push(supabase.from('topic_study_progress').delete().eq('user_id', userId).then((r) => r));
+      ops.push(supabase.from('topic_study_question_states').delete().eq('user_id', userId).then((r) => r));
     }
 
     const results = await Promise.all(ops);

@@ -66,7 +66,7 @@ export function AppSidebar() {
       icon: LayoutGrid,
       tourId: 'qbank',
       items: [
-        { name: t('nav.browse'), href: '/browse', icon: BookOpen },
+        { name: t('nav.browse'), href: '/topic-study', icon: BookOpen },
         { name: t('nav.createTest'), href: '/create', icon: PlusCircle, tourId: 'create-test' },
         { name: t('nav.simExam'), href: '/sim-exam', icon: GraduationCap },
       ],

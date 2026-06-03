@@ -965,12 +965,34 @@ def process_json_file(
     orphan_indices  = sorted(existing_all_indices - castudy_indices)
 
     total = len(questions)
+
+    # ── 欄位缺失統計（從所有已知 enriched 記錄計算）────────────────────────
+    def _missing_counts(records: dict[int, dict]) -> tuple[int, int, int, int]:
+        """回傳 (缺 zh_q, 缺 zh_c, 缺 zh_html, 缺 en_html) 的題目數。"""
+        mq = mc = mh = me = 0
+        for r in records.values():
+            if not str(r.get("zh-question", "")).strip():
+                mq += 1
+            choices = r.get("zh-choices") or {}
+            if not isinstance(choices, dict) or not choices:
+                mc += 1
+            if not r.get("zh-explanation") or _is_error_html(r.get("zh-explanation", "")):
+                mh += 1
+            if not r.get("explanation") or _is_error_html(r.get("explanation", "")):
+                me += 1
+        return mq, mc, mh, me
+
+    missing_q, missing_c, missing_h, missing_e = _missing_counts(existing_records)
+
     print(f"\n📂 {subject} / {chapter}")
     print(f"   castudy 題目數 : {total}")
     print(f"   enriched 狀態  : "
           f"✅ 已完成 {len(existing_good)}  "
           f"❌ 有錯誤 {len(existing_error)}  "
           f"⬜ 完全缺失 {len(missing_indices)}")
+    print(f"   欄位缺失統計   : "
+          f"zh_q:{missing_q}  zh_c:{missing_c}  "
+          f"zh_html:{missing_h}  en_html:{missing_e}")
     if existing_source and os.path.abspath(existing_source) != os.path.abspath(output_path):
         print(f"   ↳ 沿用舊檔    : {os.path.basename(existing_source)}")
         print(f"   ↳ 固定輸出    : {os.path.basename(output_path)}")
@@ -1088,7 +1110,11 @@ def process_json_file(
         print(f"  ⚠️  WARNING: {len(final_missing)} 題在輸出中仍缺失（可能遭遇持續性錯誤）: "
               f"{sorted(final_missing)}")
     else:
-        print(f"  ✅ 驗證通過：輸出題數 {len(enriched_questions)} 題，與 castudy 完全一致")
+        fq, fc, fh, fe = _missing_counts({r["index"]: r for r in enriched_questions})
+        field_ok = all(v == 0 for v in (fq, fc, fh, fe))
+        status = "✅" if field_ok else "⚠️ "
+        print(f"  {status} 驗證完成：{len(enriched_questions)} 題  "
+              f"zh_q:{fq}  zh_c:{fc}  zh_html:{fh}  en_html:{fe}")
 
     write_enriched_output()
 
