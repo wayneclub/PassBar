@@ -122,16 +122,23 @@ async function uploadImage(filePath, storagePath) {
   const body = await readFile(filePath);
   const maxAttempts = 5;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    const { error } = await supabase.storage.from(bucketName).upload(storagePath, body, {
-      contentType,
-      upsert: true,
-    });
-    if (!error) break;
-    const isRetryable = error.status === 502 || error.status === 503 || error.status === 429;
-    if (!isRetryable || attempt === maxAttempts) throw error;
-    const delay = Math.min(1000 * 2 ** (attempt - 1), 16000);
-    console.warn(`  ⚠ Storage ${error.status} on attempt ${attempt}/${maxAttempts}, retrying in ${delay}ms…`);
-    await new Promise((r) => setTimeout(r, delay));
+    try {
+      const { error } = await supabase.storage.from(bucketName).upload(storagePath, body, {
+        contentType,
+        upsert: true,
+      });
+      if (error) throw error;
+      break;
+    } catch (err) {
+      const status = err?.status ?? err?.statusCode;
+      if (attempt === maxAttempts) {
+        console.warn(`  ⚠ Storage upload failed after ${maxAttempts} attempts (${status}): ${storagePath}`);
+        return null;
+      }
+      const delay = Math.min(1000 * 2 ** (attempt - 1), 16000);
+      console.warn(`  ⚠ Storage ${status} on attempt ${attempt}/${maxAttempts}, retrying in ${delay}ms…`);
+      await new Promise((r) => setTimeout(r, delay));
+    }
   }
 
   const { data } = supabase.storage.from(bucketName).getPublicUrl(storagePath);
@@ -282,10 +289,10 @@ async function buildEnglishImageExplanation(filePath, meta, item, question) {
     explanation_text: null,
     explanation_html: item.sourceExplanationHtml || null,
     explanation_image_file: item.sourceExplanationImageFile,
-    storage_bucket: bucketName,
-    storage_path: storagePath,
-    public_url: uploaded.publicUrl,
-    mime_type: uploaded.contentType,
+    storage_bucket: uploaded ? bucketName : null,
+    storage_path: uploaded ? storagePath : null,
+    public_url: uploaded?.publicUrl ?? null,
+    mime_type: uploaded?.contentType ?? null,
     sort_order: 0,
     raw: { sourceExplanationImageFile: item.sourceExplanationImageFile },
   };
@@ -330,10 +337,10 @@ async function buildChineseImageExplanations(filePath, meta, apiItem, question) 
       explanation_text: null,
       explanation_html: null,
       explanation_image_file: imageFile,
-      storage_bucket: bucketName,
-      storage_path: storagePath,
-      public_url: uploaded.publicUrl,
-      mime_type: uploaded.contentType,
+      storage_bucket: uploaded ? bucketName : null,
+      storage_path: uploaded ? storagePath : null,
+      public_url: uploaded?.publicUrl ?? null,
+      mime_type: uploaded?.contentType ?? null,
       sort_order: index + 1,
       raw: {
         remote_url: Array.isArray(apiItem.explain_imgs) ? apiItem.explain_imgs[index] : null,
