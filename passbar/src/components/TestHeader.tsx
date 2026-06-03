@@ -35,6 +35,10 @@ interface TestHeaderProps {
   subject?: string;
   /** Current question chapter/topic name */
   topic?: string;
+  /** Countdown limit in seconds (SimExam mode) */
+  timeLimitSeconds?: number;
+  /** Called when countdown reaches zero */
+  onTimeUp?: () => void;
 }
 
 export function TestHeader({
@@ -51,11 +55,15 @@ export function TestHeader({
   onToggleContentMode,
   subject,
   topic,
+  timeLimitSeconds,
+  onTimeUp,
 }: TestHeaderProps) {
   const { t } = useI18n();
+  const isCountdown = timeLimitSeconds !== undefined;
   const [localTime, setLocalTime] = useState(timeSpent);
   const [questionMenuOpen, setQuestionMenuOpen] = useState(false);
   const nextTimeRef = useRef(timeSpent);
+  const timeUpFiredRef = useRef(false);
   const answeredIndexes = new Set(answeredQuestionIndexes);
   const markedIndexes = new Set(markedQuestionIndexes);
   const currentMarked = markedIndexes.has(questionIndex);
@@ -67,16 +75,20 @@ export function TestHeader({
 
   useEffect(() => {
     if (isPaused) return;
-    
+
     const interval = setInterval(() => {
       nextTimeRef.current += 1;
       const next = nextTimeRef.current;
       setLocalTime(next);
       onTimeUpdate(next);
+      if (isCountdown && timeLimitSeconds !== undefined && next >= timeLimitSeconds && !timeUpFiredRef.current) {
+        timeUpFiredRef.current = true;
+        onTimeUp?.();
+      }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [isPaused, onTimeUpdate]);
+  }, [isPaused, onTimeUpdate, isCountdown, timeLimitSeconds, onTimeUp]);
 
   const formatTime = (seconds: number) => {
     const hrs = Math.floor(seconds / 3600);
@@ -84,6 +96,11 @@ export function TestHeader({
     const secs = seconds % 60;
     return `${hrs > 0 ? `${hrs}:` : ''}${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
+
+  const displaySeconds = isCountdown && timeLimitSeconds !== undefined
+    ? Math.max(0, timeLimitSeconds - localTime)
+    : localTime;
+  const isUrgent = isCountdown && timeLimitSeconds !== undefined && (timeLimitSeconds - localTime) < 600;
 
   return (
     <header className="h-14 bg-secondary text-white flex items-center justify-between px-4 fixed top-0 w-full z-50">
@@ -216,8 +233,12 @@ export function TestHeader({
           </Button>
         </div>
         
-        <div className="text-lg font-mono tracking-wider tabular-nums">
-          {formatTime(localTime)}
+        <div className={cn(
+          "text-lg font-mono tracking-wider tabular-nums",
+          isUrgent && "text-red-400 animate-pulse"
+        )}>
+          {isCountdown && <span className="mr-1 text-xs font-sans opacity-70">{t('test.timeRemaining')}</span>}
+          {formatTime(displaySeconds)}
         </div>
       </div>
     </header>

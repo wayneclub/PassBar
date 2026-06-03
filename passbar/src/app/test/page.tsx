@@ -298,7 +298,7 @@ function TestSessionContent() {
     if (isReviewMode || session?.mode === 'Browse' || (submitted && session?.mode === 'Tutor')) return;
     setSelectedAnswer(answer);
 
-    if (session?.mode === 'Timed' && currentQuestion) {
+    if ((session?.mode === 'Timed' || session?.mode === 'SimExam') && currentQuestion) {
       const nextSession = {
         ...session,
         userAnswers: {
@@ -371,7 +371,7 @@ function TestSessionContent() {
     setEnding(true);
 
     try {
-      if (session.mode === 'Timed' && !isReviewMode) {
+      if ((session.mode === 'Timed' || session.mode === 'SimExam') && !isReviewMode) {
         const answeredCount = Object.keys(nextSession.userAnswers).length;
         if (answeredCount < questions.length) {
           window.alert(t('test.completeTimedBeforeReview', {
@@ -407,7 +407,7 @@ function TestSessionContent() {
       });
       setEndConfirmOpen(false);
       setPendingEndSession(null);
-      router.push(session.mode === 'Timed' ? `/test?id=${session.id}&review=1` : '/review');
+      router.push((session.mode === 'Timed' || session.mode === 'SimExam') ? `/test?id=${session.id}&review=1` : '/review');
     } finally {
       setEnding(false);
     }
@@ -430,12 +430,27 @@ function TestSessionContent() {
     setIsPaused(false);
   };
 
+  const handleTimeUp = useCallback(async () => {
+    if (!session || !user?.id) return;
+    const nextSession = sessionWithCurrentProgress() ?? session;
+    nextSession.status = 'Completed';
+    setSession(nextSession);
+    persistSession(nextSession);
+    await persistSessionAnswers(nextSession);
+    const answeredIds = new Set(Object.keys(nextSession.userAnswers));
+    const reachedIds = nextSession.questionIds.slice(0, currentIndex + 1);
+    const omittedIds = reachedIds.filter((qId) => !answeredIds.has(qId));
+    await saveOmittedQuestionProgress({ userId: user.id, questionIds: omittedIds });
+    await updatePracticeSessionRecord({ session: nextSession, userId: user.id, status: 'completed' });
+    router.push(`/test?id=${session.id}&review=1`);
+  }, [session, user?.id, sessionWithCurrentProgress, persistSession, persistSessionAnswers, currentIndex, router]);
+
   const handleNavigate = (newIndex: number) => {
     if (isPaused) return;
     if (newIndex < 0 || newIndex >= questions.length || !session || !currentQuestion) return;
 
     let nextSession = session;
-    if (session.mode === 'Timed' && selectedAnswer) {
+    if ((session.mode === 'Timed' || session.mode === 'SimExam') && selectedAnswer) {
       nextSession = { ...session };
       nextSession.userAnswers[currentQuestion.id] = selectedAnswer;
       setSession(nextSession);
@@ -521,6 +536,8 @@ function TestSessionContent() {
         onToggleContentMode={() => setContentMode((prev) => prev === 'bilingual' ? 'english' : 'bilingual')}
         subject={currentQuestion?.subject}
         topic={currentQuestion?.topic}
+        timeLimitSeconds={session.timeLimitSeconds}
+        onTimeUp={session.mode === 'SimExam' && !isReviewMode ? handleTimeUp : undefined}
       />
 
       {/* Bottom padding: mobile footer = nav row (56px) + optional submit row (~60px) */}

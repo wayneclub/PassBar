@@ -54,7 +54,7 @@ export interface ExplanationOcr {
   words: ExplanationOcrWord[];
 }
 
-export type TestMode = 'Tutor' | 'Timed' | 'Browse';
+export type TestMode = 'Tutor' | 'Timed' | 'Browse' | 'SimExam';
 export type QuestionSelectionMode = 'Standard' | 'Custom';
 
 export interface TestSession {
@@ -69,6 +69,7 @@ export interface TestSession {
   userAnswerChoices?: Record<string, string>; // questionId -> selected choice key
   status: 'In-Progress' | 'Completed' | 'Suspended';
   timeSpent: number; // in seconds
+  timeLimitSeconds?: number; // countdown limit (SimExam: 10800)
 }
 
 export interface PerformanceStats {

@@ -17,7 +17,7 @@ import { getAllQuestionIdsByChapter, getQuestionIdsByChapterIds, getQuestionsByC
 import { Subject, TestMode, TestSession } from '@/lib/types';
 import { emptyQuestionStatusCounts, getAllUserProgress, getQuestionStatusCounts, QuestionStatusCounts, filterQuestionIdsByStatus } from '@/lib/question-progress';
 import { createPracticeSessionRecord } from '@/lib/practice-sessions';
-import { Info, HelpCircle, Zap, BookOpen, Clock, Eye, Shuffle, ListOrdered } from 'lucide-react';
+import { Info, HelpCircle, Zap, BookOpen, Clock, Eye, Shuffle, ListOrdered, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 function HintIcon({ children }: { children: React.ReactNode }) {
@@ -207,6 +207,77 @@ export default function CreateTestPage() {
     });
   };
 
+  const handleStartSimExam = async () => {
+    setIsStarting(true);
+    const SIM_EXAM_COUNT = 100;
+    const SIM_EXAM_SECONDS = 3 * 60 * 60; // 3 hours
+
+    // Get all chapter IDs across all subjects
+    const allChapterIds = subjects.flatMap(s => s.chapters.map(c => c.id));
+    const allQuestions = await getQuestionsByChapterIds(allChapterIds, 99999);
+
+    // Proportional selection: pick questions from each subject proportionally
+    const bySubject = new Map<string, typeof allQuestions>();
+    for (const q of allQuestions) {
+      if (!bySubject.has(q.subject)) bySubject.set(q.subject, []);
+      bySubject.get(q.subject)!.push(q);
+    }
+
+    const subjectEntries = Array.from(bySubject.entries());
+    const totalPool = allQuestions.length;
+    const selected: typeof allQuestions = [];
+
+    for (const [, qs] of subjectEntries) {
+      const quota = Math.max(1, Math.round((qs.length / totalPool) * SIM_EXAM_COUNT));
+      const shuffled = [...qs].sort(() => 0.5 - Math.random());
+      selected.push(...shuffled.slice(0, quota));
+    }
+
+    // Trim or fill to exactly 100
+    const shuffledAll = selected.sort(() => 0.5 - Math.random()).slice(0, SIM_EXAM_COUNT);
+    const selectedIds = shuffledAll.map(q => q.id);
+
+    if (selectedIds.length === 0) {
+      setIsStarting(false);
+      alert(t('create.noQuestionsAlert'));
+      return;
+    }
+
+    const subjectNames = Array.from(new Set(shuffledAll.map(q => q.subject)));
+    const chapterIds = allChapterIds;
+
+    const dbSessionId = user?.id
+      ? await createPracticeSessionRecord({
+        userId: user.id,
+        mode: 'SimExam',
+        subjectNames,
+        chapterIds,
+        questionIds: selectedIds,
+      })
+      : null;
+
+    const newSession: TestSession = {
+      id: dbSessionId ?? crypto.randomUUID(),
+      createdAt: Date.now(),
+      mode: 'SimExam',
+      subjects: subjectNames,
+      chapters: chapterIds,
+      questionCount: selectedIds.length,
+      questionIds: selectedIds,
+      userAnswers: {},
+      status: 'In-Progress',
+      timeSpent: 0,
+      timeLimitSeconds: SIM_EXAM_SECONDS,
+    };
+
+    const sessions = JSON.parse(localStorage.getItem('passbar_sessions') || localStorage.getItem('uprep_sessions') || '[]');
+    sessions.push(newSession);
+    localStorage.setItem('passbar_sessions', JSON.stringify(sessions));
+
+    setIsStarting(false);
+    router.push(`/test?id=${encodeURIComponent(newSession.id)}`);
+  };
+
   const handleStartTest = async () => {
     const count = parseInt(questionCount);
     if (isNaN(count) || count <= 0) {
@@ -295,6 +366,30 @@ export default function CreateTestPage() {
           <div className="text-sm font-medium text-slate-500">{t('create.unpracticedQuestions')}</div>
           <div className="mt-1.5 text-3xl font-bold text-slate-800">{unpracticedQuestionCount.toLocaleString()}</div>
         </div>
+      </div>
+
+      {/* ── SimExam quick-start card ────────────────────────────────── */}
+      <div className="rounded-lg border border-primary/30 bg-primary/5 px-6 py-5 shadow-sm flex flex-col sm:flex-row sm:items-center gap-4">
+        <div className="flex items-start gap-4 flex-1">
+          <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
+            <GraduationCap className="h-5 w-5 text-primary" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-base font-bold text-slate-800">{t('create.simExam')}</span>
+              <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">{t('create.simExamBadge')}</span>
+            </div>
+            <p className="mt-1 text-sm text-slate-500">{t('create.simExamModeHint')}</p>
+          </div>
+        </div>
+        <Button
+          onClick={handleStartSimExam}
+          disabled={isStarting || subjects.length === 0}
+          className="h-11 shrink-0 min-w-[160px] rounded-xl bg-primary px-6 text-sm font-bold text-primary-foreground shadow-sm hover:bg-primary/95 active:scale-[0.98] transition-all duration-200 disabled:opacity-40 flex items-center justify-center gap-2"
+        >
+          {isStarting && <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />}
+          {isStarting ? t('create.generating') : t('create.simExam')}
+        </Button>
       </div>
 
       <Accordion type="multiple" defaultValue={['test-mode', 'question-order', 'question-mode', 'subjects', 'no-questions']} className="space-y-4">

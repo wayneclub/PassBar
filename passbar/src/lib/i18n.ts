@@ -106,6 +106,9 @@ type TranslationKey =
   | 'create.tutor'
   | 'create.timed'
   | 'create.browse'
+  | 'create.simExam'
+  | 'create.simExamModeHint'
+  | 'create.simExamBadge'
   | 'create.questionOrder'
   | 'create.orderRandom'
   | 'create.orderSequential'
@@ -172,6 +175,9 @@ type TranslationKey =
   | 'test.confirmEnd'
   | 'test.ending'
   | 'test.close'
+  | 'test.timeRemaining'
+  | 'test.timeUp'
+  | 'test.timeUpDescription'
   | 'explanation.title'
   | 'explanation.visualGuide'
   | 'explanation.image'
@@ -656,6 +662,9 @@ const en: Dictionary = {
   'create.tutor': 'Tutor',
   'create.timed': 'Timed',
   'create.browse': 'Browse',
+  'create.simExam': 'Simulated Exam',
+  'create.simExamModeHint': '100 questions, 3-hour countdown. Subjects and chapters are auto-selected proportionally for a realistic exam experience.',
+  'create.simExamBadge': '100 Qs · 3 hrs',
   'create.questionOrder': 'Question Order',
   'create.orderRandom': 'Random',
   'create.orderSequential': 'Sequential',
@@ -722,6 +731,9 @@ const en: Dictionary = {
   'test.confirmEnd': 'End session',
   'test.ending': 'Ending...',
   'test.close': 'Close',
+  'test.timeRemaining': 'Remaining',
+  'test.timeUp': 'Time\'s Up',
+  'test.timeUpDescription': 'The 3-hour exam time has ended. Your answers have been saved.',
   'explanation.title': 'Explanation',
   'explanation.visualGuide': 'Visual Guide',
   'explanation.image': 'Explanation image {index}',
@@ -1260,6 +1272,9 @@ const zhHans: Dictionary = {
   'create.tutor': '教学',
   'create.timed': '计时',
   'create.browse': '速览',
+  'create.simExam': '模拟真实考试',
+  'create.simExamModeHint': '100 题，3 小时倒计时。系统按比例自动分配各科目与章节，模拟真实考试体验。',
+  'create.simExamBadge': '100 题 · 3 小时',
   'create.questionOrder': '题目顺序',
   'create.orderRandom': '随机',
   'create.orderSequential': '顺序',
@@ -1326,6 +1341,9 @@ const zhHans: Dictionary = {
   'test.confirmEnd': '结束练习',
   'test.ending': '正在结束...',
   'test.close': '关闭',
+  'test.timeRemaining': '剩余时间',
+  'test.timeUp': '时间到',
+  'test.timeUpDescription': '3 小时考试时间已结束，你的作答已自动保存。',
   'explanation.title': '解析',
   'explanation.visualGuide': '图片解析',
   'explanation.image': '解析图片 {index}',
@@ -1863,6 +1881,9 @@ const zhHant: Dictionary = {
   'create.tutor': '教學',
   'create.timed': '計時',
   'create.browse': '速覽',
+  'create.simExam': '模擬真實測驗',
+  'create.simExamModeHint': '100 題，3 小時倒數。系統按比例自動分配各科目與章節，模擬真實考試體驗。',
+  'create.simExamBadge': '100 題 · 3 小時',
   'create.questionOrder': '題目順序',
   'create.orderRandom': '隨機',
   'create.orderSequential': '依序',
@@ -1929,6 +1950,9 @@ const zhHant: Dictionary = {
   'test.confirmEnd': '結束練習',
   'test.ending': '正在結束...',
   'test.close': '關閉',
+  'test.timeRemaining': '剩餘時間',
+  'test.timeUp': '時間到',
+  'test.timeUpDescription': '3 小時考試時間已結束，你的作答已自動儲存。',
   'explanation.title': '解析',
   'explanation.visualGuide': '圖片解析',
   'explanation.image': '解析圖片 {index}',

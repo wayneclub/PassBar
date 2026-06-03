@@ -284,6 +284,82 @@ def parse_choices_from_json(choices_raw: dict | list) -> dict[str, str]:
     return result
 
 
+def extract_castudy_zh_fields(q: dict) -> tuple[str, dict[str, str], str, dict | None]:
+    """從 castudy apiResult 提取中文題目、中文選項與 htmlContent。
+
+    回傳 (zh_question, zh_choices, zh_html_content, api_data)。若沒有可用
+    apiResult，前三者會是空值，api_data 會是 None。
+    """
+    api = q.get("apiResult", {})
+    if not (api.get("ok") and api.get("data")):
+        return "", {}, "", None
+
+    api_data = api["data"][0]
+    stem = api_data.get("questionStem", "")
+    bilingual_opts = api_data.get("options", [])
+    zh_html_content = api_data.get("htmlContent", "")
+
+    _en_stem, zh_question = split_bilingual_stem(stem)
+    zh_choices: dict[str, str] = {}
+    for opt in bilingual_opts:
+        m = re.match(r"^([A-D])\.\s*", opt)
+        if not m:
+            continue
+        key = m.group(1)
+        _en_part, zh_part_opt = extract_option_parts(opt)
+        if zh_part_opt:
+            zh_choices[key] = zh_part_opt
+
+    return zh_question or "", zh_choices, zh_html_content or "", api_data
+
+
+def missing_zh_choice_keys(record: dict, en_options: dict[str, str]) -> list[str]:
+    """找出 record 中仍缺少中文翻譯的選項 key。"""
+    zh_choices = record.get("zh-choices") or {}
+    expected_keys = sorted(en_options.keys() or ["A", "B", "C", "D"])
+    return [k for k in expected_keys if not str(zh_choices.get(k, "")).strip()]
+
+
+def needs_zh_gemini(record: dict, en_options: dict[str, str]) -> bool:
+    """判斷中文欄位是否仍需要 Gemini 補齊。"""
+    return (
+        not str(record.get("zh-question", "")).strip()
+        or bool(missing_zh_choice_keys(record, en_options))
+        or _is_error_html(record.get("zh-explanation", ""))
+    )
+
+
+def fill_zh_from_castudy(record: dict, q: dict) -> bool:
+    """用 castudy 原始 JSON 補齊 enriched 的中文欄位；有修改回傳 True。"""
+    zh_question, zh_choices, zh_html_content, _api_data = extract_castudy_zh_fields(q)
+    changed = False
+
+    if zh_question and not str(record.get("zh-question", "")).strip():
+        record["zh-question"] = zh_question
+        changed = True
+
+    current_choices = record.get("zh-choices")
+    if not isinstance(current_choices, dict):
+        current_choices = {}
+        record["zh-choices"] = current_choices
+        changed = True
+
+    for key, value in zh_choices.items():
+        if value and not str(current_choices.get(key, "")).strip():
+            current_choices[key] = value
+            changed = True
+
+    if (
+        zh_html_content
+        and zh_html_content.strip().startswith("<")
+        and _is_error_html(record.get("zh-explanation", ""))
+    ):
+        record["zh-explanation"] = zh_html_content
+        changed = True
+
+    return changed
+
+
 def format_choices_for_prompt(choices: dict[str, str]) -> str:
     lines = []
     for key in sorted(choices.keys()):
@@ -440,6 +516,7 @@ def process_question(
     chapter: str,
     count: int,
     dry_run: bool = False,
+    existing_record: dict | None = None,
 ) -> dict:
     """將一道題目轉為結構化格式，必要時呼叫 Gemini。"""
 
@@ -456,8 +533,10 @@ def process_question(
     en_explanation = q.get("sourceExplanationHtml", "")
 
     # 檢查是否已有 API 雙語資料
-    api = q.get("apiResult", {})
-    has_api = bool(api.get("ok") and api.get("data"))
+    castudy_zh_question, castudy_zh_choices, castudy_zh_html, api_data = (
+        extract_castudy_zh_fields(q)
+    )
+    has_api = api_data is not None
 
     # 收集所有解析圖片路徑（source_img + API explain_img_files）
     def collect_img_paths(api_data: dict | None = None) -> list[str]:
@@ -472,10 +551,14 @@ def process_question(
                 paths.append(p)
         return paths
 
-    zh_question = ""
-    zh_choices: dict[str, str] = {}
-    zh_explanation = ""
-    en_explanation_html = ""
+    existing_record = existing_record or {}
+    zh_question = str(existing_record.get("zh-question", "")).strip()
+    existing_zh_choices = existing_record.get("zh-choices") or {}
+    zh_choices: dict[str, str] = (
+        dict(existing_zh_choices) if isinstance(existing_zh_choices, dict) else {}
+    )
+    zh_explanation = existing_record.get("zh-explanation", "")
+    en_explanation_html = existing_record.get("explanation", "")
     source_tag = "unknown"
 
     # source_img：只存 sourceExplanationImageFile（相對路徑）
@@ -501,32 +584,24 @@ def process_question(
 
     if has_api:
         # ── 已有雙語資料：從 questionStem / options / htmlContent 提取 ──
-        api_data = api["data"][0]
-        stem = api_data.get("questionStem", "")
-        bilingual_opts = api_data.get("options", [])
-        zh_html_content = api_data.get("htmlContent", "")
-
-        # 從 questionStem 分離中英文題目
-        _en_stem, zh_part = split_bilingual_stem(stem)
-        zh_question = zh_part or ""
-
-        # 從 options 中提取中文選項（保持 ABCD 順序）
-        for opt in bilingual_opts:
-            m = re.match(r"^([A-D])\.\s*", opt)
-            if not m:
-                continue
-            key = m.group(1)
-            _en_part, zh_part_opt = extract_option_parts(opt)
-            zh_choices[key] = zh_part_opt
+        if castudy_zh_question and not zh_question:
+            zh_question = castudy_zh_question
+        for key, value in castudy_zh_choices.items():
+            if value and not str(zh_choices.get(key, "")).strip():
+                zh_choices[key] = value
 
         if not dry_run:
-            # 英文解析 HTML：用 source_imgs 生成
-            en_explanation_html = generate_explanation_html(
-                collect_img_paths(api_data))
+            # 英文解析 HTML：新記錄才用 source_imgs 生成；修補舊 enriched 時避免
+            # 因為舊 explanation error 觸發不必要的 Gemini 呼叫。
+            if not existing_record and _is_error_html(en_explanation_html):
+                en_explanation_html = generate_explanation_html(
+                    collect_img_paths(api_data))
 
             # 若 htmlContent 存在則直接使用；否則呼叫 Gemini 生成
-            if zh_html_content and zh_html_content.strip().startswith("<"):
-                zh_explanation = zh_html_content
+            if not _is_error_html(zh_explanation):
+                source_tag = "cached"
+            elif castudy_zh_html and castudy_zh_html.strip().startswith("<"):
+                zh_explanation = castudy_zh_html
                 source_tag = "api"
             else:
                 source_tag = "api_no_html"
@@ -553,9 +628,10 @@ def process_question(
                     source_tag = "error"
                     zh_explanation = f"<!-- ERROR: {exc} -->"
 
-            # 若中文題目和選項均缺失，才呼叫 Gemini 翻譯
-            # （有任一從 castudy.json 成功提取即跳過，大幅節省 API 用量）
-            if not zh_question and not zh_choices:
+            # 缺哪個中文欄位才呼叫 Gemini 補哪個；castudy 已有的直接沿用。
+            missing_choice_keys = missing_zh_choice_keys(
+                {"zh-choices": zh_choices}, en_options)
+            if not zh_question or missing_choice_keys:
                 print(
                     f"  Gemini(translate) → Q{index:04d}: missing zh_question/choices", end=" ", flush=True)
                 try:
@@ -564,7 +640,7 @@ def process_question(
                     if not zh_question:
                         zh_question = tq
                     for k, v in tc.items():
-                        if k not in zh_choices:
+                        if k in missing_choice_keys and not zh_choices.get(k):
                             zh_choices[k] = v
                     print("✓")
                     time.sleep(RATE_LIMIT_DELAY)
@@ -585,43 +661,55 @@ def process_question(
             img_paths = collect_img_paths()
 
             # 1) 英文解析 HTML
-            en_explanation_html = generate_explanation_html(img_paths)
+            if not existing_record and _is_error_html(en_explanation_html):
+                en_explanation_html = generate_explanation_html(img_paths)
 
             # 2) 翻譯題目與選項
-            print(
-                f"  Gemini(translate) → Q{index:04d}: {en_question[:55]}…", end=" ", flush=True)
-            try:
-                zh_question, zh_choices = call_gemini_translate(
-                    subject, chapter, en_question, en_options)
-                print("✓")
-                time.sleep(RATE_LIMIT_DELAY)
-            except RateLimitedError:
-                raise  # 向上傳遞，整題跳過
-            except Exception as exc:
-                print(f"✗ TRANSLATE ERROR: {exc}")
+            missing_choice_keys = missing_zh_choice_keys(
+                {"zh-choices": zh_choices}, en_options)
+            if not zh_question or missing_choice_keys:
+                print(
+                    f"  Gemini(translate) → Q{index:04d}: {en_question[:55]}…", end=" ", flush=True)
+                try:
+                    tq, tc = call_gemini_translate(
+                        subject, chapter, en_question, en_options)
+                    if not zh_question:
+                        zh_question = tq
+                    for k, v in tc.items():
+                        if k in missing_choice_keys and not zh_choices.get(k):
+                            zh_choices[k] = v
+                    print("✓")
+                    time.sleep(RATE_LIMIT_DELAY)
+                except RateLimitedError:
+                    raise  # 向上傳遞，整題跳過
+                except Exception as exc:
+                    print(f"✗ TRANSLATE ERROR: {exc}")
 
             # 3) 中文解析 HTML
-            prompt = GEMINI_PROMPT_TEMPLATE.format(
-                subject=subject,
-                chapter=chapter,
-                question=en_question,
-                choices=format_choices_for_prompt(en_options),
-                correct_answer=correct_answer,
-            )
-            print(
-                f"  Gemini(zh-html) → Q{index:04d}: {en_question[:60]}…", end=" ", flush=True)
-            try:
-                raw_response = call_gemini_rest(prompt, img_paths)
-                zh_explanation = extract_html_from_response(raw_response)
-                print("✓")
-                source_tag = "gemini"
-                time.sleep(RATE_LIMIT_DELAY)
-            except RateLimitedError:
-                raise  # 向上傳遞，整題跳過
-            except Exception as exc:
-                print(f"✗ ERROR: {exc}")
-                source_tag = "error"
-                zh_explanation = f"<!-- ERROR: {exc} -->"
+            if not _is_error_html(zh_explanation):
+                source_tag = "cached"
+            else:
+                prompt = GEMINI_PROMPT_TEMPLATE.format(
+                    subject=subject,
+                    chapter=chapter,
+                    question=en_question,
+                    choices=format_choices_for_prompt(en_options),
+                    correct_answer=correct_answer,
+                )
+                print(
+                    f"  Gemini(zh-html) → Q{index:04d}: {en_question[:60]}…", end=" ", flush=True)
+                try:
+                    raw_response = call_gemini_rest(prompt, img_paths)
+                    zh_explanation = extract_html_from_response(raw_response)
+                    print("✓")
+                    source_tag = "gemini"
+                    time.sleep(RATE_LIMIT_DELAY)
+                except RateLimitedError:
+                    raise  # 向上傳遞，整題跳過
+                except Exception as exc:
+                    print(f"✗ ERROR: {exc}")
+                    source_tag = "error"
+                    zh_explanation = f"<!-- ERROR: {exc} -->"
 
     return {
         "index": index,
@@ -670,6 +758,7 @@ def process_json_file(
 
     # ── 載入 enriched JSON（只讀一次）並與 castudy 比對 ─────────────────
     existing_good: dict[int, dict] = {}   # 可直接 cache 的記錄（無 error）
+    existing_records: dict[int, dict] = {}
     existing_error: set[int] = set()      # enriched 裡有但是 ERROR 的
     existing_all_indices: set[int] = set()
 
@@ -683,6 +772,7 @@ def process_json_file(
                 idx = eq.get("index")
                 if idx is None:
                     continue
+                existing_records[idx] = eq
                 existing_all_indices.add(idx)
                 if _has_error(eq):
                     existing_error.add(idx)
@@ -720,20 +810,53 @@ def process_json_file(
 
     enriched_questions: list[dict] = []
     zh_html_dir = os.path.join(chapter_dir, "zh_html")
+    output_dirty = False
+
+    def write_enriched_output() -> None:
+        _internal = {"_source"}
+        output_questions = [
+            {k: v for k, v in eq.items() if k not in _internal}
+            for eq in enriched_questions
+        ]
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(output_questions, f, ensure_ascii=False, indent=2)
+
+    def write_zh_html(idx: int, record: dict) -> None:
+        if not record.get("zh-explanation"):
+            return
+        os.makedirs(zh_html_dir, exist_ok=True)
+        html_file = os.path.join(zh_html_dir, f"q{idx:04d}.html")
+        with open(html_file, "w", encoding="utf-8") as f:
+            f.write(record["zh-explanation"])
 
     for q in questions:
         idx = q["index"]
 
-        # 若已有完整資料（且無 ERROR），直接複用（跳過 API 呼叫）
-        if idx in existing:
-            cached = existing[idx]
-            enriched_questions.append(cached)
-            print(f"  ✓ Q{idx:04d} (cached)")
-            continue
+        # 若已有資料，先嘗試直接用 castudy 原始 JSON 補齊中文欄位。
+        if idx in existing_records:
+            cached = existing_records[idx]
+            en_options = parse_choices_from_json(q.get("choices", {}))
+            if fill_zh_from_castudy(cached, q):
+                output_dirty = True
+                if not dry_run:
+                    write_zh_html(idx, cached)
+                print(f"  ✓ Q{idx:04d} (cached + castudy zh)")
+            if not needs_zh_gemini(cached, en_options):
+                enriched_questions.append(cached)
+                if idx in existing and not output_dirty:
+                    print(f"  ✓ Q{idx:04d} (cached)")
+                continue
 
         try:
             result = process_question(
-                q, chapter_dir, subject, chapter, count=count, dry_run=dry_run)
+                q,
+                chapter_dir,
+                subject,
+                chapter,
+                count=count,
+                dry_run=dry_run,
+                existing_record=existing_records.get(idx),
+            )
         except RateLimitedError:
             print(f"  ⏭ Q{idx:04d} SKIPPED (all keys rate limited, will retry next run)")
             result = {
@@ -755,20 +878,11 @@ def process_json_file(
 
         if not dry_run:
             # 額外存一份 HTML 檔（方便直接在瀏覽器預覽）
-            if result.get("zh-explanation"):
-                os.makedirs(zh_html_dir, exist_ok=True)
-                html_file = os.path.join(zh_html_dir, f"q{idx:04d}.html")
-                with open(html_file, "w", encoding="utf-8") as f:
-                    f.write(result["zh-explanation"])
+            write_zh_html(idx, result)
 
             # 每題完成後立即寫檔，防止中途中斷遺失進度
-            _internal = {"_source"}
-            output_questions = [
-                {k: v for k, v in eq.items() if k not in _internal}
-                for eq in enriched_questions
-            ]
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(output_questions, f, ensure_ascii=False, indent=2)
+            write_enriched_output()
+            output_dirty = False
 
     if dry_run:
         print(f"  [DRY-RUN] Would write → {output_path}")
@@ -782,6 +896,9 @@ def process_json_file(
               f"{sorted(final_missing)}")
     else:
         print(f"  ✅ 驗證通過：輸出題數 {len(enriched_questions)} 題，與 castudy 完全一致")
+
+    if output_dirty:
+        write_enriched_output()
 
     print(f"  ✅ Saved → {output_path}")
     return output_path
