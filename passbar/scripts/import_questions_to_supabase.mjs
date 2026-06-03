@@ -120,11 +120,19 @@ async function uploadImage(filePath, storagePath) {
   if (dryRun) return { publicUrl: `dry-run://${storagePath}`, contentType };
 
   const body = await readFile(filePath);
-  const { error } = await supabase.storage.from(bucketName).upload(storagePath, body, {
-    contentType,
-    upsert: true,
-  });
-  if (error) throw error;
+  const maxAttempts = 5;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    const { error } = await supabase.storage.from(bucketName).upload(storagePath, body, {
+      contentType,
+      upsert: true,
+    });
+    if (!error) break;
+    const isRetryable = error.status === 502 || error.status === 503 || error.status === 429;
+    if (!isRetryable || attempt === maxAttempts) throw error;
+    const delay = Math.min(1000 * 2 ** (attempt - 1), 16000);
+    console.warn(`  ⚠ Storage ${error.status} on attempt ${attempt}/${maxAttempts}, retrying in ${delay}ms…`);
+    await new Promise((r) => setTimeout(r, delay));
+  }
 
   const { data } = supabase.storage.from(bucketName).getPublicUrl(storagePath);
   return { publicUrl: data.publicUrl, contentType };
