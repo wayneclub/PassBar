@@ -10,13 +10,11 @@ import {
   Clock,
   Flame,
   PlusCircle,
-  Sparkles,
   Target,
   TrendingUp,
   Trophy,
 } from 'lucide-react';
 import { useAuth } from '@/components/AuthProvider';
-import { getGeminiStatus } from '@/lib/gemini-feedback';
 import { useI18n } from '@/lib/i18n';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -61,6 +59,10 @@ type DashboardData = {
   timeTodaySeconds: number;
   subjectPerformance: SubjectPerformance[];
   dailyCounts: Record<string, number>; // "YYYY-MM-DD" → count
+  recentAccuracy: number | null;       // last-7-day accuracy (null = no recent data)
+  incorrectCount: number;              // total incorrect answers
+  weeklyStudyTimeSeconds: number;      // study time in last 7 days
+  bestStreak: number;                  // longest-ever streak
 };
 
 const emptyDashboardData: DashboardData = {
@@ -75,6 +77,10 @@ const emptyDashboardData: DashboardData = {
   timeTodaySeconds: 0,
   dailyCounts: {},
   subjectPerformance: [],
+  recentAccuracy: null,
+  incorrectCount: 0,
+  weeklyStudyTimeSeconds: 0,
+  bestStreak: 0,
 };
 
 const chartColors = [
@@ -120,6 +126,30 @@ function calculateStreak(answeredDates: string[]) {
   return streak;
 }
 
+function calculateBestStreak(answeredDates: string[]) {
+  const sortedDays = Array.from(new Set(
+    answeredDates
+      .filter(Boolean)
+      .map((v) => startOfLocalDay(new Date(v)).toISOString().slice(0, 10)),
+  )).sort();
+
+  let best = 0;
+  let current = 0;
+  let prevDay: string | null = null;
+  for (const day of sortedDays) {
+    if (prevDay) {
+      const prev = new Date(prevDay);
+      prev.setDate(prev.getDate() + 1);
+      current = prev.toISOString().slice(0, 10) === day ? current + 1 : 1;
+    } else {
+      current = 1;
+    }
+    best = Math.max(best, current);
+    prevDay = day;
+  }
+  return best;
+}
+
 function displayNameFromProfile(profileName: string | null | undefined, email: string | null | undefined) {
   if (profileName) return profileName.split(/\s+/)[0] || profileName;
   if (email) return email.split('@')[0];
@@ -145,12 +175,17 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
       timeTodaySeconds: 0,
       subjectPerformance: [],
       dailyCounts: {},
+      recentAccuracy: null,
+      incorrectCount: 0,
+      weeklyStudyTimeSeconds: 0,
+      bestStreak: 0,
     };
   }
 
   const todayStartIso = startOfLocalDay(new Date()).toISOString();
+  const weekAgoIso = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
 
-  const [subjectCountsResult, answersResult, attemptsResult, todaySessionsResult] = await Promise.all([
+  const [subjectCountsResult, answersResult, attemptsResult, todaySessionsResult, weeklySessionsResult] = await Promise.all([
     supabase
       .from('question_chapter_counts')
       .select('subject, count'),
@@ -168,6 +203,12 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
       .select('started_at, completed_at, total_time_seconds, status')
       .eq('user_id', userId)
       .gte('started_at', todayStartIso),
+    // Last-7-day sessions for weekly study time
+    supabase
+      .from('practice_sessions')
+      .select('started_at, completed_at, total_time_seconds, status')
+      .eq('user_id', userId)
+      .gte('started_at', weekAgoIso),
   ]);
 
   if (subjectCountsResult.error) throw subjectCountsResult.error;
@@ -252,6 +293,26 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
   // Use whichever source reports more time (they shouldn't both be > 0 for same session)
   const timeTodaySeconds = Math.max(timeTodayFromSessions, timeTodayFromAnswers);
 
+  // ── Weekly study time ────────────────────────────────────────────────────
+  const weeklySessions = ((weeklySessionsResult.data ?? []) as SessionRow[]);
+  const weeklyStudyTimeSeconds = weeklySessions.reduce((sum, s) => {
+    if (s.total_time_seconds != null && s.total_time_seconds > 0) return sum + s.total_time_seconds;
+    const start = new Date(s.started_at).getTime();
+    const end = s.completed_at ? new Date(s.completed_at).getTime() : now;
+    return sum + Math.max(0, (end - start) / 1000);
+  }, 0);
+
+  // ── Recent accuracy (last 7 days) ────────────────────────────────────────
+  const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+  const recentAnswers = answers.filter((a) => a.last_answered_at && new Date(a.last_answered_at).getTime() >= sevenDaysAgo);
+  const recentAccuracy = recentAnswers.length > 0
+    ? Math.round((recentAnswers.filter((a) => a.is_correct).length / recentAnswers.length) * 100)
+    : null;
+
+  // ── Incorrect count & best streak ────────────────────────────────────────
+  const incorrectCount = answers.filter((a) => !a.is_correct).length;
+  const bestStreak = calculateBestStreak(answeredDates);
+
   return {
     error: null,
     totalQuestions,
@@ -263,6 +324,10 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
     timeTodaySeconds,
     subjectPerformance,
     dailyCounts,
+    recentAccuracy,
+    incorrectCount,
+    weeklyStudyTimeSeconds,
+    bestStreak,
   };
 }
 
@@ -1066,7 +1131,6 @@ export default function DashboardPage() {
   const { user, profile, refreshProfile } = useAuth();
   const { t } = useI18n();
   const [dashboardData, setDashboardData] = useState<DashboardData>(emptyDashboardData);
-  const [geminiStatus, setGeminiStatus] = useState<'enabled' | 'disabled' | 'unknown'>('unknown');
   const [examDate, setExamDate] = useState<string | null>(null);
   const [examState, setExamState] = useState<string | null>(null);
   const [showExamDialog, setShowExamDialog] = useState(false);
@@ -1110,20 +1174,6 @@ export default function DashboardPage() {
     };
   }, [user?.id]);
 
-  useEffect(() => {
-    let active = true;
-    getGeminiStatus()
-      .then((status) => {
-        if (active) setGeminiStatus(status);
-      })
-      .catch(() => {
-        if (active) setGeminiStatus('unknown');
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
 
   const handleSaveExamDate = async (date: string, state: string) => {
     setExamDate(date);   // optimistic update
@@ -1158,6 +1208,148 @@ export default function DashboardPage() {
       .sort((a, b) => a.score - b.score)[0],
     [dashboardData.subjectPerformance],
   );
+
+  const [insightIndex, setInsightIndex] = useState(0);
+
+  // Each slide is a compact metric card; 2 are grouped per carousel page
+  type InsightCard = { id: string; icon: React.ReactNode; label: string; value: React.ReactNode; sub: React.ReactNode; color: string; href?: string };
+
+  const insightCards = useMemo<InsightCard[]>(() => {
+    const cards: InsightCard[] = [];
+
+    // Card 1: strongest subject
+    if (strongestSubject) {
+      cards.push({
+        id: 'strong',
+        icon: <TrendingUp className="w-4 h-4" />,
+        label: t('dashboard.strongInsightLabel'),
+        value: <span className="text-lg font-bold text-green-900 leading-tight">{strongestSubject.name}</span>,
+        sub: <span>{t('dashboard.strongInsightDescription', { score: strongestSubject.score, total: strongestSubject.total })}</span>,
+        color: 'bg-green-50 border-green-100 text-green-600',
+      });
+    }
+
+    // Card 2: weakest subject → link to create
+    if (weakestSubject && weakestSubject.name !== strongestSubject?.name) {
+      cards.push({
+        id: 'weak',
+        icon: <Target className="w-4 h-4" />,
+        label: t('dashboard.focusLabel'),
+        value: <span className="text-lg font-bold text-red-900 leading-tight">{weakestSubject.name}</span>,
+        sub: <span>{weakestSubject.score}% · {t('dashboard.focusCTA')} →</span>,
+        color: 'bg-red-50 border-red-100 text-red-500',
+        href: '/create',
+      });
+    }
+
+    // Card 3: today's progress
+    cards.push({
+      id: 'today',
+      icon: <Clock className="w-4 h-4" />,
+      label: t('dashboard.todayProgress'),
+      value: (
+        <span className="text-2xl font-bold text-secondary leading-none">{dashboardData.solvedToday}
+          <span className="text-sm font-normal text-muted-foreground ml-1">{t('dashboard.questionsUnit')}</span>
+        </span>
+      ),
+      sub: <span>⏱ {formatDuration(dashboardData.timeTodaySeconds)}</span>,
+      color: 'bg-primary/5 border-primary/20 text-primary',
+    });
+
+    // Card 4: overall mastery
+    cards.push({
+      id: 'mastery',
+      icon: <Trophy className="w-4 h-4" />,
+      label: t('dashboard.masteryLabel'),
+      value: <span className="text-2xl font-bold text-primary leading-none">{Math.round(dashboardData.mastery)}%</span>,
+      sub: <span>{dashboardData.solvedQuestions.toLocaleString()} / {dashboardData.totalQuestions.toLocaleString()} {t('dashboard.masteryOverall')}</span>,
+      color: 'bg-slate-50 border-slate-200 text-slate-500',
+    });
+
+    // Card 5: recent accuracy trend (last 7 days)
+    if (dashboardData.recentAccuracy !== null) {
+      const overallAccuracy = Math.round(dashboardData.mastery);
+      const diff = dashboardData.recentAccuracy - overallAccuracy;
+      const up = diff >= 0;
+      cards.push({
+        id: 'recent-accuracy',
+        icon: <TrendingUp className={cn('w-4 h-4', !up && 'rotate-180')} />,
+        label: t('dashboard.recentAccuracyLabel'),
+        value: (
+          <span className={cn('text-2xl font-bold leading-none', up ? 'text-green-900' : 'text-orange-800')}>
+            {dashboardData.recentAccuracy}%
+            <span className={cn('text-xs font-semibold ml-1.5', up ? 'text-green-600' : 'text-orange-500')}>
+              {diff >= 0 ? '+' : ''}{diff}%
+            </span>
+          </span>
+        ),
+        sub: <span>{t('dashboard.recentAccuracyDescription', { overall: overallAccuracy })}</span>,
+        color: up ? 'bg-green-50 border-green-100 text-green-600' : 'bg-orange-50 border-orange-100 text-orange-500',
+      });
+    }
+
+    // Card 6: incorrect count (review reminder)
+    if (dashboardData.incorrectCount > 0) {
+      cards.push({
+        id: 'incorrect',
+        icon: <BookOpen className="w-4 h-4" />,
+        label: t('dashboard.incorrectLabel'),
+        value: <span className="text-2xl font-bold text-rose-900 leading-none">{dashboardData.incorrectCount.toLocaleString()}</span>,
+        sub: <span>{t('dashboard.incorrectCTA')} →</span>,
+        color: 'bg-rose-50 border-rose-100 text-rose-500',
+        href: '/review',
+      });
+    }
+
+    // Card 7: weekly study time
+    cards.push({
+      id: 'weekly-time',
+      icon: <Clock className="w-4 h-4" />,
+      label: t('dashboard.weeklyTimeLabel'),
+      value: <span className="text-2xl font-bold text-indigo-900 leading-none">{formatDuration(Math.round(dashboardData.weeklyStudyTimeSeconds))}</span>,
+      sub: <span>{t('dashboard.weeklyTimeDescription')}</span>,
+      color: 'bg-indigo-50 border-indigo-100 text-indigo-500',
+    });
+
+    // Card 8: best streak ever
+    cards.push({
+      id: 'best-streak',
+      icon: <Flame className="w-4 h-4" />,
+      label: t('dashboard.bestStreakLabel'),
+      value: (
+        <span className="text-2xl font-bold text-amber-900 leading-none">{dashboardData.bestStreak}
+          <span className="text-sm font-normal text-amber-700 ml-1">{t('dashboard.bestStreakUnit')}</span>
+        </span>
+      ),
+      sub: <span>
+        {dashboardData.streakDays >= dashboardData.bestStreak && dashboardData.bestStreak > 0
+          ? t('dashboard.bestStreakCurrent')
+          : t('dashboard.bestStreakDescription', { current: dashboardData.streakDays })}
+      </span>,
+      color: 'bg-amber-50 border-amber-100 text-amber-600',
+    });
+
+    return cards;
+  }, [strongestSubject, weakestSubject, dashboardData, t]);
+
+  // Group cards into pages of 2
+  const insightPages = useMemo(() => {
+    const pages: InsightCard[][] = [];
+    for (let i = 0; i < insightCards.length; i += 2) {
+      pages.push(insightCards.slice(i, i + 2));
+    }
+    return pages;
+  }, [insightCards]);
+
+  // insightIndex is now the PAGE index
+  const totalInsightPages = insightPages.length;
+
+  // Auto-advance carousel every 10 seconds
+  useEffect(() => {
+    if (totalInsightPages <= 1) return;
+    const timer = setInterval(() => setInsightIndex((i) => (i + 1) % totalInsightPages), 10000);
+    return () => clearInterval(timer);
+  }, [totalInsightPages]);
 
   const userFirstName = displayNameFromProfile(profile?.full_name, profile?.email ?? user?.email);
   const remainingQuestions = Math.max(dashboardData.totalQuestions - dashboardData.solvedQuestions, 0);
@@ -1391,98 +1583,64 @@ export default function DashboardPage() {
           <div className="space-y-6">
             <Card className="shadow-md transition-all duration-700 hover:shadow-lg" style={{ transitionDelay: '360ms' }}>
               <CardHeader className="pb-3">
-                <CardTitle className="text-base font-semibold">{t('dashboard.recentInsights')}</CardTitle>
-                <p className="text-sm text-muted-foreground mt-0.5">{t('dashboard.noAnswersDescription')}</p>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {strongestSubject ? (
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-green-50 border border-green-100">
-                    <TrendingUp className="w-5 h-5 text-green-600 mt-0.5" />
-                    <div>
-                      <p className="text-sm font-semibold text-green-900">
-                        {t('dashboard.strongInsightTitle', { subject: strongestSubject.name })}
-                      </p>
-                      <p className="text-xs text-green-700">
-                        {t('dashboard.strongInsightDescription', {
-                          score: strongestSubject.score,
-                          total: strongestSubject.total,
-                        })}
-                      </p>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-base font-semibold">{t('dashboard.recentInsights')}</CardTitle>
+                  {totalInsightPages > 1 && (
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: totalInsightPages }).map((_, i) => (
+                        <button
+                          key={i}
+                          type="button"
+                          onClick={() => setInsightIndex(i)}
+                          className={cn(
+                            'rounded-full transition-all duration-300',
+                            i === insightIndex ? 'w-4 h-1.5 bg-primary' : 'w-1.5 h-1.5 bg-slate-300 hover:bg-slate-400',
+                          )}
+                        />
+                      ))}
                     </div>
-                  </div>
-                ) : (
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20">
-                    <BookOpen className="w-5 h-5 text-primary mt-0.5" />
+                  )}
+                </div>
+              </CardHeader>
+              <CardContent>
+                {insightPages.length === 0 ? (
+                  <div className="flex items-start gap-3 p-3 rounded-xl bg-primary/5 border border-primary/20">
+                    <BookOpen className="w-4 h-4 text-primary mt-0.5 shrink-0" />
                     <div>
                       <p className="text-sm font-semibold text-secondary">{t('dashboard.noAnswers')}</p>
                       <p className="text-xs text-muted-foreground">{t('dashboard.noAnswersDescription')}</p>
                     </div>
                   </div>
-                )}
-
-                {weakestSubject && weakestSubject.name !== strongestSubject?.name ? (
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-red-50 border border-red-100">
-                    <Target className="w-5 h-5 text-red-600 mt-0.5" />
-                    <div>
-                      <p className="text-sm font-semibold text-red-900">
-                        {t('dashboard.reviewInsightTitle', { subject: weakestSubject.name })}
-                      </p>
-                      <p className="text-xs text-red-700">
-                        {t('dashboard.reviewInsightDescription', {
-                          score: weakestSubject.score,
-                        })}
-                      </p>
+                ) : (
+                  <div className="relative overflow-hidden">
+                    <div
+                      className="flex transition-transform duration-500 ease-in-out"
+                      style={{ transform: `translateX(-${insightIndex * 100}%)` }}
+                    >
+                      {insightPages.map((page, pi) => (
+                        <div key={pi} className="w-full shrink-0 space-y-2">
+                          {page.map((card) => {
+                            const inner = (
+                              <div className={cn('flex items-start gap-3 p-3 rounded-xl border', card.color, card.href && 'hover:opacity-80 transition-opacity')}>
+                                <div className={cn('mt-0.5 shrink-0', card.color.split(' ')[2])}>{card.icon}</div>
+                                <div className="flex-1 min-w-0">
+                                  <p className={cn('text-[10px] font-bold uppercase tracking-wider mb-1', card.color.split(' ')[2])}>{card.label}</p>
+                                  <div>{card.value}</div>
+                                  <p className="text-[11px] text-slate-500 mt-1 leading-snug truncate">{card.sub}</p>
+                                </div>
+                              </div>
+                            );
+                            return card.href ? (
+                              <Link key={card.id} href={card.href}>{inner}</Link>
+                            ) : (
+                              <div key={card.id}>{inner}</div>
+                            );
+                          })}
+                        </div>
+                      ))}
                     </div>
                   </div>
-                ) : null}
-
-                <div
-                  className={cn(
-                    'flex items-start gap-3 rounded-lg border p-3',
-                    geminiStatus === 'enabled' && 'border-primary/20 bg-primary/5',
-                    geminiStatus === 'disabled' && 'border-amber-100 bg-amber-50',
-                    geminiStatus === 'unknown' && 'border-slate-200 bg-slate-50',
-                  )}
-                >
-                  <Sparkles
-                    className={cn(
-                      'mt-0.5 h-5 w-5',
-                      geminiStatus === 'enabled' && 'text-primary',
-                      geminiStatus === 'disabled' && 'text-amber-600',
-                      geminiStatus === 'unknown' && 'text-slate-500',
-                    )}
-                  />
-                  <div>
-                    <p
-                      className={cn(
-                        'text-sm font-semibold',
-                        geminiStatus === 'enabled' && 'text-secondary',
-                        geminiStatus === 'disabled' && 'text-amber-900',
-                        geminiStatus === 'unknown' && 'text-slate-800',
-                      )}
-                    >
-                      {geminiStatus === 'enabled'
-                        ? t('dashboard.aiFeedbackEnabled')
-                        : geminiStatus === 'disabled'
-                          ? t('dashboard.aiFeedbackDisabled')
-                          : t('dashboard.aiFeedbackUnknown')}
-                    </p>
-                    <p
-                      className={cn(
-                        'text-xs',
-                        geminiStatus === 'enabled' && 'text-muted-foreground',
-                        geminiStatus === 'disabled' && 'text-amber-700',
-                        geminiStatus === 'unknown' && 'text-slate-600',
-                      )}
-                    >
-                      {geminiStatus === 'enabled'
-                        ? t('dashboard.aiFeedbackEnabledDescription')
-                        : geminiStatus === 'disabled'
-                          ? t('dashboard.aiFeedbackDisabledDescription')
-                          : t('dashboard.aiFeedbackUnknownDescription')}
-                    </p>
-                  </div>
-                </div>
+                )}
               </CardContent>
             </Card>
 

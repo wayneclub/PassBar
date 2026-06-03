@@ -15,6 +15,8 @@ import {
   DropdownMenuTrigger, DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 import { getAdminDb } from '@/lib/admin-client';
+import { useI18n } from '@/lib/i18n';
+import type { InterfaceLanguage } from '@/lib/study-settings';
 
 type ProfileStatus = 'pending' | 'approved' | 'rejected';
 type FilterType = 'all' | ProfileStatus;
@@ -30,34 +32,35 @@ export type AdminUser = {
 };
 type UserRow = AdminUser;
 
-const STATUS_META: Record<ProfileStatus, { label: string; dot: string; badge: string }> = {
-  pending:  { label: '待審核', dot: 'bg-amber-400', badge: 'bg-amber-50 text-amber-700 border-amber-200' },
-  approved: { label: '已核准', dot: 'bg-green-500', badge: 'bg-green-50 text-green-700 border-green-200' },
-  rejected: { label: '已拒絕', dot: 'bg-red-400',  badge: 'bg-red-50 text-red-700 border-red-200' },
+const STATUS_META: Record<ProfileStatus, { labelKey: string; dot: string; badge: string }> = {
+  pending:  { labelKey: 'admin.statusPending', dot: 'bg-amber-400', badge: 'bg-amber-50 text-amber-700 border-amber-200' },
+  approved: { labelKey: 'admin.statusApproved', dot: 'bg-green-500', badge: 'bg-green-50 text-green-700 border-green-200' },
+  rejected: { labelKey: 'admin.statusRejected', dot: 'bg-red-400',  badge: 'bg-red-50 text-red-700 border-red-200' },
 };
 
-function StatusBadge({ status }: { status: ProfileStatus }) {
+function StatusBadge({ status, t }: { status: ProfileStatus; t: ReturnType<typeof useI18n>['t'] }) {
   const m = STATUS_META[status];
   return (
     <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold ${m.badge}`}>
       <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${m.dot} ${status === 'pending' ? 'animate-pulse' : ''}`} />
-      {m.label}
+      {t(m.labelKey)}
     </span>
   );
 }
 
-function formatDate(v: string | null) {
+function formatDate(v: string | null, language: InterfaceLanguage, t: ReturnType<typeof useI18n>['t']) {
   if (!v) return '—';
   const d = new Date(v);
   const now = Date.now();
   const diff = now - d.getTime();
-  if (diff < 60_000) return '剛才';
-  if (diff < 3_600_000) return `${Math.floor(diff / 60_000)} 分鐘前`;
-  if (diff < 86_400_000) return `${Math.floor(diff / 3_600_000)} 小時前`;
-  return d.toLocaleDateString('zh-TW', { month: 'short', day: 'numeric', year: 'numeric' });
+  if (diff < 60_000) return t('admin.justNow');
+  if (diff < 3_600_000) return t('admin.minutesAgo', { count: Math.floor(diff / 60_000) });
+  if (diff < 86_400_000) return t('admin.hoursAgo', { count: Math.floor(diff / 3_600_000) });
+  return d.toLocaleDateString(language === 'en' ? 'en-US' : language, { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
 function AdminUsersContent() {
+  const { t, language } = useI18n();
   const searchParams = useSearchParams();
   const initialFilter = (searchParams.get('filter') as FilterType) ?? 'all';
   const [users, setUsers] = useState<UserRow[]>([]);
@@ -113,20 +116,20 @@ function AdminUsersContent() {
     });
 
   const FILTERS: { key: FilterType; label: string }[] = [
-    { key: 'all',      label: `全部 (${counts.all})` },
-    { key: 'pending',  label: `待審核 (${counts.pending})` },
-    { key: 'approved', label: `已核准 (${counts.approved})` },
-    { key: 'rejected', label: `已拒絕 (${counts.rejected})` },
+    { key: 'all',      label: t('admin.filterAll', { count: counts.all }) },
+    { key: 'pending',  label: t('admin.filterPending', { count: counts.pending }) },
+    { key: 'approved', label: t('admin.filterApproved', { count: counts.approved }) },
+    { key: 'rejected', label: t('admin.filterRejected', { count: counts.rejected }) },
   ];
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-primary">使用者管理</h1>
+        <h1 className="text-3xl font-bold text-primary">{t('admin.usersTitle')}</h1>
         <Button variant="outline" size="sm" onClick={loadUsers} className="gap-2">
           <RefreshCw className="h-3.5 w-3.5" />
-          重新整理
+          {t('admin.refresh')}
         </Button>
       </div>
 
@@ -138,15 +141,15 @@ function AdminUsersContent() {
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold text-foreground">
-              {counts.pending} 位用戶等待審核
+              {t('admin.pendingUsersTitle', { count: counts.pending })}
             </p>
-            <p className="text-xs text-muted-foreground mt-0.5">核准後才能使用系統</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{t('admin.pendingUsersDescription')}</p>
           </div>
           <button
             onClick={() => setFilter('pending')}
             className="shrink-0 rounded-lg bg-primary px-3.5 py-1.5 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90"
           >
-            查看申請
+            {t('admin.viewApplications')}
           </button>
         </div>
       )}
@@ -171,7 +174,7 @@ function AdminUsersContent() {
         <div className="relative w-full sm:w-64">
           <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
           <Input
-            placeholder="搜尋姓名或 Email..."
+            placeholder={t('admin.searchUsersPlaceholder')}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="pl-9 text-sm"
@@ -193,17 +196,17 @@ function AdminUsersContent() {
           </div>
         ) : filtered.length === 0 ? (
           <div className="py-20 text-center text-sm text-muted-foreground">
-            {search ? `找不到「${search}」相關用戶` : '沒有符合條件的用戶'}
+            {search ? t('admin.noMatchingUsers', { search }) : t('admin.noFilteredUsers')}
           </div>
         ) : (
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b bg-muted/40 text-xs uppercase tracking-wider text-muted-foreground">
-                <th className="px-5 py-3 text-left font-medium">使用者</th>
-                <th className="px-5 py-3 text-left font-medium">狀態</th>
-                <th className="hidden px-5 py-3 text-left font-medium md:table-cell">最後活躍</th>
-                <th className="hidden px-5 py-3 text-left font-medium lg:table-cell">加入時間</th>
-                <th className="px-5 py-3 text-right font-medium">操作</th>
+                <th className="px-5 py-3 text-left font-medium">{t('admin.user')}</th>
+                <th className="px-5 py-3 text-left font-medium">{t('admin.status')}</th>
+                <th className="hidden px-5 py-3 text-left font-medium md:table-cell">{t('admin.lastActive')}</th>
+                <th className="hidden px-5 py-3 text-left font-medium lg:table-cell">{t('admin.joinedAt')}</th>
+                <th className="px-5 py-3 text-right font-medium">{t('admin.actions')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
@@ -226,7 +229,7 @@ function AdminUsersContent() {
                         </Avatar>
                         <div>
                           <div className="flex items-center gap-1.5 font-medium text-foreground">
-                            {user.full_name ?? <span className="text-muted-foreground italic">未填寫</span>}
+                            {user.full_name ?? <span className="text-muted-foreground italic">{t('admin.notProvided')}</span>}
                             {user.role === 'admin' && (
                               <Badge variant="outline" className="border-amber-300 bg-amber-50 text-amber-700 text-[10px] py-0">
                                 Admin
@@ -244,15 +247,15 @@ function AdminUsersContent() {
                     </td>
 
                     <td className="px-5 py-4">
-                      <StatusBadge status={user.status} />
+                      <StatusBadge status={user.status} t={t} />
                     </td>
 
                     <td className="hidden px-5 py-4 text-muted-foreground md:table-cell">
-                      {formatDate(user.last_seen_at)}
+                      {formatDate(user.last_seen_at, language, t)}
                     </td>
 
                     <td className="hidden px-5 py-4 text-muted-foreground lg:table-cell">
-                      {formatDate(user.created_at)}
+                      {formatDate(user.created_at, language, t)}
                     </td>
 
                     <td className="px-5 py-4">
@@ -266,7 +269,7 @@ function AdminUsersContent() {
                               className="inline-flex items-center gap-1.5 rounded-lg border border-green-200 bg-green-50 px-3 py-1.5 text-xs font-semibold text-green-700 transition-colors hover:bg-green-100 disabled:opacity-50"
                             >
                               <UserCheck className="h-3.5 w-3.5" />
-                              核准
+                              {t('admin.approve')}
                             </button>
                             <button
                               disabled={updating === user.id}
@@ -274,7 +277,7 @@ function AdminUsersContent() {
                               className="inline-flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-600 transition-colors hover:bg-red-100 disabled:opacity-50"
                             >
                               <UserX className="h-3.5 w-3.5" />
-                              拒絕
+                              {t('admin.reject')}
                             </button>
                           </>
                         )}
@@ -295,7 +298,7 @@ function AdminUsersContent() {
                                 className="gap-2.5 text-green-700 focus:text-green-700"
                               >
                                 <Check className="h-3.5 w-3.5" />
-                                核准帳號
+                                {t('admin.approveAccount')}
                               </DropdownMenuItem>
                             )}
                             {user.status !== 'rejected' && (
@@ -304,7 +307,7 @@ function AdminUsersContent() {
                                 className="gap-2.5 text-destructive focus:text-destructive"
                               >
                                 <X className="h-3.5 w-3.5" />
-                                拒絕帳號
+                                {t('admin.rejectAccount')}
                               </DropdownMenuItem>
                             )}
                             {user.status !== 'pending' && (
@@ -315,7 +318,7 @@ function AdminUsersContent() {
                                   className="gap-2.5 text-muted-foreground"
                                 >
                                   <RotateCcw className="h-3.5 w-3.5" />
-                                  重設為待審核
+                                  {t('admin.resetPending')}
                                 </DropdownMenuItem>
                               </>
                             )}
@@ -333,7 +336,7 @@ function AdminUsersContent() {
 
       {filtered.length > 0 && (
         <p className="text-right text-xs text-muted-foreground">
-          顯示 {filtered.length} / {users.length} 位用戶
+          {t('admin.showingUsers', { shown: filtered.length, total: users.length })}
         </p>
       )}
     </div>

@@ -166,15 +166,15 @@ export function AppSidebar() {
                 <CollapsibleTrigger asChild>
                   <SidebarMenuButton className="h-auto text-amber-400 hover:text-amber-300 hover:bg-white/5 py-4 px-4">
                     <Shield className="w-4 h-4" />
-                    <span className="flex-1 font-semibold text-xs uppercase tracking-wider">管理後台</span>
+                    <span className="flex-1 font-semibold text-xs uppercase tracking-wider">{t('admin.sidebarTitle')}</span>
                     <ChevronDown className="w-3 h-3 text-amber-600" />
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <div className="space-y-0.5 pb-1">
                     {[
-                      { href: '/admin', label: '數據總覽', icon: LayoutDashboard, exact: true },
-                      { href: '/admin/users', label: '使用者管理', icon: Users, exact: false },
+                      { href: '/admin', label: t('admin.dashboardTitle'), icon: LayoutDashboard, exact: true },
+                      { href: '/admin/users', label: t('admin.usersTitle'), icon: Users, exact: false },
                     ].map((item) => {
                       const active = item.exact ? pathname === item.href : pathname.startsWith(item.href);
                       return (

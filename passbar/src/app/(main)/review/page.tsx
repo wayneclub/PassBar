@@ -68,6 +68,12 @@ function formatDuration(seconds: number) {
   return `${secs}s`;
 }
 
+function dateRangeLabel(range: 'all' | '7d' | '30d', t: ReturnType<typeof useI18n>['t']) {
+  if (range === 'all') return t('review.rangeAll');
+  if (range === '7d') return t('review.range7d');
+  return t('review.range30d');
+}
+
 function getSessionDuration(session: PracticeSessionRow) {
   if (session.total_time_seconds && session.total_time_seconds > 0) return session.total_time_seconds;
   if (!session.started_at || !session.completed_at) return 0;
@@ -309,7 +315,7 @@ export default function ReviewHistoryPage() {
                     : 'bg-white text-slate-600 border-slate-200 hover:border-primary/50 hover:bg-primary/5',
                 )}
               >
-                {r === 'all' ? '全部' : r === '7d' ? '近 7 天' : '近 30 天'}
+                {dateRangeLabel(r, t)}
               </button>
             ))}
           </div>
@@ -515,7 +521,7 @@ export default function ReviewHistoryPage() {
       {totalPages > 1 && (
         <div className="flex items-center justify-between pt-2">
           <p className="text-sm text-muted-foreground">
-            第 {page + 1} / {totalPages} 頁，共 {totalCount} 筆
+            {t('review.paginationSummary', { page: page + 1, totalPages, totalCount })}
           </p>
           <div className="flex items-center gap-1">
             <Button
@@ -534,7 +540,7 @@ export default function ReviewHistoryPage() {
               onClick={() => setPage((p) => p - 1)}
               className="h-8 px-3 text-xs"
             >
-              上一頁
+              {t('review.previousPage')}
             </Button>
             {/* Page number pills */}
             {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
@@ -566,7 +572,7 @@ export default function ReviewHistoryPage() {
               onClick={() => setPage((p) => p + 1)}
               className="h-8 px-3 text-xs"
             >
-              下一頁
+              {t('review.nextPage')}
             </Button>
             <Button
               variant="outline"

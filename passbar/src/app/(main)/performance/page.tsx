@@ -227,7 +227,7 @@ type PrescriptionTask = {
   actionType: 'execute' | 'review';
 };
 
-function buildPrescriptionTasks(data: PageData): PrescriptionTask[] {
+function buildPrescriptionTasks(data: PageData, t: ReturnType<typeof useI18n>['t']): PrescriptionTask[] {
   const tasks: PrescriptionTask[] = [];
 
   // Task 1: weakest chapter
@@ -237,7 +237,7 @@ function buildPrescriptionTasks(data: PageData): PrescriptionTask[] {
       urgency: 'urgent',
       subject: weakest.subject,
       topic: weakest.concept,
-      description: `正確率 ${pct(weakest.correct, weakest.attempts)}%，需集中突破此知識點。`,
+      description: t('performance.taskWeakConceptDescription', { pct: pct(weakest.correct, weakest.attempts) }),
       estimatedMinutes: 20,
       questionCount: 10,
       href: '/create',
@@ -250,9 +250,9 @@ function buildPrescriptionTasks(data: PageData): PrescriptionTask[] {
   if (changedCount > 0) {
     tasks.push({
       urgency: 'mindset',
-      subject: '心態訓練',
-      topic: '二選一糾結題複習',
-      description: `你曾將 ${changedCount} 題由對改錯，需建立「相信第一直覺」的考場心態。`,
+      subject: t('performance.mindsetTraining'),
+      topic: t('performance.changedAnswerReview'),
+      description: t('performance.taskChangedAnswerDescription', { count: changedCount }),
       estimatedMinutes: 15,
       questionCount: changedCount,
       href: '/create',
@@ -277,8 +277,8 @@ function buildPrescriptionTasks(data: PageData): PrescriptionTask[] {
     tasks.push({
       urgency: 'routine',
       subject: lowSampleSubject[0],
-      topic: '常規鞏固練習',
-      description: `${lowSampleSubject[0]} 僅做了 ${lowSampleSubject[1].attempts} 題，樣本不足，需補充練習。`,
+      topic: t('performance.routinePractice'),
+      description: t('performance.taskLowSampleDescription', { subject: lowSampleSubject[0], count: lowSampleSubject[1].attempts }),
       estimatedMinutes: 25,
       questionCount: 15,
       href: '/create',
@@ -331,9 +331,9 @@ function PrescriptionTab({
     }
   }, [data, language]);
 
-  const tasks = useMemo(() => buildPrescriptionTasks(data), [data]);
+  const tasks = useMemo(() => buildPrescriptionTasks(data, t), [data, t]);
   const overallAccuracy = pct(data.correctAttempts, data.totalAttempts);
-  const energyLevel = overallAccuracy >= 70 ? '精力充沛' : overallAccuracy >= 50 ? '穩定備考' : '需要補充';
+  const energyLevel = overallAccuracy >= 70 ? t('performance.energyHigh') : overallAccuracy >= 50 ? t('performance.energyStable') : t('performance.energyNeedsWork');
   const energyPct = overallAccuracy;
 
   const urgencyConfig = {
@@ -354,7 +354,7 @@ function PrescriptionTab({
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                 <Brain className="h-6 w-6 text-primary" />
               </div>
-              <p className="text-xs font-semibold text-primary text-center">AI 智慧分析</p>
+              <p className="text-xs font-semibold text-primary text-center">{t('performance.aiSmartAnalysis')}</p>
               {updatedAt && (
                 <p className="text-xs text-muted-foreground text-center">
                   {t('performance.aiUpdatedAt', { time: updatedAt })}
@@ -389,7 +389,7 @@ function PrescriptionTab({
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 flex-wrap">
                     <p className="text-sm font-semibold text-slate-700">
-                      診斷摘要：<span className="text-primary">{diagnosis.encouragement}</span>
+                      {t('performance.diagnosisSummary')}<span className="text-primary">{diagnosis.encouragement}</span>
                     </p>
                     <Badge className="bg-green-100 text-green-700 border-green-200">
                       {energyLevel} {energyPct}%
@@ -449,7 +449,7 @@ function PrescriptionTab({
                     <div className="flex items-start gap-3">
                       <div className="flex flex-col items-start gap-1 shrink-0">
                         <Badge className={cn('text-xs border', cfg.className)}>{cfg.label}</Badge>
-                        <span className="text-xs text-muted-foreground">預估 {task.estimatedMinutes} 分鐘</span>
+                        <span className="text-xs text-muted-foreground">{t('performance.estimatedMinutes', { minutes: task.estimatedMinutes })}</span>
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="font-semibold text-slate-900">
@@ -661,11 +661,16 @@ function ConceptMapTab({
               <h3 className="text-xl font-bold text-slate-900">{selectedPhase.concept}</h3>
               <p className="text-sm text-slate-600">
                 {selectedPhase.attempts === 0
-                  ? '尚未練習此考點，建議盡快創建專項練習。'
-                  : `你在此考點的正確率為 ${pct(selectedPhase.correct, selectedPhase.attempts)}%，共練習 ${selectedPhase.attempts} 題。${pct(selectedPhase.correct, selectedPhase.attempts) < 50 ? '需優先加強。' : '繼續保持！'}`}
+                  ? t('performance.conceptNotPracticed')
+                  : t(
+                      pct(selectedPhase.correct, selectedPhase.attempts) < 50
+                        ? 'performance.conceptAccuracyNeedsWork'
+                        : 'performance.conceptAccuracyKeepGoing',
+                      { pct: pct(selectedPhase.correct, selectedPhase.attempts), count: selectedPhase.attempts },
+                    )}
               </p>
               <div className="rounded-lg bg-slate-50 border p-4">
-                <p className="text-xs font-semibold text-slate-500 uppercase mb-2">核心法理公式 (Black Letter Law)</p>
+                <p className="text-xs font-semibold text-slate-500 uppercase mb-2">{t('performance.blackLetterLaw')}</p>
                 <p className="text-sm text-slate-700 italic">
                   {selectedPhase.topic} — {selectedPhase.concept}
                 </p>
@@ -709,7 +714,7 @@ function ErrorTrapTab({
   }, [changedCount, data.totalAttempts]);
 
   const overthinkingBadge =
-    overthinkingScore >= 3 ? '嚴重糾結' : overthinkingScore >= 1.5 ? '中度糾結' : '輕度糾結';
+    overthinkingScore >= 3 ? t('performance.overthinkingSevere') : overthinkingScore >= 1.5 ? t('performance.overthinkingModerate') : t('performance.overthinkingMild');
   const overthinkingBadgeClass =
     overthinkingScore >= 3
       ? 'bg-red-100 text-red-700'
@@ -764,22 +769,22 @@ function ErrorTrapTab({
           <CardContent className="space-y-5">
             {[
               {
-                label: 'BLL 法律教義記憶模糊 (Legal Rule Vagueness)',
+                label: t('performance.errorBllVagueLabel'),
                 pct: bllVague,
                 color: 'bg-red-500',
-                desc: '對法律規則、例外或要件記憶不清，導致選錯。',
+                desc: t('performance.errorBllVagueDescription'),
               },
               {
-                label: '掉入誘餌干擾項 (Distractor Attraction)',
+                label: t('performance.errorDistractorLabel'),
                 pct: distractorPct,
                 color: 'bg-amber-500',
-                desc: '被精心設計的錯誤選項迷惑，典型陷阱題型。',
+                desc: t('performance.errorDistractorDescription'),
               },
               {
-                label: '心理因素/二選一猶豫改答案 (Right-to-Wrong Overthinking)',
+                label: t('performance.errorOverthinkingLabel'),
                 pct: changedPct,
                 color: 'bg-blue-500',
-                desc: `共有 ${changedCount} 次由正確改為錯誤，過度思考損耗分數。`,
+                desc: t('performance.errorOverthinkingDescription', { count: changedCount }),
               },
             ].map((cat, i) => (
               <div key={i}>
@@ -813,8 +818,7 @@ function ErrorTrapTab({
               </div>
             </div>
             <p className="text-sm text-slate-600">
-              你共有 <strong className="text-blue-700">{changedCount} 題</strong> 將答案由正確改為錯誤。
-              這種「過度思考」是 Bar Exam 常見失分陷阱。
+              {t('performance.overthinkingSummaryPrefix')} <strong className="text-blue-700">{t('performance.questionCount', { count: changedCount })}</strong> {t('performance.overthinkingSummarySuffix')}
             </p>
             <div className="rounded-lg bg-blue-50 border border-blue-100 p-3">
               <p className="text-xs text-blue-700 italic">
@@ -836,7 +840,7 @@ function ErrorTrapTab({
             </CardTitle>
             {wrongMeta && (
               <span className="text-xs text-muted-foreground">
-                來源：{wrongMeta.subject} · {wrongMeta.topic}
+                {t('performance.sourceLabel')}: {wrongMeta.subject} · {wrongMeta.topic}
               </span>
             )}
           </div>
@@ -847,35 +851,35 @@ function ErrorTrapTab({
           ) : (
             <>
               <div className="rounded-lg border bg-amber-50 border-amber-100 p-4">
-                <p className="text-xs font-bold text-amber-700 mb-2">【經典誘餌案例場景】</p>
+                <p className="text-xs font-bold text-amber-700 mb-2">{t('performance.trapScenarioTitle')}</p>
                 <p className="text-sm text-slate-700">
-                  在 <strong>{wrongMeta.subject}</strong> 的 <strong>{wrongMeta.topic}</strong> 考點中，
+                  {t('performance.inConceptPrefix')} <strong>{wrongMeta.subject}</strong> · <strong>{wrongMeta.topic}</strong>:
                   {wrongMeta.trap_type
-                    ? `你遇到了「${wrongMeta.trap_type}」類型的陷阱題。`
-                    : '你選擇了錯誤答案，未能識別此考點的核心考察方向。'}
+                    ? t('performance.trapTypeEncountered', { trap: wrongMeta.trap_type })
+                    : t('performance.trapUnknownDescription')}
                 </p>
               </div>
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="rounded-lg border border-red-200 bg-red-50 p-4">
-                  <p className="text-xs font-bold text-red-600 mb-2">✗ 你的錯誤選擇（完美誘餌）</p>
+                  <p className="text-xs font-bold text-red-600 mb-2">{t('performance.wrongChoiceTrap')}</p>
                   <p className="text-sm text-red-800 font-medium mb-2">
-                    {wrongMeta.trap_type ?? '誘餌選項'}
+                    {wrongMeta.trap_type ?? t('performance.distractorOption')}
                   </p>
                   <p className="text-xs text-red-600 flex items-start gap-1">
-                    <span className="font-bold">💡 陷阱所在：</span>
+                    <span className="font-bold">{t('performance.trapLocation')}</span>
                     {wrongMeta.trap_type
-                      ? `此題屬於「${wrongMeta.trap_type}」陷阱，需重點記憶相關法律要件。`
-                      : '需加強對此考點的基礎法律記憶。'}
+                      ? t('performance.trapNeedsRuleMemory', { trap: wrongMeta.trap_type })
+                      : t('performance.trapNeedsBasicMemory')}
                   </p>
                 </div>
                 <div className="rounded-lg border border-green-200 bg-green-50 p-4">
-                  <p className="text-xs font-bold text-green-600 mb-2">✦ 正確答案應為</p>
+                  <p className="text-xs font-bold text-green-600 mb-2">{t('performance.correctAnswerShouldBe')}</p>
                   <p className="text-sm text-green-800 font-medium mb-2">
                     {wrongMeta.micro_concept ?? wrongMeta.topic}
                   </p>
                   <p className="text-xs text-green-600 flex items-start gap-1">
-                    <span className="font-bold">💡 關鍵概念：</span>
-                    {wrongMeta.skill_tested ?? `掌握 ${wrongMeta.topic} 的核心法理原則`}
+                    <span className="font-bold">{t('performance.keyConcept')}</span>
+                    {wrongMeta.skill_tested ?? t('performance.masterCorePrinciple', { topic: wrongMeta.topic })}
                   </p>
                 </div>
               </div>
@@ -959,10 +963,10 @@ function ProgressTab({
   const fatigueData = useMemo(() => {
     const overallAcc = pct(data.correctAttempts, data.totalAttempts);
     return [
-      { group: 'Q1-30', 專注度: Math.min(100, overallAcc + 8), 預期失誤率: Math.max(0, 100 - overallAcc - 8) },
-      { group: 'Q31-60', 專注度: Math.min(100, overallAcc + 2), 預期失誤率: Math.max(0, 100 - overallAcc - 2) },
-      { group: 'Q61-80', 專注度: Math.max(0, overallAcc - 6), 預期失誤率: Math.min(100, 100 - overallAcc + 6) },
-      { group: 'Q81-100', 專注度: Math.max(0, overallAcc - 12), 預期失誤率: Math.min(100, 100 - overallAcc + 12) },
+      { group: 'Q1-30', focus: Math.min(100, overallAcc + 8), expectedErrors: Math.max(0, 100 - overallAcc - 8) },
+      { group: 'Q31-60', focus: Math.min(100, overallAcc + 2), expectedErrors: Math.max(0, 100 - overallAcc - 2) },
+      { group: 'Q61-80', focus: Math.max(0, overallAcc - 6), expectedErrors: Math.min(100, 100 - overallAcc + 6) },
+      { group: 'Q81-100', focus: Math.max(0, overallAcc - 12), expectedErrors: Math.min(100, 100 - overallAcc + 12) },
     ];
   }, [data]);
 
@@ -977,7 +981,7 @@ function ProgressTab({
           {t('performance.scaledScoreSimulator')}
         </h2>
         <p className="text-xs text-muted-foreground mb-4">
-          拉動下方滑桿，預估若將弱科正確率提升後，總分會如何接近及格標準！
+          {t('performance.scaledScoreDescription')}
         </p>
 
         <div className="grid md:grid-cols-2 gap-4">
@@ -985,7 +989,7 @@ function ProgressTab({
           <Card className="hover:shadow-md transition">
             <CardContent className="p-5 space-y-5">
               {sliders.length === 0 ? (
-                <p className="text-sm text-muted-foreground">所有科目正確率均達標！</p>
+                <p className="text-sm text-muted-foreground">{t('performance.allSubjectsAtTarget')}</p>
               ) : (
                 sliders.map((sl, i) => (
                   <div key={sl.subject}>
@@ -1009,7 +1013,7 @@ function ProgressTab({
                       className="w-full accent-primary"
                     />
                     <div className="flex justify-between text-xs text-muted-foreground mt-0.5">
-                      <span>目前：{sl.currentAccuracy}%</span>
+                      <span>{t('performance.currentAccuracy', { pct: sl.currentAccuracy })}</span>
                       <span>100%</span>
                     </div>
                   </div>
@@ -1030,7 +1034,7 @@ function ProgressTab({
                 <p className="text-xs text-center text-muted-foreground mt-2">
                   {distToNY > 0
                     ? t('performance.distanceToNY', { score: NY_PASSING, diff: distToNY })
-                    : '🎉 已達 NY 通過標準！'}
+                    : t('performance.nyPassingReached')}
                 </p>
               </div>
               <ReadinessGauge score={Math.min(100, Math.round((simulatedScore / NY_PASSING) * 100))} />
@@ -1054,15 +1058,15 @@ function ProgressTab({
                   <YAxis unit="%" domain={[0, 100]} tick={{ fontSize: 12 }} />
                   <Tooltip formatter={(v) => [`${v ?? ''}%`, '']} />
                   <Legend />
-                  <Bar dataKey="專注度" fill="#22c55e" radius={[2, 2, 0, 0]} />
-                  <Bar dataKey="預期失誤率" fill="#ef4444" radius={[2, 2, 0, 0]} />
+                  <Bar dataKey="focus" name={t('performance.focusLevel')} fill="#22c55e" radius={[2, 2, 0, 0]} />
+                  <Bar dataKey="expectedErrors" name={t('performance.expectedErrorRate')} fill="#ef4444" radius={[2, 2, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
             <div className="mt-3 p-3 rounded-lg bg-amber-50 border border-amber-100 text-sm text-amber-800">
-              {fatigueData[3]['專注度'] < fatigueData[0]['專注度'] - 10
-                ? '⚠️ 你在後段題目（Q61-100）的專注度明顯下降，需加強體力與耐力訓練。'
-                : '✅ 你的專注度在整個 100 題模擬中保持相對穩定，繼續保持！'}
+              {fatigueData[3].focus < fatigueData[0].focus - 10
+                ? t('performance.fatigueWarning')
+                : t('performance.fatigueStable')}
             </div>
           </CardContent>
         </Card>
@@ -1083,7 +1087,7 @@ function ProgressTab({
                 <LineChart data={trendData}>
                   <XAxis dataKey="session" tick={{ fontSize: 12 }} />
                   <YAxis domain={[0, 100]} unit="%" tick={{ fontSize: 12 }} />
-                  <Tooltip formatter={(v) => [`${v ?? ''}%`, '正確率']} />
+                  <Tooltip formatter={(v) => [`${v ?? ''}%`, t('performance.overallAccuracyLabel')]} />
                   <Line
                     type="monotone"
                     dataKey="accuracy"
@@ -1268,7 +1272,7 @@ export default function PerformancePage() {
         <div className="flex shrink-0 rounded-lg border bg-white shadow-sm overflow-hidden">
           <div className="px-4 py-3 border-r">
             <p className="text-xs text-muted-foreground">{t('performance.totalAnswered')}</p>
-            <p className="text-lg font-bold text-slate-900">{pageData.totalAttempts} 題</p>
+            <p className="text-lg font-bold text-slate-900">{t('performance.questionCount', { count: pageData.totalAttempts })}</p>
           </div>
           <div className="px-4 py-3">
             <p className="text-xs text-muted-foreground">{t('performance.overallAccuracyLabel')}</p>

@@ -12,6 +12,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { useAuth } from '@/components/AuthProvider';
 import { GuidedTour, GuidedTourStep } from '@/components/GuidedTour';
 import { useI18n } from '@/lib/i18n';
+import { getMbeChineseLabel } from '@/lib/mbe-labels';
 import { getAllQuestionIdsByChapter, getQuestionIdsByChapterIds, getQuestionsByChapterIds, getSubjects } from '@/lib/question-bank';
 import { Subject, TestMode, TestSession } from '@/lib/types';
 import { emptyQuestionStatusCounts, getAllUserProgress, getQuestionStatusCounts, QuestionStatusCounts, filterQuestionIdsByStatus } from '@/lib/question-progress';
@@ -46,7 +47,7 @@ function HintIcon({ children }: { children: React.ReactNode }) {
 export default function CreateTestPage() {
   const router = useRouter();
   const { user } = useAuth();
-  const { t } = useI18n();
+  const { t, language } = useI18n();
   const [testMode, setTestMode] = useState<TestMode>('Tutor');
   const [statusFilters, setStatusFilters] = useState({
     Unused: true,
@@ -471,6 +472,7 @@ export default function CreateTestPage() {
               {subjects.map((subject) => {
                 const isSelected = subject.chapters.every(c => selectedChapters.has(c.id));
                 const isPartiallySelected = subject.chapters.some(c => selectedChapters.has(c.id)) && !isSelected;
+                const subjectChineseLabel = getMbeChineseLabel(subject.name, language);
 
                 return (
                   <div key={subject.id} className="space-y-3">
@@ -481,8 +483,11 @@ export default function CreateTestPage() {
                         onCheckedChange={() => toggleSubject(subject.id)}
                         className={cn("h-5 w-5", isPartiallySelected && "opacity-50")}
                       />
-                      <Label htmlFor={subject.id} className="flex cursor-pointer items-center gap-2 text-base font-bold text-slate-700">
-                        {subject.name}
+                      <Label htmlFor={subject.id} className="flex min-w-0 cursor-pointer flex-wrap items-baseline gap-x-2 gap-y-0.5 text-base font-bold text-slate-700">
+                        <span>{subject.name}</span>
+                        {subjectChineseLabel && (
+                          <span className="text-sm font-medium text-slate-400">{subjectChineseLabel}</span>
+                        )}
                         <Badge variant="secondary" className="h-5 rounded-full border-none bg-primary/10 px-2 text-xs font-bold text-primary hover:bg-primary/15">
                           {subject.chapters.reduce((s, c) => s + getChapterFilteredCount(c.id), 0)}
                         </Badge>
@@ -490,22 +495,29 @@ export default function CreateTestPage() {
                     </div>
                     
                     <div className="ml-6 space-y-2">
-                      {subject.chapters.map((chapter) => (
-                        <div key={chapter.id} className="flex items-center gap-2">
-                          <Checkbox 
-                            id={chapter.id} 
-                            checked={selectedChapters.has(chapter.id)}
-                            onCheckedChange={() => toggleChapter(chapter.id)}
-                            className="h-5 w-5"
-                          />
-                          <Label htmlFor={chapter.id} className="flex cursor-pointer items-center gap-2 text-sm font-medium text-slate-500">
-                            {chapter.name}
-                            <Badge variant="outline" className="h-5 rounded-full border-primary/20 bg-primary/5 px-2 text-xs font-bold text-primary">
-                              {getChapterFilteredCount(chapter.id)}
-                            </Badge>
-                          </Label>
-                        </div>
-                      ))}
+                      {subject.chapters.map((chapter) => {
+                        const chapterChineseLabel = getMbeChineseLabel(chapter.name, language);
+
+                        return (
+                          <div key={chapter.id} className="flex items-center gap-2">
+                            <Checkbox
+                              id={chapter.id}
+                              checked={selectedChapters.has(chapter.id)}
+                              onCheckedChange={() => toggleChapter(chapter.id)}
+                              className="h-5 w-5"
+                            />
+                            <Label htmlFor={chapter.id} className="flex min-w-0 cursor-pointer flex-wrap items-baseline gap-x-2 gap-y-0.5 text-sm font-medium text-slate-500">
+                              <span>{chapter.name}</span>
+                              {chapterChineseLabel && (
+                                <span className="text-xs font-medium text-slate-400">{chapterChineseLabel}</span>
+                              )}
+                              <Badge variant="outline" className="h-5 rounded-full border-primary/20 bg-primary/5 px-2 text-xs font-bold text-primary">
+                                {getChapterFilteredCount(chapter.id)}
+                              </Badge>
+                            </Label>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 );

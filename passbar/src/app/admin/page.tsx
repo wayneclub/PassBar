@@ -13,6 +13,7 @@ import {
 import { getAdminDb } from '@/lib/admin-client';
 import { getQuestionReports, resolveQuestionReport, QuestionReport, REPORT_CATEGORIES } from '@/lib/question-reports';
 import { cn } from '@/lib/utils';
+import { useI18n } from '@/lib/i18n';
 
 /* ─── Types ─── */
 type DayRow = { date: string; dau: number; answers: number };
@@ -31,8 +32,8 @@ function fmtDate(d: string) {
   return `${dt.getMonth() + 1}/${dt.getDate()}`;
 }
 
-function parseBrowser(ua: string | null): string {
-  if (!ua) return '未知';
+function parseBrowser(ua: string | null, t: ReturnType<typeof useI18n>['t']): string {
+  if (!ua) return t('admin.unknown');
   const isMobile = /Mobi|Android|iPhone|iPad/i.test(ua);
   const suffix = isMobile ? ' (Mobile)' : ' (Desktop)';
   // Check most-specific first to avoid misclassification
@@ -48,20 +49,20 @@ function parseBrowser(ua: string | null): string {
   // identical to Chrome, so tag it as Chrome (Chromium-based).
   if (/Chrome\/\d/i.test(ua))       return 'Chrome / Brave (Chromium)' + suffix;
   if (/Safari\//i.test(ua))         return isMobile ? 'Safari (iOS)' : 'Safari (Desktop)';
-  return '其他';
+  return t('admin.other');
 }
 
-function parseOS(ua: string | null): string {
-  if (!ua) return '未知';
+function parseOS(ua: string | null, t: ReturnType<typeof useI18n>['t']): string {
+  if (!ua) return t('admin.unknown');
   if (/iPhone/i.test(ua))                   return 'iOS (iPhone)';
   if (/iPad/i.test(ua))                     return 'iOS (iPad)';
   if (/Android/i.test(ua))                  return 'Android';
   if (/Windows NT 10/i.test(ua))            return 'Windows 10/11';
-  if (/Windows NT/i.test(ua))               return 'Windows (舊版)';
+  if (/Windows NT/i.test(ua))               return t('admin.windowsLegacy');
   if (/Mac OS X/i.test(ua) && !/iPhone|iPad/i.test(ua)) return 'macOS';
   if (/Linux/i.test(ua))                    return 'Linux';
   if (/CrOS/i.test(ua))                     return 'ChromeOS';
-  return '其他';
+  return t('admin.other');
 }
 
 function categoryLabel(cat: string) {
@@ -90,6 +91,7 @@ const CHART_GOLD = '#C59B27';
 
 /* ─── Main ─── */
 export default function AdminDashboardPage() {
+  const { t, language } = useI18n();
   const [stats, setStats] = useState<Stats>({ total: 0, pending: 0, approved: 0, rejected: 0, activeToday: 0, totalAnswers: 0, unresolvedReports: 0 });
   const [trend, setTrend] = useState<DayRow[]>([]);
   const [pendingUsers, setPendingUsers] = useState<PendingUser[]>([]);
@@ -153,18 +155,18 @@ export default function AdminDashboardPage() {
         else crashed++;
       }
       const completionData: CompletionRow[] = [
-        { name: '正常完成', value: completed, color: '#4ade80' },
-        { name: '自主中退', value: abandoned, color: '#fbbf24' },
-        { name: '異常中斷/疑似當機', value: crashed, color: '#f87171' },
+        { name: t('admin.completionCompleted'), value: completed, color: '#4ade80' },
+        { name: t('admin.completionSuspended'), value: abandoned, color: '#fbbf24' },
+        { name: t('admin.completionCrashed'), value: crashed, color: '#f87171' },
       ].filter(d => d.value > 0);
 
       // Browser & OS distribution
       const browserMap: Record<string, number> = {};
       const osMap: Record<string, number> = {};
       for (const s of sessionRows) {
-        const b = parseBrowser(s.user_agent);
+        const b = parseBrowser(s.user_agent, t);
         browserMap[b] = (browserMap[b] ?? 0) + 1;
-        const o = parseOS(s.user_agent);
+        const o = parseOS(s.user_agent, t);
         osMap[o] = (osMap[o] ?? 0) + 1;
       }
       const browserData: BrowserRow[] = Object.entries(browserMap)
@@ -194,7 +196,7 @@ export default function AdminDashboardPage() {
       setLoading(false);
     }
     load().catch(console.error);
-  }, [range]);
+  }, [range, language, t]);
 
   const handleResolve = async (reportId: string) => {
     await resolveQuestionReport(reportId);
@@ -207,13 +209,13 @@ export default function AdminDashboardPage() {
     <div className="space-y-6 pb-10">
       {/* Header */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-        <h1 className="text-3xl font-bold text-primary">數據總覽</h1>
+        <h1 className="text-3xl font-bold text-primary">{t('admin.dashboardTitle')}</h1>
         <div className="flex gap-2 self-start rounded-lg border border-border bg-card p-1">
           {([7, 30] as const).map(r => (
             <button key={r} onClick={() => setRange(r)}
               className={cn('rounded-md px-4 py-1.5 text-sm font-medium transition-colors',
                 range === r ? 'bg-secondary text-white' : 'text-muted-foreground hover:text-foreground')}>
-              最近 {r} 天
+              {t('admin.lastDays', { days: r })}
             </button>
           ))}
         </div>
@@ -227,17 +229,17 @@ export default function AdminDashboardPage() {
         <>
           {/* Stat cards */}
           <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
-            <StatCard icon={Users} label="累計註冊用戶" value={stats.total}
-              sub="Supabase Auth 認證正常" accent="bg-blue-50 text-blue-600" href="/admin/users" />
-            <StatCard icon={Clock} label="待審核申請"
+            <StatCard icon={Users} label={t('admin.totalUsers')} value={stats.total}
+              sub={t('admin.authHealthy')} accent="bg-blue-50 text-blue-600" href="/admin/users" />
+            <StatCard icon={Clock} label={t('admin.pendingApplications')}
               value={stats.pending}
-              sub={stats.pending > 0 ? '項待修' : '全部處理完畢'}
+              sub={stats.pending > 0 ? t('admin.pendingNeedsReview') : t('admin.allHandled')}
               accent={stats.pending > 0 ? 'bg-amber-50 text-amber-600' : 'bg-green-50 text-green-600'}
               href="/admin/users?filter=pending" />
-            <StatCard icon={BookOpen} label="全站累計答題次數" value={stats.totalAnswers}
-              sub="Supabase database 累計" accent="bg-indigo-50 text-indigo-600" href="/admin/questions" />
-            <StatCard icon={Activity} label="今日活躍做題用戶 (DAU)" value={stats.activeToday}
-              sub="活躍穩定" accent="bg-amber-50 text-amber-600" />
+            <StatCard icon={BookOpen} label={t('admin.totalAnswers')} value={stats.totalAnswers}
+              sub={t('admin.databaseTotal')} accent="bg-indigo-50 text-indigo-600" href="/admin/questions" />
+            <StatCard icon={Activity} label={t('admin.activeToday')} value={stats.activeToday}
+              sub={t('admin.activityStable')} accent="bg-amber-50 text-amber-600" />
           </div>
 
           {/* Pending users alert */}
@@ -253,13 +255,13 @@ export default function AdminDashboardPage() {
                     </span>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-amber-900">有 {stats.pending} 筆申請等待審核</p>
-                    <p className="text-xs text-amber-700">新用戶正在等待核准才能使用系統</p>
+                    <p className="text-sm font-semibold text-amber-900">{t('admin.pendingAlertTitle', { count: stats.pending })}</p>
+                    <p className="text-xs text-amber-700">{t('admin.pendingAlertDescription')}</p>
                   </div>
                 </div>
                 <Link href="/admin/users?filter=pending"
                   className="flex items-center gap-1 rounded-lg bg-amber-500 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-600 transition-colors">
-                  立即審核 <ChevronRight className="h-4 w-4" />
+                  {t('admin.reviewNow')} <ChevronRight className="h-4 w-4" />
                 </Link>
               </div>
               {pendingUsers.length > 0 && (
@@ -270,7 +272,7 @@ export default function AdminDashboardPage() {
                         <span className="font-medium text-amber-900">{u.full_name || '—'}</span>
                         <span className="ml-2 text-amber-700">{u.email}</span>
                       </div>
-                      <span className="text-xs text-amber-600">{new Date(u.created_at).toLocaleDateString('zh-TW')}</span>
+                      <span className="text-xs text-amber-600">{new Date(u.created_at).toLocaleDateString(language === 'en' ? 'en-US' : language)}</span>
                     </div>
                   ))}
                 </div>
@@ -284,12 +286,12 @@ export default function AdminDashboardPage() {
             <div className="rounded-2xl border border-border bg-card p-5">
               <div className="mb-4 flex items-start justify-between">
                 <div>
-                  <p className="font-semibold text-foreground">每日活躍用戶與答題次數趨勢</p>
-                  <p className="mt-0.5 text-xs text-muted-foreground">監測用戶做題熱度與每日留存狀況</p>
+                  <p className="font-semibold text-foreground">{t('admin.trendTitle')}</p>
+                  <p className="mt-0.5 text-xs text-muted-foreground">{t('admin.trendDescription')}</p>
                 </div>
                 <div className="flex gap-4 text-xs text-muted-foreground">
-                  <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-primary" />今日活躍 (DAU)</span>
-                  <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded bg-slate-200" />單日答題量</span>
+                  <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-primary" />{t('admin.dau')}</span>
+                  <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded bg-slate-200" />{t('admin.dailyAnswers')}</span>
                 </div>
               </div>
               <ResponsiveContainer width="100%" height={240}>
@@ -299,16 +301,16 @@ export default function AdminDashboardPage() {
                   <YAxis yAxisId="left" tick={{ fontSize: 11, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
                   <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 11, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
                   <Tooltip contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid #e2e8f0' }} />
-                  <Bar yAxisId="right" dataKey="answers" fill="#e2e8f0" radius={[3, 3, 0, 0]} name="單日答題量" />
-                  <Line yAxisId="left" type="monotone" dataKey="dau" stroke={CHART_GOLD} strokeWidth={2.5} dot={{ r: 3, fill: CHART_GOLD }} name="今日活躍 (DAU)" />
+                  <Bar yAxisId="right" dataKey="answers" fill="#e2e8f0" radius={[3, 3, 0, 0]} name={t('admin.dailyAnswers')} />
+                  <Line yAxisId="left" type="monotone" dataKey="dau" stroke={CHART_GOLD} strokeWidth={2.5} dot={{ r: 3, fill: CHART_GOLD }} name={t('admin.dau')} />
                 </ComposedChart>
               </ResponsiveContainer>
             </div>
 
             {/* Completion donut */}
             <div className="rounded-2xl border border-border bg-card p-5">
-              <p className="font-semibold text-foreground">測驗完成度與中退分析</p>
-              <p className="mt-0.5 text-xs text-muted-foreground">觀測學生寫題體驗並及時捕捉前端 JS 當機 Bug</p>
+              <p className="font-semibold text-foreground">{t('admin.completionTitle')}</p>
+              <p className="mt-0.5 text-xs text-muted-foreground">{t('admin.completionDescription')}</p>
               {completion.length > 0 ? (
                 <>
                   <ResponsiveContainer width="100%" height={160}>
@@ -331,14 +333,14 @@ export default function AdminDashboardPage() {
                       </div>
                     ))}
                   </div>
-                  {completion.find(c => c.name === '異常中斷/疑似當機' && c.value > 0) && (
+                  {completion.find(c => c.name === t('admin.completionCrashed') && c.value > 0) && (
                     <p className="mt-3 text-xs text-muted-foreground">
-                      無效退出多為：<span className="text-red-500 font-medium">中退</span>（寫到一半直接關閉）
+                      {t('admin.invalidExitHint')}
                     </p>
                   )}
                 </>
               ) : (
-                <p className="mt-10 text-center text-sm text-muted-foreground">此區間尚無練習記錄</p>
+                <p className="mt-10 text-center text-sm text-muted-foreground">{t('admin.noPracticeInRange')}</p>
               )}
             </div>
           </div>
@@ -350,9 +352,9 @@ export default function AdminDashboardPage() {
               <div>
                 <div className="mb-1 flex items-center gap-1.5">
                   <span className="h-3 w-1 rounded-full bg-primary" />
-                  <p className="font-semibold text-foreground">瀏覽器分佈</p>
+                  <p className="font-semibold text-foreground">{t('admin.browserDistribution')}</p>
                 </div>
-                <p className="mb-3 text-xs text-muted-foreground">依據做題客戶端 Agent 監控分析</p>
+                <p className="mb-3 text-xs text-muted-foreground">{t('admin.browserDescription')}</p>
                 {browsers.length > 0 ? (
                   <div className="space-y-2.5">
                     {browsers.map(b => (
@@ -371,14 +373,14 @@ export default function AdminDashboardPage() {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-center text-sm text-muted-foreground">尚無資料</p>
+                  <p className="text-center text-sm text-muted-foreground">{t('admin.noData')}</p>
                 )}
               </div>
 
               <div>
                 <div className="mb-1 flex items-center gap-1.5">
                   <span className="h-3 w-1 rounded-full bg-blue-400" />
-                  <p className="font-semibold text-foreground">作業系統 / 裝置分佈</p>
+                  <p className="font-semibold text-foreground">{t('admin.osDistribution')}</p>
                 </div>
                 {osRows.length > 0 ? (() => {
                   const maxOs = Math.max(...osRows.map(o => o.count), 1);
@@ -401,10 +403,10 @@ export default function AdminDashboardPage() {
                     </div>
                   );
                 })() : (
-                  <p className="text-center text-sm text-muted-foreground">尚無資料</p>
+                  <p className="text-center text-sm text-muted-foreground">{t('admin.noData')}</p>
                 )}
                 <p className="pt-2 text-xs text-muted-foreground">
-                  防範重點：確保 <span className="font-medium text-amber-600">iOS Safari</span> 及行動版版面正常
+                  {t('admin.deviceHint')}
                 </p>
               </div>
             </div>
@@ -414,13 +416,13 @@ export default function AdminDashboardPage() {
               <div className="mb-1 flex items-center justify-between">
                 <div className="flex items-center gap-1.5">
                   <span className="h-3 w-1 rounded-full bg-red-500" />
-                  <p className="font-semibold text-foreground">題目勘誤回報與修正日誌</p>
+                  <p className="font-semibold text-foreground">{t('admin.reportsTitle')}</p>
                 </div>
               </div>
-              <p className="mb-4 text-xs text-muted-foreground">即時追蹤與排除使用者回報的題庫錯誤（對應 Supabase `reports` 表）</p>
+              <p className="mb-4 text-xs text-muted-foreground">{t('admin.reportsDescription')}</p>
 
               {reports.length === 0 ? (
-                <p className="mt-6 text-center text-sm text-muted-foreground">目前無回報記錄</p>
+                <p className="mt-6 text-center text-sm text-muted-foreground">{t('admin.noReports')}</p>
               ) : (
                 <div className="space-y-3 max-h-80 overflow-y-auto pr-1">
                   {reports.map(r => (
@@ -442,13 +444,13 @@ export default function AdminDashboardPage() {
                               <p className="mt-1 text-xs text-slate-600 line-clamp-2">{r.message}</p>
                             )}
                             <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-400">
-                              <span>{r.profiles?.full_name || r.profiles?.email || '匿名'}</span>
+                              <span>{r.profiles?.full_name || r.profiles?.email || t('admin.anonymous')}</span>
                               <span>·</span>
-                              <span>{new Date(r.created_at).toLocaleDateString('zh-TW')}</span>
+                              <span>{new Date(r.created_at).toLocaleDateString(language === 'en' ? 'en-US' : language)}</span>
                               {r.resolved && r.resolved_at && (
                                 <>
                                   <span>·</span>
-                                  <span className="text-green-600">已修復 {new Date(r.resolved_at).toLocaleDateString('zh-TW')}</span>
+                                  <span className="text-green-600">{t('admin.resolvedAt', { date: new Date(r.resolved_at).toLocaleDateString(language === 'en' ? 'en-US' : language) })}</span>
                                 </>
                               )}
                             </div>
@@ -459,13 +461,13 @@ export default function AdminDashboardPage() {
                             onClick={() => handleResolve(r.id)}
                             className="flex shrink-0 items-center gap-1 rounded-lg bg-green-500 px-3 py-1.5 text-xs font-semibold text-white hover:bg-green-600 transition-colors">
                             <Check className="h-3.5 w-3.5" />
-                            標記已修復
+                            {t('admin.markResolved')}
                           </button>
                         )}
                         {r.resolved && (
                           <span className="flex shrink-0 items-center gap-1 rounded-lg bg-slate-200 px-3 py-1.5 text-xs font-medium text-slate-500">
                             <CheckCircle className="h-3.5 w-3.5" />
-                            已修復
+                            {t('admin.resolved')}
                           </span>
                         )}
                       </div>
@@ -479,7 +481,7 @@ export default function AdminDashboardPage() {
           {/* User status distribution bar */}
           <div className="rounded-2xl border border-border bg-card p-5">
             <div className="mb-4 flex items-center justify-between">
-              <p className="font-semibold text-foreground">用戶狀態分佈</p>
+              <p className="font-semibold text-foreground">{t('admin.userStatusDistribution')}</p>
             </div>
             {stats.total > 0 ? (
               <>
@@ -490,9 +492,9 @@ export default function AdminDashboardPage() {
                 </div>
                 <div className="mt-3 flex gap-5 text-xs text-muted-foreground">
                   {[
-                    { label: '已核准', value: stats.approved, color: 'bg-green-500', icon: CheckCircle },
-                    { label: '待審核', value: stats.pending, color: 'bg-amber-400', icon: Clock },
-                    { label: '已拒絕', value: stats.rejected, color: 'bg-red-400', icon: XCircle },
+                    { label: t('admin.statusApproved'), value: stats.approved, color: 'bg-green-500', icon: CheckCircle },
+                    { label: t('admin.statusPending'), value: stats.pending, color: 'bg-amber-400', icon: Clock },
+                    { label: t('admin.statusRejected'), value: stats.rejected, color: 'bg-red-400', icon: XCircle },
                   ].map(({ label, value, color, icon: Icon }) => (
                     <span key={label} className="flex items-center gap-1.5">
                       <span className={cn('h-2 w-2 rounded-full', color)} />
@@ -503,7 +505,7 @@ export default function AdminDashboardPage() {
                 </div>
               </>
             ) : (
-              <p className="text-center text-sm text-muted-foreground">尚無用戶資料</p>
+              <p className="text-center text-sm text-muted-foreground">{t('admin.noUsers')}</p>
             )}
           </div>
         </>

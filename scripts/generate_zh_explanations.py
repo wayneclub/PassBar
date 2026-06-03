@@ -553,8 +553,9 @@ def process_question(
                     source_tag = "error"
                     zh_explanation = f"<!-- ERROR: {exc} -->"
 
-            # 若中文題目或選項缺失，補呼叫 Gemini 翻譯
-            if not zh_question or not zh_choices:
+            # 若中文題目和選項均缺失，才呼叫 Gemini 翻譯
+            # （有任一從 castudy.json 成功提取即跳過，大幅節省 API 用量）
+            if not zh_question and not zh_choices:
                 print(
                     f"  Gemini(translate) → Q{index:04d}: missing zh_question/choices", end=" ", flush=True)
                 try:

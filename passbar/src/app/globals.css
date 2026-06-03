@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 ::selection {
-  background-color: hsl(43 67% 46% / 0.25);
+  background-color: hsl(43 67% 46% / 0.8);
   color: hsl(0 0% 8%);
 }
 

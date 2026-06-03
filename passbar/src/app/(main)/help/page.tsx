@@ -86,14 +86,10 @@ const DEMO_SUBJECTS = [
 ];
 
 type DemoTestMode = 'Tutor' | 'Timed' | 'Browse';
-const TEST_MODES: { key: DemoTestMode; label: string; desc: string }[] = [
-  { key: 'Tutor',  label: 'Tutor',  desc: '作答後立即顯示解析' },
-  { key: 'Timed',  label: 'Timed',  desc: '全部作答後才顯示' },
-  { key: 'Browse', label: 'Browse', desc: '先看答案再練習' },
-];
 
 function InteractiveStepGuide() {
   const { toast } = useToast();
+  const { t } = useI18n();
   const [activeStep, setActiveStep] = useState(1);
   const [selectedChapters, setSelectedChapters] = useState<Set<string>>(new Set(['cp-pleading', 'cp-discovery', 'cp-motions', 'cp-trial', 'cp-appeal']))
 ;
@@ -104,7 +100,7 @@ function InteractiveStepGuide() {
 
   // Timer — lives inside the guide, shown in step 2
   const { timeLeft, running, toggle: toggleTimer, reset: resetTimer } = usePacingTimer(() => {
-    toast({ title: '⏰ 108 秒到！MBE 一題的法定答題時間已經用完囉！' });
+    toast({ title: t('help.timerDoneToast') });
   });
   const timerMins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
   const timerSecs = String(timeLeft % 60).padStart(2, '0');
@@ -147,10 +143,16 @@ function InteractiveStepGuide() {
     .filter((c) => selectedChapters.has(c.id))
     .reduce((sum, c) => sum + c.count, 0);
 
+  const testModes: { key: DemoTestMode; label: string; desc: string }[] = [
+    { key: 'Tutor',  label: 'Tutor',  desc: t('help.demoTutorDesc') },
+    { key: 'Timed',  label: 'Timed',  desc: t('help.demoTimedDesc') },
+    { key: 'Browse', label: 'Browse', desc: t('help.demoBrowseDesc') },
+  ];
+
   const steps = [
-    { num: 1, title: '建立自訂練習', desc: '自由篩選考試科目與目標出題量' },
-    { num: 2, title: '訓練 1.8 分鐘直覺', desc: '在規定的 108 秒內精準刪去誘餌' },
-    { num: 3, title: '覆盤弱點錯題本', desc: '深度解析考點，讓分數實現增長' },
+    { num: 1, title: t('help.step1Title'), desc: t('help.step1Desc') },
+    { num: 2, title: t('help.step2Title'), desc: t('help.step2Desc') },
+    { num: 3, title: t('help.step3Title'), desc: t('help.step3Desc') },
   ];
 
   const MOCK_OPTIONS: { key: MockAnswer; text: string }[] = [
@@ -206,9 +208,9 @@ function InteractiveStepGuide() {
             <div className="flex flex-col">
               {/* Test mode selector */}
               <div className="px-5 pt-4 pb-3 border-b border-border">
-                <p className="text-xs font-semibold text-muted-foreground mb-2">題目模式</p>
+                <p className="text-xs font-semibold text-muted-foreground mb-2">{t('help.questionMode')}</p>
                 <div className="inline-flex items-center gap-1 rounded-full border border-border bg-muted/50 p-1">
-                  {TEST_MODES.map(({ key, label, desc }) => (
+                  {testModes.map(({ key, label, desc }) => (
                     <button
                       key={key}
                       onClick={() => setTestMode(key)}
@@ -225,7 +227,7 @@ function InteractiveStepGuide() {
                 </div>
                 {testMode && (
                   <p className="text-[10px] text-muted-foreground mt-1.5 ml-1">
-                    {TEST_MODES.find((m) => m.key === testMode)?.desc}
+                    {testModes.find((m) => m.key === testMode)?.desc}
                   </p>
                 )}
               </div>
@@ -283,22 +285,22 @@ function InteractiveStepGuide() {
                 <div className="flex items-center gap-2 flex-wrap">
                   <Zap className="w-3.5 h-3.5 text-primary shrink-0" />
                   <span className="text-xs text-muted-foreground">
-                    已選 <span className="font-bold text-foreground">{totalSelected}</span> 題可用
+                    {t('help.selectedAvailablePrefix')} <span className="font-bold text-foreground">{totalSelected}</span> {t('help.selectedAvailableSuffix')}
                   </span>
                   <span className="text-muted-foreground/30">·</span>
-                  <Label className="text-xs text-muted-foreground shrink-0">出題</Label>
+                  <Label className="text-xs text-muted-foreground shrink-0">{t('help.generateCountLabel')}</Label>
                   <Input
                     type="number" min={1} max={totalSelected || 200}
                     value={questionCount}
                     onChange={(e) => setQuestionCount(Math.max(1, Math.min(totalSelected || 200, Number(e.target.value) || 1)))}
                     className="w-16 h-7 text-xs text-center px-1"
                   />
-                  <span className="text-xs text-muted-foreground">題</span>
+                  <span className="text-xs text-muted-foreground">{t('help.questionsUnit')}</span>
                 </div>
                 <Button size="sm" className="shrink-0"
                   disabled={selectedChapters.size === 0}
-                  onClick={() => toast({ title: `已以 ${testMode} 模式組合 ${questionCount} 題考卷（模擬）` })}>
-                  建立測驗卷
+                  onClick={() => toast({ title: t('help.createdMockTestToast', { mode: testMode, count: questionCount }) })}>
+                  {t('help.createMockTest')}
                 </Button>
               </div>
             </div>
@@ -333,7 +335,7 @@ function InteractiveStepGuide() {
                   </span>
                   <button onClick={() => { resetTimer(); setTimeout(() => toggleTimer(), 0); }}
                     className="p-1.5 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-colors"
-                    title="重新計時">
+                    title={t('help.resetTimer')}>
                     <RefreshCw className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -354,7 +356,7 @@ function InteractiveStepGuide() {
                   const revealed = mockAnswer !== null;
                   return (
                     <button key={key}
-                      onClick={() => { setMockAnswer(key); toast({ title: isCorrect ? '答對了！精準避開誘餌選項。' : '答錯了！點 Step 3 覆盤原因。' }); }}
+                      onClick={() => { setMockAnswer(key); toast({ title: isCorrect ? t('help.correctToast') : t('help.incorrectToast') }); }}
                       className={cn(
                         'w-full flex items-start gap-2 sm:gap-3 py-3 px-2 sm:px-3 rounded-lg border transition-colors text-left',
                         revealed && isCorrect ? 'border-green-200 bg-green-50 dark:border-green-900 dark:bg-green-950/30'
@@ -399,10 +401,10 @@ function InteractiveStepGuide() {
                   </div>
                   <div>
                     <p className={cn('text-sm font-semibold', mockAnswer === 'B' ? 'text-green-700 dark:text-green-400' : 'text-red-600 dark:text-red-400')}>
-                      {mockAnswer === 'B' ? '回答正確' : '回答錯誤'}
+                      {mockAnswer === 'B' ? t('help.answerCorrect') : t('help.answerIncorrect')}
                     </p>
                     <p className="text-xs text-slate-500 mt-0.5">
-                      正確答案：<span className="font-bold text-slate-900 dark:text-foreground">B</span>　Rule 56(b) — 30 days after close of discovery
+                      {t('help.correctAnswerLabel')} <span className="font-bold text-slate-900 dark:text-foreground">B</span> Rule 56(b) — 30 days after close of discovery
                     </p>
                   </div>
                 </div>
@@ -458,20 +460,19 @@ function InteractiveStepGuide() {
               <div className="mx-4 mb-4 border border-l-4 border-l-red-500 border-red-200 dark:border-red-900 bg-white dark:bg-card rounded-lg shadow-sm">
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-border">
                   <X className="w-4 h-4 text-red-500 shrink-0" />
-                  <span className="text-sm font-semibold text-red-600 dark:text-red-400">回答錯誤</span>
+                  <span className="text-sm font-semibold text-red-600 dark:text-red-400">{t('help.answerIncorrect')}</span>
                   <span className="text-xs text-slate-500 ml-1">
-                    正確答案：<span className="font-bold text-slate-900 dark:text-foreground">B</span>
+                    {t('help.correctAnswerLabel')} <span className="font-bold text-slate-900 dark:text-foreground">B</span>
                   </span>
                 </div>
                 <div className="px-4 py-3">
-                  <p className="text-xs font-semibold text-slate-700 dark:text-foreground mb-1.5">考點解析</p>
+                  <p className="text-xs font-semibold text-slate-700 dark:text-foreground mb-1.5">{t('help.explanationTitle')}</p>
                   <p className="text-xs text-slate-600 dark:text-muted-foreground leading-relaxed">
-                    根據 <strong>FRCP Rule 56(b)</strong>，除非法庭另有規定，當事人可在
-                    <strong>發現程序關閉後的 30 天內</strong>隨時提出簡易判決動議。
-                    選項 A 的「14 天」係刻意設計之誤導考點，為 MBE 常見期限陷阱。
+                    {t('help.explanationBeforeRule')} <strong>FRCP Rule 56(b)</strong>, {t('help.explanationAfterRule')}
+                    <strong>{t('help.discoveryClose30Days')}</strong>{t('help.explanationEnding')}
                   </p>
                   <div className="mt-3 pt-3 border-t border-border flex items-center gap-2">
-                    <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wide">考點標籤</span>
+                    <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wide">{t('help.topicTags')}</span>
                     <span className="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded font-medium">Civil Procedure</span>
                     <span className="text-[10px] bg-muted text-muted-foreground px-2 py-0.5 rounded font-medium">Rule 56(b)</span>
                   </div>
