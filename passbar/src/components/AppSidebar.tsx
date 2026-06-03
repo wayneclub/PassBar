@@ -147,10 +147,17 @@ export function AppSidebar() {
             </SidebarMenuItem>
           ))}
           <SidebarMenuItem>
-            <SidebarMenuButton className="h-auto text-slate-300 hover:text-white hover:bg-white/5 py-4 px-4">
+            <Link
+              href="/help"
+              onClick={handleNavigate}
+              className={cn(
+                "flex items-center gap-3 py-4 px-4 text-slate-300 transition-colors hover:bg-white/5 hover:text-white",
+                pathname === '/help' && "bg-white/10 text-white border-l-2 border-primary"
+              )}
+            >
               <HelpCircle className="w-4 h-4 shrink-0" />
               <span className="flex-1 font-semibold text-xs uppercase tracking-wider">{t('nav.help')}</span>
-            </SidebarMenuButton>
+            </Link>
           </SidebarMenuItem>
           {profile?.role === 'admin' && (
             <SidebarMenuItem className="px-0 pt-1">

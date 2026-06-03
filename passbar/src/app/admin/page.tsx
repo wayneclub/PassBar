@@ -235,7 +235,7 @@ export default function AdminDashboardPage() {
               accent={stats.pending > 0 ? 'bg-amber-50 text-amber-600' : 'bg-green-50 text-green-600'}
               href="/admin/users?filter=pending" />
             <StatCard icon={BookOpen} label="全站累計答題次數" value={stats.totalAnswers}
-              sub="Supabase database 累計" accent="bg-indigo-50 text-indigo-600" />
+              sub="Supabase database 累計" accent="bg-indigo-50 text-indigo-600" href="/admin/questions" />
             <StatCard icon={Activity} label="今日活躍做題用戶 (DAU)" value={stats.activeToday}
               sub="活躍穩定" accent="bg-amber-50 text-amber-600" />
           </div>

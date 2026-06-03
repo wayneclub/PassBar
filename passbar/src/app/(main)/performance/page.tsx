@@ -28,7 +28,7 @@ import {
   BookOpen,
   Brain,
   CheckCircle2,
-  ChevronRight,
+
   Flame,
   Loader2,
   Map as MapIcon,
@@ -1162,10 +1162,11 @@ export default function PerformancePage() {
       const questionIds = [...new Set(answers.map((a) => a.question_id))];
       const metaRows: QuestionMetaRow[] = [];
       for (const ids of chunk(questionIds, 400)) {
-        const { data: rows } = await supabase
+        const { data: rows, error: rowsError } = await supabase
           .from('questions')
           .select('id, subject, chapter_id, topic, micro_concept, trap_type, skill_tested')
           .in('id', ids);
+        if (rowsError) console.warn('[PassBar] questions fetch error:', rowsError.message);
         if (rows) metaRows.push(...(rows as QuestionMetaRow[]));
       }
       const metadata = new Map(metaRows.map((r) => [r.id, r]));
@@ -1249,8 +1250,6 @@ export default function PerformancePage() {
     { value: 'progress',     label: t('performance.tabs.progress'),     icon: <TrendingUp className="h-4 w-4" /> },
   ];
 
-  const currentTab = tabDefs.find((tab) => tab.value === activeTab);
-
   return (
     <div
       className={cn(
@@ -1259,25 +1258,13 @@ export default function PerformancePage() {
       )}
     >
       {/* Page-level Header */}
-      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
+      <header className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-2">
-            <span>學習表現中心</span>
-            <ChevronRight className="h-3 w-3" />
-            {currentTab && (
-              <span className="flex items-center gap-1 text-primary font-medium">
-                {currentTab.icon}
-                {currentTab.label}
-              </span>
-            )}
-          </div>
-          <h1 className="text-2xl font-bold text-slate-900">
-            {t('performance.intelligentDiagnosis')}
-          </h1>
+          <h1 className="text-4xl font-bold text-primary">{t('performance.title')}</h1>
+          <p className="text-muted-foreground mt-1">{t('performance.description')}</p>
         </div>
 
-        {/* Stats box */}
+        {/* Stats summary */}
         <div className="flex shrink-0 rounded-lg border bg-white shadow-sm overflow-hidden">
           <div className="px-4 py-3 border-r">
             <p className="text-xs text-muted-foreground">{t('performance.totalAnswered')}</p>
@@ -1288,7 +1275,7 @@ export default function PerformancePage() {
             <p className={cn('text-lg font-bold', accuracyColor)}>{overallAccuracy}%</p>
           </div>
         </div>
-      </div>
+      </header>
 
       {/* 4-tab horizontal nav (URL-driven) */}
       <div className="border-b border-slate-200">

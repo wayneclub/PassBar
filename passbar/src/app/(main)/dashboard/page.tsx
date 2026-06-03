@@ -15,20 +15,11 @@ import {
   TrendingUp,
   Trophy,
 } from 'lucide-react';
-import {
-  Bar,
-  BarChart,
-  Cell,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
 import { useAuth } from '@/components/AuthProvider';
 import { getGeminiStatus } from '@/lib/gemini-feedback';
 import { useI18n } from '@/lib/i18n';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { supabase } from '@/lib/supabase';
 import { cn } from '@/lib/utils';
@@ -102,11 +93,15 @@ function formatPercent(value: number) {
   return `${value.toFixed(1)}%`;
 }
 
-function formatDuration(totalSeconds: number) {
-  const hours = Math.floor(totalSeconds / 3600);
+function formatDuration(totalSeconds: number): string {
+  if (totalSeconds <= 0) return '0 分';
+  const hours   = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
-  if (hours > 0) return `${hours}h ${minutes}m`;
-  return `${minutes}m`;
+  const secs    = Math.floor(totalSeconds % 60);
+  if (hours > 0 && minutes > 0) return `${hours} 小時 ${minutes} 分`;
+  if (hours > 0)                return `${hours} 小時`;
+  if (minutes > 0)              return `${minutes} 分`;
+  return `${secs} 秒`;
 }
 
 function calculateStreak(answeredDates: string[]) {
@@ -153,7 +148,9 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
     };
   }
 
-  const [subjectCountsResult, answersResult, attemptsResult] = await Promise.all([
+  const todayStartIso = startOfLocalDay(new Date()).toISOString();
+
+  const [subjectCountsResult, answersResult, attemptsResult, todaySessionsResult] = await Promise.all([
     supabase
       .from('question_chapter_counts')
       .select('subject, count'),
@@ -165,11 +162,18 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
       .from('practice_answers')
       .select('id', { count: 'exact', head: true })
       .eq('user_id', userId),
+    // Today's practice sessions — source of truth for time spent
+    supabase
+      .from('practice_sessions')
+      .select('started_at, completed_at, total_time_seconds, status')
+      .eq('user_id', userId)
+      .gte('started_at', todayStartIso),
   ]);
 
   if (subjectCountsResult.error) throw subjectCountsResult.error;
   if (answersResult.error) throw answersResult.error;
   if (attemptsResult.error) throw attemptsResult.error;
+  // todaySessionsResult errors are non-fatal — degrade gracefully
 
   const subjectCounts = new Map<string, number>();
   ((subjectCountsResult.data ?? []) as SubjectCountRow[]).forEach((row) => {
@@ -224,6 +228,30 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
     };
   });
 
+  // ── Today's practice time ────────────────────────────────────────────────
+  // Primary source: practice_sessions (total_time_seconds for completed,
+  //                 elapsed wall-clock for in_progress as fallback)
+  const now = Date.now();
+  type SessionRow = { started_at: string; completed_at: string | null; total_time_seconds: number | null; status: string };
+  const todaySessions = ((todaySessionsResult.data ?? []) as SessionRow[]);
+  const timeTodayFromSessions = todaySessions.reduce((sum, s) => {
+    if (s.total_time_seconds != null && s.total_time_seconds > 0) {
+      return sum + s.total_time_seconds;
+    }
+    // In-progress or missing total: estimate from wall-clock
+    const start = new Date(s.started_at).getTime();
+    const end   = s.completed_at ? new Date(s.completed_at).getTime() : now;
+    return sum + Math.max(0, (end - start) / 1000);
+  }, 0);
+
+  // Fallback: per-question time_spent_seconds (if sessions not tracked)
+  const timeTodayFromAnswers = todaysAnswers.reduce(
+    (sum, answer) => sum + (answer.time_spent_seconds ?? 0), 0,
+  );
+
+  // Use whichever source reports more time (they shouldn't both be > 0 for same session)
+  const timeTodaySeconds = Math.max(timeTodayFromSessions, timeTodayFromAnswers);
+
   return {
     error: null,
     totalQuestions,
@@ -232,7 +260,7 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
     solvedToday: todaysAnswers.length,
     mastery,
     streakDays: calculateStreak(answeredDates),
-    timeTodaySeconds: todaysAnswers.reduce((sum, answer) => sum + (answer.time_spent_seconds ?? 0), 0),
+    timeTodaySeconds,
     subjectPerformance,
     dailyCounts,
   };
@@ -325,7 +353,80 @@ function isValidDisplayDate(s: string): boolean {
   return date.getFullYear() === y && date.getMonth() === m - 1 && date.getDate() === d;
 }
 
-// ─── Exam Countdown Badge (inline in header) ─────────────────────────────────
+// ─── Exam Countdown Badge ────────────────────────────────────────────────────
+
+function ExamCountdownBadge({
+  examDate,
+  examState,
+  onSetDate,
+  className,
+}: {
+  examDate: string | null;
+  examState: string | null; // 'ca' | 'ny' | state code | null
+  onSetDate: () => void;
+  className?: string;
+}) {
+  const days = examDate ? daysUntilExam(examDate) : null;
+
+  // Not set yet → subtle link
+  if (days === null) {
+    return (
+      <button
+        onClick={onSetDate}
+        className={cn('text-xs text-primary hover:underline font-medium transition-colors', className)}
+      >
+        ＋ 設定考試日期
+      </button>
+    );
+  }
+
+  const stateLabel =
+    examState === 'ca' ? 'CA' :
+    examState === 'ny' ? 'NY' :
+    examState ? examState.toUpperCase() :
+    '';
+
+  const examLabel = stateLabel ? `${stateLabel} Bar Exam` : 'Bar Exam';
+
+  const label =
+    days < 0
+      ? `${examLabel} 已結束`
+      : days === 0
+        ? `🎯 今天就是 ${examLabel}！`
+        : `距離 ${examLabel} 還有 ${days} 天`;
+
+  const pillColor =
+    days < 0
+      ? 'border-slate-300 bg-slate-50 text-slate-500'
+      : days === 0
+        ? 'border-red-400 bg-red-50 text-red-600'
+        : days <= 7
+          ? 'border-red-300 bg-red-50 text-red-600'
+          : days <= 30
+            ? 'border-orange-300 bg-orange-50 text-orange-600'
+            : 'border-amber-300/60 bg-white text-amber-600';
+
+  const dotColor =
+    days <= 0
+      ? 'bg-red-500'
+      : days <= 30
+        ? 'bg-orange-400 animate-ping'
+        : 'bg-amber-400 animate-pulse';
+
+  return (
+    <button
+      onClick={onSetDate}
+      className={cn(
+        'inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-all hover:opacity-75 shadow-sm whitespace-nowrap',
+        pillColor,
+        className,
+      )}
+    >
+      <span className={cn('h-1.5 w-1.5 rounded-full shrink-0', dotColor)} />
+      {label}
+    </button>
+  );
+}
 
 // ─── Activity Heatmap ────────────────────────────────────────────────────────
 
@@ -343,28 +444,35 @@ function getCellColor(count: number, max: number): string {
   return 'bg-primary';
 }
 
-function buildHeatmapGrid(dailyCounts: Record<string, number>) {
-  // Always show exactly 53 weeks ending at the current week
-  const today = startOfLocalDay(new Date());
-  // Find the Sunday of the current week
-  const dow = today.getDay(); // 0=Sun
-  const weekEnd = new Date(today);
-  weekEnd.setDate(today.getDate() + (6 - dow)); // Saturday of current week
-
-  const TOTAL_WEEKS = 53;
-  const weekStart = new Date(weekEnd);
-  weekStart.setDate(weekEnd.getDate() - TOTAL_WEEKS * 7 + 1);
-  // Align to Sunday
-  const startDow = weekStart.getDay();
-  weekStart.setDate(weekStart.getDate() - startDow);
-
-  // Build weeks array
+function buildHeatmapGrid(dailyCounts: Record<string, number>, year: number) {
   type Cell = { date: string; count: number; isCurrentDay: boolean; isFuture: boolean };
-  const weeks: Cell[][] = [];
-  const cursor = new Date(weekStart);
+  const today = startOfLocalDay(new Date());
   const todayKey = today.toISOString().slice(0, 10);
+  const currentYear = today.getFullYear();
 
-  for (let w = 0; w < TOTAL_WEEKS; w++) {
+  let gridStart: Date;
+  let gridEnd: Date;
+
+  if (year === currentYear) {
+    // Rolling 53 weeks ending at end of current week
+    const dow = today.getDay();
+    gridEnd = new Date(today);
+    gridEnd.setDate(today.getDate() + (6 - dow));
+    gridStart = new Date(gridEnd);
+    gridStart.setDate(gridEnd.getDate() - 53 * 7 + 1);
+    // Align to Sunday
+    gridStart.setDate(gridStart.getDate() - gridStart.getDay());
+  } else {
+    // Jan 1 of the year, aligned back to the preceding Sunday
+    gridStart = new Date(year, 0, 1);
+    gridStart.setDate(gridStart.getDate() - gridStart.getDay());
+    gridEnd = new Date(year, 11, 31);
+  }
+
+  const weeks: Cell[][] = [];
+  const cursor = new Date(gridStart);
+
+  while (cursor <= gridEnd) {
     const week: Cell[] = [];
     for (let d = 0; d < 7; d++) {
       const key = cursor.toISOString().slice(0, 10);
@@ -402,16 +510,36 @@ function ActivityHeatmap({
   loading: boolean;
   t: (key: Parameters<ReturnType<typeof useI18n>['t']>[0], params?: Record<string, string | number>) => string;
 }) {
-  const [tooltip, setTooltip] = useState<{ x: number; y: number; date: string; count: number } | null>(null);
+  const [tooltip, setTooltip] = useState<{ x: number; y: number; date: string; count: number; above: boolean } | null>(null);
+  const currentYear = new Date().getFullYear();
+  const [year, setYear] = useState(currentYear);
+
+  // Earliest year that has any data (or current year if none)
+  const minYear = useMemo(() => {
+    const keys = Object.keys(dailyCounts);
+    if (keys.length === 0) return currentYear;
+    return Math.min(...keys.map((k) => parseInt(k.slice(0, 4), 10)));
+  }, [dailyCounts, currentYear]);
 
   const { weeks, monthLabels } = useMemo(
-    () => buildHeatmapGrid(dailyCounts),
-    [dailyCounts],
+    () => buildHeatmapGrid(dailyCounts, year),
+    [dailyCounts, year],
   );
 
+  // Count for the selected year only
+  const yearCounts = useMemo(() => {
+    const prefix = String(year);
+    return Object.fromEntries(Object.entries(dailyCounts).filter(([k]) => k.startsWith(prefix)));
+  }, [dailyCounts, year]);
+
   const maxCount = useMemo(
-    () => Math.max(1, ...Object.values(dailyCounts)),
-    [dailyCounts],
+    () => Math.max(1, ...Object.values(yearCounts)),
+    [yearCounts],
+  );
+
+  const totalDaysActive = useMemo(
+    () => Object.values(yearCounts).filter((v) => v > 0).length,
+    [yearCounts],
   );
 
   const CELL = 13;   // cell size px
@@ -420,167 +548,145 @@ function ActivityHeatmap({
 
   return (
     <Card className="shadow-md transition-all duration-500 hover:shadow-lg overflow-hidden">
-      <CardHeader className="pb-2">
+      <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-base flex items-center gap-2">
-            {t('dashboard.dailyActivity')}
-          </CardTitle>
-          {/* Legend */}
-          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-            <span>{t('dashboard.activityMore')}</span>
-            {[0, 0.2, 0.45, 0.7, 1].map((r, i) => (
-              <div
-                key={i}
-                className={cn('rounded-sm', r === 0 ? 'bg-slate-100' : r < 0.3 ? 'bg-primary/25' : r < 0.55 ? 'bg-primary/55' : r < 0.85 ? 'bg-primary/80' : 'bg-primary')}
-                style={{ width: CELL, height: CELL }}
-              />
-            ))}
-            <span>{t('dashboard.activityLess')}</span>
+          <CardTitle className="text-base font-semibold">{t('dashboard.dailyActivity')}</CardTitle>
+          {/* Year navigator — top right */}
+          <div className="flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-50 px-1 py-0.5">
+            <button
+              onClick={() => setYear((y) => Math.max(minYear, y - 1))}
+              disabled={year <= minYear}
+              className="h-6 w-6 rounded flex items-center justify-center text-slate-500 hover:bg-white hover:text-slate-800 disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-sm font-bold"
+            >
+              ‹
+            </button>
+            <span className="text-sm font-semibold text-slate-700 px-1 tabular-nums">{year}</span>
+            <button
+              onClick={() => setYear((y) => Math.min(currentYear, y + 1))}
+              disabled={year >= currentYear}
+              className="h-6 w-6 rounded flex items-center justify-center text-slate-500 hover:bg-white hover:text-slate-800 disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-sm font-bold"
+            >
+              ›
+            </button>
           </div>
         </div>
       </CardHeader>
-      <CardContent className="pb-5 pt-1">
+      <CardContent className="pb-4 pt-1">
         {loading ? (
           <div className="h-[120px] animate-pulse rounded-md bg-muted/30" />
         ) : (
-          <div className="relative w-full overflow-x-auto">
-            {/* Outer container with day-label gutter */}
-            <div className="inline-flex gap-0" style={{ paddingLeft: 32 }}>
-              {/* Day-of-week labels column */}
-              <div
-                className="absolute left-0 top-0 flex flex-col"
-                style={{ gap: GAP, paddingTop: 20 }}
-              >
-                {DAYS_SHORT.map((d, i) => (
-                  <div
-                    key={d}
-                    className="text-[10px] text-muted-foreground text-right pr-1.5 leading-none"
-                    style={{
-                      height: CELL,
-                      lineHeight: `${CELL}px`,
-                      visibility: i % 2 === 0 ? 'visible' : 'hidden',
-                    }}
-                  >
-                    {d}
-                  </div>
-                ))}
-              </div>
-
-              {/* Grid */}
-              <div className="flex flex-col">
-                {/* Month labels row */}
-                <div className="relative h-5" style={{ marginBottom: 2 }}>
-                  {monthLabels.map(({ weekIndex, label }) => (
-                    <span
-                      key={`${weekIndex}-${label}`}
-                      className="absolute text-[10px] text-muted-foreground"
-                      style={{ left: weekIndex * STEP }}
+          <div className="w-full overflow-x-hidden">
+            {/* Positioning anchor for the tooltip */}
+            <div
+              className="relative overflow-hidden"
+              onMouseLeave={() => setTooltip(null)}
+            >
+              {/* Outer container with day-label gutter */}
+              <div className="inline-flex gap-0" style={{ paddingLeft: 44 }}>
+                {/* Day-of-week labels column */}
+                <div
+                  className="absolute left-0 top-0 flex flex-col"
+                  style={{ gap: GAP, paddingTop: 20 }}
+                >
+                  {DAYS_SHORT.map((d, i) => (
+                    <div
+                      key={d}
+                      className="text-[10px] text-muted-foreground text-right pr-3 leading-none"
+                      style={{
+                        height: CELL,
+                        lineHeight: `${CELL}px`,
+                        visibility: i % 2 === 0 ? 'visible' : 'hidden',
+                      }}
                     >
-                      {label}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Weeks × days grid */}
-                <div className="flex" style={{ gap: GAP }}>
-                  {weeks.map((week, wi) => (
-                    <div key={wi} className="flex flex-col" style={{ gap: GAP }}>
-                      {week.map((cell) => (
-                        <div
-                          key={cell.date}
-                          className={cn(
-                            'rounded-sm cursor-default transition-opacity duration-150',
-                            cell.isFuture ? 'opacity-0' : getCellColor(cell.count, maxCount),
-                            cell.isCurrentDay && 'ring-1 ring-offset-1 ring-primary/60',
-                          )}
-                          style={{ width: CELL, height: CELL }}
-                          onMouseEnter={(e) => {
-                            const rect = (e.target as HTMLElement).getBoundingClientRect();
-                            setTooltip({
-                              x: rect.left + rect.width / 2,
-                              y: rect.top,
-                              date: cell.date,
-                              count: cell.count,
-                            });
-                          }}
-                          onMouseLeave={() => setTooltip(null)}
-                        />
-                      ))}
+                      {d}
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
 
-            {/* Tooltip */}
-            {tooltip && (
-              <div
-                className="fixed z-50 rounded-lg border bg-white px-3 py-2 text-xs shadow-xl pointer-events-none -translate-x-1/2 -translate-y-full -mt-1.5"
-                style={{ left: tooltip.x, top: tooltip.y - 8 }}
-              >
-                <p className="font-semibold text-slate-700">
-                  {tooltip.date.replace(/-/g, '.')}
-                </p>
-                <p className="text-muted-foreground mt-0.5">
-                  {t('dashboard.activityCount', { count: tooltip.count })}
-                </p>
+                {/* Grid */}
+                <div className="flex flex-col">
+                  {/* Month labels row */}
+                  <div className="relative h-5" style={{ marginBottom: 2 }}>
+                    {monthLabels.map(({ weekIndex, label }) => (
+                      <span
+                        key={`${weekIndex}-${label}`}
+                        className="absolute text-[10px] text-muted-foreground"
+                        style={{ left: weekIndex * STEP }}
+                      >
+                        {label}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Weeks × days grid */}
+                  <div className="flex" style={{ gap: GAP }}>
+                    {weeks.map((week, wi) => (
+                      <div key={wi} className="flex flex-col" style={{ gap: GAP }}>
+                        {week.map((cell, di) => (
+                          <div
+                            key={cell.date}
+                            className={cn(
+                              'rounded-sm cursor-pointer transition-all duration-100',
+                              cell.isFuture ? 'opacity-0 pointer-events-none' : getCellColor(cell.count, maxCount),
+                              cell.isCurrentDay && 'ring-1 ring-offset-1 ring-primary/60',
+                              tooltip?.date === cell.date && 'ring-2 ring-offset-1 ring-slate-500 brightness-75',
+                            )}
+                            style={{ width: CELL, height: CELL }}
+                            onMouseEnter={() => {
+                              const x = 44 + wi * STEP + CELL / 2;
+                              const y = 20 + 2 + di * STEP;
+                              // If cell is in top 3 rows, show tooltip below to avoid clipping
+                              setTooltip({ x, y, date: cell.date, count: cell.count, above: di >= 3 });
+                            }}
+                          />
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            )}
+
+              {/* Tooltip — absolute within the positioning anchor */}
+              {tooltip && (
+                <div
+                  className="absolute z-50 rounded-lg border bg-white px-3 py-2 text-xs shadow-xl pointer-events-none whitespace-nowrap"
+                  style={{
+                    left: tooltip.x,
+                    ...(tooltip.above
+                      ? { top: tooltip.y - 8, transform: 'translateX(-50%) translateY(-100%)' }
+                      : { top: tooltip.y + CELL + 8, transform: 'translateX(-50%)' }),
+                  }}
+                >
+                  <p className="font-semibold text-slate-700">
+                    {tooltip.date.replace(/-/g, '.')}
+                  </p>
+                  <p className="text-muted-foreground mt-0.5">
+                    {t('dashboard.activityCount', { count: tooltip.count })}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+        {/* Bottom row: active days (left) + legend (right) */}
+        {!loading && (
+          <div className="flex items-center justify-between mt-3">
+            <span className="text-xs text-muted-foreground">{totalDaysActive} 天有練習</span>
+            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+              <span>{t('dashboard.activityMore')}</span>
+              {[0, 0.2, 0.45, 0.7, 1].map((r, i) => (
+                <div
+                  key={i}
+                  className={cn('rounded-sm', r === 0 ? 'bg-slate-100' : r < 0.3 ? 'bg-primary/25' : r < 0.55 ? 'bg-primary/55' : r < 0.85 ? 'bg-primary/80' : 'bg-primary')}
+                  style={{ width: CELL, height: CELL }}
+                />
+              ))}
+              <span>{t('dashboard.activityLess')}</span>
+            </div>
           </div>
         )}
       </CardContent>
     </Card>
-  );
-}
-
-function ExamCountdownInline({
-  examDate,
-  onSetDate,
-  t,
-}: {
-  examDate: string | null;
-  onSetDate: () => void;
-  t: (key: Parameters<ReturnType<typeof useI18n>['t']>[0], params?: Record<string, string | number>) => string;
-}) {
-  const days = examDate ? daysUntilExam(examDate) : null;
-
-  const countdownText =
-    days === null
-      ? null
-      : days < 0
-        ? t('dashboard.examCountdownPast')
-        : days === 0
-          ? t('dashboard.examCountdownToday')
-          : t('dashboard.examCountdownDays', { days });
-
-  const countdownColor =
-    days === null
-      ? ''
-      : days < 0
-        ? 'text-slate-400'
-        : days === 0
-          ? 'text-amber-600'
-          : days <= 7
-            ? 'text-red-600'
-            : days <= 30
-              ? 'text-orange-500'
-              : 'text-slate-600';
-
-  return (
-    <div className="flex items-center gap-2 mt-1 flex-wrap">
-      {countdownText && (
-        <>
-          <CalendarDays className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-          <span className={cn('text-sm font-medium', countdownColor)}>{countdownText}</span>
-        </>
-      )}
-      <button
-        onClick={onSetDate}
-        className="text-xs text-primary hover:underline font-medium transition-colors"
-      >
-        {t('dashboard.setExamDate')}
-      </button>
-    </div>
   );
 }
 
@@ -653,7 +759,7 @@ function ExamDateDialog({
   open: boolean;
   currentDate: string | null;
   onClose: () => void;
-  onSave: (date: string) => void;
+  onSave: (date: string, state: string) => void;
 }) {
   const { t } = useI18n();
   const [tab, setTab] = useState<BarTab>('ca');
@@ -937,7 +1043,12 @@ function ExamDateDialog({
               disabled={!isValid}
               onClick={() => {
                 if (isValid) {
-                  onSave(displayToIso(dateInput));
+                  const savedState =
+                    tab === 'ca' ? 'ca' :
+                    tab === 'ny' ? 'ny' :
+                    tab === 'other' ? otherState :
+                    'custom';
+                  onSave(displayToIso(dateInput), savedState);
                   onClose();
                 }
               }}
@@ -952,11 +1063,12 @@ function ExamDateDialog({
 }
 
 export default function DashboardPage() {
-  const { user, profile } = useAuth();
+  const { user, profile, refreshProfile } = useAuth();
   const { t } = useI18n();
   const [dashboardData, setDashboardData] = useState<DashboardData>(emptyDashboardData);
   const [geminiStatus, setGeminiStatus] = useState<'enabled' | 'disabled' | 'unknown'>('unknown');
   const [examDate, setExamDate] = useState<string | null>(null);
+  const [examState, setExamState] = useState<string | null>(null);
   const [showExamDialog, setShowExamDialog] = useState(false);
   const [visible, setVisible] = useState(false);
 
@@ -969,6 +1081,13 @@ export default function DashboardPage() {
   useEffect(() => {
     if (profile?.exam_date) setExamDate(profile.exam_date);
   }, [profile?.exam_date]);
+
+  // Load exam state from localStorage (keyed per user)
+  useEffect(() => {
+    if (!user?.id) return;
+    const saved = localStorage.getItem(`passbar_exam_state_${user.id}`);
+    if (saved) setExamState(saved);
+  }, [user?.id]);
 
   useEffect(() => {
     if (!user?.id) return;
@@ -1006,10 +1125,24 @@ export default function DashboardPage() {
     };
   }, []);
 
-  const handleSaveExamDate = async (date: string) => {
-    setExamDate(date);
+  const handleSaveExamDate = async (date: string, state: string) => {
+    setExamDate(date);   // optimistic update
+    setExamState(state);
+    if (user?.id) {
+      localStorage.setItem(`passbar_exam_state_${user.id}`, state);
+    }
     if (!supabase || !user?.id) return;
-    await supabase.from('profiles').update({ exam_date: date }).eq('id', user.id);
+    const { error } = await supabase
+      .from('profiles')
+      .update({ exam_date: date })
+      .eq('id', user.id)
+      .select('id');          // forces 200 + body instead of 204 No Content
+    if (error) {
+      console.error('[PassBar] Failed to save exam_date:', error.message, error.code);
+      setExamDate(profile?.exam_date ?? null); // revert
+    } else {
+      await refreshProfile();
+    }
   };
 
   const strongestSubject = useMemo(
@@ -1049,23 +1182,29 @@ export default function DashboardPage() {
           visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
         )}
       >
-        <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-bold text-primary">{t('dashboard.welcome', { name: userFirstName })}</h1>
-            {/* Subtitle line: exam countdown inline */}
-            <ExamCountdownInline
+        <header className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          {/* Left: title + badge */}
+          <div className="space-y-2.5 min-w-0">
+            <h1 className="text-2xl sm:text-3xl font-bold text-primary leading-tight">
+              {t('dashboard.welcome', { name: userFirstName })}
+            </h1>
+            <ExamCountdownBadge
               examDate={examDate}
+              examState={examState}
               onSetDate={() => setShowExamDialog(true)}
-              t={t}
             />
           </div>
-          <div className="flex gap-2">
-            <Button asChild variant="outline">
-              <Link href="/review">{t('dashboard.viewHistory')}</Link>
+
+          {/* Right: action buttons — aligned to bottom of left column */}
+          <div className="flex flex-row gap-2.5 shrink-0">
+            <Button asChild variant="outline" className="flex-1 sm:flex-none h-11 px-5 text-sm">
+              <Link href="/review">
+                {t('dashboard.viewHistory')}
+              </Link>
             </Button>
-            <Button asChild>
-              <Link href="/create" className="flex items-center gap-2">
-                <PlusCircle className="w-4 h-4" />
+            <Button asChild className="flex-1 sm:flex-none h-11 px-5 text-sm font-semibold">
+              <Link href="/create" className="flex items-center justify-center gap-2">
+                <PlusCircle className="w-4 h-4 shrink-0" />
                 {t('dashboard.startNewSession')}
               </Link>
             </Button>
@@ -1189,59 +1328,60 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <Card className="lg:col-span-2 shadow-md transition-all duration-700 hover:shadow-lg" style={{ transitionDelay: '300ms' }}>
-            <CardHeader>
-              <CardTitle>{t('dashboard.subjectPerformance')}</CardTitle>
-              <CardDescription>{t('dashboard.subjectPerformanceDescription')}</CardDescription>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base font-semibold">{t('dashboard.subjectPerformance')}</CardTitle>
+              <p className="text-sm text-muted-foreground mt-0.5">{t('dashboard.subjectPerformanceDescription')}</p>
             </CardHeader>
             <CardContent>
               {dashboardData.subjectPerformance.length > 0 ? (
-                <div className="h-[300px] w-full">
-                  <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
-                    <BarChart data={dashboardData.subjectPerformance}>
-                      <XAxis
-                        dataKey="name"
-                        stroke="hsl(var(--muted-foreground))"
-                        fontSize={12}
-                        tickLine={false}
-                        axisLine={false}
-                      />
-                      <YAxis
-                        stroke="hsl(var(--muted-foreground))"
-                        fontSize={12}
-                        tickLine={false}
-                        axisLine={false}
-                        tickFormatter={(value) => `${value}%`}
-                      />
-                      <Tooltip
-                        cursor={{ fill: 'hsl(var(--muted)/0.3)' }}
-                        content={({ active, payload }) => {
-                          if (active && payload && payload.length) {
-                            const row = payload[0].payload as SubjectPerformance;
-                            return (
-                              <div className="bg-white border rounded-lg p-3 shadow-lg">
-                                <p className="font-bold text-primary">{row.name}</p>
-                                <p className="text-sm text-muted-foreground">
-                                  {t('review.accuracy')}: <span className="text-secondary font-bold">{row.score}%</span>
-                                </p>
-                                <p className="text-xs text-muted-foreground">
-                                  {t('performance.correctCount', { correct: row.correct, total: row.total })}
-                                </p>
-                              </div>
-                            );
-                          }
-                          return null;
-                        }}
-                      />
-                      <Bar dataKey="score" radius={[4, 4, 0, 0]} isAnimationActive animationDuration={800} animationEasing="ease-out">
-                        {dashboardData.subjectPerformance.map((entry, index) => (
-                          <Cell key={`cell-${entry.name}`} fill={entry.fill || chartColors[index % chartColors.length]} />
-                        ))}
-                      </Bar>
-                    </BarChart>
-                  </ResponsiveContainer>
+                <div className="space-y-3">
+                  {dashboardData.subjectPerformance
+                    .slice()
+                    .sort((a, b) => b.score - a.score)
+                    .map((entry, index) => {
+                      const hasAnswers = entry.total > 0;
+                      const scoreColor =
+                        !hasAnswers ? 'bg-slate-200' :
+                        entry.score >= 70 ? 'bg-green-500' :
+                        entry.score >= 50 ? 'bg-amber-500' : 'bg-red-400';
+                      const scoreText =
+                        !hasAnswers ? 'text-slate-400' :
+                        entry.score >= 70 ? 'text-green-600' :
+                        entry.score >= 50 ? 'text-amber-600' : 'text-red-500';
+                      return (
+                        <div key={entry.name} className="group">
+                          <div className="flex items-center justify-between mb-1 gap-2">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <span
+                                className="h-2.5 w-2.5 rounded-full shrink-0"
+                                style={{ backgroundColor: entry.fill || chartColors[index % chartColors.length] }}
+                              />
+                              <span className="text-sm font-medium text-slate-700 truncate">{entry.name}</span>
+                            </div>
+                            <div className="flex items-center gap-3 shrink-0">
+                              <span className="text-xs text-muted-foreground">
+                                {hasAnswers ? `${entry.correct}/${entry.total}` : t('dashboard.noPerformance').slice(0, 5) + '…'}
+                              </span>
+                              <span className={cn('text-sm font-bold w-10 text-right tabular-nums', scoreText)}>
+                                {hasAnswers ? `${entry.score}%` : '—'}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="h-2 w-full rounded-full bg-slate-100 overflow-hidden">
+                            <div
+                              className={cn('h-full rounded-full transition-all duration-700', scoreColor)}
+                              style={{
+                                width: hasAnswers ? `${Math.max(entry.score, 2)}%` : '0%',
+                                transitionDelay: `${index * 60}ms`,
+                              }}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
                 </div>
               ) : (
-                <div className="flex h-[300px] items-center justify-center rounded-md border border-dashed text-sm text-muted-foreground">
+                <div className="flex h-[200px] items-center justify-center rounded-md border border-dashed text-sm text-muted-foreground">
                   {t('dashboard.noPerformance')}
                 </div>
               )}
@@ -1250,8 +1390,9 @@ export default function DashboardPage() {
 
           <div className="space-y-6">
             <Card className="shadow-md transition-all duration-700 hover:shadow-lg" style={{ transitionDelay: '360ms' }}>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg">{t('dashboard.recentInsights')}</CardTitle>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base font-semibold">{t('dashboard.recentInsights')}</CardTitle>
+                <p className="text-sm text-muted-foreground mt-0.5">{t('dashboard.noAnswersDescription')}</p>
               </CardHeader>
               <CardContent className="space-y-4">
                 {strongestSubject ? (
@@ -1347,7 +1488,7 @@ export default function DashboardPage() {
 
             <Card className="shadow-md border-primary/20 bg-primary/5 transition-all duration-700 hover:shadow-lg" style={{ transitionDelay: '420ms' }}>
               <CardHeader className="pb-2">
-                <CardTitle className="text-lg text-primary">{t('dashboard.nextMilestone')}</CardTitle>
+                <CardTitle className="text-base font-semibold text-primary">{t('dashboard.nextMilestone')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">

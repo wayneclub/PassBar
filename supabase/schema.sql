@@ -71,6 +71,9 @@ create table if not exists public.question_items (
   api_match_score numeric,
   api_url text,
   api_status int,
+  micro_concept text,
+  trap_type     text,
+  skill_tested  text,
   raw jsonb,
   created_at timestamptz default now(),
   updated_at timestamptz default now(),
@@ -389,6 +392,7 @@ group by s.subject, ch.id, ch.chapter;
 
 -- Compatibility view for the current frontend. New code should prefer
 -- subjects / chapters / question_items / question_choices / question_explanations.
+drop view if exists public.questions;
 create view public.questions as
 with choice_rows as (
   select
@@ -486,6 +490,10 @@ select
   er.en_explanation_html,
   zh.explanation_html,
   coalesce(zh.zh_explain_imgs, '{}') as zh_explain_imgs,
+  -- new metadata columns
+  q.micro_concept,
+  q.trap_type,
+  q.skill_tested,
   q.raw
 from public.question_items q
 join public.chapters ch on ch.id = q.chapter_id
@@ -692,6 +700,12 @@ on public.subjects for select using (true);
 drop policy if exists "Allow public read access to chapters" on public.chapters;
 create policy "Allow public read access to chapters"
 on public.chapters for select using (true);
+
+drop policy if exists "Admins can update question metadata" on public.question_items;
+create policy "Admins can update question metadata"
+on public.question_items for update
+using (public.is_admin())
+with check (public.is_admin());
 
 drop policy if exists "Allow public read access to question items" on public.question_items;
 create policy "Allow public read access to question items"

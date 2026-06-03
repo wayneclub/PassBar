@@ -223,6 +223,10 @@ Correct Answer: {correct_answer}
 
 # ── 工具函式 ──────────────────────────────────────────────────────────────────
 
+class RateLimitedError(Exception):
+    """所有 API Key 均被 rate limited，呼叫方應跳過此題。"""
+
+
 def has_chinese(text: str) -> bool:
     return any("一" <= c <= "鿿" for c in text)
 
@@ -391,12 +395,11 @@ def call_gemini_rest(
                 all_rate_limited = False
                 time.sleep(5)
 
-        # 這輪所有 key 都被 rate limited，等待後再重試
+        # 這輪所有 key 都被 rate limited，直接跳過（不等待）
         if all_rate_limited:
-            wait = 60 * round_num
-            print(
-                f"    All keys rate limited (round {round_num}), waiting {wait}s …")
-            time.sleep(wait)
+            raise RateLimitedError(
+                f"All keys rate limited (round {round_num}), skipping question"
+            )
 
     raise RuntimeError(
         f"All API keys exhausted after {MAX_RETRIES} rounds. Last error: {last_error}")
@@ -489,6 +492,9 @@ def process_question(
             print("✓")
             time.sleep(RATE_LIMIT_DELAY)
             return html
+        except RateLimitedError:
+            print("⏭ SKIPPED (rate limited)")
+            raise  # 向上傳遞，讓整題跳過
         except Exception as exc:
             print(f"✗ ERROR: {exc}")
             return f"<!-- ERROR: {exc} -->"
@@ -540,6 +546,8 @@ def process_question(
                     print("✓")
                     source_tag = "api+gemini_html"
                     time.sleep(RATE_LIMIT_DELAY)
+                except RateLimitedError:
+                    raise  # 向上傳遞，整題跳過
                 except Exception as exc:
                     print(f"✗ ERROR: {exc}")
                     source_tag = "error"
@@ -559,6 +567,8 @@ def process_question(
                             zh_choices[k] = v
                     print("✓")
                     time.sleep(RATE_LIMIT_DELAY)
+                except RateLimitedError:
+                    raise  # 向上傳遞，整題跳過
                 except Exception as exc:
                     print(f"✗ TRANSLATE ERROR: {exc}")
         else:
@@ -584,6 +594,8 @@ def process_question(
                     subject, chapter, en_question, en_options)
                 print("✓")
                 time.sleep(RATE_LIMIT_DELAY)
+            except RateLimitedError:
+                raise  # 向上傳遞，整題跳過
             except Exception as exc:
                 print(f"✗ TRANSLATE ERROR: {exc}")
 
@@ -603,6 +615,8 @@ def process_question(
                 print("✓")
                 source_tag = "gemini"
                 time.sleep(RATE_LIMIT_DELAY)
+            except RateLimitedError:
+                raise  # 向上傳遞，整題跳過
             except Exception as exc:
                 print(f"✗ ERROR: {exc}")
                 source_tag = "error"
@@ -716,8 +730,26 @@ def process_json_file(
             print(f"  ✓ Q{idx:04d} (cached)")
             continue
 
-        result = process_question(
-            q, chapter_dir, subject, chapter, count=count, dry_run=dry_run)
+        try:
+            result = process_question(
+                q, chapter_dir, subject, chapter, count=count, dry_run=dry_run)
+        except RateLimitedError:
+            print(f"  ⏭ Q{idx:04d} SKIPPED (all keys rate limited, will retry next run)")
+            result = {
+                "index": idx,
+                "subject": subject,
+                "chapter": chapter,
+                "count": count,
+                "question": q.get("question", ""),
+                "choices": parse_choices_from_json(q.get("choices", {})),
+                "answer": q.get("sourceCorrectAnswer", "").upper().strip(),
+                "source_img": q.get("sourceExplanationImageFile", ""),
+                "explanation": "<!-- ERROR: rate limited -->",
+                "zh-question": "",
+                "zh-choices": {},
+                "zh-explanation": "<!-- ERROR: rate limited -->",
+                "_source": "skipped",
+            }
         enriched_questions.append(result)
 
         if not dry_run:
