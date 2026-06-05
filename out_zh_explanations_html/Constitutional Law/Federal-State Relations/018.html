@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-banner {
+            background-color: var(--correct-color);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 1.05rem;
+        }
+
+        .text-block {
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: var(--highlight-bg);
+            border: 1px solid #bde0ef;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .highlight-box strong {
+            color: var(--primary-color);
+        }
+
+        .case-law {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9rem;
+            border-top: 1px dashed #ccc;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.85rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .comparison-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .wrong-option {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fff5f5;
+            border-left: 3px solid var(--wrong-color);
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            background: #f9f9f9;
+            border-top: 1px solid #eee;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Federal-State Relations / Constitutional Law</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-banner">
+            正确答案：A (No)
+        </div>
+
+        <div class="text-block">
+            <strong>核心结论：</strong>法院<strong>不会</strong>驳回此案。虽然州立法者在履行立法职能时享有广泛的豁免权，但这种豁免权<strong>不适用于联邦刑事起诉</strong>。
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="section-title">⚖️ 法律依据与推理</div>
+        
+        <div class="text-block">
+            本题考察的是<strong>州立法豁免权 (State Legislative Immunity)</strong> 的边界。我们需要区分两个维度：
+            <ol>
+                <li><strong>主体：</strong>是联邦国会议员还是州议员？</li>
+                <li><strong>责任类型：</strong>是民事责任 (Civil Liability) 还是刑事责任 (Criminal Liability)？</li>
+            </ol>
+        </div>
+
+        <div class="highlight-box">
+            <strong>关键规则 (The Rule)：</strong><br>
+            根据联邦普通法，州立法者对其官方立法行为（如在议会发表演讲）享有免受<strong>联邦民事诉讼</strong>的绝对豁免权。
+            <br><br>
+            ⚠️ <strong>但是：</strong> 这种豁免权<strong>并不延伸至联邦刑事诉讼</strong>。
+            <div class="case-law">
+                参见判例：United States v. Gillock (1980)
+            </div>
+        </div>
+
+        <div class="text-block">
+            <strong>本案分析：</strong><br>
+            虽然该众议员的行为（在议会发表演讲）属于典型的立法活动，且如果这是一起民事诽谤诉讼，她将享有豁免权。但本案是<strong>联邦政府</strong>提起的<strong>刑事起诉</strong>（违反联邦窃听法规）。最高法院认为，联邦执行刑事法律的重大利益超过了保护州立法独立性的利益。因此，她不能免于受审。
+        </div>
+
+        <!-- 考点对比表 -->
+        <div class="section-title">📊 豁免权速记矩阵</div>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>诉讼类型</th>
+                    <th>联邦国会议员<br>(Speech or Debate Clause)</th>
+                    <th>州立法者<br>(Common Law)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>民事责任</strong></td>
+                    <td>✅ 豁免</td>
+                    <td>✅ 豁免 (针对立法行为)</td>
+                </tr>
+                <tr>
+                    <td><strong>刑事责任</strong></td>
+                    <td>✅ 豁免 (针对立法行为)</td>
+                    <td>❌ <strong>无豁免</strong> (联邦刑事)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 错误选项解析 -->
+        <div class="section-title">❌ 为什么其他选项错误？</div>
+
+        <div class="wrong-option">
+            <strong>选项 B (Yes, absolute immunity...)：</strong><br>
+            错误。该选项混淆了民事和刑事豁免。虽然州立法者对立法行为享有绝对的<em>民事</em>豁免权，但如上所述，这不适用于联邦<em>刑事</em>起诉。
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 C (Eleventh Amendment)：</strong><br>
+            错误。第十一修正案 (Eleventh Amendment) 禁止私人公民在联邦法院起诉州政府。但它<strong>不禁止联邦政府 (United States)</strong> 起诉一个州或州官员。本案原告是联邦政府。
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 D (Speech or Debate Clause)：</strong><br>
+            错误。这是一个常见的陷阱。美国宪法中的 <span class="tag">Speech or Debate Clause</span> (Art. I, § 6) <strong>仅适用于联邦国会议员</strong>，不适用于州立法者。州立法者的豁免权来自普通法，而非宪法此条款。
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

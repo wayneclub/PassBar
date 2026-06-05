@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机宽度 */
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            background-color: #eee;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 10px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .correct-answer {
+            background-color: #dff0d8;
+            color: #3c763d;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .tip {
+            font-size: 13px;
+            color: #555;
+            border: 1px dashed #999;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：合同的成立与履行</h1>
+    
+    <div class="correct-answer">
+        正确答案：B
+    </div>
+
+    <p>本题考察的核心是合同法中的<b>要约与承诺 (Offer and Acceptance)</b>，特别是通过<b>履行行为 (Performance)</b> 接受要约的法律后果。</p>
+
+    <h2>1. 案件的时间线分析 (Timeline Analysis)</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <strong>钻井工发送未签字表格：</strong><br>
+            这不是要约 (Offer)，而是要约邀请 (Invitation to Deal)。因为表格明确规定“必须由双方签字才生效”，且钻井工未签字。
+        </div>
+        <div class="timeline-item">
+            <strong>开发商签字并寄回：</strong><br>
+            这是<span class="term">要约 (Offer)</span>。开发商同意了条款并签字，向钻井工发出了缔结合同的请求。
+        </div>
+        <div class="timeline-item">
+            <strong>钻井工未签字但开始钻井：</strong><br>
+            这是<span class="term">承诺 (Acceptance)</span>。尽管表格要求签字，但法律允许通过履行行为来接受要约。
+        </div>
+    </div>
+
+    <h2>2. 核心法律规则 (Legal Rules)</h2>
+    
+    <div class="concept-box">
+        <strong>Restatement (Second) of Contracts § 62</strong><br>
+        当要约邀请受要约人选择“作出承诺”或“履行行为”时，<span class="term">开始履行 (Beginning of Performance)</span> 即构成承诺。
+    </div>
+
+    <p>这种承诺具有双重效果：</p>
+    <ul>
+        <li>它构成了对要约的接受，合同正式成立。</li>
+        <li>它构成了受要约人（钻井工）完成工作的<b>默示允诺 (Implied Promise)</b>。</li>
+    </ul>
+
+    <h2>3. 为什么 B 是正确答案？</h2>
+    <p>虽然合同草案上写着“必须签字才生效”，但法院通常认为：</p>
+    <ul>
+        <li><b>弃权 (Waiver)：</b> 钻井工是该条款的起草者，他通过开始工作放弃了“必须签字”这一形式要求。</li>
+        <li><b>双边合同 (Bilateral Contract)：</b> 当钻井工开始钻井时，他不仅仅是在“试探”，而是在法律上接受了开发商的要约。根据法律规定，开始履行即意味着承诺会完成工作。</li>
+    </ul>
+    <p>因此，钻井工中途停工并要求加价属于<b>违约 (Breach of Contract)</b>，开发商有权获得损害赔偿。</p>
+
+    <h2>4. 为什么其他选项是错误的？</h2>
+    
+    <ul>
+        <li><b>选项 A (错在要约的认定)：</b> 钻井工最初发出的表格不是要约，因为他没有签字，且明确保留了签字权。所以开发商的签字不是承诺，而是发出了要约。</li>
+        <li><b>选项 C (错在形式主义)：</b> 虽然表格要求签字，但在合同法中，<b>行为 (Conduct)</b> 可以胜过形式条款。如果一方开始履行，另一方接受履行，合同即成立，未签字的抗辩通常无效。</li>
+        <li><b>选项 D (错在合同类型)：</b> 这是一个典型的混淆项。选项D描述的是<b>单边合同 (Unilateral Contract)</b> 的规则（即开始履行产生不可撤销的要约，但不强制完成）。
+        <br><br>
+        但在建筑和劳务背景下，除非明确说明“只有完全做完才算接受”，否则默认视为<b>双边合同 (Bilateral Contract)</b>。一旦开始干活，就必须干完。</li>
+    </ul>
+
+    <div class="tip">
+        <strong>💡 MBE 考试技巧</strong><br>
+        遇到“开始履行” (Commencement of Performance) 的题目时，首先判断是<b>双边合同</b>还是<b>单边合同</b>：
+        <ul>
+            <li><b>双边 (大多数情况)：</b> 开始履行 = 承诺 + 承诺做完。停工 = 违约。</li>
+            <li><b>单边 (如悬赏广告)：</b> 开始履行 = 仅仅阻止要约人撤销。停工 = 不违约（因为没有承诺做完）。</li>
+        </ul>
+        本题是典型的工程服务，属于双边合同逻辑。
+    </div>
+
+</div>
+
+</body>
+</html>

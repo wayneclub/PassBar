@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            background-color: #eee;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .concept-card {
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .rule-list {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        .wrong-option {
+            font-size: 0.9em;
+            color: #666;
+            border-top: 1px dashed #ccc;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：防止欺诈法与一年期条款</h1>
+    
+    <div class="answer-box">
+        正确答案：D<br>
+        <span style="font-weight: normal; font-size: 0.9em;">是的，因为“防止欺诈法”的一年期条款阻碍了双方承诺的执行。</span>
+    </div>
+
+    <p>本题考察的是合同法中<b>防止欺诈法 (Statute of Frauds, SoF)</b> 的核心考点之一：<b>一年期条款 (One-Year Provision)</b>。</p>
+
+    <h2>1. 核心法律规则</h2>
+    <div class="concept-card">
+        <span class="concept-title">一年期规则 (The One-Year Rule)</span>
+        <p>如果一份合同的条款使得任何一方都<b>不可能 (Impossible)</b> 在合同订立之日起的一年内<b>完全履行 (Fully Perform)</b>，则该合同必须采用书面形式才能强制执行。</p>
+        <p class="english-term">Contracts that cannot be performed within one year must be in writing.</p>
+    </div>
+
+    <h2>2. 案情分析</h2>
+    <p>在本案中，合同的关键特征如下：</p>
+    <ul class="rule-list">
+        <li><b>形式：</b>口头协议 (Oral Agreement)。</li>
+        <li><b>期限：</b>固定为期五年 (Five Years)。</li>
+        <li><b>终止权：</b>双方可随时终止 (Right to terminate at any time)。</li>
+    </ul>
+    <p>由于合同明确规定期限为<b>5年</b>，从逻辑上讲，要“完全履行”这份为期5年的合同，必然需要超过1年的时间。因此，该合同落入 SoF 的管辖范围，必须书面签署才有效。</p>
+
+    <h2>3. 难点辨析：终止权 vs. 履行</h2>
+    <p>这是本题最大的陷阱（也是选项 A 错误的原因）。考生常会困惑：<i>“既然可以随时终止，那不是可能在一年内结束吗？”</i></p>
+    
+    <div class="concept-card" style="background-color: #fff8f8; border-color: #e74c3c;">
+        <span class="concept-title" style="color: #c0392b;">多数派规则 (Majority Rule)</span>
+        <p>在大多数司法管辖区（以及 MBE 考试标准）中：</p>
+        <p><b>终止 (Termination) ≠ 履行 (Performance)</b></p>
+        <p>如果一方在一年内行使终止权，合同虽然结束了，但这被视为合同被“切断”或“废止”，而不是合同被“履行”了。合同的本意是履行5年，任何短于5年的结果都不是“完全履行”。</p>
+    </div>
+    
+    <p>因此，尽管有终止条款，该口头合同依然违反了 SoF，艺人可以成功提出抗辩，导致合同不可强制执行。</p>
+
+    <h2>4. 为什么其他选项是错的？</h2>
+    
+    <div class="wrong-option">
+        <b>选项 A (错误)：</b> 认为终止权使合同免受 SoF 约束。如上所述，这是少数派观点。MBE 通常测试多数派规则，即终止不等于履行。
+    </div>
+
+    <div class="wrong-option">
+        <b>选项 B (错误)：</b> 认为“部分履行” (Part Performance) 可以例外。
+        <br><b>考点警示：</b> 在涉及土地买卖的合同中，部分履行可能例外；但在<b>一年期条款</b>下，部分履行通常<b>不能</b>使合同免受 SoF 约束。经理只能通过“不当得利” (Restitution / Quantum Meruit) 索要已工作部分的合理报酬，但不能依据合同索赔违约金。
+    </div>
+
+    <div class="wrong-option">
+        <b>选项 C (错误)：</b> 提到第一年未完全履行。这与法律分析无关。关键在于合同订立时的条款是否允许在一年内完成，而不是实际发生了什么。
+    </div>
+
+    <h2>5. 考试技巧 (Exam Tip)</h2>
+    <p>在 MBE 中遇到口头合同题：</p>
+    <ol class="rule-list">
+        <li>看期限：是<b>固定期限</b>（如 "for 2 years"）还是<b>不确定期限</b>（如 "for life"）？</li>
+        <li><b>固定期限 > 1年：</b> 必须书面（即使有终止条款）。</li>
+        <li><b>不确定期限 / 终身：</b> 不需要书面（因为理论上人可能在一年内去世，从而“完全履行”终身合同）。</li>
+    </ol>
+
+</div>
+
+</body>
+</html>

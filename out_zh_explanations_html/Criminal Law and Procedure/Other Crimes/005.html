@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --highlight-bg: #ecf0f1;
+            --text-color: #34495e;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .key-point {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .analysis-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .analysis-step:last-child {
+            border-bottom: none;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .visual-diagram {
+            margin: 20px 0;
+            padding: 15px;
+            border: 2px dashed #bdc3c7;
+            border-radius: var(--border-radius);
+            text-align: center;
+            position: relative;
+            background: #fff;
+        }
+
+        .window-sill {
+            height: 4px;
+            background: #2c3e50;
+            width: 80%;
+            margin: 10px auto;
+            position: relative;
+        }
+
+        .body-part {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+        }
+
+        .footer-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .check-icon {
+            color: green;
+            margin-right: 5px;
+        }
+        
+        .cross-icon {
+            color: red;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Criminal Law: Burglary</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div style="margin-bottom: 20px;">
+            <span class="badge">正确答案</span>
+            <strong>A. Burglary (入室犯法罪)</strong>
+        </div>
+
+        <p>本题考察的是普通法中<b>入室犯法罪 (Burglary)</b> 的构成要件，特别是关于“进入 (Entry)”的界定。</p>
+
+        <!-- 法律规则 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 法律规则 (Rule of Law)</span>
+            普通法下的 Burglary 定义为：
+            <br>
+            在夜间 (Nighttime) <b>破坏 (Breaking)</b> 并 <b>进入 (Entering)</b> 他人的 <b>住所 (Dwelling)</b>，且具有在其中实施重罪 (Felony) 的 <b>特定意图 (Specific Intent)</b>。
+        </div>
+
+        <!-- 案情分析 -->
+        <h3>案情关键点分析</h3>
+        
+        <div class="analysis-step">
+            <strong>1. 破坏 (Breaking)</strong><br>
+            女子打开了浴室的窗户。
+            <br><span class="term">法律点：推开未锁的窗户或门即构成 Constructive Breaking 或 Actual Breaking。</span>
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 进入 (Entry) <span class="key-point">★ 核心考点</span></strong><br>
+            题目明确指出：“当她的腿越过窗台时 (As her leg cleared the window sill)”。
+            <br><br>
+            <div class="visual-diagram">
+                <div>🏠 室内 (Inside)</div>
+                <div class="window-sill"></div>
+                <div style="position: absolute; top: 35px; left: 50%; transform: translateX(-50%);">
+                    🦵 <span class="body-part">腿部越界 (Leg Crossed)</span>
+                </div>
+                <div style="margin-top:20px">🌳 室外 (Outside)</div>
+            </div>
+            <span class="term">法律点：只要被告身体的<b>任何一部分</b>越过了房屋的界限（即窗台平面），“进入”这一要素即告完成。</span>
+        </div>
+
+        <div class="analysis-step">
+            <strong>3. 意图 (Intent)</strong><br>
+            她在进入的那一刻，意图是偷窃项链 (Larceny)。
+            <br><span class="term">法律点：Burglary 只需要在进入时有犯罪意图，不需要实际完成该犯罪。</span>
+        </div>
+
+        <!-- 为什么选A -->
+        <h3>为什么是 Burglary 而不是 Attempt?</h3>
+        <p>很多考生会误选 <b>Attempted Burglary (选项B)</b>，认为她被狗吓跑了，没有偷到东西，所以只是“未遂”。</p>
+        <p>这是一个陷阱！请记住：</p>
+        <ul>
+            <li><span class="check-icon">✔</span> <b>Burglary</b> 是一种针对“居住安宁”的犯罪。一旦她“破门”并“进入”（哪怕只是一条腿），Burglary 罪行就已经<b>既遂 (Completed)</b>。</li>
+            <li><span class="cross-icon">✘</span> 她是否偷到了项链，只影响她是否构成 Larceny，不影响 Burglary 的成立。</li>
+        </ul>
+
+        <p>至于 <b>Attempted Larceny (选项C)</b>：虽然她确实也构成了盗窃未遂，但题目问的是“最严重的罪行 (Most Serious Crime)”。Burglary 是针对住所的重罪，比单纯的盗窃未遂更严重。</p>
+
+        <!-- 考试技巧 -->
+        <div class="footer-tip">
+            <strong>🎓 MBE 提分技巧：</strong>
+            <br>
+            看到 "Body part crossed the plane"（身体部位越过界限）这类描述时，大脑要立刻反应：<b>Entry has occurred (进入已完成)</b>。
+            <br><br>
+            不要被后续的“逃跑”、“未偷到东西”迷惑。Burglary 关注的是“为了犯罪而闯入”，而不是“闯入后的结果”。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --danger-color: #e74c3c;
+            --success-color: #27ae60;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed #ccc;
+        }
+
+        .step {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 6px;
+            width: 90%;
+            text-align: center;
+            font-size: 13px;
+            position: relative;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .arrow {
+            font-size: 20px;
+            color: #95a5a6;
+            margin: -15px 0 5px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            color: white;
+            margin-top: 5px;
+        }
+
+        .badge-success { background-color: var(--success-color); }
+        .badge-danger { background-color: var(--danger-color); }
+
+        .analysis-section {
+            margin-top: 20px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        .trap-alert {
+            margin-top: 15px;
+            font-size: 13px;
+            color: #666;
+            background-color: #fff5f5;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid var(--danger-color);
+        }
+
+        .footer {
+            background-color: var(--bg-color);
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence Law: Hearsay within Hearsay</div>
+    </div>
+
+    <div class="content">
+        <!-- Core Legal Concept -->
+        <div class="concept-box">
+            <div class="concept-title">核心考点：多重传闻 (Hearsay within Hearsay)</div>
+            <p style="font-size: 13px; margin: 0;">
+                根据 <b>FRE 805</b>，当传闻证据包含在另一传闻证据中时，只有当<b>每一层</b>陈述都符合传闻例外或被排除在传闻定义之外时，该证据才可采纳。
+            </p>
+        </div>
+
+        <!-- Visual Analysis Diagram -->
+        <div class="analysis-title">证据链条分析</div>
+        <div class="diagram">
+            <!-- Layer 1 -->
+            <div class="step">
+                <strong>第 1 层 (内层)</strong><br>
+                邻居对丈夫说："I'm going to blow your head off..."<br>
+                <span class="badge badge-success">可采纳 (Admissible)</span>
+                <div style="font-size: 11px; color: #666; margin-top: 4px;">
+                    理由：对方当事人陈述 (Opposing Party's Statement)
+                </div>
+            </div>
+            
+            <div class="arrow">↓</div>
+
+            <!-- Layer 2 -->
+            <div class="step" style="border-color: var(--danger-color); border-width: 2px;">
+                <strong>第 2 层 (外层)</strong><br>
+                丈夫对妻子(证人)说："昨天我遇到了邻居..."<br>
+                <span class="badge badge-danger">不可采纳 (Inadmissible)</span>
+                <div style="font-size: 11px; color: #666; margin-top: 4px;">
+                    理由：普通传闻，无例外适用 (Hearsay with no exception)
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <!-- Court -->
+            <div class="step">
+                <strong>法庭 (Court)</strong><br>
+                妻子试图转述丈夫的话<br>
+                <span class="badge badge-danger">结果：证据被排除</span>
+            </div>
+        </div>
+
+        <!-- Detailed Explanation -->
+        <div class="analysis-section">
+            <div class="analysis-title">深度解析</div>
+            <p style="font-size: 14px;">
+                本题的正确答案是 <b>A</b>。这是一个典型的“双重传闻”问题。要让妻子在法庭上复述丈夫的话（而丈夫又是复述邻居的话），证据链的每一个环节都必须打通。
+            </p>
+            <ul>
+                <li>
+                    <b>内层（邻居 -> 丈夫）：</b> 邻居是本案被告，他的威胁性言论被原告引用，属于<b>对方当事人陈述 (Statement by a Party-Opponent)</b>，根据 FRE 801(d)(2)，这在法律上被定义为“非传闻” (Non-hearsay)，是可以采纳的。
+                </li>
+                <li>
+                    <b>外层（丈夫 -> 妻子）：</b> 这是问题的关键。丈夫在庭外向妻子描述过去发生的事件，目的是为了证明该事件（邻居威胁他）确实发生过。这就是典型的<b>传闻 (Hearsay)</b>。
+                </li>
+            </ul>
+            <p style="font-size: 14px;">
+                <b>为什么外层没有例外适用？</b>
+                <br>丈夫是在事发“第二天” (the day before he was killed) 描述的，这排除了：
+                <br>❌ <b>现时感官印象 (Present Sense Impression):</b> 需要边看边说或刚看完立刻说。
+                <br>❌ <b>激动言词 (Excited Utterance):</b> 没有证据表明丈夫在描述时仍处于受威胁的压力/激动之下。
+            </p>
+        </div>
+
+        <!-- Trap Analysis -->
+        <div class="trap-alert">
+            <strong>⚠️ 常见陷阱 (Choice C & D)</strong><br>
+            <ul style="margin-bottom: 0;">
+                <li><b>选项 C 错误：</b>它只看到了内层（邻居的话）是可采纳的，忽略了外层（丈夫的话）是不可采纳的传闻。</li>
+                <li><b>选项 D 错误：</b>即使邻居的话显示了其精神状态 (State of Mind)，这仍然被包裹在丈夫不可采纳的传闻陈述中。</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <b>MBE 解题技巧：</b><br>
+        遇到 "A told B what C said" 的结构，务必画出链条。只要链条中任何一环断裂（是传闻且无例外），整个证据即不可采纳。
+    </div>
+</div>
+
+</body>
+</html>

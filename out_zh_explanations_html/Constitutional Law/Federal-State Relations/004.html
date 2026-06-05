@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-section {
+            background-color: #e8f8f5;
+            border-left: 5px solid var(--success-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: var(--success-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .concept-box {
+            background-color: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        .rule-list {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        .rule-list li {
+            margin-bottom: 8px;
+        }
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+        .trap-alert {
+            background-color: #fff3e0;
+            border: 1px solid #ffe0b2;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .trap-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .highlight {
+            background-color: #fff9c4;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Constitutional Law: Dormant Commerce Clause</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-section">
+            <span class="answer-title">✅ 正确答案：选项 D</span>
+            <p>法院应裁定公司胜诉，因为该税收通过给予州内产品比州外产品更优惠的待遇，构成了对州际贸易的不当歧视。</p>
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="concept-box">
+            <div class="concept-title">⚖️ 法律依据：休眠商业条款</div>
+            <p>本题考查的是<b>休眠商业条款 (Dormant Commerce Clause)</b> 对州政府征税权的限制。</p>
+            <p>根据最高法院在 <span class="latin">Complete Auto Transit, Inc. v. Brady</span> (1977) 确立的标准，一项针对州际贸易的州税必须满足以下四个条件才合宪：</p>
+            <ol class="rule-list">
+                <li><b>实质性联系 (Substantial Nexus)：</b> 纳税人与征税州有足够的物理或经济联系。</li>
+                <li><b>公平分配 (Fair Apportionment)：</b> 税收必须根据在该州发生的活动比例进行分配。</li>
+                <li><b>非歧视性 (Non-discrimination)：</b> <span class="highlight">这是本题的关键。</span>税收不得偏袒州内利益而损害州外利益。</li>
+                <li><b>合理相关 (Fair Relationship)：</b> 税收与州提供的服务（如警察、消防、道路）合理相关。</li>
+            </ol>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="concept-box">
+            <div class="concept-title">🔍 案情深度分析</div>
+            <p>在本案中，该市的税收制度包含一个<b>“本地成分”条款 (State X content provision)</b>：</p>
+            <ul>
+                <li>如果组装商使用<b>本州 (State X)</b> 制造的零件，可以减税。</li>
+                <li>如果组装商使用<b>外州</b> 制造的零件，必须全额纳税。</li>
+            </ul>
+            <p>这种机制在法律上被称为<b>“表面歧视” (Facial Discrimination)</b>。它实际上充当了针对外州产品的关税，通过税收优惠诱导企业购买本地产品，从而惩罚购买外州产品的行为。</p>
+            <p><b>结论：</b> 这种赤裸裸的<b>经济保护主义 (Economic Protectionism)</b> 是休眠商业条款最核心禁止的行为，因此该税收违宪。</p>
+        </div>
+
+        <!-- 干扰项陷阱 -->
+        <div class="trap-alert">
+            <div class="trap-title">⚠️ 常见陷阱与错误选项</div>
+            <p><b>为什么选项 C 是错的？</b></p>
+            <p>很多考生看到“总收入税 (Gross Receipts Tax)”就以为违宪。其实，只要税收经过<b>公平分配 (Fairly Apportioned)</b>，即只对在该州产生的收入部分征税，它就是合法的。本题中税收违宪的原因是<b>歧视</b>，而不是因为它是基于总收入计算的。</p>
+            
+            <p><b>为什么选项 A 是错的？</b></p>
+            <p>虽然州可以作为<b>市场参与者 (Market Participant)</b> 购买本地产品（例如州政府自己买电脑时只买本地的），但当州作为<b>监管者 (Regulator)</b> 征税时，不能通过税收手段来“扶持”本地企业打压外地竞争对手。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-box" style="background-color: #fdfbf7; border-color: #fae5b0;">
+            <div class="concept-title">💡 MBE 考试技巧</div>
+            <p>在处理涉及州税收 (State Taxation) 的题目时，请按以下顺序检查：</p>
+            <ol>
+                <li><b>是否歧视？</b> (Discriminatory?) —— 如果税法条款明确写着“本州产品税率低”或“外州产品税率高”，这通常直接违宪（除非有极严格的理由，但MBE中极少见）。</li>
+                <li><b>是否重复征税？</b> (Apportionment?) —— 如果没有歧视，检查是否对同一笔收入在两个州重复征税。</li>
+            </ol>
+            <p>本题在第一步“歧视”环节就已经违宪，因此直接选 D。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

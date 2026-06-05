@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #d4edda;
+            --correct-text: #155724;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .answer-box {
+            background-color: var(--correct-bg);
+            color: var(--correct-text);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            border-left: 5px solid #28a745;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .concept-card {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            border: 1px solid #b3d7ff;
+        }
+
+        .latin-term {
+            font-style: italic;
+            font-weight: bold;
+            color: #d63384;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .exam-tip {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            border-left: 5px solid #ffc107;
+            margin-top: 20px;
+        }
+
+        .key-point {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：上诉审查标准</h1>
+
+    <div class="answer-box">
+        正确答案：D. De novo (重新审查)
+    </div>
+
+    <div class="concept-card">
+        <h3>核心考点：即决判决 (Summary Judgment) 的性质</h3>
+        <p>根据 <b>FRCP 56</b>，即决判决仅在以下情况批准：</p>
+        <ol>
+            <li>没有实质性的事实争议 (No genuine dispute as to any material fact)；且</li>
+            <li>动议方有权依法获得判决 (Entitled to judgment as a matter of law)。</li>
+        </ol>
+        <p>在本题中，公司承认了事实（未提供机会），唯一的争议在于<b>法律的适用</b>（联邦法律是否覆盖这些行为）。</p>
+    </div>
+
+    <h2>为什么适用 De Novo 标准？</h2>
+    <p><b>De novo</b>（拉丁语，意为“从头开始”）是针对<b>法律问题 (Questions of Law)</b> 的审查标准。</p>
+    <p>由于即决判决不涉及事实认定（事实已被承认或假定有利于非动议方），初审法官所做的完全是<b>法律推断</b>。上诉法院在法律解释上的专业性不亚于初审法院，因此不需要给予初审法院任何尊重 (Deference)。</p>
+    <p>上诉法院将像初审法院从未裁决过一样，重新审视该法律问题。</p>
+
+    <h2>上诉审查标准速查表</h2>
+    <p>在MBE考试中，区分以下标准至关重要：</p>
+    <table>
+        <tr>
+            <th>审查标准 (Standard)</th>
+            <th>适用对象 (Issue)</th>
+            <th>尊重程度 (Deference)</th>
+        </tr>
+        <tr>
+            <td><b>De Novo</b><br>(重新审查)</td>
+            <td>法律问题<br>(如：即决判决、驳回起诉、法律解释)</td>
+            <td>无 (None)</td>
+        </tr>
+        <tr>
+            <td><b>Clearly Erroneous</b><br>(明显错误)</td>
+            <td>法官审判中的<b>事实</b>认定<br>(Bench Trial Findings)</td>
+            <td>高 (High)</td>
+        </tr>
+        <tr>
+            <td><b>Substantial Evidence</b><br>(实质性证据)</td>
+            <td>陪审团审判中的<b>事实</b>认定<br>(Jury Verdicts)</td>
+            <td>极高 (Very High)</td>
+        </tr>
+        <tr>
+            <td><b>Abuse of Discretion</b><br>(滥用自由裁量权)</td>
+            <td>法官的<b>自由裁量</b>决定<br>(如：证据可采性、制裁、准予修改诉状)</td>
+            <td>高 (High)</td>
+        </tr>
+    </table>
+
+    <h2>为什么其他选项是错误的？</h2>
+    <ul>
+        <li><b>A. Abuse of Discretion (滥用自由裁量权):</b> 适用于法官有选择权的决定（如是否允许某证据入庭）。即决判决不是一种“选择”，如果法律适用正确且无事实争议，法官<i>必须</i>依法判决，没有自由裁量的空间。</li>
+        <li><b>B. Clear and Convincing (清晰且有说服力):</b> 这是一个<b>举证责任 (Burden of Proof)</b> 标准（例如在欺诈案件中），而不是上诉法院审查下级法院判决时使用的标准。这是MBE常见的干扰项。</li>
+        <li><b>C. Clearly Erroneous (明显错误):</b> 仅适用于法官在非陪审团审判（Bench Trial）中做出的<b>事实认定</b>。本案是即决判决，尚未进入审判环节，且没有事实争议。</li>
+    </ul>
+
+    <div class="exam-tip">
+        <h3>💡 MBE 答题技巧</h3>
+        <p>看到题目问 <b>"Standard of Review"</b> 时，立即进行两步判断：</p>
+        <ol>
+            <li><b>初审法院做了什么决定？</b>
+                <ul>
+                    <li>如果是解释法律、批准 Summary Judgment 或 Motion to Dismiss ➡️ 选 <b>De Novo</b>。</li>
+                    <li>如果是决定证据是否可采、是否批准延期 ➡️ 选 <b>Abuse of Discretion</b>。</li>
+                    <li>如果是法官判定了事实（Bench Trial）➡️ 选 <b>Clearly Erroneous</b>。</li>
+                </ul>
+            </li>
+            <li><b>排除干扰项：</b> 看到 "Clear and Convincing" 或 "Beyond a Reasonable Doubt" 通常可以直接排除，因为它们是审判时的举证标准，而非上诉审查标准。</li>
+        </ol>
+    </div>
+</div>
+
+</body>
+</html>

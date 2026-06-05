@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --text-color: #333;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .section-title {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #bdc3c7;
+        }
+
+        .rule-box strong {
+            color: var(--primary-color);
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+            margin-right: 5px;
+        }
+
+        .badge-correct { background-color: var(--correct-color); }
+        .badge-wrong { background-color: var(--wrong-color); }
+
+        .tip-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Strict Products Liability & Evidence</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="rule-box" style="border-left: 4px solid var(--correct-color);">
+            <strong>正确答案：A</strong><br>
+            驳回双方的动议，将案件交给陪审团。<br>
+            <span class="term">Deny both motions and send the case to the jury.</span>
+        </div>
+
+        <div class="section-title">核心法律规则：不确定性缺陷理论</div>
+        <p>本题考察的是严格产品责任中的一个特殊证据规则，通常被称为<strong>“故障理论” (Malfunction Theory)</strong> 或参考《侵权法重述（第三次）：产品责任》第3条。</p>
+        
+        <div class="rule-box">
+            <strong>规则要点：</strong><br>
+            即使原告无法证明具体的缺陷性质（设计缺陷 vs. 制造缺陷），如果事实审理者（陪审团）发现以下两点，仍可<strong>推断 (Infer)</strong> 产品在销售时存在缺陷：
+            <ul>
+                <li>该事故属于通常由产品缺陷导致的类型；且</li>
+                <li>该事故并非完全由其他原因（如消费者滥用）造成。</li>
+            </ul>
+        </div>
+
+        <div class="section-title">深度解析</div>
+        
+        <div class="analysis-step">
+            <strong>1. 为什么不能判被告胜诉 (Directed Verdict for Manufacturer)?</strong><br>
+            虽然原告专家无法确定具体的缺陷类型（因为证据已毁），但原告提供了强有力的<strong>间接证据 (Circumstantial Evidence)</strong>：
+            <ul>
+                <li>搅拌机是新的 (New product)；</li>
+                <li>消费者使用方式得当 (Appropriate use)。</li>
+            </ul>
+            在这种情况下，法律允许陪审团进行<strong>事实推断</strong>：如果没有缺陷，新的搅拌机在正常使用下通常不会爆炸。因此，原告已建立了表面证据确凿的案件 (Prima Facie Case)，法官不能直接判被告胜诉。
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 为什么不能判原告胜诉 (Directed Verdict for Consumer)?</strong><br>
+            虽然推断是允许的，但它不是强制性的 (Permissive, not mandatory)。
+            <br><br>
+            陪审团有权：
+            <ul>
+                <li>接受推断，认为产品有缺陷；或者</li>
+                <li>拒绝推断，采信被告专家的证词（即产品没有缺陷）。</li>
+            </ul>
+            既然存在合理的意见分歧，法官必须将决定权交给陪审团，而不能直接判原告胜诉。
+        </div>
+
+        <div class="section-title">选项辨析</div>
+        
+        <div>
+            <span class="badge badge-correct">选项 A</span> <strong>正确</strong>。符合上述逻辑：证据足以让陪审团<strong>可能</strong>得出结论，但并不强制他们必须得出该结论。
+        </div>
+        <br>
+        <div>
+            <span class="badge badge-wrong">选项 B</span> <strong>错误</strong>。即使产品是新的，也不代表“无可否认地 (Undeniably)”存在缺陷。被告有专家作证说无缺陷，这是一个事实争议点 (Issue of Fact)。
+        </div>
+        <br>
+        <div>
+            <span class="badge badge-wrong">选项 C</span> <strong>错误</strong>。严格责任理论并不要求必须有直接证据证明具体的缺陷部位，间接证据也可以支持严格责任诉讼。
+        </div>
+        <br>
+        <div>
+            <span class="badge badge-wrong">选项 D</span> <strong>错误</strong>。这是本题最大的陷阱。在产品被毁坏的情况下，原告不需要具体指明是“设计缺陷”还是“制造缺陷”，只要证明“某种缺陷”导致了事故即可。
+        </div>
+
+        <div class="tip-box">
+            <strong>💡 MBE 考试技巧</strong>
+            <br><br>
+            当看到<strong>“产品被毁 (Product destroyed)”</strong> + <strong>“无法确定具体缺陷 (Cannot specify defect)”</strong> 的组合时：
+            <ol>
+                <li>联想类似 <em>Res Ipsa Loquitur</em>（过失推定）的逻辑，但在产品责任法中，这叫 <strong>Indeterminate Defect</strong>。</li>
+                <li>只要排除了消费者的滥用，且事故本身暗示了故障，原告就能过“送交陪审团 (Get to the jury)”这一关。</li>
+                <li><strong>Directed Verdict</strong> 的标准极高：只有当“没有任何理性的陪审团”会支持对方时，法官才会批准。只要有推断的空间，就选“Deny motions”。</li>
+            </ol>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

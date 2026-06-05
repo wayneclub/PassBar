@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - 宪法学: 个人权利</title>
+    
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">宪法学: 个人权利</p>
+        </header>
+
+        <div class="answer-box">
+            正确答案: B. 州政府对非公民的歧视性公民身份要求，通常会因违反第十四修正案的平等保护条款而受到严格审查。
+        </div>
+
+        <h2>核心法律规则</h2>
+        <div class="concept-box">
+            <div class="concept-title">第十四修正案平等保护条款 (Fourteenth Amendment Equal Protection Clause)</div>
+            <p>
+                第十四修正案的<strong class="term">平等保护条款 (Equal Protection Clause)</strong> 禁止各州否认其管辖范围内的任何人享有平等的法律保护。当州法律基于公民身份（即外籍身份，<span class="latin">alienage</span>）进行分类时，通常被视为基于“<strong class="term">可疑类别 (suspect class)</strong>”的歧视，因此会触发“<strong class="term">严格审查 (strict scrutiny)</strong>”。这意味着该法律必须是为了实现“<strong class="term">强制性政府利益 (compelling governmental interest)</strong>”，并且是实现该利益的“<strong class="term">最不限制性手段 (least restrictive means)</strong>”。
+            </p>
+            <p>
+                然而，存在一个重要的例外，即“<strong class="term">政治职能例外 (political function exception)</strong>”。如果政府职位涉及制定或执行公共政策，或者与国家主权职能密切相关，那么对外籍人士的就业限制可能仅需通过“<strong class="term">合理依据审查 (rational basis review)</strong>”。在这种情况下，该法律只需与“<strong class="term">合法政府利益 (legitimate governmental interest)</strong>”合理相关即可。
+            </p>
+        </div>
+
+        <h2>概念比较</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>条款 (Clause)</th>
+                    <th>适用性 (Applicability)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong class="term">平等保护 (Equal protection)</strong></td>
+                    <td>对处于相似境地的人进行歧视性待遇。</td>
+                </tr>
+                <tr>
+                    <td><strong class="term">正当程序 (Due process)</strong> (实体性)</td>
+                    <td>在没有充分<span class="latin">justification</span>的情况下剥夺生命、自由或财产。</td>
+                </tr>
+                <tr>
+                    <td><strong class="term">正当程序 (Due process)</strong> (程序性)</td>
+                    <td>在没有充分<span class="latin">process</span>的情况下剥夺生命、自由或财产。</td>
+                </tr>
+                <tr>
+                    <td><strong class="term">特权或豁免 (Privileges or immunities)*</strong></td>
+                    <td>干涉全国公民权利。</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="font-size: 0.9em; color: var(--muted-text);">*极少是正确答案。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>案件事实与适用逻辑</h2>
+        <p>
+            本案中，州B立法机关制定了一项要求所有执法人员必须是美国公民的法规。一名合法入境的非公民永久居民，因非公民身份而被拒绝担任州验尸官办公室的法医病理学家职位。他因此提起诉讼，挑战该公民身份要求的合宪性。
+        </p>
+        <ul>
+            <li>
+                <strong>分类基础：</strong> 州B的法规基于公民身份（外籍身份）进行分类，将非公民排除在特定公职之外。在平等保护分析中，外籍身份通常被视为<strong class="term">可疑类别</strong>。
+            </li>
+            <li>
+                <strong>审查标准：</strong> 由于外籍身份是可疑类别，因此州法律通常会受到<strong class="term">严格审查</strong>。这意味着州政府必须证明该公民身份要求是为了实现强制性政府利益，并且是实现该利益的最不限制性手段。
+            </li>
+            <li>
+                <strong>政治职能例外：</strong> 严格审查的一个重要例外是“<strong class="term">政治职能例外</strong>”。如果一个政府职位与国家主权职能密切相关，例如涉及制定或执行公共政策，那么对外籍人士的就业限制可能只需通过<strong class="term">合理依据审查</strong>。例如，警察、教师和陪审员等职位可能被视为政治职能。
+            </li>
+            <li>
+                <strong>本案职位分析：</strong> 法医病理学家（<span class="latin">forensic pathologist</span>）在州验尸官办公室工作，主要职责是进行尸检以确定死因，提供科学证据。尽管该职位与执法相关，但它通常被视为技术性、专业性职位，不直接涉及制定或执行公共政策，也不被认为是国家主权的核心职能。因此，该职位很可能不属于政治职能例外，应适用严格审查。
+            </li>
+            <li>
+                <strong>结论：</strong> 鉴于法医病理学家职位不属于政治职能例外，州B的公民身份要求将受到严格审查。州政府将很难证明该要求符合严格审查标准。因此，基于平等保护条款的挑战是最有力的。
+            </li>
+        </ul>
+
+        <h2>分析图示</h2>
+        <div class="diagram">
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+                <div class="party-box">州法律基于外籍身份分类</div>
+                <span class="arrow">➡️</span>
+                <div class="flow-node">是否属于“政治职能例外”？</div>
+                <span class="arrow">⬇️</span>
+                <div style="display: flex; justify-content: center; width: 100%;">
+                    <div style="display: flex; flex-direction: column; align-items: center; margin: 0 20px;">
+                        <div class="flow-node">是 (Yes)</div>
+                        <span class="arrow">⬇️</span>
+                        <div class="flow-node">合理依据审查 (Rational Basis Review)</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; margin: 0 20px;">
+                        <div class="flow-node">否 (No)</div>
+                        <span class="arrow">⬇️</span>
+                        <div class="flow-node">严格审查 (Strict Scrutiny)</div>
+                    </div>
+                </div>
+                <span class="arrow" style="margin-top: 15px;">⬆️</span>
+                <div class="flow-node.active" style="margin-top: 15px;">法医病理学家职位</div>
+                <span class="arrow" style="margin-top: 15px;">➡️</span>
+                <div class="flow-node.highlight-node" style="margin-top: 15px;">适用严格审查</div>
+            </div>
+        </div>
+
+        <h2>常见陷阱提示</h2>
+        <div class="trap-alert">
+            <p>
+                <strong>陷阱一：特权与豁免条款（<strong class="term">Privileges or Immunities Clause</strong>）</strong>：第十四修正案的特权与豁免条款极少被法院用来推翻州法律，因为它仅保护美国公民的“全国公民权利”（<strong class="term">rights of national citizenship</strong>），且其适用范围被狭义解释。因此，在MBE考试中，如果一个选项依赖于此条款，通常是错误答案。
+            </p>
+            <p>
+                <strong>陷阱二：追溯性法律（<strong class="term">Ex Post Facto Law</strong>）</strong>：追溯性法律仅适用于刑事案件，且必须具有追溯性惩罚性质。本案中的就业要求是民事性质，不构成追溯性法律。
+            </p>
+            <p>
+                <strong>陷阱三：就业是否为基本权利</strong>：在宪法学中，就业权通常不被视为“<strong class="term">基本权利 (fundamental right)</strong>”。因此，如果一个州法律限制就业，通常不会触发严格审查或中间审查，而是适用合理依据审查，除非该限制基于可疑类别（如外籍身份）或侵犯了其他基本权利。
+            </p>
+        </div>
+
+        <h2>正确答案与干扰项排除</h2>
+        <div class="option-analysis">
+            <div class="option correct">
+                <p><strong>B. 该要求否认了非公民在第十四修正案下享有的平等法律保护。</strong></p>
+                <p>
+                    州法律基于公民身份（外籍身份）进行分类，通常被视为基于“<strong class="term">可疑类别</strong>”的歧视，因此会触发“<strong class="term">严格审查</strong>”。除非该职位属于“<strong class="term">政治职能例外</strong>”，否则州政府很难证明该要求是合宪的。本案中，法医病理学家职位不属于政治职能例外，因此平等保护是攻击该公民身份要求的“最强理由”。
+                </p>
+            </div>
+
+            <div class="option wrong">
+                <p><strong>A. 该要求构成了对先前获准非公民的追溯性法律。</strong></p>
+                <p>
+                    <strong class="term">追溯性法律 (ex post facto law)</strong> 是指追溯性地施加惩罚的刑事法规。本案中的州法规是民事性质的就业要求，不具有追溯性惩罚性，因此不构成追溯性法律。
+                </p>
+            </div>
+
+            <div class="option wrong">
+                <p><strong>C. 该要求否认了非公民的就业权，违反了第十四修正案的特权与豁免条款。</strong></p>
+                <p>
+                    <strong class="term">特权与豁免条款 (Privileges or Immunities Clause)</strong> 仅保护美国公民（而非非公民或公司）免受对其狭义定义的“<strong class="term">全国公民权利 (rights of national citizenship)</strong>”的不合理干涉。因此，该条款不适用于本案中的非公民，并且在实践中极少被成功援引。
+                </p>
+            </div>
+
+            <div class="option wrong">
+                <p><strong>D. 该要求在没有正当法律程序的情况下剥夺了非公民的基本就业权。</strong></p>
+                <p>
+                    就业权通常不被视为宪法上的“<strong class="term">基本权利 (fundamental right)</strong>”。因此，对就业的限制通常只需通过“<strong class="term">合理依据审查</strong>”，而非严格审查。只有当法律限制了基本权利或基于可疑类别时，才需要更高级别的审查。虽然外籍身份是可疑类别，但攻击的理由应是平等保护而非剥夺基本就业权的正当程序。
+                </p>
+            </div>
+        </div>
+
+        <h2>备考锦囊</h2>
+        <div class="footer-tip">
+            <p>
+                <strong>MBE考试提示：</strong> 当州法律对外籍人士（<span class="latin">aliens</span>）进行分类时，除非该分类属于“<strong class="term">政治职能例外 (political function exception)</strong>”，否则应适用“<strong class="term">严格审查 (strict scrutiny)</strong>”标准进行平等保护分析。在MBE中，<strong class="term">特权与豁免条款 (Privileges or Immunities Clause)</strong> 很少是正确答案。
+            </p>
+        </div>
+    </div>
+</body>
+</html>

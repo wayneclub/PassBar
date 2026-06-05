@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-tag {
+            display: inline-block;
+            background-color: #e1f5fe;
+            color: #0277bd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .rule-box {
+            background-color: #f9f9f9;
+            border-left: 5px solid #ff9800;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #e65100;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .correct-answer {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .correct-title {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .correct-title::before {
+            content: "✔";
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        .distractor {
+            background-color: #fff;
+            border: 1px solid #eee;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        .distractor strong {
+            color: #c62828;
+        }
+        .mbe-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #5d4037;
+        }
+        .mbe-tip-title {
+            font-weight: bold;
+            color: #f57c00;
+            margin-bottom: 5px;
+            display: block;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Negligence: Causation (Fact)</p>
+    </div>
+
+    <div class="content">
+        <span class="concept-tag">Torts / 侵权法</span>
+        <span class="concept-tag">Causation / 因果关系</span>
+
+        <div class="rule-box">
+            <span class="rule-title">核心考点：实质性因素检验 (Substantial Factor Test)</span>
+            当有两个或多个独立的过失行为结合导致了原告的损害，且其中<b>任何一个单独都足以造成该损害</b>时，传统的“若无则不”检验法（But-For Test）失效。
+            <br><br>
+            此时，法院采用<b>实质性因素检验法</b>：如果被告的行为是导致损害发生的实质性因素，则认定存在事实因果关系（Actual Cause / Cause in Fact）。
+        </div>
+
+        <div class="analysis-section">
+            <div class="correct-answer">
+                <div class="correct-title">正确答案：C</div>
+                <p><b>理由：</b></p>
+                <p>本题考察的是<b>合并成因（Merged Causes）</b>的情况。题目明确指出：</p>
+                <ol>
+                    <li>两名土地所有者都因过失向水中添加了碱。</li>
+                    <li>每次添加单独来看，结合溪流中天然存在的碱，都<b>足以（sufficient）</b>造成牛只死亡。</li>
+                    <li>题目甚至直接承认了“每位土地所有者添加的碱是造成伤害的实质性因素”。</li>
+                </ol>
+                <p>在这种情况下，如果我们使用传统的 <i>But-For Test</i>（若无被告行为，损害是否会发生？），两名被告都会逃脱责任——A可以说“如果没有我，B也会导致牛死亡”，B也可以说“如果没有我，A也会导致牛死亡”。</p>
+                <p>为了避免这种不公正的结果，法律适用<b>Substantial Factor Test</b>。既然每个人的行为都足以造成损害，那么每个人的行为都被视为事实原因。</p>
+            </div>
+
+            <div class="distractor">
+                <strong>选项 A 错误：</strong><br>
+                它试图通过辩称“单独作为唯一来源不足以致害”来推卸责任。但在侵权法中，被告不需要是损害的“唯一”原因，只需要是造成损害的实质性原因即可。虽然他们依赖了天然存在的碱，但这并不免除他们过失增加碱含量的责任。
+            </div>
+
+            <div class="distractor">
+                <strong>选项 B 错误：</strong><br>
+                这个选项错误地应用了 <i>But-For Test</i> 的逻辑来否定因果关系。虽然从技术上讲，由于另一方的存在，任何一方都不是“若无则不”原因，但这正是适用 <i>Substantial Factor Test</i> 的典型场景。此选项忽略了多重充分原因（Multiple Sufficient Causes）的例外规则。
+            </div>
+
+            <div class="distractor">
+                <strong>选项 D 错误：</strong><br>
+                这是一个经典的 MBE 陷阱。它谈论的是<b>可预见性（Foreseeability）</b>。可预见性是<b>近因（Proximate Cause / Legal Cause）</b>的测试标准，而不是事实原因（Cause in Fact）的标准。做题时必须先确定事实原因，再分析近因。题目问的是“Cause in fact”，因此选项 D 答非所问。
+            </div>
+        </div>
+
+        <div class="mbe-tip">
+            <span class="mbe-tip-title">💡 MBE 考试技巧</span>
+            <p>在处理 <b>Causation（因果关系）</b> 问题时，请遵循以下两步法：</p>
+            <ol>
+                <li><b>第一步：事实原因 (Actual Cause)</b>。通常使用 "But-For" 检验。但如果看到“两个独立原因，每一个都足以致害” (Two fires merging)，立即切换到 "Substantial Factor" 检验。</li>
+                <li><b>第二步：近因 (Proximate Cause)</b>。关键词是 "Foreseeability" (可预见性)。</li>
+            </ol>
+            <p>如果题目问的是 "Cause in fact"，千万不要选包含 "Foreseeable" 的选项，那是干扰项！</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background-color: var(--bg-color);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+        }
+
+        .card-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .answer-box {
+            background-color: #e8f8f5;
+            border: 2px solid var(--success-color);
+            color: var(--success-color);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .rule-tag {
+            background-color: #ecf0f1;
+            color: var(--primary-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        .list-item {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border-left: 5px solid var(--warning-color);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.95em;
+        }
+
+        .exam-tip-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-top: 20px;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Civil Procedure: Pretrial Conferences</p>
+    </div>
+
+    <!-- Correct Answer -->
+    <div class="answer-box">
+        正确答案：A<br>
+        <span style="font-size: 0.8em; color: #27ae60;">(维持所有三项命令)</span>
+    </div>
+
+    <!-- Core Legal Concept -->
+    <div class="card">
+        <div class="card-title">核心考点：法官的案件管理权</div>
+        <p>本题的核心在于理解联邦地区法院法官在<b>审前会议 (Pretrial Conferences)</b> 阶段拥有的广泛<b>自由裁量权 (Discretion)</b>。</p>
+        <p>根据 <span class="rule-tag">FRCP 16</span> 和 <span class="rule-tag">FRCP 42</span>，为了实现“公正、迅速和经济”的诉讼目标，法官有权对审判程序进行管理。</p>
+    </div>
+
+    <!-- Detailed Analysis -->
+    <div class="card" style="border-left-color: var(--primary-color);">
+        <div class="card-title">逐项命令解析</div>
+        
+        <div class="list-item">
+            <strong>1. 分案审理 (Separate Trials)</strong><br>
+            根据 <span class="rule-tag">FRCP 42(b)</span>，为了方便、避免偏见或提高效率，法官可以命令将反诉 (Counterclaim) 分开审理。本案中，将复杂的环境污染索赔与诽谤索赔分开是合理的管理手段。
+        </div>
+
+        <div class="list-item">
+            <strong>2. 审理顺序 (Order of Trials)</strong><br>
+            法官决定先审理“河流污染案”是非常符合逻辑的。
+            <br><i>理由：</i>诽谤 (Defamation) 的核心抗辩是“真实性” (Truth)。如果发电厂确实污染了河流（事实为真），那么邻居们的言论就不构成诽谤。因此，先确定污染事实可以<b>直接决定</b>诽谤案是否还有必要进行，这极大地节省了司法资源。
+        </div>
+
+        <div class="list-item">
+            <strong>3. 限制举证时间 (Time Limits)</strong><br>
+            根据 <span class="rule-tag">FRCP 16(c)(2)(O)</span>，法官有权为出示证据设定合理的时限。只要该限制不是武断的（arbitrary）且没有剥夺当事人的正当程序权利，上诉法院通常不会干预。题目中提到“五天是该辖区的惯例”，这进一步证明了该命令的合理性。
+        </div>
+    </div>
+
+    <!-- Standard of Review -->
+    <div class="card" style="border-left-color: var(--success-color);">
+        <div class="card-title">上诉审查标准</div>
+        <p>在上诉阶段，针对初审法官的案件管理命令（如分案、时间限制），上诉法院适用的审查标准是：</p>
+        <p style="text-align: center; font-weight: bold; font-size: 1.1em; color: var(--primary-color);">
+            滥用自由裁量权<br>
+            (Abuse of Discretion)
+        </p>
+        <p>这意味着，除非初审法官的决定<b>极度不合理</b>或<b>明显武断</b>，否则上诉法院将予以维持 (Affirm)。本案中法官的决定逻辑清晰，旨在提高效率，因此会被维持。</p>
+    </div>
+
+    <!-- Exam Strategy -->
+    
+
+    <footer>
+        MBE Civil Procedure Review © 2025
+    </footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点精析：保护令</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="card-header">
+            <h1>MBE 考点精析</h1>
+            <p class="sub-title">民事诉讼: 审前程序 - 保护令</p>
+        </div>
+
+        <div class="content-section concept-box">
+            <h3>核心考点：保护令的申请条件</h3>
+            <p class="latin">*Protective Order Requirements: Good Faith Conferral*</p>
+            <p>本题考察的是联邦民事诉讼中，申请<span class="term">保护令 (Protective Order)</span> 的程序要求，特别是<span class="term">真诚协商义务 (Good Faith Conferral Requirement)</span>。</p>
+        </div>
+
+        <div class="content-section">
+            <h3>📊 概念对比：保护令 vs. 终止/限制传唤动议</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>特征</th>
+                        <th>保护令 (Protective Order) (<a href="https://www.law.cornell.edu/rules/frcp/rule_26" target="_blank"><code>FRCP 26(c)</code></a>)</th>
+                        <th>终止/限制传唤动议 (Motion to Terminate/Limit Deposition) (<a href="https://www.law.cornell.edu/rules/frcp/rule_30" target="_blank"><code>FRCP 30(d)(3)</code></a>)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>目的</b></td>
+                        <td>保护当事人/个人免受烦扰、尴尬、压迫、不当负担或不当开支。</td>
+                        <td>终止或限制以恶意方式进行，或旨在烦扰、尴尬、压迫被传唤人的传唤。</td>
+                    </tr>
+                    <tr>
+                        <td><b>申请时机</b></td>
+                        <td>可以在发现开始前或发现过程中随时提出。</td>
+                        <td>必须在传唤进行过程中提出。</td>
+                    </tr>
+                    <tr>
+                        <td><b>协商要求</b></td>
+                        <td><b>强制性：</b> 动议人必须在提交动议前真诚地与对方当事人协商或尝试协商。</td>
+                        <td><b>非强制性：</b> 通常不需要在提出动议前进行协商，因为是对正在发生的滥用行为的即时回应。</td>
+                    </tr>
+                    <tr>
+                        <td><b>法院权力</b></td>
+                        <td>可以禁止、限制、规定条款、指定替代方法、指定在场人员、密封发现材料等。</td>
+                        <td>可以命令终止传唤，或限制传唤的范围、方式、时间或地点。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content-section diagram">
+            <h3>🎨 诉讼流程图：保护令动议的提出</h3>
+            <div class="flow-container">
+                <div class="flow-node">当事人提起诉讼</div>
+                <div class="arrow">➡️</div>
+                <div class="flow-node">雇主律师进行传唤</div>
+                <div class="arrow">➡️</div>
+                <div class="flow-node">雇主律师询问不当问题</div>
+                <div class="arrow">➡️</div>
+                <div class="flow-node">舞者律师反对并中止传唤</div>
+                <div class="arrow">➡️</div>
+                <div class="flow-node highlight-node">舞者律师提交保护令动议</div>
+                <div class="arrow">➡️</div>
+                <div class="flow-node active">法院审查动议</div>
+                <div class="arrow">➡️</div>
+                <div class="flow-node result-node">动议被驳回 (因未协商)</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>⚖️ 法律依据与推理</h3>
+            <div class="analysis-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>识别核心问题</h4>
+                    <p>本案中，舞者律师寻求<span class="term">保护令</span>以阻止雇主律师询问其一般性性史。核心在于分析申请保护令的法律条件是否满足。</p>
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>保护令的法律要求</h4>
+                    <p>根据<a href="https://www.law.cornell.edu/rules/frcp/rule_26" target="_blank"><code>联邦民事诉讼规则 (FRCP) 26(c)</code></a>，法院可以发布保护令，以保护当事人或其他人免受<span class="term">烦扰 (annoyance)</span>、<span class="term">尴尬 (embarrassment)</span>、<span class="term">压迫 (oppression)</span>、<span class="term">不当负担 (undue burden)</span> 或<span class="term">不当开支 (undue expense)</span>。</p>
+                    <p>申请保护令的动议人必须满足两个关键条件：</p>
+                    <ol>
+                        <li>证明存在“<span class="term">正当理由 (good cause)</span>”。</li>
+                        <li>证明其已“<span class="term">真诚协商或尝试协商 (conferred or attempted to confer in good faith)</span>”与寻求发现的对方当事人，以在没有法院干预的情况下解决争议。</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>案件事实分析</h4>
+                    <ul>
+                        <li><b>正当理由 (Good Cause):</b> 雇主律师询问舞者的一般性性史，旨在使其尴尬，这显然构成“烦扰”和“尴尬”，因此存在发布保护令的“正当理由”。</li>
+                        <li><b>真诚协商 (Good Faith Conferral):</b> 案件事实明确指出，舞者律师在提交动议前“<b>没有与雇主律师协商或尝试协商</b>”。这直接违反了<a href="https://www.law.cornell.edu/rules/frcp/rule_26" target="_blank"><code>FRCP 26(c)</code></a>的强制性要求。</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>结论</h4>
+                    <p>尽管存在“正当理由”，但由于舞者律师未能满足“真诚协商”这一程序性先决条件，法院将很可能驳回其保护令动议。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section trap-alert">
+            ⚠️ 陷阱警示：协商义务不可忽视！
+            <p>许多<span class="term">联邦民事诉讼规则</span>下的动议，特别是涉及发现争议的动议，都要求动议人在提交法院之前，必须与对方当事人<span class="term">真诚协商 (confer in good faith)</span>，尝试在没有法院干预的情况下解决争议。这一“<span class="term">协商义务 (conferral requirement)</span>”是一个常见的程序性陷阱。即使动议本身有充分的实体理由，未能履行协商义务也可能导致动议被驳回。</p>
+        </div>
+
+        <div class="content-section case-box">
+            <h4>🔑 情景延伸：如果律师协商了会怎样？</h4>
+            <p>如果舞者律师在提交保护令动议前，真诚地与雇主律师协商，并尝试解决关于性史询问的争议，但未能成功，那么法院将很可能批准保护令。</p>
+            <p>理由是，询问与案件无关的一般性性史旨在使证人尴尬，这构成了<a href="https://www.law.cornell.edu/rules/frcp/rule_26" target="_blank"><code>FRCP 26(c)</code></a>下的“烦扰”和“尴尬”，满足了“正当理由”的要求。在这种情况下，由于所有条件都已满足，法院会介入保护证人。</p>
+        </div>
+
+        <div class="content-section option-analysis">
+            <h3>✅ 正确答案与干扰项排除</h3>
+            <div class="option correct">
+                <b>Choice B is wrong: No, because the dancer's attorney made no attempt to confer with the employer's attorney.</b>
+                <br>
+                <b>正确。</b> 根据<a href="https://www.law.cornell.edu/rules/frcp/rule_26" target="_blank"><code>联邦民事诉讼规则 26(c)</code></a>，申请保护令的动议人必须证明其已真诚地与对方当事人协商或尝试协商，以在没有法院干预的情况下解决争议。本案中，舞者律师在提交动议前未与雇主律师进行任何协商，因此未能满足这一强制性程序要求，法院将驳回其动议。
+            </div>
+            <div class="option wrong">
+                <b>Choice A is wrong: No, because the dancer did not answer the deposition question.</b>
+                <br>
+                <b>错误。</b> 舞者律师指示舞者不回答问题并中止传唤是适当的。根据<a href="https://www.law.cornell.edu/rules/frcp/rule_30" target="_blank"><code>FRCP 30(d)(3)</code></a>，当事人或律师在传唤过程中，如果传唤正在以恶意方式进行或旨在烦扰、尴尬或压迫被传唤人，可以暂停传唤并提交动议以终止或限制传唤。舞者不回答问题本身不是驳回保护令动议的理由，反而可能是保护自身权利的合理行动。驳回动议的关键在于未能履行协商义务。
+            </div>
+            <div class="option wrong">
+                <b>Choice C is wrong: Yes, because the dancer will suffer irreparable harm if the questioning is allowed to continue.</b>
+                <br>
+                <b>错误。</b> 尽管询问一般性性史确实会给舞者带来尴尬和烦扰，可能构成“正当理由”，但“<span class="term">不可弥补的损害 (irreparable harm)</span>”通常是申请<span class="term">临时限制令 (TRO)</span> 或<span class="term">初步禁令 (preliminary injunction)</span> 的标准，而不是申请保护令的直接标准。保护令主要关注防止“烦扰、尴尬、压迫、不当负担或不当开支”。更重要的是，即使存在“正当理由”，未能履行协商义务仍然是导致动议被驳回的致命缺陷。
+            </div>
+            <div class="option wrong">
+                <b>Choice D is wrong: Yes, because the motion was properly filed in the court where the action is pending.</b>
+                <br>
+                <b>错误。</b> 动议在案件正在审理的法院提交是正确的程序，符合<a href="https://www.law.cornell.edu/rules/frcp/rule_26" target="_blank"><code>FRCP 26(c)</code></a>关于“提交动议的法院”的规定。然而，仅仅正确提交动议并不能保证其被批准。动议的实体和程序要求（如协商义务）也必须满足。本案中，未能履行协商义务是导致动议被驳回的关键原因。
+            </div>
+        </div>
+
+        <div class="footer-tip">
+            🎓 考试技巧：发现争议动议的“协商”陷阱
+            <p>在<span class="term">联邦民事诉讼规则</span>中，许多涉及发现的动议（如保护令动议、强制发现动议等）都包含一个强制性的“<span class="term">真诚协商 (good faith conferral)</span>”要求。考试中，如果题目明确指出当事人未履行此义务，那么即使动议本身有充分的实体理由，也极有可能因程序缺陷而被驳回。务必留意题目中关于“协商”的描述。</p>
+        </div>
+    </div>
+</body>
+</html>

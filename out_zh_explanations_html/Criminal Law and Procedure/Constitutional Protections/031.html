@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 刑事诉讼：第六修正案律师权与身份识别</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="card-header">
+            <h1>MBE 考点精析</h1>
+            <div class="sub-title">刑事诉讼法：宪法保护</div>
+        </div>
+
+        <div class="concept-box">
+            <h3>核心考点：刑事诉讼中第六修正案律师权与身份识别</h3>
+            <p class="latin"><i>Sixth Amendment Right to Counsel at Post-Indictment Lineup & Independent Source Doctrine</i></p>
+        </div>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>特征</th>
+                    <th>第六修正案律师权 (身份识别)</th>
+                    <th>正当程序权 (身份识别)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>适用时机</b></td>
+                    <td>刑事诉讼程序正式启动后 (起诉、提审等)</td>
+                    <td>在任何身份识别程序中，如果程序“过于暗示性且不可靠”</td>
+                </tr>
+                <tr>
+                    <td><b>保护范围</b></td>
+                    <td>针对政府主导的、对抗性的身份识别程序 (如庭后列队指认、单独示证)</td>
+                    <td>针对所有身份识别程序，无论是否正式启动诉讼</td>
+                </tr>
+                <tr>
+                    <td><b>核心关注</b></td>
+                    <td>确保被告人在关键阶段获得律师协助，维护对抗性程序的公平性</td>
+                    <td>确保身份识别的可靠性，防止错误定罪</td>
+                </tr>
+                <tr>
+                    <td><b>补救措施</b></td>
+                    <td>排除违宪程序下的身份识别；若有独立来源，庭内识别可被允许</td>
+                    <td>排除不可靠的身份识别；若程序虽暗示性但仍可靠，可能被允许</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="diagram">
+            <h3>诉讼流程与身份识别图</h3>
+            <div class="flow-container">
+                <div class="flow-node">被告人被<b>起诉并提审</b></div>
+                <div class="arrow">↓</div>
+                <div class="flow-node active"><b>庭后列队指认</b> (无律师在场，未豁免)</div>
+                <div class="arrow">↓</div>
+                <div class="flow-node">受害人<b>庭外指认</b>被告人为抢劫犯</div>
+                <div class="arrow">↓</div>
+                <div class="flow-node highlight-node">受害人<b>庭内指认</b>被告人为抢劫犯 (基于独立记忆：右脸的痣)</div>
+                <div class="arrow">↓</div>
+                <div class="flow-node">法院裁决：庭外指认排除，庭内指认<b>允许</b></div>
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <h3>⚖️ 法律依据与推理</h3>
+            <div class="analysis-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <b>第六修正案律师权何时附着？</b>
+                    第六修正案赋予被告人在所有刑事诉讼中获得律师协助的权利。这项权利在刑事诉讼程序正式启动时附着，通常是在被告人被<span class="term">起诉 (indictment)</span>、<span class="term">提审 (arraignment)</span> 或首次出庭时。一旦权利附着，被告人在所有<span class="term">关键阶段 (critical stages)</span> 都有权获得律师在场。
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <b>列队指认是否为关键阶段？</b>
+                    <span class="term">庭后列队指认 (post-indictment lineup)</span> 被最高法院认定为第六修正案律师权附着后的一个关键阶段。这是因为列队指认是政府主导的对抗性程序，律师在场可以帮助防止暗示性指认，并为后续的交叉询问提供信息。本案中，被告人已被起诉和提审，因此第六修正案律师权已附着。
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <b>违宪的庭外指认的后果。</b>
+                    由于被告人的律师未被告知列队指认，且被告人未豁免其律师权，因此在律师缺席情况下进行的庭后列队指认违反了被告人的第六修正案律师权。通常，由此产生的<span class="term">庭外身份识别 (out-of-court identification)</span> 证据是不可采的。
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <b>庭内身份识别的独立来源原则。</b>
+                    尽管庭外指认违宪，但受害人随后的<span class="term">庭内身份识别 (in-court identification)</span> 仍可能被允许，前提是检方能够证明该庭内识别是基于<span class="term">独立于 (independent of)</span> 违宪列队指认的可靠来源。换句话说，受害人对被告人的记忆必须是基于抢劫发生时的原始观察，而不是受到违宪列队指认的污染。
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <b>本案中的独立来源。</b>
+                    在本案中，受害人明确表示她之所以确定被告人是抢劫犯，是因为她记得在抢劫时看到了被告人右脸上的<span class="term">痣 (mole)</span>。这表明受害人的庭内身份识别是基于她在犯罪发生时的独立记忆和观察，而非仅仅重复列队指认的结果。因此，即使列队指认违宪，庭内识别仍具有独立来源，可以被法庭采纳。
+                </div>
+            </div>
+        </div>
+
+        <div class="rule-block">
+            <strong>⚠️ 核心规则 / 陷阱警示：独立来源原则</strong><br>
+            即使身份识别程序违反了第六修正案律师权（或第十四修正案正当程序），导致庭外身份识别不可采，但如果检方能证明随后的<span class="term">庭内身份识别 (in-court identification)</span> 具有<span class="term">独立于 (independent of)</span> 违宪程序的可靠来源，那么庭内识别仍然可以被允许。考生需警惕，不要一概而论地排除所有身份识别，而应仔细审查是否存在独立来源。
+        </div>
+
+        <div class="case-box">
+            <strong>🔑 独立案例 / 延伸情景：<code>United States v. Wade</code></strong><br>
+            在<code>United States v. Wade, 388 U.S. 218 (1967)</code>一案中，最高法院确立了被告人在庭后列队指认中享有第六修正案律师权。该案还指出，如果庭外指认违宪，检方必须通过<span class="term">清晰且令人信服的证据 (clear and convincing evidence)</span> 证明庭内指认有独立于违宪程序的来源，才能被允许。本案中，受害人对“痣”的记忆正是这种独立来源的典型例子。<br><br>
+            <strong>延伸情景：</strong>如果受害人表示她之所以确定被告人是抢劫犯，仅仅是因为“在警察局的列队指认中见过他”，而没有提及任何犯罪发生时的独特特征，那么法院将很可能<span style="color:var(--wrong-text);"><b>驳回</b></span>庭内身份识别，因为它缺乏独立来源，直接受到违宪列队指认的污染。
+        </div>
+
+        <div class="option-analysis">
+            <h3>✅ 正确答案与干扰项排除</h3>
+            <div class="option correct">
+                <b>Choice B is correct: No, because the victim's identification was not based on the defendant's participation in the lineup.</b><br>
+                <b>正确。</b>法院很可能不会批准排除动议。尽管庭后列队指认在没有律师在场的情况下进行，违反了被告人的第六修正案律师权，导致该庭外指认本身不可采。然而，受害人在庭内对被告人的身份识别是基于其在抢劫发生时对被告人右脸痣的独立记忆。这种独立来源使得庭内身份识别不受违宪列队指认的污染，因此是可采的。
+            </div>
+            <div class="option wrong">
+                <b>Choice A is wrong: No, because the victim is testifying at the defendant's trial and is available for cross-examination.</b><br>
+                <b>错误。</b>虽然受害人在庭上作证并接受交叉询问是正当程序的重要组成部分，但它本身并不能治愈因违反第六修正案律师权而导致的身份识别证据的不可采性。如果庭内身份识别没有独立来源，仅仅因为可以交叉询问，也不能使其变得可采。
+            </div>
+            <div class="option wrong">
+                <b>Choice C is wrong: Yes, because the defendant's lawyer was not present at the lineup and the defendant did not waive his right to have his lawyer present.</b><br>
+                <b>错误。</b>这个选项正确地指出了为什么<span style="font-weight:bold;">庭外列队指认</span>是违宪且不可采的。然而，问题问的是法院是否会批准排除<span style="font-weight:bold;">庭内身份识别</span>的动议。由于庭内识别有独立来源（痣），因此它仍然是可采的，所以法院不会批准排除庭内识别的动议。
+            </div>
+            <div class="option wrong">
+                <b>Choice D is wrong: Yes, because the defendant's Sixth Amendment right to counsel applied to the post-indictment lineup.</b><br>
+                <b>错误。</b>这个选项正确地陈述了第六修正案律师权适用于庭后列队指认，并解释了为什么庭外指认是违宪的。但与选项C类似，它没有考虑到庭内身份识别可能存在的独立来源。独立来源原则允许在违宪的庭外指认之后，仍然采纳有独立基础的庭内指认。因此，法院不会仅仅因为列队指认违宪就排除庭内识别。
+            </div>
+        </div>
+
+        <div class="footer-tip">
+            <strong>🎓 考试技巧：身份识别问题决策流</strong><br>
+            遇到身份识别问题时，请遵循以下步骤：<br>
+            1. <b>律师权是否附着？</b> (起诉/提审后) → 是：进入下一步；否：第六修正案不适用。<br>
+            2. <b>程序是否为关键阶段？</b> (如庭后列队指认) → 是：进入下一步；否：第六修正案不适用。<br>
+            3. <b>律师是否在场/是否豁免？</b> → 否：庭外指认违宪，不可采。<br>
+            4. <b>是否有庭内指认？</b> → 是：进入下一步；否：问题结束。<br>
+            5. <b>庭内指认是否有独立来源？</b> (如犯罪时的独特记忆) → 是：庭内指认可采；否：庭内指认不可采。<br>
+            同时，始终考虑<span class="term">正当程序 (Due Process)</span> 角度：程序是否“过于暗示性且不可靠”？
+        </div>
+    </div>
+</body>
+</html>

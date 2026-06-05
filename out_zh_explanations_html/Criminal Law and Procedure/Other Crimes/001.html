@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .header .sub-title {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background: #e1f5fe;
+            color: #0277bd;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            font-weight: 500;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .option-analysis {
+            margin-top: 15px;
+        }
+
+        .option-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+
+        .option-item.correct {
+            border-color: var(--correct-color);
+            background-color: #e8f8f5;
+        }
+
+        .option-item.wrong {
+            border-color: #eee;
+            opacity: 0.85;
+        }
+
+        .badge {
+            font-weight: bold;
+            font-size: 0.8rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+        .badge-correct {
+            background: var(--correct-color);
+            color: white;
+        }
+
+        .badge-wrong {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .footer-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Criminal Law - Battery</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心考点：刑事伤害罪 (Battery)</span>
+            <p>本题的正确答案是 <strong>D</strong>。</p>
+            <p><strong>Battery</strong> 定义为：对他人人身进行非法的武力施加，导致身体伤害或<b>冒犯性接触</b> (Offensive Touching)。</p>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🔍 法律逻辑拆解</div>
+            
+            <p><span class="concept-tag">要素 1</span> <strong>非法施加武力 (Unlawful Application of Force)</strong><br>
+            科学家投掷头骨的行为属于非法使用武力。这里的“武力”不需要造成剧烈疼痛，只要产生接触即可。</p>
+
+            <p><span class="concept-tag">要素 2</span> <strong>受害人的人身 (Person of Another)</strong><br>
+            这是本题最大的陷阱。法律上的“人身”概念是扩张的。它不仅指肉体，还包括<strong>任何与受害人紧密相连的物体</strong> (Anything closely connected to the person)。<br>
+            <span class="english-term">Example:</span> 手中的拐杖、骑着的马、或者本案中<strong>背着的背包</strong>。击中背包等同于击中人身。</p>
+
+            <p><span class="concept-tag">要素 3</span> <strong>冒犯性接触 (Offensive Touching)</strong><br>
+            不需要造成流血或淤青。只要该接触对一个“理性人” (Reasonable Person) 来说是令人反感或不愉快的，即构成 Battery。被扔猴子头骨显然是极具冒犯性的。</p>
+        </div>
+
+        <!-- 选项辨析 -->
+        <div class="analysis-section option-analysis">
+            <div class="analysis-title">❌ 为什么其他选项是错的？</div>
+
+            <div class="option-item wrong">
+                <span class="badge badge-wrong">选项 A 错误</span>
+                <strong>理由：受害人未看见</strong>
+                <p>这是混淆了 <strong>Assault</strong> (攻击罪) 和 <strong>Battery</strong> (伤害罪)。
+                <br>• Assault (apprehension type) 需要受害人产生恐惧/预感。
+                <br>• Battery 只需要接触发生。受害人可以在昏迷、睡觉或背对被告时被“伤害”。</p>
+            </div>
+
+            <div class="option-item wrong">
+                <span class="badge badge-wrong">选项 B 错误</span>
+                <strong>理由：击中背包而非肉体</strong>
+                <p>如前所述，法律适用“人身延伸规则”。背包被视为身体的一部分。</p>
+            </div>
+
+            <div class="option-item wrong">
+                <span class="badge badge-wrong">选项 C 错误</span>
+                <strong>理由：特定意图 (Specific Intent)</strong>
+                <p>虽然科学家确实有意图，但 Battery 是 <strong>一般意图犯罪 (General Intent Crime)</strong>。
+                <br>定罪不需要证明被告有“特定意图”去造成特定后果，只需证明被告有意实施了该非法行为（扔头骨）或存在刑事疏忽。选项 D 对犯罪构成的描述比 C 更准确、更本质。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="footer-tip">
+            <strong>💡 MBE 提分技巧：</strong>
+            <br>遇到 Battery 的题目，牢记两个扩展：
+            <ol style="margin-left: -20px; margin-top: 5px;">
+                <li><strong>接触的扩展：</strong> 衣服、包、手持物 = 身体。</li>
+                <li><strong>伤害的扩展：</strong> 不需要受伤 (Injury)，只需要冒犯 (Offensive)。吐口水、强行亲吻、扔脏东西都算 Battery。</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

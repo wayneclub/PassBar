@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background-color: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .card-title {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .icon {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        .highlight {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .rule-ref {
+            font-size: 12px;
+            color: #7f8c8d;
+            text-align: right;
+            margin-top: 4px;
+            font-style: italic;
+        }
+        .answer-section {
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 20px;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .reasoning-step {
+            display: flex;
+            margin-bottom: 12px;
+        }
+        .step-num {
+            background-color: #2c3e50;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-right: 10px;
+            margin-top: 2px;
+        }
+        .step-text {
+            font-size: 14px;
+        }
+        .wrong-option {
+            font-size: 13px;
+            color: #666;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #ddd;
+        }
+        .wrong-label {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-top: 20px;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Civil Procedure: Pretrial Sanctions</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点卡片 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">⚖️</span> 核心法律规则
+            </div>
+            <p style="font-size: 14px; margin: 0;">
+                根据 <b>Fed. R. Civ. P. 16(f)</b>，如果当事人或其律师出现以下情况，法院可以发出任何公正的命令（包括严厉制裁）：
+            </p>
+            <ul style="font-size: 14px; padding-left: 20px; margin-top: 8px;">
+                <li>未能出席庭前会议 (Fail to appear)；</li>
+                <li><b>准备严重不足</b> (Substantially unprepared)；</li>
+                <li>未本着诚信原则参与 (Fail to participate in good faith)。</li>
+            </ul>
+            <div class="highlight">
+                <strong>关键点：</strong>“准备严重不足”包括律师出席了会议，但<b>未获得客户授权</b>进行必要的承认 (Admissions) 或约定 (Stipulations)。
+            </div>
+        </div>
+
+        <!-- 题目分析 -->
+        <div class="answer-section">
+            <span class="correct-answer">✅ 正确答案：B</span>
+            <p style="font-size: 14px; margin-bottom: 15px;">
+                <b>不会推翻，因为在该情况下，该命令是合理的。</b>
+            </p>
+
+            <div class="reasoning-step">
+                <div class="step-num">1</div>
+                <div class="step-text">
+                    <strong>违规行为认定：</strong><br>
+                    制造商律师出席了庭前会议，但没有获得客户授权进行承认或约定。这构成了 Rule 16 下的“准备严重不足”(Substantially Unprepared)。
+                </div>
+            </div>
+
+            <div class="reasoning-step">
+                <div class="step-num">2</div>
+                <div class="step-text">
+                    <strong>制裁的合理性 (Reasonableness)：</strong><br>
+                    题目强调这是<b>第三次</b> (Third time) 因同样原因取消会议。法院有权根据 Rule 37(b)(2)(A) 实施制裁，包括<b>驳回抗辩</b> (Striking pleadings)。鉴于屡教不改的情节，这一严厉制裁并未滥用自由裁量权。
+                </div>
+            </div>
+
+            <div class="reasoning-step">
+                <div class="step-num">3</div>
+                <div class="step-text">
+                    <strong>强制性费用 (Mandatory Fees)：</strong><br>
+                    Rule 16(f)(2) 要求法院命令违规方支付对方的合理费用（包括律师费），除非违规有正当理由或导致不公。本案中无正当理由。
+                </div>
+            </div>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="card" style="margin-top: 16px;">
+            <div class="card-title">
+                <span class="icon">❌</span> 为什么其他选项错误？
+            </div>
+            
+            <div class="wrong-option">
+                <span class="wrong-label">选项 A 错：</span>
+                <span style="color: #555;">“绝对的自由裁量权 (Absolute Discretion)”</span><br>
+                法院的权力很大，但不是绝对的。上诉法院可以审查地区法院是否<b>滥用自由裁量权 (Abuse of Discretion)</b>。如果制裁过于任意或不合理，上诉法院会推翻它。但在本案中，制裁是合理的。
+            </div>
+
+            <div class="wrong-option">
+                <span class="wrong-label">选项 C 错：</span>
+                <span style="color: #555;">“权限仅限于支付律师费”</span><br>
+                Rule 16 允许法院实施 Rule 37 中的各种制裁，不仅限于金钱惩罚，还包括驳回起诉、驳回抗辩、禁止提出证据等程序性制裁。
+            </div>
+
+            <div class="wrong-option">
+                <span class="wrong-label">选项 D 错：</span>
+                <span style="color: #555;">“因为制造商未授权”</span><br>
+                这正是受制裁的原因，而不是推翻制裁的理由。律师有义务确保在参加庭前会议时拥有必要的授权。未获授权不能作为逃避制裁的借口 (Defense)。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <div style="font-weight: bold; margin-bottom: 5px;">🎓 MBE 考试技巧</div>
+            <p style="margin: 0;">
+                在涉及<b>制裁 (Sanctions)</b> 的题目中，注意寻找<b>“重复违规”</b>或<b>“恶意”</b>的事实细节。
+                <br><br>
+                如果是初犯，驳回抗辩或直接判输可能被视为“滥用自由裁量权”；但如果是<b>屡次违规 (Third time)</b>，法院采取严厉措施通常会被上诉法院维持 (Affirmed)。
+            </p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --danger-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: #ebf5fb;
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--danger-color);
+            background-color: #fdedec;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .option-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+        }
+
+        .option-card.correct {
+            border-color: var(--success-color);
+            background-color: #eafaf1;
+        }
+
+        .option-card.wrong {
+            border-color: #e0e0e0;
+            opacity: 0.8;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .badge-correct {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .badge-wrong {
+            background-color: #95a5a6;
+            color: white;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .exam-tip {
+            background-color: #fef9e7;
+            border: 1px dashed var(--warning-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        .exam-tip-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        ul {
+            margin: 5px 0 0 20px;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">刑法：绑架罪 (Kidnapping)</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点规则 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 法律规则 (Modern Law)</span>
+            <p>在现代刑法（及 MPC）下，<strong>绑架罪 (Kidnapping)</strong> 的构成通常需要满足以下要素：</p>
+            <ol>
+                <li><strong>非法监禁 (Unlawful Confinement)</strong>：违背受害人意愿；</li>
+                <li><strong>加重情节 (Aggravating Element)</strong>：必须包含以下二者之一：
+                    <ul>
+                        <li><strong>移动 (Movement/Asportation)</strong>：将受害人从一处移动到另一处；或者</li>
+                        <li><strong>藏匿 (Concealment)</strong>：将受害人藏在隐蔽地点 (Secret Place) 相当长一段时间。</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-section">
+            <h3>✅ 正确答案分析 (选项 D)</h3>
+            <div class="option-card correct">
+                <span class="badge badge-correct">Correct Answer</span>
+                <p><strong>理由：</strong>本题考察的是绑架罪中“藏匿”这一替代要素。</p>
+                <p>虽然受害人是自愿走进地下室的（最初没有使用武力），但被告随后将其锁住，构成了非法监禁。关键在于，被告将受害人关在私人地下室这一<strong>“隐蔽地点” (Secret Place)</strong> 长达<strong>两天 (Substantial Period)</strong>。</p>
+                <p>这种“藏匿”行为满足了绑架罪的加重构成要件，因此即使没有发生物理上的移动，依然构成绑架罪。</p>
+            </div>
+        </div>
+
+        <!-- 错误选项陷阱 -->
+        <div class="analysis-section">
+            <h3>❌ 陷阱选项排除</h3>
+            
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">选项 A (No movement)</span>
+                <p><strong>错误点：</strong>这是普通法 (Common Law) 的旧观念。现代法律中，<span class="highlight">移动不是唯一的必要条件</span>。如果存在“藏匿”，即使没有移动也构成绑架。</p>
+            </div>
+
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">选项 B (No force/threats)</span>
+                <p><strong>错误点：</strong>监禁可以通过武力、威胁或<strong>欺诈 (Fraud)</strong> 实现。本案中，被告利用欺诈（看吧台）诱骗受害人进入，并用锁门的物理手段实施了监禁。</p>
+            </div>
+
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">选项 C (Reliance on misrepresentation)</span>
+                <p><strong>错误点：</strong>这个选项描述了<strong>非法拘禁 (False Imprisonment)</strong> 的成因，但没有点出为何升级为<strong>绑架 (Kidnapping)</strong>。绑架罪的核心在于“监禁 + 移动/藏匿”。选项 D 更准确地指出了定罪的关键依据。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <div class="exam-tip-title">💡 MBE 解题技巧</div>
+            <p>在处理涉及<strong>限制人身自由</strong>的考题时，请按以下步骤思考：</p>
+            <ol>
+                <li>先判断是否构成<strong>非法拘禁 (False Imprisonment)</strong>：是否违背意愿限制了某人的行动自由？</li>
+                <li>再看是否有<strong>升级要素</strong>使其成为<strong>绑架 (Kidnapping)</strong>：
+                    <ul>
+                        <li>是否有移动 (Movement)？</li>
+                        <li>是否有藏匿 (Concealment)？</li>
+                    </ul>
+                </li>
+            </ol>
+            <p>如果只有监禁而无上述升级要素，通常只构成非法拘禁。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

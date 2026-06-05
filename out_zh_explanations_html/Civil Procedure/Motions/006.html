@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .card {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e1e4e8;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-box {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+        .highlight {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .table-container {
+            margin: 15px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .badge-waived { background-color: #ffebee; color: #c62828; }
+        .badge-saved { background-color: #e3f2fd; color: #1565c0; }
+        
+        .mbe-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffecb3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .mbe-tip-title {
+            color: #f57f17;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <p>Civil Procedure: Rule 12 Defenses</p>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：C</span>
+            该动议导致供应商放弃了“不当审判地”的抗辩理由，但并未放弃“未能陈述诉求”的抗辩。
+        </div>
+
+        <!-- 核心考点讲解 -->
+        <div class="section-title">⚖️ 核心考点：Omnibus Motion Rule</div>
+        <p>本题考查《联邦民事诉讼规则》(FRCP) 第 12 条关于<b>抗辩理由的合并与放弃</b>（Consolidation and Waiver of Defenses）。</p>
+        
+        <div class="rule-box">
+            <strong>规则核心 (Rule 12(g) & 12(h)):</strong><br>
+            如果你选择提交答辩前动议（Pre-answer Motion），你必须将所有当时可用的 Rule 12 抗辩理由<b>一次性合并</b>在该动议中。
+        </div>
+
+        <p>根据这一规则，抗辩理由被分为三类，其后果截然不同：</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 40%">抗辩类型</th>
+                        <th>后果 (若遗漏)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="badge badge-waived">第一类：严格放弃</span><br>
+                            1. 对人管辖权 (PJ)<br>
+                            2. 审判地 (Venue)<br>
+                            3. 送达/文书瑕疵
+                        </td>
+                        <td>
+                            <span class="highlight">永久放弃 (Waived)</span>。<br>
+                            如果在第一次动议中未提出，以后再也不能提出了。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="badge badge-saved">第二类：保留</span><br>
+                            1. 未能陈述诉求 (Failure to state a claim)<br>
+                            2. 未能加入必要方
+                        </td>
+                        <td>
+                            <span class="highlight">不放弃 (Not Waived)</span>。<br>
+                            虽然不能再发第二个答辩前动议，但可以在<b>答辩状 (Answer)</b> 或<b>审判 (Trial)</b> 中提出。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="badge" style="background:#eee; color:#333">第三类：永不放弃</span><br>
+                            事物管辖权 (SMJ)
+                        </td>
+                        <td>
+                            <span class="highlight">随时提出</span>。<br>
+                            甚至可以在上诉阶段提出。
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="section-title">🔍 案情具体分析</div>
+        <p>在本案中，供应商（被告）提交了第一个答辩前动议，仅主张了“缺乏对人管辖权”。</p>
+        
+        <ol>
+            <li>
+                <b>关于“不当审判地” (Improper Venue)：</b><br>
+                属于第一类抗辩。因为被告在第一次动议中遗漏了它，根据 Rule 12(h)(1)，该抗辩被<b>永久放弃</b>。
+            </li>
+            <li>
+                <b>关于“未能陈述诉求” (Failure to state a claim)：</b><br>
+                属于第二类抗辩。根据 Rule 12(h)(2)，虽然被告不能为此再单独发一个 Rule 12(b) 动议（因为 Rule 12(g) 禁止拆分动议），但这并不意味着他放弃了这个抗辩。他仍然可以在后续的<b>答辩状 (Answer)</b> 中提出。
+            </li>
+        </ol>
+
+        <p>因此，只有“不当审判地”被放弃了，选 <b>C</b>。</p>
+
+        <!-- 为什么其他选项错误 -->
+        <div class="section-title">❌ 为什么其他选项错误？</div>
+        <ul>
+            <li><b>选项 A：</b> 错误。它认为两个抗辩都没受影响，但实际上“不当审判地”已经被放弃了。</li>
+            <li><b>选项 B & D：</b> 错误。它们认为“未能陈述诉求”被放弃了。这是 MBE 常见的陷阱——虽然你不能发第二个动议来提它，但你并没有“放弃”这个法律理由本身，你只是换个时间（在 Answer 中）提出来。</li>
+        </ul>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <span class="mbe-tip-title">💡 MBE 提分技巧</span>
+            在做 Civil Procedure 题目时，一旦看到被告提交了 <b>Pre-answer Motion</b>，立刻警惕：
+            <br>1. 检查他漏掉了什么。
+            <br>2. 漏掉的是不是 "Waivable Defenses" (PJ, Venue, Process, Service)。
+            <br>3. 如果是，那就是 Waived；如果是 12(b)(6) (Failure to state a claim)，则只是推迟提出 (Preserved)。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

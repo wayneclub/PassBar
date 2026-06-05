@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --highlight-bg: #ecf0f1;
+            --text-color: #34495e;
+            --border-radius: 8px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            line-height: 1.4;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .comparison {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            font-size: 0.85rem;
+        }
+
+        .col {
+            width: 48%;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .col.correct {
+            border-color: var(--primary-color);
+            background-color: #fbfbfb;
+        }
+
+        .tip-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Inchoate Crimes: Conspiracy<br>(未遂犯罪：共谋罪)</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法则：双务原则 (Bilateral Theory)</span>
+            <p>本题明确指出该司法管辖区遵循<b>普通法 (Common Law)</b>。在普通法下，共谋罪必须满足<b>合意的多数性 (Plurality of Agreement)</b>。</p>
+            <p>这意味着必须有<b>两个或两个以上</b>的人真正打算实施犯罪。如果其中一方只是假装同意（如卧底警察），则不存在法律意义上的“协议”。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <h3>🕵️ 案情逻辑分析</h3>
+        <div class="analysis-step">
+            <p><b>1. 毒贩 (Defendant):</b><br>
+            具有犯罪意图 (Guilty Mind)，意图购买并分销海洛因。</p>
+        </div>
+        <div class="analysis-step">
+            <p><b>2. 卧底警察 (Undercover Officer):</b><br>
+            虽然表面上同意，但内心没有犯罪意图。其目的是执法而非犯罪。这被称为 <span class="english-term">Feigned Agreement</span>（假意合谋）。</p>
+        </div>
+        <div class="analysis-step">
+            <p><b>3. 结论:</b><br>
+            1个真正的犯罪意图 + 0个真正的犯罪意图 = <b>1个犯罪意图</b>。<br>
+            普通法共谋罪要求至少 <b>2个</b>。因此，共谋罪不成立。</p>
+        </div>
+
+        <!-- 选项辨析 -->
+        <h3>❌ 为什么其他选项是错的？</h3>
+        
+        <div class="comparison">
+            <div class="col">
+                <strong>选项 A (公开行为)</strong><br>
+                错误。普通法上的共谋罪<b>不需要</b>公开行为 (<span class="english-term">Overt Act</span>)。只要达成协议即构成犯罪。即便需要，毒贩付款也是公开行为。
+            </div>
+            <div class="col correct">
+                <strong>选项 B (正确答案)</strong><br>
+                正确。因为缺乏“合意的多数性”，即没有两个“Guilty Minds”。
+            </div>
+        </div>
+
+        <p><b>关于选项 D (事实/法律错误):</b><br>
+        毒贩确实“以为”自己在共谋，但这属于<b>法律上的不可能 (Legal Impossibility)</b>。因为对方是警察，法律上根本无法形成普通法定义的共谋。被告的主观信念不能弥补客观要素（第二个共谋者）的缺失。</p>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <strong>💡 MBE 考试陷阱提示</strong>
+            <p>务必看清题目适用的法律是 <b>Common Law</b> 还是 <b>Model Penal Code (MPC)</b>。</p>
+            <ul style="padding-left: 20px; margin: 5px 0;">
+                <li><b>Common Law:</b> 必须两人以上真合谋 (Bilateral)。卧底警察 = 无罪。</li>
+                <li><b>MPC / Modern Statutes:</b> 采用<b>单务原则 (Unilateral Theory)</b>。只要被告认为自己在与他人共谋，即便对方是卧底，被告<b>仍有罪</b>。</li>
+            </ul>
+            <p>本题若改为 MPC 规则，答案将完全相反！</p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        MBE Criminal Law Review
+    </div>
+</div>
+
+</body>
+</html>

@@ -14,8 +14,9 @@ import {
   Flag,
   Minus,
   Plus,
+  RotateCcw,
 } from 'lucide-react';
-import type { DisplayOptions, TextSize } from '@/lib/study-settings';
+import { defaultStudySettings, type DisplayOptions, type TextSize } from '@/lib/study-settings';
 
 interface TestHeaderProps {
   questionIndex: number;
@@ -32,6 +33,7 @@ interface TestHeaderProps {
   display: DisplayOptions;
   onDisplayChange: (display: DisplayOptions) => void;
   onFeedback: () => void;
+  onReset: () => void;
   isBrowse?: boolean;
   /** Current question subject name */
   subject?: string;
@@ -60,6 +62,7 @@ export function TestHeader({
   display,
   onDisplayChange,
   onFeedback,
+  onReset,
   isBrowse = false,
   subject,
   topic,
@@ -70,6 +73,13 @@ export function TestHeader({
 }: TestHeaderProps) {
   const { t } = useI18n();
   const [settingsOpen, setSettingsOpen] = useState(false);
+
+  function safeDisplayChange(next: DisplayOptions) {
+    const qaOk = next.enQA || next.zhQA;
+    const expOk = next.enExplanation || next.zhExplanation;
+    if (!qaOk || !expOk) return;
+    onDisplayChange(next);
+  }
   const isCountdown = timeLimitSeconds !== undefined;
   const [localTime, setLocalTime] = useState(timeSpent);
   const [questionMenuOpen, setQuestionMenuOpen] = useState(false);
@@ -126,8 +136,8 @@ export function TestHeader({
   const isUrgent = isCountdown && timeLimitSeconds !== undefined && (timeLimitSeconds - localTime) < 600;
 
   return (
-    <header className="h-14 bg-secondary text-white flex items-center justify-between px-4 fixed top-0 w-full z-50">
-      {/* Left: icons + subject */}
+    <header className="h-14 bg-secondary text-white grid grid-cols-[auto_1fr_auto] items-center px-4 fixed top-0 w-full z-50">
+      {/* Left: icons */}
       <div className="flex items-center gap-1">
         <Button
           variant="ghost"
@@ -155,20 +165,20 @@ export function TestHeader({
 
       <Popover open={questionMenuOpen} onOpenChange={setQuestionMenuOpen}>
         <PopoverTrigger asChild>
-          <button className="flex flex-col items-center gap-0.5 rounded px-4 py-1.5 text-white transition-colors hover:bg-white/10">
+          <button className="flex min-w-0 flex-1 flex-col items-center gap-0.5 rounded px-4 py-1.5 text-white transition-colors hover:bg-white/10">
             <span className="flex items-center gap-1.5">
               <span className="text-lg font-semibold tabular-nums">{questionIndex + 1}/{totalQuestions}</span>
               <ChevronDown className={cn('h-4 w-4 text-primary transition-transform', questionMenuOpen && 'rotate-180')} />
             </span>
             {/* Subject · Chapter together — desktop only */}
             {(subject || topic) && (
-              <span className="hidden sm:flex items-center gap-1.5 text-xs text-slate-400 max-w-[320px]">
+              <span className="hidden sm:flex w-full max-w-sm items-center justify-center gap-1.5 overflow-hidden text-xs text-slate-400">
                 {subject && (
-                  <span className="truncate max-w-[140px] font-medium text-slate-300">{subject}</span>
+                  <span className="shrink-0 truncate font-medium text-slate-300" style={{ maxWidth: topic ? '45%' : '100%' }}>{subject}</span>
                 )}
-                {subject && topic && <span className="text-slate-600">·</span>}
+                {subject && topic && <span className="shrink-0 text-slate-600">·</span>}
                 {topic && (
-                  <span className="truncate max-w-[160px] font-medium text-primary/80">{topic}</span>
+                  <span className="min-w-0 truncate font-medium text-primary/80">{topic}</span>
                 )}
               </span>
             )}
@@ -219,7 +229,7 @@ export function TestHeader({
       </Popover>
 
       {/* Right Icons */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center justify-end gap-4">
         <div className="flex items-center gap-1">
           <Popover open={isShortcutHelpOpen} onOpenChange={setShortcutHelpOpen}>
             <PopoverTrigger asChild>
@@ -266,73 +276,103 @@ export function TestHeader({
                 <Settings className="w-5 h-5" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent align="end" className="w-72 border-slate-200 bg-white p-4 text-slate-900" sideOffset={10}>
-              {/* Font Size */}
-              <div className="mb-4">
-                <div className="mb-2 text-sm font-semibold text-slate-800">{t('settings.textSize')}</div>
-                <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 text-slate-600 hover:bg-slate-200 hover:text-slate-900 disabled:opacity-30"
-                    disabled={textSize === 'medium'}
-                    onClick={() => onTextSizeChange('medium')}
-                  >
-                    <Minus className="h-4 w-4" />
-                  </Button>
-                  <span className="font-semibold text-slate-800">
-                    {textSize === 'medium' ? t('settings.medium') : t('settings.large')}
-                  </span>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 text-slate-600 hover:bg-slate-200 hover:text-slate-900 disabled:opacity-30"
-                    disabled={textSize === 'large'}
-                    onClick={() => onTextSizeChange('large')}
-                  >
-                    <Plus className="h-4 w-4" />
-                  </Button>
+            <PopoverContent align="end" className="w-72 border-slate-200 bg-white p-0 text-slate-900 overflow-hidden" sideOffset={10}>
+              {/* Header */}
+              <div className="bg-slate-50 border-b border-slate-100 px-4 py-3">
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">{t('nav.settings')}</p>
+              </div>
+
+              <div className="p-4 space-y-5">
+                {/* Font Size */}
+                <div>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">{t('settings.textSize')}</p>
+                  <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-2 py-1.5">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-7 w-7 text-slate-500 hover:bg-slate-200 hover:text-slate-900 disabled:opacity-30"
+                      disabled={textSize === 'medium'}
+                      onClick={() => onTextSizeChange('medium')}
+                    >
+                      <Minus className="h-3.5 w-3.5" />
+                    </Button>
+                    <span className="text-sm font-semibold text-slate-800">
+                      {textSize === 'medium' ? t('settings.medium') : t('settings.large')}
+                    </span>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-7 w-7 text-slate-500 hover:bg-slate-200 hover:text-slate-900 disabled:opacity-30"
+                      disabled={textSize === 'large'}
+                      onClick={() => onTextSizeChange('large')}
+                    >
+                      <Plus className="h-3.5 w-3.5" />
+                    </Button>
+                  </div>
+                </div>
+
+                {/* English toggles */}
+                <div>
+                  <p className="mb-2.5 text-xs font-semibold uppercase tracking-wider text-slate-500">{t('settings.english')}</p>
+                  <div className="rounded-lg border border-slate-100 divide-y divide-slate-100 overflow-hidden">
+                    <div className="flex items-center justify-between bg-white px-3 py-2 hover:bg-slate-50 transition-colors">
+                      <span className="text-sm text-slate-700">{t('settings.displayQA')}</span>
+                      <Switch
+                        checked={display.enQA}
+                        disabled={display.enQA && !display.zhQA}
+                        onCheckedChange={(checked) => safeDisplayChange({ ...display, enQA: checked })}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between bg-white px-3 py-2 hover:bg-slate-50 transition-colors">
+                      <span className="text-sm text-slate-700">{t('settings.displayExplanation')}</span>
+                      <Switch
+                        checked={display.enExplanation}
+                        disabled={display.enExplanation && !display.zhExplanation}
+                        onCheckedChange={(checked) => safeDisplayChange({ ...display, enExplanation: checked })}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Chinese toggles */}
+                <div>
+                  <p className="mb-2.5 text-xs font-semibold uppercase tracking-wider text-slate-500">{t('settings.chinese')}</p>
+                  <div className="rounded-lg border border-slate-100 divide-y divide-slate-100 overflow-hidden">
+                    <div className="flex items-center justify-between bg-white px-3 py-2 hover:bg-slate-50 transition-colors">
+                      <span className="text-sm text-slate-700">{t('settings.displayQA')}</span>
+                      <Switch
+                        checked={display.zhQA}
+                        disabled={display.zhQA && !display.enQA}
+                        onCheckedChange={(checked) => safeDisplayChange({ ...display, zhQA: checked })}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between bg-white px-3 py-2 hover:bg-slate-50 transition-colors">
+                      <span className="text-sm text-slate-700">{t('settings.displayExplanation')}</span>
+                      <Switch
+                        checked={display.zhExplanation}
+                        disabled={display.zhExplanation && !display.enExplanation}
+                        onCheckedChange={(checked) => safeDisplayChange({ ...display, zhExplanation: checked })}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div className="mb-1 border-t border-slate-100 pt-4">
-                <div className="mb-3 text-sm font-semibold text-slate-800">{t('settings.displayQA')}</div>
-                <div className="space-y-2.5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-700">{t('settings.english')}</span>
-                    <Switch
-                      checked={display.enQA}
-                      onCheckedChange={(checked) => onDisplayChange({ ...display, enQA: checked })}
-                    />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-700">{t('settings.chinese')}</span>
-                    <Switch
-                      checked={display.zhQA}
-                      onCheckedChange={(checked) => onDisplayChange({ ...display, zhQA: checked })}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-4 border-t border-slate-100 pt-4">
-                <div className="mb-3 text-sm font-semibold text-slate-800">{t('settings.displayExplanation')}</div>
-                <div className="space-y-2.5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-700">{t('settings.english')}</span>
-                    <Switch
-                      checked={display.enExplanation}
-                      onCheckedChange={(checked) => onDisplayChange({ ...display, enExplanation: checked })}
-                    />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-700">{t('settings.chinese')}</span>
-                    <Switch
-                      checked={display.zhExplanation}
-                      onCheckedChange={(checked) => onDisplayChange({ ...display, zhExplanation: checked })}
-                    />
-                  </div>
-                </div>
+              {/* Reset footer */}
+              <div className="border-t border-slate-100 px-4 py-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    onTextSizeChange(defaultStudySettings.textSize);
+                    onDisplayChange(defaultStudySettings.display);
+                    onReset();
+                    setSettingsOpen(false);
+                  }}
+                  className="flex w-full items-center justify-center gap-1.5 rounded-md py-1.5 text-xs font-medium text-slate-400 hover:bg-slate-50 hover:text-slate-600 transition-colors"
+                >
+                  <RotateCcw className="h-3 w-3" />
+                  {t('settings.restoreDefaults')}
+                </button>
               </div>
             </PopoverContent>
           </Popover>

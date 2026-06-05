@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            color: #2980b9;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-icon {
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .analysis-step:last-child {
+            border-bottom: none;
+        }
+        .step-label {
+            font-size: 12px;
+            color: #7f8c8d;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .correct-answer {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center;
+            border: 1px solid #c3e6cb;
+        }
+        .trap-alert {
+            background-color: #fff5f5;
+            border: 1px solid #fed7d7;
+            color: #c53030;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #6c757d;
+            border-top: 1px solid #eee;
+        }
+        .diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            background: #fdfdfd;
+            padding: 10px;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+        }
+        .diagram-box {
+            text-align: center;
+            font-size: 12px;
+            flex: 1;
+        }
+        .arrow {
+            font-size: 20px;
+            color: #3498db;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure: Service of Process</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">
+                <span class="rule-icon">⚖️</span> 核心规则：FRCP 4(g)
+            </div>
+            <p>针对<b>未成年人</b> (Minors) 或<b>无行为能力人</b> (Incompetent Persons) 的送达：</p>
+            <p>必须遵守<b>送达行为发生地所在州</b> (State where service is made) 的法律。</p>
+        </div>
+
+        <!-- 案情图解 -->
+        <div class="diagram">
+            <div class="diagram-box">
+                <b>法院所在地</b><br>State A<br>(Forum)
+            </div>
+            <div class="arrow">vs.</div>
+            <div class="diagram-box">
+                <b>实际送达地</b><br>State B<br>(Service Made)
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 13px; color: #666; margin-top: -10px;">
+            对于未成年人，FRCP 4(g) 指向右边 👉 <b>State B</b>
+        </p>
+
+        <!-- 逻辑推演 -->
+        <div class="analysis-step">
+            <div class="step-label">Step 1: 确定被告身份</div>
+            <p>被告是13岁的妹妹，属于<b>未成年人 (Minor)</b>。因此适用 <span class="latin">Federal Rule of Civil Procedure</span> 4(g)。</p>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-label">Step 2: 确定适用的州法</div>
+            <p>FRCP 4(g) 规定，向未成年人送达必须遵循<b>送达地</b>的州法。</p>
+            <ul>
+                <li>送达员是在 <b>State B</b> 将文件交给叔叔的。</li>
+                <li>因此，必须看 <b>State B</b> 的法律是否允许这种做法。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-label">Step 3: 验证送达有效性</div>
+            <p><b>State B 的法律：</b>允许将文件留给“与未成年人同住的成年家庭成员” (adult family member with whom the minor resides)。</p>
+            <p><b>事实：</b>叔叔是成年家庭成员，且妹妹与他同住。送达符合 State B 法律。</p>
+        </div>
+
+        <!-- 正确答案 -->
+        <div class="correct-answer">
+            ✅ 正确答案：A<br>
+            <span style="font-size: 14px; font-weight: normal;">法院不会驳回起诉，因为原告遵守了 B 州的送达法规。</span>
+        </div>
+
+        <!-- 陷阱警示 -->
+        <div class="trap-alert">
+            <strong>🚫 常见陷阱 (Choice D)</strong><br>
+            <p>很多考生会误选 D，认为应该遵守法院所在地 (State A) 的法律。</p>
+            <p><b>区别记忆：</b></p>
+            <ul>
+                <li><b>对成年人 (Competent Adults)：</b> FRCP 4(e)(1) 允许使用法院所在地 (Forum State) <b>或</b> 送达地 (Service State) 的法律。</li>
+                <li><b>对未成年人 (Minors)：</b> FRCP 4(g) 仅指向<b>送达地 (Service State)</b> 的法律。</li>
+            </ul>
+        </div>
+
+        <!-- 其他选项解析 -->
+        <div style="margin-top: 20px; font-size: 13px; color: #555;">
+            <p><b>❌ 选项 B 错误：</b> 联邦规则本身没有直接允许“家庭成员代收”的通用条款，它只是借用了州法的规定。</p>
+            <p><b>❌ 选项 C 错误：</b> 未成年人可以在联邦法院被起诉 (Sued)，只是需要通过监护人或诉讼代理人 (Guardian ad litem) 出庭，并需经过正确的送达程序。</p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

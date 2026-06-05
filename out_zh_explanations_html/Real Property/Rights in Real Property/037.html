@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            color: #2e7d32;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .concept-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            color: #1976d2;
+            font-weight: bold;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .english-term {
+            color: #555;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+        .wrong-option {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        .wrong-option strong {
+            color: #d32f2f;
+        }
+        .footer {
+            background-color: #f9fafb;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property / Landlord & Tenant</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：D</span>
+            <p>是的，因为它们是<b>营业定着物 (Trade Fixtures)</b>。</p>
+        </div>
+
+        <!-- 核心考点讲解 -->
+        <div class="concept-card">
+            <div class="concept-title">核心概念：营业定着物 (Trade Fixtures)</div>
+            <p>在普通法下，一般规则是附着在土地上的物品成为不动产的一部分（Fixtures），租户不得带走。但是，针对商业租赁有一个重要的例外：</p>
+            <ul>
+                <li><b>定义：</b>租户为了进行商业活动（Trade or Business）而安装的设备或物品。</li>
+                <li><b>规则：</b>商业租户有权在租期结束前拆除这些物品。</li>
+                <li><b>限制条件：</b>
+                    <ol>
+                        <li>拆除必须发生在<b>租期结束前</b>（或结束后的合理时间内）；</li>
+                        <li>拆除不得对房产造成<b>实质性损害</b>（Substantial Harm）。</li>
+                    </ol>
+                </li>
+            </ul>
+            <p>在本题中，租户安装空调和电器是为了商业用途，且拆除未造成损坏，因此符合 Trade Fixtures 的定义。</p>
+        </div>
+
+        <!-- 难点分析：逾期占用与租期 -->
+        <div class="concept-card">
+            <div class="concept-title">难点分析：逾期占用 (Holdover Doctrine)</div>
+            <p>很多考生会困惑：<i>“租约不是一年前就结束了吗？为什么现在还能拆？”</i></p>
+            <p>这里的关键在于租户的身份转变：</p>
+            <ul>
+                <li><b>逾期占用 (Holdover)：</b>租期结束后，租户未搬走。</li>
+                <li><b>周期性租赁 (Periodic Tenancy) 的形成：</b>当逾期租户继续支付租金，且房东接受租金时，法律上这就转化为一个新的<b>周期性租赁</b>（通常是按月租赁）。</li>
+            </ul>
+            <p><b>结论：</b>虽然最初的10年租约结束了，但双方建立了一个<b>新的、有效的租赁关系</b>。租户在第四个月末搬走前拆除物品，仍然是在“当前租赁关系存续期间”进行的，因此拆除是合法的。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="concept-card">
+            <div class="concept-title">为什么其他选项是错的？</div>
+            <div class="wrong-option">
+                <strong>选项 A (Holdover Tenant):</strong><br>
+                虽然他确实曾是逾期占用者，但一旦房东接受租金，他就变成了合法的周期性租户（Periodic Tenant），拥有完整的租户权利，包括拆除营业定着物的权利。
+            </div>
+            <div class="wrong-option">
+                <strong>选项 B (Oral Lease):</strong><br>
+                虽然10年口头租约违反了《反欺诈法》(Statute of Frauds)，但这与当前的拆除权无关。当前的租赁关系是基于双方行为（占有+付租）形成的周期性租赁，这是有效的。
+            </div>
+            <div class="wrong-option">
+                <strong>选项 C (Accessions):</strong><br>
+                添附物 (Accessions) 通常指与不动产结合紧密、无法在不造成破坏的情况下分离的物品。如果它们是 Accessions，租户反而<b>不能</b>拆除。题目明确说“未造成损坏”，所以这个理由不成立。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-card" style="background-color: #fff8e1; border-color: #ffecb3;">
+            <div class="concept-title" style="color: #f57f17; border-color: #ffe082;">MBE 考试技巧</div>
+            <p>遇到<b>商业租赁 (Commercial Lease)</b> 的题目，看到租户安装了昂贵的设备（如冷库、柜台、机器），首先反应应该是 <b>Trade Fixtures Doctrine</b>。</p>
+            <p>判定的核心是：<b>Commercial Purpose</b>（商业目的） + <b>No Substantial Damage</b>（无重大损害）。只要满足这两点，普通法倾向于允许租户带走这些财产。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

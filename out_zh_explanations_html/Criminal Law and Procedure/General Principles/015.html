@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机宽度 */
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .logic-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .logic-icon {
+            min-width: 24px;
+            height: 24px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 10px;
+            margin-top: 2px;
+        }
+
+        .wrong-option {
+            background-color: #fff5f5;
+            border: 1px solid #ffebeb;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .wrong-option strong {
+            color: #c0392b;
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px dashed #f1c40f;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 25px;
+            font-size: 0.9rem;
+        }
+
+        .exam-tip-title {
+            font-weight: bold;
+            color: #d35400;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考点解析</h1>
+        <div class="sub-title">Common Law Murder & Defenses</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：选项 B</span>
+            “他们既无伤害儿童的意图，也未鲁莽漠视其生命。”<br>
+            <span class="english-term">(They neither intended to harm the child nor acted with a reckless disregard for their life.)</span>
+        </div>
+
+        <!-- 核心解析 -->
+        <div class="section-title">⚖️ 法律推理核心</div>
+        
+        <p>本题的核心考点在于区分<b>谋杀罪</b> (<span class="english-term">Murder</span>) 与<b>过失杀人罪</b> (<span class="english-term">Involuntary Manslaughter</span>) 的心理状态 (<span class="english-term">Mens Rea</span>)。</p>
+
+        <div class="logic-step">
+            <div class="logic-icon">1</div>
+            <div>
+                <strong>普通法谋杀的定义：</strong><br>
+                谋杀需要证明“预谋恶意” (<span class="english-term">Malice Aforethought</span>)。在本案中，父母显然没有杀人或造成重伤的意图，因此控方唯一可用的理论是<b>“堕落之心”</b> (<span class="english-term">Depraved Heart Murder</span>)。
+            </div>
+        </div>
+
+        <div class="logic-step">
+            <div class="logic-icon">2</div>
+            <div>
+                <strong>什么是“堕落之心”？</strong><br>
+                这要求被告对人类生命表现出极端的、主观上的冷漠 (<span class="english-term">Reckless indifference to an unjustifiably high risk to human life</span>)。这不仅仅是疏忽，而是一种“我不在乎你是死是活”的恶性心理状态。
+            </div>
+        </div>
+
+        <div class="logic-step">
+            <div class="logic-icon">3</div>
+            <div>
+                <strong>为何选项 B 是最佳抗辩？</strong><br>
+                父母的行为虽然在客观上极度不合理（导致了过失杀人罪的责任），但他们<b>主观上</b>是因为虔诚的信仰而祈祷，目的是希望孩子活下来，而非漠视孩子的生死。
+                <br><br>
+                选项 B 直接否定了谋杀罪必须具备的“恶意” (<span class="english-term">Malice</span>) 元素。如果陪审团相信他们没有“鲁莽漠视” (<span class="english-term">Reckless Disregard</span>)，谋杀罪名就不能成立。
+            </div>
+        </div>
+
+        <!-- 为什么其他选项错误 -->
+        <div class="section-title">❌ 为什么其他选项错误？</div>
+
+        <div class="wrong-option">
+            <strong>选项 A (近因 Proximate Cause)：错误</strong><br>
+            刑法中的因果关系通常采用<b>客观标准</b>。一个理性人 (<span class="english-term">Reasonable Person</span>) 应当预见到不治疗脑膜炎会导致死亡。父母特殊的宗教信仰不能切断法律上的因果链。
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 C (无预谋 Premeditation)：错误</strong><br>
+            “预谋” (<span class="english-term">Premeditation</span>) 仅是区分一级谋杀与二级谋杀的标准。普通法谋杀罪（通常对应二级谋杀）<b>不需要</b>预谋，只要有恶意即可。因此这不是对“谋杀罪”本身的有效抗辩。
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 D (宗教自由)：错误</strong><br>
+            根据美国最高法院判例（如 <i>Prince v. Massachusetts</i>），宗教自由不是绝对的。父母没有权利因为宗教信仰而让孩子殉道。当宗教行为威胁到儿童生命时，国家利益优先。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 考试技巧</span>
+            <p>当题目问“最佳抗辩” (<span class="english-term">Best Defense</span>) 时，通常是在寻找一个能<b>直接否定犯罪构成要件</b> (<span class="english-term">Negate an Element of the Crime</span>) 的选项。</p>
+            <p>本题中，父母很可能构成了过失杀人罪，但题目控告的是<b>谋杀</b>。选项 B 成功否定了谋杀独有的“恶意”元素，因此是针对谋杀指控的最佳防守。</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

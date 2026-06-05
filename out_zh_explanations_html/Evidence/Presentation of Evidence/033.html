@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - 证据法</title>
+    
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">证据法: 证据的呈现</p>
+        </header>
+
+        <div class="answer-box">
+            正确答案：D<br>
+            秘密录音可作为先前的矛盾陈述，仅用于弹劾证人证词，但不能作为实质证据证明被告的种族动机，因为它属于传闻且不符合任何例外。
+        </div>
+
+        <div class="content-section">
+            <h2>核心法律规则：先前的矛盾陈述 (Prior Inconsistent Statements)</h2>
+            <div class="concept-box">
+                <p class="concept-title">先前的矛盾陈述 (Prior Inconsistent Statements)</p>
+                <p><strong>先前的矛盾陈述 (Prior Inconsistent Statements, PIS)</strong> 是证人过去所作的、与其当前庭审证词不一致的陈述。这些陈述可用于<strong>弹劾 (impeach)</strong> 证人，即质疑其可信度。</p>
+                <p>根据<a href="https://www.law.cornell.edu/rules/fre/rule_613" target="_blank">联邦证据规则 (Fed. R. Evid.) 613</a>，PIS 的引入有特定要求。</p>
+            </div>
+
+            <h3>PIS 的用途、适用性及引入方式对比</h3>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>用途 (Use)</th>
+                            <th>适用性 (Applicability)</th>
+                            <th>引入方式 (Methods of Introduction)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>弹劾 (Impeachment)</strong></td>
+                            <td>始终可用于质疑证人的庭审证词的可信度。</td>
+                            <td>
+                                <ul>
+                                    <li>询问证人关于先前的陈述；或</li>
+                                    <li>引入外部证据 (extrinsic evidence)，如果：
+                                        <ul>
+                                            <li>证人有机会解释或否认，且对方当事人有机会就该陈述质询证人；或</li>
+                                            <li>司法公正要求。</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>实质证据 (Substantive Evidence)</strong></td>
+                            <td>仅当该陈述不属于传闻 (hearsay) 或符合传闻例外/排除规则时，才可用于证明其内容的真实性。通常，PIS 属于传闻，除非符合 <a href="https://www.law.cornell.edu/rules/fre/rule_801" target="_blank">Fed. R. Evid. 801(d)(1)(A)</a> 等规则（例如，在宣誓下作出的 PIS 不属于传闻）。</td>
+                            <td>
+                                <ul>
+                                    <li>如果符合传闻例外或排除规则，则可直接作为证据引入。</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>案情分析与法律适用</h2>
+            <div class="analysis-step">
+                <p>本案中，原告试图引入证人先前的秘密录音，该录音包含证人转述的被告承认种族动机的陈述。该陈述与证人在庭审中关于被告因缺勤解雇原告的证词相矛盾。</p>
+
+                <h3>1. 弹劾证人证词 (Impeachment)</h3>
+                <p>证人的庭审证词与她在录音中的陈述不一致，因此录音构成<strong>先前的矛盾陈述 (Prior Inconsistent Statement)</strong>。根据证据规则，PIS 始终可用于弹劾证人，即质疑其可信度。</p>
+                <p>引入 PIS 的外部证据（如录音）需要满足以下条件：证人有机会解释或否认该陈述，且对方当事人有机会质询证人。本案中，证人仍在证人席上，她已经否认了相关对话，并且被告有机会对她进行交叉质询。因此，该录音作为外部证据引入，用于弹劾证人证词是<strong>允许的</strong>。</p>
+
+                <h3>2. 作为实质证据 (Substantive Evidence)</h3>
+                <p>然而，PIS 通常属于<strong>传闻 (hearsay)</strong>，即庭外陈述，用于证明其内容的真实性。本案中，录音中的证人陈述（关于被告承认种族动机）是庭外陈述，如果用于证明被告确实有种族动机，则属于传闻。根据<a href="https://www.law.cornell.edu/rules/fre/rule_802" target="_blank">联邦证据规则 (Fed. R. Evid.) 802</a>，传闻通常不可采纳。</p>
+                <p>除非该 PIS 符合传闻例外或排除规则（例如，<a href="https://www.law.cornell.edu/rules/fre/rule_801" target="_blank">联邦证据规则 801(d)(1)(A)</a> 规定，在宣誓下作出的、与证人庭审证词不一致的先前的陈述不属于传闻），否则不能作为实质证据引入。</p>
+                <p>本案中，录音中的陈述并非在宣誓下作出，也没有其他信息表明它符合任何传闻例外或排除规则。因此，该录音不能作为实质证据来证明被告的种族动机。</p>
+            </div>
+
+            <h2>PIS 引入流程图</h2>
+            <div class="diagram" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                <div class="flow-node">证人庭审证词<br>(被告因缺勤解雇原告)</div>
+                <div style="font-size: 24px; color: var(--accent-color);">↓</div>
+                <div class="flow-node">原告引入秘密录音<br>(证人曾称被告有种族动机)</div>
+                <div style="font-size: 24px; color: var(--accent-color);">↓</div>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%;">
+                    <div class="flow-node highlight-node" style="flex: 1; min-width: 200px;"><strong>目的 1: 弹劾证人可信度 (允许)</strong></div>
+                    <div class="flow-node" style="flex: 1; min-width: 200px;">目的 2: 证明被告种族动机 (不允许，因传闻)</div>
+                </div>
+            </div>
+
+            <h2>MBE 考点陷阱提示</h2>
+            <div class="trap-alert">
+                <p><strong>区分弹劾与实质证据：</strong> MBE 考试经常会考察考生是否能区分先前的矛盾陈述用于弹劾证人可信度（几乎总是允许）和用于证明其内容真实性（通常因传闻规则而不允许，除非有例外或排除）。</p>
+                <p><strong>第四修正案：</strong> 秘密录音通常不涉及第四修正案权利。第四修正案保护公民免受政府不合理搜查和扣押，不适用于私人当事人之间的秘密录音。</p>
+            </div>
+
+            <h2>正确答案与干扰项排除</h2>
+            <div class="option-analysis">
+                <div class="option correct">
+                    <p><strong>D. 是的，但仅用于弹劾证人的证词。</strong></p>
+                    <p><strong>正确。</strong>录音是证人先前的矛盾陈述，可用于弹劾证人的可信度。由于证人有机会解释或否认，且对方当事人有机会质询，因此外部证据（录音）是可接受的。然而，录音中的陈述是庭外陈述，如果用于证明被告的种族动机则属于传闻，且不符合任何传闻例外或排除规则，因此不能作为实质证据。</p>
+                </div>
+                <div class="option wrong">
+                    <p><strong>A. 否，因为秘密录音侵犯了证人的第四修正案隐私权。</strong></p>
+                    <p><strong>错误。</strong>第四修正案保护公民免受政府不合理搜查和扣押，不适用于私人当事人（如本案中的原告）进行的秘密录音。因此，录音的合法性不受第四修正案影响。</p>
+                </div>
+                <div class="option wrong">
+                    <p><strong>B. 否，因为它属于传闻且不符合任何例外。</strong></p>
+                    <p><strong>错误。</strong>虽然录音中的陈述如果用于证明被告的种族动机确实是传闻且不符合例外，但它仍然可以用于弹劾证人的可信度。此选项错误地排除了其弹劾用途。</p>
+                </div>
+                <div class="option wrong">
+                    <p><strong>C. 是的，作为被告种族动机的证据并弹劾证人的证词。</strong></p>
+                    <p><strong>错误。</strong>如D选项分析，录音可以用于弹劾证人，但不能作为实质证据证明被告的种族动机，因为它属于传闻且不符合任何例外。</p>
+                </div>
+            </div>
+
+            <h2>考点速记</h2>
+            <div class="footer-tip">
+                <p><strong>PIS 核心：</strong> 弹劾 (Impeachment) 几乎总是允许；实质证据 (Substantive Evidence) 需过传闻关。记住 <a href="https://www.law.cornell.edu/rules/fre/rule_801" target="_blank">FRE 801(d)(1)(A)</a> 的特殊情况（宣誓下作出的 PIS 不属于传闻）。</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid transparent;
+        }
+        .card.correct {
+            border-left-color: var(--success-color);
+        }
+        .card.concept {
+            border-left-color: var(--accent-color);
+        }
+        .card.trap {
+            border-left-color: var(--warning-color);
+        }
+        h2 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        .highlight {
+            background-color: #e8f4fd;
+            color: var(--primary-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .rule-box {
+            background-color: #f8f9fa;
+            border: 1px dashed #bdc3c7;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Civil Procedure: Class Action Appeals</p>
+    </div>
+
+    <!-- Correct Answer Section -->
+    <div class="card correct">
+        <h2>✅ 正确答案：D</h2>
+        <p>上诉法院<b>有管辖权</b>，因为该命令认证了消费者为集体诉讼集体，且上诉申请符合时间要求。</p>
+        <p>本题的核心考点是 <b>FRCP 23(f)</b> 规则下的<b>中间上诉 (Interlocutory Appeal)</b>。</p>
+    </div>
+
+    <!-- Core Legal Concept -->
+    <div class="card concept">
+        <h2>⚖️ 法律规则解析</h2>
+        
+        <p><b>1. 最终判决规则 (Final Judgment Rule)</b><br>
+        通常情况下，联邦上诉法院仅对地区法院的“最终判决”拥有管辖权。也就是说，必须等到案件完全结束后才能上诉。</p>
+
+        <p><b>2. 例外：FRCP 23(f)</b><br>
+        《联邦民事诉讼规则》第23(f)条提供了一个重要的例外：</p>
+        
+        <div class="rule-box">
+            <strong>Rule 23(f):</strong><br>
+            如果地区法院下达了<b>批准或驳回</b>集体诉讼认证 (Granting or Denying Class Certification) 的命令，上诉法院可以行使自由裁量权允许上诉。
+        </div>
+
+        <p><b>3. 关键时限 (Strict Deadline)</b><br>
+        要行使这项权利，当事人必须在命令下达后 <b>14天内</b> 向上诉法院提交许可申请 (Petition for Permission to Appeal)。</p>
+        
+        <p><b>应用到本题：</b><br>
+        公司在命令下达后 <b>12天</b> 提交了申请，符合14天的期限要求。因此，上诉法院有管辖权（虽然是否受理是法院的自由裁量权，但它首先具备了管辖权）。</p>
+    </div>
+
+    <!-- Why other options are wrong -->
+    <div class="card trap">
+        <h2>❌ 干扰项辨析</h2>
+        
+        <ul>
+            <li><b>选项 A 错误：</b> 申请是在12天提交的，未超过14天的法定期限，因此是及时的 (Timely)。</li>
+            
+            <li><b>选项 B 错误：</b> 虽然这确实不是“最终判决”，但 FRCP 23(f) 专门为此类非最终判决提供了上诉通道。</li>
+            
+            <li><b>选项 C 错误（高频陷阱）：</b> <span class="latin">Collateral Order Doctrine</span>（附带命令原则）是另一个中间上诉的例外，但它要求该命令“实际上无法在最终判决后复审”。
+            <br><br>
+            <b>集体诉讼认证不属于附带命令</b>，因为如果认证错误，上诉法院完全可以在最终判决后推翻它。这里适用的依据是具体的成文法规则 FRCP 23(f)，而不是普通法下的附带命令原则。</li>
+        </ul>
+    </div>
+
+    <!-- Exam Strategy -->
+    <div class="card concept">
+        <h2>🎓 考试通关技巧</h2>
+        <p>在 MBE 民事诉讼法部分遇到<b>上诉 (Appeals)</b> 题目时，请按以下步骤思考：</p>
+        <ol>
+            <li><b>默认原则：</b> 首先判断是否为最终判决？如果不是，通常不可上诉。</li>
+            <li><b>寻找例外：</b> 检查是否属于特定的中间上诉例外：
+                <ul>
+                    <li>禁令 (Injunctions) - 28 U.S.C. § 1292(a)</li>
+                    <li><b>集体诉讼认证 (Class Certification) - Rule 23(f)</b></li>
+                    <li>附带命令 (Collateral Order)</li>
+                    <li>认证问题 (Certified Question) - § 1292(b)</li>
+                </ul>
+            </li>
+            <li><b>检查时效：</b> 对于 Rule 23(f)，记住数字 <b>14天</b>。这比通常的上诉期限（30天）要短得多！</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        MBE Civil Procedure Review
+    </div>
+
+</div>
+
+</body>
+</html>

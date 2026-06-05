@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：产权链与通知</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: transparent;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 16px;
+            color: var(--accent-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+
+        .diagram-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 80%;
+            text-align: center;
+            background: #fff;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+
+        .arrow {
+            font-size: 18px;
+            color: #aaa;
+        }
+
+        .conclusion {
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 核心考点卡片 -->
+    <div class="card">
+        <h1>核心考点：产权链与通知</h1>
+        <p>本题考察的是不动产法中关于<b>登记法案 (Recording Acts)</b> 和<b>产权链 (Chain of Title)</b> 的一个经典且细微的规则。</p>
+        <div class="concept-box">
+            <span class="key-term">核心问题：</span><br>
+            如果在出售地块A的地契中，包含了对保留地块B的限制性承诺，那么地块B的后续购买者是否被视为收到了该限制的“通知”？
+        </div>
+    </div>
+
+    <!-- 法律解析卡片 -->
+    <div class="card">
+        <h1>正确答案解析 (选项 C)</h1>
+        
+        <p><b>结论：</b>开发商胜诉，因为该限制性契约不在其95英亩土地的产权链中。</p>
+
+        <h2>1. 登记通知 (Record Notice) 的范围</h2>
+        <p>虽然买家（Buyer）的地契被“及时且适当地登记”了，但这并不意味着它自动对全世界构成通知。在大多数司法管辖区（以及MBE考试的通说中）：</p>
+        <ul>
+            <li>购买者只需检查与其购买的土地<b>直接相关</b>的产权链。</li>
+            <li>购买者<b>没有义务</b>去检查同一出让人（Grantor）签发的、涉及<b>其他地块</b>的地契。</li>
+        </ul>
+
+        <h2>2. 为什么不在产权链中？</h2>
+        <p>当开发商（Developer）去登记处检查这95英亩土地的产权时，他会搜索承包商（Contractor）名下的记录。虽然他会看到承包商把5英亩地卖给了买家，但他通常<b>不需要阅读该地契的具体内容</b>，因为那份地契主要涉及的是那5英亩地，而不是他要买的95英亩地。</p>
+        
+        <div class="diagram">
+            <div class="diagram-box" style="border-color: #3498db;">
+                <b>承包商 (Contractor)</b><br>拥有100英亩
+            </div>
+            <div class="arrow">⬇️</div>
+            <div class="diagram-box" style="border-color: #e74c3c; background-color: #fff5f5;">
+                <b>卖给买家 (Buyer) 5英亩</b><br>
+                <span style="font-size:10px; color:#c0392b;">地契中藏着对剩余95英亩的限制</span><br>
+                <span style="font-size:10px;">(这是"旁系地契" Collateral Deed)</span>
+            </div>
+            <div class="arrow">⬇️</div>
+            <div class="diagram-box" style="border-color: #27ae60; background-color: #f0fff4;">
+                <b>卖给开发商 (Developer) 95英亩</b><br>
+                <span style="font-size:10px;">地契干干净净，无限制</span>
+            </div>
+        </div>
+
+        <p>由于限制条款被写在了一份转让<b>邻近土地</b>的地契中，这被称为<b>"Collateral Deed"</b>（旁系地契）。法院通常认为，要求购买者阅读出让人签发给其他人的每一份地契会造成过重的负担。</p>
+
+        <p class="conclusion">因此，开发商被视为没有“登记通知”(Record Notice)，且题目已知他没有“实际通知”(Actual Notice)，所以他是善意购买者，不受该契约约束。</p>
+    </div>
+
+    <!-- 错误选项分析 -->
+    <div class="card">
+        <h1>为什么其他选项是错的？</h1>
+        
+        <ul>
+            <li>
+                <b>选项 A (非法限制转让):</b> <br>
+                错误。限制土地的<b>使用</b>（如“只能建住宅”）是合法的。非法的 <span class="english-term">Restraint on Alienation</span> 是指完全禁止或不合理地限制土地的<b>出售</b>。
+            </li>
+            <li>
+                <b>选项 B (相互性消极契约):</b> <br>
+                错误。法律确实承认 <span class="english-term">Negative Reciprocal Covenants</span>（通常用于住宅小区开发）。本题的问题不在于该契约是否被承认，而在于开发商是否收到了<b>通知 (Notice)</b>。
+            </li>
+            <li>
+                <b>选项 D (面积差异):</b> <br>
+                错误。土地面积的大小与契约是“随土地转移” (<span class="english-term">Run with the land</span>) 还是“属人的” (<span class="english-term">Personal</span>) 无关。
+            </li>
+        </ul>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card" style="border-left-color: #f1c40f;">
+        <h1>💡 MBE 考试技巧</h1>
+        <p>在处理<b>登记法案 (Recording Acts)</b> 的题目时，请遵循以下步骤：</p>
+        <ol>
+            <li><b>确定法案类型：</b>本题是 "Notice Statute"（无通知即无效）。</li>
+            <li><b>检查三种通知：</b>
+                <ul>
+                    <li><b>Actual Notice:</b> 题目明确说没有。</li>
+                    <li><b>Inquiry Notice:</b> 95英亩地上没有任何可见的住宅开发迹象，且离400英亩小区很远，所以没有查询义务。</li>
+                    <li><b>Record Notice:</b> 这是考点。记住规则：<b>"Wild Deeds"</b>（野地契）或<b>不在直接产权链中的地契</b>不构成通知。</li>
+                </ul>
+            </li>
+        </ol>
+        <p><b>口诀：</b>搜索产权只需看“路”（Chain of Title），不必翻看路边的每一块“石头”（其他地块的地契）。</p>
+    </div>
+
+    
+
+</div>
+
+</body>
+</html>

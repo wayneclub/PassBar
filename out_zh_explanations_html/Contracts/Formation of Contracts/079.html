@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --correct-color: #27ae60;
+        --wrong-color: #c0392b;
+        --text-color: #333;
+        --bg-color: #f4f4f4;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .header .sub-title {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .rule-box {
+        background: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        display: block;
+    }
+    .timeline {
+        position: relative;
+        margin: 25px 0;
+        padding-left: 20px;
+        border-left: 2px solid #ddd;
+    }
+    .event {
+        position: relative;
+        margin-bottom: 20px;
+        padding-left: 15px;
+    }
+    .event::before {
+        content: '';
+        position: absolute;
+        left: -26px;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #bbb;
+        border: 2px solid #fff;
+    }
+    .event.key-moment::before {
+        background: var(--correct-color);
+        transform: scale(1.2);
+    }
+    .event-date {
+        font-size: 0.85rem;
+        color: #666;
+        font-weight: bold;
+    }
+    .event-desc {
+        font-size: 0.95rem;
+    }
+    .analysis-section {
+        margin-top: 20px;
+    }
+    .tag {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    .tag-correct { background: #d4edda; color: #155724; }
+    .tag-wrong { background: #f8d7da; color: #721c24; }
+    
+    .exam-tip {
+        background: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 25px;
+        font-size: 0.9rem;
+    }
+    .latin {
+        font-style: italic;
+    }
+    .footer {
+        text-align: center;
+        font-size: 0.8rem;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts: Mailbox Rule</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心考点：邮箱规则 (Mailbox Rule)</span>
+            <p>本题考察的是<b>邮箱规则</b>在“先承诺后拒绝”这一特定顺序下的应用。</p>
+            <p>根据《合同法重述（第二版）》§ 63 (Restatement (Second) of Contracts)，<b>承诺 (Acceptance)</b> 通常在<b>发出 (Dispatch)</b> 时生效，而不是收到时生效。</p>
+        </div>
+
+        <!-- 案情时间轴 -->
+        <h3>📅 案情时间轴分析</h3>
+        <div class="timeline">
+            <div class="event">
+                <div class="event-date">9月18日</div>
+                <div class="event-desc">守门员发出要约 (Offer)。</div>
+            </div>
+            <div class="event key-moment">
+                <div class="event-date">9月21日</div>
+                <div class="event-desc">总经理<b>发出承诺信 (Acceptance Mailed)</b>。<br>
+                <span style="color:var(--correct-color); font-weight:bold;">👉 合同在此刻成立！</span></div>
+            </div>
+            <div class="event">
+                <div class="event-date">9月22日</div>
+                <div class="event-desc">总经理发出拒绝信 (Rejection Mailed)。</div>
+            </div>
+            <div class="event">
+                <div class="event-date">9月25日</div>
+                <div class="event-desc">守门员收到拒绝信。</div>
+            </div>
+            <div class="event">
+                <div class="event-date">9月26日</div>
+                <div class="event-desc">守门员收到承诺信。</div>
+            </div>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="analysis-section">
+            <h3>🔍 法律推理</h3>
+            <p>本题的关键在于总经理<b>先寄出了承诺信</b>。</p>
+            <p>根据普通法规则：</p>
+            <ol>
+                <li><b>承诺发出即生效：</b> 当总经理在9月21日将承诺信投入邮箱时，合同已经成立 (Contract Formed)。</li>
+                <li><b>后续行为无效：</b> 既然合同已经成立，9月22日发出的拒绝信实际上是无效的（或者只能被视为一种违约或解除合同的提议，但这不影响合同最初的成立）。</li>
+                <li><b>收到顺序无关紧要：</b> 尽管守门员先收到了拒绝信，但这不能改变合同在9月21日已经成立的法律事实。</li>
+            </ol>
+
+            <p><b>正确答案 D</b> 准确指出了这一点：球队在试图拒绝之前，已经有效地承诺了要约。</p>
+        </div>
+
+        <!-- 易错项辨析 -->
+        <div class="analysis-section">
+            <h3>❌ 为什么其他选项是错的？</h3>
+            
+            <div style="margin-bottom: 10px;">
+                <span class="tag tag-wrong">选项 A</span> <b>错误</b>
+                <p style="margin-top:5px; font-size:0.9rem;">
+                    选项A认为“先收到拒绝”导致合同不成立。这混淆了两种情况。只有在<b>“先发出拒绝，后发出承诺”</b>的情况下，才看哪封信先到达。本题是“先承诺”，故承诺直接生效。
+                    <br><i>注：唯一的例外是如果要约人信赖了先收到的拒绝信并因此受损 (Estoppel)，但这是抗辩理由，不改变合同成立的事实。</i>
+                </p>
+            </div>
+
+            <div style="margin-bottom: 10px;">
+                <span class="tag tag-wrong">选项 B</span> <b>错误</b>
+                <p style="margin-top:5px; font-size:0.9rem;">
+                    “意思表示一致” (Meeting of the minds) 是通过客观行为判断的。总经理发出承诺信的客观行为已经构成了合意。
+                </p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>🎓 MBE 提分秘籍：</strong><br>
+            遇到“承诺”与“拒绝”并存的题目，画出时间轴，紧盯<b>发出 (Sent)</b> 的顺序：
+            <ul style="padding-left: 20px; margin-top: 10px;">
+                <li><b>先承诺 ➡️ 后拒绝：</b> 合同在承诺<b>发出时</b>成立。（本题情况）</li>
+                <li><b>先拒绝 ➡️ 后承诺：</b> 邮箱规则失效！看<b>哪封信先被收到</b>。</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            MBE Contracts Review | UWorld Source Analysis
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

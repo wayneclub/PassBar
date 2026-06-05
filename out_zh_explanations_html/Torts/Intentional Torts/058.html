@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析：Battery & Consent</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --warning-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: #e8f6f3;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .rule-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+
+        .step-icon {
+            background-color: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .option-analysis {
+            background-color: #fff5f5;
+            border: 1px solid #fed7d7;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .correct-option {
+            background-color: #f0fff4;
+            border: 1px solid #c6f6d5;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 6px;
+            background-color: #edf2f7;
+            color: #4a5568;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-right: 4px;
+            font-family: monospace;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+
+        /* English terms styling */
+        .en-term {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Intentional Torts: Battery</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">核心法则：无效的同意 (Vitiated Consent)</div>
+            <p style="font-size: 14px; line-height: 1.5; margin: 0;">
+                在故意侵权法中，如果原告的同意是基于对事实的<span class="highlight">重大错误 (Substantial Mistake)</span>，且被告<span class="highlight">知晓该错误 (Aware of the Mistake)</span>并利用了这一点，则该同意<b>无效</b>。
+            </p>
+            <p style="font-size: 12px; color: #666; margin-top: 8px;">
+                来源: Restatement (Second) of Torts § 892B
+            </p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">本案逻辑推演</div>
+            
+            <div class="step">
+                <div class="step-icon">1</div>
+                <div>
+                    <strong>侵权行为 (Battery)：</strong><br>
+                    学生将永久染发剂涂在室友头上，构成了有意图的、有害或冒犯性的身体接触 (<span class="en-term">Intentional harmful/offensive contact</span>)。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">2</div>
+                <div>
+                    <strong>抗辩理由 (Defense)：</strong><br>
+                    通常情况下，室友允许学生染发构成了<span class="highlight">同意 (Consent)</span>，这是 Battery 的有效抗辩。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">3</div>
+                <div>
+                    <strong>关键转折 (The Twist)：</strong><br>
+                    室友同意的前提是染发剂是<b>临时性</b>的，但实际上是<b>永久性</b>的。这是一个关于侵犯性质的重大错误 (<span class="en-term">Substantial Mistake</span>)。
+                </div>
+            </div>
+        </div>
+
+        <!-- 为什么选D -->
+        <div class="correct-option">
+            <strong style="color: var(--accent-color);">✅ 正确答案 D 的法律依据</strong>
+            <p style="margin-top: 5px; margin-bottom: 0;">
+                虽然学生没有撒谎（没有积极的欺诈行为），但她<b>知晓 (Aware)</b> 室友的错误却保持沉默。
+                <br><br>
+                法律规定：当被告知道原告是在错误理解事实的情况下给予同意，而被告未予以纠正时，该同意被视为无效。因此，室友的同意不能作为抗辩，学生需对 Battery 负责。
+            </p>
+        </div>
+
+        <!-- 为什么其他选项错 -->
+        <div class="option-analysis">
+            <strong style="color: var(--warning-color);">❌ 易错点辨析</strong>
+            <ul style="margin-top: 5px; padding-left: 20px; margin-bottom: 0;">
+                <li style="margin-bottom: 8px;">
+                    <b>选项 A (Consent)：</b> 错误。如上所述，因被告明知原告存在重大错误，该同意已失效。
+                </li>
+                <li style="margin-bottom: 8px;">
+                    <b>选项 B (No Misrepresentation)：</b> 这是一个常见的干扰项。法律<b>不要求</b>被告必须有积极的欺骗行为 (<span class="en-term">Affirmative Misrepresentation</span>)。仅仅是<b>知情不报 (Silence with knowledge)</b> 足以使同意无效。
+                </li>
+                <li>
+                    <b>选项 C (Damages)：</b> 逻辑错误。Battery 是 <span class="en-term">Actionable per se</span>（本身即构成诉因），不需要证明实际损害（如失业）。虽然失业可以增加赔偿金额，但不是胜诉的<b>理由</b>。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div style="margin-top: 20px; background-color: #f0f4f8; padding: 15px; border-radius: 8px;">
+            <div style="font-weight: bold; color: #2c3e50; margin-bottom: 5px;">🎓 MBE 考试技巧</div>
+            <p style="font-size: 13px; margin: 0;">
+                在处理 <b>Intentional Torts</b> 题目时，一旦看到“同意” (Consent)，立即检查是否存在以下使同意无效的情况：
+                <br>
+                1. <b>Duress</b> (胁迫)<br>
+                2. <b>Fraud</b> (欺诈)<br>
+                3. <b>Incapacity</b> (无能力)<br>
+                4. <b>Mistake known to defendant</b> (被告明知的错误)<br>
+                <br>
+                本题考查的就是第4点。记住：<b>Silence + Knowledge = Liability</b>。
+            </p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

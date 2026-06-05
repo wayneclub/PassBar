@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --light-gray: #f9f9f9;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+        .rule-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .rule-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .rule-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .analysis-title {
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        .scenario-card {
+            background-color: var(--light-gray);
+            padding: 12px;
+            border-radius: var(--border-radius);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .correct-answer {
+            border: 1px solid #27ae60;
+            background-color: #eafaf1;
+        }
+        .wrong-answer {
+            border: 1px solid #e74c3c;
+            background-color: #fdedec;
+            opacity: 0.8;
+        }
+        .latin-term {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            font-size: 13px;
+        }
+        .exam-tip strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts / Defenses</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点介绍 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：误解 (Misunderstanding)</span>
+            <p>当合同双方对同一重要条款（Material Term）赋予了不同的含义时，法律如何判定合同是否成立？这通常参考 <i>Restatement (Second) of Contracts § 20</i>。</p>
+        </div>
+
+        <!-- 法律规则详解 -->
+        <div class="analysis-section">
+            <div class="analysis-title">法律规则 (The Rule)</div>
+            <p>对于“误解”的处理，取决于双方的主观认知状态：</p>
+            <ul class="rule-list">
+                <li><strong>双方都不知情 (Neither knew)：</strong> 双方都没有理由知道对方的含义不同。
+                    <br><span class="latin-term">Result: No Contract.</span> (著名的 <i>Raffles v. Wichelhaus</i> "Peerless" 案)</li>
+                <li><strong>双方都知情 (Both knew)：</strong> 双方都知道存在歧义。
+                    <br><span class="latin-term">Result: No Contract.</span></li>
+                <li><strong>仅一方知情 (One party knew)：</strong> 一方知道（或有理由知道）存在歧义，而另一方不知道。
+                    <br><span class="latin-term">Result: Contract Formed.</span> 合同内容以<b>不知情一方 (Innocent Party)</b> 的理解为准。</li>
+            </ul>
+        </div>
+
+        <!-- 题目应用分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">本题解析 (Application)</div>
+            <p><strong>目标：</strong> 买方（Man）想要法院判决<b>实际履行 (Specific Performance)</b>，即强制卖方按照买方的理解（包括该球员在其他球队的卡片）交付货物。</p>
+            <p>为了让法院支持买方的理解，买方必须证明他是“无辜的”，而卖方是“有过错的”。</p>
+
+            <div class="scenario-card correct-answer">
+                <strong>✅ 选项 C (正确答案)</strong><br>
+                "收藏家知道存在误解，但该男子不知道。"
+                <br><br>
+                <strong>推理逻辑：</strong>
+                如果卖方（收藏家）知道买方理解的范围更广，但却保持沉默并接受了汇款，法律会保护不知情的买方。合同将按照<b>不知情方（买方）</b>的理解成立。因此，买方有权要求实际履行。
+            </div>
+
+            <div class="scenario-card wrong-answer">
+                <strong>❌ 选项 A & B (错误)</strong><br>
+                "双方都知道" 或 "双方都不知道"
+                <br><br>
+                <strong>推理逻辑：</strong>
+                在这两种情况下，由于双方没有达成“合意” (Meeting of the Minds)，合同根本<b>不成立</b>。如果没有合同，买方自然无法要求实际履行。
+            </div>
+
+            <div class="scenario-card wrong-answer">
+                <strong>❌ 选项 D (错误)</strong><br>
+                "该男子知道...但收藏家不知道"
+                <br><br>
+                <strong>推理逻辑：</strong>
+                如果买方知道有歧义而卖方不知道，合同会按照<b>卖方</b>的理解成立。这对买方的主张（要求更多卡片）是不利的。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧</strong>
+            在处理 <b>Misunderstanding</b> 考题时，寻找“无辜方原则” (Innocent Party Rule)。
+            <br><br>
+            如果你想让合同按照 X 的意思成立，你必须在选项中寻找证据证明：<b>X 不知道存在歧义，而对方知道（或应当知道）。</b>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

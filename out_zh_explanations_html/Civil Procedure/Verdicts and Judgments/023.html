@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        color: #333;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 20px auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: #2c3e50;
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h2 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .sub-header {
+        font-size: 0.85rem;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .answer-banner {
+        background-color: #e8f5e9;
+        border-left: 5px solid #4caf50;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .answer-title {
+        color: #2e7d32;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .concept-card {
+        background-color: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: #1976d2;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+    .concept-title::before {
+        content: "⚖️";
+        margin-right: 8px;
+    }
+    .highlight {
+        background-color: #fff3e0;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-weight: 500;
+    }
+    .rule-box {
+        background-color: #f3f4f6;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        border-left: 4px solid #607d8b;
+        margin: 10px 0;
+    }
+    .latin {
+        font-style: italic;
+        color: #555;
+    }
+    .distractor-section {
+        margin-top: 20px;
+        border-top: 1px dashed #ccc;
+        padding-top: 15px;
+    }
+    .distractor-title {
+        font-size: 0.95rem;
+        font-weight: bold;
+        color: #d32f2f;
+        margin-bottom: 10px;
+    }
+    .distractor-item {
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+    }
+    .key-point {
+        font-weight: bold;
+        color: #333;
+    }
+    .footer {
+        background-color: #fafafa;
+        padding: 15px;
+        text-align: center;
+        font-size: 0.8rem;
+        color: #888;
+        border-top: 1px solid #eee;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-header">Civil Procedure | Res Judicata</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-banner">
+            <span class="answer-title">正确答案：选项 D</span>
+            会，因为该过失诉求与第一次诉讼中的诉求在交易上相关，并且本应作为反诉提出。
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="concept-card">
+            <div class="concept-title">核心逻辑：强制性反诉</div>
+            <p>本题虽然表面上问的是 <span class="latin">Res Judicata</span>（既判力/诉求排除），但解题的关键在于联邦民事诉讼规则中的<b>强制性反诉规则</b> (Compulsory Counterclaim Rule)。</p>
+            
+            <div class="rule-box">
+                <strong>FRCP 13(a) 规定：</strong><br>
+                如果一项反诉源于对方诉求的<span class="highlight">同一交易或事件 (Same Transaction or Occurrence)</span>，且不需要增加法院无法管辖的当事人，则该反诉必须在答辩中提出。
+            </div>
+
+            <p><b>推理步骤：</b></p>
+            <ol>
+                <li><b>同一交易：</b>会计师事务所起诉“讨要审计费”，客户起诉“审计过失”。这两者都源于同一个核心事件——<b>那次审计服务</b>。因此，它们在交易上是相关的 (Transactionally Related)。</li>
+                <li><b>必须提出：</b>客户在第一次诉讼中已经作出了答辩 (Answered)。此时，根据 FRCP 13(a)，客户<b>必须</b>提出基于同一交易的过失索赔作为反诉。</li>
+                <li><b>后果：</b>客户没有提出反诉，案件随后以“不得再诉的驳回” (Dismissed with Prejudice) 结案。这相当于对案件实质作出了终局判决。</li>
+                <li><b>既判力适用：</b>由于客户违反了强制性反诉规则，该诉求被视为已被放弃或已被裁决，因此在第二次诉讼中被 <span class="latin">Res Judicata</span> 禁止。</li>
+            </ol>
+        </div>
+
+        <!-- 易错点辨析 -->
+        <div class="distractor-section">
+            <div class="distractor-title">为什么其他选项是错的？</div>
+            
+            <div class="distractor-item">
+                <span class="key-point">选项 A (未被提出)：</span><br>
+                这是最常见的陷阱。既判力不仅排除已经实际裁决的诉求，也排除<b>本应在第一次诉讼中提出</b>但未提出的诉求（尤其是强制性反诉）。
+            </div>
+
+            <div class="distractor-item">
+                <span class="key-point">选项 B (和解)：</span><br>
+                和解并导致“不得再诉的驳回” (Dismissal with Prejudice) 在法律效力上等同于基于案情实质的终局判决 (Final Judgment on the Merits)。因此，它具有既判力效力。
+            </div>
+
+            <div class="distractor-item">
+                <span class="key-point">选项 C (仅因驳回)：</span><br>
+                这个选项理由不充分。仅仅因为第一次诉讼被驳回并不足以禁止第二次诉讼，关键在于第二次诉讼的诉求是否属于<b>强制性反诉</b>的范畴。如果第二次诉讼是关于完全无关的另一笔交易，即使第一次诉讼被驳回，第二次诉讼也可以进行。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-card" style="background-color: #fff8e1; border-color: #ffecb3;">
+            <div class="concept-title" style="color: #f57f17;">🎓 MBE 考试技巧</div>
+            <p>当你在题目中看到：</p>
+            <ul>
+                <li><b>第一次诉讼：</b>A v. B (关于合同 X)</li>
+                <li><b>第二次诉讼：</b>B v. A (关于合同 X 的违约/过失)</li>
+            </ul>
+            <p>请立即联想 <b>FRCP 13(a) 强制性反诉</b>。如果 B 在第一次诉讼中没有提反诉，B 就永远失去了起诉 A 的机会。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

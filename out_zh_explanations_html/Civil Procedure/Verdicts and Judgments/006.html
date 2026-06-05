@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --danger-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--bg-color);
+        }
+        .header-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .header-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .header-subtitle {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #e1e4e8;
+        }
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid #f0f2f5;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        .icon {
+            margin-right: 8px;
+            font-size: 1.1em;
+        }
+        .highlight-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.95em;
+        }
+        .rule-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .option-analysis {
+            margin-top: 10px;
+        }
+        .option {
+            display: flex;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        .opt-label {
+            font-weight: bold;
+            min-width: 25px;
+        }
+        .opt-correct {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        .opt-wrong {
+            color: var(--danger-color);
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        .diagram {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 0.85em;
+        }
+        .diagram-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 8px;
+            border-radius: 6px;
+            width: 45%;
+        }
+        .arrow {
+            align-self: center;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        .footer-tip {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 头部信息 -->
+    <div class="header-card">
+        <div class="header-title">MBE 考点解析</div>
+        <div class="header-subtitle">Civil Procedure (民事诉讼法)</div>
+        <div style="margin-top: 10px; font-size: 1.5em;">答案：C</div>
+    </div>
+
+    <!-- 核心考点 -->
+    <div class="card">
+        <div class="card-title">
+            <span class="icon">⚖️</span> 核心考点：诉讼禁反言
+        </div>
+        <p>本题考查的是<b>诉讼禁反言</b>（Claim Preclusion / Res Judicata）的适用条件及其后果。</p>
+        
+        <div class="rule-box">
+            <b>规则三要素：</b>
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li>相同的当事人（Same Parties）；</li>
+                <li>相同的诉讼请求（Same Claim）；</li>
+                <li><b>基于实体是非的终局判决</b>（Valid Final Judgment on the Merits）。</li>
+            </ol>
+        </div>
+        
+        <p>一旦满足上述条件，原告不得再次提起诉讼。本题的关键在于理解<b>即决判决</b>（Summary Judgment）属于“基于实体是非的终局判决”。</p>
+    </div>
+
+    <!-- 深度解析：Bar vs Merger -->
+    <div class="card">
+        <div class="card-title">
+            <span class="icon">🔍</span> 难点辨析：Bar vs. Merger
+        </div>
+        <p>很多考生能判断出不能再起诉，但在选项 C 和 D 之间犹豫。这涉及 Res Judicata 的两种效力：</p>
+
+        <div class="diagram">
+            <div class="diagram-box" style="border-color: var(--danger-color);">
+                <div style="color:var(--danger-color); font-weight:bold;">Bar (禁止)</div>
+                <div style="font-size:0.8em; margin-top:4px;">被告胜诉</div>
+                <div style="font-size:0.7em; color:#666;">原告请求被“禁止”</div>
+            </div>
+            <div class="arrow">VS</div>
+            <div class="diagram-box" style="border-color: var(--success-color);">
+                <div style="color:var(--success-color); font-weight:bold;">Merger (合并)</div>
+                <div style="font-size:0.8em; margin-top:4px;">原告胜诉</div>
+                <div style="font-size:0.7em; color:#666;">请求“合并”入判决</div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            在本案中，<b>竞争对手（被告）</b>赢得了即决判决。因此，原告的诉讼请求是被<b>禁止（Barred）</b>的。
+        </div>
+        <p>如果是原告赢了，诉讼请求才会与判决<b>合并（Merged）</b>（即原告只能依据判决执行，不能再就原请求起诉）。</p>
+    </div>
+
+    <!-- 选项分析 -->
+    <div class="card">
+        <div class="card-title">
+            <span class="icon">📝</span> 选项逐一击破
+        </div>
+        
+        <div class="option-analysis">
+            <div class="option">
+                <span class="opt-label">A</span>
+                <div>
+                    <span class="opt-wrong">错误。</span> 即决判决（Summary Judgment）<b>是</b>基于实体是非（On the Merits）的判决。它意味着法院查看了证据，认为没有事实争议，直接根据法律做出了裁决。这与因管辖权（Jurisdiction）或审判地（Venue）问题被驳回不同。
+                </div>
+            </div>
+            
+            <div class="option">
+                <span class="opt-label">B</span>
+                <div>
+                    <span class="opt-wrong">错误。</span> 换一个联邦法院并不影响既判力（Res Judicata）。联邦法院系统承认彼此的终局判决。
+                </div>
+            </div>
+
+            <div class="option">
+                <span class="opt-label">C</span>
+                <div>
+                    <span class="opt-correct">正确。</span> 满足所有要素：同一当事人、同一请求、前案为基于实体的终局判决（被告胜诉）。因此，原告的请求被<b>禁止（Barred）</b>。
+                </div>
+            </div>
+
+            <div class="option">
+                <span class="opt-label">D</span>
+                <div>
+                    <span class="opt-wrong">错误。</span> 虽然结果也是不能起诉，但法律术语用错了。只有当<b>原告胜诉</b>时，我们才说请求权<b>合并（Merged）</b>进判决中。被告胜诉叫 Barred。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card" style="background-color: #fff3cd; border: 1px solid #ffeeba;">
+        <div class="card-title" style="color: #856404; border-bottom-color: #ffeeba;">
+            <span class="icon">💡</span> 考试通关技巧
+        </div>
+        <p style="font-size: 0.9em; color: #856404;">
+            遇到“前案已结，后案再起”的题目：
+            <br>1. 检查前案是否是<b>On the Merits</b>（即决判决、缺席判决、庭审判决通常都是；但管辖权、审判地、必要当事人缺失导致的驳回通常不是）。
+            <br>2. 检查谁赢了。<b>被告赢选 "Barred"，原告赢选 "Merged"。</b>
+            <br>3. 记住：对即决判决不满的正确做法是<b>上诉（Appeal）</b>，而不是换个法院重告。
+        </p>
+    </div>
+
+    <div class="footer-tip">
+        MBE Question Analysis - Civil Procedure
+    </div>
+</div>
+
+</body>
+</html>

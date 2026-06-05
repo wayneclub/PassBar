@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - 宪法学: 权力分立</title>
+    
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">宪法学: 权力分立</p>
+        </header>
+
+        <div class="content-section">
+            <div class="answer-box">
+                正确答案：D<br>
+                核心要点：该规定符合宪法，因为它是由国会有效授权联邦机构制定规则的权力所颁布的。
+            </div>
+
+            <h2>核心法律原则：不授权原则与权力委托</h2>
+            <div class="concept-box">
+                <p class="concept-title">不授权原则 (Nondelegation Doctrine)</p>
+                <p><strong>不授权原则</strong>禁止国会将<span class="term">专属立法权</span>（例如，制定或废除法律、宣战、弹劾联邦官员）委托给行政机构。</p>
+                <p>然而，国会可以委托其<span class="term">附带立法权</span>（例如，规则制定权、执行立法、强制执行法规），前提是它提供了一个<span class="term">可理解原则 (intelligible principle)</span>，即一个明确的声明，定义了：</p>
+                <ul>
+                    <li>国会旨在推进的<span class="term">政策 (policy)</span>；</li>
+                    <li>执行该政策的<span class="term">机构 (agency)</span>；以及</li>
+                    <li>该机构的<span class="term">权限范围 (scope of authority)</span>。</li>
+                </ul>
+                <p>如果国会未能提供这样的可理解原则，则该委托将被视为违宪。</p>
+            </div>
+
+            <h2>案情分析与适用逻辑</h2>
+            <p>本案中，国会通过了一项法规，指示美国林业局（一个联邦机构）制定管理联邦公共土地上篝火的规定，并建立违反新规定的处罚时间表。该法规明确规定，林业局的规定应“在最大可行范围内，减少所有源自林业局土地上篝火的潜在危害”。</p>
+            <p>林业局随后发布了规定，其中包括一项规则，规定如果使用者在酒精或药物影响下疏忽或禁止使用火，罚款将翻倍。</p>
+            <ol>
+                <li><strong>国会委托：</strong>国会将制定篝火管理规定的权力委托给了美国林业局。</li>
+                <li><strong>可理解原则：</strong>国会提供了明确的“可理解原则”，即“在最大可行范围内，减少所有源自林业局土地上篝火的潜在危害”。这清晰地定义了：
+                    <ul>
+                        <li><strong>政策：</strong>减少篝火危害。</li>
+                        <li><strong>机构：</strong>美国林业局。</li>
+                        <li><strong>权限范围：</strong>制定篝火管理规定和处罚。</li>
+                    </ul>
+                </li>
+                <li><strong>机构行动：</strong>林业局制定的“在酒精或药物影响下使用火导致罚款翻倍”的规则，直接服务于“减少篝火潜在危害”的政策目标，并且完全在其被授权的“制定篝火管理规定和处罚”的权限范围内。</li>
+            </ol>
+            <p>因此，林业局的这项规则是根据国会有效委托的权力颁布的，符合不授权原则的要求，是合宪的。</p>
+
+            <h2>不授权原则示意图</h2>
+            <div class="diagram">
+                <div class="diagram-content">
+                    <div class="flow-node highlight-node">不授权原则</div>
+                    <div class="diagram-line">
+                        <span class="diagram-arrow">↓</span>
+                    </div>
+                    <div class="flow-node">国会是否授权：</div>
+                    <div class="diagram-line">
+                        <span class="diagram-arrow">↓</span>
+                    </div>
+                    <div class="diagram-branch-horizontal">
+                        <div class="diagram-branch-item">
+                            <div class="diagram-box main">
+                                <h4>专属立法权</h4>
+                                <p><strong>例如：</strong></p>
+                                <ul>
+                                    <li>制定/废除法律</li>
+                                    <li>宣战</li>
+                                    <li>弹劾联邦官员</li>
+                                </ul>
+                            </div>
+                            <div class="diagram-label">是</div>
+                            <div class="diagram-line">
+                                <span class="diagram-arrow">↓</span>
+                            </div>
+                            <div class="flow-node wrong">违宪</div>
+                        </div>
+                        <div class="diagram-branch-item">
+                            <div class="diagram-box main">
+                                <h4>附带立法权</h4>
+                                <p><strong>例如：</strong></p>
+                                <ul>
+                                    <li>规则制定</li>
+                                    <li>执行立法</li>
+                                    <li>强制执行法规</li>
+                                </ul>
+                            </div>
+                            <div class="diagram-label">否</div>
+                            <div class="diagram-line">
+                                <span class="diagram-arrow">↓</span>
+                            </div>
+                            <div class="flow-node">国会提供了可理解原则，明确定义了：</div>
+                            <div class="diagram-line">
+                                <span class="diagram-arrow">↓</span>
+                            </div>
+                            <div class="diagram-box main">
+                                <ul>
+                                    <li>其旨在推进的<strong>政策</strong></li>
+                                    <li>执行政策的<strong>机构</strong></li>
+                                    <li>机构的<strong>权限范围</strong></li>
+                                </ul>
+                            </div>
+                            <div class="diagram-label">是</div>
+                            <div class="diagram-line">
+                                <span class="diagram-arrow">↓</span>
+                            </div>
+                            <div class="flow-node correct">合宪</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>考点陷阱提示</h2>
+            <div class="trap-alert">
+                <p>考生常犯的错误是混淆国会的<span class="term">专属立法权</span>和<span class="term">附带立法权</span>，或者忽略了<span class="term">可理解原则</span>的要求。</p>
+                <ul>
+                    <li>并非所有国会向行政机构的授权都是违宪的。只有当国会试图委托其专属立法权，或者在委托附带立法权时未能提供足够明确的指导原则（即“可理解原则”）时，才会构成违宪。</li>
+                    <li>要特别注意题目中是否包含明确的政策目标、指定机构和权限范围的描述，这些是判断是否存在“可理解原则”的关键。</li>
+                </ul>
+            </div>
+
+            <h2>正确答案与干扰项排除</h2>
+            <div class="option correct">
+                <p><strong>D. 该规则是根据国会有效授权联邦机构制定规则的权力颁布的。</strong></p>
+                <p><strong>正确。</strong>国会可以将附带立法权（如规则制定权）委托给行政机构，只要它提供一个“可理解原则”来指导机构的行动。本案中，国会指示林业局“在最大可行范围内，减少所有源自林业局土地上篝火的潜在危害”，这构成了一个明确的“可理解原则”，定义了政策、机构和权限范围。因此，林业局根据此授权制定的规则是合宪的。</p>
+            </div>
+
+            <div class="option wrong">
+                <p><strong>A. 政府行政部门（林业局是其一部分）对公共土地拥有固有的规则制定权。</strong></p>
+                <p><strong>错误。</strong>行政部门不拥有对公共土地的固有规则制定权。根据《第四条财产条款》，国会对联邦土地拥有最高权威，并可以将其规则制定权委托给行政机构。行政机构的权力来源于国会的授权，而非固有。</p>
+            </div>
+
+            <div class="option wrong">
+                <p><strong>B. 该规则通过保护森林资源而具有令人信服的政府利益。</strong></p>
+                <p><strong>错误。</strong>虽然保护森林资源可能是一个令人信服的政府利益，但这与不授权原则的合宪性分析无关。令人信服的政府利益通常用于严格审查（strict scrutiny）的语境中，以评估一项法律是否侵犯了基本权利或基于可疑分类进行了歧视。本题的核心是国会委托权力的有效性，而非对规则本身的实质性审查标准。</p>
+            </div>
+
+            <div class="option wrong">
+                <p><strong>C. 该规则直接关系到执法，这是一项行政职能而非立法职能，因此不需要国会的具体授权。</strong></p>
+                <p><strong>错误。</strong>尽管执法是行政职能，但联邦机构的执法活动必须依据联邦法律（即国会的授权）进行。行政机构不能在没有国会授权的情况下自行制定具有法律约束力的规则并强制执行。本题中的规则正是基于国会的授权而制定和执行的。</p>
+            </div>
+
+            <h2>备考锦囊</h2>
+            <div class="footer-tip">
+                <p>在MBE考试中，当遇到国会向行政机构授权的问题时，请记住关键在于<span class="term">不授权原则</span>。国会可以委托<span class="term">附带立法权</span>，但<strong>必须提供一个明确的“可理解原则”</strong>来指导机构的行动，否则该授权将是违宪的。仔细识别题目中是否包含政策、机构和权限范围的明确说明。</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

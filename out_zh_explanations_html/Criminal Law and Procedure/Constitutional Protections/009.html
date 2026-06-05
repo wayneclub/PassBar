@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .step-analysis {
+            margin-bottom: 20px;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .step-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+            margin-right: 10px;
+            margin-top: 2px;
+        }
+
+        .step-content strong {
+            color: var(--primary-color);
+        }
+
+        .answer-key {
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            color: #3c763d;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+        }
+
+        .pitfall {
+            background-color: #f2dede;
+            border: 1px solid #ebccd1;
+            color: #a94442;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+        }
+
+        .case-law {
+            font-size: 0.85rem;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .latin {
+            font-style: italic;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Criminal Procedure: Fourth Amendment</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">⚖️ 核心考点：诉讼资格 (Standing)</span>
+            要对警方的搜查提出异议（Motion to Suppress），被告必须证明<strong>自己的</strong>第四修正案权利被侵犯了。如果警方侵犯的是<strong>第三方</strong>的权利，被告无权挑战该证据。
+        </div>
+
+        <!-- 案情逻辑拆解 -->
+        <div class="step-analysis">
+            <h3>案情逻辑拆解</h3>
+            
+            <div class="step">
+                <div class="step-icon">1</div>
+                <div class="step-content">
+                    <strong>警官进入邻居的院子：</strong><br>
+                    这可能构成了对邻居的非法入侵（Trespass）。但是，本案被告（该女子）对邻居的院子没有所有权或占有权，因此她没有<strong>诉讼资格 (Standing)</strong> 来挑战警官进入邻居院子的行为。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">2</div>
+                <div class="step-content">
+                    <strong>警官透过窗户观察：</strong><br>
+                    该女子没有拉窗帘（neither drapes nor shades）。根据 <em>Katz</em> 测试，对于一个人<strong>明知并暴露给公众</strong>（knowingly exposes to the public）的事物，不存在<strong>合理的隐私期待 (Reasonable Expectation of Privacy)</strong>。
+                </div>
+            </div>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="answer-key">
+            <strong>✅ 正确答案：B</strong>
+            <br><br>
+            <strong>理由：</strong>因为该女子将厨房内的活动暴露在了邻居可以看到的视野中，她对此没有合理的隐私期待。
+            <br><br>
+            虽然警官是从邻居的院子（非公共区域）进行观察的，但由于被告对邻居的院子没有隐私期待，且她自己没有采取措施遮挡视线，因此警方的观察不构成第四修正案下的“搜查”。
+        </div>
+
+        <!-- 错误选项陷阱 -->
+        <div class="pitfall">
+            <strong>❌ 常见误区 (选项 C & D)</strong>
+            <ul>
+                <li><strong>选项 C 错误：</strong> 即使从“公共视点”（街道）看不到，也不代表她就有隐私权。关键在于她是否将活动暴露给了<strong>任何人</strong>（包括邻居）。</li>
+                <li><strong>选项 D 错误：</strong> 仅仅因为观察是“秘密的”（clandestine）并不违法。如果警察站在他们有权站的地方（或者至少是被告无权驱逐他们的地方），且被告没有遮挡窗户，那么这种观察就没有侵犯隐私权。</li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-box" style="background-color: #fff3cd; border-left-color: #f1c40f;">
+            <span class="concept-title">💡 MBE 实战技巧</span>
+            遇到“非法搜查”题目时，第一步永远是问：<strong>“被搜查的地方属于谁？”</strong>
+            <br>
+            如果是第三方的地盘（如邻居的院子、朋友的车但被告只是乘客且无所有权），被告通常没有 Standing 提出异议，即使警方的行为对第三方来说是非法的。
+        </div>
+
+        <!-- 法律依据 -->
+        <div class="case-law">
+            <strong>相关判例与原则：</strong>
+            <br>
+            1. <span class="latin">Rakas v. Illinois</span> (1978): 被告只能对侵犯其自身隐私权的搜查提出异议。<br>
+            2. <span class="latin">Katz v. United States</span> (1967): "What a person knowingly exposes to the public... is not a subject of Fourth Amendment protection."
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

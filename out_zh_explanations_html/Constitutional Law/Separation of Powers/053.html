@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #f0f7fb;
+            --text-color: #333;
+            --bg-color: #f4f4f9;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .case-law {
+            font-family: "Georgia", serif;
+            font-style: italic;
+            color: #555;
+            font-weight: bold;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .option-analysis {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .option-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .tag-correct {
+            background-color: var(--correct-color);
+            color: white;
+        }
+        .tag-wrong {
+            background-color: #eee;
+            color: #777;
+        }
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .exam-tip-title {
+            color: #f57c00;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Separation of Powers & Impoundment</div>
+    </div>
+
+    <div class="content">
+        <p>本题考察的核心宪法原则是<strong>权力分立 (Separation of Powers)</strong>，具体涉及总统是否有权拒绝执行国会拨款（即 Impoundment of Funds）。</p>
+
+        <div class="concept-box">
+            <span class="concept-title">⚖️ 核心法律规则</span>
+            一旦国会通过拨款法案并经总统签署成为法律，总统就有宪法义务支出这笔资金。
+            <br><br>
+            依据：<strong>Take Care Clause</strong> (U.S. Const. art. II, § 3) —— 总统必须“确保法律得到忠实执行”。
+        </div>
+
+        <div class="analysis-section">
+            <h3>✅ 正确答案分析 (选项 B)</h3>
+            <p><strong>B 是正确的。</strong> 总统必须按照国会的指示支出资金。</p>
+            <p>在本题中，国会通过了两项法令：一项授权建造纪念碑，另一项拨款300万美元。这构成了明确的立法指令。</p>
+            <p>虽然总统拥有行政权，但最高法院在 <span class="case-law">Train v. City of New York (1975)</span> 案中裁定，如果国会的拨款法案是强制性的（即没有给予总统自由裁量权），总统无权扣押（Impound）资金。总统拒绝支出资金实际上是在单方面废除法律，这违反了宪法第二条规定的“忠实执行法律”的义务。</p>
+        </div>
+
+        <div class="analysis-section">
+            <h3>❌ 错误选项辨析</h3>
+            
+            <div class="option-analysis">
+                <span class="option-tag tag-wrong">选项 A & D</span>
+                <strong>外交事务权力 (Foreign Affairs Powers)</strong>
+                <p>虽然总统在外交事务上有广泛权力，但这并不意味着他可以违背国内的有效法律（Valid Statute）。根据 <span class="case-law">Youngstown Sheet & Tube Co. v. Sawyer</span> 的框架，当总统的行动与国会的明示意外相违背时，总统的权力处于“最低点”。既然国会已经立法要求建造和拨款，总统不能仅凭外交理由就无视法律。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="option-tag tag-wrong">选项 C</span>
+                <strong>固有行政权 (Inherent Executive Power)</strong>
+                <p>宪法赋予国会“钱袋权”（Power of the Purse）。总统没有控制联邦支出的“固有权力”。总统的角色是执行预算，而不是制定预算。如果总统想削减赤字，他应该否决（Veto）法案，而不是在法案生效后拒绝执行。</p>
+            </div>
+        </div>
+
+        <div class="exam-tip">
+            <div class="exam-tip-title">💡 MBE 考试技巧</div>
+            <p>遇到涉及<strong>总统拒绝花钱</strong>（Impoundment）的题目时，请遵循以下逻辑：</p>
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li>检查国会的拨款语言是否明确（Mandatory）。</li>
+                <li>如果是明确的拨款指令，总统<strong>必须</strong>花钱。</li>
+                <li>总统不能以“省钱”、“赤字”或“我不喜欢这个项目”为由拒绝执行。</li>
+                <li>除非国会明确授予了总统自行决定的权力（Discretionary Spending），否则总统无权扣押资金。</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

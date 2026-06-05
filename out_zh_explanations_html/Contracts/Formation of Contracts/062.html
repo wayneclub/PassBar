@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #eef7fb;
+        --text-color: #333;
+        --sub-text: #666;
+        --border-radius: 8px;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f0f2f5;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        width: 100%;
+        max-width: 480px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        margin: 20px auto;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .header .subtitle {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+    .rule-card {
+        background-color: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        display: block;
+        margin-bottom: 5px;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .english {
+        font-size: 0.85em;
+        color: var(--sub-text);
+        font-style: italic;
+        margin-left: 4px;
+    }
+    .analysis-section {
+        margin-bottom: 20px;
+    }
+    .analysis-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 8px;
+        margin-bottom: 12px;
+        color: var(--primary-color);
+    }
+    .option-analysis {
+        background-color: #fff;
+        border: 1px solid #eee;
+        padding: 12px;
+        border-radius: var(--border-radius);
+        margin-bottom: 10px;
+        font-size: 0.95rem;
+    }
+    .wrong-option {
+        border-left: 3px solid #e74c3c;
+    }
+    .correct-option {
+        border-left: 3px solid #27ae60;
+        background-color: #f9fff9;
+    }
+    .tip-box {
+        background-color: #fff8e1;
+        border: 1px solid #ffe0b2;
+        padding: 15px;
+        border-radius: var(--border-radius);
+        font-size: 0.9rem;
+    }
+    .tip-icon {
+        font-size: 1.2em;
+        margin-right: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts: Employment Agreements</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <p>本题的正确答案是 <strong>A</strong>。</p>
+        <p>核心考点在于美国合同法中对“永久性雇佣”（Permanent Employment）的默认解释规则。</p>
+
+        <!-- 法律规则讲解 -->
+        <div class="rule-card">
+            <span class="rule-title">⚖️ 核心法律规则</span>
+            在美国普通法中，除非合同明确规定了具体的雇佣期限（如“为期一年”），否则雇佣关系被推定为<span class="term">自由雇佣</span><span class="english">(At-will Employment)</span>。
+            <br><br>
+            这意味着：
+            <ul>
+                <li>雇主可以随时解雇员工（只要不违反公共政策或反歧视法）。</li>
+                <li>员工可以随时辞职。</li>
+                <li><strong>不需要</strong>提供理由，也<strong>不需要</strong>承担违约责任。</li>
+            </ul>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情深度解析</div>
+            <p>题目中明确指出，烘焙店提供的是一份“永久性全职工作”<span class="english">(permanent full-time job)</span>，且厨师申请的也是“永久性工作”。</p>
+            <p>在法律解释上，<strong>“永久性”并不意味着“终身”</strong>，而是指“无限期”<span class="english">(Indefinite duration)</span>。既然期限是不确定的，它就落入了<strong>自由雇佣</strong>的范畴。</p>
+            <p>因此，厨师有权在任何时候终止合同，包括在正式入职之前。既然她有权终止，她的行为就不构成违约<span class="english">(Breach of Contract)</span>。</p>
+        </div>
+
+        <!-- 选项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">选项辨析</div>
+            
+            <div class="option-analysis correct-option">
+                <strong>✅ 选项 A (正确)</strong><br>
+                正确指出了法律后果。永久雇佣合同被解释为允许任何一方随时终止关系。因此，烘焙店不会胜诉。
+            </div>
+
+            <div class="option-analysis wrong-option">
+                <strong>❌ 选项 B (错误)</strong><br>
+                “实质上的可比性”<span class="english">(Substantially comparable)</span> 是计算损害赔偿时的减损义务<span class="english">(Mitigation of damages)</span> 概念。只有当确定一方违约后，才讨论这个问题。本题中厨师并未违约，因此该选项无关。
+            </div>
+
+            <div class="option-analysis wrong-option">
+                <strong>❌ 选项 C (错误)</strong><br>
+                自由雇佣关系不需要给予“合理时间”<span class="english">(Reasonable time)</span>。权利是即时的。
+            </div>
+
+            <div class="option-analysis wrong-option">
+                <strong>❌ 选项 D (错误)</strong><br>
+                优先承购权/优先拒绝权<span class="english">(Right of first refusal)</span> 必须是合同中<strong>明示</strong>的条款，不能通过默示产生。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <span class="tip-icon">💡</span><strong>MBE 考试技巧：</strong><br>
+            看到 <strong>"Permanent Employment"</strong>（永久雇佣）这个词时，大脑要立刻反应出 <strong>"At-will"</strong>（自由雇佣）。
+            <br><br>
+            除非题目中出现了具体的<strong>时间段</strong>（如 "for 2 years"）或者限制解雇的条款（如 "only for cause"），否则默认任何一方都可以随时拍屁股走人而不承担法律责任。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

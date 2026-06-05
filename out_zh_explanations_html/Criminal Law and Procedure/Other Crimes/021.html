@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50; /* Navy Blue */
+        --accent-color: #e67e22; /* Carrot Orange */
+        --highlight-bg: #fdf2e9;
+        --correct-green: #27ae60;
+        --wrong-red: #c0392b;
+        --text-color: #34495e;
+        --bg-color: #ecf0f1;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+    }
+    .container {
+        width: 100%;
+        max-width: 480px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header .subtitle {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .answer-box {
+        background-color: var(--highlight-bg);
+        border-left: 5px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .answer-title {
+        color: var(--accent-color);
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 5px;
+        display: block;
+    }
+    .law-point {
+        margin-bottom: 20px;
+    }
+    .law-point h3 {
+        font-size: 16px;
+        color: var(--primary-color);
+        border-bottom: 2px solid #eee;
+        padding-bottom: 8px;
+        margin-bottom: 12px;
+    }
+    .element-list {
+        list-style: none;
+        padding: 0;
+    }
+    .element-list li {
+        margin-bottom: 10px;
+        padding-left: 24px;
+        position: relative;
+        line-height: 1.5;
+        font-size: 14px;
+    }
+    .element-list li::before {
+        content: "✓";
+        color: var(--correct-green);
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+    }
+    .scenario-graphic {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+        font-size: 12px;
+        text-align: center;
+    }
+    .step {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .arrow {
+        font-size: 18px;
+        color: #bdc3c7;
+        margin: 0 5px;
+    }
+    .icon {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+    .distractor {
+        background-color: #fff5f5;
+        border: 1px solid #fed7d7;
+        padding: 12px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        font-size: 13px;
+    }
+    .distractor strong {
+        color: var(--wrong-red);
+        display: block;
+        margin-bottom: 4px;
+    }
+    .key-term {
+        background-color: #e8f4f8;
+        color: var(--primary-color);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .exam-tip {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 15px;
+        border-radius: 0 0 12px 12px;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    .exam-tip strong {
+        color: var(--accent-color);
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考点解析</h1>
+        <div class="subtitle">Criminal Law Analysis</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：D</span>
+            <strong>收受赃物罪 (Receiving Stolen Property)</strong><br>
+            黑帮头目在明知手表是抢劫所得的情况下，接收并保留了该手表。
+        </div>
+
+        <!-- 图解案情 -->
+        <div class="scenario-graphic">
+            <div class="step">
+                <span class="icon">🔫</span>
+                <span>成员抢劫</span>
+            </div>
+            <div class="arrow">→</div>
+            <div class="step">
+                <span class="icon">⌚</span>
+                <span>扔给头目</span>
+            </div>
+            <div class="arrow">→</div>
+            <div class="step">
+                <span class="icon">😲</span>
+                <span>头目惊讶<br>但收下</span>
+            </div>
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="law-point">
+            <h3>⚖️ 核心考点：收受赃物罪的构成要件</h3>
+            <p style="font-size: 14px; margin-bottom: 10px;">
+                在普通法(Common Law)及大多数司法管辖区，<span class="key-term">Receiving Stolen Property</span> 需要满足以下四个要素：
+            </p>
+            <ul class="element-list">
+                <li>
+                    <strong>接收财产 (Receiving possession and control)：</strong><br>
+                    头目接住了手表并放入自己口袋，建立了对财物的控制。
+                </li>
+                <li>
+                    <strong>被盗财产 (Of "stolen" personal property)：</strong><br>
+                    手表刚刚通过抢劫(Robbery)被非法获取，属于赃物。
+                </li>
+                <li>
+                    <strong>明知是赃物 (Known to have been obtained criminally)：</strong><br>
+                    头目就在旁边目睹了抢劫过程，他完全知情。
+                </li>
+                <li>
+                    <strong>意图永久剥夺 (Intent to permanently deprive)：</strong><br>
+                    将手表放入口袋的行为表明他打算据为己有，而非归还受害人。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 为什么其他选项是错的 -->
+        <div class="law-point">
+            <h3>🚫 易混淆项辨析</h3>
+            
+            <div class="distractor">
+                <strong>排除 B & C：关键在于“惊讶” (Surprise)</strong>
+                题目中明确指出头目对抢劫行为感到 <em>"totally surprised"</em>。
+                <ul>
+                    <li><strong>共谋 (Conspiracy)</strong> 需要事先的协议 (Agreement)。惊讶证明没有协议。</li>
+                    <li><strong>共犯 (Accomplice)</strong> 需要在犯罪前或犯罪中故意协助或鼓励。惊讶证明抢劫是成员的自发行为，头目未提供精神或实质支持。</li>
+                </ul>
+            </div>
+
+            <div class="distractor">
+                <strong>排除 A：事后从犯 (Accessory After the Fact)</strong>
+                事后从犯的核心目的是<strong>帮助罪犯逃避抓捕或定罪</strong> (e.g., hiding the felon, giving false alibi)。
+                <br><br>
+                虽然头目拿走了证据（手表），但他的主要意图是<strong>贪图财物</strong> (Receiving)，而不是为了帮助小弟逃跑。仅仅接收赃物通常构成收受赃物罪，而非事后从犯。
+            </div>
+        </div>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="exam-tip">
+        <strong>💡 MBE 解题技巧：</strong><br>
+        注意题目中的<strong>心理状态 (Mens Rea)</strong> 描述词。本题中的 "Surprised" 是解题的关键“钥匙”。它直接切断了头目与抢劫行为本身的预谋联系（排除了 Conspiracy 和 Accomplice），迫使你将目光转向抢劫完成<strong>之后</strong>的行为——即收受赃物。
+    </div>
+</div>
+
+</body>
+</html>

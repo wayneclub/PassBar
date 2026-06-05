@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .concept-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -26px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-color);
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .wrong-option {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #f57c00;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 20px;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property: Easement Termination</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：A</span>
+            <strong>否，因为她通过侵权逆占（Adverse Possession）获得了该牧场的所有权。</strong>
+            <p style="margin-top: 10px; font-size: 0.95rem;">
+                核心考点是地役权的消灭方式之一：<strong>混同原则 (Merger Doctrine)</strong>。
+            </p>
+        </div>
+
+        <!-- 法律逻辑推演 -->
+        <div class="concept-card">
+            <div class="concept-title">逻辑推演 (Legal Reasoning)</div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>1. 初始状态：</strong><br>
+                    女性拥有农场（需役地 <span class="term">Dominant Estate</span>），并拥有穿越牧场（供役地 <span class="term">Servient Estate</span>）的地役权。
+                </div>
+                <div class="timeline-item">
+                    <strong>2. 侵权逆占 (Adverse Possession)：</strong><br>
+                    女性占有牧场20年并赢得确认产权诉讼（Quiet Title）。此时，她同时拥有了农场和牧场的所有权。
+                </div>
+                <div class="timeline-item">
+                    <strong>3. 混同 (Merger) 发生：</strong><br>
+                    <span class="highlight">这是解题的关键点。</span>当需役地和供役地的所有权归于同一人时，地役权自动消灭。因为一个人不能在自己的土地上拥有地役权（你拥有完整的土地所有权，不需要额外的“通过权”）。
+                </div>
+                <div class="timeline-item">
+                    <strong>4. 出售与结果：</strong><br>
+                    当女性将牧场卖回给儿子时，<strong>已消灭的地役权不会自动复活</strong>。除非在出售时重新设立（Express Grant/Reservation）或满足默示地役权的条件，否则该地役权不复存在。
+                </div>
+            </div>
+        </div>
+
+        <!-- 为什么其他选项是干扰项 -->
+        <div class="concept-card">
+            <div class="concept-title">排除干扰项 (Distractor Analysis)</div>
+            
+            <p><strong>❌ 选项 B (Notice / Recording Act):</strong><br>
+            这是一个经典的 MBE 陷阱。虽然该司法管辖区有登记告知法案，且地役权未登记，但儿子是通过<strong>遗嘱继承 (Devise)</strong> 获得牧场的，并非“有偿购买者” (<span class="term">Bona Fide Purchaser for Value</span>)。因此，登记法案不保护儿子。但这不重要，因为后续的“混同”才是终结地役权的真正原因。</p>
+
+            <p class="wrong-option"><strong>❌ 选项 C (Runs with the land):</strong><br>
+            地役权确实通常随土地转移，但前提是该地役权<strong>仍然存在</strong>。在本案中，地役权在转移前已经因混同而消灭了。</p>
+
+            <p class="wrong-option"><strong>❌ 选项 D (Non-use):</strong><br>
+            单纯的“不使用”确实不足以消灭地役权（需要有抛弃的意图）。但是，本案中地役权的消灭不是因为不使用，而是因为所有权的混同。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧：</strong><br>
+            当你看到题目中出现<strong>“一个人最终拥有了两块相关的土地”</strong>（Unity of Ownership）的情节时，立即联想 <strong>Merger Doctrine（混同原则）</strong>。
+            <br><br>
+            记住口诀：<strong>Buy the land, kill the easement.</strong>（买下供役地，杀死地役权）。一旦消灭，除非重新创建，否则永不复活。
+        </div>
+
+    </div>
+    
+    <div class="footer">
+        MBE Real Property Review
+    </div>
+</div>
+
+</body>
+</html>

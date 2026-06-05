@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Torts 解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background: transparent;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        .answer-box {
+            background-color: #e8f8f5;
+            border: 2px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .answer-box strong {
+            color: var(--correct-color);
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--highlight-bg);
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .wrong-option {
+            color: var(--wrong-color);
+            font-weight: bold;
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border-left: 5px solid #f1c40f;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <h1>MBE 侵权法考点解析</h1>
+        <div class="subtitle">Strict Products Liability & Substantial Alteration</div>
+    </div>
+
+    <!-- 正确答案展示 -->
+    <div class="answer-box">
+        <strong>正确答案：B</strong>
+        <div style="font-size: 0.9rem; color: #555;">
+            没有理由索赔，因为伤害是由第三方对除雪机进行实质性改变所导致的。
+        </div>
+    </div>
+
+    <!-- 核心法律逻辑 -->
+    <div class="card">
+        <h2>⚖️ 核心法律逻辑</h2>
+        <div>
+            <span class="concept-tag">严格产品责任</span>
+            <span class="concept-tag">实质性改变</span>
+        </div>
+        <p>本题考查的是<strong>严格产品责任 (Strict Products Liability)</strong> 中的责任限制。要让制造商承担严格责任，原告必须证明以下几点：</p>
+        <ol>
+            <li>被告是该产品的商业销售商 (Commercial Supplier)。</li>
+            <li>产品在离开被告控制时存在<strong>缺陷 (Defect)</strong>。</li>
+            <li>该缺陷是造成原告伤害的实际原因和近因。</li>
+            <li>产品在到达用户手中时，未发生<strong>实质性改变 (Substantial Change/Alteration)</strong>。</li>
+        </ol>
+        <p><strong>本案关键点分析：</strong></p>
+        <ul>
+            <li><strong>产品本身无缺陷：</strong> 除雪机在出售时是完好的，且包含了一个清晰、醒目的警告 (Warning)，明确禁止进行该种改装。因此，不存在制造缺陷 (Manufacturing Defect) 或警告缺陷 (Failure to Warn)。</li>
+            <li><strong>实质性改变：</strong> 伤害的直接原因是机修工 (Mechanic) 的不当修理。这种修理构成了对产品的<span class="highlight">实质性改变</span>。</li>
+            <li><strong>因果关系中断：</strong> 当第三方的改动（尤其是制造商已明确警告禁止的改动）成为伤害的主要原因时，制造商不承担责任。</li>
+        </ul>
+    </div>
+
+    <!-- 为什么其他选项是错的 -->
+    <div class="card">
+        <h2>❌ 干扰项排除</h2>
+        
+        <p><span class="wrong-option">选项 A (与有过失) 错误：</span><br>
+        首先，在严格产品责任案件中，普通的共同过失 (Ordinary Contributory Negligence) 通常不是抗辩理由。其次，房主依赖专业机修工进行维修是合理的，不构成过失。</p>
+
+        <p><span class="wrong-option">选项 C (存在缺陷) 错误：</span><br>
+        这是最具迷惑性的选项。虽然房主确实因机器故障受伤，但该故障并非源于产品<strong>出厂时</strong>的缺陷，而是源于后来的不当维修。严格责任的前提是产品在<strong>离开制造商控制时</strong>就已经存在缺陷。</p>
+
+        <p><span class="wrong-option">选项 D (提供手册义务) 错误：</span><br>
+        法律只要求制造商采取<strong>合理 (Reasonable)</strong> 的措施来提供警告。将手册提供给购买者（房主）并包含醒目警告通常已被视为合理。要求制造商确保每一个可能接触机器的维修人员都能看到手册，施加了不切实际的过重负担。</p>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="exam-tip">
+        <h3>🎓 MBE 考试锦囊</h3>
+        <p><strong>"Time of Sale" 原则：</strong></p>
+        <p>在处理严格产品责任 (Strict Products Liability) 题目时，务必检查缺陷产生的时间点。如果产品在<strong>销售时 (Time of Sale)</strong> 是安全的，且包含了充分的警告，那么制造商通常不对后续因<strong>第三方实质性改动 (Substantial Alteration)</strong> 或<strong>不可预见的误用 (Unforeseeable Misuse)</strong> 造成的伤害负责。</p>
+        <p><strong>注意区分：</strong> 如果改动是可预见的 (Foreseeable)，且制造商未能提供警告，则可能仍需负责。但在本题中，制造商已经提供了明确的警告，这足以免责。</p>
+    </div>
+
+</div>
+
+</body>
+</html>

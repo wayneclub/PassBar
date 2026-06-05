@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考题解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: #e8f8f5;
+            border-left: 5px solid var(--success-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-title {
+            color: var(--success-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .concept-card {
+            background-color: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .concept-header {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin: 15px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: #f2f2f2;
+            color: var(--primary-color);
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px dashed var(--warning-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        .exam-tip-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑诉法考点解析</h1>
+        <div class="sub-title">Constitutional Protection & Criminal Procedure</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：A</span>
+            不应批准排除动议。因为警方的行为既没有违反第四修正案（非法搜查/扣押），也没有违反 Miranda 规则。
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">核心法律逻辑解析</div>
+
+        <div class="concept-card">
+            <div class="concept-header">
+                1. 第四修正案：Terry 截停
+                <span class="latin">Terry Stop</span>
+            </div>
+            <p><strong>规则：</strong>警方如果具有<b>合理怀疑 (Reasonable Suspicion)</b> 认为犯罪活动正在进行，可以进行短暂的调查性扣押。</p>
+            <p><strong>本案应用：</strong></p>
+            <ul>
+                <li>嫌疑人穿着与抢劫犯一致（白色连帽衫、蓝色运动裤）。</li>
+                <li>时间地点敏感（银行关门前、曾在附近发生抢劫）。</li>
+                <li>行为可疑（紧张踱步）。</li>
+            </ul>
+            <p>法院已认定警方具有“合理怀疑”。因此，这次截停和随后的拍身搜查（Frisk）是合法的，<b>没有违反第四修正案</b>。</p>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-header">
+                2. 第五修正案：Miranda 警告
+                <span class="latin">Miranda Warnings</span>
+            </div>
+            <p><strong>规则：</strong>Miranda 警告仅在<b>“羁押性讯问” (Custodial Interrogation)</b> 时才需要。</p>
+            <p><strong>关键判例：</strong> <span class="latin">Berkemer v. McCarty</span></p>
+            <p>最高法院裁定，普通的 <b>Terry 截停通常不构成“羁押” (Custody)</b>。因为它是短暂的、公开的，且嫌疑人的自由受限程度未达到正式逮捕的程度。</p>
+            <p><strong>本案应用：</strong></p>
+            <ul>
+                <li>警方只是进行了短暂的截停和询问。</li>
+                <li>此时尚未建立“可成立理由” (Probable Cause)，未进行正式逮捕。</li>
+                <li>因此，警方在询问前<b>无需</b>告知 Miranda 权利。</li>
+            </ul>
+        </div>
+
+        <!-- 知识点对比表 -->
+        <div class="section-title">考点辨析：截停 vs 逮捕</div>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>特征</th>
+                    <th>Terry 截停 (Stop)</th>
+                    <th>逮捕 (Arrest)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>所需标准</b></td>
+                    <td>合理怀疑<br><span class="latin">Reasonable Suspicion</span></td>
+                    <td>可成立理由<br><span class="latin">Probable Cause</span></td>
+                </tr>
+                <tr>
+                    <td><b>自由限制</b></td>
+                    <td>短暂、临时</td>
+                    <td>完全限制、长期</td>
+                </tr>
+                <tr>
+                    <td><b>Miranda</b></td>
+                    <td><span style="color:var(--success-color)">通常不需要</span></td>
+                    <td><span style="color:var(--warning-color)">讯问前必须告知</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 为什么其他选项错误 -->
+        <div class="section-title">为什么排除其他选项？</div>
+        <p><strong>选项 B、C、D 均错误</strong>，因为它们基于错误的前提：</p>
+        <ul>
+            <li><strong>选项 B & D：</strong> 既然法院已认定存在合理怀疑，且符合 <span class="latin">Terry</span> 标准，就不存在第四修正案违宪，因此供述不是“毒树之果” (Fruit of the Poisonous Tree)。</li>
+            <li><strong>选项 C & D：</strong> 既然 Terry 截停是非羁押状态 (Non-custodial)，就不需要 Miranda 警告，因此不存在第五修正案违宪。</li>
+        </ul>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 考试技巧</span>
+            <p>在处理<strong>供述 (Confession)</strong> 的可采性问题时，请按顺序检查两个步骤：</p>
+            <ol>
+                <li><strong>第四修正案检查：</strong> 警方抓人或截停是否合法？（如果是非法扣押，供述可能是毒树之果）。</li>
+                <li><strong>第五修正案检查：</strong> 是否处于“羁押” (Custody) 状态？只有在“羁押 + 讯问”同时满足时，才需要 Miranda。</li>
+            </ol>
+            <p>本题中，两个检查点警方均未违规，因此证据完全有效。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

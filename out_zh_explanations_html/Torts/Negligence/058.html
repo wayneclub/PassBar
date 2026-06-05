@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-bg: #e8f8f5;
+            --correct-border: #2ecc71;
+            --wrong-bg: #fdf2f2;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .rule-list {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        .rule-list li {
+            margin-bottom: 5px;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .option-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+        .option-card.correct {
+            background-color: var(--correct-bg);
+            border-color: var(--correct-border);
+        }
+        .option-card.wrong {
+            background-color: var(--wrong-bg);
+            border-color: #e74c3c;
+            opacity: 0.8;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .badge-correct {
+            background: var(--correct-border);
+            color: #fff;
+        }
+        .badge-wrong {
+            background: #e74c3c;
+            color: #fff;
+        }
+        .exam-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Torts: Attractive Nuisance (侵权法：吸引性危险物)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心法律规则 -->
+        <div class="concept-box">
+            <span class="concept-title">📚 核心考点：吸引性危险物原则 (Attractive Nuisance Doctrine)</span>
+            <p>根据《侵权法重述（第二版）》§339，土地所有者对<b>侵入儿童 (Child Trespassers)</b> 负有保护义务，但必须<b>同时满足</b>以下条件：</p>
+            <ul class="rule-list">
+                <li>所有者知道该处可能有儿童侵入；</li>
+                <li>该<b>人造设施 (Artificial Condition)</b> 存在严重伤害风险；</li>
+                <li><b>关键点：</b>儿童因年龄、智力或经验，<b>无法发现或无法意识到该风险 (Cannot appreciate the risk)</b>；</li>
+                <li>消除危险的负担轻于风险的大小。</li>
+            </ul>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-section">
+            <h3>✅ 正确答案分析 (选项 A)</h3>
+            <div class="option-card correct">
+                <span class="badge badge-correct">正确原因</span>
+                <p><b>"一个经常使用蹦床的11岁儿童，理应能够合理地理解在没有垫子的情况下使用蹦床的危险。"</b></p>
+                <hr style="border: 0; border-top: 1px solid #bcebd3; margin: 10px 0;">
+                <p><b>法律逻辑推演：</b></p>
+                <p>本题的胜负手在于<b>“风险认知” (Appreciation of Risk)</b>。</p>
+                <p>吸引性危险物原则是一个<b>例外</b>，它让土地所有者对本应没有义务的侵入者（儿童）承担责任。但是，如果儿童能够像成年人一样理解危险，这个例外就不再适用，土地所有者对他就不再负有特殊义务。</p>
+                <p>在本案中：</p>
+                <ol>
+                    <li>男孩已经11岁（不是幼儿）；</li>
+                    <li>题目明确指出他<b>“经常使用蹦床” (frequently used a trampoline)</b>；</li>
+                    <li>没有垫子摔在硬地上的风险是显而易见的 (Obvious risk)。</li>
+                </ol>
+                <p>因此，因为男孩能够理解风险，土地所有者对他<b>没有注意义务 (No Duty)</b>。没有义务，就没有过失 (Negligence)，诉讼必然失败。</p>
+            </div>
+        </div>
+
+        <!-- 错误选项陷阱 -->
+        <div class="analysis-section">
+            <h3>❌ 为什么其他选项是陷阱？</h3>
+            
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">选项 B (引诱理论)</span>
+                <p><b>错误点：</b>这是旧的普通法规则。现代法律（及MBE考试标准）<b>不再要求</b>儿童必须是被该危险物“引诱” (Lured) 进来的。只要所有者预见到儿童可能进入即可。</p>
+            </div>
+
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">选项 D (比较过失)</span>
+                <p><b>错误点：</b>这是一个非常典型的MBE干扰项。</p>
+                <p>题目提到该地实行<b>“纯粹比较过失” (Pure Comparative Negligence)</b>。如果被告（土地主）有过失，原告（男孩）也有过失，比较过失规则通常只会<b>减少</b>赔偿金，而不会让诉讼直接<b>失败 (Fail)</b>。</p>
+                <p>只有当被告<b>完全没有义务 (No Duty)</b> 时（如选项A所述），诉讼才会彻底失败。因此A是比D更根本的原因。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 破题技巧：</strong><br>
+            当题目涉及<b>儿童受伤</b>时，首先检查是否符合 <i>Attractive Nuisance</i> 的所有要素。
+            <br><br>
+            如果题目强调孩子<b>年龄较大</b>（如11-14岁）或者<b>经验丰富</b>，这通常是在暗示你：<b>孩子能够理解风险</b>。一旦孩子能理解风险，该原则失效，土地主通常不承担责任。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #34495e;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--bg-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .content {
+            padding: 15px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title::before {
+            content: '⚖️';
+            margin-right: 8px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .explanation {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .logic-step {
+            margin: 10px 0;
+            padding-left: 10px;
+            border-left: 2px solid #bdc3c7;
+        }
+
+        .tip-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .tip-title {
+            color: #f57c00;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #95a5a6;
+            padding: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考点解析</h1>
+        <p>Common Law Crimes & Felony Murder</p>
+    </div>
+
+    <div class="content">
+        <!-- 结论部分 -->
+        <div class="card" style="border-left-color: var(--accent-color);">
+            <div class="card-title" style="color: var(--accent-color);">正确答案：D</div>
+            <div class="explanation">
+                该男子构成 <strong>入室盗窃 (Burglary)</strong>、<strong>抢劫 (Robbery)</strong> 和 <strong>谋杀 (Murder)</strong> 三项罪名。
+            </div>
+        </div>
+
+        <!-- 考点一：入室盗窃 -->
+        <div class="card">
+            <div class="card-title">1. 入室盗窃 (Burglary)</div>
+            <div class="explanation">
+                <p>普通法定义的 Burglary 包含六大要素：</p>
+                <ul>
+                    <li><strong>Breaking (侵入)</strong></li>
+                    <li>Entering (进入)</li>
+                    <li>Dwelling (住宅)</li>
+                    <li>Of another (他人的)</li>
+                    <li>At night (夜间)</li>
+                    <li>Intent to commit a felony (意图实施重罪)</li>
+                </ul>
+                <div class="logic-step">
+                    <strong>关键点分析：</strong> 题目中虽然门是夫妇自己打开的，但这属于 <span class="term">Constructive Breaking (推定侵入)</span>。
+                    <br><br>
+                    当进入是通过<strong>欺诈 (fraud)</strong> 或 <strong>武力威胁 (threat of force)</strong> 获得时，法律视为“破坏/侵入”。本案中，男子持枪威胁夫妇带他进入，满足 Breaking 要素。
+                </div>
+            </div>
+        </div>
+
+        <!-- 考点二：抢劫 -->
+        <div class="card">
+            <div class="card-title">2. 抢劫 (Robbery)</div>
+            <div class="explanation">
+                <p>定义：通过暴力或恐吓，从受害人身上或面前非法夺取财物。</p>
+                <div class="logic-step">
+                    男子持枪（恐吓/暴力），强迫妻子打开保险箱并拿走项链（当面夺取），完全符合 <span class="term">Robbery</span> 的构成要件。
+                </div>
+            </div>
+        </div>
+
+        <!-- 考点三：重罪谋杀 -->
+        <div class="card">
+            <div class="card-title">3. 谋杀 (Murder)</div>
+            <div class="explanation">
+                <p>这是本题最难的考点。依据是 <span class="term">Felony Murder Rule (重罪谋杀原则)</span>。</p>
+                <p><strong>规则：</strong> 在实施本质上危险的重罪（如 BARRK: Burglary, Arson, Rape, Robbery, Kidnapping）期间造成的任何死亡，均构成谋杀。</p>
+                
+                <div class="logic-step">
+                    <strong>争议点解析：</strong> 丈夫死于心脏病，且发生在罪犯被捕<strong>之后</strong>。这是否切断了因果关系？
+                    <br><br>
+                    <span class="highlight">答案是否定的。</span>
+                    <ul>
+                        <li><strong>因果关系 (Causation)：</strong> 丈夫的心脏病发作是挣扎脱困导致的，而被捆绑是抢劫行为的直接结果。</li>
+                        <li><strong>时间范围 (Res Gestae)：</strong> 虽然罪犯已被捕，但受害人仍处于罪犯制造的危险状态（被捆绑）中。死亡与重罪在因果上紧密相连。只要死亡是重罪行为的<strong>可预见结果 (foreseeable result)</strong>，重罪谋杀原则适用。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <div class="tip-title">💡 MBE 提分技巧</div>
+            <div class="explanation">
+                <ol>
+                    <li><strong>看见“心脏病”不要慌：</strong> 在刑法中，被告需对受害人的脆弱状况负责（类似于侵权法中的“薄头盖骨规则”）。如果受害人因被抢劫吓死或挣扎累死，通常都算 Felony Murder。</li>
+                    <li><strong>Constructive Breaking：</strong> 只要题目出现“用枪指着逼迫开门”或“假装查水表骗开门”，这就是 Burglary 中的 Breaking。</li>
+                    <li><strong>被捕 vs. 犯罪结束：</strong> 虽然通常到达“安全地点”标志着重罪结束，但如果是受害人因犯罪行为留下的直接危险（如被捆绑、被锁在冷库）而死，即便被告已被捕，仍需负责。</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

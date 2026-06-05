@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --highlight-bg: #fdf2e9;
+            --text-color: #333;
+            --light-gray: #ecf0f1;
+            --success-color: #27ae60;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            background: var(--light-gray);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .step {
+            background: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #bdc3c7;
+            width: 80%;
+            text-align: center;
+            font-size: 0.9rem;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .arrow {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin: -10px 0 5px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            background: var(--primary-color);
+            color: #fff;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-right: 5px;
+        }
+
+        .explanation-section {
+            margin-bottom: 20px;
+        }
+
+        .explanation-section h4 {
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .key-point {
+            font-weight: bold;
+            color: var(--success-color);
+        }
+
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+
+        .footer {
+            background: var(--light-gray);
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property: Landlord-Tenant & Options</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论卡片 -->
+        <div class="card">
+            <h3>⚖️ 核心考点：选择权的可分割性</h3>
+            <p>本题考察的是：<b>租赁合同中的购买选择权（Option to Purchase）是否可以独立于租赁权（Leasehold）单独转让？</b></p>
+            <p>正确答案是 <b>D</b>。</p>
+        </div>
+
+        <!-- 案情图解 -->
+        <div class="explanation-section">
+            <h4>📊 案情逻辑梳理</h4>
+            <div class="diagram">
+                <div class="step">
+                    <b>1. 初始状态</b><br>
+                    房东 (Landlord) → 租户 (Tenant)<br>
+                    <span style="font-size:0.8em; color:#666;">(10年租约 + 购买选择权)</span>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="step">
+                    <b>2. 租户的操作 (关键点)</b><br>
+                    租户保留租约 (Lease)<br>
+                    租户将选择权 (Option) 转让给女儿
+                </div>
+                <div class="arrow">↓</div>
+                <div class="step">
+                    <b>3. 冲突爆发</b><br>
+                    房东卖房给经纪人 (Broker)<br>
+                    经纪人拒买，理由：<br>
+                    <span style="color:var(--accent-color);">"女儿持有选择权，产权有瑕疵"</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="explanation-section">
+            <h4>💡 法律推理 (Why D is correct)</h4>
+            <p>房东起诉要求强制履行（Specific Performance），即强迫经纪人买房。要让房东胜诉，必须证明经纪人拒绝交易的理由（女儿的选择权）是不成立的。</p>
+            
+            <p>这就涉及到一个司法管辖区的规则分歧（Split of Authority）：</p>
+            
+            <ul>
+                <li><b>少数派规则 (Minority Rule)：</b> 购买选择权是一项独立的财产权利，可以与租约分离并单独转让。</li>
+                <li><b>多数派规则 (Majority Rule) - 选项D：</b> 租赁合同中的购买选择权是租约的<b>组成部分 (Integral Part)</b>，通常意在让占有房屋的租户受益。因此，<b>选择权不能与租约分离而单独转让。</b></li>
+            </ul>
+
+            <p><b>结论：</b> 如果法院采用选项 D 的规则，那么租户将选择权单独转让给女儿的行为是<b>无效的 (Void)</b>。既然转让无效，女儿就没有合法的选择权，经纪人以此为由拒绝成交就是没有法律依据的，因此房东胜诉。</p>
+        </div>
+
+        <!-- 干扰项排除 -->
+        <div class="explanation-section">
+            <h4>🚫 为什么其他选项错误？</h4>
+            <ul>
+                <li><b>选项 A (Subject to lease clause)：</b> 错误。通常法律认为，如果买卖合同注明“受制于租约”，买方就被视为已知晓并接受租约中的所有条款，包括购买选择权。这通常对房东不利。</li>
+                <li><b>选项 B (Marketable Title)：</b> 错误。未行使的选择权（Outstanding Option）确实是产权负担（Encumbrance），会使产权变为“不可销售”（Unmarketable）。如果选择权有效，房东就输了。房东想赢，必须证明选择权无效。</li>
+                <li><b>选项 C (Rule Against Perpetuities)：</b> 错误。附属于租约的购买选择权（Option Appendant），只要在租期内行使，通常<b>豁免</b>于“反永久所有权规则”的限制。即使受限制，本案中10年租期并未违反21年的规则。</li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="background: #e8f6f3; border-left-color: var(--success-color);">
+            <h3 style="color: var(--success-color);">🎓 考试技巧 (Exam Tip)</h3>
+            <p>当题目提到<b>"Split of Authority" (各州法院存在分歧)</b> 并问哪个规则能导致特定结果时：</p>
+            <ol>
+                <li>先确定题目要求的<b>结果</b>是什么（本题：房东赢）。</li>
+                <li>倒推能导致该结果的<b>法律前提</b>（本题：必须证明女儿手中的选择权无效）。</li>
+                <li>在选项中寻找能支持该前提的规则。</li>
+            </ol>
+            <p><b>记住：</b> 大多数司法管辖区倾向于认为，租约中的购买权是为了让“住在房子里的人”有机会买下它，而不是为了让租户把它当作金融工具单独炒卖。</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Real Property Review © 2025
+    </div>
+</div>
+
+</body>
+</html>

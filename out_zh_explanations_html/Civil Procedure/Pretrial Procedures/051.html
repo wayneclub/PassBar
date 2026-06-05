@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fff3cd;
+            --warning-text: #856404;
+            --error-color: #e74c3c;
+            --success-color: #27ae60;
+            --text-color: #333;
+            --bg-color: #f4f4f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .header {
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        .answer-box {
+            background-color: var(--success-color);
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .rule-section {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 6px 6px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .timeline {
+            position: relative;
+            margin: 25px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+        .timeline-item {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .timeline-dot {
+            width: 14px;
+            height: 14px;
+            background: #bbb;
+            border-radius: 50%;
+            position: absolute;
+            left: -28px;
+            top: 5px;
+            border: 2px solid #fff;
+        }
+        .timeline-dot.active { background: var(--accent-color); }
+        .timeline-dot.late { background: var(--error-color); }
+        .timeline-date {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+        .timeline-content {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .key-point {
+            font-weight: bold;
+            color: var(--error-color);
+        }
+        .exam-tip {
+            background-color: var(--warning-bg);
+            color: var(--warning-text);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border: 1px solid #ffeeba;
+        }
+        .latin {
+            font-style: italic;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="subtitle">民事诉讼法 (Civil Procedure) - 审前程序</div>
+    </div>
+
+    <!-- 正确答案 -->
+    <div class="answer-box">
+        正确答案：B
+    </div>
+
+    <!-- 核心法律规则 -->
+    <div class="rule-section">
+        <span class="rule-title">⚖️ 法律依据：FRCP 26(a)(3)</span>
+        <p>根据《联邦民事诉讼规则》，关于<b>审前披露 (Pretrial Disclosures)</b> 有两个关键的时间节点：</p>
+        <ol>
+            <li><b>披露时间：</b>除非法院另有命令，当事人必须在审判前至少 <b>30天</b> 进行披露（包括证人名单、书面证词誊本等）。</li>
+            <li><b>反对时间：</b>对已披露的证据（如书面证词的使用）提出异议，必须在披露后的 <b>14天</b> 内提出。</li>
+        </ol>
+        <p><b>后果：</b>如果在14天内未提出异议，视为<b>放弃 (Waived)</b> 该异议权（除非异议是基于相关性 Relevance）。</p>
+    </div>
+
+    <!-- 案情时间轴分析 -->
+    <div class="analysis-section">
+        <h3>📅 本案时间轴分析</h3>
+        <div class="timeline">
+            <!-- 审判前45天 -->
+            <div class="timeline-item">
+                <div class="timeline-dot active"></div>
+                <div class="timeline-date">审判前 45 天 (T-45)</div>
+                <div class="timeline-content">
+                    <strong>房主进行披露</strong><br>
+                    包含书面证词 (Deposition)。<br>
+                    <span style="color:var(--success-color)">✔ 符合“审判前至少30天”的要求。</span>
+                </div>
+            </div>
+
+            <!-- 截止日期 -->
+            <div class="timeline-item">
+                <div class="timeline-dot active"></div>
+                <div class="timeline-date">披露后 14 天 (T-31)</div>
+                <div class="timeline-content">
+                    <strong>提出异议的法定截止日期</strong><br>
+                    (T-45 + 14天 = T-31)
+                </div>
+            </div>
+
+            <!-- 实际反对时间 -->
+            <div class="timeline-item">
+                <div class="timeline-dot late"></div>
+                <div class="timeline-date">披露后 21 天 (T-24)</div>
+                <div class="timeline-content">
+                    <strong>公司提出反对</strong><br>
+                    理由：传闻证据 (Hearsay)。<br>
+                    <span class="key-point">❌ 逾期！已超过14天期限。</span>
+                </div>
+            </div>
+
+            <!-- 审判日 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">审判日 (Trial)</div>
+                <div class="timeline-content">
+                    法院开庭
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 深度解析 -->
+    <div class="analysis-section">
+        <h3>💡 为什么选 B？</h3>
+        <p>本题的核心考点是<b>“反对权的丧失” (Waiver of Objections)</b>。</p>
+        <p>虽然传闻证据 (Hearsay) 通常是不可采纳的，但程序法规定了严格的异议时限。公司在收到披露后 <b>21天</b> 才提出反对，违反了 <b>14天</b> 的规定。</p>
+        <p>因此，法院不应审理该反对意见的实体内容（即不讨论它是否真的是传闻），而是直接因为<b>程序逾期</b>驳回反对。</p>
+        
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+        
+        <h4>🚫 为什么其他选项错误？</h4>
+        <ul>
+            <li><b>选项 A (30天)：</b> 混淆了概念。30天是<i>披露</i>的截止期，而不是<i>反对</i>的截止期。</li>
+            <li><b>选项 C (30天内反对)：</b> 错误。反对期限是14天，而不是30天。虽然21天确实在30天内，但已经超过了法定的14天。</li>
+            <li><b>选项 D (90天)：</b> 90天通常是<b>专家证人 (Expert Testimony)</b> 的披露期限，本题涉及的是普通事实证人的书面证词。</li>
+        </ul>
+    </div>
+
+    <!-- 考试技巧 -->
+    
+        <ul>
+            <li><b>30</b> Days before trial: <b>Disclose</b> (披露)</li>
+            <li><b>14</b> Days after disclosure: <b>Object</b> (反对)</li>
+        </ul>
+        <small>*注：如果是基于相关性 (Relevance) 的反对，通常不会因逾期而放弃，但本题明确说是基于传闻 (Hearsay)。</small>
+    </div>
+
+</div>
+
+</body>
+</html>

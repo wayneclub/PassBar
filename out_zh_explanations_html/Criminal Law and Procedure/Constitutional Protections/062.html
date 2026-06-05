@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .case-law {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #555;
+            margin: 10px 0;
+        }
+        .case-name {
+            font-style: italic;
+            font-weight: bold;
+            color: #000;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        .tip-box {
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+        .tip-icon {
+            font-size: 1.2rem;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Criminal Procedure: Miranda Rights</p>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：B</span>
+            法院不应批准排除证据的动议。因为被告没有有效地主张律师帮助权，且之前的行为构成了有效的权利放弃 (Waiver)。
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">核心考点：律师帮助权的援引标准</div>
+        <p>本题的核心在于：嫌疑人在接受讯问时，如何才能有效地援引（Invoke）其 Miranda 权利中的律师帮助权？</p>
+        
+        <div class="case-law">
+            <span class="case-name">Davis v. United States (1994)</span><br>
+            最高法院确立了<b>“明确无误原则” (Unambiguous Request Rule)</b>。
+        </div>
+
+        <p>根据该原则，嫌疑人必须<b>清晰、明确且毫不含糊</b>地表达希望律师在场的意愿。如果陈述模棱两可 (Ambiguous) 或犹豫不决 (Equivocal)，警方<b>没有义务</b>停止讯问。</p>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>陈述类型</th>
+                    <th>示例 (Example)</th>
+                    <th>警方义务</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>明确请求</b><br>(Unambiguous)</td>
+                    <td>"I want a lawyer."<br>"I will not talk without a lawyer."</td>
+                    <td>必须立即停止讯问。</td>
+                </tr>
+                <tr>
+                    <td><b>含糊陈述</b><br>(Ambiguous)</td>
+                    <td>"Maybe I should talk to a lawyer."<br>"I think I need a lawyer."</td>
+                    <td><b>可以继续讯问</b>。<br>(警方可以澄清，但非必须)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 案情分析 -->
+        <div class="section-title">案情具体分析</div>
+        <p>在本案中，被告经历了三个关键阶段：</p>
+        <ol>
+            <li><b>有效放弃 (Valid Waiver)：</b> 被告最初明确表示理解权利并愿意交谈。这构成了一个知情、自愿的放弃。</li>
+            <li><b>含糊的请求 (Ambiguous Request)：</b> 当被告说 "Maybe I should talk to a lawyer"（也许我应该和律师谈谈）时，这是一个典型的<b>模棱两可</b>的陈述。根据 <i>Davis</i> 案，这不足以触发停止讯问的义务。</li>
+            <li><b>澄清与自白：</b> 警察问 "Are you sure?" 和 "Why?" 属于澄清性问题（虽然法律甚至不强制要求警察进行澄清）。被告随后的回答构成了自白。</li>
+        </ol>
+        <p>因此，由于被告从未有效地援引律师权，他最初的<b>放弃 (Waiver) 仍然有效</b>，自白可以作为证据。</p>
+
+        <!-- 为什么其他选项是错的 -->
+        <div class="section-title">为什么其他选项错误？</div>
+        <ul>
+            <li><b>选项 A & D (关于讯问的定义)：</b> 警察问“你为什么想找律师？”确实可能引出有罪供述，因此在技术上属于“羁押讯问” (Custodial Interrogation)。但是，这不影响结果，因为被告<b>没有有效地援引权利</b>，所以警察本来就有权继续讯问。</li>
+            <li><b>选项 C (关于放弃的有效性)：</b> 题目明确指出被告在被告知权利后说“Yes”并愿意交谈。没有证据表明存在胁迫或神志不清，因此最初的放弃是绝对有效的。</li>
+        </ul>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <span class="tip-icon">💡</span><b>MBE 考试技巧：</b><br>
+            看到 "Maybe" (也许), "I think" (我想), "I might" (我可能) 搭配 "lawyer" 时，立刻联想 <b>Davis v. United States</b>。
+            <br><br>
+            记住结论：<b>含糊的请求 = 无效的请求</b>。警方不需要停止，也不需要澄清（虽然他们通常会澄清）。只要没有明确说 "Stop" 或 "I want a lawyer"，讯问就可以继续。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

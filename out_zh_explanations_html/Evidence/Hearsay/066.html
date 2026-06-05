@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-badge {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+        .rule-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .comparison {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .comp-item {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 10px;
+            font-size: 13px;
+        }
+        .comp-item.wrong {
+            border-left: 4px solid #e74c3c;
+        }
+        .comp-item.right {
+            border-left: 4px solid #27ae60;
+        }
+        .footer {
+            background-color: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #bdc3c7;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考题解析</h1>
+        <div class="sub-title">Evidence / Hearsay</div>
+    </div>
+
+    <div class="content">
+        <div class="answer-badge">正确答案：A</div>
+        <p style="font-size: 14px; margin-top: 0;">
+            本题的核心考点在于<strong>传闻证据规则（Hearsay Rule）</strong>及其<strong>例外情况的适用范围</strong>。
+        </p>
+
+        <div class="section-title">1. 为什么这是传闻证据？</div>
+        <div class="rule-box">
+            <strong>定义：</strong>传闻证据（Hearsay）是指陈述人在庭审以外（Out-of-court）作出的，被用来证明该陈述内容真实性（Truth of the matter asserted）的陈述。
+        </div>
+        <p style="font-size: 14px;">
+            在本案中：
+            <ul>
+                <li><strong>庭外陈述：</strong>男子在事故现场对警官说的话。</li>
+                <li><strong>证明目的：</strong>遗产管理人试图用这句话证明“邻居确实欠了钱”这一事实。</li>
+            </ul>
+            因此，这属于典型的传闻证据。除非符合例外情况，否则不可采（Inadmissible）。
+        </div>
+
+        <div class="section-title">2. 为什么例外情况不适用？</div>
+        <p style="font-size: 14px;">
+            这是本题的陷阱所在。考生容易看到“临死”或“激动”就直接套用例外，但忽略了<strong>陈述内容（Subject Matter）</strong>的限制。
+        </p>
+
+        <div class="comparison">
+            <!-- 激动言辞分析 -->
+            <div class="comp-item wrong">
+                <strong>❌ 激动言辞 (Excited Utterance)</strong><br>
+                <span class="term">Fed. R. Evid. 803(2)</span><br>
+                <br>
+                虽然男子处于车祸后的“激动压力”之下，但该例外要求陈述必须<strong>“与该激动事件相关”</strong>（Relating to the startling event）。<br>
+                <br>
+                <span class="highlight">分析：</span>男子的陈述是关于“旧债”，而不是关于“车祸”（如“卡车闯红灯了”）。因此不适用。
+            </div>
+
+            <!-- 临终遗言分析 -->
+            <div class="comp-item wrong">
+                <strong>❌ 临终遗言 (Dying Declaration)</strong><br>
+                <span class="term">Statement Under Belief of Impending Death - Fed. R. Evid. 804(b)(2)</span><br>
+                <br>
+                虽然男子确信自己即将死亡，但该例外要求陈述必须关于<strong>“死亡的原因或情况”</strong>（Cause or circumstances of the death）。<br>
+                <br>
+                <span class="highlight">分析：</span>男子的陈述是关于“收回贷款”，与导致他死亡的车祸原因无关。因此不适用。
+            </div>
+        </div>
+
+        <div class="section-title">3. 其他选项排除</div>
+        <div class="rule-box">
+            <strong>关于选项 B (Unfair Prejudice)：</strong><br>
+            根据 <span class="term">FRE 403</span>，只有当证据的“不公正偏见”<strong>实质性地超过</strong>其“证明价值”时才会被排除。本案中，该陈述直接证明债务存在，证明价值极高，且没有引起陪审团非理性情绪的风险，因此不会因偏见被排除。
+        </div>
+        <div class="rule-box">
+            <strong>关于亡者条款 (Dead Man's Statute)：</strong><br>
+            题目明确指出该辖区没有此条款。即便有，该条款通常只禁止<strong>利害关系方</strong>（Interested Party，如邻居或遗产受益人）作证。警官是第三方证人，不受此限制。
+        </div>
+
+        <div class="section-title">💡 考试通关秘籍</div>
+        <p style="font-size: 14px;">
+            在处理 MBE 证据法题目时，遇到 Hearsay Exceptions，务必进行<strong>“双重检查”</strong>：
+        </p>
+        <ol style="font-size: 14px;">
+            <li><strong>情境检查：</strong>陈述人是否激动？是否濒死？（大多数考生只做到这一步）</li>
+            <li><strong>内容检查：</strong>陈述的内容是否符合该例外的范围限制？
+                <ul>
+                    <li>Excited Utterance 必须关于 <span class="highlight">Event</span>。</li>
+                    <li>Dying Declaration 必须关于 <span class="highlight">Cause of Death</span>。</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

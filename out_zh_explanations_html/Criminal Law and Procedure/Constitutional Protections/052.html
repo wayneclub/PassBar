@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --text-color: #333;
+        --bg-color: #f4f6f7;
+        --card-bg: #ffffff;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background-color: var(--bg-color);
+    }
+    .card {
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        padding: 20px;
+        margin-bottom: 15px;
+        border-left: 5px solid var(--accent-color);
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .header h2 {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+    .concept-title::before {
+        content: "⚖️";
+        margin-right: 8px;
+    }
+    .highlight-box {
+        background-color: var(--highlight-bg);
+        border-radius: 8px;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #bde0ef;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .english {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 0.9em;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+        font-size: 0.9rem;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: var(--primary-color);
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    .exam-tip {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 15px;
+    }
+    .exam-tip-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 5px 0;
+    }
+    li {
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header Section -->
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <p>上诉审查标准 (Standards of Review)</p>
+    </div>
+
+    <!-- Core Answer Analysis -->
+    <div class="card">
+        <div class="concept-title">核心解析</div>
+        <p>本题的正确答案是 <strong>C</strong>。</p>
+        <p>在涉及第四修正案（Fourth Amendment）的排除证据动议（Motion to Suppress）中，最高法院确立了<strong>双层审查标准</strong>：</p>
+        
+        <div class="highlight-box">
+            <p><strong>1. 历史事实认定 (Findings of Historical Fact):</strong></p>
+            <p>适用 <span class="term">明显错误标准 (Clear Error)</span>。</p>
+            <hr style="border: 0; border-top: 1px dashed #ccc; margin: 8px 0;">
+            <p><strong>2. 法律结论 (Conclusions of Law):</strong></p>
+            <p>适用 <span class="term">重新审查标准 (De Novo)</span>。</p>
+        </div>
+
+        <p>这一规则源自著名判例 <em>Ornelas v. United States (1996)</em>。法院认为，关于是否存在“合理怀疑” (Reasonable Suspicion) 或“相当理由” (Probable Cause) 的最终决定是法律问题，应当由上诉法院独立审查。</p>
+    </div>
+
+    <!-- Detailed Breakdown -->
+    <div class="card">
+        <div class="concept-title">深度拆解：为什么这样区分？</div>
+        
+        <p><strong>1. 历史事实 (Historical Facts)</strong></p>
+        <p>指“发生了什么”。例如：警官是否真的看到了可疑动作？被告是否说了某句话？</p>
+        <ul>
+            <li><strong>理由：</strong> 初审法官（Trial Judge）在现场观察了证人的神态、语气，最适合判断证言的可信度（Credibility）。</li>
+            <li><strong>标准：</strong> <span class="term">Clear Error</span>。除非错得离谱，否则上诉法院尊重初审法官的认定。</li>
+        </ul>
+
+        <p><strong>2. 法律结论 (Conclusions of Law)</strong></p>
+        <p>指将法律标准（如宪法规定）应用到事实中。例如：基于上述事实，警官的行为是否构成宪法允许的搜查？</p>
+        <ul>
+            <li><strong>理由：</strong> 为了保持法律适用的统一性，防止不同的初审法官对相似事实做出截然不同的法律定性。</li>
+            <li><strong>标准：</strong> <span class="term">De Novo</span>。上诉法院不需尊重初审法院的结论，而是像第一次审理一样重新进行法律分析。</li>
+        </ul>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="card">
+        <div class="concept-title">MBE 必背：审查标准速查表</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>标准 (Standard)</th>
+                    <th>适用对象 (Applicability)</th>
+                    <th>遵从度 (Deference)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>De Novo</strong><br>(重新审查)</td>
+                    <td>法律问题<br>(Legal Issues)</td>
+                    <td>无<br>(None)</td>
+                </tr>
+                <tr>
+                    <td><strong>Clear Error</strong><br>(明显错误)</td>
+                    <td>法官审判中的事实认定<br>(Bench Trial Facts)</td>
+                    <td>高<br>(High)</td>
+                </tr>
+                <tr>
+                    <td><strong>Substantial Evidence</strong><br>(实质性证据)</td>
+                    <td>陪审团的事实认定<br>(Jury Verdicts)</td>
+                    <td>极高<br>(Very High)</td>
+                </tr>
+                <tr>
+                    <td><strong>Abuse of Discretion</strong><br>(滥用裁量权)</td>
+                    <td>法官的裁量性决定<br>(Discretionary Rulings)</td>
+                    <td>高<br>(High)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Exam Strategy Tip -->
+    <div class="exam-tip">
+        <span class="exam-tip-title">💡 考场实战技巧</span>
+        <p>在 MBE 刑诉法题目中，看到 <strong>Motion to Suppress</strong> 被否决后的上诉：</p>
+        <ol>
+            <li>先看题目问的是<strong>事实</strong>还是<strong>法律</strong>。</li>
+            <li>如果是<strong>混合问题</strong>（如本题，既有事实认定又有法律定性），记住口诀：<strong>"Facts are cleared (Clear Error), Law is new (De Novo)."</strong></li>
+            <li><strong>陷阱警示：</strong> 不要选 "Abuse of Discretion"。虽然证据的可采性（Admissibility，如传闻证据是否采纳）通常适用滥用裁量权标准，但涉及<strong>宪法权利</strong>（第四修正案搜查扣押）的法律定性，必须适用 De Novo。</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

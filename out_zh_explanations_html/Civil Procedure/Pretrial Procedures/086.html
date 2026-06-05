@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .option-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+        }
+        .option-card.correct {
+            border-color: #27ae60;
+            background-color: #f0fbf4;
+        }
+        .option-card.wrong {
+            border-color: #e74c3c;
+            background-color: #fdf2f2;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .badge-correct { background: #27ae60; color: white; }
+        .badge-wrong { background: #e74c3c; color: white; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure: Intervention</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">⚖️ 核心规则：FRCP 24 (Intervention)</div>
+            <p>当非当事人（Nonparty）希望主动加入诉讼并完全参与时，必须提起<b>参加诉讼动议 (Motion to Intervene)</b>。联邦民事诉讼规则将其分为两类：</p>
+        </div>
+
+        <!-- 对比表格 -->
+        <table>
+            <thead>
+                <tr>
+                    <th width="45%">类型</th>
+                    <th>关键条件</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>权利参加</b><br><span style="font-size:11px; color:#666;">Intervention of Right (Rule 24(a))</span></td>
+                    <td>1. 利益受损；<br>2. 且现有当事人<b>无法充分代表</b>该利益。</td>
+                </tr>
+                <tr>
+                    <td><b>许可参加</b><br><span style="font-size:11px; color:#666;">Permissive Intervention (Rule 24(b))</span></td>
+                    <td>非当事人的主张与主诉讼有<b>共同的法律或事实问题</b> (Common question of law or fact)。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🔍 案情深度解析</div>
+            <p>本案中，环保组织（Environmental Group）希望加入诉讼，目标与原告业主协会（HOA）完全一致：<b>禁止颁发许可证</b>。</p>
+            
+            <div class="option-card correct">
+                <span class="badge badge-correct">正确答案 C</span>
+                <p><b>提起许可参加诉讼的动议 (Motion to permissibly intervene)</b></p>
+                <p><b>理由：</b>环保组织的诉求（保护公园环境）与主诉讼（HOA反对钻探）显然共享“共同的法律或事实问题”（即该许可证是否合法）。这是最稳妥的路径。</p>
+            </div>
+
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">陷阱选项 A</span>
+                <p><b>权利参加 (Intervention of Right)</b></p>
+                <p><b>为什么错？</b> 虽然环保组织有利益，但很难证明现有当事人（HOA）<b>“代表不充分” (Inadequate Representation)</b>。因为HOA和环保组织寻求的是<b>完全相同的救济</b>（禁令），法院通常会推定现有当事人已经充分代表了该利益。</p>
+            </div>
+            
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">错误选项 B</span>
+                <p><b>必要当事人合并 (Joinder / Indispensable Party)</b></p>
+                <p><b>为什么错？</b> 这是FRCP 19条。通常是由<b>现有当事人</b>或法院提出，要求将必须参与的人拉进来。非当事人主动加入通常使用 Intervention (FRCP 24)。此外，环保组织并非“不可或缺”，没有它案件也能审理。</p>
+            </div>
+
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">错误选项 D</span>
+                <p><b>法庭之友 (Amicus Brief)</b></p>
+                <p><b>为什么错？</b> 题目明确指出该组织希望<b>“完全参与” (fully participate)</b>。法庭之友只能提交书面意见，不能传唤证人、进行取证或作为当事人参与庭审。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+            <div class="rule-title">💡 MBE 提分技巧</div>
+            <p>在处理 <b>Intervention</b> 问题时，如果外部人员的目标与现有当事人<b>完全一致</b>，通常无法满足“权利参加”中的“代表不充分”要件。此时，<b>“许可参加” (Permissive Intervention)</b> 往往是最佳选择。</p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

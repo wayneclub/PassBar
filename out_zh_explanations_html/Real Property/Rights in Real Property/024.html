@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --danger-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background-color: #eef7fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-color);
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .option-analysis {
+            margin-top: 15px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .correct-answer {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        .wrong-answer {
+            color: var(--danger-color);
+            font-weight: bold;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property: Covenants & Servitudes</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：限制性契约的执行 (Enforcement of Restrictive Covenants)</span>
+            本题主要考察两个关键点：
+            <ol style="margin-left: -20px;">
+                <li><strong>明示契约 (Express Covenant)</strong> 是否随土地流转（Run with the land）。</li>
+                <li>是否存在<strong>共同开发计划 (Common Scheme)</strong> 从而产生默示的负面地役权 (Implied Reciprocal Negative Servitude)。</li>
+            </ol>
+        </div>
+
+        <!-- 案情梳理 -->
+        <div class="analysis-section">
+            <h3>📅 案情时间线梳理</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>阶段 1：</strong><br>
+                    女士出售 1、3、5 号地块。<br>
+                    <span class="highlight">无任何限制条款。</span><br>
+                    <span class="term">后果：这三块地既没有负担，也没有受益于任何后续的限制。</span>
+                </div>
+                <div class="timeline-item">
+                    <strong>阶段 2：</strong><br>
+                    女士出售 2 号地块给“朋友”。<br>
+                    <span class="highlight">地契包含明示限制：</span> 2号和保留的4号地块仅限单户住宅。<br>
+                    <span class="term">后果：在2号（受益地）和4号（负担地）之间建立了明示的契约/地役权。</span>
+                </div>
+                <div class="timeline-item">
+                    <strong>阶段 3：</strong><br>
+                    女士出售 4 号地块给“银行家”。<br>
+                    地契无限制，但律师审查了含限制的旧地契（即有<strong>通知 Notice</strong>）。<br>
+                    <span class="term">后果：银行家作为4号地的继承人，受该限制约束。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 法律分析 -->
+        <div class="analysis-section">
+            <h3>⚖️ 法律分析</h3>
+            
+            <h4>1. 朋友 (Friend) vs. 银行家 (Banker)</h4>
+            <p>朋友可以胜诉。因为在2号和4号地块之间存在有效的<strong>明示契约 (Express Covenant)</strong> 或 <strong>衡平法地役权 (Equitable Servitude)</strong>。</p>
+            <ul>
+                <li><strong>书面 (Writing):</strong> 存在于2号地块的地契中。</li>
+                <li><strong>意图 (Intent):</strong> "heirs and assigns" 表明意图随土地流转。</li>
+                <li><strong>触及与关注 (Touch and Concern):</strong> 限制土地用途为住宅，直接关系到土地的使用价值。</li>
+                <li><strong>通知 (Notice):</strong> 银行家的律师在产权报告中看到了该地契，构成<strong>实际通知 (Actual Knowledge)</strong> 或 <strong>推定通知 (Constructive Notice)</strong>。</li>
+            </ul>
+
+            <h4>2. 1、3、5号业主 vs. 银行家</h4>
+            <p>其他业主胜诉<strong>希望渺茫</strong>。因为：</p>
+            <ul>
+                <li>他们的地契中没有限制条款。</li>
+                <li>他们是在限制产生<strong>之前</strong>购买的土地。</li>
+                <li><strong>无共同计划 (No Common Scheme):</strong> 默示负面地役权要求在销售开始时就存在一个涵盖所有地块的共同计划。这里前三块地卖出时没有任何限制，说明不存在共同计划。</li>
+            </ul>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="option-analysis">
+            <h3>✅ 正确答案解析 (选项 D)</h3>
+            <p><strong>"朋友应获得适当的救济，但其他原告的追偿存在疑问。"</strong></p>
+            <p>这是最准确的描述。朋友拥有基于明示契约的直接诉权（Privity of Estate / Contractual relationship via the deed covenant）。而其他原告既没有明示契约的保护，也无法证明存在“共同开发计划”来主张默示权利。</p>
+        </div>
+
+        <div class="option-analysis">
+            <h3>❌ 错误选项陷阱</h3>
+            
+            <p><span class="wrong-answer">选项 A (共同计划):</span> 错误。如上所述，1、3、5号地块出售时无限制，打破了“共同计划”的构成要件。</p>
+            
+            <p><span class="wrong-answer">选项 B (区划优先):</span> 错误。这是一个常见的MBE干扰项。<strong>区划法规 (Zoning)</strong> 只是行政管理的底线。私人契约 (Private Covenants) 完全可以比区划法规更严格。只要不违反公共政策，私人契约有效。</p>
+            
+            <p><span class="wrong-answer">选项 C (仅损害赔偿):</span> 错误。首先，它错误地认为所有原告都能获赔。其次，对于违反土地使用限制，<strong>禁令 (Injunction)</strong> 通常是首选救济，因为土地被视为是独特的 (Unique)。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-box" style="background-color: #fff8e1; border-color: #ffc107;">
+            <span class="concept-title">💡 MBE 考试技巧</span>
+            遇到多个原告起诉同一个被告违反土地限制的题目时，务必<strong>分别分析</strong>每个原告的权利来源：
+            <br>1. 是否有<strong>明示</strong>的契约链条？
+            <br>2. 如果没有，是否符合<strong>默示</strong>地役权（Common Scheme）的严格条件（通常要求所有地块在同一时间段内按统一规划出售）？
+            <br>不要因为一个人有权起诉，就默认所有人都有权起诉。
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

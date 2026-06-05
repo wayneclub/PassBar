@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fff3cd;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .answer-box {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .math-box {
+            border: 1px dashed #999;
+            padding: 10px;
+            background-color: #fafafa;
+            font-family: monospace;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .eng {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .distractor {
+            font-size: 13px;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .footer-note {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：建筑合同违约赔偿</h1>
+    
+    <div class="answer-box">
+        正确答案：D (Nothing)
+    </div>
+
+    <p>本题考察的核心是<b>建筑合同中的损害赔偿计算标准</b>，特别是当承包商未能按规格建造时的“修复成本”与“经济浪费”之间的权衡。</p>
+
+    <h2>1. 核心法律规则</h2>
+    <div class="concept-card">
+        <strong>一般规则：期待利益 (Expectation Damages)</strong><br>
+        合同法的目标是将非违约方置于“假如合同被完全履行”时的位置。
+    </div>
+    
+    <p>在建筑合同中，如果承包商违约（例如工程有缺陷），业主的标准赔偿通常是<b>修复或完成工程的成本 (Cost of Completion/Cure)</b>。</p>
+
+    <h2>2. 本案逻辑分析</h2>
+    
+    <p><b>第一步：确定违约事实</b><br>
+    建筑公司未按合同要求将车道建在“公路水平”，而是建成了陡坡。这构成了违约。</p>
+
+    <p><b>第二步：确定赔偿标准</b><br>
+    通常有两种计算方式：</p>
+    <ul>
+        <li><b>修复成本 (Cost of Cure)：</b>拆除并重建的费用 ($30,000)。</li>
+        <li><b>价值减损 (Diminution in Value)：</b>如果修复会造成巨大的<b>经济浪费 (Economic Waste)</b>，法院可能会判给“房屋价值的差额”。</li>
+    </ul>
+
+    <p><b>关键判断：是否构成经济浪费？</b><br>
+    MBE 考试中，如果缺陷导致结构<b>不安全 (unsafe)</b> 或 <b>无法使用 (unusable)</b>，通常<b>不</b>适用“经济浪费”原则。必须修复才能达到合同目的。</p>
+    <p>本案中，车道太陡导致“无法安全使用”，因此必须重建。正确的赔偿额是修复成本 $30,000。</p>
+
+    <h2>3. 赔偿金计算 (The Math)</h2>
+    <p>业主有权从应付给承包商的款项中扣除损害赔偿金。</p>
+
+    <div class="math-box">
+        合同总价 (Contract Price): &nbsp;&nbsp;&nbsp;&nbsp;$500,000<br>
+        业主已付 (Amount Paid): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-$470,000<br>
+        ------------------------------------<br>
+        名义欠款 (Balance Due): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$30,000<br>
+        <br>
+        减去：业主损失 (Owner's Damages): -$30,000<br>
+        (即修复车道的成本)<br>
+        ------------------------------------<br>
+        <b>建筑公司可回收金额: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$0</b>
+    </div>
+
+    <p>因此，建筑公司起诉索赔，能拿到的最高金额是 <b>0 (Nothing)</b>，因为业主的抵销权 (Offset) 刚好抵消了剩余尾款。</p>
+
+    <h2>4. 为什么其他选项是错的？</h2>
+    
+    <div class="distractor">
+        <span class="term">选项 A (经济浪费):</span> 错误。虽然重建很贵，但因为现有车道<b>不安全</b>，修复它是必要的，不属于法律意义上的“不当经济浪费” (Undue Economic Waste)。著名的 <i>Jacob & Youngs v. Kent</i> (雷丁管案) 中适用经济浪费是因为缺陷微小且不影响使用，与本案不同。
+    </div>
+
+    <div class="distractor">
+        <span class="term">选项 B (市场价值):</span> 错误。合同法保护的是当事人的<b>交易安排 (Bargain)</b>。即使仓库现在的市值 ($550k) 已经超过了合同价，业主仍有权要求得到他所订购的“安全车道”。业主不需要因为做了一笔划算的买卖而放弃获得合格工程的权利。
+    </div>
+
+    <div class="distractor">
+        <span class="term">选项 C (节省的成本):</span> 错误。这是计算“违约方获益”，通常用于归还请求权 (Restitution) 或特定情况，不是计算业主期待利益损害赔偿的标准方式。
+    </div>
+
+    <h2>🎓 考试技巧 (Exam Tip)</h2>
+    <p>在处理建筑合同违约题时，问自己两个问题：</p>
+    <ol>
+        <li>缺陷是否严重影响了功能或安全？如果是，选<b>修复成本</b>。</li>
+        <li>缺陷是否只是美观或微不足道，且修复成本极高？如果是，选<b>价值减损</b> (避免经济浪费)。</li>
+    </ol>
+
+    <div class="footer-note">
+        MBE Contracts / Remedies Topic
+    </div>
+</div>
+
+</body>
+</html>

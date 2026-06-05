@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .card h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .card h2::before {
+            content: "⚖️";
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .timeline-container {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #bdc3c7;
+        }
+
+        .event {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .event::before {
+            content: "";
+            position: absolute;
+            left: -26px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 2px solid #fff;
+        }
+
+        .event.critical::before {
+            background-color: #e74c3c;
+            transform: scale(1.2);
+        }
+
+        .event-time {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .event-desc {
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+
+        .analysis-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.95em;
+        }
+
+        .tip {
+            background-color: #fff3cd;
+            border-left-color: #f1c40f;
+        }
+
+        .tip h2::before {
+            content: "💡";
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析：房地产经纪人佣金</h1>
+        <p style="font-size: 0.9em; color: #666;">Real Property - Broker Commission</p>
+    </div>
+
+    <!-- 核心考点 -->
+    <div class="card">
+        <h2>核心法律规则</h2>
+        <p>本题考察的是房地产委托协议（<span class="english">Listing Agreement</span>）的类型及其触发佣金支付的条件。MBE 考试中常见的有三种类型：</p>
+        <ul>
+            <li><b>开放式委托</b> (<span class="english">Open Listing</span>)：谁找到买家谁拿钱。如果卖方自己找到，经纪人无佣金。</li>
+            <li><b>独家代理</b> (<span class="english">Exclusive Agency</span>)：如果是经纪人找到买家，经纪人拿钱；如果是卖方自己找到，经纪人<b>无</b>佣金。</li>
+            <li><b>独家销售权</b> (<span class="english">Exclusive Right to Sell</span>)：<span style="color:#e74c3c;">这是本题的关键。</span>在此协议下，只要房屋在委托期内售出，<b>无论谁找到买家</b>（即使是房主自己找到表亲），经纪人都有权获得全额佣金。</li>
+        </ul>
+    </div>
+
+    <!-- 案情分析与时间线 -->
+    <div class="card">
+        <h2>案情关键点分析</h2>
+        <p>题目明确指出双方签署的是<b>独家销售权</b> (<span class="english">Exclusive-right-to-sell</span>) 协议。这意味着经纪人不需要证明是她促成了交易，只要在委托期内形成了销售合同，她就有权获得报酬。</p>
+        
+        <div class="timeline-container">
+            <div class="event">
+                <div class="event-time">第 0 个月</div>
+                <div class="event-desc">签署 6 个月委托协议</div>
+            </div>
+            <div class="event critical">
+                <div class="event-time">第 5 个月 (委托期内)</div>
+                <div class="event-desc">房主接受表亲要约<br><span style="color:#e74c3c; font-size:0.85em;">(合同成立 = 佣金权利锁定)</span></div>
+            </div>
+            <div class="event">
+                <div class="event-time">第 6 个月</div>
+                <div class="event-desc">委托期结束</div>
+            </div>
+            <div class="event">
+                <div class="event-time">第 7 个月</div>
+                <div class="event-desc">房屋过户 (Closing)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 逻辑推理 -->
+    <div class="card">
+        <h2>为什么选 D？</h2>
+        <div class="analysis-box">
+            <p><b>正确答案：D</b></p>
+            <p>根据普通法规则，房地产经纪人在以下情况即视为赚取了佣金：</p>
+            <ol>
+                <li>提供了一个<b>有意愿、有诚意且有能力</b> (<span class="english">Ready, Willing, and Able</span>) 的买家；或者</li>
+                <li>卖方在委托期内与买家<b>签订了具有约束力的销售合同</b>。</li>
+            </ol>
+            <p>在本案中，虽然过户 (<span class="english">Closing</span>) 发生在委托期结束后，但<b>销售合同的签订</b>（即房主接受要约）发生在第 5 个月，处于 6 个月的委托期内。因此，佣金权利在第 5 个月已经确立。</p>
+        </div>
+    </div>
+
+    <!-- 排除错误选项 -->
+    <div class="card">
+        <h2>错误选项解析</h2>
+        <ul>
+            <li><b>选项 A (无谈判)：</b> 错误。在“独家销售权”协议下，经纪人是否参与谈判无关紧要。这是该类型协议对经纪人最大的保护点。</li>
+            <li><b>选项 B (过户过期)：</b> 错误。佣金的触发点通常是“合同签订”或“找到合格买家”，而不是最终的过户日。只要合同在期内签订，过户延迟不影响佣金。</li>
+            <li><b>选项 C (仅报销费用)：</b> 错误。既然合同赋予了佣金权利，经纪人就有权获得约定的全额佣金，而不仅仅是基于“量子默示” (<span class="english">Quantum Meruit</span>) 的费用报销。</li>
+        </ul>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card tip">
+        <h2>MBE 考试技巧</h2>
+        <p>做此类题目时，请按以下步骤思考：</p>
+        <ol>
+            <li><b>识别协议类型：</b>首先圈出是 <i>Exclusive Agency</i> 还是 <i>Exclusive Right to Sell</i>。这是解题的分水岭。</li>
+            <li><b>检查时间点：</b>确认“接受要约/签订合同”的时间是否在委托期 (<span class="english">Listing Period</span>) 内。</li>
+            <li><b>忽略干扰项：</b>如果是 <i>Exclusive Right to Sell</i>，忽略“谁找到了买家”或“经纪人是否努力”这类事实，因为它们在法律上不影响结果。</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-blue: #3498db;
+            --success-green: #27ae60;
+            --danger-red: #c0392b;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-blue));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f6f3;
+            border-left: 5px solid var(--success-green);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: var(--success-green);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 20px;
+            background-color: var(--accent-blue);
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+        .concept-card {
+            background: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .concept-card.valid {
+            border-top: 4px solid var(--success-green);
+        }
+        .concept-card.invalid {
+            border-top: 4px solid var(--danger-red);
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .badge-valid { background-color: #d4edda; color: #155724; }
+        .badge-invalid { background-color: #f8d7da; color: #721c24; }
+        
+        .eng-term {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #bbb;
+        }
+        .timeline-dot.active { background-color: var(--accent-blue); }
+        
+        .tip-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f1f3f5;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考题解析</h1>
+        <div class="sub-title">Criminal Procedure / Fourth Amendment</div>
+    </div>
+
+    <div class="content">
+        <!-- 答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">✅ 正确答案：选项 B</span>
+            驳回关于可卡因的动议，但批准关于大麻的动议。<br>
+            <small>(Deny it as to the cocaine, but grant it as to the marijuana.)</small>
+        </div>
+
+        <p>本题的核心考点在于区分<strong>紧急情况下的合法搜查</strong>与<strong>紧急情况结束后的非法搜查</strong>。我们需要分别分析两个证据的获取过程。</p>
+
+        <!-- 第一阶段分析 -->
+        <div class="section-title">证据一：可卡因 (Cocaine)</div>
+        
+        <div class="concept-card valid">
+            <span class="badge badge-valid">合法获取 (Admissible)</span>
+            <p><strong>法律依据：</strong>紧急情况例外 (Exigent Circumstances) + 一目了然法则 (Plain View Doctrine)。</p>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+            <p>警方接到枪击报警并看到受害者，这构成了<strong>紧急援助原则 (Emergency Aid Doctrine)</strong>。警方有权无证进入房屋救助伤者并确保现场安全。</p>
+            <p>在等待救护车时，警官巡视房屋寻找其他受害者或枪手，这属于合法的<strong>保护性扫视 (Protective Sweep)</strong>。在此过程中，警官在厨房桌子上看到了可卡因。因为警官有合法的理由待在该位置，且违禁品处于<strong>一目了然 (Plain View)</strong> 的位置，所以扣押合法。</p>
+        </div>
+
+        <!-- 第二阶段分析 -->
+        <div class="section-title">证据二：大麻 (Marijuana)</div>
+
+        <div class="concept-card invalid">
+            <span class="badge badge-invalid">非法获取 (Inadmissible)</span>
+            <p><strong>法律依据：</strong>无证搜查 (Warrantless Search) 且无例外适用。</p>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+            <p>当受害者被送往医院后，<strong>紧急情况已经结束</strong>。此时，警方为了寻找枪支而打开抽屉，这不再是保护性扫视（人不可能藏在抽屉里），而是一次全面的搜查。</p>
+            <p>根据最高法院在 <em>Mincey v. Arizona</em> (1978) 中的判例，<strong>不存在“谋杀现场例外” (Murder Scene Exception)</strong>。一旦紧急情况解除，警方必须获得搜查令 (Search Warrant) 才能进行进一步的详细搜查。因此，这次搜查违反了第四修正案，大麻应被排除。</p>
+        </div>
+
+        <!-- 逻辑时间轴 -->
+        <div class="section-title">案件逻辑时间轴</div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot active"></div>
+                <strong>1. 紧急进入 (Entry)</strong><br>
+                <small>枪击报告 + 看见受害者 = 合法进入。</small>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot active"></div>
+                <strong>2. 发现可卡因 (Cocaine)</strong><br>
+                <small>保护性扫视期间 + 一目了然 = 合法扣押。</small>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot" style="background-color: #c0392b;"></div>
+                <strong>3. 紧急情况结束 (Exigency Ends)</strong><br>
+                <small>受害者被送走。此时警方应当申请搜查令。</small>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot" style="background-color: #c0392b;"></div>
+                <strong>4. 发现大麻 (Marijuana)</strong><br>
+                <small>无搜查令翻找抽屉 = 非法搜查。</small>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <strong>💡 MBE 考试技巧 (Exam Tip)</strong>
+            <p>在第四修正案的题目中，务必注意<strong>时间节点</strong>和<strong>搜查范围</strong>的变化：</p>
+            <ul style="margin-bottom: 0; padding-left: 20px;">
+                <li><strong>范围 (Scope)：</strong>保护性扫视 (Protective Sweep) 只能寻找“人”，不能寻找“物”。如果警察为了找人而打开一个小抽屉，那就是违法的。</li>
+                <li><strong>时效 (Timing)：</strong>紧急情况 (Exigency) 一旦消失，无证搜查的特权通常随之消失。不要因为警察已经合法进屋了，就认为他们可以一直搜下去。</li>
+            </ul>
+        </div>
+
+    </div>
+    
+    
+</div>
+
+</body>
+</html>

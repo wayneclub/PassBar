@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-badge {
+            display: inline-block;
+            background-color: #27ae60;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .concept-card {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .concept-title {
+            color: #2980b9;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 1.1rem;
+        }
+        .diagram {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #fafafa;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+        }
+        .diagram-step {
+            display: inline-block;
+            padding: 5px 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        .arrow {
+            color: #e74c3c;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+        .option-block {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        .option-block.correct {
+            background-color: #f0fff4;
+            border: 1px solid #c3e6cb;
+        }
+        .option-block.wrong {
+            background-color: #fff5f5;
+            border: 1px solid #f5c6cb;
+        }
+        .tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+        .tag-correct { background: #28a745; color: white; }
+        .tag-wrong { background: #dc3545; color: white; }
+        
+        .mbe-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 0.9rem;
+        }
+        .mbe-tip strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #856404;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Intentional Torts (故意侵权)</p>
+    </div>
+
+    <div class="content">
+        <div class="answer-badge">正确答案：C</div>
+
+        <div class="concept-card">
+            <span class="concept-title">核心考点：转移意图 (Transferred Intent)</span>
+            <p>在故意侵权法中，如果行为人意图对甲实施侵权行为，但实际上对乙造成了伤害，法律将把这种<b>意图（Intent）</b>视为“转移”到了乙身上。</p>
+            <p>这适用于五种古老的故意侵权行为：</p>
+            <ul>
+                <li>Battery (非法侵犯/殴打)</li>
+                <li>Assault (恐吓/企图伤害)</li>
+                <li>False Imprisonment (非法拘禁)</li>
+                <li>Trespass to Land (非法侵入土地)</li>
+                <li>Trespass to Chattels (非法侵犯动产)</li>
+            </ul>
+        </div>
+
+        <div class="diagram">
+            <div style="margin-bottom:10px; font-weight:bold; color:#555;">意图转移示意图</div>
+            <span class="diagram-step">男友/邻居</span>
+            <span class="arrow">➔</span>
+            <span class="diagram-step">意图击打对方</span>
+            <br><span style="font-size:20px; color:#e74c3c;">⬇</span><br>
+            <span class="diagram-step" style="border-color:#e74c3c; background:#fff5f5;">实际击中母亲</span>
+            <br><span style="font-size:12px; color:#777;">(意图随之转移)</span>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">深度解析</div>
+
+            <div class="option-block correct">
+                <span class="tag tag-correct">选项 C 正确</span>
+                <p><b>理由：</b>Battery（非法侵犯）的构成要件是意图造成有害或冒犯性的接触（Harmful or offensive contact）。</p>
+                <p>虽然男孩们没有意图打母亲，但他们确实意图打对方（Intent to commit battery）。根据<b>转移意图原则 (Doctrine of Transferred Intent)</b>，这种非法的意图从预定目标（对方）转移到了实际受害者（母亲）身上。因此，母亲可以胜诉。</p>
+            </div>
+
+            <div class="option-block wrong">
+                <span class="tag tag-wrong">选项 A 错误</span>
+                <p><b>理由：</b>该选项错误地认为意图必须针对特定的受害者。在侵权法中，只要有实施侵权行为的意图（Intent to act），受害者是谁并不影响责任的成立。</p>
+            </div>
+
+            <div class="option-block wrong">
+                <span class="tag tag-wrong">选项 B 错误</span>
+                <p><b>理由：</b>这是一个经典的干扰项。<b>自担风险 (Assumption of Risk)</b> 通常是针对<b>过失侵权 (Negligence)</b> 的抗辩理由，而不是针对<b>故意侵权 (Intentional Torts)</b>。</p>
+                <p>一个人不能“同意”或“自担风险”去承受非法的故意殴打（除非是合法的体育竞技等例外情况，本案不适用）。</p>
+            </div>
+
+            <div class="option-block wrong">
+                <span class="tag tag-wrong">选项 D 错误</span>
+                <p><b>理由：</b>虽然“实质确定性” (Substantial Certainty) 是证明意图的一种方式，但题目明确指出男孩们<b>没有意识到 (not aware)</b> 母亲介入。如果他们不知道她在那里，他们就不可能“实质确定”会打到她。</p>
+            </div>
+        </div>
+
+        <div class="mbe-tip">
+            <strong>🎓 MBE 考试技巧</strong>
+            <p>1. <b>区分故意与过失：</b> 当题目涉及 Battery 等故意侵权时，立刻警惕像 "Assumption of Risk" 或 "Contributory Negligence" 这样的抗辩选项，它们通常只适用于过失案件，是常见的陷阱。</p>
+            <p>2. <b>寻找意图的源头：</b> 在打斗场景中，只要打斗双方有伤害对方的意图，任何无辜的旁观者受伤，通常都可以通过 Transferred Intent 建立责任。</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

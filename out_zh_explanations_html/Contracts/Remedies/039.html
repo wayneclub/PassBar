@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #d4edda;
+            --correct-text: #155724;
+            --wrong-bg: #f8d7da;
+            --wrong-text: #721c24;
+            --text-color: #333;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .answer-analysis {
+            margin-bottom: 20px;
+        }
+
+        .option-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .option-card.correct {
+            background-color: var(--correct-bg);
+            border-color: #c3e6cb;
+            color: var(--correct-text);
+        }
+
+        .option-card.wrong {
+            background-color: #fff;
+            border-left: 3px solid #ddd;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .badge-correct {
+            background: #28a745;
+            color: #fff;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+
+        .mbe-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .mbe-tip-title {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts / Remedies</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：允诺禁反言 (Promissory Estoppel)</span>
+            <p>当不存在具有约束力的合同时（通常因为缺乏对价 Consideration），如果一方合理地信赖了另一方的允诺并因此遭受了损害，法院可依据<b>允诺禁反言</b>原则给予救济。</p>
+            <p style="font-size: 0.85rem; margin-top:5px; color:#555;">法律依据：<i>Restatement (Second) of Contracts § 90</i></p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="answer-analysis">
+            <h3 style="color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 10px;">正确答案分析</h3>
+            
+            <div class="option-card correct">
+                <span class="badge badge-correct">选项 D 正确</span>
+                <p><b>信赖损害赔偿 (Reliance Damages)</b></p>
+                <p>计算方式：拆除旧建筑的费用 ($10,000) ± 土地市值的变化。</p>
+            </div>
+
+            <p><b>推理逻辑：</b></p>
+            <ol>
+                <li><b>原则适用：</b>本案中，叔叔的允诺是无偿的（赠与承诺），没有对价，因此不是标准合同。但侄子基于信赖进行了拆除工作，符合允诺禁反言的构成要件。</li>
+                <li><b>赔偿目标：</b>允诺禁反言的救济通常受限于“司法公正所需” (As justice requires)。这通常意味着判给<b>信赖利益</b>，即让受害方<b>回到允诺从未作出时的状态</b> (Status quo ante)。</li>
+                <li><b>具体计算：</b>
+                    <ul>
+                        <li><b>直接损失：</b>侄子为了准备建新房，花费了 $10,000 拆除旧房。这是直接的信赖支出 (Out-of-pocket expense)。</li>
+                        <li><b>价值调整：</b>拆除旧房可能导致土地升值（如果是危房）或贬值（如果旧房有价值）。为了防止<b>不当得利 (Unjust Enrichment)</b> 或补偿不足，必须根据土地市值的变化对 $10,000 进行调整。</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="answer-analysis">
+            <h3 style="color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 10px;">为什么其他选项错误？</h3>
+            
+            <div class="option-card wrong">
+                <span class="key-term">选项 A & B (预期利益 Expectation Damages)</span><br>
+                <b>错误原因：</b>虽然在极少数允诺禁反言案件中会判给预期利益（即如同合同已被履行），但在本案中：
+                <ul>
+                    <li>新业务（奶牛场）的利润具有高度<b>投机性 (Speculative)</b>，难以确切证明。</li>
+                    <li>新建筑尚未建成，其价值难以估算。</li>
+                    <li>通常只有在信赖利益难以计算或为了避免极度不公时，才考虑预期利益。</li>
+                </ul>
+            </div>
+
+            <div class="option-card wrong">
+                <span class="key-term">选项 C (名义损害赔偿 Nominal Damages)</span><br>
+                <b>错误原因：</b>名义赔偿（如 $1）通常用于权利受侵犯但无实际损失的情况。本案中，侄子有明确的 $10,000 实付损失，因此不适用名义赔偿。
+            </div>
+        </div>
+
+        <!-- MBE 考试技巧 -->
+        <div class="mbe-tip">
+            <span class="mbe-tip-title">💡 MBE 考试通关秘籍</span>
+            <p>在处理 <b>Promissory Estoppel</b> 题目时，请遵循以下思维路径：</p>
+            <ol style="margin-top:5px; padding-left: 15px;">
+                <li><b>区分：</b>首先确认是 Breach of Contract（有对价）还是 Promissory Estoppel（无对价，仅有信赖）。</li>
+                <li><b>首选：</b>对于 Promissory Estoppel，首选赔偿通常是 <b>Reliance Damages</b>（实报实销 + 恢复原状）。</li>
+                <li><b>排除：</b>如果选项涉及“未来利润” (Lost Profits)，检查是否属于“新业务” (New Business)。新业务的利润通常被视为 Speculative 而不予支持。</li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

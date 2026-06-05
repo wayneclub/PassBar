@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-card {
+            background-color: #ecf0f1;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .english-term {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        .logic-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #bdc3c7;
+        }
+
+        .logic-step:last-child {
+            border-bottom: none;
+        }
+
+        .highlight-success {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .highlight-fail {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        .mbe-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+
+        .mbe-tip-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Negligence & Duty of Care</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <div class="concept-title">核心法律规则</div>
+            <p>要确立过失侵权 (<span class="english-term">Negligence</span>)，原告必须证明以下四个要素：</p>
+            <ol>
+                <li><strong>义务 (Duty)</strong>：被告对原告负有法律上的注意义务。</li>
+                <li><strong>违反 (Breach)</strong>：被告未能达到该义务要求的标准。</li>
+                <li><strong>因果关系 (Causation)</strong>：事实因果关系与法律因果关系。</li>
+                <li><strong>损害 (Damages)</strong>：实际发生的伤害。</li>
+            </ol>
+        </div>
+
+        <!-- 案情分析 -->
+        <h3>📝 案情逻辑推演</h3>
+        
+        <div class="logic-step">
+            <strong>第一步：确定义务 (Duty)</strong><br>
+            日托中心与儿童之间存在<strong>特殊关系</strong> (<span class="english-term">Special Relationship</span>)，即监护人与被监护人的关系。因此，日托中心有义务采取<strong>合理的注意</strong> (<span class="english-term">Reasonable Care</span>) 来防止儿童受到伤害。
+            <br><span class="highlight-success">结论：存在义务。</span>
+        </div>
+
+        <div class="logic-step">
+            <strong>第二步：分析是否违反义务 (Breach)</strong><br>
+            这是本题的<strong>决胜点</strong>。违反义务意味着被告的行为低于“理性人”标准。题目中的事实非常明确地指出：
+            <ul>
+                <li>中心配备了“合理数量”的合格员工。</li>
+                <li>员工正在行使“合理的注意”以防止儿童离开。</li>
+            </ul>
+            <br>
+            在法律上，<strong>过失 (Negligence) ≠ 严格责任 (Strict Liability)</strong>。如果被告已经尽到了合理的注意义务，即使发生了不幸的事故，被告也不构成过失。
+            <br><span class="highlight-fail">结论：没有违反义务。</span>
+        </div>
+
+        <div class="logic-step">
+            <strong>第三步：判定结果</strong><br>
+            由于过失侵权的四个要素中缺失了“违反义务”这一环，原告的诉讼必然失败。
+            <br>
+            <strong>正确答案：C (日托中心胜诉，因为它没有过失)。</strong>
+        </div>
+
+        <!-- 干扰项解析 -->
+        <h3>🚫 为什么其他选项是错的？</h3>
+        
+        <div class="logic-step">
+            <strong>选项 A (儿童胜诉，因为他离开了中心...)</strong><br>
+            <span class="english-term">错误原因：结果导向谬误。</span><br>
+            仅仅因为孩子成功溜走了（结果），并不自动证明中心有过失。日托中心不是儿童安全的“保险商” (<span class="english-term">Insurer</span>)。只要他们采取了合理的预防措施，他们就不承担责任。
+        </div>
+
+        <div class="logic-step">
+            <strong>选项 D (日托中心胜诉，因为是侵入者...)</strong><br>
+            <span class="english-term">错误原因：对象混淆。</span><br>
+            “侵入者” (<span class="english-term">Trespasser</span>) 的身份主要影响土地所有者（即本案中的公司）对进入者的义务。本案起诉的是日托中心，而非拥有池塘的公司。日托中心对孩子的义务源于监护关系，与孩子是否侵入他人土地无关。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <span class="mbe-tip-title">💡 MBE 考试技巧：相信题目事实</span>
+            <p>在 MBE 考试中，如果题目明确陈述被告行使了<strong>“合理的注意” (Reasonable Care)</strong>，这通常就是“上帝视角”的事实认定。</p>
+            <p>不要试图去争辩“如果他们真的小心，孩子怎么会跑掉？”这种思维会引导你走向错误选项（如 A）。只要题目说行为是合理的，那么这就直接否定了<strong>违反义务 (Breach)</strong> 这一要素。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

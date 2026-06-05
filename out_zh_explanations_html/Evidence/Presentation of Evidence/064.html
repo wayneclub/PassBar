@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .concept-card {
+            background: #fff;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .concept-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .rule-highlight {
+            background-color: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+        .wrong-option {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .wrong-label {
+            color: var(--wrong-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        .exam-tip {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 0.9rem;
+        }
+
+        .exam-tip strong {
+            color: var(--accent-color);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence: Impeachment & Bias</div>
+    </div>
+
+    <div class="content">
+        <!-- Answer Section -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：D</span>
+            <strong>可采纳，因为这是对证人的适当弹劾 (Proper Impeachment)。</strong>
+        </div>
+
+        <!-- Core Legal Analysis -->
+        <div class="section-title">⚖️ 核心法律规则解析</div>
+        
+        <div class="concept-card">
+            <p><span class="concept-icon">🎯</span><strong>偏见与自身利益 (Bias and Interest)</strong></p>
+            <p>在证据法中，任何能够显示证人具有<strong>偏见 (Bias)</strong>、<strong>成见 (Prejudice)</strong> 或<strong>自身利益 (Interest)</strong> 的证据，对于评估证人的可信度都是至关重要的。</p>
+            <p>本案中，检察官承诺“如果你作证，我们就撤销对你的谋杀指控”。这给了证人一个巨大的撒谎动机（为了自保）。这种证据被称为<strong>显示偏见的证据 (Evidence of Bias)</strong>。</p>
+            <p><strong>规则：</strong>显示偏见的证据总是相关的，并且可以被采纳用于弹劾证人。</p>
+        </div>
+
+        <div class="concept-card">
+            <p><span class="concept-icon">🗣️</span><strong>传闻证据的陷阱 (The Hearsay Trap)</strong></p>
+            <p>许多考生会误选 A，认为检察官的话是庭外陈述，属于传闻 (Hearsay)。</p>
+            <p><strong>为什么不是传闻？</strong></p>
+            <p>传闻必须是“为了证明所述事项的真实性” (Offered for the truth of the matter asserted)。</p>
+            <ul>
+                <li>被告引入这句话，<strong>不是</strong>为了证明检察官真的会撤销指控。</li>
+                <li><strong>而是</strong>为了证明这句话对证人心理产生的<strong>影响 (Effect on the listener)</strong>——即证人<em>认为</em>只要作证就能脱罪，因此有了撒谎的动机。</li>
+            </ul>
+            <p>既然不是为了证明内容的真实性，它就不受传闻规则的限制。</p>
+        </div>
+
+        <!-- Why other options are wrong -->
+        <div class="section-title">❌ 为什么其他选项错误？</div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 A (传闻):</span> 
+            错误。如上所述，该陈述用于证明证人的动机（听者的反应），而非陈述内容的真实性，因此不是传闻。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 B (辩诉交易):</span> 
+            错误。虽然公共政策鼓励辩诉交易 (Plea Bargaining)，但这并不意味着可以向陪审团隐瞒证人与检方达成的交易。相反，为了保障被告的对质权 (Confrontation Clause)，必须允许被告揭露证人的潜在偏见。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 C (代理人承认):</span> 
+            错误。虽然检察官是政府的代表，但该证据的可采性基础是“弹劾偏见”，而非“对方当事人承认”。此外，证人本身通常不被视为检察官的代理人 (Agent)。即使这被视为一种承认，选项 D 也是更直接、更准确的理由。
+        </div>
+
+        <!-- Exam Strategy -->
+        <div class="exam-tip">
+            <p>💡 <strong>MBE 考试技巧 (Exam Tip)</strong></p>
+            <p>在处理<strong>弹劾 (Impeachment)</strong> 问题时，请记住：</p>
+            <p><strong>偏见 (Bias) 永远不是“附带问题” (Collateral Matter)。</strong></p>
+            <p>这意味着，如果证人在交叉询问中否认了偏见（例如否认有交易），你不仅可以问，还可以引入<strong>外部证据 (Extrinsic Evidence)</strong> 来证明这一偏见的存在。这是 MBE 考试中非常喜欢考察的一个例外点。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

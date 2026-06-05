@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: #e8f6f3;
+            border-left: 5px solid var(--success-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .rule-section {
+            margin-bottom: 25px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .concept-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: var(--warning-color);
+            font-weight: bold;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+
+        /* Timeline Visualization */
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 3px solid #bdc3c7;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 2px solid white;
+        }
+
+        .timeline-item.wrong::before {
+            background-color: var(--warning-color);
+        }
+
+        .timeline-title {
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .waived-box {
+            background-color: #fdedec;
+            border: 1px dashed var(--warning-color);
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--warning-color);
+            margin-top: 10px;
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border-left: 4px solid #f1c40f;
+            padding: 15px;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            border-top: 1px solid #eee;
+        }
+
+        ul.defense-list {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        ul.defense-list li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure: Motions & Waiver</div>
+    </div>
+
+    <div class="content">
+        <!-- Answer Section -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：A</span>
+            法院将驳回该动议，因为被告未能在其最初的删除动议（Motion to Strike）中包含这些抗辩理由，导致权利丧失。
+        </div>
+
+        <!-- Core Legal Rule -->
+        <div class="rule-section">
+            <div class="rule-title">核心考点：合并动议规则</div>
+            <p>本题考查的是 <b>FRCP 12(g)</b> 和 <b>12(h)</b> 中的“合并动议规则” (Omnibus Motion Rule) 和“抗辩权的放弃” (Waiver of Defenses)。</p>
+            
+            <div class="concept-card">
+                <strong>规则要义：</strong><br>
+                如果被告选择在提交答辩状 (Answer) 之前提出动议 (Pre-answer Motion)，她必须将所有当时可用的 FRCP 12 抗辩理由<b>合并在一个动议中</b>提出。
+            </div>
+
+            <p>如果被告在第一次答辩前动议中遗漏了以下四项“可放弃的抗辩” (Waivable Defenses)，则视为<b>永久放弃</b>，不得在后续动议或答辩状中再次提出：</p>
+            
+            <ul class="defense-list">
+                <li>🚫 <b>Lack of Personal Jurisdiction</b> (缺乏对人管辖权)</li>
+                <li>🚫 <b>Improper Venue</b> (审判地不当)</li>
+                <li>🚫 <b>Insufficient Process</b> (诉讼文书不充分)</li>
+                <li>🚫 <b>Insufficient Service of Process</b> (送达程序不充分)</li>
+            </ul>
+        </div>
+
+        <!-- Visual Analysis -->
+        <div class="rule-section">
+            <div class="rule-title">案情推演</div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-title">第一步：被告提出动议</div>
+                    <div class="timeline-desc">被告根据 FRCP 12(f) 提出了<b>删除动议 (Motion to Strike)</b>。这是一个答辩前动议。</div>
+                </div>
+                
+                <div class="timeline-item wrong">
+                    <div class="timeline-title">关键失误</div>
+                    <div class="timeline-desc">在这次动议中，被告<b>没有</b>包含对人管辖权 (PJ) 和审判地 (Venue) 的抗辩，尽管当时这些事实已经存在。</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">第二步：被告再次提出动议</div>
+                    <div class="timeline-desc">法院裁决后，被告试图根据 FRCP 12(b)(2) 和 12(b)(3) 再次提出驳回动议。</div>
+                </div>
+            </div>
+
+            <div class="waived-box">
+                结果：抗辩权已放弃 (WAIVED)<br>
+                法院必须驳回该动议
+            </div>
+        </div>
+
+        <!-- Why other options are wrong -->
+        <div class="rule-section">
+            <div class="rule-title">陷阱解析</div>
+            <p>MBE 经常利用考生关注“实体权利”而忽视“程序规则”的心理设置陷阱。</p>
+            
+            <p><b>为什么选项 C 和 D 是错误的？</b></p>
+            <p>虽然从<b>实体 (Substantive)</b> 角度看：</p>
+            <ul>
+                <li>被告确实与 A 州无联系（本应缺乏管辖权）；</li>
+                <li>案件确实应在 B 州审理（本应审判地不当）。</li>
+            </ul>
+            <p>但是，民事诉讼规则 (FRCP) 规定，这些权利是<b>“不使用即作废” (Use it or lose it)</b> 的。因为被告在第一次动议时“沉默”了，法律拟制她同意了 A 州的管辖权和审判地。因此，法院不能基于 C 或 D 的理由批准动议。</p>
+            
+            <p><b>为什么选项 B 是错误的？</b></p>
+            <p>选项 B 声称必须“分开”提出动议，这与 FRCP 旨在提高效率的初衷完全相反。法律要求的是<b>合并 (Consolidation)</b>，而不是拆分。</p>
+        </div>
+
+        <!-- Exam Tip -->
+        <div class="exam-tip">
+            <strong>💡 考试技巧：</strong><br>
+            看到 FRCP 12 动议题目时，首先检查：
+            <ol style="margin-top:5px; padding-left:20px;">
+                <li>这是<b>第一个</b>回应动作吗？</li>
+                <li>如果是<b>第二个</b>动作，之前是否已经提交过 Rule 12 动议？</li>
+                <li>如果是，检查遗漏的抗辩是否属于“四大可放弃抗辩”（PJ, Venue, Process, Service）。如果是，直接选“已放弃/驳回”。</li>
+            </ol>
+            <small>*注：标的物管辖权 (Subject Matter Jurisdiction) 永远不会被放弃，随时可以提出。</small>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

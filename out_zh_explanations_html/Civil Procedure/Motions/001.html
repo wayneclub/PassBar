@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .rule-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: 2px solid white;
+        }
+
+        .timeline-item.missed::before {
+            background: #e74c3c;
+        }
+
+        .timeline-title {
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: var(--primary-color);
+        }
+
+        .timeline-desc {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .footer {
+            background-color: #f9f9f9;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure (民事诉讼法)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">核心考点：FRCP 50</span>
+            <p>关于<b>法律上的判决 (Judgment as a Matter of Law, JMOL)</b> 的程序要求：要保留上诉时挑战“证据充分性”的权利，当事人必须严格遵循“两步走”程序。</p>
+        </div>
+
+        <!-- 法律解析 -->
+        <div class="analysis-section">
+            <h3>⚖️ 法律规则解析</h3>
+            <p>根据《联邦民事诉讼规则》第50条 (FRCP 50)，挑战陪审团裁决证据不足的流程是强制性的：</p>
+            
+            <div class="timeline">
+                <div class="timeline-item missed">
+                    <div class="timeline-title">第一步：案件提交陪审团之前</div>
+                    <div class="timeline-desc">必须提出 <b>JMOL Motion</b> (Rule 50(a))。<br><span style="color:#e74c3c; font-size:0.8rem;">⚠️ 本案中批发商错过了这一步！</span></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">第二步：判决登记后 28 天内</div>
+                    <div class="timeline-desc">必须提出 <b>Renewed JMOL Motion</b> (Rule 50(b))。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">结果：上诉审查</div>
+                    <div class="timeline-desc">只有完成了前两步，上诉法院才能审查证据是否充分。</div>
+                </div>
+            </div>
+
+            <p><b>关键原则：</b> 如果一方当事人在案件提交给陪审团之前没有提出 JMOL 动议，他们就<b>放弃 (Waive)</b> 了在审判后提出 Renewed JMOL 的权利，同时也放弃了在上诉中挑战证据充分性的权利。</p>
+        </div>
+
+        <!-- 题目应用 -->
+        <div class="analysis-section">
+            <h3>🔍 案情应用</h3>
+            <p>在本案中，批发商 (Wholesaler) 犯了一个致命的程序错误：</p>
+            <ul>
+                <li>他们在庭审证据出示完毕后，<b>没有</b>立即提出 JMOL 动议。</li>
+                <li>他们等到陪审团作出裁决后，才试图通过审后动议 (Post-trial motions) 来补救。</li>
+            </ul>
+            <p>根据美国最高法院在 <i>Unitherm Food Sys., Inc. v. Swift-Eckrich, Inc.</i> 中的判例，由于批发商没有在第一阶段提出动议，上诉法院<b>无权 (Powerless)</b> 审查证据的充分性。</p>
+        </div>
+
+        <!-- 选项分析 -->
+        <div class="analysis-section">
+            <h3>✅ 正确答案：B</h3>
+            <p><b>"No, because the wholesaler did not raise the sufficiency-of-the-evidence issue in a motion for judgment as a matter of law before the case went to the jury."</b></p>
+            <p>这是对 FRCP 50 程序要求的直接应用。没有“前置动议”(Pre-verdict motion)，就没有“后置动议”(Post-verdict motion) 的基础，也就没有上诉审查的资格。</p>
+            
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+            
+            <h4>❌ 为什么其他选项是错的？</h4>
+            <p><b>选项 A：</b> 错误。证据充分性并非“完全”由陪审团决定。如果程序正确，法官完全有权判定证据在法律上是否不足。</p>
+            <p><b>选项 C & D：</b> 错误。虽然初审法官后来确实听取了动议并承认证据有问题，但这不能“治愈” (Cure) 批发商未能在陪审团审议前提出动议的程序性失误。程序性门槛是严格的。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+            <span class="rule-title">🎓 MBE 考试技巧</span>
+            <p>看到 <b>"Sufficiency of the evidence"</b>（证据充分性）的上诉问题时，立即检查时间线：</p>
+            <p><b>Did they move for JMOL BEFORE the jury retired?</b></p>
+            <p>如果是 <b>No</b>，那么上诉法院通常不能审理该问题。</p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

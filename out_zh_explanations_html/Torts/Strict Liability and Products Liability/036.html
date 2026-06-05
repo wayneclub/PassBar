@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #e1e4e8;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-banner {
+            background-color: #e8f5e9;
+            border-left: 5px solid #2e7d32;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-text {
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .concept-card {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #0056b3;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english-term {
+            font-size: 0.85em;
+            color: #6c757d;
+            font-weight: normal;
+            font-style: italic;
+        }
+        .logic-step {
+            margin-bottom: 12px;
+            padding-left: 15px;
+            border-left: 2px solid #ced4da;
+        }
+        .trap-section {
+            margin-top: 20px;
+            border-top: 1px dashed #ccc;
+            padding-top: 15px;
+        }
+        .trap-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #c0392b;
+            margin-bottom: 10px;
+        }
+        .trap-item {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        .mbe-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Strict Products Liability & Design Defect</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-banner">
+            <div>正确答案是 <span class="answer-text">选项 B</span></div>
+            <div style="font-size: 0.9em; margin-top: 5px; color: #555;">
+                如果化学实验套装在符合教学目的的前提下已尽可能安全，且其益处超过风险，则不承担责任。
+            </div>
+        </div>
+
+        <!-- 核心考点讲解 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：设计缺陷</div>
+            <p>在严格产品责任（<span class="term">Strict Products Liability</span>）诉讼中，原告必须证明产品存在<b>缺陷</b>（Defect）。</p>
+            
+            <p>对于设计缺陷（<span class="term">Design Defect</span>），法院通常采用<b>风险-效用测试</b>（<span class="term">Risk-Utility Test</span>）：</p>
+            <div class="logic-step">
+                如果产品的设计风险超过了其效用，或者存在一个<b>合理的替代设计</b>（Reasonable Alternative Design），该替代设计既能降低风险又不会过度损害产品的效用或增加成本，那么该产品即被视为有缺陷。
+            </div>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="concept-card" style="border-left: 4px solid #0056b3;">
+            <div class="concept-title" style="color: #333;">本案逻辑推演</div>
+            <p><b>1. 严格责任的前提：</b><br>
+            制造商只对<b>有缺陷</b>的产品承担严格责任。如果产品没有缺陷，无论造成了多大的伤害，制造商都不承担严格责任。</p>
+
+            <p><b>2. 评估本案产品：</b><br>
+            化学实验套装的目的是教育。如果移除所有易燃或潜在危险的化学品，可能会使其失去教育价值（Utility）。</p>
+
+            <p><b>3. 结论：</b><br>
+            选项 B 正确地指出了辩护理由：如果该套装已经做到了在保留教育功能（Utility）的同时尽可能安全（Risk minimized），那么根据风险-效用测试，它就没有设计缺陷。<b>没有缺陷 = 没有严格责任。</b></p>
+        </div>
+
+        <!-- 干扰项解析 -->
+        <div class="trap-section">
+            <div class="trap-title">🚫 为什么其他选项是错误的？</div>
+            
+            <div class="trap-item">
+                <b>选项 A (Causation/Negligence):</b><br>
+                虽然学生的过失（打翻本生灯）是事实原因，但在严格责任中，第三方的过失并不一定免除制造商的责任（如果是可预见的）。A 错误的原因在于它回避了核心问题——产品本身是否有缺陷。如果产品无缺陷，无需讨论因果关系。
+            </div>
+
+            <div class="trap-item">
+                <b>选项 C (Abnormally Dangerous Activity):</b><br>
+                这是一个常见的概念混淆。<b>极端危险活动</b>（如爆破、饲养野生动物）适用严格责任，但<b>制造</b>化学套装本身不是极端危险活动。这是产品责任案，不是Rylands v. Fletcher类型的案件。
+            </div>
+
+            <div class="trap-item">
+                <b>选项 D (Failure to Warn):</b><br>
+                警告缺陷（Failure to Warn）要求证明“如果有警告，伤害就不会发生”。本案中，学生们<b>已经通过网站知道</b>这些化学品可以制造炸弹并具有危险性，但仍故意为之。因此，缺乏警告与伤害之间没有因果关系（Causation fails）。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <b>💡 MBE 提分技巧：</b><br>
+            在处理严格产品责任（Strict Products Liability）题目时，永远先问自己：<b>“缺陷在哪里？”</b> (Where is the defect?)<br>
+            如果是设计缺陷，必须在大脑中进行“风险 vs 收益”的权衡。如果题目设定产品已经“尽可能安全”且“收益大于风险”，那么它就没有缺陷，被告胜诉。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

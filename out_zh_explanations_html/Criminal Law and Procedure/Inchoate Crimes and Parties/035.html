@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .tag-correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .tag-wrong {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .key-term {
+            font-weight: bold;
+            color: #d35400;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6c757d;
+            border-top: 1px solid #eee;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">刑法：从犯责任 (Accomplice Liability)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法则：双重意图 (Dual Intent)</span>
+            要确立从犯责任 (Accomplice Liability)，被告必须具备以下两个心理状态 (Mens Rea)：
+            <ol>
+                <li><strong>意图帮助</strong>主犯 (Intent to assist the principal)；以及</li>
+                <li><strong>意图促成</strong>该犯罪行为的实施 (Intent that the offense be committed)。</li>
+            </ol>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 正确答案分析 (选项 A)</div>
+            <p>本题的正确答案是 <strong>A</strong>。</p>
+            <p><strong>关键事实：</strong>题目明确指出乘客看到司机偷钱时感到“惊讶 (surprised)”。</p>
+            <p><strong>法律推理：</strong></p>
+            <ul>
+                <li><strong>缺乏意图：</strong>由于乘客对司机的行为感到惊讶，证明他在盗窃发生前或发生时，并没有“促成犯罪实施”的意图 (Specific Intent)。</li>
+                <li><strong>从犯的定义：</strong>仅仅在现场或者事后知情，不足以构成从犯。从犯必须在犯罪完成之前，带着促进犯罪的目的去提供帮助或鼓励。</li>
+            </ul>
+            <p>因此，因为乘客没有促成盗窃的意图 (Mens Rea)，他不能被定罪为盗窃罪的从犯。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">❌ 干扰项辨析</div>
+            
+            <p><span class="tag tag-wrong">选项 B</span> <strong>关于主犯未被起诉</strong></p>
+            <p><strong>错误原因：</strong>在普通法 (Common Law) 中，从犯的定罪确实依赖于主犯的定罪。但在现代法律（以及 MBE 采用的主流规则）中，即使主犯被无罪释放、未被起诉或享有豁免权，从犯<strong>仍然可以</strong>被独立定罪。因此，司机未被起诉不是乘客脱罪的理由。</p>
+
+            <p><span class="tag tag-wrong">选项 C</span> <strong>关于未阻止犯罪</strong></p>
+            <p><strong>错误原因：</strong>一般而言，旁观者没有法律义务去阻止犯罪 (No duty to act)。单纯的“不作为” (Mere presence or failure to intervene) 并不构成协助或教唆，除非被告对此负有特定的法律义务（如警察或保安），而本题中乘客只是普通路人。</p>
+
+            <p><span class="tag tag-wrong">选项 D</span> <strong>关于事后付款</strong></p>
+            <p><strong>错误原因：</strong>这是一个典型的陷阱。
+            <ul>
+                <li>乘客虽然支付了油费，这可能帮助了司机逃跑，但这发生在盗窃行为（拿钱）已经完成之后。</li>
+                <li>如果在犯罪完成后提供帮助以逃避抓捕，这构成的罪名是<strong>事后从犯 (Accessory After the Fact)</strong>，这是一个独立的罪名，而不是盗窃罪本身的从犯 (Accomplice to Theft)。</li>
+                <li>题目问的是“作为盗窃罪的从犯 (Accomplice)”，因此该选项错误。</li>
+            </ul>
+            </p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #fff3cd; border-left-color: #ffc107;">
+            <span class="rule-title" style="color: #856404;">💡 MBE 考试技巧</span>
+            <p>在处理<strong>共犯 (Parties to Crime)</strong> 题目时，请务必区分：</p>
+            <ul>
+                <li><strong>Accomplice (从犯)：</strong> 发生在犯罪<strong>前</strong>或<strong>进行中</strong>，目的是让犯罪成功。责任 = 与主犯相同。</li>
+                <li><strong>Accessory After the Fact (事后从犯)：</strong> 发生在犯罪<strong>后</strong>，目的是帮主犯逃避法律制裁。责任 = 较轻的独立罪行。</li>
+            </ul>
+            <p>本题中乘客的行为更接近“事后从犯”（如果他有帮助逃跑的意图），但他绝不是盗窃罪的“从犯”。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

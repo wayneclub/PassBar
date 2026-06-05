@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --text-color: #333;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: var(--correct-color);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            border-bottom: 2px solid var(--highlight-bg);
+            padding-bottom: 5px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .concept-card {
+            background: var(--highlight-bg);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .concept-card strong {
+            color: var(--primary-color);
+        }
+        .wrong-option {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        .wrong-option .label {
+            color: var(--wrong-color);
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考点解析</h1>
+        <div class="sub-title">Homicide & Self-Defense</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：A</span>
+            <strong>一级谋杀罪 (Murder in the First Degree)</strong>
+        </div>
+
+        <p>本题考察的核心是<b>一级谋杀的构成要件</b>以及<b>正当防卫（Self-Defense）的例外情况</b>。</p>
+
+        <!-- 核心法律规则 -->
+        <div class="section-title">⚖️ 核心法律规则解析</div>
+        
+        <div class="concept-card">
+            <strong>1. 一级谋杀的定义 (Statutory Definition)</strong>
+            <p>根据题目中的法规，一级谋杀需要满足两个特定的心理状态（Mens Rea）：</p>
+            <ul>
+                <li><b>预谋 (Premeditation)</b>：在行动前已经形成了杀人的意图（哪怕时间很短）。</li>
+                <li><b>深思熟虑 (Deliberation)</b>：冷静、理智地反思后做出的决定。</li>
+            </ul>
+        </div>
+
+        <div class="concept-card">
+            <strong>2. 初始攻击者规则 (Initial Aggressor Rule)</strong>
+            <p>一般原则是：如果你挑起了冲突，你就不能主张正当防卫。特别是当被告<b>故意制造冲突</b>作为杀人的借口时，正当防卫完全不适用。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="section-title">🔍 案情深度分析</div>
+        <p>为什么本案被告的行为完全符合一级谋杀？</p>
+        
+        <ul>
+            <li><b>预谋 (Premeditation)：</b> 被告在得知同事位置后，拿上枪前往邻居家。这一系列动作表明他在杀人前已经有了具体的计划和意图。</li>
+            <li><b>深思熟虑 (Deliberation)：</b> 题目明确指出他“希望激怒同事攻击他，以便他可以开枪射杀该同事”。这表明他的杀人行为不是冲动的，而是经过精心算计的（Calculated）。</li>
+            <li><b>执行计划：</b> 他通过撒谎侮辱同事的妻子成功激怒了同事，并在同事反击时实施了原本就计划好的杀人行为。</li>
+        </ul>
+
+        <!-- 易错点辨析 -->
+        <div class="section-title">🚫 为什么其他选项是错误的？</div>
+
+        <div class="wrong-option">
+            <span class="label">选项 D 错误 (正当防卫)</span>
+            <p>这是本题最大的陷阱。虽然同事确实拿刀冲向被告（构成了致命威胁），但被告不能主张<b>正当防卫 (Self-Defense)</b>。因为被告是带着杀人意图去挑衅的（Provocation with intent to kill）。法律不允许一个人制造正当防卫的情境作为谋杀的掩护。</p>
+        </div>
+
+        <div class="wrong-option">
+            <span class="label">选项 C 错误 (任意过失杀人)</span>
+            <p><b>任意过失杀人 (Voluntary Manslaughter)</b> 通常需要“激情杀人”（Heat of Passion）。本案中，被告虽然在冲突中开枪，但他并没有失去理智，相反，他是非常冷静地执行了一个预先设定的计划。他是挑衅者，而非受挑衅者。</p>
+        </div>
+
+        <div class="wrong-option">
+            <span class="label">选项 B 错误 (二级谋杀)</span>
+            <p>虽然二级谋杀是兜底条款，但由于被告的行为完全符合一级谋杀中“预谋和深思熟虑”的定义，因此必须定为更严重的一级谋杀。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">💡 MBE 考试技巧</div>
+        <p>在处理杀人案（Homicide）题目时，请遵循以下思维路径：</p>
+        <ol>
+            <li><b>看意图：</b> 是蓄意（Intentional）还是过失（Negligent）？</li>
+            <li><b>看计划：</b> 如果是蓄意，是否有预谋（Premeditation）？如果有，通常指向一级谋杀。</li>
+            <li><b>看抗辩：</b> 是否有正当防卫？<br>
+            <span class="highlight">关键点：</span>如果题目说被告“试图激怒受害者以便杀他”（hoping to provoke... so that he could shoot），这在法律上被称为<b>“设计好的正当防卫” (Contrived Self-Defense)</b>，这直接消除了正当防卫的辩护资格，并确立了预谋杀人的意图。</li>
+        </ol>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--highlight-bg);
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .key-point {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- 标题部分 -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p style="margin:5px 0 0 0; font-size:0.9rem;">合同法：不确定性与基本条款</p>
+    </div>
+
+    <!-- 核心结论 -->
+    <div class="card">
+        <h2>✅ 正确答案分析</h2>
+        <p>本题的正确答案是 <strong>A</strong>。</p>
+        <p><strong>核心理由：</strong>在普通法（Common Law）管辖下，合同必须包含所有<span class="term">基本条款 (Essential Terms)</span>，且这些条款必须足够明确。</p>
+        <p>本案涉及<strong>不动产销售 (Sale of Land)</strong>，适用普通法而非 UCC。对于土地合同，必须明确指明：</p>
+        <ul>
+            <li>当事人 (Parties)</li>
+            <li>价格 (Price)</li>
+            <li><strong>标的物描述 (Description of Property)</strong></li>
+        </ul>
+        <p>题目中“a block of lots”（一批地块）的描述过于模糊。法院无法确定究竟是哪几块地、多少块地。由于标的物无法确定，合同因<span class="term">不确定性 (Indefiniteness)</span>而无法执行。</p>
+    </div>
+
+    <!-- 法律规则详解 -->
+    <div class="card">
+        <h2>⚖️ 法律规则详解</h2>
+        <p><strong>1. 适用法律：普通法 vs. UCC</strong></p>
+        <p>这是解题的第一步。涉及土地权益的合同适用<span class="english">Common Law</span>。如果是货物买卖（如木材、钢筋），则适用<span class="english">UCC Article 2</span>。</p>
+        
+        <p><strong>2. 确定性要求 (Certainty and Definiteness)</strong></p>
+        <div class="key-point">
+            <strong>规则：</strong>普通法要求合同条款必须足够明确，以便法院能够确定是否存在违约并给予救济（如特定履行 <span class="english">Specific Performance</span>）。
+        </div>
+        <p>在本案中，虽然价格条款（"reasonable price"）可能通过市场价值确定，但<strong>数量和具体位置</strong>完全缺失。对于房地产而言，每一块土地都被视为是独一无二的（Unique），因此必须准确描述。</p>
+    </div>
+
+    <!-- 干扰项分析 -->
+    <div class="card">
+        <h2>❌ 为什么其他选项错误？</h2>
+        
+        <p><strong>选项 C (Gap Filling)：</strong></p>
+        <p>这是最强的干扰项。考生容易混淆 UCC 和普通法。</p>
+        <ul>
+            <li><strong>UCC：</strong> 允许法院“填补空白” (Gap Fillers)，只要双方有缔约意图，即使缺少价格条款合同也可能成立。但即便是 UCC，通常也要求<strong>数量 (Quantity)</strong> 必须明确。</li>
+            <li><strong>普通法：</strong> 很少允许法院填补基本条款的空白，尤其是土地销售中的标的物描述。法院不会替当事人重写合同。</li>
+        </ul>
+
+        <p><strong>选项 B (Void vs. Voidable)：</strong></p>
+        <p>如果缺少基本条款，合同在法律上是<strong>自始无效 (Void)</strong>，即合同从未成立；而不是<strong>可撤销 (Voidable)</strong>。此外，价格条款并非本案的致命伤，标的物不明才是。</p>
+
+        <p><strong>选项 D (Parol Evidence Rule)：</strong></p>
+        <p>虽然口头证据规则 (PER) 确实允许引入解释性证据，但 PER 的前提是存在一个有效的书面合同。本案的问题在于合同本身因缺乏确定性而未成立，因此 PER 并非主要争点。</p>
+    </div>
+
+    <!-- 考试技巧 -->
+    
+
+    
+
+</div>
+
+</body>
+</html>

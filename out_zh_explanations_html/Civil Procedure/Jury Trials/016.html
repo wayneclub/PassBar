@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-box strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .rule-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ccc;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-color);
+        }
+        .timeline-item.highlight::before {
+            background: var(--correct-color);
+            transform: scale(1.2);
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .badge-rule { background: #eee; color: #555; }
+        .key-term {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+        .footer-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #795548;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure: Jury Trials</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="answer-box">
+            <strong>正确答案：A</strong>
+            <p>法院<b>不会</b>批准作废动议，因为制造商（原告）在规定的时限内适当地提出了陪审团审判请求。</p>
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="rule-card">
+            <div class="rule-title">核心考点：FRCP 38 (Jury Right)</div>
+            <p>根据《联邦民事诉讼规则》第38条 (Federal Rule of Civil Procedure 38)，陪审团审判请求的提出必须遵循严格的时间限制：</p>
+            
+            <ol>
+                <li><b>一般规则 (General Rule):</b> 必须在针对该争议点的最后一份诉答文书 (Last Pleading) 送达后 <b>14天</b> 内提出书面请求。</li>
+                <li><b>特定争议点规则 (Specific Issues):</b> 如果一方仅就特定争议点（如本题中的 Damages）提出请求，另一方有权在收到该请求送达后的 <b>14天</b> 内，就其他或所有争议点提出陪审团审判请求。</li>
+            </ol>
+        </div>
+
+        <!-- 案情时间线分析 -->
+        <div class="rule-card">
+            <div class="rule-title">本案时间线分析</div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="badge badge-rule">起诉</span>
+                    <br>制造商提交诉状 (Complaint)。<br>
+                    <small style="color:red;">未包含陪审团请求。</small>
+                </div>
+                <div class="timeline-item">
+                    <span class="badge badge-rule">答辩</span>
+                    <br>公司送达答辩状 (Answer)。<br>
+                    <small style="color:green;">包含仅针对<b>损害赔偿 (Damages)</b> 的陪审团请求。</small>
+                </div>
+                <div class="timeline-item highlight">
+                    <span class="badge badge-rule" style="background:var(--correct-color);color:white;">关键节点</span>
+                    <br><b>10天后：</b>制造商送达书面请求，要求对<b>所有争议点</b>进行陪审团审判。
+                </div>
+            </div>
+            <p><b>分析结论：</b> 制造商的请求是在公司送达其有限请求后的10天内提出的。这完全符合 FRCP 38(c) 规定的 <b>14天窗口期</b>。因此，该请求是及时的 (Timely)。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="rule-card">
+            <div class="rule-title">为什么其他选项是错误的？</div>
+            <ul style="padding-left: 20px; margin: 0;">
+                <li style="margin-bottom: 10px;">
+                    <b>选项 B (30天):</b> 错误。法律规定的期限是14天，而非30天。
+                </li>
+                <li style="margin-bottom: 10px;">
+                    <b>选项 C (诉状未包含):</b> 错误。虽然在诉状中提出请求是常见做法，但并非必须。只要在最后一份相关诉答文书（通常是答辩状）送达后14天内提出即可。
+                </li>
+                <li>
+                    <b>选项 D (不及时):</b> 错误。如上所述，10天小于14天，因此是及时的。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="footer-tip">
+            <strong>💡 MBE 考试技巧</strong>
+            <br>
+            在处理 <b>Jury Demand</b> 问题时，请牢记 "14天" 这个数字。
+            <br><br>
+            特别注意：如果一方只“挑食”（只要求审理部分问题），另一方有权在14天内要求“全席”（审理所有问题）。这是为了防止一方通过选择性地使用陪审团来获得战术优势。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

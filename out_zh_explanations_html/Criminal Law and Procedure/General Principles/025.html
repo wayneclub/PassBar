@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 24px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+            margin: 20px 0 10px 0;
+        }
+        .concept-card {
+            background-color: #f8f9fa;
+            border-left: 4px solid #f1c40f;
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        .case-study {
+            background-color: #eef2f7;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .case-name {
+            font-weight: bold;
+            color: #2980b9;
+            font-style: italic;
+        }
+        .analysis-list {
+            list-style: none;
+            padding: 0;
+        }
+        .analysis-list li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .analysis-list li::before {
+            content: "•";
+            color: #3498db;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .wrong-option {
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-top: 5px;
+            border-top: 1px dashed #bdc3c7;
+            padding-top: 5px;
+        }
+        .footer-tip {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            font-size: 13px;
+            text-align: center;
+        }
+        code {
+            font-family: Consolas, monospace;
+            color: #e74c3c;
+            background: #fce4ec;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考点解析</h1>
+        <div class="sub-title">Actus Reus & Voluntariness</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            正确答案：选项 B
+        </div>
+
+        <p>本题考察的是刑法中最基础但也最核心的概念之一：<b>犯罪行为的自愿性 (Voluntariness of the Actus Reus)</b>。</p>
+
+        <!-- 核心考点 -->
+        <div class="section-title">核心法律原则</div>
+        <div class="concept-card">
+            <p><b>规则：</b> 所有的犯罪（Strict Liability 犯罪除外，但即使是严格责任犯罪也需要自愿行为）都要求被告实施了<b>自愿的 (Voluntary)</b> 身体动作。</p>
+            <p>如果被告的行为是被迫的、反射性的、或是在无意识状态下进行的，则不构成刑法意义上的 <code>Actus Reus</code>（犯罪行为）。</p>
+        </div>
+
+        <!-- 经典判例 -->
+        <div class="case-study">
+            <span class="case-name">Martin v. State (1944)</span><br>
+            这是一个美国法学院必读的经典判例。被告在家中醉酒，警察强行将其带到高速公路上，然后指控他在公共场所醉酒。法院裁定：由于被告出现在公共场所是被迫的（involuntary），因此不能定罪。
+        </div>
+
+        <!-- 题目解析 -->
+        <div class="section-title">本题深度解析</div>
+        <p>让我们拆解本案中的法规要素：</p>
+        <ul class="analysis-list">
+            <li><b>要素 1：</b> 处于醉酒状态 (While intoxicated)</li>
+            <li><b>要素 2：</b> 出现在公共场所 (Appears in any public place) <span style="color:red;">← 关键点</span></li>
+            <li><b>要素 3：</b> 表现出吵闹或不雅行为 (Manifests... by obstreperous conduct)</li>
+        </ul>
+
+        <p><b>逻辑推演：</b></p>
+        <p>虽然被告满足了要素1（他在家喝醉了）和要素3（他在街上大喊大叫），但他未能满足<b>要素2的自愿性要求</b>。</p>
+        <p>被告是被警察“催促离开住宅”并“铐在街上”的。他出现在公共场所（街道）这一事实，完全是警察行为的结果，而非被告的自由意志 (Free Will)。因此，犯罪行为的必要组成部分缺失，不能定罪。</p>
+
+        <!-- 干扰项辨析 -->
+        <div class="section-title">为什么其他选项是错的？</div>
+        
+        <div class="wrong-option">
+            <b>选项 A (Mistreatment)：</b><br>
+            虽然警察不让他拿外套可能构成民事侵权或违反程序，但这并不是刑法上的抗辩理由 (Defense)。它不能否定犯罪构成的要素。
+        </div>
+
+        <div class="wrong-option">
+            <b>选项 C (Voluntary Intoxication)：</b><br>
+            被告确实是自愿喝醉的，但这只满足了要素1。法规惩罚的不是“在家喝醉”，而是“在公共场所喝醉”。自愿喝醉不能弥补“被迫进入公共场所”这一要素的缺失。
+        </div>
+
+        <div class="wrong-option">
+            <b>选项 D (Voluntary Conduct)：</b><br>
+            虽然他在街上吵闹是自愿的，但前提是他必须是自愿出现在那里的。如果一个人被绑架并扔到银行里，即使他在银行里大喊大叫，也不能指控他“非法闯入银行”。
+        </div>
+
+    </div>
+
+    <div class="footer-tip">
+        <b>💡 MBE 考试技巧</b><br>
+        看到“Public Intoxication”（公共场所醉酒）的题目，一定要检查被告是如何到达公共场所的。如果是被警察搬运、拖拽或强迫带出的，通常都因缺乏 <b>Voluntary Act</b> 而无罪。
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析：虚假陈述与披露义务</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -26px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-color);
+        }
+
+        .timeline-item.warning::before {
+            background: var(--wrong-color);
+        }
+
+        .answer-box {
+            border: 2px solid var(--correct-color);
+            background-color: #f0fdf4;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .answer-title {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .explanation-section h3 {
+            font-size: 1.1rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            color: #555;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+
+        .mbe-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .mbe-tip strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Contracts: Defenses to Enforceability</p>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心法律规则 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：不披露何时构成欺诈？</div>
+            <p>通常情况下，合同一方没有义务披露所有事实。但在以下情况中，<strong>不披露 (Nondisclosure)</strong> 等同于<strong>虚假陈述 (Misrepresentation)</strong>：</p>
+            <ul>
+                <li>当需要披露以防止先前的陈述变为欺诈或实质性误导时。</li>
+                <li>存在信托关系 (Fiduciary Relationship) 时。</li>
+                <li>为了纠正对方对基本假设 (Basic Assumption) 的错误时。</li>
+            </ul>
+            <p class="latin">Reference: Restatement (Second) of Contracts § 161</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="explanation-section">
+            <h3>案情逻辑链分析</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>步骤 1：申请贷款</strong><br>
+                    医生如实披露收入。此时陈述是真实的 (True Assertion)。
+                </div>
+                <div class="timeline-item warning">
+                    <strong>步骤 2：情况变更 (Change of Circumstances)</strong><br>
+                    医生被解雇。之前的收入陈述虽然当时为真，但现在已不再准确。
+                </div>
+                <div class="timeline-item warning">
+                    <strong>步骤 3：故意隐瞒 (Intentional Nondisclosure)</strong><br>
+                    医生为了获得贷款，决定不告知银行。这构成了欺诈意图 (Scienter)。
+                </div>
+                <div class="timeline-item">
+                    <strong>步骤 4：银行信赖并批准</strong><br>
+                    银行基于过时的信息批准贷款。
+                </div>
+            </div>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="answer-box">
+            <div class="answer-title">✅ 正确答案：B</div>
+            <p><strong>理由：</strong>医生未披露其被解雇一事构成了欺诈性虚假陈述 (Fraudulent Misrepresentation)。</p>
+            <hr style="border: 0; border-top: 1px dashed #a5d6a7; margin: 10px 0;">
+            <p style="font-size: 0.9rem;">
+                虽然医生最初的陈述是真实的，但随后的事件（被解雇）使得之前的陈述产生了误导性。根据法律规定，如果一方知道披露事实是必要的，以防止其<strong>先前的陈述 (Previous Assertion)</strong> 变得具有欺诈性或误导性，那么未能披露就被视为虚假陈述。
+                <br><br>
+                因为这种虚假陈述诱导了银行签订合同，所以合同对银行来说是<strong>可撤销的 (Voidable)</strong>。
+            </p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="explanation-section">
+            <h3>为什么其他选项是错的？</h3>
+            
+            <p><strong>❌ 选项 A (Condition Precedent)</strong><br>
+            <span class="tag">先决条件</span> 除非合同中有明确条款规定（例如“以借款人受雇为条件”），否则一般的还款能力不是法律上的“先决条件”。银行的义务是基于合同成立，而不是基于医生的财务健康状况，除非合同另有规定。</p>
+
+            <p><strong>❌ 选项 C (Unjustifiable Reliance)</strong><br>
+            <span class="tag">信赖</span> 银行的信赖是正当的。医生最初的披露是准确的，银行没有理由怀疑其真实性发生了变化。只有当虚假陈述显而易见时，信赖才是不正当的。</p>
+
+            <p><strong>❌ 选项 D (Signed Writing)</strong><br>
+            <span class="tag">书面形式</span> 即使合同符合《反欺诈法》(Statute of Frauds) 并已签署，<strong>欺诈 (Fraud)</strong> 始终是合同可撤销的抗辩理由。书面形式不能保护欺诈方。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <strong>💡 MBE 考试技巧</strong>
+            遇到“沉默/不披露” (Silence/Nondisclosure) 的题目时，首先默认为“无披露义务”。然后寻找例外情况：
+            <ol style="margin-top: 5px; padding-left: 20px;">
+                <li>是否为了纠正之前的陈述？（本题考点）</li>
+                <li>是否为了纠正对方的重大误解？</li>
+                <li>是否有特殊信任关系？</li>
+            </ol>
+            如果符合上述任一情况，沉默即构成欺诈。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

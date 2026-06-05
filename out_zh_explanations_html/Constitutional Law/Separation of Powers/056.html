@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #eee;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .legal-term {
+            background-color: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #555;
+            font-family: "Georgia", serif;
+        }
+
+        .case-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin: 10px 0;
+        }
+
+        .wrong-option {
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 3px solid #ddd;
+        }
+
+        .wrong-option strong {
+            color: #e74c3c;
+        }
+
+        .mbe-tip {
+            background: #2c3e50;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 0.95rem;
+        }
+        
+        .mbe-tip-title {
+            font-weight: bold;
+            color: #f1c40f;
+            margin-bottom: 5px;
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 宪法学考点解析</h1>
+        <div class="sub-title">Constitutional Law: Legislative Immunity</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：D</span>
+            <p>宪法第一条第六款的<b>言论或辩论条款 (Speech or Debate Clause)</b> 为国会议员在国会议场上的发言提供了绝对的侵权责任豁免。</p>
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">核心法律规则</div>
+        <p>本题考察的是美国宪法第一条第六款（Article I, Section 6）中的<span class="legal-term">Speech or Debate Clause</span>。</p>
+        <p>该条款规定，参众两院的议员“在任何一院发表的言论或辩论，不得在任何其他地方受质问”。这意味着：</p>
+        <ul>
+            <li><b>绝对豁免权 (Absolute Immunity)：</b> 只要议员的行为属于<b>“立法行为” (Legislative Acts)</b>，他们就免受民事和刑事诉讼。</li>
+            <li><b>核心保护范围：</b> 在参议院或众议院<b>议场 (Floor)</b> 上的发言是立法行为的核心，无论该言论是否虚假、是否出于恶意 (Malice) 或过失 (Negligence)。</li>
+        </ul>
+
+        <!-- 案情分析 -->
+        <div class="section-title">本案分析</div>
+        <div class="case-box">
+            <p><b>事实：</b> 参议员在<b>参议院议场 (Floor of the Senate)</b> 发表演讲。</p>
+            <p><b>指控：</b> 演讲内容虚假且存在过失。</p>
+            <p><b>结论：</b> 因为演讲发生在议场内，属于典型的立法行为，因此受到言论或辩论条款的绝对保护。法院必须驳回起诉，因为该条款赋予了议员免于被起诉的豁免权。</p>
+        </div>
+
+        <!-- 易错项辨析 -->
+        <div class="section-title">为什么其他选项是错的？</div>
+        
+        <div class="wrong-option">
+            <strong>选项 A (主权豁免) 错误：</strong><br>
+            虽然联邦政府享有主权豁免 (Sovereign Immunity)，但本案起诉的是<b>参议员个人</b>，而非美国政府。
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 B (第一修正案) 错误：</strong><br>
+            第一修正案 (First Amendment) 并不提供“绝对”的保护。如果在国会<b>外</b>（如新闻发布会）诽谤他人，议员是可能承担责任的。本题的保护伞专门来自“言论或辩论条款”，而非第一修正案。
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 C (实际恶意标准) 错误：</strong><br>
+            这是关于公职人员诽谤案的通用标准 (<i>New York Times v. Sullivan</i>)。虽然原告通常需要证明“实际恶意” (Actual Malice)，但在这里，<b>豁免权 (Immunity)</b> 是一个门槛问题。因为议员享有豁免权，法院根本不会进入到讨论是否构成诽谤或是否有恶意的阶段，而是直接驳回起诉。
+        </div>
+
+        <!-- MBE 考试技巧 -->
+        <div class="mbe-tip">
+            <span class="mbe-tip-title">💡 MBE 提分技巧</span>
+            <p>在处理涉及国会议员言论的题目时，请务必区分<b>地点</b>和<b>形式</b>：</p>
+            <ul>
+                <li>✅ <b>受保护：</b> 议场发言、委员会投票、起草报告（立法核心圈）。</li>
+                <li>❌ <b>不受保护：</b> 新闻发布会、给选民的通讯 (Newsletters)、接受媒体采访（政治公关行为）。</li>
+            </ul>
+            <p>记住判例 <i>Hutchinson v. Proxmire</i>：议员在议场骂人没事，但把骂人的话印在新闻稿里发出去，就可能被起诉！</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

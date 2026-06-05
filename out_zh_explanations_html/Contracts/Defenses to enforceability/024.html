@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .analysis-step strong {
+            color: var(--accent-color);
+        }
+        .wrong-option {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+        .wrong-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: var(--warning-color);
+            margin-bottom: 10px;
+        }
+        .exam-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts: Economic Duress</div>
+    </div>
+
+    <div class="content">
+        <p>本题考察的核心法律原则是合同法中的<strong>经济胁迫</strong>（Economic Duress）。正确答案是 <strong>A</strong>。</p>
+
+        <!-- 核心法则 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法则：经济胁迫 (Economic Duress)</span>
+            <p>如果一方的同意是由另一方的<strong>不当威胁</strong>（Improper Threat）诱导的，且受害方<strong>别无合理选择</strong>（No Reasonable Alternative），则该合同是<strong>可撤销的</strong>（Voidable）。</p>
+        </div>
+
+        <h3>📝 案件逻辑分析</h3>
+        
+        <div class="analysis-step">
+            <strong>1. 既存义务 (Pre-existing Duty)</strong><br>
+            技工已经有合同义务以 $12,000 修理卡车。拒绝交付卡车除非加价，属于违反合同义务的行为。
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 不当威胁 (Improper Threat)</strong><br>
+            技工威胁不交付卡车，这违反了合同中的<strong>诚信与公平交易义务</strong>（Duty of Good Faith and Fair Dealing）。这种利用对方困境勒索加价的行为构成“不当威胁”。
+        </div>
+
+        <div class="analysis-step">
+            <strong>3. 别无合理选择 (No Reasonable Alternative)</strong><br>
+            这是认定胁迫的关键要素。题目明确指出：
+            <ul>
+                <li>园艺师急需卡车履行现有合同（时间紧迫）。</li>
+                <li>没有同类型的租赁卡车可用（替代方案缺失）。</li>
+            </ul>
+            因此，园艺师除了屈服于威胁外，没有其他合理的商业选择。
+        </div>
+
+        <div class="analysis-step">
+            <strong>4. 结论</strong><br>
+            由于承诺是在胁迫下做出的，园艺师可以行使撤销权，技工无法强制执行那额外的 $2,000。
+        </div>
+
+        <!-- 易错点辨析 -->
+        <div class="wrong-option">
+            <div class="wrong-title">🚫 为什么其他选项是错误的？</div>
+            <ul>
+                <li>
+                    <span class="term">选项 B (Undue Influence)</span>：<br>
+                    <strong>不当影响</strong>通常发生在双方存在特殊信任关系（如律师与客户）或一方处于被支配地位（如看护人与老人）时。本案是纯粹的商业交易，不存在这种关系。
+                </li>
+                <li>
+                    <span class="term">选项 C (Legal Action)</span>：<br>
+                    虽然园艺师理论上可以起诉（Replevin），但法律诉讼耗时漫长。由于园艺师<strong>“急需”</strong>卡车，诉讼无法解决眼前的燃眉之急，因此不被视为“合理的替代方案”。
+                </li>
+                <li>
+                    <span class="term">选项 D (Reasonable Price)</span>：<br>
+                    这是一个常见的干扰项。即使 $14,000 是市场公允价，但这不能洗白技工的<strong>不当威胁</strong>行为。合同法的核心是“合意”的自由，而非价格的客观公平性。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 考试技巧 (Exam Tip)</strong><br>
+            在 MBE 合同法题目中，当看到一方在合同履行期间要求加价（Modification），请按以下步骤思考：
+            <ol>
+                <li>这是 Common Law（服务/不动产）还是 UCC（货物）？</li>
+                <li>是否有<strong>对价</strong>（Consideration）？（Common Law 需要，UCC 不需要但需诚信）。</li>
+                <li>是否存在<strong>胁迫</strong>（Duress）？如果一方利用对方的紧急需求进行勒索，即使在 UCC 下也是不可执行的。</li>
+            </ol>
+            关键词 <strong>"Immediate need"</strong> 和 <strong>"No other alternative"</strong> 几乎总是指向经济胁迫。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

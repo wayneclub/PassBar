@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--bg-color);
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .answer-box {
+            background-color: #e8f8f5;
+            border: 2px solid var(--success-color);
+            color: var(--success-color);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            display: block;
+            margin-top: 2px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .wrong-option {
+            color: var(--warning-color);
+            font-weight: bold;
+        }
+        .rule-box {
+            background: #f8f9fa;
+            border: 1px dashed #bdc3c7;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .footer-tip {
+            font-size: 0.85rem;
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <p>证据法：律师-当事人特权与放弃</p>
+    </div>
+
+    <!-- Correct Answer -->
+    <div class="answer-box">
+        ✅ 正确答案：选项 B
+    </div>
+
+    <!-- Core Analysis -->
+    <div class="card">
+        <div class="concept-title">
+            核心考点：保密性要求
+            <span class="english-term">Confidentiality Requirement</span>
+        </div>
+        <p>这是本题的<b>决定性因素</b>。律师-当事人特权（Attorney-Client Privilege）的成立必须满足以下条件：</p>
+        <ul>
+            <li>沟通是为了获取法律建议；</li>
+            <li>沟通发生在律师与当事人之间；</li>
+            <li><b>意图保密并保持机密性 (Intended to be confidential)。</b></li>
+        </ul>
+        <p>在本案中，被告在写信时有<b>侄子 (Nephew)</b> 的协助。在法律上，除非第三方是必要的辅助人员（如翻译），否则向第三方披露信息会<b>破坏保密性</b>。</p>
+        <div class="rule-box">
+            👉 <b>结论：</b> 因为侄子参与了信件的撰写，该信件从一开始就<b>不具备保密性</b>，因此根本<b>不享有特权</b>。
+        </div>
+    </div>
+
+    <!-- Secondary Analysis (Why A is tricky) -->
+    <div class="card" style="border-left-color: var(--warning-color);">
+        <div class="concept-title">
+            次要考点：无意披露与补救
+            <span class="english-term">Inadvertent Disclosure & Rectification</span>
+        </div>
+        <p>虽然选项 A 提到的事实是正确的（律师未采取补救措施），但它不是<b>首要原因</b>。</p>
+        <p>假设这封信原本享有特权（例如没有侄子参与），根据 <b>Fed. R. Evid. 502(b)</b>，无意披露<b>不会</b>导致特权放弃，必须同时满足三个条件：</p>
+        <ol>
+            <li>披露是无意的 (Inadvertent)；</li>
+            <li>采取了合理步骤防止披露；</li>
+            <li><b>采取了合理步骤纠正错误 (Rectify the error)。</b></li>
+        </ol>
+        <p>题目指出律师在发现错误后<b>“什么也没做”</b>。这意味着即使特权存在，也因为未能及时补救（如要求对方归还或销毁文件）而被视为<b>放弃 (Waived)</b>。</p>
+        <p><span class="wrong-option">为什么不选 A？</span><br>因为选项 B 指出了更根本的问题：特权<b>从未存在</b>。如果特权不存在，就不需要讨论是否被放弃。</p>
+    </div>
+
+    <!-- Other Options Analysis -->
+    <div class="card" style="border-left-color: #95a5a6;">
+        <div class="concept-title">
+            其他选项辨析
+        </div>
+        <ul>
+            <li><b>选项 C 错误：</b> 律师作为当事人的代理人，其行为（包括疏忽导致的披露）可以导致当事人的特权被放弃。</li>
+            <li><b>选项 D 错误：</b> 律师确实可以代表当事人主张特权，但前提是该文件本身必须享有特权。本案中文件因缺乏保密性而不受保护。</li>
+        </ul>
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+        💡 <b>MBE 做题技巧：</b><br>
+        总是先检查“特权是否存在”（Threshold Issue），再检查“特权是否被放弃”（Secondary Issue）。如果地基（保密性）不存在，就不用检查房子是否倒塌（放弃）了。
+    </div>
+
+</div>
+
+</body>
+</html>

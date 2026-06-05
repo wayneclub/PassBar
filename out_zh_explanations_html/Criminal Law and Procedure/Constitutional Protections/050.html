@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --warning-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-tag {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .highlight-box {
+            background-color: #eef7fc;
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .alert-box {
+            background-color: #fdedec;
+            border-left: 4px solid var(--warning-color);
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            color: #922b21;
+        }
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title span {
+            margin-right: 8px;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
+        .english-term {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+        .footer {
+            background-color: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            border-top: 1px solid #bdc3c7;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Criminal Procedure / 刑事诉讼法</div>
+    </div>
+
+    <div class="content">
+        <span class="concept-tag">Correct Answer: D</span>
+
+        <p>本题的核心考点在于<strong>第五修正案 (Fifth Amendment)</strong> 下的反对自证其罪特权，特别是关于 <strong>Miranda 警告</strong> 的放弃 (Waiver) 必须具备的要素。</p>
+
+        <div class="section-title">
+            <span>⚖️</span> 法律规则解析
+        </div>
+        <p>根据 <em>Miranda v. Arizona</em> 及其后续判例，警方在进行<strong>羁押讯问 (Custodial Interrogation)</strong> 之前，必须告知嫌疑人其权利。</p>
+        <p>嫌疑人可以放弃这些权利，但放弃必须满足三个条件：</p>
+        <ul>
+            <li><strong>知情 (Knowingly)</strong></li>
+            <li><strong>明智 (Intelligently)</strong></li>
+            <li><strong>自愿 (Voluntarily)</strong></li>
+        </ul>
+
+        <div class="alert-box">
+            <strong>关键点：</strong> 任何由警方<strong>胁迫 (Coercion)</strong> 导致的放弃都是无效的。胁迫不仅包括身体暴力，还包括心理威胁（如威胁剥夺家庭福利、威胁生意破产等）。
+        </div>
+
+        <div class="section-title">
+            <span>🔍</span> 案情应用分析
+        </div>
+        <div class="highlight-box">
+            <p><strong>1. 羁押 (Custody):</strong><br>
+            警员将女子扑倒并反剪双臂，此时她显然已被剥夺自由，处于羁押状态。</p>
+            
+            <p><strong>2. 讯问 (Interrogation):</strong><br>
+            警员直接问：“告诉我们你做了什么...”，这构成了讯问。</p>
+            
+            <p><strong>3. 胁迫 (Coercion):</strong><br>
+            警员威胁说：“否则我们将让你关门大吉，让你的家人去领救济金 (shut you down and see your family on relief)”。</p>
+        </div>
+
+        <p>由于存在明显的<strong>警方胁迫</strong>，该女子并没有“自愿”放弃她的沉默权。因此，她在这种压力下做出的供述违反了第五修正案，法院应<strong>批准 (Grant)</strong> 排除该证据的动议。</p>
+
+        <div class="section-title">
+            <span>🚫</span> 为什么其他选项是错的？
+        </div>
+        
+        <p><strong>选项 A (Hot Pursuit / 紧急追捕):</strong><br>
+        虽然“紧急追捕”允许警方无证进入住宅进行搜查（第四修正案例外），但它<strong>不能</strong>免除警方在讯问时遵守第五修正案（Miranda 规则）的义务，更不能为胁迫供述辩护。</p>
+
+        <p><strong>选项 B (Emergency Search / 紧急搜查):</strong><br>
+        同上，第四修正案的搜查例外不能成为违反第五修正案进行胁迫讯问的理由。此外，受害者已失踪数月，很难主张存在“迫在眉睫的危险”来适用公共安全例外 (Public Safety Exception)。</p>
+
+        <p><strong>选项 C (Fruit of Poisonous Tree / 毒树之果):</strong><br>
+        这是一个常见的陷阱。警方搜查的是被铁丝网围起来的田地。根据<strong>开阔地原则 (Open Fields Doctrine)</strong>，即使有围栏和“禁止入内”标志，开阔田地也不受第四修正案保护。因此，搜查本身是合法的，供述不是非法搜查的“毒果”。供述被排除的真正原因是<strong>胁迫</strong>。</p>
+
+    </div>
+
+    <div class="footer">
+        <strong>MBE 解题技巧：</strong><br>
+        区分第四修正案（搜查/扣押）与第五修正案（自证其罪）。当题目涉及供述 (Confession) 时，优先检查是否存在羁押、讯问以及是否自愿。
+    </div>
+</div>
+
+</body>
+</html>

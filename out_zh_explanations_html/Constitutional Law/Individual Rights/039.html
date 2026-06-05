@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-banner {
+            background-color: var(--correct-color);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        .rule-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .key-term {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .distractor {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: var(--border-radius);
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        .exam-tip-title {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Constitutional Law | Contracts Clause</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-banner">
+            正确答案：B
+        </div>
+
+        <!-- 核心考点法则 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法则 (Legal Rule)</span>
+            美国宪法第一条第10款的<span class="key-term">合同条款 (Contracts Clause)</span> 仅限制州政府制定法律损害<b>现存的 (Existing)</b> 合同义务。它并不保护订立<b>未来 (Future)</b> 合同的权利。
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">逻辑推演</div>
+            <p>要判定是否违反合同条款，必须遵循以下步骤：</p>
+            <ol>
+                <li><b>第一步（门槛问题）：</b> 是否存在一个已经生效的合同关系？</li>
+                <li><b>第二步：</b> 州法律是否实质性地损害 (Substantially Impair) 了该合同？</li>
+                <li><b>第三步：</b> 如果有损害，该法律是否是为了合法的公共目的，且手段是合理的？</li>
+            </ol>
+            <p>在本题中，分析在<b>第一步</b>就结束了。虽然该女子是合格的教练，且滑雪场也想雇佣她，但题目明确指出“no resort will offer her a contract”（没有滑雪场向她提供合同）。</p>
+            <p>因为双方尚未签署合同，仅仅是处于“想要签约”的阶段，所以不存在<b>现存合同 (Existing Contract)</b>。既然没有合同，合同条款就不适用。</p>
+        </div>
+
+        <!-- 选项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么其他选项是错误的？</div>
+            
+            <div class="distractor">
+                <span style="color:var(--wrong-color)">✖ 选项 C 和 D 错误：</span><br>
+                这两个选项都试图进行<b>审查标准 (Scrutiny)</b> 的分析（如“合理关联”或“重要政府目标”）。<br><br>
+                这是考生的常见陷阱。只有当合同条款<b>适用</b>（即存在合同）时，我们才讨论政府是否有正当理由去损害它。既然本案中没有合同，就不需要讨论政府利益是否重要或手段是否合理。
+            </div>
+
+            <div class="distractor">
+                <span style="color:var(--wrong-color)">✖ 选项 A 错误：</span><br>
+                虽然合同条款确实既适用于私人合同也适用于公共合同（Public Contracts），但本题的关键点不在于合同的性质，而在于合同<b>根本不存在</b>。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 考试技巧 (Exam Tip)</span>
+            当题目问及“Contracts Clause”时，你的第一个反应必须是寻找<b>时间线 (Timeline)</b>：
+            <br><br>
+            是 <b>先有合同，后有法律</b>？<br>
+            还是 <b>先有法律，后签合同</b>？
+            <br><br>
+            如果是后者（先有法律），该法律就成为未来合同背景的一部分，<b>不违反</b>合同条款。合同条款不保护“预期的”或“未来的”交易机会。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

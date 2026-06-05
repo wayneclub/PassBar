@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50; /* Navy Blue */
+        --accent-color: #3498db; /* Light Blue */
+        --highlight-color: #e74c3c; /* Red for emphasis/wrong */
+        --success-color: #27ae60; /* Green for correct */
+        --bg-color: #f8f9fa;
+        --text-color: #333;
+        --card-bg: #ffffff;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #e9ecef;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 480px; /* Mobile width optimization */
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .header h2 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .header .sub-title {
+        font-size: 0.85rem;
+        opacity: 0.9;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .content {
+        padding: 20px;
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    .answer-box {
+        background-color: #fff5f5;
+        border-left: 5px solid var(--highlight-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+
+    .answer-title {
+        font-weight: bold;
+        color: var(--highlight-color);
+        display: block;
+        margin-bottom: 5px;
+        font-size: 1.1rem;
+    }
+
+    .rule-section {
+        margin-bottom: 20px;
+    }
+
+    .rule-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .rule-title::before {
+        content: "⚖️";
+        margin-right: 8px;
+    }
+
+    .key-point {
+        background-color: #e8f4fd;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        font-size: 0.95rem;
+    }
+
+    .latin {
+        font-style: italic;
+        color: #555;
+    }
+
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+        font-size: 0.9rem;
+    }
+
+    .comparison-table th {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .comparison-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    .exam-tip {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 0.9rem;
+    }
+
+    .exam-tip strong {
+        display: block;
+        margin-bottom: 5px;
+        color: #856404;
+    }
+
+    code {
+        background-color: #f1f1f1;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-family: monospace;
+        color: #c7254e;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Civil Procedure | Jury Trials</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：A (No)</span>
+            法官<strong>不会</strong>批准该请求，因为联邦法院不允许由 14 名陪审员组成的陪审团。
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="rule-section">
+            <div class="rule-title">核心考点：FRCP 48(a)</div>
+            <p>本题考察的是《联邦民事诉讼规则》(Federal Rules of Civil Procedure, FRCP) 第 48 条关于陪审团人数的硬性规定。</p>
+            
+            <div class="key-point">
+                <strong>规则原文要义：</strong><br>
+                联邦民事陪审团在<strong>审判开始时 (Impaneling)</strong>，必须由 <strong>至少 6 人，至多 12 人</strong> 组成。
+            </div>
+
+            <p>这是一个结构性的、强制性的规则。虽然当事人可以在许多程序性事项上达成一致（Stipulate），但他们<strong>不能</strong>约定违反这一人数上限。</p>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="rule-section">
+            <div class="rule-title">为什么其他理由不成立？</div>
+            
+            <p><strong>1. 州法无关紧要 (Erie Doctrine)</strong></p>
+            <p>虽然这是一起基于多元管辖权 (Diversity Action) 的案件，但根据 <span class="latin">Erie</span> 原则，联邦法院在程序问题上适用联邦规则 (FRCP)。陪审团人数属于程序问题，因此 A 州允许 14 人陪审团的州法律在联邦法院<strong>不适用</strong>。</p>
+
+            <p><strong>2. 当事人的约定 (Stipulation) 有局限性</strong></p>
+            <p>考生常混淆 FRCP 48(a) 和 48(b)。请看下表区别：</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>阶段</th>
+                        <th>规则 (FRCP 48)</th>
+                        <th>能否约定例外？</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>组建时</strong><br>(Start of Trial)</td>
+                        <td>6 - 12 人</td>
+                        <td><strong>不能</strong>超过 12 人<br>(不可豁免)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>裁决时</strong><br>(Verdict)</td>
+                        <td>至少 6 人</td>
+                        <td><strong>可以</strong><br>(可约定少于 6 人作出裁决)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.9rem; color: #666;">*注：本题问的是审判开始时的组建，因此触犯了 12 人的上限。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        
+    </div>
+</div>
+
+</body>
+</html>

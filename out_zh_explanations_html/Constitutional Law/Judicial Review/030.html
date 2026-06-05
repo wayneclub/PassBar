@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: #e8f6f3;
+            border-left: 5px solid #2ecc71;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-box strong {
+            color: #27ae60;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+
+        .section-title span {
+            margin-right: 8px;
+        }
+
+        .concept-card {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+
+        .analysis-step strong {
+            color: var(--primary-color);
+        }
+
+        .distractor {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .distractor-label {
+            font-weight: bold;
+            color: var(--highlight-color);
+            margin-right: 5px;
+        }
+
+        .tip-box {
+            background-color: #eaf2f8;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 25px;
+            font-size: 0.9rem;
+        }
+
+        .tip-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考题解析</h1>
+        <div class="subtitle">Constitutional Law / Judicial Review</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            <strong>正确答案：B</strong>
+            驳回诉状，因为此诉讼的审理时机尚未成熟 (Not Ripe)。
+        </div>
+
+        <!-- 核心考点 -->
+        <div class="section-title">
+            <span>⚖️</span> 核心考点：成熟度 (Ripeness)
+        </div>
+        <p>本题考查的是美国宪法第三条（Article III）关于联邦法院管辖权的限制，即<strong>“可司法性” (Justiciability)</strong> 中的<strong>“成熟度” (Ripeness)</strong> 原则。</p>
+        
+        <div class="concept-card">
+            联邦法院只能审理实际存在的“案件或争议” (<span class="latin">Case or Controversy</span>)。如果原告声称的伤害是<strong>推测性的 (Speculative)</strong> 或<strong>未来的 (Future)</strong>，而非迫在眉睫的，法院将以时机不成熟为由拒绝审理。
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="section-title">
+            <span>🔍</span> 逻辑推理分析
+        </div>
+        
+        <div class="analysis-step">
+            <strong>1. 事实认定 (Fact Pattern Analysis)：</strong>
+            <ul>
+                <li>公司刚刚获得了一次费率上调的批准。</li>
+                <li>公司“认为” (thinks) 未来18个月内“可能” (may) 需要再次涨价。</li>
+                <li>由于燃料价格不确定，公司无法确定具体何时需要涨价。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 法律适用 (Application of Law)：</strong>
+            <p>要满足成熟度 (Ripeness) 要求，原告必须证明存在<strong>实际的伤害 (Actual Harm)</strong> 或<strong>迫在眉睫的伤害威胁 (Immediate Threat of Harm)</strong>。</p>
+            <p>在本案中，公司目前没有遭受该法规的负面影响（因为刚涨过价）。未来的伤害完全建立在“如果不确定的燃料价格上涨，我们可能需要涨价”这一假设之上。这种伤害是推测性的，尚未具体化。</p>
+        </div>
+
+        <div class="analysis-step">
+            <strong>3. 结论 (Conclusion)：</strong>
+            <p>由于缺乏当前的实际争议，联邦法院此时介入为时过早。法院不会就假设性的未来情况发布咨询意见 (<span class="latin">Advisory Opinion</span>)。因此，必须驳回起诉。</p>
+        </div>
+
+        <!-- 干扰项解析 -->
+        <div class="section-title">
+            <span>🚫</span> 干扰项排除
+        </div>
+
+        <div class="distractor">
+            <span class="distractor-label">选项 A 错误：</span>
+            <strong>管辖权 (Jurisdiction) vs. 可司法性 (Justiciability)。</strong><br>
+            联邦法院确实拥有审理宪法问题的“联邦问题管辖权” (<span class="latin">Federal Question Jurisdiction</span>)。选项A声称法院对此类争议完全没有管辖权是错误的，法院有权审理，只是因为时机未到（不成熟）而不能审理此特定案件。
+        </div>
+
+        <div class="distractor">
+            <span class="distractor-label">选项 C & D 错误：</span>
+            <strong>实体问题 (Merits) vs. 程序门槛 (Procedural Threshold)。</strong><br>
+            这两个选项都试图让法院直接对法规的合宪性（实体问题）做出裁决。
+            <ul>
+                <li>选项C涉及实质性正当程序 (<span class="latin">Substantive Due Process</span>) 中的合理性审查。</li>
+                <li>选项D涉及征收条款 (<span class="latin">Takings Clause</span>) 或正当程序。</li>
+            </ul>
+            但在法院确定案件“成熟”之前，<strong>无权触及案件的实体优劣</strong>。既然案件被驳回，法院就不会判定该法是合宪还是违宪。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <span class="tip-title">💡 MBE 考试技巧</span>
+            在做 <span class="latin">Judicial Review</span> 题目时，请警惕以下关键词：
+            <ul>
+                <li>"Proposes to" (计划去...)</li>
+                <li>"May need" (可能需要...)</li>
+                <li>"Hypothetical" (假设的...)</li>
+            </ul>
+            如果题目中出现法规尚未实施，或者原告尚未违反法规且未受到起诉威胁，通常答案是<strong>“不成熟” (Unripe)</strong>。
+            <br><br>
+            记住口诀：<strong>No Harm, No Foul (没有伤害，就没有诉讼)</strong>。伤害必须是现时的或即刻发生的。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

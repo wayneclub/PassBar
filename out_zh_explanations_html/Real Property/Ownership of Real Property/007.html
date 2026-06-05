@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 480px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-color);
+        }
+
+        .timeline-title {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+        }
+
+        .timeline-desc {
+            font-size: 0.85rem;
+            margin-top: 4px;
+            color: #666;
+        }
+
+        .analysis-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .correct-tag {
+            background: var(--correct-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .footer {
+            background: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            border-top: 1px solid #ddd;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Real Property: Landlord-Tenant Law</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">核心考点：减轻损害义务</div>
+            <p>在大多数司法管辖区（Modern Majority Rule），当承租人无理弃租（Abandonment）时，房东有义务<b>减轻损害</b> <span class="english-term">(Duty to Mitigate Damages)</span>。</p>
+            <p>这意味着房东必须做出<b>合理的努力</b> <span class="english-term">(Reasonable Effort)</span> 重新出租房屋。如果房东未能履行此义务，其可获得的赔偿将扣除其本可以通过重新出租获得的金额。</p>
+        </div>
+
+        <!-- 案情时间轴分析 -->
+        <h3>📅 案情时间轴分析</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-title">第 1-6 个月</div>
+                <div class="timeline-desc">租约正常履行。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-title">第 7-8 个月 (关键点1)</div>
+                <div class="timeline-desc">
+                    租客停止付租金，但<b>未通知</b>房东。房东不知情，无法采取行动。<br>
+                    <span style="color:var(--wrong-color); font-weight:bold;">➡ 租客需赔偿这2个月租金。</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-title">第 9-12 个月 (关键点2)</div>
+                <div class="timeline-desc">
+                    房东得知弃租。尽管有人询问，房东<b>未采取任何措施</b>重新出租。<br>
+                    <span style="color:var(--correct-color); font-weight:bold;">➡ 房东违反减轻损害义务，无法追讨这4个月租金。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-card" style="border-left: 4px solid var(--correct-color);">
+            <div class="correct-tag">正确答案：选项 A</div>
+            <p><b>为什么是两个月？</b></p>
+            <p>法院的判决逻辑分为两部分：</p>
+            <ol>
+                <li><b>前两个月：</b> 租客虽然搬走了，但没有通知房东。房东在不知情的情况下无法去寻找新租客（无法减轻损害）。因此，租客必须支付这段时间的租金。</li>
+                <li><b>后四个月：</b> 房东明确知道租客弃租。根据<b>减轻损害义务</b> <span class="english-term">(Duty to Mitigate)</span>，房东不能任由房屋空置来积累损失。题目明确指出房东“未采取任何措施”且“无视了多次问询”。因此，法律视作房东本可以把房子租出去，这部分的损失是房东自己造成的，租客无需赔偿。</li>
+            </ol>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <h3>❌ 为什么其他选项错误？</h3>
+        
+        <div class="analysis-card">
+            <p><span class="key-term">选项 B (四个月) / C (六个月)</span></p>
+            <p>这两个选项基于旧的普通法规则 <span class="english-term">(Common Law Rule)</span>，即房东没有减轻损害的义务。但在MBE考试中，除非另有说明，通常适用<b>现代多数规则</b>，即房东<b>必须</b>尝试减轻损害。</p>
+        </div>
+
+        <div class="analysis-card">
+            <p><span class="key-term">选项 D (无责任)</span></p>
+            <p>虽然租客是因为健康原因（摔断髋骨）搬走，但这属于个人不幸，并不构成合同法上的<b>“紧急避险”</b> <span class="english-term">(Necessity)</span> 或<b>“履行不能”</b> <span class="english-term">(Impossibility)</span> 来免除支付租金的合同义务。个人困难通常不能作为违约的正当理由。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background: #fff8e1; border-color: #f1c40f;">
+            <div class="rule-title" style="color: #d35400;">🎓 MBE 考试技巧</div>
+            <p>看到 <b>"Abandonment"</b> (弃租) 和 <b>"Landlord does nothing"</b> (房东不作为) 的组合时，立刻联想 <b>Duty to Mitigate</b>。</p>
+            <p>如果题目说房东尝试了但没租出去（Reasonable Effort），租客仍需负责；但如果房东完全躺平（No steps taken），租客的责任通常会被免除。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

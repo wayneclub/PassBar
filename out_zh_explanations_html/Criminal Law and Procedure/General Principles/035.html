@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 刑法考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --warning-color: #e74c3c;
+            --highlight-bg: #f8f9fa;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 24px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+            font-weight: 300;
+        }
+
+        .content {
+            padding: 24px 20px;
+        }
+
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+            font-size: 16px;
+        }
+
+        .exception-card {
+            background-color: #fff5f5;
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ddd;
+            border: 2px solid #fff;
+        }
+
+        .timeline-item.critical::before {
+            background-color: var(--warning-color);
+            width: 14px;
+            height: 14px;
+            left: -28px;
+        }
+
+        .timeline-title {
+            font-weight: bold;
+            font-size: 14px;
+            color: var(--primary-color);
+        }
+
+        .timeline-desc {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .analysis-box {
+            background-color: #eef2f7;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .tag-blue { background-color: #e3f2fd; color: #1565c0; }
+        .tag-red { background-color: #ffebee; color: #c62828; }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #eee;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考点解析</h1>
+        <div class="subtitle">Voluntary Intoxication & Specific Intent</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">📚 核心规则 (General Rule)</span>
+            <p><strong>自愿醉酒 (Voluntary Intoxication)</strong> 通常只能作为<strong>特定意图犯罪 (Specific Intent Crimes)</strong> 的抗辩理由。</p>
+            <p style="font-size: 13px; color: #555;">如果醉酒程度严重到使被告人无法形成犯罪所需的特定意图（如“意图杀人”或“意图盗窃”），则可以否定该意图。</p>
+        </div>
+
+        <!-- 陷阱/例外 -->
+        <div class="exception-card">
+            <span class="concept-title">⚠️ 关键例外 (The Exception)</span>
+            <p><strong>"Liquid Courage"（借酒壮胆）原则：</strong></p>
+            <p>如果被告人在<strong>清醒时</strong>就已经形成了犯罪意图（Formed Intent），然后为了壮胆（Strengthen Nerve）去实施犯罪而故意喝酒，那么醉酒<strong>不能</strong>作为抗辩理由。</p>
+        </div>
+
+        <!-- 案情时间轴分析 -->
+        <h3 style="font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 10px;">本案事实分析 (Fact Pattern Analysis)</h3>
+        <div class="timeline">
+            <div class="timeline-item critical">
+                <div class="timeline-title">第一步：形成意图 (Intent Formed)</div>
+                <div class="timeline-desc">男子在清醒状态下决定杀死教练。<br><span class="tag tag-red">Specific Intent 已确立</span></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-title">第二步：准备工具</div>
+                <div class="timeline-desc">给手枪装弹，前往教练家。</div>
+            </div>
+            <div class="timeline-item critical">
+                <div class="timeline-title">第三步：自愿醉酒 (Intoxication)</div>
+                <div class="timeline-desc">因为焦虑，去酒吧喝了8杯烈酒。<br><strong>目的：</strong>为了实施已计划好的犯罪。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-title">第四步：实施犯罪 (Actus Reus)</div>
+                <div class="timeline-desc">醉酒状态下开枪杀人。</div>
+            </div>
+        </div>
+
+        <!-- 答案解析 -->
+        <div class="analysis-box">
+            <h3 style="margin-top: 0; font-size: 16px;">✅ 正确答案解析 (选项 B)</h3>
+            <p><strong>"No, because the man intended to commit the murder and drank to strengthen his nerve."</strong></p>
+            <p>虽然谋杀（一级谋杀/Common Law Murder）通常包含特定意图（Specific Intent to kill），且自愿醉酒通常可以否定这种意图，但本案触发了<strong>例外情况</strong>。</p>
+            <p>因为意图是在醉酒<strong>之前</strong>就已经完全形成的，醉酒只是为了促进犯罪的实施。法律不允许被告人利用自己制造的醉酒状态来逃避早已策划好的犯罪责任。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div style="margin-top: 20px;">
+            <p style="font-size: 14px;"><strong>❌ 为什么选项 D 错误？</strong></p>
+            <p style="font-size: 13px; color: #666;">选项 D 机械地套用了“醉酒可以否定特定意图”的一般规则，却忽略了本案中<strong>意图形成的时间点</strong>。如果男子是在醉酒后才突然产生杀人念头，D 可能是对的。但在本案中，意图先于醉酒存在。</p>
+            
+            <p style="font-size: 14px; margin-top: 15px;"><strong>❌ 为什么选项 A 错误？</strong></p>
+            <p style="font-size: 13px; color: #666;">选项 A 讨论的是<strong>近因 (Proximate Cause)</strong>。虽然因果关系是犯罪构成的要素，但这里的核心争议点是精神状态 (Mens Rea)，而不是因果关系。喝酒并不是杀人的法律近因，男子的开枪行为才是。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-card" style="background-color: #e3f2fd; border-color: #2196f3; margin-top: 20px;">
+            <span class="concept-title">🎓 MBE 考试技巧 (Exam Tip)</span>
+            <p style="font-size: 13px;">在处理 <strong>Intoxication Defense</strong> 题目时，请按以下步骤思考：</p>
+            <ol style="font-size: 13px; padding-left: 20px;">
+                <li><strong>看罪名：</strong>是 Specific Intent（如谋杀、盗窃、抢劫）吗？如果是 General Intent（如殴打、强奸），自愿醉酒直接无效。</li>
+                <li><strong>看时间：</strong>如果是 Specific Intent，检查意图是何时形成的。如果是<strong>先有预谋，后喝酒壮胆</strong>，则醉酒抗辩无效。</li>
+            </ol>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

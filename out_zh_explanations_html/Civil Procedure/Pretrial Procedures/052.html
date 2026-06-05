@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点精析</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="card-header">
+            <h1>MBE 考点精析</h1>
+            <div class="sub-title">民事诉讼法: 审判前程序</div>
+        </div>
+
+        <div class="concept-box">
+            <h3>核心考点：多样性管辖案件中原告补充索赔的限制</h3>
+            <p class="latin">*Barred Supplemental Claims in Diversity-Jurisdiction Cases (28 U.S.C. § 1367(b))*</p>
+        </div>
+
+        <div class="section">
+            <h3>📊 概念对比：补充管辖权 (28 U.S.C. § 1367)</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>方面</th>
+                        <th><code>28 U.S.C. § 1367(a)</code> (一般规则)</th>
+                        <th><code>28 U.S.C. § 1367(b)</code> (多样性管辖案件中的限制)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>适用范围</b></td>
+                        <td>只要索赔与原始索赔构成同一案件或争议的一部分（即具有共同的事实核心），联邦法院即可行使补充管辖权。</td>
+                        <td>当原始管辖权仅基于<span class="term">多样性管辖权</span>时，对某些由<span class="term">原始原告</span>提出的索赔施加限制。</td>
+                    </tr>
+                    <tr>
+                        <td><b>主要目的</b></td>
+                        <td>提高司法效率，避免重复诉讼，确保所有相关索赔能在单一诉讼中解决。</td>
+                        <td>防止原告通过间接方式规避<span class="term">完全多样性原则</span>和<span class="term">争议金额要求</span>。</td>
+                    </tr>
+                    <tr>
+                        <td><b>受限方</b></td>
+                        <td>无特定限制，适用于任何当事人提出的索赔。</td>
+                        <td>主要限制<span class="strong">原始原告</span>（以及某些情况下根据<code>FRCP 19</code>或<code>24</code>加入的当事人）提出的索赔。</td>
+                    </tr>
+                    <tr>
+                        <td><b>受限索赔类型 (原告提出)</b></td>
+                        <td>无。</td>
+                        <td>针对根据<code>FRCP 14</code>（第三方索赔）、<code>FRCP 19</code>（强制加入）、<code>FRCP 20</code>（任意加入）或<code>FRCP 24</code>（介入）加入的当事人提出的索赔，如果行使补充管辖权会破坏<span class="term">多样性管辖权</span>。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="diagram">
+            <h3>🎨 案件当事人及索赔关系图</h3>
+            <div class="diagram-content">
+                <div class="party-box">消费者 (State A)</div>
+                <div class="arrow">↓ 原始索赔 (多样性管辖)</div>
+                <div class="party-box">零售商 (State B)</div>
+                <div class="arrow">↓ 第三方索赔 (FRCP 14 Impleader)</div>
+                <div class="party-box">制造商 (State A)</div>
+                <div class="arrow">↓ 额外索赔 (管辖权待定)</div>
+                <div class="flow-node active">消费者 (State A) 对 制造商 (State A) 的索赔</div>
+                <div class="arrow">↓ <code>28 U.S.C. § 1367(b)</code> 限制</div>
+                <div class="flow-node highlight-node">管辖权被禁止</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>⚖️ 法律依据与🧠 逐步分析</h3>
+            <div class="analysis-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <p><b>确定原始管辖权：</b></p>
+                    <p>原告（State A）对零售商（State B）提起的严格产品责任诉讼，满足<span class="term">完全多样性原则</span>（当事人来自不同州）且争议金额超过75,000美元，因此联邦法院对原始索赔拥有<span class="term">多样性管辖权</span>。</p>
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <p><b>零售商的第三方索赔：</b></p>
+                    <p>零售商（State B）根据<span class="code">FRCP 14</span>对制造商（State A）提起的第三方索赔，属于<span class="term">补充管辖权</span>的范畴。根据<span class="code">28 U.S.C. § 1367(a)</span>，只要索赔与原始索赔构成同一案件或争议的一部分，法院即可行使补充管辖权。零售商的第三方索赔与原始索赔源于同一交易或事件，因此法院对此索赔拥有补充管辖权。</p>
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <p><b>原告对制造商的额外索赔：</b></p>
+                    <p>原告（State A）随后对制造商（State A）提起了额外的索赔。法院是否对此索赔拥有管辖权是本案的核心问题。</p>
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <p><b>评估管辖权基础：</b></p>
+                    <ul>
+                        <li><b>联邦问题管辖权？</b> 制造商提出的联邦法律抗辩并不能为原告的索赔提供<span class="term">联邦问题管辖权</span>，因为联邦问题必须出现在原告的<span class="term">适当陈述的诉状</span>中，且不能仅仅是抗辩。原告的索赔是基于州法律的严格产品责任。</li>
+                        <li><b>多样性管辖权？</b> 原告和制造商都来自State A，因此不满足<span class="term">完全多样性原则</span>，法院不具备多样性管辖权。</li>
+                        <li><b>补充管辖权？</b> 由于原始管辖权是基于多样性，我们需要考虑<span class="code">28 U.S.C. § 1367(b)</span>的限制。</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <p><b>适用 <code>28 U.S.C. § 1367(b)</code>：</b></p>
+                    <p>根据<span class="code">28 U.S.C. § 1367(b)</span>，如果原始管辖权仅基于<span class="term">多样性管辖权</span>，联邦法院不得对由<span class="term">原始原告</span>提出的、针对根据<span class="code">FRCP 14</span>（第三方索赔）、<span class="code">FRCP 19</span>（强制加入）、<span class="code">FRCP 20</span>（任意加入）或<span class="code">FRCP 24</span>（介入）加入的当事人提出的索赔行使补充管辖权，如果行使该管辖权会破坏<span class="term">完全多样性原则</span>。</p>
+                    <p>在本案中，原告（原始原告）对制造商（根据<span class="code">FRCP 14</span>加入的第三方当事人）提起了索赔。原告和制造商都来自State A，如果法院对这项索赔行使补充管辖权，将破坏原始诉讼的完全多样性（因为原告和第三方被告将是同一州的公民）。因此，<span class="code">28 U.S.C. § 1367(b)</span>明确禁止法院对原告的这项索赔行使补充管辖权。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="trap-alert">
+            <h3>⚠️ 核心规则与易错点提示</h3>
+            <p>在<span class="term">多样性管辖权</span>案件中，<span class="code">28 U.S.C. § 1367(b)</span>旨在防止原告通过间接方式规避<span class="term">完全多样性原则</span>。尤其要注意，当原始管辖权是多样性管辖时，<span class="strong">原始原告</span>对根据<code>FRCP 14</code>（第三方索赔）、<code>FRCP 19</code>、<code>FRCP 20</code>或<code>FRCP 24</code>加入的当事人提出的索赔，如果会破坏多样性，则<span class="strong">补充管辖权被明确禁止</span>。记住，这些限制主要适用于<span class="strong">原始原告</span>提出的索赔。</p>
+        </div>
+
+        <div class="case-box">
+            <h3>🔑 拓展情景分析</h3>
+            <p><b>情景一：如果原始管辖权是联邦问题管辖权？</b></p>
+            <p>如果本案的原始索赔是基于<span class="term">联邦问题管辖权</span>（例如，消费者直接援引联邦法律提起诉讼），那么<span class="code">28 U.S.C. § 1367(b)</span>的限制将不适用。在这种情况下，只要原告对制造商的索赔与原始索赔构成同一案件或争议的一部分，法院就可以根据<span class="code">28 U.S.C. § 1367(a)</span>行使补充管辖权，即使原告和制造商来自同一州。</p>
+            <p><b>情景二：如果制造商来自State C？</b></p>
+            <p>如果制造商来自State C（与原告State A和零售商State B都不同），那么原告对制造商的额外索赔将直接满足<span class="term">多样性管辖权</span>的要求（原告State A vs. 制造商State C），法院将拥有原始管辖权，无需依赖补充管辖权。</p>
+        </div>
+
+        <div class="option-analysis">
+            <h3>✅ 正确答案与干扰项排除</h3>
+            <div class="option correct">
+                <b>D. No. (不能。)</b><br>
+                法院不能对消费者对制造商的索赔行使管辖权。如上述分析，原始管辖权是基于多样性管辖。消费者（原始原告）对根据<code>FRCP 14</code>加入的制造商（第三方当事人）提起的索赔，由于消费者和制造商都来自State A，行使补充管辖权将破坏完全多样性。根据<code>28 U.S.C. § 1367(b)</code>，这种情况下补充管辖权是被禁止的。
+            </div>
+            <div class="option wrong">
+                <b>A. Yes, based on diversity jurisdiction. (能，基于多样性管辖权。)</b><br>
+                错误。原告和制造商都来自State A。多样性管辖权要求所有原告与所有被告之间存在<span class="term">完全多样性</span>。由于原告和制造商是同一州的公民，因此不满足多样性管辖权的要求。
+            </div>
+            <div class="option wrong">
+                <b>B. Yes, based on federal-question jurisdiction. (能，基于联邦问题管辖权。)</b><br>
+                错误。原告的索赔是基于州法律的严格产品责任。虽然制造商提出了联邦法律抗辩，但<span class="term">联邦问题管辖权</span>必须出现在原告的<span class="term">适当陈述的诉状</span>中，且不能仅仅是抗辩。因此，原告的索赔不具备联邦问题管辖权。
+            </div>
+            <div class="option wrong">
+                <b>C. Yes, based on supplemental jurisdiction. (能，基于补充管辖权。)</b><br>
+                错误。尽管原告对制造商的索赔可能与原始索赔构成同一案件或争议的一部分（满足<code>28 U.S.C. § 1367(a)</code>），但由于原始管辖权是基于多样性，并且原告对根据<code>FRCP 14</code>加入的当事人提起了索赔，且该索赔会破坏多样性，因此<code>28 U.S.C. § 1367(b)</code>明确禁止法院行使补充管辖权。
+            </div>
+        </div>
+
+        <div class="footer-tip">
+            <h3>🎓 考点速记与应试技巧</h3>
+            <p><b>多样性管辖权案件中的补充管辖权陷阱：</b> 记住口诀“<span class="strong">原告对14、19、20、24条加入的当事人提起的索赔，若破坏多样性，则被禁！</span>” 这意味着在原始管辖权是多样性管辖时，原始原告不能利用补充管辖权将破坏多样性的索赔带入联邦法院，即使这些索赔与原始案件密切相关。始终检查索赔方是否是“原始原告”，以及被索赔方是如何加入案件的。</p>
+        </div>
+    </div>
+</body>
+</html>

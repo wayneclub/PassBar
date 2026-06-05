@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 8px;
+            font-weight: 300;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .concept-box {
+            background-color: #eef7fc;
+            border-left: 4px solid var(--accent-color);
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .analysis-section {
+            margin-bottom: 24px;
+        }
+
+        .analysis-title {
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+
+        .option-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+        }
+
+        .option-card.correct {
+            border-color: var(--success-color);
+            background-color: #f0f9f4;
+        }
+
+        .option-card.wrong {
+            border-color: #e74c3c;
+            opacity: 0.8;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .badge-correct { background: var(--success-color); color: white; }
+        .badge-wrong { background: #e74c3c; color: white; }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px dashed var(--warning-color);
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 证据法考点解析</h1>
+        <div class="subtitle">Evidence: Impeachment by Prior Inconsistent Statement</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <div class="concept-title">核心考点：遗漏作为不一致陈述</div>
+            <p>在证据法中，<b>先前不一致陈述 (Prior Inconsistent Statement)</b> 不仅指证人过去说了与现在相反的话，还包括<b>“该说而未说”</b>的情况。</p>
+            <p style="font-size: 0.9em; color: #555; margin-top:8px;">
+                如果一个理性的正常人在当时的情况下（natural to include）会提及某个重要细节，但证人当时保持沉默或遗漏了该细节，这种遗漏在法律上被视为与当前的证词不一致。
+            </p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情逻辑分析</div>
+            <p><b>1. 庭审证词：</b> 证人说被告被捕后声称有“不在场证明” (Alibi)。</p>
+            <p><b>2. 先前情境：</b> 警察曾专门问证人：“被告有没有跟你说过不在场证明的事？”</p>
+            <p><b>3. 矛盾点：</b> 面对警察的直接询问，证人当时没有提及此事。现在庭审却说被告说了。</p>
+            <p><b>4. 结论：</b> 这种“遗漏”构成先前不一致陈述，检察官可以据此进行<b>弹劾 (Impeachment)</b>。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">选项深度解析</div>
+
+            <!-- 正确选项 -->
+            <div class="option-card correct">
+                <span class="badge badge-correct">选项 D (正确)</span>
+                <p><b>理由：</b> 根据 <span class="latin">Federal Rules of Evidence (FRE) 613</span>，遗漏重要细节（尤其是在被直接询问时）等同于不一致陈述。检察官有权通过指出这种不一致来攻击证人的可信度。</p>
+            </div>
+
+            <!-- 错误选项 A -->
+            <div class="option-card">
+                <span class="badge badge-wrong">选项 A (错误)</span>
+                <p><b>理由：</b> 混淆了概念。这里不是用“特定行为事例” (Specific Instances of Conduct, FRE 608) 来攻击证人的诚实品格（如诈骗前科），而是攻击其证词的前后矛盾。</p>
+            </div>
+
+            <!-- 错误选项 B -->
+            <div class="option-card">
+                <span class="badge badge-wrong">选项 B (错误)</span>
+                <p><b>理由：</b> 错误引用<b>附带证据规则 (Collateral Evidence Rule)</b>。被告是否有不在场证明是案件的核心问题，绝非“附带” (Collateral) 事项。此外，检察官是在交叉询问中直接提问（内部证据），而非引入外部证人。</p>
+            </div>
+
+            <!-- 错误选项 C -->
+            <div class="option-card">
+                <span class="badge badge-wrong">选项 C (错误)</span>
+                <p><b>理由：</b> <b>偏见 (Bias)</b> 通常涉及亲属关系、金钱利益或仇恨。虽然证人可能因为想帮被告而撒谎，但本题的事实模式更直接地指向“前后说法不一”，而非证明某种特定的偏见关系。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <div style="font-weight: bold; color: var(--warning-color); margin-bottom: 8px;">💡 MBE 提分技巧</div>
+            <p>遇到 <b>Impeachment</b> 题目时，请按以下步骤思考：</p>
+            <ol style="padding-left: 20px; margin: 0;">
+                <li>是攻击证人的<b>品格</b>（Character）还是<b>证词</b>（Testimony）？</li>
+                <li>如果是“沉默”或“遗漏”，判断当时提及该细节是否<b>合乎常理 (Natural to mention)</b>。</li>
+                <li>如果是，那就是<b>先前不一致陈述</b>。</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

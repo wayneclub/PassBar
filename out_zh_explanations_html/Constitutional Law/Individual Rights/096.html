@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #1a237e; /* Deep Indigo */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .highlight-box {
+            background-color: #e8eaf6;
+            border-left: 5px solid #3f51b5;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box h3 {
+            margin-top: 0;
+            color: #1a237e;
+            font-size: 1.1rem;
+        }
+        .concept-tag {
+            display: inline-block;
+            background-color: #e0f7fa;
+            color: #006064;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .analysis-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .analysis-item:last-child {
+            border-bottom: none;
+        }
+        .correct-answer {
+            color: #2e7d32; /* Green */
+            font-weight: bold;
+        }
+        .wrong-answer {
+            color: #c62828; /* Red */
+            font-weight: bold;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .exam-tip {
+            background-color: #fff3e0;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+        .exam-tip-title {
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Constitutional Law: Equal Protection</div>
+    </div>
+
+    <div class="content">
+        <span class="concept-tag">Fundamental Rights</span>
+        <span class="concept-tag">Strict Scrutiny</span>
+
+        <p>本题考察的核心法律原则是<b>迁徙权 (Right to Travel)</b> 以及针对<b>持续居住年限要求 (Durational Residency Requirements)</b> 的审查标准。</p>
+
+        <div class="highlight-box">
+            <h3>核心结论</h3>
+            <p>正确答案是 <b>D</b>。</p>
+            <p>因为该法律通过拒绝向新居民提供基本医疗福利，惩罚了他们的跨州迁徙行为，从而给<b>基本迁徙权 (Fundamental Right to Travel)</b> 造成了负担。此类法律必须接受<b>严格审查 (Strict Scrutiny)</b>，且通常被判定为违宪。</p>
+        </div>
+
+        <h3>法律推理详细解析</h3>
+
+        <div class="analysis-item">
+            <div class="correct-answer">1. 迁徙权是基本权利</div>
+            <p>美国最高法院认定，跨州迁徙的权利是一项基本权利。虽然宪法文本中没有明确写出“Right to Travel”，但法院通常通过第十四修正案的<b>特权或豁免条款 (Privileges or Immunities Clause)</b> 或<b>平等保护条款 (Equal Protection Clause)</b> 来保护这一权利。</p>
+        </div>
+
+        <div class="analysis-item">
+            <div class="correct-answer">2. 持续居住年限要求的审查标准</div>
+            <p>当一个州法律根据居住时间长短对居民进行区别对待（例如：居住满一年 vs. 不满一年），并剥夺新居民的<b>“生活必需品” (Necessities of Life)</b> 时，这种分类被视为对迁徙权的“惩罚” (Penalty)。</p>
+            <p>因此，法院不适用<b>合理基础审查 (Rational Basis Review)</b>，而是适用<b>严格审查 (Strict Scrutiny)</b>。州政府必须证明该法律是为实现<b>紧迫的州利益 (Compelling State Interest)</b> 所<b>必需 (Necessary)</b> 的。</p>
+        </div>
+
+        <div class="analysis-item">
+            <div class="correct-answer">3. 判例依据</div>
+            <p>本题的情节直接对应最高法院的判例 <span class="latin">Memorial Hospital v. Maricopa County (1974)</span>。在该案中，法院裁定亚利桑那州一项要求居住满一年才能获得非紧急医疗资助的法律违宪。法院认为，医疗保健属于“生活必需品”，剥夺此项福利严重阻碍了迁徙权。</p>
+        </div>
+
+        <h3>为什么其他选项是错误的？</h3>
+
+        <div class="analysis-item">
+            <span class="wrong-answer">选项 A & B (错误)</span><br>
+            这两个选项都试图应用<b>合理基础审查 (Rational Basis)</b>，理由是保护财政资源（Fiscal Integrity）。
+            <ul>
+                <li>虽然保护州财政通常是“合法的州利益” (Legitimate State Interest)，但在<b>严格审查</b>下，仅仅为了省钱不足以成为剥夺基本权利的理由。</li>
+                <li>如果本题不涉及基本权利（例如州内大学学费优惠），由于不涉及“生活必需品”，可能会适用合理基础审查，但在医疗这种生死攸关的问题上，必须适用严格审查。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-item">
+            <span class="wrong-answer">选项 C (错误)</span><br>
+            <b>不存在基本的医疗保健权 (No Fundamental Right to Health Care)。</b>
+            <p>美国宪法并未承认获得政府资助的医疗保健是一项基本权利。因此，如果仅仅基于“医疗权”起诉，原告会败诉。本题胜诉的关键在于“区别对待新旧居民”侵犯了“迁徙权”，而不是侵犯了“医疗权”。</p>
+        </div>
+
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 考试技巧</span>
+            <p>在遇到涉及<b>居住期限 (Residency Requirements)</b> 的题目时，请按以下步骤分析：</p>
+            <ol>
+                <li><b>涉及什么福利？</b> 如果是<b>生活必需品</b>（如福利金 <span class="latin">Shapiro v. Thompson</span>、医疗 <span class="latin">Memorial Hospital</span>）或<b>投票权</b> (<span class="latin">Dunn v. Blumstein</span>)，则适用<b>严格审查</b>，法律通常<b>违宪</b>。</li>
+                <li><b>如果是次要福利？</b> 如果是州内学费 (In-state tuition) 或离婚管辖权 (Divorce jurisdiction)，法院通常适用<b>合理基础审查</b>，法律通常<b>合宪</b>。</li>
+            </ol>
+            <p>记住：<b>省钱 (Saving Money)</b> 永远不是侵犯基本权利的“紧迫利益” (Compelling Interest)。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --text-color: #333;
+        --bg-color: #f4f7f6;
+        --card-bg: #ffffff;
+        --correct-color: #27ae60;
+        --wrong-color: #c0392b;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background-color: transparent;
+    }
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .header h1 {
+        font-size: 24px;
+        color: var(--primary-color);
+        margin: 0;
+        border-bottom: 3px solid var(--accent-color);
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+    .card {
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        padding: 20px;
+        margin-bottom: 20px;
+        border-left: 5px solid var(--accent-color);
+    }
+    .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+    }
+    .card-title::before {
+        content: '⚖️';
+        margin-right: 8px;
+        font-size: 20px;
+    }
+    .concept-box {
+        background-color: var(--highlight-bg);
+        border-radius: 8px;
+        padding: 12px;
+        margin: 10px 0;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 13px;
+    }
+    .comparison-table th, .comparison-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    .comparison-table th {
+        background-color: var(--primary-color);
+        color: white;
+    }
+    .answer-analysis {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+    .key-term {
+        font-weight: bold;
+        color: var(--accent-color);
+    }
+    .case-ref {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 12px;
+    }
+    .badge {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: bold;
+        color: white;
+        margin-right: 5px;
+    }
+    .badge-correct { background-color: var(--correct-color); }
+    .badge-wrong { background-color: var(--wrong-color); }
+    
+    .exam-tip {
+        background-color: #fff3cd;
+        border-left: 5px solid #ffc107;
+        color: #856404;
+    }
+    .exam-tip .card-title::before {
+        content: '💡';
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析：证据法</h1>
+        <p style="font-size: 14px; color: #666;">Spousal Privileges (配偶特权)</p>
+    </div>
+
+    <!-- 核心考点讲解 -->
+    <div class="card">
+        <div class="card-title">核心考点：两种配偶特权</div>
+        <p>在联邦证据法（Federal Rules of Evidence）下，处理夫妻作证问题时，必须区分两种截然不同的特权。本题考察的是第一种。</p>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>特性</th>
+                    <th>配偶豁免特权<br>(Spousal Immunity)</th>
+                    <th>配偶通讯特权<br>(Marital Communications)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>适用案件</b></td>
+                    <td>仅限<b>刑事</b>案件<br>(Criminal Only)</td>
+                    <td>民事和刑事案件<br>(Civil & Criminal)</td>
+                </tr>
+                <tr>
+                    <td><b>保护范围</b></td>
+                    <td><b>拒绝作证</b><br>(Refuse to testify entirely)</td>
+                    <td>仅限<b>保密通信</b><br>(Confidential Communications)</td>
+                </tr>
+                <tr>
+                    <td><b>权利持有人</b><br>(Holder)</td>
+                    <td><b>作证配偶</b><br>(Witness-Spouse)</td>
+                    <td><b>双方</b>配偶<br>(Both Spouses)</td>
+                </tr>
+                <tr>
+                    <td><b>婚姻状态</b></td>
+                    <td>审判时必须<b>已婚</b></td>
+                    <td>通信时必须已婚<br>(离婚后仍有效)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 题目解析 -->
+    <div class="card">
+        <div class="card-title">本题案情分析</div>
+        <div class="answer-analysis">
+            <p><b>1. 案件类型：</b>联邦银行抢劫案（刑事案件）。</p>
+            <p><b>2. 争议焦点：</b>检察官试图强迫被告的妻子作证，描述被告当天的衣着。</p>
+            <p><b>3. 关键事实：</b>妻子<b>反对</b>作证（Objected to testifying）。</p>
+            
+            <div class="concept-box">
+                <p><b>法律适用：</b><br>
+                由于是刑事案件，且涉及妻子是否必须出庭作证，适用<b>配偶豁免特权 (Spousal Immunity)</b>。</p>
+                <p>根据最高法院判例 <span class="case-ref">Trammel v. United States (1980)</span>，在联邦法院，该特权属于<b>作证配偶 (Witness-Spouse)</b>。</p>
+            </div>
+
+            <p><b>结论：</b><br>
+            妻子作为特权的持有者，拥有<b>单方面决定权</b>。她可以选择作证，也可以选择拒绝作证。既然她反对作证，法院不能强迫她。</p>
+        </div>
+    </div>
+
+    <!-- 选项辨析 -->
+    <div class="card">
+        <div class="card-title">选项深度辨析</div>
+        
+        <div style="margin-bottom: 15px;">
+            <span class="badge badge-correct">正确答案 B</span>
+            <p style="margin-top: 5px;"><b>不应要求，因为妻子享有特权。</b><br>
+            这是对 <i>Trammel</i> 规则的直接应用。妻子持有特权，她选择行使该特权，因此不能被强迫作证。</p>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <span class="badge badge-wrong">错误选项 A</span>
+            <p style="margin-top: 5px;"><b>被告享有特权？错。</b><br>
+            这是旧的普通法规则。现在的联邦规则是：被告<b>不能阻止</b>愿意作证的配偶作证。特权掌握在证人（妻子）手中，不在被告（丈夫）手中。</p>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <span class="badge badge-wrong">错误选项 D</span>
+            <p style="margin-top: 5px;"><b>因为不是保密通信？错。</b><br>
+            这是一个典型的<b>干扰项</b>。虽然“看到衣物”确实不是“通信”（Communication），但这涉及的是<b>配偶通讯特权</b>的规则。本题中妻子主张的是<b>配偶豁免特权</b>（完全不作证），该特权涵盖所有证词，包括观察到的非通信事实。只要妻子不想说，她就可以不说。</p>
+        </div>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card exam-tip">
+        <div class="card-title">MBE 解题技巧</div>
+        <p>遇到配偶作证的题目，按以下步骤思考：</p>
+        <ol style="padding-left: 20px; margin: 0;">
+            <li><b>看案件类型：</b>是刑事还是民事？（刑事才涉及豁免特权）。</li>
+            <li><b>看谁想作证：</b>配偶是想帮被告，还是想指证被告？</li>
+            <li><b>看谁持有特权：</b>
+                <ul>
+                    <li>如果是<b>豁免特权</b>（刑事+完全不作证）：只有<b>证人配偶</b>说了算。</li>
+                    <li>如果是<b>通讯特权</b>（保密对话）：<b>被告配偶</b>可以阻止证人泄露对话。</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

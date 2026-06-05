@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-color: #f1c40f;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .diagram {
+            display: flex;
+            margin: 20px 0;
+            font-size: 0.75rem;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .diagram-part {
+            padding: 10px 2px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .d-y1 { background-color: #d5dbdb; flex: 1; border-right: 1px solid white; }
+        .d-y2 { background-color: #f5b7b1; flex: 1; border-right: 1px solid white; color: #922b21; font-weight: bold;}
+        .d-y3 { background-color: #d5dbdb; flex: 1; }
+
+        .rule-breakdown {
+            margin-bottom: 20px;
+        }
+
+        .rule-item {
+            margin-bottom: 15px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .conclusion {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+        }
+
+        .conclusion-header {
+            color: #f39c12;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .icon {
+            margin-right: 8px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Real Property: Landlord & Tenant</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：分租 vs. 转让</span>
+            <p>本题的关键在于判断法学院学生（T1）与研究生（T2）之间的交易是 <strong>Assignment (转让)</strong> 还是 <strong>Sublease (分租)</strong>。</p>
+        </div>
+
+        <!-- 图解时间线 -->
+        <p style="font-size: 0.9rem; color: #666; margin-bottom: 5px;">租赁期时间线图解：</p>
+        <div class="diagram">
+            <div class="diagram-part d-y1">
+                <span>第1年</span>
+                <span>T1 居住</span>
+            </div>
+            <div class="diagram-part d-y2">
+                <span>第2年</span>
+                <span>T2 (分租)</span>
+            </div>
+            <div class="diagram-part d-y3">
+                <span>第3年</span>
+                <span>T1 (收回)</span>
+            </div>
+        </div>
+
+        <div class="rule-breakdown">
+            <h3>1. 法律定性：Sublease (分租)</h3>
+            <p><strong>规则：</strong>如果原承租人转让的时间<strong>短于</strong>其剩余的租赁期限，并保留了<strong>Reversionary Interest (回复权)</strong>，则该转让为 Sublease。</p>
+            <p><strong>本案分析：</strong>T1 的租期还剩2年，但他只租给 T2 1年。T1 保留了第3年的占有权（事实上他也确实在第3年搬回去了）。因此，这是一个 <strong>Sublease</strong>。</p>
+        </div>
+
+        <div class="rule-breakdown">
+            <h3>2. 责任分析：Privity (债的关联)</h3>
+            <p>房主 (L) 能否起诉某人，取决于他们之间是否存在以下两种关系之一：</p>
+            
+            <ul>
+                <li><strong>Privity of Contract (合同之债)：</strong> 双方是否签署了合同？</li>
+                <li><strong>Privity of Estate (财产之债/地产关联)：</strong> 双方是否在土地占有上存在直接的法律链条？</li>
+            </ul>
+
+            <h4>对法学院学生 (T1) 的分析：</h4>
+            <ul>
+                <li><strong>合同关系：</strong>有。T1 与房主签署了原始租约。除非房主明确释放 (Release/Novation)，否则 T1 始终承担支付租金的合同义务。</li>
+                <li><strong>结论：</strong>T1 对全部未付租金 ($24,000) 负责。</li>
+            </ul>
+
+            <h4>对研究生 (T2) 的分析：</h4>
+            <ul>
+                <li><strong>合同关系：</strong>无。T2 只与 T1 签了合同，没与房主签。</li>
+                <li><strong>地产关联 (Privity of Estate)：</strong>无。这是 Sublease 的核心特征。在 Sublease 中，T1 保留了部分权益，隔断了房主与 T2 之间的地产关联。</li>
+                <li><strong>结论：</strong>T2 对房主<strong>不承担任何直接责任</strong>。</li>
+            </ul>
+            <p style="font-size: 0.85rem; color: #7f8c8d; font-style: italic;">注：如果是 Assignment (转让全部剩余租期)，T2 将与房主建立 Privity of Estate，从而需要承担责任。但本题是 Sublease。</p>
+        </div>
+
+        <!-- 结论 -->
+        <div class="conclusion">
+            <div class="conclusion-header">
+                <span>✅ 正确答案：D</span>
+            </div>
+            <p><strong>法学院学生个人承担 $24,000，对研究生无判决。</strong></p>
+            <p style="margin-top:10px; font-size: 0.9rem;">
+                因为是 Sublease，次承租人 (Sublessee) 对原房主既无合同义务也无地产义务。原承租人 (Original Tenant) 始终因合同关系对房主负全责。
+            </p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        MBE Property Law Review © 2025
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fef9e7;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机宽度 */
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            font-size: 1.4em;
+            margin-top: 0;
+        }
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .case-analysis {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: var(--border-radius);
+        }
+        .correct-answer {
+            border: 2px solid #27ae60;
+            background-color: #eafaf1;
+        }
+        .wrong-answer {
+            opacity: 0.8;
+            background-color: #f9f9f9;
+        }
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .tag-law { background: #e74c3c; color: white; }
+        .tag-fact { background: #f39c12; color: white; }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .summary-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>MBE 考点解析：认识错误</h2>
+    
+    <p>本题考察的是刑法中<b>“事实认识错误” (Mistake of Fact)</b> 与 <b>“法律认识错误” (Mistake of Law)</b> 的关键区别。</p>
+
+    <div class="concept-box">
+        <strong>核心原则：</strong>
+        <p>在普通法 (Common Law) 下，<b>法律认识错误通常不能作为抗辩理由</b>，而事实认识错误在特定条件下可以作为抗辩。</p>
+        <p class="latin">"Ignorantia juris non excusat" (不知法不免责)</p>
+    </div>
+
+    <h3>✅ 正确答案分析 (选项 B)</h3>
+    <div class="case-analysis correct-answer">
+        <span class="tag tag-law">法律认识错误</span>
+        <p><b>案情：</b>被告人被控重婚罪 (Bigamy)。他知道妻子失踪了4年，但他<b>错误地认为</b>法律规定的推定死亡时间是3年（实际上是5年）。</p>
+        <p><b>解析：</b></p>
+        <ul>
+            <li>被告人对事实（失踪4年）很清楚，他的错误在于对<b>法律条文</b>（Statute）的理解。</li>
+            <li>这就是典型的<b>法律认识错误 (Mistake of Law)</b>。</li>
+            <li>即使被告人的信念是真诚的，法律认识错误也不能作为重婚罪的抗辩理由。因此，法院最有可能判定其罪名成立。</li>
+        </ul>
+    </div>
+
+    <h3>❌ 其他选项为何不成立？</h3>
+    <p>其他选项均属于<b>事实认识错误 (Mistake of Fact)</b>，且该错误<b>否定了犯罪意图 (Mens Rea)</b>，因此被告人通常会被判无罪或罪名减轻。</p>
+
+    <div class="case-analysis wrong-answer">
+        <span class="tag tag-fact">特定意图犯罪</span>
+        <p><b>选项 A (意图强奸)：</b><br>
+        这是<b>特定意图犯罪 (Specific Intent Crime)</b>。被告人错误地认为受害人同意（事实错误）。这一错误直接否定了“意图强奸”所需的心理状态。只要错误是真诚的（Honest），无论是否合理，都构成抗辩。</p>
+    </div>
+
+    <div class="case-analysis wrong-answer">
+        <span class="tag tag-fact">特定意图犯罪</span>
+        <p><b>选项 C (入室盗窃 Burglary)：</b><br>
+        Burglary 需要“意图在内实施重罪（通常是盗窃）”。被告人错误地认为打字机是自己的（事实错误）。这否定了盗窃意图 (Intent to steal)。没有特定意图，罪名不成立。</p>
+    </div>
+
+    <div class="case-analysis wrong-answer">
+        <span class="tag tag-fact">杀人罪抗辩</span>
+        <p><b>选项 D (谋杀 vs. 自卫)：</b><br>
+        被告人错误地认为对方要开枪（事实错误）。这属于<b>不完美的自卫 (Imperfect Self-Defense)</b>。这种错误虽然不合理，但否定了谋杀罪所需的“预谋恶意” (Malice Aforethought)。结果通常是降格为<b>任意过失杀人 (Voluntary Manslaughter)</b>，而不是题目所控的“谋杀罪”。</p>
+    </div>
+
+    <h3>🎓 MBE 考试技巧</h3>
+    <table class="summary-table">
+        <thead>
+            <tr>
+                <th>错误类型</th>
+                <th>特定意图犯罪<br><small>(如：盗窃、入室犯法、意图...)</small></th>
+                <th>一般意图犯罪<br><small>(如：殴打、强奸)</small></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>事实错误</b></td>
+                <td><b>构成抗辩</b><br>(只要是真诚的，哪怕不合理)</td>
+                <td><b>构成抗辩</b><br>(必须是真诚<b>且合理</b>的)</td>
+            </tr>
+            <tr>
+                <td><b>法律错误</b></td>
+                <td colspan="2" style="text-align: center; background-color: #ffebee;"><b>通常不构成抗辩</b><br>(除非极少数例外)</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="concept-box" style="background-color: #fff3cd; border-left-color: #f1c40f;">
+        <b>解题关键：</b><br>
+        看到题目中被告人是因为<b>“搞错了法律规定”</b>（如选项B中的年限）而犯错时，直接联想 <b>Mistake of Law</b>，这通常是一条死胡同，无法脱罪。
+    </div>
+
+</div>
+
+</body>
+</html>

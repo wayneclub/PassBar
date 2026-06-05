@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --violation-color: #e74c3c;
+            --safe-color: #27ae60;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .concept-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .concept-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .tag {
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .tag.violation { background-color: var(--violation-color); }
+        .tag.safe { background-color: var(--safe-color); }
+        
+        .key-term {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .rule-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f2f2f2;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>不动产法：租赁权益的转让与限制</p>
+    </div>
+
+    <div class="content">
+        <!-- 答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：A</span>
+            仅允许汽车爱好者独家使用车库的行为违反了租赁合同。
+        </div>
+
+        <p>本题的核心考点在于区分<b>分租 (Sublease)</b> 与 <b>使用许可 (License)</b>，以及法院如何解释租赁合同中的限制性条款。</p>
+
+        <!-- 场景一分析 -->
+        <div class="concept-card">
+            <div class="concept-title">
+                场景 1：车库 (The Garage)
+                <span class="tag violation">违反合同</span>
+            </div>
+            <p><b>事实特征：</b></p>
+            <ul>
+                <li><b>独家使用 (Exclusive Use)：</b>邻居拥有排他性的权利。</li>
+                <li><b>上锁 (Under Lock and Key)：</b>明确的控制权标志。</li>
+                <li><b>固定期限与租金：</b>两年，$240。</li>
+            </ul>
+            <p><b>法律定性：分租 (Sublease)</b></p>
+            <p>当租户将部分物业的<b>独家占有权 (Exclusive Possession)</b> 转让给第三方，且时间短于剩余租期时，这构成了分租。由于合同明确禁止 "subletting"，此行为违约。</p>
+        </div>
+
+        <!-- 场景二分析 -->
+        <div class="concept-card">
+            <div class="concept-title">
+                场景 2：高尔夫田地 (The Fields)
+                <span class="tag safe">未违反</span>
+            </div>
+            <p><b>事实特征：</b></p>
+            <ul>
+                <li><b>非独家 (Non-exclusive)：</b>只要不打扰羊群即可使用。</li>
+                <li><b>特定目的：</b>仅用于练习高尔夫。</li>
+                <li><b>无占有权移交：</b>牧场主仍保留对田地的控制。</li>
+            </ul>
+            <p><b>法律定性：使用许可 (License)</b></p>
+            <p>License 仅仅是一种<b>进入土地的特权 (Privilege to enter land)</b>，不构成不动产权益的转让，也不涉及占有权的移交。</p>
+        </div>
+
+        <!-- 核心法则 -->
+        <div class="rule-box">
+            <strong>⚖️ 法律解释原则 (Rule of Construction)</strong><br>
+            法院通常<b>严格解释 (Strictly Construe)</b> 针对转让的限制条款。
+            <br><br>
+            如果租赁合同仅禁止“转让 (Assignment)”和“分租 (Subletting)”，法院<b>不会</b>将其扩大解释为禁止“使用许可 (License)”。除非合同明确写明 "No Licenses"，否则租户有权发放 License。
+        </div>
+
+        <!-- 对比表格 -->
+        <h3>考点总结：如何区分？</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>特征</th>
+                    <th>分租 (Sublease)</th>
+                    <th>使用许可 (License)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>核心权利</b></td>
+                    <td>独家占有权<br><span class="english-term">Exclusive Possession</span></td>
+                    <td>使用特权<br><span class="english-term">Privilege to Use</span></td>
+                </tr>
+                <tr>
+                    <td><b>排他性</b></td>
+                    <td>是 (可排除房东/租户)</td>
+                    <td>否 (通常非独家)</td>
+                </tr>
+                <tr>
+                    <td><b>典型标志</b></td>
+                    <td>"独家使用"、"上锁"、"固定空间"</td>
+                    <td>"允许进入"、"不打扰他人"</td>
+                </tr>
+                <tr>
+                    <td><b>本题结果</b></td>
+                    <td>❌ 违反禁令</td>
+                    <td>✅ 合法</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top: 20px; font-size: 14px; color: #555;">
+            <p><b>💡 考试技巧 (Exam Tip)：</b><br>
+            在 MBE 题目中，看到 <b>"Exclusive Use" (独家使用)</b> 或 <b>"Under Lock and Key" (上锁)</b> 这样的字眼，几乎总是暗示<b>占有权 (Possession)</b> 的转移，从而构成 Lease 或 Sublease。反之，如果只是允许某人做某事（如打球、挂广告牌），通常只是 License。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

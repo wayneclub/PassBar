@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .rule-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .element-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .element-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .element-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .key-point {
+            font-weight: bold;
+            color: var(--wrong-color);
+        }
+
+        .comparison {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+
+        .exam-tip {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .exam-tip-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            color: var(--accent-color);
+        }
+
+        code {
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+            color: #c7254e;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Intentional Torts: False Imprisonment</div>
+    </div>
+
+    <div class="content">
+        <!-- Answer Section -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：B</span>
+            <p><strong>不能，因为书记员无意禁锢该律师。</strong><br>
+            (No, because the clerk did not intend to confine the lawyer.)</p>
+        </div>
+
+        <!-- Legal Rule Section -->
+        <div class="rule-card">
+            <div class="rule-title">核心法律规则 (The Rule)</div>
+            <p><strong>非法监禁 (False Imprisonment)</strong> 是一种故意侵权行为 (Intentional Tort)，其构成要件如下：</p>
+            <ul class="element-list">
+                <li><strong>Act:</strong> 被告实施了禁锢或限制原告在特定区域内的行为。</li>
+                <li><strong>Intent:</strong> 被告具有禁锢原告的<strong>故意 (Intent)</strong>。</li>
+                <li><strong>Awareness/Harm:</strong> 原告在被禁锢时对此<strong>知情 (Aware)</strong>，或者因禁锢遭受了实际损害。</li>
+            </ul>
+        </div>
+
+        <!-- Detailed Analysis -->
+        <div class="analysis-section">
+            <h3>⚖️ 案情分析</h3>
+            <p>本题的关键在于<strong>Intent (意图)</strong>。</p>
+            <p>虽然书记员锁门的行为确实导致了律师被关在图书馆内（满足了 Act 和 Confinement），且律师也知道自己被关住了（满足了 Awareness），但是：</p>
+            <p>题目明确指出书记员<strong>不知道 (Unaware)</strong> 律师在图书馆内。因此，书记员不可能有“禁锢该律师”的特定意图。</p>
+            <p>在 Intentional Torts 中，如果没有意图，就不构成该侵权行为。</p>
+        </div>
+
+        <!-- Distractor Analysis (Why C is wrong) -->
+        <div class="comparison">
+            <strong>🚫 易错点辨析 (Option C vs. B)</strong><br><br>
+            选项 C 提到“书记员本应该检查”(should have checked)。<br>
+            这是一个典型的<strong>过失 (Negligence)</strong> 标准。如果律师起诉的是 Negligence，那么书记员未尽到合理注意义务 (Duty of Care) 可能是理由。但本题问的是 <code>False Imprisonment</code>，这是一个<strong>故意侵权</strong>。过失不足以构成故意侵权。
+        </div>
+
+        <!-- Exam Tip -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 考试技巧</span>
+            <p>在处理 <strong>Intentional Torts</strong> 题目时，第一步永远是检查被告是否具有<strong>Intent (故意)</strong>。</p>
+            <p>如果题目描述被告是“粗心的 (careless)”、“不知道的 (unaware)”或“本应该知道的 (should have known)”，这通常指向 Negligence，而不是 Intentional Tort。除非适用“转移故意 (Transferred Intent)”，否则没有故意就没有责任。</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

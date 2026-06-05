@@ -5,7 +5,7 @@ generate_zh_explanations.py
 读取 out/ 目录下所有 castudy JSON 档案，为每一道题目输出结构化资料：
   - 英文题目、英文选项、正确答案、英文解析图（jpg/png）
   - 中文题目、中文选项（从 questionStem / options 提取）
-  - 中文解析 HTML（已有的取 htmlContent；缺少的呼叫 Gemini 生成）
+  - 中文解析 HTML（已有的取 htmlContent；缺少的呼叫 AI 生成）
 
 输出：
   - 每个章节目录下新增 <chapter>_enriched.json
@@ -13,6 +13,7 @@ generate_zh_explanations.py
 
 使用方式：
   python3 generate_zh_explanations.py                  # 处理全部
+  python3 generate_zh_explanations.py --provider gpt   # 使用 OpenAI GPT
   python3 generate_zh_explanations.py --dry-run        # 只印出计划，不呼叫 API
   python3 generate_zh_explanations.py --subject "Torts" # 只处理特定 subject
   python3 generate_zh_explanations.py --chapter "Negligence" # 只处理特定 chapter
@@ -34,7 +35,10 @@ from pathlib import Path
 
 # ── 設定 ──────────────────────────────────────────────────────────────────────
 
-GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_MODEL = "gemini-3.5-flash"
+OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "gpt-5.4-mini")
+AI_PROVIDER = "gemini"
+AI_MODEL = GEMINI_MODEL
 
 # 多組 API Key 輪替（round-robin）
 # 從環境變數讀取，支援 .env 檔案（見 scripts/.env.example）
@@ -66,22 +70,26 @@ _GEMINI_API_KEYS: list[str] = [
     ] if k
 ]
 
-if (
-    not _GEMINI_API_KEYS
-    and "--dry-run" not in sys.argv
-    and "--no-gemini" not in sys.argv
-):
-    print("ERROR: No GEMINI_API_KEY_1 ~ GEMINI_API_KEY_N found in environment or .env file.")
-    print("  Create scripts/.env and add:")
-    print("  GEMINI_API_KEY_1=your_key_here")
-    sys.exit(1)
-
 _key_index = 0  # 全域輪替指標
+
+
+def set_ai_provider(provider: str, model: str | None = None) -> None:
+    """設定本次執行使用的 AI provider/model。"""
+    global AI_PROVIDER, AI_MODEL
+    AI_PROVIDER = provider
+    if provider == "gpt":
+        AI_MODEL = model or OPENAI_MODEL
+    else:
+        AI_MODEL = model or GEMINI_MODEL
 
 
 def next_api_key() -> str:
     """輪流取得下一組 API Key。"""
     global _key_index
+    if not _GEMINI_API_KEYS:
+        raise RuntimeError(
+            "No GEMINI_API_KEY_1 ~ GEMINI_API_KEY_N found in environment or .env file."
+        )
     key = _GEMINI_API_KEYS[_key_index % len(_GEMINI_API_KEYS)]
     _key_index += 1
     return key
@@ -186,21 +194,29 @@ Please strictly follow the CSS visual requirements below. Embed refined styles d
 
 2. Mandatory CSS scaffold:
    The HTML must include CSS equivalent to the following contract. You may add selectors, but do not override these values with another theme:
+
+   CRITICAL LAYOUT RULES (do not violate):
+   - DO NOT use `display: flex` or `justify-content: center` on `body` — the page is rendered inside an iframe that forces `body {{ display: block }}`, and flex centering will be stripped.
+   - DO NOT use `margin: 0 auto` on `.container` — the iframe resets `margin-left` and `margin-right` to 0, so auto-margin centering does not work.
+   - DO NOT set a fixed `max-width` less than 100% on `.container` — the iframe forces `width: 100%`. Instead, use horizontal padding on `.container` for breathing room.
+   - The page MUST look correct at full width (100% of the iframe), not as a narrow centered card.
+
    ```css
    * {{ box-sizing: border-box; }}
    body {{
      margin: 0;
-     padding: 24px 18px;
+     padding: 0;
      background: var(--bg-color);
      color: var(--text-color);
      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
      font-size: 18px;
      line-height: 1.72;
      letter-spacing: 0;
+     display: block;
    }}
    .container {{
-     width: min(100%, 960px);
-     margin: 0 auto;
+     width: 100%;
+     padding: 0 24px 32px;
      background: var(--card-bg);
    }}
    .header {{
@@ -213,14 +229,14 @@ Please strictly follow the CSS visual requirements below. Embed refined styles d
    }}
    .header h1 {{
      margin: 0 0 12px;
-     font-size: clamp(30px, 4vw, 42px);
+     font-size: 32px;
      line-height: 1.15;
      font-weight: 800;
      letter-spacing: 0;
    }}
    .sub-title {{
      margin: 0;
-     font-size: clamp(18px, 2.4vw, 24px);
+     font-size: 20px;
      line-height: 1.35;
      font-weight: 700;
      color: rgba(255,255,255,0.92);
@@ -232,13 +248,13 @@ Please strictly follow the CSS visual requirements below. Embed refined styles d
      letter-spacing: 0;
    }}
    h2 {{
-     font-size: clamp(24px, 3vw, 32px);
+     font-size: 26px;
      border-bottom: 3px solid var(--accent-color);
      padding-bottom: 10px;
      margin: 34px 0 20px;
    }}
    h3 {{
-     font-size: clamp(21px, 2.4vw, 26px);
+     font-size: 22px;
      margin: 28px 0 16px;
    }}
    p, li {{
@@ -270,7 +286,8 @@ Please strictly follow the CSS visual requirements below. Embed refined styles d
    - `.option.correct`: green card with `background: var(--correct-bg)`, `border-left: 5px solid var(--correct-border)`.
    - `.option.wrong`: red may appear only here, with `background: var(--wrong-bg)`, `border-left: 5px solid var(--wrong-border)`, `color: var(--wrong-text)`.
    - `code`: `background: rgba(0,0,0,0.05)`, `padding: 2px 4px`, `border-radius: 4px`, `font-size: 0.92em`.
-   - `.term`: `background: #e1ecf4`, `color: #2980b9`, `padding: 2px 6px`, `border-radius: 4px`, `font-size: 0.92em`, `font-weight: 700`.
+   - `.term`: quiet textbook-style emphasis, not a pill/badge. Do not set an explicit `color`; it must inherit the surrounding text color. Use `background: transparent`, `border-bottom: 1px solid rgba(36,52,71,0.26)`, `padding: 0 1px 1px`, `border-radius: 0`, `font-size: 1em`, `font-weight: 800`, `white-space: normal`. It must read as part of the sentence, blend naturally inside green/red/yellow cards, and should never look like a separate button, label, or badge.
+   - When marking a legal term with `.term`, wrap the complete bilingual term in one span whenever English appears with Chinese. Correct: `<span class="term">要约（offer）</span>` or `<span class="term">确定要约规则（firm offer rule）</span>`. Incorrect: `<span class="term">要约</span>（offer）`. Do not mark only the Chinese half when the English term is present.
 
 4. Responsive rules:
    - At `max-width: 640px`, set `body` padding to `12px`, `.header` padding to `26px 16px`, `body/p/li` font size to `16px`, and make wide tables/diagrams horizontally scroll with `overflow-x: auto`.
@@ -285,13 +302,15 @@ Please strictly follow the CSS visual requirements below. Embed refined styles d
    - 【Fact/Application Logic <h2> + .analysis-step】: Apply rule elements to the facts in progressive steps.
    - 【Diagram (.diagram)】: Include a simple flow/timeline/relationship diagram only when it clarifies the analysis. Use the standardized `.flow-node`/`.party-box` styles above.
    - 【Trap Alert (.trap-alert or .rule-block)】: Explain the MBE trap in warm yellow.
-   - 【Answer-Choice Breakdown (.option-analysis / .option)】: The section title must be “正确答案与干扰项排除”. Correct card green; wrong cards red only inside `.option.wrong`.
+   - 【Answer-Choice Breakdown (.option-analysis / .option)】: The section title must be “正确答案与干扰项排除”. Correct card green; wrong cards red only inside `.option.wrong`. Do NOT restate the full answer-choice text. Use only the choice letter and a concise status label, then explain in Simplified Chinese why the choice is correct/wrong. For wrong choices, focus on the precise legal error, the mistaken assumption, and whether the option is a deliberate MBE trap or distractor pattern.
    - 【Exam Tip (.footer-tip)】: End with a concise exam shortcut or decision rule.
 
 【Special Restrictions and Quality Assurance】
 - ⚠️ Absolutely do not include the original English question text or English answer-choice buttons, such as A/B/C/D buttons, from the source materials in the HTML!
-- The HTML content must be a Chinese-only analysis in Simplified Chinese, while preserving necessary English legal terms.
-- Do not simplify, cut down, or abbreviate any legal analysis! All eight sections listed above must be fully presented.
+- ⚠️ In “正确答案与干扰项排除”, do not copy or paraphrase the complete original answer choices. Avoid verbose lines like “正确选项：买方可以立即提起违约诉讼（对应原题 A 选项）” or “错误选项：买方必须给珠宝商补救的机会（对应原题 B 选项）”. Instead use compact labels such as “A. 正确” / “B. 错误”, followed by a Chinese explanation of the legal reason and trap logic.
+- ⚠️ Do NOT generate any footer, watermark, branding, or copyright notice of any kind — no "MBE 备考助手", no "© MBE", no "仅供学习参考", no "PassBar", and no similar text anywhere in the HTML. The page must contain zero branding elements.
+- OUTPUT LANGUAGE: Every sentence of analysis, explanation, and UI label must be written in Simplified Chinese (简体中文). Traditional Chinese characters (繁體字) are strictly forbidden. English is permitted only for: legal terms of art, case names, statutes (e.g. U.S.C. §), Latin maxims, MBE exam keywords, and key concepts that must stay in English for exam accuracy. All other text must be 简体中文.
+- Do not simplify, cut down, or abbreviate any legal analysis! All nine sections listed above must be fully presented.
 - Return only a complete, ready-to-use, single HTML code block that does not require any external JS/CSS files.
 
 ---
@@ -305,7 +324,7 @@ Question:
 Answer Choices:
 {choices}
 
-Correct Answer: {correct_answer}
+Correct Answer: {correct_answer_letter}. {correct_answer_text}
 
 (Please use the analysis materials to generate a complete Simplified Chinese HTML analysis card.)
 """
@@ -411,7 +430,7 @@ def missing_zh_choice_keys(record: dict, en_options: dict[str, str]) -> list[str
 
 
 def needs_zh_gemini(record: dict, en_options: dict[str, str]) -> bool:
-    """判斷中文欄位是否仍需要 Gemini 補齊。"""
+    """判斷中文欄位是否仍需要 AI 補齊。"""
     return (
         not str(record.get("zh-question", "")).strip()
         or bool(missing_zh_choice_keys(record, en_options))
@@ -517,23 +536,30 @@ def find_existing_enriched_source(output_path: str, json_path: str, expected_cou
 
 
 _COPYRIGHT_PATTERN = re.compile(
-    r"©\s*MBE[^<\n]*",
+    r"(?:©\s*MBE(?:\s*Study\s*Aid)?|MBE\s*Study\s*Aid|MBE\s*备考助手|MBE\s*备考)[^<\n]*",
     re.IGNORECASE,
+)
+
+# 匹配含有版權/品牌文字的整個 HTML 標籤區塊
+_COPYRIGHT_BLOCK_RE = re.compile(
+    r'<(footer|div|p|small|span|section)[^>]*>'
+    r'(?:[^<]|<(?!\1))*?'
+    r'(?:©\s*MBE(?:\s*Study\s*Aid)?|MBE\s*Study\s*Aid|MBE\s*备考助手|MBE\s*备考|仅供学习参考|仅供参考)'
+    r'[^<]*?</\1>',
+    re.IGNORECASE | re.DOTALL,
 )
 
 
 def strip_copyright_footers(html: str) -> str:
-    """移除 HTML 中所有 MBE 版權 footer 字樣（包括包裹它們的 HTML 元素）。"""
+    """移除 HTML 中所有 MBE 版權 / branding footer 字樣（包括包裹元素）。"""
     if not html:
         return html
 
-    # 移除包含 © MBE 的整個 HTML 標籤區塊（<footer>, <div>, <p>, <small> 等）
-    html = re.sub(
-        r'<(footer|div|p|small|span)[^>]*>(?:[^<]|<(?!(?:footer|div|p|small|span)[^>]*>))*?©\s*MBE[^<]*?</\1>',
-        '',
-        html,
-        flags=re.IGNORECASE | re.DOTALL,
-    )
+    # 先移除整個含有版權/品牌文字的 HTML 標籤區塊，重複套用直到無變化
+    prev = None
+    while prev != html:
+        prev = html
+        html = _COPYRIGHT_BLOCK_RE.sub('', html)
     # 移除剩餘的裸文字行
     html = _COPYRIGHT_PATTERN.sub('', html)
     # 清理連續空行
@@ -542,7 +568,7 @@ def strip_copyright_footers(html: str) -> str:
 
 
 def extract_html_from_response(text: str) -> str:
-    """從 Gemini 回覆中取出 HTML（可能包在 ```html ``` 中）。"""
+    """從 AI 回覆中取出 HTML（可能包在 ```html ``` 中）。"""
     m = re.search(r"```html\s*([\s\S]*?)\s*```", text, re.IGNORECASE)
     if m:
         return strip_copyright_footers(m.group(1).strip())
@@ -558,7 +584,7 @@ def call_gemini_rest(
     prompt_text: str,
     image_paths: list[str] | str | None = None,
 ) -> str:
-    """呼叫 Gemini REST API（gemini-2.5-flash），支援文字 + 多張圖片。
+    """呼叫 Gemini REST API（gemini-3.5-flash），支援文字 + 多張圖片。
     每次呼叫輪替使用下一組 API Key。
     """
 
@@ -642,23 +668,130 @@ def call_gemini_rest(
         f"All API keys exhausted after {MAX_RETRIES} rounds. Last error: {last_error}")
 
 
+def _mime_type_for_image(path: str) -> str:
+    ext = os.path.splitext(path)[1].lower().lstrip(".")
+    if ext in ("jpg", "jpeg"):
+        return "image/jpeg"
+    if ext == "png":
+        return "image/png"
+    if ext == "webp":
+        return "image/webp"
+    return f"image/{ext or 'jpeg'}"
+
+
+def _extract_openai_text(data: dict) -> str:
+    output_text = data.get("output_text")
+    if isinstance(output_text, str) and output_text.strip():
+        return output_text
+
+    chunks: list[str] = []
+    for item in data.get("output", []) or []:
+        if not isinstance(item, dict):
+            continue
+        for content in item.get("content", []) or []:
+            if not isinstance(content, dict):
+                continue
+            text = content.get("text")
+            if isinstance(text, str):
+                chunks.append(text)
+    if chunks:
+        return "\n".join(chunks)
+    raise RuntimeError(f"OpenAI response did not include text output: {str(data)[:500]}")
+
+
+def call_openai_responses(
+    prompt_text: str,
+    image_paths: list[str] | str | None = None,
+) -> str:
+    """呼叫 OpenAI Responses API，支援文字 + 多張圖片。"""
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError(
+            "No OPENAI_API_KEY found in environment or .env file. Add OPENAI_API_KEY=your_key_here."
+        )
+
+    if isinstance(image_paths, str):
+        image_paths = [image_paths]
+
+    content: list[dict] = []
+    for img_path in (image_paths or []):
+        if img_path and os.path.exists(img_path):
+            with open(img_path, "rb") as f:
+                encoded = base64.b64encode(f.read()).decode()
+            content.append({
+                "type": "input_image",
+                "image_url": f"data:{_mime_type_for_image(img_path)};base64,{encoded}",
+                "detail": "high",
+            })
+    content.append({"type": "input_text", "text": prompt_text})
+
+    payload = json.dumps({
+        "model": AI_MODEL,
+        "input": [{"role": "user", "content": content}],
+        "max_output_tokens": 65536,
+    }).encode()
+
+    last_error: Exception | None = None
+    for round_num in range(1, MAX_RETRIES + 1):
+        try:
+            req = urllib.request.Request(
+                "https://api.openai.com/v1/responses",
+                data=payload,
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {api_key}",
+                },
+            )
+            with urllib.request.urlopen(req, timeout=180) as resp:
+                return _extract_openai_text(json.loads(resp.read()))
+        except urllib.error.HTTPError as e:
+            body = e.read().decode(errors="replace")
+            last_error = Exception(f"HTTP {e.code}: {body[:500]}")
+            if e.code == 429:
+                raise RateLimitedError(
+                    f"OpenAI rate limited (round {round_num}), skipping question"
+                )
+            if e.code >= 500:
+                time.sleep(10)
+                continue
+            raise
+        except Exception as exc:
+            last_error = exc
+            time.sleep(5)
+
+    raise RuntimeError(f"OpenAI API failed after {MAX_RETRIES} rounds. Last error: {last_error}")
+
+
+def call_ai_rest(
+    prompt_text: str,
+    image_paths: list[str] | str | None = None,
+) -> str:
+    if AI_PROVIDER == "gpt":
+        return call_openai_responses(prompt_text, image_paths)
+    return call_gemini_rest(prompt_text, image_paths)
+
+
+def ai_label() -> str:
+    return "GPT" if AI_PROVIDER == "gpt" else "Gemini"
+
+
 # ── 核心處理邏輯 ──────────────────────────────────────────────────────────────
 
-def call_gemini_translate(
+def call_ai_translate(
     subject: str,
     chapter: str,
     en_question: str,
     en_options: dict[str, str],
 ) -> tuple[str, dict[str, str]]:
-    """呼叫 Gemini 翻譯英文題目和選項為簡體中文，回傳 (zh_question, zh_choices)。"""
+    """呼叫 AI 翻譯英文題目和選項為簡體中文，回傳 (zh_question, zh_choices)。"""
     prompt = GEMINI_TRANSLATE_TEMPLATE.format(
         subject=subject,
         chapter=chapter,
         question=en_question,
         choices=format_choices_for_prompt(en_options),
     )
-    raw = call_gemini_rest(prompt)
-    # 嘗試解析 JSON（Gemini 可能包在 ```json ``` 中）
+    raw = call_ai_rest(prompt)
+    # 嘗試解析 JSON（模型可能包在 ```json ``` 中）
     m = re.search(r"```json\s*([\s\S]*?)\s*```", raw, re.IGNORECASE)
     json_text = m.group(1) if m else raw.strip()
     try:
@@ -679,8 +812,9 @@ def process_question(
     dry_run: bool = False,
     existing_record: dict | None = None,
     no_gemini: bool = False,
+    translate_only: bool = False,
 ) -> dict:
-    """將一道題目轉為結構化格式，必要時呼叫 Gemini。"""
+    """將一道題目轉為結構化格式，必要時呼叫 AI。"""
 
     index = q["index"]
     en_question = q.get("question", "").strip()
@@ -730,9 +864,9 @@ def process_question(
     def generate_explanation_html(img_paths: list[str]) -> str:
         if not img_paths:
             return ""
-        print(f"  Gemini(explanation) → Q{index:04d}…", end=" ", flush=True)
+        print(f"  {ai_label()}(explanation) → Q{index:04d}…", end=" ", flush=True)
         try:
-            raw = call_gemini_rest(GEMINI_EXPLANATION_PROMPT, img_paths)
+            raw = call_ai_rest(GEMINI_EXPLANATION_PROMPT, img_paths)
             html = extract_html_from_response(raw)
             print("✓")
             time.sleep(RATE_LIMIT_DELAY)
@@ -754,14 +888,14 @@ def process_question(
 
         if not dry_run:
             # 英文解析 HTML：新記錄才用 source_imgs 生成；修補舊 enriched 時避免
-            # 因為舊 explanation error 觸發不必要的 Gemini 呼叫。
-            if no_gemini:
+            # 因為舊 explanation error 觸發不必要的 AI 呼叫。
+            if no_gemini or translate_only:
                 en_explanation_html = en_explanation_html or ""
             elif not existing_record and _is_error_html(en_explanation_html):
                 en_explanation_html = generate_explanation_html(
                     collect_img_paths(api_data))
 
-            # 若 htmlContent 存在則直接使用；否則呼叫 Gemini 生成
+            # 若 htmlContent 存在則直接使用；否則呼叫 AI 生成
             if not _is_error_html(zh_explanation):
                 source_tag = "cached"
             elif castudy_zh_html and castudy_zh_html.strip().startswith("<"):
@@ -769,24 +903,25 @@ def process_question(
                 source_tag = "api"
             else:
                 source_tag = "api_no_html"
-                if no_gemini:
-                    print(f"  ⏭ Q{index:04d} missing zh HTML (no-gemini)")
+                if no_gemini or translate_only:
+                    print(f"  ⏭ Q{index:04d} missing zh HTML ({'translate-only' if translate_only else 'no-ai'})")
                 else:
                     prompt = GEMINI_PROMPT_TEMPLATE.format(
                         subject=subject,
                         chapter=chapter,
                         question=en_question,
                         choices=format_choices_for_prompt(en_options),
-                        correct_answer=correct_answer,
+                        correct_answer_letter=correct_answer,
+                        correct_answer_text=en_options.get(correct_answer, ""),
                     )
                     print(
-                        f"  Gemini(zh-html) → Q{index:04d}: {en_question[:55]}…", end=" ", flush=True)
+                        f"  {ai_label()}(zh-html) → Q{index:04d}: {en_question[:55]}…", end=" ", flush=True)
                     try:
-                        raw_response = call_gemini_rest(
+                        raw_response = call_ai_rest(
                             prompt, collect_img_paths(api_data))
                         zh_explanation = extract_html_from_response(raw_response)
                         print("✓")
-                        source_tag = "api+gemini_html"
+                        source_tag = f"api+{AI_PROVIDER}_html"
                         time.sleep(RATE_LIMIT_DELAY)
                     except RateLimitedError:
                         raise  # 向上傳遞，整題跳過
@@ -795,17 +930,17 @@ def process_question(
                         source_tag = "error"
                         zh_explanation = f"<!-- ERROR: {exc} -->"
 
-            # 缺哪個中文欄位才呼叫 Gemini 補哪個；castudy 已有的直接沿用。
+            # 缺哪個中文欄位才呼叫 AI 補哪個；castudy 已有的直接沿用。
             missing_choice_keys = missing_zh_choice_keys(
                 {"zh-choices": zh_choices}, en_options)
             if not zh_question or missing_choice_keys:
                 if no_gemini:
-                    print(f"  ⏭ Q{index:04d} missing zh question/choices (no-gemini)")
+                    print(f"  ⏭ Q{index:04d} missing zh question/choices (no-ai)")
                 else:
                     print(
-                        f"  Gemini(translate) → Q{index:04d}: missing zh_question/choices", end=" ", flush=True)
+                        f"  {ai_label()}(translate) → Q{index:04d}: missing zh_question/choices", end=" ", flush=True)
                     try:
-                        tq, tc = call_gemini_translate(
+                        tq, tc = call_ai_translate(
                             subject, chapter, en_question, en_options)
                         if not zh_question:
                             zh_question = tq
@@ -822,16 +957,16 @@ def process_question(
             source_tag = "api"
 
     else:
-        # ── 缺少 API 資料：呼叫 Gemini 翻譯題目+選項，並生成 HTML 解析 ──
+        # ── 缺少 API 資料：呼叫 AI 翻譯題目+選項，並生成 HTML 解析 ──
         if dry_run:
             print(
-                f"  [DRY-RUN] Q{index:04d}: would call Gemini — {en_question[:70]}…")
-            source_tag = "pending_gemini"
+                f"  [DRY-RUN] Q{index:04d}: would call {ai_label()} — {en_question[:70]}…")
+            source_tag = f"pending_{AI_PROVIDER}"
         else:
             img_paths = collect_img_paths()
 
             # 1) 英文解析 HTML
-            if no_gemini:
+            if no_gemini or translate_only:
                 en_explanation_html = en_explanation_html or ""
             elif not existing_record and _is_error_html(en_explanation_html):
                 en_explanation_html = generate_explanation_html(img_paths)
@@ -841,12 +976,12 @@ def process_question(
                 {"zh-choices": zh_choices}, en_options)
             if not zh_question or missing_choice_keys:
                 if no_gemini:
-                    print(f"  ⏭ Q{index:04d} missing zh question/choices (no-gemini)")
+                    print(f"  ⏭ Q{index:04d} missing zh question/choices (no-ai)")
                 else:
                     print(
-                        f"  Gemini(translate) → Q{index:04d}: {en_question[:55]}…", end=" ", flush=True)
+                        f"  {ai_label()}(translate) → Q{index:04d}: {en_question[:55]}…", end=" ", flush=True)
                     try:
-                        tq, tc = call_gemini_translate(
+                        tq, tc = call_ai_translate(
                             subject, chapter, en_question, en_options)
                         if not zh_question:
                             zh_question = tq
@@ -864,23 +999,24 @@ def process_question(
             if not _is_error_html(zh_explanation):
                 source_tag = "cached"
             else:
-                if no_gemini:
-                    print(f"  ⏭ Q{index:04d} missing zh HTML (no-gemini)")
+                if no_gemini or translate_only:
+                    print(f"  ⏭ Q{index:04d} missing zh HTML ({'translate-only' if translate_only else 'no-ai'})")
                 else:
                     prompt = GEMINI_PROMPT_TEMPLATE.format(
                         subject=subject,
                         chapter=chapter,
                         question=en_question,
                         choices=format_choices_for_prompt(en_options),
-                        correct_answer=correct_answer,
+                        correct_answer_letter=correct_answer,
+                        correct_answer_text=en_options.get(correct_answer, ""),
                     )
                     print(
-                        f"  Gemini(zh-html) → Q{index:04d}: {en_question[:60]}…", end=" ", flush=True)
+                        f"  {ai_label()}(zh-html) → Q{index:04d}: {en_question[:60]}…", end=" ", flush=True)
                     try:
-                        raw_response = call_gemini_rest(prompt, img_paths)
+                        raw_response = call_ai_rest(prompt, img_paths)
                         zh_explanation = extract_html_from_response(raw_response)
                         print("✓")
-                        source_tag = "gemini"
+                        source_tag = AI_PROVIDER
                         time.sleep(RATE_LIMIT_DELAY)
                     except RateLimitedError:
                         raise  # 向上傳遞，整題跳過
@@ -913,6 +1049,7 @@ def process_json_file(
     force: bool = False,
     limit: int = 0,
     no_gemini: bool = False,
+    translate_only: bool = False,
 ) -> str | None:
     """處理一個章節的 castudy JSON，輸出 _enriched.json。"""
 
@@ -925,20 +1062,33 @@ def process_json_file(
 
     subject = data["meta"]["subject"]
     chapter = data["meta"]["chapter"]
-    questions = data.get("questions", [])
+    all_questions = data.get("questions", [])
+    questions = all_questions
     if limit > 0:
-        questions = questions[:limit]
+        questions = all_questions[:limit]
 
-    count = data["meta"].get("count", len(questions))
+    count = data["meta"].get("count", len(all_questions))
 
     # castudy 所有題目的 index set（作為比對基準）
-    castudy_indices: set[int] = {q["index"] for q in questions}
+    castudy_indices: set[int] = {q["index"] for q in all_questions}
 
     # ── 載入 enriched JSON（只讀一次）並與 castudy 比對 ─────────────────
     existing_good: dict[int, dict] = {}   # 可直接 cache 的記錄（無 error）
     existing_records: dict[int, dict] = {}
     existing_error: set[int] = set()      # enriched 裡有但是 ERROR 的
     existing_all_indices: set[int] = set()
+    preserved_records: dict[int, dict] = {}
+
+    # 即使 --force 重跑，也先保留目前 canonical 輸出作為寫檔基底。
+    # 如此中途 Ctrl-C / rate limit / API error 不會把未處理題目從 enriched JSON 刪掉。
+    if os.path.exists(output_path):
+        try:
+            for eq in load_enriched_questions(output_path):
+                idx = eq.get("index")
+                if idx in castudy_indices:
+                    preserved_records[idx] = eq
+        except Exception as e:
+            print(f"  WARN: cannot preserve current output {output_path} ({e})")
 
     existing_source = None if force else find_existing_enriched_source(
         output_path, json_path, len(questions)
@@ -964,7 +1114,7 @@ def process_json_file(
     # enriched 裡有，但 castudy 裡沒有的（孤立記錄，不會寫入輸出）
     orphan_indices  = sorted(existing_all_indices - castudy_indices)
 
-    total = len(questions)
+    total = len(all_questions)
 
     # ── 欄位缺失統計（從所有已知 enriched 記錄計算）────────────────────────
     def _missing_counts(records: dict[int, dict]) -> tuple[int, int, int, int]:
@@ -986,6 +1136,8 @@ def process_json_file(
 
     print(f"\n📂 {subject} / {chapter}")
     print(f"   castudy 題目數 : {total}")
+    if limit > 0:
+        print(f"   本次 limit    : 只掃描前 {len(questions)} 題，輸出仍保留整章資料")
     print(f"   enriched 狀態  : "
           f"✅ 已完成 {len(existing_good)}  "
           f"❌ 有錯誤 {len(existing_error)}  "
@@ -1003,14 +1155,24 @@ def process_json_file(
     if orphan_indices:
         print(f"   ⚠️  孤立 indices（enriched 有但 castudy 無，將忽略）: {orphan_indices}")
 
-    # 需要處理的 = error + 完全缺失
-    need_process = (existing_error | (castudy_indices - existing_all_indices))
-    will_skip    = len(castudy_indices) - len(need_process)
-    print(f"   → 本次將跳過 {will_skip} 題，重新處理 {len(need_process)} 題")
+    # 需要處理的 = error + 完全缺失；--limit 只限制本次掃描範圍，不縮小輸出基準。
+    need_process_all = (existing_error | (castudy_indices - existing_all_indices))
+    processing_indices = {q["index"] for q in questions}
+    need_process = need_process_all & processing_indices
+    will_skip = len(processing_indices) - len(need_process)
+    if limit > 0 and len(need_process_all) != len(need_process):
+        print(f"   → 整章待修 {len(need_process_all)} 題；本次將跳過 {will_skip} 題，重新處理 {len(need_process)} 題")
+    else:
+        print(f"   → 本次將跳過 {will_skip} 題，重新處理 {len(need_process)} 題")
 
     # 把 existing_good 作為 cache 來源（取代原本的 existing）
     existing = existing_good
 
+    output_records: dict[int, dict] = {
+        idx: record
+        for idx, record in {**preserved_records, **existing_records}.items()
+        if idx in castudy_indices
+    }
     enriched_questions: list[dict] = []
     zh_html_dir = os.path.join(chapter_dir, "zh_html")
     output_dirty = False
@@ -1018,8 +1180,9 @@ def process_json_file(
     def write_enriched_output() -> None:
         _internal = {"_source"}
         output_questions = [
-            {k: v for k, v in eq.items() if k not in _internal}
-            for eq in enriched_questions
+            {k: v for k, v in output_records[idx].items() if k not in _internal}
+            for idx in sorted(output_records)
+            if idx in castudy_indices
         ]
         payload = {
             "meta": {
@@ -1032,8 +1195,13 @@ def process_json_file(
             },
             "questions": output_questions,
         }
-        with open(output_path, "w", encoding="utf-8") as f:
+        tmp_path = f"{output_path}.tmp"
+        with open(tmp_path, "w", encoding="utf-8") as f:
             json.dump(payload, f, ensure_ascii=False, indent=2)
+            f.write("\n")
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp_path, output_path)
 
     def write_zh_html(idx: int, record: dict) -> None:
         if not record.get("zh-explanation"):
@@ -1052,11 +1220,13 @@ def process_json_file(
             en_options = parse_choices_from_json(q.get("choices", {}))
             if fill_zh_from_castudy(cached, q):
                 output_dirty = True
+                output_records[idx] = cached
                 if not dry_run:
                     write_zh_html(idx, cached)
                 print(f"  ✓ Q{idx:04d} (cached + castudy zh)")
             if not needs_zh_gemini(cached, en_options):
                 enriched_questions.append(cached)
+                output_records[idx] = cached
                 if idx in existing and not output_dirty:
                     print(f"  ✓ Q{idx:04d} (cached)")
                 continue
@@ -1071,6 +1241,7 @@ def process_json_file(
                 dry_run=dry_run,
                 existing_record=existing_records.get(idx),
                 no_gemini=no_gemini,
+                translate_only=translate_only,
             )
         except RateLimitedError:
             print(f"  ⏭ Q{idx:04d} SKIPPED (all keys rate limited, will retry next run)")
@@ -1090,6 +1261,7 @@ def process_json_file(
                 "_source": "skipped",
             }
         enriched_questions.append(result)
+        output_records[idx] = result
 
         if not dry_run:
             # 額外存一份 HTML 檔（方便直接在瀏覽器預覽）
@@ -1104,16 +1276,16 @@ def process_json_file(
         return None
 
     # ── 最終驗證：確認輸出題數與 castudy 一致 ────────────────────────────
-    output_indices = {q.get("index") for q in enriched_questions}
+    output_indices = set(output_records)
     final_missing  = castudy_indices - output_indices
     if final_missing:
         print(f"  ⚠️  WARNING: {len(final_missing)} 題在輸出中仍缺失（可能遭遇持續性錯誤）: "
               f"{sorted(final_missing)}")
     else:
-        fq, fc, fh, fe = _missing_counts({r["index"]: r for r in enriched_questions})
+        fq, fc, fh, fe = _missing_counts(output_records)
         field_ok = all(v == 0 for v in (fq, fc, fh, fe))
         status = "✅" if field_ok else "⚠️ "
-        print(f"  {status} 驗證完成：{len(enriched_questions)} 題  "
+        print(f"  {status} 驗證完成：{len(output_records)} 題  "
               f"zh_q:{fq}  zh_c:{fc}  zh_html:{fh}  en_html:{fe}")
 
     write_enriched_output()
@@ -1127,8 +1299,12 @@ def process_json_file(
 def main():
     parser = argparse.ArgumentParser(
         description="Generate Chinese explanations for MBE questions")
+    parser.add_argument("--provider", choices=("gemini", "gpt"), default="gemini",
+                        help="AI provider for missing generated fields (default: gemini)")
+    parser.add_argument("--model", default="",
+                        help="Override provider model (default: gemini-3.5-flash or OPENAI_MODEL/gpt-5.4-mini)")
     parser.add_argument("--dry-run", action="store_true",
-                        help="Print plan without calling Gemini")
+                        help="Print plan without calling AI APIs")
     parser.add_argument("--force", action="store_true",
                         help="Ignore existing enriched JSON, reprocess all")
     parser.add_argument("--subject", default="",
@@ -1140,8 +1316,24 @@ def main():
     parser.add_argument("--limit", type=int, default=0,
                         help="Only process first N questions per chapter (0 = all)")
     parser.add_argument("--no-gemini", action="store_true",
-                        help="Write only cached/castudy data; do not call Gemini for missing fields")
+                        help="Write only cached/castudy data; do not call AI APIs for missing fields")
+    parser.add_argument("--no-ai", action="store_true",
+                        help="Alias for --no-gemini")
+    parser.add_argument("--translate-only", action="store_true",
+                        help="Only call AI to translate zh_question/zh_choices; skip en_html and zh_html generation")
     args = parser.parse_args()
+    no_ai = args.no_gemini or args.no_ai
+    set_ai_provider(args.provider, args.model or None)
+
+    if not args.dry_run and not no_ai:
+        if AI_PROVIDER == "gpt" and not os.environ.get("OPENAI_API_KEY"):
+            print("ERROR: No OPENAI_API_KEY found in environment or .env file.")
+            print("  Create scripts/.env and add: OPENAI_API_KEY=your_key_here")
+            sys.exit(1)
+        if AI_PROVIDER == "gemini" and not _GEMINI_API_KEYS:
+            print("ERROR: No GEMINI_API_KEY_1 ~ GEMINI_API_KEY_N found in environment or .env file.")
+            print("  Create scripts/.env and add: GEMINI_API_KEY_1=your_key_here")
+            sys.exit(1)
 
     out_dir = os.path.abspath(args.out_dir)
     if not os.path.isdir(out_dir):
@@ -1170,13 +1362,17 @@ def main():
         sys.exit(0)
 
     print(f"Found {len(json_files)} chapter file(s) to process.")
+    print(f"AI provider: {AI_PROVIDER} ({AI_MODEL})")
     if args.dry_run:
-        print("⚠️  DRY-RUN mode: no files will be written, no Gemini calls.\n")
+        print("⚠️  DRY-RUN mode: no files will be written, no AI calls.\n")
+    if args.translate_only:
+        print(f"🔤 TRANSLATE-ONLY mode: only zh_question/zh_choices will be generated via {ai_label()}.\n")
 
     for json_file in json_files:
         process_json_file(json_file, dry_run=args.dry_run,
                           force=args.force, limit=args.limit,
-                          no_gemini=args.no_gemini)
+                          no_gemini=no_ai,
+                          translate_only=args.translate_only)
 
     print("\n🎉 Done.")
 

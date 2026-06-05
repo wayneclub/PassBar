@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fff3cd;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        .rule-box {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin: 15px 0;
+        }
+        .exception-box {
+            background-color: var(--warning-bg);
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin: 15px 0;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .analysis-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .step-icon {
+            background: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .conclusion {
+            background-color: #27ae60;
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：替代止赎与混同原则</h1>
+    
+    <p>本题考察的是不动产法中关于<b>抵押权（Mortgages）</b>的一个核心难点：当第一顺位抵押权人接受“替代止赎契约”时，次顺位抵押权的命运如何？</p>
+
+    <div class="concept-box">
+        <span class="term">核心概念：替代止赎契约</span><br>
+        <span class="english">Deed in Lieu of Foreclosure</span><br>
+        <p>这是借款人（Mortgagor）为了避免正式的止赎程序（Foreclosure），自愿将房产产权直接转让给贷款人（Mortgagee）的行为。</p>
+    </div>
+
+    <h2>⚖️ 法律规则解析</h2>
+
+    <div class="rule-box">
+        <strong>1. 混同原则 (Doctrine of Merger)</strong><br>
+        传统普通法认为，当同一人同时拥有土地的“完全所有权”（Fee Simple）和该土地上的“抵押权”（Mortgage）时，抵押权会“并入”所有权中而消灭。
+        <br><br>
+        <em>后果：</em>如果第一顺位抵押权因混同而消灭，第二顺位抵押权就会自动升级为第一顺位。这对债权人非常不利。
+    </div>
+
+    <div class="rule-box">
+        <strong>2. 现代规则 (Modern/Restatement Rule)</strong><br>
+        为了保护债权人，大多数法院（及MBE默认规则）认为：如果混同对债权人不利，则<b>不推定发生混同</b>。
+        <br><br>
+        这意味着债权人通常保留其抵押权，可以通过止赎（Foreclosure）来清除次顺位留置权（Junior Liens）。
+    </div>
+
+    <div class="exception-box">
+        <strong>⚠️ 关键例外 (The Exception)</strong><br>
+        这是本题的解题关键：<br>
+        如果债权人在接受“替代止赎契约”时，对次顺位留置权有<b>实际知情 (Actual Knowledge)</b>，法院通常会判定债权人接受了该房产及其附带的所有债务。
+        <br><br>
+        在这种情况下，债权人<b>不能</b>再通过止赎自己的抵押权来清除次顺位抵押权。
+    </div>
+
+    <h2>🔍 案情分析</h2>
+
+    <div class="analysis-step">
+        <div class="step-icon">1</div>
+        <div><b>信用社的地位：</b>持有第一顺位抵押权。</div>
+    </div>
+    <div class="analysis-step">
+        <div class="step-icon">2</div>
+        <div><b>银行的地位：</b>持有第二顺位抵押权（Junior Lien）。</div>
+    </div>
+    <div class="analysis-step">
+        <div class="step-icon">3</div>
+        <div><b>关键事实：</b>信用社收到了银行抵押权的副本。这意味着信用社有<b>实际知情 (Actual Knowledge)</b>。</div>
+    </div>
+    <div class="analysis-step">
+        <div class="step-icon">4</div>
+        <div><b>行为：</b>信用社接受了购房者的替代止赎契约 (Deed in Lieu)。</div>
+    </div>
+    <div class="analysis-step">
+        <div class="step-icon">5</div>
+        <div><b>结论：</b>由于信用社在知情的情况下接受了契约，它被视为接受了带有第二顺位抵押权的房产。它丧失了通过止赎来清除银行抵押权的权利。</div>
+    </div>
+
+    <h2>💡 为什么选 A？</h2>
+    <p>选项 A 正确指出了<b>实际知情 (Actual Knowledge)</b> 是阻碍信用社胜诉的关键因素。因为信用社知道有第二顺位抵押权还选择接受契约，法律推定其意图是保留该次顺位抵押权，或者其接受的房产价值已经扣除了该债务。</p>
+
+    <h2>🚫 为什么其他选项错误？</h2>
+    <ul>
+        <li><b>选项 B (错误)：</b>如果适用混同原则，信用社的第一顺位抵押权会消灭，银行的抵押权会升级，而不是被清除。</li>
+        <li><b>选项 C & D (错误)：</b>虽然通常债权人保留止赎权，但“实际知情”是一个强有力的例外，使得这一保留权利失效。</li>
+    </ul>
+
+    <div class="conclusion">
+        正确答案：A
+    </div>
+</div>
+
+</body>
+</html>

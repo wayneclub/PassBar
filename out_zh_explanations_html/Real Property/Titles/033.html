@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: transparent;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+
+        .event {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .event::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .event-time {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+
+        .event-desc {
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+
+        .highlight-text {
+            font-weight: bold;
+            color: var(--warning-color);
+        }
+
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            margin-top: 20px;
+        }
+
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property: Adverse Possession</div>
+    </div>
+
+    <!-- 核心结论 -->
+    <div class="card" style="border-left-color: var(--success-color);">
+        <div class="card-title" style="color: var(--success-color);">正确答案：B</div>
+        <div class="concept-box" style="background-color: #eafaf1;">
+            <strong>房东的儿子 (The Landlord's Son)</strong> 拥有该房屋。<br><br>
+            虽然原房东只有终身地产权，但其死后，儿子通过租户的占有，满足了<strong>时效占有 (Adverse Possession)</strong> 的所有要件。
+        </div>
+    </div>
+
+    <!-- 关键法律原则 -->
+    <div class="card">
+        <div class="card-title">核心考点：代理占有 (Attribution)</div>
+        <p>本题最关键的法律原则是：</p>
+        <div class="concept-box">
+            <strong>"Possession by a tenant is possession by the landlord."</strong><br>
+            (租户的占有即房东的占有)
+        </div>
+        <p style="font-size: 0.9rem; margin-top: 10px;">
+            在计算时效占有时，并不要求主张者必须亲自居住在土地上。如果主张者将土地出租，<strong>租户 (Tenant)</strong> 的实际占有被视为<strong>房东 (Landlord)</strong> 的占有。
+        </p>
+    </div>
+
+    <!-- 时间线分析 -->
+    <div class="card">
+        <div class="card-title">时间线分析 (Timeline)</div>
+        <div class="timeline">
+            <div class="event">
+                <div class="event-time">15年前</div>
+                <div class="event-desc">Owner 将终身地产权 (Life Estate) 转让给 Landlord (L)。Owner 保留复归权 (Reversion)。</div>
+            </div>
+            <div class="event">
+                <div class="event-time">14年前</div>
+                <div class="event-desc">L 将房屋出租给 Tenant (T)，租期15年。</div>
+            </div>
+            <div class="event">
+                <div class="event-time" style="color: var(--warning-color);">11年前 (关键节点)</div>
+                <div class="event-desc">
+                    <strong>L 去世。</strong><br>
+                    1. L 的终身地产权终止。<br>
+                    2. Owner 的复归权变为现时占有权。<br>
+                    3. <strong>但是：</strong> T 继续居住，并开始向 L 的儿子 (S) 支付租金。
+                </div>
+            </div>
+            <div class="event">
+                <div class="event-time">过去11年间</div>
+                <div class="event-desc">S 通过收取租金，行使了“房东”的权利。T 的占有归因于 S。</div>
+            </div>
+            <div class="event">
+                <div class="event-time">现在</div>
+                <div class="event-desc">
+                    时效占有期为 <strong>10年</strong>。<br>
+                    S 的逆占时间 = 11年 > 10年。<br>
+                    <span class="highlight-text">S 取得所有权。</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 法律推理 -->
+    <div class="card">
+        <div class="card-title">OCEAN 原则应用</div>
+        <p style="font-size: 0.9rem;">S 是否满足 Adverse Possession 的要素？</p>
+        
+        <div class="key-point">
+            <span class="icon">🌊</span>
+            <div>
+                <strong>Open & Notorious (公开):</strong><br>
+                T 住在房子里，这对 Owner 来说是显而易见的。
+            </div>
+        </div>
+        <div class="key-point">
+            <span class="icon">⏱️</span>
+            <div>
+                <strong>Continuous (持续):</strong><br>
+                持续了11年，超过了法定的10年。
+            </div>
+        </div>
+        <div class="key-point">
+            <span class="icon">🚫</span>
+            <div>
+                <strong>Exclusive (排他):</strong><br>
+                T 独占房屋，且是为了 S 而占有，排除了 Owner。
+            </div>
+        </div>
+        <div class="key-point">
+            <span class="icon">⚔️</span>
+            <div>
+                <strong>Adverse/Hostile (敌意):</strong><br>
+                L 死后，Owner 本应收回房产。但 S 像房主一样收取租金，这侵犯了 Owner 的权利。
+            </div>
+        </div>
+        <div class="key-point">
+            <span class="icon">🏠</span>
+            <div>
+                <strong>Actual (实际):</strong><br>
+                虽然 S 没住在那，但通过 T 实现了<strong>归因占有 (Attributable Possession)</strong>。
+            </div>
+        </div>
+    </div>
+
+    <!-- 为什么其他选项是错的 -->
+    <div class="card" style="border-left-color: #95a5a6;">
+        <div class="card-title" style="color: #7f8c8d;">干扰项解析</div>
+        
+        <div style="margin-bottom: 10px; font-size: 0.9rem;">
+            <strong>❌ 选项 C (Owner):</strong><br>
+            虽然 Owner 拥有复归权 (Reversion)，但他“睡在权利上”太久了。他在 L 死后有权驱逐 T 和 S，但他 11 年没有行动，导致时效期满，丧失了所有权。
+        </div>
+
+        <div style="margin-bottom: 10px; font-size: 0.9rem;">
+            <strong>❌ 选项 D (Tenant):</strong><br>
+            T 确实实际占有了房屋，但 T <strong>承认了 S 的所有权</strong>（通过支付租金）。因此，T 的占有不是对自己主张所有权，而是代表 S 占有。
+        </div>
+
+        <div style="font-size: 0.9rem;">
+            <strong>❌ 选项 A (Landlord's Act):</strong><br>
+            L 生前出租房屋是合法的（终身地产权人有权出租），这并不构成对 Owner 的“敌意”占有。逆占是从 L 死后，S 非法收取租金开始计算的。
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Property Law Review © 2025
+    </div>
+</div>
+
+</body>
+</html>

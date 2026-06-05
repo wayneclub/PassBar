@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-color);
+        }
+        .header {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .answer-box {
+            background-color: #e8f8f5;
+            border: 1px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .answer-label {
+            color: var(--correct-color);
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .concept-tag {
+            display: inline-block;
+            background-color: #e1ecf4;
+            color: #39739d;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .rule-box {
+            background-color: #fdf2e9;
+            border-left: 4px solid #e67e22;
+            padding: 10px 15px;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+        .footer-tip {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 核心答案部分 -->
+    <div class="card">
+        <div class="header">MBE 考点解析：审判地 (Venue)</div>
+        
+        <div class="answer-box">
+            <span class="answer-label">正确答案：D</span>
+            <p>批准该动议，因为 C 州为不适格的审判地 (Venue is improper)。</p>
+        </div>
+
+        <div class="concept-tag">核心考点：28 U.S.C. § 1391 & § 1406</div>
+
+        <p>本题考察的是联邦法院审判地的确定规则，以及当审判地不适格时法院的处理方式。</p>
+    </div>
+
+    <!-- 法律规则解析 -->
+    <div class="card" style="border-left-color: #e67e22;">
+        <div class="header">法律规则详解</div>
+        
+        <p>根据 <b>28 U.S.C. § 1391(b)</b>，民事诉讼的适格审判地 (Proper Venue) 仅限于以下地点：</p>
+        
+        <div class="rule-box">
+            <ol>
+                <li><b>居住地原则：</b>如果所有被告都居住在同一个州，则该州内任何被告居住的司法区均可。</li>
+                <li><b>事件发生地原则：</b>引起诉讼请求的<b>绝大部分事件 (Substantial part of events)</b> 发生地，或争议财产所在地。</li>
+                <li><b>兜底条款：</b>如果上述两条都不适用，则任何被告受法院<b>属人管辖权 (Personal Jurisdiction)</b> 管辖的司法区。</li>
+            </ol>
+        </div>
+
+        <p><b>针对本案的分析：</b></p>
+        <ul>
+            <li><b>被告居住地：</b>被告是公司。对于审判地而言，公司“居住”在任何对其有属人管辖权的地区。本案中，公司在 A 州注册，主营地在 B 州，且侵权行为发生在 B 州。没有任何事实表明公司与 C 州有联系（Contacts），因此公司不“居住”在 C 州。</li>
+            <li><b>事件发生地：</b>购买电脑和爆炸受伤都发生在 B 州。C 州仅仅是原告搬家后的居住地，与案件事实无关。</li>
+        </ul>
+        
+        <p><b>结论：</b>C 州既不是被告居住地，也不是事件发生地，因此 <b>C 州审判地不适格 (Improper Venue)</b>。</p>
+    </div>
+
+    <!-- 为什么选D而不是A/C -->
+    <div class="card" style="border-left-color: #8e44ad;">
+        <div class="header">法院的处置权 (Remedy)</div>
+        
+        <p>当审判地不适格时，根据 <b>28 U.S.C. § 1406(a)</b>，地区法院应当：</p>
+        <ul>
+            <li>驳回案件 (Dismiss)；或者</li>
+            <li>为了司法利益 (Interest of Justice)，将案件<b>移送 (Transfer)</b> 至任何适格的审判地。</li>
+        </ul>
+
+        <p><b>选项分析：</b></p>
+        <ul>
+            <li><span style="color:var(--correct-color)"><b>选项 D 正确：</b></span> 因为 C 州审判地不适格，且 B 州是适格审判地（被告主营地+事件发生地），法院有权批准移送。</li>
+            <li><span style="color:var(--wrong-color)"><b>选项 A 错误：</b></span> 法律明确允许“移送”而非仅能“驳回”。通常为了节省诉讼时效和资源，法院更倾向于移送。</li>
+            <li><span style="color:var(--wrong-color)"><b>选项 B 错误：</b></span> 原告搬家到 C 州并不能使 C 州成为适格审判地。原告的居住地通常与 Venue 的确定无关（除非涉及兜底条款且被告是外国人等特殊情况）。</li>
+            <li><span style="color:var(--wrong-color)"><b>选项 C 错误：</b></span> <span class="latin">Forum Non Conveniens</span>（不方便法院原则）通常用于当审判地<b>适格</b>但极不方便，且替代法院在<b>国外</b>或<b>州法院</b>系统时。本案是联邦法院系统内部的移送，且是因为审判地“不适格”，直接适用 § 1406 即可。</li>
+        </ul>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card" style="border-left-color: #27ae60;">
+        <div class="header">💡 MBE 考试通关秘籍</div>
+        <div class="footer-tip">
+            <p><b>1. 不要混淆原告居住地：</b> 在判断 Venue 时，<b>原告 (Plaintiff)</b> 住在哪里通常是无关紧要的。重点看<b>被告 (Defendant)</b> 的居住地和<b>事件 (Events)</b> 发生地。</p>
+            <p><b>2. 区分 § 1404 和 § 1406：</b></p>
+            <ul>
+                <li><b>§ 1404：</b> 原法院 Venue <b>适格</b>，但为了方便移送。</li>
+                <li><b>§ 1406：</b> 原法院 Venue <b>不适格</b>，必须驳回或移送。</li>
+            </ul>
+            <p>本题中，因为 C 州 Venue 不适格，所以依据的是 § 1406（虽然题目没考法条号，但逻辑必须清晰）。</p>
+        </div>
+    </div>
+
+</body>
+</html>

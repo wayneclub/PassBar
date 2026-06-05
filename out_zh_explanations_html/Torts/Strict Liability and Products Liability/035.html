@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50; /* Navy Blue */
+            --accent-color: #3498db; /* Light Blue */
+            --highlight-bg: #ecf0f1; /* Light Gray */
+            --correct-color: #27ae60; /* Green */
+            --wrong-color: #c0392b; /* Red */
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        .node {
+            background: white;
+            border: 2px solid var(--primary-color);
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-align: center;
+            width: 80%;
+            font-weight: bold;
+        }
+
+        .arrow {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin: 5px 0;
+        }
+
+        .arrow-label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid var(--highlight-bg);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .option-analysis {
+            margin-top: 15px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .option.correct {
+            background-color: rgba(39, 174, 96, 0.1);
+            border: 1px solid var(--correct-color);
+        }
+
+        .option.wrong {
+            background-color: rgba(192, 57, 43, 0.1);
+            border: 1px solid var(--wrong-color);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .badge-correct { background-color: var(--correct-color); color: white; }
+        .badge-wrong { background-color: var(--wrong-color); color: white; }
+
+        .exam-tip {
+            background-color: #e8f4f8;
+            border: 1px dashed var(--accent-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .exam-tip strong {
+            color: var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Strict Liability & Indemnity<br>严格责任与全额赔偿</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">💡 核心法律原则</span>
+            在严格产品责任（Strict Products Liability）中，如果处于分销链下游的零售商（Retailer）本身<b>没有过失（No Negligence）</b>，仅因法律规定而对消费者承担责任，它可以向制造缺陷的上游制造商（Manufacturer）寻求<b>全额赔偿（Indemnity）</b>。
+        </div>
+
+        <!-- 逻辑图解 -->
+        <div class="analysis-section">
+            <div class="analysis-title">责任流向图解</div>
+            <div class="diagram">
+                <div class="node" style="border-color: var(--wrong-color);">
+                    制造商 (Engine Company)<br>
+                    <span style="font-weight:normal; font-size:0.8rem;">制造了缺陷 (Active Fault)</span>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="arrow-label">全额赔偿 (Indemnity)</div>
+                <div class="arrow">↑</div>
+                <div class="node">
+                    店铺 (Shop/Retailer)<br>
+                    <span style="font-weight:normal; font-size:0.8rem;">无过失，但承担严格责任 (Passive Fault)</span>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="arrow-label">严格责任赔偿 (Strict Liability)</div>
+                <div class="node" style="border-color: var(--correct-color);">
+                    受害人 (Woman)<br>
+                    <span style="font-weight:normal; font-size:0.8rem;">获得判决赔偿</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 详细解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 D (Full Compensation)?</div>
+            <p>本题的关键在于区分<b>Indemnity（全额赔偿/补偿）</b>与<b>Contribution（分摊）</b>。</p>
+            
+            <p>1. <b>店铺的责任：</b> 店铺作为商业分销链（Chain of Distribution）的一环，对销售有缺陷的产品承担严格责任。因此，受害女士赢得了对店铺的诉讼。</p>
+            
+            <p>2. <b>店铺的清白：</b> 题目明确指出店铺在采购和检查中<b>"guilty of no negligence"（没有过失）</b>，且缺陷无法通过常规检查发现。这意味着店铺承担的是一种替代责任或纯粹的法律责任，而非基于其自身的不当行为。</p>
+            
+            <p>3. <b>赔偿规则：</b> 当被告仅因法律政策（如严格责任）而承担责任，且自身没有独立过错（Independent Culpability）时，它有权向实际造成缺陷的一方（制造商）要求<b>Indemnity</b>。Indemnity 意味着将 100% 的损失转移给主要责任人。</p>
+        </div>
+
+        <!-- 选项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">干扰项排除</div>
+            <div class="option-analysis">
+                <div class="option wrong">
+                    <span class="badge badge-wrong">选项 A 错误</span>
+                    <b>无赔偿：</b> 仅仅因为店铺把引擎卖给了飞行员并不免除制造商对店铺的赔偿责任。分销链下游有权向上游追偿。
+                </div>
+                <div class="option wrong">
+                    <span class="badge badge-wrong">选项 B 错误</span>
+                    <b>既判力误区：</b> 店铺对女士的赔偿判决是基于“严格责任”，并不代表店铺有过失。这不影响店铺向制造商追偿。
+                </div>
+                <div class="option wrong">
+                    <span class="badge badge-wrong">选项 C 错误</span>
+                    <b>Contribution (分摊)：</b> 这是一个高频干扰项。Contribution 适用于<b>共同过失（Joint Negligence）</b>的情况，即双方都有错，按比例分担。但在本案中，店铺<b>没有过失</b>，因此适用的是 Indemnity（全额），而不是 Contribution（部分）。
+                </div>
+            </div>
+        </div>
+
+        <!-- 备考锦囊 -->
+        
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

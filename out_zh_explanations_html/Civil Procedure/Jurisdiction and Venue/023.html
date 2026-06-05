@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：联邦问题管辖权</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .concept-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid var(--accent-color);
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .rule-highlight {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        .analysis-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .step-icon {
+            background-color: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .option-analysis {
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .option {
+            margin-bottom: 8px;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .option.correct {
+            background-color: rgba(39, 174, 96, 0.1);
+            border: 1px solid var(--success-color);
+        }
+
+        .option.wrong {
+            background-color: rgba(231, 76, 60, 0.1);
+            border: 1px solid #e74c3c;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .badge-correct {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .badge-wrong {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        code {
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            color: #c7254e;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure: Subject-Matter Jurisdiction</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="concept-box">
+            <strong>核心结论：</strong><br>
+            法院应当<strong>拒绝 (Deny)</strong> 被告的驳回动议。因为本案源于美国缔结的条约，属于联邦法院的<strong>联邦问题管辖权 (Federal Question Jurisdiction)</strong> 范围。
+        </div>
+
+        <!-- 法律规则 -->
+        <div class="section-title">⚖️ 法律规则 (The Rule)</div>
+        <p>联邦法院的<strong>属事管辖权 (Subject-Matter Jurisdiction, SMJ)</strong> 主要来源于两个方面：</p>
+        <ol>
+            <li>
+                <strong>多元管辖权 (Diversity Jurisdiction)</strong> - 28 U.S.C. § 1332
+                <br><span style="font-size:0.85rem; color:#666;">要求：完全的公民身份多元 (Complete Diversity) 且争议金额 > $75,000。</span>
+            </li>
+            <li>
+                <strong>联邦问题管辖权 (Federal Question Jurisdiction)</strong> - 28 U.S.C. § 1331
+                <br><span style="font-size:0.85rem; color:#666;">要求：案件必须产生于 (Arising under) 美国宪法、联邦法律或<strong>条约 (Treaties)</strong>。</span>
+            </li>
+        </ol>
+
+        <!-- 案例分析 -->
+        <div class="section-title">🔍 案例分析 (Analysis)</div>
+        
+        <div class="analysis-step">
+            <div class="step-icon">1</div>
+            <div>
+                <strong>条约是联邦法律的来源：</strong><br>
+                题目中明确指出，总统经参议院同意缔结了一项“自动执行条约” (<span class="latin">Self-executing treaty</span>)。根据美国宪法第六条 (Supremacy Clause)，条约是国家的最高法律之一。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">2</div>
+            <div>
+                <strong>诉讼请求源于条约：</strong><br>
+                原告（女子）起诉的依据是该条约中的条款（要求公民支付外国法院判决的赔偿金）。没有这项条约，她可能无法在联邦法院直接执行该外国判决。因此，本案直接“产生于” (<span class="latin">Arises under</span>) 美国条约。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">3</div>
+            <div>
+                <strong>多元管辖权不是必须的：</strong><br>
+                虽然原告和被告是同一州的居民（缺乏 Diversity），但这并不妨碍法院基于“联邦问题”行使管辖权。只要满足 § 1331，就不需要满足 § 1332。
+            </div>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="section-title">✅ 选项辨析</div>
+        
+        <div class="option-analysis">
+            <div class="option correct">
+                <span class="badge badge-correct">选项 A</span> <strong>正确</strong>
+                <br>
+                "No, because the case falls within the federal question jurisdiction..."
+                <br>
+                <strong>理由：</strong>如上所述，案件源于条约，符合 28 U.S.C. § 1331。
+            </div>
+
+            <div class="option wrong">
+                <span class="badge badge-wrong">选项 B</span> <strong>错误</strong>
+                <br>
+                <strong>理由：</strong>虽然总统有缔结条约的权力，但这并不意味着涉及条约解释和执行的案件不受司法审查 (<span class="latin">Judicial Review</span>)。法院有权审理源于条约的案件。
+            </div>
+
+            <div class="option wrong">
+                <span class="badge badge-wrong">选项 C</span> <strong>错误</strong>
+                <br>
+                <strong>理由：</strong>这是一个典型的干扰项。虽然当事人确实缺乏多元公民身份 (Citizenship is not diverse)，但这只排除了 Diversity Jurisdiction，并没有排除 Federal Question Jurisdiction。
+            </div>
+
+            <div class="option wrong">
+                <span class="badge badge-wrong">选项 D</span> <strong>错误</strong>
+                <br>
+                <strong>理由：</strong>混淆了宪法第一条 (Article I) 国会的贸易条款立法权与宪法第三条 (Article III) 法院的管辖权。案件是否涉及商业交易或州际贸易与联邦法院是否有权审理此案（基于条约）无关。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧：</strong>
+            <br>
+            在做管辖权 (Jurisdiction) 题目时，请遵循以下思维导图：
+            <ol style="margin-top:5px; padding-left:20px;">
+                <li>先看<strong>多元管辖权 (Diversity)</strong>：当事人是否来自不同州？（本题：否，同一州）。</li>
+                <li>再看<strong>联邦问题 (Federal Question)</strong>：原告的权利是否源于宪法、联邦法律或<strong>条约</strong>？（本题：是，源于条约）。</li>
+            </ol>
+            只要满足其中一项，联邦法院即拥有管辖权。不要因为不满足 Diversity 就直接认为法院无权审理。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

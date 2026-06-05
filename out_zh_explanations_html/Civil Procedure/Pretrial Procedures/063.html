@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #d4edda;
+            --correct-text: #155724;
+            --wrong-bg: #f8d7da;
+            --wrong-text: #721c24;
+            --text-color: #333;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .rule-block {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .rule-header {
+            font-weight: bold;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .option-analysis {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .correct-option {
+            background-color: var(--correct-bg);
+            color: var(--correct-text);
+            border: 1px solid #c3e6cb;
+        }
+
+        .wrong-option {
+            background-color: #fff;
+            border: 1px solid #eee;
+            color: #666;
+        }
+
+        .exam-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .icon {
+            margin-right: 5px;
+        }
+
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Civil Procedure: Pretrial Procedures</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">💡 核心考点：对组织进行取证 (Deposing an Organization)</span>
+            当取证对象是公司或组织时，通知书必须<b>明确描述质询的事项</b>，以便组织指定合适的人员作证。
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="rule-block">
+            <div class="rule-header">法律依据：FRCP 30(b)(6) & 31</div>
+            <p>根据《联邦民事诉讼规则》(Federal Rules of Civil Procedure)，无论是<b>口头证言质询</b> (Oral Deposition) 还是<b>书面证言质询</b> (Written Deposition)，如果受通知人是一个组织（如本案中的公司）：</p>
+            <ol>
+                <li><b>通知要求：</b>取证方必须在通知中以<b>"合理的具体性" (reasonable particularity)</b> 描述将要质询的事项。</li>
+                <li><b>指定义务：</b>只有在知道要问什么之后，被取证的组织才有义务<b>指定 (designate)</b> 一名或多名官员、董事或其他人员代表其作证。</li>
+            </ol>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <h3>⚖️ 案情逻辑推演</h3>
+            <p>在本案中，原告（所有者）向被告（公司）发送了书面取证通知。虽然通知包含了公司的名称和地址，但<b>缺少了关键的一环</b>：</p>
+            <p style="text-align: center; font-weight: bold; color: var(--wrong-text);">
+                ❌ 未描述质询事项 (Failed to describe matters)
+            </p>
+            <p>由于公司不知道原告要问什么问题，公司就无法履行其法律义务去挑选一个“知道答案”的人来回答。因此，该通知在程序上是有缺陷的。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <h3>✅ 正确答案分析 (选项 D)</h3>
+            <div class="option-analysis correct-option">
+                <b>D. 所有者未能合理地描述将要被质询的事项。</b>
+                <br><br>
+                这是公司拒绝出席并能成功抗辩制裁动议的根本原因。没有具体的质询事项描述，公司无法根据 FRCP 30(b)(6) 指定合适的代理人。这是程序上的致命缺陷。
+            </div>
+
+            <h3>❌ 错误选项排除</h3>
+            <div class="option-analysis wrong-option">
+                <b>A. 所有者未能指定个人...</b><br>
+                <b>错误。</b> 法律规定由<b>被取证的组织</b>（公司）来指定回答问题的人，而不是由取证方（所有者）指定。取证方只需列出问题范围。
+            </div>
+            <div class="option-analysis wrong-option">
+                <b>B. 未能附上传票 (Subpoena)...</b><br>
+                <b>错误。</b> 传票通常用于强制<b>非当事方 (non-party)</b> 出席。对于本案中的被告（当事方），仅需送达符合规定的<b>通知 (Notice)</b> 即可强制其出席。
+            </div>
+            <div class="option-analysis wrong-option">
+                <b>C. 未能获得法院许可 (Leave of court)...</b><br>
+                <b>错误。</b> 一般情况下，进行证言质询不需要法院许可，除非触犯了特定限制（如超过10次取证、重复取证等），本案未提及这些例外情况。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="concept-title">🎓 MBE 提分技巧</span>
+            看到 <b>"Deposition of a Corporation/Organization"</b> 时，立即检查两个关键点：
+            <ul style="margin: 5px 0 0 20px; padding: 0;">
+                <li>通知中是否描述了<b>具体事项 (Subject Matter)</b>？</li>
+                <li>是否由<b>公司自己 (The Organization)</b> 指定证人？</li>
+            </ul>
+            如果通知只写了公司名字没写事项，或者原告试图强行指定公司的某个人（如CEO）回答所有问题，通常都是程序错误的。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

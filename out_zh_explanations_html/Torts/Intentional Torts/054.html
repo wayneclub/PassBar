@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --warning-color: #e74c3c;
+        --success-color: #27ae60;
+        --text-color: #333;
+        --bg-color: #f4f4f4;
+    }
+    
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+    }
+
+    .container {
+        max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .header {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .header .subtitle {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .rule-box {
+        background-color: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 4px 4px 0;
+    }
+
+    .rule-title {
+        color: var(--primary-color);
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+    }
+
+    .rule-title::before {
+        content: "⚖️";
+        margin-right: 8px;
+    }
+
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+
+    .english-term {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 0.9em;
+    }
+
+    .analysis-section {
+        margin-bottom: 20px;
+    }
+
+    .analysis-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+    }
+
+    .correct-answer {
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .pitfall {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    .exam-tip {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 14px;
+        margin-top: 20px;
+    }
+
+    .highlight {
+        background-color: rgba(255, 255, 0, 0.3);
+        padding: 0 2px;
+    }
+
+    ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+
+    li {
+        margin-bottom: 8px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Intentional Torts / Defense of Property</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心法律规则 -->
+        <div class="rule-box">
+            <div class="rule-title">核心考点：财产保护权</div>
+            <p>在侵权法中，被告有权使用<span class="term">合理武力</span> <span class="english-term">(Reasonable Force)</span> 来保护其财产免受侵犯。但是，这种特权有两个关键限制：</p>
+            <ul>
+                <li>武力必须与威胁<span class="term">成比例</span> <span class="english-term">(Proportionate)</span>。</li>
+                <li>绝不能使用<span class="term">过度武力</span> <span class="english-term">(Excessive Force)</span>。</li>
+            </ul>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🔍 案情关键点分析</div>
+            <p>本题考察的是“合理性”的界限。我们需要对比双方的情况：</p>
+            <ul>
+                <li><strong>入侵者：</strong>一名 10 岁的儿童，虽然是非法侵入 <span class="english-term">(Trespasser)</span>，但并未表现出对农夫的人身威胁。</li>
+                <li><strong>农夫的反应：</strong>猛击面部并打断鼻子。</li>
+            </ul>
+            <p><strong>结论：</strong> 面对一个没有造成即时人身威胁的 10 岁儿童，直接重击面部显然超出了“阻止侵入”所需的必要限度。</p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="correct-answer">
+            <strong>✅ 正确答案：D</strong>
+            <p><strong>理由：</strong>农夫使用了过度武力 <span class="english-term">(Excessive Force)</span>。</p>
+            <p>一旦被告使用的武力超过了合理必要的范围，财产保护的特权 <span class="english-term">(Privilege)</span> 即告丧失。此时，被告必须对过度武力造成的伤害（即殴打行为 <span class="english-term">Battery</span>）承担责任。</p>
+        </div>
+
+        <!-- 错误选项陷阱 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🚫 避坑指南 (为何其他选项错误)</div>
+            
+            <div class="pitfall">
+                <strong>选项 A (致命武力)：</strong>
+                这是一个常见的干扰项。虽然农夫确实没有使用致命武力（如开枪），但这并不意味着他免责。只要武力是<strong>过度</strong>的（即使是非致命的），被告就需要负责。
+            </div>
+
+            <div class="pitfall">
+                <strong>选项 B (小偷/合理理由)：</strong>
+                即使孩子是小偷，法律也不允许对非暴力财产犯罪使用严重的身体伤害作为惩罚或驱逐手段。特权仅限于“驱逐”，而非“报复”。
+            </div>
+
+            <div class="pitfall">
+                <strong>选项 C (告示牌)：</strong>
+                是否张贴 "No Trespassing" 标志与农夫是否可以使用暴力殴打入侵者无关。标志可能会影响入侵者的主观状态，但不会赋予地主使用过度暴力的权利。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 答题技巧</strong>
+            <br><br>
+            在涉及 <strong>Defense of Property</strong> 的题目中，永远记住：<br>
+            <span style="color: #f1c40f; font-weight: bold;">人身安全 > 财产安全</span>。
+            <br><br>
+            如果题目中出现“为了保护空屋子/古董”而对人（尤其是弱势群体如儿童）造成严重身体伤害，通常都属于 Excessive Force。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

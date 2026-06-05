@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #f0f7fb;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --text-color: #333;
+            --light-text: #666;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        .container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 480px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 24px 20px;
+            color: var(--text-color);
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--highlight-bg);
+            color: var(--accent-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .rule-box {
+            background-color: #fff8e1;
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--warning-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .scenario-analysis {
+            margin-top: 20px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .step-icon {
+            background-color: var(--highlight-bg);
+            color: var(--accent-color);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .conclusion {
+            background-color: #e8f5e9;
+            color: var(--success-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid #c8e6c9;
+        }
+
+        .option-breakdown {
+            margin-top: 25px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .option-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--light-text);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .wrong-option {
+            font-size: 13px;
+            color: var(--light-text);
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 2px solid #ddd;
+        }
+
+        .latin {
+            font-style: italic;
+            font-family: "Georgia", serif;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Real Property: Fixtures</div>
+    </div>
+
+    <div class="content">
+        <span class="tag">Rights in Real Property</span>
+        <span class="tag">Fixtures (定着物)</span>
+
+        <p>本题考察的核心法律问题是：<strong>终身保有人 (Life Tenant) 是否有权移除其安装在不动产上的定着物 (Fixtures)？</strong></p>
+
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法则 (The Rule)</span>
+            当终身保有人将动产 (Chattel) 附着于不动产时，如果满足以下条件，该动产<strong>不成为</strong>不动产的永久部分，保有人（或其个人代表）有权将其移除：
+            <ul style="margin: 5px 0 0 20px; padding: 0;">
+                <li><strong>意图 (Intent)：</strong> 安装者无意将其永久赠予给剩余财产权人 (Remainderman)。</li>
+                <li><strong>损害 (Damage)：</strong> 移除不会对不动产造成实质性损害。</li>
+                <li><strong>时间 (Timing)：</strong> 必须在终身地产权终止后的<strong>合理时间内</strong>移除。</li>
+            </ul>
+        </div>
+
+        <div class="scenario-analysis">
+            <h3>📝 案情拆解</h3>
+            
+            <div class="step">
+                <div class="step-icon">1</div>
+                <div>
+                    <strong>安装者的身份：</strong><br>
+                    妻子是终身保有人 (Life Tenant)，而非完全保有权人 (Fee Simple Owner)。法律对终身保有人移除定着物的权利通常比普通租户更宽松，因为他们知道自己的权益是暂时的。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">2</div>
+                <div>
+                    <strong>主观意图 (Intent)：</strong><br>
+                    妻子安装的是<strong>家族传家宝 (Heirloom)</strong>，并明确指示死后换回原灯具。这清楚地表明她<strong>没有</strong>将吊灯永久附着于房屋的意图 (No intent to annex permanently)。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">3</div>
+                <div>
+                    <strong>移除行为：</strong><br>
+                    外甥作为个人代表 (Personal Representative)，在妻子死后<strong>不久 (shortly after)</strong> 进行了移除。这符合“合理时间”的要求。且题目未提及移除造成了房屋损坏。
+                </div>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            ✅ 结论：外甥胜诉 (Option A)<br>
+            <span style="font-size: 0.9em; font-weight: normal; color: #333;">因为他有权在合理时间内移除未被永久添附的动产。</span>
+        </div>
+
+        <div class="option-breakdown">
+            <div class="option-title">为什么其他选项是错的？</div>
+            
+            <div class="wrong-option">
+                <strong>❌ 选项 B (Doctrine of Accession):</strong><br>
+                添附原则 (Accession) 通常指动产与不动产结合得如此紧密，以至于无法分离，从而导致动产所有权转移给不动产所有人。本案中吊灯可以被移除且无损毁，因此不适用该原则。如果适用，胜诉的应该是儿子（不动产所有人）。
+            </div>
+
+            <div class="wrong-option">
+                <strong>❌ 选项 C (Trade Fixtures Only):</strong><br>
+                这是一个常见的干扰项。虽然“营业定着物” (Trade Fixtures) 确实允许商业租户移除，但终身保有人移除定着物的权利<strong>不限于</strong>商业用途。家庭装饰类定着物 (Domestic fixtures) 只要符合意图测试，同样可以移除。
+            </div>
+
+            <div class="wrong-option">
+                <strong>❌ 选项 D (Cannot be removed after death):</strong><br>
+                法律允许终身保有人的个人代表在终身权益终止后的一段<strong>合理时间 (Reasonable Time)</strong> 内进入房产移除定着物。权利并不会在死亡瞬间立即消失。
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Tips: 在定着物问题中，安装者的“意图”通常是决定性因素，尤其是当安装者是租户或终身保有人时。
+    </div>
+</div>
+
+</body>
+</html>

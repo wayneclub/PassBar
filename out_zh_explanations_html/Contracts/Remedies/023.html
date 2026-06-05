@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --correct-color: #27ae60;
+        --wrong-color: #c0392b;
+        --text-color: #333;
+        --bg-color: #f9f9f9;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: #eee;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+    .header .subtitle {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .rule-box {
+        background-color: var(--highlight-bg);
+        border-left: 5px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        display: block;
+    }
+    .section-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+    }
+    .answer-analysis {
+        margin-bottom: 15px;
+    }
+    .correct-tag {
+        display: inline-block;
+        background-color: var(--correct-color);
+        color: white;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    .wrong-tag {
+        display: inline-block;
+        background-color: var(--wrong-color);
+        color: white;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .latin {
+        font-style: italic;
+        color: #666;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    li {
+        margin-bottom: 8px;
+    }
+    .footer {
+        background-color: #f1f1f1;
+        padding: 15px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #777;
+        border-top: 1px solid #ddd;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts & Remedies<br>雇佣合同违约与救济</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">🔑 核心法律规则 (Black Letter Law)</span>
+            当雇主违反雇佣合同时，雇员有权获得<strong>预期利益 (Expectation Damages)</strong>，即合同剩余期限内的承诺薪水。
+            <br><br>
+            ⚠️ <strong>但是 (However)</strong>：雇员有义务通过寻找<strong>类似的 (Comparable)</strong> 工作来<strong>减损 (Mitigate Damages)</strong>。
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="section-title">✅ 正确答案分析 (选项 B)</div>
+        <div class="answer-analysis">
+            <p><strong>逻辑推导：</strong></p>
+            <p>本题中，公司无故解雇女商人构成违约。根据合同法原则，她有权获得剩余1.5年的薪水（$150,000/年）。</p>
+            <p>然而，法律要求受害方不能坐视损失扩大，必须采取合理措施寻找替代工作。最终的赔偿公式为：</p>
+            <div style="background:#fff; border:1px dashed #ccc; padding:10px; text-align:center; margin:10px 0; font-weight:bold;">
+                赔偿金 = 承诺薪水 - (实际赚取 + 本可赚取的金额)
+            </div>
+            <p>选项 B 准确地涵盖了这一规则的两个方面：</p>
+            <ol>
+                <li>她有权获得承诺的薪水；</li>
+                <li><strong>前提条件是</strong>：她没有找到类似工作（即无法减损）且没有接受其他工作。</li>
+            </ol>
+            <p>如果市场上确实没有“合理可得的类似工作”，那么她“本可赚取的金额”为零，雇主必须全额赔偿。</p>
+        </div>
+
+        <!-- 干扰项解析 -->
+        <div class="section-title">❌ 为什么其他选项是错误的？</div>
+        
+        <div class="answer-analysis">
+            <span class="wrong-tag">选项 C (陷阱)</span> <strong>“保持随时准备工作” (Ready to work)</strong>
+            <p>这是一个常见的MBE陷阱。旧法（Constructive Service Doctrine）曾允许这种做法，但现代合同法要求<strong>积极减损 (Affirmative Duty to Mitigate)</strong>。仅仅坐在家里“准备好工作”是不够的，她必须积极寻找替代就业机会。如果她不找工作，法院会扣除她“本可以”找到的工作收入。</p>
+        </div>
+
+        <div class="answer-analysis">
+            <span class="wrong-tag">选项 A</span> <strong>特定履行 (Specific Performance)</strong>
+            <p>法院几乎从不强制执行<strong>个人服务合同 (Personal Service Contracts)</strong>。原因包括：
+            <ul>
+                <li>宪法第13修正案（禁止非自愿奴役）；</li>
+                <li>法院难以监督工作质量和人际关系。</li>
+            </ul>
+            </p>
+        </div>
+
+        <div class="answer-analysis">
+            <span class="wrong-tag">选项 D</span> <strong>撤销合同 (Rescission)</strong>
+            <p>撤销合同通常要求<strong>重大违约 (Material Breach)</strong> 导致合同目的落空。本案中：
+            <ul>
+                <li>主要交易是2500万美元的企业出售。</li>
+                <li>雇佣合同只是附属部分。</li>
+            </ul>
+            解雇虽然违约，但相对于2500万的交易而言，不太可能构成“触及合同根本”的重大违约，因此不能撤销整个销售合同，只能就工资损失索赔。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+            <span class="rule-title">💡 MBE 考试技巧</span>
+            在处理<strong>雇佣合同违约</strong>计算赔偿金的题目时，请记住：
+            <br>
+            <strong>Burden of Proof (举证责任)</strong> 在于违约方（雇主）。雇主必须证明：
+            1. 有类似的工作机会存在；
+            2. 雇员没有尽合理努力去争取。
+            <br>
+            如果雇主无法证明有类似工作可做，雇员即可获得全额薪水。
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background: #eafaf1;
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 3px;
+        }
+        .rule-box {
+            background: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+        .case-study {
+            background: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .case-name {
+            font-weight: bold;
+            font-style: italic;
+            color: #d35400;
+        }
+        .key-point {
+            font-weight: bold;
+            color: var(--wrong-color);
+        }
+        .exam-tip {
+            background: #2c3e50;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 0.9rem;
+        }
+        .exam-tip-title {
+            color: #f1c40f;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Federal-State Relations (Spending Power)</div>
+    </div>
+
+    <div class="content">
+        <!-- 答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">✅ 正确答案：A</span>
+            <strong>否，因为附加在接受联邦资金上的条件具有过度胁迫性 (Unduly Coercive)。</strong>
+        </div>
+
+        <p>本题考察的核心是国会<strong>支出权 (Spending Power)</strong> 的边界，特别是当联邦资金被用作“武器”来强迫各州服从联邦政策时。</p>
+
+        <!-- 法律规则解析 -->
+        <div class="section-title">⚖️ 法律规则解析</div>
+        <div class="rule-box">
+            <p>根据宪法第一条第8款，国会有权为“公共福祉” (General Welfare) 进行支出。国会可以在拨款时附加条件，诱导各州采取某些行动。根据 <i>South Dakota v. Dole</i> 案，这些条件必须满足以下标准：</p>
+            <ul>
+                <li>是为了公共福祉；</li>
+                <li>条件必须清晰明确 (Unambiguous)；</li>
+                <li>条件与联邦项目的目的相关 (Related to the interest)；</li>
+                <li>不违反其他宪法规定；</li>
+                <li><strong>不能具有过度胁迫性 (Not Unduly Coercive)。</strong></li>
+            </ul>
+        </div>
+
+        <!-- 判例对比 -->
+        <div class="section-title">🏛️ 关键判例对比 (Key Precedents)</div>
+        
+        <div class="case-study">
+            <span class="case-name">South Dakota v. Dole (1987)</span><br>
+            国会以扣留 <strong>5%</strong> 的联邦高速公路资金为威胁，要求各州将饮酒年龄提高到21岁。法院裁定这是<strong>合宪</strong>的，因为这只是“温和的诱导” (Mild Encouragement)，而非胁迫。
+        </div>
+
+        <div class="case-study" style="margin-top:10px; border-color: #e57373; background: #ffebee;">
+            <span class="case-name">NFIB v. Sebelius (2012)</span><br>
+            在奥巴马医改案中，国会威胁如果各州不扩大医疗补助 (Medicaid)，将失去<strong>全部</strong>现有的 Medicaid 资金（约占州总预算的 <strong>10%-20%</strong>）。法院裁定这是<strong>违宪</strong>的，因为这构成了“用枪指着头” (Gun to the head) 的经济胁迫。
+        </div>
+
+        <!-- 题目分析 -->
+        <div class="section-title">🔍 本题深度分析</div>
+        <p>题目中的事实模式直接影射了 <i>NFIB v. Sebelius</i> 案的逻辑：</p>
+        <ul>
+            <li><strong>资金规模巨大：</strong> 联邦资金占州年度总预算的 <strong>15%</strong>。这是一个极其庞大的数字，远超 <i>Dole</i> 案中的比例。</li>
+            <li><strong>后果严重：</strong> 不遵守测试要求将导致失去<strong>所有</strong>资金，并造成“预算短缺”。</li>
+            <li><strong>结论：</strong> 当一个州实际上无法选择“不”时（因为拒绝的代价是经济上的毁灭），这种“诱导”就变成了“强迫”。这违反了联邦制原则，侵犯了各州的主权。</li>
+        </ul>
+
+        <!-- 错误选项排除 -->
+        <div class="section-title">❌ 为什么其他选项错误</div>
+        <ul>
+            <li><strong>选项 B (第十修正案豁免权):</strong> 虽然第十修正案保护各州免受联邦“征用” (Commandeering)，但本题是关于<strong>附条件支出</strong> (Conditional Spending)。如果条件不是胁迫性的，国会<i>可以</i>通过金钱诱导各州。因此，单纯引用第十修正案的豁免权是不够准确的，必须指出其“胁迫性”才是违宪的关键。</li>
+            <li><strong>选项 C (公共福祉):</strong> 国会确实有权为公共福祉支出，但这并不是无限的权力。它不能通过支出权来规避对胁迫的禁止。</li>
+            <li><strong>选项 D (至上条款):</strong> 至上条款规定联邦法律高于州法律，但它并不允许联邦政府强迫各州执行联邦监管计划 (Anti-Commandeering Principle)。</li>
+        </ul>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 提分技巧</span>
+            <p>在处理 <strong>Spending Power</strong> 的题目时，请关注<strong>百分比</strong>：</p>
+            <ul>
+                <li>如果是扣留 <strong>< 5%</strong> 的特定项目资金 ➡️ 通常是<strong>合宪</strong>的诱导。</li>
+                <li>如果是扣留 <strong>> 10%</strong> 的州总预算或威胁取消整个巨额项目 ➡️ 很可能是<strong>违宪</strong>的胁迫 (Coercion)。</li>
+            </ul>
+            <p>记住关键词：<strong>"Gun to the head" (用枪指着头)</strong>。</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

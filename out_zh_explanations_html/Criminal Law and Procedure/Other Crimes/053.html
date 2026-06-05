@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-bg: #e8f8f5;
+            --correct-border: #2ecc71;
+            --wrong-bg: #fdedec;
+            --wrong-border: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .card {
+            border-left: 4px solid var(--accent-color);
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title::before {
+            content: '⚖️';
+            margin-right: 8px;
+        }
+
+        .correct-answer {
+            border-left-color: var(--correct-border);
+            background-color: var(--correct-bg);
+        }
+
+        .correct-answer .card-title::before {
+            content: '✅';
+        }
+
+        .wrong-analysis {
+            border-left-color: var(--wrong-border);
+            background-color: var(--wrong-bg);
+        }
+
+        .wrong-analysis .card-title::before {
+            content: '❌';
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .exam-tip {
+            background-color: #eaf2f8;
+            border: 1px dashed var(--accent-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .exam-tip strong {
+            color: var(--accent-color);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="subtitle">Criminal Law: Solicitation Defenses</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心结论 -->
+        <div class="card correct-answer">
+            <div class="card-title">正确答案解析 (选项 B)</div>
+            <p>本题考察的是<strong>教唆罪（Solicitation）</strong>中的一个特殊抗辩理由：<strong>立法豁免（Legislative Exemption）</strong>。</p>
+            <p><strong>法律逻辑如下：</strong></p>
+            <ul>
+                <li><strong>基本规则：</strong>教唆罪通常是指请求他人实施犯罪。</li>
+                <li><strong>例外情况：</strong>如果被教唆的罪行（如毒品销售）本质上需要双方参与（买方和卖方），但法律条文<strong>仅惩罚其中一方</strong>（卖方），那么立法机关被视为意图<strong>豁免</strong>另一方（买方）的刑事责任。</li>
+                <li><strong>本案应用：</strong>题目明确指出法律将“出售”（Sale）定为犯罪。虽然交易需要买卖双方，但法律未惩罚“购买”。因此，作为买方的大学生属于法律意图保护或豁免的人群，她不能因教唆他人对自己实施该罪行而被定罪。</li>
+            </ul>
+        </div>
+
+        <!-- 法律规则详解 -->
+        <div class="card">
+            <div class="card-title">关键考点：受保护阶层</div>
+            <p>在普通法和《模范刑法典》（MPC）中，如果教唆者属于刑事法规旨在<strong>保护</strong>的群体（vulnerable class），则不能被判教唆罪。</p>
+            <p><strong>经典案例：</strong></p>
+            <ul>
+                <li><strong>法定强奸罪（Statutory Rape）：</strong>未成年受害者不能因“教唆”成年人与其发生性关系而被定罪，因为法律是为了保护未成年人。</li>
+                <li><strong>毒品交易：</strong>如果法律只惩罚贩卖者（Dealer），通常是为了遏制供应，而将购买者（Buyer）视为受害者或需要治疗的人，而非教唆犯。</li>
+            </ul>
+        </div>
+
+        <!-- 错误选项分析 -->
+        <div class="card wrong-analysis">
+            <div class="card-title">为什么其他选项是错的？</div>
+            <ul>
+                <li><strong>选项 A (事实不能 Factual Impossibility)：</strong><br>
+                教唆罪是<strong>行为犯</strong>。一旦你发出了“请求”，犯罪即已完成。至于对方是卧底警察（导致买卖在事实上不可能完成），这属于“事实上的不能”，在刑法中<strong>不是</strong>有效的抗辩理由。</li>
+                
+                <li><strong>选项 C (未交付 Not Given)：</strong><br>
+                教唆罪不要求目标罪行（Target Crime）既遂。只要提出了请求，教唆罪即成立。毒品是否交付与教唆罪是否成立无关。</li>
+                
+                <li><strong>选项 D (未同意 No Agreement)：</strong><br>
+                这是教唆罪（Solicitation）与共谋罪（Conspiracy）的区别。
+                <br><span class="term">Solicitation</span> 只需要单方面的请求，不需要对方同意。
+                <br><span class="term">Conspiracy</span> 才需要双方达成合意（Agreement）。</li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 解题技巧</strong>
+            <p>遇到涉及<strong>双向交易（Two-party transactions）</strong>的题目（如毒品买卖、非法性交易、贿赂）时：</p>
+            <ol>
+                <li>检查法条是惩罚<strong>双方</strong>还是<strong>单方</strong>。</li>
+                <li>如果法条只惩罚卖方/受贿方，那么买方/行贿方通常不能被控教唆罪或共犯（Accomplice）。</li>
+                <li>记住：<strong>Factual Impossibility</strong> 几乎永远不是 Attempt、Solicitation 或 Conspiracy 的有效辩护。</li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

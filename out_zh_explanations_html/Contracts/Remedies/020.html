@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .concept-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .option-analysis {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .option-item {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .correct-tag {
+            background: #27ae60;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+        .wrong-tag {
+            background: #95a5a6;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+        .footer-tip {
+            background: #f9f9f9;
+            padding: 15px;
+            font-size: 0.9rem;
+            color: #555;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">UCC 买方义务与侵占 (Conversion)</div>
+    </div>
+
+    <div class="content">
+        <p>本题考察的核心在于：当买方正当拒收货物后，如果擅自处理（出售）该货物，且该行为不被视为“接受货物”时，卖方可以获得何种救济。</p>
+
+        <div class="concept-box">
+            <span class="concept-title">核心法律原则 (UCC § 2-602)</span>
+            当买方正当拒收 (<span class="english-term">Rightful Rejection</span>) 货物后，买方有义务合理保管货物，等待卖方取回。买方不得对货物行使任何所有权 (<span class="english-term">Exercise of Ownership</span>)。
+        </div>
+
+        <div class="analysis-step">
+            <h3>1. 拒收后的法律状态</h3>
+            <p>收藏家（买方）因画作受损正当拒收。此时，画作的所有权和占有权在法律上回归画廊（卖方）。买方仅是该货物的“保管人” (<span class="english-term">Bailee</span>)。</p>
+        </div>
+
+        <div class="analysis-step">
+            <h3>2. 侵占行为 (Conversion)</h3>
+            <p>题目设置了一个关键前提：<b>“如果收藏家的出售行为不构成对货物的接受”</b>。通常根据 UCC § 2-606，对货物行使所有权会被视为接受。但既然题目排除了这一点，我们必须将该行为视为对他人财产的非法处分。</p>
+            <p>买方将属于卖方的画作以 $550,000 出售给第三方，这构成了法律上的<span class="term">侵占 (Conversion)</span>。</p>
+        </div>
+
+        <div class="analysis-step">
+            <h3>3. 损害赔偿的计算</h3>
+            <p>在侵占案件中，标准的损害赔偿是<b>侵占发生时货物的公平市场价值</b> (<span class="english-term">Fair Market Value at the time of conversion</span>)。</p>
+            <p>本案中，收藏家成功以 $550,000 将画卖出，这个价格是该画作在当时市场价值的最直接、最有力的证据。因此，画廊有权追讨这 $550,000。</p>
+        </div>
+
+        <div class="option-analysis">
+            <h3>选项辨析</h3>
+            
+            <div class="option-item">
+                <span class="correct-tag">正确</span> <b>选项 C ($550,000)</b><br>
+                这是侵占行为发生时的市场价值。卖方有权获得被侵占财产的全部价值，防止买方因不法行为获利（不当得利）。
+            </div>
+
+            <div class="option-item">
+                <span class="wrong-tag">错误</span> <b>选项 A ($50,000)</b><br>
+                这仅是差价。如果只赔偿 $50,000，意味着买方保留了 $500,000 的原合同款（假设未付），这不符合侵占赔偿原则。
+            </div>
+
+            <div class="option-item">
+                <span class="wrong-tag">错误</span> <b>选项 B ($500,000)</b><br>
+                这是原合同价格。如果视为“接受货物”，买方需付合同价。但题目排除了“接受”，且侵占赔偿看重的是实际市价，而非原合同价。
+            </div>
+
+            <div class="option-item">
+                <span class="wrong-tag">错误</span> <b>选项 D (损失利润)</b><br>
+                “销量损失卖方” (<span class="english-term">Lost Volume Seller</span>) 规则适用于标准库存商品。本案画作是“独一无二” (<span class="english-term">One-of-a-kind</span>) 的，卖方无法通过再次销售同类商品来获利，因此不适用此规则。
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-tip">
+        <strong>💡 考试技巧：</strong><br>
+        注意题目中的<b>假设性条件</b>（如本题的“If... NOT an acceptance”）。MBE 题目有时会通过这种方式强制你进入特定的法律分析路径（本题强制进入 Tort/Conversion 路径），切勿忽略这些限定词而直接套用通常的 UCC 接受规则。
+    </div>
+</div>
+
+</body>
+</html>

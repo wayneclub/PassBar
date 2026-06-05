@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：联邦法院移送与法律选择</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .rule-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .step-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+        .step-list li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: var(--correct-color);
+            font-weight: bold;
+        }
+        .concept-tag {
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-family: monospace;
+            color: #555;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+        .highlight {
+            color: var(--wrong-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure (民事诉讼法)</div>
+    </div>
+
+    <div class="content">
+        <!-- 答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：D</span>
+            法院应确定 <b>B 州</b>的州法院会适用哪一州的过失法，并适用该法律。
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="rule-card">
+            <div class="rule-title">核心考点：Klaxon 原则与案件移送</div>
+            <p>本题考察的是在<b>多元管辖权 (Diversity Jurisdiction)</b> 下，当案件从一个联邦法院移送 (Transfer) 到另一个联邦法院时，如何进行<b>法律选择 (Choice of Law)</b>。</p>
+            
+            <p>根据 <i>Klaxon Co. v. Stentor Electric Mfg. Co.</i> 判例，联邦法院在审理多元管辖权案件时，必须适用<b>法院地所在州 (Forum State)</b> 的法律选择规则。</p>
+            
+            <p>但是，当案件发生移送时，关键在于：<b>原审法院的审判地 (Venue) 是否适当？</b></p>
+        </div>
+
+        <!-- 逻辑推导步骤 -->
+        <div class="rule-card">
+            <div class="rule-title">逻辑推导步骤</div>
+            <ul class="step-list">
+                <li>
+                    <b>第一步：判断原审法院 (A 州) 的审判地是否适当？</b><br>
+                    根据 <span class="concept-tag">28 U.S.C. § 1391</span>，审判地通常在：
+                    <ol style="padding-left: 20px; margin: 5px 0;">
+                        <li>被告居住的州；或</li>
+                        <li>案件主要部分发生的州。</li>
+                    </ol>
+                    本案中，被告住在 B 州，事故发生在 B 州。因此，<b>A 州的审判地是不当的 (Improper Venue)</b>。
+                </li>
+                <li>
+                    <b>第二步：确定适用的移送规则</b><br>
+                    由于原审地不当，案件是根据 <span class="concept-tag">28 U.S.C. § 1406</span> 进行移送的（为了纠正审判地错误）。
+                </li>
+                <li>
+                    <b>第三步：确定法律选择规则</b><br>
+                    如果是为了纠正错误审判地而移送，<b>原审法院所在州的法律不随案件转移</b>。受理法院（B 州联邦法院）应将其视为直接在 B 州提起的诉讼，适用 <b>B 州（受理法院地）</b>的法律选择规则。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 规则对比表 -->
+        <div class="rule-card">
+            <div class="rule-title">考场必背：移送后的法律适用</div>
+            <table class="comparison-table">
+                <tr>
+                    <th>移送类型</th>
+                    <th>原审地状态</th>
+                    <th>适用的法律选择规则</th>
+                </tr>
+                <tr>
+                    <td><b>§ 1404 移送</b><br>(为了方便)</td>
+                    <td><span style="color:var(--correct-color)">适当 (Proper)</span></td>
+                    <td><b>原审法院州 (State A)</b><br><i>(Van Dusen Rule: Take the law with you)</i></td>
+                </tr>
+                <tr>
+                    <td><b>§ 1406 移送</b><br>(为了纠错)</td>
+                    <td><span class="highlight">不当 (Improper)</span></td>
+                    <td><b>受理法院州 (State B)</b><br><i>(Apply the law of the new forum)</i></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 为什么其他选项错误 -->
+        <div class="rule-card">
+            <div class="rule-title">干扰项辨析</div>
+            <p><b>选项 A 错误：</b> 根据 <i>Erie</i> 原则，联邦法院在多元管辖权案件中不适用“联邦普通法”来解决过失等实体问题，必须适用州法。</p>
+            <p><b>选项 B 错误：</b> 联邦法院不能自创法律选择规则（即不能自己觉得哪个好就用哪个），必须遵循所在州的冲突法规则。</p>
+            <p><b>选项 C 错误：</b> 这是最大的陷阱！只有当原审法院（A 州）的审判地是<b>适当</b>的时候（即 § 1404 移送），才会适用 A 州的法律选择规则。本题中 A 州审判地不当，所以不能适用 A 州规则。</p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

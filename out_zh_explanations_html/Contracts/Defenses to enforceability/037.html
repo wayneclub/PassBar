@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .step-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: #7f8c8d;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .option-analysis {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .badge-correct { background: #d4edda; color: var(--correct-color); }
+        .badge-wrong { background: #f8d7da; color: var(--wrong-color); }
+        
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 20px;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts: Capacity & Ratification</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <span style="font-size: 2rem; font-weight: bold; color: var(--correct-color);">$75</span>
+            <p>卖方可能获得的赔偿金额</p>
+        </div>
+
+        <!-- 法律规则 -->
+        <div class="rule-box">
+            <div class="rule-title">核心法律规则</div>
+            <p><strong>1. 未成年人的缔约能力 (Capacity):</strong><br>
+            未成年人签订的合同通常是<strong>可撤销的 (Voidable)</strong>，而非无效 (Void)。</p>
+            
+            <p><strong>2. 追认 (Ratification):</strong><br>
+            当未成年人达到法定年龄 (Age of Majority) 后，可以通过言语或行为（如继续保留货物）追认合同。一旦追认，合同即变得可强制执行。</p>
+            
+            <p><strong>3. 追认的范围 (Scope):</strong><br>
+            如果追认表现为承诺履行合同的<strong>一部分</strong>，则强制执行力仅限于该承诺的部分。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-step">
+            <div class="step-label">第一步：原始合同状态</div>
+            <p>买方购买望远镜时是未成年人，因此该 100 美元的合同是<strong>可撤销的 (Voidable)</strong>。此时卖方无法强制执行。</p>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-label">第二步：成年后的行为</div>
+            <p>买方成年后，做出了一个新的承诺：<strong>"I now promise to pay you $75."</strong></p>
+            <p>这是一个明确的<strong>追认 (Ratification)</strong> 行为。虽然她本可以完全撤销合同并退还望远镜，但她选择了保留并承诺付款。</p>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-label">第三步：对价问题 (Consideration)</div>
+            <p><strong>关键考点：</strong>买方成年后的新承诺是否需要新的对价？<br>
+            <span style="color: var(--wrong-color);">不需要。</span></p>
+            <p>根据《合同法重述》<span class="latin">(Restatement (Second) of Contracts § 85)</span>，承诺履行一项因未成年而可撤销的义务（Antecedent Voidable Duty），<strong>无需新的对价 (Consideration) 即可强制执行</strong>。</p>
+        </div>
+
+        <!-- 选项辨析 -->
+        <div class="option-analysis">
+            <div class="step-label">选项深度解析</div>
+            
+            <div style="margin-bottom: 10px;">
+                <span class="badge badge-correct">选项 C (正确)</span>
+                <strong>$75</strong>
+                <p>买方成年后明确承诺支付 $75。虽然原始债务是 $100，但追认的效力受限于新承诺的具体条款。因此，法院将强制执行 $75 的承诺。</p>
+            </div>
+
+            <div style="margin-bottom: 10px;">
+                <span class="badge badge-wrong">选项 A & B (错误)</span>
+                <strong>Nothing</strong>
+                <p>错误原因：
+                <br>A 忽略了成年后的追认行为。
+                <br>B 错误地认为追认需要新对价（这是 MBE 常见的干扰项）。履行“道德义务”或“可撤销债务”的承诺是 Consideration 规则的著名例外。</p>
+            </div>
+
+            <div>
+                <span class="badge badge-wrong">选项 D (错误)</span>
+                <strong>$100</strong>
+                <p>错误原因：如果买方只是默默保留望远镜而没有说话，这可能构成对原始 $100 合同的默示追认。但本案中，买方<strong>明确修改</strong>了条款（Expressly promised $75），因此责任仅限于她口头承诺的金额。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Contracts Key Concept: Ratification of Voidable Contracts
+    </div>
+</div>
+
+</body>
+</html>

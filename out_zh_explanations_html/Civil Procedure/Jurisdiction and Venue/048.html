@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .answer-label {
+            color: #2e7d32;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .concept-card {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .rule-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .analysis-step {
+            display: flex;
+            margin-bottom: 12px;
+        }
+        .step-num {
+            background-color: #2c3e50;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .footer {
+            background-color: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 民事诉讼法解析</h1>
+        <div class="sub-title">Supplemental Jurisdiction & Impleader</div>
+    </div>
+
+    <div class="content">
+        <!-- Answer Section -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：B</span>
+            不应批准驳回动议，因为法院对批发商的反诉拥有补充管辖权 (Supplemental Jurisdiction)。
+        </div>
+
+        <!-- Core Legal Concept -->
+        <div class="section-title">核心考点解析</div>
+        <p>本题考察的是联邦法院的<b>补充管辖权 (Supplemental Jurisdiction, 28 U.S.C. § 1367)</b> 在第三方诉讼 (Impleader) 中的应用。</p>
+        
+        <div class="concept-card">
+            <strong>基础背景：</strong><br>
+            原始诉讼（店主 v. 分销商）基于<b>多元化管辖权 (Diversity Jurisdiction)</b>。
+            <br><br>
+            <strong>问题焦点：</strong><br>
+            批发商（第三方被告）对分销商（被告/第三方原告）提起的反诉，是否需要独立的管辖权基础？
+        </div>
+
+        <!-- Step-by-Step Analysis -->
+        <div class="section-title">逻辑推导步骤</div>
+
+        <div class="analysis-step">
+            <div class="step-num">1</div>
+            <div>
+                <strong>检查独立管辖权：</strong><br>
+                批发商的反诉金额仅为 $60,000（低于 $75,000），且批发商与分销商均为 B 州公民（无多元化）。因此，该反诉<b>没有</b>独立的联邦管辖权基础。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-num">2</div>
+            <div>
+                <strong>检查补充管辖权 (§ 1367(a))：</strong><br>
+                该反诉是否与原始诉讼源于<b>“共同的核心事实” (Common Nucleus of Operative Fact)</b>？<br>
+                <span class="highlight">是的。</span> 它们都涉及同一批有缺陷的货物。因此，法院原则上拥有补充管辖权。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-num">3</div>
+            <div>
+                <strong>检查例外限制 (§ 1367(b))：</strong><br>
+                这是 MBE 的常考陷阱。在仅基于多元化管辖权的案件中，§ 1367(b) 禁止<b>原告 (Plaintiff)</b> 对根据 Rule 14 (Impleader) 加入的当事人行使补充管辖权。<br>
+                <div class="rule-box">
+                    <strong>关键判断：</strong><br>
+                    本案中提出反诉的是<b>批发商（第三方被告）</b>，而不是原始原告（店主）。<br>
+                    因此，§ 1367(b) 的限制<b>不适用</b>。
+                </div>
+            </div>
+        </div>
+
+        <p><strong>结论：</strong> 既然满足了 § 1367(a) 且不受 § 1367(b) 限制，法院对该反诉拥有补充管辖权，即使双方没有多元化公民身份且金额不足。</p>
+
+        <!-- Why others are wrong -->
+        <div class="section-title">为什么其他选项是错的？</div>
+        
+        <ul>
+            <li>
+                <strong>选项 A (错误)：</strong> 提到“主要营业地不同”。这具有误导性。虽然主要营业地不同，但它们都在 B 州注册成立 (Incorporated)，因此在法律上它们都是 B 州公民，<b>不存在</b>多元化。
+            </li>
+            <li>
+                <strong>选项 C (错误)：</strong> 认为“缺乏多元化”就应驳回。这是错误的，因为<b>补充管辖权</b>正是为了解决缺乏独立管辖权（如缺乏多元化）但案情相关的诉求而存在的。
+            </li>
+            <li>
+                <strong>选项 D (错误)：</strong> 提到店主和批发商之间无多元化。这在本题中不相关，因为店主并没有起诉批发商，批发商也没有起诉店主。他们不是对立当事人。
+            </li>
+        </ul>
+
+        <!-- Exam Tips -->
+        <div class="section-title">MBE 考试技巧</div>
+        <div class="concept-card" style="border-left-color: #e67e22;">
+            在处理 <b>Supplemental Jurisdiction</b> 题目时，请记住口诀：
+            <ol style="margin-left: -20px;">
+                <li><b>关联性 (Relatedness)：</b> 索赔是否源于同一交易或事件？(如果是，进入下一步)</li>
+                <li><b>原告限制 (Plaintiff Limitation)：</b> 原始案件是否仅基于 Diversity？如果是，提出该补充索赔的人是<b>原告</b>吗？
+                    <ul>
+                        <li>如果是原告针对第三方被告提出的 -> <b>无管辖权</b> (除非独立满足条件)。</li>
+                        <li>如果是被告或第三方被告提出的 -> <b>通常有管辖权</b>。</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+    </div>
+    
+</div>
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --light-text: #7f8c8d;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+            font-weight: 300;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .concept-card {
+            background-color: #eef7fb;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .concept-title span {
+            margin-right: 8px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .rule-breakdown {
+            margin-bottom: 20px;
+        }
+
+        .rule-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .icon {
+            margin-right: 10px;
+            font-size: 18px;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .answer-section {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .correct-answer {
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .explanation-text {
+            font-size: 14px;
+            color: var(--text-color);
+        }
+
+        .wrong-option {
+            font-size: 13px;
+            color: var(--light-text);
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #eee;
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            color: #d35400;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            color: #aaa;
+            border-top: 1px solid #eee;
+        }
+
+        /* Visual Diagram for TBE */
+        .tbe-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .spouse {
+            background: #ddd;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        .link {
+            height: 2px;
+            width: 30px;
+            background: var(--primary-color);
+            position: relative;
+        }
+        .link::after {
+            content: "🔒";
+            position: absolute;
+            top: -10px;
+            left: 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Real Property: Concurrent Estates</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心概念 -->
+        <div class="concept-card">
+            <div class="concept-title">
+                <span>🏛️</span> 核心考点：Tenancy by the Entirety
+            </div>
+            <p style="font-size: 14px; margin: 0;">
+                <b>Tenancy by the Entirety (TBE)</b> 是一种仅适用于<b>已婚夫妇</b>的特殊共有产权形式。在法律上，夫妻双方被视为“单一整体”(One Marital Unit)。
+            </p>
+            
+            <div class="tbe-visual">
+                <div class="spouse">Husband</div>
+                <div class="link"></div>
+                <div class="spouse">Wife</div>
+            </div>
+            <p style="text-align: center; font-size: 12px; color: #666; margin-top: -10px;">不可单方面分割 (No Unilateral Partition)</p>
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="rule-breakdown">
+            <h3 style="font-size: 16px; border-bottom: 2px solid var(--accent-color); padding-bottom: 5px; display: inline-block;">⚖️ 判题逻辑链</h3>
+            
+            <div class="rule-item">
+                <div class="icon">🚫</div>
+                <div>
+                    <strong>禁止单方面分割 (No Right to Partition):</strong><br>
+                    与 <em>Joint Tenancy</em> 或 <em>Tenancy in Common</em> 不同，TBE 的任何一方都不能在婚姻存续期间单方面强行分割（Partition）房产。
+                </div>
+            </div>
+
+            <div class="rule-item">
+                <div class="icon">💍</div>
+                <div>
+                    <strong>婚姻状态是关键 (Marriage is Key):</strong><br>
+                    只要双方仍然是法律上的夫妻（即使分居 Separated），TBE 就依然存在。只有<b>离婚 (Divorce)</b>、<b>死亡</b>或<b>双方共同协议</b>才能终止 TBE。
+                </div>
+            </div>
+        </div>
+
+        <!-- 答案解析 -->
+        <div class="answer-section">
+            <span class="correct-answer">✅ 正确答案：D</span>
+            <p class="explanation-text">
+                法院应支持妻子。因为这对夫妇<b>仍然处于婚姻关系中</b>。
+            </p>
+            <p class="explanation-text">
+                虽然丈夫搬出去了（分居），但这并不改变房产的 TBE 性质。在 TBE 制度下，没有配偶另一方的同意，任何一方都无权提起分割诉讼（Partition Action）。
+            </p>
+
+            <!-- 错误选项辨析 -->
+            <div class="wrong-option">
+                ❌ <b>选项 A (分居):</b> 错误。物理上的分居 (Living apart) 不等于法律上的婚姻解除。只要没离婚，TBE 保护伞就在。
+            </div>
+            <div class="wrong-option">
+                ❌ <b>选项 B (出售):</b> 错误。法院下令“出售分割” (Partition by sale) 的前提是当事人有权要求分割。丈夫既然无权要求分割，分割的方式（实物或出售）就无从谈起。
+            </div>
+            <div class="wrong-option">
+                ❌ <b>选项 C (子女居住):</b> 错误。这是干扰项。虽然在离婚法庭上，为了子女利益可能会判给妻子居住权，但这属于家庭法 (Family Law) 范畴。在纯粹的物权法 (Property Law) 分割诉讼中，妻子胜诉的根本原因是 TBE 的不可分割性，而不是因为有孩子。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span>💡 <b>MBE 提分技巧：</b><br>看到 "Tenancy by the Entirety" + "Partition"，立刻寻找<b>"是否已离婚"</b>的事实。
+            <br>• 已离婚 ➡️ 变为 Tenancy in Common ➡️ 可以分割。<br>
+            • 仅分居 ➡️ 仍是 TBE ➡️ <b>不可</b>单方面分割。</span>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Real Property Review | UWorld Source Analysis
+    </div>
+</div>
+
+</body>
+</html>

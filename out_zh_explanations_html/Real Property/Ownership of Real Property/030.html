@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            font-size: 1.2em;
+            margin-top: 0;
+        }
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .step {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .result-box {
+            border: 2px solid var(--correct-color);
+            background-color: #eafaf1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .wrong-option {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 5px;
+            border-left: 3px solid var(--wrong-color);
+            padding-left: 10px;
+        }
+        .diagram {
+            background: #fff;
+            border: 1px dashed #bdc3c7;
+            padding: 10px;
+            text-align: center;
+            margin: 10px 0;
+            font-size: 0.85em;
+        }
+        .arrow {
+            font-size: 1.2em;
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>MBE 考点解析：不动产所有权</h2>
+        <p>本题考察的核心是<b>限定继承地产的废除 (Abolition of Fee Tail)</b> 以及<b>附带限定条件的可废止完全所有权 (Fee Simple Subject to Executory Limitation)</b> 的运作机制。</p>
+    </div>
+
+    <div class="card">
+        <h3>1. 法律概念拆解</h3>
+        
+        <div class="concept-box">
+            <span class="term">Fee Tail (限定继承地产)</span><br>
+            传统普通法中，"to A and the heirs of his body" 创造了限定继承地产，意味着土地只能由A的直系血亲继承。但在本题管辖区，<b>Fee Tail 已被法规废除</b>。
+        </div>
+
+        <div class="concept-box">
+            <span class="term">Statutory Conversion (法定转换)</span><br>
+            当 Fee Tail 被废除时，试图设立 Fee Tail 的语言通常会被法律自动转换为 <b>Fee Simple (完全所有权)</b>。这意味着 "heirs of his body" 不再赋予后代任何直接的财产权益，而只是界定授予给 A 的权益大小。
+        </div>
+
+        <div class="concept-box">
+            <span class="term">Executory Interest (待执行权益)</span><br>
+            这是一种未来权益，由第三方持有，当特定条件发生时，它会切断 (divest) 当前持有人的权益。
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>2. 逐步推理分析</h3>
+
+        <div class="step">
+            <span class="step-title">第一步：确定儿子的初始权益</span>
+            遗嘱写道："remainder to my son and the heirs of his body"。
+            <ul>
+                <li>由于 Fee Tail 被废除，这句话赋予儿子 <b>Fee Simple (完全所有权)</b>。</li>
+                <li>女儿（作为 heir of body）在此阶段没有获得任何权益，因为这被视为给儿子的完全赠与。</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <span class="step-title">第二步：分析限制条件</span>
+            遗嘱继续写道："But if my son dies without children, then... to my nephew."
+            <ul>
+                <li>这给儿子的 Fee Simple 加上了限制。</li>
+                <li>儿子的权益变成了：<b>Fee Simple Subject to an Executory Limitation (附带限定条件的可废止完全所有权)</b>。</li>
+                <li>侄子的权益是：<b>Shifting Executory Interest (转移性待执行权益)</b>。</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <span class="step-title">第三步：土地转让与条件触发</span>
+            <div class="diagram">
+                儿子将土地卖给邻居<br>
+                ↓<br>
+                <span style="color:var(--accent-color)">邻居获得：附带风险的所有权</span><br>
+                (如果儿子无子女而死，邻居失去土地)<br>
+                ↓<br>
+                儿子去世，留下一名女儿<br>
+                ↓<br>
+                <span style="color:var(--correct-color)">条件判定：儿子死时<b>有</b>子女</span>
+            </div>
+            <p>侄子获得土地的唯一条件是“儿子死时无子女”。因为儿子死时有女儿，<b>触发条件失败 (Failed)</b>。</p>
+        </div>
+
+        <div class="step">
+            <span class="step-title">第四步：最终结果</span>
+            一旦触发条件失败，侄子的待执行权益即刻消灭。邻居原本“岌岌可危”的所有权瞬间“转正”，变成了 <b>Fee Simple Absolute (完全拥有绝对所有权)</b>。
+        </div>
+    </div>
+
+    <div class="card result-box">
+        <h3>正确答案：B</h3>
+        <p><b>邻居胜诉，因为能够触发侄子权益的条件没有发生。</b></p>
+        <p>邻居从儿子那里买到了土地，虽然当时带有风险（Defeasible Fee），但随着儿子死时留有后代，剥夺土地所有权的条件已不可能发生，因此邻居现在拥有绝对所有权。</p>
+    </div>
+
+    <div class="card">
+        <h3>为什么其他选项是错的？</h3>
+        
+        <div class="wrong-option">
+            <b>A (女儿)：</b> 错误。因为 Fee Tail 已废除，"heirs of his body" 只是用来定义给儿子的权益是 Fee Simple，而不是给女儿设立独立的未来权益 (Remainder)。女儿只有在儿子没卖地且无遗嘱死亡的情况下才可能作为继承人继承，但地已经被卖掉了。
+        </div>
+
+        <div class="wrong-option">
+            <b>C (侄子)：</b> 错误。条件是 "dies without children" (无子女)，而不是 "without male heir" (无男性继承人)。女儿也是子女，所以条件未满足。
+        </div>
+
+        <div class="wrong-option">
+            <b>D (邻居 - 理由错误)：</b> 错误。虽然邻居赢了，但理由不对。儿子最初持有的<b>不是</b> Fee Simple Absolute，而是 Defeasible Fee。如果儿子真的无子女而死，邻居是会输给侄子的。邻居赢是因为条件未发生，而不是因为儿子原本就有绝对处分权。
+        </div>
+    </div>
+
+    <div class="card" style="background-color: #fff8e1; border: 1px solid #ffe082;">
+        <h3>🎓 MBE 考试技巧</h3>
+        <p><b>1. 关注法规变化：</b> 题目中出现 "Fee Tail has been abolished" 是巨大的提示。这意味着不要应用古老的限定继承规则，直接将其视为 Fee Simple 处理。</p>
+        <p><b>2. 区分 Words of Purchase vs. Limitation：</b> 在 Fee Simple 语境下，"and heirs of his body" 是 Words of Limitation (界定权益大小)，不给后代任何权利；只有 "to A's children" 才是 Words of Purchase (给孩子权利)。</p>
+        <p><b>3. 追踪条件 (Condition)：</b> 解决此类问题的关键往往在于判断那个“剥夺权益”的条件 (Divesting Condition) 究竟有没有发生。</p>
+    </div>
+
+</body>
+</html>

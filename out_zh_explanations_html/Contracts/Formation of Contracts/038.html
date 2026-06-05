@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .tag {
+            display: inline-block;
+            background: #e1f5fe;
+            color: #0277bd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+        .highlight-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #27ae60;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .highlight-box.warning {
+            border-left-color: #e67e22;
+            background-color: #fff8e1;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .footer {
+            background: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #bdc3c7;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts / UCC Article 2</div>
+    </div>
+
+    <div class="content">
+        <span class="tag">正确答案：C</span>
+
+        <p>本题考察的是美国《统一商法典》（UCC）下的合同成立规则，特别是关于<b>“格式之战” (Battle of the Forms)</b> 和<b>默示担保 (Implied Warranties)</b> 的交叉应用。</p>
+
+        <div class="section-title">核心考点分析</div>
+        
+        <p>要理解为什么客户会胜诉，我们需要拆解两个关键法律概念：</p>
+
+        <div class="highlight-box">
+            <strong>1. 默示的可商售性担保<br><span class="english">(Implied Warranty of Merchantability)</span></strong>
+            <p>根据 UCC § 2-314，如果卖方是该类货物的<b>商人 (Merchant)</b>，那么除非明确排除，否则销售合同中自动包含“货物具有可商售性”的默示担保。</p>
+            <p>在本案中，供应商是“餐厅供应商”，向客户出售“工业冰柜”，显然是该领域的商人。因此，无论客户是否提及，这项担保<b>已经是合同的一部分</b>。</p>
+        </div>
+
+        <div class="highlight-box warning">
+            <strong>2. 附条件的承诺<br><span class="english">(Conditional Acceptance)</span></strong>
+            <p>通常情况下，根据 UCC § 2-207(1)，如果受要约人在回复中明确表示“接受要约，<b>条件是 (on the condition that)</b> 你同意我的新条款”，这通常构成<b>反要约 (Counteroffer)</b>，而不是承诺。</p>
+            <p><b>但是（这是本题的陷阱）：</b></p>
+            <p>客户要求的条件（可商售性担保）是法律已经赋予他的权利。客户并没有增加任何新的义务，也没有改变交易的实质内容。</p>
+        </div>
+
+        <div class="section-title">逻辑推演</div>
+        <ul>
+            <li>客户的信函虽然使用了“条件是...”的措辞，但该条件是<b>多余的 (Redundant)</b>，因为法律已经默示了该条款。</li>
+            <li>因此，这封信函被视为有效的<b>承诺 (Acceptance)</b>，而不是反要约。</li>
+            <li>合同在供应商收到信函时（或根据邮箱规则寄出时）即已成立。</li>
+            <li>供应商随后的电话试图撤销要约，但为时已晚（合同已成立）。</li>
+            <li>供应商将冰柜卖给他人，构成了<b>违约 (Breach of Contract)</b>。</li>
+        </ul>
+
+        <div class="section-title">为什么其他选项是错的？</div>
+        
+        <p><span class="term">选项 A (错误)：</span><br>
+        虽然客户使用了条件句，但并没有实质性地“增加条款”。如果客户要求的是“保修期延长至10年”，那才构成反要约。要求一个法律已赋予的默示权利，不构成反要约。</p>
+
+        <p><span class="term">选项 B (错误)：</span><br>
+        <b>善意购买人 (Bona Fide Purchaser)</b> 的存在可能会阻止客户要求“特定履行” (Specific Performance，即强制拿回那台冰柜)，但这并不妨碍客户起诉供应商要求<b>金钱赔偿 (Damages)</b>。</p>
+
+        <p><span class="term">选项 D (错误)：</span><br>
+        <b>确定要约 (Firm Offer)</b> (UCC § 2-205) 必须是商人签署的、<b>书面承诺</b>在一段时间内保持要约有效的函件。本题中供应商只是发出了要约，并没有书面承诺“在这段时间内我不会撤销”。</p>
+
+        <div class="section-title">考试技巧 (Exam Tip)</div>
+        <div class="highlight-box">
+            <p>在 MBE 合同法题目中，看到 <b>"I accept on the condition that..."</b> 时，警惕雷达要响：</p>
+            <ol>
+                <li>通常这是<b>反要约</b>，导致合同未成立。</li>
+                <li><b>例外情况：</b>如果该条件仅仅是重申了法律已经赋予的权利（如本题的 Implied Warranty），则它不构成反要约，而是有效的承诺。</li>
+            </ol>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

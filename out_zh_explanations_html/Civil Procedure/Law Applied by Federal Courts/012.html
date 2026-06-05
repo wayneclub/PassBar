@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background: #f8f9fa;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .card-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .card-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #e8f4fd;
+            color: #2980b9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .rule-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .analysis-step strong {
+            display: block;
+            color: #2c3e50;
+            margin-bottom: 4px;
+        }
+        .footer {
+            background: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #bdc3c7;
+        }
+        ul {
+            margin: 5px 0 10px 20px;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Erie Doctrine 解析</h1>
+        <div class="subtitle">Federal Civil Procedure</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <strong>核心原则：Erie Doctrine</strong><br>
+            在基于多元管辖权 (Diversity Jurisdiction) 的案件中，联邦法院必须适用：
+            <ul>
+                <li><strong>州实体法 (State Substantive Law)</strong>：决定当事人的权利和义务。</li>
+                <li><strong>联邦程序法 (Federal Procedural Law)</strong>：决定诉讼的流程和规则。</li>
+            </ul>
+        </div>
+
+        <!-- 题目解析 -->
+        <div class="card">
+            <div class="card-title">本题法律分析</div>
+            <div class="analysis-step">
+                <strong>1. 识别管辖权基础</strong>
+                题目明确指出这是一个 <span class="highlight">Diversity Action</span>（多元管辖权诉讼），即原告与被告来自不同州，且争议金额满足要求。这直接触发了 <span class="latin">Erie Railroad Co. v. Tompkins</span> 原则的适用。
+            </div>
+            
+            <div class="analysis-step">
+                <strong>2. 定性争议问题：实体 vs. 程序</strong>
+                争议点在于“共同灾难中谁先死亡的推定”。
+                <br>虽然“推定” (Presumption) 听起来像证据规则（通常是程序性的），但在本案中，这一推定直接决定了保险金的归属（即谁是受益人）。
+                <br>因此，它被视为<strong>实体性 (Substantive)</strong> 问题，因为它定义了法律权利和义务的结果。
+            </div>
+
+            <div class="analysis-step">
+                <strong>3. 联邦证据规则 (FRE) 的指引</strong>
+                <span class="highlight">Federal Rule of Evidence 302</span> 明确规定：在民事诉讼中，如果州法为某项诉求或抗辩提供了裁决规则，那么该州法也决定了相关推定的效力。
+            </div>
+        </div>
+
+        <!-- 为什么选C -->
+        <div class="card" style="border-left-color: #27ae60;">
+            <div class="card-title" style="color: #27ae60;">✅ 正确答案解析 (选项 C)</div>
+            <p>由于该推定属于实体法范畴，联邦法院必须适用<strong>州法</strong>。</p>
+            <p>具体适用哪个州的法律？联邦法院会依据其所在州的<strong>法律选择规则 (Choice-of-law rules)</strong> —— 这被称为 <span class="latin">Klaxon</span> 原则 —— 来确定适用哪个州的实体法。</p>
+            <p>因此，选项 C “适用其实体法的州的法律” 是最准确的表述。</p>
+        </div>
+
+        <!-- 错误选项分析 -->
+        <div class="card" style="border-left-color: #e74c3c;">
+            <div class="card-title" style="color: #e74c3c;">❌ 错误选项排除</div>
+            <p><strong>选项 A & B (联邦法)：</strong> 错误。联邦法仅适用于程序性问题（如《联邦民事诉讼规则》FRCP）。对于决定案件结果的实体权利，联邦法院不能创造“联邦普通法”。</p>
+            <p><strong>选项 D (传统普通法)：</strong> 错误。自 1938 年 <i>Erie</i> 案推翻 <i>Swift v. Tyson</i> 以来，美国不再存在所谓的“一般联邦普通法” (General Federal Common Law)。联邦法院必须适用具体的州法，而不是抽象的“传统普通法”。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #e8f6f3; border-color: #d1f2eb; color: #0e6251;">
+            <strong>💡 MBE 考试技巧</strong>
+            <br>看到 <b>Diversity Action</b> + <b>法律适用问题</b>：
+            <ol>
+                <li>先问：这是联邦成文法/宪法问题吗？如果是，适用联邦法。</li>
+                <li>如果不是，问：这会影响判决结果吗 (Outcome Determinative)？如果是，通常适用<strong>州法</strong>。</li>
+                <li>特别注意：<strong>时效 (Statute of Limitations)</strong>、<strong>举证责任 (Burden of Proof)</strong> 和<strong>推定 (Presumptions)</strong> 在 MBE 中通常被视为<strong>实体法</strong>，需适用州法。</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Civil Procedure Topic: Erie Doctrine<br>
+        © 2025 Legal Exam Prep
+    </div>
+</div>
+
+</body>
+</html>

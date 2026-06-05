@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --text-color: #333;
+        --correct-color: #27ae60;
+        --wrong-color: #c0392b;
+        --border-radius: 8px;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .card {
+        background: white;
+        width: 100%;
+        max-width: 480px;
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+        border-top: 5px solid var(--primary-color);
+    }
+    .header {
+        padding: 20px;
+        background-color: var(--primary-color);
+        color: white;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+    .header h2 {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        font-weight: 400;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+    .answer-box {
+        background-color: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
+    .answer-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 5px;
+        display: block;
+    }
+    .key-term {
+        background-color: #eee;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 0.9em;
+        color: #d35400;
+    }
+    .rule-section {
+        margin-top: 20px;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+    .comparison {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    .comp-item {
+        background: #fafafa;
+        padding: 10px;
+        border-radius: var(--border-radius);
+        border: 1px solid #eee;
+    }
+    .comp-item strong {
+        color: var(--accent-color);
+    }
+    .analysis-list {
+        list-style: none;
+        padding: 0;
+    }
+    .analysis-list li {
+        margin-bottom: 12px;
+        padding-left: 20px;
+        position: relative;
+    }
+    .analysis-list li::before {
+        content: "•";
+        color: var(--accent-color);
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+    }
+    .exam-tip {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 15px;
+        border-radius: var(--border-radius);
+        margin-top: 20px;
+        font-size: 0.9rem;
+    }
+    .exam-tip-title {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .footer {
+        text-align: center;
+        padding: 15px;
+        font-size: 0.8rem;
+        color: #888;
+        border-top: 1px solid #eee;
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <h2>Intentional Torts: Trespass to Chattels</h2>
+    </div>
+
+    <div class="content">
+        <div class="answer-box">
+            <span class="answer-title">正确答案：B</span>
+            企业主不能胜诉，因为她无法证明该干扰行为造成了<strong>实际损害 (Actual Damages)</strong>。
+        </div>
+
+        <div class="rule-section">
+            <div class="rule-title">核心法律规则解析</div>
+            <p><strong>侵害动产 (Trespass to Chattels)</strong> 是指故意干涉他人对动产的占有权。这种干涉分为两种形式，其对“损害”的要求截然不同：</p>
+            
+            <div class="comparison">
+                <div class="comp-item">
+                    <strong>1. 剥夺占有 (Dispossession)</strong><br>
+                    行为人拿走了动产。此时，损害是推定的，原告<b>不需要</b>证明实际损失即可起诉。
+                </div>
+                <div class="comp-item">
+                    <strong>2. 使用或干涉 (Intermeddling)</strong><br>
+                    行为人没有拿走动产，只是触碰、使用或干扰它（如本题中的发送垃圾邮件）。此时，原告<b>必须</b>证明有实际损害 (Actual Damages)。
+                </div>
+            </div>
+        </div>
+
+        <div class="rule-section">
+            <div class="rule-title">本案逻辑推演</div>
+            <ul class="analysis-list">
+                <li>
+                    <strong>行为定性：</strong>雇员发送垃圾邮件的行为属于“干涉” (Intermeddling)，而非“剥夺占有”。
+                </li>
+                <li>
+                    <strong>损害要件：</strong>题目明确指出，虽然很难找到邮件，但“未对计算机系统造成功能性中断” (caused no functional disruption)。
+                </li>
+                <li>
+                    <strong>结论：</strong>在电子侵权（如垃圾邮件）的判例中（例如著名的 <i>Intel Corp. v. Hamidi</i>），如果仅仅是占用了服务器空间或造成了不便，而没有导致系统物理损坏或功能受损，通常不构成 Trespass to Chattels 的实际损害。
+                </li>
+            </ul>
+        </div>
+
+        <div class="rule-section">
+            <div class="rule-title">为什么其他选项错误？</div>
+            <ul class="analysis-list">
+                <li>
+                    <strong>选项 A (Transferred Intent)：</strong>虽然雇员想干扰的是公司，但根据<strong>意图转移 (Transferred Intent)</strong> 原则，意图会转移到实际受害者（企业主）身上。所以意图不是抗辩理由，A 错误。
+                </li>
+                <li>
+                    <strong>选项 C (Invasion of Property)：</strong>这是混淆了侵害不动产 (Trespass to Land)。侵害不动产不需要证明实际损害，但本案涉及的是计算机系统（动产）。
+                </li>
+                <li>
+                    <strong>选项 D (Intentional Use)：</strong>虽然雇员确实故意使用了系统，但如前所述，对于“使用/干涉”类型的侵害动产，仅有故意是不够的，必须伴随实际损害。
+                </li>
+            </ul>
+        </div>
+
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 考试技巧</span>
+            遇到涉及<strong>计算机、服务器或电子数据</strong>的 Trespass to Chattels 题目时，务必寻找<strong>“物理损坏”</strong>或<strong>“功能性瘫痪”</strong>。
+            <br><br>
+            如果题目说“仅仅是烦人”、“降低了工作效率”但系统本身完好无损，通常答案都是<strong>No</strong>，理由是缺乏 Actual Damages。
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

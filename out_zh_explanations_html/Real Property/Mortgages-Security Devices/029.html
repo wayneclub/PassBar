@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 8px;
+            display: block;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .option-analysis {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .option-analysis:last-child {
+            border-bottom: none;
+        }
+        .option-label {
+            font-weight: bold;
+            display: inline-block;
+            width: 25px;
+        }
+        .likely {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 0.9em;
+            background: #eafaf1;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .unlikely {
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 0.9em;
+            background: #fdedec;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .key-point {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Real Property: Contract for Deed</p>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心概念 -->
+        <div class="concept-card">
+            <span class="concept-title">核心考点：分期付款土地合同</span>
+            <p>本题考查的是<span class="term">分期付款土地合同</span> <span class="english-term">(Installment Land Contract / Contract for Deed)</span> 违约后的救济措施。</p>
+            <p>这是一种融资方式，买方获得占有权，但卖方保留<span class="term">法定所有权</span> <span class="english-term">(Legal Title)</span>，直到买方付清全部款项。</p>
+        </div>
+
+        <div class="analysis-section">
+            <h3>⚖️ 法律背景与推理</h3>
+            <p>传统普通法对买方非常严苛：一旦违约（哪怕只差一期），卖方可以没收土地并保留所有已付款项（Forfeiture）。</p>
+            <p>但<b>现代法院倾向于保护买方</b>，特别是当买方已经支付了大部分款项（本题中支付了4/5，拥有大量权益 Equity）时，法院会极力避免不公平的没收。</p>
+            <p>题目问的是法院 <b>最不可能 (LEAST likely)</b> 采取的措施。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <h3>🔍 选项深度解析</h3>
+
+            <div class="option-analysis">
+                <span class="option-label">A</span>
+                <span class="likely">可能的裁决</span>
+                <p><b>启动司法止赎 (Foreclosure)。</b><br>
+                现代法院常将此类合同视为实质上的“抵押贷款”<span class="english-term">(Mortgage)</span>。因此，要求卖方必须通过正常的止赎程序来变卖房产并受偿，这是保护买方权益的常见做法。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="option-label">B</span>
+                <span class="likely">可能的裁决</span>
+                <p><b>支付返还款 (Restitution)。</b><br>
+                如果法院允许卖方收回房产，为了避免卖方<span class="term">不当得利</span> <span class="english-term">(Unjust Enrichment)</span>，通常会要求卖方退还买方已支付款项中超过“实际损失”或“公平租金”的部分。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="option-label">D</span>
+                <span class="likely">可能的裁决</span>
+                <p><b>支付剩余全款以赎回 (Redemption)。</b><br>
+                法院通常会给予买方一个宽限期，允许其支付<b>剩余的全部合同余额</b>（不仅仅是拖欠的月供）来获得完整的所有权。这被称为赎回权。</p>
+            </div>
+
+            <div class="option-analysis" style="background-color: #fdf2f2; border-radius: 8px; padding: 10px;">
+                <span class="option-label">C</span>
+                <span class="unlikely">正确答案 (最不可能)</span>
+                <p><b>仅补偿拖欠款项以保留占有权。</b><br>
+                这是法院最不可能强制执行的结果。虽然有些州的消费者保护法允许“补救”<span class="english-term">(Cure)</span> 违约，但在一般普通法或衡平法原则下，一旦发生实质性违约，债务通常会<b>加速到期</b>。</p>
+                <p>法院很少会强迫卖方恢复原合同关系（即接受补交的月供并继续分期），除非合同有明确规定或有特定法规支持。通常的补救是“要么付清全款拿地(D)，要么止赎(A)，要么退钱走人(B)”。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="key-point">
+            <h3>💡 MBE 提分技巧</h3>
+            <p><b>"Equity abhors forfeiture"</b>（衡平法厌恶没收）。</p>
+            <p>遇到 <i>Contract for Deed</i> 的题目，如果买方已经支付了相当比例的款项（如本题的80%），一定要寻找<b>保护买方</b>的选项（如止赎、返还、赎回）。</p>
+            <p><b>陷阱提示：</b>区分 <i>Redemption</i>（付清全款）和 <i>Reinstatement</i>（补交欠款）。法院乐于给买方机会付清全款(D)，但很少强迫卖方接受仅补交欠款而继续履行已违约的合同(C)。</p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

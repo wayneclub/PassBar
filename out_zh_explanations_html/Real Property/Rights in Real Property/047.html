@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #d4edda;
+            --correct-text: #155724;
+            --warning-bg: #fff3cd;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机宽度 */
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .answer-box {
+            background-color: var(--correct-bg);
+            color: var(--correct-text);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: "💡";
+            margin-right: 8px;
+        }
+
+        .statute-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 10px;
+            font-style: italic;
+            font-size: 0.9em;
+            margin: 10px 0;
+        }
+
+        .concept-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .concept-header {
+            font-weight: bold;
+            font-size: 0.95em;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .key-point {
+            background-color: var(--warning-bg);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.8em;
+            color: #888;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考题解析：不动产登记法</h1>
+
+    <div class="answer-box">
+        正确答案：A
+    </div>
+
+    <p>本题的核心考点在于识别并应用<b>“纯粹抢先登记法” (Pure Race Statute)</b>，以及理解它如何切断未登记的地产契约 (Real Covenant)。</p>
+
+    <div class="section-title">1. 识别关键法规 (The Statute)</div>
+    <p>解题的第一步是分析题目中给出的法规文本。这是决定胜负的关键：</p>
+    
+    <div class="statute-box">
+        "No conveyance... shall be good against subsequent purchasers for value unless the same be <b>first recorded</b> according to law."
+    </div>
+
+    <div class="concept-card">
+        <div class="concept-header">法规类型分析</div>
+        <p>该法规只提到了“首先登记 (first recorded)”，而<b>没有</b>提到“善意 (good faith)”或“无通知 (without notice)”。</p>
+        <p>👉 这是一个 <b>Race Statute (抢先登记法)</b>。</p>
+    </div>
+
+    <div class="section-title">2. 法律逻辑推演</div>
+    
+    <p>在 Race Statute 管辖区，规则非常简单粗暴：<b>谁先登记，谁就赢。</b>购买时的知情情况 (Notice) 是无关紧要的。</p>
+
+    <ul>
+        <li><b>权益冲突：</b>所有者 (Owner) 试图执行 Deed 1 中的契约（维护排水系统）。</li>
+        <li><b>Deed 1 (Owner → Niece)：</b>设立了该契约，但<b>从未登记</b>。</li>
+        <li><b>Deed 2 (Niece → Buyer)：</b>买方支付了对价 (Purchaser for value)，且<b>立即登记</b>了。</li>
+    </ul>
+
+    <p><b>结论：</b>由于买方 (Buyer) 首先登记了 Deed 2，而包含契约的 Deed 1 未被登记，根据法规，Deed 1 对买方无效。因此，买方不受该契约约束。</p>
+
+    <div class="section-title">3. 为什么其他选项是陷阱？</div>
+
+    <div class="concept-card">
+        <div class="concept-header">❌ 选项 C & D (最大的干扰项)</div>
+        <p>这两个选项都在讨论<b>地产契约随土地转移 (Covenant Running with the Land)</b> 的普通法要素：</p>
+        <ul>
+            <li><b>选项 C</b> 提到了 Privity (利害关系)。</li>
+            <li><b>选项 D</b> 提到了 Notice (通知/知情)。</li>
+        </ul>
+        <p><b>陷阱分析：</b>虽然在普通法下，买方有 Actual Notice (实际知情) 通常会让契约对他生效，但在<b>登记法 (Recording Acts)</b> 面前，这些规则必须退让。</p>
+        <p>题目特意强调“买方知道承诺”，就是为了诱导你选择 D。但在 Race Jurisdiction（抢先登记法域），<b>知情 (Notice) 是不相关的</b>。只要买方先登记，哪怕他完全知道之前的权益存在，他依然胜诉。</p>
+    </div>
+
+    <div class="concept-card">
+        <div class="concept-header">❌ 选项 B (Estoppel by Deed)</div>
+        <p><b>Estoppel by deed (契据禁止反言)</b> 适用于转让人在没有产权时就转让土地，后来获得产权的情况。这与本案事实完全无关。</p>
+    </div>
+
+    <div class="section-title">4. 考试技巧总结 (Exam Tip)</div>
+    
+    <p>在处理 MBE 不动产题目时，请遵循以下流程：</p>
+    <ol>
+        <li><b>看法规：</b>首先判断是 Race, Notice 还是 Race-Notice 法规。
+            <ul>
+                <li><i>Race:</i> "first recorded"</li>
+                <li><i>Notice:</i> "without notice/good faith"</li>
+                <li><i>Race-Notice:</i> "without notice" AND "first recorded"</li>
+            </ul>
+        </li>
+        <li><b>看时间轴：</b>谁先登记？谁是后续购买人？</li>
+        <li><b>应用规则：</b>如果是 Race Statute，直接忽略“知情 (Notice)”这一事实。</li>
+    </ol>
+
+    <div class="footer">
+        MBE Real Property Review<br>
+        Focus: Recording Acts & Covenants
+    </div>
+</div>
+
+</body>
+</html>

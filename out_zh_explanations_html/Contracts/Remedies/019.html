@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕 */
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .concept-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .analysis-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .step-icon {
+            background: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .option-analysis {
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .option-wrong {
+            background-color: #fff5f5;
+            border-left: 3px solid var(--wrong-color);
+        }
+
+        .option-correct {
+            background-color: #f0f9f4;
+            border-left: 3px solid var(--correct-color);
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .exam-tip-title {
+            font-weight: bold;
+            color: #f57f17;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts / Remedies</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：D</span>
+            会，因为该女子的法律救济不充分。<br>
+            <span class="english-term">(Yes, because the woman's remedy at law is inadequate.)</span>
+        </div>
+
+        <!-- 核心考点 -->
+        <div class="section-title">核心考点：特定履行 (Specific Performance)</div>
+        <div class="concept-card">
+            <p>在合同法中，法院通常首选金钱赔偿（Money Damages）。只有当金钱赔偿无法充分弥补受害方的损失时，法院才会考虑衡平法救济（Equitable Remedy），即命令违约方履行合同义务。</p>
+            <p><strong>关键前提：</strong>法律救济不充分 <span class="english-term">(Inadequate Remedy at Law)</span>。</p>
+        </div>
+
+        <!-- 逻辑推演 -->
+        <div class="section-title">逻辑推演</div>
+        
+        <div class="analysis-step">
+            <div class="step-icon">1</div>
+            <div>
+                <strong>合同性质：</strong>这是一个为了第三方（儿子）利益的合同。母亲和父亲交换承诺，目的是给儿子提供资金。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">2</div>
+            <div>
+                <strong>普通法救济的局限：</strong>如果母亲起诉要求金钱赔偿，她很难证明自己遭受了具体的“经济损失”。
+                <ul>
+                    <li>钱是给儿子的，不是给母亲的。</li>
+                    <li>母亲的损失是“期望利益”的落空（即看到儿子获得资助）。</li>
+                    <li>这种损失很难用具体的金钱数额来量化赔偿给母亲。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">3</div>
+            <div>
+                <strong>结论：</strong>由于金钱赔偿（法律救济）无法实现合同的根本目的，且母亲的损失难以量化，因此满足了“法律救济不充分”这一前提，法院可以判决特定履行。
+            </div>
+        </div>
+
+        <!-- 选项辨析 -->
+        <div class="section-title">选项辨析</div>
+
+        <div class="option-analysis option-wrong">
+            <strong>选项 A 错误：</strong>
+            虽然通常法院不强制执行支付金钱的承诺（因为金钱通常不是独特的），但在本案这种特殊的第三方受益人情形下，简单的金钱判决无法解决问题，因此构成例外。
+        </div>
+
+        <div class="option-analysis option-wrong">
+            <strong>选项 B 错误：</strong>
+            “没有造成经济损害”恰恰是母亲无法获得普通法金钱赔偿的原因，但这正是她有资格寻求衡平法救济（特定履行）的理由，而不是败诉的理由。
+        </div>
+
+        <div class="option-analysis option-wrong">
+            <strong>选项 C 错误（干扰项）：</strong>
+            虽然“负担增加”听起来很合理，但这描述的是事实后果，而非法律标准。法院判决特定履行的<strong>法律依据</strong>是“法律救济不充分”，而不是单纯的“负担增加”。在MBE中，必须选择最准确的法律术语。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 考试技巧 (Pro Tip)</span>
+            <p>这道题是MBE中典型的<strong>“衡平法门槛”</strong>问题。</p>
+            <p>当你看到原告要求<strong>特定履行 (Specific Performance)</strong> 时，首先要在大脑中搜索的前提条件就是 <strong>"Inadequate Remedy at Law"</strong>。</p>
+            <p>虽然本题在学术上存在争议（如解析中所述，选项C其实体现了衡平法的实质正义），但在标准化考试中，<strong>选项D</strong> 提供了触发衡平法管辖权的“技术性钥匙”。记住：衡平法是普通法的补充，只有在普通法（金钱赔偿）无能为力时才介入。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

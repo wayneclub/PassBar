@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .concept-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        .item:last-child {
+            border-bottom: none;
+        }
+        .icon {
+            margin-right: 10px;
+            font-size: 18px;
+            min-width: 25px;
+        }
+        .text {
+            font-size: 15px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .correct-tag {
+            display: inline-block;
+            background-color: #27ae60;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        .wrong-tag {
+            display: inline-block;
+            background-color: #95a5a6;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            font-size: 13px;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+        .law-term {
+            font-family: "Georgia", serif;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Contracts & Remedies (合同法与救济)</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">💡 核心概念：返还财产 (Restitution)</span>
+            <p>Restitution 的核心目的是防止<strong>不当得利 (Unjust Enrichment)</strong>。它要求违约方将其从受害方那里获得的<strong>利益 (Benefit Conferred)</strong> 返还给受害方。</p>
+        </div>
+
+        <div class="analysis-section">
+            <h3>📊 题目金额逐项分析</h3>
+            <p>本题要求找出哪一笔金额属于 <strong>Restitution</strong>。我们需要判断哪笔钱“进入了卖方的口袋”。</p>
+
+            <!-- 选项 C (正确答案) -->
+            <div class="item">
+                <div class="icon">✅</div>
+                <div class="text">
+                    <strong>$1,000 定金 (Down Payment)</strong>
+                    <br>
+                    <span class="law-term">Restitution Interest</span>
+                    <br>
+                    这笔钱是买方直接支付给卖方的。卖方持有这笔钱却未交付机器，构成了不当得利。因此，要求退还这笔钱属于<strong>返还财产 (Restitution)</strong>。
+                    <span class="correct-tag">正确答案</span>
+                </div>
+            </div>
+
+            <!-- 选项 A -->
+            <div class="item">
+                <div class="icon">❌</div>
+                <div class="text">
+                    <strong>$250 地基成本 (Foundation Cost)</strong>
+                    <br>
+                    <span class="law-term">Reliance Interest (信赖利益)</span>
+                    <br>
+                    这是买方基于对合同的信赖而支出的费用。虽然买方损失了这笔钱，但卖方并没有得到这笔钱（没有获益）。这属于<strong>信赖损害赔偿</strong>，而非 Restitution。
+                </div>
+            </div>
+
+            <!-- 选项 B -->
+            <div class="item">
+                <div class="icon">❌</div>
+                <div class="text">
+                    <strong>$500 差价 (Price Difference)</strong>
+                    <br>
+                    <span class="law-term">Expectation Interest (期待利益)</span>
+                    <br>
+                    这是买方为了达到合同履行后的状态而额外支付的成本（Cost of Cover）。这旨在弥补买方的预期损失，属于<strong>期待损害赔偿</strong>，而非 Restitution。
+                </div>
+            </div>
+        </div>
+
+        <!-- 法律依据 -->
+        <div class="concept-box" style="border-left-color: #8e44ad; background-color: #f4ecf7;">
+            <span class="concept-title" style="color: #8e44ad;">⚖️ 法律依据 (UCC)</span>
+            <p>根据 <strong>UCC § 2-711</strong>，当卖方未交付货物时，买方有权获得的救济包括：取消合同并收回已支付的价款 (Recovering so much of the price as has been paid)。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="analysis-section">
+            <h3>🎓 考场解题技巧</h3>
+            <p>在区分合同法的三种赔偿利益时，请自问以下问题：</p>
+            <ul style="padding-left: 20px; margin: 0;">
+                <li><strong>Restitution:</strong> 被告拿走了什么？(Focus on Defendant's gain)</li>
+                <li><strong>Reliance:</strong> 原告白花了什么？(Focus on Plaintiff's out-of-pocket loss)</li>
+                <li><strong>Expectation:</strong> 原告本该赚到什么？(Focus on the value of the bargain)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <strong>总结：</strong> 只有直接转移给违约方（卖方）的利益（即定金）才属于 Restitution。其他的花费属于 Reliance 或 Expectation damages。
+    </div>
+</div>
+
+</body>
+</html>

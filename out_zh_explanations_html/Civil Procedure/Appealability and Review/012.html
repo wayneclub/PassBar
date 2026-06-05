@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .case-citation {
+            font-style: italic;
+            color: #555;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            display: block;
+            text-align: right;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .analysis-section {
+            margin-top: 20px;
+        }
+
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .option-analysis {
+            margin-bottom: 15px;
+        }
+
+        .option-label {
+            font-weight: bold;
+            color: #e74c3c; /* Red for wrong answers */
+        }
+
+        .option-label.correct {
+            color: #27ae60; /* Green for correct answer */
+        }
+
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .exam-tip strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #856404;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">惩罚性赔偿的上诉审查标准</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">核心法律规则 (The Rule)</span>
+            当被告基于<b>宪法理由</b>（如第十四修正案的正当程序条款）质疑惩罚性损害赔偿金（Punitive Damages）过高时，上诉法院必须适用 <span class="term">De Novo</span>（重新审查/完全审查）标准。
+            <span class="case-citation">Cooper Industries, Inc. v. Leatherman Tool Grp., Inc. (2001)</span>
+        </div>
+
+        <p>本题考察的是联邦法院系统中，针对不同类型的裁决，上诉法院应采用何种审查标准（Standard of Review）。</p>
+
+        <!-- 图表对比 -->
+        <table>
+            <thead>
+                <tr>
+                    <th>审查对象</th>
+                    <th>审查标准</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>宪法性问题</b><br>(Constitutional Issues)</td>
+                    <td><b>De Novo</b><br>(无尊重，重新审查)</td>
+                </tr>
+                <tr>
+                    <td><b>法律结论</b><br>(Conclusions of Law)</td>
+                    <td><b>De Novo</b></td>
+                </tr>
+                <tr>
+                    <td><b>自由裁量权</b><br>(Discretionary Rulings)</td>
+                    <td><b>Abuse of Discretion</b><br>(滥用自由裁量权)</td>
+                </tr>
+                <tr>
+                    <td><b>事实认定</b><br>(Findings of Fact)</td>
+                    <td><b>Clear Error / Substantial Evidence</b><br>(高度尊重)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 详细解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">深度解析 (Analysis)</div>
+            
+            <div class="option-analysis">
+                <span class="option-label correct">选项 C 正确：</span>
+                <p>虽然通常情况下，针对“新审判动议”（Motion for a New Trial）的裁决适用 <b>Abuse of Discretion</b> 标准，但本案存在特殊性。</p>
+                <p>被告主张惩罚性赔偿金在<b>宪法上过高</b>（Unconstitutionally Excessive）。最高法院在 <i>Cooper Industries</i> 案中裁定，惩罚性赔偿是否违反宪法正当程序是一个<b>法律问题</b>，而非事实问题。因此，上诉法院不需要尊重审判法院的决定，而是进行 <b>De Novo</b> 审查。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="option-label">选项 A 错误：</span>
+                <p>与“依法判决动议”（JMOL）不同，审判法官在裁定“新审判动议”（Motion for a New Trial）时，<b>可以</b>衡量证据（Weigh the evidence）并评估证人的可信度。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="option-label">选项 B 错误：</span>
+                <p>在联邦法院进行减额裁定（Remittitur）时，并没有规则要求必须判给“最低金额”。法院通常会依据证据支持的<b>最高合理金额</b>（Maximum recovery rule）来设定。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="option-label">选项 D 错误：</span>
+                <p><b>Remittitur</b>（减额裁定）在联邦法院是合宪的。它没有侵犯陪审团的权限，因为原告可以选择拒绝减额并接受新的审判。注意：<b>Additur</b>（增额裁定）在联邦法院违宪（违反第七修正案），但在许多州法院是允许的。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 答题技巧</strong>
+            看到 <b>"Punitive Damages"</b>（惩罚性赔偿）和 <b>"Appeal"</b>（上诉）同时出现时，立即寻找关键词 <b>"Constitutional"</b>（宪法性的）。
+            <br><br>
+            如果是基于宪法理由（过高违反 Due Process），选 <b>De Novo</b>。如果是基于普通法理由（仅仅是证据不足或过多），通常是 <b>Abuse of Discretion</b>。
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

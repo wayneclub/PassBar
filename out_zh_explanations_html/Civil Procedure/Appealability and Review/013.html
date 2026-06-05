@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .rule-card {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .rule-icon {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #c0392b;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .analysis-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .step-num {
+            background-color: #3498db;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px 20px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Civil Procedure: Appealability</p>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">✅ 正确答案：选项 B</span>
+            上诉法院<b>不可以</b>审理此上诉，因为被告的上诉申请<b>不及时 (Untimely)</b>。
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">⚖️ 核心法律规则</div>
+        <p>本题考察的是<b>非终审裁决的上诉 (Interlocutory Appeals)</b>，具体依据是 <b>28 U.S.C. § 1292(b)</b>。</p>
+        
+        <p>通常情况下，只有<b>最终判决 (Final Judgment)</b> 才能上诉。但是，§ 1292(b) 提供了一个重要的法定例外。要成功提起此类上诉，必须满足严格的程序要求：</p>
+
+        <div class="rule-card">
+            <span class="rule-icon">📝</span> <b>双重步骤 (Two-Step Process)：</b>
+            <ol>
+                <li><b>地区法院核准 (Certification)：</b> 地区法院法官必须在命令中声明：
+                    <ul>
+                        <li>存在<b>关键性法律问题 (Controlling question of law)</b>；</li>
+                        <li>存在<b>重大意见分歧 (Substantial difference of opinion)</b>；且</li>
+                        <li>立即上诉可能<b>实质性推进诉讼终结 (Materially advance the ultimate termination)</b>。</li>
+                    </ul>
+                </li>
+                <li><b><span class="highlight">关键考点：</span> 10天期限 (10-Day Deadline)：</b><br>
+                上诉方必须在地区法院下达该命令后的 <b>10天内</b> 向联邦上诉法院 (Court of Appeals) 提出申请。</li>
+            </ol>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="section-title">🔍 案情分析</div>
+        <div class="analysis-step">
+            <div class="step-num">1</div>
+            <div>地区法院完全符合第一步要求，使用了正确的“魔法词汇”核准了上诉。</div>
+        </div>
+        <div class="analysis-step">
+            <div class="step-num">2</div>
+            <div><b>但是</b>，被告在地区法院下达命令后 <b>40天</b> 才向上诉法院提出申请。</div>
+        </div>
+        <div class="analysis-step">
+            <div class="step-num">3</div>
+            <div>40天远远超过了法定的 <b>10天</b> 期限。这是一个管辖权性质的时限，逾期则上诉法院无权审理。</div>
+        </div>
+
+        <!-- 排除错误选项 -->
+        <div class="section-title">❌ 为什么其他选项错误？</div>
+        
+        <p><b>选项 A (最终判决规则)：</b><br>
+        虽然通常只有最终判决可上诉，但本题正好触发了 § 1292(b) 这一<b>法定例外</b>。如果被告在10天内申请，上诉是可以被受理的。因此“只有最终判决才能上诉”这种绝对化的说法在这里不适用。</p>
+
+        <p><b>选项 C (必须审理)：</b><br>
+        这是 MBE 常见的陷阱。即使地区法院核准了上诉，上诉法院对此类非终审上诉拥有<b>自由裁量权 (Discretion)</b>。上诉法院<b>可以</b>拒绝审理，而不是“必须”审理。</p>
+
+        <p><b>选项 D (政策理由)：</b><br>
+        虽然“避免昂贵诉讼”是设立该规则的初衷，但它不能凌驾于<b>程序性期限 (Procedural Deadlines)</b> 之上。逾期申请就是无效申请。</p>
+
+    </div>
+
+    <div class="footer">
+        <b>🎓 考试技巧 (Exam Tip)：</b><br>
+        看到 "Interlocutory Appeal" 和 "Certification" 时，立即检查时间线。记住数字 <b>10</b>。对于 § 1292(b) 上诉，必须在 <b>10天</b> 内向上诉法院申请，且上诉法院有权拒绝。
+    </div>
+</div>
+
+</body>
+</html>

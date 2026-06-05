@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50; /* Navy Blue */
+        --accent-color: #e67e22; /* Carrot Orange for highlights */
+        --bg-color: #f4f6f7;
+        --card-bg: #ffffff;
+        --text-color: #333333;
+        --success-color: #27ae60;
+        --danger-color: #c0392b;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #e9ecef;
+        margin: 0;
+        padding: 20px 0;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+    }
+
+    .container {
+        width: 100%;
+        max-width: 480px; /* Mobile width optimization */
+        background-color: var(--bg-color);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .header .sub-title {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .card {
+        background-color: var(--card-bg);
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-left: 4px solid var(--primary-color);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .card-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .card-title::before {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background-color: var(--accent-color);
+        border-radius: 50%;
+        margin-right: 8px;
+    }
+
+    .highlight-box {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 14px;
+        margin: 10px 0;
+    }
+
+    .rule-box {
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+
+    .english-term {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 0.9em;
+    }
+
+    .option-analysis {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .correct-answer {
+        color: var(--success-color);
+        font-weight: bold;
+    }
+
+    .wrong-answer {
+        color: var(--danger-color);
+        font-weight: bold;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 15px;
+        font-size: 12px;
+        color: #7f8c8d;
+        border-top: 1px solid #e0e0e0;
+        background-color: #fff;
+    }
+
+    ul {
+        padding-left: 20px;
+        margin: 5px 0;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts / Parol Evidence Rule</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="card">
+            <div class="card-title">核心考点：口头证据规则的例外</div>
+            <p style="font-size: 14px;">本题考察的是合同法中著名的 <span class="term">Parol Evidence Rule (口头证据规则)</span> 的一个关键例外：<br>
+            <span class="highlight-box" style="display:block; text-align:center; font-weight:bold;">Condition Precedent to Effectiveness<br>(合同生效的先决条件)</span>
+            </p>
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="card">
+            <div class="card-title">法律规则解析</div>
+            <div class="option-analysis">
+                <p><strong>一般原则：</strong><br>
+                如果双方签署了一份完全整合的书面合同（Integrated Writing），通常禁止引入任何在签署前或签署时的口头协议来改变或反驳书面条款。</p>
+                
+                <p><strong>关键例外（本题考点）：</strong><br>
+                但是，如果一方主张该口头协议是<b>“合同生效的前提条件”</b>，则该证据<b>可以被采纳</b>。</p>
+                
+                <div class="rule-box">
+                    <strong>逻辑链条：</strong><br>
+                    如果先决条件（Condition Precedent）未发生 <br>
+                    → 合同从未生效 (Not Effective) <br>
+                    → 既然合同未生效，就不存在违约责任。
+                </div>
+            </div>
+        </div>
+
+        <!-- 案情应用 -->
+        <div class="card">
+            <div class="card-title">本案分析</div>
+            <div class="option-analysis">
+                <ul>
+                    <li><strong>口头约定：</strong>只有在另一投标被拒（Condition）时，才会为房主工作。</li>
+                    <li><strong>书面合同：</strong>虽然签署了，但未提及此条件。</li>
+                    <li><strong>结果：</strong>另一投标被接受了 → 条件未满足（Condition failed）。</li>
+                </ul>
+                <p>因为条件未满足，该书面合同从未产生法律效力。因此，建筑商没有履行的义务（Duty to perform）。</p>
+            </div>
+        </div>
+
+        <!-- 选项辨析 -->
+        <div class="card">
+            <div class="card-title">选项深度辨析</div>
+            <div class="option-analysis">
+                <p><span class="correct-answer">✅ 选项 B (正确)</span><br>
+                <strong>"No, because the builder's duty to perform was subject to a condition."</strong><br>
+                建筑商的履行义务受限于一个条件。由于该条件（另一投标被拒）未发生，履行义务从未被激活。</p>
+                <hr style="border: 0; border-top: 1px dashed #ccc; margin: 10px 0;">
+                
+                <p><span class="wrong-answer">❌ 选项 D (常见陷阱)</span><br>
+                <strong>"Yes, because the parol evidence rule would bar..."</strong><br>
+                这是最具迷惑性的选项。考生容易机械地认为“有书面合同 + 之前的口头约定 = PER 禁止”。<br>
+                <span style="color:var(--accent-color); font-weight:bold;">切记：</span>当口头证据是用来证明“合同是否生效”时，PER <b>不适用</b>。</p>
+
+                <p><span class="wrong-answer">❌ 选项 A (效率违约)</span><br>
+                <strong>"Efficiency principles..."</strong><br>
+                效率违约（Efficient Breach）理论解释了为什么违约在经济上可能是合理的，但它<b>不能免除</b>违约方的赔偿责任。如果合同有效且被违约，建筑商仍需赔偿，而不是完全免责。</p>
+                
+                <p><span class="wrong-answer">❌ 选项 C (虚幻允诺)</span><br>
+                <strong>"Illusory..."</strong><br>
+                虚幻允诺是指一方拥有任意决定权（例如“如果我想做我就做”）。本案中，条件是基于外部事件（另一投标的结果），而非建筑商的主观意愿，因此不是虚幻的。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="background-color: #e8f4fd; border-left-color: #3498db;">
+            <div class="card-title" style="color: #2980b9;">🎓 MBE 考试技巧</div>
+            <p style="font-size: 13px;">
+                看到 <strong>"Written Contract"</strong>（书面合同）加上 <strong>"Oral Agreement"</strong>（口头协议），第一反应是 Parol Evidence Rule。<br><br>
+                紧接着要问自己：这个口头协议是在<b>解释</b>合同、<b>修改</b>合同，还是在设定一个<b>生效门槛</b>？<br><br>
+                如果是设定“只有发生X，合同才算数”（Condition Precedent to Effectiveness），那么该口头证据<b>有效</b>，且合同可能因条件未满足而无效。
+            </p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

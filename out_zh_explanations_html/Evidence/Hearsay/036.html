@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .result-box {
+            background-color: #fdf2f2;
+            border-left: 5px solid var(--warning-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .result-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .concept-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        .concept-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+
+        .rule-ref {
+            font-size: 12px;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-top: 5px;
+            display: block;
+            text-align: right;
+        }
+
+        .comparison {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .comp-item {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .comp-wrong {
+            background-color: #ffebee;
+            border: 1px solid #ffcdd2;
+        }
+
+        .comp-right {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+        }
+
+        .mbe-tip {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .mbe-tip strong {
+            color: #f1c40f;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Evidence / Hearsay</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="result-box">
+            <div class="result-title">
+                <span>🚫 结论：不可采纳 (Inadmissible)</span>
+            </div>
+            <p>正确答案是 <strong>A</strong>。这些备忘录属于传闻证据（Hearsay），且不符合“业务记录例外”（Business Records Exception）。</p>
+        </div>
+
+        <!-- 知识点讲解 1 -->
+        <div class="section-title">核心考点：业务记录例外 vs. 诉讼准备</div>
+        
+        <div class="concept-card">
+            <span class="concept-icon">📝</span>
+            <strong>一般规则 (General Rule):</strong><br>
+            根据 <span class="rule-ref">FRE 803(6)</span>，日常业务记录通常是可以作为传闻证据的例外被采纳的。这要求记录是：
+            <ul>
+                <li>在事件发生时或临近时间制作；</li>
+                <li>作为日常业务活动的常规惯例 (Regular practice)；</li>
+                <li>由知情者制作。</li>
+            </ul>
+        </div>
+
+        <div class="concept-card" style="border-left: 4px solid var(--warning-color);">
+            <span class="concept-icon">⚖️</span>
+            <strong>本题陷阱 (The Trap):</strong><br>
+            虽然这些备忘录看起来像“记录”，但它们是<strong>专门为了诉讼而准备的 (Prepared in anticipation of litigation)</strong>。<br><br>
+            <span class="highlight">关键原则：</span> 如果记录制作的主要目的是为了打官司，而不是为了日常业务运营，那么它就缺乏业务记录所预设的“可信度”（Trustworthiness）。因此，它们不适用业务记录例外。
+            <span class="rule-ref">Palmer v. Hoffman</span>
+        </div>
+
+        <!-- 知识点讲解 2 -->
+        <div class="section-title">为什么其他选项是错误的？</div>
+
+        <div class="comparison">
+            <div class="comp-item comp-wrong">
+                <strong>选项 C 错误</strong><br>
+                <em>Past Recollection Recorded</em><br><br>
+                <strong>原因：</strong> 此例外要求证人必须<strong>出庭作证</strong>但“想不起来了”。本题中并没有提到有证人在席上无法回忆，而是直接想把文件作为证据提交。
+            </div>
+            <div class="comp-item comp-wrong">
+                <strong>选项 D 错误</strong><br>
+                <em>Business Records</em><br><br>
+                <strong>原因：</strong> 如上所述，为诉讼目的特意制作的记录（Self-serving），不具备业务记录所需的客观性和常规性。
+            </div>
+        </div>
+
+        <!-- MBE 策略 -->
+        <div class="mbe-tip">
+            <strong>🎓 MBE 考试技巧 (Exam Strategy)</strong>
+            <br><br>
+            当你看到题目中提到某份文件是“应雇主要求”、“为了证明某事”或“在事故发生后”制作时，警惕雷达要响起来！🚨
+            <br><br>
+            如果是为了<strong>Litigation (诉讼)</strong> 而非 <strong>Operation (运营)</strong> 制作的文件，通常会被排除在 Business Records Exception 之外。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

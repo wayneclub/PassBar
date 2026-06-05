@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+        .diagram-container {
+            margin: 20px 0;
+            border: 2px dashed #bdc3c7;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .land-diagram {
+            display: flex;
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            border: 2px solid #333;
+        }
+        .sister-lot {
+            width: 66.6%;
+            background-color: #d5f5e3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            border-right: 1px dashed #333;
+            color: #1e8449;
+        }
+        .brother-lot {
+            width: 33.3%;
+            background-color: #fadbd8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: #c0392b;
+            position: relative;
+        }
+        .cross-out {
+            position: absolute;
+            font-size: 40px;
+            color: rgba(192, 57, 43, 0.5);
+            font-weight: bold;
+            user-select: none;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        .option-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+        }
+        .option-card.correct {
+            border-color: var(--correct-color);
+            background-color: #f0f9f4;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .badge-correct { background: var(--correct-color); color: white; }
+        .badge-wrong { background: #eee; color: #777; }
+        
+        .footer-tip {
+            background: #f9f9f9;
+            padding: 15px;
+            font-size: 13px;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+        .highlight {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property / Partition</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法律规则 (Legal Rule)</span>
+            在按份共有 (Tenancy in Common) 中，法院首选的分割方式是<strong>实物分割 (Partition in Kind)</strong>。
+            <br><br>
+            只有当实物分割满足以下条件之一时，法院才会下令进行<strong>出售分割 (Partition by Sale)</strong>：
+            <ol style="margin:5px 0 0 -20px; font-size: 14px;">
+                <li>物理上不可能分割；</li>
+                <li>分割极其困难 (Impracticable)；</li>
+                <li>实物分割会导致<strong>不公平 (Inequitable)</strong> 或价值大幅减损。</li>
+            </ol>
+        </div>
+
+        <!-- 案情图解 -->
+        <div class="analysis-section">
+            <div class="analysis-title">📊 案情图解分析</div>
+            <p style="font-size: 14px;">
+                妹妹提议按所有权比例（2:1）进行物理分割。虽然面积比例正确，但忽略了<strong>区划法规 (Zoning Ordinance)</strong> 的限制。
+            </p>
+            
+            <div class="diagram-container">
+                <div style="font-size: 12px; margin-bottom: 5px;">总地块：3英亩 / 150ft 面宽</div>
+                <div class="land-diagram">
+                    <div class="sister-lot">
+                        <strong>妹妹 (2/3)</strong>
+                        <span>2 英亩</span>
+                        <span>100ft 面宽</span>
+                        <span style="margin-top:4px; font-weight:bold;">✅ 可建筑</span>
+                    </div>
+                    <div class="brother-lot">
+                        <div class="cross-out">🚫</div>
+                        <strong>哥哥 (1/3)</strong>
+                        <span>1 英亩</span>
+                        <span>50ft 面宽</span>
+                        <span style="margin-top:4px; font-weight:bold;">❌ 不可建筑</span>
+                    </div>
+                </div>
+                <div style="font-size: 11px; color: #7f8c8d; margin-top: 8px;">
+                    *区划要求：最少2英亩 + 100ft 面宽
+                </div>
+            </div>
+            <p style="font-size: 14px;">
+                <strong>结果：</strong> 妹妹得到一块高价值的可开发土地，哥哥得到一块无法建房的低价值土地。这构成了法律上的<strong>"不公平" (Inequitable)</strong>。
+            </p>
+        </div>
+
+        <!-- 答案解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 正确答案解析</div>
+            
+            <div class="option-card correct">
+                <span class="badge badge-correct">选项 B</span>
+                <strong>哥哥胜诉。</strong>
+                <p style="font-size: 13px; margin-top: 5px;">
+                    因为区划法规使得公平的实物分割变得不可能。
+                </p>
+                <hr style="border: 0; border-top: 1px solid rgba(39, 174, 96, 0.2); margin: 8px 0;">
+                <p style="font-size: 13px; color: #2c3e50;">
+                    虽然法律首选实物分割，但本案中，严格按比例的物理分割会导致哥哥分得的地块因不符合区划要求（面积不足、面宽不足）而无法使用。这种分割在经济上对哥哥极不公平。因此，法院必须下令出售整块土地（Partition by Sale），并将卖得的现金按 1:2 分配，这样双方都能获得其权益对应的公平市场价值。
+                </p>
+            </div>
+        </div>
+
+        <!-- 错误选项陷阱 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🚫 常见陷阱排除</div>
+            
+            <div class="option-card">
+                <span class="badge badge-wrong">选项 A 错误</span>
+                <p style="font-size: 13px; margin: 0;">
+                    <strong>法律标准错误：</strong> 出售分割并不是“优先”的救济方式，实物分割才是优先的。只有在特殊情况下才选择出售。
+                </p>
+            </div>
+
+            <div class="option-card">
+                <span class="badge badge-wrong">选项 D 错误</span>
+                <p style="font-size: 13px; margin: 0;">
+                    <strong>机械计算陷阱：</strong> 很多考生看到“比例完全一致”就选了 D。但在财产法中，<strong>公平 (Equity)</strong> 看的是价值和效用，而不仅仅是土地面积的数学比例。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-tip">
+        <strong>💡 MBE 考试技巧：</strong><br>
+        在处理 Partition 问题时，如果题目中出现了具体的<strong>数字</strong>（如英亩数、面宽）和<strong>限制条件</strong>（如 Zoning、地形），一定要警惕！<br>
+        这通常意味着物理分割虽然在数学上可行，但在法律或经济上是“不公平”的，从而触发 Partition by Sale。
+    </div>
+</div>
+
+</body>
+</html>

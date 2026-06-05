@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --correct-color: #27ae60;
+        --wrong-color: #c0392b;
+        --text-color: #333;
+        --bg-color: #f7f9fc;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px; /* 适配手机宽度 */
+        width: 100%;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .header .subtitle {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .concept-card {
+        background-color: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        display: block;
+    }
+    .rule-box {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    .rule-title {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        color: #7f8c8d;
+        margin-bottom: 5px;
+    }
+    .badge {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    .badge-eng {
+        background-color: #eee;
+        color: #555;
+    }
+    .analysis-section {
+        margin-top: 20px;
+    }
+    .option-analysis {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    .option-analysis:last-child {
+        border-bottom: none;
+    }
+    .correct-tag {
+        color: var(--correct-color);
+        font-weight: bold;
+    }
+    .wrong-tag {
+        color: var(--wrong-color);
+        font-weight: bold;
+    }
+    .exam-tip {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 0.9rem;
+    }
+    .icon {
+        margin-right: 5px;
+    }
+</style>
+<title>MBE 解析：不可转委的义务</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">侵权法 (Torts) - 替代责任</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">🎯 核心考点：不可转委的义务</span>
+            <span class="badge badge-eng">Nondelegable Duty</span>
+            <p>本题考察的是<b>独立承包人 (Independent Contractor)</b> 规则的一个重要例外：当工作涉及公共安全或特定风险时，委托人不能通过雇佣他人来推卸责任。</p>
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="rule-box">
+            <div class="rule-title">一般规则 (General Rule)</div>
+            <p>通常情况下，委托人（如房主）<b>不需要</b>为独立承包人（如屋顶工人）的侵权行为承担替代责任 (Vicarious Liability)。</p>
+        </div>
+
+        <div class="rule-box" style="border-color: var(--accent-color); background-color: #fff;">
+            <div class="rule-title" style="color: var(--accent-color);">例外情况 (The Exception)</div>
+            <p>如果委托人负有<b>不可转委的义务 (Nondelegable Duty)</b>，则必须承担责任。常见的不可转委义务包括：</p>
+            <ul style="padding-left: 20px; margin: 5px 0;">
+                <li>在公共场所（如人行道上方）进行的工作。</li>
+                <li>本身具有危险性的工作。</li>
+                <li>土地占有人维护场所安全的义务。</li>
+            </ul>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <h3 style="border-bottom: 2px solid var(--primary-color); padding-bottom: 5px;">案情逻辑推演</h3>
+            <p>
+                1. <b>地点关键：</b> 事故发生在<b>公共人行道 (Public Sidewalk)</b> 上。<br>
+                2. <b>风险来源：</b> 房主雇佣工人在屋顶修缮，这对下方的公共通行区域构成了可预见的风险。<br>
+                3. <b>结论：</b> 房主有义务确保过路行人的安全。这是一项<b>不可转委的义务</b>。即使房主雇佣了独立承包人，房主仍需对承包人在履行该义务时的过失负责。
+            </p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <h3>选项深度解析</h3>
+            
+            <div class="option-analysis">
+                <span class="correct-tag">✅ 选项 C (正确答案)</span>
+                <p><b>"因为屋顶工人的行为违反了房主对该行人所负有的一项不可转委的义务。"</b></p>
+                <p>这准确地指出了本案适用的一般规则的例外。由于工作发生在公共人行道上方，房主不能通过将工作外包来免除保障公众安全的责任。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">❌ 选项 A (错误)</span>
+                <p>虽然屋顶工人确实是独立承包人（而非雇员），但这正是本题设置的陷阱。选项 A 引用了“一般规则”，却忽略了本案适用的“不可转委义务”这一<b>例外情况</b>。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">❌ 选项 B (错误)</span>
+                <p><b>陷阱点：直接责任 vs. 替代责任。</b><br>
+                选项 B 讨论的是<b>过失雇佣 (Negligent Hiring)</b>。如果房主乱雇人，那是房主自己的过失（直接责任）。但本题问的是房主是否要为<b>工人的过失</b>负责（替代责任）。即使房主在选人时非常小心（没有直接过失），由于义务不可转委，他仍需承担替代责任。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">❌ 选项 D (错误)</span>
+                <p><b>Res Ipsa Loquitur (事实自证)</b> 是一种证据规则，用于在缺乏直接证据时推断过失。但本题题干已经明确指出<b>"lumber fell through negligence on the roofer's part"</b>（因工人的过失而掉落）。既然过失已定，就不需要用 Res Ipsa 来证明过失，而是要解决责任归属问题。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 实战技巧：</strong>
+            <br>
+            当你看到<b>“独立承包人” (Independent Contractor)</b> 造成伤害时，第一反应是委托人无责。
+            <br><br>
+            但是，立即检查是否存在以下 <b>"红色警报"</b>：
+            <ol style="margin: 5px 0; padding-left: 20px;">
+                <li>工作是否在<b>公共场所</b>（如街道、商场）进行？</li>
+                <li>工作是否涉及<b>高度危险</b>活动（如爆破）？</li>
+                <li>受害者是否是<b>受邀进入</b>土地的人（Invitee）？</li>
+            </ol>
+            如果命中以上任何一点，通常适用<b>不可转委义务</b>例外，委托人需要负责。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            font-weight: bold;
+            color: var(--correct-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .concept-card {
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 3px;
+        }
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            background: #fafafa;
+            padding: 15px;
+            border-radius: var(--border-radius);
+        }
+        .layer {
+            width: 90%;
+            padding: 10px;
+            margin: 5px 0;
+            text-align: center;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            position: relative;
+        }
+        .layer-1 {
+            background: #d5f5e3;
+            border: 1px solid #27ae60;
+            color: #1e8449;
+        }
+        .layer-2 {
+            background: #fadbd8;
+            border: 1px solid #c0392b;
+            color: #922b21;
+        }
+        .arrow {
+            font-size: 1.5rem;
+            color: #7f8c8d;
+            line-height: 1;
+        }
+        .explanation-text {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .exam-tip {
+            background: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+        }
+        .exam-tip-title {
+            font-weight: bold;
+            color: #f57f17;
+            margin-bottom: 5px;
+            display: block;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考题解析</h1>
+        <div class="sub-title">Evidence: Hearsay within Hearsay</div>
+    </div>
+
+    <div class="content">
+        <!-- Answer Section -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：A</span>
+            <strong>No, because it is hearsay not within any exception.</strong><br>
+            （不应采纳，因为它是传闻证据且不符合任何例外。）
+        </div>
+
+        <!-- Core Legal Concept -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：双重传闻 (Hearsay within Hearsay)</div>
+            <p class="explanation-text">
+                根据 <strong>Fed. R. Evid. 805</strong>，当一个传闻证据包含另一个传闻证据时（即“传闻中的传闻”），<strong>每一层</strong>陈述都必须独立符合传闻证据规则的例外，整个证据才能被采纳。
+            </p>
+        </div>
+
+        <!-- Visual Diagram -->
+        <div class="diagram">
+            <div style="font-weight:bold; margin-bottom:10px; font-size:0.9rem;">证据链分析</div>
+            
+            <!-- Layer 1 -->
+            <div class="layer layer-1">
+                <strong>第一层：警方报告 (Police Report)</strong><br>
+                <span style="font-size:0.8rem">警官的庭外陈述</span><br>
+                <span style="font-weight:bold">✅ 符合例外</span><br>
+                (Public Records / Business Records)
+            </div>
+            
+            <div class="arrow">↓ 包含 ↓</div>
+            
+            <!-- Layer 2 -->
+            <div class="layer layer-2">
+                <strong>第二层：目击者陈述 (Witness Statement)</strong><br>
+                <span style="font-size:0.8rem">"[被告]挑起了这场斗殴"</span><br>
+                <span style="font-weight:bold">❌ 不符合例外</span><br>
+                (无报告义务，非激动言词)
+            </div>
+
+            <div class="arrow">↓ 结论 ↓</div>
+
+            <div style="font-weight:bold; color:var(--wrong-color);">不可采纳 (Inadmissible)</div>
+        </div>
+
+        <!-- Detailed Analysis -->
+        <div class="concept-card">
+            <div class="concept-title">详细解析</div>
+            
+            <p class="explanation-text">
+                <strong>1. 第一层：警方报告本身</strong><br>
+                警方报告通常属于<strong>公共记录 (Public Records, FRE 803(8))</strong> 或<strong>业务记录 (Business Records, FRE 803(6))</strong>。警官有法律义务记录他所观察到的事实。因此，如果只是为了证明“警官写了这份报告”或“警官看到了现场情况”，报告是可采纳的。
+            </p>
+
+            <p class="explanation-text">
+                <strong>2. 第二层：目击证人的话</strong><br>
+                报告中引用了目击证人的话。目击证人是普通市民，<strong>没有法律或业务义务 (No business duty)</strong> 向警方报告。因此，这部分内容不能借用“公共记录”或“业务记录”的例外。
+            </p>
+            
+            <p class="explanation-text">
+                <strong>3. 寻找独立例外</strong><br>
+                既然不能借用报告的例外，目击证人的话必须有自己的例外（如 <em>Excited Utterance</em> 或 <em>Present Sense Impression</em>）。<br>
+                题目指出警官是在<strong>“第二天” (The day after)</strong> 才与证人交谈。这排除了时间敏感的例外。因此，这层传闻无法通过审核。
+            </p>
+        </div>
+
+        <!-- Distractor Analysis -->
+        <div class="concept-card">
+            <div class="concept-title">为什么其他选项是错的？</div>
+            <ul>
+                <li><strong>选项 B (Unless entire report introduced):</strong> 错误。引入整份报告并不能自动消除其中包含的不可采纳的传闻部分。</li>
+                <li><strong>选项 C (Public record excerpt):</strong> 这是一个常见的陷阱。虽然报告是公共记录，但这只覆盖警官的观察。<strong>公共记录例外不能“清洗” (cleanse) 其中包含的第三方传闻。</strong></li>
+                <li><strong>选项 D (Firsthand knowledge):</strong> 错误。虽然证人有第一手认知 (Personal Knowledge)，但这只是作证的前提条件，并不能豁免传闻证据规则 (Hearsay Rule)。</li>
+            </ul>
+        </div>
+
+        <!-- Exam Tip -->
+        
+
+    </div>
+</div>
+
+</body>
+</html>

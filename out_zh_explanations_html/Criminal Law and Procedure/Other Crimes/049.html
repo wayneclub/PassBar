@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --danger-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f8f5;
+            border: 1px solid #d1f2eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .answer-label {
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .answer-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 16px;
+            background-color: var(--accent-color);
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+        .concept-card {
+            background-color: #fff;
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .concept-text {
+            font-size: 14px;
+            color: #555;
+        }
+        .key-term {
+            font-family: "Georgia", serif;
+            font-style: italic;
+            color: var(--primary-color);
+            background-color: #eee;
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0 20px 10px;
+            border-left: 2px solid #ddd;
+            padding-left: 20px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -27px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            border: 2px solid #fff;
+        }
+        .timeline-dot.active {
+            background-color: var(--warning-color);
+        }
+        .timeline-dot.final {
+            background-color: var(--danger-color);
+        }
+        .timeline-content {
+            font-size: 14px;
+        }
+        .timeline-time {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 2px;
+        }
+        .highlight-red {
+            color: var(--danger-color);
+            font-weight: bold;
+        }
+        .highlight-green {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+        .exam-tip-title {
+            font-weight: bold;
+            color: var(--warning-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考题解析</h1>
+        <div class="subtitle">Criminal Law: Burglary & Larceny</div>
+    </div>
+
+    <div class="content">
+        <!-- Answer Section -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案</span>
+            <div class="answer-text">C. 盗窃罪 (Larceny)，但非入室犯法罪 (Burglary)</div>
+        </div>
+
+        <p style="font-size: 14px; color: #666;">
+            本题考察两个核心罪名的构成要件及其在时间线上的应用：<br>
+            1. <b>Burglary</b>（入室犯法罪）的意图时间点。<br>
+            2. <b>Larceny</b>（盗窃罪）中的“持续侵权”原则。
+        </p>
+
+        <!-- Analysis 1: Burglary -->
+        <div class="section-title">考点一：入室犯法罪 (Burglary)</div>
+        
+        <div class="concept-card">
+            <div class="concept-title">⚖️ 法律规则 (Rule)</div>
+            <div class="concept-text">
+                普通法上的 Burglary 需要：非法破门并进入 (Breaking and Entering) + 他人住宅 (Dwelling, 题目已扩展为 Building) + 夜间 + <span class="highlight-red">意图在其中犯下重罪 (Intent to commit a felony therein)</span>。
+            </div>
+        </div>
+
+        <div class="concept-card" style="border-left-color: var(--danger-color);">
+            <div class="concept-title">🚫 关键考点：同时性 (Simultaneity)</div>
+            <div class="concept-text">
+                犯重罪的意图必须在<b>进入的那一刻 (at the time of entry)</b> 就存在。
+            </div>
+        </div>
+
+        <p style="font-size: 14px;">
+            <b>本案分析：</b><br>
+            高管强行破门进入（满足 Breaking and Entering），但她进入时的目的是“取回个人物品”。取回自己的东西不是重罪，也不是盗窃。虽然她后来拿了公司的东西，但<b>进入时</b>没有犯重罪的意图。<br>
+            <span class="highlight-green">👉 结论：不构成 Burglary。</span>
+        </p>
+
+        <!-- Analysis 2: Larceny -->
+        <div class="section-title">考点二：盗窃罪 (Larceny)</div>
+
+        <div class="concept-card">
+            <div class="concept-title">⚖️ 法律规则 (Rule)</div>
+            <div class="concept-text">
+                Larceny = 非法占有 (Trespassory taking) + 移走 (Carrying away) + 他人财产 + <span class="highlight-red">意图永久剥夺 (Intent to permanently deprive)</span>。
+            </div>
+        </div>
+
+        <p style="font-size: 14px; margin-bottom: 10px;">
+            <b>难点：</b>通常要求“占有”和“意图”同时发生。高管拿走文件时，只是想“稍后整理归还”，似乎没有永久剥夺的意图。
+        </p>
+
+        <div class="concept-card" style="border-left-color: var(--warning-color); background-color: #fffcf5;">
+            <div class="concept-title">🔥 核心例外：持续侵权 (Continuing Trespass)</div>
+            <div class="concept-text">
+                如果行为人<b>非法获取</b>财产（Trespassory taking），即便当时没有偷窃意图，但只要该非法状态持续，一旦后来形成了永久剥夺的意图，法律视作<b>意图回溯</b>到占有之时，从而构成 Larceny。
+            </div>
+        </div>
+
+        <!-- Timeline Visualization -->
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot active"></div>
+                <div class="timeline-content">
+                    <div class="timeline-time">在办公室</div>
+                    <strong>非法拿取 (Trespassory Taking)</strong><br>
+                    她知道物品不属于她却拿走了。这构成了对占有权的侵犯 (Trespass)。<br>
+                    <span style="font-size:12px; color:#666;">(此时意图：归还 -> 暂不构成 Larceny)</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-time">回家路上</div>
+                    <strong>侵权持续中 (Trespass Continues)</strong><br>
+                    因为最初的拿取是非法的（她知道不是她的），所以侵权状态一直持续。
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot final"></div>
+                <div class="timeline-content">
+                    <div class="timeline-time">在家中</div>
+                    <strong>形成意图 (Intent Formed)</strong><br>
+                    她生气并烧毁文件 -> 形成了永久剥夺的意图。<br>
+                    <span class="highlight-red">👉 触发 Larceny！</span>
+                </div>
+            </div>
+        </div>
+
+        <p style="font-size: 14px;">
+            <b>注意区分：</b>如果她当时<b>真诚地误以为</b>那些文件是她自己的（Claim of Right），那么最初的拿取就不是“非法”的 (Not trespassory)，持续侵权原则就不适用，也就不会构成 Larceny。但题目明确说“她知道她在拿不属于她的物品”。
+        </p>
+
+        <!-- Exam Tips -->
+        <div class="exam-tip">
+            
+            <ul style="margin: 0; padding-left: 20px; color: #555;">
+                <li><b>Burglary 必考点：</b>永远检查“意图”是否在“破门进入”的那一秒存在。如果是进去后才起意偷东西，绝不是 Burglary。</li>
+                <li><b>Larceny 陷阱：</b>看到“先拿走打算还，后来决定不还”的情节，立刻判断最初的拿走是否“非法”(Wrongful)。
+                    <ul>
+                        <li>如果是借用/误拿 -> 无罪。</li>
+                        <li>如果是明知非己物而拿 -> Continuing Trespass -> Larceny。</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

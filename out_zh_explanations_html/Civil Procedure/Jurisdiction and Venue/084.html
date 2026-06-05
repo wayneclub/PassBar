@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - 民事诉讼法: 管辖与审判地</title>
+    
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">民事诉讼法: 管辖与审判地</p>
+        </header>
+
+        <div class="content-wrapper">
+            <div class="answer-box">
+                正确答案: D
+                <p>法院可以根据司法公正的考量，将案件从不适当的审判地转移到适当的审判地。</p>
+            </div>
+
+            <h2>核心法律规则</h2>
+            <div class="concept-box">
+                <h3 class="concept-title">联邦法院的审判地规则 (<span class="term">Venue</span>)</h3>
+                <p>在联邦民事诉讼中，<span class="term">venue</span>（审判地）通常在以下任一司法区是适当的：</p>
+                <ul>
+                    <li>任何被告居住的司法区，如果所有被告都居住在同一州内。</li>
+                    <li>引起诉讼的事件或遗漏的实质部分发生地，或争议财产的实质部分所在地。</li>
+                    <li>如果上述两项都不适用，则为任何被告受法院属人管辖权 (<span class="term">personal jurisdiction</span>) 约束的司法区。</li>
+                </ul>
+                <p>对于公司而言，其“居住地”是指其受属人管辖权约束的任何司法区。这通常包括其注册地 (<span class="term">state of incorporation</span>) 和主要营业地 (<span class="term">principal place of business</span>)。</p>
+                <p><strong>不适当审判地的处理 (<span class="term">Transfer or Dismissal from Improper Venue</span>)</strong></p>
+                <p>根据《美国法典》第28卷第1406条 (<span class="term">28 U.S.C. § 1406</span>)，如果审判地不适当，联邦法院必须：</p>
+                <ol>
+                    <li>驳回案件 (<span class="term">dismiss the case</span>)；或</li>
+                    <li>如果符合司法公正的利益，将案件转移到适当的审判地 (<span class="term">transfer to a proper venue</span>)。</li>
+                </ol>
+                <p>被告可以通过在答辩状中提出或在答辩状之前提出动议来主张审判地不当的抗辩。如果未及时提出，则该抗辩可能被视为放弃 (<span class="term">waived</span>)。</p>
+            </div>
+
+            <h2>概念比较：审判地转移</h2>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>特征</th>
+                            <th>从适当审判地转移 (<span class="term">28 U.S.C. § 1404</span>)</th>
+                            <th>从不适当审判地转移/驳回 (<span class="term">28 U.S.C. § 1406</span>)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="初始审判地">初始审判地</td>
+                            <td data-label="初始审判地"><strong>适当的</strong> (<span class="term">proper</span>)</td>
+                            <td data-label="初始审判地"><strong>不适当的</strong> (<span class="term">improper</span>)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="法院权力">法院权力</td>
+                            <td data-label="法院权力">可以 (<span class="term">may</span>) 转移</td>
+                            <td data-label="法院权力">必须 (<span class="term">must</span>) 驳回或转移</td>
+                        </tr>
+                        <tr>
+                            <td data-label="转移目的地">转移目的地</td>
+                            <td data-label="转移目的地">任何其他<strong>适当的</strong>审判地，且当事人可以被管辖的司法区</td>
+                            <td data-label="转移目的地">任何<strong>适当的</strong>审判地</td>
+                        </tr>
+                        <tr>
+                            <td data-label="转移理由">转移理由</td>
+                            <td data-label="转移理由">为了当事人/证人的方便，以及司法公正的利益</td>
+                            <td data-label="转移理由">为了司法公正的利益</td>
+                        </tr>
+                        <tr>
+                            <td data-label="属人管辖权">属人管辖权</td>
+                            <td data-label="属人管辖权">转移法院必须对被告有属人管辖权</td>
+                            <td data-label="属人管辖权">转移法院不需要对被告有属人管辖权，只要能将案件转移到有属人管辖权的适当审判地即可</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>案件事实与适用逻辑</h2>
+            <div class="analysis-step">
+                <h3>第一步：确定原告选择的审判地是否适当。</h3>
+                <p>本案中，原告在<strong>州A西区</strong>联邦法院提起诉讼。我们需要根据《美国法典》第28卷第1391条 (<span class="term">28 U.S.C. § 1391</span>) 来评估其适当性。</p>
+                <ul>
+                    <li><strong>被告居住地规则 (<span class="term">§ 1391(b)(1)</span>)：</strong>被告公司在州B注册，主要营业地在州C。因此，该公司不居住在州A西区。此规则不适用。</li>
+                    <li><strong>事件发生地规则 (<span class="term">§ 1391(b)(2)</span>)：</strong>直升机坠毁（引起诉讼的事件）发生在<strong>州A东区</strong>，而非州A西区。此规则不适用。</li>
+                    <li><strong>兜底条款 (<span class="term">§ 1391(b)(3)</span>)：</strong>没有迹象表明前两条规则无法确定审判地，或被告仅在州A西区受属人管辖。</li>
+                </ul>
+                <p><strong>结论：</strong>因此，原告选择的<strong>州A西区</strong>是一个<strong>不适当的审判地</strong>。</p>
+
+                <h3>第二步：确定当审判地不适当时的法院权力。</h3>
+                <p>由于审判地不适当，法院必须适用《美国法典》第28卷第1406条 (<span class="term">28 U.S.C. § 1406</span>)。根据该条，法院可以选择驳回案件，或者在符合司法公正利益的情况下，将案件转移到适当的审判地。</p>
+
+                <h3>第三步：确定州A东区是否是适当的审判地。</h3>
+                <p>直升机坠毁事件发生在<strong>州A东区</strong>。根据《美国法典》第28卷第1391(b)(2)条，引起诉讼的事件的实质部分发生地是适当的审判地。因此，<strong>州A东区</strong>是一个<strong>适当的审判地</strong>。</p>
+
+                <h3>第四步：评估法院是否可以转移案件。</h3>
+                <p>由于州A西区审判地不适当，且州A东区是适当的审判地，法院可以根据《美国法典》第28卷第1406条，在符合司法公正利益的情况下，将案件转移到州A东区。</p>
+
+                <h3>第五步：考虑被告是否放弃了审判地不当的抗辩。</h3>
+                <p>被告在答辩状中提出了审判地不当的抗辩。根据联邦民事诉讼规则，在答辩状中提出该抗辩是及时且有效的，因此被告并未放弃此防御。</p>
+            </div>
+
+            <h2>审判地转移决策流程图</h2>
+            <div class="diagram">
+                <div class="diagram-content">
+                    <div class="flow-node">案件提起</div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-node">审判地是否适当？</div>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%;">
+                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 200px;">
+                            <div class="arrow">是 (<span class="term">Proper</span>) ↓</div>
+                            <div class="flow-node">适用 <span class="term">28 U.S.C. § 1404</span></div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-node">可为方便和公正转移到其他适当审判地</div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 200px;">
+                            <div class="arrow">否 (<span class="term">Improper</span>) ↓</div>
+                            <div class="flow-node highlight-node">适用 <span class="term">28 U.S.C. § 1406</span></div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-node">法院必须驳回或在公正利益下转移到适当审判地</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trap-alert">
+                <h3>MBE 考点陷阱提示</h3>
+                <p>考生常混淆《美国法典》第1404条和第1406条。关键区别在于<strong>初始审判地是否适当</strong>。</p>
+                <ul>
+                    <li><strong>§ 1404</strong> 适用于<strong>适当的</strong>审判地之间的转移，通常是为了方便当事人或证人。</li>
+                    <li><strong>§ 1406</strong> 适用于<strong>不适当的</strong>审判地，法院可以选择驳回或转移到适当的审判地，以维护司法公正。</li>
+                </ul>
+                <p>此外，请注意<strong>审判地不当抗辩的放弃</strong>。如果被告未在答辩状中或答辩状之前提出此抗辩，则可能被视为放弃。</p>
+            </div>
+
+            <h2>正确答案与干扰项排除</h2>
+            <div class="option-analysis">
+                <div class="option correct">
+                    <p><strong>D. 是的，因为州A东区是适当的审判地。</strong></p>
+                    <p><strong>解释：</strong>本案中，原告选择的州A西区并非适当的审判地，因为被告公司不居住在该区，且导致诉讼的事件也未发生在该区。根据《美国法典》第28卷第1406条，当审判地不适当，法院可以选择驳回案件或将其转移到适当的审判地，前提是符合司法公正的利益。由于直升机坠毁事件发生在州A东区，根据《美国法典》第28卷第1391(b)(2)条，州A东区是一个适当的审判地。因此，法院可以根据司法公正的考量，将案件转移到州A东区。</p>
+                </div>
+
+                <div class="option wrong">
+                    <p><strong>A. 否，因为公司未能在答辩状之前提出驳回动议。</strong></p>
+                    <p><strong>解释：</strong>错误。被告可以在答辩状中提出审判地不当的抗辩，也可以在答辩状之前通过动议提出。本案中，公司在答辩状中提出了该抗辩，因此并未放弃此防御。</p>
+                </div>
+
+                <div class="option wrong">
+                    <p><strong>B. 否，因为如果法院认定审判地不适当，则必须驳回诉讼。</strong></p>
+                    <p><strong>解释：</strong>错误。根据《美国法典》第28卷第1406条，当审判地不适当，法院有权选择驳回案件或将其转移到适当的审判地，如果转移符合司法公正的利益。法院并非必须驳回。</p>
+                </div>
+
+                <div class="option wrong">
+                    <p><strong>C. 是的，因为法院可以主动将案件从一个适当的审判地转移到另一个适当的审判地。</strong></p>
+                    <p><strong>解释：</strong>错误。本案的初始审判地（州A西区）是<strong>不适当的</strong>，因此不适用《美国法典》第28卷第1404条（从适当审判地转移）。此外，即使在§ 1404下，转移通常也需要当事人提出动议，而非法院主动。本案应适用§ 1406，它处理的是从不适当审判地转移的情况。</p>
+                </div>
+            </div>
+
+            <div class="footer-tip">
+                <h3>MBE 考试技巧</h3>
+                <p>遇到审判地问题时，首先判断<strong>初始审判地是否适当</strong>。如果适当，考虑《美国法典》第1404条（便利性转移）；如果不适当，考虑《美国法典》第1406条（驳回或转移到适当审判地）。同时，务必检查被告是否及时提出了审判地不当的抗辩，以避免放弃。</p>
+            </div>
+
+            <div class="references">
+                <h3>参考文献</h3>
+                <a href="https://www.law.cornell.edu/uscode/text/28/1391" target="_blank">28 U.S.C § 1391(b) (规定基本的审判地规则)</a>
+                <a href="https://www.law.cornell.edu/uscode/text/28/1406" target="_blank">28 U.S.C § 1406(a) (规定审判地不当时案件转移的规则)</a>
+            </div>
+        </div>
+
+        <div class="footer-info">
+            <div>
+                <strong>Civil Procedure</strong>
+                Subject
+            </div>
+            <div>
+                <strong>Jurisdiction and Venue</strong>
+                Chapter
+            </div>
+            <div>
+                <strong>Venue, forum non conveniens, transfer</strong>
+                Topic
+            </div>
+            <div style="text-align: right; flex-grow: 0;">
+                Copyright © UWorld. All rights reserved.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

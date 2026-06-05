@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .key-term {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .logic-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .step-num {
+            background: var(--primary-color);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .option-analysis {
+            font-size: 14px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .correct-tag {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .wrong-tag {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .tip-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：平等保护与差别影响</h1>
+    
+    <p>本题考查宪法第十四修正案<b>平等保护条款 (Equal Protection Clause)</b> 中的核心原则：如何审查表面中立但具有歧视性后果的法律。</p>
+
+    <div class="rule-box">
+        <strong>核心法则 (The Rule):</strong><br>
+        仅有<b>差别影响 (Disparate Impact)</b> 不足以触发严格审查或中度审查。必须证明存在<b>歧视意图 (Discriminatory Intent)</b>。<br><br>
+        如果法律表面中立且无歧视意图，即使它对某一受保护群体（如女性）产生不成比例的影响，也仅适用<b>理性基础审查 (Rational Basis Review)</b>。
+    </div>
+
+    <h2>⚖️ 法律推理逻辑</h2>
+    
+    <div class="logic-step">
+        <div class="step-num">1</div>
+        <div>
+            <strong>识别分类：</strong><br>
+            题目提到该法令对女性的影响大于男性。性别 (Gender) 通常属于“准可疑分类” (<span class="english-term">Quasi-suspect classification</span>)，一般适用<b>中度审查 (Intermediate Scrutiny)</b>。
+        </div>
+    </div>
+
+    <div class="logic-step">
+        <div class="step-num">2</div>
+        <div>
+            <strong>检查歧视形式：</strong><br>
+            <ul>
+                <li><strong>表面歧视 (Facial Discrimination)？</strong> 无。法律文本写的是“个人 (individuals)”，未提及性别。</li>
+                <li><strong>歧视性适用 (Discriminatory Application)？</strong> 无。题目未提及只针对女性执法。</li>
+                <li><strong>歧视性动机 (Discriminatory Motive)？</strong> 无。题目明确指出目的是“儿童健康与安全”。</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="logic-step">
+        <div class="step-num">3</div>
+        <div>
+            <strong>确定审查标准：</strong><br>
+            根据最高法院判例（如 <i>Washington v. Davis</i>），没有歧视意图的表面中立法律，仅需通过<b>理性基础审查</b>。
+        </div>
+    </div>
+
+    <div class="logic-step">
+        <div class="step-num">4</div>
+        <div>
+            <strong>应用标准：</strong><br>
+            政府目标（儿童安全）是合法的 (<span class="english-term">Legitimate</span>)，手段（执照许可）与目标理性相关 (<span class="english-term">Rationally related</span>)。因此合宪。
+        </div>
+    </div>
+
+    <h2>🔍 选项深度解析</h2>
+
+    <div class="option-analysis">
+        <span class="correct-tag">✅ 选项 D 正确</span><br>
+        它准确描述了理性基础审查的标准：“与合法的政府目标具有理性关联”。这是本案适用的正确标准，因为缺乏歧视意图。
+    </div>
+
+    <div class="option-analysis">
+        <span class="wrong-tag">❌ 选项 A 错误</span><br>
+        这是一个常见的干扰项。它错误地认为仅凭“差别影响”就需要政府证明“迫切利益” (<span class="english-term">Compelling interest</span>，即严格审查)。实际上，如果没有歧视意图，不需要严格审查，甚至不需要中度审查。
+    </div>
+
+    <div class="option-analysis">
+        <span class="wrong-tag">❌ 选项 B 错误</span><br>
+        涉及<b>合同自由 (Freedom of Contract)</b>。自 <i>Lochner</i> 时代结束后，法院不再视合同自由为基本权利。经济和社会福利立法只需通过理性基础审查。此外，<b>合同条款 (Contracts Clause)</b> 仅禁止损害<i>现有</i>合同，不限制对<i>未来</i>商业行为的监管。
+    </div>
+
+    <div class="option-analysis">
+        <span class="wrong-tag">❌ 选项 C 错误</span><br>
+        该选项描述了一种类似“利益平衡”或中度审查的测试。虽然结果是“合宪”，但理由错误。本案不需要权衡负担是否被目标“超越”，只需证明手段与目的之间有理性关联即可。
+    </div>
+
+    <div class="tip-box">
+        <strong>🎓 MBE 考试技巧 (Exam Tip):</strong><br>
+        看到“不成比例的影响” (<span class="english-term">Disproportionate impact</span>) 时，立即寻找是否有<b>意图 (Intent)</b> 的证据。<br>
+        <ul>
+            <li>如果有意图 ➡️ 严格/中度审查。</li>
+            <li>如果只是意外后果（即使政府知道会有此后果）➡️ <b>理性基础审查 (Rational Basis)</b>。</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

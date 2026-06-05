@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .english-term {
+            font-size: 0.85em;
+            color: #666;
+            font-style: italic;
+        }
+
+        .diagram-container {
+            margin: 20px 0;
+            border: 2px dashed #ccc;
+            padding: 10px;
+            background: #fff;
+            text-align: center;
+        }
+
+        .road {
+            background: #555;
+            color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .land-wrapper {
+            display: flex;
+            gap: 5px;
+            height: 100px;
+        }
+
+        .land-parcel {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #333;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .land-woman {
+            background-color: #d5f5e3;
+        }
+
+        .land-man {
+            background-color: #fadbd8;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            left: -15%;
+            width: 130%;
+            height: 2px;
+            background: var(--warning-color);
+            z-index: 10;
+            transform: translateY(-50%);
+        }
+        
+        .arrow::after {
+            content: "▶";
+            position: absolute;
+            right: 0;
+            top: -7px;
+            color: var(--warning-color);
+        }
+
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+
+        .analysis-step strong {
+            color: var(--primary-color);
+        }
+
+        .pitfall {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fffdf0;
+        }
+
+        .pitfall-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pitfall-title::before {
+            content: "⚠️";
+            margin-right: 5px;
+        }
+
+        .footer {
+            background-color: #eee;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property: Easements (地役权)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：必要地役权</span>
+            <span class="english-term">Easement by Necessity</span>
+            <p>当土地所有者分割土地，导致其中一部分土地完全失去通往公共道路的途径（成为“内陆地”/Landlocked）时，法律会默示产生一种通行权。</p>
+        </div>
+
+        <!-- 图解 -->
+        <div class="diagram-container">
+            <div class="road">公共公路 (Public Highway)</div>
+            <div class="land-wrapper">
+                <div class="land-parcel land-woman">
+                    女子土地<br>(有路)
+                    <!-- 箭头表示通行权 -->
+                    <div class="arrow" title="Access Route"></div>
+                </div>
+                <div class="land-parcel land-man">
+                    表亲土地<br>(内陆地)
+                </div>
+            </div>
+            <div style="font-size: 0.8rem; color: #666; margin-top: 5px;">
+                <span style="color:var(--warning-color)">➞</span> 法律默示的通行路径
+            </div>
+        </div>
+
+        <!-- 法律分析 -->
+        <div class="analysis-step">
+            <strong>1. 成立要件 (Elements)：</strong>
+            <ul>
+                <li><strong>共同所有权的分割 (Severance of Common Ownership)：</strong> 土地原先由一人（男子）拥有，后被分割。</li>
+                <li><strong>绝对必要性 (Strict Necessity)：</strong> 分割导致保留地块在分割之时 (at the time of severance) 没有任何通往公共道路的途径。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 本案应用：</strong>
+            <p>男子卖掉东半部分（临路）给女子，保留西半部分（内陆）。在分割的那一刻，男子的地块变成了“死地”。因此，穿越女子土地的必要地役权<strong>自动产生</strong>。</p>
+        </div>
+
+        <div class="analysis-step">
+            <strong>3. 继承性：</strong>
+            <p>地役权依附于土地 (Runs with the land)。表亲继承了土地，也自然继承了这项通行权。</p>
+        </div>
+
+        <!-- 陷阱解析 -->
+        <div class="pitfall">
+            <div class="pitfall-title">MBE 常见陷阱 (Distractor Analysis)</div>
+            <p><strong>为什么选项 C 是错的？</strong></p>
+            <p>题目提到邻居愿意出售通行权。很多考生会认为：“既然能买到路，就不是‘绝对必要’了吧？”</p>
+            <p><strong>MBE 规则：</strong> 必要性是在<strong>土地分割时</strong>确定的。只要在分割那一刻产生了必要性，地役权就成立了。仅仅是第三方（邻居）提供购买通行权的<em>机会</em>，并不能消灭已经存在的地役权。</p>
+            <p style="font-size: 0.9em; color: #555;">注意：如果表亲<em>实际上已经购买</em>了邻居的通行权，那么必要性消失，地役权才会终止。但仅有“要约”是不够的。</p>
+        </div>
+
+        <div class="analysis-step">
+            <strong>其他选项排除：</strong>
+            <ul>
+                <li><strong>选项 B (空地)：</strong> 土地是否空置与地役权是否存在无关。</li>
+                <li><strong>选项 D (未保留)：</strong> 必要地役权是<strong>默示 (Implied)</strong> 的，不需要在地契中明文写出。</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <strong>应试技巧：</strong> 看到 "Landlocked" (内陆地) 和 "Severance" (分割)，首先考虑 Easement by Necessity。不要被邻居的 Offer 迷惑，除非已经成交。
+    </div>
+</div>
+
+</body>
+</html>

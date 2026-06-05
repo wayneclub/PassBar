@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .step {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .step-num {
+            background: #34495e;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        .answer-section {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .wrong-option {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+            border-left: 3px solid #ddd;
+            padding-left: 10px;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Real Property: Recording Acts & Donees</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">🔑 核心原则 (The Golden Rule)</span>
+            在财产法中，<b>登记法 (Recording Acts)</b> 仅保护“有偿购买者” (Purchasers for Value)。如果后续受让人是<b>受赠人 (Donee)</b>，登记法不适用，必须回归<b>普通法 (Common Law)</b> 规则。
+        </div>
+
+        <!-- 案例分析 -->
+        <div class="step">
+            <div class="step-title">
+                <span class="step-num">1</span>
+                <span>识别当事人身份</span>
+            </div>
+            <p>本案中有两个受让人：</p>
+            <ul>
+                <li><b>堂妹 (Cousin):</b> 接受礼物 (Gift) → <span class="highlight">受赠人 (Donee)</span>。</li>
+                <li><b>朋友 (Friend):</b> 接受礼物 (Gift) → <span class="highlight">受赠人 (Donee)</span>。</li>
+            </ul>
+            <p>注意：两人都没有支付对价 (Value)，都不是购买者 (Purchaser)。</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">
+                <span class="step-num">2</span>
+                <span>分析登记法是否适用</span>
+            </div>
+            <p>题目中的法规规定：“未登记的转让...对于<b>有偿购买者 (Purchasers for Value)</b> 无效...”</p>
+            <p>由于后续受让人（朋友）是受赠人而非购买者，<b>他不受该登记法的保护</b>。无论他是否知道之前的转让，也无论他是否先登记，他都无法利用该法规来切断堂妹的权益。</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">
+                <span class="step-num">3</span>
+                <span>应用普通法规则</span>
+            </div>
+            <p>当登记法不适用时，适用普通法的<b>“时间优先” (First in Time, First in Right)</b> 规则。</p>
+            <p>堂妹在六个月前获得了产权（尽管未登记），她在时间上早于朋友。因此，堂妹拥有该土地的产权。</p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="answer-section">
+            <strong>✅ 正确答案：选项 A</strong>
+            <br><br>
+            判决应有利于堂妹。因为她是时间上的第一顺位 (First in time)，而朋友不是“购买者” (Purchaser)，无法援引登记法来推翻普通法的优先权规则。
+        </div>
+
+        <!-- 错误选项简析 -->
+        <div style="margin-top: 20px;">
+            <strong>❌ 为什么其他选项是错的？</strong>
+            
+            <div class="wrong-option">
+                <b>选项 B (朋友未先登记):</b> 
+                推理错误。即使朋友先登记了，结果也一样。因为他不是购买者，登记法的“先登记”要求对他不产生保护作用。
+            </div>
+
+            <div class="wrong-option">
+                <b>选项 C (善意受赠人):</b> 
+                法律误区。登记法保护的是“善意购买者” (BFP)，从不保护“善意受赠人”。受赠人只能站在捐赠人 (Grantor) 的鞋子里，如果捐赠人已经把地送人了，受赠人就什么也得不到。
+            </div>
+
+            <div class="wrong-option">
+                <b>选项 D (先占有):</b> 
+                无关因素。在产权归属纠纷中，除非涉及逆权占有 (Adverse Possession)，否则单纯的“占有”并不决定产权归属。产权由有效的契据交付 (Delivery of Deed) 决定。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #fff8e1; border-left-color: #f1c40f; margin-top: 20px;">
+            <span class="rule-title">💡 MBE 考试技巧</span>
+            看到 Recording Act 题目时，第一步永远是检查<b>后续受让人 (Subsequent Grantee)</b> 是否支付了对价 (Value)。
+            <br><br>
+            如果是 <b>Gift</b>、<b>Will</b> (遗嘱) 或 <b>Heir</b> (继承)，他们通常不受登记法保护（除非 Shelter Rule 适用）。此时直接选<b>时间最早</b>的那个人。
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            background: #fff;
+            width: 100%;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .step-analysis {
+            margin: 20px 0;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .step-icon {
+            background-color: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .step-content {
+            font-size: 0.95rem;
+        }
+
+        .key-point {
+            font-weight: bold;
+            color: var(--warning-color);
+        }
+
+        .distractor-section {
+            margin-top: 25px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .distractor-title {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .distractor-item {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .distractor-label {
+            font-weight: bold;
+            color: var(--warning-color);
+        }
+
+        .footer-tip {
+            background-color: #fdf2f0;
+            color: #c0392b;
+            padding: 15px;
+            font-size: 0.9rem;
+            text-align: center;
+            border-top: 1px solid #fadbd8;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Criminal Law: Larceny (盗窃罪)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <span style="font-size: 3rem;">⚖️</span>
+            <h2 style="margin: 10px 0; color: var(--success-color);">正确答案：C</h2>
+            <p><strong>Larceny (盗窃罪)</strong></p>
+        </div>
+
+        <!-- 法律规则 -->
+        <div class="rule-card">
+            <span class="rule-title">📝 核心考点：盗窃罪的既遂标准</span>
+            普通法上的盗窃罪 (Common Law Larceny) 需要满足以下要素：
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li>非法占有 (Trespassory taking)</li>
+                <li><strong>携离 (Carrying away / Asportation)</strong></li>
+                <li>他人的个人财产</li>
+                <li>意图永久剥夺 (Intent to permanently deprive)</li>
+            </ol>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="step-analysis">
+            <h3 style="font-size: 1.1rem; border-bottom: 2px solid #eee; padding-bottom: 5px;">本案时间线分析</h3>
+            
+            <div class="step">
+                <div class="step-icon">1</div>
+                <div class="step-content">
+                    <strong>意图产生 (Intent):</strong><br>
+                    男子看到手表，决定偷走它。此时具备了“永久剥夺的意图”。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">2</div>
+                <div class="step-content">
+                    <strong>关键动作 (The Act):</strong><br>
+                    男子弯腰并<span class="key-point">捡起了手表</span>。
+                    <br><br>
+                    <small>⚠️ <strong>MBE 陷阱：</strong> 在法律上，只要物体被移动了极其微小的距离（even mere inches），"Asportation"（携离）要素即已满足。此时，犯罪行为已经<strong>既遂 (Completed)</strong>。</small>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">3</div>
+                <div class="step-content">
+                    <strong>事后同意 (Subsequent Consent):</strong><br>
+                    同事回来并说“送给你了”。
+                    <br><br>
+                    由于盗窃罪在第2步已经完成，受害者事后的原谅、同意或赠予，<strong>不能消除已经发生的犯罪事实</strong>。这可能影响量刑，但不影响定罪。
+                </div>
+            </div>
+        </div>
+
+        <!-- 错误选项解析 -->
+        <div class="distractor-section">
+            <div class="distractor-title">为什么其他选项是错的？</div>
+            
+            <div class="distractor-item">
+                <span class="distractor-label">A. Attempted Larceny (盗窃未遂)</span><br>
+                未遂要求“未完成”犯罪。但因为他已经“捡起”了手表，完成了“携离”这一动作，所以犯罪已经既遂，不再是未遂。
+            </div>
+
+            <div class="distractor-item">
+                <span class="distractor-label">B. Embezzlement (侵占罪)</span><br>
+                侵占罪的前提是行为人<strong>已经合法占有</strong>了财物（例如银行出纳员拿走柜台现金）。本案中，男子在捡起手表前并没有获得同事的授权保管，所以不是侵占。
+            </div>
+
+            <div class="distractor-item">
+                <span class="distractor-label">D. No Crime (无罪)</span><br>
+                这是最具迷惑性的选项。考生容易被“同事同意送给他”这一情节误导。记住：<strong>犯罪意图与犯罪行为同时发生 (Concurrence)</strong> 时罪名成立，事后诸葛亮式的同意无效。
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-tip">
+        <strong>💡 考试技巧 (Exam Tip)</strong><br>
+        在 MBE 盗窃类题目中，只要看到小偷怀着偷窃意图<strong>触碰并移动</strong>了物品（哪怕只是拿在手里还没放进口袋），就是 <strong>Larceny</strong>。不要被后续的归还或主人的原谅所迷惑。
+    </div>
+</div>
+
+</body>
+</html>

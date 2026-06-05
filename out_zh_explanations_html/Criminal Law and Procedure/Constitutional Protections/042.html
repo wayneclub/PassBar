@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点精析：第八修正案与智力障碍者的死刑执行</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="card-header">
+            <h1>MBE 考点精析</h1>
+            <div class="sub-title">刑法与程序：宪法保护</div>
+        </div>
+
+        <div class="concept-box">
+            <h2>核心考点：第八修正案与智力障碍者的死刑执行</h2>
+            <p class="latin"><i>Eighth Amendment: Execution of Intellectually Disabled Persons</i></p>
+        </div>
+
+        <div class="section">
+            <h3>📊 概念对比分析</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>对比项</th>
+                        <th>受审能力 (Competency to Stand Trial)</th>
+                        <th>智力障碍者的死刑豁免 (Intellectual Disability for Execution)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>目的</strong></td>
+                        <td>确保被告理解诉讼程序并能协助辩护。</td>
+                        <td>避免对智力障碍者施加“残忍和不寻常的惩罚”（第八修正案）。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>标准</strong></td>
+                        <td>被告是否具有足够的理性理解正在进行的诉讼程序，以及是否能与律师合理地沟通以协助辩护。</td>
+                        <td>综合评估智力功能显著受限（通常通过IQ测试，但非唯一标准）、适应行为缺陷以及这些缺陷在发育期出现。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IQ关联</strong></td>
+                        <td>IQ低可能是一个因素，但并非决定性因素。重点是当前的精神状态和理解能力。</td>
+                        <td>IQ低于70-75通常是重要指标，但不能作为严格的截止点。需考虑医疗指南。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>后果</strong></td>
+                        <td>若不具备，则暂停审判，直至恢复能力。</td>
+                        <td>若被认定为智力障碍，则不得执行死刑。</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>对比项</th>
+                        <th>州法定IQ截止点 (State Statutory IQ Cutoff)</th>
+                        <th>当前医疗指南 (Current Medical Guidelines)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>特点</strong></td>
+                        <td>州法律明确规定一个IQ分数（例如65或70）作为判断智力障碍的唯一或主要标准。</td>
+                        <td>综合评估智力功能（通常IQ在70-75以下被视为显著受限）、适应行为缺陷（如沟通、社交、自理能力）以及这些缺陷在发育期（18岁前）出现。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>最高法院立场</strong></td>
+                        <td><strong>违宪。</strong>最高法院在 <code>Hall v. Florida</code> 案中明确指出，严格的IQ截止点（如70）是违宪的，因为它忽视了智力障碍的复杂性，并排除了对适应行为缺陷的考虑。</td>
+                        <td><strong>必须采纳。</strong>州法院在判断智力障碍时必须考虑并采纳当前的医疗共识和专业标准，不能仅凭一个严格的IQ分数。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="diagram">
+            <h4>🎨 案件流程与争议点图示</h4>
+            <div class="flow-container">
+                <div class="flow-node">指控一级谋杀 & 寻求死刑</div>
+                <div class="flow-node">辩方动议：受审能力不足 (被告 IQ 68)</div>
+                <div class="flow-node">法院裁定：具备受审能力</div>
+                <div class="flow-node">定罪 & 判处死刑</div>
+                <div class="flow-node">死刑执行日期确定</div>
+                <div class="flow-node active">辩方提交人身保护令：第八修正案 (智力障碍)</div>
+                <div style="display: flex; flex-direction: column; align-items: center; margin: 10px 0;">
+                    <div class="party-box">州法规: 智力障碍 = IQ ≤ 65</div>
+                    <span class="conflict-arrow">↕️</span>
+                    <div class="party-box">被告 IQ: 68</div>
+                    <span class="conflict-arrow">↕️</span>
+                    <div class="party-box">医疗指南: IQ 70-75 显著受限 (低于此范围推定为智力障碍)</div>
+                </div>
+                <div class="flow-node highlight-node">法院裁决：禁止执行死刑 (因州法规违宪)</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>⚖️ 法律权威与推理</h3>
+            <div class="analysis-step">
+                <div class="step-number">1</div>
+                <p><strong>区分法律概念：</strong>首先，需要明确“受审能力”与“智力障碍者的死刑豁免”是两个不同的法律概念。案件中，法院已裁定被告具备受审能力，但这并不意味着他没有智力障碍，从而不能被执行死刑。受审能力关注的是被告在审判时理解程序和协助辩护的能力，而第八修正案的死刑豁免关注的是被告的长期智力缺陷。</p>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">2</div>
+                <p><strong>审查州法规与医疗指南的冲突：</strong>本案的关键在于州法规与当前医疗指南之间的冲突。州法规将智力障碍定义为IQ 65或更低，而被告的IQ为68。然而，当前的医疗指南认为IQ在70到75之间已表明智力功能存在显著限制，且低于此范围通常被推定为智力障碍。</p>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">3</div>
+                <p><strong>适用最高法院判例：</strong>根据 <code>Atkins v. Virginia</code> (2002) 案，第八修正案禁止对智力障碍者执行死刑。随后，在 <code>Hall v. Florida</code> (2014) 案中，最高法院进一步明确，州不能仅凭一个严格的IQ截止点来判断智力障碍，而必须考虑当前的医疗共识和适应行为缺陷。一个严格的IQ截止点（如本案中的65）排除了对IQ在截止点附近（如68）的个体进行全面评估的可能性，从而造成了对智力障碍者执行死刑的“不可接受的风险”。</p>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">4</div>
+                <p><strong>结论：</strong>鉴于被告的IQ为68，虽然高于州法规的65，但仍处于医疗指南认为可能存在智力障碍的范围内（70-75以下）。州法规的严格IQ截止点与最高法院的判例相悖，因为它未能充分考虑医疗指南和个体情况，因此是违宪的。法院应禁止执行死刑。</p>
+            </div>
+        </div>
+
+        <div class="trap-alert">
+            <strong>⚠️ 核心规则 / 陷阱警示：</strong>
+            <p>在MBE考试中，务必区分以下两个概念：</p>
+            <ul>
+                <li><strong>受审能力 (Competency to Stand Trial)</strong>：关注被告在审判时的精神状态和理解能力。</li>
+                <li><strong>智力障碍者的死刑豁免 (Intellectual Disability for Execution)</strong>：关注被告的长期智力缺陷，受第八修正案保护。</li>
+            </ul>
+            <p>此外，最高法院明确禁止州采用<strong>严格的IQ截止点</strong>来判断智力障碍，州必须考虑当前的<strong>医疗指南</strong>和对适应行为的全面评估。任何忽视医疗共识的州法规都可能被认定为违宪。</p>
+        </div>
+
+        <div class="case-box">
+            <strong>🔑 关键判例与延伸场景：</strong>
+            <ul>
+                <li><strong><code>Atkins v. Virginia</code> (2002)</strong>：最高法院裁定，根据第八修正案，对智力障碍者执行死刑构成“残忍和不寻常的惩罚”，因此是违宪的。</li>
+                <li><strong><code>Hall v. Florida</code> (2014)</strong>：最高法院进一步阐明，州在判断智力障碍时，不能仅依赖一个严格的IQ分数（例如IQ 70的截止点），而必须允许考虑IQ分数附近的测量误差以及其他证据，如适应行为缺陷，并应采纳当前的医疗专业标准。</li>
+                <li><strong><code>Moore v. Texas</code> (2017)</strong>：重申了 <code>Hall</code> 案的原则，强调在评估智力障碍时应使用当前的医疗标准，而非过时的刻板印象。</li>
+            </ul>
+            <p><strong>延伸场景：</strong>如果被告的IQ为60，明显低于州法规的65和医疗指南的70-75范围，那么他几乎肯定会被认定为智力障碍，死刑将被禁止。如果被告的IQ为85，则通常不会被认定为智力障碍，死刑可能被允许执行（除非有其他严重的精神疾病）。</p>
+        </div>
+
+        <div class="option-analysis">
+            <h3>✅ 正确答案和排除干扰项</h3>
+            <div class="option correct">
+                <b>Choice A is correct: No, because the statute created an unacceptable risk of execution for a person with intellectual disabilities.</b><br>
+                正确。根据 <code>Hall v. Florida</code> 案，州法规设定严格的IQ截止点（本案中为65）是违宪的，因为它排除了对IQ在截止点附近（如本案中的68）的个体进行全面评估，从而造成了对智力障碍者执行死刑的“不可接受的风险”。最高法院要求州在判断智力障碍时必须考虑当前的医疗指南，这些指南认为IQ在70-75之间已表明智力功能存在显著限制。
+            </div>
+            <div class="option wrong">
+                <b>Choice B is wrong: No, because there was no finding that the man was insane or suffering from a severe mental disorder.</b><br>
+                错误。虽然精神错乱或严重精神障碍也可能影响刑事责任，但本案的核心问题是第八修正案对智力障碍者执行死刑的禁令，而非精神错乱。智力障碍与精神错乱是不同的法律概念。
+            </div>
+            <div class="option wrong">
+                <b>Choice C is wrong: Yes, because the court concluded that the man was mentally competent to stand trial.</b><br>
+                错误。被告是否“具备受审能力”与他是否“智力障碍而不能被执行死刑”是两个独立的法律问题。受审能力关注的是被告在审判时的精神状态和理解能力，而第八修正案的死刑豁免关注的是被告的长期智力缺陷。法院裁定他具备受审能力，并不意味着他没有智力障碍。
+            </div>
+            <div class="option wrong">
+                <b>Choice D is wrong: Yes, because the court must follow the state statute that defines intellectual disability.</b><br>
+                错误。尽管法院通常应遵循州法规，但当州法规与宪法（特别是第八修正案）相冲突时，宪法具有至高无上的地位。最高法院已明确裁定，设定严格IQ截止点且不考虑医疗指南的州法规是违宪的。因此，法院不能盲目遵循此州法规。
+            </div>
+        </div>
+
+        <div class="footer-tip">
+            <strong>🎓 考试技巧：</strong>
+            <p>在处理涉及第八修正案和智力障碍的死刑案件时，请记住以下几点：</p>
+            <ol>
+                <li><strong>区分“受审能力”与“死刑豁免”：</strong>这是两个独立的法律标准，一个通过不代表另一个不成立。</li>
+                <li><strong>警惕“严格IQ截止点”：</strong>最高法院明确反对州法采用单一、僵化的IQ分数作为判断智力障碍的唯一标准。</li>
+                <li><strong>重视“医疗指南”：</strong>法院必须考虑当前的医疗专业标准和对适应行为的全面评估，而非仅仅依赖一个数字。</li>
+            </ol>
+            <p>简而言之，最高法院要求在死刑案件中对智力障碍进行更全面、个体化的评估，以避免对弱势群体施加残忍和不寻常的惩罚。</p>
+        </div>
+    </div>
+</body>
+</html>

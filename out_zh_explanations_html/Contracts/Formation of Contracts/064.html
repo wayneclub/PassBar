@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - 合同法</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980b9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #f4f6f9;
+    }
+
+    * { 
+      box-sizing: border-box; 
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 24px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+      color: var(--primary-ink);
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+
+    .comparison-table-wrapper {
+      overflow-x: auto;
+      margin: 24px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 17px;
+      min-width: 600px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border-bottom: 2px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border-bottom: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table th:last-child, 
+    .comparison-table td:last-child {
+      border-right: none;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+      text-align: center;
+      overflow-x: auto;
+    }
+
+    .flow-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-width: 650px;
+      padding: 10px 0;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-weight: 700;
+      color: #05606a;
+      flex: 1;
+      margin: 0 10px;
+      font-size: 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-strong);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      color: var(--muted-text);
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .rule-block, .trap-alert {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .trap-title {
+      font-weight: 800;
+      color: #b7791f;
+      font-size: 20px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .analysis-step {
+      background: #fdfdfd;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .step-badge {
+      background: var(--primary-color);
+      color: #ffffff;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-right: 10px;
+    }
+
+    .option-analysis {
+      margin-top: 30px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+      line-height: 1.65;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+      color: #1e5c37;
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 6px;
+    }
+
+    .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin-top: 34px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+      }
+      .container {
+        padding: 12px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .answer-box {
+        font-size: 18px;
+        padding: 16px;
+      }
+      .concept-box {
+        padding: 16px;
+      }
+      .concept-box .concept-title {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Contracts — Formation of Contracts: Termination of Offer</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：邻居可以接受老妇人子女提出的新要约，并按照新条款成立合同。
+    </div>
+
+    <p><strong>解析要点：</strong> 本题的核心考点在于<strong>要约在承诺前的终止（Termination of Offer Before Acceptance）</strong>。当要约人在受要约人作出有效承诺之前死亡，该要约依法自动终止。受要约人此后无法再接受原要约，但可以与要约人的继承人（子女）达成新的合同。</p>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法律原理</h2>
+    <div class="concept-box">
+      <div class="concept-title">要约的自动终止 (Termination by Law)</div>
+      <p>根据《合同法重述（第二版）》第48条（<span class="latin">Restatement (Second) of Contracts § 48</span>），<strong>受要约人的承诺权（power of acceptance）在要约人或受要约人死亡或丧失行为能力时自动终止</strong>。</p>
+      <ul>
+        <li><strong>无需通知：</strong> 这种终止是依法自动生效的，即使受要约人在尝试承诺时并不知道要约人已经死亡，承诺依然无效。</li>
+        <li><strong>唯一例外：</strong> 只有在存在<strong>选择权合同（Option Contract）</strong>（即受要约人支付了对价以保持要约在特定时间内不可撤销）的情况下，要约人的死亡才不会自动终止要约。</li>
+      </ul>
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h2>易混淆概念对比</h2>
+    <p>在 MBE 考试中，考生极易混淆“要约阶段的死亡”与“合同成立后的死亡”。以下是两者的关键区别：</p>
+    
+    <div class="comparison-table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>对比维度</th>
+            <th>要约阶段的一方死亡 (Death Before Acceptance)</th>
+            <th>合同成立后的一方死亡 (Death After Formation)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>法律性质</strong></td>
+            <td>合同尚未成立，仅存在单方要约。</td>
+            <td>合同已经成立，双方已产生债权债务关系。</td>
+          </tr>
+          <tr>
+            <td><strong>法律后果</strong></td>
+            <td><strong>要约自动终止</strong>，受要约人无法再进行承诺。</td>
+            <td><strong>合同义务通常不消灭</strong>，由死者的遗产（Estate）或继承人承担。</td>
+          </tr>
+          <tr>
+            <td><strong>例外情况</strong></td>
+            <td>选择权合同 (<span class="term">Option Contract</span>) 即使一方死亡也不终止。</td>
+            <td><strong>人身依属性服务合同</strong> (<span class="term">Personal Services Contract</span>) 因死亡而免除履行（构成 <span class="term">Impracticability</span>）。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Fact/Application Logic -->
+    <h2>案件事实适用逻辑</h2>
+    
+    <div class="analysis-step">
+      <span class="step-badge">步骤 1</span>
+      <strong>邻居的初步回复不构成承诺 (No Acceptance)：</strong>
+      老妇人提出以苹果换取物业维护的要约。邻居回复称“听起来很诱人，需要和妻子商量，明天给最终答复”。这属于<strong>予以考虑（Take under advisement）</strong>，既不是承诺（未表现出立即受约束的客观意图），也不是拒绝或反要约。此时，要约依然存续。
+    </div>
+
+    <div class="analysis-step">
+      <span class="step-badge">步骤 2</span>
+      <strong>要约人死亡导致要约瞬间终止 (Termination by Death)：</strong>
+      当天晚上，老妇人在睡梦中去世。由于此时邻居尚未作出承诺，老妇人的死亡依法瞬间终止了该要约，邻居的承诺权随之消灭。
+    </div>
+
+    <div class="analysis-step">
+      <span class="step-badge">步骤 3</span>
+      <strong>子女的询问构成新要约的契机 (New Offer)：</strong>
+      两天后，老妇人的子女询问邻居何时开始工作。由于原要约已死，子女的这一行为实际上是代表老妇人的遗产继承人提出了一个<strong>新要约（New Offer）</strong>。邻居如果同意，是与子女（继承人）成立新合同，而非执行原合同。
+    </div>
+
+    <!-- Diagram -->
+    <h2>交易流程与法律状态图示</h2>
+    <div class="diagram">
+      <div class="flow-container">
+        <div class="flow-node">老妇人发出要约<br><small>(维护换苹果)</small></div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">邻居：明天给答复<br><small>(Take under advisement)</small></div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node highlight-node">老妇人去世<br><small>(要约依法自动终止 ❌)</small></div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">子女询问<br><small>(构成新要约 🆕)</small></div>
+      </div>
+    </div>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <div class="trap-title">⚠️ MBE 常见陷阱提示</div>
+      <ul>
+        <li><strong>陷阱：误选“履行不能 (Impracticability)”作为抗辩。</strong> 
+          许多考生看到“死亡”就立刻选择“履行不能（Impracticability）”来免除债务。但请务必牢记：<strong>履行不能是合同成立后的抗辩事由（Defense to Enforcement）</strong>。本案中，由于邻居在老妇人去世前没有承诺，合同根本没有成立，因此完全不需要使用任何违约抗辩。
+        </li>
+        <li><strong>陷阱：误认为“和妻子商量”构成了反要约（Counteroffer）。</strong> 
+          邻居并没有改变要约的条款，只是推迟了表态时间。这属于“take under advisement”，原要约在老妇人死亡前依然有效，并未被邻居的回复所终止。
+        </li>
+      </ul>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">正确选项：邻居可以按照老妇人子女提出的新条款接受新要约</div>
+        <p><strong>解析：</strong> 老妇人去世时，原要约已自动终止，邻居无法再基于原要约成立合同。然而，老妇人的子女作为其遗产的代表或新权利人，有权向邻居提出新的要约。邻居如果接受，则与子女之间成立新的合同关系。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">错误选项：邻居可以按照原条款接受要约</div>
+        <p><strong>解析：</strong> 错误。老妇人死亡后，邻居的承诺权（power of acceptance）已依法终止，原要约已不复存在，因此邻居无法再接受原要约。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">错误选项：邻居可以强制执行他与老妇人达成的合同</div>
+        <p><strong>解析：</strong> 错误。邻居在老妇人活着的时候并未作出承诺（Acceptance），因此他与老妇人之间从未成立过任何合同，无合同可供强制执行。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">错误选项：邻居可以利用“履行不能 (Impracticability)”抗辩来免除原要约条款的约束</div>
+        <p><strong>解析：</strong> 错误。如前所述，履行不能（Impracticability）是合同成立后的抗辩。由于本案中合同从未成立，邻居根本不需要、也无法使用该抗辩。</p>
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      💡 MBE 快速解题公式：<br>
+      看到“死亡” ➔ 立即判断【合同是否已成立】。<br>
+      1. 若【未成立】（处于要约阶段） ➔ 死亡 = 要约瞬间暴毙（自动终止），无需通知，无法再承诺。<br>
+      2. 若【已成立】 ➔ 死亡 ❌ 终止合同（除非是具有人身依属性的个人服务合同）。
+    </div>
+
+  </div>
+
+</body>
+</html>

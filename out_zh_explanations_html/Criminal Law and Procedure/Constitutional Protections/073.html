@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .concept-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+        .case-law {
+            font-style: italic;
+            color: #555;
+            font-size: 13px;
+            border-top: 1px solid #eee;
+            margin-top: 10px;
+            padding-top: 10px;
+        }
+        .wrong-option {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        .wrong-option strong {
+            color: #d32f2f;
+        }
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px dashed #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .english-term {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-family: "Georgia", serif;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Criminal Procedure / 5th Amendment</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <div class="answer-title">✅ 正确答案：A</div>
+            <p>动议不应被批准。虽然被告在列队辨认（Lineup）中被强迫说话，但这并不属于<b>证言性质（Testimonial）</b>或<b>信息交流性质（Communicative）</b>的证据。</p>
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：第五修正案的保护范围</div>
+            <p>第五修正案（5th Amendment）保护嫌疑人免受“自证其罪”（Self-Incrimination）。但MBE考试中最重要的区分在于：</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>受保护 (Privileged)</th>
+                        <th>不受保护 (Not Privileged)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>证言性质 (Testimonial)</b></td>
+                        <td><b>实物/物理性质 (Physical/Real)</b></td>
+                    </tr>
+                    <tr>
+                        <td>涉及思想、知识或信念的表达。</td>
+                        <td>涉及身体特征的展示。</td>
+                    </tr>
+                    <tr>
+                        <td>例如：审讯回答、日记、供词。</td>
+                        <td>例如：<span class="highlight">声音样本</span>、笔迹、指纹、DNA、试穿衣物。</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>在本案中，要求被告说出劫匪的话（"Give me all your money..."）并不是为了让他承认这句话的内容是他说的，而是为了<b>展示其声音的物理特征</b>供证人比对。因此，这被视为物理证据，不受第五修正案保护。</p>
+            
+            <div class="case-law">
+                相关判例：<b>United States v. Wade (1967)</b><br>
+                最高法院裁定，强迫嫌疑人在列队辨认中说话以进行声音识别，并不侵犯其反对自证其罪的特权。
+            </div>
+        </div>
+
+        <!-- 为什么其他选项是错的 -->
+        <div class="wrong-option">
+            <div class="concept-title">❌ 为什么其他选项错误？</div>
+            <ul>
+                <li><strong>选项 B 错误：</strong>提到了“毒树之果”（Fruit of the Poisonous Tree）。由于警方的行为（不给 Warrant 逮捕、进行声音辨认）本身是合法的，没有“毒树”，自然没有“毒果”。</li>
+                <li><strong>选项 C 错误：</strong>虽然是被迫（Compelled）的，但第五修正案仅禁止“被强迫的<b>证言</b>”。如果只是被强迫展示身体特征（如声音），不构成违宪。</li>
+                <li><strong>选项 D 错误（常见陷阱）：</strong>关于 <b>Miranda Warnings</b>。
+                    <br><br>
+                    <span class="highlight">Miranda 仅适用于“羁押讯问”（Custodial Interrogation）。</span>
+                    <br><br>
+                    虽然被告处于羁押状态（Custody），但列队辨认（Lineup）不是讯问（Interrogation）。讯问旨在引出供词，而列队辨认是收集物理证据的过程。因此，此时不需要 Miranda 警告，律师也不需要在场（除非是起诉后的列队辨认，但本题未提及已起诉）。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>🎓 MBE 考试技巧 (Exam Tip)</strong>
+            <p>在处理第五修正案（Self-Incrimination）题目时，请使用<b>“身体 vs. 大脑”</b>测试：</p>
+            <ul>
+                <li>如果警察要的是嫌疑人的<b>大脑</b>内容（他在想什么、知道什么），则受保护。</li>
+                <li>如果警察要的是嫌疑人的<b>身体</b>特征（声音、长相、血液、笔迹），则<b>不受</b>保护。</li>
+            </ul>
+            <p>本题中，声音属于“身体”特征。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

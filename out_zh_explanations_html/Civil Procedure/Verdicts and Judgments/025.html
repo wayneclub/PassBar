@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：争议点排除与法律适用</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机宽度 */
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-text {
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #34495e;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .concept-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #d35400;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .rule-highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin: 10px 0;
+            border-left: 4px solid #ffc107;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #95a5a6;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e1f5fe;
+            color: #0277bd;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure / Preclusion</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <div>正确答案：<span class="answer-text">C</span></div>
+            <div style="font-size: 13px; margin-top: 5px;">应批准动议，因为争议点已在州法院诉讼中得到实际诉讼和必要裁决。</div>
+        </div>
+
+        <p style="font-size: 14px;">
+            本题考查的是<b>争议点排除（Issue Preclusion / Collateral Estoppel）</b>在跨法域（State to Federal）情境下的适用规则。
+        </p>
+
+        <!-- 核心考点分析 -->
+        <div class="section-title">⚖️ 核心法律逻辑</div>
+
+        <div class="concept-card">
+            <span class="concept-title">1. 法律适用规则 (Choice of Law)</span>
+            <p style="font-size: 14px; margin: 0;">
+                这是解题的关键。根据<b>完全信任与信用法案 (Full Faith and Credit Act, 28 U.S.C. § 1738)</b>，联邦法院必须赋予州法院判决与该州法院相同的效力。
+            </p>
+            <div class="rule-highlight">
+                <b>考点口诀：</b>看判决是在哪里作出的（Rendering Court），就用哪里的法律来决定排除效力。
+            </div>
+            <p style="font-size: 13px;">
+                本案中，判决是<b>A州</b>作出的。因此，B州的联邦法院必须适用<b>A州</b>的排除规则。题目明确指出“A州允许非互惠性争议点排除”，因此该规则适用。
+            </p>
+        </div>
+
+        <div class="concept-card">
+            <span class="concept-title">2. 刑事判决在民事诉讼中的效力</span>
+            <p style="font-size: 14px; margin: 0;">
+                刑事定罪（Conviction）通常可以在后续的民事诉讼中产生争议点排除效力。
+            </p>
+            <ul>
+                <li><b>证明标准：</b>刑事案件的“排除合理怀疑”（Beyond a reasonable doubt）标准高于民事案件的“优势证据”（Preponderance of evidence）。</li>
+                <li><b>结论：</b>既然陪审团已经确信被告“排除合理怀疑”地导致了死亡，那么在民事案件中，这一事实自然成立。</li>
+            </ul>
+        </div>
+
+        <div class="concept-card">
+            <span class="concept-title">3. 非互惠性争议点排除 (Nonmutual Issue Preclusion)</span>
+            <p style="font-size: 14px; margin: 0;">
+                本案属于<b>进攻性非互惠排除 (Offensive Nonmutual Issue Preclusion)</b>。
+            </p>
+            <ul style="font-size: 13px;">
+                <li><b>非互惠：</b>原告（家人）不是第一场刑事诉讼的当事人。</li>
+                <li><b>进攻性：</b>原告利用先前的判决来“攻击”被告，确立被告的责任。</li>
+                <li><b>规则：</b>既然适用A州法律，且A州允许此类排除，原告可以直接利用刑事判决中的认定，无需重新举证。</li>
+            </ul>
+        </div>
+
+        <!-- 错误选项解析 -->
+        <div class="section-title">❌ 为什么其他选项错误</div>
+        
+        <div style="font-size: 13px;">
+            <p><b>选项 A 错误：</b> 它错误地适用了B州（法院所在地）的法律。排除效力由作出判决的法院（A州）法律决定。</p>
+            <p><b>选项 B 错误：</b> 刑事判决完全可以对后续民事案件产生排除效力，只要满足排除的要件（实际诉讼、必要裁决等）。</p>
+            <p><b>选项 D 错误：</b> <span class="latin">Law of the case</span>（本案法律原则）仅适用于<b>同一个案件</b>的不同阶段。本题涉及两个独立的案件（刑事案和民事案），因此适用的是争议点排除，而非本案法律原则。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">💡 MBE 考试技巧</div>
+        <div class="rule-highlight" style="background-color: #e3f2fd; border-left-color: #2196f3;">
+            遇到<b>“判决效力”</b>（Res Judicata / Collateral Estoppel）的题目，首先问自己：
+            <br>1. <b>谁作出的判决？</b>（适用该地法律）
+            <br>2. <b>谁在主张排除？</b>（是原告还是被告？是否为原案当事人？）
+            <br>3. <b>证明标准是否满足？</b>（刑事定罪可用于民事，但刑事无罪释放通常不能用于民事排除，因为证明标准不同）。
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

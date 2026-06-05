@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #e1e4e8;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+            font-weight: 300;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            color: #1565c0;
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .rule-box {
+            font-size: 0.9rem;
+            color: #455a64;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 2px;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        .answer-label {
+            color: #2e7d32;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .latin {
+            font-style: italic;
+            font-family: "Times New Roman", serif;
+        }
+        .trap-alert {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #ffebee;
+            border-radius: 8px;
+            border: 1px solid #ffcdd2;
+        }
+        .trap-title {
+            color: #c62828;
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        .trap-title::before {
+            content: "⚠️";
+            margin-right: 5px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Judicial Review & State Grounds</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">核心原则：充分且独立的州法依据</span>
+            <div class="rule-box">
+                Adequate and Independent State Grounds (AISG)
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">案情关键点分析</div>
+            <p>本案中，州最高法院虽然依据州宪法判决税法无效，但其判决书中明确指出：</p>
+            <p class="highlight">“我们对州宪法的解释...包含了与联邦宪法完全相同的禁令。”</p>
+            <p>这意味着州法院对州法的解释<b>并非独立</b>（Not Independent），而是完全依赖于对联邦宪法的理解。</p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">法律推理逻辑</div>
+            <ul>
+                <li><b>一般规则：</b>如果州法院的判决基于“充分且独立的州法依据”，美国最高法院（SCOTUS）通常不会复审，因为即使推翻了联邦法部分的裁决，案件结果（基于州法）也不会改变，这会使 SCOTUS 的意见成为无实质效力的“咨询意见”（Advisory Opinion）。</li>
+                <li><b>本案例外 (Michigan v. Long)：</b>当州法院判决看起来涉及联邦问题，且没有明确声明其判决<b>仅</b>基于州法依据时，SCOTUS 会假定该判决受联邦法影响。</li>
+                <li><b>紧密交织 (Intertwined)：</b>本案中，州法院明确表示其州法解释与联邦法“完全相同”。因此，如果州法院对联邦法的理解是错误的，那么其对州法的理解也是基于这个错误的。</li>
+            </ul>
+        </div>
+
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            <span class="answer-label">✅ 正确答案：选项 D</span>
+            <p><b>推翻并重审 (Reverse and Remand)</b></p>
+            <p>SCOTUS 应当推翻州法院关于联邦宪法的错误解释，并将案件发回（Remand）。</p>
+            <p><b>理由：</b>既然州法院将州法与联邦法捆绑在一起，SCOTUS 需要纠正联邦法层面的错误。纠正后，州法院有机会在正确的联邦法标准下重新审视案件，或者明确表示即使联邦法允许，州法依然禁止该行为（行使独立的州主权）。</p>
+        </div>
+
+        <!-- 陷阱解析 -->
+        <div class="trap-alert">
+            <div class="trap-title">易错陷阱：选项 B</div>
+            <p style="font-size: 0.9rem; margin-top: 5px;">
+                很多考生看到“州宪法”就选 B（拒绝复审）。<br>
+                <b>错误原因：</b>这里的州法依据<b>不独立</b>（Not Independent）。只有当州法院说“无论联邦宪法如何规定，我们的州宪法都独立地禁止此行为”时，才是 AISG。本案中，州法院说的是“我们照搬联邦宪法的含义”。
+            </p>
+        </div>
+
+        <div class="analysis-section" style="margin-top: 20px;">
+            <div class="analysis-title">其他选项排除</div>
+            <ul>
+                <li><b>选项 A：</b>错误。州政府完全有权请求 SCOTUS 复审其本州法院的判决，只要涉及联邦问题。</li>
+                <li><b>选项 C：</b>错误。各州<b>不需要</b>（Not required）将其宪法解释得与联邦宪法一致。各州可以给予公民比联邦宪法<b>更多</b>的保护（但不能更少）。</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            MBE Constitutional Law Review<br>
+            Focus: Jurisdiction & AISG
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .step-analysis {
+            margin-bottom: 20px;
+        }
+        .step {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        .step-number {
+            background-color: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .distractor {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+        .distractor-title {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--warning-color);
+            margin-bottom: 4px;
+        }
+        .key-term {
+            background-color: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+            color: #d35400;
+        }
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px dashed #f1c40f;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Civil Procedure: Class Actions</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <span style="font-size: 1.2rem; font-weight: bold; color: var(--success-color);">✅ 正确答案：D</span>
+            <p style="font-size: 0.9rem; color: #666;">因为该女性未能选择退出 (Opt Out) 集体诉讼。</p>
+        </div>
+
+        <!-- 法律规则 -->
+        <div class="rule-box">
+            <div class="rule-title">核心考点：FRCP 23(b)(3)</div>
+            <p>本题考查的是<b>“共同问题”集体诉讼 (Common Question Class Action)</b> 的约束力。</p>
+            <p>根据《联邦民事诉讼规则》第23条：</p>
+            <ul>
+                <li>在 (b)(3) 类型的集体诉讼中，法院必须向成员提供<b>充分的通知 (Adequate Notice)</b>。</li>
+                <li>通知必须告知成员他们有权<b>选择退出 (Opt Out)</b>。</li>
+                <li>如果成员<b>未能选择退出</b>，他们将自动成为集体的一部分，并受最终判决或和解协议的<b>约束 (Bound)</b>。</li>
+            </ul>
+        </div>
+
+        <!-- 逻辑推演 -->
+        <div class="step-analysis">
+            <h3 style="border-bottom: 2px solid var(--accent-color); padding-bottom: 5px; font-size: 1.1rem;">📝 案情逻辑链</h3>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <strong>定性：</strong>题目明确指出法院基于“共同法律和事实问题占主导地位”认证了集体诉讼。这属于 <span class="key-term">FRCP 23(b)(3)</span> 类型。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <strong>通知：</strong>该女性收到了充分的通知 (Adequate Notice)。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <strong>行为：</strong>该女性“什么也没做” (Did nothing)。这意味着她<b>没有行使选择退出的权利</b>。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <strong>后果：</strong>由于她没有退出，她就是集体诉讼的一员。法院批准的和解协议具有<b>既判力 (Res Judicata)</b>。她不能再就同一诉由提起单独的诉讼。
+                </div>
+            </div>
+        </div>
+
+        <!-- 易错项辨析 -->
+        <h3 style="font-size: 1.1rem; margin-top: 25px;">🚫 为什么其他选项是错的？</h3>
+        
+        <div class="distractor">
+            <div class="distractor-title">选项 A：她提出了异议 (Objected)</div>
+            <p><b>错误点：</b>提出异议 <span style="color:red">≠</span> 选择退出。提出异议只是告诉法院“我认为这个和解不公平”，如果法院驳回异议并批准和解（如本案），该成员依然受和解约束。她可以上诉，但不能另起诉讼。</p>
+        </div>
+
+        <div class="distractor">
+            <div class="distractor-title">选项 B：她不是指定代表人 (Named Representative)</div>
+            <p><b>错误点：</b>集体诉讼的本质就是判决对<b>所有</b>未退出的成员（无论是否被命名）都有效。否则集体诉讼就失去了解决大规模纠纷的意义。</p>
+        </div>
+
+        <div class="distractor">
+            <div class="distractor-title">选项 C：法院认证了集体诉讼</div>
+            <p><b>错误点：</b>虽然认证是前提，但直接导致她个人诉讼被驳回的原因是<b>既判力 (Claim Preclusion)</b>，而既判力来源于她“未能退出”这一事实，而非仅仅因为集体诉讼存在。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 提分技巧：</strong><br>
+            看到集体诉讼题目，首先判断类型：
+            <ul>
+                <li>如果是 <b>(b)(3) Common Question</b>（通常涉及金钱赔偿）：成员<b>有权退出</b>。不退出 = 被绑定。</li>
+                <li>如果是 <b>(b)(1)</b> 或 <b>(b)(2)</b>（通常涉及禁令或宣告性判决）：成员通常<b>无权退出</b>，直接被绑定。</li>
+            </ul>
+            本题中“损害赔偿”和“共同问题”是识别 (b)(3) 的关键词。
+        </div>
+
+    </div>
+    <div class="footer">
+        MBE Civil Procedure Review
+    </div>
+</div>
+
+</body>
+</html>

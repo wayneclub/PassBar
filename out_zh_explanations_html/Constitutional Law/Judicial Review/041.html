@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .content {
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .answer-box {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .concept-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .concept-card h3 {
+            margin-top: 0;
+            font-size: 1rem;
+            color: var(--accent-color);
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .trap-alert {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            padding: 15px;
+            background: #fafafa;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析<br>Article III Jurisdiction</h1>
+    </div>
+
+    <div class="content">
+        <div class="answer-box">
+            <span class="answer-label">正确答案：B</span>
+            该条款违宪，因为它违反了宪法第三条（Article III）关于美国最高法院（SCOTUS）初始管辖权的规定。
+        </div>
+
+        <div class="section-title">核心法律规则</div>
+        <p>本题考察的是美国宪法中最基础的权力分立原则之一：<b>国会是否有权改变最高法院的管辖权？</b></p>
+        
+        <div class="concept-card">
+            <h3>SCOTUS 的两类管辖权</h3>
+            <p>根据 <b>Article III, Section 2</b>，最高法院的管辖权分为两类：</p>
+            <ul>
+                <li><b>初始管辖权 (Original Jurisdiction)</b>：
+                    <br><span style="font-size:0.9em; color:#666;">案件直接在最高法院起诉，不经过下级法院。</span>
+                    <br><b>范围极窄（宪法限定）：</b>
+                    <ol>
+                        <li>涉及大使、公使、领事的案件；</li>
+                        <li>州作为一方当事人的案件。</li>
+                    </ol>
+                </li>
+                <li><b>上诉管辖权 (Appellate Jurisdiction)</b>：
+                    <br><span style="font-size:0.9em; color:#666;">审查下级法院的判决。</span>
+                    <br><b>范围：</b>所有其他案件。</li>
+            </ul>
+        </div>
+
+        <div class="section-title">判例逻辑解析</div>
+        <p>著名的 <b><i>Marbury v. Madison</i> (1803)</b> 确立了一个关键原则：</p>
+        <p>虽然国会可以通过“例外和规章条款” (Exceptions and Regulations Clause) 限制最高法院的<b>上诉管辖权</b>，但国会<b>不能扩大或缩小</b>宪法明确赋予最高法院的<b>初始管辖权</b>。</p>
+        
+        <p><b>本题分析：</b></p>
+        <ul>
+            <li>题目中的法规允许公民直接向最高法院起诉（即行使初始管辖权）。</li>
+            <li>该案件不涉及大使，也不是州与州之间的诉讼。</li>
+            <li>因此，国会试图通过立法将本属于“上诉管辖”的案件变为“初始管辖”，这违背了 Article III 的明文规定。</li>
+        </ul>
+
+        <div class="trap-alert">
+            <strong>⚠️ 常见陷阱 (Distractor C)</strong><br>
+            选项 C 引用了 "Exceptions and Regulations Clause"，这是 MBE 中极具迷惑性的选项。<br><br>
+            <b>记住：</b>国会只能对<b>上诉管辖权 (Appellate Jurisdiction)</b> 制定例外或规章，而<b>无权</b>触碰初始管辖权 (Original Jurisdiction)。
+        </div>
+
+        <div class="section-title">其他选项为何错误</div>
+        <ul>
+            <li><b>选项 A (Equal Protection)：</b> 虽然涉及程序差异，但通常只要有“合理依据” (Rational Basis) 即可通过审查。相比于选项 B 的结构性违宪（违反三权分立），这不是最致命的缺陷。</li>
+            <li><b>选项 D (Necessary and Proper)：</b> “必要和适当条款”赋予国会执行权力的手段，但这些手段<b>不能违反</b>宪法的其他明确禁令（如 Article III 对管辖权的限制）。</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        MBE 策略：区分 Original vs. Appellate Jurisdiction 是宪法题的高频考点。
+    </div>
+</div>
+
+</body>
+</html>

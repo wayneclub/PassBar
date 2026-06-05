@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            color: #2980b9;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            color: #2c3e50;
+        }
+        .option-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .option-card.correct {
+            background-color: #f0f9eb;
+            border-color: #c3e6cb;
+        }
+        .option-card.wrong {
+            background-color: #fff5f5;
+            border-color: #f5c6cb;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .badge-correct { background: #28a745; color: white; }
+        .badge-wrong { background: #dc3545; color: white; }
+        
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+        .icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence Law (证据法)</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">⚖️ 核心规则：最佳证据规则</div>
+            <div style="font-size: 14px;">
+                <strong>Best Evidence Rule (FRE 1002)</strong><br>
+                当一方当事人试图证明一份书面文件、录音或照片的<strong>内容 (Contents)</strong> 时，必须出示该文件的<strong>原件 (Original)</strong> 或可靠的副本，除非能证明原件已丢失或不可获得。
+            </div>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情关键点分析</div>
+            <p>本案中，办公室经理（Office Manager）的证词有两个关键特征：</p>
+            <ol>
+                <li>他<strong>没有</strong>亲眼看到送货过程（无 Personal Knowledge）。</li>
+                <li>他的证词完全基于他在出庭前<strong>阅读过的发票档案</strong>。</li>
+            </ol>
+            <p>这意味着，经理作证的实质是在<strong>转述文件的内容</strong>。既然目的是为了证明“发票上记录了10次送货”，那么这就触发了最佳证据规则。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">选项深度解析</div>
+
+            <!-- 正确选项 B -->
+            <div class="option-card correct">
+                <span class="badge badge-correct">选项 B (正确)</span>
+                <p><strong>否，因为必须出示记录原件以证明其内容。</strong></p>
+                <p style="font-size: 13px; color: #444;">
+                    这是教科书式的 <strong>Best Evidence Rule</strong> 应用场景。证人试图通过口头证词来证明文件的内容，而该文件本身并未出示。除非原件丢失或销毁（题目未提及），否则这种口头转述是不可采纳的。
+                </p>
+            </div>
+
+            <!-- 错误选项 C (常见陷阱) -->
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">选项 C (常见陷阱)</span>
+                <p><strong>是，因为该证词基于定期保存的商业记录。</strong></p>
+                <p style="font-size: 13px; color: #444;">
+                    <span class="highlight">⚠️ 考点混淆警告：</span> 这是一个极具迷惑性的选项。
+                    <br><br>
+                    虽然这些发票确实属于<strong>商业记录 (Business Records)</strong>，这只能解决<strong>传闻证据 (Hearsay)</strong> 的问题。也就是说，如果出示了发票，发票本身是可以被采纳的。
+                    <br><br>
+                    但是，这不能豁免<strong>最佳证据规则</strong>。即使是商业记录，如果你要证明其内容，依然需要把记录拿出来，而不是让人在台上“空口无凭”地复述。
+                </p>
+            </div>
+
+            <!-- 错误选项 D -->
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">选项 D (错误)</span>
+                <p><strong>是，因为办公室经理对记录的内容有第一手认知。</strong></p>
+                <p style="font-size: 13px; color: #444;">
+                    这里的“第一手认知” (Firsthand Knowledge) 是指对<strong>送货这一事件</strong>的认知。经理只是读了文件，他对“文件里写了什么”有认知，但对“是否真的送货了”没有直接认知。因此，他不能代替文件本身出庭。
+                </p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+            <div class="rule-title" style="color: #d35400;">🎓 MBE 实战技巧</div>
+            <div class="key-point">
+                <div class="icon">🔍</div>
+                <div>
+                    <strong>识别触发词：</strong> 当题目中出现证人说 "I checked the files and they show..." (我查了档案，档案显示...) 时，立即警惕 <strong>Best Evidence Rule</strong>。
+                </div>
+            </div>
+            <div class="key-point">
+                <div class="icon">🚫</div>
+                <div>
+                    <strong>区分规则：</strong> 不要混淆 Hearsay（文件本身是否可信/可采）和 Best Evidence（证明文件内容的方式）。商业记录例外 (Business Records Exception) 让文件可采，但不能让“关于文件的口头证词”代替文件本身。
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            MBE Evidence Q87233 Analysis
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

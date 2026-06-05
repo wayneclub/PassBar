@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            border-left: 4px solid var(--accent-color);
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .rule-breakdown {
+            margin-bottom: 20px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .step-icon {
+            background-color: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .analysis-result {
+            background-color: #fdf2f2;
+            border: 1px solid #fadbd8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .analysis-result.correct {
+            background-color: #eafaf1;
+            border-color: #d5f5e3;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .badge-wrong {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .badge-correct {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .mbe-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .mbe-tip strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            margin: 5px 0 0 20px;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Civil Procedure: Preclusion</div>
+    </div>
+
+    <div class="content">
+        <p>本题考查的核心法律原则是<strong>既判力</strong>（Preclusion），具体涉及<strong>争点排除</strong>（Issue Preclusion / Collateral Estoppel）的适用条件。</p>
+
+        <!-- 核心概念 -->
+        <div class="concept-box">
+            <span class="concept-title">📚 核心考点：争点排除 (Issue Preclusion)</span>
+            争点排除原则禁止对在先前诉讼中已经<strong>实际诉讼</strong>（Actually Litigated）、被裁定且对判决至关重要的争点进行再次诉讼。
+        </div>
+
+        <div class="rule-breakdown">
+            <h3>逻辑推演步骤：</h3>
+            
+            <div class="step">
+                <div class="step-icon">1</div>
+                <div class="step-content">
+                    <strong>排除请求权排除 (Claim Preclusion/Res Judicata)</strong><br>
+                    请求权排除要求前后两诉的当事人<strong>相同</strong>（Same Parties）。本案中，前诉原告是男子，后诉原告是女子，当事人不同。因此，选项 C 错误。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">2</div>
+                <div class="step-content">
+                    <strong>分析争点排除 (Issue Preclusion)</strong><br>
+                    女子试图利用前诉判决来证明公司的过失。虽然联邦法院允许“非相互性攻势争点排除”（Non-mutual offensive collateral estoppel），但这有一个前提：该争点必须在前诉中被<strong>实际诉讼</strong>（Actually Litigated）。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">3</div>
+                <div class="step-content">
+                    <strong>关键事实：承认 (Admission)</strong><br>
+                    题目明确指出，在第一个案件中，公司<strong>承认</strong>（Admitted）了其过失制造。
+                    <br><br>
+                    <span class="key-term">法律规则：</span>如果一个争点是基于当事人的承认、约定（Stipulation）或让步而确定的，那么该争点<strong>未经过实际诉讼</strong>。
+                </div>
+            </div>
+        </div>
+
+        <!-- 正确答案分析 -->
+        <div class="analysis-result correct">
+            <span class="badge badge-correct">正确答案 A</span>
+            <p><strong>结论：</strong>联邦法院不会批准即决判决。</p>
+            <p><strong>理由：</strong>虽然陪审团作出了有利于男子的裁决，但关于“公司过失”这一特定争点，是因为公司的<strong>承认</strong>而确立的，并没有经过双方的举证、质证和法庭辩论（即没有 Actually Litigated）。因此，争点排除原则不适用。</p>
+        </div>
+
+        <!-- 错误选项提示 -->
+        <div style="margin-top: 20px;">
+            <h3>🚫 为什么其他选项是错的？</h3>
+            <ul>
+                <li><strong>选项 B：</strong>错误。根据《充分信任和尊重条款》（Full Faith and Credit Clause），联邦法院必须尊重州法院的判决。州法院作出的判决本身不是拒绝适用的理由。</li>
+                <li><strong>选项 D：</strong>错误。虽然陪审团作出了最终裁决（Verdict），但由于公司承认了过失，陪审团实际上只审理了“共同过失”（Contributory Negligence）这一争点，并未对“公司过失”进行事实认定。</li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <strong>💡 MBE 实战技巧</strong>
+            在处理 Preclusion（禁止反言）题目时，请务必检查争点是如何确定的：
+            <br>
+            如果是通过 <strong>Admission</strong>（承认）、<strong>Stipulation</strong>（约定）或 <strong>Default Judgment</strong>（缺席判决）确定的，通常不满足 <strong>"Actually Litigated"</strong> 的要求，因此不能适用 Issue Preclusion。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-color: #e74c3c;
+        --bg-color: #f4f6f7;
+        --card-bg: #ffffff;
+        --text-color: #333333;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #eef2f3;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+    }
+    .container {
+        max-width: 480px;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .header .sub-title {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .answer-box {
+        background-color: #d4edda;
+        border-left: 5px solid #28a745;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .answer-text {
+        color: #155724;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .concept-card {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .concept-title {
+        color: var(--accent-color);
+        font-weight: bold;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+    }
+    .concept-title::before {
+        content: "⚖️";
+        margin-right: 8px;
+    }
+    .highlight {
+        background-color: #fff3cd;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-weight: 500;
+    }
+    .chart-container {
+        margin: 20px 0;
+        padding: 10px;
+        background: white;
+        border: 1px dashed #ccc;
+        border-radius: 8px;
+    }
+    .bar-group {
+        display: flex;
+        height: 30px;
+        width: 100%;
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+    .bar-segment {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 10px;
+        font-weight: bold;
+    }
+    .bar-driver { width: 50%; background-color: #3498db; }
+    .bar-parents { width: 30%; background-color: #95a5a6; }
+    .bar-playmate { width: 20%; background-color: #bdc3c7; }
+    
+    .arrow-down {
+        text-align: center;
+        font-size: 20px;
+        color: var(--primary-color);
+        margin: -5px 0;
+    }
+    .result-box {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 10px;
+        text-align: center;
+        border-radius: 8px;
+        font-weight: bold;
+    }
+    .exam-tip {
+        background-color: #fff8e1;
+        border-left: 4px solid #ffc107;
+        padding: 12px;
+        font-size: 14px;
+        margin-top: 20px;
+    }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #7f8c8d;
+        padding: 15px;
+        border-top: 1px solid #eee;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 5px 0;
+    }
+    li {
+        margin-bottom: 5px;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Torts: Negligence & Liability</div>
+    </div>
+
+    <div class="content">
+        <!-- Correct Answer Section -->
+        <div class="answer-box">
+            <div>正确答案：<span class="answer-text">C ($100,000)</span></div>
+        </div>
+
+        <p style="font-size: 14px; line-height: 1.6;">
+            本题考察的核心是<b>连带责任 (Joint and Several Liability)</b> 与<b>过失归责 (Imputed Negligence)</b> 的相互作用。
+        </p>
+
+        <!-- Visual Logic -->
+        <div class="chart-container">
+            <div style="text-align:center; font-size:12px; margin-bottom:5px; font-weight:bold;">过错分配 (Fault Allocation)</div>
+            <div class="bar-group">
+                <div class="bar-segment bar-driver">司机 50%</div>
+                <div class="bar-segment bar-parents">父母 30%</div>
+                <div class="bar-segment bar-playmate">玩伴父母 20%</div>
+            </div>
+            <div style="text-align:center; font-size:12px; color:#666;">原告（儿童）过错：0%</div>
+            
+            <div class="arrow-down">⬇️</div>
+            
+            <div class="result-box">
+                在连带责任下<br>
+                司机需对 100% 损害负责
+            </div>
+        </div>
+
+        <!-- Key Legal Concepts -->
+        <div class="concept-card">
+            <div class="concept-title">1. 连带责任 (Joint & Several Liability)</div>
+            <ul>
+                <li><b>规则：</b>当多个被告共同造成了不可分割的伤害 (Indivisible Harm) 时，原告可以向<b>任何一个</b>被告追偿<b>全部</b>损失。</li>
+                <li><b>应用：</b>虽然司机只有50%的过错，但根据连带责任，原告有权要求司机赔偿全部 $100,000。</li>
+                <li><b>注：</b>司机赔付后，可以向其他被告（父母、玩伴父母）行使<b>分摊请求权 (Contribution)</b>，但这不影响原告的追偿权。</li>
+            </ul>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-title">2. 过失归责 (Imputed Negligence)</div>
+            <ul>
+                <li><b>陷阱：</b>题目提到儿童的父母有30%的过错。在旧普通法中，父母的过失可能会“归责”给孩子，从而阻碍孩子索赔。</li>
+                <li><b>现状：</b>题目明确指出“家庭内部责任的普通法原则已被废除”。这意味着<b>父母的过失不会归责于孩子</b>。</li>
+                <li><b>结论：</b>原告（孩子）被视为<b>0%过错</b>。因此，赔偿金不会因比较过失 (Comparative Negligence) 而减少。</li>
+            </ul>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-title">3. 比较过失 (Comparative Negligence)</div>
+            <ul>
+                <li><b>纯粹比较过失：</b>通常用于减少原告的赔偿金（总赔偿 - 原告过错比例）。</li>
+                <li><b>本案：</b>因为孩子没有过错 (0%)，所以 $100,000 - 0 = $100,000。</li>
+            </ul>
+        </div>
+
+        <!-- Why other options are wrong -->
+        <div style="margin-top: 20px;">
+            <h3 style="font-size: 16px; border-bottom: 2px solid var(--accent-color); padding-bottom: 5px;">为什么其他选项错误？</h3>
+            <ul style="font-size: 13px; color: #555;">
+                <li><b>选项 A ($30,000) & B ($50,000)：</b> 这些选项错误地应用了<b>按份责任 (Several Liability)</b>。如果是按份责任，司机才只赔偿其过错比例对应的 $50,000。但题目明确规定适用“连带责任”。</li>
+                <li><b>选项 D (Nothing)：</b> 这基于旧法的“共同过失 (Contributory Negligence)”或“过失归责”原则，即父母的过错完全阻碍孩子索赔。但这在现代法和本题设定中已被废除。</li>
+            </ul>
+        </div>
+
+        <!-- Exam Tip -->
+        <div class="exam-tip">
+            <b>💡 MBE 考试技巧：</b><br>
+            看到 <b>"Joint and Several Liability"</b> 时，记住口诀：<b>"One for All"</b>（任何一个被告都可能要赔全部）。<br>
+            不要被复杂的过错百分比迷惑去做了不必要的乘法，除非题目问的是“按份责任”或者问被告之间的“分摊 (Contribution)”。
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

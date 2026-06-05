@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #ecf0f1;
+        --text-color: #333;
+        --correct-color: #27ae60;
+        --wrong-color: #c0392b;
+        --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+        font-family: var(--font-main);
+        background-color: #f4f7f6;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+    }
+    .container {
+        max-width: 480px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .header .sub-title {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+        line-height: 1.6;
+    }
+    .card {
+        background: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+    .card h3 {
+        margin-top: 0;
+        color: var(--primary-color);
+        font-size: 1.1rem;
+    }
+    .concept-tag {
+        display: inline-block;
+        background: var(--primary-color);
+        color: #fff;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        margin-right: 5px;
+        vertical-align: middle;
+    }
+    .latin {
+        font-style: italic;
+        color: #555;
+    }
+    .analysis-box {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    .correct-answer {
+        color: var(--correct-color);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 5px;
+    }
+    .wrong-answer {
+        color: var(--wrong-color);
+        font-size: 0.9rem;
+    }
+    .footer {
+        background: #f9f9f9;
+        padding: 15px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #777;
+        border-top: 1px solid #eee;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    li {
+        margin-bottom: 8px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Intentional Torts (Battery)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="card">
+            <h3>核心法律规则</h3>
+            <p><b>Battery (非法侵犯/殴打)</b> 的构成要件：</p>
+            <ul>
+                <li>被告实施了意图造成有害或冒犯性接触的行为 (Intent to cause harmful or offensive contact)；</li>
+                <li>该行为确实导致了此类接触。</li>
+            </ul>
+            <p><b>关键点：</b>对于故意侵权行为，<b>年龄不是抗辩理由</b>。只要儿童具备形成特定意图 (Specific Intent) 的能力，即应对其行为负责。</p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-box">
+            <span class="correct-answer">✅ 正确答案：A (该儿童意图撞向邻居)</span>
+            <p><b>法律推理：</b></p>
+            <p>这是本题最强的论据，因为它直接确立了 Battery 的核心要素——<b>意图 (Intent)</b>。</p>
+            <p>在侵权法中，要构成 Battery，原告只需证明被告意图进行<b>接触 (Contact)</b>，而不需要证明被告意图造成具体的<b>伤害 (Injury)</b>（如骨折）。</p>
+            <p>只要这个6岁的孩子在主观上想要“撞向”邻居（即意图产生身体接触），并且这种接触在法律上被视为有害或冒犯性的，他就构成了 Battery。至于他是否预见到邻居会摔倒骨折，并不影响 Battery 的成立。</p>
+        </div>
+
+        <!-- 经典判例引用 -->
+        <div class="card" style="border-left-color: #8e44ad; background: #f4ecf7;">
+            <h3>⚖️ 经典判例关联</h3>
+            <p><b><span class="latin">Garratt v. Dailey</span> (1955)</b></p>
+            <p>这是美国法学院侵权法课必学的经典案例。案中一名5岁儿童抽走了阿姨身后的椅子，导致阿姨摔伤。法院裁定，只要该儿童<b>知道</b>其行为（抽椅子）会导致阿姨摔倒（即产生接触），即便他没有恶意伤害阿姨的动机，也构成 Battery。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="analysis-box">
+            <p><b>为什么其他选项是错误的？</b></p>
+            
+            <p><span class="wrong-answer">❌ 选项 C 和 D (关于认识到伤害或风险)</span><br>
+            这两个选项描述的是<b>过失 (Negligence)</b> 的标准，即“预见性” (Foreseeability)。<br>
+            在故意侵权 (Intentional Torts) 中，我们不关心被告是否“欣赏”风险或后果的严重性。我们只关心他是否<b>故意</b>实施了那个导致接触的行为。混淆“故意”与“过失”是 MBE 常见的陷阱。</p>
+
+            <p><span class="wrong-answer">❌ 选项 B (愤怒没有正当理由)</span><br>
+            这是关于<b>动机 (Motive)</b> 的描述。恶意的动机有助于证明意图，但不是必要条件；同样，缺乏正当理由并不能直接确立侵权责任的构成要件。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="border-left-color: #e67e22; background: #fef5e7;">
+            <h3>🎓 MBE 考试技巧</h3>
+            <p>当题目涉及<b>儿童 (Minors)</b> 和<b>故意侵权 (Intentional Torts)</b> 时：</p>
+            <ol>
+                <li>不要因为年龄小就认为无责任。</li>
+                <li>寻找描述<b>“意图进行接触”</b>的选项。</li>
+                <li>警惕那些谈论“理解后果”、“预见风险”或“像合理儿童那样行事”的选项——这些通常是过失 (Negligence) 的考点，而非 Battery。</li>
+            </ol>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

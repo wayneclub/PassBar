@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .concept-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .analysis-step {
+            margin-bottom: 10px;
+            padding-left: 15px;
+            position: relative;
+        }
+        .analysis-step::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        .option-analysis {
+            margin-top: 20px;
+        }
+        .option {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #fff;
+            margin-right: 8px;
+        }
+        .tag.correct { background-color: var(--correct-color); }
+        .tag.wrong { background-color: var(--wrong-color); }
+        
+        .exam-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .exam-tip strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Constitutional Law: Judicial Review</div>
+    </div>
+
+    <div class="content">
+        <div class="answer-box">
+            <span class="answer-label">正确答案：D</span>
+            <p>批准该动议，因为该女子与法官之间的争议标的已不复存在，并且不大可能重新出现。</p>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-title">核心考点：Mootness (已失时效)</div>
+            <p>根据美国宪法第三条 (Article III)，联邦法院的管辖权仅限于<b>"Cases and Controversies"</b>（实际案件与争议）。</p>
+            <p>这意味着在诉讼的<b>每一个阶段</b>（包括审判和上诉），原告都必须拥有实际的、持续的利益争议。如果导致诉讼的事件已经结束或解决，法院无法再提供有效的救济，该案件即变为 <b>Moot</b>（已失时效），法院必须将其驳回。</p>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-title">本案逻辑推演</div>
+            <div class="analysis-step">
+                <b>原告的诉求：</b>该女子起诉的唯一目的是为了观看<b>特定男子</b>的审判直播。
+            </div>
+            <div class="analysis-step">
+                <b>现状变化：</b>在案件审理前，该男子的审判已经结束（定罪并判刑）。
+            </div>
+            <div class="analysis-step">
+                <b>结果：</b>法院现在即使发布禁令（Injunction）要求恢复直播，也无法执行，因为审判已经不存在了。争议标的消失。
+            </div>
+            <div class="analysis-step">
+                <b>例外情况排除：</b>虽然存在“可重复发生但规避审查”的例外，但题目明确指出审判过程<b>“没有明显错误”</b>，这意味着重审（Retrial）的可能性极低，纯属猜测。因此，该例外不适用。
+            </div>
+        </div>
+
+        <div class="option-analysis">
+            <div class="concept-title">选项辨析</div>
+            
+            <div class="option">
+                <span class="tag correct">D (正确)</span>
+                <b>Mootness Doctrine：</b>争议已结束且无复发迹象，联邦法院无管辖权，必须驳回 (Dismiss)。
+            </div>
+
+            <div class="option">
+                <span class="tag wrong">A (错误)</span>
+                <b>Speculation (猜测)：</b>法院不会基于“该男子可能会上诉成功”这种纯粹的猜测来维持案件。除非有合理的预期表明争议会重演，否则案件就是 Moot。
+            </div>
+
+            <div class="option">
+                <span class="tag wrong">B (错误)</span>
+                <b>Federal Law Governs：</b>这是一个关于联邦法院管辖权 (Article III) 的问题。联邦法院在决定是否具有管辖权（如 Mootness）时，适用<b>联邦法</b>，而不是州法。
+            </div>
+
+            <div class="option">
+                <span class="tag wrong">C (错误)</span>
+                <b>Constitutional Importance：</b>即使案件涉及重要的宪法问题（如第十四修正案财产权），如果它不再是一个“活的”争议 (Live Controversy)，法院也不能仅仅为了通过判决来确立法律原则而审理它。联邦法院不提供咨询意见 (Advisory Opinions)。
+            </div>
+        </div>
+
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧</strong>
+            <p>当你在题目中看到<b>“审判结束”、“法律被废除”或“活动已停止”</b>时，立即联想 <b>Mootness</b>。</p>
+            <p>一定要检查是否有例外情况：<b>"Capable of repetition, yet evading review"</b>（可重复发生但规避审查）。通常适用于：</p>
+            <ul>
+                <li>怀孕/堕胎案件 (Roe v. Wade)</li>
+                <li>选举相关案件</li>
+            </ul>
+            <p>如果题目像本题一样暗示<b>“不太可能再次发生”</b>（例如：没有明显错误导致重审），则必须驳回起诉。</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

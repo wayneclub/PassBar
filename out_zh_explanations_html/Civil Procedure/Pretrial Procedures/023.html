@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: #333;
+        line-height: 1.6;
+    }
+    .container {
+        background-color: #ffffff;
+        width: 100%;
+        max-width: 480px; /* 适配手机逻辑宽度 */
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        overflow: hidden;
+    }
+    .header {
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+        color: white;
+        padding: 24px 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 700;
+    }
+    .header .sub-title {
+        font-size: 13px;
+        opacity: 0.9;
+        margin-top: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 24px;
+    }
+    .answer-block {
+        background-color: #e8f5e9;
+        border-left: 5px solid #4caf50;
+        padding: 16px;
+        border-radius: 4px;
+        margin-bottom: 24px;
+    }
+    .answer-label {
+        color: #2e7d32;
+        font-weight: 800;
+        font-size: 18px;
+        display: block;
+        margin-bottom: 4px;
+    }
+    .rule-card {
+        background-color: #e3f2fd;
+        border: 1px solid #bbdefb;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 24px;
+    }
+    .rule-title {
+        color: #1565c0;
+        font-weight: 700;
+        font-size: 15px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+    }
+    .rule-title::before {
+        content: "⚖️";
+        margin-right: 8px;
+    }
+    .highlight {
+        font-weight: 600;
+        color: #d32f2f;
+        background-color: rgba(211, 47, 47, 0.05);
+        padding: 0 4px;
+        border-radius: 3px;
+    }
+    .analysis-step {
+        margin-bottom: 20px;
+    }
+    .step-head {
+        font-weight: 700;
+        color: #455a64;
+        margin-bottom: 6px;
+        font-size: 15px;
+    }
+    .distractor-section {
+        background-color: #fff8e1;
+        padding: 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        border: 1px solid #ffe0b2;
+    }
+    .distractor-title {
+        font-weight: 700;
+        color: #f57c00;
+        margin-bottom: 8px;
+        display: block;
+    }
+    .exam-tip {
+        margin-top: 24px;
+        background-color: #263238;
+        color: #eceff1;
+        padding: 16px;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+    .tip-header {
+        color: #ffca28;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        display: block;
+    }
+    ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    li {
+        margin-bottom: 6px;
+    }
+    .eng-term {
+        font-style: italic;
+        color: #555;
+        font-size: 0.9em;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure: Discovery</div>
+    </div>
+
+    <div class="content">
+        <!-- Correct Answer Section -->
+        <div class="answer-block">
+            <span class="answer-label">正确答案：B</span>
+            法院应驳回公司的动议，因为投资者迅速隔离（Sequestered）了文件并将争议提交给了法院。
+        </div>
+
+        <!-- Legal Rule Section -->
+        <div class="rule-card">
+            <div class="rule-title">核心考点：FRCP 26(b)(5)(B)</div>
+            <p style="margin:0; font-size: 14px;">
+                当一方无意中出示了受特权保护的信息（Inadvertent Disclosure）并通知接收方时，接收方必须：
+            </p>
+            <ul style="margin-top:10px; font-size: 14px;">
+                <li>迅速归还、<span class="highlight">隔离 (Sequester)</span> 或销毁该信息；</li>
+                <li>在争议解决前不得使用或披露该信息；</li>
+                <li>采取合理步骤取回已披露的信息。</li>
+            </ul>
+        </div>
+
+        <!-- Detailed Analysis -->
+        <div class="analysis-step">
+            <div class="step-head">1. 规则的逻辑</div>
+            <p>联邦民事诉讼规则（FRCP）允许接收方在对特权主张有异议时，选择<b>“隔离”</b>（Sequester）文件。这是一种中间状态：接收方不归还文件（因为他们认为文件不应受特权保护），但也不查看或使用文件，直到法院做出裁决。</p>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-head">2. 本案应用</div>
+            <p>题目中，投资者对公司的特权主张提出了异议（disputed the claim）。因此，投资者有权依照规则将文件<b>隔离</b>并提交给法院裁决。</p>
+            <p>公司申请禁令要求在听证会前“立即归还并销毁”，这剥夺了投资者依据 FRCP 26(b)(5)(B) 向法院挑战特权主张的权利。因此，法院会驳回公司的动议。</p>
+        </div>
+
+        <!-- Why others are wrong -->
+        <div class="distractor-section">
+            <span class="distractor-title">为什么其他选项是错误的？</span>
+            <ul style="padding-left: 18px;">
+                <li>
+                    <b>选项 A (Waiver):</b> 错误。根据 <span class="eng-term">FRE 502(b)</span>，只要披露方采取了合理预防措施（如筛选记录、制作特权日志）并迅速补救（立即通知），无意披露<b>不会</b>导致特权放弃。
+                </li>
+                <li>
+                    <b>选项 C & D (Grant Motion):</b> 错误。虽然公司确实迅速通知了，但规则明确赋予了接收方“隔离并提交法院”的选项。既然投资者已经这么做了，法院就不会强制其在裁决前归还。
+                </li>
+            </ul>
+        </div>
+
+        <!-- Exam Strategy -->
+        <div class="exam-tip">
+            <span class="tip-header">💡 MBE 解题技巧</span>
+            <p style="margin:0;">
+                遇到“无意披露特权文件”的题目，请检查三个步骤：
+                <br>1. 披露方是否采取了合理预防措施？（本题：是）
+                <br>2. 披露方是否迅速通知？（本题：是）
+                <br>3. 接收方是否<b>停止使用</b>并<b>隔离/归还</b>？（本题：是，隔离了）
+                <br><br>
+                <b>陷阱警示：</b>不要默认接收方必须“归还”。如果接收方认为该文件不属于特权范围，他们可以“隔离”并请求法院裁定。
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

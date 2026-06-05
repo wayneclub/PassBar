@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        .comparison-table th {
+            background-color: #34495e;
+            color: white;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            vertical-align: top;
+        }
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .highlight-green {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .highlight-red {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .key-term {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+        .mbe-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .mbe-tip strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>联邦民事诉讼程序：互诉 (Interpleader)</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点介绍 -->
+        <div class="concept-card">
+            <span class="concept-title">核心概念：互诉 (Interpleader)</span>
+            当一个人（利益相关方，Stakeholder）持有财产，但面临多个索赔人（Claimants）相互冲突的请求时，为了避免双重或多重赔偿责任，可以提起互诉，让索赔人之间去争夺财产。
+        </div>
+
+        <div class="analysis-section">
+            <p>本题考察的是联邦法院受理互诉案件的<b>属事管辖权 (Subject-Matter Jurisdiction)</b>。在联邦法院，互诉主要有两种形式，它们的管辖权要求截然不同：</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th style="width: 30%">比较项目</th>
+                        <th>法定互诉<br><span style="font-size:0.8em; font-weight:normal">(Statutory Interpleader)</span><br>28 U.S.C. § 1335</th>
+                        <th>规则互诉<br><span style="font-size:0.8em; font-weight:normal">(Rule Interpleader)</span><br>FRCP Rule 22</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>争议金额</b><br>(Amount in Controversy)</td>
+                        <td><b>$500</b> 或以上</td>
+                        <td>超过 <b>$75,000</b></td>
+                    </tr>
+                    <tr>
+                        <td><b>多元管辖权</b><br>(Diversity of Citizenship)</td>
+                        <td><b>最低限度多元性</b><br>(Minimal Diversity)<br>只要有两个<b>索赔人</b>来自不同州即可。</td>
+                        <td><b>完全多元性</b><br>(Complete Diversity)<br><b>利益相关方</b>必须与所有<b>索赔人</b>来自不同州。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <h3>本案案情分析</h3>
+            <ul>
+                <li><b>诉讼类型：</b>题目明确指出保险公司提起的是“法定互诉” (<span class="key-term">statutory-interpleader</span>)。</li>
+                <li><b>争议金额：</b>保单价值 $50,000。
+                    <br>➔ <span class="highlight-green">满足</span> (因为 > $500)。</li>
+                <li><b>当事人国籍：</b>
+                    <ul>
+                        <li>索赔人1 & 2：A州</li>
+                        <li>索赔人3：B州</li>
+                        <li>保险公司 (利益相关方)：B州</li>
+                    </ul>
+                </li>
+                <li><b>多元性分析：</b>
+                    <br>法定互诉只看<b>索赔人之间</b> (Claimant vs. Claimant)。
+                    <br>A州索赔人 vs. B州索赔人 ➔ 存在不同州的公民。
+                    <br>➔ <span class="highlight-green">满足最低限度多元性 (Minimal Diversity)。</span></li>
+            </ul>
+            <p><b>结论：</b>法院拥有管辖权，因此<b>不会</b>批准驳回起诉的动议。正确答案是 <b>B</b>。</p>
+        </div>
+
+        <!-- 为什么其他选项是错的 -->
+        <div class="analysis-section">
+            <h3>陷阱选项解析</h3>
+            <p><span class="highlight-red">选项 C 错误：</span>它混淆了规则互诉的标准。虽然 $50,000 确实没有超过 $75,000，但<b>法定互诉</b>只需要 $500 即可。</p>
+            <p><span class="highlight-red">选项 D 错误：</span>它应用了规则互诉的“完全多元性”标准。在规则互诉中，保险公司 (B州) 和其中一个儿子 (B州) 确实会破坏完全多元性。但在<b>法定互诉</b>中，利益相关方 (保险公司) 的国籍通常不影响管辖权，关键看索赔人之间。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <strong>🎓 MBE 抢分技巧</strong>
+            <p>看到 Interpleader 题目，第一步先找关键词：是 <b>"Statutory"</b> 还是 <b>"Rule"</b>？</p>
+            <ul>
+                <li>如果是 <b>Statutory</b>：找 $500 + 索赔人之间大乱斗 (只要有两个索赔人不同州就行)。这是更容易满足的标准。</li>
+                <li>如果是 <b>Rule</b>：找 $75k + 利益相关方 vs. 索赔人 (必须完全不同)。这和普通的 Diversity Jurisdiction 标准一样。</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

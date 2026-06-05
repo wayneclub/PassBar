@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f0f2f5;
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+        padding: 10px;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: #2c3e50;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 12px;
+        opacity: 0.8;
+    }
+    .content {
+        padding: 20px;
+    }
+    .concept-card {
+        background-color: #f8f9fa;
+        border-left: 4px solid #3498db;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 4px 4px 0;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 8px;
+        display: block;
+        font-size: 16px;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .english-term {
+        color: #7f8c8d;
+        font-size: 0.9em;
+        font-weight: normal;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+        font-size: 13px;
+    }
+    th {
+        background-color: #34495e;
+        color: white;
+        padding: 8px;
+        text-align: left;
+    }
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        vertical-align: top;
+    }
+    .highlight-box {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    .analysis-step {
+        margin-bottom: 15px;
+    }
+    .step-title {
+        font-weight: bold;
+        color: #2980b9;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .correct-answer {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        margin-top: 20px;
+        border: 1px solid #c3e6cb;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 5px 0;
+    }
+    li {
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Civil Procedure: Jury Selection</p>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点介绍 -->
+        <div class="concept-card">
+            <span class="concept-title">陪审员遴选程序 (Voir Dire)</span>
+            <p>在联邦民事诉讼中，根据 <span class="english-term">FRCP 47</span> 和 <span class="english-term">28 U.S.C. § 1870</span>，律师和法官通过提问来筛选陪审员。排除陪审员主要有两种方式：</p>
+            
+            <table>
+                <tr>
+                    <th style="width: 35%">类型</th>
+                    <th>特点</th>
+                </tr>
+                <tr>
+                    <td><b>无因回避</b><br><span class="english-term">(Peremptory Challenge)</span></td>
+                    <td>
+                        <ul>
+                            <li>通常每方 <b>3次</b> 机会。</li>
+                            <li><b>无需理由</b>（但不得基于种族或性别，参见 <i>Batson</i> 案）。</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>有因回避</b><br><span class="english-term">(Challenge for Cause)</span></td>
+                    <td>
+                        <ul>
+                            <li>次数 <b>无限制</b>。</li>
+                            <li>必须证明存在 <b>偏见 (Bias)</b> 或无法公正审理。</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 案例分析 -->
+        <div class="analysis-step">
+            <span class="step-title">1. 关键事实分析</span>
+            <p>本案中的准陪审员有两个关键特征：</p>
+            <ul>
+                <li><b>前雇员身份：</b>5年前曾在被告公司工作。</li>
+                <li><b>股东身份：</b>目前仍持有被告公司数百股股票（Financial Interest）。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <span class="step-title">2. 法律推理解析</span>
+            <p>虽然该陪审员声称自己可以“公正审议证据”，但在法律上，某些关系会产生<b>推定偏见</b> <span class="english-term">(Presumed/Implied Bias)</span>。</p>
+            <div class="highlight-box">
+                <b>MBE 黄金法则：</b><br>
+                如果准陪审员在诉讼一方拥有<b>经济利益 (Pecuniary Interest)</b>（如持有股票），无论其主观上是否认为自己公正，法院通常都必须将其<b>因故排除 (Strike for Cause)</b>。
+            </div>
+            <p>持有被告公司的股票意味着陪审员的个人财富可能直接受案件结果影响，这种客观的利益冲突无法通过主观的“我会公平”的承诺来治愈。</p>
+        </div>
+
+        <div class="analysis-step">
+            <span class="step-title">3. 为什么其他选项是错的？</span>
+            <ul>
+                <li><b>选项 A (错误)：</b>陪审员的主观陈述（Subjective assertion）不足以推翻由经济利益产生的客观偏见推定。</li>
+                <li><b>选项 B (错误)：</b>虽然律师<i>可以</i>使用无因回避，但如果符合“有因回避”的条件，法官有义务批准，而不应强迫律师浪费宝贵的无因回避机会。</li>
+                <li><b>选项 C (错误)：</b>陪审团候选池中是否还有其他人与本裁决的法律依据无关。</li>
+            </ul>
+        </div>
+
+        <!-- 正确答案 -->
+        <div class="correct-answer">
+            正确答案：D<br>
+            <span style="font-weight: normal; font-size: 0.9em;">应排除，因为基于其与公司的关系（持股），该准陪审员被推定为有偏见。</span>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

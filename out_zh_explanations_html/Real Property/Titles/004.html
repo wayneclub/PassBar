@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #ecf0f1;
+        --correct-color: #27ae60;
+        --wrong-color: #c0392b;
+        --text-color: #333;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .mbe-card {
+        background: white;
+        width: 100%;
+        max-width: 480px; /* 手机屏幕适配 */
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
+    }
+    .header {
+        background: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h2 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .header .sub-title {
+        font-size: 0.85rem;
+        opacity: 0.9;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 20px;
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+    .concept-box {
+        background-color: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        display: block;
+        margin-bottom: 5px;
+    }
+    .diagram {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 0;
+        background: #fafafa;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px dashed #ccc;
+    }
+    .step {
+        background: white;
+        border: 1px solid #ccc;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        text-align: center;
+        width: 80%;
+        position: relative;
+    }
+    .arrow {
+        font-size: 1.2rem;
+        color: #999;
+        margin: 5px 0;
+    }
+    .cross-out {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--wrong-color);
+        font-size: 2rem;
+        font-weight: bold;
+        opacity: 0.7;
+    }
+    .analysis-section {
+        margin-top: 20px;
+    }
+    .key-point {
+        font-weight: bold;
+        color: var(--wrong-color);
+    }
+    .correct-answer {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: rgba(39, 174, 96, 0.1);
+        border: 1px solid var(--correct-color);
+        border-radius: 8px;
+    }
+    .correct-badge {
+        background-color: var(--correct-color);
+        color: white;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    .footer-tip {
+        background: #f9f9f9;
+        padding: 15px;
+        font-size: 0.85rem;
+        color: #666;
+        border-top: 1px solid #eee;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    li {
+        margin-bottom: 8px;
+    }
+</style>
+</head>
+<body>
+
+<div class="mbe-card">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Real Property / Deeds</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点讲解 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：地契的交付 (Delivery of Deed)</span>
+            在不动产法中，地契的有效性不仅取决于签署，更取决于<b>交付 (Delivery)</b>。
+            <br><br>
+            对于<b>死亡第三方保管 (Death Escrow)</b>，即授予人将地契交给第三方（如律师），指示在自己死后交给受让人，必须满足一个关键条件：
+            <br>
+            <b>授予人必须放弃收回地契的权利 (Relinquish all control)。</b>
+        </div>
+
+        <!-- 案情图解 -->
+        <div class="diagram">
+            <div style="font-weight:bold; margin-bottom:10px; color:#555;">本案交易流程分析</div>
+            
+            <div class="step">
+                男子 (Grantor) 将地契交给律师
+            </div>
+            <div class="arrow">↓</div>
+            <div class="step" style="border-color: var(--wrong-color); background-color: #fff5f5;">
+                <b>致命缺陷：</b><br>
+                "如果我要求，就把地契还给我"<br>
+                (Retained right to recall)
+            </div>
+            <div class="arrow">↓</div>
+            <div class="step">
+                <span class="cross-out">❌</span>
+                法律后果：<br>
+                <b>未发生交付 (No Delivery)</b>
+            </div>
+        </div>
+
+        <!-- 法律分析 -->
+        <div class="analysis-section">
+            <h3>⚖️ 法律推理</h3>
+            <p>
+                <b>1. 控制权测试 (The Control Test)：</b><br>
+                当授予人将地契交给代理人时，如果他保留了撤回该地契的权利（Power to recall），法律上视为该律师仅仅是授予人的代理人，而非独立的托管人。这意味着地契仍在授予人的控制之下。
+            </p>
+            <p>
+                <b>2. 交付的意图 (Intent to Deliver)：</b><br>
+                交付的核心是“立即转移权益的意图”。由于男子保留了收回权，说明他并没有产生<b>立即</b>剥离自己所有权的意图。
+            </p>
+            <p>
+                <b>3. 结果：</b><br>
+                因为从未发生有效的“交付”，所有权从未转移给侄子。侄子死后，该农场不属于侄子的遗产，因此他无法将其遗赠给女儿。农场仍属于该男子的遗产，由男子的儿子们继承。
+            </p>
+        </div>
+
+        <!-- 正确答案展示 -->
+        <div class="correct-answer">
+            <div><span class="correct-badge">正确答案 B</span></div>
+            <p style="margin: 10px 0 0 0;">
+                <b>否，因为该男子从未将地契置于其控制之外。</b>
+                <br>
+                (No, because the man never placed the deed beyond his control.)
+            </p>
+        </div>
+
+        <!-- 干扰项辨析 -->
+        <div style="margin-top: 20px;">
+            <h3>🚫 为什么其他选项是错的？</h3>
+            <ul>
+                <li>
+                    <b>选项 A (书面合同)：</b> 错误。虽然土地买卖需要书面合同（Statute of Frauds），但<b>无偿赠与 (Gratuitous Gift)</b> 不需要合同支持。这里的核心问题是交付失败，而不是缺乏合同。
+                </li>
+                <li>
+                    <b>选项 C (侄子之死)：</b> 错误。如果交付一开始就是无效的（因为男子保留了控制权），受让人的死亡不会神奇地让交付变得有效。
+                </li>
+                <li>
+                    <b>选项 D (交给律师即交付)：</b> 错误。交给第三方本身不构成交付，除非同时伴随着<b>放弃控制权</b>。如果可以随时要回来，那就像把地契放在自己的抽屉里一样，不算交付。
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-tip">
+        <b>🎓 考试技巧 (Exam Tip)：</b><br>
+        在 MBE 遇到涉及 Escrow（托管）的题目时，立即寻找<b>“可撤销性” (Revocability)</b> 的线索。
+        <br>
+        如果 Grantor 说 "Give it back if I ask" 或 "I reserve the right to cancel"，则 <b>Delivery = Fail</b>。
+    </div>
+</div>
+
+</body>
+</html>

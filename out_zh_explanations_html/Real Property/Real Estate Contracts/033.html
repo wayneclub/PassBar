@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: #e8f8f5;
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            color: var(--correct-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .concept-card {
+            background-color: var(--bg-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .wrong-option {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+        }
+
+        .wrong-option-title {
+            color: var(--wrong-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Estate Contracts / Real Property</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：C (Misrepresentation)</span>
+            <p>买方应基于<strong>虚假陈述 (Misrepresentation)</strong> 提出索赔。</p>
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">⚖️ 核心法律规则：沉默即虚假陈述</div>
+        <div class="concept-card">
+            <p>在传统的普通法中，原则是<strong>“买者自负” (Caveat Emptor)</strong>，卖方通常没有义务披露缺陷。但是，现代合同法（如《合同法重述（第二次）》§ 161）确立了一个重要的例外：</p>
+            <p><strong>不披露 (Nondisclosure)</strong> 等同于断言该事实不存在（即构成虚假陈述），如果：</p>
+            <ul>
+                <li>卖方知道该事实会纠正买方关于合同<strong>基本假设 (Basic Assumption)</strong> 的错误；并且</li>
+                <li>不披露该事实违反了<strong>善意 (Good Faith)</strong> 和公平交易的原则。</li>
+            </ul>
+        </div>
+
+        <div class="section-title">🔍 案情分析</div>
+        <div class="concept-card">
+            <p>在本案中，我们可以提取出以下关键要素：</p>
+            <ol>
+                <li><strong>重大事实：</strong>市政当局已下令禁止使用装卸平台，这将大幅降低土地价值。</li>
+                <li><strong>卖方知情：</strong>卖方收到了通知，明确知道这一限制。</li>
+                <li><strong>买方不知情：</strong>买方在不知情的情况下购买，且这是一个隐蔽的法律/行政限制，而非显而易见的物理缺陷。</li>
+                <li><strong>沉默：</strong>卖方在90天宽限期内迅速出售，且未提及此事。</li>
+            </ol>
+            <p>卖方的行为构成了<strong>欺诈性隐瞒 (Fraudulent Concealment)</strong> 或至少是基于不披露的虚假陈述。因此，买方有权要求<strong>撤销合同 (Rescission)</strong>。</p>
+        </div>
+
+        <!-- 干扰项解析 -->
+        <div class="section-title">❌ 为什么其他选项是错误的？</div>
+        
+        <div class="wrong-option">
+            <div class="wrong-option-title">A. 违反担保契约 (Breach of covenant of warranty)</div>
+            <p><strong>错误原因：</strong>担保契据 (Warranty Deed) 保证的是<strong>所有权 (Title)</strong> 的完整性（例如没有未披露的抵押、第三方权利主张等）。</p>
+            <p>市政当局的土地使用限制（如分区条例或本案中的停用命令）通常被视为<strong>警察权 (Police Power)</strong> 的行使，而非所有权瑕疵。只要卖方合法拥有土地，就没有违反所有权担保。</p>
+        </div>
+
+        <div class="wrong-option">
+            <div class="wrong-option-title">B. 对价不成立 (Failure of consideration)</div>
+            <p><strong>错误原因：</strong>只有当买方完全没有收到任何有价值的东西时（例如地皮根本不存在，或契据无效），才构成对价不成立。本案中，买方确实获得了地皮和仓库，只是价值低于预期。这属于估值错误，而非对价缺失。</p>
+        </div>
+
+        <div class="wrong-option">
+            <div class="wrong-option-title">D. 共同错误 (Mutual mistake)</div>
+            <p><strong>错误原因：</strong>共同错误要求<strong>双方</strong>都对同一基本事实存在误解。在本案中，卖方<strong>完全知晓</strong>装卸平台被禁用的事实，只有买方处于错误认知中。这属于<strong>单方错误 (Unilateral Mistake)</strong>，且由于卖方知情不报，更适合归类为虚假陈述。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">💡 MBE 考试技巧</div>
+        <div class="concept-card" style="background-color: #fff8e1; border: 1px solid #ffe0b2;">
+            <p><strong>区分“物理缺陷”与“法律限制”：</strong></p>
+            <p>当题目涉及政府命令、分区法或违规使用时，首先排除“所有权担保”(Title Covenants) 类的选项，因为这些通常不属于 Title Defect。</p>
+            <p><strong>寻找“知情不报”：</strong></p>
+            <p>如果一方知道核心事实而另一方不知道，且该事实严重影响价值，通常指向 <strong>Misrepresentation</strong>（如果涉及欺诈）或 <strong>Unilateral Mistake</strong>（如果涉及利用对方错误）。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

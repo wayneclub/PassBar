@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --guilty-color: #e74c3c;
+            --innocent-color: #27ae60;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: #eef7fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+            font-size: 15px;
+        }
+
+        .analysis-section {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .analysis-section:last-child {
+            border-bottom: none;
+        }
+
+        .role-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .tag {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .tag.guilty { background-color: var(--guilty-color); }
+        .tag.innocent { background-color: var(--innocent-color); }
+
+        .explanation {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px dashed #f1c40f;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .exam-tip-title {
+            font-weight: bold;
+            color: #d35400;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考点解析</h1>
+        <p>Burglary & Innocent Agents</p>
+    </div>
+
+    <div class="content">
+        <!-- 法律规则定义 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 本题适用的入室犯法罪 (Burglary) 定义</span>
+            根据题目设定，该司法管辖区对普通法进行了修正：
+            <ul>
+                <li><b>行为：</b>非法破门并进入 (Breaking and Entering)。</li>
+                <li><b>对象：</b>住宅或其他建筑物 (Structure)。</li>
+                <li><b>意图：</b>怀有实施重罪 (Felony) 的特定意图。</li>
+                <li><b>注意：</b>无需“夜间”这一要素。</li>
+            </ul>
+        </div>
+
+        <!-- 角色分析 1：女子 -->
+        <div class="analysis-section">
+            <div class="role-title">
+                1. 女子 (The Woman)
+                <span class="tag guilty">有罪 (Guilty)</span>
+            </div>
+            <div class="explanation">
+                <p>虽然女子没有亲自破门，但她利用了男子作为工具。在刑法中，这被称为<strong>“无辜代理人” (Innocent Agent)</strong> 理论。</p>
+                <p>女子具有实施盗窃 (Larceny) 的<strong>特定意图 (Specific Intent)</strong>。她欺骗男子，利用男子完成了“破门”和“进入”的犯罪行为 (Actus Reus)。</p>
+                <p><strong>结论：</strong>利用无辜代理人实施犯罪的人，被视为直接正犯 (Principal in the first degree)。因此，女子构成了 Burglary。</p>
+            </div>
+        </div>
+
+        <!-- 角色分析 2：男子 -->
+        <div class="analysis-section">
+            <div class="role-title">
+                2. 男子 (The Man)
+                <span class="tag innocent">无罪 (Not Guilty)</span>
+            </div>
+            <div class="explanation">
+                <p>Burglary 是特定意图犯罪，要求被告在进入时必须怀有实施重罪（本案中为盗窃）的意图。</p>
+                <p>男子被女子欺骗，真诚地相信马鞍属于女子。因此，他缺乏盗窃罪所需的<strong>“非法剥夺他人财产”</strong>的心理状态 (<span class="latin">Mens Rea</span>)。</p>
+                <p><strong>结论：</strong>没有犯罪意图，就不构成 Burglary。</p>
+            </div>
+        </div>
+
+        <!-- 角色分析 3：朋友 -->
+        <div class="analysis-section">
+            <div class="role-title">
+                3. 朋友 (The Friend)
+                <span class="tag innocent">无罪 (Not Guilty)</span>
+            </div>
+            <div class="explanation">
+                <p>朋友确实实施了“破门进入”女子房屋的行为。但是，Burglary 的定罪核心在于进入时是否意图实施重罪（Larceny）。</p>
+                <p><strong>权利主张 (Claim of Right)：</strong> 盗窃罪 (Larceny) 要求拿走“他人”的财产。如果一个人拿回自己拥有的财产（即使方式非法，如擅闯民宅），这在法律上不构成盗窃罪，因为缺乏剥夺“他人”财产的意图。</p>
+                <p><strong>结论：</strong>既然朋友进入房屋只是为了取回自己的马鞍，她就没有实施重罪（盗窃）的意图。没有重罪意图，就不构成 Burglary。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 拿分技巧</span>
+            <p><strong>1. 区分“非法侵入”与“入室犯法”：</strong> 朋友的行为构成了非法侵入 (Trespass)，甚至可能构成故意毁坏财物，但只要没有实施<b>重罪</b>的意图，就不是 Burglary。</p>
+            <p><strong>2. 代理人原则：</strong> 只要题目中出现“A欺骗B去干坏事”，首先判断B是否知情。如果B不知情，A就是借刀杀人（利用无辜代理人），A有罪，B无罪。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

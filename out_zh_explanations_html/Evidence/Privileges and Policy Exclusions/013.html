@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .sub-header {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-banner {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #28a745;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .rule-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        .key-point {
+            font-weight: bold;
+            color: var(--highlight-color);
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-header">Evidence: Attorney-Client Privilege</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-banner">
+            正确答案：B<br>
+            <span style="font-weight:normal; font-size:0.9em;">(不享有特免权，无论律师是否知情)</span>
+        </div>
+
+        <!-- 核心考点 -->
+        <div class="section-title">⚖️ 核心法律规则</div>
+        <div class="rule-box">
+            <p><strong>犯罪-欺诈例外 (Crime-Fraud Exception)</strong></p>
+            <p>虽然律师-客户特免权 (Attorney-Client Privilege) 保护机密通讯，但如果客户寻求法律建议是为了<strong>协助、促进或实施</strong>正在进行的或未来的犯罪/欺诈行为，则该特免权不适用。</p>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="section-title">🔍 深度解析</div>
+        <p>本题考察的是特免权失效的一个关键细微差别：<strong>谁的意图最重要？</strong></p>
+        
+        <p>在本案中，被告已经藏匿了记录（这是犯罪行为），但他随后联系律师询问“如何将记录转移到墨西哥”。这不仅仅是承认过去的罪行，而是为了<strong>进一步实施或掩盖</strong>正在进行的妨碍司法公正 (Obstruction of Justice) 行为。</p>
+
+        <p>因此，犯罪-欺诈例外适用，特免权被击穿。</p>
+
+        <!-- 为什么选B而不是A -->
+        <div class="section-title">💡 为什么选项 A 是错误的？</div>
+        <p>这是本题最大的陷阱。选项 A 认为只有律师“知情”时特免权才失效。这是错误的。</p>
+        
+        <table class="comparison-table">
+            <tr>
+                <th>判定标准</th>
+                <th>解释</th>
+            </tr>
+            <tr>
+                <td><strong>客户的意图</strong><br>(Client's Intent)</td>
+                <td><span style="color:green">✅ 决定性因素</span><br>只要客户利用律师的服务来促进犯罪，特免权即失效。</td>
+            </tr>
+            <tr>
+                <td><strong>律师的知情</strong><br>(Attorney's Knowledge)</td>
+                <td><span style="color:red">❌ 无关紧要</span><br>律师可以是完全不知情的工具人 (Innocent Pawn)。即使律师认为自己在提供合法的合规建议，只要客户意图非法，特免权依然不存在。</td>
+            </tr>
+        </table>
+
+        <!-- 其他选项分析 -->
+        <div class="section-title">🚫 其他选项排雷</div>
+        <ul>
+            <li><strong>选项 C (一般保密义务)：</strong>虽然律师有保密义务，但证据法中的特免权规则（Privilege Rules）高于一般的保密义务。当满足“犯罪-欺诈例外”时，法律强制要求披露，保密义务必须让步。</li>
+            <li><strong>选项 D (管辖权)：</strong>特免权的适用与否取决于通讯的性质，而不是行为发生的地理位置。妨碍美国司法公正的行为，即使涉及将证据移至墨西哥，依然受美国证据法管辖。</li>
+        </ul>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>🎓 MBE 考试技巧 (Exam Tip)</strong><br>
+            <br>
+            在处理特免权题目时，请务必区分：
+            <ol style="margin-top:5px; padding-left:20px;">
+                <li><strong>过去的犯罪 (Past Crime)：</strong> "我杀了人，我该怎么办？" -> <span style="color:green">享有特免权</span>（这是寻求辩护）。</li>
+                <li><strong>未来/正在进行的犯罪 (Future/Ongoing Crime)：</strong> "我杀了人，我该怎么藏尸体？" -> <span style="color:red">无特免权</span>（这是利用律师促进犯罪）。</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Evidence Review | © 2025
+    </div>
+</div>
+
+</body>
+</html>

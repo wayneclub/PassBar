@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #e1f5fe;
+            color: #0288d1;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .rule-box {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #d35400;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .mimic-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .mimic-item {
+            display: flex;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .mimic-letter {
+            background-color: #2c3e50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .analysis-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .key-point {
+            font-weight: bold;
+            color: #27ae60;
+        }
+        .distractor {
+            background-color: #ffebee;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #c62828;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Evidence: Character Evidence & MIMIC Rule</p>
+    </div>
+
+    <div class="content">
+        <span class="badge">FRE 404(b)</span>
+        
+        <p>本题考查的是证据法中关于<b>先前不当行为（Prior Bad Acts）</b>的可采性问题。正确答案是 <b>(C)</b>。</p>
+
+        <div class="rule-box">
+            <span class="rule-title">核心规则：FRE 404(b)</span>
+            原则上，证明被告过去曾实施过犯罪或不当行为的证据，<b>不能</b>用于证明被告具有某种品格（Character），进而证明其在本次事件中行为符合该品格（即 Propensity / 倾向性）。
+            <br><br>
+            <b>例外：</b>如果证据是用于证明<b>非品格目的</b>，则是可采纳的。
+        </div>
+
+        <h3 class="analysis-title">MIMIC 规则记忆法</h3>
+        <p>为了记住这些“非品格目的”，MBE 考生通常使用 <b>MIMIC</b> 这一口诀：</p>
+        
+        <div class="mimic-container">
+            <div class="mimic-item">
+                <div class="mimic-letter">M</div>
+                <div><b>Motive</b> (动机)</div>
+            </div>
+            <div class="mimic-item">
+                <div class="mimic-letter">I</div>
+                <div><b>Intent</b> (意图)</div>
+            </div>
+            <div class="mimic-item">
+                <div class="mimic-letter">M</div>
+                <div><b>Mistake</b> (Absence of Mistake / 无过失)</div>
+            </div>
+            <div class="mimic-item" style="border: 2px solid #27ae60; background-color: #e8f5e9;">
+                <div class="mimic-letter" style="background-color: #27ae60;">I</div>
+                <div><b>Identity</b> (身份 / 认同) <span style="font-size:12px; color:#27ae60;">← 本题考点</span></div>
+            </div>
+            <div class="mimic-item">
+                <div class="mimic-letter">C</div>
+                <div><b>Common Plan</b> (共同计划)</div>
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <h3 class="analysis-title">本题逻辑分析</h3>
+            <p>
+                <b>1. 关键事实：</b><br>
+                受害人虽然没看到脸，但看到了一把<b>“有独特迷彩涂装的手枪” (unique camouflage paint job)</b>。
+            </p>
+            <p>
+                <b>2. 证据关联：</b><br>
+                证人作证说，被告在一周前曾用<b>同一把独特的迷彩手枪</b>抢劫了他。
+            </p>
+            <p>
+                <b>3. 法律适用：</b><br>
+                这里的证据不是为了说“被告是个坏人，所以他抢劫了受害人”（这是禁止的 Propensity），而是为了说“<b>这把独特的枪是被告的，既然受害人是被这把枪抢劫的，那么抢劫犯就是被告</b>”。
+            </p>
+            <p>
+                这属于 MIMIC 中的 <span class="key-point">Identity (身份)</span>。这种证据通常被称为“作案特征”（Modus Operandi）或“签名特征”（Signature），因为它具有高度的独特性。
+            </p>
+        </div>
+
+        <div class="analysis-section">
+            <h3 class="analysis-title">为什么其他选项是错的？</h3>
+            
+            <div class="distractor">
+                <b>选项 A & D (Propensity):</b><br>
+                选项 A 错误地认为这是不可采的品格证据。选项 D 虽然主张可采，但理由是“证明倾向性”（Propensity），这恰恰是 FRE 404(b) <b>明令禁止</b>的目的。
+            </div>
+
+            <div class="distractor">
+                <b>选项 B (No Conviction):</b><br>
+                这是一个常见的干扰项。根据 FRE 404(b)，引入先前不当行为证据<b>不需要</b>被告已被定罪。
+                <br><br>
+                <b>标准：</b>法官只需确信有<b>足够的证据 (Sufficient Evidence)</b> 让陪审团合理地认定该行为确实发生过即可（参考 <i>Huddleston v. United States</i>）。
+            </div>
+        </div>
+
+        <div class="rule-box" style="background-color: #e3f2fd; border-left-color: #2196f3;">
+            <span class="rule-title">💡 考试技巧</span>
+            在 MBE 题目中，如果看到<b>“独特的武器”、“特殊的作案手法”</b>或<b>“标志性行为”</b>，首先考虑 <b>Identity</b> 例外。
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

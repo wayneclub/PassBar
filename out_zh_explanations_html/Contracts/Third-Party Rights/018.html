@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析：第三方受益人</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .tag-correct { background: #d4edda; color: #155724; }
+        .tag-wrong { background: #f8d7da; color: #721c24; }
+        
+        .diagram {
+            background: #fff;
+            border: 1px dashed #ccc;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            border-radius: 8px;
+        }
+        .arrow {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        .footer {
+            background: #eee;
+            padding: 15px;
+            font-size: 0.85rem;
+            color: #666;
+            text-align: center;
+            border-top: 1px solid #ddd;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts: Third-Party Rights</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">📚 核心考点：意定第三方受益人 (Intended Third-Party Beneficiary)</span>
+            <p>当合同双方（Promisor 和 Promisee）在订立合同时，明确意图将合同利益赋予第三方时，该第三方即为<b>意定受益人</b>。意定受益人有权直接起诉强制执行合同。</p>
+        </div>
+
+        <!-- 案情图解 -->
+        <div class="diagram">
+            <div><b>卖方 (Promisee)</b> 📦 <span class="arrow">交付货物 &rarr;</span> <b>买方 (Promisor)</b></div>
+            <div style="margin: 10px 0; color: #999;">⬇️ 卖方指定付款给银行 ⬇️</div>
+            <div><b>买方 (Promisor)</b> 💰 <span class="arrow">承诺支付 $5,000 &rarr;</span> <b>银行 (Beneficiary)</b></div>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="analysis-step">
+            <span class="step-title">1. 为什么选 D？(正确答案解析)</span>
+            <p>本题的关键在于识别<b>银行的身份</b>。虽然卖方对银行的原始债务已在破产中免除 (Discharged in Bankruptcy)，但这不影响卖方与买方订立新合同的权利。</p>
+            <p>在卖方与买方的新合同中：</p>
+            <ul>
+                <li><b>卖方意图：</b>让买方直接向银行付款。</li>
+                <li><b>买方承诺：</b>同意向银行支付 $5,000 以换取货物。</li>
+            </ul>
+            <p>因此，银行是<b>意定受益人 (Intended Beneficiary)</b>。根据《合同法重述（第二次）》(Restatement (Second) of Contracts § 302)，意定受益人有权强制执行合同。当银行提起诉讼时，其权利已经归属 (Vested)，故银行会胜诉。</p>
+        </div>
+
+        <div class="analysis-step">
+            <span class="step-title">2. 破产免责是“红鲱鱼” (Red Herring)</span>
+            <p>题目中提到卖方的债务已在5年前被免除，这是一个典型的干扰项。许多考生会纠结于“债务已不存在”。</p>
+            <p><b>法律逻辑：</b>意定受益人分为两类：</p>
+            <ul>
+                <li><b>债权人受益人 (Creditor Beneficiary)：</b>用于清偿现有债务。</li>
+                <li><b>受赠受益人 (Donee Beneficiary)：</b>用于赠与。</li>
+            </ul>
+            <p>即使旧债务已免除（法律上不再欠款），卖方仍有权指示买方将钱给银行（作为一种“赠与”或履行道德义务）。无论银行被归类为哪种受益人，只要是<b>意定 (Intended)</b> 的，就有执行权。</p>
+        </div>
+
+        <div class="analysis-step">
+            <span class="step-title">3. 为什么其他选项是错的？</span>
+            
+            <div style="margin-top:10px;">
+                <span class="tag tag-wrong">选项 A 错误</span>
+                <p><b>关于对价 (Consideration)：</b> 买方的承诺是有对价支持的——即卖方交付的货物。对价不需要由受益人（银行）提供，只要合同当事方之间存在交换即可。</p>
+            </div>
+
+            <div style="margin-top:10px;">
+                <span class="tag tag-wrong">选项 B 错误</span>
+                <p><b>关于债务免除：</b> 破产免除的是<b>卖方</b>对银行的旧债务。它并不禁止<b>买方</b>在新合同中承担向银行付款的新义务。</p>
+            </div>
+
+            <div style="margin-top:10px;">
+                <span class="tag tag-wrong">选项 C 错误</span>
+                <p><b>逻辑偏差：</b> 虽然承诺偿还已免除的债务通常不需要新对价（属于例外情况），但这通常指<b>原债务人</b>的承诺。本案是<b>第三方（买方）</b>的承诺，且买方的承诺本身就有货物作为对价。因此，银行胜诉的根本原因它是受益人，而不是因为“无需对价”。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <b>💡 考试技巧：</b> 在 MBE 合同法题目中，看到合同规定向第三方付款时，首先判断该第三方是否为“意定受益人”。如果是，通常该第三方拥有执行权，除非合同已被双方在权利归属(Vest)前合法修改或撤销。
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-color: #e74c3c;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .concept-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            margin-bottom: 10px;
+            padding-bottom: 2px;
+        }
+        .key-term {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .wrong-option {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ddd;
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+        .icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Criminal Procedure & Evidence</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心答案 -->
+        <div class="answer-box">
+            <span class="answer-title">✅ 正确答案：B</span>
+            不可以。因为限制性指示（Limiting Instruction）无法确保陪审团在审议第二名被告的案件时，能够完全忽略该证词。
+        </div>
+
+        <!-- 法律原理讲解 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：Bruton 规则</div>
+            <p>本题考查的是著名的 <span class="latin">Bruton v. United States</span> (1968) 判例规则，该规则基于美国宪法第六修正案的<b>对质条款 (Confrontation Clause)</b>。</p>
+            
+            <p><b>规则核心：</b></p>
+            <ul>
+                <li>在<b>并案审理 (Joint Trial)</b> 中；</li>
+                <li>如果检察官引入未出庭作证的共同被告（Co-defendant）的<b>庭外供述 (Out-of-court confession)</b>；</li>
+                <li>且该供述<b>直接牵连 (Facially incriminates)</b> 另一名被告；</li>
+            </ul>
+            <p>那么，即使法官给予了“限制性指示”（告诉陪审团该证据仅针对供述者本人），也<b>违反</b>了另一名被告的对质权。</p>
+        </div>
+
+        <!-- 逻辑分析 -->
+        <div class="concept-card">
+            <div class="concept-title">为什么限制性指示无效？</div>
+            <p>通常法律假定陪审团会遵守法官的指示。但在 <span class="latin">Bruton</span> 案中，最高法院认为：</p>
+            <p>当共同被告的供述直接指控另一名被告参与犯罪时，这种证据具有<b>毁灭性的杀伤力</b>。要求陪审团在判定被告 A 有罪时使用该供述，而在判定被告 B 时又要在大脑中“删除”该供述，这在心理学上是不现实的。</p>
+            <p><b>本案应用：</b></p>
+            <ol>
+                <li>第一名被告（D1）没有出庭作证（行使第五修正案沉默权）。</li>
+                <li>因此，第二名被告（D2）无法对 D1 进行<b>交叉询问 (Cross-examination)</b>。</li>
+                <li>D1 的供述直接说“我和 D2 抢了银行”。</li>
+                <li>这导致 D2 的宪法对质权被剥夺，且无法通过法官的指示来补救。</li>
+            </ol>
+        </div>
+
+        <!-- 干扰项解析 -->
+        <div class="concept-card">
+            <div class="concept-title">为什么其他选项错误？</div>
+            
+            <div class="wrong-option">
+                <span class="key-term">选项 A (Miranda)：</span> 错误。<br>
+                1. <b>Miranda 警告</b>仅适用于“警方羁押讯问” (Custodial Interrogation)。对着狱友（非警方卧底）吹牛不需要 Miranda 警告。<br>
+                2. 即使违反 Miranda，通常只有被侵权者（D1）有权提出异议，D2 无权主张 D1 的权利（Standing 问题）。
+            </div>
+
+            <div class="wrong-option">
+                <span class="key-term">选项 C (Hearsay Exception)：</span> 错误。<br>
+                虽然“违反刑事利益的陈述” (Declaration against penal interest) 是传闻证据规则的例外，但<b>宪法权利高于证据规则</b>。即使符合传闻例外，如果违反了第六修正案的对质权（如本案情形），该证据仍必须被排除。
+            </div>
+
+            <div class="wrong-option">
+                <span class="key-term">选项 D (Instruction Sufficient)：</span> 错误。<br>
+                这正是 <span class="latin">Bruton</span> 案所推翻的观点。在这种特定情况下，限制性指示被法律认定为<b>不充分 (Insufficient)</b>。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="icon">💡</span><b>MBE 审题技巧：</b><br>
+            看到 <b>"Joint Trial"</b>（并案审理） + <b>"Co-defendant's Confession"</b>（共同被告供述） + <b>"Non-testifying"</b>（未作证），大脑中应立即亮起红灯：<b>Bruton Rule</b>。
+            <br><br>
+            此时，除非供述经过编辑（Redacted）完全删除了关于另一被告的信息，否则限制性指示通常是无效的，证据应被排除或案件应分案审理 (Severance)。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

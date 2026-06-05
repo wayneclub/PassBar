@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background: #f9f9f9;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .card.success {
+            border-left-color: #27ae60;
+            background-color: #e8f5e9;
+        }
+        .card.warning {
+            border-left-color: #e67e22;
+            background-color: #fff3e0;
+        }
+        .card.error {
+            border-left-color: #c0392b;
+            background-color: #fdeea;
+        }
+        h2 {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            color: #95a5a6;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts: Reformation & Fraud</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="card success">
+            <h2>✅ 正确答案：C</h2>
+            <p><strong>结论：</strong>面包店店主会胜诉。因为针对书面文件效力的欺诈性失实陈述（Fraudulent Misrepresentation）是进行合同更改（Reformation）的有效理由。</p>
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div>
+            <h2>⚖️ 核心法律规则</h2>
+            <p>本题考察的是<strong>合同更改</strong>（<span class="english">Reformation</span>）作为一种救济手段的适用条件。</p>
+            
+            <p>根据《合同法重述（第二次）》§ 166，当一方当事人对书面文件的<strong>内容或法律效力</strong>（<span class="english">contents or effect of a writing</span>）作出失实陈述，且满足以下条件时，法院允许对合同进行更改：</p>
+            <ul>
+                <li><strong>欺诈性</strong>（<span class="english">Fraudulent</span>）：陈述方明知是虚假的，意图诱导对方同意。</li>
+                <li><strong>诱导同意</strong>（<span class="english">Induced Assent</span>）：该陈述导致对方签署了合同。</li>
+                <li><strong>正当信赖</strong>（<span class="english">Justifiable Reliance</span>）：受害方的信赖是合理的。</li>
+            </ul>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="card">
+            <h2>🔍 案情应用</h2>
+            <p>在本案中：</p>
+            <ol>
+                <li><strong>欺诈：</strong>律师明知合同条款并未要求她承担抵押贷款，却告诉店主条款要求她承担。这是典型的关于“书面文件效力”的欺诈。</li>
+                <li><strong>信赖：</strong>店主基于律师的解释签署了合同。考虑到律师的专业身份，店主的信赖是正当的。</li>
+                <li><strong>救济：</strong>店主寻求的是<strong>更改</strong>（Reformation），即让法院重写合同以反映双方（基于欺诈性陈述所达成）的真实意图。</li>
+            </ol>
+        </div>
+
+        <!-- 陷阱排除 -->
+        <div class="card warning">
+            <h2>🚫 常见陷阱与错误选项</h2>
+            
+            <p><span class="term">陷阱 1：口头证据规则 (PER)</span></p>
+            <p><strong>选项 B 错误。</strong> 虽然合同包含“完全整合条款”（<span class="english">Fully Integrated Writing</span>），通常禁止引入外部口头证据。但是，<strong>PER 不适用于证明欺诈</strong>。如果一方声称存在欺诈以寻求合同更改，口头证据永远是可采纳的。</p>
+
+            <p><span class="term">陷阱 2：无效 vs. 可撤销</span></p>
+            <p><strong>选项 A 错误。</strong> 这种欺诈属于<strong>诱因欺诈</strong>（<span class="english">Fraud in the Inducement</span>），它使合同<strong>可撤销</strong>（<span class="english">Voidable</span>）或可更改，而不是自始<strong>无效</strong>（<span class="english">Void</span>）。只有当受害方根本不知道自己在签合同（执行欺诈 <span class="english">Fraud in the Factum</span>）时，合同才无效。</p>
+
+            <p><span class="term">陷阱 3：解释模糊条款</span></p>
+            <p><strong>选项 D 错误。</strong> 这里的问题不是条款“模糊”（Ambiguous），而是律师撒谎了。即使条款写得很清楚（对律师而言），欺诈行为依然存在。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="background-color: #e3f2fd; border-left-color: #2196f3;">
+            <h2>💡 MBE 考试技巧</h2>
+            <p>遇到<strong>“律师 vs. 非律师”</strong>的合同题目时，要特别注意<strong>信息不对称</strong>。如果律师利用专业知识误导对方关于合同条款的法律含义（Legal Effect），法院通常会保护处于弱势的非专业人士，允许<strong>Reformation</strong>（改写合同）以符合律师口头承诺的内容。</p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

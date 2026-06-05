@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 10px;
+        color: #333;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 12px;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+    }
+    .tag {
+        display: inline-block;
+        background-color: #e1f5fe;
+        color: #0277bd;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+    .rule-box {
+        background-color: #fff8e1;
+        border-left: 4px solid #ffc107;
+        padding: 12px;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: #d35400;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .mimic-container {
+        background-color: #f1f8e9;
+        border: 1px solid #c5e1a5;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    .mimic-title {
+        text-align: center;
+        font-weight: bold;
+        color: #33691e;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    .mimic-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .mimic-list li {
+        margin-bottom: 6px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+    }
+    .mimic-letter {
+        background-color: #33691e;
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        font-weight: bold;
+        font-size: 12px;
+        flex-shrink: 0;
+    }
+    .analysis-section {
+        margin-bottom: 20px;
+    }
+    .analysis-title {
+        font-weight: bold;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+        color: #2c3e50;
+    }
+    .choice-analysis {
+        background-color: #f9f9f9;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 8px;
+        font-size: 13px;
+    }
+    .choice-correct {
+        border-left: 4px solid #27ae60;
+        background-color: #e8f8f5;
+    }
+    .choice-wrong {
+        border-left: 4px solid #e74c3c;
+        opacity: 0.8;
+    }
+    .footer {
+        background-color: #f8f9fa;
+        padding: 15px;
+        text-align: center;
+        font-size: 12px;
+        color: #7f8c8d;
+        border-top: 1px solid #eee;
+    }
+    .highlight {
+        font-weight: bold;
+        color: #2980b9;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Evidence: Character Evidence & MIMIC Rule</p>
+    </div>
+
+    <div class="content">
+        <span class="tag">FRE 404(b)</span>
+        <span class="tag">Relevancy</span>
+
+        <div class="rule-box">
+            <span class="rule-title">核心考点：品格证据规则 (Character Evidence Rule)</span>
+            根据 <span class="highlight">Federal Rules of Evidence (FRE) 404(b)</span>：
+            <br><br>
+            ❌ <b>一般禁止：</b> 证据不能用来证明一个人具有某种品格（Character），并据此推断他在特定场合依据该品格行事（Propensity Argument）。
+            <br><br>
+            ✅ <b>例外允许：</b> 如果证据是用于<b>非品格目的</b>（Non-character purpose），则是可采纳的。
+        </div>
+
+        <div class="mimic-container">
+            <div class="mimic-title">MIMIC 记忆法则</div>
+            <p style="font-size:12px; text-align:center; margin-top:-5px; margin-bottom:10px;">先前的不当行为 (Prior Bad Acts) 可用于证明：</p>
+            <ul class="mimic-list">
+                <li><span class="mimic-letter">M</span> <b>Motive</b> (动机)</li>
+                <li><span class="mimic-letter">I</span> <b>Intent</b> (意图)</li>
+                <li><span class="mimic-letter">M</span> <b>Mistake</b> (Absence of) (排除过失/意外)</li>
+                <li><span class="mimic-letter">I</span> <b>Identity</b> (身份/作案手法)</li>
+                <li><span class="mimic-letter">C</span> <b>Common Plan</b> (共同计划)</li>
+            </ul>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">本题逻辑链分析</div>
+            <p style="font-size:14px;">
+                1. <b>辩护理由 (Defense)：</b> 被告声称枪击是<b>意外 (Accident)</b>。<br>
+                2. <b>检方证据 (Evidence)：</b> 过去一年内，警察曾两次阻止被告殴打其父。<br>
+                3. <b>法律适用 (Application)：</b> 之前的暴力行为表明被告对受害者怀有敌意。这直接反驳了“意外”的说法，证明了<b>意图 (Intent)</b> 或 <b>排除过失 (Absence of Mistake/Accident)</b>。<br>
+                4. <b>结论：</b> 该证据符合 MIMIC 规则中的 "Absence of Mistake"，因此<b>可采纳</b>。
+            </p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">选项解析</div>
+            
+            <div class="choice-analysis choice-correct">
+                <b>选项 D (正确)：</b><br>
+                "Yes, to show that the defendant killed his father intentionally."<br>
+                这是典型的 MIMIC 用途。证据不是为了说“他是个坏人所以他杀了人”（这是禁止的），而是为了说“因为他以前打过父亲，所以这次开枪不太可能是手滑，而是故意的”。
+            </div>
+
+            <div class="choice-analysis choice-wrong">
+                <b>选项 A (错误)：</b><br>
+                虽然这是“品格证据”的一种形式（Specific Acts），但因为它有合法的非品格目的（证明意图），所以根据 404(b) 是允许的。
+            </div>
+
+            <div class="choice-analysis choice-wrong">
+                <b>选项 C (错误)：</b><br>
+                "To show that the defendant is a violent person."<br>
+                这是<b>致命错误</b>。这就是所谓的“倾向性推论” (Propensity Inference)。法律禁止用证据证明被告是“暴力的人”从而推断他实施了本次暴力行为。必须指向具体的意图或动机，而非一般的人格特质。
+            </div>
+
+            <div class="choice-analysis choice-wrong">
+                <b>选项 B (错误)：</b><br>
+                警官亲眼看到了殴打行为（Personal Knowledge）。至于谁先吵架（Who started it）与证明“被告对父亲有暴力行为从而排除意外”这一逻辑点无关。
+            </div>
+        </div>
+
+        <div class="rule-box" style="background-color: #e3f2fd; border-left-color: #2196f3;">
+            <span class="rule-title">💡 考试技巧 (Exam Tip)</span>
+            当题目中被告辩称 <b>"Accident" (意外)</b> 或 <b>"Self-Defense" (自卫)</b> 时，检方通常可以引入被告针对<b>同一受害者</b>的过往暴力史。
+            <br><br>
+            这不被视为攻击被告的人格，而是为了证明被告当时的心态 (State of Mind) 或反驳意外说。
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Evidence Review | © 2025 Legal Study Aid
+    </div>
+</div>
+
+</body>
+</html>

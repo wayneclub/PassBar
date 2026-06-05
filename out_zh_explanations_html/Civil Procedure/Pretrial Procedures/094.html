@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点精析：损害赔偿的特殊诉讼请求</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="card-header">
+            <h1>MBE 考点精析</h1>
+            <div class="sub-title">民事诉讼法: 诉讼文书与动议</div>
+        </div>
+
+        <div class="concept-box">
+            <h3>核心考点: 损害赔偿的特殊诉讼请求与更明确陈述动议</h3>
+            <p class="latin"><em>Special Damages Pleading & Motion for More Definite Statement</em></p>
+        </div>
+
+        <p>本题考察的是联邦法院诉讼中，对不同类型损害赔偿的诉讼请求（<span class="term">pleading</span>）具体性要求，以及被告可以提出的<span class="term">更明确陈述动议 (Motion for a More Definite Statement)</span>。</p>
+
+        <h3>📊 概念对比表：普通损害赔偿 vs. 特殊损害赔偿</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>特征</th>
+                    <th>普通损害赔偿 (General Damages)</th>
+                    <th>特殊损害赔偿 (Special Damages)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>定义</strong></td>
+                    <td>侵权行为自然且必然的结果，无固定或可量化价值。</td>
+                    <td>侵权行为自然但非必然的结果，具有固定或可量化价值。</td>
+                </tr>
+                <tr>
+                    <td><strong>常见例子</strong></td>
+                    <td>精神痛苦、身体疼痛、名誉损失。</td>
+                    <td>医疗费用、误工费、财产损失、特定合同损失。</td>
+                </tr>
+                <tr>
+                    <td><strong>诉讼请求要求 (<code class="term">FRCP 9(g)</code>)</strong></td>
+                    <td>可<span class="term">概括性陈述 (alleged generally)</span>。</td>
+                    <td>必须<span class="term">具体陈述 (specifically stated)</span>，详细说明损失的性质和金额。</td>
+                </tr>
+                <tr>
+                    <td><strong>动议类型</strong></td>
+                    <td>通常不会引发<code class="term">FRCP 12(e)</code>动议。</td>
+                    <td>若未具体陈述，可能引发<code class="term">FRCP 12(e)</code><span class="term">更明确陈述动议</span>。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>🎨 诉讼流程与动议分析图</h3>
+        <div class="diagram">
+            <h4>本案诉讼流程与动议节点</h4>
+            <div class="flow-container">
+                <div class="party-box">摩托车手 (原告，州A)</div>
+                <div class="arrow">↓ 提起诉讼</div>
+                <div class="flow-node">诉状提交联邦法院</div>
+                <div class="arrow">↓ 请求“我的医疗费用”</div>
+                <div class="flow-node active">诉状内容：特殊损害赔偿未具体陈述</div>
+                <div class="arrow">↓ (15天后)</div>
+                <div class="party-box">司机 (被告，州B)</div>
+                <div class="arrow">↓ 提出动议</div>
+                <div class="flow-node highlight-node">更明确陈述动议 (FRCP 12(e))</div>
+                <div class="arrow">↓ 法院裁决</div>
+                <div class="flow-node highlight-node">动议成功 (要求原告修改诉状)</div>
+            </div>
+        </div>
+
+        <h3>⚖️ 法律依据与推理</h3>
+        <div class="analysis-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <strong>识别损害赔偿类型。</strong> 摩托车手在诉状中请求的是“我的医疗费用”。医疗费用是因事故产生的、具有明确金额或可量化价值的损失，属于<span class="term">特殊损害赔偿 (special damages)</span>。与此相对，像精神痛苦或身体疼痛这类没有固定价值的损失则属于<span class="term">普通损害赔偿 (general damages)</span>。
+            </div>
+        </div>
+        <div class="analysis-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <strong>适用特殊损害赔偿的诉讼请求规则。</strong> 根据<code class="term">联邦民事诉讼规则 (Federal Rule of Civil Procedure, FRCP) 9(g)</code>，当诉讼请求中包含特殊损害赔偿时，必须在诉状中<span class="term">具体陈述 (specifically state)</span>。这意味着原告不能仅仅概括性地请求“我的医疗费用”，而应提供更详细的信息，例如“医疗费用总计10万美元”或列出具体的医疗项目。本案中，摩托车手未能满足这一具体性要求。
+            </div>
+        </div>
+        <div class="analysis-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <strong>评估“更明确陈述动议”的成功可能性。</strong> <code class="term">FRCP 12(e)</code> 允许被告在诉状“过于模糊或含糊不清，以至于被告无法合理地准备答辩”时，提出<span class="term">更明确陈述动议 (motion for a more definite statement)</span>。由于摩托车手未能按照<code class="term">FRCP 9(g)</code>的要求具体陈述其特殊损害赔偿，导致诉状在这一方面存在缺陷，司机提出的动议很可能会成功，法院将要求摩托车手修改诉状以提供更具体的细节。
+            </div>
+        </div>
+
+        <div class="rule-block">
+            <strong>⚠️ 核心规则与易错点提示：</strong>
+            <p>MBE考试中，<span class="term">普通损害赔偿</span>和<span class="term">特殊损害赔偿</span>的区分及其各自的<span class="term">诉讼请求具体性要求</span>是常考点。务必记住：普通损害可以概括性陈述，而特殊损害<strong>必须具体陈述</strong>。若特殊损害未具体陈述，被告可依据<code class="term">FRCP 12(e)</code>提出<span class="term">更明确陈述动议</span>，而非直接驳回诉讼（<code class="term">FRCP 12(b)(6)</code>动议通常用于诉状未能陈述一个可获得救济的请求）。</p>
+        </div>
+
+        <div class="case-box">
+            <strong>🔑 独立案例/延伸情景：<code class="term">FRCP 12(e)</code>动议的目的与时机</strong>
+            <p><code class="term">FRCP 12(e)</code>动议旨在解决诉状的模糊性，以便被告能够准备一个有意义的答辩。它必须在被告提交答辩状之前提出。如果诉状的缺陷是未能陈述一个法律上可获得救济的请求，那么更合适的动议是<code class="term">FRCP 12(b)(6)</code>驳回动议。本案中，问题在于细节不足，而非请求本身不合法，因此<code class="term">12(e)</code>动议是恰当的。</p>
+        </div>
+
+        <h3>❌ 答案深度解析与干扰项排除</h3>
+        <div class="option correct">
+            <b>选项 D 是正确的：是的，因为摩托车手未能具体陈述其特殊损害赔偿。</b>
+            <p>正如分析所示，医疗费用属于特殊损害赔偿，根据<code class="term">FRCP 9(g)</code>，必须在诉状中具体陈述。摩托车手仅请求“我的医疗费用”不符合这一要求，因此司机提出的更明确陈述动议很可能成功。</p>
+        </div>
+        <div class="option wrong">
+            <b>选项 A 是错误的：不，因为损害赔偿可以概括性陈述。</b>
+            <p>此选项混淆了普通损害赔偿和特殊损害赔偿的规则。只有普通损害赔偿（如精神痛苦）可以概括性陈述。特殊损害赔偿（如医疗费用）则必须具体陈述。</p>
+        </div>
+        <div class="option wrong">
+            <b>选项 B 是错误的：不，因为司机尚未进行证据开示。</b>
+            <p>证据开示 (discovery) 是诉讼的后期阶段，旨在收集证据。诉状的缺陷（缺乏具体性）是程序开始阶段的问题，不能通过等待证据开示来弥补。诉状必须在提交时就符合规则要求，以便被告能够合理答辩。</p>
+        </div>
+        <div class="option wrong">
+            <b>选项 C 是错误的：不，因为司机必须在提出此动议之前提交答辩。</b>
+            <p>根据<code class="term">FRCP 12</code>，被告可以在提交答辩状之前提出一系列动议，包括<code class="term">12(e)</code>的更明确陈述动议。事实上，提出这些动议的目的之一就是为了在答辩前澄清诉状内容，以便更好地准备答辩。</p>
+        </div>
+
+        <div class="footer-tip">
+            <strong>🎓 考试技巧：</strong>
+            <p>记忆<span class="term">FRCP 9(g)</span>关于损害赔偿的诉讼请求规则，可以简化为：“普通损害（General Damages）概括陈述，特殊损害（Special Damages）具体量化”。当题目涉及医疗费、误工费等有明确数字的损失时，立即联想到特殊损害，并检查其是否被具体陈述。</p>
+        </div>
+
+        <div class="references">
+            <h3>参考法规与文献</h3>
+            <a href="#">🔗 Fed. R. Civ. P. 9(g) (pleading special damages).</a>
+            <a href="#">🔗 Fed. R. Civ. P. 12(e) (filing a motion for a more definite statement).</a>
+            <a href="#">🔗 22 Am. Jur. 2d Damages §§ 42–43 (2022) (defining general and special damages).</a>
+        </div>
+
+        <div class="metadata">
+            <div><strong>民事诉讼法</strong><br>Subject</div>
+            <div><strong>审前程序</strong><br>Chapter</div>
+            <div><strong>诉讼文书</strong><br>Topic</div>
+        </div>
+
+        <div class="copyright">
+            <p>Copyright © UWorld. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

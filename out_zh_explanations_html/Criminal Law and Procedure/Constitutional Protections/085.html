@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-top: 0;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        .correct-box {
+            border: 2px solid var(--correct-color);
+            background-color: #e8f8f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .correct-title {
+            color: var(--correct-color);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .wrong-analysis {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+
+        .wrong-item {
+            margin-bottom: 8px;
+        }
+
+        .wrong-label {
+            color: var(--wrong-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .key-point {
+            background-color: #eaf2f8;
+            border-left: 4px solid var(--primary-color);
+            padding: 10px;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Criminal Procedure & Constitutional Protection</p>
+    </div>
+
+    <!-- 核心考点卡片 -->
+    <div class="card">
+        <span class="tag">核心原则</span>
+        <h2>举证责任与正当程序</h2>
+        <p>本题的核心考点在于<strong>宪法正当程序条款 (Due Process Clause)</strong> 对刑事案件举证责任的要求。</p>
+        <p>根据最高法院在 <span class="latin">In re Winship (1970)</span> 案中的裁定：</p>
+        <div class="key-point">
+            控方 (Prosecution) 必须承担证明刑事犯罪<strong>每一个构成要件 (Every Element)</strong> 的责任，且证明标准必须达到<strong>毫无合理疑点 (Beyond a Reasonable Doubt)</strong>。
+        </div>
+    </div>
+
+    <!-- 深度解析卡片 -->
+    <div class="card">
+        <span class="tag">难点辨析</span>
+        <h2>不在场证明 (Alibi) 的性质</h2>
+        <p>很多考生容易混淆“不在场证明”与“肯定性抗辩”。</p>
+        <ul>
+            <li><strong>肯定性抗辩 (Affirmative Defense)：</strong> 如自卫 (Self-defense)、精神错乱 (Insanity)。被告承认做了该行为，但有正当理由。对于此类抗辩，法律允许将举证责任转移给被告。</li>
+            <li><strong>否定性抗辩 (Negation Defense)：</strong> 如不在场证明 (Alibi)。被告声称：“我当时不在那里，所以我不可能犯罪。”</li>
+        </ul>
+        <p><strong>关键逻辑：</strong> 不在场证明直接否定了犯罪的核心要素——<strong>被告在场 (Presence/Identity)</strong>。既然“被告在场”是控方必须证明的要素，那么控方就必须毫无合理疑点地证明它。</p>
+        <p>如果要求被告证明自己不在场，实际上就是免除了控方证明被告在场的责任，这违反了宪法。</p>
+    </div>
+
+    <!-- 答案解析卡片 -->
+    <div class="card">
+        <span class="tag">答案详解</span>
+        <h2>为什么选 D？</h2>
+        <div class="correct-box">
+            <span class="correct-title">正确选项 D</span>
+            "If you have a reasonable doubt as to whether the defendant was present at the convenience store at about 11:00 p.m. on March 5, you must find him not guilty."
+        </div>
+        <p><strong>解析：</strong></p>
+        <p>这个指示正确地将焦点放在了<strong>合理怀疑 (Reasonable Doubt)</strong> 上，并且针对的是犯罪要素（在场/时间/地点）。</p>
+        <p>它不需要被告去“证明”什么，而是告诉陪审团：只要对“被告是否在场”这一要素存疑（无论是因为控方证据不足，还是因为姐姐的证词），根据宪法，就必须判无罪。</p>
+
+        <div class="wrong-analysis">
+            <div class="wrong-item">
+                <span class="wrong-label">选项 A 错误：</span>
+                声称不在场证明必须由被告确立且标准是优势证据 (Preponderance of evidence)。这是违宪的，因为这转移了犯罪要素的举证责任。
+            </div>
+            <div class="wrong-item">
+                <span class="wrong-label">选项 B 错误：</span>
+                要求被告提出“充分证据”才能让陪审团考虑不在场证明。这同样暗示了被告有某种初始负担。实际上，只要证据记录中有任何内容引发了对“在场”的怀疑，陪审团都应考虑。
+            </div>
+            <div class="wrong-item">
+                <span class="wrong-label">选项 C 错误（高干扰项）：</span>
+                "If the <strong>defendant's evidence</strong> has caused you..." 
+                <br>这个选项很狡猾。它暗示合理怀疑必须是由<strong>被告的证据</strong>引发的。但实际上，合理怀疑可能仅仅源于控方证人的不可靠。将怀疑的来源限制在被告的证据上，不恰当地加重了被告的负担。
+            </div>
+        </div>
+    </div>
+
+    <!-- 考试技巧卡片 -->
+    <div class="card">
+        <span class="tag">MBE 考试技巧</span>
+        <h2>如何秒杀此类题目</h2>
+        <ol>
+            <li><strong>识别抗辩类型：</strong> 看到 Alibi（不在场）或 Lack of Intent（缺乏意图），立即反应这是在攻击犯罪要素 (Element)。</li>
+            <li><strong>寻找举证责任：</strong> 对于攻击犯罪要素的抗辩，举证责任<strong>永远</strong>在控方 (Prosecution)。</li>
+            <li><strong>警惕陷阱：</strong> 任何暗示“被告必须证明...” (Defendant must prove / establish) 的选项对于 Alibi 几乎都是错的。</li>
+            <li><strong>最佳指示：</strong> 正确的 Jury Instruction 通常是：“如果陪审团对[该要素]有合理怀疑，必须判无罪。”</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .concept-box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .concept-header {
+            font-weight: bold;
+            color: var(--accent-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .wrong-option {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #fff5f5;
+            border-left: 3px solid var(--warning-color);
+            font-size: 0.9rem;
+        }
+
+        .key-point {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Negligence & Municipal Immunity</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="card">
+            <span class="card-title">✅ 正确答案：B</span>
+            租户无法胜诉，因为缺乏<b>事实因果关系 (Actual Causation)</b>。即使市政建设单位遵守了法规，损害依然会发生。
+        </div>
+
+        <!-- 考点一：因果关系 -->
+        <div class="concept-box">
+            <div class="concept-header">🔑 核心考点：事实因果关系 (Actual Causation)</div>
+            <p>在过失侵权 (Negligence) 案件中，原告必须证明四个要素：</p>
+            <ol>
+                <li>义务 (Duty)</li>
+                <li>违约 (Breach)</li>
+                <li><b>因果关系 (Causation)</b></li>
+                <li>损害 (Damages)</li>
+            </ol>
+            <p>本题考察的是<b>事实因果关系</b>，通常使用 <span class="term">"But-For" Test (若无规则)</span> 来判定。</p>
+            <p><b>规则：</b>如果“若无”被告的过失行为，原告的损害依然会发生，那么被告的行为就不是导致损害的实际原因。</p>
+            <p><b>应用：</b>题目明确指出：“即使建设单位遵守了建筑法规...店面仍会遭受同样的损失”。这直接切断了因果链条。</p>
+        </div>
+
+        <!-- 考点二：市政豁免权 -->
+        <div class="concept-box">
+            <div class="concept-header">🛡️ 干扰考点：市政豁免权 (Municipal Immunity)</div>
+            <p>题目提到该地遵循“传统规则”。在传统规则下，市政当局的责任取决于职能类型：</p>
+            <ul>
+                <li><span class="term">政府职能 (Governmental Functions)</span>：如警察、消防、法院。享有豁免权。</li>
+                <li><span class="term">专有职能 (Proprietary Functions)</span>：如运营水电、停车场、<b>建造出租的商场</b>。不享有豁免权，像私人企业一样承担责任。</li>
+            </ul>
+            <div class="wrong-option">
+                <b>❌ 为什么选项 A 错误？</b><br>
+                因为建造“带状购物中心”并出租给商家属于<b>专有职能 (Proprietary Function)</b>。市政当局在此角色下不享有豁免权。
+            </div>
+        </div>
+
+        <!-- 考点三：Negligence Per Se -->
+        <div class="concept-box">
+            <div class="concept-header">⚖️ 概念辨析：当然过失 (Negligence Per Se)</div>
+            <p>违反安全法规（如建筑规范）确实可以确立 <span class="english-term">Negligence Per Se</span>。</p>
+            <p>但这仅仅证明了前两个要素：<b>义务 (Duty)</b> 和 <b>违约 (Breach)</b>。</p>
+            <div class="wrong-option">
+                <b>❌ 为什么选项 C 错误？</b><br>
+                即使证明了 Negligence Per Se，原告仍必须证明<b>因果关系 (Causation)</b>。由于本案中因果关系不成立，原告依然败诉。
+            </div>
+        </div>
+
+        <!-- 总结 -->
+        <div class="card" style="background: #f0fff4; border-left-color: #27ae60;">
+            <span class="card-title">💡 考试技巧 (Exam Tip)</span>
+            <p>在 MBE 题目中，如果看到事实模式明确陈述<b>“即使被告没有过失，结果也会一样”</b>，这几乎总是指向<b>事实因果关系 (Actual Causation)</b> 的缺失。</p>
+            <p>不要被“违反法规”或“政府实体”等复杂背景分散注意力，抓住因果关系的断裂点即可。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-badge {
+            display: inline-block;
+            background-color: var(--success-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .concept-box {
+            background-color: #eef7fc;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+
+        .logic-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logic-step:last-child {
+            border-bottom: none;
+        }
+
+        .trap-alert {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .trap-title {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Civil Procedure | Res Judicata</div>
+    </div>
+
+    <div class="content">
+        <div class="answer-badge">正确答案：C</div>
+
+        <p>本题考察的核心是<b>既判力（Res Judicata / Claim Preclusion）</b>以及联邦法院如何处理州法院的判决。</p>
+
+        <div class="concept-box">
+            <span class="concept-title">核心考点：有偏见的驳回 (Dismissal with Prejudice)</span>
+            当法院将案件 <b>"dismissed with prejudice"</b> 时，这在法律上等同于<b>实体判决 (Judgment on the Merits)</b>。这意味着原告被永久禁止就同一诉因再次起诉。
+        </div>
+
+        <h3>⚖️ 法律推理逻辑</h3>
+
+        <div class="logic-step">
+            <span class="term">1. 既判力的三个要素</span><br>
+            要适用既判力（Claim Preclusion），必须满足：
+            <ul>
+                <li><b>相同的当事人</b> (Same Parties)</li>
+                <li><b>相同的诉讼请求</b> (Same Claim)</li>
+                <li><b>有效的实体终局判决</b> (Valid Final Judgment on the Merits)</li>
+            </ul>
+            <br>
+            本案中，前两个要素显然满足。争议点在于第三个要素：因“未能推进诉讼”而被“有偏见驳回”是否属于实体判决？答案是肯定的。
+        </div>
+
+        <div class="logic-step">
+            <span class="term">2. 充分信任和信用条款 (Full Faith and Credit)</span><br>
+            根据 <b>28 U.S.C. § 1738</b>，联邦法院必须给予州法院判决<b>与该州法院相同的效力</b>。
+            <br><br>
+            既然州法院已经作出了“有偏见的驳回”（即实体终局判决），联邦法院必须尊重这一判决，禁止原告重新起诉。
+        </div>
+
+        <div class="trap-alert">
+            <div class="trap-title">⚠️ 易错点辨析：为什么不选 D？</div>
+            <p><b>选项 D</b> 提到了《联邦民事诉讼规则》(FRCP)。这是一个经典的 MBE 陷阱。</p>
+            <p>虽然 FRCP 41(b) 确实规定在联邦法院因未能起诉而被驳回视为实体判决，但本案的第一项判决是由<b>州法院 (State Court)</b> 作出的。</p>
+            <p><b>关键规则：</b></p>
+            <ul>
+                <li>如果是<b>联邦法院</b>的判决 → 适用联邦法律 (FRCP)。</li>
+                <li>如果是<b>州法院</b>的判决 → 适用该州的既判力规则（通过 Full Faith and Credit Act）。</li>
+            </ul>
+            <p>虽然结果相同（都是有既判力），但选项 D 的<b>法律依据（FRCP）是错误的</b>，因为 FRCP 不管辖州法院的判决效力。</p>
+        </div>
+
+        <div class="logic-step">
+            <span class="term">其他选项分析</span>
+            <ul>
+                <li><b>选项 A 错误：</b>既判力不分法院系统。联邦法院必须尊重州法院的判决。</li>
+                <li><b>选项 B 错误：</b>"With prejudice"（有偏见）这个词本身就意味着法院已经对案件进行了终局性处理，具有实体判决的效力，即使法院没有开庭审理事实。</li>
+            </ul>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

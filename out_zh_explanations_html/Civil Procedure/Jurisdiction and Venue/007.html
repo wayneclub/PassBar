@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            display: flex;
+            align-items: center;
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--correct-color);
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rule-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .step {
+            margin-bottom: 15px;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            color: #666;
+        }
+
+        .wrong-option {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #666;
+            border-left: 3px solid #ddd;
+            padding-left: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background: #f1f1f1;
+            font-size: 0.8rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure: Jurisdiction</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-box">
+            <div class="answer-label">B</div>
+            <div>
+                <strong>正确答案：</strong><br>
+                发回案件，因为各方当事人不具有身份多元性 (Remand, because the parties are not diverse)。
+            </div>
+        </div>
+
+        <!-- 核心考点 -->
+        <div class="section-title">⚖️ 核心考点 (Key Concept)</div>
+        <div class="rule-box">
+            <strong>法定代理人的公民身份 (Citizenship of Legal Representative)</strong><br>
+            根据 <em>28 U.S.C. § 1332(c)(2)</em>，在涉及死者遗产的诉讼中，法定代理人（Legal Representative）的公民身份被视为与<strong>死者 (Decedent)</strong> 的公民身份相同，而不是代理人本人的住所地。
+        </div>
+
+        <!-- 详细解析 -->
+        <div class="section-title">🔍 逻辑推演 (Analysis)</div>
+        
+        <div class="step">
+            <div class="step-title">第一步：确定管辖权基础</div>
+            <p>联邦法院要受理此案，必须具备<strong>属事管辖权 (Subject Matter Jurisdiction)</strong>。本案不涉及联邦法律问题 (Federal Question)，因此必须依赖<strong>多元化管辖权 (Diversity Jurisdiction)</strong>。</p>
+            <p>多元化管辖权要求：<br>
+            1. 争议金额超过 $75,000。<br>
+            2. 原被告之间具有<strong>完全的公民身份多元性 (Complete Diversity)</strong>。</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">第二步：判定当事人公民身份</div>
+            <ul>
+                <li><strong>被告 (医院)：</strong>
+                    <br>注册地 (State A) + 主要营业地 (State A) = <span class="tag">A州公民</span>
+                </li>
+                <li><strong>原告 (法定代理人)：</strong>
+                    <br>虽然代理人本人住在 B 州，但根据法律规定，他代表死者起诉。
+                    <br>死者生前定居在 A 州。
+                    <br>因此，代理人在本案中被视为 = <span class="tag">A州公民</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-title">第三步：结论</div>
+            <p>原告是 A 州公民，被告也是 A 州公民。双方来自同一州，<strong>缺乏多元性 (Lack of Diversity)</strong>。</p>
+            <p>因此，联邦法院没有管辖权，必须将案件<strong>发回 (Remand)</strong> 州法院。</p>
+        </div>
+
+        <!-- 排除错误选项 -->
+        <div class="section-title">❌ 为什么其他选项错误？</div>
+        
+        <div class="wrong-option">
+            <strong>选项 A (争议金额不足)：错误。</strong><br>
+            单一原告起诉单一被告时，可以将所有索赔金额<strong>合并计算 (Aggregate)</strong>。
+            <br>$60,000 (过失) + $40,000 (违约) = $100,000。
+            <br>这超过了 $75,000 的门槛，所以金额不是发回重审的理由。
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 C & D (保留案件)：错误。</strong><br>
+            既然不存在基础的多元化管辖权，联邦法院就不能保留案件。补充管辖权 (Supplemental Jurisdiction) 的前提是法院至少对其中一项索赔拥有原始管辖权，本案连一项都没有。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">💡 考试技巧 (Exam Tip)</div>
+        <div class="rule-box" style="background-color: #e8f4f8; border-color: #b3e5fc;">
+            遇到涉及<strong>遗产 (Estate)</strong>、<strong>未成年人 (Infant)</strong> 或<strong>无行为能力人 (Incompetent)</strong> 的题目时，千万不要看代理人/监护人本人的住所地！<br><br>
+            👁️ <strong>盯着被代表的人 (The Represented Party)</strong> 的住所地看。这是 MBE 常见的陷阱。
+        </div>
+
+    </div>
+
+    <div class="footer">
+        MBE Civil Procedure Review
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --warning-color: #e74c3c;
+        --success-color: #27ae60;
+        --text-color: #333;
+        --bg-color: #f4f7f6;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 10px;
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+    .header .sub-title {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .answer-box {
+        background: var(--highlight-bg);
+        border-left: 5px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .answer-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+    }
+    .answer-title::before {
+        content: "✓";
+        background: var(--success-color);
+        color: white;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 8px;
+        font-size: 12px;
+    }
+    .section-title {
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+    }
+    .concept-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .concept-icon {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        display: block;
+    }
+    .case-law {
+        background-color: #fff8e1;
+        border: 1px dashed #f1c40f;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+    }
+    .trap-alert {
+        margin-top: 10px;
+        font-size: 0.9rem;
+    }
+    .trap-item {
+        margin-bottom: 8px;
+        padding-left: 10px;
+        border-left: 3px solid var(--warning-color);
+    }
+    .key-term {
+        font-weight: bold;
+        color: var(--accent-color);
+    }
+    .footer {
+        text-align: center;
+        font-size: 0.8rem;
+        color: #888;
+        margin-top: 20px;
+        padding-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">侵权法：公开权的盗用</div>
+    </div>
+
+    <div class="content">
+        <!-- Correct Answer Section -->
+        <div class="answer-box">
+            <div class="answer-title">正确答案：A</div>
+            <p><strong>不会被驳回。</strong>因为广告中包含了足以识别该著名车手身份的特征（即那辆独特的赛车），这足以支持责任判决。</p>
+        </div>
+
+        <!-- Core Legal Concept -->
+        <div class="section-title">⚖️ 核心考点：盗用公开权</div>
+        <div class="concept-card">
+            <span class="concept-icon">🆔</span>
+            <p><strong>Misappropriation of Right of Publicity</strong><br>（盗用公开权/形象权）</p>
+            <p>这是侵犯隐私权（Invasion of Privacy）的四种侵权行为之一。构成要件如下：</p>
+            <ol>
+                <li>被告未经授权使用了原告的<strong>身份标识 (Identity)</strong>；</li>
+                <li>为了被告的<strong>商业利益 (Commercial Advantage)</strong>。</li>
+            </ol>
+            <p style="font-size: 0.9em; color: #666;">注意：这里的“身份标识”不局限于姓名或肖像，还包括任何能够让人联想到原告的独特物品或特征。</p>
+        </div>
+
+        <!-- Case Law Analysis -->
+        <div class="section-title">📚 经典判例 (Case Law)</div>
+        <div class="case-law">
+            <p><strong>Motschenbacher v. R. J. Reynolds Tobacco Co. (1974)</strong></p>
+            <p>本题几乎完全复刻了这个著名的第九巡回上诉法院判例。</p>
+            <p>在该案中，烟草公司在广告中使用了一辆经过改装的独特赛车图片。虽然驾驶员的面部不可见，但因为该赛车的涂装极其独特（distinctive markings），公众看到车就会联想到该赛车手。</p>
+            <p><strong>法院裁定：</strong>即使没有使用名字或脸，<strong>“独特的赛车” (Distinctive Race Car)</strong> 构成了车手身份的象征，因此构成了对公开权的侵犯。</p>
+        </div>
+
+        <!-- Why Other Options are Wrong -->
+        <div class="section-title">🚫 陷阱排除</div>
+        <div class="trap-alert">
+            <div class="trap-item">
+                <strong>选项 B 错误 (Public Figure)：</strong>
+                <br>公众人物不仅拥有公开权，而且他们的形象通常具有更高的商业价值。公众人物身份并不意味着商家可以免费盗用其形象牟利。
+            </div>
+            <div class="trap-item">
+                <strong>选项 C 错误 (Emotional Loss)：</strong>
+                <br>与其他隐私侵权（如侵扰安宁 Intrusion）不同，<strong>公开权 (Right of Publicity)</strong> 本质上是一种<strong>财产权利 (Property Right)</strong>。原告只需证明经济损失（Economic Loss）即可，无需证明精神痛苦。
+            </div>
+            <div class="trap-item">
+                <strong>选项 D 错误 (No Name)：</strong>
+                <br>这是最常见的干扰项。法律不要求必须使用“姓名”。只要使用了<strong>“身份的充分标志” (Sufficient Indicia of Identity)</strong>——如声音模仿、独特的服装或本题中的独特赛车——即构成侵权。
+            </div>
+        </div>
+
+        <!-- Exam Strategy -->
+        <div class="section-title">💡 考试通关秘籍</div>
+        <p>在处理 MBE 侵权法题目时，如果遇到<strong>“名人 + 广告 + 未经许可”</strong>的组合：</p>
+        <ul>
+            <li>首先判断是否涉及<strong>商业利益</strong>（通常是广告）。</li>
+            <li>其次寻找<strong>连接点</strong>：广告中的元素（声音、背影、物品）是否能让公众<strong>立即联想到</strong>该名人？</li>
+            <li>如果是，即便没有露脸或提名字，原告通常也能胜诉。</li>
+            <li><strong>Motion to Dismiss 标准：</strong> 只要原告的诉状中指称的事实（如“车很独特”）如果被证实为真，能够满足法律要件，法院就不会驳回起诉。</li>
+        </ul>
+
+        <div class="footer">
+            MBE Torts Review | Right of Publicity
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

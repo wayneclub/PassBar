@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析：刑事举证责任</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --correct-bg: #d4edda;
+            --correct-text: #155724;
+            --wrong-bg: #f8d7da;
+            --wrong-text: #721c24;
+            --text-color: #333;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .analysis-section {
+            margin-bottom: 25px;
+        }
+
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid var(--highlight-bg);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .case-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .case-card.violation {
+            background-color: var(--wrong-bg);
+            border-color: #f5c6cb;
+            color: var(--wrong-text);
+        }
+
+        .case-card.valid {
+            background-color: var(--correct-bg);
+            border-color: #c3e6cb;
+            color: var(--correct-text);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .badge-violation {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .badge-valid {
+            background-color: #28a745;
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #eee;
+            font-size: 0.8rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>刑事举证责任与正当程序</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心原则 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心宪法原则 (The Winship Doctrine)</span>
+            根据美国宪法第十四修正案的<strong>正当程序条款 (Due Process Clause)</strong>，控方 (Prosecution) 必须在<strong>排除合理怀疑 (Beyond a Reasonable Doubt)</strong> 的基础上，证明犯罪的每一个<strong>构成要件 (Element of the Offense)</strong>。<br>
+            <br>
+            <span class="latin">In re Winship, 397 U.S. 358 (1970)</span>
+        </div>
+
+        <!-- 题目解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">本案具体分析</div>
+            <p>本题的关键在于区分“犯罪构成要件”与“积极抗辩”。</p>
+
+            <!-- 违宪部分 -->
+            <div class="case-card violation">
+                <span class="badge badge-violation">侵犯权利 (Violation)</span>
+                <strong>问题一：关于“非其妻子”的指示</strong>
+                <p>法规原文定义强奸罪为：“男性与<strong>非其妻子 (not his wife)</strong> 的女性……”</p>
+                <p><strong>解析：</strong>因为法规将“非妻子”直接写在定义中，这使其成为了该罪行的一个<strong>否定性构成要件 (Negative Element)</strong>。因此，控方必须证明“他们没有结婚”。法官将这一举证责任转移给被告（要求被告证明她是妻子），违反了正当程序。</p>
+            </div>
+
+            <!-- 合宪部分 -->
+            <div class="case-card valid">
+                <span class="badge badge-valid">未侵犯权利 (No Violation)</span>
+                <strong>问题二：关于“错误认知”的指示</strong>
+                <p>题目明确指出：“对同意与否的错误认知是一种<strong>积极抗辩 (Affirmative Defense)</strong>。”</p>
+                <p><strong>解析：</strong>最高法院判例（如 <em>Patterson v. New York</em>）确立，对于积极抗辩（即不否定犯罪要素，而是提供正当理由或借口），州政府可以将举证责任分配给被告，通常采用“优势证据 (Preponderance of the Evidence)”标准。这并不违宪。</p>
+            </div>
+        </div>
+
+        <!-- 对比表格 -->
+        <div class="analysis-section">
+            <div class="analysis-title">考点总结：构成要件 vs. 积极抗辩</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>类别</th>
+                        <th>举证责任方</th>
+                        <th>证明标准</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>犯罪构成要件</strong><br>(Elements)</td>
+                        <td>控方<br>(Prosecution)</td>
+                        <td>排除合理怀疑<br>(Beyond a Reasonable Doubt)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>积极抗辩</strong><br>(Affirmative Defense)</td>
+                        <td>被告<br>(Defendant)*</td>
+                        <td>通常为优势证据<br>(Preponderance)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.8rem; color: #666;">*注：对于积极抗辩，州法律可以自行决定由谁承担举证责任。如果州法规定由被告承担，这在宪法上是允许的。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="border-left-color: #e67e22;">
+            <span class="rule-title">💡 MBE 答题技巧</span>
+            在做此类题目时，请仔细阅读<strong>法规文本 (Statute Text)</strong>：
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li>如果某个事实（如“非配偶”、“夜间”、“使用武器”）出现在罪行的<strong>定义句</strong>中，它通常是<strong>构成要件</strong>，控方必须证明。</li>
+                <li>如果题目说某事是“抗辩理由 (Defense)”或涉及精神错乱 (Insanity)、自卫 (Self-defense)、陷害 (Entrapment)，则举证责任可以合法地转移给被告。</li>
+            </ol>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

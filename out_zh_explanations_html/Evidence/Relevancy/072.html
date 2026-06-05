@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 480px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border-top: 5px solid var(--primary-color);
+        }
+        .header {
+            padding: 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+        }
+        .tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0;
+            line-height: 1.4;
+        }
+        .content {
+            padding: 20px;
+            color: var(--text-color);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+        .concept-highlight {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .analysis-title {
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        .option-analysis {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #fafafa;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .correct-badge {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .wrong-badge {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #f9f9f9;
+            padding: 15px 20px;
+            font-size: 13px;
+            color: #666;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+        ul {
+            margin: 5px 0 5px 20px;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <span class="tag">MBE 考点解析</span>
+        <span class="tag" style="background-color: #3498db;">Evidence</span>
+        <h1 class="title">证据的相关性与证明力分量<br><small style="font-size: 14px; font-weight: normal; color: #666;">Relevancy vs. Weight of Evidence</small></h1>
+    </div>
+
+    <div class="content">
+        <p>本题考察的是美国联邦证据规则（Federal Rules of Evidence, FRE）中最基础但也最核心的概念：<strong>相关性 (Relevancy)</strong> 的门槛以及<strong>法官与陪审团的分工</strong>。</p>
+
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法则：FRE 401</span>
+            证据具有相关性，只要它满足以下两个条件：
+            <ul>
+                <li><strong>证明力 (Probative Value)：</strong> 它具有<em>任何</em>倾向(any tendency)使得某一事实比没有该证据时更可能或更不可能；</li>
+                <li><strong>关键性 (Materiality)：</strong> 该事实对诉讼结果有重要意义(of consequence)。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">逻辑推演</div>
+            <p><strong>1. 门槛极低 (Low Threshold)：</strong><br>
+            法律谚语云："A brick is not a wall"（一块砖不是一堵墙）。相关性只需要是构建案件事实之墙的一块“砖”。<br>
+            在本案中，被告持有一把与伤口“相符”(consistent)的刀，这本身就增加了被告实施犯罪的可能性。虽然这不能直接定罪（不是一堵墙），但它绝对是一块有用的“砖”。</p>
+
+            <p><strong>2. 可采性 vs. 证明力分量 (Admissibility vs. Weight)：</strong><br>
+            这是本题的解题关键。</p>
+            <ul>
+                <li><strong>法官 (Judge)：</strong> 决定证据是否<em>可采纳</em> (Admissible)。只要证据通过了FRE 401的低门槛，且没有被其他规则（如FRE 403）排除，就必须放行。</li>
+                <li><strong>陪审团 (Jury)：</strong> 决定证据的<em>分量</em> (Weight)。法医承认“其他刀也可能造成伤口”，这确实削弱了证据的说服力，但这正是陪审团需要去评估的内容，而不是法官将其排除的理由。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">选项解析</div>
+            
+            <div class="option-analysis" style="border-left: 4px solid #27ae60;">
+                <span class="correct-badge">✅ 选项 A (正确)</span><br>
+                <strong>"No, because the probative worth of this evidence is for the jury to assess."</strong><br>
+                这准确描述了法律分工。证据相关（因为刀与伤口相符），所以可采。至于它有多大价值（考虑到其他刀的可能性），完全由陪审团决定。
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-badge">❌ 选项 B (错误)</span><br>
+                <strong>"Insufficient probative value"</strong><br>
+                混淆了概念。只要有“任何倾向”(any tendency)，证明力就足够让证据<em>可采纳</em>。证明力弱不代表不可采。
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-badge">❌ 选项 C (错误)</span><br>
+                <strong>"Could not state the probability"</strong><br>
+                证据不需要证明绝对的可能性或确定性。法医不需要说“就是这把刀”，只需要说“可能是这把刀”即可构成相关证据。
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-badge">❌ 选项 D (错误)</span><br>
+                <strong>"Unfair prejudice" (FRE 403)</strong><br>
+                FRE 403 允许排除那些“不公平偏见实质性超过证明价值”的证据。这里仅仅是展示一把可能作案的刀，并没有引起陪审团非理性的愤怒或偏见，因此不适用 FRE 403 排除。
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <strong>考试贴士：</strong> 在MBE证据法题目中，如果证据有一丁点关联，通常都是相关的。不要因为证据“不够强”就认为它应该被排除，弱证据也是证据，由陪审团去衡量。
+    </div>
+</div>
+
+</body>
+</html>

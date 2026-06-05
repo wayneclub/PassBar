@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            display: block;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background: #e8f8f5;
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: var(--correct-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        .concept-card {
+            background: var(--highlight-bg);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .formula {
+            background: #fff;
+            border: 1px dashed #bdc3c7;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 3px solid #bdc3c7;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-color);
+        }
+        .timeline-item.breach::before {
+            background: var(--wrong-color);
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <span>Contracts: Remedies (合同法：违约救济)</span>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <div class="answer-title">正确答案：A</div>
+            <p><strong>$30,000</strong>，即建筑公司的期待利益赔偿 (Expectancy Damages)。</p>
+        </div>
+
+        <!-- 核心法律规则 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：减损义务</div>
+            <p>在合同法中，当一方违约（包括预期违约 <span class="english-term">Anticipatory Repudiation</span>）后，非违约方有义务采取合理措施减少损失，这被称为<strong>减损义务</strong> (<span class="english-term">Duty to Mitigate</span>) 或<strong>可避免后果原则</strong> (<span class="english-term">Doctrine of Avoidable Consequences</span>)。</p>
+            
+            <p>一旦收到违约通知，非违约方<strong>不能</strong>继续产生费用并期望从违约方那里获得赔偿。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="concept-card">
+            <div class="concept-title">本案时间线分析</div>
+            <div class="timeline">
+                <div class="timeline-item breach">
+                    <strong>时间点 1：医生毁约</strong><br>
+                    医生明确拒绝履行合同 (Repudiation)。此时，建筑公司尚未开工。
+                </div>
+                <div class="timeline-item">
+                    <strong>时间点 2：公司购买材料 ($50,000)</strong><br>
+                    <span style="color: var(--wrong-color);">关键错误：</span>公司在明知医生毁约后，仍然花费 $50,000 购买材料。
+                </div>
+            </div>
+            <p><strong>法律后果：</strong></p>
+            <ul>
+                <li><strong>可追回：</strong>本来可以赚取的利润 ($30,000)。这是为了让非违约方处于“合同如期履行”的地位。</li>
+                <li><strong>不可追回：</strong>毁约后购买的材料费 ($50,000)。因为这是在收到违约通知后产生的不必要开支，属于“未能减损” (<span class="english-term">Failure to Mitigate</span>)。</li>
+            </ul>
+        </div>
+
+        <!-- 赔偿计算公式 -->
+        <div class="concept-card">
+            <div class="concept-title">建筑合同赔偿计算公式</div>
+            <p>当业主在施工前违约时：</p>
+            <div class="formula">
+                赔偿额 = 预期利润 + 违约前已发生的合理成本
+            </div>
+            <p>在本案中：</p>
+            <ul>
+                <li>预期利润 = $30,000</li>
+                <li>违约前成本 = $0 (尚未开工，材料是违约后买的)</li>
+                <li><strong>总赔偿 = $30,000</strong></li>
+            </ul>
+        </div>
+
+        <!-- 为什么其他选项错误 -->
+        <div class="concept-card">
+            <div class="concept-title">干扰项解析</div>
+            <ul>
+                <li><strong>选项 B (Restitution / 返还利益):</strong> 错误。返还利益旨在防止不当得利。由于医生没有收到任何材料或服务，他没有获得任何利益 (<span class="english-term">Benefit Conferred</span>)，因此无需返还。</li>
+                <li><strong>选项 C (Reliance + Expectancy):</strong> 错误。
+                    <br>1. 通常不能同时获得信赖利益和期待利益（避免双重赔偿）。
+                    <br>2. 这里的 $50,000 属于不合理的信赖支出，因为是在对方明确毁约后花费的。</li>
+                <li><strong>选项 D (No Recovery):</strong> 错误。未能减损 (<span class="english-term">Failure to Mitigate</span>) 只是阻止原告追回那些本可以避免的损失（即那 $50,000 材料费），但<strong>不会剥夺</strong>其追回预期利润 ($30,000) 的权利。</li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-card" style="background-color: #fff8e1; border-left: 4px solid #f1c40f;">
+            <div class="concept-title">MBE 考试技巧</div>
+            <p>看到<strong>“Anticipatory Repudiation”</strong>（预期违约）和随后的<strong>“Expenses”</strong>（开销）时，立即警惕：</p>
+            <p>法院不会奖励“堆积损失” (<span class="english-term">Piling on damages</span>) 的行为。违约通知一旦发出，非违约方必须停止“流血”（停止花钱）。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

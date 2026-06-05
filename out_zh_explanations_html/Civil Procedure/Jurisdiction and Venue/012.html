@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .concept-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .wrong-option {
+            color: var(--warning-color);
+            font-weight: bold;
+        }
+        .correct-option {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        .exam-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Civil Procedure: Removal Jurisdiction</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="rule-box">
+            <span class="rule-title">核心考点：谁有权移送案件？</span>
+            只有<b>被告 (Defendant)</b> 有权将案件从州法院移送 (Remove) 至联邦法院。<b>原告 (Plaintiff) 永远无权移送</b>，即使面对反诉。
+        </div>
+
+        <p>本题的正确答案是 <span class="correct-option">B</span>。</p>
+
+        <!-- 详细解析 -->
+        <div class="concept-card">
+            <div class="concept-title">1. 角色认定 (Identify the Parties)</div>
+            <p>在分析移送管辖权 (Removal Jurisdiction) 时，第一步必须明确谁是原告，谁是被告：</p>
+            <ul>
+                <li><b>原告 (Plaintiff):</b> 收藏家 (Collector) —— 她提起了诉讼。</li>
+                <li><b>被告 (Defendant):</b> 艺术家 (Artist) —— 他被起诉。</li>
+            </ul>
+            <p>题目问的是：<b>收藏家</b>是否可以移送案件？</p>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-title">2. 法律规则 (The Shamrock Oil Rule)</div>
+            <p>根据 <b>28 U.S.C. § 1441</b>，移送权仅赋予被告。最高法院在著名的 <i>Shamrock Oil & Gas Corp. v. Sheets</i> (1941) 案中确立了以下原则：</p>
+            <p><b>反诉 (Counterclaim) 不会改变原告的身份。</b></p>
+            <p>即使艺术家提起了一个基于联邦法律的反诉，使收藏家在反诉中成为了“反诉被告”，但在移送规则下，收藏家仍然是<b>原告</b>。因此，她没有资格将案件移送至联邦法院。</p>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-title">3. 为什么其他理由不成立？</div>
+            
+            <p><span class="wrong-option">关于联邦问题管辖权 (Federal Question)：</span><br>
+            虽然艺术家的反诉涉及联邦法规，但根据<b>“表面诉状规则” (Well-Pleaded Complaint Rule)</b>，联邦管辖权通常取决于原告的起诉状，而非被告的答辩或反诉。更重要的是，即使存在联邦问题，原告也无权移送。</p>
+
+            <p><span class="wrong-option">关于多元管辖权 (Diversity Jurisdiction)：</span><br>
+            即使我们假设被告想移送，本案也不满足条件：
+            <ul>
+                <li>原告索赔额仅 $20,000（低于 $75,000 的门槛）。</li>
+                <li><b>反诉金额不能累加：</b> 被告反诉的 $60,000 不能与原告的索赔额相加来满足争议金额 (Amount in Controversy) 的要求。</li>
+            </ul>
+            </p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 实战技巧</strong>
+            <br><br>
+            看到 "Removal"（移送）题目时，请立即执行以下检查清单：
+            <ol>
+                <li><b>谁在尝试移送？</b> 如果是原告 ➔ <b>直接选 No</b>（除非是极罕见的专利/版权例外，MBE极少考）。</li>
+                <li><b>被告是本州公民吗？</b> 如果是基于 Diversity Jurisdiction 且被告是被起诉地法院所在州的公民 ➔ 不能移送 (Forum Defendant Rule)。</li>
+            </ol>
+            本题在第1步即可秒杀。
+        </div>
+
+    </div>
+
+    <div class="footer">
+        MBE Civil Procedure Review
+    </div>
+</div>
+
+</body>
+</html>

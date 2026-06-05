@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --danger-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-banner {
+            background-color: #d5f5e3;
+            border: 1px solid var(--success-color);
+            color: var(--success-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .concept-card {
+            background-color: #fff;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .rule-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .rule-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .rule-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        .diagram-step {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        .diagram-step.success {
+            border-color: var(--success-color);
+            color: var(--success-color);
+        }
+        .diagram-step.fail {
+            border-color: var(--danger-color);
+            color: var(--danger-color);
+            background-color: #fdeea2; /* Highlight the failure point */
+        }
+        .icon-check::after { content: "✅"; }
+        .icon-cross::after { content: "❌"; }
+        
+        .trap-alert {
+            background-color: #fdedec;
+            border: 1px solid var(--danger-color);
+            color: var(--danger-color);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 民事诉讼法考点解析</h2>
+        <div class="sub-title">Res Judicata (Claim Preclusion)</div>
+    </div>
+
+    <div class="content">
+        <!-- Answer Section -->
+        <div class="answer-banner">
+            正确答案：B<br>
+            (判决并非基于实体审理作出)
+        </div>
+
+        <p>本题考察的核心概念是 <strong>既判力/诉讼禁反言 (Res Judicata / Claim Preclusion)</strong> 的适用条件。</p>
+
+        <!-- Core Concept Section -->
+        <div class="concept-card">
+            <div class="concept-title">既判力 (Res Judicata) 的三要素</div>
+            <p>要成功主张既判力，阻止原告重新起诉，必须同时满足以下三个条件：</p>
+            <div class="diagram">
+                <div class="diagram-step success">
+                    <span>1. 相同的当事人 (Same Parties)</span>
+                    <span class="icon-check"></span>
+                </div>
+                <div class="diagram-step success">
+                    <span>2. 相同的诉求/案由 (Same Claim)</span>
+                    <span class="icon-check"></span>
+                </div>
+                <div class="diagram-step fail">
+                    <span>3. 基于实体审理的终局判决<br>(Final Judgment on the Merits)</span>
+                    <span class="icon-cross"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analysis Section -->
+        <div class="concept-card">
+            <div class="concept-title">为何本案不满足 "On the Merits"？</div>
+            <p>虽然前案已经终结，但并非所有判决都是“基于实体”的。根据美国联邦民事诉讼规则 (FRCP 41(b)) 及相关判例，以下情况<strong>不属于</strong>实体判决：</p>
+            <ul class="rule-list">
+                <li>缺乏管辖权 (Lack of Jurisdiction)</li>
+                <li><strong>审判地点不当 (Improper Venue)</strong> <span style="color:var(--danger-color); font-weight:bold;">← 本案情况</span></li>
+                <li>未加入必要当事人 (Failure to join a party)</li>
+            </ul>
+            <p>因为第一次诉讼是因为<strong>审判地点 (Venue)</strong> 这一程序性原因被驳回的，所以它没有既判力，原告可以在正确的法院重新起诉。</p>
+        </div>
+
+        <!-- Trap Alert Section -->
+        <div class="trap-alert">
+            <strong>⚠️ 考场陷阱：法官的口头评论 (Dicta)</strong><br>
+            题目中提到法官在听证会上“对合同有效性表示怀疑”。这是一个典型的干扰项。<br><br>
+            <strong>关键点：</strong> 判决的<strong>依据 (Basis of Judgment)</strong> 才是决定性的。法官虽然听取了证据并发表了评论，但最终的判决书（Order/Judgment）是基于“审判地点不当”作出的。法官对实体的评论属于 <em>Obiter Dicta</em>（附带意见），不产生既判力。
+        </div>
+
+        <!-- Why other options are wrong -->
+        <div class="concept-card">
+            <div class="concept-title">其他选项解析</div>
+            <ul class="rule-list">
+                <li><strong>选项 A (错误)：</strong> 联邦法院的判决在州法院同样具有既判力（基于 Full Faith and Credit 原则），前提是该判决是基于实体的。A 错在认为法院系统不同导致无法适用。</li>
+                <li><strong>选项 C (错误)：</strong> 虽然满足了“相同当事人”和“相同诉求”两个条件，但忽略了必须是“基于实体审理”这一核心要素。</li>
+                <li><strong>选项 D (错误)：</strong> 是否举行了听证会或出示了证据并不重要，重要的是听证会解决的是程序问题（Venue）还是实体问题（Contract）。本案中，听证会是为了解决 Venue 问题。</li>
+            </ul>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

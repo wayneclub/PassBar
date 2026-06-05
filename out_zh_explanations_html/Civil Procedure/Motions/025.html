@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析: Summary Judgment</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --light-text: #7f8c8d;
+            --success-color: #27ae60;
+            --error-color: #c0392b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: #e8f6f3;
+            border-left: 4px solid var(--success-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .rule-title {
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+        .explanation-step {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .step-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 10px;
+            margin-top: 2px;
+        }
+
+        .step-text {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .wrong-option {
+            background-color: #fff5f5;
+            border: 1px solid #ffebeb;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+
+        .wrong-title {
+            color: var(--error-color);
+            font-weight: bold;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .pro-tip {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .pro-tip strong {
+            color: var(--accent-color);
+        }
+
+        code {
+            font-family: "Courier New", monospace;
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Civil Procedure · Summary Judgment</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">核心考点：FRCP 56(d)</div>
+            <p style="font-size: 14px; margin: 0; line-height: 1.5;">
+                当非动议方（Nonmovant）因为尚未进行<strong>证据开示 (Discovery)</strong> 而无法提供必要事实来反驳即决判决动议时，法院可以推迟裁决或驳回动议。
+            </p>
+        </div>
+
+        <div class="section-title">为什么选 C？(法律推理)</div>
+        
+        <div class="explanation-step">
+            <div class="step-icon">1</div>
+            <div class="step-text">
+                <strong>动议过早 (Premature Motion)：</strong><br>
+                本案中，雇主在提交答辩状 (Answer) 后<strong>立即</strong>提交了即决判决动议。这意味着双方还没有开始证据开示程序。
+            </div>
+        </div>
+
+        <div class="explanation-step">
+            <div class="step-icon">2</div>
+            <div class="step-text">
+                <strong>举证责任转移 (Burden Shifting)：</strong><br>
+                雇主拿出了雇佣评估作为证据，完成了初始举证责任。此时，责任转移到了原告（技工）身上，他必须拿出具体的<strong>可采纳证据 (Admissible Evidence)</strong> 来证明存在事实争议。
+            </div>
+        </div>
+
+        <div class="explanation-step">
+            <div class="step-icon">3</div>
+            <div class="step-text">
+                <strong>FRCP 56(d) 的救济：</strong><br>
+                由于没有进行证据开示，技工手里没有证据（比如证明这些评估是借口，或者其他年轻员工表现差却没被解雇的记录）。<br><br>
+                根据 <span class="highlight">Federal Rule of Civil Procedure 56(d)</span>，技工的最佳策略是提交一份<strong>宣誓书 (Affidavit)</strong>，向法院说明：关键事实目前无法获得，请求法院允许进行证据开示后再审议该动议。
+            </div>
+        </div>
+
+        <div class="section-title">为什么其他选项是错的？</div>
+
+        <div class="wrong-option">
+            <span class="wrong-title">❌ 选项 A (Pleadings vs. Evidence)</span>
+            这是最常见的干扰项。一旦动议方提供了证据（如评估报告），非动议方<strong>不能仅依赖起诉状 (Complaint) 中的指控</strong>。必须提供具体的证据来反驳。起诉状只是指控，不是证据。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-title">❌ 选项 B (Outside Pleadings)</span>
+            即决判决的<strong>目的</strong>就是查看诉辩状之外的证据（如宣誓书、文件），以确定是否有必要进行审判。雇主完全可以附上评估报告。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-title">❌ 选项 D (Timing)</span>
+            规则允许当事人在证据开示结束前的任何时间（甚至在案件刚开始时）提交即决判决动议。动议本身并不因为提交得早而违规，只是如果对方证明需要证据开示，法院会推迟裁决。
+        </div>
+
+        <div class="pro-tip">
+            <strong>💡 MBE 考试技巧</strong><br><br>
+            看到 <strong>"Immediately moved for summary judgment"</strong>（立即动议即决判决）这种表述时，要立刻警惕：
+            <ol style="padding-left: 20px; margin-top: 5px; margin-bottom: 0;">
+                <li>如果题目问非动议方该怎么办？答案通常是 <strong>Rule 56(d) Affidavit</strong>（请求更多时间进行证据开示）。</li>
+                <li>如果题目问非动议方能否仅凭起诉状反驳？答案永远是 <strong>NO</strong>。</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

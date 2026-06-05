@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f0f2f5;
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+        padding: 10px;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h2 {
+        margin: 0;
+        font-size: 1.4em;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 0.9em;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+    }
+    .rule-box {
+        background-color: #e3f2fd;
+        border-left: 5px solid #2196f3;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: #1565c0;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .highlight {
+        color: #d32f2f;
+        font-weight: bold;
+    }
+    .scenario-analysis {
+        margin-bottom: 20px;
+    }
+    .step {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 12px;
+    }
+    .step-icon {
+        background-color: #2c3e50;
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 24px;
+        font-size: 14px;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+    .option-card {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+    .correct-answer {
+        border-color: #28a745;
+        background-color: #e8f5e9;
+    }
+    .wrong-answer {
+        border-color: #dc3545;
+        background-color: #fff5f5;
+        opacity: 0.8;
+    }
+    .badge {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.8em;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .badge-correct { background-color: #28a745; color: white; }
+    .badge-wrong { background-color: #dc3545; color: white; }
+    
+    .exam-tip {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 0.95em;
+    }
+    .latin {
+        font-style: italic;
+        color: #555;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <p>Evidence: Impeachment & Character</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">核心规则：FRE 608(b)</span>
+            关于证人诚实品格的特定行为事例 (Specific Instances of Conduct)，在交叉询问中：
+            <ul>
+                <li><b>允许：</b>询问证人本人（内源性证据）。</li>
+                <li><b>禁止：</b>如果证人否认，引入<b>外源性证据 (Extrinsic Evidence)</b> 来证明该行为发生过。</li>
+            </ul>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="scenario-analysis">
+            <h3>⚖️ 逻辑推演</h3>
+            <div class="step">
+                <div class="step-icon">1</div>
+                <div>
+                    <strong>攻击点：</strong>检察官试图通过“伪造签名”这一不良行为 (Bad Act) 来攻击证人的诚实度。这是允许的。
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-icon">2</div>
+                <div>
+                    <strong>证人反应：</strong>证人<b>否认</b>了伪造行为。
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-icon">3</div>
+                <div>
+                    <strong>关键转折：</strong>检察官现在想问“被停职30天”的事。
+                    <br><span class="highlight">陷阱：</span>虽然这看起来像是一个问题，但它实际上是在引入第三方的认定（公司官员的决定）作为证据。
+                </div>
+            </div>
+        </div>
+
+        <!-- 选项解析 -->
+        <h3>📝 选项深度解析</h3>
+        
+        <div class="option-card correct-answer">
+            <span class="badge badge-correct">选项 A (正确)</span>
+            <p><b>不恰当，因为一方当事人不得提及证人所否认的不良行为所带来的后果。</b></p>
+            <p><b>解析：</b>根据 FRE 608(b)，一旦证人否认了不良行为，提问方必须“接受这个回答” (Stuck with the answer)。</p>
+            <p>询问“停职处分”实际上是在引入<b>外源性证据</b>（即公司管理层的决定），这违反了规则。如果允许这个问题，就等于绕过了禁止外源性证据的规定，通过暗示“公司已经认定你有罪”来反驳证人的否认。</p>
+        </div>
+
+        <div class="option-card wrong-answer">
+            <span class="badge badge-wrong">选项 D (常见错误)</span>
+            <p><b>恰当，旨在反驳证人对伪造行为的否认。</b></p>
+            <p><b>解析：</b>这是最大的诱导项。虽然逻辑上这确实能反驳证人，但在法律程序上是<b>被禁止的</b>。对于附带问题 (Collateral Matter) 上的不良行为，不能使用外源性证据进行反驳 (Rebuttal)。你不能为了证明证人撒谎而开启一个关于“他是否真的伪造了签名”的“案中案”。</p>
+        </div>
+
+        <div class="option-card wrong-answer">
+            <span class="badge badge-wrong">选项 B (错误)</span>
+            <p><b>不恰当，因为超出了范围。</b></p>
+            <p><b>解析：</b>错误。证人的<b>可信度 (Credibility)</b> 永远在交叉询问的范围之内。问题本身的主题（诚实品格）是恰当的，不恰当的是提问的方式（引入后果/外源性证据）。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 提分锦囊</strong>
+            <br><br>
+            遇到 <b>FRE 608(b) Bad Acts</b> 题目时，请记住口诀：
+            <br>
+            <b>"Ask, but don't prove."</b>
+            <br><br>
+            你可以<b>问</b>证人：“你是否伪造了签名？”
+            <br>
+            但如果证人说“没有”，你<b>不能</b>：
+            <ul>
+                <li>传唤另一个证人说“我看见他伪造了”。</li>
+                <li>出示伪造的文件。</li>
+                <li>询问被逮捕、被解雇或被停职的后果（因为这暗示了第三方的证明）。</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

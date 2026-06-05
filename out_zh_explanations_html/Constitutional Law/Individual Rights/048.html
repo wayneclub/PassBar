@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            color: var(--correct-color);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .concept-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .step-num {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+        }
+        .wrong-option {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+            border-left: 3px solid #ddd;
+            padding-left: 10px;
+        }
+        .footer {
+            background-color: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">程序性正当程序与财产权益</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：C</span>
+            法院应维持该机构的决定，因为该法规赋予机构自由裁量权，农场主没有获得贷款的<strong>合法应享权利主张 (Legitimate Claim of Entitlement)</strong>。
+        </div>
+
+        <!-- 核心考点讲解 -->
+        <div class="concept-card">
+            <div class="concept-title">核心法律规则</div>
+            <p><strong>第五修正案正当程序条款 (Fifth Amendment Due Process Clause)</strong></p>
+            <p>只有当政府剥夺个人的<strong>生命 (Life)、自由 (Liberty) 或财产 (Property)</strong> 时，政府才必须提供正当程序（如通知和听证会）。</p>
+            <hr style="border: 0; border-top: 1px dashed #ccc; margin: 10px 0;">
+            <p><strong>什么是“财产利益”？</strong></p>
+            <p>根据最高法院判例 <em>Board of Regents v. Roth</em>，要拥有受正当程序保护的财产利益，个人必须对该福利拥有<span class="highlight">合法的应享权利主张 (Legitimate Claim of Entitlement)</span>。</p>
+            <p>仅仅有“单方面的期望” (Unilateral Expectation) 或“抽象的需求” (Abstract Need) 是不够的。</p>
+        </div>
+
+        <!-- 题目深度解析 -->
+        <div class="concept-card">
+            <div class="concept-title">本题逻辑链条</div>
+            
+            <div class="analysis-step">
+                <span class="step-num">1</span>
+                <strong>法规的关键措辞：</strong>
+                <p>题目指出国会赋予了该机构<span class="highlight">自由裁量权 (Discretion)</span> 来决定谁获得贷款。这意味着没有申请人能保证一定获得贷款。</p>
+            </div>
+
+            <div class="analysis-step">
+                <span class="step-num">2</span>
+                <strong>权利性质判定：</strong>
+                <p>因为发放贷款是基于“自由裁量”而非“强制性规定”（如满足条件必须发放），所以农场主对贷款只有“期望”，而没有“合法权利”。</p>
+            </div>
+
+            <div class="analysis-step">
+                <span class="step-num">3</span>
+                <strong>结论：</strong>
+                <p>没有财产利益 (No Property Interest) ➡️ 不需要正当程序 (No Due Process Required) ➡️ 不需要听证会 (No Hearing)。</p>
+            </div>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="concept-card">
+            <div class="concept-title">为什么其他选项是错的？</div>
+            
+            <p><strong>选项 A (错误)：</strong></p>
+            <div class="wrong-option">
+                它错误地认为任何不利的事实认定都需要听证。正当程序的前提是存在受保护的权益（生命、自由、财产），而不是仅仅因为结果对个人不利。
+            </div>
+
+            <p><strong>选项 B (错误)：</strong></p>
+            <div class="wrong-option">
+                虽然“从业自由”是自由利益的一种，但拒绝一笔特定的政府贷款并不等同于禁止某人从事农业。这没有达到剥夺“自由利益”的门槛。
+            </div>
+
+            <p><strong>选项 D (错误)：</strong></p>
+            <div class="wrong-option">
+                国会的支出权 (Spending Power) 虽然广泛，但并非“绝对权力” (Plenary Power) 以至于可以无视宪法权利。国会不能以违反正当程序的方式分配资金。这个选项理由错误。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-card" style="background-color: #e3f2fd; border-color: #90caf9;">
+            <div class="concept-title" style="color: #1565c0;">💡 MBE 实战技巧</div>
+            <p>在做 Due Process 题目时，请遵循两步法：</p>
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li><strong>第一步：</strong>是否有受保护的生命、自由或财产利益被剥夺？（本题卡在这一步）</li>
+                <li><strong>第二步：</strong>如果是，需要什么样的程序？（通常是 <em>Mathews v. Eldridge</em> 平衡测试）</li>
+            </ol>
+            <p><strong>关键词警报：</strong> 看到 "Discretion"（自由裁量权）通常意味着没有 Property Interest；看到 "Shall" 或明确的资格标准通常意味着存在 Property Interest。</p>
+        </div>
+
+    </div>
+    
+</div>
+
+</body>
+</html>

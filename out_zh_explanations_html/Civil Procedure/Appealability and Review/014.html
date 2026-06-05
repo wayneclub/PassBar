@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            font-weight: bold;
+            color: #2e7d32;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .case-law {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        .wrong-option {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .wrong-option strong {
+            color: #c62828;
+        }
+        .tip-box {
+            background-color: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+        .tip-title {
+            font-weight: bold;
+            color: #1565c0;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .tip-title::before {
+            content: "💡";
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure / Appealability</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：C</span>
+            提交一份执行令状请愿书<br>
+            (File a petition for a writ of mandamus)
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">⚖️ 法律依据与推理逻辑</div>
+        
+        <p>本题的核心考点在于<b>“最终判决规则”的例外情况</b> (Exceptions to the Final Judgment Rule)，特别是当宪法权利（如陪审团审判权）受到威胁时。</p>
+
+        <p><b>1. 一般原则：最终判决规则 (Final Judgment Rule)</b><br>
+        通常情况下，联邦法院遵循 <span class="latin">28 U.S.C. § 1291</span>，即只有在地区法院作出最终判决后，当事人才可以上诉。中间命令（Interlocutory orders）通常不可立即上诉。</p>
+
+        <p><b>2. 例外：执行令状 (Writ of Mandamus)</b><br>
+        这是一种<b>非常规救济 (Extraordinary Remedy)</b>。上诉法院可以发布此令状，命令下级法院法官纠正明显的滥用自由裁量权或篡夺权力的行为。它仅适用于：
+        <ul>
+            <li>没有其他充分的救济手段；且</li>
+            <li>当事人的权利是清晰且无可争议的。</li>
+        </ul>
+        </p>
+
+        <div class="case-law">
+            <strong>关键判例：Dairy Queen, Inc. v. Wood (1962)</strong><br>
+            美国最高法院在该案中明确裁定：当地区法院错误地剥夺了当事人根据<b>第七修正案 (Seventh Amendment)</b> 享有的陪审团审判权 (Right to Jury Trial) 时，<b>执行令状 (Writ of Mandamus)</b> 是适当的救济手段。
+        </div>
+
+        <p><b>3. 本案分析</b><br>
+        在本案中，供应商面临违约（法律救济）和禁令（衡平法救济）的混合诉讼。根据 <i>Beacon Theatres</i> 和 <i>Dairy Queen</i> 等先例，当法律和衡平法主张并存时，涉及共同事实问题的法律部分<b>必须</b>由陪审团审理。<br><br>
+        地区法院拒绝陪审团审判不仅是错误的，而且侵犯了宪法权利。如果等到最终判决后再上诉，供应商将被迫先经历一次没有陪审团的审判，这被视为“没有其他充分救济手段”。因此，直接向上诉法院申请 <span class="latin">Mandamus</span> 是最佳途径。</p>
+
+        <!-- 错误选项解析 -->
+        <div class="section-title">❌ 为什么其他选项是错的？</div>
+
+        <div class="wrong-option">
+            <strong>A. 保护令 (Protective Order)</strong><br>
+            这是证据开示 (Discovery) 阶段的工具，用于防止骚扰或泄密，与陪审团权利无关。
+        </div>
+
+        <div class="wrong-option">
+            <strong>B. 回避动议 (Motion for Recusal)</strong><br>
+            仅适用于法官有偏见 (Bias) 或利益冲突的情况。法官在法律问题上犯错（即使是大错）通常不是要求回避的理由。
+        </div>
+
+        <div class="wrong-option">
+            <strong>D. 上诉申请 (Application to Appeal)</strong><br>
+            这通常指 <span class="latin">28 U.S.C. § 1292(b)</span> 下的中间上诉。但这需要<b>地区法院法官</b>先证明该问题涉及重大法律分歧并同意上诉。既然法官已经驳回了复议动议，他不太可能配合签署这项证明。因此，这并非“最佳”保护手段。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <div class="tip-title">MBE 考试技巧</div>
+            <p>看到 <b>"Denial of Jury Trial"</b>（拒绝陪审团审判）+ <b>"Immediate Review"</b>（立即审查）的组合时，请立即联想到 <b>Writ of Mandamus</b>。</p>
+            <p>这是 MBE 考试中关于 Mandamus 最经典的考查场景之一，因为第七修正案的权利被视为极其神圣，值得打破常规的上诉流程。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

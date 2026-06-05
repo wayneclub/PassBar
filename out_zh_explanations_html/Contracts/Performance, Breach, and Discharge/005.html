@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - Contracts</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { 
+      box-sizing: border-box; 
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table-wrapper {
+      overflow-x: auto;
+      margin: 24px 0;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 17px;
+      min-width: 600px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.active {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-weight: bold;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+
+    .option-analysis {
+      margin-top: 30px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 16px 0;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 12px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .diagram-container {
+        flex-direction: column;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Contracts: Warranties in Sale-of-Goods Contracts</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：C. Yes, because the clerk's promise created an express warranty.
+      <br><span style="font-size: 16px; font-weight: normal; color: #555;">（是的，因为店员的承诺创建了明示保证，且该明示保证不能被“按现状（as is）”条款所免除。）</span>
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心考点：明示保证的创建与免责限制</h2>
+    
+    <div class="concept-box">
+      <div class="concept-title">1. 明示保证的创建 (Creation of Express Warranty)</div>
+      <p>根据 <span class="term">UCC § 2-313</span>，在货物买卖合同中，卖方通过以下任何方式，只要该内容构成<span class="term">交易基础 (basis of the bargain)</span>，即创建了<b>明示保证 (Express Warranty)</b>：</p>
+      <ul>
+        <li>任何关于货物的<b>事实陈述、承诺或确认 (affirmation of fact or promise)</b>；</li>
+        <li>对货物的<b>描述 (description)</b>；</li>
+        <li>货物的<b>样品或模型 (sample or model)</b>。</li>
+      </ul>
+      <p>⚠️ <b>注意：</b> 卖方无需具备特定意图，也无需使用 "warranty" 或 "guarantee" 等正式词汇。但是，卖方仅表达个人观点或对货物价值进行夸赞（即<b>吹嘘/吹捧 puffery</b>）不构成明示保证。</p>
+    </div>
+
+    <div class="concept-box">
+      <div class="concept-title">2. 明示保证的免责限制 (Disclaimer of Express Warranty)</div>
+      <p>根据 <span class="term">UCC § 2-316(1)</span>，免责条款的解释应尽可能与明示保证保持一致。如果两者发生<b>直接冲突</b>（例如，卖方口头作出了明确保证，但随后试图通过书面“按现状出售 <span class="latin">as is</span>”或“概不负责”等通用条款来免除所有保证），则<b>免责声明无效</b>，明示保证仍然有效。</p>
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h2>担保类型对比表 (Warranties under UCC)</h2>
+    <div class="comparison-table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>担保类型 (Warranty Type)</th>
+            <th>创建条件 (How Created)</th>
+            <th>卖方身份要求 (Seller Status)</th>
+            <th>如何免除 (How Disclaimed)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>明示保证<br>(Express Warranty)</b></td>
+            <td>关于货物事实的承诺、描述、样品，且构成交易基础。</td>
+            <td>任何卖方（不限于商家）</td>
+            <td><b>极难免除。</b> 若免责条款与明示保证直接冲突，免责条款无效。</td>
+          </tr>
+          <tr>
+            <td><b>默示商销性保证<br>(Implied Warranty of Merchantability)</b></td>
+            <td>法律默示：货物适合其普通用途。</td>
+            <td>必须是<b>该类货物的商家 (Merchant)</b></td>
+            <td>可使用口头或书面，必须提及 "merchantability"；或使用 <span class="latin">"as is"</span> 等通用语。</td>
+          </tr>
+          <tr>
+            <td><b>特定用途默示适用性保证<br>(Implied Warranty of Fitness for a Particular Purpose)</b></td>
+            <td>卖方有理由知道买方的特定用途，且买方信赖卖方的专业技能来选择货物。</td>
+            <td>任何卖方（但通常为商家）</td>
+            <td>必须是<b>书面且醒目 (conspicuous)</b>；或使用 <span class="latin">"as is"</span> 等通用语。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Fact/Application Logic -->
+    <h2>案例事实深度剖析 (Fact Application)</h2>
+    <p>本案中，法律关系的演变与责任判定步骤如下：</p>
+    
+    <div style="margin-left: 10px; border-left: 4px solid var(--accent-color); padding-left: 15px;">
+      <p><b>第一步：明示保证的成立</b><br>
+      买方（顾客）明确向店员说明她需要一种“可洗掉的染发剂 (washable dye)”。店员向其展示了一款永久性染发剂，并<b>明确保证 (assuring)</b> 该染发剂符合她的需求。这一保证构成了<b>事实确认与承诺</b>，并成为了买方决定购买的<b>交易基础 (basis of the bargain)</b>。因此，店员的行为代表商店创建了<b>明示保证</b>。</p>
+      
+      <p><b>第二步：免责条款的效力判定</b><br>
+      店员随后声称由于商品打折，将以“按现状 (as is)”出售，且不对任何不良反应负责。然而，这一“按现状 (as is)”的免责声明与店员刚刚作出的“该染发剂是可洗掉的”明示保证<b>直接冲突</b>。根据 UCC 规则，这种直接冲突的免责声明是<b>无效的 (ineffective)</b>，明示保证依然存续。</p>
+
+      <p><b>第三步：违约与损失赔偿</b><br>
+      由于该染发剂实际上是永久性的（无法洗掉），卖方违反了明示保证。买方因无法洗掉头发而错过了重要的职业陈述，进而导致了商业账户的损失（属于可预见的间接损失 consequential damages），买方有权提起违约诉讼并胜诉。</p>
+    </div>
+
+    <!-- Diagram -->
+    <h2>逻辑关系图 (Logic Flow)</h2>
+    <div class="diagram">
+      <div class="diagram-container">
+        <div class="flow-node">顾客提出特定需求<br>(Washable Dye)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node active">店员明确承诺/保证<br>(Express Warranty Created)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node" style="background: #fff0f0; border-color: #ff8787; color: #c92a2a;">店员试图通过 "As Is" 免责<br>(Disclaimer Attempt)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node active" style="background: #27ae60; border-color: #27ae60; color: #fff;">免责无效，明示保证胜出<br>(Disclaimer Ineffective)</div>
+      </div>
+    </div>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <b>⚠️ 易错陷阱提示：</b>
+      <ul>
+        <li><b>"As is" 的局限性：</b> 很多考生看到 "as is" 就立刻认为所有的担保都被免除了。请牢记：<span class="latin">"as is"</span>、<span class="latin">"with all faults"</span> 等语言确实可以有效免除<b>默示保证 (implied warranties)</b>，但<b>绝对不能</b>免除与该免责条款直接冲突的<b>明示保证 (express warranties)</b>。</li>
+        <li><b>店员的商家身份：</b> 即使店员是昨天刚入职且未经培训的新人，但她是代表商店（Store）这一<b>商家 (Merchant)</b> 行事的代理人。商店定期销售美容美发用品，因此在法律上商店属于该领域的商家，其雇员在职责范围内作出的承诺对商店具有约束力。</li>
+      </ul>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除 (Option Analysis)</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">C. Yes, because the clerk's promise created an express warranty. (正确答案)</div>
+        <p><b>解析：</b>如前所述，店员关于染发剂符合顾客需求（即属于可洗掉的染发剂）的保证，构成了明示保证。该明示保证未被随后的 "as is" 声明免除。由于货物不符合该保证，顾客有权起诉并胜诉。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">A. No, because the clerk was not a merchant. (错误)</div>
+        <p><b>解析：</b>首先，<b>任何卖方</b>（包括非商家）都可以创建明示保证，商家身份并非创建明示保证的前提条件。其次，本案的被告是<b>商店 (store)</b>，商店作为一个定期经营美容美发产品的实体，显然属于 UCC 定义下的<b>商家 (merchant)</b>。店员作为商店的雇员和代理人，其行为后果由商店承担。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. No, because the clerk's statement that the dye was sold "as is" disclaimed any warranties. (错误)</div>
+        <p><b>解析：</b>"as is" 只能免除默示保证（如商销性默示保证和特定用途适用性默示保证），但不能免除与之直接冲突的明示保证。店员明确保证了染发剂的特性，随后的 "as is" 声明与之冲突，因此该免责声明在法律上是无效的。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">D. Yes, because the warranty of fitness for a particular purpose cannot be disclaimed. (错误)</div>
+        <p><b>解析：</b>该选项的法律陈述是错误的。特定用途默示适用性保证 (Implied Warranty of Fitness for a Particular Purpose) <b>是可以被免除的</b>。根据 UCC § 2-316，只要使用书面且醒目的语言（例如书面的 "as is"），就可以有效免除该默示保证。本案中原告胜诉的真正原因在于<b>明示保证</b>无法被免除，而不是因为特定用途默示保证不能被免除。</p>
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <b>💡 MBE 提分金句：</b>
+      <br>“口头承诺重千金，明示保证已入心；任凭书面说 'As Is'，直接冲突不伤身。” 
+      <br>在做 UCC 担保法题目时，一旦看到<b>口头明确承诺</b>与随后的<b>通用免责条款（如 as is）</b>并存，直接判定<b>明示保证胜出</b>，免责条款对该明示保证无效！
+    </div>
+
+  </div>
+
+</body>
+</html>

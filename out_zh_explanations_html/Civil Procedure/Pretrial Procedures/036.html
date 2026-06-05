@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            font-size: 1.2em;
+            margin-top: 0;
+        }
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 0.9em;
+        }
+        .timeline-content {
+            font-size: 0.9em;
+        }
+        .analysis-point {
+            margin-bottom: 10px;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .wrong-answer {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+        }
+        .exam-tip-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>MBE 考点解析：补充披露的义务</h2>
+    
+    <p>本题考察的核心是联邦民事诉讼规则（FRCP）中关于<b>审前披露（Pretrial Disclosures）</b>以及<b>补充披露义务（Duty to Supplement）</b>的及时性问题。</p>
+
+    <div class="rule-box">
+        <strong>核心法规：FRCP 26(e)</strong><br>
+        如果当事人得知其之前的披露或回应在实质上是不完整或不正确的（Incomplete or Incorrect），且该信息尚未被其他当事人知晓，则该当事人<b>必须及时（Timely）</b>补充或更正其披露。
+    </div>
+
+    <h3>1. 案情时间线分析</h3>
+    <p>要理解为什么被告（商店）会败诉，我们需要画出本案的时间线：</p>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-date">庭审前 60 天</div>
+            <div class="timeline-content">商店提交初始审前披露（符合 FRCP 26(a)(3) 要求的至少提前30天）。</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">庭审前 59 天 <span style="color:#c0392b;">(关键点)</span></div>
+            <div class="timeline-content">商店发现了遗漏证人的错误。此时商店已<b>知情</b>。</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date" style="color:#999;">... 拖延了近 40 天 ...</div>
+            <div class="timeline-content">商店持有信息但未通知原告。</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">庭审前 21 天</div>
+            <div class="timeline-content">商店终于发送了修改后的表格。</div>
+        </div>
+    </div>
+
+    <h3>2. 为什么选项 B 是正确答案？</h3>
+    <p><span class="correct-answer">选项 B (未能及时更正)</span> 直接击中了问题的要害。</p>
+    <p>虽然 FRCP 允许当事人补充证据，但前提必须是<b>“及时”（Timely）</b>。商店在发现错误的第二天（庭审前59天）就知道了遗漏，但却无故拖延了近40天，直到庭审前21天才通知原告。</p>
+    <p>这种拖延剥夺了原告准备庭审、调查该证人的机会（Prejudice）。根据 <b>FRCP 37(c)(1)</b>，如果当事人未能根据 Rule 26(a) 或 (e) 提供信息，除非该失败是合理的（Substantially Justified）或无害的（Harmless），否则该当事人<b>不得在庭审中使用该证人</b>。</p>
+
+    <h3>3. 为什么其他选项是错误的？</h3>
+    
+    <div class="analysis-point">
+        <span class="wrong-answer">选项 A (未约定修改)：</span><br>
+        错误。补充披露是<b>法定义务</b>，不需要双方当事人事先约定（Stipulation）。
+    </div>
+
+    <div class="analysis-point">
+        <span class="wrong-answer">选项 C (未获法院许可)：</span><br>
+        错误。根据 FRCP 26(e)，当事人有义务自动补充披露，<b>不需要</b>先获得法院的许可（Leave of Court）。
+    </div>
+
+    <div class="analysis-point">
+        <span class="wrong-answer">选项 D (初始披露不及时)：</span><br>
+        错误。FRCP 26(a)(3) 规定审前披露必须在庭审前至少 <b>30天</b> 进行。商店在庭审前 60 天提交，因此其<b>初始披露是及时的</b>。问题出在后续的“补充”不及时，而不是初始提交不及时。
+    </div>
+
+    <div class="exam-tip">
+        <span class="exam-tip-title">💡 MBE 考试技巧</span>
+        在处理 Civil Procedure 的题目时，务必区分<b>“初始行为的合规性”</b>和<b>“后续修正的及时性”</b>。
+        <br><br>
+        如果题目中出现“一方发现了错误但等待了 X 天才告诉对方”，这通常是在暗示违反了 <b>Duty to Supplement in a Timely Manner</b>。法院对这种“藏着掖着”（Sandbagging）的行为通常会予以严厉制裁（排除证据）。
+    </div>
+</div>
+
+</body>
+</html>

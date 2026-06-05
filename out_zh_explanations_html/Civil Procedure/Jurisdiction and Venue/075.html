@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 10px;
+        color: #333;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h2 {
+        margin: 0;
+        font-size: 1.4em;
+    }
+    .result-box {
+        background-color: #e8f5e9;
+        border-left: 6px solid #4caf50;
+        padding: 15px;
+        margin: 20px;
+        border-radius: 4px;
+    }
+    .result-title {
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-bottom: 5px;
+    }
+    .content {
+        padding: 0 20px 20px 20px;
+    }
+    .rule-block {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .rule-header {
+        color: #0056b3;
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+    .rule-header::before {
+        content: "⚖️";
+        margin-right: 8px;
+    }
+    .eng-term {
+        font-size: 0.9em;
+        color: #666;
+        font-style: italic;
+    }
+    .highlight {
+        background-color: #fff3cd;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-weight: 500;
+    }
+    .trap-alert {
+        border: 1px dashed #dc3545;
+        background-color: #fff5f5;
+        padding: 10px;
+        border-radius: 6px;
+        margin-top: 15px;
+        font-size: 0.95em;
+    }
+    .trap-title {
+        color: #dc3545;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    li {
+        margin-bottom: 8px;
+    }
+    .footer {
+        text-align: center;
+        font-size: 0.8em;
+        color: #999;
+        padding: 15px;
+        border-top: 1px solid #eee;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <p>民事诉讼法：管辖权与移送</p>
+    </div>
+
+    <div class="result-box">
+        <div class="result-title">✅ 正确答案：C</div>
+        <p>应批准发回动议，因为该公司作为A州的公民，受“法院地被告规则”限制，不能将基于州籍多元管辖权的案件移送至联邦法院。</p>
+    </div>
+
+    <div class="content">
+        
+        <div class="rule-block">
+            <div class="rule-header">核心考点：法院地被告规则</div>
+            <p>在联邦民事诉讼中，案件移送 <span class="eng-term">(Removal)</span> 必须满足以下条件：</p>
+            <ol>
+                <li><b>基础管辖权：</b>联邦法院必须对案件拥有初始管辖权（如联邦问题或州籍多元）。</li>
+                <li><b>法院地被告规则 <span class="eng-term">(Forum Defendant Rule)</span>：</b>如果管辖权<b>仅</b>基于州籍多元管辖权 <span class="eng-term">(Diversity Jurisdiction)</span>，且任何一名被告是<b>提起诉讼所在州</b>的公民，则该案件<b>不可移送</b>。</li>
+            </ol>
+        </div>
+
+        <h3>🔍 法律推理步骤</h3>
+        
+        <p><b>第一步：判断是否存在联邦管辖权</b><br>
+        本案中，原告是B州公民，被告是A州公民（注册地+主要营业地），争议金额$100,000。满足<b>州籍多元管辖权</b> <span class="eng-term">(Diversity Jurisdiction)</span> 的要求。</p>
+
+        <p><b>第二步：检查移送限制</b><br>
+        虽然存在多元管辖权，但被告试图将案件从<b>A州州法院</b>移送。由于被告是<b>A州公民</b>（即“法院地被告”），根据 <span class="eng-term">28 U.S.C. § 1441(b)(2)</span>，被告被禁止移送。这种规则背后的逻辑是：多元管辖权是为了保护外州被告免受本地偏见，但如果被告就在本州被起诉，就不存在这种风险。</p>
+
+        <p><b>第三步：检查程序时效</b><br>
+        原告在移送通知提交后23天提出发回动议 <span class="eng-term">(Motion to Remand)</span>。对于非属事管辖权缺陷（如违反法院地被告规则），必须在30天内提出。23天在期限内，因此动议有效。</p>
+
+        <div class="trap-alert">
+            <div class="trap-title">⚠️ 常见陷阱：联邦抗辩 (Federal Defense)</div>
+            <p><b>为什么选项 A 错误？</b></p>
+            <p>很多考生看到“专利法”就认为是联邦专属管辖权。但是，根据<b>“诉状主要内容规则”</b> <span class="eng-term">(Well-Pleaded Complaint Rule)</span>，联邦管辖权必须基于原告的诉状，而不是被告的答辩。</p>
+            <p>本案中，原告起诉的是“不当解雇”（州法诉因）。被告提出的专利侵权只是<b>抗辩理由</b>。联邦抗辩不足以建立联邦问题管辖权 <span class="eng-term">(Federal Question Jurisdiction)</span>。</p>
+        </div>
+
+        <h3>💡 其他选项解析</h3>
+        <ul>
+            <li><b>选项 B 错误：</b>发回动议的期限是30天，而不是21天。</li>
+            <li><b>选项 D 错误：</b>移送通知 <span class="eng-term">(Notice of Removal)</span> 必须提交给<b>联邦地区法院</b>，而不是州法院。被告只需将副本送达州法院和各方当事人。</li>
+        </ul>
+
+    </div>
+
+    <div class="footer">
+        MBE Civil Procedure Strategy<br>
+        Focus on: Removal Mechanics & Jurisdiction Limits
+    </div>
+</div>
+
+</body>
+</html>

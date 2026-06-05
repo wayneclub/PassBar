@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: transparent;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .icon {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        .step {
+            background: #fff;
+            border: 1px solid #bdc3c7;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-bottom: 5px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .arrow {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .correct-answer {
+            border-left-color: #27ae60;
+        }
+
+        .wrong-answer {
+            border-left-color: #e74c3c;
+            opacity: 0.8;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Mortgages & Security Devices</p>
+        <p>抵押权混同原则 (Doctrine of Merger)</p>
+    </div>
+
+    <!-- Scenario Analysis -->
+    <div class="card">
+        <div class="card-title">
+            <span class="icon">🔍</span> 案情核心梳理
+        </div>
+        <p>本案涉及一个典型的“以契代偿”（Deed in Lieu of Foreclosure）陷阱：</p>
+        <div class="diagram">
+            <div class="step">1. 银行持有<b>第一顺位抵押权</b> ($175k)</div>
+            <div class="arrow">↓</div>
+            <div class="step">2. 信用社持有<b>第二顺位抵押权</b> ($35k)</div>
+            <div class="arrow">↓</div>
+            <div class="step">3. 借款人违约，将<b>房屋产权</b>直接转让给银行</div>
+            <div class="arrow">↓</div>
+            <div class="step"><b>冲突点：</b>银行现在既是所有者又是抵押权人</div>
+        </div>
+        <p>银行随后发现信用社的抵押权，试图通过止赎（Foreclosure）来清除这个次级留置权。</p>
+    </div>
+
+    <!-- Legal Concept -->
+    <div class="card">
+        <div class="card-title">
+            <span class="icon">⚖️</span> 核心考点：混同原则
+        </div>
+        <div class="concept-box">
+            <span class="term">混同原则 (Doctrine of Merger)</span><br>
+            当同一人同时获得同一财产的“抵押权人权益”（Mortgagee's interest）和“所有权权益”（Fee title）时，抵押权通常会融入所有权中而<b>消灭</b>。
+        </div>
+        <p><b>如果适用混同原则：</b></p>
+        <ul>
+            <li>银行的抵押权消失。</li>
+            <li>银行成为房主，但房子上仍背负着信用社的抵押权。</li>
+            <li>信用社的抵押权顺位上升成为第一顺位。</li>
+            <li>银行<b>不能</b>起诉止赎（因为你不能止赎自己的房子）。</li>
+        </ul>
+        <p><b>如果不适用混同原则：</b></p>
+        <ul>
+            <li>银行的抵押权保持独立。</li>
+            <li>银行可以基于其第一顺位抵押权发起止赎，从而<b>清除</b>信用社的次级抵押权。</li>
+        </ul>
+    </div>
+
+    <!-- Correct Answer Analysis -->
+    <div class="card correct-answer">
+        <div class="card-title">
+            <span class="icon">✅</span> 正确答案解析 (选项 D)
+        </div>
+        <p>题目问：<b>如果法院判决银行胜诉，理由是什么？</b></p>
+        <p>银行要胜诉（即成功止赎并清除信用社的权益），前提必须是<b>银行的抵押权没有因为混同而消灭</b>。</p>
+        <p>因此，最合理的法律依据是：该司法管辖区<b>不承认</b>（或在该情况下不适用）抵押权的混同原则。</p>
+        <p><i>注：现代法院通常会设立“反混同例外”（Anti-Merger Exception），即如果混同会损害抵押权人的利益（例如存在中间顺位的次级抵押权），则推定抵押权人不希望发生混同。</i></p>
+    </div>
+
+    <!-- Distractor Analysis -->
+    <div class="card wrong-answer">
+        <div class="card-title">
+            <span class="icon">❌</span> 干扰项排除
+        </div>
+        <ul>
+            <li><b>选项 A (Statutory Redemption):</b> 法定赎回权发生在止赎<b>之后</b>。本案还在讨论银行是否有权止赎，时间点对不上。</li>
+            <li><b>选项 B (Clogging Equity of Redemption):</b> 禁止阻碍衡平法赎回权是为了保护借款人。本案中借款人已经自愿放弃并转让了产权，且争议双方是两个贷款机构，与此原则无关。</li>
+            <li><b>选项 C (Caveat Emptor):</b> “买者自慎”通常用于房屋买卖中的物理瑕疵披露问题，与抵押权的优先顺位和存续无关。</li>
+        </ul>
+    </div>
+
+    <!-- Exam Strategy -->
+    <div class="card">
+        <div class="card-title">
+            <span class="icon">🎓</span> 考试通关技巧
+        </div>
+        <p>遇到 <b>Deed in Lieu of Foreclosure</b>（以契代偿）的题目时，请立即警惕以下逻辑链：</p>
+        <ol>
+            <li><b>检查是否有次级抵押权 (Junior Lien)：</b> 如果有，银行直接拿产权是非常危险的。</li>
+            <li><b>混同风险 (Merger Risk)：</b> 银行拿产权会导致其第一顺位抵押权消失，次级抵押权上位。</li>
+            <li><b>银行的救济：</b> 银行若想补救，必须主张“无混同意图”或法院不适用混同原则，从而保留其抵押权以进行止赎。</li>
+        </ol>
+        <p style="color: #e74c3c; font-weight: bold;">记住：为了让银行赢，必须阻止“混同”发生。</p>
+    </div>
+
+    <div class="footer">
+        MBE Property Law Review | Designed for Mobile Learning
+    </div>
+
+</div>
+
+</body>
+</html>

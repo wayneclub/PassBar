@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            color: #2980b9;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .eng-term {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-left: 4px;
+        }
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed #ccc;
+        }
+        .d-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .d-box {
+            background: #fff;
+            border: 1px solid #333;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            text-align: center;
+            width: 30%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .d-arrow {
+            flex-grow: 1;
+            height: 2px;
+            background: #333;
+            position: relative;
+            margin: 0 5px;
+        }
+        .d-arrow::after {
+            content: "▶";
+            position: absolute;
+            right: -1px;
+            top: -6px;
+            font-size: 10px;
+        }
+        .d-label {
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+            margin-top: -15px;
+            margin-bottom: 15px;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .wrong-option {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 10px;
+            padding-left: 10px;
+            border-left: 2px solid #bdc3c7;
+        }
+        .highlight-red {
+            color: #c0392b;
+            font-weight: bold;
+            background-color: #fadbd8;
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+        .highlight-green {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .tip-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+        .tip-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts / Third-Party Rights</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：转让与通知</div>
+            <p>本题考察的是合同权利转让后，债务人（Obligor）向谁付款的问题。关键规则是：一旦债务人收到转让通知，其必须向<b>受让人（Assignee）</b>付款。</p>
+        </div>
+
+        <!-- 法律图解 -->
+        <div class="diagram">
+            <div class="d-row">
+                <div class="d-box" style="background:#f9f9f9; color:#999;">经销商<br>(Assignor)</div>
+                <div class="d-arrow"></div>
+                <div class="d-box" style="border-color:#27ae60; border-width:2px;">零售商<br>(Assignee)</div>
+            </div>
+            <div class="d-label">权利转让 & 义务委托</div>
+            
+            <div class="d-row">
+                <div class="d-box" style="visibility:hidden;"></div>
+                <div style="font-size:20px;">⬇️</div>
+                <div class="d-box" style="visibility:hidden;"></div>
+            </div>
+
+            <div class="d-row">
+                <div class="d-box">面包店<br>(Obligor)</div>
+                <div class="d-arrow" style="background:none; border-bottom:2px dashed #c0392b;"></div>
+                <div class="d-box" style="border:none; background:none; text-align:left; font-size:11px; color:#c0392b;">❌ 错误付款给经销商<br>✅ 应付款给零售商</div>
+            </div>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 D (No defense)？</div>
+            <p>
+                <b>1. 概括转让 (General Assignment)：</b><br>
+                根据 <span class="term">UCC § 2-210</span>，当一方转让“合同”或“所有合同”时，这通常被解释为：
+                <ul>
+                    <li><b>权利转让 (Assignment of Rights)：</b> 收款权的转移。</li>
+                    <li><b>义务委托 (Delegation of Duties)：</b> 供货义务的转移。</li>
+                </ul>
+            </p>
+            <p>
+                <b>2. 通知的效力 (Effect of Notice)：</b><br>
+                题目明确指出经销商已将交易<b>通知 (Informed)</b> 了面包店。
+                <br><br>
+                <span class="highlight-red">关键规则：</span> 一旦债务人（面包店）收到转让通知，其付款义务就锁定在受让人（零售商）身上。如果债务人在收到通知后仍向原债权人（经销商）付款，该付款<b>不能</b>解除其对受让人的债务。
+            </p>
+            <p>
+                因此，面包店向经销商付款是“付错了人”，它仍然欠零售商第一批货的款项。面包店没有任何有效的抗辩理由。
+            </p>
+        </div>
+
+        <!-- 干扰项排除 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么其他选项无效？</div>
+            
+            <div class="wrong-option">
+                <b>选项 A & B (关于同意 Consent)：</b><br>
+                错误。在货物买卖合同中，除非合同有明确的“禁止转让/委托条款”或涉及特殊的个人技能（如著名画家的画作），否则<b>不需要</b>获得非转让方（面包店）的明确同意。糖是标准商品，零售商也是声誉良好的商家，因此无需面包店同意。
+            </div>
+
+            <div class="wrong-option">
+                <b>选项 C (关于付款解除 Discharge)：</b><br>
+                错误。如果面包店在<b>收到通知前</b>付款给经销商，那么债务确实解除了。但本题中，面包店是在<b>知情后</b>仍付给旧债主，这种付款不具有解除债务的效力。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <span class="tip-title">💡 MBE 考试技巧</span>
+            遇到“Assignment”（转让）题目时，请按以下步骤检查：
+            <ol style="margin-left:-20px; margin-bottom:0;">
+                <li><b>看通知：</b> 债务人是否收到了通知？(Notice is King)</li>
+                <li><b>看时间：</b> 付款是在通知之前还是之后？
+                    <ul>
+                        <li>通知前付给旧人 = ✅ 有效抗辩</li>
+                        <li>通知后付给旧人 = ❌ 无效抗辩（需双重付款）</li>
+                    </ul>
+                </li>
+                <li><b>看性质：</b> 是否涉及个人独特技能？(Personal Service vs. Standard Goods)</li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

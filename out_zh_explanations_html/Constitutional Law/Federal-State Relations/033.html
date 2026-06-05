@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：反强征原则</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background: transparent;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        .answer-box {
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            color: #3c763d;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .case-law {
+            background-color: var(--highlight-bg);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            border-left: 3px solid var(--accent-color);
+            margin: 10px 0;
+        }
+
+        .diagram {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        
+        .diagram-box {
+            border: 2px dashed #bdc3c7;
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            width: 80%;
+        }
+
+        .arrow-down {
+            font-size: 20px;
+            color: var(--wrong-color);
+            margin: 5px 0;
+        }
+
+        .tips {
+            background-color: #fef9e7;
+            border: 1px solid #fbeed5;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- 标题部分 -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Federal-State Relations / Constitutional Law</div>
+    </div>
+
+    <!-- 核心答案 -->
+    <div class="answer-box">
+        正确答案：A
+    </div>
+
+    <!-- 核心考点解析 -->
+    <div class="card">
+        <div class="section-title">核心考点：反强征原则</div>
+        <p>本题考察的是宪法第十修正案（<span class="latin">10th Amendment</span>）下的<b>反强征原则 (Anti-Commandeering Doctrine)</b>。</p>
+        
+        <p>虽然国会拥有通过<b>商业条款 (Commerce Clause)</b> 监管州际贸易的广泛权力，但这种权力不是无限的。国会<b>不能</b>做的是：</p>
+        
+        <div class="diagram">
+            <div class="diagram-box" style="border-color: var(--wrong-color); background-color: #fff5f5;">
+                <strong>国会 (Congress)</strong><br>
+                <div class="arrow-down">⬇️ 强制命令 (Command) ⬇️</div>
+                <strong>州立法机关 (State Legislature)</strong><br>
+                <span style="font-size:12px; color:#7f8c8d;">"你们必须通过这项法律..."</span>
+            </div>
+            <p style="color: var(--wrong-color); font-weight: bold; margin-top: 5px;">❌ 违宪 (Unconstitutional)</p>
+        </div>
+
+        <div class="case-law">
+            <strong>⚖️ 关键判例：New York v. United States (1992)</strong><br>
+            最高法院裁定，国会不得“强征” (commandeer) 州的立法程序，即不能直接强迫州立法机关制定或执行联邦监管计划。
+        </div>
+    </div>
+
+    <!-- 为什么选A -->
+    <div class="card">
+        <div class="section-title">深度解析：为什么选 A？</div>
+        <p>题目中的联邦法规<b>要求 (requiring)</b> 各州立法机关制定一项特定的法律（将学校附近的毒品销售定为犯罪）。</p>
+        <ul>
+            <li><b>关键错误：</b> 这种“要求”直接违反了第十修正案。联邦政府可以将某种行为定为联邦犯罪（直接监管个人），但不能把州政府当作其下属机构来发号施令。</li>
+            <li><b>结论：</b> 无论该法规涉及的活动（毒品销售）是否影响州际贸易，其<b>手段 (means)</b>——即强迫州立法——是违宪的。</li>
+        </ul>
+    </div>
+
+    <!-- 为什么其他选项是陷阱 -->
+    <div class="card">
+        <div class="section-title">陷阱排除：Commerce Clause 的误区</div>
+        <p>本题设计了非常典型的 MBE 干扰项，试图引导考生去分析“商业条款”的范围，而不是“联邦制”的限制。</p>
+
+        <p><b>❌ 选项 B (Nexus to Commerce) 错误：</b><br>
+        虽然在 <i>U.S. v. Lopez</i> 案中，法院确实推翻了类似的《无枪校区法案》，理由是缺乏与州际贸易的联系。但在本题中，法规已经明确限制为“曾在州际贸易中运输”的药物。更重要的是，即使有联系，也不能强迫州去立法。</p>
+
+        <p><b>❌ 选项 C (Aggregate Effect) 错误：</b><br>
+        这是描述 Wickard v. Filburn 的“累积影响理论”。虽然这能证明国会有权<b>直接</b>监管该行为，但它不能证明国会有权<b>命令州</b>去监管。</p>
+
+        <p><b>❌ 选项 D (Jurisdictional Provision) 错误：</b><br>
+        这是一个极具诱惑力的选项。添加“管辖权条款”（即要求证明药物曾跨州运输）通常能解决 <i>Commerce Clause</i> 的问题（使联邦直接监管合法化）。<br>
+        <span class="highlight">但是！</span> 它无法解决 <i>10th Amendment</i> 的问题。即使国会有权监管，它也必须自己监管，而不能强迫州立法机关代劳。</p>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card tips">
+        <div class="section-title">🎓 MBE 实战技巧</div>
+        <p>在做 Constitutional Law 的题目时，请注意以下区分：</p>
+        <ol>
+            <li>如果国会说：“任何人做 X 都是非法的” ➡️ 分析 <b>Commerce Clause</b> (是否有权监管？)。</li>
+            <li>如果国会说：“<b>州政府必须</b>通过法律禁止 X” ➡️ 违反 <b>10th Amendment</b> (Anti-Commandeering)。</li>
+            <li>如果国会说：“如果州不通过法律禁止 X，我们将<b>扣留 5% 的高速公路资金</b>” ➡️ 分析 <b>Spending Power</b> (通常合宪，属于诱导而非强迫)。</li>
+        </ol>
+        <p><b>看到 "Congress requires state legislature..." 这种表述，直接找关于第十修正案或主权 (Sovereignty) 的选项。</b></p>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fff3cd;
+            --warning-text: #856404;
+            --text-color: #333;
+            --light-text: #666;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .term-en {
+            font-size: 0.85em;
+            color: var(--light-text);
+            font-style: italic;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .analysis-step strong {
+            color: var(--primary-color);
+        }
+        .case-law {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+        .wrong-option {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .wrong-option h3 {
+            font-size: 1rem;
+            color: var(--light-text);
+        }
+        .exam-tip {
+            background-color: var(--warning-bg);
+            color: var(--warning-text);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            border: 1px solid #ffeeba;
+        }
+        .icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Criminal Procedure / Fourth Amendment</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div style="margin-bottom: 20px;">
+            <span style="background: #27ae60; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">正确答案 C</span>
+            <p style="margin-top: 10px;">法院应该批准排除动议，因为警官拿起文件的行为构成了非法的搜查。</p>
+        </div>
+
+        <!-- 核心考点讲解 -->
+        <div class="concept-card">
+            <span class="concept-title">🔍 核心考点：平视可见原则 <span class="term-en">(Plain View Doctrine)</span></span>
+            <p>根据第四修正案，警方在没有搜查令的情况下可以查扣物品，但必须同时满足以下三个条件：</p>
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li>警方<b>合法位于</b>该位置 <span class="term-en">(Lawful vantage point)</span>；</li>
+                <li>警方对该物品有<b>合法的接触权</b> <span class="term-en">(Right of access)</span>；</li>
+                <li>该物品的违法性质是<b>立即显而易见的</b> <span class="term-en">(Immediately apparent)</span>。</li>
+            </ol>
+        </div>
+
+        <!-- 案情深度解析 -->
+        <div class="analysis-step">
+            <strong>1. 进入是否合法？(Entry)</strong>
+            <p>是的。虽然警官使用了欺骗手段（谎称不是警察，使用假名），但最高法院判例表明，卧底警察通过欺骗获得嫌疑人<b>同意 (Consent)</b> 进入住所并不违反第四修正案。因此，警官合法地处于房间内。</p>
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 关键动作：拿起文件 (Lifting the papers)</strong>
+            <p>这是本题的破局点。信用卡被压在文件下面，警官<b>必须移动</b>文件才能看到它们。这就不再属于“平视可见”了。</p>
+            
+            <div class="case-law">
+                <strong>⚖️ 经典判例：Arizona v. Hicks (1987)</strong><br>
+                在该案中，警察为了查看音响设备的序列号而移动了设备。最高法院裁定：<b>任何为了发现隐藏物品而进行的物理移动（哪怕只是轻微移动），都构成了一次新的“搜查” (Search)。</b>
+            </div>
+            
+            <p>由于警官在移动文件前没有搜查令，也没有 probable cause（相当理由）认为文件下藏有违禁品，这次“搜查”是不合理的。因此，由此发现的证据（毒树之果）必须被排除。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="wrong-option">
+            <h3>🚫 为什么其他选项是错的？</h3>
+            <ul>
+                <li>
+                    <strong>选项 A (Immediately Apparent)：</strong> 虽然看到不同名字的信用卡确实能立即推断是偷来的，但这发生在<b>非法搜查之后</b>。如果通过非法手段（移动文件）才让物品变得“可见”，那么“立即显而易见”这一条就无法挽救该证据。
+                </li>
+                <li>
+                    <strong>选项 B (Assumption of Risk)：</strong> 嫌疑人只对<b>平视可见 (Plain Sight)</b> 的物品承担风险。她并没有承担警察会翻动她桌上文件的风险。
+                </li>
+                <li>
+                    <strong>选项 D (Entry by Deceit)：</strong> 这是一个常见的干扰项。MBE常考点：<b>"Misplaced Trust"</b>（错付的信任）。如果嫌疑人自愿邀请某人进入，即使那个人是卧底警察，进入本身也是合法的。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 考试通关秘籍</strong><br>
+            在处理 <b>Plain View</b> 题目时，请紧盯警官的手！<br>
+            👀 <b>只用眼睛看</b> = 合法（如果是合法进入）。<br>
+            ✋ <b>动手移动物体</b> = 搜查（Search）。<br>
+            如果警官为了看到某物而移动了任何东西（哪怕是翻开一张纸、转动一个花瓶），这就超出了 Plain View 的范围，需要独立的 Probable Cause 或搜查令。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

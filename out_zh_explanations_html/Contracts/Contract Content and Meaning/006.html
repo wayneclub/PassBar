@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --success-color: #27ae60;
+            --error-color: #c0392b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            background-color: var(--bg-color);
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.85rem;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .analysis-item {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .item-success {
+            background-color: #eafaf1;
+            border-color: #d5f5e3;
+        }
+
+        .item-error {
+            background-color: #fdedec;
+            border-color: #fadbd8;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .badge-success { background-color: var(--success-color); color: white; }
+        .badge-error { background-color: var(--error-color); color: white; }
+
+        .footer-tip {
+            font-size: 0.9rem;
+            color: #555;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            margin-top: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts: Parol Evidence Rule under UCC</div>
+    </div>
+
+    <!-- Core Legal Rule -->
+    <div class="card">
+        <div class="card-title">核心法律规则：UCC 口头证据规则</div>
+        <p>本题涉及<b>货物买卖</b>（马匹），因此适用《美国统一商法典》（UCC）第2条。</p>
+        
+        <div class="concept-box">
+            <span class="term">规则要点 (UCC § 2-202)：</span><br>
+            当双方签署了最终的书面协议后，关于先前口头协议的证据：
+            <ul>
+                <li>如果与书面条款<b>相矛盾 (Contradict)</b>：<span style="color:var(--error-color)">不可采纳 (Inadmissible)</span>。</li>
+                <li>如果是<b>一致的附加条款 (Consistent Additional Terms)</b>：通常<span style="color:var(--success-color)">可采纳 (Admissible)</span>。</li>
+            </ul>
+        </div>
+        <p style="font-size: 0.9rem;">
+            <b>例外：</b>如果法院认定该附加条款非常重要，以至于如果双方真的同意了，就<b>肯定会 (Certainly)</b> 写进合同里，那么该证据才会被排除。
+        </p>
+    </div>
+
+    <!-- Case Analysis -->
+    <div class="card">
+        <div class="card-title">本案具体分析</div>
+        <p>我们需要分别分析马匹爱好者（Buyer）想要引入的两项证据：</p>
+
+        <div class="analysis-grid">
+            <!-- Item 1: The Brown Horse -->
+            <div class="analysis-item item-error">
+                <span class="badge badge-error">证据 1：不可采纳</span>
+                <br>
+                <strong>选择棕色马的权利</strong>
+                <br><br>
+                <span class="english-term">Option to choose a brown horse</span>
+                <hr style="border: 0; border-top: 1px solid #fadbd8; margin: 8px 0;">
+                书面合同明确规定是“灰色马” (<span class="english-term">Gray horse</span>)。
+                <br>
+                口头证据声称可以选择“棕色马”，这直接<b>否定</b>并<b>矛盾</b>于书面条款。
+                <br>
+                <b>结论：</b>根据 UCC 规则，矛盾条款的外部证据被禁止。
+            </div>
+
+            <!-- Item 2: The Saddle -->
+            <div class="analysis-item item-success">
+                <span class="badge badge-success">证据 2：可采纳</span>
+                <br>
+                <strong>价值 $100 的马鞍</strong>
+                <br><br>
+                <span class="english-term">The saddle worth $100</span>
+                <hr style="border: 0; border-top: 1px solid #d5f5e3; margin: 8px 0;">
+                书面合同未提及配件。增加一个马鞍并不改变马匹的价格或颜色，因此它不矛盾，属于<b>一致的附加条款</b>。
+                <br>
+                <b>测试：</b>在一个 $5,000 的交易中，遗漏一个 $100 的赠品是完全可能的，并非“肯定会”写进去。
+                <br>
+                <b>结论：</b>法院允许引入该证据来补充合同内容。
+            </div>
+        </div>
+    </div>
+
+    <!-- Exam Strategy -->
+    <div class="card" style="border-left-color: #9b59b6;">
+        <div class="card-title">MBE 考试技巧</div>
+        <p>在处理 <b>Parol Evidence Rule (PER)</b> 问题时，请遵循以下步骤：</p>
+        <ol>
+            <li><b>确定法律适用：</b>是 Common Law（服务/房产）还是 UCC（货物）？UCC 对引入外部证据更宽容。</li>
+            <li><b>检查矛盾性：</b>口头证据是否直接反驳了书面文字？如果是，直接排除（Inadmissible）。</li>
+            <li><b>检查一致性：</b>如果是补充条款，问自己：“这个条款是否重要到双方<i>肯定</i>会把它写进合同里？”
+                <ul>
+                    <li>如果答案是“不一定”，则证据<b>可采纳</b>。</li>
+                </ul>
+            </li>
+        </ol>
+        <div class="footer-tip">
+            <b>注意：</b>本题正确答案是 <b>B</b> (The saddle, but not the option to choose a brown horse)。因为马鞍是补充，而棕色马是矛盾。
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background-color: #f8f9fa;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .card-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .card-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #e8f4fd;
+            color: #2980b9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .correct-answer {
+            background-color: #d4edda;
+            border-left-color: #28a745;
+            color: #155724;
+        }
+        .wrong-answer {
+            background-color: #fff3cd;
+            border-left-color: #ffc107;
+            color: #856404;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #95a5a6;
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Criminal Procedure / Fourth Amendment</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="card">
+            <div class="card-title">核心法律规则</div>
+            <p>本题考察的是<strong>第四修正案 (Fourth Amendment)</strong> 在学校环境中的适用标准，特别是当学校人员作为<strong>警方代理人 (Agent of the Police)</strong> 时的特殊规则。</p>
+        </div>
+
+        <!-- 答案解析 -->
+        <div class="card correct-answer">
+            <div class="card-title">正确答案分析：选项 D</div>
+            <p>法院应<strong>支持 (Grant)</strong> 学生的动议，理由是该搜查是在没有<strong>合理根据 (Probable Cause)</strong> 或<strong>搜查令 (Warrant)</strong> 的情况下进行的。</p>
+            <hr style="border: 0; border-top: 1px solid #c3e6cb; margin: 10px 0;">
+            <p><strong>推理逻辑：</strong></p>
+            <ul>
+                <li><strong>一般原则：</strong>根据 <em>New Jersey v. T.L.O.</em> 案，学校官员为了维持校园秩序，自行搜查学生时只需要<strong>合理怀疑 (Reasonable Suspicion)</strong>，无需搜查令。</li>
+                <li><strong>本案例外：</strong>本案中，校长并非出于学校管理目的自行搜查，而是应<strong>警方的要求 (at the behest of the police)</strong> 进行搜查。</li>
+                <li><strong>代理人理论：</strong>当私人或非执法类政府人员（如校长）在警方的指示下行动时，他们被视为警方的<strong>代理人 (Agent)</strong>。</li>
+                <li><strong>结论：</strong>既然校长是警方的代理人，就必须遵守警方搜查的严格标准：即必须拥有<strong>搜查令 (Warrant)</strong> 和<strong>合理根据 (Probable Cause)</strong>。本案中警方没有搜查令，因此搜查违宪，获得的珠宝应根据<strong>排除规则 (Exclusionary Rule)</strong> 被排除。</li>
+            </ul>
+        </div>
+
+        <!-- 错误选项分析 -->
+        <div class="card wrong-answer">
+            <div class="card-title">为什么选项 A 错误？</div>
+            <p>选项 A 引用了标准的“学校搜查规则”（即只需合理怀疑）。这是一个典型的<strong>干扰项</strong>。</p>
+            <p><strong>错误原因：</strong>该规则仅适用于学校官员<strong>独立</strong>发起搜查以维护学校环境的情况。一旦警方介入并指挥搜查，为了防止警方利用学校官员规避第四修正案的要求，必须恢复到更严格的搜查令标准。</p>
+        </div>
+
+        <div class="card wrong-answer">
+            <div class="card-title">为什么选项 B 错误？</div>
+            <p>选项 B 提到了<strong>合法逮捕附带搜查 (Search Incident to Lawful Arrest)</strong>。</p>
+            <p><strong>错误原因：</strong>虽然这是一种无需搜查令的例外情况，但它要求搜查必须发生在逮捕<strong>之后</strong>或与逮捕同时发生。本案中，是先非法搜查发现了珠宝，才导致了逮捕。警方不能用搜查出的证据来反向证明搜查的合法性。</p>
+        </div>
+
+        <div class="card wrong-answer">
+            <div class="card-title">为什么选项 C 错误？</div>
+            <p>选项 C 关注<strong>过度武力 (Excessive Force)</strong>。</p>
+            <p><strong>错误原因：</strong>虽然校长弄伤学生可能导致民事诉讼（如 Section 1983 侵权诉讼），但单纯的过度武力通常不会导致证据被排除（除非行为极其恶劣以至于“震惊良知”，即 <em>Rochin</em> 标准，但这极少适用）。证据被排除的根本原因是<strong>缺乏搜查令</strong>，而不是因为校长抢夺背包的动作。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="border-left-color: #9b59b6;">
+            <div class="card-title">💡 MBE 考试技巧</div>
+            <p>在处理涉及“第三方搜查”（如室友、家长、学校老师）的题目时，务必首先检查：<strong>警方是否参与、鼓励或指挥了这次搜查？</strong></p>
+            <ul>
+                <li>如果是<strong>自发行为</strong> ➡️ 私人搜查，第四修正案不适用（证据可用）。</li>
+                <li>如果是<strong>警方指示</strong> ➡️ 视为警方搜查，必须有搜查令或例外情况。</li>
+            </ul>
+        </div>
+
+        
+    </div>
+</div>
+
+</body>
+</html>

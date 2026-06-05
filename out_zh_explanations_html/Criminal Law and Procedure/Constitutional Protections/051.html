@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点精析</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="card-header">
+            <h1>MBE 考点精析</h1>
+            <div class="sub-title">刑法与程序法：供述与自证其罪</div>
+        </div>
+
+        <div class="card-content">
+            <div class="concept-box">
+                <h3>核心考点：米兰达权利的行使与放弃</h3>
+                <p class="latin"><em>Invocation and Waiver of Miranda Rights</em></p>
+            </div>
+
+            <div class="comparison-table-section">
+                <h3>📊 概念对比：沉默权的主张与放弃</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>概念</th>
+                            <th>要求</th>
+                            <th>结果</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="term">主张沉默权</span> (Invocation of Right to Silence)</td>
+                            <td>必须是<span class="term">明确、无歧义的声明</span>。</td>
+                            <td>警方必须立即停止讯问。</td>
+                        </tr>
+                        <tr>
+                            <td><span class="term">仅仅保持沉默</span> (Mere Silence)</td>
+                            <td>不构成<span class="term">明确、无歧义的声明</span>。</td>
+                            <td>不视为权利的主张，警方可继续讯问。</td>
+                        </tr>
+                        <tr>
+                            <td><span class="term">放弃沉默权</span> (Waiver of Right to Silence)</td>
+                            <td>在理解米兰达警告后，通过<span class="term">自愿回应</span>警方问题而默示放弃。</td>
+                            <td>警方可继续讯问，供述可用于审判。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="diagram">
+                <h3>🎨 案件流程图：米兰达权利与讯问过程</h3>
+                <div class="flow-diagram">
+                    <div class="flow-node">被捕并获得<br><span class="term">米兰达警告</span></div>
+                    <div class="arrow">➡️</div>
+                    <div class="flow-node active">驾车前往警局途中<br><b>司库保持沉默</b><br>(未明确主张权利)</div>
+                    <div class="arrow">➡️</div>
+                    <div class="flow-node">抵达警局，下车时<br><b>警官提问</b></div>
+                    <div class="arrow">➡️</div>
+                    <div class="flow-node highlight-node">司库<b>自愿回答</b><br>"不"</div>
+                    <div class="arrow">➡️</div>
+                    <div class="flow-node">结果：<span class="term">默示放弃</span>沉默权<br>供述<span class="term">可采纳</span></div>
+                </div>
+            </div>
+
+            <div class="legal-analysis">
+                <h3>⚖️ 法律依据与推理</h3>
+                <div class="analysis-step">
+                    <div class="step-number">1</div>
+                    <p><b>米兰达警告与讯问前提：</b>警方在对处于<span class="term">羁押状态</span>下的嫌疑人进行<span class="term">讯问</span>之前，必须告知其<span class="term">米兰达权利</span>，包括保持沉默的权利和获得律师协助的权利。本案中，司库在被捕时已收到米兰达警告，满足了这一前提。</p>
+                </div>
+                <div class="analysis-step">
+                    <div class="step-number">2</div>
+                    <p><b>沉默权的行使要求：</b>根据美国第五修正案的<span class="term">自证其罪特权</span>，嫌疑人必须通过<span class="term">明确、无歧义的声明</span>来主张其保持沉默的权利。仅仅保持沉默，而不作任何声明，不足以构成对沉默权的行使。司库在驾车前往警局途中拒绝回答问题，这仅仅是<span class="term">保持沉默</span>，并未明确表示他希望行使沉默权，因此警方没有义务停止讯问。</p>
+                </div>
+                <div class="analysis-step">
+                    <div class="step-number">3</div>
+                    <p><b>沉默权的放弃：</b>如果嫌疑人在收到并理解米兰达警告后，没有明确主张其保持沉默的权利，但随后<span class="term">自愿回应</span>了警方的讯问，则视为其<span class="term">默示放弃</span>了沉默权。这种放弃可以是口头的，也可以是行为上的。</p>
+                </div>
+                <div class="analysis-step">
+                    <div class="step-number">4</div>
+                    <p><b>本案适用：</b>司库在收到米兰达警告后，虽然在车上保持沉默，但并未明确主张其沉默权。当警官在下车时提问，司库选择<span class="term">自愿回答</span>“不”，这一行为构成了对沉默权的默示放弃。因此，司库的供述是可采纳的，法院应驳回其压制动议。</p>
+                </div>
+            </div>
+
+            <div class="trap-alert">
+                <h3>⚠️ 核心规则/陷阱警示：仅仅保持沉默不足以主张米兰达权利！</h3>
+                <p>许多考生误认为嫌疑人一旦保持沉默，警方就必须停止讯问。然而，最高法院在<code>Salinas v. Texas</code>一案中明确指出，嫌疑人必须<span class="term">明确且无歧义地</span>主张其保持沉默的权利。仅仅保持沉默，尤其是在未被讯问时，并不能视为权利的行使。只有当嫌疑人明确表示他希望保持沉默或要求律师时，警方才有义务停止讯问。</p>
+            </div>
+
+            <div class="case-box">
+                <h3>🔑 案例分析：<code>Salinas v. Texas</code> (2013)</h3>
+                <p>在<code>Salinas v. Texas</code>一案中，嫌疑人自愿前往警局接受讯问，并未被羁押。在被问及某项证据时，他保持了沉默。最高法院裁定，由于他没有被羁押，且没有明确主张其第五修正案的权利，其沉默可以被用作审判中的不利证据。尽管本案中的司库处于羁押状态，但<code>Salinas</code>案的核心原则——即<span class="term">仅仅保持沉默不足以主张权利</span>——仍然适用。司库必须明确说出“我希望保持沉默”或“我要求我的律师在场”，才能有效主张其权利。</p>
+                <h3>延伸情景：如果司库明确主张了权利？</h3>
+                <p>如果司库在驾车途中或下车时，明确地对警官说：“我希望行使我的沉默权，我不想回答任何问题。”或者“我要求我的律师在场。”那么，警官就必须立即停止所有讯问。在这种情况下，司库随后作出的任何供述都将是不可采纳的，法院会批准压制动议。</p>
+            </div>
+
+            <div class="option-analysis">
+                <h3>❌ 正确答案与干扰项排除</h3>
+                <div class="option correct">
+                    <b>Choice B is correct: Deny the motion, because the treasurer waived his right to remain silent by responding to the police officer's question when exiting the car.</b><br>
+                    <p><b>B 选项正确：</b>法院应驳回动议，因为司库在下车时回应警官的问题，构成了对其保持沉默权利的放弃。</p>
+                    <p>根据米兰达规则，嫌疑人必须<span class="term">明确且无歧义地</span>主张其保持沉默的权利。仅仅保持沉默（如司库在车上所做）不足以构成权利的行使。如果嫌疑人在收到并理解米兰达警告后，没有明确主张权利，但随后<span class="term">自愿回应</span>了警方的讯问，则视为其<span class="term">默示放弃</span>了沉默权。本案中，司库在下车时自愿回答了警官的问题，因此他放弃了沉默权，其供述可被采纳。</p>
+                </div>
+                <div class="option wrong">
+                    <b>Choice A is wrong: Deny the motion, because the treasurer did not have the right to end questioning after his arrest unless he asserted his right to have counsel present.</b><br>
+                    <p><b>A 选项错误：</b>该选项声称司库除非主张律师权，否则无权结束讯问，这是不准确的。</p>
+                    <p>嫌疑人可以通过<span class="term">明确主张保持沉默的权利</span>来结束讯问，而不仅仅是主张律师权。虽然主张律师权也能停止讯问，但主张沉默权同样有效。本选项的错误在于其排他性表述，且未能抓住核心问题——司库未能<span class="term">明确主张</span>任何权利。</p>
+                </div>
+                <div class="option wrong">
+                    <b>Choice C is wrong: Grant the motion, because all questioning should have stopped when the treasurer declined to respond to the officers' questions on the way to the police station.</b><br>
+                    <p><b>C 选项错误：</b>该选项认为司库在车上保持沉默就应停止讯问，这与法律规定相悖。</p>
+                    <p>如前所述，<span class="term">仅仅保持沉默</span>不足以主张米兰达权利。警方只有在嫌疑人<span class="term">明确且无歧义地</span>主张权利后，才有义务停止讯问。司库在车上的沉默不符合这一要求，因此警方有权继续讯问。</p>
+                </div>
+                <div class="option wrong">
+                    <b>Choice D is wrong: Grant the motion, because the treasurer's answer was given in response to the police officer's question while the treasurer was in custody.</b><br>
+                    <p><b>D 选项错误：</b>该选项的推理不完整，未能考虑权利放弃的问题。</p>
+                    <p>虽然司库的回答确实是在<span class="term">羁押状态</span>下对警方<span class="term">讯问</span>的回应，但如果嫌疑人已经收到米兰达警告并<span class="term">放弃</span>了其权利，那么在羁押讯问中获得的供述仍然是可采纳的。本选项忽略了司库通过自愿回答而放弃权利的关键事实。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-tip">
+            <h3>🎓 考试技巧：米兰达权利主张与放弃的速记</h3>
+            <p>记住：<b>“说出来，才能算！”</b> (You must speak up to invoke!) 仅仅保持沉默不是主张权利。一旦你开始自愿说话，即使之前沉默过，也可能被视为放弃了沉默权。在MBE中，警惕那些只描述“沉默”而没有“明确声明”的选项，它们往往是陷阱。</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：重新审判动议</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --text-color: #333;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-left: 4px;
+        }
+        .highlight-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            font-size: 14px;
+        }
+        .rule-tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        .correct-answer {
+            color: var(--correct-color);
+            font-weight: bold;
+        }
+        .wrong-answer {
+            color: var(--wrong-color);
+            font-weight: bold;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .footer-note {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #95a5a6;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：重新审判动议</h1>
+    
+    <div style="margin-bottom: 15px;">
+        <span class="rule-tag">Civil Procedure</span>
+        <span class="rule-tag">Rule 59</span>
+    </div>
+
+    <p>本题考察的核心是<b>联邦民事诉讼规则第59条</b>（Fed. R. Civ. P. 59）关于重新审判（New Trial）的理由限制。</p>
+
+    <div class="highlight-box">
+        <strong>正确答案：A</strong><br>
+        法院不会批准动议，因为该法律理论本可以在审判中主张。
+    </div>
+
+    <h2>1. 核心法律规则解析</h2>
+    <p>在联邦法院，当事人可以在判决登记后 <b>28天</b> 内提出重新审判动议（Motion for a New Trial）。虽然法院有很大的自由裁量权，但批准重新审判必须基于特定的理由，例如：</p>
+    <ul>
+        <li><b>程序错误</b> (Prejudicial error)：如错误的证据裁决。</li>
+        <li><b>不当行为</b> (Misconduct)：法官、律师或陪审员的不当行为。</li>
+        <li><b>证据权重</b> (Weight of evidence)：裁决明显违背证据权重。</li>
+        <li><b>新发现的证据</b> (Newly discovered evidence)。</li>
+    </ul>
+
+    <h3>关键区别：新证据 vs. 新理论</h3>
+    <p>这是本题的考点所在。MBE 经常混淆这两个概念：</p>
+    <ul>
+        <li>✅ <b>新发现的证据：</b> 如果证据在审判时存在但无法通过合理的勤勉（Reasonable Diligence）被发现，可以作为重审理由。</li>
+        <li>❌ <b>新发现的法律理论：</b> 法律理论（Legal Theory）不是证据。如果律师只是“忽略了”（Overlooked）一个本可以提出的法律论点，这属于律师的失误或策略选择。</li>
+    </ul>
+    <p>为了保证判决的终局性（Finality of Judgment），法律<b>不允许</b>当事人因为事后想到了更好的辩护策略而要求重审。如果该理论在审判时客观上是可用的，当事人就视为放弃（Waived）了该主张。</p>
+
+    <h2>2. 案情分析</h2>
+    <p>在本案中：</p>
+    <ol>
+        <li><b>时间性：</b> 动议在判决后28天提出，符合 Rule 59 的时限要求。</li>
+        <li><b>理由：</b> 原告公司发现了一个“最初忽略的”（Initially overlooked）法律理论。</li>
+        <li><b>结论：</b> 既然是“忽略”，说明该理论在审判时是存在的，本可以被提出。因此，法院不会仅仅因为原告想到了新招数就推翻已有的判决。</li>
+    </ol>
+
+    <h2>3. 干扰项排除</h2>
+    
+    <p><span class="wrong-answer">选项 B 错误：</span><br>
+    动议是及时的。Rule 59 规定的期限是判决登记后 <b>28天</b> 内。题目明确说明是“Twenty-eight days later”，正好在期限内（含第28天）。</p>
+
+    <p><span class="wrong-answer">选项 C 错误：</span><br>
+    关于法官的裁决形式。根据 <b>Rule 52</b>，在无陪审团审判（Bench Trial）中，法官的事实认定（Findings of Fact）和法律结论（Conclusions of Law）可以是书面的，也可以是<b>口头记录在案</b>（Stated on the record）的。题目中法官已当庭宣布，程序合法。</p>
+
+    <p><span class="wrong-answer">选项 D 错误：</span><br>
+    虽然新理论可能让原告获得救济（Entitled to relief），但<b>程序正义</b>（Procedural Fairness）和<b>终局性原则</b>优先。如果允许当事人不断提出新理论，诉讼将永无止境。错过主张的机会通常是不可逆的。</p>
+
+    <h2>4. 考试技巧 (Exam Tip)</h2>
+    <div class="highlight-box" style="background-color: #e8f6f3; border-left-color: #1abc9c;">
+        在处理 <b>Post-trial Motions</b>（审后动议）的题目时，请务必区分：
+        <br><br>
+        <b>"Could have been raised"</b>（本可以提出）<br>
+        vs.<br>
+        <b>"Could NOT have been discovered"</b>（无法被发现）
+        <br><br>
+        前者通常导致动议被驳回（Waiver），后者（仅限证据）才可能支持动议。
+    </div>
+
+    <div class="footer-note">
+        © 法律知识点解析 | MBE Civil Procedure
+    </div>
+</div>
+
+</body>
+</html>

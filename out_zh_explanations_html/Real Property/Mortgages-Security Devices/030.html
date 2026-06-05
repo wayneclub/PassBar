@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f8f5;
+            border: 1px solid #d1f2eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .answer-label {
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .rule-card {
+            background-color: #fff;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .concept-diagram {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .diagram-item {
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .arrow {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+        .english-term {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+        .wrong-option {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            padding-left: 10px;
+            border-left: 2px solid #ddd;
+        }
+        .mbe-tip {
+            background-color: #fef9e7;
+            border: 1px dashed var(--warning-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .mbe-tip-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Mortgages & Security Devices</div>
+    </div>
+
+    <div class="content">
+        <!-- 答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：B</span>
+            <p style="margin:0;">不应批准，因为抵押合同将被视为已随本票一并转让。</p>
+        </div>
+
+        <!-- 核心法则 -->
+        <div class="rule-card">
+            <div class="rule-title">核心法则：抵押权随债权走</div>
+            <p>在物权法中，有一条至关重要的原则：<strong>"The Mortgage follows the Note"</strong>（抵押权跟随本票）。</p>
+            <p>本票（Promissory Note）代表主债权，而抵押合同（Mortgage）只是担保该债权的附属权益。只要主债权被有效转让，担保权益会自动随之转移。</p>
+        </div>
+
+        <!-- 图解关系 -->
+        <div class="concept-diagram">
+            <div class="diagram-item">
+                📄 本票<br><span class="english-term">(Note)</span><br>
+                <span style="color:var(--accent-color)">主 (Principal)</span>
+            </div>
+            <div class="arrow">➡</div>
+            <div class="diagram-item">
+                🏠 抵押<br><span class="english-term">(Mortgage)</span><br>
+                <span style="color:#7f8c8d">从 (Accessory)</span>
+            </div>
+        </div>
+
+        <!-- 详细解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">详细法律分析</div>
+            
+            <p><strong>1. 本票的转让 (Transfer of the Note)</strong></p>
+            <p>题目中明确指出这是一份<strong>可转让本票</strong> <span class="english-term">(Negotiable Promissory Note)</span>。根据《统一商法典》(UCC) 第3条，这类本票可以通过以下方式有效转让：</p>
+            <ul>
+                <li><strong>背书</strong> <span class="english-term">(Endorsement)</span></li>
+                <li><strong>交付</strong> <span class="english-term">(Delivery)</span></li>
+            </ul>
+            <p>题目中银行已经完成了这两步，因此抵押公司（Mortgage Company）成为了本票的合法持有人 <span class="english-term">(Holder)</span>。</p>
+
+            <p><strong>2. 抵押权的自动转移</strong></p>
+            <p>一旦本票被合法转让，担保该债务的抵押权<strong>自动</strong>转移给受让人。这不需要单独签署一份“抵押转让协议” <span class="english-term">(Assignment of Mortgage)</span>。</p>
+            <p>因此，抵押公司现在既拥有债权（本票），也拥有担保权（抵押），完全有权提起止赎诉讼。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么其他选项是错的？</div>
+            
+            <div class="wrong-option">
+                <strong>❌ 选项 A (No... unenforceable)</strong><br>
+                错误。抵押权不是必须单独转让才有效。它像影子一样跟随本票。
+            </div>
+            
+            <div class="wrong-option">
+                <strong>❌ 选项 C (Yes... independent)</strong><br>
+                错误。本票<strong>可以</strong>独立于抵押合同转让。实际上，转让本票是转移担保权益的主要方式。
+            </div>
+
+            <div class="wrong-option">
+                <strong>❌ 选项 D (Yes... separate document)</strong><br>
+                错误。对于<strong>可转让本票</strong> <span class="english-term">(Negotiable Note)</span>，背书+交付即完成转让，不需要额外的书面转让文件。只有<strong>不可转让本票</strong>才必须通过单独的转让文件 <span class="english-term">(separate assignment document)</span> 进行转让。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <span class="mbe-tip-title">💡 MBE 拿分技巧</span>
+            <p>在遇到涉及 <strong>Note</strong> 和 <strong>Mortgage</strong> 分离的问题时，请记住：</p>
+            <ol style="padding-left: 20px; margin-top: 5px;">
+                <li><strong>Note 是老大：</strong> 谁持有 Note，谁就拥有执行 Mortgage 的权利（通常情况下）。</li>
+                <li><strong>物理分离不影响法律效力：</strong> 即使 Mortgage 文件还在银行手里，只要 Note 被卖给了抵押公司，抵押公司就是实际的抵押权人。</li>
+                <li><strong>关键词：</strong> 注意题目说的是 "Negotiable" (背书+交付即可) 还是 "Non-negotiable" (需要单独文件)。</li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --danger-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+
+        .option-analysis {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .option-correct {
+            background-color: #eafaf1;
+            border-color: var(--success-color);
+        }
+
+        .option-wrong {
+            background-color: #fdedec;
+            border-color: var(--danger-color);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: white;
+            margin-right: 5px;
+        }
+
+        .badge-correct { background-color: var(--success-color); }
+        .badge-wrong { background-color: var(--danger-color); }
+
+        .mbe-tip {
+            background-color: #fff8e1;
+            border: 1px dashed var(--warning-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">侵权法：公共承运人的注意义务</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">📚 核心法律原则 (Legal Principle)</span>
+            <p>一般而言，法律不强迫个人去援助他人。但存在以下例外情况，被告有<strong>积极作为的义务 (Affirmative Duty to Act)</strong>：</p>
+            <ul>
+                <li><strong>特殊关系 (Special Relationship)：</strong> 如公共承运人与乘客 (Common Carrier-Passenger)。</li>
+                <li><strong>制造风险 (Creation of Risk)：</strong> 被告的行为将他人置于危险之中。</li>
+            </ul>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">⚖️ 案情逻辑分析</div>
+            <p>本题考察的是<strong>过失 (Negligence)</strong> 的构成要件，特别是“义务 (Duty)”和“违反 (Breach)”。</p>
+            
+            <p><strong>1. 义务的来源 (Source of Duty)：</strong><br>
+            航空公司作为<span class="highlight">公共承运人 (Common Carrier)</span>，对乘客负有高度的注意义务（或至少是合理的注意义务），以保护他们免受包括其他乘客在内的伤害。</p>
+
+            <p><strong>2. 风险的制造与可预见性 (Creation of Risk & Foreseeability)：</strong><br>
+            空乘人员（航空公司的雇员）主动为会计师提供了<strong>9杯饮品</strong>。
+            <br><em>关键点：</em> 空乘人员“理应知道 (Should have known)”大量饮酒会导致醉酒，进而可能引发攻击性行为。这种行为制造了<strong>可预见的风险 (Foreseeable Risk)</strong>。</p>
+
+            <p><strong>3. 替代责任 (Vicarious Liability)：</strong><br>
+            空乘人员是在履行职务期间（Scope of Employment）服务的，因此航空公司需根据 <span class="latin">Respondeat Superior</span>（雇主替代责任）原则对空乘的过失负责。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 正确答案解析 (选项 D)</div>
+            <div class="option-analysis option-correct">
+                <span class="badge badge-correct">Correct</span>
+                <strong>理由：</strong>
+                <p>空乘人员有义务察觉会计师的醉酒状态。通过提供过量酒精，空乘人员制造了风险。当会计师表现出醉酒和骚扰迹象时，空乘人员未能采取行动保护律师，构成了义务的违反 (Breach of Duty)。</p>
+                <p>因此，律师可以基于过失胜诉。</p>
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">❌ 错误选项陷阱</div>
+            
+            <div class="option-analysis option-wrong">
+                <span class="badge badge-wrong">Choice A</span>
+                <strong>一般不作为原则的例外：</strong>
+                <p>虽然通常没有救援义务，但本案存在“特殊关系”且被告“制造了风险”，因此该一般原则不适用。</p>
+            </div>
+
+            <div class="option-analysis option-wrong">
+                <span class="badge badge-wrong">Choice B</span>
+                <strong>比较过失 (Comparative Negligence)：</strong>
+                <p>即使律师没有换座位有一定过错，在现代侵权法（MBE默认规则）中，这只会<strong>减少</strong>赔偿金额，而不会完全<strong>阻碍 (Bar)</strong> 胜诉。题目问的是“能否胜诉 (Will the lawyer prevail)”，答案是肯定的。</p>
+            </div>
+
+            <div class="option-analysis option-wrong">
+                <span class="badge badge-wrong">Choice C</span>
+                <strong>严格责任 (Strict Liability) 误区：</strong>
+                <p>这是一个常见的干扰项。公共承运人对乘客的安全负责，但<strong>不是严格责任</strong>。原告仍需证明被告有过失（即未能尽到合理的注意义务）。严格责任通常仅适用于极度危险活动或产品责任。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <strong>💡 MBE 考试技巧 (Exam Tip)</strong>
+            <br>
+            当题目涉及<strong>第三方犯罪或故意侵权</strong>（如本案中的殴打）导致原告受伤时，要检查被告是否对原告负有<strong>特殊保护义务</strong>。
+            <br><br>
+            如果被告（如航空公司、酒店、学校）有能力控制第三方，且伤害是<strong>可预见的 (Foreseeable)</strong>，被告通常需要承担过失责任。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

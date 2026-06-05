@@ -89,17 +89,35 @@ export default function SettingsPage() {
 
   const currentSettings: StudySettings = { interfaceLanguage, contentMode, display, textSize };
 
+  function isLastQA(flagKey: keyof DisplayOptions) {
+    if (flagKey !== 'enQA' && flagKey !== 'zhQA') return false;
+    const other: keyof DisplayOptions = flagKey === 'enQA' ? 'zhQA' : 'enQA';
+    return display[flagKey] && !display[other];
+  }
+
+  function isLastExp(flagKey: keyof DisplayOptions) {
+    if (flagKey !== 'enExplanation' && flagKey !== 'zhExplanation') return false;
+    const other: keyof DisplayOptions = flagKey === 'enExplanation' ? 'zhExplanation' : 'enExplanation';
+    return display[flagKey] && !display[other];
+  }
+
   function DisplayCheckbox({ flagKey, label }: { flagKey: keyof DisplayOptions; label: string }) {
     const checked = display[flagKey];
+    const locked = checked && (isLastQA(flagKey) || isLastExp(flagKey));
     return (
       <button
         type="button"
         role="checkbox"
         aria-checked={checked}
-        onClick={() => commitSettings({ ...currentSettings, display: { ...display, [flagKey]: !checked } })}
+        disabled={locked}
+        onClick={() => {
+          if (locked) return;
+          commitSettings({ ...currentSettings, display: { ...display, [flagKey]: !checked } });
+        }}
         className={cn(
           'flex w-full items-center gap-3 rounded-md border px-4 py-3 text-left text-sm font-medium transition-colors',
           checked ? 'border-primary bg-primary/5 text-slate-900' : 'border-slate-200 bg-white text-slate-500 hover:bg-slate-50',
+          locked && 'cursor-not-allowed opacity-60',
         )}
       >
         <div className={cn(

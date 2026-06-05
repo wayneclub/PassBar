@@ -17,7 +17,7 @@ function sanitizeInlineHtml(html: string): string {
  * - <br> for line breaks within a paragraph
  * - <b>, <strong>, <i>, <em>, <u> inline tags
  */
-export function RichText({ text, className }: { text: string; className?: string }) {
+function RichTextComponent({ text, className }: { text: string; className?: string }) {
   // Strip leading Q-number prefix like "Q81801\n\n"
   const cleaned = text.replace(/^Q\d+\s*\n+/, '');
 
@@ -43,3 +43,5 @@ export function RichText({ text, className }: { text: string; className?: string
     </div>
   );
 }
+
+export const RichText = React.memo(RichTextComponent);

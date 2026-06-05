@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .step-box {
+            margin-bottom: 20px;
+        }
+        .step-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .step-num {
+            background: #2c3e50;
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: 600;
+        }
+        .correct-answer {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+            border: 1px solid #c3e6cb;
+        }
+        .wrong-option {
+            color: #721c24;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            font-size: 12px;
+        }
+        .diagram-box {
+            border: 2px solid #333;
+            padding: 8px;
+            border-radius: 6px;
+            width: 80%;
+            text-align: center;
+            background: #fff;
+        }
+        .arrow {
+            font-size: 20px;
+            color: #555;
+            margin: 5px 0;
+        }
+        .mbe-tip {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff0f0;
+            border-left: 4px solid #e74c3c;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考题解析</h1>
+        <p>Real Property: Future Interests</p>
+    </div>
+
+    <div class="content">
+        
+        <div class="concept-card">
+            <span class="concept-title">核心考点</span>
+            本题考察的是<b>附确定期限的完全保有地产 (Fee Simple Determinable)</b> 及其对应的未来权益——<b>复归可能性 (Possibility of Reverter)</b> 的性质与转移。
+        </div>
+
+        <div class="step-box">
+            <div class="step-title"><span class="step-num">1</span>识别地产类型</div>
+            <p>契约中的用语 "so long as it is used for school purposes"（只要用于学校目的）是典型的<b>持续性语言 (Durational Language)</b>。</p>
+            <p>这种语言创造了 <b>Fee Simple Determinable (FSD)</b>。其特点是：一旦条件被打破，地产权<b>自动 (Automatically)</b> 终止，无需原所有人采取任何法律行动。</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>类型</th>
+                        <th>关键用语</th>
+                        <th>终止方式</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>FSD</b><br>(本题)</td>
+                        <td>So long as,<br>Until,<br>During</td>
+                        <td><b>自动终止</b><br>(Automatic)</td>
+                    </tr>
+                    <tr>
+                        <td><b>FSSCS</b><br>(条件后续)</td>
+                        <td>But if,<br>Provided that</td>
+                        <td>需行使进入权<br>(Right of Entry)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="step-box">
+            <div class="step-title"><span class="step-num">2</span>确定未来权益归属</div>
+            <p>当所有人设立 FSD 时，他保留了 <b>Possibility of Reverter (复归可能性)</b>。这是一种未来权益。</p>
+            <p>题目中的法条指出："descendible"（可继承的）权益也是 "devisable"（可遗赠的）。</p>
+            <p><b>关键推理链条：</b></p>
+            <div class="diagram">
+                <div class="diagram-box"><b>所有人 (Owner)</b><br>持有 Possibility of Reverter</div>
+                <div class="arrow">↓ 去世 (遗嘱)</div>
+                <div class="diagram-box" style="border-color: #2980b9; background: #f0f8ff;"><b>朋友 (Friend)</b><br>通过遗嘱获得 "all my estate"<br>(包含复归可能性)</div>
+                <div class="arrow">↓ 学校关闭</div>
+                <div class="diagram-box" style="border-color: #27ae60; background: #eafaf1;"><b>朋友 (Friend)</b><br>自动获得 Fee Simple Absolute<br>(土地所有权)</div>
+            </div>
+        </div>
+
+        <div class="step-box">
+            <div class="step-title"><span class="step-num">3</span>分析当前状态</div>
+            <p>当学区关闭学校时，"用于学校目的" 的条件不再满足。由于是 FSD，学区的权利<b>瞬间自动终止</b>。</p>
+            <p>此时，土地所有权立即回到了复归可能性的持有人手中。根据遗嘱，这个持有人是<b>朋友</b>。</p>
+            <p>因此，学区随后签发给开发商的免责契约 (Quitclaim Deed) 是无效的，因为那时学区已经没有任何权利可以转让了。</p>
+        </div>
+
+        <div class="correct-answer">
+            正确答案：B (The friend)
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+        <h3>为什么其他选项是错的？</h3>
+        
+        <div class="wrong-option">
+            <b>A. The Developer (开发商)</b><br>
+            错误。开发商从学区购买土地时，学区的权利已经因为学校关闭而自动终止了。学区不能转让它不拥有的东西 (Nemo dat quod non habet)。
+        </div>
+
+        <div class="wrong-option">
+            <b>C. The School District (学区)</b><br>
+            错误。FSD 的性质决定了违反条件时权利自动丧失，不会停留在学区手中。
+        </div>
+
+        <div class="wrong-option">
+            <b>D. The Son (儿子)</b><br>
+            错误。虽然儿子是法定继承人 (Heir)，但所有人留下了有效的遗嘱 (Will)，将所有财产给了朋友。遗嘱优先于法定继承。Possibility of Reverter 是可以通过遗嘱转让的财产权益。
+        </div>
+
+        <div class="mbe-tip">
+            <b>💡 MBE 提分技巧</b><br>
+            在做此类题目时，务必区分 <b>Fee Simple Determinable (FSD)</b> 和 <b>Fee Simple Subject to Condition Subsequent (FSSCS)</b>。
+            <br><br>
+            如果是 FSSCS（例如用词是 "but if"），违反条件<b>不会</b>自动终止权利，必须由持有 "Right of Entry" 的人采取行动收回。如果本题是 FSSCS，且朋友未行使权利，学区（及开发商）可能仍持有土地。但本题是 "so long as" (FSD)，所以是<b>自动</b>回归。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

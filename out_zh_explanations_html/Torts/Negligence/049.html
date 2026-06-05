@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background-color: #ecf0f1;
+            border-left: 5px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .rule-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .rule-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .rule-list li::before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .analysis-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .analysis-card.correct {
+            border-color: var(--accent-color);
+            background-color: #fff5f5;
+        }
+        .analysis-card.wrong {
+            border-color: var(--success-color);
+            background-color: #f0fff4;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .badge-weak {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        .badge-strong {
+            background-color: var(--success-color);
+            color: white;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .footer-tip {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .highlight {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Negligence Per Se (过失本身)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点讲解 -->
+        <div class="concept-box">
+            <div class="concept-title">核心原则：Negligence Per Se</div>
+            <p style="font-size: 14px; margin-top: 0;">
+                在普通法中，如果被告违反了旨在保护特定人群免受特定伤害的法规，法院可以直接推定其存在<b>义务 (Duty)</b> 和 <b>违约 (Breach)</b>。
+            </p>
+            <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px;">适用三要素：</p>
+            <ul class="rule-list">
+                <li>被告违反了法规 (Statutory Violation)。</li>
+                <li>原告属于该法规<b>旨在保护的人群</b> (Class of Persons)。</li>
+                <li>伤害属于该法规<b>旨在防止的类型</b> (Class of Risks/Harm)。</li>
+            </ul>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-card correct">
+            <span class="badge badge-weak">最弱的抗辩 (正确答案 A)</span>
+            <p style="margin: 0; font-size: 15px; font-weight: bold;">
+                "我不知道他是未成年人"
+            </p>
+            <hr style="border: 0; border-top: 1px solid #eecaca; margin: 10px 0;">
+            <p style="font-size: 14px; line-height: 1.5;">
+                <b>为什么这是最弱的？</b><br>
+                题目明确指出该法规是<b>严格责任 (Strict Liability)</b>。这意味着违规不需要意图 (Mens Rea) 或过失。只要你把烟给了未成年人，你就违反了法规。<br><br>
+                既然违反法规是既定事实，且不需要证明被告的心理状态，那么“不知道对方年龄”在法律上是<b>无效的</b>抗辩。它无法否定“违反法规”这一事实，因此无法阻止 Negligence Per Se 的适用。
+            </p>
+        </div>
+
+        <!-- 强抗辩解析 -->
+        <div class="analysis-card wrong">
+            <span class="badge badge-strong">强有力的抗辩 (选项 B, C, D)</span>
+            <p style="font-size: 14px; line-height: 1.5;">
+                这三个选项之所以是“强”抗辩，是因为它们成功攻击了过失诉讼的必要元素：
+            </p>
+            <ul class="rule-list" style="margin-top: 10px;">
+                <li>
+                    <b>选项 B (伤害类型):</b> 禁止未成年人吸烟的法律通常是为了保护<b>健康</b>，而不是防止<b>火灾/财产损失</b>。如果伤害类型不符，Negligence Per Se 不适用。
+                </li>
+                <li>
+                    <b>选项 D (受保护人群):</b> 法律旨在保护<b>未成年人</b>，而不是<b>财产所有者</b>。如果原告不在保护范围内，Negligence Per Se 不适用。
+                </li>
+                <li>
+                    <b>选项 C (近因 Proximate Cause):</b> 即使被告有过失，原告仍需证明该过失是损害的法律原因。被告可以辩称：给烟并不必然导致烧毁车库，这超出了可预见的风险范围。
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-tip">
+        <strong>💡 MBE 考试技巧：</strong><br>
+        当题目问“最弱的抗辩 (Weakest Defense)”时，实际上是在问你：<b>“以下哪个法律论点是完全站不住脚的？”</b><br><br>
+        在本题中，面对 Strict Liability (严格责任) 法规，辩解“不知情”在法律上是毫无意义的，因此它是最弱的。而其他选项虽然未必一定能赢，但至少是法律上有效的切入点。
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .rule-card {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            color: #1565c0;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .concept-section {
+            margin-bottom: 20px;
+        }
+        .concept-title {
+            font-weight: bold;
+            font-size: 16px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+            padding-left: 15px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background-color: #2196f3;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .wrong-option {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fafafa;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #666;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .footer-tip {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            border: 1px solid #ffecb3;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure: Relief from Judgment</div>
+    </div>
+
+    <div class="content">
+        <div class="answer-box">
+            正确答案：选项 D
+        </div>
+
+        <div class="concept-section">
+            <div class="concept-title">核心考点：FRCP 60(b)(5)</div>
+            <p>本题考察的是《联邦民事诉讼规则》（Federal Rules of Civil Procedure, FRCP）第60(b)条关于<b>解除终局判决（Relief from Final Judgment）</b>的规定。</p>
+            
+            <div class="rule-card">
+                <span class="rule-title">FRCP 60(b)(5) 规定：</span>
+                法院可以解除一方当事人的终局判决，如果该判决是<b>基于一项已被推翻或撤销的先前判决</b>（based on an earlier judgment that has been reversed or vacated）。
+            </div>
+        </div>
+
+        <div class="concept-section">
+            <div class="concept-title">案情逻辑分析</div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <b>刑事定罪 (Judgment A)</b><br>
+                    股票经纪人因欺诈被定罪。
+                </div>
+                <div class="timeline-item">
+                    <b>民事判决 (Judgment B)</b><br>
+                    基于“争点排除原则”（Issue Preclusion），民事法院直接引用刑事定罪判定经纪人负有民事责任。
+                </div>
+                <div class="timeline-item">
+                    <b>刑事定罪被推翻</b><br>
+                    上诉法院撤销了 Judgment A。
+                </div>
+                <div class="timeline-item">
+                    <b>动议救济</b><br>
+                    经纪人请求撤销基于 Judgment A 作出的 Judgment B。
+                </div>
+            </div>
+            <p>由于民事判决（Judgment B）的<b>唯一基础</b>是刑事定罪（Judgment A），当基础不复存在时，根据 FRCP 60(b)(5)，法院应当批准解除民事判决。</p>
+        </div>
+
+        <div class="concept-section">
+            <div class="concept-title">关键陷阱：时间限制 (Timing)</div>
+            <p>本题最大的干扰点在于<b>“15个月”</b>。考生需要区分 FRCP 60(b) 中不同理由的时间限制：</p>
+            
+            <table style="width:100%; font-size:13px; border-collapse: collapse; margin-top:10px;">
+                <tr style="background:#f5f5f5; border-bottom:1px solid #ddd;">
+                    <th style="padding:8px; text-align:left;">理由</th>
+                    <th style="padding:8px; text-align:left;">时限</th>
+                </tr>
+                <tr style="border-bottom:1px solid #eee;">
+                    <td style="padding:8px;">(1) 错误/疏忽<br>(2) 新证据<br>(3) 欺诈</td>
+                    <td style="padding:8px; color:#d32f2f;"><b>绝对不超过1年</b></td>
+                </tr>
+                <tr>
+                    <td style="padding:8px;">(4) 判决无效<br>(5) <b>判决基础被推翻</b><br>(6) 其他理由</td>
+                    <td style="padding:8px; color:#2e7d32;"><b>合理时间内 (Reasonable Time)</b></td>
+                </tr>
+            </table>
+
+            <p style="margin-top:10px;">
+                虽然民事判决已经过了15个月（超过1年），但本动议是基于 <b>60(b)(5)</b>。规则要求只需在“合理时间内”提出。由于经纪人在刑事判决被推翻后<b>“立即”（promptly）</b>提出了动议，这符合“合理时间”的要求。因此，选项 A（认为不合时宜）是错误的。
+            </p>
+        </div>
+
+        <div class="concept-section">
+            <div class="concept-title">其他选项解析</div>
+            
+            <div class="wrong-option">
+                <b>选项 B 错误：</b>
+                当事人不需要先对民事判决提起上诉才能使用 Rule 60(b)。事实上，如果当时提起上诉，上诉法院也会维持原判，因为当时刑事定罪还是有效的。Rule 60(b) 正是为了处理这种判决后发生变化的情况。
+            </div>
+
+            <div class="wrong-option">
+                <b>选项 C 错误：</b>
+                这是一个常见的误区。根据联邦法，<b>未决的上诉（Pending Appeal）并不影响判决的既判力</b>。民事法院在当时完全有权依据尚未被推翻的刑事判决来判定责任。法院当时的做法没有错，只是现在情况变了。
+            </div>
+        </div>
+
+        <div class="footer-tip">
+            <b>💡 考试技巧：</b><br>
+            看到 Rule 60(b) 的题目，首先判断动议的<b>理由</b>是什么。
+            <ul>
+                <li>如果是“发现了新证据”或“律师搞错了”，死记<b>1年</b>红线。</li>
+                <li>如果是“管辖权缺陷（Void）”或“基础判决被推翻”，则是<b>合理时间</b>。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

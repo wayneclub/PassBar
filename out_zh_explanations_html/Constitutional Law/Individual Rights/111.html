@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .key-term {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .case-law {
+            font-style: italic;
+            color: #555;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .option-analysis {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+        }
+        .correct {
+            border-color: #27ae60;
+            background-color: #f0fff4;
+        }
+        .wrong {
+            border-color: #e74c3c;
+            background-color: #fff5f5;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            margin-right: 5px;
+        }
+        .badge-correct { background-color: #27ae60; }
+        .badge-wrong { background-color: #e74c3c; }
+        
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .english {
+            font-family: "Times New Roman", serif;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：竞选资金与言论自由</h1>
+    
+    <div class="concept-box">
+        <p>本题的核心考点在于区分<b>竞选捐款 (Contributions)</b> 与 <b>竞选支出 (Expenditures)</b> 在宪法第一修正案下的不同审查标准。</p>
+        <p>最高法院认为，<b>金钱即言论 (Money is Speech)</b>，但政府对两者的监管权限不同。</p>
+    </div>
+
+    <h2>核心规则对比</h2>
+    <table>
+        <tr>
+            <th>类型</th>
+            <th>定义</th>
+            <th>审查标准</th>
+        </tr>
+        <tr>
+            <td><b>竞选捐款<br>(Contributions)</b></td>
+            <td>给候选人钱</td>
+            <td><b>中度审查</b><br>(Intermediate Scrutiny)<br><i>"Closely Drawn"</i></td>
+        </tr>
+        <tr>
+            <td><b>竞选支出<br>(Expenditures)</b></td>
+            <td>自己花钱支持候选人</td>
+            <td><b>严格审查</b><br>(Strict Scrutiny)<br><i>"Least Restrictive Means"</i></td>
+        </tr>
+    </table>
+
+    <div class="analysis-section">
+        <h2>题目分析</h2>
+        <p>题目中，联邦法律禁止个人和公司进行<b>独立支出 (Independent Expenditures)</b>。这直接触发了针对“支出”的审查标准。</p>
+        <p>根据著名判例 <span class="english">Citizens United v. FEC (2010)</span>，政府限制独立支出的理由通常是为了防止腐败，但对于<b>独立</b>支出（非直接给候选人），这种腐败风险较低。</p>
+        <p>因此，限制支出的法律必须通过<b>严格审查 (Strict Scrutiny)</b>，即必须证明该法律是实现重大利益的<b>限制最少的手段 (Least Restrictive Means)</b>。</p>
+    </div>
+
+    <h2>选项解析</h2>
+
+    <div class="option-analysis correct">
+        <span class="badge badge-correct">正确答案 B</span>
+        <p><b>不应维持，因为该法律并非限制最少的手段。</b></p>
+        <p><b>解析：</b>既然涉及“支出限制”，必须应用严格审查。虽然防止“交换条件式腐败” (<span class="english">quid pro quo corruption</span>) 是一个重大利益 (<span class="english">compelling interest</span>)，但完全禁止支出并不是<b>限制最少的手段</b>。政府可以通过要求“披露资金来源”等更温和的方式来达到目的，而不是直接封杀言论。</p>
+    </div>
+
+    <div class="option-analysis wrong">
+        <span class="badge badge-wrong">干扰项 D</span>
+        <p><b>错误原因：审查标准混淆。</b></p>
+        <p><b>解析：</b>选项 D 使用了“密切相关” (<span class="english">closely drawn</span>) 这一术语，这是<b>中度审查</b>的标准，仅适用于<b>竞选捐款 (Contributions)</b> 的限制。本题考查的是<b>支出</b>，必须适用更严格的标准。</p>
+    </div>
+
+    <div class="option-analysis wrong">
+        <span class="badge badge-wrong">错误项 A & C</span>
+        <p><b>A 错：</b> 政治言论并非绝对不可限制，只要满足严格审查即可。</p>
+        <p><b>C 错：</b> 竞选支出<b>属于</b>受第一修正案保护的言论 (<span class="english">Buckley v. Valeo</span>)。</p>
+    </div>
+
+    <div class="exam-tip">
+        <strong>💡 考场技巧 (Exam Tip)</strong>
+        <p>看到竞选资金 (Campaign Finance) 题目时，第一步先判断钱的流向：</p>
+        <ul style="padding-left: 20px; margin: 5px 0;">
+            <li><b>钱流向候选人 (Contribution)</b> → 政府容易管 (中度审查)。</li>
+            <li><b>钱由第三方独立花掉 (Expenditure)</b> → 政府很难管 (严格审查)。</li>
+        </ul>
+        <p>本题中，钢铁厂是自己花钱买广告（独立支出），所以政府几乎不能禁止。</p>
+    </div>
+</div>
+
+</body>
+</html>

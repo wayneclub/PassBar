@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --error-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.4rem;
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card.answer {
+            border-left-color: var(--success-color);
+        }
+
+        .card.trap {
+            border-left-color: var(--error-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+        }
+
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: currentColor;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #856404;
+        }
+
+        .rule-box {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+        .rule-header {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .english-term {
+            color: #7f8c8d;
+            font-size: 0.85em;
+            font-style: italic;
+            margin-left: 4px;
+        }
+
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .step {
+            background: #e8f4fd;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .step::after {
+            content: '↓';
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #bdc3c7;
+            font-weight: bold;
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .key-takeaway {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <h2>MBE 考点解析：联邦陪审团人数</h2>
+    </div>
+
+    <!-- 结论卡片 -->
+    <div class="card answer">
+        <div class="card-title">正确答案：B</div>
+        <p>法院<b>不应批准</b>重新审判的动议。</p>
+        <p>理由是：虽然联邦民事陪审团通常至少需要6人，但<b>双方当事人已明确约定 (Stipulated)</b> 接受少于6人的裁决。</p>
+    </div>
+
+    <!-- 核心法规卡片 -->
+    <div class="card">
+        <div class="card-title">核心法规：FRCP 48</div>
+        <p>本题考查《联邦民事诉讼规则》第48条关于陪审员人数的规定。该规则分为两个关键阶段：</p>
+
+        <div class="rule-box">
+            <span class="rule-header">1. 审判开始时 (Start of Trial)</span>
+            陪审团<b>必须</b>由至少 6 名、至多 12 名成员组成。<br>
+            <span class="english-term">FRCP 48(a)</span>
+            <br><i>*这是一个硬性规定，不能通过约定豁免。</i>
+        </div>
+
+        <div class="rule-box">
+            <span class="rule-header">2. 作出裁决时 (Verdict)</span>
+            裁决必须由至少 6 名陪审员作出，<b>除非当事人另有约定 (Unless the parties stipulate otherwise)</b>。<br>
+            <span class="english-term">FRCP 48(b)</span>
+        </div>
+    </div>
+
+    <!-- 逻辑推演卡片 -->
+    <div class="card">
+        <div class="card-title">本案逻辑推演</div>
+        <div class="diagram">
+            <div class="step">
+                <b>初始阶段：</b>选定6名陪审员+2名候补。<br>
+                <span style="color:green">✔ 符合 FRCP 48(a) (至少6人)。</span>
+            </div>
+            <div class="step">
+                <b>审判中途：</b>3名陪审员因病退出，无候补可用。剩余 5 人。
+            </div>
+            <div class="step">
+                <b>关键动作：</b>双方律师<span class="highlight">约定 (Stipulated)</span> 由5人作出裁决。<br>
+                <span style="color:green">✔ 触发 FRCP 48(b) 的例外条款。</span>
+            </div>
+            <div class="step">
+                <b>结果：</b>5人裁决有效。原告不能因为输了官司就反悔。
+            </div>
+        </div>
+    </div>
+
+    <!-- 陷阱分析卡片 -->
+    <div class="card trap">
+        <div class="card-title">易错项辨析</div>
+        <ul>
+            <li>
+                <b>选项 A (错误)：</b> 虽然法院因病免除陪审员是正当的 <span class="english-term">(Good cause)</span>，但这本身不能让5人裁决合法化。<b>“双方的约定”</b>才是法律效力的来源。
+            </li>
+            <li>
+                <b>选项 C (错误)：</b> 这是一个常见的陷阱。虽然规则确实要求“至少6人”，但考生必须记住该规则后半句的<b>例外情况</b>——即当事人可以约定少于6人。
+            </li>
+            <li>
+                <b>选项 D (错误)：</b> 联邦民事陪审团不需要12人。12人是普通法传统或刑事案件的概念，联邦民事规则明确规定 6-12 人即可。
+            </li>
+        </ul>
+    </div>
+
+    <!-- 备考锦囊 -->
+    <div class="key-takeaway">
+        MBE 破题金钥匙 🗝️<br>
+        看到 "Jury Size" 问题，区分两个时间点：<br>
+        开始时必须 ≥6 (不可豁免)<br>
+        裁决时原则 ≥6 (可约定豁免)
+    </div>
+
+</div>
+
+</body>
+</html>

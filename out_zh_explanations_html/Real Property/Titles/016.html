@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #e74c3c;
+        --highlight-bg: #ecf0f1;
+        --success-color: #27ae60;
+        --text-color: #333;
+        --card-bg: #ffffff;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f7f6;
+        color: var(--text-color);
+        line-height: 1.6;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header .subtitle {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .rule-box {
+        background-color: #e8f6f3;
+        border-left: 5px solid var(--success-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .rule-title {
+        color: var(--success-color);
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 5px;
+        display: block;
+    }
+    .step-card {
+        background: var(--highlight-bg);
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        position: relative;
+    }
+    .step-number {
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        background: var(--accent-color);
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 24px;
+        font-weight: bold;
+        font-size: 12px;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .english {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 0.9em;
+    }
+    .conclusion {
+        border-top: 2px solid #eee;
+        padding-top: 15px;
+        margin-top: 10px;
+    }
+    .correct-answer {
+        font-weight: bold;
+        color: var(--success-color);
+        font-size: 18px;
+        text-align: center;
+        margin: 10px 0;
+    }
+    .wrong-options {
+        font-size: 13px;
+        color: #666;
+        background: #fafafa;
+        padding: 10px;
+        border-radius: 6px;
+    }
+    .exam-tip {
+        margin-top: 20px;
+        background: #fff8e1;
+        border: 1px solid #ffe082;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 13px;
+    }
+    .exam-tip-title {
+        font-weight: bold;
+        color: #f57f17;
+        display: block;
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Real Property: Recording Acts</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">核心考点：庇护规则 (The Shelter Rule)</span>
+            在不动产登记法中，如果一个人从<b>善意购买人 (Bona Fide Purchaser, BFP)</b> 处受让财产，那么无论该受让人自己是否知情，他都将继承 BFP 在登记法下的保护地位。
+        </div>
+
+        <p>本题考察的是在一个<b>通知型法案 (Notice Statute)</b> 管辖区内，未登记抵押权、善意购买人与后续受让人之间的权利顺位问题。</p>
+
+        <!-- 步骤分析 -->
+        <div class="step-card">
+            <div class="step-number">1</div>
+            <strong>确定法案类型</strong><br>
+            题目中的法案规定：“除非依法登记，否则...对后续<b>善意有偿 (for value and without notice)</b> 的购买者无效。”<br>
+            <span class="english">"No conveyance... shall be good against subsequent purchasers for value and without notice unless..."</span><br>
+            这属于典型的 <b>Notice Statute (通知型法案)</b>。在此类法案下，只要后续购买者在购买时是善意的（不知情），他就优先于先前的未登记权益。
+        </div>
+
+        <div class="step-card">
+            <div class="step-number">2</div>
+            <strong>买方 (Buyer) 的地位</strong><br>
+            <ul>
+                <li>买方支付了 $50,000 (for value)。</li>
+                <li>买方购买时，朋友的抵押权<b>未登记</b>。</li>
+                <li>买方对抵押权<b>毫不知情</b> (without notice)。</li>
+            </ul>
+            <p>因此，买方是标准的 <b>BFP</b>。根据通知型法案，买方取得了该地块的完整所有权，<b>朋友的抵押权对买方无效 (extinguished)</b>。</p>
+        </div>
+
+        <div class="step-card">
+            <div class="step-number">3</div>
+            <strong>银行 (Bank) 的地位与庇护规则</strong><br>
+            买方随后将地块抵押给银行。虽然银行在放贷时<b>实际上知晓 (actual notice)</b> 朋友的抵押权（因为买方告诉了银行），但这并不影响银行的优先权。<br><br>
+            这里适用 <b>Shelter Rule (庇护规则)</b>：
+            <br>
+            银行从 BFP (买方) 处获得权益。为了保护 BFP 能够自由处分其财产的权利，法律允许 BFP 将其“干净”的产权转移给任何人（即使受让人知情）。<br>
+            <br>
+            <b>结论：</b>银行“躲在”买方的保护伞下，继承了买方对抗朋友抵押权的优先地位。
+        </div>
+
+        <!-- 结论 -->
+        <div class="conclusion">
+            <p>综上所述，朋友的抵押权在买方购买时已被切断，不再附着于该土地。银行的抵押权则因庇护规则而有效。</p>
+            <div class="correct-answer">正确答案：C</div>
+            <p>只有银行的抵押权是可强制执行的担保权，因为买方是善意有偿受让人 (BFP)，且银行继承了其地位。</p>
+        </div>
+
+        <!-- 错误选项解析 -->
+        <div class="wrong-options">
+            <strong>为什么其他选项是错的？</strong>
+            <ul>
+                <li><b>选项 A & B (Both enforceable):</b> 错误。一旦买方作为 BFP 取得产权，朋友未登记的抵押权就被“清洗”掉了。它不再是该土地上的有效留置权 (Lien)。朋友只能向投资者追偿债务，无法执行抵押权。</li>
+                <li><b>选项 D (Only friend's):</b> 错误。虽然银行知情，但根据 Shelter Rule，银行的知情无关紧要，因为它的权利源自一个不知情的 BFP。</li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 考试技巧</span>
+            看到 <b>"Transferee from a BFP" (从 BFP 处受让的人)</b> 时，立刻联想 <b>Shelter Rule</b>。
+            <br><br>
+            即使受让人知道先前的欺诈或未登记权益，只要他不是欺诈的参与者，他就能继承 BFP 的“免疫力”。这是为了确保 BFP 能够顺利将财产变现（否则如果全世界都知道了瑕疵，BFP 就卖不出去了）。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

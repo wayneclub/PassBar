@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fff3cd;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 16px;
+            color: var(--accent-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .icon {
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .concept-tag {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        .formula {
+            background: #f8f9fa;
+            border: 1px dashed #ccc;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #d35400;
+        }
+        .explanation {
+            font-size: 14px;
+            text-align: justify;
+        }
+        .key-point {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .footer-tip {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 13px;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：违约买方的预付款返还</h1>
+    
+    <div class="explanation">
+        本题考察的是美国统一商法典（UCC）中关于<strong>违约买方（Breaching Buyer）</strong>要求返还预付款的权利，以及<strong>销量损失型卖方（Lost Volume Seller）</strong>的损害赔偿计算。
+    </div>
+
+    <h2>⚖️ 核心法律规则 (The Rule)</h2>
+    <div class="rule-box">
+        <strong>UCC § 2-718(2)</strong><br>
+        即使买方违约，他也有权要求返还其支付的预付款（Restitution），但必须扣除卖方的损害赔偿。
+    </div>
+    
+    <div class="explanation">
+        卖方可以扣除的金额是以下两者中的<strong>较大者</strong>：
+        <ul>
+            <li><strong>法定损害赔偿 (Statutory Damages)：</strong>500美元或合同价格的20%（取较小值）。</li>
+            <li><strong>实际损害赔偿 (Actual Damages)：</strong>卖方因违约遭受的实际损失。</li>
+        </ul>
+    </div>
+
+    <h2>🚤 关键概念：销量损失型卖方</h2>
+    <span class="concept-tag">Lost Volume Seller</span>
+    
+    <div class="explanation">
+        <p>本题最关键的细节在于：零售商拥有<strong>“几乎无限的供应量” (nearly inexhaustible supply)</strong>。</p>
+        <p>通常情况下，如果卖方将货物转售给第三方且价格相同，卖方似乎没有损失。但是，对于拥有无限库存的零售商来说，情况并非如此。</p>
+        <p><strong>逻辑推理：</strong></p>
+        <ul>
+            <li>如果买方没有违约，零售商本可以卖出<strong>两艘船</strong>（一艘给原买家，一艘给第三方）。</li>
+            <li>因为买方违约，零售商只卖出了<strong>一艘船</strong>（给第三方）。</li>
+            <li>因此，转售并没有“弥补”损失，零售商实际上<strong>损失了一笔销售的利润</strong>。</li>
+        </ul>
+        <p>根据 <strong>UCC § 2-708(2)</strong>，此类卖方的实际损害赔偿就是<strong>损失的利润 (Lost Profit)</strong>。</p>
+    </div>
+
+    <h2>🧮 判决计算公式</h2>
+    <div class="formula">
+        返还金额 = 预付款 - 卖方损失的利润
+    </div>
+    
+    <div class="explanation">
+        在本案中：
+        <ul>
+            <li><strong>预付款：</strong>$4,000</li>
+            <li><strong>卖方实际损失：</strong>$2,500（即 $12,000 售价 - $9,500 成本）</li>
+            <li><strong>法定扣除额：</strong>$500（因为 $500 < $2,400 [20% of price]）</li>
+        </ul>
+        <p>由于卖方的<strong>实际损失 ($2,500)</strong> 远大于法定扣除额 ($500)，卖方有权扣除其实际损失。</p>
+        <p>因此，买方可以拿回：<br>
+        <strong>$4,000 - 损失的利润 = 最终返还额</strong></p>
+        <p>这正是 <strong>选项 D</strong> 的描述。</p>
+    </div>
+
+    <h2>❌ 为什么其他选项是错的？</h2>
+    <div class="explanation">
+        <ul>
+            <li><strong>选项 A (全部没收)：</strong>错误。UCC 拒绝了普通法中违约方无权要求返还利益的严苛规则，旨在防止卖方不当得利 (Unjust Enrichment)。</li>
+            <li><strong>选项 B (全部扣留)：</strong>错误。虽然卖方确实损失了利润，但这并不意味着他可以扣留<em>全部</em>预付款。他只能扣留相当于损失利润的那部分，剩余的必须返还。</li>
+            <li><strong>选项 C (仅扣除$500)：</strong>错误。$500 的法定限额仅适用于卖方没有证明更大实际损失的情况。一旦证明了实际损失（利润）高于 $500，就按实际损失计算。</li>
+        </ul>
+    </div>
+
+    <div class="footer-tip">
+        💡 <strong>MBE 考试技巧：</strong> 看到“unlimited supply”、“high-volume retailer”或“inventory”等字眼时，立即警惕 <strong>Lost Volume Seller</strong> 考点。此时，转售价格（Resale Price）通常是干扰项，关键在于<strong>利润（Profit）</strong>的损失。
+    </div>
+</div>
+
+</body>
+</html>

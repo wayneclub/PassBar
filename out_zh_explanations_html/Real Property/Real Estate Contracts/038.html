@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 18px;
+            color: var(--accent-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 10px 15px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+        .event {
+            position: relative;
+            margin-bottom: 15px;
+            padding-left: 15px;
+        }
+        .event::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #bdc3c7;
+        }
+        .event.key::before {
+            background: var(--accent-color);
+            transform: scale(1.2);
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        .answer-block {
+            background-color: #dff0d8;
+            color: #3c763d;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：不动产合同与优先权</h1>
+
+    <div class="answer-block">
+        正确答案：D (牧场主胜诉)
+    </div>
+
+    <p>本题的核心考点在于<strong>登记法案 (Recording Acts)</strong> 如何影响买方权益与后续<strong>判决留置权 (Judgment Liens)</strong> 之间的优先顺位。</p>
+
+    <h2>1. 核心法律原则</h2>
+
+    <div class="concept-box">
+        <span class="term">衡平法上的转化 (Equitable Conversion)</span><br>
+        一旦双方签订了具有约束力的土地买卖合同，买方在衡平法上即被视为土地的所有者（Equitable Owner），而卖方仅持有法定所有权（Legal Title）作为收取价款的担保。
+    </div>
+
+    <div class="concept-box">
+        <span class="term">优先权与登记 (Priority & Recording)</span><br>
+        通常原则是“时间在先，权利在先”。登记法案旨在保护善意购买人。如果买方在第三方获得留置权之前已经<strong>登记 (Recorded)</strong> 了合同，那么买方的权益就优先于后续的留置权。
+    </div>
+
+    <h2>2. 案情时间线分析</h2>
+    <p>理解本题的关键在于事件发生的顺序：</p>
+
+    <div class="timeline">
+        <div class="event">
+            <strong>步骤 1：</strong> 牧场主与公司签订买卖合同。<br>
+            <small>结果：公司获得衡平法所有权。</small>
+        </div>
+        <div class="event key">
+            <strong>步骤 2：</strong> 公司<span style="color:red">登记</span>了该合同。<br>
+            <small>关键点：此时公司向全世界发出了“推定通知” (Constructive Notice)。</small>
+        </div>
+        <div class="event">
+            <strong>步骤 3：</strong> 驯马师获得针对牧场主的判决并登记。<br>
+            <small>结果：判决留置权产生，但时间在合同登记之后。</small>
+        </div>
+        <div class="event">
+            <strong>步骤 4：</strong> 预定交割日 (Closing)。
+        </div>
+    </div>
+
+    <h2>3. 深度解析：为什么选 D？</h2>
+    
+    <p><strong>判决依据：</strong></p>
+    <p>虽然驯马师的判决留置权是有效的，但它只能附着在牧场主（债务人）当时实际拥有的权益上。由于公司已经<strong>在此之前登记了合同</strong>，公司的权益优先于驯马师的留置权。</p>
+    
+    <p>这意味着：</p>
+    <ul>
+        <li>公司有权根据合同条款获得土地。</li>
+        <li>由于公司的权益优先（Priority），该土地在转让给公司时，将<strong>不受</strong>驯马师留置权的影响（或者说，留置权无法对抗优先的买方权益）。</li>
+        <li>因此，牧场主提供的所有权是<strong>可销售的 (Marketable Title)</strong>。</li>
+    </ul>
+
+    <p>既然所有权是可销售的，公司拒绝履约就是违约，法院应支持牧场主的<strong>强制履行 (Specific Performance)</strong> 请求。</p>
+
+    <h2>4. 排除错误选项</h2>
+
+    <ul>
+        <li><strong>选项 A 错误：</strong> 法律并不禁止卖方从买方保护自己权益的行为（登记）中受益。买方的登记客观上理顺了产权链，卖方当然可以据此主张产权无瑕疵。</li>
+        <li><strong>选项 B 错误：</strong> 判决留置权法规（Judgment Lien Statute）并不凌驾于登记法案之上。它们是并行运作的。登记法案确立了不同权益人之间的优先顺位。</li>
+        <li><strong>选项 C 错误：</strong> 这是一个陷阱选项。虽然衡平法保护购买人，但并非“总是”免受判决留置权影响。如果公司<strong>没有登记</strong>合同，且该州法律保护判决债权人，结果可能会完全不同。本题的关键在于“合同已被登记”这一事实，而非仅仅依靠衡平法的一般原则。</li>
+    </ul>
+
+    <h2>5. 考试技巧 (Exam Tip)</h2>
+    <div class="concept-box" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+        在处理 MBE 不动产题目时，务必画出<strong>时间轴</strong>。
+        <br><br>
+        问自己：<strong>“谁先登记的？”</strong>
+        <br>
+        在本题中，买方（公司）在债权人（驯马师）之前登记。在不动产法中，先登记的权益通常会切断（Cut off）或优先于后续的权益。因为买方优先，所以产权没有瑕疵，买方必须履约。
+    </div>
+
+</div>
+
+</body>
+</html>

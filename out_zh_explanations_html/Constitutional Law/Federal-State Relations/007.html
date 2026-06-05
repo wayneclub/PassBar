@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --correct-bg: #d4edda;
+        --correct-text: #155724;
+        --wrong-bg: #f8d7da;
+        --wrong-text: #721c24;
+        --text-color: #333;
+        --card-bg: #ffffff;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 10px;
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    .header .subtitle {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .concept-card {
+        background-color: var(--highlight-bg);
+        border-left: 5px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+
+    .concept-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+    }
+
+    .concept-title::before {
+        content: "⚖️";
+        margin-right: 8px;
+    }
+
+    .rule-explanation {
+        font-size: 0.95rem;
+    }
+
+    .analysis-section {
+        margin-bottom: 20px;
+    }
+
+    .analysis-title {
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+    }
+
+    .step {
+        display: flex;
+        margin-bottom: 12px;
+    }
+
+    .step-number {
+        background-color: var(--primary-color);
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 24px;
+        font-size: 0.8rem;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+
+    .option-analysis {
+        margin-top: 15px;
+        font-size: 0.9rem;
+    }
+
+    .option {
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 8px;
+    }
+
+    .option.correct {
+        background-color: var(--correct-bg);
+        color: var(--correct-text);
+        border: 1px solid #c3e6cb;
+    }
+
+    .option.wrong {
+        background-color: var(--wrong-bg);
+        color: var(--wrong-text);
+        border: 1px solid #f5c6cb;
+        opacity: 0.85;
+    }
+
+    .key-term {
+        font-weight: bold;
+        background-color: rgba(52, 152, 219, 0.1);
+        padding: 0 4px;
+        border-radius: 3px;
+    }
+
+    .exam-tip {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 0.9rem;
+    }
+
+    .exam-tip-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Federal-State Relations / Commerce Clause</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：国会授权 (Congressional Authorization)</div>
+            <div class="rule-explanation">
+                虽然<strong>休眠商业条款 (Dormant Commerce Clause)</strong> 通常禁止州政府对州际商业施加不当负担，但<strong>国会 (Congress)</strong> 拥有监管州际商业的最高权力。如果国会通过立法<strong>明确授权 (Explicitly Authorize)</strong> 州政府进行某种监管，那么该州政府的行为就不再受休眠商业条款的限制。
+            </div>
+        </div>
+
+        <!-- 逻辑推演 -->
+        <div class="analysis-section">
+            <div class="analysis-title">解题逻辑推演</div>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <strong>识别州际商业：</strong><br>
+                    豪华轿车在A州和B州之间运送乘客，这显然属于州际商业 (Interstate Commerce)。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <strong>分析默认规则 (DCC)：</strong><br>
+                    如果没有联邦法律，A市强行规定跨州服务的费率，很可能因为对州际商业构成“不当负担” (Undue Burden) 而违宪。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <strong>寻找关键例外 (Key Fact)：</strong><br>
+                    题目第一段明确指出：“一项联邦法规规定……城市可以监管……无论乘客的出发地或目的地为何。”
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <strong>得出结论：</strong><br>
+                    因为有国会的明确授权 (Federal Statute)，A市的规定获得了宪法上的“通行证”。休眠商业条款的限制被移除了。
+                </div>
+            </div>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">选项深度解析</div>
+
+            <div class="option correct">
+                <strong>✅ 选项 C (正确答案)</strong><br>
+                <strong>理由：</strong>直接击中考点。国会已授权 (Authorized) 这种形式的监管。当国会行使其商业条款权力授权州行为时，该州行为就不受休眠商业条款的攻击。
+            </div>
+
+            <div class="option wrong">
+                <strong>❌ 选项 A (常见陷阱)</strong><br>
+                <strong>理由：</strong>这是典型的“休眠商业条款”分析。如果<strong>没有</strong>那个联邦法规，选项A就是对的。但在本题中，它忽略了国会授权这一关键事实。
+            </div>
+
+            <div class="option wrong">
+                <strong>❌ 选项 B (征用条款)</strong><br>
+                <strong>理由：</strong>涉及第五修正案的<strong>征用条款 (Takings Clause)</strong>。仅仅因为监管导致利润下降并不构成征用。只有当法规剥夺了财产的“所有经济价值”时，才可能构成监管性征用 (Regulatory Taking)。
+            </div>
+
+            <div class="option wrong">
+                <strong>❌ 选项 D (专属管辖权)</strong><br>
+                <strong>理由：</strong>法律上并不存在仅仅因为机场位于某市，该市就对所有交通拥有“专属 (Exclusive)”监管权的规则。这种权力通常是共享的，且受制于联邦法律。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 考试技巧</span>
+            在处理涉及<strong>州政府监管商业</strong>的题目时：
+            <ol style="margin: 5px 0 0 0; padding-left: 20px;">
+                <li>首先看是否有<strong>联邦法律 (Federal Statute)</strong> 授权或禁止该行为。</li>
+                <li>如果有联邦授权，州行为通常有效（国会说了算）。</li>
+                <li>如果没有联邦法律，才去分析<strong>休眠商业条款 (Dormant Commerce Clause)</strong> 是否被违反（即是否存在歧视或不当负担）。</li>
+            </ol>
+            <br>
+            <strong>口诀：</strong>国会开口，DCC (休眠商业条款) 闭嘴。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

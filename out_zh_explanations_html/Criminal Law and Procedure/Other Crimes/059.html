@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #eee;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            border-left: 5px solid var(--correct-color);
+            background-color: #f0f9f4;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: var(--correct-color);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        .concept-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: var(--highlight-bg);
+            color: var(--primary-color);
+        }
+        .wrong-option {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .wrong-label {
+            color: var(--wrong-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .tip-box {
+            background-color: #fff8e1;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考点解析</h1>
+        <p>Property Crimes: Larceny vs. False Pretenses</p>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：B. Larceny (盗窃罪)</span>
+            本题考查的核心概念是 <strong>Larceny by Trick (诈术盗窃)</strong>。
+        </div>
+
+        <!-- 核心法律分析 -->
+        <div class="concept-card">
+            <div class="concept-title">法律推理 (Legal Reasoning)</div>
+            <p>盗窃罪 (Larceny) 的普通法定义包含以下要素：</p>
+            <ol>
+                <li><strong>Trespassory taking</strong> (非法取得/侵入性取得)</li>
+                <li>and <strong>carrying away</strong> (带走/移动)</li>
+                <li>of <strong>personal property</strong> (个人财产)</li>
+                <li>of <strong>another</strong> (他人的)</li>
+                <li>with <strong>intent to permanently deprive</strong> (意图永久剥夺).</li>
+            </ol>
+            <p><strong>关键点分析：</strong><br>
+            虽然店员似乎“同意”顾客拿走手表，但这种同意是基于顾客的谎言（谎称是市长儿子）。在法律上，通过欺诈获得的同意是无效的。因此，这被视为 <span class="term">Larceny by Trick</span>。</p>
+            <p>在这种情况下，顾客只获得了手表的<strong>占有权 (Possession)</strong> 或 <strong>保管权 (Custody)</strong>，而没有获得<strong>所有权 (Title)</strong>。</p>
+        </div>
+
+        <!-- 易混淆概念辨析 -->
+        <div class="concept-card">
+            <div class="concept-title">MBE 核心考点：所有权 vs. 占有权</div>
+            <p>这是本题最大的陷阱：区分 <strong>Larceny by Trick</strong> 和 <strong>False Pretenses</strong>。</p>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th>罪名</th>
+                    <th>受害者转移了什么？</th>
+                    <th>本案情况</th>
+                </tr>
+                <tr>
+                    <td><strong>Larceny by Trick</strong><br>(诈术盗窃)</td>
+                    <td>仅转移 <strong>Possession</strong> (占有)<br>或 Custody (保管)</td>
+                    <td>店员让顾客试戴、看光线，仅是暂时保管，未转移所有权。✅</td>
+                </tr>
+                <tr>
+                    <td><strong>False Pretenses</strong><br>(诈骗罪)</td>
+                    <td>转移了 <strong>Title</strong><br>(所有权/产权)</td>
+                    <td>如果这是一笔买卖，顾客用假支票付款并获得收据，那就是诈骗。❌</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 为什么其他选项是错的 -->
+        <div class="concept-card">
+            <div class="concept-title">排除错误选项</div>
+            
+            <div class="wrong-option">
+                <span class="wrong-label">A. Robbery (抢劫罪)</span><br>
+                <strong>错误原因：时间点 (Timing)。</strong><br>
+                抢劫需要在使用暴力或恐吓的<strong>同时 (concurrently)</strong> 发生非法取得。本案中，取得行为（拿走手表）发生时是和平的（基于欺骗）。恐吓发生在“一周后”。事后的威胁不能将之前的盗窃转化为抢劫。
+            </div>
+
+            <div class="wrong-option">
+                <span class="wrong-label">D. Embezzlement (侵占罪)</span><br>
+                <strong>错误原因：初始占有的合法性。</strong><br>
+                侵占罪要求被告人最初是<strong>合法 (lawfully)</strong> 占有财产（例如银行出纳员处理现金）。本案中，顾客是通过欺诈获得手表的，其占有从一开始就是非法的 (unlawful)。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <strong>🎓 MBE 考试技巧 (Exam Tip):</strong><br>
+            当题目涉及“欺骗”导致财产转移时，立即问自己一个问题：<br>
+            <center><em>"受害者是打算把所有权 (Title) 给他，还是仅仅让他拿一会儿 (Possession/Custody)？"</em></center>
+            <br>
+            <ul>
+                <li>给所有权 ➡️ <strong>False Pretenses</strong></li>
+                <li>只给占有 ➡️ <strong>Larceny by Trick</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Criminal Law Study Guide
+    </div>
+</div>
+
+</body>
+</html>

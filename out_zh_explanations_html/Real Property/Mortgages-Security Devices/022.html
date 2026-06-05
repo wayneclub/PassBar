@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .card.correct {
+            border-left-color: var(--correct-color);
+        }
+
+        .card.wrong {
+            border-left-color: var(--wrong-color);
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .icon {
+            margin-right: 8px;
+        }
+
+        .highlight {
+            background-color: #e8f4fd;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .diagram {
+            background-color: #f9f9f9;
+            border: 1px dashed #bdc3c7;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <p>抵押赎回权与共有财产</p>
+    </div>
+
+    <!-- 核心结论 -->
+    <div class="card correct">
+        <div class="title">
+            <span class="icon">✅</span> 正确答案：B
+        </div>
+        <p>妹妹败诉，因为她未能完成<strong>抵押赎回 (Redemption)</strong>。</p>
+        <p><strong>核心理由：</strong>抵押权具有不可分割性。要赎回抵押物，必须支付<strong>全部</strong>未偿债务，而不仅仅是共有人的份额。</p>
+    </div>
+
+    <!-- 法律原理解析 -->
+    <div class="card">
+        <div class="title">⚖️ 法律原理深度解析</div>
+        
+        <p><strong>1. 衡平法赎回权 (Equitable Right of Redemption)</strong></p>
+        <p>在止赎 (Foreclosure) 发生前的任何时间，债务人都有权通过支付债务来赎回房产。但是，普通法规则非常严格：</p>
+        <div class="highlight">赎回必须支付全部债务 (Full Amount of Debt)。</div>
+        <p>这包括本金、利息以及相关的费用。</p>
+
+        <p><strong>2. 共有人的连带责任</strong></p>
+        <p>虽然兄妹是<strong>按份共有 (Tenants in Common)</strong>，且每人拥有50%的权益，但他们共同签署了抵押合同。对于贷款人 (Lender/Mortgagee) 而言：</p>
+        <ul>
+            <li>抵押权是对<strong>整个地产 (Whole Property)</strong> 的留置权 (Lien)。</li>
+            <li>除非抵押合同中有特殊条款允许“部分释放 (Partial Release)”，否则贷款人有权要求全额付款才解除抵押。</li>
+        </ul>
+
+        <div class="diagram">
+            <strong>债务总额：$100,000</strong><br>
+            ⬇️<br>
+            妹妹支付：$50,000 (50%)<br>
+            ⬇️<br>
+            <strong>结果：债务未清偿，抵押权仍覆盖100%的土地</strong>
+        </div>
+
+        <p><strong>3. 妹妹的救济途径</strong></p>
+        <p>妹妹正确的做法应该是支付<strong>全额</strong>债务以赎回房产，然后向哥哥行使<strong>分摊请求权 (Right of Contribution)</strong>，要求哥哥偿还他应付的那部分金额。</p>
+    </div>
+
+    <!-- 错误选项分析 -->
+    <div class="card wrong">
+        <div class="title">❌ 干扰项排除</div>
+        
+        <p><strong>选项 A (一般保证条款)</strong></p>
+        <p><strong>错误原因：</strong>一般保证 (General Warranty) 是关于产权质量的承诺（即没有未披露的瑕疵），它并不改变偿还债务的义务或赎回的规则。它不能用来对抗抵押权人本身的止赎权利。</p>
+
+        <p><strong>选项 C (按份共有 vs. 联合共有)</strong></p>
+        <p><strong>错误原因：</strong>无论是按份共有 (Tenants in Common) 还是联合共有 (Joint Tenancy)，在面对共同签署的抵押贷款时，所有共有人对抵押债务都负有连带责任。共有形式不影响贷款人要求全额受偿的权利。</p>
+
+        <p><strong>选项 D (资产分配清偿 Marshalling)</strong></p>
+        <p><strong>错误原因：</strong><span class="term">Marshalling</span> 是一项衡平法原则，通常适用于涉及<strong>多个债权人</strong>和<strong>多项资产</strong>的情况。本案只有一个债权人（表亲）和一项资产（该地产），因此该原则完全不适用。</p>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card">
+        <div class="title">💡 MBE 考试技巧</div>
+        <ul>
+            <li><strong>"All or Nothing" 原则：</strong> 在涉及抵押赎回 (Redemption) 的题目中，记住默认规则是“全额支付”。部分所有者不能只支付“自己的份额”来换取部分产权的释放。</li>
+            <li><strong>区分内部关系与外部关系：</strong> 兄妹之间的份额（内部关系）不影响他们对贷款人的整体责任（外部关系）。</li>
+            <li><strong>确认产权诉讼 (Quiet Title)：</strong> 只有在产权没有任何负担或负担已被解除时，原告才能胜诉。只要抵押未完全清偿，产权上就仍有“云翳 (Cloud on Title)”。</li>
+        </ul>
+    </div>
+
+    
+
+</body>
+</html>

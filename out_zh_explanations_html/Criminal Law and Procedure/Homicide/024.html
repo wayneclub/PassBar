@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+        .content {
+            padding: 24px;
+        }
+        .answer-box {
+            background-color: #dff9fb;
+            border: 2px solid #badc58;
+            color: #22a6b3;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-card {
+            background-color: var(--bg-color);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        .concept-card strong {
+            color: var(--primary-color);
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .analysis-step {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        .step-icon {
+            background-color: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .step-content {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .warning-box {
+            background-color: #fff5f5;
+            border-left: 4px solid var(--highlight-color);
+            padding: 12px;
+            font-size: 13px;
+            color: #c0392b;
+            margin-top: 10px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #95a5a6;
+            border-top: 1px solid #eee;
+        }
+        ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Criminal Law | Felony Murder</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            ✅ 正确答案：D<br>
+            <span style="font-size: 0.9em; font-weight: normal; color: #535c68;">(对经理和店员两人的死亡均可定罪)</span>
+        </div>
+
+        <!-- 核心考点 -->
+        <div class="section-title">
+            ⚖️ 核心法律规则：重罪谋杀
+        </div>
+        <div class="concept-card">
+            <p><strong>重罪谋杀规则 (Felony Murder Rule):</strong></p>
+            <p>如果死亡发生在实施<strong>内在危险性重罪 (Inherently Dangerous Felony)</strong> 的过程中（或未遂过程中），即使死亡是意外造成的，被告也被视为犯有谋杀罪。</p>
+            <p>常见的危险重罪包括 <strong>BARRK</strong>：</p>
+            <ul>
+                <li>Burglary (入室盗窃)</li>
+                <li>Arson (纵火)</li>
+                <li>Rape (强奸)</li>
+                <li><strong>Robbery (抢劫)</strong> ← 本案考点</li>
+                <li>Kidnapping (绑架)</li>
+            </ul>
+        </div>
+
+        <!-- 案情深度解析 -->
+        <div class="section-title">
+            🔍 案情分步推演
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">1</div>
+            <div class="step-content">
+                <strong>基础重罪成立</strong><br>
+                被告持枪进入商店计划抢劫，这构成了<strong>抢劫未遂 (Attempted Robbery)</strong>。抢劫属于内在危险性重罪，因此触发重罪谋杀规则。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">2</div>
+            <div class="step-content">
+                <strong>受害者一：店经理 (The Manager)</strong><br>
+                虽然枪支走火是意外 (Accidental)，且被告以为开了保险，但在重罪谋杀规则下，<strong>不需要杀人意图 (Intent to Kill)</strong>。
+                <br><span class="english-term">恶意 (Malice) 是通过实施重罪的意图推定的。</span>
+                <br>👉 <strong>结论：</strong> 构成重罪谋杀。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">3</div>
+            <div class="step-content">
+                <strong>受害者二：店员 (The Clerk)</strong><br>
+                这是本题的难点。店员死于心脏病发作，而非枪伤。这里考察的是<strong>因果关系 (Causation)</strong>。
+            </div>
+        </div>
+
+        <!-- 难点解析：因果关系 -->
+        <div class="concept-card" style="border-left: 4px solid #9b59b6;">
+            <p><strong>为何店员之死也算谋杀？</strong></p>
+            <p>必须同时满足两个因果关系：</p>
+            <ol>
+                <li><strong>事实因果关系 (Actual Cause):</strong> 若非被告开枪，店员不会心脏病发作（But-for test）。</li>
+                <li><strong>法律因果关系 (Proximate Cause):</strong> 死亡是否是<strong>可预见的 (Foreseeable)</strong>？</li>
+            </ol>
+            <div class="warning-box">
+                <strong>💡 关键点：</strong> 在抢劫中开枪（即使是对空鸣枪），导致旁观者因极度惊恐而死亡，在法律上被认为是<strong>可预见的后果</strong>。
+                <br><br>
+                虽然被告不知道店员有心脏病，但在刑法中（类似于侵权法中的“蛋壳脑袋规则”），<strong>被告需对受害人的脆弱性负责</strong>。你不能辩解说“如果他心脏健康就不会死”。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">
+            🎓 MBE 考试技巧
+        </div>
+        <div class="concept-card" style="background-color: #fff; border: 1px solid #eee;">
+            <p>遇到 <strong>Felony Murder</strong> 的题目，请按以下逻辑思考：</p>
+            <ol>
+                <li><strong>重罪是否成立？</strong> (本案：抢劫未遂，成立)</li>
+                <li><strong>死亡是否发生在重罪期间？</strong> (本案：是，包括逃跑期间)</li>
+                <li><strong>是否有因果关系？</strong> (本案：只要死亡是重罪行为的自然结果，即便受害人身体脆弱，通常也认定为成立)</li>
+            </ol>
+            <p style="color: var(--highlight-color); font-weight: bold;">❌ 陷阱排除：</p>
+            <p>不要因为“意外走火”或“不知道受害人有病”就选择无罪或减轻罪名。重罪谋杀是<strong>严格责任 (Strict Liability)</strong> 的一种形式。</p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50; /* Navy Blue */
+            --accent-color: #e74c3c; /* Red for emphasis */
+            --highlight-bg: #ecf0f1; /* Light Gray */
+            --success-color: #27ae60; /* Green */
+            --text-color: #34495e;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .result-box {
+            background-color: #e8f8f5;
+            border: 1px solid #d1f2eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .result-title {
+            color: var(--success-color);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--highlight-bg);
+            padding-bottom: 5px;
+        }
+        .concept-card {
+            background-color: #fff;
+            border-left: 4px solid var(--accent-color);
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 0 4px 4px 0;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .analysis-step {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .step-number {
+            background-color: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .footer {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">刑事诉讼法 | 宪法保护</div>
+    </div>
+
+    <div class="content">
+        <!-- 答案结论 -->
+        <div class="result-box">
+            <div class="result-title">
+                <span>✅ 正确答案：选项 B</span>
+            </div>
+            <p style="margin:0; font-size: 0.95rem;">
+                法院应<strong>驳回动议</strong>，因为证据排除规则不适用于大陪审团程序。
+            </p>
+        </div>
+
+        <!-- 核心考点讲解 -->
+        <div class="section-title">⚖️ 核心法律规则</div>
+        
+        <div class="concept-card">
+            <span class="term">大陪审团的性质</span><br>
+            <span class="english-term">Nature of Grand Jury</span>
+            <p style="margin-top: 5px; font-size: 0.9rem;">
+                大陪审团是一个<strong>调查机构</strong> (Investigatory Body)，而非判定有罪的司法机构。其职能是确定是否有足够的证据对嫌疑人提起指控 (Indictment)。
+            </p>
+        </div>
+
+        <div class="concept-card">
+            <span class="term">证据排除规则的适用范围</span><br>
+            <span class="english-term">Scope of Exclusionary Rule</span>
+            <p style="margin-top: 5px; font-size: 0.9rem;">
+                根据最高法院判例 <em>United States v. Calandra (1974)</em>，<strong>证据排除规则 (Exclusionary Rule) 通常不适用于大陪审团程序</strong>。
+            </p>
+            <p style="margin-top: 5px; font-size: 0.9rem;">
+                这意味着，即使证据是警方通过非法搜查 (Illegal Search) 获得的，检察官仍可以将其展示给大陪审团以获取起诉书。
+            </p>
+        </div>
+
+        <!-- 题目逻辑分析 -->
+        <div class="section-title">🔍 案情逻辑拆解</div>
+        
+        <div class="analysis-step">
+            <div class="step-number">1</div>
+            <div>
+                <strong>是否存在非法搜查？</strong><br>
+                <span style="color:var(--accent-color)">是的。</span>虽然是邻居（私人）进入屋内，但他是受侦探“说服”行事的。此时邻居被视为<strong>政府代理人 (Government Agent)</strong>。在没有搜查令 (Warrant) 的情况下侵入住宅获取DNA，违反了第四修正案。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-number">2</div>
+            <div>
+                <strong>此时能否排除证据？</strong><br>
+                <span style="color:var(--accent-color)">不能。</span>题目问的是“大陪审团”阶段。由于排除规则不适用于此阶段，被告的动议为时过早 (Premature)。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-number">3</div>
+            <div>
+                <strong>何时可以排除？</strong><br>
+                被告可以在后续的<strong>刑事审判 (Trial)</strong> 阶段再次提出动议，届时法院应当排除该非法证据。
+            </div>
+        </div>
+
+        <!-- 干扰项辨析 -->
+        <div class="section-title">🚫 避坑指南 (干扰项分析)</div>
+        
+        <ul>
+            <li>
+                <strong>选项 A 错误：</strong> 它错误地认为邻居是“私人公民”。一旦警方鼓励或指示私人进行搜查，该私人即转变为“国家行为者” (State Actor)，受第四修正案约束。
+            </li>
+            <li>
+                <strong>选项 C 错误：</strong> 大陪审团的证据规则非常宽松，它可以采纳传闻证据 (Hearsay) 以及非法获取的证据。
+            </li>
+            <li>
+                <strong>选项 D 错误：</strong> 虽然前半句判断正确（邻居确实是警方代理人），但结论错误。即使是警方代理人非法获取的证据，在大陪审团阶段也不适用排除规则。
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="footer">
+        <strong>MBE 解题技巧：</strong><br>
+        看到 "Motion to Suppress"（排除动议）时，务必先检查当前的程序阶段是 <em>Grand Jury</em> 还是 <em>Trial</em>。如果是前者，动议通常会被驳回。
+    </div>
+</div>
+
+</body>
+</html>

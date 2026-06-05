@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: #eef7fb;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .tag-correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .tag-wrong {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .mimic-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .mimic-item {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Evidence Law: Character Evidence</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 正确答案解析 (选项 A)</div>
+            <p>本题的核心考点是<b>品格证据 (Character Evidence)</b> 在刑事案件中的可采性，具体涉及 <b>Federal Rules of Evidence (FRE) 404(b)</b>。</p>
+            
+            <div class="rule-box">
+                <span class="rule-title">⚖️ 法律规则 (The General Ban)</span>
+                在刑事案件中，检方<b>不能</b>引入被告先前的罪行、错误或行为 (Prior Crimes, Wrongs, or Acts) 来证明被告具有某种<b>品格 (Character)</b>，并以此推断被告在本次案件中<b>依照该品格行事 (Propensity Argument)</b>。
+            </div>
+
+            <p><b>本案分析：</b></p>
+            <ul>
+                <li>检察官试图引入被告7年前向房屋开枪和另一次路怒拔枪的证据。</li>
+                <li>这些证据的逻辑是：“因为他过去很暴力，所以他这次也很可能实施了狙击谋杀。”</li>
+                <li>这就是典型的<b>倾向性推论 (Propensity Inference)</b>，即“一次做贼，永远是贼”。这种证据在联邦证据规则下是被<b>严格禁止</b>的，因为它会导致陪审团因被告是“坏人”而定罪，而非基于本案事实。</li>
+            </ul>
+        </div>
+
+        <!-- 为什么其他选项错误 -->
+        <div class="analysis-section">
+            <div class="analysis-title">❌ 为什么排除其他选项？</div>
+            
+            <p><span class="tag tag-wrong">选项 C 错误</span><br>
+            这直接违反了规则。你<b>不能</b>为了证明被告有“暴力倾向 (Propensity toward violence)”而引入先前的坏行为。</p>
+
+            <p><span class="tag tag-wrong">选项 D 错误 (MIMIC Rule)</span><br>
+            虽然先前行为可以用于<b>非品格目的 (Non-character purposes)</b>，但本案事实不支持这些例外。</p>
+            
+            <div style="margin: 10px 0;">
+                <small><b>MIMIC 例外原则：</b></small>
+                <ul class="mimic-list">
+                    <li class="mimic-item">M - Motive (动机)</li>
+                    <li class="mimic-item">I - Intent (意图)</li>
+                    <li class="mimic-item">M - Mistake (Absence of) (无误)</li>
+                    <li class="mimic-item">I - Identity (身份)</li>
+                    <li class="mimic-item">C - Common Plan (共同计划)</li>
+                </ul>
+            </div>
+            <p>在本案中：
+                <ul>
+                    <li><b>Identity (身份/作案手法):</b> 先前的行为（向房子开枪、路怒）与本次“高速公路狙击埋伏”没有独特的相似性 (No unique "Signature" or Modus Operandi)。仅仅是“使用枪支”不足以构成独特的作案特征。</li>
+                    <li><b>Plan/Motive:</b> 没有证据显示以前的事件与本次受害者有任何关联。</li>
+                </ul>
+            </p>
+
+            <p><span class="tag tag-wrong">选项 B 错误</span><br>
+            检方可以在主案举证阶段 (Case-in-chief) 引入 MIMIC 证据，<b>不需要</b>等到交叉询问 (Cross-examination)。选项 B 的陈述在程序上是不准确的，且本案证据本身因性质问题不可采，而非时间问题。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 </strong>
+            <br><br>
+            遇到<b>“先前的坏行为 (Prior Bad Acts)”</b>题目时，请按以下步骤思考：
+            <ol style="margin-left: -20px;">
+                <li><b>目的何在？</b> 是为了证明他是坏人（Propensity）？还是为了证明动机、身份等（MIMIC）？</li>
+                <li>如果是为了证明<b>Identity (身份)</b>，要求先前的行为与本次犯罪必须具有<b>极高的相似性和独特性 (Signature quality)</b>。</li>
+                <li>如果只是普通的暴力史，通常选 <b>"Inadmissible character evidence"</b>。</li>
+            </ol>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

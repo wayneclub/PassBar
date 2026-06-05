@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析: 产权保险与转让</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            background: #fff;
+            max-width: 480px;
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-key {
+            background-color: #dff0d8;
+            color: #3c763d;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid #d6e9c6;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title span {
+            margin-right: 8px;
+        }
+        .logic-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .logic-step:last-child {
+            border-bottom: none;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .trap-alert {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property (不动产法)</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-key">
+            ✅ 正确答案：A
+        </div>
+
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <div class="concept-title">
+                <span>📚</span> 核心考点：产权保险的性质
+            </div>
+            <p><strong>产权保险 (Title Insurance)</strong> 是一份个人赔偿合同 (Personal Contract of Indemnity)。它仅保护保单上列明的被保险人 (Named Insured)，并不随土地所有权的转移而自动转移给新的买家 (Does not run with the land)。</p>
+        </div>
+
+        <!-- 详细解析逻辑 -->
+        <h3>⚖️ 法律推理逻辑</h3>
+        
+        <div class="logic-step">
+            <strong>1. 合同相对性原则 (Privity of Contract)</strong><br>
+            产权保险合同是保险公司与“女士”之间签订的。该“朋友”并未购买保险，也不是保单上的受益人。因此，朋友与保险公司之间不存在合同关系，无权直接向保险公司索赔。
+        </div>
+
+        <div class="logic-step">
+            <strong>2. 业主保单的覆盖范围</strong><br>
+            业主保单 (Owner's Policy) 通常在被保险人拥有房产期间，或者在转让房产后仍因之前的担保契约 (Warranty Deed) 承担法律责任时有效。
+        </div>
+
+        <div class="logic-step">
+            <strong>3. 免责契据的关键作用 (Quitclaim Deed)</strong><br>
+            这是本题的第二个关键点。女士通过<span class="term">免责契据 (Quitclaim Deed)</span>将土地转让给了朋友。
+            <ul>
+                <li>免责契据不包含任何产权保证 (No Covenants of Title)。</li>
+                <li>这意味着女士不对朋友承诺土地无负担 (No Covenant Against Encumbrances)。</li>
+            </ul>
+            因此，朋友不能起诉女士赔偿税务留置权的损失。既然女士对朋友没有赔偿责任，女士也就没有遭受“损失”，她的保险公司自然无需介入（即使女士自己去索赔，因为没有实际损失，保险公司也不会赔付）。
+        </div>
+
+        <!-- 干扰项解析 -->
+        <div class="trap-alert">
+            <strong>🚫 为什么选项 D 是最大的陷阱？</strong><br>
+            选项 D 认为女士违反了“无产权负担之约” (Covenant Against Encumbrances)。<br>
+            <br>
+            如果女士使用的是<strong>担保契约 (Warranty Deed)</strong>，那么她确实对朋友负有责任，这种情况下，虽然朋友不能直接起诉保险公司，但朋友可以起诉女士，女士再找保险公司理赔。<br>
+            <br>
+            但题目明确指出使用的是<strong>免责契据 (Quitclaim Deed)</strong>，这切断了女士的责任链条，也彻底切断了保险赔付的可能性。
+        </div>
+
+        <div style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+            <strong>其他选项简析：</strong>
+            <ul>
+                <li><strong>选项 B：</strong> 保单是否过期不是重点，重点是索赔人（朋友）不是合同当事人。</li>
+                <li><strong>选项 C：</strong> 虽然税务留置权属于保险漏项，但保险公司只对被保险人负责，不对全世界负责。</li>
+            </ul>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

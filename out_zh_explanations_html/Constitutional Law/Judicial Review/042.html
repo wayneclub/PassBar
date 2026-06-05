@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .rule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .rule-table th, .rule-table td {
+            border: 1px solid #dcdcdc;
+            padding: 8px;
+            text-align: left;
+        }
+        .rule-table th {
+            background-color: #f0f0f0;
+            width: 30%;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            color: #2c3e50;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .option-box {
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+        .option-correct {
+            background-color: #eafaf1;
+            border-color: #2ecc71;
+        }
+        .option-wrong {
+            background-color: #fdf2f2;
+            border-color: #e74c3c;
+            opacity: 0.8;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .badge-correct {
+            background-color: #2ecc71;
+            color: white;
+        }
+        .badge-wrong {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px dashed #f1c40f;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Constitutional Law</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点介绍 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：充分且独立的州法依据</span>
+            <span class="latin">Adequate and Independent State Grounds (AISG)</span>
+            <p>这是美国联邦最高法院（SCOTUS）管辖权的一个重要限制原则。如果州最高法院的判决完全基于州法律，且该依据足以支撑判决结果，SCOTUS 将拒绝复审。</p>
+        </div>
+
+        <!-- 规则详解 -->
+        <div class="analysis-section">
+            <div class="analysis-title">规则详解 (The Rule)</div>
+            <p>SCOTUS 不会复审州法院的判决，如果该判决满足以下两个条件：</p>
+            <table class="rule-table">
+                <tr>
+                    <th>充分性<br>(Adequate)</th>
+                    <td>州法依据本身足以支持判决结果，无论联邦法律如何解释，结果都不会改变。</td>
+                </tr>
+                <tr>
+                    <th>独立性<br>(Independent)</th>
+                    <td>州法院在解释州法时，没有依赖联邦法律或联邦判例。</td>
+                </tr>
+            </table>
+            <p><b>背后的逻辑：</b> 禁止咨询性意见 (<span class="latin">Advisory Opinions</span>)。如果 SCOTUS 即使推翻了州法院对联邦法的解释，案件结果（基于州法）依然不变，那么 SCOTUS 的判决就毫无实际意义，变成了仅仅是“建议”。</p>
+        </div>
+
+        <!-- 题目应用分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">本题案情分析</div>
+            <p>在本题中，州最高法院做出了一个非常明确的声明（Plain Statement）：</p>
+            <p style="font-style: italic; color: #555; border-left: 3px solid #ccc; padding-left: 10px; margin: 10px 0;">
+                "We need not... decide that [federal] issue, because the law assuredly violates our state constitution..."<br>
+                （我们无需裁决联邦问题，因为该法律确凿无疑地违反了我们的州宪法……）
+            </p>
+            <p>这意味着：即使 SCOTUS 介入并说“这不违反美国宪法第一修正案”，该州法律<b>依然无效</b>，因为它是基于州宪法被废止的。因此，SCOTUS 的介入不会改变结果。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">选项解析</div>
+
+            <!-- 正确选项 B -->
+            <div class="option-box option-correct">
+                <span class="badge badge-correct">正确答案 B</span>
+                <p><b>不会复审，因为州最高法院的判决依据的是充分且独立的州法律基础。</b></p>
+                <p>这正是 AISG 原则的直接应用。州法院明确表示其判决独立于联邦宪法（Independent），且州宪法足以废除该法律（Adequate）。</p>
+            </div>
+
+            <!-- 错误选项 A -->
+            <div class="option-box option-wrong">
+                <span class="badge badge-wrong">选项 A 错误</span>
+                <p>虽然第一修正案确实保护真实信息的发布，但这涉及的是<b>实体法问题 (Merits)</b>，而不是<b>管辖权问题 (Jurisdiction)</b>。SCOTUS 首先必须确定是否有权复审，而在 AISG 存在的情况下，它无权复审。</p>
+            </div>
+
+            <!-- 错误选项 C -->
+            <div class="option-box option-wrong">
+                <span class="badge badge-wrong">选项 C 错误</span>
+                <p>这是一个常见的陷阱。<b>至上条款 (Supremacy Clause)</b> 禁止州法律剥夺联邦宪法赋予的权利（即不能低于联邦的“底线”）。但是，州完全有权通过州宪法赋予公民<b>比联邦宪法更多</b>的权利（即“天花板”可以更高）。</p>
+            </div>
+
+            <!-- 错误选项 D -->
+            <div class="option-box option-wrong">
+                <span class="badge badge-wrong">选项 D 错误</span>
+                <p>虽然 SCOTUS 对涉及联邦法律的问题拥有上诉管辖权，但 AISG 是一个例外。如果联邦问题的解决不能改变案件结果，SCOTUS 就不会行使管辖权。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧：</strong>
+            <br><br>
+            在做此类题目时，寻找州法院的<b>“明确声明” (Plain Statement)</b>。
+            <br><br>
+            如果题目中州法院说：“虽然联邦法律可能也禁止这样做，但我们的判决是基于州宪法的”，或者“我们依据州法判决，联邦案例仅作参考”，那么这就是 <b>AISG</b>，SCOTUS <b>不会</b>复审。
+            <br><br>
+            反之，如果州法院说：“我们对州宪法的解释与联邦最高法院对联邦宪法的解释一致”，那么这就<b>不是</b>独立的，SCOTUS <b>可以</b>复审。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #d4edda;
+            --correct-text: #155724;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .answer-box {
+            background-color: var(--correct-bg);
+            color: var(--correct-text);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            border-left: 5px solid #28a745;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .concept-card {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            border: 1px solid #bce0fd;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 15px 0;
+            background: #fafafa;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            border: 1px dashed #ccc;
+        }
+
+        .step {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin: 5px 0;
+            width: 90%;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .arrow {
+            color: var(--accent-color);
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .tip {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+        
+        .tip-title {
+            font-weight: bold;
+            color: #856404;
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：终身地产权与义务</h1>
+
+    <div class="answer-box">
+        正确答案：D
+    </div>
+
+    <p>本题考查的是不动产法中关于<b>终身地产权 (Life Estate)</b> 的转让性及其附随义务。</p>
+
+    <div class="diagram">
+        <div class="step"><b>原始授予 (Original Grant)</b><br>兄弟 (Brother) 获得终身地产权</div>
+        <div class="arrow">↓</div>
+        <div class="step"><b>转让 (Conveyance)</b><br>兄弟将土地转让给女友 (Girlfriend)</div>
+        <div class="arrow">↓</div>
+        <div class="step"><b>当前状态 (Current Status)</b><br>女友持有 "为他人之身的终身地产权"<br><span class="english">(Life Estate Pur Autre Vie)</span></div>
+    </div>
+
+    <h2>核心法律规则解析</h2>
+
+    <div class="concept-card">
+        <span class="term">1. 终身地产权的转让性 (Alienability)</span><br>
+        终身地产权是一种可自由转让的财产权益。终身地产权人 (Life Tenant) 可以出售、赠与或抵押其权益。
+        <ul>
+            <li><b>关键点：</b>转让不会导致权益没收 (Forfeiture)。因此，选项 A 错误。</li>
+            <li><b>期限限制：</b>转让人只能转让其拥有的权益。既然兄弟的权益是以<b>他自己的生命</b>为期限，他转让给女友的权益也必须以<b>兄弟的生命</b>为期限，而不是女友的生命。</li>
+            <li>这被称为 <span class="term">Life Estate Pur Autre Vie</span>（为他人之身的终身地产权）。因此，选项 B 错误。</li>
+        </ul>
+    </div>
+
+    <div class="concept-card">
+        <span class="term">2. 房产税的支付义务 (Duty to Pay Taxes)</span><br>
+        根据<b>废置原则 (Doctrine of Waste)</b>，终身地产权人有义务维护房产，不损害剩余权益人 (Remainderman) 的利益。
+        <ul>
+            <li><b>规则：</b>终身地产权人必须支付房产的所有<b>当期费用 (Current Charges)</b>，如房产税 (Real Estate Taxes) 和抵押贷款的利息。</li>
+            <li><b>限额：</b>支付义务的上限是该土地产生的<b>收入 (Income)</b>；如果终身地产权人自己居住，则上限为<b>公平租金价值 (Fair Rental Value)</b>。</li>
+            <li><b>本案应用：</b>题目明确指出“土地收入足以支付费用”。因此，作为当前的占有人和收益人，女友必须支付房产税。因此，选项 C 错误。</li>
+        </ul>
+    </div>
+
+    <h2>逻辑推演总结</h2>
+    <ol>
+        <li><b>权益归属：</b>女友拥有现在的占有权，但期限取决于兄弟还活多久。侄子拥有剩余权益 (Remainder)，在兄弟去世后生效。</li>
+        <li><b>收益归属：</b>作为现时权益持有人，女友有权获得所有租金收入。</li>
+        <li><b>负担归属：</b>权利与义务对等。既然女友享受了收入，她就必须用这笔收入支付房产税。</li>
+    </ol>
+
+    <div class="tip">
+        <span class="tip-title">💡 MBE 考试技巧</span>
+        在处理不动产题目时，遵循以下步骤：
+        <br>1. <b>识别权益 (Identify the Estate)：</b> 谁持有现时权益？谁持有未来权益？
+        <br>2. <b>确定期限 (Measure the Duration)：</b> 权益何时终止？（本题中，女友的权益随兄弟死亡而终止）。
+        <br>3. <b>分配义务 (Allocate Duties)：</b> 记住 "Life Tenant pays interest and taxes; Remainderman pays principal"（终身权益人付利息和税；剩余权益人付本金）。
+    </div>
+
+</div>
+
+</body>
+</html>

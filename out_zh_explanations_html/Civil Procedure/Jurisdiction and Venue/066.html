@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #eef7fb;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 10px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: var(--success-color);
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+        }
+        .rule-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        .key-point {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .analysis-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .step-icon {
+            background-color: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+        }
+        .trap-alert {
+            border: 1px solid var(--warning-color);
+            background-color: #fff5f5;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+        }
+        .trap-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Civil Procedure: Jurisdiction</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            正确答案：A
+        </div>
+
+        <p>本题考查的是联邦法院管辖权中的一个特殊例外：<b>《多方、多法庭审判管辖权法》</b> (Multiparty, Multiforum Trial Jurisdiction Act, 简称 <b>MMTJA</b>)。</p>
+
+        <div class="section-title">核心法律规则</div>
+        
+        <div class="rule-card">
+            <div class="key-point">常规规则 (General Rule)：</div>
+            通常情况下，联邦法院的<b>多元管辖权 (Diversity Jurisdiction)</b> 要求：
+            <ol>
+                <li>争议金额超过 $75,000；且</li>
+                <li><b>完全多元性 (Complete Diversity)</b>：即没有任何原告与任何被告来自同一个州。</li>
+            </ol>
+        </div>
+
+        <div class="rule-card" style="border-left-color: var(--warning-color);">
+            <div class="key-point">本案例外 (MMTJA Exception)：</div>
+            根据 <code>28 U.S.C. § 1369</code>，对于<b>重大灾难事故</b>，联邦法院的管辖权门槛被降低。只要满足以下条件，法院即拥有<b>初审管辖权 (Original Jurisdiction)</b>：
+            <ul style="margin-top: 5px; padding-left: 20px;">
+                <li><b>单一事故</b>导致至少 <b>75人</b> 在特定地点死亡；</li>
+                <li>存在<b>最低限度多元性 (Minimal Diversity)</b>：即至少有一名原告与一名被告来自不同州；</li>
+                <li>满足特定地理因素之一（如被告居住地与事故地不同）。</li>
+            </ul>
+        </div>
+
+        <div class="section-title">案情分析 (Step-by-Step)</div>
+
+        <div class="analysis-step">
+            <div class="step-icon">1</div>
+            <div>
+                <b>死亡人数门槛：</b><br>
+                飞机失事导致 120 人死亡，超过了 MMTJA 要求的 75 人门槛。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">2</div>
+            <div>
+                <b>多元性检查：</b><br>
+                原告来自 A、B、C 州，被告（航空公司）在 A、B、C 州均被视为居民。
+                <br>❌ <b>完全多元性</b>：不满足（存在 A vs A, B vs B, C vs C 的情况）。
+                <br>✅ <b>最低限度多元性</b>：满足（例如 A 州原告 vs C 州制造商）。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">3</div>
+            <div>
+                <b>附加地理条件：</b><br>
+                MMTJA 要求满足以下其一即可：
+                <ul>
+                    <li>被告居住在事故发生地以外的州；</li>
+                    <li>任意两个被告居住在不同的州；</li>
+                    <li>事故的主要部分发生在不同的州。</li>
+                </ul>
+                本案中，航空公司总部在 B 州（居住在 B），事故在 C 州。条件满足。
+            </div>
+        </div>
+
+        <div class="trap-alert">
+            <div class="trap-title">⚠️ 常见陷阱 (Distractors)</div>
+            <p><b>选项 D (缺乏完全多元性) 为什么错？</b><br>
+            这是最强的干扰项。如果这是一起普通的车祸或违约案件，D 是正确答案。但在大规模伤亡事故（75+人死亡）中，必须优先考虑 MMTJA，它只需要“最低限度多元性”。</p>
+            
+            <p><b>选项 B (补充管辖权) 为什么错？</b><br>
+            补充管辖权 (Supplemental Jurisdiction) 通常用于将没有独立管辖权的<i>附加</i>请求带入法院。但在本案中，根据 MMTJA，法院对整个案件本身就拥有<b>初审管辖权 (Original Jurisdiction)</b>，因此不需要依赖补充管辖权。</p>
+        </div>
+
+        <div class="section-title">考试技巧 (Exam Tip)</div>
+        <p>在 MBE 考试中，看到<b>“飞机坠毁”、“大规模事故”</b>以及<b>“大量死亡人数（>75）”</b>时，脑海中应立即警觉：</p>
+        <div style="background: #eee; padding: 10px; border-radius: 4px; text-align: center;">
+            <b>不要</b>去数是否满足完全多元性 (Complete Diversity)<br>
+            ⬇<br>
+            <b>直接检查</b>是否适用 MMTJA (Minimal Diversity)
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

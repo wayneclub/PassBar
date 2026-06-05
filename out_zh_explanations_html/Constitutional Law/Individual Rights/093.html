@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--bg-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .correct-box {
+            border-left-color: var(--correct-color);
+            background-color: #f0f9f4;
+        }
+        .wrong-box {
+            border-left-color: var(--wrong-color);
+            opacity: 0.9;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 5px;
+        }
+        .badge-rule { background-color: var(--accent-color); }
+        .badge-case { background-color: #8e44ad; }
+        
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        p {
+            margin: 0 0 10px 0;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Constitutional Law: Commercial Speech</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="card">
+            <span class="badge badge-rule">核心考点</span>
+            <div class="card-title">商业言论审查标准 (Central Hudson Test)</div>
+            <p>本题考察的是政府对<b>商业言论 (Commercial Speech)</b> 的规制权限。根据最高法院确立的 <i>Central Hudson</i> 测试，受保护的商业言论（非虚假、非非法）若要受到限制，政府必须证明：</p>
+            <ol style="font-size:14px; padding-left:20px;">
+                <li>政府拥有<b>重大利益 (Substantial Interest)</b>；</li>
+                <li>该规制<b>直接促进 (Directly Advances)</b> 该利益；</li>
+                <li>该规制是<b>狭义定制 (Narrowly Tailored)</b> 的（即手段与目的之间存在合理的契合，Reasonable Fit）。</li>
+            </ol>
+        </div>
+
+        <!-- 判例背景 -->
+        <div class="card">
+            <span class="badge badge-case">关键判例</span>
+            <div class="card-title">Florida Bar v. Went For It, Inc. (1995)</div>
+            <p>本题的案情几乎直接取材于该判例。最高法院在该案中裁定，佛罗里达州禁止律师在事故发生后30天内向受害者寄送直邮广告的规定是<b>合宪</b>的。</p>
+            <p>法院认为，保护公民隐私和维护职业声誉是<b>重大利益</b>，且30天的冷静期限制是<b>狭义定制</b>的。</p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="card correct-box">
+            <div class="card-title" style="color: var(--correct-color);">✅ 选项 D 正确的原因</div>
+            <p><b>分析逻辑：</b></p>
+            <ul>
+                <li><b>言论性质：</b>题目中的电话属于商业言论。虽然有“偶尔误导”，但整体上并未被定义为完全的虚假广告或涉及非法活动，因此仍受 First Amendment 保护。</li>
+                <li><b>审查标准：</b>既然受保护，就适用 <i>Central Hudson</i> 测试的中等审查标准 (Intermediate Scrutiny)。</li>
+                <li><b>应用：</b>选项 D 准确地复述了该测试的两个关键要素：
+                    <br>1. <b>Substantial Interest</b>（保护隐私和监管医疗行业）；
+                    <br>2. <b>Narrowly Tailored</b>（规制手段精准）。</li>
+            </ul>
+            <p>这是州政府辩护时最强有力的宪法依据。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="card wrong-box">
+            <div class="card-title" style="color: var(--wrong-color);">❌ 为什么其他选项错误？</div>
+            
+            <p><b>选项 A (误导性言论)：</b><br>
+            虽然政府可以禁止<i>实际</i>误导性的言论，但本法禁止的是<b>所有</b>电话（包括真实的）。仅凭“包含一些误导性言论”不足以支持对所有诚实商业言论的全面禁止。</p>
+
+            <p><b>选项 B (合理基础审查 Rational Basis)：</b><br>
+            错误。商业言论不适用最低限度的 Rational Basis 审查，而是适用更严格的 <b>Intermediate Scrutiny</b>。</p>
+
+            <p><b>选项 C (TPM 规制)：</b><br>
+            错误。Time, Place, and Manner (TPM) 规制必须是<b>内容中立 (Content-Neutral)</b> 的。本法专门针对“医疗服务提供者的招揽电话”，这是基于内容的 (Content-Based)，因此不适用 TPM 分析框架。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="background-color: #e8f6f3; border-left-color: #1abc9c;">
+            <div class="card-title">💡 MBE 提分技巧</div>
+            <p>遇到涉及<b>广告、招揽 (Solicitation)</b> 的题目：</p>
+            <ol style="font-size:14px; padding-left:20px; margin-top:5px;">
+                <li>首先判断是否涉及非法活动或完全虚假（若是，政府可随意禁）。</li>
+                <li>若内容真实，立即联想 <b>Central Hudson Test</b>。</li>
+                <li>寻找包含 <b>"Substantial Interest"</b> 和 <b>"Narrowly Tailored"</b> (或 "Reasonable Fit") 关键词的选项。</li>
+                <li>警惕 "Compelling Interest"（这是 Strict Scrutiny，标准太高）或 "Rational Basis"（标准太低）。</li>
+            </ol>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

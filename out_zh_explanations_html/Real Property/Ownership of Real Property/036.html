@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #e74c3c;
+        --highlight-bg: #ecf0f1;
+        --success-color: #27ae60;
+        --text-color: #34495e;
+        --card-bg: #ffffff;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f7f6;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.9;
+    }
+    .header h2 {
+        margin: 10px 0 0;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    .content {
+        padding: 20px;
+    }
+    .concept-box {
+        background: var(--highlight-bg);
+        border-left: 5px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 5px;
+        display: block;
+    }
+    .timeline {
+        position: relative;
+        margin: 20px 0;
+        padding-left: 20px;
+        border-left: 2px solid #bdc3c7;
+    }
+    .event {
+        position: relative;
+        margin-bottom: 20px;
+        padding-left: 15px;
+    }
+    .event::before {
+        content: '';
+        position: absolute;
+        left: -26px;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        border: 2px solid white;
+    }
+    .event.death::before {
+        background: var(--accent-color);
+    }
+    .event-title {
+        font-weight: bold;
+        font-size: 14px;
+        color: var(--primary-color);
+    }
+    .event-desc {
+        font-size: 13px;
+        color: #7f8c8d;
+        margin-top: 4px;
+    }
+    .result-box {
+        border: 2px solid var(--success-color);
+        background-color: #eafaf1;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .result-title {
+        color: var(--success-color);
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    .exam-tip {
+        margin-top: 25px;
+        background: #fff8e1;
+        border: 1px solid #ffe0b2;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 13px;
+    }
+    .exam-tip strong {
+        color: #f57c00;
+    }
+    .tag {
+        display: inline-block;
+        background: #dfe6e9;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 11px;
+        color: #2d3436;
+        margin-right: 4px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE Real Property</h1>
+        <h2>联权共有与遗嘱</h2>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">⚖️ 核心规则：生存者权 (Right of Survivorship)</span>
+            <p style="font-size: 14px; line-height: 1.5; margin: 0;">
+                在<b>联权共有 (Joint Tenancy)</b> 关系中，当一名共有人死亡时，其权益<b>自动消失</b>并被尚存的共有人吸收。
+                <br><br>
+                关键点：<b>遗嘱 (Will) 不能切断联权共有关系。</b> 因为生存者权在死亡发生的瞬间生效，而遗嘱在死亡之后才生效。
+            </p>
+        </div>
+
+        <!-- 案情推演时间轴 -->
+        <h3 style="font-size: 16px; border-bottom: 1px solid #eee; padding-bottom: 10px;">案情逻辑推演</h3>
+        
+        <div class="timeline">
+            <!-- 事件 1 -->
+            <div class="event">
+                <div class="event-title">1. 设立联权共有</div>
+                <div class="event-desc">
+                    父亲将土地转让给女儿(D)和儿子(S)。<br>
+                    <span class="tag">Joint Tenancy</span> <span class="tag">Right of Survivorship</span>
+                </div>
+            </div>
+
+            <!-- 事件 2 -->
+            <div class="event">
+                <div class="event-title">2. 订立遗嘱 (无效处分)</div>
+                <div class="event-desc">
+                    D 立遗嘱给朋友；S 立遗嘱给堂亲。<br>
+                    <em>注意：此时遗嘱尚未生效，也不切断共有关系。</em>
+                </div>
+            </div>
+
+            <!-- 事件 3 -->
+            <div class="event death">
+                <div class="event-title">3. 儿子(S) 先去世 💀</div>
+                <div class="event-desc">
+                    <strong>关键转折点：</strong> S 的权益瞬间消失。D 依据生存者权自动获得 S 的份额。<br>
+                    S 的遗嘱对该土地<b>无效</b>（堂亲一无所获）。<br>
+                    D 现在拥有 <span class="tag">Fee Simple Absolute</span>（完全保有地产权）。
+                </div>
+            </div>
+
+            <!-- 事件 4 -->
+            <div class="event death">
+                <div class="event-title">4. 女儿(D) 后去世 💀</div>
+                <div class="event-desc">
+                    D 去世时是该土地的唯一完全所有者。<br>
+                    D 的遗嘱正常生效，将土地传给朋友。
+                </div>
+            </div>
+        </div>
+
+        <!-- 最终结论 -->
+        <div class="result-box">
+            <div class="result-title">✅ 正确答案：D</div>
+            <p style="margin:0; font-size: 14px;">
+                女儿的朋友拥有完全保有地产权<br>(The daughter's friend owns the fee simple.)
+            </p>
+        </div>
+
+        <!-- 为什么其他选项是错的 -->
+        <div style="margin-top: 20px; font-size: 13px; color: #555;">
+            <p><strong>❌ 为什么堂亲(Cousin)什么都没有？</strong><br>
+            因为儿子(S)先去世。他的权益被“生存者权”吞噬了，没有留下任何东西给他的遗嘱继承人。</p>
+            
+            <p><strong>❌ 为什么不是分权共有(Tenancy in Common)?</strong><br>
+            题目明确说明是 Joint Tenancy。虽然生前转让(Inter vivos conveyance)可以切断联权共有并转化为分权共有，但<b>订立遗嘱</b>这一行为本身<b>不会</b>切断联权共有。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>🎓 MBE 考试锦囊：</strong><br>
+            看到 <b>Joint Tenancy</b> + <b>Will (遗嘱)</b> 的组合时，请立即警惕！<br>
+            记住口诀：<b>"Survivorship beats the Will"</b>（生存者权 胜过 遗嘱）。除非共有人在<b>生前</b>已经通过出售或转让切断了共有关系，否则遗嘱在联权共有面前就是一张废纸。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

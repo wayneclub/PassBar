@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析：证据法推定</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        .answer-box {
+            background-color: #e8f8f5;
+            border: 1px solid #2ecc71;
+            color: #27ae60;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .rule-block {
+            background-color: #eaf2f8;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .eng-term {
+            font-family: "Georgia", serif;
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .analysis-step strong {
+            color: var(--primary-color);
+        }
+        .wrong-option {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+            font-size: 0.9rem;
+        }
+        .wrong-option h3 {
+            margin: 0 0 10px 0;
+            font-size: 1rem;
+            color: var(--highlight-color);
+        }
+        .tip-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffecb3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .tip-icon {
+            font-size: 1.2rem;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 证据法考点解析</h1>
+        <div class="sub-title">Presumptions in Civil Cases</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-box">
+            正确答案：B
+        </div>
+
+        <p>本题考察的核心知识点是联邦证据规则下的<strong>民事推定（Presumptions）</strong>及其效力。</p>
+
+        <!-- 核心法则 -->
+        <div class="rule-block">
+            <span class="concept-title">核心法则：Fed. R. Evid. 301</span>
+            联邦法院在民事案件中遵循<strong>“泡沫破灭”理论</strong> <span class="eng-term">(Bursting Bubble Theory)</span>。
+            <br><br>
+            一旦对方当事人提出了足以支持相反结论的证据，推定即告消失（泡沫破灭），案情回到单纯的证据权衡阶段。
+        </div>
+
+        <h3>逻辑推演步骤：</h3>
+
+        <div class="analysis-step">
+            <strong>1. 建立推定 (Creation):</strong><br>
+            原告证明了基础事实（信件已正确寄出）。根据“邮箱规则”<span class="eng-term">(Mailbox Rule)</span>，这产生了一个<strong>可反驳的推定</strong>：被告收到了信件。
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 反驳推定 (Rebuttal):</strong><br>
+            被告作证称“从未收到”。这属于<strong>提出证据责任</strong> <span class="eng-term">(Burden of Production)</span> 的履行。被告不需要证明这一事实为真，只需提出足以让陪审团采信的证据即可。
+        </div>
+
+        <div class="analysis-step">
+            <strong>3. 泡沫破灭 (Bursting):</strong><br>
+            由于被告提出了反驳证据，原先的“收到推定”瞬间消失（Burst）。此时，法律不再强制要求陪审团认定信件已被收到。
+        </div>
+
+        <div class="analysis-step">
+            <strong>4. 最终结果 (Result):</strong><br>
+            虽然推定消失了，但原告证明的<strong>基础事实</strong>（信已寄出）仍然存在。陪审团可以根据常理推断：寄出的信通常会被收到。
+            <br><br>
+            因此，陪审团<strong>可以 (may)</strong> 认定信件被收到，也可以选择相信被告的证词。这就是为什么 <strong>选项 B</strong> 是正确的。
+        </div>
+
+        <!-- 错误选项解析 -->
+        <div class="wrong-option">
+            <h3>为什么其他选项是错误的？</h3>
+            <ul>
+                <li><strong>选项 A (错误)：</strong>混淆了两种责任。在 FRE 301 下，<strong>说服责任</strong> <span class="eng-term">(Burden of Persuasion)</span> 永远保留在原告（最初负有责任的一方）身上，不会转移给被告。被告只需承担提出证据的责任。</li>
+                <li><strong>选项 C (错误)：</strong>被告的证词并没有自动胜诉的效力。它只是消除了推定的强制力，但没有消除原告证据的证明力。</li>
+                <li><strong>选项 D (错误)：</strong>如果被告保持沉默，陪审团才“必须”认定收到。一旦被告反驳，强制性就消失了。</li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <span class="tip-icon">💡</span><strong>MBE 考试技巧：</strong>
+            <br>
+            遇到“Presumption”题目，首先判断是刑事还是民事。
+            <br>
+            如果是<strong>民事 (Civil)</strong> 且适用联邦规则：
+            <br>
+            1. 只要对方开口反驳（提出证据），推定就消失。
+            <br>
+            2. <strong>Burden of Persuasion 永远不转移</strong>。
+            <br>
+            3. 结局通常是“陪审团<strong>可以 (may)</strong> 根据证据自行决定”。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

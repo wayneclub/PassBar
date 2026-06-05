@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(44, 62, 80, 0.3);
+        }
+
+        h1 {
+            font-size: 20px;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .formula {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 15px 0;
+            color: var(--primary-color);
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+
+        .formula span {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin: 2px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .analysis-step {
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .verdict-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .verdict-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 10px;
+            text-align: center;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .correct-answer {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .footer-tip {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p style="margin:5px 0 0 0; font-size:14px; opacity:0.9;">Robbery vs. Larceny & Merger Doctrine</p>
+    </div>
+
+    <!-- Core Legal Concept -->
+    <div class="card">
+        <h2>核心法律概念</h2>
+        <div class="formula">
+            <span>Larceny (盗窃)</span> + <span>Force/Threat (暴力/恐吓)</span> = <span>Robbery (抢劫)</span>
+        </div>
+        <div class="concept-box">
+            <p><strong>1. 包含关系 (Lesser Included Offense):</strong><br>
+            <span class="term">Larceny</span> 是 <span class="term">Robbery</span> 的必然包含轻罪。你不可能在实施抢劫的同时不实施盗窃。</p>
+            
+            <p><strong>2. 归并原则 (Merger Doctrine):</strong><br>
+            如果被告被判犯有重罪（Robbery），轻罪（Larceny）将<b>归并</b>入重罪中。根据禁止双重危险原则 (Double Jeopardy)，被告不能因同一行为同时被判这两项罪名。</p>
+        </div>
+    </div>
+
+    <!-- Case Analysis -->
+    <div class="card">
+        <h2>本案事实分析</h2>
+        <p class="analysis-step">陪审团 (Jury) 是事实的认定者，他们有权决定相信哪位证人：</p>
+        
+        <div class="verdict-options">
+            <div class="verdict-box">
+                <strong>情形 A</strong><br>
+                <span style="font-size:12px; color:#666">相信受害人</span><br>
+                被告使用了枪支<br>
+                ↓<br>
+                存在暴力/恐吓<br>
+                ↓<br>
+                <b>Robbery 成立</b>
+            </div>
+            <div class="verdict-box">
+                <strong>情形 B</strong><br>
+                <span style="font-size:12px; color:#666">相信旁观者</span><br>
+                没看到枪支<br>
+                ↓<br>
+                仅有非法拿取<br>
+                ↓<br>
+                <b>Larceny 成立</b>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logic & Answer -->
+    <div class="card">
+        <h2>逻辑推导与结论</h2>
+        <p>题目问的是陪审团<b>可以 (could)</b> 做出什么裁决。</p>
+        <ul>
+            <li>如果陪审团相信受害人，被告构成 <strong>Robbery</strong>。</li>
+            <li>如果陪审团相信旁观者（认为没有使用暴力或恐吓），被告构成 <strong>Larceny</strong>。</li>
+        </ul>
+        <p>因此，根据证据评估的不同，两种结果都有可能。</p>
+
+        <div class="correct-answer">
+            正确答案：C<br>
+            Either larceny or robbery.
+        </div>
+
+        <div style="margin-top: 15px; font-size: 14px;">
+            <strong>为什么 D (Both) 是错误的？</strong><br>
+            这是本题最大的陷阱。虽然事实层面包含了盗窃和抢劫的元素，但在法律判决层面，由于 <b>Merger Doctrine (归并原则)</b>，Larceny 这一轻罪会被 Robbery 这一重罪吸收。被告不能因“拿走同一个包”这一行为同时被判盗窃和抢劫。
+        </div>
+    </div>
+
+    <!-- Exam Tips -->
+    <div class="card" style="border-left-color: #e74c3c;">
+        <h2>💡 </h2>
+        <p style="font-size:14px;">
+            遇到 <b>"Lesser Included Offense"</b> 类型的题目时，请记住：
+        </p>
+        <ol style="font-size:14px;">
+            <li><b>事实认定权：</b> 陪审团可以自由选择相信部分证据，从而认定轻罪（Larceny）而非重罪（Robbery）。</li>
+            <li><b>定罪规则：</b> 尽管行为可能同时符合两罪的定义，但最终定罪时，轻罪会被重罪<b>吸收 (Merge)</b>。</li>
+            <li><b>排除法：</b> 看到 "Both... and..." 的选项时要高度警惕，除非题目涉及的是两个完全独立的罪行（如 Conspiracy 和实质罪行通常不归并）。</li>
+        </ol>
+    </div>
+
+    <div class="footer-tip">
+        Answer Key: C | Source: UWORLD
+    </div>
+
+</div>
+
+</body>
+</html>

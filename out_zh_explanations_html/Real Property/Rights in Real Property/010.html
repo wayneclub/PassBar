@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: transparent;
+        }
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .concept-term {
+            font-weight: bold;
+            color: #e74c3c;
+            background-color: #fdeaea;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .key-point {
+            background-color: var(--highlight-bg);
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+        .analysis-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .step-num {
+            background: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .wrong-option {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .wrong-option strong {
+            color: #e67e22;
+        }
+        .footer-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="subtitle">Real Property: Profit à Prendre</div>
+    </div>
+
+    <!-- Core Concept -->
+    <div class="card">
+        <h3>核心概念：取益权 (Profit)</h3>
+        <p>
+            <span class="concept-term">取益权 (Profit à Prendre)</span> 是一种非占有性的土地权益，赋予持有人进入他人土地并取走自然资源（如鱼、木材、矿物）的权利。
+        </p>
+        <p>
+            取益权主要分为两类：
+        </p>
+        <ul>
+            <li><b>从属取益权 (Profit Appurtenant)</b>：为了受益于特定的土地（需役地）而存在，随土地转让。</li>
+            <li><b>独立取益权 (Profit in Gross)</b>：为了受益于特定的人而存在，不依附于土地。本题属于此类。</li>
+        </ul>
+    </div>
+
+    <!-- The Rule -->
+    <div class="card">
+        <h3>法律规则：转让性 (Transferability)</h3>
+        <p>对于<b>独立取益权 (Profit in Gross)</b>，其转让性取决于它是“商业性”的还是“属人性”的：</p>
+        <div class="key-point">
+            一般规则：独立取益权通常是可以转让的 (Assignable)，除非当事人意图将其设定为属人的 (Personal)。
+        </div>
+        <ul>
+            <li><b>商业性 (Commercial)</b>：通常被推定为可转让。</li>
+            <li><b>属人性 (Personal)</b>：通常不可转让。</li>
+        </ul>
+    </div>
+
+    <!-- Analysis -->
+    <div class="card">
+        <h3>本题解析逻辑</h3>
+        <div class="analysis-step">
+            <div class="step-num">1</div>
+            <div>
+                <b>识别冲突：</b>题目中存在两个相互矛盾的信号。
+                <br>① 授予者是“朋友” (Friend) → 暗示属人性。
+                <br>② 用途是“餐厅经营” (Restaurant business) → 暗示商业性。
+            </div>
+        </div>
+        <div class="analysis-step">
+            <div class="step-num">2</div>
+            <div>
+                <b>书面沉默：</b>题目明确指出书面协议“未涉及可转让性”。
+            </div>
+        </div>
+        <div class="analysis-step">
+            <div class="step-num">3</div>
+            <div>
+                <b>决定性因素：</b>由于默认规则是“可转让，除非意图为属人”，因此<b>当事人的意图 (Intent)</b> 是决定该权利能否随餐厅出售而转让给厨师的核心因素。
+            </div>
+        </div>
+        <p style="margin-top:10px; font-weight:bold; color:var(--accent-color);">
+            因此，选项 A 正确。
+        </p>
+    </div>
+
+    <!-- Why others are wrong -->
+    <div class="card">
+        <h3>干扰项排除</h3>
+        <div class="wrong-option">
+            <strong>选项 B & C (排他性 Exclusivity)：</strong><br>
+            是否授予他人或保留自己的捕鱼权，决定了该取益权是“排他的”还是“非排他的”。这主要影响权利的<b>可分割性 (Apportionability)</b>（即能否将权利分给多个人使用），而不是权利本身的<b>可转让性 (Transferability)</b>。
+        </div>
+        <div class="wrong-option">
+            <strong>选项 D (登记 Recording)：</strong><br>
+            登记法 (Recording Acts) 旨在保护购买者免受未登记权益的影响。登记与否不改变权益本身的性质（即是否为属人权）。如果该权利本质上是属人的（不可转让），登记也不会使其变得可转让。
+        </div>
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+        <b>💡 考试技巧 (Exam Tip)：</b><br>
+        在 MBE 财产法题目中，如果遇到关于 <b>Easement in Gross</b>（独立地役权）或 <b>Profit in Gross</b>（独立取益权）的转让问题，首先判断它是商业用途还是个人用途。
+        <br><br>
+        如果题目对用途描述模糊（如本题既有朋友关系又有商业用途），则<b>“当事人的意图” (Intent of the parties)</b> 永远是最高优先级的判断标准。
+    </div>
+</div>
+
+</body>
+</html>

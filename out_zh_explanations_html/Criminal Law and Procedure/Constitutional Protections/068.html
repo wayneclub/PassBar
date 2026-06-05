@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 8px;
+            font-weight: 300;
+        }
+
+        .content {
+            padding: 24px 20px;
+        }
+
+        .concept-card {
+            background-color: #eef7fb;
+            border-left: 4px solid var(--accent-color);
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+            font-size: 16px;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .analysis-section {
+            margin-bottom: 24px;
+        }
+
+        .analysis-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .correct-answer {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .correct-badge {
+            display: inline-block;
+            background-color: var(--success-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .wrong-option {
+            margin-bottom: 12px;
+            padding: 12px;
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+
+        .wrong-badge {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 6px;
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .exam-tip-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Criminal Law: Double Jeopardy</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">📚 核心考点：双重主权原则 (Dual Sovereignty Doctrine)</span>
+            <p>虽然美国宪法第五修正案禁止<b>双重危险 (Double Jeopardy)</b>，即禁止对同一罪行进行二次起诉，但这一保护仅限于<b>同一主权实体 (Same Sovereign)</b>。</p>
+            <p>如果两个不同的主权实体（如两个不同的州，或联邦政府与州政府）分别起诉，即使是针对<b>同一行为 (Same Conduct)</b>，也不违反双重危险条款。</p>
+        </div>
+
+        <!-- 正确答案分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 正确答案解析</div>
+            <div class="correct-answer">
+                <span class="correct-badge">正确选项 B</span>
+                <p><b>理由：</b>本题中，A州和B州是两个独立的主权实体。</p>
+                <p>根据最高法院在 <i>Heath v. Alabama (1985)</i> 中的判例，当被告的行为同时违反了两个州的法律时，每个州都拥有独立的主权权力来执行其刑法。因此，A州的定罪并不阻碍B州对同一行为提起诉讼。</p>
+                <p>这被视为两个<b>不同的罪行 (Distinct Offenses)</b>，而非对同一罪行的重复起诉。</p>
+            </div>
+        </div>
+
+        <!-- 错误选项排除 -->
+        <div class="analysis-section">
+            <div class="analysis-title">❌ 干扰项排除</div>
+            
+            <div class="wrong-option">
+                <span class="wrong-badge">选项 A 错误</span>
+                <p>双重危险保护不仅适用于无罪释放 (Acquittal)，也适用于定罪 (Conviction)。如果是在<b>同一个州</b>内，定罪后再次起诉同一罪行是违宪的。该选项对法律规则的陈述不完整。</p>
+            </div>
+
+            <div class="wrong-option">
+                <span class="wrong-badge">选项 C 错误</span>
+                <p>这是考生最容易误选的项。虽然双重危险确实禁止二次起诉，但它忽略了本题的核心考点——<b>双重主权例外</b>。因为涉及两个不同的州，所以该禁止令不适用。</p>
+            </div>
+
+            <div class="wrong-option">
+                <span class="wrong-badge">选项 D 错误</span>
+                <p><b>附带禁反言 (Collateral Estoppel)</b> 或争点排除 (Issue Preclusion) 确实是双重危险的一部分（见 <i>Ashe v. Swenson</i>），但它要求诉讼双方是<b>同一方</b>。由于B州不是A州诉讼的一方，B州不受A州判决的约束。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 实战技巧</span>
+            <p>在遇到 Double Jeopardy 题目时，请按以下步骤检查：</p>
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li><b>看主体：</b>是同一个政府在起诉吗？
+                    <ul style="padding-left: 15px; margin: 5px 0; font-size: 0.9em; color: #555;">
+                        <li>联邦 vs. 州 = ✅ 允许 (双重主权)</li>
+                        <li>州 A vs. 州 B = ✅ 允许 (双重主权)</li>
+                        <li>州 vs. 该州内的市/县 = ❌ 禁止 (视为同一主权，见 <i>Waller v. Florida</i>)</li>
+                    </ul>
+                </li>
+                <li><b>看罪行：</b>是否包含相同的要素 (Blockburger Test)？</li>
+            </ol>
+            <p>本题只要识别出是<b>跨州 (State A vs. State B)</b>，即可直接应用双重主权原则锁定答案。</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

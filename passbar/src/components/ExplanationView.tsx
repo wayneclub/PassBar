@@ -448,151 +448,101 @@ function GeminiQuestionFeedback({
   );
 }
 
-// Each iframe gets a unique channel ID so postMessage doesn't cross-contaminate
-function buildIframeInject(channelId: string): string {
+function buildIframeResizeScript(channelId: string) {
   return `
-<style>
-/* ── PassBar iframe reset ── */
-html, body {
-  background: transparent !important;
-  margin: 0 !important;
-  padding: 0 0 24px 0 !important;
-  overflow: hidden !important;
-  min-height: 0 !important;
-  height: auto !important;
-  display: block !important;
-}
-/* Collapse min-height on direct body children only (safe) */
-body > div, body > main, body > section, body > article {
-  min-height: 0 !important;
-  height: auto !important;
-}
-/* Fluid container — remove fixed 480px width */
-.container, [class*="container"] {
-  max-width: 100% !important;
-  width: 100% !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-</style>
 <script>
 (function(){
   var ch = ${JSON.stringify(channelId)};
   var lastH = 0;
+  var pending = false;
 
-  function fixLayout() {
-    if (!document.body) return;
-    var all = document.body.querySelectorAll('*');
-    for (var i = 0; i < all.length; i++) {
-      var el = all[i];
-      var cs = window.getComputedStyle(el);
-      // Collapse large min-heights that inflate iframe (e.g. min-h-screen)
-      if (parseFloat(cs.minHeight) > 50) {
-        el.style.minHeight = '0';
-      }
-      // Fix flex column containers that push content away from top
-      if (cs.display === 'flex' || cs.display === 'inline-flex') {
-        if (cs.flexDirection === 'column' || cs.flexDirection === 'column-reverse') {
-          var jc = cs.justifyContent;
-          if (jc === 'center' || jc === 'flex-end' || jc === 'space-around' || jc === 'space-between' || jc === 'space-evenly') {
-            el.style.justifyContent = 'flex-start';
-          }
-        } else {
-          // Row flex: fix cross-axis (vertical) centering
-          var ai = cs.alignItems;
-          if (ai === 'center') {
-            el.style.alignItems = 'flex-start';
-          }
-        }
-        // Collapse flex-grow that steals height in column containers
-        if (cs.flexDirection === 'column' || cs.flexDirection === 'column-reverse') {
-          if (parseFloat(cs.flexGrow) > 0) {
-            el.style.flex = '0 0 auto';
-          }
-        }
-      }
-      // Collapse grid rows that inflate height
-      if (cs.display === 'grid' || cs.display === 'inline-grid') {
-        el.style.gridTemplateRows = 'auto';
-        el.style.alignContent = 'flex-start';
+  function contentHeight(){
+    if (!document.body) return 0;
+    var bodyTop = document.body.getBoundingClientRect().top;
+    var maxBottom = 0;
+    var nodes = document.body.querySelectorAll('*');
+    for (var i = 0; i < nodes.length; i++) {
+      var r = nodes[i].getBoundingClientRect();
+      if (r.width > 0 || r.height > 0) {
+        maxBottom = Math.max(maxBottom, r.bottom - bodyTop);
       }
     }
+    return Math.ceil(maxBottom);
   }
 
   function send(){
-    if (!document.body) return;
-    var h = Math.max(
-      document.documentElement.scrollHeight,
-      document.body.scrollHeight,
-      document.documentElement.offsetHeight,
-      document.body.offsetHeight
-    );
-    if(h !== lastH){ lastH = h; window.parent.postMessage({type:'iframe-resize',ch:ch,height:h},'*'); }
+    pending = false;
+    var h = contentHeight();
+    if (h > 0 && Math.abs(h - lastH) > 1) {
+      lastH = h;
+      window.parent.postMessage({type:'passbar-html-resize', ch:ch, height:h}, '*');
+    }
   }
 
-  function fixAndSend() { fixLayout(); send(); }
+  function schedule(){
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(send);
+  }
 
-  window.addEventListener('load', fixAndSend);
-  document.addEventListener('DOMContentLoaded', fixAndSend);
-  new MutationObserver(send).observe(document.documentElement,{childList:true,subtree:true,attributes:true,characterData:true});
-  [100,300,600,1000,2000].forEach(function(t){ setTimeout(fixAndSend,t); });
+  window.addEventListener('load', schedule);
+  document.addEventListener('DOMContentLoaded', schedule);
+  new MutationObserver(schedule).observe(document.documentElement, {childList:true, subtree:true, attributes:true, characterData:true});
+  if (window.ResizeObserver) {
+    new ResizeObserver(schedule).observe(document.documentElement);
+    if (document.body) new ResizeObserver(schedule).observe(document.body);
+  }
+  [50,150,350,700,1200,2000].forEach(function(t){ setTimeout(schedule, t); });
 })();
 <\/script>`;
 }
 
-function injectHelpers(html: string, channelId: string): string {
-  const inject = buildIframeInject(channelId);
+function injectIframeResizeScript(html: string, channelId: string) {
+  const script = buildIframeResizeScript(channelId);
   if (/<head(\s[^>]*)?>/i.test(html)) {
-    return html.replace(/(<head(\s[^>]*)?>)/i, `$1${inject}`);
+    return html.replace(/(<head(\s[^>]*)?>)/i, `$1${script}`);
   }
-  return inject + html;
+  return script + html;
 }
 
-function AutoHeightIframe({ html, title, minHeight = 480 }: { html: string; title: string; minHeight?: number }) {
-  // New channelId whenever html changes, so stale messages from previous render are ignored
-  const channelId = useRef(`ch-${Math.random().toString(36).slice(2)}`);
+const HtmlPanel = React.memo(function HtmlPanel({ html, title, minHeight = 80 }: { html: string; title: string; minHeight?: number }) {
+  const channelId = React.useMemo(() => `html-${Math.random().toString(36).slice(2)}`, [html]);
+  const srcDoc = React.useMemo(() => injectIframeResizeScript(html, channelId), [channelId, html]);
   const [height, setHeight] = useState(minHeight);
 
-  // ⬇ Reset height and rotate channelId when html content changes (new question / new topic)
-  const prevHtml = useRef(html);
-  if (prevHtml.current !== html) {
-    prevHtml.current = html;
-    channelId.current = `ch-${Math.random().toString(36).slice(2)}`;
-    // Reset height synchronously before render so no stale large height is shown
-    // (direct mutation is intentional — avoids an extra render cycle)
-  }
-  const [resetKey, setResetKey] = useState(0);
   useEffect(() => {
     setHeight(minHeight);
-    setResetKey((k) => k + 1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [html]);
+  }, [html, minHeight]);
 
   useEffect(() => {
-    const id = channelId.current;
-    const handler = (e: MessageEvent) => {
-      if (e.data?.type === 'iframe-resize' && e.data.ch === id && typeof e.data.height === 'number' && e.data.height > 0) {
-        setHeight(e.data.height + 16);
+    const handler = (event: MessageEvent) => {
+      if (
+        event.data?.type === 'passbar-html-resize'
+        && event.data.ch === channelId
+        && typeof event.data.height === 'number'
+        && event.data.height > 0
+      ) {
+        setHeight(Math.ceil(event.data.height));
       }
     };
+
     window.addEventListener('message', handler);
     return () => window.removeEventListener('message', handler);
-  }, [resetKey]);
+  }, [channelId]);
 
   return (
     <iframe
-      key={resetKey}
       title={title}
-      srcDoc={injectHelpers(html, channelId.current)}
-      className="w-full"
-      style={{ height, background: 'transparent', display: 'block' }}
+      srcDoc={srcDoc}
+      className="block w-full border-0"
+      style={{ height }}
+      sandbox="allow-scripts allow-popups"
       scrolling="no"
-      sandbox="allow-scripts"
     />
   );
-}
+});
 
-export function ExplanationView({ question, userAnswer, selectedChoiceKey, correctChoiceKey, display = defaultStudySettings.display, contentMode = 'english', textSize = 'medium' }: ExplanationViewProps) {
+function ExplanationViewComponent({ question, userAnswer, selectedChoiceKey, correctChoiceKey, display = defaultStudySettings.display, contentMode = 'english', textSize = 'medium' }: ExplanationViewProps) {
   const { t } = useI18n();
   const ocrByUrl = new Map((question.explanationOcr ?? []).map((ocr) => [ocr.publicUrl, ocr.words]));
 
@@ -635,7 +585,7 @@ export function ExplanationView({ question, userAnswer, selectedChoiceKey, corre
       {/* HTML explanation panels — can show en, zh, or both; height auto-adjusts */}
       {htmlPanels.map(({ key, html, title }) => (
         <div key={key} className="text-slate-700">
-          <AutoHeightIframe html={html} title={title} minHeight={80} />
+          <HtmlPanel html={html} title={title} />
         </div>
       ))}
 
@@ -660,3 +610,5 @@ export function ExplanationView({ question, userAnswer, selectedChoiceKey, corre
     </div>
   );
 }
+
+export const ExplanationView = React.memo(ExplanationViewComponent);

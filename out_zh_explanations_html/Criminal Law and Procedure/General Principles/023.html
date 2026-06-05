@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f8f5;
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .concept-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-term {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        .wrong-option {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .wrong-label {
+            color: var(--wrong-color);
+            font-weight: bold;
+            font-size: 0.8rem;
+            border: 1px solid var(--wrong-color);
+            border-radius: 3px;
+            padding: 1px 4px;
+            margin-right: 5px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 2px;
+        }
+        .footer {
+            background-color: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考点解析</h1>
+        <div class="sub-title">Mens Rea (犯罪意图) 与 Malice (恶意)</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：B</span>
+            <strong>不应维持定罪。</strong>因为法官的指示错误地描述了必要的心理状态（Mens Rea）。
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">⚖️ 核心法律分析</div>
+        
+        <div class="concept-card">
+            <div class="concept-term">1. 恶意 (Malice) 的定义</div>
+            <p>在普通法刑法中，"Malicious Damage to Property"（恶意损害财物罪）属于 <strong>Malice Crime</strong>（恶意犯罪）。这里的 "Malice" 并不要求被告对受害者怀有仇恨，而是要求证明以下两种心理状态之一：</p>
+            <ul>
+                <li><strong>Intent (故意/明知)：</strong> 实际上确定行为会导致损害。</li>
+                <li><strong>Recklessness (鲁莽)：</strong> 有意识地忽视了一个重大且不合理的风险（Conscious disregard of a substantial and unjustifiable risk）。</li>
+            </ul>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-term">2. 本案中的错误指示</div>
+            <p>法官告诉陪审团：只要认定被告犯有盗窃罪（Larceny），且损害是盗窃的结果，就足以定罪。</p>
+            <p><strong>错误原因：</strong> 这个指示将“盗窃的意图”自动转化为“损害财物的恶意”。然而：</p>
+            <ul>
+                <li>被告偷车时并不知道刹车失灵。</li>
+                <li>因此，他既没有“故意”撞毁商店，也没有“鲁莽”地忽视撞毁商店的风险（因为他不知道风险存在）。</li>
+            </ul>
+            <p>法官的指示实际上创造了一种不存在的“严格责任”或错误的“意图转移”，剥夺了陪审团判断被告是否具有损害财物之 <span class="highlight">Mens Rea</span> 的权利。</p>
+        </div>
+
+        <!-- 干扰项排除 -->
+        <div class="section-title">❌ 为什么其他选项错误？</div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 A 错误</span>
+            <strong>关于 Double Jeopardy (一事不再理)：</strong>
+            <br>根据 <em>Blockburger</em> 测试，如果两个罪名各自包含对方所不具备的构成要件（Element），则不违反双重危险原则。
+            <ul>
+                <li>Larceny 需要“带走他人财物”；</li>
+                <li>Malicious Damage 需要“物理损害财物”。</li>
+            </ul>
+            两者要素不同，可以分别定罪。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 C 错误</span>
+            <strong>关于 Felony (重罪)：</strong>
+            <br>虽然有 "Felony Murder"（重罪谋杀）规则，但法律中不存在通用的 "Felony Damage" 规则。仅仅因为在实施重罪过程中造成了损害，并不自动满足恶意损害财物罪的心理要件。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 D 错误</span>
+            <strong>关于意图转移：</strong>
+            <br>偷车的意图 (Specific Intent to steal) 不能填补恶意损害财物罪所需的 Malice。这是两种不同的心理状态，针对的是不同的危害结果。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">🎓 MBE 考试技巧</div>
+        <p style="font-size: 0.9rem;">
+            遇到涉及 <strong>Jury Instruction (陪审团指示)</strong> 的题目时，务必检查指示是否准确反映了该罪名的 <strong>Mens Rea (心理状态)</strong> 要求。
+            <br><br>
+            如果法官的指示将“因果关系”（结果是由行为导致的）直接等同于“犯罪意图”，通常是错误的指示。必须证明被告对<strong>特定的危害结果</strong>具备相应的心理状态。
+        </p>
+    </div>
+
+    <div class="footer">
+        MBE Criminal Law Review
+    </div>
+</div>
+
+</body>
+</html>

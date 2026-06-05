@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background-color: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+
+        .analysis-step strong {
+            color: var(--accent-color);
+        }
+
+        .options-analysis {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            border: 1px solid #eee;
+        }
+
+        .option.correct {
+            border-color: #27ae60;
+            background-color: #f0fff4;
+        }
+
+        .option.wrong {
+            border-color: #e74c3c;
+            background-color: #fff5f5;
+        }
+
+        .badge {
+            font-weight: bold;
+            font-size: 0.8rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+
+        .badge.correct { background-color: #27ae60; color: white; }
+        .badge.wrong { background-color: #e74c3c; color: white; }
+
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts / UCC Article 2</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心考点：商人确认函规则</span>
+            <div style="font-size: 0.9rem;">
+                <span class="concept-tag">UCC § 2-201(2)</span>
+                <span class="concept-tag">Statute of Frauds</span>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.95rem;">
+                在两个<strong>商人 (Merchants)</strong> 之间，如果一方发送了书面的合同确认函 (Written Confirmation)，且接收方有理由知晓其内容，如果接收方在收到后 <strong>10天内</strong> 未提出书面异议，则该确认函满足《欺诈法》(Statute of Frauds) 的书面要求。
+            </p>
+            <p style="font-size: 0.9rem; margin-bottom: 0;">
+                <strong>关键限制：</strong>合同仅在确认函中写明的<strong>数量 (Quantity)</strong> 范围内可强制执行。
+            </p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-step">
+            <h3>🔍 案情逻辑推演</h3>
+            <p><strong>1. 适用法律：</strong><br>涉及毛巾买卖（货物），适用 <strong>UCC Article 2</strong>。</p>
+            
+            <p><strong>2. 是否需要书面形式？</strong><br>总价 $5 × 500 = $2,500，超过 $500，受 <strong>Statute of Frauds (SoF)</strong> 约束，原则上需要书面合同。</p>
+            
+            <p><strong>3. 是否满足例外情况？</strong><br>
+            零售商未签字，但制造商发送了签署的确认函。
+            <ul>
+                <li>双方都是商人 ✅</li>
+                <li>确认函已发送并被接收 ✅</li>
+                <li>零售商未在10天内反对 ✅</li>
+            </ul>
+            <span style="color: var(--accent-color);">➡ 结论：该确认函对零售商具有约束力（尽管他没签字）。</span>
+            </p>
+
+            <p><strong>4. 可执行的数量是多少？</strong><br>
+            确认函明确写着 <strong>"500 large bath towels"</strong>。根据 UCC 规则，通过确认函建立的合同，其强制执行力仅限于确认函中载明的数量。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="options-analysis">
+            <h3>💡 选项深度解析</h3>
+            
+            <div class="option correct">
+                <span class="badge correct">正确答案 B</span>
+                <strong>制造商可强制执行 500 条毛巾的合同。</strong>
+                <p style="font-size: 0.9rem; margin-top: 5px;">
+                    这是 <strong>Merchant's Confirmatory Memo</strong> 规则的直接应用。确认函解决了《欺诈法》的书面要求问题，但同时也锁定了合同的数量上限（500条）。
+                </p>
+            </div>
+
+            <div class="option wrong">
+                <span class="badge wrong">选项 A 错误</span>
+                <strong>关于 1000 条毛巾。</strong>
+                <p style="font-size: 0.9rem; margin-top: 5px;">
+                    虽然制造商交付了1000条，但确认函只写了500条。UCC规定，确认函仅在写明的数量范围内有效。此外，零售商拒收了所有货物，因此不能通过“接收货物”(Acceptance of goods) 来建立1000条的合同。
+                </p>
+            </div>
+
+            <div class="option wrong">
+                <span class="badge wrong">选项 C 错误</span>
+                <strong>关于价格条款缺失。</strong>
+                <p style="font-size: 0.9rem; margin-top: 5px;">
+                    在 UCC 下，<strong>数量 (Quantity)</strong> 是唯一必须书面明确的关键条款。价格不是必须的，如果缺失，法院会填补一个合理的市场价格 (Reasonable Price / Gap Filler)。
+                </p>
+            </div>
+
+            <div class="option wrong">
+                <span class="badge wrong">选项 D 错误</span>
+                <strong>关于零售商未签字。</strong>
+                <p style="font-size: 0.9rem; margin-top: 5px;">
+                    通常 SoF 要求被告方签字，但本题考查正是 <strong>Merchant's Exception</strong>（商人例外规则）。在商人之间，沉默（10天不反驳）即被视为默认确认函的内容。
+                </p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>🎓 考试通关秘籍：</strong>
+            <br>
+            遇到 UCC Statute of Frauds 题目时，请按此顺序思考：
+            <ol style="padding-left: 20px; margin-top: 5px; margin-bottom: 0;">
+                <li>是否 > $500？</li>
+                <li>是否有书面签字？</li>
+                <li>如果没有，是否有例外？（商人确认函、特制商品、法庭承认、已付款/已收货）。</li>
+                <li><strong>陷阱警报：</strong>如果是通过“商人确认函”建立合同，记住<strong>Quantity controls</strong>（数量以确认函为准，而非口头约定或实际发货量）。</li>
+            </ol>
+        </div>
+
+    </div>
+    <div class="footer">
+        MBE Contracts Review | UCC § 2-201
+    </div>
+</div>
+
+</body>
+</html>

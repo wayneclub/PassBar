@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e1f5fe;
+            color: #0277bd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .rule-box {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #d35400;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .key-point {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .pitfall {
+            background-color: #ffebee;
+            border-left: 4px solid #ef5350;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+        }
+        strong {
+            color: #2c3e50;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Civil Procedure: Jurisdiction</p>
+    </div>
+
+    <div class="content">
+        <span class="tag">Subject-Matter Jurisdiction</span>
+        <span class="tag">Domestic Relations Exception</span>
+
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">
+                <span>⚖️ 核心规则：家庭关系例外</span>
+            </div>
+            <p>尽管满足了<strong>多元管辖权 (Diversity Jurisdiction)</strong> 的要求（不同州公民 + 争议金额 > $75,000），联邦法院通常<strong>拒绝</strong>审理涉及核心家庭关系的案件。</p>
+            <p>这被称为 <strong>Domestic Relations Exception</strong>。</p>
+        </div>
+
+        <!-- 详细解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 C？(法律依据)</div>
+            <p>本题考察的是联邦法院管辖权的一个重要例外。虽然从表面上看：</p>
+            <ul>
+                <li><strong>公民身份不同：</strong>妻子是 B 州公民，丈夫是 A 州公民。</li>
+                <li><strong>争议金额达标：</strong>索赔 $300,000 (超过 $75k)。</li>
+            </ul>
+            <p>这似乎满足了 28 U.S.C. § 1332 的多元管辖权条件。但是，最高法院在 <span class="latin">Ankenbrandt v. Richards</span> (1992) 等判例中明确指出，联邦法院对以下三类案件<strong>没有</strong>管辖权：</p>
+            <ol>
+                <li><strong>离婚 (Divorce)</strong></li>
+                <li><strong>赡养费 (Alimony)</strong></li>
+                <li><strong>子女监护权 (Child Custody)</strong></li>
+            </ol>
+            <div class="key-point">
+                ✅ <strong>结论：</strong>由于妻子起诉是为了寻求离婚判决和赡养费，这完全落入了“家庭关系例外”的范围。因此，联邦法院无权审理，州法院拥有专属管辖权。
+            </div>
+        </div>
+
+        <!-- 易错点辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🚫 避坑指南：为什么不选 B？</div>
+            <p>选项 B 是一个非常典型的 MBE 干扰项，它混淆了两种管辖权的概念：</p>
+            <div class="pitfall">
+                <strong>属事管辖权 (Subject-Matter Jurisdiction) vs. 属人管辖权 (Personal Jurisdiction)</strong>
+                <br><br>
+                ❌ <strong>属事管辖权 (SMJ)：</strong> 法院审理此类案件的权力。<strong>永远不能被放弃 (Never Waived)</strong>。当事人可以在诉讼的任何阶段（甚至上诉阶段）提出异议。
+                <br><br>
+                ✅ <strong>属人管辖权 (PJ)：</strong> 法院对特定被告的权力。如果被告出庭应诉而没有及时提出异议，<strong>会被视为放弃 (Waived)</strong>。
+            </div>
+            <p>本题中，丈夫挑战的是 <strong>SMJ</strong>（因为这是离婚案），这种挑战不会因为他出庭而失效。</p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">其他选项分析</div>
+            <ul>
+                <li><strong>选项 A (错误)：</strong> 忽略了家庭关系例外原则。虽然满足多元管辖权的形式要求，但实质上联邦法院不审理此类案件。</li>
+                <li><strong>选项 D (错误)：</strong> 题目明确指出妻子“永久迁居”(permanently moved) 并有定居意图，她在法律上已经建立了 B 州的居所 (Domicile)。</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        📝 <strong>考试技巧：</strong> 看到 "Divorce", "Alimony", "Probate" (遗嘱认证) 出现在联邦法院的题目中，第一反应应当是检查是否适用“例外原则”，直接排除联邦管辖权。
+    </div>
+</div>
+
+</body>
+</html>

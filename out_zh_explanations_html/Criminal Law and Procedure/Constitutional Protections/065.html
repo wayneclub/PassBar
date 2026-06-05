@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --text-color: #333;
+            --correct-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background-color: #e1e8ed;
+            color: #555;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid var(--highlight-bg);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .case-reference {
+            font-style: italic;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .option-analysis {
+            margin-top: 15px;
+        }
+
+        .correct-answer {
+            color: var(--correct-color);
+            font-weight: bold;
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .exam-tip-title {
+            color: #f57c00;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .latin {
+            font-style: italic;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">宪法保护与刑事诉讼程序</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">核心法律原则 (The Rule)</span>
+            <p>根据美国宪法第十四修正案的<b>正当程序条款 (Due Process Clause)</b>，供述必须是“自愿的” (Voluntary) 才能在法庭上被采纳。判断供述是否非自愿，关键在于是否存在<b>胁迫性的警察行为 (Coercive Police Conduct)</b>。</p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">深度解析：为何选 D？</div>
+            <p>本题的正确答案是 <b>D</b>。这道题直接考察了美国最高法院的著名判例 <span class="case-reference">Colorado v. Connelly (1986)</span>。</p>
+            
+            <p><b>1. 精神疾病 vs. 警察胁迫</b></p>
+            <p>虽然该男子的供述是由其“严重的精神疾病” (Serious Mental Illness) 诱发的（在 <i>Connelly</i> 案中，被告人声称听到上帝的声音让他自首），但这并不足以让供述在宪法意义上变成“非自愿” (Involuntary)。</p>
+            
+            <p><b>2. 宪法的门槛：国家行为 (State Action)</b></p>
+            <p>正当程序条款旨在限制政府的行为，而不是个人的内部心理斗争。要认定供述无效，必须证明供述是<b>警察不当行为的产物</b>。如果警察没有使用威胁、暴力或不当的心理施压，那么即便嫌疑人是因为精神错乱而自首，该供述依然是可以采纳的。</p>
+
+            <p><b>3. 本案事实应用</b></p>
+            <ul>
+                <li>男子主动走进警局（无初始胁迫）。</li>
+                <li>警察按程序宣读了 <i>Miranda</i> 警告。</li>
+                <li>精神科医生确认该男子虽然有病，但<b>有能力理解其权利</b> (Competent to understand rights)。</li>
+                <li>警察没有任何不当行为。</li>
+            </ul>
+            <p>因此，因为缺乏“胁迫性的警察行为”，该供述在法律上被视为自愿的。</p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">排除干扰项</div>
+            
+            <div class="option-analysis">
+                <span class="concept-tag">选项 A (错误)</span>
+                <p><b>理由：</b>虽然供述是精神疾病的产物，但缺乏<b>警察的因果关系</b>。没有警察的胁迫，单纯的内部心理强迫不构成宪法上的“非自愿”。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="concept-tag">选项 B (错误)</span>
+                <p><b>理由：</b>题目明确指出医生判定该疾病“并未影响该男子理解其权利的能力”。只要弃权是<b>明知 (Knowing)</b> 和 <b>理智 (Intelligent)</b> 的，且没有外部胁迫，弃权就是有效的。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="concept-tag">选项 C (错误)</span>
+                <p><b>理由：</b>这是一个诱导性选项。虽然该男子最初是自愿走进警局的，但一旦他供认谋杀，任何理性的人都会认为自己不再自由（即进入了羁押状态 / Custody）。但这并不影响结论，因为即使在羁押中，只要没有胁迫且经过了 Miranda 弃权，供述依然有效。</p>
+            </div>
+        </div>
+
+        <div class="exam-tip">
+            <div class="exam-tip-title">💡 MBE 考试技巧</div>
+            <p>在处理涉及<b>供述自愿性 (Voluntariness)</b> 的题目时，请务必寻找<b>“警察的不当行为” (Police Misconduct)</b>。</p>
+            <p>公式：<br>
+            <b>精神错乱 + 警察无过错 = 供述可采纳 (Admissible)</b><br>
+            <b>精神错乱 + 警察利用该弱点施压 = 供述不可采纳 (Inadmissible)</b></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

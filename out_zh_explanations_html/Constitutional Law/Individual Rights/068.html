@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e1f5fe;
+            color: #0277bd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .rule-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .correct-answer {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .correct-answer strong {
+            color: #2e7d32;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+            color: #555;
+        }
+        .highlight {
+            background-color: #fff176;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+        .case-ref {
+            font-style: italic;
+            color: #555;
+            font-size: 13px;
+            margin-top: 5px;
+            display: block;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #fafafa;
+            border-top: 1px solid #eee;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Equal Protection & Gender Discrimination</p>
+    </div>
+
+    <div class="content">
+        <span class="tag">Constitutional Law</span>
+        <span class="tag">Individual Rights</span>
+
+        <div class="section-title">核心考点：审查标准 (Standards of Review)</div>
+        <p>本题的核心在于判断针对<strong>性别 (Gender)</strong> 的政府分类应当适用何种宪法审查标准。在第十四修正案的平等保护条款 (Equal Protection Clause) 下，法院根据分类的性质适用不同层级的审查。</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>分类 (Class)</th>
+                    <th>审查标准 (Standard)</th>
+                    <th>举证责任</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>种族、国籍<br>(Suspect Class)</td>
+                    <td><strong>严格审查</strong><br>(Strict Scrutiny)</td>
+                    <td>政府</td>
+                </tr>
+                <tr style="background-color: #e3f2fd;">
+                    <td><strong>性别</strong>、非婚生子女<br>(Quasi-Suspect Class)</td>
+                    <td><strong>中度审查</strong><br>(Intermediate Scrutiny)</td>
+                    <td><strong>政府</strong></td>
+                </tr>
+                <tr>
+                    <td>年龄、财富等<br>(Other)</td>
+                    <td><strong>理性基础</strong><br>(Rational Basis)</td>
+                    <td>原告</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-title">法律分析与判例</div>
+        <div class="rule-box">
+            <strong>关键规则：</strong><br>
+            政府在陪审团或仲裁员遴选过程中，不得基于性别进行歧视。这种基于性别的分类必须通过<strong>中度审查 (Intermediate Scrutiny)</strong>。
+            <span class="case-ref">参考判例: J.E.B. v. Alabama ex rel. T.B. (1994)</span>
+        </div>
+
+        <p>在本案中，州政府律师（State's Attorney）代表政府行事，构成了<strong>政府行为 (State Action)</strong>。她明确表示排除女性仲裁员是因为“女性会偏袒女性”。这构成了基于性别的分类。</p>
+        
+        <p>根据中度审查标准，政府必须证明该分类与<strong>重要的政府利益 (Important Government Interest)</strong> 具有<strong>实质性关联 (Substantially Related)</strong>。</p>
+        
+        <p>最高法院已明确裁定，基于刻板印象（如认为女性会因性别而产生偏见）并不构成正当理由。因此，这种做法无法通过中度审查。</p>
+
+        <div class="correct-answer">
+            <strong>✅ 正确答案：选项 D</strong>
+            <p><strong>违宪，因为本案中州政府律师所使用的性别分类不满足“中度审查标准”的要求。</strong></p>
+            <p>这是唯一正确识别了适用于性别歧视的审查标准（中度审查）并得出正确结论（违宪）的选项。</p>
+        </div>
+
+        <div class="section-title">为什么其他选项是错误的？</div>
+        <ul>
+            <li>
+                <strong>选项 A (Rational Basis):</strong> 错误。理性基础测试适用于非可疑分类（如年龄、经济状况）。性别属于“准可疑分类”，标准更高。
+            </li>
+            <li>
+                <strong>选项 B (Strict Scrutiny):</strong> 错误。严格审查适用于“可疑分类”（如种族 Race、国籍 National Origin）。性别歧视尚未上升到严格审查的高度。
+            </li>
+            <li>
+                <strong>选项 C (Jury of Peers):</strong> 错误。
+                <br>1. 本案是仲裁 (Arbitration)，不是刑事或民事审判，通常没有宪法保障的陪审团权利。
+                <br>2. 即使有，本案的宪法争议点在于“平等保护”，而非第六或第七修正案的陪审团构成权利。
+            </li>
+        </ul>
+
+        <div class="section-title">💡 考试技巧 (Exam Tip)</div>
+        <p>在 MBE 宪法题中，遇到<strong>平等保护 (Equal Protection)</strong> 问题时，请按以下步骤思考：</p>
+        <ol>
+            <li><strong>识别分类：</strong>政府是基于什么特征在区别对待？(本题是性别)</li>
+            <li><strong>确定标准：</strong>该特征对应哪个审查等级？(性别 = 中度审查)</li>
+            <li><strong>应用测试：</strong>政府的理由是否站得住脚？(刻板印象通常无法通过中度或严格审查)</li>
+        </ol>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

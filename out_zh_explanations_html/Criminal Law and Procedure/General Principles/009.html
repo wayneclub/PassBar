@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fff3cd;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        .latin-term {
+            font-style: italic;
+            font-weight: bold;
+            color: #8e44ad;
+        }
+        .rule-block {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .trap-alert {
+            background-color: var(--warning-bg);
+            padding: 10px;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            border: 1px solid #ffeeba;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：法律认识错误</h1>
+    
+    <p>本题考察刑法中的核心原则：<b>法律认识错误 (Mistake of Law)</b> 是否可以作为刑事抗辩理由。</p>
+
+    <div class="concept-box">
+        <strong>核心原则：</strong><br>
+        通常情况下，"不知法不免责" (<span class="latin-term">Ignorantia juris non excusat</span>)。被告人不知道某种行为是违法的，通常<b>不能</b>作为抗辩理由。
+    </div>
+
+    <h2>为什么选项 D 是最佳抗辩？</h2>
+    <p>虽然原则上不知法不免责，但在美国宪法正当程序条款 (Due Process Clause) 下，存在一个重要的例外，即 <b>Lambert 例外</b> (源自 <i>Lambert v. California</i>)。</p>
+    
+    <p>如果满足以下两个条件，法律认识错误<b>可以</b>作为抗辩：</p>
+    <div class="rule-block">
+        <ol>
+            <li>该罪行属于 <b><span class="latin-term">Malum Prohibitum</span> (法定犯)</b>：即行为本身并非本质邪恶（如杀人、强奸），只是因为法律禁止才违法（如赌博、未注册登记）。</li>
+            <li>该法律在行为发生前<b>未被合理公布 (Not reasonably made available)</b>，且被告人不知情。</li>
+        </ol>
+    </div>
+    
+    <p>在本题中：</p>
+    <ul>
+        <li><b>性质：</b>举办扑克比赛属于 <span class="latin-term">Malum Prohibitum</span>（法定犯），不是天理难容的罪行。</li>
+        <li><b>公布情况：</b>选项 D 指出该法律未被合理公布。</li>
+    </ul>
+    <p>因此，如果法律没有给公民提供“公平的告知” (Fair Notice)，且行为本身不具有明显的道德非难性，被告可以以此作为抗辩。</p>
+
+    <h2>常见陷阱分析 (为什么其他选项错误)</h2>
+
+    <div class="trap-alert">
+        <strong>🚫 选项 B (刚搬来不知情)：</strong><br>
+        这是最典型的干扰项。仅仅是“不知道法律” (Ignorance of the law) 永远不是抗辩理由，除非符合上述极少数例外。无论你是刚搬来还是住了很久，都有义务了解当地法律。
+    </div>
+
+    <div class="trap-alert" style="margin-top: 10px;">
+        <strong>🚫 选项 C (依赖律师建议)：</strong><br>
+        <b>依赖律师建议 (Reliance on Counsel)</b> 通常<b>不是</b>抗辩理由。
+        <br><br>
+        <small>例外情况仅限于：
+        1. 依赖的是官方解释（如法院判决、行政命令），而非私人律师。
+        2. 该建议否定了犯罪所需的特定心理状态 (Specific Intent)。但在本题这种一般意图犯罪中，律师说“没事”不能免责。</small>
+    </div>
+
+    <p><strong>🚫 选项 A (法律正受挑战)：</strong><br>
+    法律在被法院正式废除之前，依然有效。仅仅有人在法院挑战该法律，并不赋予被告违反该法律的权利。</p>
+
+    <h2>MBE 解题技巧</h2>
+    <p>在处理 <b>Mistake of Law</b> 题目时，请遵循以下思维路径：</p>
+    <ol>
+        <li><b>默认规则：</b>首先假设“不知者不无罪”。</li>
+        <li><b>检查例外：</b>
+            <ul>
+                <li>是否依赖了<b>官方</b>（法官/官员）的错误解释？</li>
+                <li>法律是否<b>未公布</b>且行为属于<b>法定犯</b> (Regulatory offense)？</li>
+                <li>法条本身是否要求“明知违法” (如税务欺诈中的 "Willfully")？</li>
+            </ul>
+        </li>
+        <li><b>排除干扰：</b>私人律师的建议、个人的善意误解、文化背景差异，通常都不构成抗辩。</li>
+    </ol>
+
+    <div class="footer">
+        MBE Criminal Law Review | Mistake of Law
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：证据发现程序</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .answer-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #2e7d32;
+        }
+        .answer-text {
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .concept-card {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .concept-term {
+            font-weight: bold;
+            color: #2980b9;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        .comparison-table th {
+            text-align: left;
+            background-color: #ecf0f1;
+            padding: 8px;
+            color: #2c3e50;
+        }
+        .comparison-table td {
+            border-bottom: 1px solid #eee;
+            padding: 8px;
+            vertical-align: top;
+        }
+        .exam-tip {
+            background-color: #fff3e0;
+            border: 1px solid #ffe0b2;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+        .tip-icon {
+            font-size: 18px;
+            margin-right: 5px;
+        }
+        .highlight {
+            background-color: #fff9c4;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Civil Procedure: Discovery</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-box">
+            <div class="answer-icon">✅</div>
+            <div>
+                <div>正确答案：选项 A</div>
+                <div class="answer-text">书面质询 (Interrogatories)</div>
+            </div>
+        </div>
+
+        <p>本题考查的核心是：在联邦民事诉讼中，针对特定目的（确定知情人员身份），哪种证据发现手段最符合<b>效率原则</b>。</p>
+
+        <!-- 核心法律依据 -->
+        <div class="section-title">⚖️ 法律依据与推理</div>
+        
+        <div class="concept-card">
+            <span class="concept-term">FRCP Rule 33: Interrogatories</span>
+            书面质询是一方当事人向另一方当事人发出的书面问题，接收方必须在宣誓后以书面形式作答。
+        </div>
+
+        <p>在本案中，建筑公司的目标是<b>确定 (Identify)</b> 供应商的哪些员工了解木材处理情况。选择书面质询的理由如下：</p>
+        
+        <ol style="padding-left: 20px; font-size: 14px;">
+            <li><b>成本低廉且高效：</b> 律师只需起草一个简单的问题（例如：“请列出所有参与木材压力处理的员工姓名及职位”）。</li>
+            <li><b>举证责任转移：</b> 书面质询将“寻找信息”的负担转移给了应答方（供应商）。供应商必须去查阅记录、询问经理，然后提供一份名单。</li>
+            <li><b>作为后续手段的基础：</b> 一旦通过书面质询拿到了名单，原告就可以针对特定人员进行更昂贵的取证（如口头取证）。</li>
+        </ol>
+
+        <!-- 选项对比分析 -->
+        <div class="section-title">🔍 为什么其他选项不是最佳？</div>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th width="35%">手段</th>
+                    <th>为何本案中不适用？</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>口头取证</b><br><span style="font-size:11px; color:#7f8c8d;">(Depositions)</span></td>
+                    <td><b>太贵且过早。</b> 口头取证需要律师在场、法庭记录员记录，费用高昂。如果你还不知道该问谁，就无法安排取证。</td>
+                </tr>
+                <tr>
+                    <td><b>文件出示</b><br><span style="font-size:11px; color:#7f8c8d;">(Request for Production)</span></td>
+                    <td><b>效率较低。</b> 虽然可以要求“出示所有处理记录”，但原告必须自己从海量文件中筛选员工名字。不如直接问“是谁”来得直接。</td>
+                </tr>
+                <tr>
+                    <td><b>传票</b><br><span style="font-size:11px; color:#7f8c8d;">(Subpoena)</span></td>
+                    <td><b>对象错误。</b> 传票通常用于强制<b>非当事人 (Non-party)</b> 提供证词或文件。本案被告是当事人，应直接使用发现程序，而非传票。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="tip-icon">💡</span> <b>MBE 考试技巧</b><br>
+            <p style="margin: 5px 0 0 0;">
+                当题目问及<b>“最有效 (Most Efficient)”</b>或<b>“最经济 (Most Economical)”</b>的方法，且目的是为了获取<b>基础事实信息</b>（如证人姓名、保险金额、基本主张）时，<span class="highlight">Interrogatories</span> 通常是正确答案。
+            </p>
+            <p style="margin: 10px 0 0 0; font-size: 13px; color: #555;">
+                记住逻辑顺序：先用 Interrogatories 找人（Identify），再用 Depositions 问话（Testimony）。
+            </p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

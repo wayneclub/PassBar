@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - 宪法学: 个人权利</title>
+    
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">宪法学: 个人权利</p>
+        </header>
+
+        <div class="content-wrapper">
+            <div class="answer-box">
+                正确答案: D<br>
+                国会通过附条件拨款限制受资助方言论的权力并非无限，若条件与拨款目的无关并侵犯受资助方的第一修正案言论自由权，则该条件违宪。
+            </div>
+
+            <h2>核心法律原则</h2>
+            <div class="concept-box">
+                <div class="concept-title">附条件拨款与第一修正案</div>
+                <p>根据美国宪法<span class="term">拨款条款 (Spending Clause)</span>，国会拥有广泛的权力，可以通过拨款来促进公共福利。国会可以对联邦资金的接受施加条件，前提是这些条件必须符合美国宪法，包括<span class="term">第一修正案 (First Amendment)</span>。</p>
+                <p>在评估附条件拨款的合宪性时，关键在于区分条件是施加在<span class="term">受资助活动 (funded activities)</span> 上，还是施加在<span class="term">受资助方 (funding recipients)</span> 的其他受宪法保护的行为上：</p>
+                <ul>
+                    <li>如果条件限制的是<span class="term">受资助活动</span>，政府可以坚持资金必须用于授权目的（例如，要求资金仅用于研究和测试）。</li>
+                    <li>如果条件限制的是<span class="term">受资助方</span>的权利，政府不能限制受资助方从事与拨款目的或范围<strong class="wrong-text">无关</strong>的受宪法保护的行为（例如，限制其言论自由）。</li>
+                </ul>
+                <p>最高法院在 <span class="latin">Agency for Int'l Dev. v. Alliance for Open Society Int'l, Inc.</span> 一案中确立了这一原则，即国会不能通过附条件拨款来限制受资助方在拨款目的之外的受宪法保护的言论。</p>
+            </div>
+
+            <h2>概念比较表</h2>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>条件类型</th>
+                            <th>国会权力</th>
+                            <th>示例</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>受资助活动</strong><br>(Funded activities)</td>
+                            <td>政府可以限制资金用于授权目的。</td>
+                            <td>“拨款必须用于购置、建造和维护适当的表演设施。”</td>
+                        </tr>
+                        <tr>
+                            <td><strong>受资助方</strong><br>(Funding recipients)</td>
+                            <td>政府不能限制与拨款目的无关的受保护行为。</td>
+                            <td>“受资助方必须同意不进行任何旨在获得额外税收支持的政治游说。”</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>案情分析与法律适用</h2>
+            <ol class="analysis-step">
+                <li><strong>识别拨款目的与条件：</strong>
+                    <ul>
+                        <li>联邦法规的拨款目的是：<span class="term">抗击致命的空气传播病毒</span>，资金严格用于病毒相关的研究和测试。</li>
+                        <li>法规施加的条件是：<span class="term">受资助方必须公开宣布支持自由贸易政策</span>。</li>
+                    </ul>
+                </li>
+                <li><strong>评估条件与拨款目的的相关性：</strong>
+                    <ul>
+                        <li>公开支持自由贸易政策这一条件，与抗击病毒的研究和测试这一拨款目的<strong class="wrong-text">无关</strong>。</li>
+                        <li>该条件要求受资助方发表特定言论，属于<span class="term">强制言论 (compelled speech)</span>，直接影响其<span class="term">第一修正案言论自由权</span>。</li>
+                    </ul>
+                </li>
+                <li><strong>确定受资助方的宪法权利：</strong>
+                    <ul>
+                        <li>本案中的组织是<span class="term">美国非政府组织</span>，尽管总部设在国外，但作为美国实体，它仍然享有美国宪法赋予的权利，包括第一修正案的保护。</li>
+                        <li>与外国公民在国外不享有美国宪法权利不同，美国公民或组织在国外通常仍受宪法保护。</li>
+                    </ul>
+                </li>
+                <li><strong>结论：</strong>
+                    <ul>
+                        <li>由于该条件与拨款目的无关，并且侵犯了美国组织的第一修正案言论自由权，因此该条件<strong class="wrong-text">违宪</strong>。法院应宣告该条件违宪。</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h2>分析图示</h2>
+            <div class="diagram">
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+                    <div class="flow-node">国会 (拨款方)</div>
+                    <span class="arrow">⟶</span>
+                    <div class="flow-node">提供资金</div>
+                    <span class="arrow">⟶</span>
+                    <div class="flow-node">受资助方 (美国NGO)</div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 20px;">
+                    <div class="flow-node">拨款目的: 抗击病毒研究/测试</div>
+                    <span class="arrow">⟷</span>
+                    <div class="flow-node highlight-node">附加条件: 公开支持自由贸易</div>
+                </div>
+                <div style="margin-top: 20px; font-weight: 700; color: var(--primary-ink);">
+                    条件与拨款目的<span class="wrong-text">无关</span>，且<span class="wrong-text">强制言论</span>
+                </div>
+                <div style="margin-top: 15px;">
+                    <span class="arrow">⬇</span>
+                </div>
+                <div class="flow-node active">结果: 条件违宪 (侵犯第一修正案)</div>
+            </div>
+
+            <div class="trap-alert">
+                <h3>MBE 陷阱提示</h3>
+                <p><strong>陷阱一：混淆条件类型。</strong> 考生常混淆国会限制<span class="term">受资助活动</span>的权力（通常允许）与限制<span class="term">受资助方在拨款目的之外的受宪法保护行为</span>的权力（通常不允许）。请记住，如果条件与拨款目的无关并侵犯了受资助方的宪法权利，则该条件很可能违宪。</p>
+                <p><strong>陷阱二：误解宪法权利的地域范围。</strong> 尽管外国公民在国外通常不享有美国宪法权利，但<span class="term">美国公民或美国组织</span>，即使其总部设在国外，通常仍受美国宪法保护，特别是第一修正案的言论自由权。</p>
+            </div>
+
+            <h2>正确答案与干扰项排除</h2>
+            <div class="option-analysis">
+                <div class="option correct">
+                    <p><strong>D. 宣告该条件违宪，因为该条件侵犯了该组织的第一修正案言论自由权。</strong></p>
+                    <p><strong>正确。</strong> 国会可以对联邦拨款施加条件，但这些条件必须符合宪法。如果条件限制了受资助方与拨款目的无关的受宪法保护的言论，则该条件违宪。本案中，要求公开支持自由贸易政策的条件与抗击病毒的拨款目的无关，且强制了该组织的言论，侵犯了其第一修正案权利。</p>
+                </div>
+
+                <div class="option wrong">
+                    <p><strong>A. 宣告该条件合宪，因为国会可以通过对联邦资金的接受施加条件来强制言论。</strong></p>
+                    <p><strong>错误。</strong> 国会通过附条件拨款强制言论的权力并非无限。如果条件与拨款目的无关，且侵犯了受资助方的宪法权利（如第一修正案言论自由），则该条件违宪。国会不能利用其拨款权来规避宪法限制。</p>
+                </div>
+
+                <div class="option wrong">
+                    <p><strong>B. 宣告该条件合宪，因为该组织总部设在国外，因此缺乏宪法保护。</strong></p>
+                    <p><strong>错误。</strong> 本案中的组织是<span class="term">美国非政府组织</span>，即使其总部设在国外，它仍然享有美国宪法赋予的权利，包括第一修正案的保护。美国宪法权利的地域范围是一个复杂的问题，但对于美国实体而言，通常不会因其在国外而完全丧失宪法保护。此选项混淆了美国实体与外国公民在国外享有的权利区别。</p>
+                </div>
+
+                <div class="option wrong">
+                    <p><strong>C. 宣告该条件违宪，因为国会不能对联邦资金的接受施加条件。</strong></p>
+                    <p><strong>错误。</strong> 国会可以对联邦资金的接受施加条件，这是其拨款权的一部分。然而，这些条件必须符合宪法。此选项的表述过于绝对，不符合宪法学中关于拨款条款的既定原则。</p>
+                </div>
+            </div>
+
+            <div class="footer-tip">
+                <h3>考试技巧</h3>
+                <p>当遇到涉及国会附条件拨款的题目时，请始终问自己两个核心问题：</p>
+                <ol>
+                    <li>该条件是否与拨款的<strong class="accent-strong">目的</strong>相关？</li>
+                    <li>该条件是否侵犯了受资助方的<strong class="accent-strong">宪法权利</strong>（特别是第一修正案）？</li>
+                </ol>
+                <p>如果条件与拨款目的无关，并且侵犯了受资助方的宪法权利，那么它很可能违宪。</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 10px;
+        color: #333;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+    }
+    .answer-card {
+        background-color: #e8f5e9;
+        border-left: 5px solid #4caf50;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .answer-label {
+        color: #2e7d32;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+    }
+    .answer-text {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    .section-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+    }
+    .concept-box {
+        background-color: #e3f2fd;
+        border: 1px solid #90caf9;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .concept-title {
+        color: #1565c0;
+        font-weight: bold;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+    }
+    .concept-title::before {
+        content: "⚖️";
+        margin-right: 8px;
+    }
+    .trap-box {
+        background-color: #fff3e0;
+        border: 1px solid #ffcc80;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .trap-title {
+        color: #ef6c00;
+        font-weight: bold;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+    }
+    .trap-title::before {
+        content: "⚠️";
+        margin-right: 8px;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .highlight {
+        color: #d32f2f;
+        font-weight: bold;
+    }
+    .footer {
+        background-color: #fafafa;
+        padding: 15px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #888;
+        border-top: 1px solid #eee;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>侵权法：诽谤与发表要素</p>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-card">
+            <span class="answer-label">正确答案</span>
+            <div class="answer-text">选项 A</div>
+            <div style="margin-top: 5px; font-size: 0.95rem;">
+                不会胜诉，因为没有其他员工听得懂西班牙语。
+            </div>
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">核心法律规则解析</div>
+        
+        <div class="concept-box">
+            <div class="concept-title">发表 (Publication) 的定义</div>
+            <p>在诽谤法（Defamation）中，原告必须证明被告将诽谤性言论“发表”给了第三方。这里的“发表”不仅仅是说出来，还要求：</p>
+            <ul>
+                <li>被告有意或过失地将言论传达给第三方；<b>并且</b></li>
+                <li>第三方必须<b>理解（Understand）</b>该言论的含义。</li>
+            </ul>
+        </div>
+
+        <p>根据 <span class="term">Restatement (Second) of Torts § 577</span>，如果第三方因为听不懂所使用的语言（Foreign Language）而无法理解诽谤性陈述的内容，那么这就<b>不构成法律意义上的“发表”</b>。</p>
+
+        <p><b>本案分析：</b><br>
+        经理虽然当着其他员工的面指控了该员工（Slander），但她使用的是西班牙语。题目明确指出“没有其他员工会说或听懂西班牙语”。因此，对于在场的第三方来说，这些话只是无意义的声音，他们并没有接收到“该员工是小偷”这一诽谤性信息。由于缺乏有效的“发表”，诽谤诉讼无法成立。</p>
+
+        <!-- 干扰项辨析 -->
+        <div class="section-title">为什么其他选项是陷阱？</div>
+
+        <div class="trap-box">
+            <div class="trap-title">陷阱：本身即是诽谤 (Slander Per Se)</div>
+            <p><b>选项 D 是最具迷惑性的干扰项。</b></p>
+            <p>确实，指控他人犯有严重犯罪（如盗窃）通常属于 <span class="term">Slander Per Se</span>，这意味着原告不需要证明具体的金钱损失（Special Damages）。</p>
+            <p><span class="highlight">但是！</span> Slander Per Se 只是免除了证明损害的责任，它<b>并不能</b>免除证明诽谤基本要素（如发表）的责任。如果连最基本的“发表”都没有发生，那么言论的内容是否恶劣就无关紧要了。</p>
+        </div>
+
+        <p><b>选项 B (错误认为)：</b><br>
+        虽然经理确实弄错了（Negligence），但在诽谤法中，被告的过失是关于言论真实性的。即使被告有过失，如果言论没有被第三方理解（即未发表），侵权行为仍未完成。</p>
+
+        <p><b>选项 C (当众陈述)：</b><br>
+        仅仅“在他人面前”说话是不够的，关键在于他人是否<b>理解</b>。如果经理是用英语说的，那么选项 C 就会成立。</p>
+
+    </div>
+
+    <div class="footer">
+        <b>MBE 解题技巧：</b><br>
+        看到“外语”、“方言”或“噪音太大听不见”的情节时，<br>立即检查“发表 (Publication)”这一要素是否缺失。
+    </div>
+</div>
+
+</body>
+</html>

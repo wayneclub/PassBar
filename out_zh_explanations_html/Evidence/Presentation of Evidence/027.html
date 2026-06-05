@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .header span {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .answer-badge {
+            display: inline-block;
+            background-color: var(--correct-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .eng {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .analysis-text {
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        .option-analysis {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .option-label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .wrong {
+            color: var(--wrong-color);
+        }
+
+        .tip-box {
+            background-color: #fff8e1;
+            border-left-color: #f1c40f;
+            font-size: 0.9rem;
+        }
+
+        .tip-title {
+            color: #d35400;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <span>MBE Evidence Analysis</span>
+        <h2>证人弹劾与偏见</h2>
+    </div>
+
+    <!-- 正确答案部分 -->
+    <div class="card" style="text-align: center; border-left-color: var(--correct-color);">
+        <div class="answer-badge">正确答案：C</div>
+        <p style="margin: 0; font-weight: 500;">恰当，因为它涉及该继女诬告被告的可能动机。</p>
+    </div>
+
+    <!-- 核心考点解析 -->
+    <div class="card">
+        <div class="section-title">核心考点解析</div>
+        <div class="analysis-text">
+            <p>本题考察的是通过展示证人的<b>偏见</b>（Bias）或<b>动机</b>（Motive）来弹劾（Impeach）证人的可信度。</p>
+            
+            <p><b>1. 法律依据：</b><br>
+            虽然《联邦证据规则》（FRE）没有专门的一条规则列出“偏见”作为弹劾方式，但在美国最高法院判例（如 <i>United States v. Abel</i>）和普通法中，展示证人存在偏见、成见、利害关系或不当动机，始终是允许的，且被认为与评估证词可信度高度相关。</p>
+
+            <p><b>2. 逻辑推理：</b><br>
+            辩护律师的问题旨在建立这样一个逻辑链条：
+            <br>
+            <span class="term">被告惩罚了继女</span> &rarr; <span class="term">继女产生怨恨</span> &rarr; <span class="term">继女有动机通过诬告性虐待来报复</span>。</p>
+            
+            <p>这种“报复动机”直接影响证词的可信度，因此属于恰当的交叉询问（Cross-examination）。</p>
+        </div>
+    </div>
+
+    <!-- 为什么其他选项是错的 -->
+    <div class="card">
+        <div class="section-title">干扰项排除</div>
+        <div class="option-analysis">
+            <p><span class="option-label wrong">选项 A 错误</span><br>
+            <b>理由：</b>虽然交叉询问通常限于直接询问（Direct Examination）的范围，但有一个重要的例外：<b>影响证人可信度（Credibility）的事项永远在交叉询问的范围内</b>（参考 FRE 611(b)）。因此，即使直接询问没提唱片的事，为了弹劾可信度也可以问。</p>
+
+            <p><span class="option-label wrong">选项 B & D 错误</span><br>
+            <b>理由：</b>这两个选项混淆了“偏见”与“诚实品格”（Character for Truthfulness, FRE 608）。
+            <br><br>
+            “恶意毁坏唱片”本身并不是一种反映不诚实的行为（如欺诈、伪证），因此不能用来攻击证人的<b>诚实品格</b>（所以D错，B的前半句陈述是事实）。
+            <br><br>
+            但是，本题的切入点<b>不是</b>证明“她是个坏孩子所以不可信”，而是证明“她因为被惩罚而<b>有动机撒谎</b>”。这是两条不同的弹劾路径。</p>
+        </div>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card tip-box">
+        <div class="tip-title">💡 MBE 考试技巧</div>
+        <p>在处理弹劾（Impeachment）问题时，请务必区分以下两个概念：</p>
+        <ol style="padding-left: 20px; margin: 5px 0;">
+            <li><b>Character for Truthfulness (FRE 608):</b> 攻击证人本性是否诚实。通常受限于“不诚实行为”（Bad acts of untruthfulness）。</li>
+            <li><b>Bias / Motive (Common Law):</b> 攻击证人在此特定案件中是否有撒谎的理由。<b>几乎总是允许的</b>，且可以通过外部证据（Extrinsic Evidence）证明。</li>
+        </ol>
+        <p>本题中，“毁坏唱片”本身不代表不诚实，但“因毁坏唱片受罚”代表了<b>偏见/动机</b>。</p>
+    </div>
+
+</div>
+
+</body>
+</html>

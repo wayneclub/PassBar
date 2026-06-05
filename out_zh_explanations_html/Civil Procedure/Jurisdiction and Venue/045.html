@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机屏幕 */
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .highlight {
+            color: var(--warning-color);
+            font-weight: bold;
+        }
+        .concept-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .concept-table th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px;
+            text-align: left;
+        }
+        .concept-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+        .step-number {
+            font-weight: bold;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+        .footer {
+            background-color: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            border-top: 1px solid #ddd;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 4px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Civil Procedure: Waiver of Defenses</p>
+    </div>
+
+    <div class="content">
+        <p>本题考察的是美国联邦民事诉讼规则（FRCP）中关于<strong>抗辩权的放弃（Waiver of Defenses）</strong>这一核心概念，特别是 Rule 12(g) 和 12(h)。</p>
+
+        <div class="rule-box">
+            <span class="rule-title">核心规则：Rule 12 "Use it or Lose it"</span>
+            如果被告决定提交<strong>答辩前动议（Pre-answer Motion）</strong>，他必须将所有当时可用的 Rule 12(b)(2)-(5) 抗辩理由合并在这一次动议中提出。如果遗漏了，这些抗辩理由即被视为<strong>永久放弃（Waived）</strong>。
+        </div>
+
+        <h3>1. 哪些抗辩必须一次性提出？</h3>
+        <p>以下四种抗辩被称为“可放弃的抗辩”（Waivable Defenses），必须在被告的<strong>第一次</strong>回应（无论是动议还是答辩状）中提出：</p>
+        
+        <table class="concept-table">
+            <thead>
+                <tr>
+                    <th>抗辩理由 (Defense)</th>
+                    <th>FRCP 条款</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>缺乏对人管辖权<br><span class="tag">Lack of Personal Jurisdiction</span></td>
+                    <td>12(b)(2)</td>
+                </tr>
+                <tr>
+                    <td>审判地不当<br><span class="tag">Improper Venue</span></td>
+                    <td>12(b)(3)</td>
+                </tr>
+                <tr>
+                    <td>传票内容不充分<br><span class="tag">Insufficient Process</span></td>
+                    <td>12(b)(4)</td>
+                </tr>
+                <tr>
+                    <td>送达程序不充分<br><span class="tag">Insufficient Service</span></td>
+                    <td>12(b)(5)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>2. 案情分析</h3>
+        
+        <div class="analysis-step">
+            <div class="step-number">第一步：被告的第一次行动</div>
+            <p>出版商选择提交了一个答辩前动议（Pre-answer motion）。在这个动议中，他只提出了<strong>送达程序不当</strong>（Improper service）。</p>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-number">第二步：致命的遗漏</div>
+            <p>在提交第一个动议时，出版商<strong>本可以</strong>同时提出“缺乏对人管辖权”（Lack of Personal Jurisdiction）的抗辩，但他没有这样做。</p>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-number">第三步：法律后果</div>
+            <p>根据 Rule 12(h)(1)，因为他在第一个动议中遗漏了对人管辖权的抗辩，该抗辩权已经<strong>消失</strong>。即使他在随后的答辩状（Answer）中试图补救，也为时已晚。</p>
+        </div>
+
+        <h3>3. 为什么其他选项是错误的？</h3>
+
+        <p><strong>❌ 选项 A (关于时间)：</strong><br>
+        虽然 Rule 12(a)(4) 规定如果动议被驳回，被告通常有 14 天时间提交答辩状。本案中被告在 12 天后提交，时间上是合规的。但问题不在于时间，而在于<strong>内容的放弃</strong>。</p>
+
+        <p><strong>❌ 选项 C (关于管辖权实质)：</strong><br>
+        这是一个典型的“陷阱选项”。虽然出版商从未去过 A 州（Minimum Contacts 分析），这通常意味着法院确实没有管辖权。但是，<strong>程序规则优先于实质权利</strong>。因为被告未能及时提出异议，他被视为<strong>同意（Consented）</strong>了法院的管辖权。即使他在实体法上有理，程序上的失误也是致命的。</p>
+
+        <p><strong>❌ 选项 D (认为程序正确)：</strong><br>
+        虽然答辩状本身提交得恰当，但其中包含的“驳回动议”是基于一个已经放弃的理由。因此法院不会批准该动议。</p>
+
+        <div class="rule-box" style="background-color: #fff3cd; border-left-color: #f1c40f;">
+            <span class="rule-title">💡 考试技巧 (Exam Tip)</span>
+            在 MBE 中，一旦看到被告提交了 <strong>Pre-answer Motion</strong>，立即检查他是否遗漏了上述四个“可放弃抗辩”中的任何一个。如果遗漏了，该抗辩就死了，后续再提也没用。
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

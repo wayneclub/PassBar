@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .concept-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .concept-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .choice-analysis {
+            margin-top: 10px;
+        }
+
+        .choice-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .choice-wrong {
+            background-color: #fdecea;
+            border-left: 4px solid var(--wrong-color);
+        }
+
+        .choice-correct {
+            background-color: #e9f7ef;
+            border-left: 4px solid var(--correct-color);
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px dashed #f1c40f;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 0.95rem;
+        }
+
+        .exam-tip-title {
+            font-weight: bold;
+            color: #d35400;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">证据法：专家证言与传闻规则</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：选项 C</span>
+            <strong>可以，作为该男子有罪的证据。</strong>
+            <br>
+            <span class="english-term">Yes, as evidence of the man's guilt.</span>
+        </div>
+
+        <!-- 核心法律分析 -->
+        <div class="section-title">⚖️ 法律依据与推理</div>
+        
+        <div class="concept-card">
+            <span class="concept-icon">🐕</span>
+            <span class="term">非传闻规则 (Not Hearsay)</span>
+            <p>这是本题最大的陷阱。根据《联邦证据规则》(FRE 801)，传闻是指<strong>人 (Person)</strong> 在庭外作出的陈述。
+            <br><br>
+            <strong>关键点：</strong>动物（如警犬）或机器的反应<strong>不是陈述 (Statement)</strong>，因为它们不是“人”。因此，警犬的吠叫不属于传闻证据规则的管辖范围，不需要寻找传闻例外。</p>
+        </div>
+
+        <div class="concept-card">
+            <span class="concept-icon">👨‍⚖️</span>
+            <span class="term">专家证言 (Expert Testimony)</span>
+            <p>根据 FRE 702，如果专家拥有专业知识、技能或经验，且其证言能帮助事实审理者理解证据，则该证言可被采纳。
+            <br><br>
+            <strong>本案逻辑：</strong>
+            <ul>
+                <li><strong>证人：</strong>训犬师（人）是证人。</li>
+                <li><strong>基础：</strong>他基于其专业经验观察到了警犬的反应。</li>
+                <li><strong>结论：</strong>警犬的反应表明公文包内有毒品。</li>
+            </ul>
+            只要训犬师的资质和警犬训练的可靠性已确立（题目中已说明），这就是合法的专家意见。</p>
+        </div>
+
+        <!-- 错误选项分析 -->
+        <div class="section-title">❌ 为什么其他选项错误？</div>
+
+        <div class="choice-analysis">
+            <div class="choice-item choice-wrong">
+                <strong>选项 A (传闻/Hearsay)：</strong>
+                错误。如上所述，狗不是“陈述人” (<span class="english-term">Declarant</span>)。狗的叫声不是法律意义上的“陈述”，因此根本不构成传闻。
+            </div>
+
+            <div class="choice-item choice-wrong">
+                <strong>选项 B (不可靠/Unreliability)：</strong>
+                错误。美国法院普遍承认受过训练的缉毒犬的反应是可靠的证据来源，可以作为专家证言的基础（甚至可以作为搜查的 probable cause）。题目中已明确该证人是“经验丰富”的，且狗是“受过训练”的。
+            </div>
+
+            <div class="choice-item choice-wrong">
+                <strong>选项 D (专家依赖传闻)：</strong>
+                错误。虽然专家确实可以依赖不可采纳的传闻来形成意见 (FRE 703)，但这个选项的推理前提是“狗叫是传闻”。由于狗叫不是传闻，这个理由在法律逻辑上是不准确的。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 提分技巧</span>
+            遇到涉及<strong>动物（狗、鹦鹉等）</strong>或<strong>机器（雷达测速、时钟、温度计）</strong>产生的信息时：
+            <br><br>
+            1. 立即划掉所有声称这是<strong>“传闻 (Hearsay)”</strong>的选项。
+            <br>
+            2. 传闻的陈述人必须是<strong>人类 (Human Declarant)</strong>。
+            <br>
+            3. 这类证据通常作为<strong>实物证据</strong>或<strong>专家证言的基础</strong>引入。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

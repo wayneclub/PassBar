@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background-color: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .card-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background-color: #3498db;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+        .highlight {
+            background-color: #e8f4f8;
+            color: #2980b9;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        .correct-logic {
+            background-color: #f0f9eb;
+            border-left: 4px solid #67c23a;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .trap-logic {
+            background-color: #fef0f0;
+            border-left: 4px solid #f56c6c;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #eee;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Real Property: Duty to Disclose</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="card">
+            <div class="card-title">核心结论</div>
+            <p>本题的正确答案是 <strong>(C)</strong>。</p>
+            <p>法院应支持卖方（女性），因为合同中明确包含了<span class="highlight">"As Is"（现状出售）</span>条款，且卖方没有欺诈或隐瞒行为。</p>
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="correct-logic">
+            <div class="card-title" style="color: #2c3e50;">法律依据解析</div>
+            <p>在住宅房地产销售中，关于卖方对房屋物理状况（Physical Condition）的责任，遵循以下逻辑：</p>
+            <ul>
+                <li><strong>一般规则：</strong>现代多数司法管辖区要求卖方披露其<strong>已知 (Known)</strong> 且买方<strong>无法合理发现 (Latent)</strong> 的重大瑕疵。</li>
+                <li><strong>"As Is" 条款的效力：</strong>如果合同包含 "As Is" 条款，通常意味着卖方免除了对房屋状况的默示担保，且没有义务披露瑕疵。</li>
+                <li><strong>例外情况（无效的 "As Is"）：</strong>如果卖方存在<strong>欺诈 (Fraud)</strong>、<strong>虚假陈述 (Misrepresentation)</strong> 或<strong>故意隐瞒 (Active Concealment)</strong>，则 "As Is" 条款无效。</li>
+            </ul>
+            <p><strong>本案应用：</strong>卖方从未去过该房屋，对白蚁损害<strong>并不知情</strong>，因此不存在欺诈或隐瞒。在这种情况下，"As Is" 条款有效，风险转移给买方。</p>
+        </div>
+
+        <!-- 常见陷阱辨析 -->
+        <div class="trap-logic">
+            <div class="card-title" style="color: #c0392b;">MBE 常见陷阱 (Distractors)</div>
+            
+            <p><strong>陷阱 1：瑕疵担保契据 (Warranty Deed)</strong><br>
+            <span style="font-size: 0.9em; color: #666;">对应选项 (A)</span><br>
+            这是 MBE 中极易混淆的概念。<strong>Warranty Deed</strong> 仅担保<strong>产权 (Title)</strong> 的完整性（例如：我拥有这房子，没有未披露的抵押权等），它<strong>绝不担保</strong>房屋的<strong>物理质量</strong>（如白蚁、漏水）。</p>
+
+            <p><strong>陷阱 2：买者自负 (Caveat Emptor)</strong><br>
+            <span style="font-size: 0.9em; color: #666;">对应选项 (B)</span><br>
+            虽然 <span class="latin">Caveat Emptor</span> 是普通法原则，但现代法律已对其进行了限制（要求披露已知隐蔽瑕疵）。本题中卖方胜诉的直接原因不是因为古老的“买者自负”原则保护了她，而是因为具体的<strong>合同条款 ("As Is")</strong> 免除了她的责任。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="background-color: #fff8e1; border-color: #ffecb3;">
+            <div class="card-title">💡 考试通关技巧</div>
+            <p>在处理 MBE 房产合同纠纷时，请按以下步骤思考：</p>
+            <ol>
+                <li><strong>看合同：</strong>是否有 "As Is" 条款？</li>
+                <li><strong>看知情权：</strong>卖方是否<strong>知道</strong>瑕疵？（本题中 "never visited" 暗示不知情）。</li>
+                <li><strong>看行为：</strong>卖方是否有掩盖或撒谎？</li>
+                <li><strong>区分概念：</strong>区分 Title Defect（产权瑕疵，由 Deed 负责）与 Physical Defect（物理瑕疵，由合同条款负责）。</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Real Property Review | © 2025 Legal Exam Prep
+    </div>
+</div>
+
+</body>
+</html>

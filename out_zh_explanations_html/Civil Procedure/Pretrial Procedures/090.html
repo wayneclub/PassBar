@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 简易判决举证责任分析</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="card-header">
+            <h1>MBE 考点精析</h1>
+            <div class="sub-title">民事诉讼法: 审前程序</div>
+        </div>
+
+        <div class="content-section">
+            <div class="concept-box">
+                <h3>核心考点：简易判决中的举证责任转移</h3>
+                <p class="latin">*Burden Shifting in Summary Judgment*</p>
+            </div>
+
+            <div class="comparison-table">
+                <h3>📊 简易判决举证责任对比</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>方面</th>
+                            <th>动议方 (Movant) 的初始责任</th>
+                            <th>非动议方 (Nonmovant) 的回应责任</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>目的</td>
+                            <td>证明不存在实质性事实争议，且依法应获判决</td>
+                            <td>证明存在实质性事实争议，从而阻止简易判决</td>
+                        </tr>
+                        <tr>
+                            <td>举证方式</td>
+                            <td>通过 <span class="term">证据</span> (如宣誓书、证词、发现材料) 证明</td>
+                            <td>通过 <span class="term">证据</span> (如宣誓书、证词、发现材料) 反驳</td>
+                        </tr>
+                        <tr>
+                            <td>能否仅依赖诉状</td>
+                            <td>不能，需提供证据支持其主张</td>
+                            <td>不能，仅凭 <span class="term">一般性否认</span> (general denial) 不足以对抗证据</td>
+                        </tr>
+                        <tr>
+                            <td>后果</td>
+                            <td>若未满足，动议失败</td>
+                            <td>若未满足，简易判决可能被批准</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="diagram">
+                <h3>🎨 简易判决举证责任流程图</h3>
+                <div class="flow-container">
+                    <div class="flow-node">动议方 (Movant) 提出简易判决动议</div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-node active">动议方证明：不存在实质性事实争议，且依法应获判决</div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-node">举证责任转移至非动议方 (Nonmovant)</div>
+                    <div class="arrow">↓</div>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; width: 100%;">
+                        <div class="flow-node" style="flex: 1; min-width: 45%;">非动议方证明：存在特定争议事实 (通过宣誓书/发现材料)</div>
+                        <div class="flow-node" style="flex: 1; min-width: 45%;">非动议方请求：需要额外发现以确立事实 (通过宣誓书)</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-node highlight-node">若非动议方未能提供证据或请求延期，简易判决可能被批准</div>
+                </div>
+            </div>
+
+            <h3>⚖️ 法律依据与逐步分析</h3>
+
+            <div class="analysis-step">
+                <div class="step-number">1</div>
+                <p>本案涉及对简易判决动议的裁决。根据联邦民事诉讼规则 <code>Fed. R. Civ. P. 56</code>，法院应批准简易判决动议，如果动议方证明不存在任何 <span class="term">实质性事实的真正争议</span> (no genuine dispute as to any material fact)，且动议方 <span class="term">依法有权获得判决</span> (entitled to judgment as a matter of law)。</p>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-number">2</div>
+                <p>动议方（本案中的购物者）承担初始举证责任，即证明不存在实质性事实争议。购物者通过提交三份 <span class="term">宣誓书</span> (affidavits) 来支持其动议，这些宣誓书来自其他购物者和一名前雇员，均完全支持购物者对事件的描述。这足以满足购物者的 <span class="term">初始举证责任</span> (initial burden of production)。</p>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-number">3</div>
+                <p>一旦动议方满足了其初始举证责任，举证责任就 <span class="term">转移</span> (shifts) 到非动议方（本案中的杂货店）。此时，非动议方必须通过提交 <span class="term">证据</span> (evidence) 来证明存在一个 <span class="term">实质性事实的真正争议</span> (genuine dispute of material fact)，或者请求法院延期审理以便进行 <span class="term">额外发现</span> (additional discovery)。</p>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-number">4</div>
+                <p>本案中，杂货店作为非动议方， <span class="term">未能提交任何宣誓书或其他证据</span> 来反对该动议。杂货店的答辩状中包含的 <span class="term">一般性否认</span> (general denial) 不足以对抗购物者提交的证据。诉状中的主张和否认通常是 <span class="term">一般性</span> (general) 的，而简易判决要求当事人提供 <span class="term">具体证据</span> (specific evidence) 来支持或反驳事实主张。</p>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-number">5</div>
+                <p>由于杂货店未能履行其转移后的举证责任，即未能提供证据证明存在实质性事实争议，法院应认定不存在需要审理的事实问题，并 <span class="term">批准购物者的简易判决动议</span>。</p>
+            </div>
+
+            <div class="trap-alert">
+                <strong>⚠️ 核心规则 / 陷阱警示：诉状与证据的区别</strong>
+                记住，在简易判决阶段，仅仅依靠 <span class="term">诉状中的主张或一般性否认</span> 是远远不够的。一旦动议方通过 <span class="term">证据</span> (如宣誓书、证词) 满足了其初始举证责任，非动议方必须也通过 <span class="term">证据</span> 来回应，而不能仅仅依赖其答辩状中的 <span class="term">一般性否认</span>。这是 MBE 考试中一个常见的陷阱，考生容易混淆诉状阶段和简易判决阶段的举证要求。
+            </div>
+
+            <div class="case-box">
+                <strong>🔑 独立案例 / 扩展情景：非动议方有效回应</strong>
+                假设在本案中，杂货店提交了一份由其经理签署的宣誓书，声明经理在事发前10分钟检查了该区域，并未发现任何溢出物，并且有明确的清洁记录。在这种情况下，杂货店就成功地提出了一个 <span class="term">实质性事实的真正争议</span> (genuine dispute of material fact)——即溢出物是否存在或杂货店是否知情。此时，法院将 <span class="term">驳回</span> (deny) 简易判决动议，因为需要进行庭审来解决这一事实争议。这突出了非动议方提供 <span class="term">具体证据</span> 的重要性。
+            </div>
+
+            <div class="option-analysis">
+                <h3>✅ 正确答案与干扰项排除</h3>
+
+                <div class="option correct">
+                    <b>Choice A is correct: Yes, because the grocery store failed to submit evidence showing a genuine issue of fact for trial.</b><br>
+                    <p><b>A 选项是正确的：</b> 是的，因为杂货店未能提交证据证明存在需要审理的实质性事实争议。购物者作为动议方，通过提交三份宣誓书，成功地履行了其初始举证责任，证明不存在实质性事实争议。此时，举证责任转移到杂货店。杂货店未能提交任何反驳证据，因此未能证明存在实质性事实争议。在这种情况下，法院应批准简易判决。</p>
+                </div>
+
+                <div class="option wrong">
+                    <b>Choice B is wrong: Yes, because the evidence, when viewed in the light most favorable to the shopper, demonstrates the lack of a genuine dispute.</b><br>
+                    <p><b>B 选项是错误的：</b> 简易判决的标准要求法院在审查证据时，必须将所有事实证据 <span class="term">以最有利于非动议方</span> (in the light most favorable to the nonmovant) 的方式解读。本案中，非动议方是杂货店，而不是购物者。因此，将证据以最有利于购物者的方式解读是错误的标准。尽管如此，由于杂货店未能提交任何证据，即使以最有利于杂货店的方式解读（即假设购物者的证据可能存在疑点），但没有证据来支持这种疑点，法院仍然会批准简易判决。</p>
+                </div>
+
+                <div class="option wrong">
+                    <b>Choice C is wrong: No, because the general denial in the grocery store's answer is sufficient to demonstrate a genuine dispute for trial.</b><br>
+                    <p><b>C 选项是错误的：</b> 杂货店答辩状中的 <span class="term">一般性否认</span> (general denial) 不足以对抗简易判决动议。在简易判决阶段，一旦动议方提交了证据来支持其主张，非动议方必须通过提交 <span class="term">证据</span> (如宣誓书、证词、发现材料) 来证明存在实质性事实争议，而不能仅仅依赖其诉状中的一般性否认。诉状和答辩状是 <span class="term">主张</span> (allegations)，而非 <span class="term">证据</span> (evidence)。</p>
+                </div>
+
+                <div class="option wrong">
+                    <b>Choice D is wrong: No, because the shopper failed to meet the burden of persuasion.</b><br>
+                    <p><b>D 选项是错误的：</b> 购物者作为动议方，通过提交三份宣誓书，已经满足了其 <span class="term">举证责任</span> (burden of production) 和 <span class="term">说服责任</span> (burden of persuasion)，即证明不存在实质性事实争议。正是杂货店未能履行其转移后的举证责任，才导致简易判决的批准。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-tip">
+            <strong>🎓 考试技巧：简易判决的“证据”门槛</strong>
+            记住，在简易判决动议中，<span class="term">“证据”是王道</span>。动议方必须用证据证明“无争议”，非动议方必须用证据证明“有争议”。仅仅依靠 <span class="term">诉状中的主张或否认</span>，在简易判决阶段是无效的。当看到一方提交了证据而另一方只字未提或只依赖诉状时，简易判决通常会倾向于提交证据的一方。
+        </div>
+    </div>
+</body>
+</html>

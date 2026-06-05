@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f4f9;
+            --card-bg: #ffffff;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .concept-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .key-term {
+            background-color: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+            color: #555;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+        }
+
+        .wrong-option {
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        .wrong-title {
+            color: var(--wrong-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property: Equitable Servitudes</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：D</span>
+            <p>是的，因为该条款设定了一项<strong>衡平法上的地役 (Equitable Servitude)</strong>。</p>
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="concept-card">
+            <div class="concept-title">🔍 核心法律分析</div>
+            <p>本题的关键在于识别原告（女儿）寻求的救济方式：<strong>禁令 (Injunction)</strong>。</p>
+            <p>当一方试图通过禁令来强制执行土地使用限制时，法院会应用<strong>衡平法地役权 (Equitable Servitude)</strong> 的规则，而不是普通法上的地产契约 (Real Covenant)。</p>
+            
+            <p>要确立一项对后续所有者有约束力的衡平法地役权，通常需要满足以下要素（WITN）：</p>
+            <ul>
+                <li><strong>Writing (书面形式)：</strong> 限制条款包含在原始的转让契据中。</li>
+                <li><strong>Intent (意图)：</strong> 契据明确指出“bind all successor owners”（约束所有继任所有者）。</li>
+                <li><strong>Touch and Concern (涉及并关系土地)：</strong> 限制了土地的使用方式（仅限住宅、最小5英亩），这直接影响了土地的价值和使用。</li>
+                <li><strong>Notice (通知)：</strong> 契据已登记 (Recorded)，构成了推定通知 (Constructive/Record Notice)。</li>
+            </ul>
+            <p>由于满足了所有要素，该限制作为衡平法地役权是有效的，法院可以颁布禁令。</p>
+        </div>
+
+        <!-- 易混淆概念对比 -->
+        <div class="concept-card">
+            <div class="concept-title">⚖️ Real Covenant vs. Equitable Servitude</div>
+            <p>在MBE考试中，区分这两者主要看<strong>救济方式</strong>：</p>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>类型</th>
+                        <th>救济方式 (Remedy)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Real Covenant</strong><br>(地产契约)</td>
+                        <td><strong>Money Damages</strong><br>(金钱损害赔偿)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Equitable Servitude</strong><br>(衡平法地役)</td>
+                        <td><strong>Injunction</strong><br>(禁令/强制执行)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>本题中女儿要求“enjoin”（禁止）儿子的建设，因此适用 Equitable Servitude 的规则。</p>
+        </div>
+
+        <!-- 错误选项解析 -->
+        <div class="wrong-option">
+            <div class="wrong-title">❌ 为什么其他选项是错的？</div>
+            
+            <p><strong>选项 A (Changed Conditions)：</strong><br>
+            虽然周边变成了半英亩社区，但“情势变更原则”要求变化必须如此剧烈，以至于<strong>整个地役权的目的完全落空</strong>。这里，女儿的土地仍处于5英亩区划内，她仍然能从限制儿子土地密度中获益（保持低密度环境）。只要该限制对受益地仍有价值，法院通常不会废除它。</p>
+
+            <p><strong>选项 B (Zoning Conflict)：</strong><br>
+            这是一个经典的 MBE 陷阱。<strong>区划 (Zoning) 设定的是底线，而不是上限。</strong> 私人契约可以比区划法规更严格。区划允许半英亩，并不意味着禁止私人约定五英亩。两者不冲突，更严格的私人限制依然有效。</p>
+
+            <p><strong>选项 C (Original Grantees)：</strong><br>
+            虽然他们确实是原始受让人，但这并不是限制有效的<strong>法律依据</strong>。限制之所以有效，是因为它满足了随土地转移 (run with the land) 的法律要素。如果仅仅因为是原始受让人，那么该限制可能被视为个人合同，无法约束未来的买家。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 提分技巧：</strong>
+            <br>
+            看到题目中出现“Zoning allows X, but Deed restricts to Y”（区划允许X，但契据限制为Y）时，记住黄金法则：<strong>私人契约可以比公法（区划）更严格</strong>。只要不违反公共政策（如种族歧视），更严格的私人限制通常会胜过宽松的区划法规。
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

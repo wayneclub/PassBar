@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：抵押财产的转让</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .concept-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        /* 表格样式 */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+
+        .analysis-step strong {
+            color: var(--primary-color);
+        }
+
+        .trap-alert {
+            background-color: #fff5f5;
+            border: 1px solid #ffcccc;
+            color: var(--wrong-color);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .mbe-tip {
+            background-color: #e9f7ef;
+            border: 1px dashed var(--correct-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .mbe-tip-title {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .mbe-tip-title::before {
+            content: "💡";
+            margin-right: 8px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析<br>抵押财产转让与个人责任</h1>
+    </div>
+
+    <div class="content">
+        <!-- 答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：A</span>
+            法院应判决<strong>邻居胜诉</strong>，因为她仅仅是受让了附带抵押的土地（Subject to），并没有签署协议承担个人还款责任。
+        </div>
+
+        <!-- 核心考点图解 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：Subject to vs. Assumption</div>
+            <p>在不动产法中，当买方购买已抵押的房产时，有两种主要方式，其法律后果截然不同：</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>类型</th>
+                        <th>买方个人责任<br><span class="english-term">(Personal Liability)</span></th>
+                        <th>原卖方责任</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Subject to the Mortgage</strong><br>(附带抵押转让)</td>
+                        <td><span style="color:var(--wrong-color)">无责任</span><br>债权人不能起诉买方个人资产。</td>
+                        <td><strong>主要责任人</strong><br>仍需偿还债务。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Assume the Mortgage</strong><br>(承担抵押债务)</td>
+                        <td><span style="color:var(--correct-color)">有责任</span><br>债权人可直接起诉买方。</td>
+                        <td><strong>次要责任人</strong><br>(作为保证人 Surety)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 13px; color: #666;">* 注：无论哪种情况，如果债务违约，银行都可以没收（Foreclose）土地，因为抵押权附着于土地之上。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-step">
+            <h3>案情逻辑推演</h3>
+            
+            <p><strong>1. 关键事实认定：</strong><br>
+            题目明确指出：投资者（卖方）与邻居（买方）<span class="highlight">明确约定邻居不承担（would not assume）债务</span>。地契中也仅声明土地是 "Subject to a mortgage"（附带抵押）。</p>
+
+            <p><strong>2. 法律后果：</strong><br>
+            由于是 "Subject to" 交易，邻居虽然拥有土地所有权，且土地本身仍是债务的担保物，但<strong>邻居本人并没有与债权人（伙伴）建立合同债务关系</strong>。</p>
+
+            <p><strong>3. 诉讼请求分析：</strong><br>
+            伙伴起诉的是<strong>“拖欠的款项” (amount of the delinquent payments)</strong>，即要求邻居承担<strong>个人金钱赔偿责任</strong>（Personal Judgment），而不是要求法拍土地（Foreclosure）。由于邻居没有承担债务，伙伴不能向邻居追讨金钱。</p>
+        </div>
+
+        <!-- 干扰项解析 -->
+        <div class="concept-card">
+            <div class="concept-title">为什么其他选项是错误的？</div>
+            
+            <div class="analysis-step">
+                <strong>关于选项 C (Due-on-sale clause)：</strong>
+                <div class="trap-alert">
+                    <strong>⚠️ 常见陷阱：</strong> 
+                    “售出即付条款” (<span class="english-term">Due-on-sale clause</span>) 赋予了抵押权人（伙伴）在未经同意转让时<strong>加速债务到期</strong>并<strong>取消抵押赎回权（Foreclose）</strong>的权利。
+                    <br><br>
+                    但是，违反该条款<strong>不会自动让买方承担个人债务责任</strong>。它只是给了债权人收回房子的理由，而不是起诉买方要钱的理由。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <strong>关于选项 B 和 D (Privity of Estate)：</strong>
+                <p>地产权关联（Privity of Estate）通常用于分析房东与租客或契约（Covenants）随土地转移的问题。在抵押贷款的个人责任问题上，关键在于<strong>合同关系（Privity of Contract）</strong>。邻居没有签署借据（Note），也没有签署承担债务协议，因此没有合同关联。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <div class="mbe-tip-title">MBE 快速解题技巧</div>
+            <p>看到抵押房产转让题目时，第一步先找关键词：</p>
+            <ul style="margin: 5px 0 0 20px; padding: 0;">
+                <li>如果是 <strong>"Subject to"</strong> ➡️ 买方<strong>无</strong>个人责任（银行只能拿房子，不能拿买方的钱）。</li>
+                <li>如果是 <strong>"Assumes"</strong> ➡️ 买方<strong>有</strong>个人责任。</li>
+            </ul>
+            <p style="margin-top: 10px;">本题中，既然买方没有 assume，债权人就不能对其提起个人诉讼（Action on the debt/deficiency judgment）。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

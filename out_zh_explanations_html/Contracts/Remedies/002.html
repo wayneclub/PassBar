@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --success-color: #27ae60;
+        --warning-bg: #fff8e1;
+        --warning-border: #ffe082;
+        --text-color: #333;
+        --bg-color: #f4f4f9;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+    }
+    .container {
+        width: 100%;
+        max-width: 480px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    .header .sub-title {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+    }
+    .content {
+        padding: 20px;
+    }
+    .answer-box {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .correct-answer {
+        display: inline-block;
+        background-color: var(--success-color);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 18px;
+        box-shadow: 0 2px 5px rgba(39, 174, 96, 0.3);
+    }
+    .concept-card {
+        background: #f8f9fa;
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+    .concept-title {
+        color: var(--accent-color);
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 8px;
+        display: block;
+        text-transform: uppercase;
+    }
+    .formula-container {
+        background: #fff;
+        border: 2px dashed #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 20px 0;
+    }
+    .calc-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    .calc-row.minus { color: #c0392b; }
+    .calc-row.plus { color: #2980b9; }
+    .calc-line {
+        border-bottom: 2px solid #333;
+        margin: 5px 0 10px 0;
+    }
+    .calc-total {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        font-size: 18px;
+        color: var(--success-color);
+    }
+    .explanation-text {
+        line-height: 1.6;
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .mbe-tip {
+        background-color: var(--warning-bg);
+        border: 1px solid var(--warning-border);
+        border-radius: 8px;
+        padding: 15px;
+        font-size: 14px;
+    }
+    .mbe-tip-title {
+        font-weight: bold;
+        color: #f57c00;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+    }
+    .icon { margin-right: 6px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts / Remedies</div>
+    </div>
+
+    <div class="content">
+        <div class="answer-box">
+            <span class="correct-answer">正确答案：B ($4,200)</span>
+        </div>
+
+        <div class="concept-card">
+            <span class="concept-title">核心法律原则</span>
+            <strong>期待利益损害赔偿 (Expectation Damages)</strong><br>
+            目的是让非违约方处于“如同合同已完全履行”的经济地位。
+        </div>
+
+        <p class="explanation-text">
+            在雇佣合同违约案件中，当雇主违约时，雇员有权获得的赔偿金计算逻辑如下：
+        </p>
+
+        <div class="formula-container">
+            <div class="calc-row">
+                <span>合同约定薪资</span>
+                <span>$10,000</span>
+            </div>
+            <div class="calc-row minus">
+                <span>(-) 减损收入 (Mitigated Income)</span>
+                <span>- $6,000</span>
+            </div>
+            <div class="calc-row plus">
+                <span>(+) 附带损害 (Incidental Damages)</span>
+                <span>+ $200</span>
+            </div>
+            <div class="calc-line"></div>
+            <div class="calc-total">
+                <span>总赔偿额</span>
+                <span>$4,200</span>
+            </div>
+        </div>
+
+        <h3>详细解析</h3>
+        
+        <p class="explanation-text">
+            <strong>1. 减损义务 (Duty to Mitigate)：</strong><br>
+            根据普通法，非违约方有义务采取合理措施减少损失。在本案中，教师在违约后找到了一份新的工作，薪水为 $6,000。
+            <br><br>
+            由于这两份工作是在<strong>同一时间段</strong>（10周），教师无法同时从事这两份工作。如果法院判给她全额 $10,000 加上她新赚的 $6,000，她的总收入将达到 $16,000，这会使她的处境优于合同履行时的处境（不当得利）。因此，必须从赔偿金中扣除她通过替代工作赚取的 $6,000。
+        </p>
+
+        <p class="explanation-text">
+            <strong>2. 附带损害 (Incidental Damages)：</strong><br>
+            教师为了寻找替代工作花费了 $200 的差旅费。虽然那次面试没有成功，但这笔费用是她在违约后为履行减损义务而产生的<strong>合理费用</strong>。
+            <br><br>
+            无论减损尝试是否成功，只要是合理的尝试，产生的费用均可作为附带损害进行追偿。
+        </p>
+
+        <div class="mbe-tip">
+            <div class="mbe-tip-title">
+                <span class="icon">💡</span> 考试技巧 (Exam Tip)
+            </div>
+            <p style="margin:0;">
+                在计算违约赔偿金时，请牢记这个公式：<br>
+                <strong>赔偿金 = 预期收益 - 避免的损失/成本 + 附带/间接损害</strong>
+                <br><br>
+                <strong>陷阱警示：</strong> 选项 A ($4,000) 忽略了寻找工作的成本；选项 C ($10,000) 忽略了减损收入；选项 D ($10,200) 虽然加回了成本，但忘记扣除新工作的收入。
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

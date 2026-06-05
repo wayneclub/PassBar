@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：MPC 默认犯罪意图</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 15px;
+            max-width: 480px; /* 模拟手机宽度 */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.2em;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .rule-box {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.95em;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 0.85em;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .correct-logic {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .exam-tip {
+            background-color: #fff0f0;
+            border: 1px dashed var(--highlight-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8em;
+            color: #777;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 核心考点卡片 -->
+    <div class="card">
+        <h2>核心考点：MPC 默认犯罪意图</h2>
+        <p>本题考察的是《模范刑法典》（Model Penal Code, MPC）中关于<b>法规未规定犯罪意图（Mens Rea）时的默认规则</b>。</p>
+        
+        <div class="rule-box">
+            <strong>⚖️ 法律规则 (MPC § 2.02(3)):</strong><br>
+            如果刑法条文本身没有规定具体的犯罪意图（Mental State），且该罪行不是严格责任（Strict Liability）犯罪，则控方必须证明被告的行为<b>至少</b>达到了 <span class="highlight">鲁莽 (Recklessness)</span> 的程度。
+        </div>
+        <p>这意味着：仅仅证明“过失”（Negligence）是不够的，必须证明被告有“鲁莽”、“明知”（Knowingly）或“故意”（Purposely）的心态。</p>
+    </div>
+
+    <!-- 心理状态层级图解 -->
+    <div class="card" style="border-left-color: var(--primary-color);">
+        <h2>MPC 心理状态层级</h2>
+        <p>理解层级是解题关键（从高到低）：</p>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>层级</th>
+                    <th>英文术语</th>
+                    <th>定义关键词</th>
+                </tr>
+                <tr>
+                    <td>1. 故意</td>
+                    <td>Purposely</td>
+                    <td>自觉目的 (Conscious object)</td>
+                </tr>
+                <tr>
+                    <td>2. 明知</td>
+                    <td>Knowingly</td>
+                    <td>几乎确定 (Practically certain)</td>
+                </tr>
+                <tr style="background-color: #e8f8f5; font-weight:bold;">
+                    <td>3. 鲁莽</td>
+                    <td>Recklessly</td>
+                    <td>有意识地漠视 (Conscious disregard) ★默认最低标准</td>
+                </tr>
+                <tr>
+                    <td>4. 过失</td>
+                    <td>Negligently</td>
+                    <td>应当意识到 (Should be aware)</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 案情分析与推理 -->
+    <div class="card" style="border-left-color: #27ae60;">
+        <h2>本案分析逻辑</h2>
+        
+        <p><b>1. 确定法律标准：</b><br>
+        题目指出该司法管辖区采用 MPC 且已废除监禁刑的严格责任。法规未写明意图，因此默认标准是<b>鲁莽（Recklessness）</b>。</p>
+
+        <p><b>2. 分析被告行为：</b></p>
+        <ul>
+            <li><b>知情：</b>机修工明确警告司机，超过50英里/小时会导致拖车脱落。</li>
+            <li><b>漠视：</b>司机为了省钱不修，且为了赶时间开到了55英里/小时。</li>
+            <li><b>结论：</b>司机实际上<b>意识到</b>了风险（Subjective Awareness），却<b>有意识地漠视</b>了该风险（Conscious Disregard）。</li>
+        </ul>
+
+        <p class="correct-logic">✅ 结论：司机的行为符合“鲁莽”的定义。因为法规的最低要求是“鲁莽”，所以他可以被定罪。</p>
+    </div>
+
+    <!-- 为什么其他选项错误 -->
+    <div class="card" style="border-left-color: var(--highlight-color);">
+        <h2>为什么选 C 排除其他？</h2>
+        
+        <p><b>❌ 选项 A (Knowingly) 错误：</b><br>
+        虽然“明知”足以定罪，但它不是<b>最低</b>要求。MPC 的默认最低门槛是鲁莽。控方不需要证明司机“确定”车会坏，只需证明他漠视了风险。</p>
+
+        <p><b>❌ 选项 B (Negligently) 错误：</b><br>
+        第一，MPC 默认规则下，仅有过失（Negligence）通常不足以构成犯罪。第二，本案中司机已经被警告，他实际上“知道”风险，这超越了“应当知道”的过失范畴，属于鲁莽。</p>
+
+        <p><b>❌ 选项 D (Purposely) 错误：</b><br>
+        司机并没有“想要”堵塞交通的自觉目的（Conscious Objective）。他是为了赶时间，而不是为了犯罪。</p>
+    </div>
+
+    <!-- 考试技巧 -->
+    
+
+    
+
+</body>
+</html>

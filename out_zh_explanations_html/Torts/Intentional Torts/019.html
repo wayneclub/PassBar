@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: #e8f8f5;
+            border-left: 5px solid var(--success-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .section-title span {
+            margin-right: 8px;
+        }
+
+        .concept-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .wrong-choice {
+            font-size: 13px;
+            color: #666;
+            margin-top: 8px;
+            padding-left: 10px;
+            border-left: 3px solid #ddd;
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px dashed var(--warning-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 25px;
+            font-size: 13px;
+        }
+
+        .exam-tip-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Intentional Torts / Battery</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：C</span>
+            <strong>会胜诉。</strong>因为该运动员并未同意允许该外科医生进行手术。
+        </div>
+
+        <!-- 核心法律逻辑 -->
+        <div class="section-title">
+            <span>⚖️</span> 核心法律逻辑
+        </div>
+        <div class="concept-card">
+            <p>本题考查的是<strong>非法侵犯/殴打 (Battery)</strong> 中的<strong>同意 (Consent)</strong> 这一抗辩事由的局限性。</p>
+            <p>Battery 的构成要件包括：</p>
+            <ul>
+                <li>意图 (Intent)</li>
+                <li>造成有害或冒犯性的接触 (Harmful or offensive contact)</li>
+                <li><strong>未经同意 (Lack of consent)</strong></li>
+            </ul>
+        </div>
+
+        <div class="concept-card">
+            <div class="term">关键点：同意的特定性 (Specificity of Consent)</div>
+            <p>在医疗背景下，患者的同意通常是针对<strong>特定医生</strong>的（Personal Nature）。</p>
+            <p>如果你同意让 A 医生做手术，但这并不意味着你同意让 B 医生做手术——即使 B 医生技术更好。这种未经授权的医生替换，在普通法中被称为 <span class="highlight">Ghost Surgery（幽灵手术）</span>，构成 Battery。</p>
+        </div>
+
+        <!-- 为什么其他选项是错的 -->
+        <div class="section-title">
+            <span>🚫</span> 陷阱排除
+        </div>
+        
+        <div class="concept-card">
+            <strong>为什么选项 A 和 B 错误？</strong>
+            <div class="wrong-choice">
+                <p><strong>误区：</strong>手术成功了/医生技术更好，所以没有伤害？</p>
+                <p><strong>纠正：</strong>Battery 保护的是个人的<strong>身体完整性 (Bodily Integrity)</strong> 和<strong>尊严</strong>，而不仅仅是身体健康。</p>
+                <p>法律定义下的 <span class="term">Harmful Contact</span> 包括对身体的任何物理改变 (Alteration of the body)。即使手术在医学上是成功的（Beneficial），只要它是未经同意的物理入侵，它在法律上就是“有害的”。</p>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <strong>为什么选项 D 错误？</strong>
+            <div class="wrong-choice">
+                <p>虽然同意书是书面的，但这并不是胜诉的根本原因。胜诉的根本原因是<strong>实际行为人与同意书指定的人不符</strong>。如果队医做了手术，即使同意书是口头的，也不会构成 Battery。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 考试技巧</span>
+            <p>在处理医疗类侵权题目时，请区分 <strong>Battery</strong> 和 <strong>Negligence (Medical Malpractice)</strong>：</p>
+            <ul style="margin-top: 8px;">
+                <li><strong>Battery (故意侵权)：</strong> 医生完全没有获得同意，或者<strong>换了人</strong>做手术，或者做了<strong>完全不同</strong>的手术部位。不看手术结果好坏，只看有无授权。</li>
+                <li><strong>Negligence (过失侵权)：</strong> 医生获得了同意，但手术<strong>做砸了</strong>，或者未告知风险（Informed Consent 问题）。这需要证明造成了实际损害 (Damages)。</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

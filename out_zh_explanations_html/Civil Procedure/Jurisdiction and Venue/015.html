@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --correct-bg: #e8f8f5;
+        --correct-border: #2ecc71;
+        --wrong-bg: #fdedec;
+        --text-color: #333;
+        --light-gray: #f4f6f7;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .card {
+        background: white;
+        max-width: 480px;
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .header .sub-title {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .answer-box {
+        background: var(--correct-bg);
+        border-left: 5px solid var(--correct-border);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .answer-title {
+        color: #27ae60;
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+    .section-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid var(--light-gray);
+        padding-bottom: 5px;
+    }
+    .concept-tag {
+        display: inline-block;
+        background: var(--light-gray);
+        color: var(--primary-color);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+    .highlight {
+        background-color: #fff3cd;
+        padding: 0 2px;
+    }
+    .latin {
+        font-style: italic;
+        color: #555;
+    }
+    .option-analysis {
+        margin-bottom: 15px;
+    }
+    .option-label {
+        font-weight: bold;
+        color: #e74c3c;
+    }
+    .footer {
+        background: var(--light-gray);
+        padding: 15px;
+        text-align: center;
+        font-size: 12px;
+        color: #7f8c8d;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    li {
+        margin-bottom: 8px;
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <h1>MBE 民事诉讼法考点解析</h1>
+        <div class="sub-title">Civil Procedure: Venue & Transfer</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">✅ 正确答案：D</span>
+            <strong>将案件移送至C州联邦法院的动议</strong><br>
+            (A motion to transfer the action to a federal court in State C)
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">⚖️ 法律依据与推理逻辑</div>
+        <p>本题的核心考点在于区分<b>审判地不当的驳回</b> (Dismissal for Improper Venue) 与 <b>审判地的移送</b> (Transfer of Venue)。</p>
+
+        <p><b>1. 为什么A州是适当的审判地 (Proper Venue)？</b><br>
+        根据 <span class="concept-tag">28 U.S.C. § 1391</span>，审判地在以下情况是适当的：
+        <ul>
+            <li>所有被告居住的州；或者</li>
+            <li><b>引起诉讼的事件主要发生地 (Substantial part of events occurred)。</b></li>
+        </ul>
+        本案中，飞机坠毁发生在A州，这是引起诉讼的核心事件。因此，A州联邦法院是<b>完全适当</b>的审判地。既然审判地适当，被告就不能要求“驳回” (Dismiss)，只能申请“移送” (Transfer)。</p>
+
+        <p><b>2. 为什么可以移送至C州？</b><br>
+        根据 <span class="concept-tag">28 U.S.C. § 1404(a)</span>，即使当前的审判地是适当的，法院为了<b>当事人和证人的方便 (Convenience of parties and witnesses)</b> 以及<b>司法公正 (Interest of justice)</b>，可以将案件移送至另一个<b>本来可以提起诉讼 (Where it might have been brought)</b> 的地区。</p>
+        <ul>
+            <li><b>C州的适格性：</b> 被告（航空公司）在C州注册并有主要营业地，因此C州对被告有管辖权且审判地适当。</li>
+            <li><b>方便性因素：</b> 航空公司的维修设施在C州，这意味着维修记录和相关证人很可能都在C州。</li>
+        </ul>
+
+        <p><b>3. 关键的“诉讼时效” (Statute of Limitations) 陷阱</b><br>
+        题目特别提到原告是在时效届满前一天起诉的。
+        <ul>
+            <li>如果法院<b>驳回</b> (Dismiss) 案件（选项A、B、C），原告再想去C州重新起诉时，<b>诉讼时效已经过期</b>，案件将彻底败诉。</li>
+            <li>如果法院<b>移送</b> (Transfer) 案件（选项D），根据 <span class="latin">Van Dusen</span> 规则，原起诉时间有效，且通常适用原法院地（A州）的法律（包括时效法），从而保护了原告的诉益。</li>
+        </ul>
+        因此，移送是唯一既能满足被告“离开A州”的目标，又符合司法公正（不让原告因技术原因丧失诉权）的手段。</p>
+
+        <!-- 错误选项辨析 -->
+        <div class="section-title">❌ 为什么其他选项错误</div>
+        
+        <div class="option-analysis">
+            <span class="option-label">选项 A (Improper Venue):</span> 
+            错误。如前所述，坠机发生在A州，A州是法定适当的审判地，不能以“不当”为由驳回。
+        </div>
+
+        <div class="option-analysis">
+            <span class="option-label">选项 B (Personal Jurisdiction):</span> 
+            错误。被告的飞机在A州坠毁，这构成了<b>特定管辖权 (Specific Jurisdiction)</b> 所需的“最低限度联系” (Minimum Contacts)。A州显然对被告拥有对人管辖权。
+        </div>
+
+        <div class="option-analysis">
+            <span class="option-label">选项 C (Forum Non Conveniens):</span> 
+            错误。<span class="latin">Forum Non Conveniens</span> (FNC) 通常用于当替代法院位于<b>不同的司法系统</b>（如外国法院或州法院）且联邦法院无法移送时。当替代法院是另一个美国联邦地区法院时，法律首选<b>§ 1404 移送</b>，而不是驳回。此外，驳回会导致原告错过诉讼时效，法院极不可能批准。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">🎓 MBE 考试技巧</div>
+        <p>遇到被告想“换地方”审理的题目，请按以下步骤思考：</p>
+        <ol>
+            <li><b>检查当前法院是否适当：</b> 有管辖权吗？是事件发生地或被告居住地吗？如果是，就不能选“Dismiss for Improper Venue/PJ”。</li>
+            <li><b>看是否有更好的联邦法院：</b> 如果有另一个联邦法院更方便（证人、证据），首选 <b>Transfer (§ 1404)</b>。</li>
+            <li><b>注意时效暗示：</b> 如果题目提到“时效快到了”，这通常是在暗示<b>不能驳回</b>（因为驳回=死刑），只能<b>移送</b>（移送=续命）。</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        MBE Civil Procedure Q88807 Analysis
+    </div>
+</div>
+
+</body>
+</html>

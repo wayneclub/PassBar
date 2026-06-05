@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e1f5fe;
+            color: #0277bd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .rule-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #0277bd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #0277bd;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .analysis-step strong {
+            color: #d32f2f;
+        }
+        .correct-answer {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .correct-title {
+            color: #2e7d32;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .correct-title::before {
+            content: "✓";
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        .trap-box {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff3e0;
+            border-radius: 8px;
+            border: 1px solid #ffe0b2;
+        }
+        .trap-title {
+            color: #ef6c00;
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .footer-tip {
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: #666;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Federal Civil Procedure</p>
+    </div>
+
+    <div class="content">
+        <span class="tag">Jurisdiction & Venue</span>
+
+        <p>本题考察的核心是<b>审判地 (Venue)</b> 的确定规则，以及它与<b>对人管辖权 (Personal Jurisdiction)</b> 的区别。</p>
+
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 法律规则：28 U.S.C. § 1391(b)</span>
+            在联邦民事诉讼中，适当的审判地 (Proper Venue) 通常仅限于以下地区：
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li><b>被告居住地规则：</b>如果所有被告都居住在同一个州，则该州内的任何司法辖区均可。</li>
+                <li><b>事件/财产所在地规则：</b>产生诉讼的绝大部分事件发生地，或争议财产所在地的司法辖区。</li>
+                <li><b>兜底规则 (Fallback)：</b>仅当前两项都不适用时，才考虑任何被告受对人管辖权管辖的地区。</li>
+            </ol>
+        </div>
+
+        <div class="analysis-step">
+            <h3>📝 案情分析</h3>
+            <ul>
+                <li><b>被告 (Trustee)：</b>居住在 B 州。</li>
+                <li><b>争议财产 (Trust Accounts)：</b>位于 B 州。</li>
+                <li><b>诉讼事件：</b>未能正确分配收益（管理行为通常发生在受托人所在地 B 州）。</li>
+                <li><b>起诉地点：</b>A 州联邦法院。</li>
+            </ul>
+        </div>
+
+        <div class="correct-answer">
+            <div class="correct-title">正确答案：D</div>
+            <p><b>以审判地不当为由申请驳回 (Move to dismiss for improper venue)。</b></p>
+            <p>根据上述规则分析：</p>
+            <ol>
+                <li>被告不住在 A 州（住在 B 州）。</li>
+                <li>争议事件和财产不在 A 州（在 B 州）。</li>
+            </ol>
+            <p>因此，A 州不是适当的审判地。尽管受托人在 A 州被当面送达（建立了对人管辖权），但这并不能自动使 A 州成为适当的审判地。被告的最佳策略是指出审判地错误。</p>
+        </div>
+
+        <div class="trap-box">
+            <div class="trap-title">⚠️ 常见陷阱：选项 C (送达不当)</div>
+            <p>很多考生会误以为律师不能送达传票。根据 <b>FRCP 4(c)(2)</b>：</p>
+            <p>任何<b>年满 18 岁</b>且<b>非本案当事人 (Not a party)</b> 的人都可以进行送达。</p>
+            <p>虽然律师代表当事人，但在法律上律师本人并不是“当事人 (Party)”。因此，受益人的律师亲自送达是<b>有效</b>的。</p>
+        </div>
+
+        <div class="trap-box" style="background-color: #eceff1; border-color: #cfd8dc;">
+            <div class="trap-title" style="color: #455a64;">💡 概念辨析：管辖权 vs. 审判地</div>
+            <p><b>对人管辖权 (Personal Jurisdiction):</b> 法院是否有权管这名被告？<br>
+            <i>本案中：有。因为被告在 A 州境内被“抓获”并送达 (Tag Jurisdiction / Transient Presence)。</i></p>
+            <p><b>审判地 (Venue):</b> 这个法院是不是审理此案的合适地理位置？<br>
+            <i>本案中：不是。因为被告不住这，事也不出在这。</i></p>
+        </div>
+
+        <div class="footer-tip">
+            <b>考试技巧：</b>当题目中出现“Best Response”时，首先检查程序性缺陷（如 Venue 或 Jurisdiction）。如果程序上有硬伤，通常优于实体法上的反击（如选项 A 的滥用诉讼程序）。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

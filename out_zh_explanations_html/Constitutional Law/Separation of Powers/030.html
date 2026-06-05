@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">宪法学: 权力分立</p>
+        </div>
+
+        <div class="answer-box">
+            正确答案：D
+            <p>当国会在总统收到法案后的10天（不含周日）内休会，且总统未采取行动时，该法案将不会成为法律，这被称为“搁置否决”（<span class="term">pocket veto</span>），且国会无法推翻此否决。</p>
+        </div>
+
+        <h2>核心法律规则</h2>
+        <div class="concept-box">
+            <p class="concept-title">总统对法案的行动与搁置否决</p>
+            <ul>
+                <li>当国会（即众议院和参议院）通过一项法案后，该法案必须提交给总统以供批准或否决。</li>
+                <li>总统有 <strong>10天</strong>（不含周日）时间对法案采取行动。在此期间，总统有三种选择：
+                    <ul>
+                        <li>签署法案使其成为法律。</li>
+                        <li>否决法案，但国会可以通过两院三分之二多数票推翻该否决。</li>
+                        <li>不采取任何行动。</li>
+                    </ul>
+                </li>
+                <li>如果总统 <strong>不采取任何行动</strong>：
+                    <ul>
+                        <li>如果国会在10天期限结束时 <strong>仍在会期中</strong>，则该法案自动成为法律。</li>
+                        <li>如果国会在10天期限内 <strong>休会</strong>，则该法案 <strong>不会成为法律</strong>。总统在此情况下的不作为被称为 <strong>“搁置否决” (<span class="term">pocket veto</span>)</strong>。国会无法推翻搁置否决，因为法案无法被退回其发起院（例如，参议院）以进行重新考虑。</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h2>概念比较：总统否决权</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>否决类型</th>
+                    <th>描述</th>
+                    <th>国会是否可推翻</th>
+                    <th>联邦层面是否合宪</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>常规否决 (<span class="term">Regular Veto</span>)</strong></td>
+                    <td>总统将法案退回国会，附带反对理由。</td>
+                    <td>是，需两院三分之二多数票。</td>
+                    <td>是</td>
+                </tr>
+                <tr>
+                    <td><strong>搁置否决 (<span class="term">Pocket Veto</span>)</strong></td>
+                    <td>总统在收到法案后10天内（不含周日）不采取行动，且国会在此期间休会，导致法案无法退回。</td>
+                    <td>否，法案直接失效。</td>
+                    <td>是</td>
+                </tr>
+                <tr>
+                    <td><strong>逐项否决 (<span class="term">Line-Item Veto</span>)</strong></td>
+                    <td>总统否决法案中的特定条款，而非整个法案。</td>
+                    <td>理论上可推翻，但联邦层面不合宪。</td>
+                    <td>否 (在 <span class="case-name">Clinton v. City of New York</span> 案中被裁定违宪)。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>案件事实与法律适用</h2>
+        <div class="analysis-step">
+            <p>本案中，国会通过了一项拨款法案，其中包含总统不希望成为法律的图书馆资助禁令条款。在法案提交给总统后，国会休会了15天。总统支持整体法案，但反对特定条款，因此希望阻止该条款生效。</p>
+            <ul>
+                <li><strong>法案提交与总统行动期限：</strong> 国会通过法案并将其提交给总统。总统有10天时间采取行动。</li>
+                <li><strong>国会休会：</strong> 在这10天期限内，国会休会了15天。这意味着总统无法将法案退回国会（因为国会已休会，无法接收法案并重新审议）。</li>
+                <li><strong>总统的选择：</strong> 总统不希望该条款成为法律，但又支持整体法案。如果总统签署法案，该条款就会成为法律。如果总统常规否决，由于国会休会，无法退回。</li>
+                <li><strong>“不采取行动”的后果：：</strong> 在国会休会期间，如果总统在10天内不签署也不否决法案，则会发生 <strong>搁置否决</strong>。这意味着法案将不会成为法律，且国会无法推翻总统的这一不作为。</li>
+                <li><strong>最佳方案：</strong> 因此，总统阻止该条款成为法律的最佳方式是利用搁置否决，即在国会休会期间对法案不采取任何行动。这将导致整个法案（包括总统不喜欢的条款）失效。</li>
+            </ul>
+        </div>
+
+        <h2>立法流程图解：总统行动</h2>
+        <div class="diagram">
+            <p style="font-weight: 700; font-size: 1.1em; color: var(--primary-ink);">联邦立法程序 (立法行动的要求)</p>
+            <div style="display: inline-block; min-width: 700px;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 18px;">
+                    <div class="flow-node">国会提出法案</div>
+                    <div style="font-size: 30px; line-height: 0.5; color: var(--muted-text);">&#8595;</div>
+                    <div class="flow-node">两院制 (法案通过两院)</div>
+                    <div style="font-size: 30px; line-height: 0.5; color: var(--muted-text);">&#8595;</div>
+                    <div class="flow-node active"><strong>提交总统 (<span class="term">Presentment</span>)</strong></div>
+                    <div style="display: flex; justify-content: space-around; width: 100%; gap: 10px; margin-top: 10px;">
+                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 150px;">
+                            <div class="flow-node">总统签署法案</div>
+                            <div style="font-size: 30px; line-height: 0.5; color: var(--muted-text);">&#8595;</div>
+                            <div class="flow-node">法案成为法律</div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 150px;">
+                            <div class="flow-node">总统否决法案</div>
+                            <div style="font-size: 30px; line-height: 0.5; color: var(--muted-text);">&#8595;</div>
+                            <div class="flow-node">国会推翻否决 (三分之二票)</div>
+                            <div style="font-size: 30px; line-height: 0.5; color: var(--muted-text);">&#8595;</div>
+                            <div class="flow-node">法案成为法律</div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 150px;">
+                            <div class="flow-node highlight-node"><strong>总统不采取行动</strong></div>
+                            <div style="font-size: 30px; line-height: 0.5; color: var(--muted-text);">&#8595;</div>
+                            <div style="display: flex; flex-direction: row; justify-content: center; gap: 10px; width: 100%;">
+                                <div style="display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 100px;">
+                                    <div class="flow-node">10天内国会仍在会期</div>
+                                    <div style="font-size: 30px; line-height: 0.5; color: var(--muted-text);">&#8595;</div>
+                                    <div class="flow-node">法案成为法律</div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 100px;">
+                                    <div class="flow-node highlight-node"><strong>10天内国会休会</strong></div>
+                                    <div style="font-size: 30px; line-height: 0.5; color: var(--muted-text);">&#8595;</div>
+                                    <div class="flow-node"><strong>法案不成为法律 (搁置否决)</strong></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>易错点警示</h2>
+        <div class="rule-block">
+            <p><strong>逐项否决 (<span class="term">Line-Item Veto</span>) 在联邦层面是违宪的。</strong> 总统不能只否决法案中的某一部分，而必须否决整个法案。因此，当总统不赞成法案中的某个特定条款但又支持法案的其余部分时，如果国会休会，利用搁置否决是阻止该条款成为法律的唯一途径，尽管这意味着整个法案都将失效。</p>
+            <p>请记住，搁置否决是 <strong>无法被国会推翻</strong> 的，因为它发生在国会休会期间，法案无法被退回。</p>
+        </div>
+
+        <h2>正确答案与干扰项排除</h2>
+        <div class="option-analysis">
+            <div class="option correct">
+                <p><strong>D. 不采取任何行动。</strong></p>
+                <p><strong>正确。</strong> 当国会通过一项法案并将其提交给总统后，总统有10天（不含周日）的时间来签署、否决或不采取行动。如果总统在10天期限内不采取任何行动，并且国会在此期间休会，则该法案不会成为法律。这被称为“搁置否决”（<span class="term">pocket veto</span>）。由于国会休会，总统无法将法案退回，因此国会也无法推翻此否决。本案中，总统不希望图书馆资助禁令条款成为法律，而国会又在10天期限内休会，因此总统不采取行动是阻止该条款（以及整个法案）成为法律的最佳方式。</p>
+            </div>
+            <div class="option wrong">
+                <p><strong>A. 主张行政特权。</strong></p>
+                <p><strong>错误。</strong> 行政特权 (<span class="term">executive privilege</span>) 保护总统和行政部门的机密文件和通信不被披露，以确保其有效履行公务和职责。它与阻止法案成为法律无关，也无法阻止法案中的条款生效。</p>
+            </div>
+            <div class="option wrong">
+                <p><strong>B. 扣留资金。</strong></p>
+                <p><strong>错误。</strong> 扣留资金 (<span class="term">impoundment</span>) 指总统拒绝支出国会已拨款的资金。根据宪法第二条，总统有义务确保法律得到忠实执行。最高法院已裁定，总统通常不能拒绝支出国会明确指示用于特定目的的拨款。此外，扣留资金是在法案已成为法律之后才可能发生的情况，它不能阻止法案中的条款成为法律。</p>
+            </div>
+            <div class="option wrong">
+                <p><strong>C. 逐项否决该条款。</strong></p>
+                <p><strong>错误。</strong> 逐项否决 (<span class="term">line-item veto</span>) 允许总统否决法案中的特定条款，而不是整个法案。然而，最高法院在 <span class="case-name">Clinton v. City of New York</span> 案中裁定，联邦层面的逐项否决是违宪的，因为它赋予总统立法权，违反了权力分立原则。总统只能否决整个法案，而不能修改或废除法案中的特定条款。</p>
+            </div>
+        </div>
+
+        <h2>备考锦囊</h2>
+        <div class="footer-tip">
+            <p>记住 <strong>“10天规则”</strong> 和 <strong>国会是否休会</strong> 是判断搁置否决的关键。如果国会在总统收到法案后的10天（不含周日）内休会，且总统不采取行动，则法案死亡（搁置否决），且国会无法推翻。如果国会仍在会期，总统不行动则法案自动成为法律。</p>
+        </div>
+    </div>
+</body>
+</html>

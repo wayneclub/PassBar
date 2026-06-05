@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：既判力 (Res Judicata)</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: transparent;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 18px;
+            color: var(--primary-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+
+        .analysis-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .step-number {
+            background-color: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .conclusion {
+            background-color: #27ae60;
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .trap-alert {
+            border-left-color: #e74c3c;
+        }
+        
+        .trap-alert h2 {
+            color: #c0392b;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure: Res Judicata</div>
+    </div>
+
+    <!-- Core Legal Rule -->
+    <div class="card">
+        <h2>核心考点：既判力 (Claim Preclusion)</h2>
+        <p>本题考察的是 <b>Res Judicata</b>（既判力），即 <b>Claim Preclusion</b>（诉讼标的排除/请求权阻断）。</p>
+        
+        <div class="concept-box">
+            <p><b>规则定义：</b><br>
+            如果法院已经对案件作出了<b>有效的、终局的实体判决</b> (Valid final judgment on the merits)，则<b>相同的当事人</b> (Same parties) 不得就<b>同一诉讼标的</b> (Same claim) 再次提起诉讼。</p>
+        </div>
+
+        <p>联邦法院采用<b>“交易法” (Transactional Approach)</b> 来定义什么是“同一诉讼标的”：</p>
+        <p>只要新的诉讼请求源于与第一次诉讼<b>相同的交易、事件或一系列事实</b> (Same transaction or occurrence)，无论原告更换了什么法律理论（如从违约变为侵权），都被视为“同一诉讼标的”。</p>
+    </div>
+
+    <!-- Case Analysis -->
+    <div class="card">
+        <h2>本案分析</h2>
+        <p>为什么法院会支持画廊的驳回请求（选 D）？</p>
+
+        <div class="analysis-step">
+            <div class="step-number">1</div>
+            <div>
+                <span class="key-term">判决有效性：</span><br>
+                第一次诉讼（违约之诉）已经结束，法院作出了实体判决。满足“有效终局判决”要件。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-number">2</div>
+            <div>
+                <span class="key-term">当事人相同：</span><br>
+                两次诉讼的原告都是 Owner，被告都是 Gallery。满足“当事人相同”要件。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-number">3</div>
+            <div>
+                <span class="key-term">诉讼标的同一 (关键点)：</span><br>
+                虽然第一次是“违约” (Contract)，第二次是“侵占” (Conversion)，但它们都源于<b>同一个事实</b>：画廊在第五年未经许可将画借给女商人导致丢失。
+            </div>
+        </div>
+
+        <p><b>结论：</b>由于侵占索赔在第一次诉讼时就已经存在，且源于同一事实，原告<b>本应该</b>在第一次诉讼中一并提出（可以主张备位请求）。因为他没有提，该请求权已被第一次判决<b>吸收 (Merged)</b> 并消灭。</p>
+    </div>
+
+    <!-- Distractor Analysis -->
+    <div class="card trap-alert">
+        <h2>易错陷阱辨析</h2>
+        
+        <p><b>选项 B 为什么错？（混淆概念）</b></p>
+        <p>选项 B 的措辞 "actually litigated and necessarily decided" 是 <b>Issue Preclusion (Collateral Estoppel, 争点排除)</b> 的标准，而不是 Claim Preclusion 的标准。</p>
+        <ul>
+            <li><b>Claim Preclusion:</b> 禁止重新起诉整个案件，即使某些问题在第一次没讨论过（只要它源于同一事实且本可以讨论）。</li>
+            <li><b>Issue Preclusion:</b> 禁止重新争辩某个具体的事实或法律点（必须是实际争辩过且判决必须依赖该点的）。</li>
+        </ul>
+        <p>本题是关于整个诉讼是否该被驳回，依据是 Claim Preclusion。</p>
+
+        <p><b>选项 C 为什么错？</b></p>
+        <p><b>Election of Remedies</b>（救济选择原则）在联邦法院并不严格适用。联邦民事诉讼规则 (FRCP) 允许原告在起诉状中列出不一致的、替代性的法律理论（如：要么违约，要么侵权）。原告输掉官司不是因为他选了救济方式，而是因为他试图把一个案子拆成两次打。</p>
+    </div>
+
+    <!-- Final Answer -->
+    <div class="conclusion">
+        正确答案：D<br>
+        (涉及相同当事人之间的同一诉讼标的)
+    </div>
+
+</div>
+
+</body>
+</html>

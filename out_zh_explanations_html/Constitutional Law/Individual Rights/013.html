@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .header span {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        .answer-box {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .answer-box h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .answer-box p {
+            margin: 5px 0 0 0;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .section-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background-color: var(--accent-color);
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .trap-alert {
+            border: 1px solid #e74c3c;
+            background-color: #fdedec;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+        }
+
+        .trap-title {
+            color: #c0392b;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>宪法 (Constitutional Law)</h2>
+        <span>MBE 考点解析：自由行使条款</span>
+    </div>
+
+    <div class="answer-box">
+        <h1>C</h1>
+        <p>正确答案</p>
+    </div>
+
+    <div class="section-title">核心法律规则 (The Rule)</div>
+    <div class="concept-card">
+        <p>根据美国最高法院在 <span class="key-term">Employment Division v. Smith (1990)</span> 一案中的裁决：</p>
+        <p>如果一项法律是<b>普遍适用的 (Generally Applicable)</b> 且 <b>宗教中立的 (Religiously Neutral)</b>，即使它附带地 (Incidentally) 限制了某种宗教行为，也不需要通过<b>严格审查 (Strict Scrutiny)</b>。</p>
+        <p>此类法律只需通过<b>合理基础审查 (Rational Basis Review)</b>，即只要法律与政府的合法利益有合理关联即可。</p>
+    </div>
+
+    <div class="section-title">本题解析 (Analysis)</div>
+    <p>要判断法院是否会支持该修正案，我们需要分析该法律的性质：</p>
+    <ul>
+        <li><b>中立性 (Neutrality)：</b> 该修正案规定拒绝福利的情况是员工“出于<b>任何原因</b> (for any reason)”拒绝医疗护理。它并没有专门针对宗教原因，也没有将世俗原因排除在外。</li>
+        <li><b>普遍适用性 (General Applicability)：</b> 该规定适用于所有城市员工，不针对特定群体。</li>
+    </ul>
+    <p>因此，尽管该规定实际上导致了这位因宗教信仰拒绝输血的警官无法获得福利（附带负担），但因为法律本身是中立和普遍适用的，法院<b>不会</b>应用严格审查。</p>
+    <p><b>结论：</b> 政府为了节省开支或限制福利仅用于不可避免的死亡，具有<b>合法利益 (Legitimate Interest)</b>，而该修正案与此利益合理相关。因此，该修正案符合宪法。</p>
+
+    <div class="trap-alert">
+        <div class="trap-title">⚠️ 高频陷阱：选项 B (合同条款)</div>
+        <p>很多考生会误选 <b>选项 B</b>，因为该市确实改变了员工入职时的福利条款，这看起来像是违反了<b>合同条款 (Contracts Clause)</b>。</p>
+        <p><b>为什么 B 是错的？</b></p>
+        <p>请仔细阅读题目的<b>提问 (Call of the Question)</b>：</p>
+        <p><i>"...claiming that... it violated the officer's <b>constitutional right to the free exercise of religion</b>."</i></p>
+        <p>题目明确问的是基于<b>自由行使宗教权利</b>的挑战是否会成功，而不是基于合同权利的挑战。虽然基于合同条款的挑战可能会成功，但这与本题的诉讼请求（宗教自由）无关。</p>
+        <p><b>MBE 技巧：</b> 永远针对题目中特定的法律主张进行回答，不要因为发现了一个潜在的（但未被提出的）违法点而偏离主题。</p>
+    </div>
+
+    <div class="section-title">其他选项排除</div>
+    <ul>
+        <li><b>选项 A：</b> 错误。虽然法律产生了歧视性的<b>效果</b>，但只要没有歧视性的<b>目的</b>（即法律是中立的），就不会违反自由行使条款。</li>
+        <li><b>选项 D：</b> 错误。这涉及“违宪条件原则” (Unconstitutional Conditions)，通常用于政府不能强迫个人放弃权利以换取福利。但在 <i>Smith</i> 案原则下，只要条件是中立通用的，政府通常可以设定福利资格标准。选项 C 的理由更直接切中 <i>Smith</i> 案的要害。</li>
+    </ul>
+
+    
+</div>
+
+</body>
+</html>

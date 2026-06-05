@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .card {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #e1e4e8;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .rule-box {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #1565c0;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            color: #444;
+        }
+        .option-analysis {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+        .tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .tag-correct { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .tag-wrong { background-color: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+        .tag-trap { background-color: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
+        
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px dashed #ffb300;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d35400;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="subtitle">Evidence / Authentication</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心考点：照片的认证 (Authentication of Photographs)</span>
+            根据《联邦证据规则》(FRE 901)，照片作为实物证据引入时，必须经过认证。认证的标准非常简单：只需一名证人作证，确认该照片<b>“公正且准确地描绘了” (fairly and accurately depicts)</b> 案发时或相关时间的场景。
+        </div>
+
+        <!-- 正确答案分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 正确答案分析 (选项 D)</div>
+            <p>本题的关键在于<b>谁有资格认证照片</b>。法律并不要求摄影师本人出庭。</p>
+            <p>任何拥有<b>亲身知情 (Personal Knowledge)</b> 的人都可以进行认证。在本案中，原告（男子）亲眼目睹了后院被破坏后的状况。因此，他完全有资格在法庭上看着照片说：“是的，这张照片准确地显示了我家后院当时的受损情况。”</p>
+            <p>只要他能做出这样的证词（即 Proper Authentication），照片就是可采纳的。</p>
+        </div>
+
+        <!-- 错误选项陷阱 -->
+        <div class="analysis-section">
+            <div class="analysis-title">❌ 常见陷阱与错误排除</div>
+            
+            <div class="option-analysis">
+                <span class="tag tag-trap">陷阱 B</span> <b>摄影师必须出庭？</b><br>
+                这是一个经典的 MBE 干扰项。许多考生误以为只有拍照的人（本案中的妻子）才能认证照片。这是错误的。只要证人熟悉场景，谁拍的照片并不重要。
+            </div>
+
+            <div class="option-analysis">
+                <span class="tag tag-wrong">错误 A</span> <b>证据累积 (Cumulative)？</b><br>
+                虽然 FRE 403 允许法官排除“不必要的累积证据”，但照片通常被视为对口头证词的<b>辅助说明 (Illustrative)</b>，能帮助陪审团更直观地理解损害程度，因此通常不会被视为“不必要的累积”。
+            </div>
+
+            <div class="option-analysis">
+                <span class="tag tag-wrong">错误 C</span> <b>仅有关联性 (Relevance) 就够了？</b><br>
+                关联性 (FRE 401) 是证据可采纳的必要条件，但不是充分条件。即使证据有关联，它仍然必须先通过<b>认证 (Authentication)</b> 这一关。没有认证的关联证据是不可采纳的。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 考试通关秘籍：</strong>
+            <br>
+            在处理 MBE 证据法题目时，如果看到“照片”、“X光片”或“录音”，首先问自己：
+            <ul style="margin: 5px 0 0 20px; padding: 0;">
+                <li>如果是<b>普通照片</b>：找一个“见过实物/现场”的证人即可（不需要摄影师）。</li>
+                <li>如果是<b>X光片/自动记录</b>：因为没人能用肉眼看到体内骨骼，所以需要证明机器工作正常且操作规范（这叫“无声证人”理论，Silent Witness Theory）。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

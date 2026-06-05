@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析：宪法 - 权力分立</title>
+    
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">宪法：权力分立</p>
+        </header>
+
+        <div class="content-wrapper">
+            <div class="answer-box">
+                正确答案: C<br>
+                核心要点: 国会有广泛权力组建和管理军队，且该法案对性别和年龄的区分符合第五修正案正当程序条款的平等保护要求。
+            </div>
+
+            <h2>核心法律规则：国会权力与平等保护</h2>
+            <div class="concept-box">
+                <div class="concept-title">国会权力与宪法审查</div>
+                <p>
+                    <span class="term">必要且适当条款 (Necessary and Proper Clause)</span> 赋予国会实施其 <span class="term">第一条 (Article I)</span> 列举权力的辅助权力。这包括组建和管理美国武装部队的权力，例如设立兵役登记制度。
+                </p>
+                <p>
+                    然而，国会在行使这些广泛权力时，必须遵守其他宪法规定，包括 <span class="term">第五修正案 (Fifth Amendment)</span> <span class="term">正当程序条款 (Due Process Clause)</span> 中的 <span class="term">平等保护要素 (equal protection component)</span>。该要素禁止联邦政府在对待相似情况的人时进行不合理的歧视。
+                </p>
+                <ul>
+                    <li>
+                        <strong>性别歧视 (<span class="term">Sex-based discrimination</span>)</strong>：联邦政府的性别歧视受 <span class="term">中度审查 (intermediate scrutiny)</span>。这意味着政府必须证明其行动与一项 <span class="term">重要政府利益 (important governmental interest)</span> 之间存在 <span class="term">实质性关联 (substantially related)</span>。在 <span class="latin">Rostker v. Goldberg</span> 案中，最高法院裁定，仅限男性兵役登记的要求与国家防御的 <span class="term">重要利益 (important interest)</span> 之间存在实质性关联。
+                    </li>
+                    <li>
+                        <strong>年龄歧视 (<span class="term">Age-based discrimination</span>)</strong>：联邦政府的年龄歧视仅受 <span class="term">合理基础审查 (rational basis scrutiny)</span>。挑战者只需证明政府行动与 <span class="term">合法政府利益 (legitimate government interest)</span> 之间不存在 <span class="term">合理关联 (rationally related)</span>。
+                    </li>
+                </ul>
+            </div>
+
+            <h2>概念比较：平等保护条款与审查标准</h2>
+            <div class="comparison-table-wrapper" style="overflow-x: auto;">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>区分标准</th>
+                            <th>适用对象</th>
+                            <th>审查标准</th>
+                            <th>要求</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="区分标准">性别歧视</td>
+                            <td data-label="适用对象">联邦政府 (<span class="term">第五修正案</span>)</td>
+                            <td data-label="审查标准">中度审查 (<span class="term">Intermediate Scrutiny</span>)</td>
+                            <td data-label="要求">必须与重要政府利益实质性相关</td>
+                        </tr>
+                        <tr>
+                            <td data-label="区分标准">年龄歧视</td>
+                            <td data-label="适用对象">联邦政府 (<span class="term">第五修正案</span>)</td>
+                            <td data-label="审查标准">合理基础审查 (<span class="term">Rational Basis Scrutiny</span>)</td>
+                            <td data-label="要求">必须与合法政府利益合理相关</td>
+                        </tr>
+                        <tr>
+                            <td data-label="区分标准">平等保护条款</td>
+                            <td data-label="适用对象">州政府 (<span class="term">第十四修正案</span>)</td>
+                            <td data-label="审查标准">严格审查/中度审查/合理基础审查 (取决于分类)</td>
+                            <td data-label="要求">适用于州政府的歧视行为</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>案件事实与法律适用</h2>
+            <div class="analysis-step">
+                <h3>第一步：国会权力</h3>
+                <p>
+                    国会根据宪法 <span class="term">第一条 (Article I)</span> 拥有组建和管理武装部队的广泛权力，包括设立兵役登记制度。 <span class="term">必要且适当条款 (Necessary and Proper Clause)</span> 进一步支持了这一权力。
+                </p>
+                <h3>第二步：平等保护审查——性别歧视</h3>
+                <p>
+                    该法规要求所有18至30岁的男性登记，涉及 <span class="term">性别歧视 (sex-based discrimination)</span>。联邦政府的性别歧视受 <span class="term">中度审查 (intermediate scrutiny)</span>。
+                </p>
+                <p>
+                    根据 <span class="latin">Rostker v. Goldberg</span> 案，最高法院认为仅限男性的兵役登记要求与国家防御的 <span class="term">重要政府利益 (important governmental interest)</span> 之间存在 <span class="term">实质性关联 (substantially related)</span>。因此，该法规通过了中度审查。
+                </p>
+                <h3>第三步：平等保护审查——年龄歧视</h3>
+                <p>
+                    该法规将年龄限制在18至30岁，涉及 <span class="term">年龄歧视 (age-based discrimination)</span>。联邦政府的年龄歧视受 <span class="term">合理基础审查 (rational basis scrutiny)</span>。
+                </p>
+                <p>
+                    政府设定年龄范围以确保兵役登记制度的有效运作，这与 <span class="term">合法政府利益 (legitimate government interest)</span> 存在 <span class="term">合理关联 (rationally related)</span>。因此，该法规通过了合理基础审查。
+                </p>
+                <h3>结论</h3>
+                <p>
+                    由于该法规通过了对性别和年龄歧视的相应审查标准，它符合 <span class="term">第五修正案 (Fifth Amendment)</span> <span class="term">正当程序条款 (Due Process Clause)</span> 的 <span class="term">平等保护要素 (equal protection component)</span>，因此是合宪的。
+                </p>
+            </div>
+
+            <h2>审查标准示意图</h2>
+            <div class="diagram">
+                <img src="https://i.imgur.com/uU29w7C.png" alt="Levels of Constitutional Scrutiny Diagram showing three runners jumping over hurdles labeled Rational Basis Scrutiny, Intermediate Scrutiny, and Strict Scrutiny.">
+                <p class="caption">宪法平等保护审查的三种标准</p>
+            </div>
+
+            <div class="trap-alert">
+                <h3>MBE 考点陷阱提示</h3>
+                <ul>
+                    <li>
+                        <strong>第五修正案 vs. 第十四修正案：</strong> 务必区分 <span class="term">第五修正案 (Fifth Amendment)</span> 的 <span class="term">正当程序条款 (Due Process Clause)</span> 中的 <span class="term">平等保护要素 (equal protection component)</span> 适用于<strong>联邦政府</strong>，而 <span class="term">第十四修正案 (Fourteenth Amendment)</span> 的 <span class="term">平等保护条款 (Equal Protection Clause)</span> 适用于<strong>州政府</strong>。
+                    </li>
+                    <li>
+                        <strong>审查标准：</strong> 记住不同分类（如性别、年龄、种族等）适用的审查标准不同。性别歧视通常是 <span class="term">中度审查 (intermediate scrutiny)</span>，而年龄歧视是 <span class="term">合理基础审查 (rational basis scrutiny)</span>。
+                    </li>
+                </ul>
+            </div>
+
+            <h2>正确答案与干扰项排除</h2>
+            <div class="option-analysis">
+                <div class="option correct">
+                    <strong>正确答案 (C)</strong>：该选项正确。国会根据宪法 <span class="term">第一条 (Article I)</span> 拥有广泛权力来组建和管理武装部队，包括设立兵役登记制度。尽管该法规涉及性别和年龄歧视，但它通过了 <span class="term">第五修正案 (Fifth Amendment)</span> <span class="term">正当程序条款 (Due Process Clause)</span> 的 <span class="term">平等保护要素 (equal protection component)</span> 所要求的审查。对性别的区分（男性）通过了 <span class="term">中度审查 (intermediate scrutiny)</span>，因为其与国家防御这一 <span class="term">重要政府利益 (important governmental interest)</span> 存在 <span class="term">实质性关联 (substantially related)</span>。对年龄的区分（18-30岁）通过了 <span class="term">合理基础审查 (rational basis scrutiny)</span>，因为其与兵役登记制度的有效运作这一 <span class="term">合法政府利益 (legitimate government interest)</span> 存在 <span class="term">合理关联 (rationally related)</span>。
+                </div>
+                <div class="option wrong">
+                    <strong>干扰项 (A)</strong>：该选项不正确。该法规并未违反 <span class="term">第五修正案 (Fifth Amendment)</span> 的 <span class="term">正当程序条款 (Due Process Clause)</span>。尽管该条款包含 <span class="term">平等保护要素 (equal protection component)</span>，但如上述分析，该法规通过了对性别和年龄歧视的相应审查标准，因此是合宪的。
+                </div>
+                <div class="option wrong">
+                    <strong>干扰项 (B)</strong>：该选项不正确。<span class="term">第十四修正案 (Fourteenth Amendment)</span> 的 <span class="term">平等保护条款 (Equal Protection Clause)</span> 适用于<strong>州政府</strong>的歧视行为，而不适用于<strong>联邦政府</strong>。本案中的法规是由国会（联邦政府）制定的。
+                </div>
+                <div class="option wrong">
+                    <strong>干扰项 (D)</strong>：该选项不正确。联邦学生助学金是否是“特权”而非“权利”的区分在宪法分析中已基本被放弃，且与本案的平等保护分析无关。关键在于政府的歧视行为是否符合宪法规定的审查标准。
+                </div>
+            </div>
+
+            <div class="footer-tip">
+                <h3>考点速记</h3>
+                <ul>
+                    <li>国会组建军队的权力非常广泛。</li>
+                    <li>联邦政府的歧视行为适用 <span class="term">第五修正案 (Fifth Amendment)</span> 的 <span class="term">平等保护要素 (equal protection component)</span>。</li>
+                    <li>性别歧视：<span class="term">中度审查 (intermediate scrutiny)</span>。</li>
+                    <li>年龄歧视：<span class="term">合理基础审查 (rational basis scrutiny)</span>。</li>
+                    <li><span class="latin">Rostker v. Goldberg</span> 案确认男性兵役登记合宪。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

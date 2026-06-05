@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 20px 10px;
+        }
+        .card {
+            background: white;
+            max-width: 480px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e1e4e8;
+        }
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .rule-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .scenario-viz {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+        }
+        .step {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        .step-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+        .option-analysis {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .tag.correct { background: var(--correct-color); color: white; }
+        .tag.wrong { background: var(--wrong-color); color: white; }
+        .tag.concept { background: #95a5a6; color: white; }
+        
+        .mbe-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-top: 20px;
+        }
+        .mbe-tip strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #533f03;
+        }
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <h1>MBE 证据法精讲</h1>
+        <div class="sub-title">Impeachment by Specific Instances of Conduct</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">核心考点：FRE 608(b)</div>
+            <p>在交叉询问(Cross-Examination)中，如果某个<b>具体行为事例(Specific Instance of Conduct)</b>能够证明证人的<b>诚信品格(Character for Truthfulness)</b>，律师可以询问该行为。</p>
+        </div>
+
+        <!-- 案情图解 -->
+        <div class="scenario-viz">
+            <div style="font-size:12px; color:#666; margin-bottom:5px;">案情逻辑流：</div>
+            <div class="step">
+                <div class="step-icon">1</div>
+                <div>原告证人作证。</div>
+            </div>
+            <div class="step">
+                <div class="step-icon">2</div>
+                <div>被告传唤<b>弹劾证人(W2)</b>，W2 攻击原告证人的声誉。</div>
+            </div>
+            <div class="step">
+                <div class="step-icon">3</div>
+                <div><b>关键点：</b>原告律师交叉询问 W2。<br><i>"你是否为了逃税做了虚假宣誓？"</i></div>
+            </div>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 C？</div>
+            <p>本题考查的是如何弹劾“弹劾证人”。</p>
+            <p><b>逻辑链条：</b></p>
+            <ol>
+                <li>被告的证人(W2)虽然是来攻击别人的，但他自己也是证人，因此他的<b>可信度(Credibility)</b>也可以被攻击。</li>
+                <li><b>虚假宣誓(False Affidavit)</b>是一个典型的欺诈行为，直接反映了该证人是否诚实。</li>
+                <li>根据 <b>FRE 608(b)</b>，律师可以在交叉询问中询问这种涉及不诚实(Untruthfulness)的具体行为。</li>
+            </ol>
+            <p>因此，这个问题是恰当的，因为它直接关系到被告证人本身的可信度。</p>
+        </div>
+
+        <!-- 干扰项分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">干扰项陷阱</div>
+            
+            <div class="option-analysis">
+                <span class="tag wrong">选项 A 错误</span>
+                <span class="tag concept">Rule 404 vs 608</span>
+                <p>虽然通常不能用具体行为证明品格（Rule 404，倾向性证据），但 <b>Rule 608(b)</b> 是一个专门的例外：仅限于在<b>交叉询问</b>中攻击<b>诚信度</b>时使用。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="tag wrong">选项 B 错误</span>
+                <span class="tag concept">Impeachment</span>
+                <p>法律谚语虽有"Impeach the impeacher"，但意思是你可以反过来弹劾那个弹劾者。没有任何规则禁止对弹劾证人进行弹劾。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="tag wrong">选项 D 错误</span>
+                <span class="tag concept">Relevance</span>
+                <p>逃税做假账是证人自己的不诚实行为，而不是他判断他人声誉的“标准”。如果问“你听说过原告证人捐款给孤儿院吗？”，那才可能涉及判断标准。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <strong>💡 MBE 满分技巧：外部证据规则</strong>
+            注意！虽然律师可以<b>问</b>这个问题（Intrinsic Evidence），但如果证人否认：“不，我没做过。”
+            <br><br>
+            律师<b>不能</b>拿出那份虚假的宣誓书来证明他在撒谎（Extrinsic Evidence）。对于 Specific Instances of Conduct (非定罪行为)，你必须接受证人的回答（"Take the answer"）。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

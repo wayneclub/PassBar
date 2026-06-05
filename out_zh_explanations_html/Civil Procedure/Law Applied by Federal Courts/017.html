@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点精析 - 民事诉讼法</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="card-header">
+            <h1>MBE 考点精析</h1>
+            <div class="sub-title">民事诉讼法: 联邦法院适用法律</div>
+        </div>
+
+        <div class="concept-box">
+            <h3>💡 核心考点: 联邦法院在多元化案件中适用何种法律 (Erie Doctrine)</h3>
+            <p class="latin"><em>The Erie Doctrine: Procedural vs. Substantive Law</em></p>
+        </div>
+
+        <h3>📊 概念对比: 程序性问题 vs. 实体性问题 (Erie Doctrine)</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>程序性问题 (<span class="term">Procedural Issues</span>)</th>
+                    <th>实体性问题 (<span class="term">Substantive Issues</span>)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>定义: 规范诉讼过程和法院运作的规则。</td>
+                    <td>定义: 规范当事人权利和义务的法律。</td>
+                </tr>
+                <tr>
+                    <td>适用法律: 联邦法 (联邦民事诉讼规则、联邦证据规则、联邦普通法)。</td>
+                    <td>适用法律: 州法。</td>
+                </tr>
+                <tr>
+                    <td>例子:
+                        <ul>
+                            <li>提交截止日期 (<span class="term">Filing deadlines</span>)</li>
+                            <li>法院规则与程序 (<span class="term">Court rules & procedures</span>)</li>
+                            <li>发现程序 (<span class="term">Discovery practices</span>)</li>
+                            <li>证据规则 (<span class="term">Rules of evidence</span>)</li>
+                        </ul>
+                    </td>
+                    <td>例子:
+                        <ul>
+                            <li>诉讼请求或抗辩的要素 (<span class="term">Elements of claim or defense</span>)</li>
+                            <li>举证责任 (<span class="term">Burdens of proof</span>)</li>
+                            <li>诉讼时效 (<span class="term">Statutes of limitations</span>)</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="diagram">
+            <h3>🎨 联邦多元化案件中法律适用流程图 (Erie Doctrine)</h3>
+            <div class="flow-chart">
+                <div class="flow-node">联邦法院受理多元化管辖案件<br>(Federal Court Hears Diversity Case)</div>
+                <div class="arrow">↓</div>
+                <div class="flow-node">识别争议问题<br>(Identify Issue in Dispute)</div>
+                <div class="arrow">↓</div>
+                <div class="flow-decision-node">问题是程序性还是实体性？<br>(Is the Issue Procedural or Substantive?)</div>
+                <div class="flow-branches">
+                    <div class="flow-branch">
+                        <div class="flow-branch-label">是程序性问题 (Procedural)</div>
+                        <div class="arrow">↓</div>
+                        <div class="flow-node">适用联邦法<br>(Apply Federal Law)</div>
+                        <div class="arrow">↓</div>
+                        <div class="flow-node"><code>联邦民事诉讼规则 (FRCP)</code> / <code>联邦普通法 (Federal Common Law)</code></div>
+                    </div>
+                    <div class="flow-branch">
+                        <div class="flow-branch-label">是实体性问题 (Substantive)</div>
+                        <div class="arrow">↓</div>
+                        <div class="flow-node highlight-node">适用州法<br>(Apply State Law)</div>
+                        <div class="arrow">↓</div>
+                        <div class="flow-node highlight-node"><code>州实体法 (State Substantive Law)</code><br>（例如：举证责任、诉讼时效）</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>⚖️ 法律依据与推理</h3>
+        <div class="analysis-step">
+            <div class="step-number">1</div>
+            <div>
+                <h4>识别案件类型与管辖权</h4>
+                <p>本案是一个在联邦法院提起的多元化管辖权案件。根据 <span class="term">Erie Doctrine</span>，联邦法院在审理多元化案件时，必须适用州实体法和联邦程序法。</p>
+            </div>
+        </div>
+        <div class="analysis-step">
+            <div class="step-number">2</div>
+            <div>
+                <h4>理解 Erie Doctrine 的核心原则</h4>
+                <p><span class="term">Erie Doctrine</span> 的核心在于区分程序性问题和实体性问题。其目的是为了避免 <span class="term">法院地选择 (forum shopping)</span> 和 <span class="term">法律的不公平适用 (inequitable administration of the laws)</span>。</p>
+            </div>
+        </div>
+        <div class="analysis-step">
+            <div class="step-number">3</div>
+            <div>
+                <h4>区分程序性与实体性问题</h4>
+                <p><span class="term">程序性问题</span> 涉及诉讼的进行方式（例如提交截止日期、法院规则、发现程序、证据规则）。<span class="term">实体性问题</span> 涉及当事人的权利和义务（例如诉讼请求或抗辩的要素、损害赔偿的计算、<span class="term">诉讼时效 (statutes of limitations)</span>）。</p>
+            </div>
+        </div>
+        <div class="analysis-step">
+            <div class="step-number">4</div>
+            <div>
+                <h4>确定举证责任的性质</h4>
+                <p><span class="term">举证责任 (burden of proof)</span> 通常被认为是 <span class="term">实体性问题</span>。这是因为它直接影响到当事人能否成功地提出或抗辩一项诉讼请求，从而影响到他们的 <span class="term">实质性权利 (substantive rights)</span>。如果联邦法院适用不同的举证责任规则，可能会导致与州法院不同的结果，从而鼓励当事人进行法院地选择。</p>
+            </div>
+        </div>
+        <div class="analysis-step">
+            <div class="step-number">5</div>
+            <div>
+                <h4>适用 Erie Doctrine</h4>
+                <p>由于举证责任是实体性问题，根据 <span class="term">Erie Doctrine</span>，联邦法院必须适用 <span class="term">州法</span> 来管辖本案的举证责任。</p>
+            </div>
+        </div>
+
+        <div class="trap-alert">
+            <h3>⚠️ 核心规则 / 易错点提示</h3>
+            <p>在 <span class="term">Erie Doctrine</span> 下，<span class="term">举证责任 (burden of proof)</span> 几乎总是被视为 <span class="term">实体性问题</span>，因此应适用 <span class="term">州法</span>。这与 <span class="term">联邦民事诉讼规则 (FRCP)</span> 的适用范围不同，FRCP 主要处理程序性事项，但通常不包括举证责任的分配，除非特定规则明确规定。记住，任何可能导致 <span class="term">结果决定性差异 (outcome-determinative difference)</span> 的规则，通常会被视为实体性规则。</p>
+        </div>
+
+        <div class="case-box">
+            <h3>🔑 案例分析 / 拓展情景</h3>
+            <p>在 <a href="https://www.law.cornell.edu/supremecourt/text/352/29" target="_blank"><code>Bank of Am. Nat'l Tr. & Sav. Ass'n v. Parnell, 352 U.S. 29, 34 (1956)</code></a> 案中，最高法院明确指出，联邦法院在多元化案件中必须适用州法来处理举证责任问题。这进一步巩固了举证责任作为实体性问题的地位。</p>
+            <p><strong>拓展情景：</strong> 如果本案争议的是提交诉状的截止日期，那么根据 <span class="term">Erie Doctrine</span>，应适用联邦法（通常是 <span class="term">联邦民事诉讼规则 (FRCP)</span>）。这是因为提交诉状的截止日期是典型的程序性问题，不直接影响当事人的实质性权利。</p>
+        </div>
+
+        <h3>✅ 正确答案与干扰项排除</h3>
+        <div class="option-analysis">
+            <div class="option correct">
+                <b>Choice C is correct: State law.</b>
+                <br>根据 <span class="term">Erie Doctrine</span>，在联邦法院的多元化管辖案件中，涉及实体性权利和义务的问题应适用州法。举证责任被视为实体性问题，因为它直接影响到当事人能否成功地提出或抗辩一项诉讼请求，从而影响案件的结果。因此，本案中应适用州法来管辖举证责任。
+            </div>
+            <div class="option wrong">
+                <b>Choice A is wrong: Federal common law.</b>
+                <br><span class="term">联邦普通法 (Federal common law)</span> 仅在极少数情况下适用于多元化案件中的实体性问题，例如涉及联邦政府利益或州际争议时。举证责任通常不属于这些例外情况，且 <span class="term">Erie Doctrine</span> 明确要求在实体性问题上适用州法，以避免法院地选择。
+            </div>
+            <div class="option wrong">
+                <b>Choice B is wrong: Federal statutory law.</b>
+                <br><span class="term">联邦成文法 (Federal statutory law)</span> 确实在某些领域规定了实体性规则，但本案中没有适用的联邦成文法来管辖转换侵权行为的举证责任。在没有特定联邦成文法规定的情况下，且问题属于实体性质，则应适用州法。
+            </div>
+            <div class="option wrong">
+                <b>Choice D is wrong: The Federal Rules of Civil Procedure.</b>
+                <br><span class="term">联邦民事诉讼规则 (Federal Rules of Civil Procedure, FRCP)</span> 旨在规范联邦法院的程序性事项。虽然 FRCP 确实处理许多程序性问题（例如诉状、发现、审判程序），但它通常不涉及举证责任的分配，因为举证责任被认为是实体性问题。在 <span class="term">Hanna v. Plumer</span> 案中，最高法院指出，如果 FRCP 与州法冲突，且 FRCP 是有效的，则适用 FRCP。但前提是 FRCP 确实涵盖了该问题。本案中，FRCP 没有明确规定转换侵权行为的举证责任。
+            </div>
+        </div>
+
+        <div class="footer-tip">
+            <h3>🎓 考试技巧</h3>
+            <p>在 <span class="term">Erie Doctrine</span> 问题中，记住一个简单的口诀：<span class="term">“实体靠州，程序靠联”</span>。即，<span class="term">实体性问题 (Substantive issues)</span> 适用 <span class="term">州法 (State law)</span>，<span class="term">程序性问题 (Procedural issues)</span> 适用 <span class="term">联邦法 (Federal law)</span>（包括 <span class="term">FRCP</span> 和 <span class="term">联邦普通法</span>）。举证责任、诉讼时效、损害赔偿规则等都是典型的实体性问题。</p>
+        </div>
+    </div>
+</body>
+</html>

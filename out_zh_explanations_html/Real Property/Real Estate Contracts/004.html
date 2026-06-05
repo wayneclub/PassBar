@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 10px;
+        color: #333;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: #2c3e50;
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 14px;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+    }
+    .answer-box {
+        background-color: #e8f5e9;
+        border-left: 5px solid #4caf50;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .answer-title {
+        color: #2e7d32;
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+    .concept-card {
+        background-color: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: #1976d2;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .diagram {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 15px 0;
+        background-color: #fafafa;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px dashed #ccc;
+    }
+    .step {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        padding: 8px 12px;
+        border-radius: 20px;
+        margin: 5px 0;
+        font-size: 13px;
+        text-align: center;
+        width: 80%;
+    }
+    .arrow {
+        font-size: 18px;
+        color: #888;
+    }
+    .analysis-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .analysis-list li {
+        margin-bottom: 10px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+    }
+    .wrong-option {
+        color: #d32f2f;
+        font-weight: bold;
+        font-size: 0.9em;
+    }
+    .exam-tip {
+        background-color: #fff3e0;
+        border: 1px solid #ffe0b2;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+    .tip-icon {
+        font-size: 18px;
+        margin-right: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Real Property & Contracts</p>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：C</span>
+            决定因素在于该司法管辖区是否采纳了 <strong>衡平法转换原则 (Doctrine of Equitable Conversion)</strong>。
+        </div>
+
+        <!-- 核心考点讲解 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：衡平法转换 (Equitable Conversion)</div>
+            <p>这是美国财产法中关于不动产买卖最经典的考点之一。该原则的核心逻辑是：</p>
+            <p>一旦买卖双方签订了<strong>可强制执行的合同 (Specifically Enforceable Contract)</strong>，在衡平法 (Equity) 眼中，交易已经被视为“完成”。</p>
+            
+            <div class="diagram">
+                <div class="step" style="border-color: #1976d2; color: #1976d2;"><strong>合同签订时刻 (Signing)</strong></div>
+                <div class="arrow">↓</div>
+                <div class="step"><strong>买方 (Buyer)</strong><br>获得衡平法所有权 (Equitable Title)<br><span style="color:green; font-size:12px;">视为拥有不动产 (Real Property)</span></div>
+                <div class="step"><strong>卖方 (Seller)</strong><br>保留法定所有权 (Legal Title) 作为担保<br>获得收取价款的权利<br><span style="color:red; font-size:12px;">视为拥有动产 (Personal Property)</span></div>
+            </div>
+        </div>
+
+        <!-- 案情深度分析 -->
+        <div class="concept-card">
+            <div class="concept-title">本案逻辑推演</div>
+            <p>题目问的是“谁获得销售收益（钱）”。这取决于卖方去世时，他名下的这个权益属于“不动产”还是“动产”。</p>
+            <ul class="analysis-list">
+                <li style="border-left-color: #1976d2;">
+                    <strong>如果适用衡平法转换：</strong><br>
+                    卖方在去世时，其在该合同下的权益已经转换为“收取金钱的权利”，这属于<strong>动产 (Personal Property)</strong>。因此，这笔钱应根据遗嘱中的“剩余财产条款” (Residuary Clause) 分配给<strong>女儿</strong>。
+                </li>
+                <li style="border-left-color: #d32f2f;">
+                    <strong>如果不适用衡平法转换：</strong><br>
+                    卖方去世时仍被视为拥有该土地（不动产）。因此，该土地（及随后的收益）应根据遗嘱中的“不动产条款”分配给<strong>儿子</strong>。
+                </li>
+            </ul>
+            <p style="margin-top:10px; font-size:0.9em;">因此，<strong>选项 C</strong> 是决定性因素。该原则是否存在直接决定了财产的性质（动产 vs 不动产），进而决定了遗嘱中哪一条款适用。</p>
+        </div>
+
+        <!-- 为什么其他选项是错的 -->
+        <div class="concept-card">
+            <div class="concept-title">干扰项排除</div>
+            <ul class="analysis-list">
+                <li>
+                    <span class="wrong-option">选项 A (遗嘱措辞)：</span><br>
+                    这是典型的干扰项。如果衡平法转换适用，该财产已经是“动产”，无论遗嘱第5条写得多么具体（“我的所有不动产”或“具体地块”），它都无法涵盖动产。这叫作 <em>Ademption by Extinction</em>（遗赠的废除）。
+                </li>
+                <li>
+                    <span class="wrong-option">选项 B (交割日期)：</span><br>
+                    错误。衡平法转换发生在<strong>合同签订之时</strong> (Execution of Contract)，而不是交割之时。只要合同在死者生前有效签订，转换就已经发生。
+                </li>
+                <li>
+                    <span class="wrong-option">选项 D (法院命令)：</span><br>
+                    无关项。权利的性质取决于合同本身，而非是否涉及法院命令。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="tip-icon">💡</span> <strong>MBE 实战技巧：</strong>
+            <br><br>
+            看到 <strong>"Land Sale Contract"</strong> + <strong>"Death of a Party"</strong> (一方在交割前死亡)，立刻联想 <strong>Equitable Conversion</strong>。
+            <br><br>
+            记住口诀：
+            <ul>
+                <li><strong>Seller Dies:</strong> Interest = Money (Personal Property) → Goes to Residuary/Personal rep.</li>
+                <li><strong>Buyer Dies:</strong> Interest = Land (Real Property) → Goes to Heirs/Devisees of Real Property.</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

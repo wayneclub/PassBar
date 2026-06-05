@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+            --card-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .concept-term {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        .step-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .wrong-option {
+            background-color: #fff5f5;
+            border: 1px solid #ffcccc;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .wrong-title {
+            color: #c0392b;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .footer-tip {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+            font-size: 0.9rem;
+            color: #555;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <span class="tag">MBE Contracts</span>
+    <h1>合同订立与要约撤销</h1>
+    
+    <p>本题考察的核心法律点是：<strong>承诺的明确性 (Unequivocal Acceptance)</strong> 以及 <strong>要约的撤销 (Revocation of Offer)</strong>。</p>
+
+    <div class="highlight-box">
+        <strong>正确答案：A</strong><br>
+        借款人的陈述不是承诺，因此贷款人有效地撤销了要约。
+    </div>
+
+    <h2>⚖️ 核心解析</h2>
+    
+    <p>在合同法中，要形成一份具有约束力的合同，必须满足“要约-承诺-对价”的结构。本题的关键在于<strong>承诺 (Acceptance)</strong> 这一环节是否完成。</p>
+
+    <ul class="step-list">
+        <li>
+            <strong>要约 (The Offer):</strong><br>
+            1月10日，贷款人提出：“如果你<b>承诺</b>在1月15日前付$45,000，我就免除你$50,000的债务。”<br>
+            <span class="english-term">这是一个寻求“承诺”作为接受方式的要约 (Offer for a bilateral contract)。</span>
+        </li>
+        <li>
+            <strong>借款人的回应 (The Response):</strong><br>
+            借款人回答：“我会<b>设法</b>凑齐这笔钱 (I will attempt to get the money together)。”
+        </li>
+        <li>
+            <strong>法律效力分析:</strong><br>
+            根据普通法和《合同法重述》，承诺必须是<strong>明确且无歧义的 (Clear and Unequivocal)</strong>。
+            <br><br>
+            “我会尝试 (I will attempt)” 是一种模棱两可的表述 (Equivocal Statement)。它不是一个坚定的承诺 (Promise)，借款人并没有通过这句话约束自己必须付款。如果他没凑齐钱，他并没有违约。
+        </li>
+        <li>
+            <strong>撤销 (Revocation):</strong><br>
+            由于借款人没有做出有效的承诺，合同尚未成立。要约人（贷款人）在承诺做出之前的任何时间都可以撤销要约。
+            <br><br>
+            1月11日，贷款人致电表示“改变主意”，这构成了有效的<strong>直接撤销 (Direct Revocation)</strong>。
+        </li>
+    </ul>
+
+    <h2>🚫 为什么其他选项是错的？</h2>
+
+    <div class="wrong-option">
+        <span class="wrong-title">选项 B：待履行的和解协议 (Executory Accord)</span>
+        <strong>错误原因：</strong>和解协议 (Accord) 本身就是一个合同。既然借款人没有有效承诺，双方就没有达成合意 (Mutual Assent)，因此根本不存在和解协议。
+    </div>
+
+    <div class="wrong-option">
+        <span class="wrong-title">选项 C：赠与承诺 (Gift Promise)</span>
+        <strong>错误原因：</strong>这并非赠与。贷款人要求“提前付款”作为免除债务的交换。根据<strong>既有义务规则 (Pre-existing Duty Rule)</strong> 的例外，提前付款 (Earlier payment) 构成了新的、有效的对价 (Consideration)。要约内容是有效的，只是未被接受。
+    </div>
+
+    <div class="wrong-option">
+        <span class="wrong-title">选项 D：书面形式 (Statute of Frauds)</span>
+        <strong>错误原因：</strong>本案不涉及防止欺诈法 (Statute of Frauds) 的适用范围（如土地、一年以上不能履行、担保等）。即使涉及，本题的核心在于合同根本未成立，而不是形式瑕疵。
+    </div>
+
+    <div class="footer-tip">
+        💡 <strong>MBE 考试技巧：</strong><br>
+        看到 "I will try", "I hope to", "I will attempt" 这类词汇时，警惕<strong>模棱两可的承诺 (Equivocal Acceptance)</strong>。如果受要约人给自己留了后路（没答应死），那么通常不构成有效的承诺。
+    </div>
+</div>
+
+</body>
+</html>

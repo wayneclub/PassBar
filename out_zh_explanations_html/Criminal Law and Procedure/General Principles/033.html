@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --success-color: #27ae60;
+        --error-color: #c0392b;
+        --bg-color: #f8f9fa;
+        --card-bg: #ffffff;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #e9ecef;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+    .header .subtitle {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .rule-card {
+        background-color: #e8f4f8;
+        border-left: 5px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        display: block;
+    }
+    .highlight {
+        background-color: #fff3cd;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-weight: 500;
+    }
+    .analysis-section {
+        margin-bottom: 20px;
+    }
+    .option-item {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    .option-item:last-child {
+        border-bottom: none;
+    }
+    .badge {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-right: 8px;
+    }
+    .badge-correct {
+        background-color: rgba(39, 174, 96, 0.15);
+        color: var(--success-color);
+    }
+    .badge-wrong {
+        background-color: rgba(192, 57, 43, 0.15);
+        color: var(--error-color);
+    }
+    .exam-tip {
+        background-color: #fff8e1;
+        border: 1px dashed #f1c40f;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+    }
+    .exam-tip-title {
+        font-weight: bold;
+        color: #d35400;
+        margin-bottom: 5px;
+        display: block;
+    }
+    ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    li {
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">刑法：正当防卫与城堡法则</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-card">
+            <span class="rule-title">🔑 核心法律规则 (Legal Rule)</span>
+            <p><strong>正当防卫 (Self-Defense)：</strong>当被告人合理相信必须使用武力以防止迫在眉睫的非法伤害时，其行为是正当的。</p>
+            <p><strong>致命武力 (Deadly Force)：</strong>仅在面临死亡或严重身体伤害 (Great Bodily Harm) 的威胁时才可使用。</p>
+            <p><strong>退让义务 (Duty to Retreat)：</strong>
+                <ul>
+                    <li><strong>多数派规则：</strong>无退让义务，可坚守阵地 (Stand Your Ground)。</li>
+                    <li><strong>少数派规则：</strong>若能安全撤退，则必须撤退。</li>
+                    <li><strong>例外 - 城堡法则 (Castle Doctrine)：</strong>即使在要求退让的司法管辖区，一个人在<strong>自己家中 (Home)</strong> 遭受攻击时，也<strong>绝无退让义务</strong>。</li>
+                </ul>
+            </p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <h3>⚖️ 案情逻辑推演</h3>
+            <p>本案的关键在于判断被告（球迷）开枪是否构成合法的正当防卫。</p>
+            <ol>
+                <li><strong>威胁的性质：</strong>朋友手持刀具，扬言要“挖出心脏”，并挥舞刀具逼近。这构成了迫在眉睫的<strong>致命威胁 (Imminent Deadly Threat)</strong>。</li>
+                <li><strong>武力的对等性：</strong>面对致命威胁（刀），使用致命武力（枪）通常被视为合理的。</li>
+                <li><strong>退让问题：</strong>虽然前门大开，球迷有机会逃跑，但事件发生在<strong>球迷家中</strong>。根据城堡法则，他没有义务逃跑，有权使用致命武力自卫。</li>
+            </ol>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <h3>📝 选项深度解析</h3>
+            
+            <div class="option-item">
+                <span class="badge badge-correct">选项 B (正确)</span>
+                <strong>不应定罪，因为他是正当防卫且无退让义务。</strong>
+                <p>这是最佳答案。它直接击中了本题的两个核心：(1) 面对持刀威胁使用枪支符合正当防卫的要件；(2) 即使有逃跑机会，因为身处家中 (Castle Doctrine)，法律赋予他不退让的特权。</p>
+            </div>
+
+            <div class="option-item">
+                <span class="badge badge-wrong">选项 A (错误)</span>
+                <strong>不应定罪，因为他无意杀死朋友。</strong>
+                <p>这是一个极具迷惑性的干扰项。
+                <br>❌ <strong>错误原因：</strong>谋杀罪不仅包含“蓄意杀人” (Intent to kill)，还包含“堕落心智谋杀” (Depraved Heart Murder)，即对人命极其鲁莽的漠视。朝人开枪（即使只是想吓唬）通常构成这种鲁莽。如果不是因为<strong>正当防卫 (Justification)</strong>，球迷的行为足以构成谋杀。因此，让他脱罪的不是“缺乏意图”，而是“正当防卫”。</p>
+            </div>
+
+            <div class="option-item">
+                <span class="badge badge-wrong">选项 C (错误)</span>
+                <strong>应定罪，因为他有明确的退让机会。</strong>
+                <p>❌ <strong>错误原因：</strong>这忽略了<strong>城堡法则 (Castle Doctrine)</strong>。虽然普通法中的少数派规则要求退让，但这一义务从未延伸到一个人的家中。家是最后的庇护所。</p>
+            </div>
+
+            <div class="option-item">
+                <span class="badge badge-wrong">选项 D (错误)</span>
+                <strong>应定罪，因为使用致命武力不合理。</strong>
+                <p>❌ <strong>错误原因：</strong>面对挥舞刀具并发出死亡威胁的攻击者，使用枪支被视为<strong>成比例的 (Proportional)</strong> 反应。并没有要求防卫者必须使用完全相同的武器，只要武力级别（致命 vs. 致命）相当即可。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 提分技巧</span>
+            <p>当题目中出现<strong>"Home" (家)</strong> 这个地点要素，且涉及自卫情节时，立刻联想 <strong>Castle Doctrine (城堡法则)</strong>。</p>
+            <p>此外，注意区分<strong>Justification (正当理由)</strong> 和 <strong>Mens Rea (犯罪意图)</strong>。如果行为是正当的（如自卫），那么意图（想杀人还是想吓人）通常就不再重要了。优先选择基于“正当理由”的选项，而不是基于“缺乏意图”的选项。</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

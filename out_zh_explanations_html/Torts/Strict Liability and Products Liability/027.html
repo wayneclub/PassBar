@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --success-color: #27ae60;
+        --warning-color: #e67e22;
+        --bg-color: #f4f6f7;
+        --card-bg: #ffffff;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        overflow: hidden;
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h2 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .sub-header {
+        font-size: 0.85rem;
+        opacity: 0.9;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 20px;
+        color: #333;
+        line-height: 1.6;
+    }
+    .answer-section {
+        background-color: #e8f8f5;
+        border-left: 5px solid var(--success-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+    .answer-label {
+        font-weight: bold;
+        color: var(--success-color);
+        display: block;
+        margin-bottom: 5px;
+    }
+    .concept-box {
+        background-color: #ebf5fb;
+        border-left: 5px solid var(--accent-color);
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 0 8px 8px 0;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+    .icon {
+        margin-right: 8px;
+    }
+    .analysis-step {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    .analysis-step:last-child {
+        border-bottom: none;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .trap-alert {
+        background-color: #fdf2e9;
+        border: 1px solid #fae5d3;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        margin-top: 15px;
+    }
+    .trap-title {
+        color: var(--warning-color);
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .footer {
+        background-color: #eee;
+        padding: 10px;
+        text-align: center;
+        font-size: 0.8rem;
+        color: #666;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-header">Strict Liability & Torts</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-section">
+            <span class="answer-label">正确答案：选项 A</span>
+            <p><strong>不会胜诉</strong>，因为事故并非由运输危险化学品这一“异常危险活动”的特有风险所引起。</p>
+        </div>
+
+        <!-- 核心考点：风险范围 -->
+        <div class="concept-box">
+            <div class="concept-title">
+                <span>⚖️ 核心考点：严格责任的风险范围</span>
+            </div>
+            <p>对于<strong>异常危险活动 (Abnormally Dangerous Activities)</strong> 的严格责任仅限于该活动所固有的、使其成为“异常危险”的那部分风险。</p>
+            <p style="font-size: 0.9em; color: #555;">
+                <em>Restatement (Third) of Torts § 20:</em> 只有当损害是由使该活动变得异常危险的风险 (Risk that made the activity abnormally dangerous) 导致时，被告才承担严格责任。
+            </p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-step">
+            <h3>🔍 案情拆解</h3>
+            <p><strong>1. 活动性质：</strong><br>
+            卡车运输易燃气体。这通常被视为 <span class="term">Abnormally Dangerous Activity</span>。</p>
+            
+            <p><strong>2. 固有风险 (The Risk)：</strong><br>
+            这种活动之所以被定性为“异常危险”，是因为它有<strong>爆炸、火灾或剧毒泄漏</strong>的风险。</p>
+            
+            <p><strong>3. 实际损害 (The Harm)：</strong><br>
+            事故是由于司机变道未打灯（普通驾驶过失）导致后车急转弯失控。<strong>并没有发生气体泄漏或爆炸。</strong></p>
+            
+            <p><strong>4. 结论：</strong><br>
+            实际发生的损害（交通事故）不在严格责任涵盖的“风险范围”内。因此，原告不能基于严格责任胜诉。</p>
+        </div>
+
+        <!-- 陷阱排除 -->
+        <div class="trap-alert">
+            <div class="trap-title">⚠️ 常见陷阱分析</div>
+            
+            <p><strong>为何不选 B (Contributory Negligence)？</strong><br>
+            虽然题目提到这是共同过失管辖区，且原告超速，但这是一个干扰项。
+            <br>首先，原告的严格责任诉讼在第一步（因果关系范围）就已经失败了，根本不需要讨论抗辩理由。
+            <br>其次，在大多数管辖区，普通共同过失 (Ordinary Contributory Negligence) 通常<strong>不是</strong>严格责任的抗辩理由（除非是自甘风险 Assumption of Risk）。</p>
+
+            <p><strong>为何不选 D (Negligence Per Se)？</strong><br>
+            卡车司机确实违反了交通法规（未打灯），这构成了<strong>本身过失 (Negligence Per Se)</strong>。
+            <br>但是！原告提起的是<strong>严格责任 (Strict Liability)</strong> 诉讼，而不是过失 (Negligence) 诉讼。证明被告有过失并不能直接赢得严格责任的官司。</p>
+        </div>
+
+        <div class="concept-box" style="border-left-color: #8e44ad; background-color: #f4ecf7;">
+            <div class="concept-title" style="color: #8e44ad;">
+                <span>🎓 考试技巧 (Exam Tip)</span>
+            </div>
+            <p>在处理 <strong>Strict Liability</strong> 题目时，务必检查“因果关系链”：</p>
+            <p style="text-align: center;"><strong>发生的事故类型 == 该活动被定性为危险的原因？</strong></p>
+            <ul style="font-size: 0.9em;">
+                <li>如果是（如：炸药爆炸），则适用严格责任。</li>
+                <li>如果否（如：运炸药的车压到了行人的脚），则不适用严格责任，应转而分析过失 (Negligence)。</li>
+            </ul>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

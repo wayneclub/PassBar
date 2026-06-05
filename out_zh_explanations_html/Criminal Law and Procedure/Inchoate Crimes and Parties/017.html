@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+    --accent-color: #e74c3c;
+    --highlight-color: #3498db;
+    --bg-color: #f9f9f9;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #e0e5ec;
+    margin: 0;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mbe-container {
+    max-width: 480px;
+    width: 100%;
+    background-color: var(--bg-color);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+    color: var(--text-color);
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--primary-color), var(--highlight-color));
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+  }
+
+  .header p {
+    margin: 5px 0 0 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .section-title {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--highlight-color);
+    padding-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card {
+    background-color: var(--card-bg);
+    border-left: 4px solid var(--highlight-color);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+
+  .card.alert {
+    border-left-color: var(--accent-color);
+    background-color: #fdf2f0;
+  }
+
+  .concept-term {
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+
+  .eng-term {
+    font-style: italic;
+    color: #7f8c8d;
+    font-size: 0.9em;
+  }
+
+  ul {
+    margin: 10px 0;
+    padding-left: 20px;
+  }
+
+  li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .logic-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .logic-step {
+    background-color: var(--card-bg);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #e1e8ed;
+    position: relative;
+  }
+
+  .logic-step::after {
+    content: '↓';
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--highlight-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .logic-step:last-child::after {
+    display: none;
+  }
+
+  .step-num {
+    display: inline-block;
+    background-color: var(--highlight-color);
+    color: white;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    border-radius: 50%;
+    margin-right: 8px;
+    font-size: 0.9rem;
+  }
+
+  .strategy-box {
+    background: linear-gradient(to right, #f1f9f5, #e8f6f0);
+    border: 1px solid #a3d9c1;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+  }
+
+  .strategy-title {
+    color: #27ae60;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .case-law {
+    background-color: #f8f9fa;
+    border: 1px dashed #bdc3c7;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="mbe-container">
+  <div class="header">
+    <h1>MBE 刑法考点解析</h1>
+    <p>共犯责任、重罪谋杀与死刑的宪法限制</p>
+  </div>
+
+  <div class="content">
+    
+    <h2 class="section-title">🎯 核心考点剖析</h2>
+    <div class="card">
+      <p>本题巧妙地融合了三个高频考点：</p>
+      <ul>
+        <li><span class="concept-term">共犯责任</span> <span class="eng-term">(Accomplice Liability)</span> 及撤回的有效性。</li>
+        <li><span class="concept-term">重罪谋杀法则</span> <span class="eng-term">(Felony Murder Rule)</span>。</li>
+        <li><span class="concept-term">第八修正案</span> <span class="eng-term">(Eighth Amendment)</span> 对重罪谋杀共犯适用死刑的限制。</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">⚖️ 法律规则与判例</h2>
+    
+    <div class="card">
+      <p><span class="concept-term">1. 共犯的撤回 (Withdrawal)</span></p>
+      <p>共犯若想免除后续犯罪的责任，必须进行<b>有效撤回</b>。仅仅在心里后悔或默默离开现场是不够的。如果共犯已经提供了实质性帮助（如本案中开车送主犯到现场），他必须：</p>
+      <ul>
+        <li>设法收回其提供的帮助，或者</li>
+        <li>在犯罪发生前及时报警 <span class="eng-term">(notify authorities)</span>。</li>
+      </ul>
+      <p>本案中，男子仅是自己开车回家，未能阻止抢劫也未报警，因此<b>撤回无效</b>，仍需对抢劫及其可预见后果负责。</p>
+    </div>
+
+    <div class="card">
+      <p><span class="concept-term">2. 重罪谋杀法则 (Felony Murder)</span></p>
+      <p>在实施内在危险重罪（如抢劫、强奸、绑架等）期间导致他人死亡，构成重罪谋杀。共犯不仅对基础重罪负责，还要对该重罪的<b>自然且可预见的后果</b> <span class="eng-term">(natural and probable consequences)</span> 负责。抢劫银行导致警卫被杀，在法律上属于高度可预见的后果。</p>
+    </div>
+
+    <div class="card alert">
+      <p><span class="concept-term">3. 宪法对死刑的限制 (Death Penalty Limits)</span></p>
+      <p>根据美国宪法第八修正案（禁止残酷和不寻常的惩罚），联邦最高法院通过两个经典判例确立了对重罪谋杀共犯判处死刑的规则：</p>
+      <div class="case-law">
+        <b>Enmund v. Florida (1982):</b><br>
+        一般原则：如果共犯没有亲手杀人、没有试图杀人、也没有杀人意图，<b>不得</b>对其判处死刑。
+      </div>
+      <div class="case-law">
+        <b>Tison v. Arizona (1987):</b><br>
+        例外情况：如果共犯是基础重罪的<b>重大参与者</b> <span class="eng-term">(Major Participant)</span>，并且对人类生命表现出<b>鲁莽的漠视</b> <span class="eng-term">(Reckless Indifference to Human Life)</span>，则<b>可以</b>判处死刑。
+      </div>
+    </div>
+
+    <h2 class="section-title">🔍 案件逻辑推演</h2>
+    <div class="logic-flow">
+      <div class="logic-step">
+        <span class="step-num">1</span>
+        <b>定罪分析：是否构成重罪谋杀？</b><br>
+        男子同意并实际开车送同事去抢银行，确立了共犯身份。中途离开不构成有效撤回。同事在抢劫中杀害警卫是可预见后果。因此，男子<b>构成重罪谋杀罪</b>。
+      </div>
+      <div class="logic-step">
+        <span class="step-num">2</span>
+        <b>量刑分析：能否判处死刑？</b><br>
+        男子没有杀人意图。他仅仅是把同事送到银行就离开了，既不是抢劫的“重大参与者”，也没有对生命表现出“鲁莽的漠视”（他甚至因为后悔而离开了）。
+      </div>
+      <div class="logic-step">
+        <span class="step-num">3</span>
+        <b>得出结论：</b><br>
+        陪审团可以判定他犯有重罪谋杀罪 <span class="eng-term">(Felony Murder)</span>，但受宪法保护，<b>不能</b>对其判处死刑。
+      </div>
+    </div>
+
+    <div class="strategy-box">
+      <div class="strategy-title">💡 MBE 考场实战技巧</div>
+      <p>在 MBE 刑法题中，当你看到以下要素同时出现：</p>
+      <ul>
+        <li><b>Felony Murder</b> (重罪谋杀)</li>
+        <li><b>Accomplice</b> (共犯/未亲手杀人者)</li>
+        <li><b>Death Penalty</b> (死刑)</li>
+      </ul>
+      <p>👉 <b>条件反射：</b>立刻在脑海中搜索两个关键词：<b>"Major Participant"</b> (重大参与) 和 <b>"Reckless Indifference"</b> (鲁莽漠视)。</p>
+      <p>如果题目事实（如本题）明确显示该共犯参与度很低（如仅充当外围司机且中途逃跑），直接排除包含死刑的选项。注意区分“定罪”(Conviction) 和“量刑”(Sentencing)，定罪看共犯理论，量刑看宪法限制。</p>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

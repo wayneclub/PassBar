@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #e74c3c;
+        --bg-color: #f4f6f7;
+        --card-bg: #ffffff;
+        --text-color: #333333;
+        --highlight-bg: #e8f6f3;
+        --highlight-text: #16a085;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #eef2f3;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 480px;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 4px solid var(--accent-color);
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .header .sub-title {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .answer-box {
+        background-color: var(--highlight-bg);
+        border-left: 5px solid var(--highlight-text);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+
+    .answer-label {
+        color: var(--highlight-text);
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .answer-text {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+
+    .section-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-top: 20px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .section-title::before {
+        content: '';
+        display: inline-block;
+        width: 6px;
+        height: 16px;
+        background-color: var(--accent-color);
+        margin-right: 8px;
+        border-radius: 2px;
+    }
+
+    .concept-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: #fafafa;
+    }
+
+    .key-term {
+        font-weight: bold;
+        color: var(--accent-color);
+    }
+
+    .english-term {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 0.9em;
+    }
+
+    .analysis-step {
+        margin-bottom: 12px;
+        padding-left: 15px;
+        border-left: 2px solid #ddd;
+    }
+
+    .footer {
+        background-color: #f8f9fa;
+        padding: 15px;
+        text-align: center;
+        font-size: 12px;
+        color: #95a5a6;
+        border-top: 1px solid #eee;
+    }
+
+    ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 8px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Criminal Law / Kidnapping</div>
+    </div>
+
+    <div class="content">
+        <!-- Answer Section -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案</span>
+            <div class="answer-text">选项 D</div>
+            <div style="font-size: 14px; margin-top: 5px;">既不构成绑架罪，也不构成绑架未遂罪。</div>
+        </div>
+
+        <!-- Core Legal Concept -->
+        <div class="section-title">核心考点：绑架罪的构成要件</div>
+        <div class="concept-card">
+            <p>根据现代刑法观点（Modern View），<strong>绑架罪 (Kidnapping)</strong> 通常包含两个核心要素：</p>
+            <ol>
+                <li><strong>非法限制/监禁 (Unlawful Confinement)：</strong> 必须是违背受害人意愿的 (Against the victim's will)。</li>
+                <li><strong>移动或藏匿 (Movement / Asportation or Concealment)：</strong> 将受害人移动一段距离或将其藏匿。</li>
+            </ol>
+            <p><strong>关键抗辩 (Defense)：</strong> <span class="key-term">同意 (Consent)</span>。如果受害人是自愿被限制或移动的，则不构成绑架。</p>
+        </div>
+
+        <!-- Detailed Analysis -->
+        <div class="section-title">案情深度解析</div>
+        
+        <div class="analysis-step">
+            <strong>1. 关于“同意”的效力</strong><br>
+            虽然酒保通过谎称结婚（Fraud）诱骗女子前往公寓，但这属于<strong>诱导性欺诈 (Fraud in the inducement)</strong>。女子在知情的情况下自愿前往并留在公寓。只要她的人身自由没有被强行限制（例如被锁住、被枪指着），她在法律上就是“自愿”在场的。<br>
+            <span class="english-term">Note: Consent obtained by fraud in the inducement is generally a valid defense to kidnapping.</span>
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 为什么不是绑架 (Kidnapping)？</strong><br>
+            绑架罪的核心是限制人身自由。案件事实表明，女子在公寓里是自由的（她不知道酒保的计划，以为在等待约会），酒保没有对她施加任何物理束缚或威胁。因此，不存在<strong>非法监禁 (Unlawful Confinement)</strong>。
+        </div>
+
+        <div class="analysis-step">
+            <strong>3. 为什么不是绑架未遂 (Attempted Kidnapping)？</strong><br>
+            未遂犯需要有实施犯罪的<strong>特定意图 (Specific Intent)</strong>。酒保的意图是利用“绑架的假象”去勒索她父亲的钱财，但他从未打算真正限制女子的自由。他只是在演戏给父亲看，而不是真的在实施绑架。
+        </div>
+
+        <!-- Comparison with other crimes -->
+        <div class="section-title">易混淆点辨析</div>
+        <div class="concept-card" style="background-color: #fff3cd; border-color: #ffeeba;">
+            <p><strong>酒保到底犯了什么罪？</strong></p>
+            <p>酒保的行为构成了针对父亲的财产犯罪，如<strong>勒索罪 (Extortion / Blackmail)</strong> 或 <strong>以虚假借口窃取财物 (Larceny by Trick / False Pretenses)</strong>。</p>
+            <p>MBE 题目常设陷阱：虽然被告声称“我绑架了她”，但这只是勒索的手段（虚假陈述），而非绑架的事实。</p>
+        </div>
+
+        <!-- Exam Tip -->
+        <div class="section-title">💡 考试技巧 (Exam Tip)</div>
+        <p>在处理 MBE 绑架题时，请遵循以下逻辑链条：</p>
+        <ul>
+            <li>受害人是否被限制了自由？</li>
+            <li>如果是，是否违背了其意愿？（检查是否有效同意）</li>
+            <li>如果是，是否有移动或藏匿？</li>
+        </ul>
+        <p>本题中，女子是<strong>自愿 (Voluntarily)</strong> 留在公寓的，这一事实直接切断了绑架罪的成立路径。</p>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

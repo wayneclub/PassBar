@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .visual-bar {
+            display: flex;
+            width: 100%;
+            height: 30px;
+            margin: 15px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            font-size: 0.8rem;
+            color: white;
+            font-weight: bold;
+            line-height: 30px;
+            text-align: center;
+        }
+        .bar-70 {
+            width: 70%;
+            background-color: #95a5a6;
+        }
+        .bar-30 {
+            width: 30%;
+            background-color: #e74c3c;
+            position: relative;
+        }
+        .bar-30::after {
+            content: "抵押部分";
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #e74c3c;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .analysis-step strong {
+            color: var(--accent-color);
+        }
+        .tag {
+            display: inline-block;
+            background-color: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            color: #555;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+        .latin {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Real Property: Cotenancy & Mortgages</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">核心考点：按份共有 (Tenancy in Common)</span>
+            在按份共有关系中，每位共有人拥有独立的、可转让的权益份额。共有人<b>无需</b>其他共有人的同意，即可出售、赠与或抵押<b>自己的份额</b>。
+        </div>
+
+        <!-- 图解分析 -->
+        <p><b>案情图解：</b></p>
+        <div class="visual-bar">
+            <div class="bar-70">女子 (70%)</div>
+            <div class="bar-30">朋友 (30%)</div>
+        </div>
+        <p style="font-size: 0.9rem; color: #666; margin-top: 25px; margin-bottom: 20px;">
+            <span style="color:#e74c3c">●</span> 朋友试图抵押整个房产 (100%)。<br>
+            <span style="color:#2c3e50">●</span> 法律效力：抵押权仅附着于朋友拥有的 30% 份额。
+        </p>
+
+        <!-- 逻辑推演 -->
+        <div class="analysis-step">
+            <strong>1. 共有形式的判定</strong><br>
+            题目指出两人出资比例为 70% 和 30%，且根据出资比例持有产权。这构成了典型的<b>按份共有 (Tenancy in Common)</b>。因为没有明确的“生存者权” (Right of Survivorship) 声明，且份额不均等，所以不是联合共有 (Joint Tenancy)。
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 抵押权的范围</strong><br>
+            按份共有人 (Tenant in common) 有权单方面处分<b>自己</b>的权益。
+            <ul>
+                <li>朋友可以合法抵押她那 30% 的权益。</li>
+                <li>朋友<b>无权</b>抵押该女子的 70% 权益。</li>
+                <li>共有人之间<b>不存在</b>自动的代理关系 (Agency relationship)。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <strong>3. 止赎 (Foreclosure) 的后果</strong><br>
+            当银行进行止赎拍卖时，银行只能出售它拥有有效担保物权的权益。既然抵押权只有效附着于 30% 的份额，那么拍卖的买受人 (Purchaser) 只能买到这 30% 的权益。
+            <br><br>
+            买受人将成为新的按份共有人，与原女子共同拥有该土地（女子占 70%，买受人占 30%）。
+        </div>
+
+        <!-- 干扰项解析 -->
+        <div class="concept-card" style="background-color: #fff3cd; border-left-color: #f1c40f;">
+            <span class="concept-title">⚠️ 考场陷阱提示</span>
+            <p style="margin:0; font-size: 0.9rem;">
+                <b>关于 Lien Theory (留置权理论)：</b><br>
+                题目提到该管辖区遵循 Lien Theory。这通常用于测试 Joint Tenancy 是否被“切断” (Severance)。<br>
+                但在 <b>Tenancy in Common</b> 中，这只是一个干扰信息。无论是在 Lien Theory 还是 Title Theory 下，共有人都只能抵押自己的份额，不能触碰他人的份额。因此，结果都是 30%。
+            </p>
+        </div>
+
+        <div class="analysis-step">
+            <strong>为何其他选项错误？</strong><br>
+            <span class="tag">选项 A</span> 错误。共有人之间不是合伙人或代理人，不能代表对方处分财产。<br>
+            <span class="tag">选项 D</span> 错误。按份共有人抵押<b>自身份额</b>不需要获得他人同意 (Consent)。
+        </div>
+
+    </div>
+
+    <div class="footer">
+        MBE Property Law Review<br>
+        正确答案：B
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --success-color: #27ae60;
+            --error-color: #c0392b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            border-left: 4px solid var(--accent-color);
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+            font-size: 16px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .step-number {
+            background-color: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .correct-answer-box {
+            background-color: #e9f7ef;
+            border: 1px solid var(--success-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .correct-title {
+            color: var(--success-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .wrong-option {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .wrong-label {
+            color: var(--error-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .footer-tip {
+            background-color: #f8f9fa;
+            padding: 15px;
+            font-size: 13px;
+            color: #555;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+
+        ul {
+            margin: 5px 0 5px 20px;
+            padding: 0;
+        }
+    </style>
+    <title>MBE 解析</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts / Defenses to Enforceability</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：未成年人缔约能力 (Infancy Doctrine)</span>
+            <p>在普通法下，未成年人（通常指18岁以下）缺乏完全的缔约能力。他们签署的合同通常是<b>可撤销的 (Voidable)</b>，而不是<b>无效的 (Void)</b>。</p>
+            <p>这意味着：</p>
+            <ul>
+                <li><b>未成年人</b>有权选择履行或撤销合同。</li>
+                <li><b>成年方</b>（对方）无权撤销，必须受合同约束，除非未成年人主动撤销。</li>
+            </ul>
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">关键规则：追认 (Ratification)</div>
+            <p>当未成年人达到法定成年年龄（Age of Majority，通常为18岁）后，他们可以通过以下方式<b>追认 (Ratify)</b> 合同：</p>
+            <ol>
+                <li><b>明示追认：</b> 口头或书面同意继续受合同约束。</li>
+                <li><b>默示追认：</b> 通过行为表现出继续履行合同的意愿（例如：继续付款、保留商品、试图清偿债务）。</li>
+            </ol>
+            <p>一旦追认，合同即对双方具有完全的法律约束力，未成年人不能再以“签约时未成年”为由撤销合同。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">本案逻辑推演</div>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <span class="term">签约阶段：</span>女孩16岁时签约。此时合同对她而言是<b>可撤销的 (Voidable)</b>，但对邻居是有效的。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <span class="term">成年后行为：</span>女孩年满18岁后，试图一次性付清余款。这一行为构成了对合同的<b>追认 (Ratification)</b>。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <span class="term">邻居的违约：</span>由于女孩已经追认，合同变得完全有效且不可撤销。邻居拒绝接受付款并收回汽车的行为构成了<b>违约 (Breach of Contract)</b>。
+                </div>
+            </div>
+        </div>
+
+        <!-- 正确答案 -->
+        <div class="correct-answer-box">
+            <span class="correct-title">✅ 正确答案：选项 D</span>
+            <p>女孩会胜诉。因为她在达到法定成年年龄后，通过试图付清车款的行为<b>追认 (Ratified)</b> 了该合同。此时合同已完全生效，邻居无权单方面解约。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="wrong-option">
+            <span class="wrong-label">❌ 选项 A 错误：</span>
+            未成年人签订的合同是<b>可撤销 (Voidable)</b>，而非自始<b>无效 (Void)</b>。如果是 Void，则合同从未存在过，但这里合同是存在的，只是未成年人有权退出。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">❌ 选项 B 错误：</span>
+            只有<b>未成年人</b>拥有撤销权 (Power of Avoidance)。成年的一方（邻居）不能利用对方的未成年身份来撤销合同。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">❌ 选项 C 错误：</span>
+            虽然结果（女孩胜诉）是对的，但理由不准确。仅仅“年满18岁”并不自动剥夺撤销权（未成年人成年后仍有一段合理时间可以撤销）。关键在于她采取了<b>追认行为</b>（试图付款）。
+        </div>
+
+    </div>
+
+    <div class="footer-tip">
+        <b>💡 MBE 考试技巧：</b><br>
+        看到“未成年人 (Minor)”考题时，首先判断合同状态是 Voidable。接着看未成年人成年后的行为：如果他们继续享受利益或付款，就是 Ratification（追认），合同即被锁定。
+    </div>
+</div>
+
+</body>
+</html>

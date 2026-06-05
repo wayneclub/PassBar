@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            background-color: var(--highlight-bg);
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .concept-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            font-size: 13px;
+            background: #fafafa;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            border-radius: var(--border-radius);
+        }
+
+        .party {
+            font-weight: bold;
+            padding: 5px 10px;
+            background: var(--primary-color);
+            color: #fff;
+            border-radius: 4px;
+            margin: 5px;
+        }
+
+        .arrow {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin: 2px 0;
+        }
+
+        .explanation {
+            font-size: 15px;
+            text-align: justify;
+        }
+
+        .key-point {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #7f8c8d;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：第三方受益人</h1>
+    
+    <div class="explanation">
+        本题考察的是合同法中关于<strong>第三方受益人 (Third-Party Beneficiaries)</strong> 的权利，特别是当原债务已过诉讼时效时，新合同的效力问题。
+    </div>
+
+    <h2>1. 法律关系图解</h2>
+    <div class="diagram">
+        <div class="party">债务人 (Debtor)</div>
+        <div class="arrow">↓ 卖车 (Promisee)</div>
+        <div class="party">买方 (Buyer)</div>
+        <div class="arrow">↓ 承诺付款 $2,000 (Promisor)</div>
+        <div class="party" style="background:var(--accent-color)">债权人 (Creditor)</div>
+        <div style="margin-top:5px; font-size:12px; color:#666;">(意定受益人 Intended Beneficiary)</div>
+    </div>
+
+    <h2>2. 核心考点：意定受益人</h2>
+    <div class="concept-box">
+        <strong>规则：</strong>如果合同双方（承诺人和受诺人）意图通过合同直接使第三方受益，该第三方即为<strong>意定受益人 (Intended Beneficiary)</strong>，有权直接起诉承诺人强制执行合同。
+    </div>
+    <p class="explanation">
+        在本案中：
+        <ul>
+            <li><strong>承诺人 (Promisor)：</strong>买方（承诺支付钱款）。</li>
+            <li><strong>受诺人 (Promisee)：</strong>债务人（转让汽车作为对价）。</li>
+            <li><strong>受益人：</strong>债权人。</li>
+        </ul>
+        合同明确规定买方支付款项是为了“清偿债务人对债权人的债务”。这种明确的意图使得债权人成为<strong>债权受益人 (Creditor Beneficiary)</strong>，属于意定受益人的一种，因此拥有<strong>强制执行权 (Right to Enforce)</strong>。
+    </p>
+
+    <h2>3. 难点突破：诉讼时效 (Statute of Limitations)</h2>
+    <p class="explanation">
+        本题最大的干扰项在于“原债务已过诉讼时效”。
+    </p>
+    <p class="explanation">
+        <span class="key-point">关键逻辑：</span>买方支付给债权人的义务，源于买方与债务人之间<strong>新的买卖合同</strong>，而不是源于旧的债务。
+    </p>
+    <ul>
+        <li><strong>新合同的对价 (Consideration)：</strong>买方承诺付款是因为他从债务人那里得到了一辆<strong>汽车</strong>。这与旧债务是否可执行无关。</li>
+        <li><strong>抗辩权的限制：</strong>虽然承诺人（买方）可以基于新合同向受益人主张抗辩（例如：债务人没交车），但他不能主张受诺人（债务人）对受益人（债权人）的个人抗辩（如诉讼时效）。</li>
+    </ul>
+    <p class="explanation">
+        只要买方收到了车，他就必须按合同约定付款。至于债务人为什么要让买方把钱给债权人（即使法律上他已不必还钱），这是债务人的自由（可能是出于道德义务），不影响新合同的效力。
+    </p>
+
+    <h2>4. 选项解析</h2>
+    <ul>
+        <li><strong>选项 C (正确)：</strong>买方的承诺是独立的、有对价支持的合同义务。无论债务人是否在法律上必须还钱，买方都必须履行其“向债权人付款”的合同承诺。</li>
+        <li><strong>选项 A (错误)：</strong>公共政策禁止的是强制执行“过期债务”，但不禁止债务人自愿偿还，更不禁止债务人通过新合同指示第三方付款。</li>
+        <li><strong>选项 B (错误)：</strong>虽然受益人的权利受制于合同抗辩（如买方未收到车），但本题中没有事实表明买方对债务人有任何抗辩理由。</li>
+        <li><strong>选项 D (错误)：</strong>这并不是“旧债务的复活 (Revival)”。复活通常指债务人自己重新承诺还款。这里是基于一个全新的、有对价的合同产生的<strong>新义务</strong>。</li>
+    </ul>
+
+    <h2>5. 考试技巧 (Exam Tip)</h2>
+    <div class="concept-box">
+        在 MBE 合同法题目中，看到 <strong>A 与 B 订立合同，约定 B 向 C 付款</strong> 的结构时：
+        <ol>
+            <li>首先确定 C 是意定受益人。</li>
+            <li>寻找 B (承诺人) 是否有不履行的抗辩理由（通常是 A 没履行义务）。</li>
+            <li>如果 A 已经履行了义务（如本题中交付了汽车），B 必须向 C 付款，<strong>忽略 A 与 C 之间原本关系的瑕疵</strong>（如时效已过、债务无效等）。</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        MBE Contracts Review | © 2025 Legal Study Aid
+    </div>
+</div>
+
+</body>
+</html>

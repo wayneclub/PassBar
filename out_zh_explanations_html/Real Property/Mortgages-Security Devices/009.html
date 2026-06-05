@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .key-concept {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .key-concept h3 {
+            margin-top: 0;
+            color: #1565c0;
+            font-size: 1.1rem;
+        }
+        .timeline-container {
+            position: relative;
+            margin: 25px 0;
+            padding-left: 20px;
+            border-left: 3px solid #ddd;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #999;
+            border: 2px solid #fff;
+        }
+        .timeline-item.active::before {
+            background-color: #e74c3c;
+            transform: scale(1.2);
+        }
+        .timeline-title {
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        .timeline-desc {
+            font-size: 0.85rem;
+            color: #666;
+            background: #f9f9f9;
+            padding: 8px;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+        .answer-analysis {
+            margin-top: 20px;
+        }
+        .correct-box {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .correct-title {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .wrong-box {
+            background-color: #fff5f5;
+            border: 1px solid #ffebee;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .wrong-title {
+            color: #c62828;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffecb3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+        .exam-tip-title {
+            color: #f57f17;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Mortgages & Security Devices</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点介绍 -->
+        <div class="key-concept">
+            <h3>核心考点：赎回权 (Redemption)</h3>
+            <p>本题考察的是抵押贷款违约后，债务人重新获得房产所有权的两种不同机制：<b>衡平法赎回权</b>与<b>法定赎回权</b>的区别。</p>
+        </div>
+
+        <!-- 时间轴图解 -->
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-title">违约 (Default)</div>
+                <div class="timeline-desc">债务人停止付款，贷款人开始止赎程序。</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-title" style="color:#1976d2;">衡平法赎回权 (Equitable Redemption)</div>
+                <div class="timeline-desc">
+                    <b>时间段：</b>止赎拍卖<b>之前</b>。<br>
+                    <b>权利：</b>普通法赋予的固有权利，不可剥夺。<br>
+                    <b>条件：</b>向<u>贷款人</u>支付全部欠款 + 利息。
+                </div>
+            </div>
+
+            <div class="timeline-item active">
+                <div class="timeline-title" style="color:#d32f2f;">止赎拍卖 (Foreclosure Sale)</div>
+                <div class="timeline-desc">
+                    <b>关键分界点！</b><br>
+                    拍卖锤落下，衡平法赎回权<b>终止</b>。
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-title" style="color:#388e3c;">法定赎回权 (Statutory Redemption)</div>
+                <div class="timeline-desc">
+                    <b>时间段：</b>止赎拍卖<b>之后</b>（通常6-12个月）。<br>
+                    <b>权利：</b>仅当州法律明确规定时才存在。<br>
+                    <b>条件：</b>向<u>买家</u>支付拍卖成交价。
+                </div>
+            </div>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="answer-analysis">
+            <div class="correct-box">
+                <div class="correct-title">✅ 正确答案：C</div>
+                <p><b>法律依据：</b>题目明确指出房产<b>已经被出售</b>给买家 ("the home was sold to a buyer")。此时，衡平法上的赎回权已经消灭。</p>
+                <p>债务人想要在拍卖<b>后</b>从买家手中拿回房产，唯一的法律途径是该司法管辖区制定了<b>法定赎回权 (Statutory Right of Redemption)</b>。这种权利允许原房主在拍卖后的一定期限内，以拍卖价格赎回房产。</p>
+            </div>
+
+            <!-- 错误选项解析 -->
+            <div class="wrong-box">
+                <div class="wrong-title">❌ 选项 A：衡平法赎回权 (Equitable Redemption)</div>
+                <p>这是所有司法管辖区都承认的权利，但它<b>仅存在于止赎拍卖之前</b>。一旦拍卖完成，此权利即告终止。由于本案中拍卖已结束，该原则无法帮助债务人。</p>
+            </div>
+
+            <div class="wrong-box">
+                <div class="wrong-title">❌ 选项 B & D：合并原则与留置权理论</div>
+                <p><b>合并原则 (Merger)</b> 和 <b>留置权理论 (Lien Theory)</b> 属于干扰项。它们涉及抵押权的性质和所有权结构，但与止赎拍卖后是否能强行买回房产（赎回权）没有直接的因果关系。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <div class="exam-tip-title">💡 MBE 解题技巧</div>
+            <p>在处理赎回权问题时，首先看<b>时间点</b>：</p>
+            <ul style="margin: 5px 0 0 20px; padding: 0;">
+                <li>如果是 <b>Before Sale</b> → 选 Equitable Redemption (向银行还钱)。</li>
+                <li>如果是 <b>After Sale</b> → 选 Statutory Redemption (向买家付钱，且必须有法规支持)。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

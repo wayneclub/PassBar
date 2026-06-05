@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .highlight-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 10px 15px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .answer-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .wrong-answer {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .footer-tip {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #7f8c8d;
+            text-align: center;
+            border-top: 1px dashed #ccc;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：不动产定金与违约救济</h1>
+
+    <p>本题考察的是不动产买卖合同中，当买方违约（Breach of Contract）时，卖方是否有权保留<b>定金（Earnest Money）</b>。</p>
+
+    <div class="highlight-box">
+        <strong>核心法律规则：</strong><br>
+        在没有明确违约金条款的情况下，如果买方无正当理由违约，卖方通常有权保留定金，前提是定金金额合理且不超过卖方的<b>实际损失（Actual Damages）</b>。
+    </div>
+
+    <h2>1. 法律分析：为什么选 B？</h2>
+    <p>正确答案是 <span class="correct-answer">B</span>。</p>
+    
+    <p><b>逻辑推演如下：</b></p>
+    <ul>
+        <li><b>定金的性质：</b> 定金（Earnest Money）通常被视为一种预设的<b>约定违约金（Liquidated Damages）</b>。它的目的是在买方违约时补偿卖方。</li>
+        <li><b>合同的沉默：</b> 即使合同没有明确说明违约救济措施，法院通常也允许卖方在买方违约时保留定金。</li>
+        <li><b>关键测试——罚金原则（Penalty Doctrine）：</b> 约定违约金必须是合理的，不能具有惩罚性。如果定金数额巨大，而卖方实际损失很小，法院可能会判定没收定金是不公平的“罚金”。</li>
+        <li><b>本案事实：</b> 卖方的实际损失（超过$5,000）远大于定金（$1,000）。因此，卖方保留这$1,000完全是用于弥补实际损失，不存在不当得利（Unjust Enrichment）或惩罚性过高的问题。</li>
+    </ul>
+    <p>因此，因为卖方遭受了实质性的经济损失，且该损失超过了定金金额，卖方有权保留定金。</p>
+
+    <h2>2. 为什么其他选项是错的？</h2>
+    
+    <p><span class="wrong-answer">选项 A (错误)：</span><br>
+    “因为合同对救济措施保持沉默。”<br>
+    虽然合同沉默，但这并不是卖方能保留定金的<i>根本原因</i>。如果卖方没有任何损失却没收了定金，法院可能会要求退还部分定金以防止不当得利。卖方能保留定金的核心原因是<b>存在实际损失</b>。</p>
+
+    <p><span class="wrong-answer">选项 C (错误)：</span><br>
+    “因为买方不再准备好、愿意且能够购买。”<br>
+    这是买方违约的事实描述，但这本身并不自动决定定金的归属。如果定金数额极高（例如房价的50%），即使买方违约，法院也可能判决退还部分定金。关键在于损害赔偿的合理性。</p>
+
+    <p><span class="wrong-answer">选项 D (错误)：</span><br>
+    “因为违约原因是未曾预料到的。”<br>
+    买方失业（Financial Inability）虽然是不幸的，但在合同法中通常<b>不构成</b>履约不能（Impossibility）或商业目的落空（Frustration of Purpose）的有效抗辩。买方的个人财务状况变化风险通常由买方自己承担，这不能成为要求退还定金的理由。</p>
+
+    <div class="answer-section">
+        <h2>🎓 MBE 破题金钥匙</h2>
+        <p>在处理不动产违约金问题时，请遵循以下步骤：</p>
+        <ol>
+            <li><b>确定违约方：</b> 谁搞砸了交易？（本题是买方）。</li>
+            <li><b>检查定金金额：</b> 通常定金占房价的 10% 或更少被视为合理的约定违约金（Liquidated Damages）。</li>
+            <li><b>比较损失：</b> 
+                <ul>
+                    <li>如果 <b>定金 ≈ 实际损失</b> ➡️ 卖方保留。</li>
+                    <li>如果 <b>定金 < 实际损失</b> ➡️ 卖方保留（甚至可能起诉追讨更多，除非合同限制了救济）。</li>
+                    <li>如果 <b>定金 >>> 实际损失</b> ➡️ 买方可能拿回差额（避免罚金性质）。</li>
+                </ul>
+            </li>
+        </ol>
+        <p>本题中，<b>实际损失 > 定金</b>，这是最强有力的理由支持卖方保留款项。</p>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

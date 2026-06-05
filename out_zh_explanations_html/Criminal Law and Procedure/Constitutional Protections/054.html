@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --highlight-bg: #ecf0f1;
+            --text-color: #34495e;
+            --border-radius: 8px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .content {
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            font-size: 0.95rem;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #bdc3c7;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .timeline-item.critical::before {
+            background: var(--accent-color);
+            transform: scale(1.3);
+        }
+
+        .timeline-title {
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        .timeline-desc {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+        }
+
+        .rule-card {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+        }
+
+        .answer-section {
+            margin-top: 25px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .correct-answer {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .distractor {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: #7f8c8d;
+        }
+
+        .distractor span {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            margin-top: 20px;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Criminal Procedure: Fourth Amendment</div>
+    </div>
+
+    <div class="content">
+        <p>本题考察的核心是<strong>第四修正案（Fourth Amendment）</strong>下的“扣押”（Seizure）定义以及“毒树之果”（Fruit of the Poisonous Tree）原则。</p>
+
+        <!-- 案件逻辑时间轴 -->
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-title">初步接触 (Initial Contact)</span>
+                <span class="timeline-desc">警察询问，女子无视并走开。此时为自愿接触，女子有权离开。</span>
+            </div>
+            <div class="timeline-item critical">
+                <span class="timeline-title">命令与服从 (Command & Submission)</span>
+                <span class="timeline-desc">警察喊“站住”，女子停下并举手。<strong>关键点：此时发生了扣押 (Seizure)。</strong></span>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-title">丢弃物品 (Discarding Object)</span>
+                <span class="timeline-desc">女子在被扣押后扔掉可卡因。</span>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-title">搜查与逮捕 (Search & Arrest)</span>
+                <span class="timeline-desc">警察捡起物品并逮捕女子。</span>
+            </div>
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="highlight-box">
+            <span class="key-term">核心考点：Terry Stop 的合法性</span><br>
+            根据 <em>Terry v. Ohio</em>，警察进行调查性截停（Investigatory Stop）必须基于<strong>合理怀疑 (Reasonable Suspicion)</strong>，即必须有具体的事实表明犯罪正在进行或即将发生。
+        </div>
+
+        <div class="rule-card">
+            <strong>判例规则 (Rule of Law):</strong><br>
+            仅身处“高犯罪率地区”(High-crime area) 本身<strong>不足以</strong>构成拦截公民的合理怀疑 (<em>Brown v. Texas</em>)。
+        </div>
+
+        <p>在本案中，警察拦截该女子的唯一依据是她出现在毒品交易频发的地区。当她行使权利拒绝回答并走开时，警察并没有额外的理由怀疑她犯罪。因此，警察命令她停下（且她确实停下了）构成了一次<strong>非法扣押 (Unlawful Seizure)</strong>。</p>
+
+        <!-- 答案解析 -->
+        <div class="answer-section">
+            <span class="correct-answer">✅ 正确答案：C</span>
+            <p><strong>理由：</strong>因为警方是在非法扣押之后才获得了可卡因。</p>
+            <p>根据<strong>证据排除规则 (Exclusionary Rule)</strong>，由于最初的截停（Seizure）是非法的（缺乏合理怀疑），因此作为该非法行为直接结果（Direct Result）而获得的所有证据（即被丢弃的可卡因）都必须被排除。</p>
+        </div>
+
+        <!-- 干扰项辨析 -->
+        <div class="highlight-box" style="background-color: #fff; border: 1px solid #eee; border-left: 4px solid #95a5a6;">
+            <strong>为什么其他选项是错的？</strong>
+            
+            <div class="distractor">
+                <span>选项 A 错误：</span> 即使后来发现了毒品（有了逮捕的合理根据 Probable Cause），但这不能反过来证明最初拦截行为的合法性。
+            </div>
+            
+            <div class="distractor">
+                <span>选项 B 错误（常见陷阱）：</span> 虽然通常丢弃物（Abandoned Property）不受宪法保护，但如果是<strong>因警察的非法行为</strong>（非法截停）而被迫丢弃的，这种丢弃不被视为“自愿”，证据仍需排除。
+            </div>
+            
+            <div class="distractor">
+                <span>选项 D 错误：</span> 警察是否知道那是可卡因并不重要，关键在于截停人本身是否合法。
+            </div>
+        </div>
+
+        <div class="footer">
+            MBE 策略：先判断警察行为是否合法，再看证据链是否被污染。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --text-color: #333;
+        --card-bg: #ffffff;
+        --border-radius: 8px;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: var(--text-color);
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+    .header .subtitle {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .diagram {
+        background: var(--highlight-bg);
+        padding: 15px;
+        border-radius: var(--border-radius);
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 0.9rem;
+        border-left: 4px solid var(--accent-color);
+    }
+    .arrow {
+        color: var(--accent-color);
+        font-weight: bold;
+        margin: 5px 0;
+    }
+    .section-title {
+        color: var(--primary-color);
+        font-weight: 700;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+        display: flex;
+        align-items: center;
+    }
+    .section-title::before {
+        content: "⚖️";
+        margin-right: 8px;
+    }
+    .key-point {
+        background-color: #fff8e1;
+        border: 1px solid #ffe0b2;
+        padding: 10px;
+        border-radius: 6px;
+        margin: 10px 0;
+        font-size: 0.95rem;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .english {
+        font-style: italic;
+        color: #666;
+        font-size: 0.9em;
+    }
+    .wrong-option {
+        margin-top: 10px;
+        padding: 10px;
+        background: #f9f9f9;
+        border-left: 3px solid #e74c3c;
+        font-size: 0.9rem;
+    }
+    .footer {
+        text-align: center;
+        padding: 15px;
+        font-size: 0.8rem;
+        color: #888;
+        background: #fafafa;
+        border-top: 1px solid #eee;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Real Property: Assignment & Remedies</div>
+    </div>
+
+    <div class="content">
+        <!-- 逻辑图示 -->
+        <div class="diagram">
+            <div>🏠 <strong>所有者 (Owner)</strong></div>
+            <div class="arrow">↓ 违约 (拒绝交割)</div>
+            <div>👤 <strong>买方 (Buyer)</strong></div>
+            <div class="arrow">↓ 转让合同权利 (Assignment)</div>
+            <div>💼 <strong>投资者 (Investor)</strong></div>
+            <div style="margin-top:10px; font-size: 0.85em; color: #555;">
+                投资者现在站在买方的位置<br>
+                (Stands in the shoes of the Buyer)
+            </div>
+        </div>
+
+        <div class="section-title">核心考点分析</div>
+        <p>本题考察的是不动产合同中的两个核心概念的结合：</p>
+        <ol>
+            <li><strong>合同权利的转让</strong> (<span class="english">Assignment of Rights</span>)</li>
+            <li><strong>强制履行</strong> (<span class="english">Specific Performance</span>)</li>
+        </ol>
+
+        <div class="key-point">
+            <strong>结论：</strong>投资者（受让人）胜诉。因为不动产合同权利可以自由转让，且受让人有权获得与原买方相同的救济措施。
+        </div>
+
+        <div class="section-title">详细法律推理</div>
+        
+        <p><span class="term">1. 转让的有效性 (Validity of Assignment)</span><br>
+        除非合同明确禁止，否则不动产买卖合同中的权利通常是可以转让的。本题中明确指出合同未禁止转让。买方将其购买土地的权利转让给投资者，这不涉及某种独特的个人服务 (<span class="english">Personal Services</span>)，也不会实质性增加卖方的负担。因此，转让有效。</p>
+
+        <p><span class="term">2. 受让人的地位 (Status of Assignee)</span><br>
+        转让发生后，投资者“站在了原买方的鞋子里” (<span class="english">Stands in the shoes of the assignor</span>)。这意味着投资者继承了买方所有的合同权利，包括起诉违约方和寻求救济的权利。</p>
+
+        <p><span class="term">3. 强制履行 (Specific Performance)</span><br>
+        在普通法中，每一块土地都被视为<strong>独一无二的</strong> (<span class="english">Unique</span>)。因此，当卖方违约时，金钱赔偿 (<span class="english">Money Damages</span>) 通常被认为是不充分的。买方（现在的投资者）有权要求法院强制卖方按合同约定移交土地所有权。</p>
+
+        <div class="section-title">为什么其他选项是错误的？</div>
+
+        <div class="wrong-option">
+            <strong>❌ 选项 B (放弃所有权缺陷)</strong><br>
+            <strong>错误点：</strong>区域规划变更 (<span class="english">Zoning Change</span>) 导致价值上升，但这并不构成“所有权缺陷” (<span class="english">Title Defect</span>) 或使所有权变为“不可售” (<span class="english">Unmarketable Title</span>)。不可售所有权通常指存在抵押、地役权或诉讼风险。既然所有权本身没有问题，就不存在“放弃” (<span class="english">Waive</span>) 的问题。
+        </div>
+
+        <div class="wrong-option">
+            <strong>❌ 选项 C (不洁之手/知情)</strong><br>
+            <strong>错误点：</strong>这是本题最大的干扰项。投资者知道卖方违约并不构成“恶意” (<span class="english">Bad Faith</span>) 或“不洁之手” (<span class="english">Unclean Hands</span>)。
+            <br><br>
+            买方有权将“起诉违约的权利”作为资产出售。投资者支付了对价 ($25,000)，这是一次正常的商业交易。知情并不剥夺其作为受让人的合法权利。
+        </div>
+
+        <div class="wrong-option">
+            <strong>❌ 选项 D (经验丰富/金钱赔偿)</strong><br>
+            <strong>错误点：</strong>投资者的房地产经验与救济方式无关。无论买方是新手还是大亨，土地的“独特性”属性不变，因此都有权要求强制履行。
+        </div>
+
+        <div class="section-title">MBE 答题技巧 💡</div>
+        <p>遇到涉及 <strong>Assignment (转让)</strong> 的题目时，请遵循以下步骤：</p>
+        <ul>
+            <li>第一步：检查合同是否禁止转让。</li>
+            <li>第二步：确认转让是否改变了义务人的责任（对于支付金钱换取土地的合同，通常不会改变）。</li>
+            <li>第三步：记住口诀 <strong>"Assignee stands in the shoes of Assignor"</strong>。如果原买方能赢，受让人也能赢。</li>
+        </ul>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

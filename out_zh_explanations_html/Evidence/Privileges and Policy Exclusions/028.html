@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rule-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 1.05rem;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background-color: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 4px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+
+        .trap-alert {
+            border: 1px solid #e74c3c;
+            background-color: #fdedec;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .trap-title {
+            color: #c0392b;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .icon {
+            margin-right: 8px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence: Privileges (证据法：特免权)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="rule-box">
+            <span class="rule-title">✅ 正确答案：选项 B</span>
+            法院应驳回动议。因为律师聘请的顾问（Consultant）作为律师的代理人，其与客户的通讯受到<strong>律师-客户特免权 (Attorney-Client Privilege)</strong> 的保护，且该特免权适用于大陪审团程序。
+        </div>
+
+        <!-- 考点深度解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">⚖️ 法律依据与逻辑推理</div>
+            
+            <p>本题考察两个核心法律原则的交叉点：</p>
+
+            <p><strong>1. 特免权的延伸 (Extension of Privilege)</strong><br>
+            律师-客户特免权不仅保护客户与律师之间的直接通讯，也延伸至律师的<strong>代表/代理人 (Representatives/Agents)</strong>。
+            <br><span class="latin" style="font-size:0.9em;">(Ref: United States v. Kovel)</span></p>
+            <ul>
+                <li><strong>关键点：</strong>如果律师为了提供法律服务（如本案中的量刑辩护）而聘请第三方（如会计师、心理学家、顾问）协助，该第三方被视为律师的延伸。</li>
+                <li><strong>本案应用：</strong>律师聘请退休缓刑官作为顾问来准备量刑计划。该顾问是律师的代理人，其与被告的面谈是为了协助律师进行法律代理。因此，该通讯是保密的且享有特免权。</li>
+            </ul>
+
+            <p><strong>2. 大陪审团程序的规则适用 (Grand Jury Applicability)</strong><br>
+            这是 MBE 常见的考点。根据 <span class="term">Federal Rules of Evidence (FRE) 1101(d)</span>：</p>
+            <ul>
+                <li>绝大多数证据规则（如传闻证据规则 Hearsay Rule）<strong>不适用</strong>于大陪审团程序。</li>
+                <li>但是，<strong>特免权规则 (Privilege Rules)</strong> 适用于联邦法院的所有阶段，<strong>包括</strong>大陪审团程序。</li>
+            </ul>
+        </div>
+
+        <!-- 陷阱与干扰项分析 -->
+        <div class="trap-alert">
+            <div class="trap-title">
+                <span>⚠️ 考生常见误区 (Distractor Analysis)</span>
+            </div>
+            
+            <p><strong>❌ 选项 C 是最大的陷阱：</strong></p>
+            <p>很多考生看到“大陪审团”就会条件反射地认为“证据规则不适用”。</p>
+            <p><strong>区分关键：</strong>虽然“证据排除规则”（Exclusionary Rules，如非法搜查证据排除、传闻证据排除）通常不适用于大陪审团，但<strong>特免权 (Privilege) 是神圣不可侵犯的例外</strong>。特免权在任何时候都有效。</p>
+
+            <p><strong>❌ 选项 D (顾问不是律师)：</strong></p>
+            <p>这是外行人的错误。法律承认现代法律实践需要专家协助。只要是为了法律咨询目的 (Legal Advice) 且在律师指导下，非律师人员也被涵盖在特免权保护伞下。</p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">🎓 考试技巧 (Exam Tip)</div>
+            <p>在处理 MBE 证据法题目时，如果场景发生在<strong>大陪审团 (Grand Jury)</strong>：</p>
+            <ol>
+                <li>如果题目问的是<strong>传闻 (Hearsay)</strong> 或<strong>相关性 (Relevance)</strong> ➡ 证据通常<strong>可采 (Admissible)</strong>。</li>
+                <li>如果题目问的是<strong>特免权 (Privilege)</strong> ➡ 证据通常<strong>不可采 (Inadmissible)</strong>，除非有特免权豁免或例外情况。</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Evidence Review | QID: Q87134
+    </div>
+</div>
+
+</body>
+</html>

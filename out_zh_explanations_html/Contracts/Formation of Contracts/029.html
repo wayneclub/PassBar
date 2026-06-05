@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 10px;
+        color: #333;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 14px;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+    }
+    .tag {
+        display: inline-block;
+        background-color: #e1f5fe;
+        color: #0277bd;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+    .section-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-left: 4px solid #4ca1af;
+        padding-left: 10px;
+    }
+    .highlight-box {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    .correct-answer {
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        text-align: center;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .english {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 0.9em;
+    }
+    .timeline {
+        position: relative;
+        margin: 20px 0 20px 10px;
+        border-left: 2px solid #ddd;
+        padding-left: 20px;
+    }
+    .timeline-item {
+        position: relative;
+        margin-bottom: 20px;
+    }
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -26px;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #4ca1af;
+    }
+    .timeline-date {
+        font-size: 12px;
+        color: #999;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .timeline-content {
+        font-size: 14px;
+    }
+    .trap-alert {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f8d7da;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #721c24;
+    }
+    .footer {
+        text-align: center;
+        padding: 15px;
+        background-color: #f9f9f9;
+        font-size: 12px;
+        color: #888;
+        border-top: 1px solid #eee;
+    }
+</style>
+<title>MBE Answer Analysis</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Contracts / UCC Article 2</p>
+    </div>
+
+    <div class="content">
+        <span class="tag">Formation of Contracts</span>
+        <span class="tag">Firm Offer Rule</span>
+
+        <div class="correct-answer">
+            正确答案：D<br>
+            <span style="font-weight: normal; font-size: 0.9em;">是，因为零售商在4月15日之前并未撤销其要约。</span>
+        </div>
+
+        <div class="section-title">核心考点分析</div>
+        <p>本题考察的是 <span class="term">UCC 固定要约规则 (UCC Firm Offer Rule)</span> 与 <span class="term">要约失效 (Lapse of Offer)</span> 之间的区别。</p>
+        
+        <p>很多考生会混淆“不可撤销期”与“要约有效期”。要解对这道题，必须理清以下时间线逻辑：</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">12月15日</div>
+                <div class="timeline-content">
+                    <strong>要约发出</strong><br>
+                    商家书面承诺要约在“明年全年”有效。<br>
+                    <span class="english">Firm Offer created.</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">3月15日 (约)</div>
+                <div class="timeline-content">
+                    <strong>不可撤销期结束</strong><br>
+                    UCC § 2-205 规定无对价的固定要约不可撤销期最长为3个月。<br>
+                    <span class="english">Irrevocability ends.</span>
+                </div>
+            </div>
+            <div class="timeline-item" style="background: #e8f5e9; padding: 5px; border-radius: 4px;">
+                <div class="timeline-date" style="color: #2e7d32;">4月15日</div>
+                <div class="timeline-content">
+                    <strong>律师发出承诺 (Acceptance)</strong><br>
+                    要约虽然变为“可撤销”，但商家并未撤销，且仍在要约原本设定的“一年”有效期内。<br>
+                    <span class="english">Valid Acceptance.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">法律依据详解</div>
+        
+        <p><strong>1. 适用法律：UCC (统一商法典)</strong><br>
+        本案涉及办公用品（货物）买卖，因此适用 UCC Article 2。</p>
+
+        <p><strong>2. 固定要约规则 (UCC § 2-205)</strong><br>
+        商家 <span class="english">(Merchant)</span> 在经签署的书面文件中明确保证要约将保持开放，则该要约在规定时间内<strong>不可撤销</strong>，即使没有对价 <span class="english">(Consideration)</span>。</p>
+        
+        <div class="highlight-box">
+            <strong>关键限制：</strong>如果文件中规定的时间超过3个月，不可撤销期<strong>自动缩减为3个月</strong>。
+        </div>
+
+        <p><strong>3. 3个月后的状态变化</strong><br>
+        这是本题最大的陷阱。3个月期限届满（3月15日）后，要约<strong>并没有自动失效 (Lapse)</strong>，它只是从“不可撤销要约”变成了普通的“可撤销要约” <span class="english">(Revocable Offer)</span>。</p>
+
+        <p><strong>4. 结论</strong><br>
+        要约本身写明有效期为“下一个日历年度”（即一年）。虽然3个月后商家<strong>有权</strong>撤销，但题目明确指出商家<strong>没有</strong>进行任何通信（即未撤销）。因此，在4月15日，该要约仍然“活着”，律师的承诺有效。</p>
+
+        <div class="trap-alert">
+            <strong>⚠️ 常见错误 (选项 B)：</strong><br>
+            选项 B 错误地认为3个月期限一过，要约就自动失效了。请记住：<br>
+            <span style="font-weight:bold;">失去“不可撤销性” ≠ 要约死亡</span>。<br>
+            它只是变得脆弱了（可以被撤销），但在被实际撤销或自然过期之前，仍然可以被承诺。
+        </div>
+
+        <div class="section-title">其他选项排除</div>
+        <ul>
+            <li><strong>选项 A (错误)：</strong> 要约明确规定了期限（一年），因此不需要讨论“合理时间”。只要在一年内且未被撤销，承诺均有效。</li>
+            <li><strong>选项 C (错误)：</strong> 只有支付了对价 <span class="english">(Consideration)</span>，才能形成长期的选择权合同 <span class="english">(Option Contract)</span>。本案中律师未支付对价，所以不是 Option Contract，而是 Firm Offer。</li>
+        </ul>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

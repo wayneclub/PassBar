@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e1e4e8;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rule-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .distractor {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+        }
+
+        .distractor-title {
+            font-weight: bold;
+            color: var(--warning-color);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+
+        ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts / Defenses</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">核心考点：不正当影响</div>
+            <div>
+                <span class="term">Undue Influence</span> 是指一方利用其主导地位或与受害方的特殊信任关系，通过<strong>不公平或过度的劝说</strong>（Unfair Persuasion），使受害方在意志薄弱时签订了合同。
+            </div>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <h3>🔍 案情深度解析</h3>
+            <p>本题是典型的“不正当影响”案例。要判定合同无效，需满足以下要素：</p>
+            
+            <ul>
+                <li><strong>易受影响性 (Susceptibility)：</strong><br>母亲正在临终关怀（Hospice）且濒临死亡，身体和精神状态极其脆弱。</li>
+                <li><strong>特殊关系 (Confidential Relationship)：</strong><br>母女关系本身即包含信任，且女儿是唯一探望的“好孩子”，母亲对其有情感依赖。</li>
+                <li><strong>过度劝说 (Unfair Persuasion)：</strong><br>女儿利用母亲的脆弱，以“不再探望”作为情感勒索手段。</li>
+                <li><strong>不公平的结果 (Unfair Bargain)：</strong><br>房屋价值 $250,000，却以 $100,000 成交，明显显失公平。</li>
+            </ul>
+            <p><strong>结论：</strong>女儿利用母亲的脆弱状态和信任关系，通过情感操纵迫使母亲签订了对其不利的合同，这完全符合 <span class="term">Undue Influence</span> 的定义。</p>
+        </div>
+
+        <!-- 干扰项辨析 -->
+        <div class="distractor">
+            <div class="distractor-title">🚫 为什么不选 A (Duress)？</div>
+            <p><strong>胁迫 (Duress)</strong> 通常需要“不正当的威胁”（如暴力、非法行为），使受害方<strong>没有合理的替代选择</strong>。虽然女儿威胁不探望很恶劣，但这通常被视为情感压力而非法律上的“胁迫”。MBE中，Duress 更多指向物理强制或极端的经济胁迫。</p>
+            
+            <div class="distractor-title">🚫 为什么不选 B (Inadequate Consideration)？</div>
+            <p><strong>对价不充分</strong>。普通法的一般原则是法院<strong>不审查对价的充分性</strong>（Courts do not inquire into the adequacy of consideration）。只要有“议价交换”（Bargained-for exchange），哪怕 $1 买 $100 的东西，合同在形式上也是成立的。本案的问题不在于价格低，而在于达成价格的<strong>手段</strong>。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+            <div class="rule-title" style="color: #d35400;">💡 MBE 实战技巧</div>
+            <p>当题目中出现<strong>老年人、病人、看护人</strong>或<strong>亲属关系</strong>，且交易价格明显<strong>不公</strong>时，优先考虑 <strong>Undue Influence</strong>。</p>
+            <p>如果是“拿枪指着头”或“不签就烧房子”，选 <strong>Duress</strong>。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

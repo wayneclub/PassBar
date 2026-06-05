@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #d4edda;
+            --correct-text: #155724;
+            --wrong-bg: #f8d7da;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .concept-tag {
+            display: inline-block;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            color: #555;
+            font-weight: 500;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        .option-analysis {
+            margin-top: 15px;
+        }
+        .option {
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .option.correct {
+            background: var(--correct-bg);
+            color: var(--correct-text);
+            border: 1px solid #c3e6cb;
+        }
+        .option.wrong {
+            background: #fff;
+            border: 1px solid #eee;
+            color: #666;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .footer-tip {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            border: 1px solid #ffeeba;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts: Third-Party Rights (Assignment)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法则：受让人的权利边界</span>
+            <p>在合同法中，受让人（Assignee）<b>"steps into the shoes of the assignor"</b>（步入转让人的后尘）。</p>
+            <p>这意味着受让人获得的权利，<b>受制于</b>债务人（Obligor）对转让人（Assignor）拥有的所有抗辩（Defenses）和抵销权（Recoupment/Set-off）。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情图解</div>
+            <p><b>角色分配：</b></p>
+            <ul>
+                <li><b>债务人 (Obligor):</b> 房主 (Homeowner)</li>
+                <li><b>转让人 (Assignor):</b> 承包商 (Contractor)</li>
+                <li><b>受让人 (Assignee):</b> 银行 (Bank)</li>
+            </ul>
+            <p><b>关键事实：</b></p>
+            <ol>
+                <li>承包商将收款权转让给银行。</li>
+                <li>承包商随后违约（放弃工程）。</li>
+                <li>房主因承包商违约遭受损失（需额外花费$8,000）。</li>
+                <li>银行起诉房主要求支付$8,000。</li>
+            </ol>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 正确答案：D</div>
+            <div class="option correct">
+                <b>房主胜诉，因为她因承包商违约而享有的抵消权（Recoupment）可以向作为承包商受让人的银行主张。</b>
+            </div>
+            <p><b>法律推理：</b></p>
+            <p>根据《合同法重述（第二次）》§ 336：</p>
+            <p>1. <b>同一合同产生的抗辩 (Recoupment)：</b> 如果债务人（房主）的抗辩或索赔源于<b>同一合同</b>（本案中即建造车库的合同），无论该抗辩是在转让通知<b>之前还是之后</b>产生的，债务人都可以用它来对抗受让人（银行）。</p>
+            <p>2. <b>计算结果：</b> 银行想要$8,000，但房主因同一合同的违约有$8,000的损失。房主行使抵消权（Recoupment）后，需支付金额为零。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">❌ 陷阱选项辨析</div>
+            
+            <div class="option wrong">
+                <b>选项 A (优先级)：</b> 错误。担保债权人（Secured Creditor）的优先级通常用于破产程序中与其他债权人争夺资产。这里是合同诉讼，银行不能从房主那里获得比承包商原本拥有的更多的权利。
+            </div>
+
+            <div class="option wrong">
+                <b>选项 B (通知时间)：</b> 错误。这是最大的干扰项。虽然对于<b>无关合同</b>的抵销（Set-off），通知时间是分界线；但对于<b>同一合同</b>产生的不履约抗辩（Recoupment），即使违约发生在通知<b>之后</b>，房主依然可以抗辩。
+            </div>
+
+            <div class="option wrong">
+                <b>选项 C (贷款违约时间)：</b> 错误。承包商何时对银行违约与房主对承包商的抗辩权无关。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="footer-tip">
+            <b>💡 MBE 提分技巧：</b><br>
+            遇到“权利转让”（Assignment）题目时，记住口诀：<b>"Assignee takes subject to defenses"</b>（受让人受制于抗辩）。<br><br>
+            特别注意区分：
+            <ul>
+                <li><b>Recoupment (同一合同):</b> 随时可以对抗受让人。</li>
+                <li><b>Set-off (不同交易):</b> 只有在收到转让通知<b>前</b>产生的才能对抗。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -36,6 +36,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { requestGeminiFeedback } from '@/lib/gemini-feedback';
 import { defaultStudySettings, getStudySettings, saveStudySettings, type ContentMode, type DisplayOptions, type TextSize } from '@/lib/study-settings';
+import { saveUserStudySettings } from '@/lib/user-settings';
 import { useI18n } from '@/lib/i18n';
 import { Check, Clock3, ListChecks, X } from 'lucide-react';
 import { ReportQuestionDialog } from '@/components/ReportQuestionDialog';
@@ -93,6 +94,7 @@ function TestSessionContent() {
   const [contentMode, setContentMode] = useState<ContentMode>('english');
   const [display, setDisplay] = useState<DisplayOptions>(defaultStudySettings.display);
   const [textSize, setTextSize] = useState<TextSize>('medium');
+  const [panelResetKey, setPanelResetKey] = useState(0);
   const [questionStartedAt, setQuestionStartedAt] = useState(() => Date.now());
   const [isPaused, setIsPaused] = useState(false);
   const [pauseStartedAt, setPauseStartedAt] = useState<number | null>(null);
@@ -827,12 +829,23 @@ function TestSessionContent() {
         textSize={textSize}
         onTextSizeChange={(size) => {
           setTextSize(size);
-          saveStudySettings({ ...getStudySettings(), textSize: size });
+          const updated = { ...getStudySettings(), textSize: size };
+          saveStudySettings(updated);
+          if (user?.id) saveUserStudySettings(user.id, updated);
         }}
         display={display}
         onDisplayChange={(next) => {
           setDisplay(next);
-          saveStudySettings({ ...getStudySettings(), display: next });
+          const updated = { ...getStudySettings(), display: next };
+          saveStudySettings(updated);
+          if (user?.id) saveUserStudySettings(user.id, updated);
+        }}
+        onReset={() => {
+          setPanelResetKey((k) => k + 1);
+          const current = getStudySettings();
+          const reset = { ...defaultStudySettings, interfaceLanguage: current.interfaceLanguage };
+          saveStudySettings(reset);
+          if (user?.id) saveUserStudySettings(user.id, reset);
         }}
         onFeedback={handleFeedback}
         isBrowse={session.mode === 'TopicStudy'}
@@ -854,6 +867,7 @@ function TestSessionContent() {
           defaultLeftPct={50}
           minPx={300}
           className="h-full w-full"
+          resetKey={panelResetKey}
           left={
             <div className="h-full overflow-y-auto overflow-x-hidden">
             <div className={cn(

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: transparent;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.85em;
+        }
+
+        .analysis-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 10px;
+        }
+
+        .evidence-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .evidence-item {
+            background: white;
+            margin-bottom: 8px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .check-icon {
+            color: #27ae60;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .tip-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            margin-top: 20px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">证据法：传闻证据与相关性<br>Evidence: Hearsay & Relevancy</div>
+    </div>
+
+    <!-- Core Legal Issue -->
+    <div class="card">
+        <div class="card-title">核心考点：传闻证据的定义</div>
+        <p>本题的关键在于判断证据是否属于<span class="term">传闻证据 (Hearsay)</span>。根据 <b>FRE 801(c)</b>，传闻证据必须满足两个条件：</p>
+        <ol>
+            <li>是庭外陈述 (Out-of-court statement)；</li>
+            <li><b>且</b>是为了证明“所述事项的真实性” (Truth of the matter asserted) 而提出。</li>
+        </ol>
+        <div class="analysis-box">
+            <strong>关键区别：</strong><br>
+            如果提出陈述是为了证明该陈述<b>对听者产生的影响 (Effect on the listener)</b>，或者仅仅证明<b>话被说出来了 (Fact of utterance)</b>，则它<b>不是</b>传闻证据，因此是可采纳的。
+        </div>
+    </div>
+
+    <!-- Case Analysis -->
+    <div class="card">
+        <div class="card-title">案情深度解析</div>
+        <p>本案是关于<b>非法逮捕 (False Arrest)</b>的诉讼。辩护的核心在于警官是否有<b>相当理由 (Probable Cause)</b> 相信原告是抢劫犯。</p>
+        <p>这就改变了证据的“目的”：</p>
+        <ul>
+            <li>❌ <b>不需要证明：</b> 原告真的抢劫了（Truth）。</li>
+            <li>✅ <b>需要证明：</b> 警官听到了描述，并且基于该描述产生合理信赖（State of mind / Reasonableness）。</li>
+        </ul>
+    </div>
+
+    <!-- Evidence Breakdown -->
+    <div class="card">
+        <div class="card-title">为何三项证据均可采纳？</div>
+        <p>题目问的是关于“警官听到了什么描述”这一争议点，以下证据均相关且非传闻：</p>
+        
+        <ul class="evidence-list">
+            <li class="evidence-item">
+                <span class="check-icon">✔</span>
+                <div>
+                    <strong>1. 警官的证言</strong><br>
+                    <span class="english-term">Officer's Testimony</span><br>
+                    证明他听到了广播。这直接展示了广播对他心理状态的影响（Effect on listener），解释了他为何实施逮捕。
+                </div>
+            </li>
+            <li class="evidence-item">
+                <span class="check-icon">✔</span>
+                <div>
+                    <strong>2. 调度员的证言</strong><br>
+                    <span class="english-term">Dispatcher's Testimony</span><br>
+                    证明该陈述确实被“说出来”了（Fact of utterance）。如果没人广播，警官就不可能听到。这佐证了警官的说法。
+                </div>
+            </li>
+            <li class="evidence-item">
+                <span class="check-icon">✔</span>
+                <div>
+                    <strong>3. 调度员的字条</strong><br>
+                    <span class="english-term">The Note</span><br>
+                    这是广播内容的原始来源。它证明了调度员读的内容是什么，进一步佐证了广播的内容和警官听到的内容一致。
+                </div>
+            </li>
+        </ul>
+        <p style="margin-top:10px; font-size:0.9em;">
+            <b>结论：</b> 所有三项证据都不是为了证明原告是抢劫犯，而是为了构建警官“合理相信”的事实链条。因此，它们都不是传闻证据，且都具有相关性。
+        </p>
+    </div>
+
+    <!-- Exam Strategy -->
+    <div class="tip-box">
+        <strong>🎓 MBE 考试技巧</strong>
+        <p>当你看到涉及<b>“某人的信念”、“知情 (Notice)”、或“相当理由 (Probable Cause)”</b>的题目时，警惕<b>“听者的反应” (Effect on the Listener)</b> 这一非传闻用途。</p>
+        <p>在这种情况下，只要庭外陈述能解释听者为何采取某种行动，该陈述通常都是可采纳的（Admissible），且不被视为传闻。</p>
+    </div>
+
+    <div class="footer">
+        Based on NCBE MBE Standards • FRE 801(c)
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            color: #333;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #34495e;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+        .text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: 500;
+            color: #856404;
+        }
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        .trap-box {
+            background-color: #ffebee;
+            border: 1px solid #ffcdd2;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .trap-title {
+            color: #c62828;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .trap-title::before {
+            content: "⚠️";
+            margin-right: 6px;
+        }
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .check-icon {
+            color: #4caf50;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 证据法考点精讲</h1>
+        <p>Evidence: Opinion Testimony by Lay Witness</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">核心规则：FRE 701 普通证人意见</span>
+            普通证人（Lay Witness）的意见证词若要被采纳，必须同时满足三个条件：
+            <ol style="margin: 5px 0 0 20px; padding: 0; font-size: 13px;">
+                <li>基于证人的<strong>亲身感知</strong> (Rationally based on perception)；</li>
+                <li>有助于理解证词或<strong>确定争议事实</strong> (Helpful to determining a fact in issue)；</li>
+                <li><strong>非基于</strong>科学、技术或其他专业知识 (Not based on specialized knowledge)。</li>
+            </ol>
+        </div>
+
+        <!-- 题目解析 -->
+        <div class="section">
+            <div class="section-title">💡 案例解析</div>
+            <div class="text">
+                <p>本题考察的是普通证人是否有资格识别毒品。虽然线人没有受过化学分析的“正式培训”（Formal Training），但这并不意味着她不能作证。</p>
+                
+                <div class="key-point">
+                    <span class="check-icon">✔</span>
+                    <div>
+                        <strong>经验法则：</strong>长期吸毒者或有经验的线人，可以通过<strong>味道 (Taste)</strong> 和 <strong>生理反应 (Sensation)</strong> 来识别毒品。这种识别被视为基于“个人经验”的普通意见，而非需要化学学位的“专家意见”。
+                    </div>
+                </div>
+                
+                <div class="key-point">
+                    <span class="check-icon">✔</span>
+                    <div>
+                        <strong>证据效力：</strong>即使没有实物毒品（corpus delicti）进行实验室检测，仅凭有经验的证人证词，也足以建立<strong>初步证据案件 (Prima Facie Case)</strong>。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 难点辨析：为何选C不选D -->
+        <div class="section">
+            <div class="section-title">⚖️ 深度辨析：法官 vs. 陪审团</div>
+            <div class="text">
+                <p>这是本题最容易混淆的地方（选项C与选项D的区别）：</p>
+                <p><strong>谁来决定证人是否有资格作证？</strong></p>
+                <ul>
+                    <li><strong>选项 C (正确)：</strong>依据 <strong>FRE 104(a)</strong>，证人的资格（Competency/Qualification）属于<strong>先决问题 (Preliminary Question)</strong>，由<strong>法官 (Court)</strong> 独自决定。法官必须确信该线人确实具备识别可卡因的知识。</li>
+                    <li><strong>选项 D (错误)：</strong>该选项描述的是 <strong>FRE 104(b) 条件相关性 (Conditional Relevance)</strong> 的标准（即“只要有足够证据支持陪审团裁定即可”）。但证人是否有能力作证并非相关性问题，而是资格问题，必须由法官把关，不能甩给陪审团。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 陷阱警示 -->
+        <div class="trap-box">
+            <div class="trap-title">常见误区警示</div>
+            <div class="text" style="font-size: 13px;">
+                <strong>误区 1：</strong> 认为只有穿白大褂的专家才能识别毒品。<br>
+                <span class="highlight">纠正：</span> 吸毒者的亲身体验（High的感觉、味道）是典型的 Lay Opinion。
+                <br><br>
+                <strong>误区 2：</strong> 认为没有毒品实物就不能定罪。<br>
+                <span class="highlight">纠正：</span> 只要证人可信，口头证词足以定罪（Circumstantial Evidence is sufficient）。
+            </div>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

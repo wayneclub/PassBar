@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        .answer-block {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .concept-card {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .concept-title {
+            color: #f57c00;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+        .analysis-section {
+            margin-bottom: 15px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 8px;
+            border-bottom: 2px solid #e8eaf6;
+            padding-bottom: 4px;
+            display: inline-block;
+        }
+        .wrong-option {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+        }
+        .wrong-option h4 {
+            margin: 0 0 5px;
+            font-size: 14px;
+            color: #d32f2f;
+        }
+        .footer {
+            background-color: #fafafa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+        .latin {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Criminal Procedure / Miranda Rights</p>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-block">
+            <span class="answer-title">✅ 正确答案：B</span>
+            法院很可能<strong>驳回动议</strong>，因为该陈述是<strong>自愿作出的 (Volunteered)</strong>。
+        </div>
+
+        <!-- 核心考点讲解 -->
+        <div class="concept-card">
+            <div class="concept-title">核心法则：Miranda 的适用范围</div>
+            <p><strong><span class="latin">Miranda v. Arizona</span></strong> 规则仅适用于<strong>“羁押讯问” (Custodial Interrogation)</strong>。要触发 Miranda 警告的要求，必须同时满足两个条件：</p>
+            <ol>
+                <li><strong>羁押 (Custody)：</strong> 嫌疑人被剥夺自由（如被逮捕）。</li>
+                <li><strong>讯问 (Interrogation)：</strong> 警方提出问题，或采取理应知道会引出有罪供述的行为。</li>
+            </ol>
+            <p>如果是嫌疑人<strong>自发 (Spontaneous)</strong> 说出的话，不受 Miranda 保护。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">本案逻辑推演</div>
+            <p>在本案中，我们需要分析这两个要素：</p>
+            <ul>
+                <li><strong>是否被羁押？</strong> <br>是的。该男子已被戴上手铐 (Handcuffed)，显然已被剥夺自由。</li>
+                <li><strong>是否被讯问？</strong> <br><strong>否。</strong> 警方仅仅是抓住了他，并没有向他提问，也没有做任何旨在诱导他说话的行为。</li>
+            </ul>
+            <p>该男子咒骂并说出“要不是那个告密者...”完全是他<strong>自愿且自发 (Volunteered/Spontaneous)</strong> 的行为。对于这类陈述，警方无需提前宣读 Miranda 权利，因此该陈述可以作为呈堂证供。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="wrong-option">
+            <h4>🚫 为什么选项 A 错误？</h4>
+            <p><strong>公共安全例外 (Public Safety Exception)</strong> 适用于警方为了消除迫在眉睫的危险（如寻找丢失的枪支）而在未读 Miranda 的情况下进行<strong>讯问</strong>。本案中警方并未进行讯问，所以不需要引用此例外。</p>
+            
+            <h4>🚫 为什么选项 C 错误？</h4>
+            <p>这是一个常见的 MBE 干扰项。虽然警方可能违反了“敲门并声明”规则 (Knock and Announce Rule)，但最高法院在 <strong><span class="latin">Hudson v. Michigan</span></strong> 案中裁定，违反该规则的补救措施<strong>不是排除证据 (Exclusionary Rule does not apply)</strong>。此外，鉴于嫌疑人有暴力名声和武器库，警方的强行进入本身可能就是合理的（紧急情况例外）。</p>
+            
+            <h4>🚫 为什么选项 D 错误？</h4>
+            <p>这是最强的干扰项。虽然他确实没有被告知 Miranda 权利，但如前所述，因为没有发生<strong>讯问 (Interrogation)</strong>，所以警方没有义务宣读权利。</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <strong>💡 考试技巧：</strong><br>
+        看到嫌疑人“脱口而出”某句话时，首先判断警方是否做了什么去“引诱”他说。如果警方只是在执行逮捕，而嫌疑人自己嘴快，通常都是 Admissible 的。
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 16px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: #2c3e50;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .wrong-option {
+            background-color: #fff5f5;
+            border: 1px solid #ffcccc;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .wrong-label {
+            color: #c0392b;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .tip-box {
+            background-color: #eafaf1;
+            border: 1px dashed #27ae60;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f1f1f1;
+            font-size: 12px;
+            color: #777;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence / Hearsay</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="rule-box">
+            <span class="rule-title">✅ 正确答案：D</span>
+            <p>该证言可以采纳，作为证明水管工存在过错的证据。</p>
+            <p style="font-size: 0.9em; margin-top: 8px;"><strong>核心考点：</strong>对方当事人陈述 (Statement by Party-Opponent) 被视为“非传闻” (Non-Hearsay)。</p>
+        </div>
+
+        <!-- 法律规则详解 -->
+        <div class="analysis-section">
+            <div class="analysis-title">⚖️ 法律依据 (Legal Basis)</div>
+            <p>根据 <strong>FRE 801(d)(2)</strong> 规定，如果一项陈述满足以下条件，则<strong>不属于传闻 (Not Hearsay)</strong>：</p>
+            <ol>
+                <li>该陈述是针对对方当事人 (Offered against an opposing party) 提出的；且</li>
+                <li>该陈述是由该当事人 (Made by the party) 以个人或代表身份作出的。</li>
+            </ol>
+            <p>这类陈述通常被称为<strong>当事人自认 (Admissions)</strong>。既然不是传闻，只要它与案件相关 (Relevant)，就可以作为实体证据 (Substantive Evidence) 被采纳。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🔍 案情应用 (Application)</div>
+            <p>在本案中：</p>
+            <ul>
+                <li><strong>陈述人：</strong>水管工（被告/对方当事人）。</li>
+                <li><strong>内容：</strong>"I'll come by tomorrow and redo the installation for free."（承认需要重做，暗示初次安装有问题）。</li>
+                <li><strong>提出者：</strong>房主（原告）。</li>
+                <li><strong>目的：</strong>用于反对水管工，证明其有过错。</li>
+            </ul>
+            <p>因此，这完全符合 FRE 801(d)(2) 的定义，属于<strong>非传闻</strong>，可以直接作为证明水管工有过错的证据。</p>
+        </div>
+
+        <!-- 排除错误选项 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🚫 陷阱排除 (Distractors)</div>
+            
+            <div class="wrong-option">
+                <span class="wrong-label">选项 A 错误：</span>
+                认为这是“传闻”。
+                <br><strong>解析：</strong>根据联邦证据规则，对方当事人陈述被明确定义为“非传闻”(Non-hearsay)，而不是传闻的例外 (Exception)。虽然结果都是可采纳，但法律定性不同。
+            </div>
+
+            <div class="wrong-option">
+                <span class="wrong-label">选项 B 错误：</span>
+                认为是“和解要约” (Offer in Compromise)。
+                <br><strong>解析：</strong>这是本题最大的陷阱。<strong>FRE 408</strong> 确实禁止采纳和解提议，但前提是当时必须存在<strong>“有争议的索赔” (Disputed Claim)</strong>。
+                <br>在本案中，水管工是在接到紧急电话后立即作出的回应，当时双方尚未发生法律纠纷，也没有就责任或金额产生争议。因此 FRE 408 不适用。
+            </div>
+
+            <div class="wrong-option">
+                <span class="wrong-label">选项 C 错误：</span>
+                认为是“事后补救措施” (Subsequent Remedial Measure)。
+                <br><strong>解析：</strong>
+                1. <strong>FRE 407</strong> 禁止使用事后补救措施来证明过失。选项 C 说“可以采纳”，这与规则目的背道而驰。
+                2. 房主引入的是水管工的“口头陈述”，而不是他实际采取的补救行动。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <strong>💡 MBE 考试技巧</strong>
+            <p>在处理证据法题目时，如果看到一方当事人的庭外陈述被对方引用：</p>
+            <ol style="margin-left: -20px;">
+                <li>首先判断是否为 <strong>FRE 801(d)(2) 对方当事人陈述</strong>。这是最高频的考点。</li>
+                <li>警惕 <strong>FRE 408 (和解)</strong> 的陷阱：只有在“争议发生后” (After a dispute has arisen) 的和解提议才被排除。事故发生当场的“私了”提议通常不被保护，可作为自认被采纳。</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Evidence Review | © 2025 Exam Prep
+    </div>
+</div>
+
+</body>
+</html>

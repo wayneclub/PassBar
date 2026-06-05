@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --correct-bg: #d4edda;
+        --correct-text: #155724;
+        --wrong-bg: #f8d7da;
+        --wrong-text: #721c24;
+        --text-color: #333;
+        --card-bg: #ffffff;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: var(--text-color);
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+    .header .subtitle {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .concept-box {
+        background: var(--highlight-bg);
+        border-left: 5px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        display: block;
+        margin-bottom: 8px;
+        font-size: 1.1rem;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .analysis-section {
+        margin-bottom: 20px;
+    }
+    .rule-block {
+        background: #fff;
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+    .rule-header {
+        font-weight: bold;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+    .icon {
+        margin-right: 8px;
+    }
+    .correct-answer {
+        background: var(--correct-bg);
+        color: var(--correct-text);
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 15px;
+        border: 1px solid #c3e6cb;
+    }
+    .distractor {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 10px;
+        padding-left: 10px;
+        border-left: 3px solid #ddd;
+    }
+    .exam-tip {
+        background: #fff3cd;
+        color: #856404;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 25px;
+        font-size: 0.95rem;
+        border: 1px solid #ffeeba;
+    }
+    .footer {
+        text-align: center;
+        font-size: 0.8rem;
+        color: #999;
+        padding: 20px;
+        border-top: 1px solid #eee;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE Contracts 解析</h1>
+        <div class="subtitle">Accord and Satisfaction (和解与清偿)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点介绍 -->
+        <div class="concept-box">
+            <span class="concept-title">📚 核心考点：和解与清偿</span>
+            本题考察的是合同法中关于债务解除的机制，特别是<span class="term">Accord and Satisfaction</span>（和解与清偿）以及<span class="term">Consideration</span>（对价）在解决争议债务中的应用。
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="analysis-section">
+            <h3>⚖️ 法律规则解析</h3>
+            <p>在普通法下，要通过支付较少金额来解除全部债务，必须满足以下条件：</p>
+            
+            <div class="rule-block">
+                <div class="rule-header">
+                    <span class="icon">🚫</span> 一般原则 (Pre-existing Duty Rule)
+                </div>
+                <p>如果债务是<strong>确定且无争议的 (Liquidated and Undisputed)</strong>，债务人承诺支付少于欠款的金额，不能构成免除剩余债务的有效对价。债权人收钱后仍可追讨余额。</p>
+            </div>
+
+            <div class="rule-block" style="border-color: var(--accent-color);">
+                <div class="rule-header" style="color: var(--accent-color);">
+                    <span class="icon">✅</span> 本题例外：善意争议 (Good Faith Dispute)
+                </div>
+                <p>如果双方对债务金额存在<strong>善意争议 (Good Faith Dispute)</strong>，或者债务金额<strong>未确定 (Unliquidated)</strong>：</p>
+                <p>双方达成协议支付一个折衷金额（Accord），并实际支付（Satisfaction），则原合同义务被解除。</p>
+                <p><strong>关键点：</strong>争议必须是“善意”的，但不要求争议方在事实上是正确的。</p>
+            </div>
+        </div>
+
+        <!-- 案情应用 -->
+        <div class="analysis-section">
+            <h3>🔍 案情应用</h3>
+            <p>在本案中：</p>
+            <ol>
+                <li><strong>原合同：</strong>总价 $50,000。</li>
+                <li><strong>争议：</strong>房主<strong>善意地相信 (Honestly believed)</strong> 工程有瑕疵。尽管事实上承包商完全履行了合同，但房主的主观信念是诚实的。</li>
+                <li><strong>和解：</strong>房主提议支付 $35,000 以了结全部索赔，承包商接受并收到了款项。</li>
+            </ol>
+            <p>因为存在<strong>善意争议</strong>，房主放弃“拒绝付款并在法庭上抗辩”的权利，这就是一种法律上的受损（Legal Detriment），构成了新协议的<strong>对价 (Consideration)</strong>。</p>
+        </div>
+
+        <!-- 正确答案 -->
+        <div class="correct-answer">
+            <strong>✅ 正确答案：选项 A</strong>
+            <br><br>
+            承包商<strong>不会胜诉</strong>。因为房主对欠款金额提出了<strong>善意争议 (Good Faith Dispute)</strong>。这使得 $35,000 的支付成为了有效的和解对价，从而解除了剩余的债务。
+        </div>
+
+        <!-- 错误选项分析 -->
+        <div class="analysis-section">
+            <h3>❌ 为什么其他选项是错的？</h3>
+            
+            <div class="distractor">
+                <strong>选项 B (错误)：</strong>
+                虽然工程的合理价值是 $35,000，但这属于不当得利或准合同（Restitution/Quasi-contract）的概念。本案中有有效的合同和有效的和解协议，应直接执行协议约定，而非按市场价值计算。
+            </div>
+
+            <div class="distractor">
+                <strong>选项 C (错误)：</strong>
+                此选项涉及“禁止反言” (Promissory Estoppel)。只有在没有有效合同（缺乏对价）时才考虑此原则。这里已经形成了有效的和解合同（有对价），因此不需要援引禁止反言。
+            </div>
+
+            <div class="distractor">
+                <strong>选项 D (错误)：</strong>
+                这是最强的干扰项。它陈述了“既存义务原则”（支付已欠的钱不是对价）。但它忽略了本题的关键事实：<strong>争议的存在</strong>。如果房主没有善意争议，选项D就是对的。但在有争议的情况下，妥协本身就是对价。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧</strong>
+            <br>
+            看到“支付较少金额以结清全款”的题目时，立即寻找关键词：
+            <br>
+            1. <strong>"Honestly believed"</strong> 或 <strong>"Good faith dispute"</strong> ➡️ 和解有效，余额不可追讨。
+            <br>
+            2. <strong>"Admitted he owed"</strong> 或无争议事实 ➡️ 和解无效（缺乏对价），余额可追讨。
+            <br>
+            不要纠结于房主的看法是否符合客观事实，只要他是<strong>诚实</strong>的，争议就是有效的。
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Contracts Review | QID: Q81829
+    </div>
+</div>
+
+</body>
+</html>

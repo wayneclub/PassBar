@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: transparent;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary-color);
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+            margin-bottom: 0;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .sub-header {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e1ecf4;
+            color: #2c3e50;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .concept-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #f57c00;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .analysis-step strong {
+            color: var(--primary-color);
+        }
+        .option-analysis {
+            margin-top: 10px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        .option {
+            margin-bottom: 8px;
+            padding: 8px;
+            border-radius: 6px;
+        }
+        .option.correct {
+            background-color: rgba(39, 174, 96, 0.1);
+            border-left: 3px solid var(--correct-color);
+        }
+        .option.wrong {
+            background-color: rgba(192, 57, 43, 0.05);
+            border-left: 3px solid var(--wrong-color);
+            color: #7f8c8d;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+        .mbe-tip {
+            background-color: #e8f6f3;
+            border: 1px solid #d1f2eb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .mbe-tip-title {
+            color: var(--correct-color);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header Card -->
+    <div class="card" style="padding: 0; border: none;">
+        <div class="header">
+            <h2>MBE 考点解析</h2>
+            <div class="sub-header">Torts (侵权法) - Strict Liability</div>
+        </div>
+        <div style="padding: 20px;">
+            <span class="tag">Abnormally Dangerous Activities</span>
+            <p>本题考查的核心是<b>严格责任 (Strict Liability)</b> 在<b>异常危险活动 (Abnormally Dangerous Activities)</b> 中的应用。</p>
+        </div>
+    </div>
+
+    <!-- Core Legal Concept -->
+    <div class="card">
+        <div class="concept-box">
+            <span class="concept-title">⚖️ 核心法则：严格责任</span>
+            <p>从事<b>异常危险活动</b>的被告，对该活动造成的伤害承担<b>严格责任</b>，无论其是否尽到了合理的注意义务 (Reasonable Care)。</p>
+            <hr style="border: 0; border-top: 1px dashed #ffe0b2; margin: 10px 0;">
+            <p style="font-size: 0.9rem;">
+                <b>判定标准 (Restatement of Torts):</b><br>
+                1. 该活动存在造成严重伤害的<b>高度风险</b> (High risk of serious harm)；<br>
+                2. 这种风险<b>无法通过合理的注意来消除</b> (Cannot be eliminated by reasonable care)；<br>
+                3. 该活动在所在社区<b>不常见</b> (Not a matter of common usage)。
+            </p>
+        </div>
+    </div>
+
+    <!-- Case Analysis -->
+    <div class="card">
+        <h3>案例分析逻辑</h3>
+        
+        <div class="analysis-step">
+            <strong>1. 识别活动性质：</strong><br>
+            题目中涉及使用“剧毒化学品”进行熏蒸 (Fumigation)。在法律上，熏蒸与爆破 (Blasting)、饲养野生动物 (Wild Animals) 一样，被视为典型的异常危险活动。
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 排除“注意义务”抗辩：</strong><br>
+            题目特意强调熏蒸公司进行了“彻底检查”(Thorough inspection) 且该漏洞“难以发现”。<br>
+            <span class="highlight">这是 MBE 的典型陷阱。</span> 在严格责任下，被告即使尽到了<b>最高程度的注意 (Utmost Care)</b>，如果危险发生并造成伤害，被告依然要负责。
+        </div>
+
+        <div class="analysis-step">
+            <strong>3. 结论：</strong><br>
+            因为熏蒸是异常危险活动，且原告的伤害直接源于该活动的风险（毒气泄漏），所以公司必须承担责任。
+        </div>
+    </div>
+
+    <!-- Options Breakdown -->
+    <div class="card">
+        <h3>选项解析</h3>
+        
+        <div class="option correct">
+            <strong>✅ 选项 C (正确答案)</strong><br>
+            "Yes, because the fumigation company can be held strictly liable for its activity."<br>
+            <small>这是对法律规则的直接应用。熏蒸属于异常危险活动，适用严格责任。</small>
+        </div>
+
+        <div class="option wrong">
+            <strong>❌ 选项 B (常见干扰项)</strong><br>
+            "No, because the fumigation company exercised a high level of care."<br>
+            <small>错误。尽到注意义务 (High level of care) 是针对<b>过失侵权 (Negligence)</b> 的抗辩，但在严格责任案件中无效。</small>
+        </div>
+
+        <div class="option wrong">
+            <strong>❌ 选项 A (责任转移)</strong><br>
+            "No, because the condominium complex owners..."<br>
+            <small>错误。虽然业主可能有过失，但这不能免除从事异常危险活动者的严格责任。严格责任关注的是活动的性质，而非他人的过失。</small>
+        </div>
+
+        <div class="option wrong">
+            <strong>❌ 选项 D (法律理论错误)</strong><br>
+            "...stream of commerce"<br>
+            <small>错误。这是<b>产品责任 (Products Liability)</b> 的术语。熏蒸公司提供的是服务 (Service)，而非销售产品。</small>
+        </div>
+    </div>
+
+    <!-- MBE Strategy Tip -->
+    <div class="mbe-tip">
+        <div class="mbe-tip-title">
+            <span>💡</span> MBE 考试技巧
+        </div>
+        <p style="font-size: 0.9rem; margin-top: 10px;">
+            当你看到以下关键词时，立即联想 <b>Strict Liability</b>：
+        </p>
+        <ul style="font-size: 0.9rem; padding-left: 20px;">
+            <li><b>Blasting / Explosives</b> (爆破/炸药)</li>
+            <li><b>Fumigation / Toxic Chemicals</b> (熏蒸/剧毒化学品)</li>
+            <li><b>Wild Animals</b> (野生动物，如狮子、老虎)</li>
+        </ul>
+        <p style="font-size: 0.9rem;">
+            <b>切记：</b> 如果题目问这类被告是否负责，且选项中有“因为他尽到了合理的注意”而免责的说法，该选项<b>几乎总是错的</b>。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

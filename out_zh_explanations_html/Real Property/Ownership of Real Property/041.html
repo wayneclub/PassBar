@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：指定权的行使</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机宽度 */
+            width: 100%;
+            background: transparent;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .header .sub-tag {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        .diagram {
+            background: var(--highlight-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin: 15px 0;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .arrow {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .explanation-text {
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        .option-analysis {
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .option-wrong {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .option-correct {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .exam-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <span class="sub-tag">Real Property (不动产法)</span>
+        <span class="sub-tag">Power of Appointment (指定权)</span>
+    </div>
+
+    <!-- 核心图解 -->
+    <div class="card">
+        <div class="concept-title">权益流转图解</div>
+        <div class="diagram">
+            <div><b>设立人 (Man)</b></div>
+            <div class="arrow">↓</div>
+            <div><b>信托 (Trust)</b></div>
+            <div class="arrow">↓</div>
+            <div><b>妻子 (Wife)</b><br><small>终身权益 (Life Estate) + 指定权 (Power of Appointment)</small></div>
+            <div class="arrow">↙ &nbsp; &nbsp; ↘</div>
+            <div style="display: flex; justify-content: space-between;">
+                <div style="width: 48%; border: 1px dashed #999; padding: 5px;">
+                    <small>若行使权利：</small><br>
+                    <b>指定受益人</b><br>
+                    (女儿?)
+                </div>
+                <div style="width: 48%; border: 1px solid #333; padding: 5px;">
+                    <small>若未行使 (Default)：</small><br>
+                    <b>继子 (Son)</b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 正确答案解析 -->
+    <div class="card">
+        <div class="concept-title">正确答案解析 (选项 A)</div>
+        <div class="explanation-text">
+            <p>本题的核心争议点在于：<b>遗嘱中的“剩余财产条款”(Residuary Clause) 是否足以行使“指定权”(Power of Appointment)？</b></p>
+            
+            <p>妻子拥有通过遗嘱分配信托资产的权利。如果她不行使该权利，资产将自动归继子所有。妻子的遗嘱中写道：“我将我的<b>全部遗产(entire estate)</b>赠与我的女儿”。</p>
+            
+            <ul>
+                <li><b>普通法原则 (Common Law)：</b> 通常认为，仅提及“全部遗产”的剩余财产条款<b>不足以</b>行使指定权。必须明确提及该权利或信托资产。</li>
+                <li><b>本题的逻辑陷阱：</b> 题目问的是“<b>如果法院裁定女儿胜诉</b>，理由是什么？”</li>
+            </ul>
+
+            <p>这意味着我们需要找到一个法律理由来支持“女儿胜诉”这一结果。唯一能让女儿胜诉的理由是：该司法管辖区的法院将“全部遗产”这一表述解释为包含了信托资产（即行使了指定权）。</p>
+            
+            <p><span class="option-correct">选项 A 正确</span>：因为它提供了支持判决结果的法律解释——即法院认定遗嘱中的概括性语言足以行使指定权。</p>
+        </div>
+    </div>
+
+    <!-- 错误选项分析 -->
+    <div class="card">
+        <div class="concept-title">干扰项排除</div>
+        <div class="option-analysis">
+            <p><span class="option-wrong">选项 B (RAP)：</span><br>
+            虽然反永久所有权规则 (RAP) 适用于指定权，但本案中妻子的权利是“目前可行使的”或在死后立即生效，且受益人（女儿）也是确定的。权益在妻子死亡时立即归属，没有违反 RAP。RAP 不是判决理由。</p>
+
+            <p><span class="option-wrong">选项 C (Intent)：</span><br>
+            仅有剥夺继承权的意图（“不给继子”）通常不足以构成指定权的有效行使。指定权需要积极地“指定”资产去向，而不仅仅是说“不给谁”。法律看重的是处分行为的有效性，而非单纯的负面意图。</p>
+
+            <p><span class="option-wrong">选项 D (Merger)：</span><br>
+            <b>合并原则 (Doctrine of Merger)</b> 通常指当终身权益和剩余权益（或完全所有权）归于同一人时发生合并。但在这里，妻子拥有的是“终身权益 + 指定权”，这并不等同于拥有完全所有权 (Fee Simple)。因此不会发生合并。</p>
+        </div>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="exam-tip">
+        <b>💡 考试技巧 (Exam Tip)</b><br>
+        注意题干的提问方式：“<b>If the court rules for X...</b>”（如果法院判 X 胜诉...）。
+        <br><br>
+        这类题目<b>不是</b>让你预测谁会赢，而是让你进行<b>逆向推理</b>：假设结果已经确定，哪个法律原则是该结果的必要前提？即使该原则可能是少数派规则 (Minority Rule)，只要它是导致该结果的唯一逻辑路径，它就是正确答案。
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机宽度 */
+            width: 100%;
+            background-color: var(--bg-color);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.4em;
+        }
+
+        .header .sub-title {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .answer-box {
+            background-color: #e8f8f5;
+            border: 2px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .answer-box strong {
+            color: var(--correct-color);
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .concept-block {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .english-term {
+            font-family: "Georgia", serif;
+            font-style: italic;
+            color: #555;
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 0.85em;
+        }
+
+        .diagram-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .arrow {
+            font-size: 1.5em;
+            color: var(--accent-color);
+            padding: 0 10px;
+        }
+
+        .wrong-option {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+            border-top: 1px dashed #ccc;
+            padding-top: 10px;
+        }
+
+        .wrong-label {
+            color: var(--wrong-color);
+            font-weight: bold;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            margin-right: 5px;
+        }
+
+        .footer-tip {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 0.9em;
+        }
+
+        .footer-tip h4 {
+            margin: 0 0 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 5px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 标题部分 -->
+    <div class="card header">
+        <h2>MBE 考题解析</h2>
+        <div class="sub-title">Constitutional Law / Criminal Procedure</div>
+        <div class="sub-title">Topic: Search & Seizure / Self-Incrimination</div>
+    </div>
+
+    <!-- 正确答案展示 -->
+    <div class="answer-box">
+        <strong>正确答案：选项 C</strong>
+        <span style="font-size: 0.9em;">Yes, because the salesman's consent was not obtained by intentional police misconduct...</span>
+    </div>
+
+    <!-- 核心考点解析 -->
+    <div class="card">
+        <h3 style="color: var(--primary-color); margin-top: 0;">核心考点深度解析</h3>
+        
+        <!-- 考点 1: 第四修正案 -->
+        <div class="concept-block">
+            <span class="concept-title">1. 第四修正案：同意搜查 (Consent Search)</span>
+            <p>
+                本题的关键在于判断被告的“同意”是否有效。根据 <span class="english-term">Fourth Amendment</span>，警方在获得有效同意的情况下可以进行无证搜查。
+            </p>
+            <p>
+                <b>法律标准：</b>同意必须是<b>自愿的 (Voluntary)</b>，即没有警方的胁迫 (<span class="english-term">Coercion</span>)。
+            </p>
+            <p>
+                <b>误区警示：</b>法律<b>不要求</b>“知情同意” (<span class="english-term">Informed Consent</span>)。
+            </p>
+            <ul>
+                <li>警方不需要告知嫌疑人他有权拒绝。</li>
+                <li>嫌疑人不需要确切记得家里有什么罪证。</li>
+            </ul>
+            <p>
+                <b>本案分析：</b>虽然被告有记忆障碍，但警方并不知道这一点，也没有利用这一点进行胁迫。在“总体情况” (<span class="english-term">Totality of the Circumstances</span>) 下，他的同意是自愿的。
+            </p>
+        </div>
+
+        <!-- 考点 2: 第五修正案 -->
+        <div class="concept-block" style="border-left-color: #9b59b6;">
+            <span class="concept-title">2. 第五修正案：反对自证其罪 (Self-Incrimination)</span>
+            <p>
+                被告律师辩称日记违反了 <span class="english-term">Fifth Amendment</span>。这个论点是错误的。
+            </p>
+            
+            <div class="diagram">
+                <div class="diagram-item">
+                    <div>✍️<br><b>自愿书写</b></div>
+                    <div style="font-size:0.7em; color:#7f8c8d;">(非强迫制作)</div>
+                </div>
+                <div class="arrow">+</div>
+                <div class="diagram-item">
+                    <div>👮‍♂️<br><b>合法搜查</b></div>
+                    <div style="font-size:0.7em; color:#7f8c8d;">(非强迫提交)</div>
+                </div>
+                <div class="arrow">=</div>
+                <div class="diagram-item">
+                    <div>✅<br><b>可采纳</b></div>
+                </div>
+            </div>
+
+            <p>
+                <b>原理：</b>第五修正案保护的是<b>“被强迫的” (Compelled)</b> 证言。
+            </p>
+            <ul>
+                <li>被告写日记时是自愿的（没有警察拿枪指着他写）。</li>
+                <li>警方获取日记是通过合法的搜查（Consent Search），而不是通过传票强迫被告“交出”日记。</li>
+            </ul>
+            <p>因此，日记作为证据不违反第五修正案。</p>
+        </div>
+    </div>
+
+    <!-- 干扰项分析 -->
+    <div class="card">
+        <h3 style="color: var(--primary-color); margin-top: 0;">为什么其他选项是错的？</h3>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 A (Competence)</span>
+            <p><b>错误理由：</b> 精神或神经问题本身不会自动导致同意无效。只有当警方<b>利用</b>这种精神状态进行胁迫，或者该状态导致当事人完全无法理解其行为性质时才无效。本案中警方不知情，且无胁迫行为。</p>
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 B (Privilege)</span>
+            <p><b>错误理由：</b> 如上所述，第五修正案不保护在合法搜查中被扣押的、自愿撰写的私人文件。</p>
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 D (Good Faith)</span>
+            <p><b>错误理由：</b> <span class="english-term">Good-faith exception</span> 通常适用于警方依赖了一份后来被判定无效的<b>搜查令 (Warrant)</b> 的情况。本案是<b>无证搜查 (Warrantless Search)</b>，依据的是同意，因此该例外原则不适用（也不需要适用，因为搜查本身就是合法的）。</p>
+        </div>
+    </div>
+
+    <!-- 考试技巧总结 -->
+    <div class="footer-tip">
+        <h4>🎓 MBE 考试通关秘籍</h4>
+        <p>
+            <b>1. 区分 "Voluntary" vs. "Informed"：</b><br>
+            在 Fourth Amendment 同意搜查中，只要没有胁迫 (Coercion) 就是有效的。不要被“嫌疑人不知道后果”或“嫌疑人记性不好”所迷惑。
+        </p>
+        <p>
+            <b>2. 私人文件的获取方式：</b><br>
+            如果是警方搜出来的（Search），通常不涉及第五修正案问题；如果是强迫被告交出来的（Subpoena），才可能涉及第五修正案的“强迫性行为”。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

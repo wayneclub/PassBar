@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --danger-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+            margin-bottom: 15px;
+            margin-top: 25px;
+            font-size: 1.1rem;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .concept-box {
+            background-color: #eef7fb;
+            border: 1px solid #cce5ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--danger-color);
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: #777;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .timeline-content {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+
+        .answer-analysis {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+
+        .option.correct {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .option.wrong {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+            opacity: 0.8;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .badge-en {
+            background-color: #e2e6ea;
+            color: #495057;
+            font-family: monospace;
+        }
+
+        .mbe-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .mbe-tip-title {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .icon {
+            margin-right: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Contracts: Defenses to Enforceability</div>
+    </div>
+
+    <div class="content">
+        
+        <div class="section-title">核心考点：胁迫 (Duress)</div>
+        <div class="concept-box">
+            <p>在合同法中，如果一方因受到胁迫而签署合同，该合同的可执行性会受到影响。MBE常考两种类型的胁迫：</p>
+            <ol>
+                <li>
+                    <b>物理强制 (Physical Compulsion)</b><br>
+                    <span class="badge badge-en">Void</span><br>
+                    如果一方是被物理力量强迫签署（例如：抓住手强行签字），合同<b>自始无效</b>。
+                </li>
+                <li>
+                    <b>不当威胁 (Improper Threat)</b><br>
+                    <span class="badge badge-en">Voidable</span><br>
+                    如果一方受到不当威胁（如死亡、重伤威胁），且<b>没有合理的替代选择</b>只能屈服，合同<b>可撤销</b>。
+                </li>
+            </ol>
+            <p><b>关键要素：</b>威胁必须在<b>缔约时 (at the time of contracting)</b> 实际诱导了当事人的同意。</p>
+        </div>
+
+        <div class="section-title">案情时间线分析</div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">周六 (Saturday)</div>
+                <div class="timeline-content">
+                    丈夫挥舞剪刀威胁妻子，要求她承诺在周末前签字。<br>
+                    <span class="highlight">⚠️ 此时存在严重的身体伤害威胁。</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">周一 (Monday)</div>
+                <div class="timeline-content">
+                    妻子<b>独自 (alone)</b> 前往公证处。<br>
+                    公证员询问意愿，她签署了文件。<br>
+                    <span class="highlight">✅ 此时丈夫不在场，直接的物理威胁已消失。</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">答案解析</div>
+        <div class="answer-analysis">
+            <div class="option correct">
+                <span class="badge">正确答案 D</span>
+                <b>可以，因为当妻子签署抵押贷款申请书时，她已不再处于胁迫之下。</b>
+                <hr style="border: 0; border-top: 1px solid #c3e6cb; margin: 8px 0;">
+                <p>虽然周六发生了严重的威胁，但合同是在周一签署的。此时妻子独自一人，丈夫不在场，剪刀也不在眼前。法律上认为，当她前往公证处时，<b>即刻的威胁 (imminent threat)</b> 已经移除，她有机会寻求帮助或拒绝签署（即有了“合理的替代选择”）。因此，她在签署那一刻的主观意愿被视为未受法律意义上的“胁迫”控制。</p>
+            </div>
+
+            <div class="option wrong">
+                <span class="badge">选项 A 错误</span>
+                <b>物理强制 (Physical Compulsion)</b>
+                <p>这仅适用于极端的物理控制（如抓住手签字）。本案中丈夫是进行口头恐吓和挥舞剪刀，属于“威胁”而非“物理强制”。</p>
+            </div>
+
+            <div class="option wrong">
+                <span class="badge">选项 B 错误</span>
+                <b>威胁的即刻性 (Imminence)</b>
+                <p>虽然丈夫确实威胁了身体伤害，但该威胁必须在<b>签署合同的那一刻</b>是即刻且有效的。周一签署时，威胁已不再紧迫。</p>
+            </div>
+        </div>
+
+        <div class="mbe-tip">
+            <div class="mbe-tip-title">
+                <span class="icon">💡</span> 考试技巧 (Exam Tip)
+            </div>
+            <p>在处理 <b>Duress (胁迫)</b> 考题时，请务必检查<b>时间差</b>和<b>因果关系</b>：</p>
+            <ul>
+                <li>如果威胁发生在 T1，签字发生在 T2，且中间受害人有逃脱或寻求法律保护的机会，通常不构成足以抗辩合同执行的胁迫。</li>
+                <li>区分 <b>Void (无效)</b> 和 <b>Voidable (可撤销)</b>：只有极端的物理强制才导致合同直接无效；大多数威胁导致合同可撤销。</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

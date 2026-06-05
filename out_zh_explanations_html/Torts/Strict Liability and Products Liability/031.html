@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: #e8f8f5;
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            color: var(--correct-color);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .concept-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .wrong-option {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .wrong-label {
+            color: var(--wrong-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #999;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">侵权法：产品责任与因果关系</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：C</span>
+            <strong>是的，因为介入性过失行为通常被认为是可预见的。</strong>
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">核心法律规则</div>
+        <div class="concept-card">
+            <p>本题考查的是过失侵权（Negligence）中的<strong>近因（Proximate Cause）</strong>和<strong>介入行为（Intervening Acts）</strong>。</p>
+            <p>在产品责任的过失诉讼中，原告必须证明被告的行为是造成伤害的“近因”。</p>
+            <p><strong>关键规则：</strong>如果一个第三方的介入行为（即使是过失行为）是<strong>合理可预见的（Reasonably Foreseeable）</strong>，那么它<strong>不会</strong>切断被告的责任链条。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="section-title">案情逻辑分析</div>
+        <p>
+            1. <strong>过失（Breach of Duty）：</strong> 原告已经证明制造商在设计面具时未包含安全带（Safety Harness），这构成了设计上的缺乏合理注意。
+        </p>
+        <p>
+            2. <strong>介入行为（Intervening Act）：</strong> 顾客意外绊倒员工，导致员工摔倒。这是一个第三方的过失行为。
+        </p>
+        <p>
+            3. <strong>可预见性（Foreseeability）：</strong> 在游乐园这种拥挤的环境中，佩戴视线受阻或笨重面具的人被绊倒或摔倒是高度可预见的。
+        </p>
+        <p>
+            4. <strong>结论：</strong> 既然摔倒是可预见的，制造商就有义务设计产品以减轻摔倒带来的伤害（如安装安全带）。顾客的绊倒行为虽然是介入因素，但因为它是可预见的，所以它不是<strong>取代性原因（Superseding Cause）</strong>，制造商仍需负责。
+        </p>
+
+        <!-- 干扰项排除 -->
+        <div class="section-title">为什么其他选项是错的？</div>
+        
+        <div class="wrong-option">
+            <span class="wrong-label">选项 A 错误</span>
+            <p><strong>理由：</strong>它错误地认为任何介入性过失都会切断责任。法律规定，只有<strong>不可预见（Unforeseeable）</strong>的介入行为才会切断因果关系链。</p>
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 B 错误</span>
+            <p><strong>理由：</strong>这是一个经典的 MBE 陷阱。<strong>符合政府标准（Compliance with Statutes）</strong>只是证明被告尽到了注意义务的<strong>证据（Evidence）</strong>，但不是<strong>决定性的（Conclusive）</strong>。陪审团仍可以认定，尽管符合标准，该设计在普通法下仍是不合理的。</p>
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 D 错误</span>
+            <p><strong>理由：</strong>虽然“商业销售者”身份在<strong>严格产品责任（Strict Products Liability）</strong>中至关重要，但本题是<strong>过失（Negligence）</strong>诉讼。在过失诉讼中，核心是“注意义务”和“因果关系”，而不是销售者的商业身份。此外，这个选项没有回应题目中关于“介入行为”的核心抗辩。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">MBE 考试技巧</div>
+        <div class="concept-card" style="border-left: 4px solid var(--accent-color);">
+            <p><strong>区分 Negligence 和 Strict Liability：</strong></p>
+            <ul>
+                <li>看到 <strong>Negligence</strong>（过失）诉讼，重点找 Duty, Breach, Causation。</li>
+                <li>看到 <strong>Strict Liability</strong>（严格责任），重点找 Defect（缺陷）和 Commercial Seller（商业销售者）。</li>
+            </ul>
+            <p><strong>关于因果关系：</strong> 永远问自己“这个意外发生的方式是否令人惊讶？”如果仅仅是普通的过失（如绊倒、车祸、医疗事故），通常都是<strong>可预见的</strong>，不会切断被告的责任。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

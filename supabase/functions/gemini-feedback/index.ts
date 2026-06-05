@@ -42,7 +42,7 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
-const fallbackModels = ['gemini-2.5-flash'];
+const fallbackModels = ['gemini-3.5-flash'];
 
 function json(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), {

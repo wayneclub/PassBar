@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .highlight {
+            background-color: var(--highlight-bg);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .rule-box {
+            background-color: #fdf2f2;
+            border-left-color: #e74c3c;
+        }
+
+        .rule-box h2 {
+            color: #c0392b;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- 标题区域 -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence: Expert Testimony<br>(证据法：专家证言)</div>
+    </div>
+
+    <!-- 核心考点解析 -->
+    <div class="card">
+        <h2>✅ 正确答案解析 (Choice C)</h2>
+        <p>本题的核心考点是<b>专家证言的可采性 (Admissibility of Expert Testimony)</b>。</p>
+        <p>根据《联邦证据规则》第702条 (FRE 702)，专家证言若要被法庭采纳，必须同时满足两个核心条件：</p>
+        <ol>
+            <li><b>相关性 (Relevance/Helpfulness)：</b> 专家的专业知识必须能帮助事实审理者（陪审团）理解证据或确定争议事实。</li>
+            <li><b>可靠性 (Reliability)：</b> 基于充分的事实、可靠的方法，并正确应用了该方法。</li>
+        </ol>
+        <p><b>在本案中：</b></p>
+        <ul>
+            <li>题目明确假设专家使用了<span class="highlight">可靠的方法 (reliable method)</span>，因此满足可靠性要求。</li>
+            <li>专家的结论关于“刀片是否会飞出”，直接关系到因果关系 (Causation) 这一核心争议点，因此对陪审团非常有帮助，满足相关性要求。</li>
+        </ul>
+        <p>因此，法院应当采纳该证言。</p>
+    </div>
+
+    <!-- 陷阱排除 -->
+    <div class="card rule-box">
+        <h2>🚫 常见陷阱与错误选项</h2>
+        
+        <p><b>1. 最终争议点规则 (Ultimate Issue Rule) - 选项 A</b></p>
+        <p>这是一个经典的 MBE 干扰项。根据 <b>FRE 704</b>，专家证人<span class="highlight">可以</span>就“最终争议点”发表意见（除了刑事案件中被告的精神状态）。</p>
+        <p>以前的普通法确实禁止此类证言，但现代证据规则已废除此限制。因此，专家直接说“产品设计没有导致事故”是可以的。</p>
+
+        <p><b>2. 有偿证言 (Paid Testimony) - 选项 B</b></p>
+        <p>支付专家费用是法律行业的标准操作。只要不是“基于特定结果支付报酬”（例如：只有赢了官司才给钱），支付合理的专家费并不违反规则。</p>
+        <p>这种支付关系可能会影响专家的<b>可信度 (Credibility)</b>（陪审团可以因此不相信他），但这不影响证言的<b>可采性 (Admissibility)</b>。</p>
+
+        <p><b>3. 测试通知 (Notice of Testing) - 选项 D</b></p>
+        <p>虽然民事诉讼程序 (FRCP) 要求披露专家报告，但法律<b>并不要求</b>一方在进行实验或测试时必须邀请对方在场。</p>
+        <p>这种单方测试 (Ex parte testing) 是允许的。如果原告质疑测试结果，可以在法庭上交叉盘问专家，或者自己聘请专家进行测试。</p>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card" style="border-left-color: #27ae60;">
+        <h2>💡 MBE 考试技巧</h2>
+        <p>在处理专家证人题目时，请遵循以下思维路径：</p>
+        <ol>
+            <li><b>看资格：</b> 题目通常会说他是专家，或者列出其资历。</li>
+            <li><b>看方法：</b> 题目通常会像本题一样，直接告诉你“方法可靠” (Assume reliable method)，此时不要去质疑科学性。</li>
+            <li><b>看帮助性：</b> 只要能帮陪审团搞懂普通人不懂的事，就是可采的。</li>
+            <li><b>忽略“最终问题”干扰：</b> 除非是刑事被告的精神状态，否则专家可以直击要害。</li>
+        </ol>
+    </div>
+
+    
+
+</div>
+
+</body>
+</html>

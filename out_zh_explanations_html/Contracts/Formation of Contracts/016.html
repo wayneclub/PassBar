@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: #2c3e50;
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header .subtitle {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .concept-box {
+        background-color: #e8f4f8;
+        border-left: 5px solid #3498db;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: #2980b9;
+        margin-bottom: 8px;
+        display: block;
+    }
+    .step-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        position: relative;
+    }
+    .step-number {
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        background: #e74c3c;
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 24px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+    .term-highlight {
+        background-color: #fff3cd;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-weight: 600;
+    }
+    .english-term {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 0.9em;
+    }
+    .result-box {
+        background-color: #dff0d8;
+        border: 1px solid #d6e9c6;
+        color: #3c763d;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+    .wrong-options {
+        margin-top: 25px;
+        font-size: 0.9em;
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+    }
+    .wrong-title {
+        font-weight: bold;
+        color: #7f8c8d;
+        margin-bottom: 10px;
+    }
+    .tip-box {
+        background: #34495e;
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 0.9em;
+    }
+    .tip-icon {
+        font-size: 1.2em;
+        margin-right: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>UCC § 2-207 表格之战</h1>
+        <div class="subtitle">Battle of the Forms</div>
+    </div>
+
+    <div class="content">
+        <p>本题考察的是美国合同法中关于货物买卖最核心的考点之一：<strong>UCC § 2-207</strong>，即俗称的“表格之战”。</p>
+
+        <div class="concept-box">
+            <span class="concept-title">核心规则：UCC § 2-207(2)</span>
+            在<strong>商人 (Merchants)</strong> 之间，如果接受要约的回复中包含了<strong>新增条款 (Additional Terms)</strong>，这些条款会自动成为合同的一部分，<strong>除非</strong>：
+            <ol style="margin-left: -20px; margin-top: 10px;">
+                <li>要约明确限制了条款；</li>
+                <li>新增条款构成了<strong>重大变更 (Material Alteration)</strong>；</li>
+                <li>要约人及时提出了异议。</li>
+            </ol>
+        </div>
+
+        <h3>本案逻辑推演</h3>
+
+        <div class="step-card">
+            <div class="step-number">1</div>
+            <strong>合同是否成立？</strong><br>
+            <span class="term-highlight">是 (Yes)</span>。<br>
+            批发商发出了明确的接受函 ("We are pleased to accept...")。根据 UCC，除非接受函明确规定“必须同意新条款才算接受” (Expressly Conditional)，否则合同成立。本案中没有这种限制性语言。
+        </div>
+
+        <div class="step-card">
+            <div class="step-number">2</div>
+            <strong>新增条款的性质？</strong><br>
+            批发商增加了一个“最高赔偿额 $100”的条款。原合同标的额为 $10,000。将责任限制在 $100 极大地改变了风险分配和救济措施。
+        </div>
+
+        <div class="step-card">
+            <div class="step-number">3</div>
+            <strong>是否构成重大变更？</strong><br>
+            <span class="term-highlight">是 (Yes)</span>。<br>
+            法律认定，限制救济措施（尤其是限制到不合理的低价）属于 <span class="english-term">Material Alteration</span>。因为它会导致“意外或不合理的困难” (Surprise or Hardship)。
+        </div>
+
+        <div class="result-box">
+            结论：合同成立，但“重大变更”的条款被剔除。<br>
+            (Correct Answer: A)
+        </div>
+
+        <div class="wrong-options">
+            <div class="wrong-title">为什么其他选项是错的？</div>
+            <ul>
+                <li><strong>选项 B (错误)：</strong> 虽然 UCC 允许预定违约金 (Liquidated Damages)，但这里的问题不是条款本身是否合法，而是它是否能<strong>自动进入合同</strong>。由于它是重大变更，所以不能进入。</li>
+                <li><strong>选项 C (错误)：</strong> 在普通法 (Common Law) 下，新条款会导致合同不成立（镜像规则）。但在 UCC 下，只要接受意图明确，<strong>合同依然成立</strong>，只是新条款无效。</li>
+                <li><strong>选项 D (错误)：</strong> 除非接受是“明确以同意新条款为条件” (Expressly Conditional)，否则零售商的沉默或未明确同意不会阻止合同成立。</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <span class="tip-icon">💡</span> <strong>MBE 考试技巧</strong><br>
+            看到 <strong>Sale of Goods (货物买卖)</strong> + <strong>Merchants (商人)</strong> + <strong>Standard Forms (标准表格)</strong>，立即启动 <strong>UCC § 2-207</strong> 分析模式：
+            <br><br>
+            1. 只要没有 "Expressly Conditional"，合同就成立。<br>
+            2. 问自己：新条款是否改变了风险或救济？如果是（如免责条款、仲裁条款），它就是 Material Alteration，会被踢出合同。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

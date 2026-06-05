@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --danger-color: #e74c3c;
+            --success-color: #27ae60;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .verdict-box {
+            background-color: #e8f8f5;
+            border: 1px solid var(--success-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .verdict-title {
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .verdict-answer {
+            font-size: 18px;
+            font-weight: 800;
+            color: #2c3e50;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+            margin: 20px 0 10px 0;
+        }
+        .concept-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-header {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .rule-highlight {
+            background-color: #fef9e7;
+            border-left: 3px solid #f1c40f;
+            padding: 10px;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        .danger-zone {
+            background-color: #fdecea;
+            border-left: 3px solid var(--danger-color);
+            padding: 10px;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        .analysis-step {
+            display: flex;
+            margin-bottom: 12px;
+        }
+        .step-number {
+            background-color: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .step-text {
+            font-size: 14px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Criminal Law / Homicide</div>
+    </div>
+
+    <div class="content">
+        <!-- 结论部分 -->
+        <div class="verdict-box">
+            <span class="verdict-title">正确判决 (Verdict)</span>
+            <div class="verdict-answer">一级谋杀罪成立<br>(Guilty of First-Degree Murder)</div>
+        </div>
+
+        <p style="font-size: 14px; color: #555;">
+            本题考察的核心是<b>胁迫 (Duress)</b> 是否可以作为<b>故意杀人 (Intentional Homicide)</b> 的抗辩理由。
+        </p>
+
+        <!-- 法律分析步骤 -->
+        <div class="section-title">法律逻辑分析</div>
+        
+        <div class="analysis-step">
+            <div class="step-number">1</div>
+            <div class="step-text">
+                <strong>确定犯罪构成 (Elements of Crime):</strong><br>
+                题目定义一级谋杀为“故意且有预谋的杀人” (Intentional Premeditated Killing)。
+                <ul>
+                    <li><b>故意 (Intent):</b> 被告开枪打死受害者，具有杀人意图。</li>
+                    <li><b>预谋 (Premeditation):</b> 威胁发生在“前一天”，杀人发生在“第二天”。被告有充分的时间进行冷静思考 (Cool reflection)，符合预谋的定义。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-number">2</div>
+            <div class="step-text">
+                <strong>分析抗辩事由 (Defenses):</strong><br>
+                被告是在生命受到威胁的情况下杀人的。这通常涉及<b>胁迫 (Duress)</b>。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-number">3</div>
+            <div class="step-text">
+                <strong>应用“谋杀例外”规则 (The Murder Exception):</strong><br>
+                这是本题的考点。在普通法 (Common Law) 和大多数美国司法管辖区：
+                <div class="danger-zone">
+                    <b>关键规则：</b>胁迫 (Duress) 永远不能作为故意杀人罪 (Intentional Murder) 的抗辩事由。
+                </div>
+                法律的逻辑是：<b>一个人的生命并不比另一个人的生命更有价值。</b>即使面临死亡威胁，法律也不允许你通过杀害无辜的第三方来保全自己。
+            </div>
+        </div>
+
+        <!-- 为什么其他选项错误 -->
+        <div class="section-title">选项辨析</div>
+
+        <div class="concept-card">
+            <div class="concept-header">
+                <span>❌ 选项 B: 二级谋杀</span>
+            </div>
+            <p style="font-size: 13px; margin: 0;">
+                二级谋杀通常指没有预谋的故意杀人，或极度鲁莽的杀人 (Depraved Heart)。本案中，被告在前一天接到命令，第二天实施，明显具备<b>预谋 (Premeditation)</b>，因此符合一级谋杀的定义。
+            </p>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-header">
+                <span>❌ 选项 C: 胁迫 (Duress)</span>
+            </div>
+            <p style="font-size: 13px; margin: 0;">
+                如上所述，胁迫可以作为大多数犯罪（如抢劫、绑架）的抗辩，但<b>绝不适用于谋杀</b>。
+                <br><span class="latin">"Duress is no defense to murder."</span>
+            </p>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-header">
+                <span>❌ 选项 D: 紧急避险 (Necessity)</span>
+            </div>
+            <p style="font-size: 13px; margin: 0;">
+                紧急避险通常指为了避免更大的伤害（通常由自然力量引起）而不得不犯罪。
+                <br><b>理由：</b>
+                1. 杀害无辜者通常不被视为“较小的伤害” (Lesser evil)。
+                2. 与胁迫一样，紧急避险通常也不能作为故意杀害无辜者的抗辩。
+            </p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">MBE 考试锦囊</div>
+        <div class="rule-highlight">
+            <strong>💡 避坑指南：</strong>
+            <p style="margin-top: 5px;">
+                当你看到题目中有人被枪指着头（或受到严重威胁）被迫去杀人时，你的直觉可能会同情被告，认为他“别无选择”。
+            </p>
+            <p>
+                但在 MBE 刑法题中，必须坚持原则：<b>胁迫不能免除谋杀罪责。</b>
+            </p>
+            <p style="font-size: 12px; color: #666;">
+                *注：少数司法管辖区可能会将此情况下的谋杀减轻为故意杀人罪 (Voluntary Manslaughter)，但这属于“不完美胁迫” (Imperfect Duress)，除非题目明确提及相关法规，否则按普通法原则，谋杀罪名成立且不减轻。
+            </p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

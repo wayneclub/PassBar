@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .big-letter {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--correct-color);
+            float: left;
+            margin-right: 15px;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .concept-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .concept-card::before {
+            content: "⚖️";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+            opacity: 0.2;
+        }
+
+        .key-term {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .rule-box {
+            background-color: #f9f9f9;
+            border: 1px dashed #bbb;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+
+        .comparison {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .comp-item {
+            flex: 1;
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .comp-item.strict {
+            border-top: 3px solid var(--wrong-color); /* Hard to pass */
+        }
+
+        .comp-item.rational {
+            border-top: 3px solid var(--correct-color); /* Easy to pass */
+        }
+
+        .exam-tip {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .exam-tip-title {
+            font-weight: bold;
+            color: #1565c0;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考题解析</h1>
+        <div class="sub-title">Constitutional Law | Equal Protection</div>
+    </div>
+
+    <div class="content">
+        <!-- Answer Section -->
+        <div class="answer-box">
+            <span class="big-letter">D</span>
+            <div>
+                <span class="answer-label">正确答案</span>
+                该排除违宪，因为严格审查适用于此类基于国籍的州分类，且该州无法证明此分类为促进其强制性利益所必需。
+            </div>
+        </div>
+
+        <!-- Core Legal Analysis -->
+        <div class="section-title">核心考点解析</div>
+        
+        <div class="concept-card">
+            <h3>1. 州政府对外国人的分类 (State Alienage Classifications)</h3>
+            <p>根据第十四修正案的<b>平等保护条款 (Equal Protection Clause)</b>，当<b>州政府 (State)</b> 制定法律基于国籍（Alienage）进行区别对待时，通常被视为针对<b>可疑分类 (Suspect Class)</b> 的歧视。</p>
+            
+            <div class="rule-box">
+                <strong>一般规则：</strong><br>
+                州法律歧视合法居留的外国人 (Resident Aliens) 必须经受 <b>严格审查 (Strict Scrutiny)</b>。
+            </div>
+            
+            <p>这意味着州政府必须证明该法律是：</p>
+            <ul>
+                <li>为了实现<b>强制性州利益 (Compelling State Interest)</b></li>
+                <li>且手段是<b>必需的 (Necessary)</b> 或<b>狭义以此为目的 (Narrowly Tailored)</b>。</li>
+            </ul>
+            <p>在本案中，为了“省钱”或“鼓励人口增长”通常不足以成为歧视外国人的强制性理由，因此该法律违宪。</p>
+        </div>
+
+        <div class="concept-card">
+            <h3>2. 为什么其他选项是错误的？</h3>
+            <ul>
+                <li><b>选项 A (Rational Basis)：</b> 错误。合理基础测试仅适用于非可疑分类。虽然“省钱”是合法利益，但不能用来证明对可疑分类（外国人）的歧视是正当的。</li>
+                <li><b>选项 B (10th Amendment)：</b> 错误。第十修正案保留给州的权力不能违反宪法的其他部分（如第十四修正案）。州不能利用第十修正案来规避平等保护条款。</li>
+                <li><b>选项 C (Congressional Authorization)：</b> 这是一个干扰项。虽然国会拥有广泛的移民权力，但本题的核心在于司法审查的标准。即使没有国会授权，该法律违宪的根本原因是它未能通过严格审查。</li>
+            </ul>
+        </div>
+
+        <!-- Advanced Distinction -->
+        <div class="section-title">MBE 进阶辨析：谁在歧视？</div>
+        <p style="font-size: 0.9rem; color: #555;">这是 MBE 宪法题中最常见的陷阱，请务必区分主体：</p>
+
+        <div class="comparison">
+            <div class="comp-item strict">
+                <strong>🏛️ 州政府 (State)</strong><br>
+                <br>
+                <b>标准：严格审查</b><br>
+                (Strict Scrutiny)<br>
+                <br>
+                <small>例外：政治职能 (如警察、教师、陪审团) 适用合理基础测试。</small>
+            </div>
+            <div class="comp-item rational">
+                <strong>🇺🇸 联邦政府 (Congress)</strong><br>
+                <br>
+                <b>标准：合理基础</b><br>
+                (Rational Basis)<br>
+                <br>
+                <small>原因：国会对移民拥有完全权力 (Plenary Power)。</small>
+            </div>
+        </div>
+
+        <!-- Exam Strategy -->
+        <div class="exam-tip">
+            <div class="exam-tip-title">💡 考场解题思路</div>
+            <ol>
+                <li><b>识别分类：</b> 题目中出现了“公民 vs. 外国人”的区别对待 (Alienage Classification)。</li>
+                <li><b>识别主体：</b> 是谁在制定法律？是<b>州 (State)</b> 还是<b>联邦 (Federal)</b>？
+                    <ul>
+                        <li>本题是“某州 (a state)”。</li>
+                    </ul>
+                </li>
+                <li><b>检查例外：</b> 该法律是否涉及“民主自治过程”或“政治职能” (Political Function Exception)？
+                    <ul>
+                        <li>本题涉及发放现金奖励，不涉及投票或担任公职。</li>
+                    </ul>
+                </li>
+                <li><b>得出结论：</b> 州政府 + 非政治职能 = <b>严格审查 (Strict Scrutiny)</b>。</li>
+                <li><b>选择答案：</b> 寻找包含“Strict Scrutiny”、“Compelling Interest”或“Necessary”关键词的选项。</li>
+            </ol>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        MBE Constitutional Law Review | Q82125
+    </div>
+</div>
+
+</body>
+</html>

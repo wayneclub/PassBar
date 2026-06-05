@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --text-color: #333;
+        --border-radius: 8px;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+        font-size: 20px;
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 10px;
+        margin-top: 0;
+    }
+    h2 {
+        font-size: 16px;
+        color: var(--primary-color);
+        margin-top: 20px;
+        background-color: var(--highlight-bg);
+        padding: 8px;
+        border-radius: 4px;
+        border-left: 4px solid var(--accent-color);
+    }
+    p {
+        margin-bottom: 15px;
+        font-size: 15px;
+    }
+    .concept-box {
+        background-color: #fff8e1;
+        border: 1px solid #ffe0b2;
+        padding: 15px;
+        border-radius: var(--border-radius);
+        margin: 15px 0;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: #f57c00;
+        display: block;
+        margin-bottom: 5px;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .eng {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 0.9em;
+    }
+    .correct-answer {
+        color: #27ae60;
+        font-weight: bold;
+    }
+    .wrong-answer {
+        color: #c0392b;
+        text-decoration: line-through;
+    }
+    ul {
+        padding-left: 20px;
+    }
+    li {
+        margin-bottom: 8px;
+    }
+    .exam-tip {
+        background-color: #e8f8f5;
+        border: 1px dashed #27ae60;
+        padding: 15px;
+        border-radius: var(--border-radius);
+        margin-top: 20px;
+        font-size: 14px;
+    }
+    .badge {
+        display: inline-block;
+        padding: 2px 6px;
+        background: var(--primary-color);
+        color: #fff;
+        border-radius: 4px;
+        font-size: 12px;
+        margin-right: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：侵权法 (Torts)</h1>
+    
+    <p>本题考察的核心是<b>财产保卫权</b>与<b>紧急避险特权</b>之间的冲突与优先顺位。</p>
+
+    <p>正确答案是：<span class="correct-answer">C. Yes, because the pilot can invoke the privilege of necessity.</span></p>
+
+    <h2>1. 法律逻辑拆解</h2>
+    
+    <p>要理解为什么飞行员可以起诉房主“殴击” (Battery)，我们需要分析以下三个步骤：</p>
+
+    <div class="concept-box">
+        <span class="concept-title">第一步：是否构成了殴击 (Battery)？</span>
+        <p><b>构成。</b> 房主命令狗攻击飞行员，这满足了殴击的要素：</p>
+        <ul>
+            <li><b>意图 (Intent)：</b> 房主意图引起有害或冒犯性的接触。</li>
+            <li><b>因果关系 (Causation)：</b> 狗的攻击是由房主的命令直接导致的。</li>
+            <li><b>伤害 (Harm)：</b> 飞行员确实受伤了。</li>
+        </ul>
+    </div>
+
+    <div class="concept-box">
+        <span class="concept-title">第二步：房主是否有抗辩理由？</span>
+        <p>通常情况下，土地所有者有权使用<b>合理武力 (Reasonable Force)</b> 来驱逐<b>侵入者 (Trespasser)</b>。这就是 <span class="term">Defense of Property</span>（财产保卫抗辩）。</p>
+        <p>但是，这个权利不是绝对的。</p>
+    </div>
+
+    <div class="concept-box">
+        <span class="concept-title">第三步：紧急避险特权 (Privilege of Necessity)</span>
+        <p>这是本题的关键。飞行员因为引擎故障被迫降落，这属于 <span class="term">Private Necessity</span>（私人紧急避险）。</p>
+        <p><b>法律规则：</b> 当侵入者行使“紧急避险特权”时，土地所有者<b>丧失</b>了使用武力驱逐侵入者的权利。</p>
+    </div>
+
+    <h2>2. 核心考点：私人紧急避险 (Private Necessity)</h2>
+    
+    <p>在侵权法中，为了保护自己的人身安全或更具价值的财产，一个人有权进入他人的土地。这种特权产生了两个重要的法律后果：</p>
+    
+    <ol>
+        <li><b>免受驱逐权：</b> 土地所有者不能将处于紧急避险状态的人驱逐出去，也不能对其使用武力。如果所有者强行驱逐或攻击避险者，所有者将对造成的伤害负责（即本案的情况）。</li>
+        <li><b>不完全特权 (Incomplete Privilege)：</b> 虽然避险者进入土地不构成非法的 Trespass，但避险者仍需对土地造成的<b>实际损害 (Actual Damages)</b> 进行赔偿（例如，如果飞机压坏了草坪，飞行员要赔钱，但房主不能放狗咬人）。</li>
+    </ol>
+
+    <h2>3. 为什么其他选项是错误的？</h2>
+
+    <ul>
+        <li>
+            <span class="badge">选项 A</span> <span class="wrong-answer">房主提供了充分警告</span><br>
+            <b>错误原因：</b> 警告标志（Warning signs）通常用于减少对普通侵入者的责任，或者证明没有疏忽。但在<b>故意侵权 (Intentional Torts)</b> 中，即便有警告，也不能对享有“紧急避险权”的人使用武力。警告不能赋予房主伤害避险者的权利。
+        </li>
+        <li>
+            <span class="badge">选项 B</span> <span class="wrong-answer">飞行员是侵入者</span><br>
+            <b>错误原因：</b> 虽然飞行员未经许可进入，但因为“紧急避险”，他的进入在法律上是被允许的（Privileged）。因此，他不是普通的 Trespasser，房主不能像对待普通侵入者那样对待他。
+        </li>
+        <li>
+            <span class="badge">选项 D</span> <span class="wrong-answer">无法合理预期看到警示牌</span><br>
+            <b>错误原因：</b> 这是一个干扰项。无论飞行员是否看到警示牌，或者警示牌是否合理，核心问题在于<b>房主是否有权命令狗攻击</b>。由于紧急避险的存在，房主无权使用武力，警示牌的可见性与此无关。
+        </li>
+    </ul>
+
+    <div class="exam-tip">
+        <span class="concept-title">🎓 MBE 考试技巧</span>
+        <p>遇到涉及 <b>Property Defense</b>（财产保卫）的题目时，立刻检查是否存在 <b>Necessity</b>（紧急避险）：</p>
+        <p>1. 如果是 <b>Public Necessity</b>（公共紧急避险，如为了救整个社区而炸毁房子）：完全免责，无需赔偿。</p>
+        <p>2. 如果是 <b>Private Necessity</b>（私人紧急避险，如本题）：
+           <br>👉 <b>人身伤害：</b> 土地主不能伤害避险者（否则构成 Battery）。
+           <br>👉 <b>财产损害：</b> 避险者要赔偿弄坏的东西（Pay for damages）。</p>
+    </div>
+
+</div>
+
+</body>
+</html>

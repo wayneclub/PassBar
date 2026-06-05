@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background-color: #eef7fb;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .rule-block {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .english-term {
+            font-family: "Georgia", serif;
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+            background-color: #eee;
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+
+        .analysis-section {
+            margin-top: 25px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .correct-answer {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .correct-badge {
+            display: inline-block;
+            background-color: var(--success-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .wrong-option {
+            margin-bottom: 12px;
+            padding: 10px;
+            border-left: 3px solid #ddd;
+            background-color: #fafafa;
+        }
+
+        .wrong-option strong {
+            color: #7f8c8d;
+        }
+
+        .exam-tip {
+            background-color: #fff3e0;
+            border: 1px dashed var(--warning-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .exam-tip-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property / Landlord-Tenant</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <div class="concept-title">核心考点：征用条款 (Condemnation Clause)</div>
+            <div class="rule-block">
+                本题考察的是当政府行使<strong>征用权 (Eminent Domain)</strong> 时，租赁双方如何分配<strong>征用补偿金 (Condemnation Award)</strong> 的问题。
+            </div>
+        </div>
+
+        <!-- 法律规则讲解 -->
+        <div class="analysis-section">
+            <div class="section-title">法律规则详解</div>
+            
+            <p><strong>1. 默认规则 (General Rule)：</strong><br>
+            如果没有特别约定，当租赁物业被全部或部分征用时，承租人(Tenant) 有权分享征用补偿金。承租人的份额通常等于其<strong>租赁权益的公平市场价值 (Fair Market Value of Leasehold)</strong> 超过其剩余租金义务的部分（即 Bonus Value）。</p>
+
+            <p><strong>2. 契约自由 (Freedom of Contract)：</strong><br>
+            这是本题的关键。法律允许出租人(Landlord) 和承租人在租约中通过<strong>征用条款 (Condemnation Clause)</strong> 改变上述默认规则。</p>
+            
+            <p>如果租约明确规定：
+            <ul>
+                <li>征用发生时租约终止；且</li>
+                <li>出租人获得<strong>全部 (Entire)</strong> 补偿金。</li>
+            </ul>
+            那么法院将严格执行该合同条款，承租人无权获得任何补偿。</p>
+        </div>
+
+        <!-- 正确答案分析 -->
+        <div class="correct-answer">
+            <div class="correct-badge">正确答案：B</div>
+            <p><strong>出租人胜诉，因为双方已就部分征用的后果作出了明确约定。</strong></p>
+            <p><strong>逻辑推演：</strong></p>
+            <ol>
+                <li>题目中明确指出租约包含一项条款：如果发生部分征用，租约终止，且出租人获得<strong>全部征用补偿金 (Entire condemnation award)</strong>。</li>
+                <li>虽然承租人的租赁权益经评估确实有价值（Appraisal was accurate），但在合同法原则下，双方明确签署的条款优先于普通法的默认分配规则。</li>
+                <li>承租人自愿放弃了其在征用赔偿中的潜在份额。</li>
+            </ol>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="analysis-section">
+            <div class="section-title">干扰项排除</div>
+            
+            <div class="wrong-option">
+                <strong>选项 A (错误)：</strong><br>
+                虽然部分征用导致了租约终止，但这并不是因为征用行为本身“自动”取消了租约，而是因为<strong>租约中的条款</strong>规定了终止。如果是普通法下的部分征用，通常租约不会终止，承租人只是获得租金减免。
+            </div>
+
+            <div class="wrong-option">
+                <strong>选项 C (错误)：</strong><br>
+                <strong>不当得利 (Unjust Enrichment)</strong> 是一种衡平法救济，通常仅在没有有效合同管辖该事项时适用。既然双方有明确的书面租约规定了资金分配，就不存在“不当”得利。
+            </div>
+
+            <div class="wrong-option">
+                <strong>选项 D (错误)：</strong><br>
+                <strong>安宁管有保证 (Implied Warranty of Quiet Enjoyment)</strong> 针对的是出租人或拥有更优所有权之人的干扰。政府行使主权权力（征用）属于不可抗力或第三方行为，并非出租人的违约行为。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <div class="exam-tip-title">💡 MBE 解题技巧</div>
+            <p>在处理 <strong>Landlord-Tenant</strong> 问题时，永远先看<strong>租约 (Lease)</strong> 是否有特定条款。</p>
+            <p>虽然普通法倾向于保护承租人在征用中的权益，但 MBE 经常测试<strong>“合同条款优先” (Contract Controls)</strong> 的原则。只要条款不违法，法院会优先执行双方的约定，而不是默认规则。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

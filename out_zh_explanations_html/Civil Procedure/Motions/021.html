@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 法律判决动议分析</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="card-header">
+            <h1>MBE 考点深度解析</h1>
+            <div class="sub-title">民事诉讼法: 动议 - 法律判决动议</div>
+        </div>
+
+        <div class="concept-box">
+            <h3>核心问题: 事实问题与法律问题 - 法律判决动议</h3>
+            <p>本题的核心在于理解 <span class="term">法律判决动议 (JMOL)</span> 的标准，特别是区分 <span class="term">事实问题 (question of fact)</span> 和 <span class="term">法律问题 (question of law)</span>。当合理陪审团可能基于现有证据得出不同结论时，即使证据未被反驳，法官也不应剥夺陪审团裁决事实的权力。</p>
+            <p class="latin">*Judgment as a Matter of Law (JMOL)*</p>
+        </div>
+
+        <div class="section">
+            <h3>📊 概念对比: 法律判决动议 (JMOL) 与 重申法律判决动议 (RJMOL)</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>特征</th>
+                        <th>法律判决动议 (JMOL, <code class="term">FRCP 50(a)</code>)</th>
+                        <th>重申法律判决动议 (RJMOL/JNOV, <code class="term">FRCP 50(b)</code>)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>提交时间</strong></td>
+                        <td>非动议方提交证据后，案件提交陪审团裁决前。</td>
+                        <td>陪审团作出裁决后，在裁决记录进入后28天内。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>前提</strong></td>
+                        <td>必须在庭审中已提交过 <code class="term">FRCP 50(a)</code> 动议。</td>
+                        <td>必须在庭审中已提交过 <code class="term">FRCP 50(a)</code> 动议。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>标准</strong></td>
+                        <td>证据在法律上不足以使合理陪审团在非动议方胜诉。</td>
+                        <td>证据在法律上不足以使合理陪审团在非动议方胜诉。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>结果</strong></td>
+                        <td>若批准，则法官直接作出判决，无需陪审团裁决。</td>
+                        <td>若批准，则推翻陪审团裁决，法官直接作出判决。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="diagram">
+            <h3>🎨 诉讼流程图: JMOL 在庭审中的位置</h3>
+            <div class="flow-container">
+                <div class="flow-node">原告主案 (Plaintiff's Case-in-Chief)</div>
+                <span class="arrow">➡️</span>
+                <div class="flow-node">被告主案 (Defendant's Case-in-Chief)</div>
+                <span class="arrow">➡️</span>
+                <div class="flow-node active">法律判决动议 (JMOL)</div>
+                <span class="arrow">➡️</span>
+                <div class="flow-node">陪审团审议 (Jury Deliberation)</div>
+                <span class="arrow">➡️</span>
+                <div class="flow-node highlight-node">陪审团裁决 (Jury Verdict)</div>
+            </div>
+            <p style="font-size:0.85em; color:#666; margin-top:15px;"><em>本案中，被告在主案结束后提出JMOL动议，处于“法律判决动议”节点。</em></p>
+        </div>
+
+        <div class="section">
+            <h3>⚖️ 法律依据与推理</h3>
+            <div class="analysis-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <p><strong>法律判决动议 (JMOL) 的标准：</strong> 根据 <code class="term">联邦民事诉讼规则 (FRCP) 50(a)</code>，法院仅在证据在法律上不足以使合理陪审团在非动议方（通常是原告）胜诉时，才能批准 <span class="term">法律判决动议 (JMOL)</span>。这意味着，如果合理的人们可以根据现有证据得出不同的结论，那么案件就必须提交给陪审团裁决。</p>
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <p><strong>本案事实分析：</strong> 原告（男子）提供了证据证明他支付了保费且保单涵盖人身伤害医疗费用。被告（保险公司）则提供了证据，指出保单中有一项条款排除因“过度冒险行为”造成的伤害，并有证人作证事故发生在有警告标志的区域。</p>
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <p><strong>“过度冒险”的性质：</strong> 尽管公司提供了证据证明该男子在有警告标志的区域骑山地车，但“过度冒险”是一个模糊的、需要根据具体事实进行解释的术语。合理陪审团可能会对以下问题得出不同结论：</p>
+                    <ul>
+                        <li>警告标志的性质和明确性。</li>
+                        <li>该男子是否理解或应该理解其行为是“过度冒险”的。</li>
+                        <li>“过度冒险”条款在保单语境下的确切含义。</li>
+                    </ul>
+                    <p>这些都是典型的 <span class="term">事实问题 (questions of fact)</span>，应由陪审团而非法官来裁决。</p>
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <p><strong>证据的法律充分性：</strong> 即使被告的证据未被反驳（因为男子未交叉询问证人），这并不意味着该证据在法律上是“充分”到足以剥夺陪审团裁决权的。如果合理陪审团仍然可以根据这些未被反驳的证据，对“过度冒险”这一事实问题得出有利于原告的结论，那么 <span class="term">JMOL</span> 就应该被驳回。</p>
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <p><strong>结论：</strong> 由于“过度冒险”行为是否发生以及其是否构成保单排除条款下的行为，是一个需要陪审团根据事实进行判断的问题，因此法院不应批准 <span class="term">JMOL</span> 动议，而应允许陪审团对案件进行裁决。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="trap-alert">
+            <p><strong>⚠️ 核心规则 / 陷阱警示: JMOL 的关键在于“法律充分性”！</strong><br>
+            <span class="term">法律判决动议 (JMOL)</span> 并非关于证据的“重量”或“可信度”，而是关于证据在法律上是否“充分”。如果合理陪审团可以基于现有证据得出任何有利于非动议方的结论，即使法官个人认为非动议方会输，也必须将案件提交给陪审团。法官不能在 <span class="term">JMOL</span> 阶段充当“第13位陪审员”。</p>
+        </div>
+
+        <div class="case-box">
+            <h4>🔑 扩展情景分析</h4>
+            <p><strong>情景一：如果保单明确将“在警告区域骑山地车”列为“过度冒险行为”？</strong><br>
+            如果保单条款非常具体，例如明确规定“在任何有‘禁止进入’或‘危险’标志的区域进行山地车活动，均视为过度冒险行为”，并且被告提供了明确的证据证明该男子在这样的区域活动，那么“过度冒险”就可能从一个 <span class="term">事实问题</span> 变为一个 <span class="term">法律问题</span>（即，条款是否适用）。在这种情况下，如果证据无可争议地表明该男子违反了该条款，<span class="term">JMOL</span> 可能会被批准。</p>
+            <p><strong>情景二：如果该男子完全没有提供任何证据？</strong><br>
+            如果原告（男子）在主案中未能提供任何证据来证明保单覆盖其伤害，或者未能反驳被告关于“过度冒险”条款的有效性，那么其证据在法律上就是不足的。在这种情况下，被告的 <span class="term">JMOL</span> 动议很可能会被批准，因为合理陪审团无法在原告胜诉。</p>
+        </div>
+
+        <div class="section option-analysis">
+            <h3>✅ 正确答案与干扰项排除</h3>
+
+            <div class="option correct">
+                <b>Choice B is correct: No, because whether the man's behavior was unduly risky is a question of fact for the jury to resolve.</b><br>
+                <b>B 选项正确：不应批准，因为该男子的行为是否过度冒险是一个需要陪审团裁决的事实问题。</b>
+                <p>这是正确的。如上述分析，<span class="term">法律判决动议 (JMOL)</span> 的标准是判断证据在法律上是否足以支持非动议方胜诉。本案中，“过度冒险”是一个模糊的术语，其适用性需要陪审团根据具体事实进行解释和判断。即使公司提供了证据，合理陪审团仍可能对该行为是否构成“过度冒险”得出不同结论。因此，这是一个典型的 <span class="term">事实问题</span>，应由陪审团而非法官来裁决。</p>
+            </div>
+
+            <div class="option wrong">
+                <b>Choice A is wrong: No, because a motion for judgment as a matter of law must first be made at the close of the plaintiff's case-in-chief.</b><br>
+                <b>A 选项错误：不应批准，因为法律判决动议必须首先在原告主案结束后提出。</b>
+                <p>这个选项是错误的。<code class="term">FRCP 50(a)(2)</code> 规定，<span class="term">JMOL</span> 可以在非动议方（通常是原告）提交证据后，以及在案件提交给陪审团之前，在任何时间提出。被告在自己的主案结束后提出动议是完全符合规则的。规则允许在原告主案结束后提出，也允许在被告主案结束后（即双方都已提交证据，但尚未提交陪审团）提出。因此，该选项对 <span class="term">JMOL</span> 提交时间的描述过于狭隘且不准确。</p>
+            </div>
+
+            <div class="option wrong">
+                <b>Choice C is wrong: Yes, because the company's uncontradicted evidence of the man's unduly risky behavior means that no reasonable jury could find that the policy covers his injuries.</b><br>
+                <b>C 选项错误：应批准，因为公司关于该男子过度冒险行为的未被反驳的证据意味着没有合理陪审团会认为保单涵盖其伤害。</b>
+                <p>这个选项是错误的。尽管公司的证据未被反驳，但这并不自动意味着没有合理陪审团会得出有利于原告的结论。关键在于“过度冒险”这一术语的解释和适用。即使事实（在警告区域骑行）未被争议，但该事实是否符合保单中“过度冒险”的法律定义，仍然是一个需要陪审团判断的 <span class="term">事实问题</span>。合理陪审团可能认为，仅仅在有警告标志的区域骑行，并不必然构成保单条款中意图排除的“过度冒险”行为。因此，法官不能仅凭证据未被反驳就剥夺陪审团的裁决权。</p>
+            </div>
+
+            <div class="option wrong">
+                <b>Choice D is wrong: Yes, because the man waived his right to rebut the company's evidence by not addressing the "unduly risky" policy provision in his case-in-chief.</b><br>
+                <b>D 选项错误：应批准，因为该男子未在其主案中处理“过度冒险”保单条款，从而放弃了反驳公司证据的权利。</b>
+                <p>这个选项是错误的。该男子未在主案中处理“过度冒险”条款，也未交叉询问证人，这确实可能削弱其案件。然而，这并不意味着他“放弃”了反驳的权利，更不意味着 <span class="term">JMOL</span> 动议就应该被批准。即使没有直接反驳，如果现有证据（包括公司提供的证据）仍然允许合理陪审团对“过度冒险”这一 <span class="term">事实问题</span> 得出有利于原告的结论，那么案件仍应提交给陪审团。原告的举证责任是证明保单覆盖其伤害，而被告的“过度冒险”是抗辩。即使原告没有直接反驳抗辩，如果抗辩本身不足以在法律上排除所有合理陪审团的有利发现，<span class="term">JMOL</span> 就不应批准。</p>
+            </div>
+        </div>
+
+        <div class="footer-tip">
+            <p><strong>🎓 考试技巧: JMOL/RJMOL 决策流程助记</strong><br>
+            在 MBE 考试中遇到 <span class="term">JMOL</span> 或 <span class="term">RJMOL</span> 问题时，请记住以下决策流程：<br>
+            1. <strong>时机？</strong> <code class="term">FRCP 50(a)</code> (JMOL) 必须在非动议方举证后、案件提交陪审团前提出。<code class="term">FRCP 50(b)</code> (RJMOL) 必须在陪审团裁决后28天内提出，且之前必须提出过 <code class="term">50(a)</code> 动议。<br>
+            2. <strong>标准？</strong> 证据在法律上是否“不足以”使合理陪审团在非动议方胜诉？<br>
+            3. <strong>核心？</strong> 区分 <span class="term">事实问题</span> (由陪审团决定，如“是否合理”、“是否过度冒险”、“是否疏忽”) 和 <span class="term">法律问题</span> (由法官决定，如“法律是否适用”、“合同是否有效”)。<br>
+            4. <strong>底线？</strong> 如果合理陪审团可以得出任何有利于非动议方的结论，即使法官不认同，也必须<strong>拒绝</strong>动议，让陪审团裁决！</p>
+        </div>
+    </div>
+</body>
+</html>

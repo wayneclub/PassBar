@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --success: #27ae60;
+            --danger: #c0392b;
+            --bg: #f4f6f7;
+            --card-bg: #ffffff;
+            --text: #333333;
+            --light-text: #7f8c8d;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--bg);
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent);
+        }
+
+        .card.correct {
+            border-left-color: var(--success);
+        }
+
+        .card.wrong {
+            border-left-color: var(--danger);
+        }
+
+        .tag {
+            display: inline-block;
+            background: #eef2f7;
+            color: var(--primary);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .icon {
+            margin-right: 8px;
+        }
+
+        .diagram {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            border: 1px dashed #bdc3c7;
+        }
+
+        .arrow {
+            color: var(--accent);
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+
+        .latin {
+            font-style: italic;
+            color: var(--light-text);
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--light-text);
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Evidence: Relevancy & Hearsay</div>
+    </div>
+
+    <!-- Core Concept Visualization -->
+    <div class="card">
+        <span class="tag">核心逻辑</span>
+        <h3>🔗 证据链条 (The Chain of Evidence)</h3>
+        <p>本题的核心在于建立“失踪母亲”与“失踪飞机”之间的联系。</p>
+        
+        <div class="diagram">
+            <div><b>母亲的陈述</b><br><small>"我打算用笔名 X"</small></div>
+            <div class="arrow">⬇️ 证明 (Proves)</div>
+            <div><b>母亲的意图/身份</b><br><small>她使用了笔名 X</small></div>
+            <div class="arrow">⬇️ 连接 (Links to)</div>
+            <div><b>飞机乘客名单</b><br><small>名单上有名字 X</small></div>
+            <div class="arrow">⬇️ 推论 (Inference)</div>
+            <div class="highlight"><b>母亲在飞机上 (已死亡)</b></div>
+        </div>
+    </div>
+
+    <!-- Correct Answer Analysis -->
+    <div class="card correct">
+        <span class="tag" style="background: #e8f5e9; color: #27ae60;">正确答案 D</span>
+        <h3>✅ 间接证据 (Circumstantial Evidence)</h3>
+        <p><b>法律依据：</b> Federal Rules of Evidence (FRE) 401</p>
+        
+        <p><b>为什么选 D？</b></p>
+        <ul>
+            <li><b>相关性 (Relevancy)：</b> 证据只要能让某个关键事实（Material Fact）变得“稍微更可能一点”，就是相关的。母亲说她要用那个笔名，增加了“名单上那个名字就是她”的可能性，从而增加了“她在飞机上并已死亡”的可能性。</li>
+            <li><b>非传闻用途 (Non-Hearsay Purpose)：</b> 这里的陈述被用作<b>间接证据</b>（Circumstantial Evidence）来证明身份联系，而不是为了证明她真的写了小说。</li>
+        </ul>
+        
+        <div style="background: #e8f5e9; padding: 10px; border-radius: 6px; font-size: 0.9rem; margin-top: 10px;">
+            <span class="icon">💡</span><b>高分技巧 (The Hillmon Doctrine)：</b><br>
+            即使这被视为传闻，它也符合<b>FRE 803(3) 现有心态例外 (Then-Existing State of Mind)</b>。根据著名的 <i>Mutual Life Insurance Co. v. Hillmon</i> 判例，一个人关于其<b>未来意图</b>（Intent）的陈述，可以用来证明该人后来确实按照该意图行事了。
+        </div>
+    </div>
+
+    <!-- Distractor Analysis -->
+    <div class="card wrong">
+        <span class="tag" style="background: #fce4ec; color: #c0392b;">陷阱选项 A</span>
+        <h3>❌ 传闻证据规则 (Hearsay Rule)</h3>
+        <p>选项 A 错误地认为这是不可采纳的传闻。</p>
+        <p><b>解析：</b> 即使这是传闻（即为了证明她确实打算用那个名字），它也属于<b>FRE 803(3)</b>的心态例外。或者如题目解析所言，它根本不是为了证明“她会写小说”这一内容真实性，而是作为证明她出现在飞机上的间接线索。</p>
+    </div>
+
+    <div class="card wrong">
+        <span class="tag" style="background: #fce4ec; color: #c0392b;">陷阱选项 B</span>
+        <h3>❌ 死亡推定 (Presumption of Death)</h3>
+        <p>选项 B 混淆了“法律推定”与“事实证明”。</p>
+        <p><b>解析：</b> 普通法中确实有“失踪7年推定死亡”的规则。但这并不意味着你必须等7年才能起诉。如果你有证据（如飞机失事）证明人<b>现在</b>已经死了，你可以立即证明并索赔，无需等待推定期满。</p>
+    </div>
+
+    <div class="card wrong">
+        <span class="tag" style="background: #fce4ec; color: #c0392b;">陷阱选项 C</span>
+        <h3>❌ 当事人承认 (Party Admission)</h3>
+        <p>选项 C 错误地使用了“利害关系”（Privity）概念。</p>
+        <p><b>解析：</b> 
+        <ol>
+            <li><b>当事人承认 (Opposing Party Statement)：</b> 必须是<b>对方当事人</b>说的，用来指证对方。这里母亲不是被告（保险公司是），她的陈述是用来帮助原告（儿子）的。</li>
+            <li><b>利害关系 (Privity)：</b> 现代证据法（FRE）通常不再因为简单的财产利害关系就将第三人的陈述视为当事人承认。</li>
+        </ol>
+        </p>
+    </div>
+
+    <!-- Exam Strategy -->
+    <div class="card">
+        <span class="tag">MBE 实战策略</span>
+        <h3>🎓 破题关键</h3>
+        <p>遇到“某人说他打算去某地/做某事”然后失踪或死亡的题目：</p>
+        <ul>
+            <li><b>第一步：</b> 检查<b>相关性</b>。该陈述是否将此人与事故现场联系起来？（如果是，通常相关）。</li>
+            <li><b>第二步：</b> 检查<b>传闻例外</b>。这通常涉及 <b>State of Mind (FRE 803(3))</b> 或 <b>Hillmon Doctrine</b>。</li>
+            <li><b>结论：</b> 此类陈述几乎总是<b>可采纳 (Admissible)</b> 的，用来证明该人去了那里或做了那件事。</li>
+        </ul>
+    </div>
+
+    
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --danger-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            color: #333;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f8f5;
+            border: 1px solid var(--success-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .answer-label {
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+        }
+        .rule-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+            background-color: #eef2f7;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .analysis-list {
+            list-style: none;
+            padding: 0;
+        }
+        .analysis-list li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .analysis-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .wrong-option {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fff5f5;
+            border-radius: 6px;
+        }
+        .wrong-badge {
+            color: var(--danger-color);
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-right: 5px;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+        code {
+            font-family: Consolas, monospace;
+            color: #e83e8c;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">民事诉讼法 (Civil Procedure)</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：C</span>
+            <p>是的，因为地区法院在评估法律问题判决（JMOL）的动议时，未能遵循适当的程序要求。</p>
+        </div>
+
+        <!-- 核心考点讲解 -->
+        <div class="section-title">核心考点：JMOL 的审查标准</div>
+        <div class="rule-box">
+            <p><strong>规则来源：</strong> FRCP 50 (Federal Rule of Civil Procedure 50)</p>
+            <p><strong>法律问题判决 (Judgment as a Matter of Law, JMOL)</strong> 的核心原则是：法院在决定是否批准该动议时，必须以<b>对非动议方 (Non-movant) 最有利的方式</b>查看证据。</p>
+        </div>
+
+        <p>具体要求包括：</p>
+        <ul class="analysis-list">
+            <li><strong>视角：</strong> 必须以对非动议方（本案中为原告女子）最有利的角度审视证据。</li>
+            <li><strong>推断：</strong> 必须作出所有对非动议方有利的合理推断 (Reasonable Inferences)。</li>
+            <li><strong>禁忌：</strong> 法院<b>不得</b>衡量证据的权重 (Weigh evidence) 或评估证人的可信度 (Credibility)。</li>
+            <li><strong>忽略：</strong> 法院应忽略陪审团没有义务相信的、有利于动议方的证据。</li>
+        </ul>
+
+        <!-- 案情分析 -->
+        <div class="section-title">本案案情分析</div>
+        <p>在本案中，发生了以下关键步骤：</p>
+        <ol style="padding-left: 20px; line-height: 1.6;">
+            <li>雇主（被告）提出了 JMOL 动议。</li>
+            <li>这意味着雇主是<b>动议方 (Movant)</b>，原告女子是<b>非动议方 (Non-movant)</b>。</li>
+            <li><strong>错误所在：</strong> 题目明确指出法院“以对雇主（动议方）最有利的方式审视证据” (Viewing the evidence in the light most favorable to the employer)。</li>
+        </ol>
+        <p>这是严重的程序错误。如果法院正确地以对原告最有利的方式看证据（包括她关于晋升制度是“借口”的证词），一个理性的陪审团完全可能支持原告，因此法院不应批准 JMOL。</p>
+
+        <!-- 排除错误选项 -->
+        <div class="section-title">为什么其他选项是错的？</div>
+        
+        <div class="wrong-option">
+            <span class="wrong-badge">选项 A 错误</span>
+            <p>判决并不适当。因为法院应用了错误的审查标准（偏向了动议方），导致原告被剥夺了由陪审团审理事实的权利。</p>
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-badge">选项 B 错误</span>
+            <p><strong>上诉时效：</strong> 根据联邦上诉程序规则 (FRCP 4 of Appellate Procedure)，当事人通常有 <b>30天</b> 时间对最终判决提起上诉。本案中原告在 22 天后上诉，属于及时上诉。</p>
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-badge">选项 D 错误</span>
+            <p><strong>动议时机：</strong> FRCP 50(a) 规定，JMOL 可以在“非动议方被完全听取”后的任何时间提出，直到案件提交给陪审团之前。雇主在双方证据出示完毕后提出动议是完全合法的，并不必须在原告主案结束时立即提出。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">💡 MBE 考试技巧</div>
+        <div style="background: #fff3cd; padding: 10px; border-radius: 6px; font-size: 0.9rem;">
+            <p>遇到 <b>Summary Judgment (FRCP 56)</b> 或 <b>JMOL (FRCP 50)</b> 的题目时，永远记住黄金法则：</p>
+            <p style="text-align: center; font-weight: bold; color: #856404;">"Light most favorable to the NON-MOVANT"</p>
+            <p>（以对非动议方最有利的方式看待证据）</p>
+            <p>如果题目说法院偏向了动议方，或者法院自己去衡量了证人可信度，那么法院的裁决通常是错误的。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

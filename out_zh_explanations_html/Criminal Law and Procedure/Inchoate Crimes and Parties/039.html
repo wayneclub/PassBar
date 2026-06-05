@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --text-color: #333;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        .concept-tag {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .analysis-step strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .wrong-option {
+            font-size: 0.9rem;
+            color: #666;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+        }
+        .highlight-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        .footer {
+            background: #eee;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+            border-top: 1px solid #ddd;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">共犯责任与无效帮助<br>Accomplice Liability & Ineffective Aid</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="card" style="border-left-color: var(--success-color);">
+            <h3>✅ 正确答案：A</h3>
+            <p>女友构成<strong>入室犯法罪 (Burglary)</strong> 和 <strong>盗窃罪 (Larceny)</strong>。</p>
+        </div>
+
+        <!-- 法律规则讲解 -->
+        <div class="card">
+            <h3>⚖️ 核心考点：共犯责任</h3>
+            <p>要成为共犯 (Accomplice)，被告必须满足两个条件：</p>
+            <ol>
+                <li><strong>犯罪意图 (Mens Rea)：</strong> 具有协助主犯的意图，并希望犯罪得逞 (Specific Intent)。</li>
+                <li><strong>犯罪行为 (Actus Reus)：</strong> 在犯罪前或犯罪中提供了帮助、鼓励或建议。</li>
+            </ol>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="analysis-step">
+            <strong>1. 关键争议点：未被使用的工具</strong>
+            <p>这是本题最大的陷阱。女友提供了撬棍 (Crowbar)，但主犯实际上使用的是断线钳 (Bolt cutter)。</p>
+            <p>在普通法和MBE考试规则中，<strong>共犯的帮助不需要是犯罪发生的“必要条件” (But-for cause)</strong>。</p>
+            <p>只要提供了帮助（哪怕是微小的帮助，Slight aid），或者进行了鼓励，共犯责任即成立。女友递给男友撬棍的行为本身就是一种物质上的支持和心理上的鼓励 (Encouragement)，即便该工具最终未被使用，她的共犯责任依然无法免除。</p>
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 责任范围 (Scope of Liability)</strong>
+            <p>共犯不仅对“目标犯罪”负责，还对犯罪过程中所有<strong>自然且可能 (Natural and Probable)</strong> 的后果负责。</p>
+            <ul>
+                <li><strong>入室犯法罪 (Burglary)：</strong> 闯入棚屋是目标行为。</li>
+                <li><strong>盗窃罪 (Larceny)：</strong> 偷割草机是闯入的目的，也是直接后果。</li>
+            </ul>
+            <p>因此，她对这两项罪名均负有责任。</p>
+        </div>
+
+        <!-- 错误选项排除 -->
+        <div class="highlight-box">
+            <strong>🚫 为什么其他选项是错的？</strong>
+            <div style="margin-top:10px;">
+                <div class="wrong-option">
+                    <strong>选项 D (无罪)：</strong> 错误地认为“没有提供实际帮助（因为工具没用上）”就不构成犯罪。法律看重的是“提供帮助的意图和行为”，而非帮助的实际效果。
+                </div>
+                <div class="wrong-option">
+                    <strong>选项 B (仅Burglary)：</strong> 错误。她借工具的目的是为了让他“偷割草机”，因此她对盗窃也有特定的意图。
+                </div>
+                <div class="wrong-option">
+                    <strong>选项 C (仅Larceny)：</strong> 错误。没有入室行为就无法拿到割草机，两者是紧密联系的。
+                </div>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="background: #e8f4fd; border-left-color: #2980b9; margin-top: 20px;">
+            <h3>🎓 MBE 考试技巧</h3>
+            <p>看到“共犯提供帮助但未成功”或“工具未被使用”的情节时，请记住：</p>
+            <p><strong>Attempt to aid is enough. (试图帮助即足矣)</strong></p>
+            <p>只要有特定意图 (Specific Intent) 加上任何形式的鼓励或支持，哪怕是精神上的支持 (Psychological support)，共犯责任即锁定。</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        NCBE Question Analysis | Criminal Law
+    </div>
+</div>
+
+</body>
+</html>

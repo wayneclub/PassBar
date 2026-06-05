@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 20px;
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .key-point {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .analysis-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .step-icon {
+            background: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #95a5a6;
+            margin-top: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #ecf0f1;
+            color: #7f8c8d;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header Section -->
+    <div class="card">
+        <div style="margin-bottom: 10px;">
+            <span class="tag">Evidence</span>
+            <span class="tag">Authentication</span>
+        </div>
+        <h1>MBE 考点解析：古老文件<br><small style="font-size: 0.8em; color: #7f8c8d;">Ancient Documents</small></h1>
+        <p style="font-size: 14px;">本题考察的是书面证据的<b>认证 (Authentication)</b> 以及<b>传闻证据规则 (Hearsay Rule)</b> 的例外。</p>
+    </div>
+
+    <!-- Core Legal Rule -->
+    <div class="card">
+        <h2>⚖️ 核心法则：FRE 901(b)(8)</h2>
+        <p style="font-size: 14px;">根据《联邦证据规则》(Federal Rules of Evidence)，一份文件若要作为“古老文件”被认证，必须满足以下三个条件：</p>
+        <div class="rule-box">
+            <ol style="margin: 0; padding-left: 20px;">
+                <li><b>年代久远：</b>在作为证据提出时，至少已存在 <span class="key-point">20年</span>。</li>
+                <li><b>无瑕疵：</b>其状况 (Condition) 未引起对其真实性的怀疑。</li>
+                <li><b>存放得当：</b>在如果文件属实则通常应存放的地方被发现。</li>
+            </ol>
+        </div>
+        <p style="font-size: 13px; color: #666;">注意：认证只是第一步，通常还需要解决传闻证据 (Hearsay) 的问题。</p>
+    </div>
+
+    <!-- Case Analysis -->
+    <div class="card">
+        <h2>🔍 案情分析</h2>
+        <div class="analysis-step">
+            <div class="step-icon">1</div>
+            <div>
+                <b>时间条件：</b><br>
+                题目指出宣誓书 (Affidavit) 是“40多年前”的。满足 >20年的要求。
+            </div>
+        </div>
+        <div class="analysis-step">
+            <div class="step-icon">2</div>
+            <div>
+                <b>存放地点与状况：</b><br>
+                编辑作证称该文件保存在“文章档案库”中（合理的存放地点），且状况与同期文章一致（无怀疑理由）。
+            </div>
+        </div>
+        <div class="analysis-step">
+            <div class="step-icon">3</div>
+            <div>
+                <b>结论：</b><br>
+                编辑的证词成功建立了该文件作为“古老文件”的真实性 (Authenticity)。
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Answer C is Correct -->
+    <div class="card" style="border-left-color: #27ae60;">
+        <h2 style="color: #27ae60;">✅ 正确答案：C</h2>
+        <p style="font-size: 14px;"><b>"Yes, because the editor testified as to the authenticity of the affidavit."</b></p>
+        <p style="font-size: 14px;">
+            编辑的证词直接满足了 FRE 901(b)(8) 的要求。一旦文件被认证为古老文件，它通常也能通过 <b>FRE 803(16)</b> 的传闻证据例外被采纳（针对1998年1月1日之前生成的文件）。
+        </p>
+        <p style="font-size: 14px;">
+            因此，编辑关于文件存放和状况的证词是该证据被采纳的关键法律依据。
+        </p>
+    </div>
+
+    <!-- Why Others are Wrong -->
+    <div class="card" style="border-left-color: #e74c3c;">
+        <h2 style="color: #e74c3c;">❌ 易错项辨析</h2>
+        
+        <p style="font-size: 14px;"><b>选项 A (Hearsay):</b> <br>
+        错误。虽然宣誓书是传闻，但 <b>FRE 803(16)</b> 规定，在1998年1月1日之前准备的古老文件中的陈述是传闻规则的<b>例外</b>。因为文件已有40多年历史（早于1998），所以传闻规则不会阻止其被采纳。</p>
+        
+        <p style="font-size: 14px;"><b>选项 B (Personal Knowledge):</b> <br>
+        错误。这是常见的干扰项。古老文件规则的设立正是为了解决证人去世或记忆模糊的问题。认证人（编辑）<b>不需要</b>对文件的<b>制作过程</b>有亲身认知，只需要对文件的<b>存放和发现</b>有认知即可。</p>
+
+        <p style="font-size: 14px;"><b>选项 D (Chain of Custody):</b> <br>
+        错误。<b>保管链 (Chain of Custody)</b> 通常用于认证容易被篡改或无法区分的<b>实物证据</b>（如毒品、血液样本、凶器）。对于独特的书面文件，通常不需要严格的保管链证明，只要证明其符合古老文件特征即可。</p>
+    </div>
+
+    <!-- Exam Tips -->
+    <div class="card" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+        <h2>💡 备考小贴士</h2>
+        <ul>
+            <li>看到 <b>"20 years"</b> 或更久的文件，立即联想 <b>Ancient Documents</b> 规则。</li>
+            <li>记住双重门槛：
+                <br>1. <b>认证 (Authentication):</b> 20年 + 无疑点 + 合理地点。
+                <br>2. <b>传闻 (Hearsay):</b> 必须是 1998年1月1日之前的文件才享有传闻例外。</li>
+            <li>区分“实物证据”与“书面证据”的认证方式：实物看保管链，古老文件看存放地点。</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        MBE Evidence Review | Designed for Mobile Learning
+    </div>
+
+</div>
+
+</body>
+</html>

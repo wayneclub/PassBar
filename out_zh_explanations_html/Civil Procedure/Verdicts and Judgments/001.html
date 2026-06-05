@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .diagram {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px dashed #bdc3c7;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+            background: #fff;
+        }
+        .diagram-arrow {
+            font-size: 20px;
+            color: var(--accent-color);
+            margin: 5px 0;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .option-analysis {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .correct {
+            background-color: rgba(39, 174, 96, 0.1);
+            border: 1px solid var(--correct-color);
+        }
+        .wrong {
+            background-color: rgba(192, 57, 43, 0.05);
+            border: 1px solid rgba(192, 57, 43, 0.2);
+            color: #7f8c8d;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .badge-correct {
+            background-color: var(--correct-color);
+            color: white;
+        }
+        .badge-wrong {
+            background-color: var(--wrong-color);
+            color: white;
+        }
+        .footer-tip {
+            background-color: #f8f9fa;
+            border-top: 1px solid #eee;
+            padding: 15px;
+            font-size: 13px;
+            color: #555;
+            font-style: italic;
+        }
+        .latin {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Civil Procedure / Issue Preclusion</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <div class="concept-title">核心原则：正当程序 (Due Process)</div>
+            <p>
+                在民事诉讼中，<b>争点排除</b> (<span class="latin">Issue Preclusion</span> 或 <span class="latin">Collateral Estoppel</span>) 是一项强大的工具，但它有一个不可逾越的宪法底线：
+            </p>
+            <p>
+                <b>你不能用判决去约束一个从未参与过该诉讼的人。</b>
+            </p>
+            <p>
+                每个人都有权获得自己的“出庭日” (<span class="term">Day in Court</span>)。
+            </p>
+        </div>
+
+        <!-- 案情图解 -->
+        <div class="diagram">
+            <div style="font-weight:bold; margin-bottom:10px;">第一次诉讼 (Suit 1)</div>
+            <div>🏍️ 摩托车手 vs. 🚗 司机</div>
+            <div style="font-size:12px; color:#7f8c8d;">(判决：司机无过失)</div>
+            
+            <div class="diagram-arrow">⬇️</div>
+            
+            <div style="font-weight:bold; margin-bottom:10px;">第二次诉讼 (Suit 2)</div>
+            <div>🏃 朋友 vs. 🚗 司机</div>
+            <div style="color: var(--wrong-color); font-weight:bold; margin-top:5px;">❌ 阻断</div>
+            <div style="font-size:12px; color:#c0392b;">
+                判决不能约束“朋友”，<br>因为他不是第一次诉讼的当事人！
+            </div>
+        </div>
+
+        <!-- 答案解析 -->
+        <div class="analysis-section">
+            <h3>为什么选 B？</h3>
+            <div class="option-analysis correct">
+                <span class="badge badge-correct">正确答案</span>
+                <p>
+                    <b>因为该朋友不是第一次诉讼的当事人。</b>
+                </p>
+                <p>
+                    尽管A州法律允许“非相互性争点排除” (<span class="term">Nonmutual Issue Preclusion</span>)，但这通常是指允许一个<b>新当事人</b>利用先前的判决来对抗一个<b>老当事人</b>（后者已经在第一次诉讼中输掉了该争点）。
+                </p>
+                <p>
+                    然而，宪法层面的<b>正当程序条款</b> (<span class="term">Due Process Clause</span>) 禁止将判决效力施加于一个<b>从未有机会在法庭上辩护的非当事人</b>身上。既然朋友没有参与第一次诉讼，他就没有机会质证、辩论或证明司机有过失，因此不能被该判决束缚。
+                </p>
+            </div>
+
+            <h3>其他选项为何错误？</h3>
+            
+            <div class="option-analysis wrong">
+                <span class="badge badge-wrong">选项 A</span>
+                <p><b>法律冲突不是重点。</b> 虽然联邦法院在多元管辖权案件中通常适用判决作出州（A州）的排除法，但即使适用A州法律，也不能违反宪法。A州法律再怎么允许“非相互性”，也不能突破“非当事人不受约束”的宪法底线。</p>
+            </div>
+
+            <div class="option-analysis wrong">
+                <span class="badge badge-wrong">选项 C</span>
+                <p><b>误解了“非相互性”。</b> 非相互性意味着不需要双方都受判决约束。但这并不意味着可以约束一个完全的局外人。它通常用于“防御性”或“进攻性”地对抗<b>已经在第一次诉讼中败诉的一方</b>。</p>
+            </div>
+
+            <div class="option-analysis wrong">
+                <span class="badge badge-wrong">选项 D</span>
+                <p><b>事实认定仅对当事人有效。</b> 陪审团的认定只解决了摩托车手和司机之间的纠纷。朋友有权独立提起诉讼，并试图让新的陪审团做出不同的认定。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-tip">
+        <b>💡 MBE 考试技巧：</b><br>
+        当题目问及“争点排除” (<span class="latin">Collateral Estoppel</span>) 时，首先检查<b>“针对谁”</b> (Against Whom) 主张该规则。如果被针对的人<b>不是</b>第一次诉讼的当事人（或其利益代表），那么该抗辩几乎总是失败的。记住：<b>Stranger to the litigation = No Preclusion.</b>
+    </div>
+</div>
+
+</body>
+</html>

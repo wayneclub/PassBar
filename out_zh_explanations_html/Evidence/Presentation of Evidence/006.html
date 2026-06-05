@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #dff0d8;
+            border-left: 5px solid #3c763d;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #3c763d;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .rule-section {
+            margin-bottom: 20px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--highlight-bg);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .concept-card {
+            background: var(--highlight-bg);
+            padding: 12px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+        .key-term {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .analysis-step {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .step-num {
+            background: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+        }
+        .distractor {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+            padding-left: 10px;
+            border-left: 3px solid #ddd;
+        }
+        .exam-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+        }
+        .exam-tip-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析：证据法</h1>
+        <div style="font-size: 0.9rem; opacity: 0.9;">Hearsay Declarant Impeachment</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：C</span>
+            是的，作为对其女友诚信品格有证明力的不良行为的弹劾。
+        </div>
+
+        <!-- 核心法律规则 -->
+        <div class="rule-section">
+            <div class="rule-title">核心考点：FRE 806 & 608</div>
+            
+            <div class="concept-card">
+                <strong>1. 攻击传闻陈述人 (Attacking Hearsay Declarant)</strong><br>
+                根据 <span class="latin">Federal Rule of Evidence (FRE) 806</span>，当一条传闻证据（Hearsay）被法庭采纳后，作出该陈述的人（Declarant）虽然不在庭上，但其可信度可以像<b>在庭上作证的证人</b>一样受到攻击（Impeachment）。
+            </div>
+
+            <div class="concept-card">
+                <strong>2. 特定不良行为 (Specific Instances of Conduct)</strong><br>
+                根据 <span class="latin">FRE 608(b)</span>，在交叉询问（Cross-examination）中，允许询问证人关于其<b>过去特定的不诚实行为</b>（如撒谎、欺诈），只要这些行为能证明其缺乏诚信（Character for untruthfulness）。
+            </div>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="rule-section">
+            <div class="rule-title">逻辑推演</div>
+            
+            <div class="analysis-step">
+                <div class="step-num">1</div>
+                <div>
+                    <strong>传闻被采纳：</strong><br>
+                    证人转述了女友的话（"I can't believe..."）。这是一个传闻，但可能作为“当前感官印象” (<span class="latin">Present Sense Impression</span>) 被采纳。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-num">2</div>
+                <div>
+                    <strong>女友是“隐形证人”：</strong><br>
+                    虽然女友没有出庭，但因为她的话被当作证据，她就变成了<b>传闻陈述人 (Hearsay Declarant)</b>。根据 FRE 806，被告有权像弹劾在场证人一样弹劾她。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-num">3</div>
+                <div>
+                    <strong>弹劾方式恰当：</strong><br>
+                    水上乐园想问关于“求职申请撒谎”的事。撒谎直接关系到<b>诚信 (Truthfulness)</b>。根据 FRE 608(b)，这是允许的交叉询问内容。
+                </div>
+            </div>
+        </div>
+
+        <!-- 易错点辨析 -->
+        <div class="rule-section">
+            <div class="rule-title">为什么其他选项错误？</div>
+            
+            <div class="distractor">
+                <strong>选项 A (Hearsay):</strong> 错误。求职申请本身虽然是庭外陈述，但这里引入它不是为了证明“申请里的内容是真的”，而是为了证明“她是个会撒谎的人”（弹劾目的）。用于弹劾的证据不属于传闻。
+            </div>
+            
+            <div class="distractor">
+                <strong>选项 B (Availability):</strong> 错误。这是 FRE 613（先前不一致陈述）和 FRE 806 的关键区别。对于<b>传闻陈述人</b>，FRE 806 明确规定，不需要陈述人有机会解释或否认，就可以引入弹劾证据。
+            </div>
+
+            <div class="distractor">
+                <strong>选项 D (Inconsistency):</strong> 错误。求职申请撒谎与“看到员工没检查”这两件事并不矛盾（Inconsistent）。这属于“不良行为”（Bad Act），而不是“先前不一致陈述”。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 提分技巧</span>
+            遇到 <b>Hearsay</b> 题目时，一旦确定传闻被采纳（Admitted），立刻转换思维：
+            <br><br>
+            把那个不在场的 <b>Declarant</b> 想象成正坐在证人席上。任何你能用来攻击在场证人诚信的方法（如定罪记录、不诚实行为、偏见等），通常都可以用来攻击这个不在场的 Declarant。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

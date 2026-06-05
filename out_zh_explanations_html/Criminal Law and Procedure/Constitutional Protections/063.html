@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --success-color: #27ae60;
+            --error-color: #c0392b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: transparent;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card.answer {
+            border-left-color: var(--success-color);
+        }
+
+        .card.wrong {
+            border-left-color: var(--error-color);
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .highlight {
+            background-color: var(--highlight-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>宪法刑事程序 (Constitutional Criminal Procedure)</p>
+    </div>
+
+    <!-- 核心结论 -->
+    <div class="card answer">
+        <h2>✅ 正确答案：A</h2>
+        <p>联邦法院将<strong>撤销定罪</strong>，因为 6 人陪审团的裁决<strong>并非全体一致 (Not Unanimous)</strong>。</p>
+        <p>虽然 6 人陪审团本身是合宪的，但在 6 人陪审团的情况下，裁决必须是全体一致的；且根据最新判例，所有重罪陪审团裁决均需一致。</p>
+    </div>
+
+    <!-- 考点详解 -->
+    <div class="card">
+        <h2>⚖️ 法律依据与推理</h2>
+        <div>
+            <span class="tag">Sixth Amendment</span>
+            <span class="tag">Jury Trial</span>
+        </div>
+        
+        <h3>1. 陪审团人数 (Jury Size)</h3>
+        <p><strong>规则：</strong>宪法并不要求州法院必须使用 12 人陪审团。最高法院在 <span class="latin">Williams v. Florida (1970)</span> 中裁定，州刑事审判中陪审团人数<strong>最少可为 6 人</strong>。</p>
+        <p><strong>应用：</strong>本案中，州法律规定使用 6 人陪审团，这本身<strong>没有违反</strong>宪法。因此，选项 B 和 C 声称“少于 12 人违宪”是错误的。</p>
+
+        <h3>2. 裁决一致性 (Unanimity)</h3>
+        <p><strong>旧规则 (本题背景)：</strong>在 <span class="latin">Burch v. Louisiana (1979)</span> 中，最高法院裁定：虽然 6 人陪审团是合宪的，但如果陪审团只有 6 人，其裁决<strong>必须是全体一致的</strong>。5:1 的裁决严重削弱了陪审团功能的实质，因此违宪。</p>
+        <p><strong>新规则 (2020年更新)：</strong>在 <span class="latin">Ramos v. Louisiana (2020)</span> 中，最高法院进一步裁定，无论陪审团人数多少（6人或12人），宪法第六修正案都要求在重罪审判中必须达成<strong>全体一致 (Unanimous Verdict)</strong> 才能定罪。</p>
+        <p><strong>结论：</strong>无论是基于本题出题时的判例 (<span class="latin">Burch</span>) 还是现行法律 (<span class="latin">Ramos</span>)，<strong>5比1的定罪裁决都是违宪的</strong>。</p>
+    </div>
+
+    <!-- 为什么其他选项错误 -->
+    <div class="card wrong">
+        <h2>❌ 干扰项分析</h2>
+        <ul>
+            <li><strong>选项 B (人数问题)：</strong>错误。宪法允许 6 人陪审团。只有当人数少于 6 人（如 5 人）时才违宪 (<span class="latin">Ballew v. Georgia</span>)。</li>
+            <li><strong>选项 C (双重理由)：</strong>错误。前半部分理由（人数少于12人）不成立。</li>
+            <li><strong>选项 D (维持定罪)：</strong>错误。非一致裁决侵犯了被告的第六修正案权利，联邦法院在人身保护令 (<span class="latin">Habeas Corpus</span>) 程序中会纠正这一宪法性错误。</li>
+        </ul>
+    </div>
+
+    <!-- 考试技巧 -->
+    
+
+    
+</div>
+
+</body>
+</html>

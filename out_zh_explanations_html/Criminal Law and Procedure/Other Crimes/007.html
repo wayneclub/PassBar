@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - 刑法与刑事诉讼法: 其他罪行</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">刑法与刑事诉讼法: 其他罪行</p>
+        </div>
+
+        <div class="answer-box">
+            正确答案: A<br>
+            不能，因为该男子移动店主的距离并未超出完成抢劫所必需的范围。
+        </div>
+
+        <h2>核心法律规则</h2>
+        <div class="concept-box">
+            <p class="concept-title">绑架罪 (Kidnapping) 定义</p>
+            <p>绑架罪 (Kidnapping) 通常指对他人进行非法拘禁 (<span class="term">unlawful confinement</span>)，并伴随以下要素：</p>
+            <ul>
+                <li>意图且非法地拘禁他人。</li>
+                <li>违背该受害人的意愿（例如，通过武力、威胁或欺诈）。</li>
+                <li>伴随移动 (<span class="term">moving</span>) 或藏匿 (<span class="term">hiding</span>) 该受害人。</li>
+            </ul>
+            <p>绑架罪的“移动”要素 (<span class="term">asportation element</span>) 仅需将受害人移动一小段距离，即使只有几英尺，即可满足。然而，如果绑架行为是附带于 (<span class="term">incident to</span>) 实施另一项重罪 (<span class="term">another offense</span>) 而发生，则对受害人的移动必须<strong>超出完成该其他重罪所必需的范围</strong>。否则，行为人不能被判绑架罪。</p>
+
+            <p class="concept-title" style="margin-top: 20px;">绑架罪的演变</p>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>绑架罪 (Kidnapping)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="普通法"><strong>普通法 (Common law)</strong></td>
+                            <td data-label="定义">强行绑架或偷窃他人，并将其从其本国送往另一国家。</td>
+                        </tr>
+                        <tr>
+                            <td data-label="《模范刑法典》"><strong>《模范刑法典》 (MPC)</strong></td>
+                            <td data-label="定义">非法移动或拘禁他人以：
+                                <ul>
+                                    <li>勒索赎金或作为人质</li>
+                                    <li>协助实施重罪或逃避追捕</li>
+                                    <li>伤害/恐吓受害人或他人</li>
+                                    <li>干预政府/政治职能</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="现代观点"><strong>现代观点 (Modern view)</strong></td>
+                            <td data-label="分类">
+                                <p><strong>一般绑架 (General)</strong></p>
+                                <ul>
+                                    <li>意图且非法拘禁，涉及：
+                                        <ul>
+                                            <li>某种程度的移动 (<span class="term">asportation</span>) 或</li>
+                                            <li>藏匿 (<span class="term">concealment</span>)</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <p><strong>加重绑架 (Aggravated)</strong></p>
+                                <ul>
+                                    <li>为以下目的实施的一般绑架：
+                                        <ul>
+                                            <li>勒索赎金</li>
+                                            <li>实施其他犯罪</li>
+                                            <li>具有攻击性目的</li>
+                                            <li>偷窃儿童</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><em>MPC = Model Penal Code (模范刑法典)</em></p>
+        </div>
+
+        <h2>事实与适用逻辑</h2>
+        <div class="concept-box">
+            <p>本案中，该男子进入便利店意图实施抢劫。他用枪指着店主，并将其移动到距离约20英尺的储藏室（拘禁），以便店主打开保险箱。该男子在拿到保险箱里的钱后逃离。</p>
+            <p>虽然该男子确实移动了店主并对其进行了拘禁，但这种移动是<strong>为了完成抢劫这一主要犯罪所必需的</strong>，即为了让店主打开保险箱。这种移动并未超出完成抢劫所必需的范围。</p>
+            <p>法院在判断移动是否超出“必要范围”时，会考虑几个因素：</p>
+            <ol>
+                <li>移动的持续时间和重要性。</li>
+                <li>移动是否是其他犯罪的固有部分或独立于其他犯罪。</li>
+                <li>移动是否使其他犯罪更容易实施。</li>
+            </ol>
+            <p>在本案中，将店主移动到20英尺外的储藏室，是为了方便打开保险箱，这被视为抢劫的固有部分，并未显著增加店主受到的危险，也未使抢劫变得异常容易，因此不构成独立的绑架罪。</p>
+        </div>
+
+        <h2>图示</h2>
+        <div class="diagram">
+            <p style="font-weight: 700; margin-bottom: 15px;">抢劫与附带移动流程</p>
+            <div class="diagram-content">
+                <div class="diagram-row">
+                    <span class="flow-node">男子进入便利店</span>
+                    <span class="arrow">→</span>
+                    <span class="flow-node">持枪威胁店主</span>
+                </div>
+                <div class="diagram-row">
+                    <span class="flow-node">店主指出保险箱位置 (储藏室)</span>
+                </div>
+                <div class="diagram-row">
+                    <span class="flow-node highlight-node">移动店主至储藏室 (约20英尺)</span>
+                    <span class="arrow">→</span>
+                    <span class="flow-node">强迫店主打开保险箱</span>
+                </div>
+                <div class="diagram-row">
+                    <span class="flow-node">男子取钱逃离</span>
+                </div>
+                <p style="margin-top: 15px; font-size: 0.9em; color: var(--muted-text);">
+                    此图示说明了移动店主是抢劫过程中获取保险箱内财物的必要步骤。
+                </p>
+            </div>
+        </div>
+
+        <h2>陷阱警示</h2>
+        <div class="trap-alert">
+            <p><strong>MBE 陷阱：附带绑架 (Incidental Kidnapping)</strong></p>
+            <p>在 <span class="term">MBE</span> 考试中，当绑架行为是附带于 (<span class="term">incident to</span>) 另一项重罪（如抢劫、强奸）发生时，考生需要特别注意。关键在于判断对受害人的移动是否<strong>超出完成该其他重罪所必需的范围</strong>。</p>
+            <ul>
+                <li>如果移动只是为了方便实施主要犯罪（例如，将受害人从商店前台移到后方保险箱处），且没有显著增加受害人的危险或独立于主要犯罪，则通常不构成单独的绑架罪。</li>
+                <li>如果移动距离很远，或者将受害人带到更危险的地方，或者使主要犯罪变得异常容易，则可能构成绑架。</li>
+            </ul>
+            <p>仅仅有非法移动和拘禁，如果其是主要犯罪的固有且必要的组成部分，不足以构成绑架罪。</p>
+        </div>
+
+        <h2>正确答案与干扰项排除</h2>
+        <div class="option-analysis">
+            <div class="option correct">
+                <p><strong>A. 不能，因为该男子移动店主的距离并未超出完成抢劫所必需的范围。</strong></p>
+                <p><strong>正确。</strong>这是“附带绑架”规则的核心。虽然该男子移动了店主并对其进行了拘禁，但这种移动是为了完成抢劫（即让店主打开保险箱）所必需的。这种移动并未超出完成抢劫所必需的范围，因此不构成独立的绑架罪。</p>
+            </div>
+
+            <div class="option wrong">
+                <p><strong>B. 不能，因为储藏室距离店主只有20英尺。</strong></p>
+                <p><strong>错误。</strong>绑架罪的“移动”要素并不要求很长的距离；即使是几英尺也可能足够。然而，关键在于移动是否“超出完成其他重罪所必需的范围”，而不仅仅是距离的绝对值。20英尺的距离本身并不能决定是否构成绑架，而是要看它与抢劫行为的关系。</p>
+            </div>
+
+            <div class="option wrong">
+                <p><strong>C. 能，因为该男子在实施抢劫期间非法将店主移动到储藏室。</strong></p>
+                <p><strong>错误。</strong>虽然该男子确实非法移动了店主，但这只是绑架罪的一个要素。如果这种移动是附带于另一项重罪（抢劫）且未超出完成该重罪所必需的范围，则不构成独立的绑架罪。</p>
+            </div>
+
+            <div class="option wrong">
+                <p><strong>D. 能，因为该男子的行为构成了对店主的拘禁。</strong></p>
+                <p><strong>错误。</strong>拘禁 (<span class="term">confinement</span>) 是绑架罪的另一个要素，但同样，如果拘禁和移动是附带于另一项重罪且未超出完成该重罪所必需的范围，则不构成独立的绑架罪。绑架罪需要非法拘禁和移动，并且在附带犯罪的情况下，移动必须“超出必要”。</p>
+            </div>
+        </div>
+
+        <h2>考试技巧</h2>
+        <div class="footer-tip">
+            <p><strong>判断附带绑架的关键：</strong>在 <span class="term">MBE</span> 考试中，遇到涉及在实施另一项重罪（如抢劫）期间移动受害人的情况时，请务必问自己：<strong>对受害人的移动是否超出完成该重罪所必需的范围？</strong>如果答案是“否”，则通常不构成独立的绑架罪。</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --correct-bg: #d4edda;
+        --correct-text: #155724;
+        --wrong-bg: #f8d7da;
+        --wrong-text: #721c24;
+        --card-bg: #ffffff;
+        --text-color: #333333;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+        width: 100%;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .header h2 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .header .sub-title {
+        font-size: 0.85rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .answer-section {
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: var(--correct-bg);
+        color: var(--correct-text);
+        border-radius: 8px;
+        border-left: 5px solid #28a745;
+        font-weight: bold;
+    }
+
+    .rule-box {
+        background-color: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 0 8px 8px 0;
+    }
+
+    .rule-title {
+        color: var(--accent-color);
+        font-weight: bold;
+        margin-bottom: 8px;
+        display: block;
+        font-size: 0.95rem;
+    }
+
+    .analysis-point {
+        margin-bottom: 15px;
+    }
+
+    .analysis-point strong {
+        color: var(--primary-color);
+    }
+
+    .trap-alert {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        margin-top: 20px;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 15px;
+        font-size: 0.8rem;
+        color: #888;
+        border-top: 1px solid #eee;
+    }
+
+    code {
+        background-color: #eee;
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 0.9em;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 证据法考点解析</h2>
+        <div class="sub-title">Character Evidence in Homicide Cases</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-section">
+            正确答案：D<br>
+            <span style="font-weight: normal; font-size: 0.9rem;">可采纳，因为被告作证称受害人是首先攻击者。</span>
+        </div>
+
+        <!-- 核心法律规则 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心考点：FRE 404(a)(2)</span>
+            根据《联邦证据规则》(Federal Rules of Evidence)，品格证据通常不可用于证明某人在特定场合的行为。但是，在<b>刑事案件</b>中有重要例外：
+            <br><br>
+            特别是在<b>杀人案件 (Homicide Case)</b> 中，如果被告提供证据声称受害人是<b>首先攻击者 (First Aggressor)</b>，控方可以直接引入受害人<b>性格平和 (Peacefulness)</b> 的品格证据进行反驳。
+        </div>
+
+        <!-- 详细解析 -->
+        <div class="analysis-point">
+            <strong>1. 为什么选 D？</strong><br>
+            本案是被告被控谋杀（Homicide Case）。被告作证称受害人先拿刀冲向他，这实质上是在主张正当防卫，并指认受害人是“首先攻击者”。<br>
+            一旦被告打开了这扇门（声称受害人先动手），根据 FRE 404(a)(2)(C)，控方就被允许传唤证人证明受害人享有“和平、非暴力”的声誉，以此来反驳被告的说法。
+        </div>
+
+        <div class="analysis-point">
+            <strong>2. 为什么 C 是错误的？（高频陷阱）</strong><br>
+            选项 C 认为被告引入了受害人的“暴作品格证据”。这是一个关键的误解。<br>
+            被告作证说“受害人这次拿刀冲向我”，这是对<b>具体行为 (Specific Act)</b> 的描述，属于案件事实证言，而不是<b>品格证据 (Character Evidence)</b>。<br>
+            如果被告找证人说“受害人一贯是个暴力狂”，那才是引入品格证据。
+            <br><br>
+            <span style="font-size:0.9em; color:#666;">注意：虽然被告没有直接攻击受害人的“品格”，但因为这是杀人案且涉及“首先攻击者”认定，控方依然享有特殊的反驳权。</span>
+        </div>
+
+        <div class="analysis-point">
+            <strong>3. 排除 A 和 B</strong><br>
+            <ul>
+                <li><b>选项 A：</b> 被告不需要先证明自己是好人。控方反驳受害人品格的权利不取决于被告是否证明了自己的品格。</li>
+                <li><b>选项 B：</b> 理由同 C。被告确实没有提供受害人“不良品格”的证据（只是陈述了事实），但这并不阻碍控方在杀人案中针对“首先攻击者”的主张进行反驳。</li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="trap-alert">
+            <strong>🎓 MBE 提分技巧：</strong>
+            <br>
+            遇到 <b>Self-Defense</b>（正当防卫）的题目，立即检查是否为 <b>Homicide</b>（杀人案）。
+            <br><br>
+            如果是杀人案，只要被告说“是他先动手的”，控方就可以直接用“受害人是和平的”来反驳。这是证据法中针对杀人案的特殊规则，不需要被告先攻击受害人的“人品”。
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Evidence Review | Q87165
+    </div>
+</div>
+
+</body>
+</html>

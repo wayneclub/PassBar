@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --correct-color: #27ae60;
+        --wrong-color: #c0392b;
+        --text-color: #333;
+        --bg-color: #f4f7f6;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #eef2f3;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+    }
+    .container {
+        max-width: 480px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+    .header .subtitle {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .rule-box {
+        background-color: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+    }
+    .rule-title::before {
+        content: "⚖️";
+        margin-right: 8px;
+    }
+    .element-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .element-list li {
+        padding: 5px 0;
+        border-bottom: 1px solid #eee;
+        font-size: 0.95rem;
+    }
+    .element-list li:last-child {
+        border-bottom: none;
+    }
+    .status-icon {
+        display: inline-block;
+        width: 20px;
+        text-align: center;
+        margin-right: 8px;
+    }
+    .check { color: var(--correct-color); }
+    .cross { color: var(--wrong-color); font-weight: bold; }
+    
+    .analysis-section {
+        margin-bottom: 20px;
+    }
+    .analysis-title {
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+    }
+    .key-point {
+        background: #fff3cd;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+    .distractor {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #ccc;
+    }
+    .distractor strong {
+        color: var(--wrong-color);
+    }
+    .exam-tip {
+        background-color: #2c3e50;
+        color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 0.9rem;
+    }
+    .exam-tip-title {
+        font-weight: bold;
+        color: #f1c40f;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+    .latin {
+        font-style: italic;
+        color: #555;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">普通法下的入室犯法罪 (Burglary)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心规则 -->
+        <div class="rule-box">
+            <div class="rule-title">普通法 Burglary 的六大构成要件</div>
+            <p style="font-size: 0.9rem; margin-top:0;">要构成 Common Law Burglary，必须同时满足以下所有条件：</p>
+            <ul class="element-list">
+                <li><span class="status-icon check">✔</span> 1. 破坏 (Breaking)</li>
+                <li><span class="status-icon check">✔</span> 2. 进入 (Entering)</li>
+                <li><span class="status-icon cross">✘</span> 3. <b>住宅 (Dwelling)</b></li>
+                <li><span class="status-icon check">✔</span> 4. 他人的 (Of another)</li>
+                <li><span class="status-icon check">✔</span> 5. 夜间 (At night)</li>
+                <li><span class="status-icon check">✔</span> 6. 意图犯重罪 (Intent to commit a felony)</li>
+            </ul>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 B？(核心考点)</div>
+            <p>本题的关键在于<b>“住宅” (Dwelling)</b> 的定义。在普通法 (Common Law) 中，入室犯法罪旨在保护人们居住的安全 (Right of Habitation)。</p>
+            <p>虽然该房屋曾经是住宅，但题目明确指出它已经<b>“被废弃了一段时间” (abandoned for some time)</b>。</p>
+            <p><b>法律逻辑：</b><br>
+            一旦一个建筑物被废弃 (Abandoned)，它在法律上就不再被视为“住宅” (Dwelling)。既然犯罪对象不是 Dwelling，那么 Burglary 的构成要件就不完整。因此，该女子无罪。</p>
+        </div>
+
+        <!-- 易错点辨析 -->
+        <div class="distractor">
+            <div class="analysis-title" style="font-size: 1rem;">为什么其他选项是陷阱？</div>
+            
+            <p><strong>❌ 选项 A (关于未上锁的门)：</strong><br>
+            这是一个经典的 MBE 干扰项。很多人误以为“破坏” (Breaking) 需要把门踹开。其实，<b>转动门把手打开一扇未上锁的门 (Opening an unlocked door)</b> 在法律上已经构成了 Breaking（使用了轻微的物理力量）。所以，她确实满足了 Breaking 的要件，A 选项的理由是错误的。</p>
+
+            <p><strong>❌ 选项 D (关于暴力)：</strong><br>
+            同上，她确实使用了足够的“力” (Force) 来构成 Breaking，但这并不是她无罪的原因。她无罪的唯一原因是房子是废弃的。</p>
+            
+            <p><strong>❌ 选项 C (关于意图)：</strong><br>
+            她确实有盗窃 (Larceny) 的意图，但这只是要件之一。无论意图多么恶劣，如果进入的不是“住宅”，就不能定 Burglary。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <div class="exam-tip-title">💡 MBE 考试技巧</div>
+            <p>在处理 <b>Burglary</b> 题目时，请务必按顺序检查每一个元素。如果题目中出现 <b>"Abandoned" (废弃)</b>、<b>"Under construction" (在建)</b> 或 <b>"Warehouse/Office" (仓库/办公室)</b> 等字眼，要立刻警惕：这可能不满足 <b>Common Law</b> 下的 <b>Dwelling</b> 要件。</p>
+            <p style="margin-top:10px; font-size: 0.85rem; opacity: 0.8;">注意：现代成文法 (Statutes) 通常扩展了 Burglary 的定义，但在 MBE 明确考察 "Common Law" 规则时，必须死扣“有人居住的住宅”这一传统定义。</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

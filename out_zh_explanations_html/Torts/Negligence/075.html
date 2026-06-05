@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --text-color: #333;
+        --border-radius: 8px;
+        --shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background: #fff;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .header .sub-title {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+    .card {
+        background: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .card-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        display: block;
+        margin-bottom: 8px;
+    }
+    .section-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 5px;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .english {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 0.9em;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    li {
+        margin-bottom: 8px;
+    }
+    .footer {
+        background: #f9f9f9;
+        padding: 15px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #777;
+        border-top: 1px solid #eee;
+    }
+    .badge {
+        display: inline-block;
+        padding: 2px 6px;
+        background: #e74c3c;
+        color: white;
+        border-radius: 4px;
+        font-size: 0.8em;
+        margin-right: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">侵权法：知情同意与损害要素</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="card">
+            <span class="card-title">✅ 正确答案：A</span>
+            本题的核心考点在于：在基于<b>知情同意</b>（Informed Consent）的过失侵权诉讼中，如果未披露的风险没有发生，且患者未受伤害，则<b>损害要件</b>（Damages）不成立，原告无法胜诉。
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="section-title">⚖️ 法律规则解析</div>
+        <p>要赢得基于“缺乏知情同意”的<b>过失</b>（Negligence）诉讼，原告必须证明以下四个要素：</p>
+        <ol>
+            <li><b>义务 (Duty)：</b>医生有义务披露重大风险。</li>
+            <li><b>违约 (Breach)：</b>医生未能披露该风险。</li>
+            <li><b>因果关系 (Causation)：</b>如果被告知风险，患者本会拒绝手术。</li>
+            <li><b><span class="term">损害 (Damages)</span>：</b>未披露的风险必须<b>成为现实</b>（Materialized）并导致了身体伤害。</li>
+        </ol>
+        
+        <p>在本案中，虽然医生未能披露2%的死亡风险（违约），且患者如果知道就会拒绝（因果关系），但手术非常成功，患者恢复良好。由于<b>没有发生身体伤害</b>，过失侵权的第四个要素缺失。</p>
+
+        <!-- 为什么其他选项是错的 -->
+        <div class="section-title">❌ 干扰项分析</div>
+        
+        <p><b>选项 B (错误)：关于治疗特权</b><br>
+        虽然医生有“治疗特权”（Therapeutic Privilege），即在披露风险会严重威胁患者身心健康时可不披露，但这必须基于<b>合理的医学判断</b>（Sound Medical Judgment），而非本案中的“个人判断”。虽然医生的抗辩理由不成立，但选项B不是最佳答案，因为即使没有这个抗辩，原告因无损害也无法胜诉。</p>
+
+        <p><b>选项 C & D (错误)：关注点偏差</b><br>
+        这两个选项分别强调了“义务”和“因果关系”。
+        <ul>
+            <li>选项C强调了披露义务。</li>
+            <li>选项D强调了如果知情就会拒绝（事实因果关系）。</li>
+        </ul>
+        虽然这两点在事实层面上是正确的，但它们忽略了过失侵权诉讼的<b>结果导向性</b>——没有损害，就没有过失责任。</p>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+            <span class="card-title">💡 MBE 考试技巧</span>
+            <p><b>区分“过失”与“巴特里”(Battery)：</b></p>
+            <ul>
+                <li>如果医生<b>完全没有获得同意</b>就动手术，这是Battery（故意侵权），不需要证明实际损害，原告可获得名义赔偿。</li>
+                <li>如果医生获得了同意，但<b>未披露特定风险</b>，这是Negligence（过失）。过失侵权<b>必须</b>证明有实际的身体损害（Actual Damages）。</li>
+            </ul>
+            <p>看到“手术成功”、“恢复良好”这类字眼时，立即检查是否满足“损害”要素。</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        Reference: Canterbury v. Spence<br>
+        Negligence / Informed Consent
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Contracts Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+
+        .option-analysis {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .option-correct {
+            border-color: var(--correct-color);
+            background-color: rgba(39, 174, 96, 0.05);
+        }
+
+        .option-wrong {
+            border-color: var(--wrong-color);
+            background-color: rgba(192, 57, 43, 0.05);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .badge-correct {
+            background-color: var(--correct-color);
+            color: white;
+        }
+
+        .badge-wrong {
+            background-color: var(--wrong-color);
+            color: white;
+        }
+
+        .trap-alert {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-top: 15px;
+        }
+
+        .footer {
+            background-color: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            border-top: 1px solid #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts: Misrepresentation & Nondisclosure</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">⚖️ 核心法律规则 (The Rule)</span>
+            <p>通常情况下，沉默不构成虚假陈述。但在特定情形下，<b>不披露 (Nondisclosure)</b> 等同于断言该事实不存在。</p>
+            <p>根据 <span class="english-term">Restatement (Second) of Contracts § 161</span>，如果一方知道披露事实是<b>防止先前的断言构成欺诈或重大误导</b>所必需的，则必须披露。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情逻辑分析</div>
+            <p>本题考察的是合同法中关于<b>“更正义务” (Duty to Correct)</b> 的规则。</p>
+            <ol>
+                <li><b>初始状态：</b>女子提交贷款申请时，财务报表是准确的。</li>
+                <li><b>情况变更：</b>在银行放款（合同成立）之前，她的财务状况严重恶化。</li>
+                <li><b>法律后果：</b>虽然之前的陈述在当时是真的，但由于情况变化，该陈述在合同成立时已不再反映真实情况。如果她保持沉默，之前的陈述就变成了<b>持续性的虚假陈述 (Continuing Misrepresentation)</b>。</li>
+            </ol>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">选项深度解析</div>
+
+            <!-- 正确选项 C -->
+            <div class="option-analysis option-correct">
+                <span class="badge badge-correct">正确答案 C</span>
+                <p><b>分析：</b>这是对上述规则的直接应用。为了防止之前的陈述（财务报表）变成欺诈性的或误导性的，她有法律义务披露新的事实。</p>
+                <p><b>关键点：</b>一旦之前的陈述不再真实，且对方仍依赖该陈述，沉默就构成了欺诈。</p>
+            </div>
+
+            <!-- 错误选项 B -->
+            <div class="option-analysis option-wrong">
+                <span class="badge badge-wrong">错误选项 B</span>
+                <p><b>分析：</b>很多考生会误选此项。虽然申请<b>当时</b>是准确的，但合同法看重的是<b>诱导合同成立时</b>的信息真实性。如果在合同生效前事实发生变化，必须更新信息。</p>
+            </div>
+
+            <!-- 错误选项 D (陷阱) -->
+            <div class="option-analysis option-wrong">
+                <span class="badge badge-wrong">常见陷阱 D</span>
+                <p><b>分析：</b>这是一个经典的 MBE 干扰项。选项 D 提到了“信任关系” (Relationship of trust)。</p>
+                <div class="trap-alert">
+                    ⚠️ <b>MBE 警示：</b>
+                    <br>虽然女子与银行有多年的业务往来，但在法律上，银行与客户通常<b>不构成</b>信托关系 (<span class="english-term">Fiduciary Relationship</span>)。
+                    <br><br>
+                    如果是律师与客户、受托人与受益人，则有基于关系的披露义务。但普通的商业借贷关系是“公平交易” (<span class="english-term">Arm's-length transaction</span>)，不存在基于关系的全面披露义务，除非涉及更正先前的陈述。
+                </div>
+            </div>
+        </div>
+
+        <!-- 总结 -->
+        <div class="concept-card" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+            <span class="concept-title">🎓 考试技巧 (Exam Tip)</span>
+            <p>当你在 MBE 合同法题目中看到：</p>
+            <ul>
+                <li>一方做出了陈述 (Statement made)</li>
+                <li>事实发生了变化 (Facts changed)</li>
+                <li>合同尚未最终签署 (Before contract formed)</li>
+            </ul>
+            <p>➡️ <b>必须披露变化</b>，否则构成虚假陈述，合同可撤销 (<span class="english-term">Voidable</span>)。</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Contracts Review | QID: Q81817
+    </div>
+</div>
+
+</body>
+</html>

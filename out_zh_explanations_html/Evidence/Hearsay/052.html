@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            background-color: #eee;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .concept-tag {
+            display: inline-block;
+            background-color: #e1e1e1;
+            color: #555;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .wrong-answer {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：传闻证据陈述人的弹劾</h1>
+    
+    <p>本题考查的是美国联邦证据规则（Federal Rules of Evidence, FRE）中关于如何攻击不在场陈述人（Hearsay Declarant）可信度的问题。</p>
+
+    <div class="rule-box">
+        <strong>核心考点：FRE 806</strong><br>
+        Attacking and Supporting the Declarant's Credibility
+    </div>
+
+    <h2>1. 法律规则解析 (Legal Rule)</h2>
+    <p>根据 <strong>FRE 806</strong>，当一份传闻证据（Hearsay）或特定的非传闻陈述（如共谋者陈述）被法庭采纳后，<strong>陈述人（Declarant）的可信度可以像在场证人一样受到攻击。</strong></p>
+    <p>这意味着，如果陈述人作为证人出庭时可以被弹劾（Impeachment），那么即使他不在场，也可以用同样的方法弹劾他。</p>
+    
+    <p><strong>关键区别 (The Key Distinction)：</strong></p>
+    <ul>
+        <li><strong>普通证人 (FRE 613)：</strong> 通常要求在引入外部证据证明其前后陈述不一致之前，必须给证人一个解释或否认的机会（Opportunity to explain or deny）。</li>
+        <li><strong>传闻陈述人 (FRE 806)：</strong> 规则明确规定，<strong>不需要</strong>给陈述人解释或否认的机会。</li>
+    </ul>
+
+    <h2>2. 案情分析 (Application)</h2>
+    <ul>
+        <li><strong>陈述 1：</strong> 哥哥说“我姐姐在抢银行”。这是传闻证据，但已作为激动言辞（Excited Utterance）被采纳。</li>
+        <li><strong>陈述 2：</strong> 哥哥后来承认“我弄错了”。这是前后不一致的陈述（Inconsistent Statement）。</li>
+        <li><strong>现状：</strong> 哥哥无法出庭（Unavailable）。</li>
+    </ul>
+    <p>根据 FRE 806，辩方可以引入陈述 2 来攻击陈述 1 的可信度，<strong>即使哥哥没有机会解释，也即使陈述 2 发生在陈述 1 之后。</strong></p>
+
+    <h2>3. 选项深度解析</h2>
+
+    <p><span class="correct-answer">✅ 选项 D 正确：</span><br>
+    <strong>"Yes, but only as an inconsistent statement to impeach the brother's credibility."</strong><br>
+    这是 FRE 806 的直接应用。该证据可以用来证明哥哥说话前后矛盾，从而降低陪审团对其第一句指控的信任度。</p>
+
+    <p><span class="wrong-answer">❌ 选项 A 错误 (常见陷阱)：</span><br>
+    <strong>"No, because the brother will be afforded no opportunity to explain..."</strong><br>
+    这是针对普通出庭证人（FRE 613）的要求。FRE 806 特别免除了对传闻陈述人的这一要求，因为陈述人通常不在庭上，无法进行解释。</p>
+
+    <p><span class="wrong-answer">❌ 选项 C 错误 (用途限制)：</span><br>
+    <strong>"Yes, because it is substantive proof..."</strong><br>
+    虽然陈述 2 可以进入法庭，但它本身也是传闻证据（庭外陈述，为了证明“他确实弄错了/姐姐没抢银行”这一事实）。除非它符合某个传闻例外（如 Declaration Against Interest，但本题条件不足以确立），否则它只能用于<strong>弹劾（Impeachment）</strong>，不能作为<strong>实质性证据（Substantive Proof）</strong>。</p>
+
+    <p><span class="wrong-answer">❌ 选项 B 错误：</span><br>
+    <strong>Confrontation Clause (对质条款)</strong><br>
+    美国宪法第六修正案的对质权是赋予<strong>刑事被告人</strong>的权利，用来对抗检方证人。检察官（Prosecutor）不能主张对质权受损。</p>
+
+    <h2>4. 考试技巧 (Exam Tip)</h2>
+    <div class="rule-box" style="background-color: #fff3cd; border-left-color: #f1c40f;">
+        <strong>MBE 黄金法则：</strong><br>
+        看到“传闻证据被采纳” + “陈述人不在场” + “有不一致的陈述”时，立即联想 <strong>FRE 806</strong>。记住：<strong>不需要</strong>给陈述人解释的机会（No foundation required）。
+    </div>
+
+    
+</div>
+
+</body>
+</html>

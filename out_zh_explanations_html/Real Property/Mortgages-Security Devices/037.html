@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f6f3;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .key-term {
+            color: #e74c3c;
+            font-weight: bold;
+            background-color: #fdedec;
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .option-analysis {
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+
+        .option-item {
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 3px solid #ddd;
+        }
+
+        .correct-option {
+            border-left-color: #27ae60;
+        }
+
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #999;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Mortgages & Security Devices</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">核心考点：占有中的抵押权人</span>
+            <span class="english-term">Mortgagee in Possession</span><br>
+            当抵押权人（贷款人）合法接管并占有抵押房产时，其在法律上被视为该房产的“准所有者”，必须承担与所有者相同的管理责任，包括对第三方的侵权责任。
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情逻辑分析</div>
+            <p>本题考察的是抵押权人接管房产后的法律后果：</p>
+            <ol>
+                <li><strong>放弃与接管：</strong>土地所有者（Mortgagor）放弃了果园，投资者（Mortgagee）为了保护担保利益，主动介入并接管了果园的运营。</li>
+                <li><strong>身份转变：</strong>一旦投资者接管并开始运营（雇佣员工、收割庄稼），她就成为了<span class="key-term">占有中的抵押权人 (Mortgagee in Possession)</span>。</li>
+                <li><strong>责任承担：</strong>作为占有者，她承担了维护房产安全的责任。题目明确指出“根据侵权法，房产所有者应对伤害负责”。由于投资者现在处于“准所有者”的地位，她必须对因设备故障导致的商业受邀人（Business Invitee）的伤害负责。</li>
+            </ol>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">选项深度解析</div>
+            
+            <div class="option-analysis">
+                <div class="option-item correct-option">
+                    <strong>✅ 选项 A (正确答案)</strong><br>
+                    <strong>理由：</strong>投资者通过接管果园的管理和运营，成为了“占有中的抵押权人”。在此身份下，她对房产上的受邀人负有与所有者相同的注意义务（Duty of Care）。
+                </div>
+
+                <div class="option-item">
+                    <strong>❌ 选项 B (干扰项：抵押理论)</strong><br>
+                    <strong>理由：</strong>这是一个经典的干扰项。虽然美国各州对抵押分为“所有权理论” <span class="english-term">(Title Theory)</span> 和“担保权理论” <span class="english-term">(Lien Theory)</span>，但这主要影响谁持有法定所有权。<strong>侵权责任来源于“占有和控制” (Possession and Control)</strong>，而不是抽象的所有权归属。无论在哪个理论下，实际占有者都要对访客安全负责。
+                </div>
+
+                <div class="option-item">
+                    <strong>❌ 选项 C (干扰项：代理关系)</strong><br>
+                    <strong>理由：</strong>投资者是为了保护自己的担保利益（Security Interest）而行事，并非作为失踪土地所有者的代理人。如果是代理人，责任可能归于被代理人；但作为占有中的抵押权人，她是为自己利益行事，需独立承担责任。
+                </div>
+
+                <div class="option-item">
+                    <strong>❌ 选项 D (干扰项：合同条款)</strong><br>
+                    <strong>理由：</strong>当抵押人（Mortgagor）<strong>放弃 (Abandon)</strong> 房产时，抵押权人有权接管房产以防止其废弃贬值，这不需要抵押合同中有明确条款授权。
+                </div>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        
+    </div>
+
+    
+</div>
+
+</body>
+</html>

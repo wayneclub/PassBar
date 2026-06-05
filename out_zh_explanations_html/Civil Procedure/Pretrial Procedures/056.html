@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .check-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .icon {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .icon.yes { color: var(--success-color); }
+        .icon.no { color: var(--warning-color); }
+
+        .answer-box {
+            background-color: #f0f9f4;
+            border: 1px solid #d1e7dd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .answer-label {
+            color: var(--success-color);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .pitfall {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure: Preliminary Injunctions</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法律规则 (The Rule)</span>
+            <p style="margin:0; font-size: 0.95rem; line-height: 1.5;">
+                根据 <strong>Federal Rule of Civil Procedure 65(d)</strong>，禁令（Injunction）不仅约束当事人，还约束收到<strong>实际通知 (Actual Notice)</strong> 的以下人员：
+            </p>
+            <ul style="margin: 10px 0 0 20px; padding: 0; font-size: 0.9rem;">
+                <li>当事人 (The parties)</li>
+                <li>当事人的高级职员、代理人、<strong>员工 (Employees)</strong> 和律师</li>
+                <li>与上述人员积极共谋或参与的人 (Persons in active concert or participation)</li>
+            </ul>
+        </div>
+
+        <!-- 题目分析 -->
+        <div class="analysis-section">
+            <div class="section-title">逻辑推演</div>
+            <p style="font-size: 0.95rem; margin-bottom: 15px;">
+                本题考察的是初步禁令的<strong>约束范围 (Scope of Binding Effect)</strong>。要判断员工是否受约束，需进行两步测试：
+            </p>
+
+            <ul class="check-list">
+                <li class="check-item">
+                    <span class="icon yes">✔</span>
+                    <div>
+                        <strong>身份符合：</strong><br>
+                        题目明确指出他们是该开发人员（被告）的 <span class="term">Employees</span>。根据 FRCP 65(d)(2)(B)，员工属于被约束的类别。
+                    </div>
+                </li>
+                <li class="check-item">
+                    <span class="icon yes">✔</span>
+                    <div>
+                        <strong>程序符合：</strong><br>
+                        题目说明员工收到了禁令的副本，这意味着他们收到了 <span class="term">Actual Notice</span>（实际通知）。
+                    </div>
+                </li>
+            </ul>
+
+            <div class="answer-box">
+                <span class="answer-label">✅ 正确答案：选项 C</span>
+                因为员工属于 FRCP 65 规定的类别，并且收到了实际通知，所以他们必须遵守该禁令。
+            </div>
+        </div>
+
+        <!-- 干扰项解析 -->
+        <div class="analysis-section">
+            <div class="section-title">为什么其他选项是错的？</div>
+            
+            <div class="check-item">
+                <span class="icon no">✖</span>
+                <div>
+                    <strong>选项 A (Not parties)：</strong><br>
+                    <span style="font-size:0.9rem; color:#555;">
+                    这是最常见的陷阱。虽然通常法院命令只约束当事人，但为了防止当事人通过“代理人”规避法律，FRCP 65 特别规定禁令延伸至员工和代理人。</span>
+                </div>
+            </div>
+
+            <div class="check-item">
+                <span class="icon no">✖</span>
+                <div>
+                    <strong>选项 B (Due Process)：</strong><br>
+                    <span style="font-size:0.9rem; color:#555;">
+                    正当程序 (Due Process) 要求的是通知和听证的机会。这里员工收到了通知，且禁令并未剥夺其受宪法保护的财产权益（如公职人员的工作权）。</span>
+                </div>
+            </div>
+
+            <div class="check-item">
+                <span class="icon no">✖</span>
+                <div>
+                    <strong>选项 D (Mentioned in order)：</strong><br>
+                    <span style="font-size:0.9rem; color:#555;">
+                    仅仅在命令中“提到”某人并不足以产生约束力。约束力来源于<strong>法律关系</strong>（如雇佣关系）加上<strong>实际通知</strong>，而不是仅仅因为名字出现在纸上。</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="pitfall">
+            <strong>🎓 考试技巧 (Exam Tip)：</strong><br>
+            在处理 Injunction 问题时，如果看到非当事人（Non-party）被指控违反禁令，立即检查两点：<br>
+            1. 他是否是当事人的代理人/员工/共谋者？<br>
+            2. 他是否知道该禁令的存在（Actual Notice）？<br>
+            两者缺一不可。
+        </div>
+
+    </div>
+
+    <div class="footer">
+        MBE Civil Procedure Review | Rule 65(d)
+    </div>
+</div>
+
+</body>
+</html>

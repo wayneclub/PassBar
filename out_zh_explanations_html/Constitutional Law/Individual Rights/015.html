@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕 */
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            font-size: 18px;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .highlight-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 14px;
+            border: 1px solid #d1e8f0;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .english-term {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .logic-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .step-num {
+            background-color: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .exam-tip {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 头部 -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Constitutional Law / First Amendment</div>
+    </div>
+
+    <!-- 核心考点卡片 -->
+    <div class="card">
+        <h2>⚖️ 核心法律规则</h2>
+        <p>本题考察的是<b>第一修正案出版自由 (Freedom of the Press)</b> 中的一个经典原则：</p>
+        
+        <div class="highlight-box">
+            <b>规则：</b>如果媒体<b>合法获取 (lawfully obtained)</b> 了关于<b>公共利益事项 (matter of public significance)</b> 的<b>真实信息 (truthful information)</b>，政府原则上不能惩罚其发布行为。
+        </div>
+        
+        <p>除非政府能证明该惩罚满足<b>严格审查 (Strict Scrutiny)</b> 标准，即：</p>
+        <ul>
+            <li>是为了实现<b>迫切的政府利益</b> (Compelling government interest)；且</li>
+            <li>手段是<b>精确剪裁</b> (Narrowly tailored) 的（即限制最小的手段）。</li>
+        </ul>
+        <p><span class="english-term">参考判例：Smith v. Daily Mail Pub. Co. (1979)</span></p>
+    </div>
+
+    <!-- 案情分析卡片 -->
+    <div class="card">
+        <h2>🔍 案情逻辑推演</h2>
+        <p>为什么选项 A 是正确的？让我们一步步拆解：</p>
+
+        <div class="logic-step">
+            <div class="step-num">1</div>
+            <div>
+                <b>信息来源是否合法？</b><br>
+                是。记者是被允许进入观察行刑的 (permitted to observe)。虽然他没有承诺只发官方通稿，但他获取信息的方式本身不违法。
+            </div>
+        </div>
+
+        <div class="logic-step">
+            <div class="step-num">2</div>
+            <div>
+                <b>信息是否真实且具公共意义？</b><br>
+                是。死刑执行（特别是处理不当的事故）显然是公众关心的重大政府行为。
+            </div>
+        </div>
+
+        <div class="logic-step">
+            <div class="step-num">3</div>
+            <div>
+                <b>政府的理由是否通过严格审查？</b><br>
+                否。政府的理由是“保护公众（特别是儿童）免受细节影响”。虽然保护儿童可能是一个重要利益，但<b>全面禁止发布</b>并非“限制最小的手段”。
+                <br><br>
+                <span class="english-term">Less restrictive means:</span> 政府可以要求添加警告标签，或者依靠父母的监管，而不是直接剥夺公众的知情权。
+            </div>
+        </div>
+    </div>
+
+    <!-- 错误选项解析 -->
+    <div class="card">
+        <h2>🚫 避坑指南 (Distractors)</h2>
+        
+        <p><b>选项 B 错误：</b><br>
+        记者是否承诺并不关键。即使没有承诺，只要信息是合法获取的，宪法权利就优先于法规的限制。如果记者通过非法手段（如非法侵入）获取信息，结果可能不同，但本案中他是获准进入的。</p>
+
+        <p><b>选项 C 错误：</b><br>
+        这是政府的抗辩理由，但在宪法天平上，避免“心理不适”不足以压倒对政府行为进行监督的出版自由。这无法通过严格审查。</p>
+
+        <p><b>选项 D 错误：</b><br>
+        <b>程序性考点：</b>在刑事诉讼中，被告完全可以以“该法律违宪”作为辩护理由 (Defense)，不需要在发布新闻前先去打一场民事官司来确认法律效力。</p>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="exam-tip">
+        <b>💡 MBE 实战技巧：</b><br>
+        看到政府惩罚发布<b>真实新闻</b>的题目，首先通过<b>Strict Scrutiny</b>的滤镜。通常情况下，除非涉及国家安全（如军队调动信息），政府很难禁止发布合法获取的真实信息。
+        <br><br>
+        关键词记忆：<b>Lawfully obtained + Truthful + Public concern = Protected.</b>
+    </div>
+
+</div>
+
+</body>
+</html>

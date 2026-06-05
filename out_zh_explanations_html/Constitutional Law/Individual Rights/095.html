@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+            overflow: hidden;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 15px;
+            font-weight: bold;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background-color: var(--highlight-bg);
+            color: var(--primary-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            border: 1px solid #bdc3c7;
+        }
+
+        .key-point {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.95em;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        .analysis-step {
+            margin-bottom: 12px;
+        }
+
+        .analysis-step strong {
+            color: var(--accent-color);
+        }
+
+        .wrong-option {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #eee;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.1em;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 核心考点卡片 -->
+    <div class="card">
+        <div class="card-header">
+            📚 核心考点：实质性正当程序
+        </div>
+        <div class="card-body">
+            <span class="concept-tag">Substantive Due Process</span>
+            <span class="concept-tag">14th Amendment</span>
+            
+            <p>本题考察的是第十四修正案下的<b>实质性正当程序（Substantive Due Process）</b>。它限制政府剥夺个人生命、自由或财产的权力，要求政府行为必须具有充分的理由。</p>
+            
+            <div class="key-point">
+                <strong>法律标准：</strong><br>
+                对于不涉及基本权利（Fundamental Rights）的一般政府行为，适用<b>合理基础审查（Rational Basis Review）</b>。
+                <br><br>
+                但是，如果惩罚措施与违法行为<b>严重不成比例（Grossly Disproportionate）</b>，则被视为缺乏合理基础，属于任意的（Arbitrary）政府行为，从而违宪。
+            </div>
+        </div>
+    </div>
+
+    <!-- 案情分析卡片 -->
+    <div class="card" style="border-left-color: var(--accent-color);">
+        <div class="card-header" style="background-color: var(--accent-color);">
+            🔍 案情逻辑分析
+        </div>
+        <div class="card-body">
+            <h3>1. 权益剥夺 (Deprivation)</h3>
+            <p>学校命令学生在禁闭室（Confinement Room）呆15天并限制身体动作（双手紧握）。这构成了对学生<b>人身自由（Liberty）</b>的剥夺。</p>
+
+            <h3>2. 审查标准 (Standard of Review)</h3>
+            <p>虽然学校在维持纪律方面有很大裁量权，但惩罚必须与合法的教育目的（Legitimate Educational Interest）有<b>合理关联（Rationally Related）</b>。</p>
+
+            <h3>3. 比例原则 (Proportionality)</h3>
+            <p><b>事实对比：</b>
+            <ul>
+                <li><b>违规：</b> 第一次犯错，放口香糖在椅子上（轻微恶作剧）。</li>
+                <li><b>惩罚：</b> 15天禁闭 + 身体束缚。</li>
+            </ul>
+            </p>
+            <p><b>结论：</b> 这种惩罚对于一个初犯的五年级学生来说是<b>严重不成比例（Grossly Disproportionate）</b>的。它不仅严厉，而且这种极端的身体束缚与纠正“放口香糖”这一行为之间没有合理的逻辑联系。</p>
+            
+            <p>因此，<b>选项 A</b> 是最佳论点：该规则的适用剥夺了自由，且手段极其不成比例，违反了正当程序。</p>
+        </div>
+    </div>
+
+    <!-- 排除错误选项卡片 -->
+    <div class="card" style="border-left-color: #e74c3c;">
+        <div class="card-header" style="background-color: #e74c3c;">
+            🚫 为什么其他选项是错的？
+        </div>
+        <div class="card-body">
+            <div class="analysis-step">
+                <strong>选项 B：剥夺公权法案 (Bill of Attainder)</strong><br>
+                <span class="wrong-option">
+                    <b>错误。</b> Bill of Attainder 是指立法机关未经审判直接惩罚<b>特定</b>个人或群体的法案。本案中，学校规则是通用的（适用于所有学生），且经过了听证程序，不符合剥夺公权法案的定义。
+                </span>
+            </div>
+
+            <div class="analysis-step">
+                <strong>选项 C：平等保护 (Equal Protection)</strong><br>
+                <span class="wrong-option">
+                    <b>错误。</b> 平等保护条款处理的是对<b>不同群体</b>的区别对待（Discrimination）。本案规则适用于所有违反纪律的学生，没有基于种族、性别或其他分类进行区别对待，因此不是平等保护问题。
+                </span>
+            </div>
+
+            <div class="analysis-step">
+                <strong>选项 D：特权与豁免 (Privileges and Immunities)</strong><br>
+                <span class="wrong-option">
+                    <b>错误。</b> Article IV 的特权与豁免条款主要防止州政府歧视<b>外州居民</b>（Out-of-state residents）。本案学生是本地居民，且不涉及跨州歧视问题。
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 考试技巧总结 -->
+    <div class="card" style="border-left-color: #27ae60;">
+        <div class="card-body" style="background-color: #f9fff9;">
+            <h3 style="color: #27ae60; border-bottom: none;">💡 MBE 答题技巧</h3>
+            <p>当题目中出现<b>极端不合理</b>的政府惩罚或行为，且不涉及言论自由（First Amendment）或歧视（Equal Protection）时，通常应当考虑<b>实质性正当程序（Substantive Due Process）</b>。</p>
+            <p>寻找关键词：<b>"Grossly Disproportionate"（严重不成比例）</b> 或 <b>"Arbitrary and Capricious"（任意且反复无常）</b>。</p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

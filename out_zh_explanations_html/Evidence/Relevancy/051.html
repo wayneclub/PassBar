@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: #333;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-box strong {
+            color: #2e7d32;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .rule-card {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .mimic-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        .mimic-list li {
+            background-color: #fff;
+            border: 1px solid #eee;
+            padding: 8px 12px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        .mimic-list li span.letter {
+            background-color: #d32f2f;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .analysis-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #444;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+        .distractor {
+            font-size: 13px;
+            color: #666;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+        }
+        .exam-tip {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence / 证据法</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            <strong>正确答案：C</strong>
+            Yes, to show absence of mistake.<br>
+            （是，用以证明并非过失。）
+        </div>
+
+        <!-- 核心考点 -->
+        <div class="section-title">核心考点：FRE 404(b) 与 MIMIC 规则</div>
+        <div class="analysis-text">
+            本题考察的是美国联邦证据规则（Federal Rules of Evidence, FRE）第 404(b) 条关于<b>“特定行为证据” (Evidence of Other Crimes, Wrongs, or Acts)</b> 的可采性。
+        </div>
+
+        <div class="rule-card">
+            <b>基本原则 (General Rule)：</b><br>
+            一般情况下，不能使用被告过去的“坏行为”来证明其具有犯罪倾向（Propensity），即不能说“他以前做过坏事，所以他是个坏人，这次肯定也是他干的”。
+        </div>
+
+        <div class="rule-card" style="background-color: #e8f5e9; border-color: #a5d6a7;">
+            <b>例外情况 (Exception - MIMIC)：</b><br>
+            如果证据不是为了证明品格，而是为了证明其他<b>特定的非品格目的</b>，则是可采纳的（Admissible）。这些目的通常用口诀 <b>MIMIC</b> 来记忆：
+            <ul class="mimic-list">
+                <li><span class="letter">M</span> Motive (动机)</li>
+                <li><span class="letter">I</span> Intent (意图)</li>
+                <li><span class="letter">M</span> <b>Mistake (Absence of) (并非过失/无误)</b></li>
+                <li><span class="letter">I</span> Identity (身份/作案手法)</li>
+                <li><span class="letter">C</span> Common Plan or Scheme (共同计划)</li>
+            </ul>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="section-title">案情逻辑分析</div>
+        <div class="analysis-text">
+            <p>在本案中，被告（会计师）的辩护理由是：他在日期上犯了一个<b>“诚实的错误” (Honest Mistake)</b>。</p>
+            <p>检察官引入他之前参与过类似计划的证据，<b>目的不是</b>为了证明他是个坏会计（品格/倾向），而是为了反驳他的辩护理由。</p>
+            <p><b>逻辑链条：</b>如果一个人一次填错日期，可能是意外；但如果他以前曾用完全相同的手法（转移费用）帮助过另一个客户，那么这次行为是“意外”的可能性就大大降低了。这直接证明了<b>Absence of Mistake（并非过失）</b>。</p>
+        </div>
+
+        <!-- 错误选项解析 -->
+        <div class="section-title">为什么其他选项是错的？</div>
+        <div class="distractor">
+            <b>选项 A (Inadmissible character evidence):</b> 错误。虽然这看起来像品格证据，但因为它是为了证明“非过失”这一特定目的，根据 FRE 404(b)(2)，它不被视为被禁止的品格证据。
+        </div>
+        <div class="distractor">
+            <b>选项 B (Not relevant):</b> 错误。根据 FRE 401，证据只要能让某个重要事实（这里是被告是否有意图）更有可能或更不可能，就是相关的。先前的类似行为让“无心之过”的可能性变低，因此高度相关。
+        </div>
+        <div class="distractor">
+            <b>选项 D (Propensity):</b> 错误。这是<b>绝对禁止</b>的推论。如果检察官说“引入证据是为了证明他有犯罪倾向”，那证据就会被排除。只有为了非倾向性目的（如 MIMIC）才可采纳。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <b>💡 MBE 实战技巧</b><br>
+            当你在题目中看到被告声称<b>“我不是故意的”</b>、<b>“这是个意外”</b>或<b>“我不知道”</b>时，立刻联想 <b>MIMIC</b> 规则中的 <b>Absence of Mistake</b> 或 <b>Intent</b>。
+            <br><br>
+            此时，先前类似的“坏行为”通常是<b>可采纳的 (Admissible)</b>，只要它是用来证明被告在撒谎（并非意外），而不是证明被告人品差。
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

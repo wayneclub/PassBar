@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - 宪法：权力分立</title>
+    
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">宪法：权力分立</p>
+        </header>
+
+        <div class="content-section">
+            <div class="answer-box">
+                正确答案：D
+                <p><strong>核心要点：</strong>当国会对总统行动保持沉默时，若该行动属于总统宪法第二条行政权范围且不干涉其他分支权力，则该行动合宪。</p>
+            </div>
+
+            <h2>核心法律规则：<span class="term">Youngstown</span> 框架</h2>
+            <div class="concept-box">
+                <p class="concept-title">总统权力的三区分析法</p>
+                <p>美国宪法第二条（<span class="term">Article II</span>）赋予总统管理行政部门的权力。根据这项权力，总统可以使用国会拨款设立咨询委员会，以推荐和推广政策。当国会与总统在某一领域（例如，联邦资金的使用）<span class="term">共享权力</span>时，国会可以限制总统的权力。</p>
+                <p><strong><span class="term">Youngstown</span> 框架</strong>（由大法官杰克逊在 <span class="latin">Youngstown Sheet & Tube Co. v. Sawyer</span> 一案的协同意见中提出）用于确定总统行动的<strong>权力范围</strong>。当国会对总统的行动<strong>保持沉默</strong>时，总统的行动只要满足以下条件即为<strong>有效</strong>：</p>
+                <ul>
+                    <li>该行动属于总统的<strong>宪法第二条权力</strong>范围；并且</li>
+                    <li>该行动<strong>不干涉</strong>其他政府分支的权力。</li>
+                </ul>
+            </div>
+
+            <h2>概念对比：<span class="term">Youngstown</span> 框架下的总统权力区</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>权力区</th>
+                        <th>国会立场</th>
+                        <th>总统权力</th>
+                        <th>合宪性评估</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>第一区：最大权力</strong></td>
+                        <td>明确授权或批准总统行动</td>
+                        <td>总统权力处于最高峰，拥有国会和自身宪法权力双重支持。</td>
+                        <td><strong>有效</strong>（<span class="term">Valid</span>）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>第二区：沉默区/灰色地带</strong></td>
+                        <td>对总统行动保持沉默，既不授权也不禁止</td>
+                        <td>总统依赖其独立的宪法权力。</td>
+                        <td><strong>可能有效</strong>（<span class="term">Likely Valid</span>），只要行动属于总统宪法第二条权力范围且不干涉其他分支权力。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>第三区：最低权力</strong></td>
+                        <td>明确禁止或反对总统行动</td>
+                        <td>总统权力处于最低谷，仅依赖其独立的宪法权力，且与国会意愿冲突。</td>
+                        <td><strong>可能无效</strong>（<span class="term">Likely Invalid</span>），除非总统拥有压倒性的独立宪法权力。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>案件事实与适用逻辑</h2>
+            <p>本案中，总统提议设立一个疫苗接种咨询委员会，旨在鼓励疫苗接种作为一项公共卫生措施。该委员会的活动将完全由国会拨给总统办公室用于“总统认为适当的其他目的”的资金资助。关键在于，<strong>没有联邦法规授权或禁止总统的这项行动</strong>。</p>
+            <p>根据 <span class="term">Youngstown</span> 框架，由于国会对总统设立咨询委员会的行动<strong>保持沉默</strong>，我们处于<strong>第二区（沉默区）</strong>。在此区域，总统的行动只要满足以下两个条件即为合宪：</p>
+            <ol>
+                <li><strong>属于总统的宪法第二条权力范围：</strong> 总统作为行政部门的首脑，有权设立咨询委员会来收集信息、提供建议并推广政策，以有效管理行政事务。使用已拨付的通用资金来资助此类委员会，以促进公共健康，通常被视为其行政权力的合理延伸。</li>
+                <li><strong>不干涉其他政府分支的权力：</strong> 设立一个咨询委员会来开展宣传活动，并不侵犯国会的立法权（因为它没有制定法律）或司法机构的裁决权。它是一个行政工具，旨在协助总统履行其行政职责。</li>
+            </ol>
+            <p>因此，总统设立该委员会是合宪的。</p>
+
+            <h2>分析图表：总统行动合宪性评估流程 (<span class="term">Youngstown</span> 框架)</h2>
+            <div class="diagram">
+                <p class="concept-title" style="margin-bottom: 15px;">评估总统行动有效性</p>
+                <div class="flow-row">
+                    <div class="flow-node">总统行动是否在宪法第二条授权下？</div>
+                </div>
+                <div class="flow-row">
+                    <span class="arrow-text">否 ↓</span>
+                    <span class="arrow-text" style="margin-left: 150px;">是 ↓</span>
+                </div>
+                <div class="flow-row">
+                    <div class="flow-node">国会是否在该领域共享权力？</div>
+                    <div class="flow-node">国会是否授权该行动？</div>
+                </div>
+                <div class="flow-row">
+                    <span class="arrow-text">否 ←</span>
+                    <div class="flow-node outcome invalid">无效</div>
+                    <span class="arrow-text">是 ↓</span>
+                    <span class="arrow-text" style="margin-left: 100px;">是 ↓</span>
+                </div>
+                <div class="flow-row">
+                    <div class="flow-node outcome likely-valid">有效</div>
+                    <div class="flow-node highlight-node">国会做了什么？</div>
+                    <div class="flow-node outcome likely-valid">有效</div>
+                </div>
+                <div class="flow-row">
+                    <span class="arrow-text">授权行动 ↓</span>
+                    <span class="arrow-text highlight-node">保持沉默 ↓</span>
+                    <span class="arrow-text">反对行动 ↓</span>
+                </div>
+                <div class="flow-row final-outcomes">
+                    <div class="flow-node outcome likely-valid">可能有效</div>
+                    <div class="flow-node outcome middle highlight-node">中间区</div>
+                    <div class="flow-node outcome likely-invalid">可能无效</div>
+                </div>
+            </div>
+
+            <div class="trap-alert">
+                <h3><span class="term">MBE</span> 陷阱警示：总统权力的误区</h3>
+                <p>考生常犯的错误是认为总统拥有无限的“警察权力”来保障公民的健康、安全和福利，或者认为总统的任何行动都必须有国会的明确授权。实际上，总统的权力是有限的，主要来源于宪法第二条，并且受到国会立法和司法审查的制约。</p>
+                <p>本题的关键在于识别国会“沉默”这一情境，并正确应用 <span class="term">Youngstown</span> 框架的第二区规则，即总统的行动只要在其宪法第二条权力范围内且不干涉其他分支，就可能是合宪的。</p>
+            </div>
+
+            <h2>正确答案与干扰项排除</h2>
+            <div class="option-analysis">
+                <div class="option correct">
+                    <p><strong>D. 是，因为此行动属于宪法赋予总统的行政权力范围，且无联邦法规禁止。</strong></p>
+                    <p><strong>解析：</strong>此选项准确地反映了 <span class="term">Youngstown</span> 框架第二区（国会沉默区）的原则。总统设立咨询委员会以推广公共健康措施，并使用已拨付的通用资金，通常被视为其宪法第二条行政权力的合理行使。由于没有联邦法规禁止此行动，且该行动不干涉其他政府分支的权力，因此是合宪的。</p>
+                </div>
+
+                <div class="option wrong">
+                    <p><strong>A. 否，因为国会尚未明确授权设立和支持这样一个新的联邦机构。</strong></p>
+                    <p><strong>解析：</strong>此选项错误。当国会保持沉默时，总统并不总是需要国会的“明确授权”。对于设立一个咨询委员会（而非具有规则制定权的新联邦机构，如证券交易委员会），只要其行动在总统的宪法第二条行政权力范围内且不干涉其他分支，就不需要具体的国会授权。本案中的委员会是一个咨询性质的机构，而非具有独立规章制定权力的“新联邦机构”。</p>
+                </div>
+
+                <div class="option wrong">
+                    <p><strong>B. 否，因为通过疫苗接种保护儿童免受常见疾病侵害是传统的州职能，因此根据第十修正案保留给各州。</strong></p>
+                    <p><strong>解析：</strong>此选项错误。虽然公共卫生和儿童福利传统上是州的职能（由第十修正案保留），但总统设立一个咨询委员会来推广疫苗接种，并不直接侵犯州的权力。总统的行动是鼓励性的公共宣传，而非强制性的联邦法规或直接干预州政府的运作。这种鼓励行为不构成对第十修正案的侵犯。</p>
+                </div>
+
+                <div class="option wrong">
+                    <p><strong>C. 是，因为总统拥有全权管辖权来保障美国人民的健康、安全和福利。</strong></p>
+                    <p><strong>解析：</strong>此选项错误。总统不拥有“全权管辖权”（<span class="term">plenary authority</span>）来保障人民的健康、安全和福利。这种“警察权力”主要保留给各州。总统的权力受到宪法和联邦法规的限制。虽然总统可以通过行政行动促进公共福利，但其权力并非绝对或无限的。</p>
+                </div>
+            </div>
+
+            <div class="footer-tip">
+                <h3><span class="term">MBE</span> 考试技巧：总统权力与国会立场</h3>
+                <p>在评估总统行动的合宪性时，首先要确定国会对该行动的立场：是明确授权、明确禁止，还是保持沉默。国会的立场是应用 <span class="term">Youngstown</span> 框架的关键第一步。当国会沉默时，记住总统的行动必须同时满足“属于宪法第二条权力”和“不干涉其他分支”这两个条件。</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

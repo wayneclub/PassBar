@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        .footer {
+            background-color: #eee;
+            padding: 15px;
+            font-size: 0.85rem;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Constitutional Law: Judicial Review</div>
+    </div>
+
+    <div class="content">
+        
+        <div class="concept-box">
+            <span class="concept-title">核心考点：最高法院的管辖权</span>
+            本题考查的是美国宪法第三条（Article III）关于最高法院（SCOTUS）<b>初审管辖权 (Original Jurisdiction)</b> 的限制。
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">法律规则解析</div>
+            <p>根据美国宪法第三条，最高法院的管辖权分为两类：</p>
+            
+            <table>
+                <tr>
+                    <th>类型</th>
+                    <th>范围 (Scope)</th>
+                    <th>国会的权力</th>
+                </tr>
+                <tr>
+                    <td><b>初审管辖权</b><br>(Original Jurisdiction)</td>
+                    <td>1. 涉及大使、公使、领事的案件<br>2. 州作为一方当事人的案件</td>
+                    <td><span class="key-term">不能扩大或缩小</span><br>(Self-executing)</td>
+                </tr>
+                <tr>
+                    <td><b>上诉管辖权</b><br>(Appellate Jurisdiction)</td>
+                    <td>所有其他联邦案件</td>
+                    <td><span class="key-term">可以限制/监管</span><br>(Exceptions Clause)</td>
+                </tr>
+            </table>
+
+            <p><b>关键判例：</b> <span class="latin">Marbury v. Madison (1803)</span>。在该案中，Marshall 大法官确立了一个原则：<b>国会不能通过立法扩大宪法第三条规定的最高法院的初审管辖权。</b></p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">案情分析</div>
+            <p><b>事实：</b>国会通过了一项法规，规定最高法院对挑战该法规的诉讼拥有“初审和专属管辖权”（Original and exclusive jurisdiction）。</p>
+            <p><b>推理：</b></p>
+            <ul>
+                <li>挑战驱逐出境法规的案件，<b>既不涉及外交使节，也不是州作为一方当事人的案件</b>。</li>
+                <li>因此，这些案件不属于宪法第三条列举的初审管辖权范围。</li>
+                <li>国会试图通过普通立法（Statute）将此类案件塞进最高法院的初审管辖权中，这违反了宪法。</li>
+            </ul>
+            <p><b>结论：</b>该法规违宪。正确答案是 <b>A</b>。</p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">干扰项排除技巧</div>
+            
+            <p><b>❌ 选项 D (Exceptions Clause Trap)：</b></p>
+            <p>这是最强的干扰项。宪法确实规定最高法院的管辖权受制于国会的“例外和规章”（Exceptions and Regulations）。但请注意：<b>这仅适用于上诉管辖权 (Appellate Jurisdiction)</b>，不适用于初审管辖权。</p>
+
+            <p><b>❌ 选项 B (Equal Protection)：</b></p>
+            <p>虽然涉及基于国籍的分类，但在移民和国家安全领域，国会拥有<b>绝对权力 (Plenary Power)</b>。针对敌国公民的驱逐通常能通过合理基础审查 (Rational Basis Review)，因此不太可能违反平等保护条款。</p>
+
+            <p><b>❌ 选项 C (Immigration Power)：</b></p>
+            <p>国会确实有权制定移民法（Article I, Section 8）。但是，<b>国会不能使用其立法权来违反宪法的结构性条款</b>（如Article III对法院管辖权的限制）。权力必须在宪法框架内行使。</p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <b>考试贴士：</b> 看到 "Congress expands SCOTUS original jurisdiction"（国会扩大最高法院初审管辖权）时，直接选<b>违宪</b>。这是 <span class="latin">Marbury v. Madison</span> 的核心教义。
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background-color: #fff8e1;
+            border-left: 5px solid #f1c40f;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #d35400;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .timeline {
+            margin: 20px 0;
+            padding-left: 10px;
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 15px;
+            border-left: 2px solid #bdc3c7;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #bdc3c7;
+        }
+        .timeline-item.active::before {
+            background: #27ae60;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px #27ae60;
+            width: 12px;
+            height: 12px;
+            left: -8px;
+        }
+        .timeline-date {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .timeline-content {
+            font-size: 0.95rem;
+        }
+        .answer-box {
+            background-color: #e8f8f5;
+            border: 1px solid #2ecc71;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .answer-title {
+            color: #27ae60;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .distractor {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #eee;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .footer-tip {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6c757d;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Contracts: Formation & Consideration</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">🔑 核心考点：虚幻允诺 (Illusory Promise)</span>
+            <p>如果一方保留了完全不履行的自由（例如“我想买就买”），则该允诺是虚幻的，不能构成有效的<strong>对价 (Consideration)</strong>。但是，如果随着时间的推移，这种“任意取消权”失效，虚幻的要约可以转化为有约束力的要约。</p>
+        </div>
+
+        <!-- 案情时间轴分析 -->
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">7月15日 - 7月21日</div>
+                <div class="timeline-content">
+                    <strong>状态：无合同 (No Contract)</strong><br>
+                    批发商 (W) 发出订单，但保留在 9月1日前随时取消的权利。
+                    <br><span style="font-size:0.85em; color:#e74c3c;">分析：这是虚幻允诺。W 没有受任何约束，因此 W 的承诺不是有效的对价。制造商 (M) 的“接受”并未形成合同。</span>
+                </div>
+            </div>
+
+            <div class="timeline-item active">
+                <div class="timeline-date">9月1日</div>
+                <div class="timeline-content">
+                    <strong>状态：要约生效 (Offer becomes Firm)</strong><br>
+                    取消权过期。W 没有取消订单。
+                    <br><span style="font-size:0.85em; color:#27ae60;">关键转折：此时 W 的允诺不再是虚幻的。该订单变成了一个有效的、等待承诺的要约 (Standing Offer)。</span>
+                </div>
+            </div>
+
+            <div class="timeline-item active">
+                <div class="timeline-date">9月15日</div>
+                <div class="timeline-content">
+                    <strong>状态：承诺生效 (Acceptance)</strong><br>
+                    制造商 (M) 发货。
+                    <br><span style="font-size:0.85em; color:#27ae60;">法律依据：根据 UCC，发运相符货物 (Shipment of conforming goods) 构成有效承诺。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="answer-box">
+            <div class="answer-title">✅ 正确答案：选项 B</div>
+            <p><strong>"批发商的打印机订单，即使最初是虚幻的，也已成为一个有约束力的、承诺接收并支付货款的允诺。"</strong></p>
+            <p><strong>深度解析：</strong></p>
+            <p>本题考查的是<strong>虚幻允诺的补正 (Cure of Illusory Promise)</strong>。最初的订单因为包含“随时取消”条款，导致双方义务不对等（Lack of Mutuality），合同未成立。</p>
+            <p>然而，当 9月1日这个时间点过去后，批发商失去了任意取消的权利。此时，原本虚幻的订单“固化”为一个真实的要约。当制造商在 9月15日发货时，通过<strong>履行行为 (Performance)</strong> 完成了对该要约的承诺。</p>
+            <p>因此，在 10月10日拒绝收货时，双方已存在有效合同，批发商违约。</p>
+        </div>
+
+        <!-- 干扰项排除 -->
+        <div class="distractor">
+            <p><strong>❌ 选项 A (Counter-offer):</strong> 错误。根据 UCC § 2-206，发运<strong>相符</strong>货物是承诺 (Acceptance)，不是反要约。只有发运<strong>不符</strong>货物 (Non-conforming goods) 且作为通融 (Accommodation) 时，才构成反要约。</p>
+            <p><strong>❌ 选项 C (Option Contract):</strong> 错误。选择权合同 (Option) 需要一方支付额外的对价来换取“保持要约开放”。本案中批发商没有支付这笔钱。</p>
+            <p><strong>❌ 选项 D (Condition Subsequent):</strong> 错误。取消权是合同成立的障碍（导致缺乏对价），而不是合同成立后解除义务的条件。且该权利在合同成立前（9月15日发货前）就已经过期了。</p>
+        </div>
+    </div>
+
+    <div class="footer-tip">
+        <strong>💡 考试技巧</strong><br>
+        看到“保留随时取消权利” (Right to cancel at any time)，第一反应是<strong>虚幻允诺</strong>。第二步必须检查<strong>该权利是否已过期</strong>。如果过期，虚幻即变为真实。
+    </div>
+</div>
+
+</body>
+</html>

@@ -96,6 +96,7 @@ type TranslationKey =
   | 'settings.clearProgressSuccess'
   | 'settings.clearProgressFailed'
   | 'settings.clearing'
+  | 'settings.restoreDefaults'
   | 'create.title'
   | 'create.testDate'
   | 'create.today'

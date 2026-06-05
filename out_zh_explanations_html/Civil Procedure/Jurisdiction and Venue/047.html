@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：放弃送达 (Waiver of Service)</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .rule-section {
+            margin-bottom: 20px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .checklist li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .checklist li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+        .checklist li.missing::before {
+            content: "✗";
+            color: #e74c3c;
+        }
+        .checklist li.missing {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .concept-card {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #f57c00;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .footer {
+            background-color: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #bdc3c7;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Civil Procedure: Service of Process</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：A</span>
+            <p><strong>否，因为女商人的放弃请求书中未包含所有必要文件。</strong></p>
+            <p style="font-size: 13px; margin-top: 5px;">
+                被告无需支付送达费用的原因是原告发出的放弃送达请求（Waiver Request）在程序上存在瑕疵。
+            </p>
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="rule-section">
+            <div class="rule-title">核心考点：FRCP 4(d) 放弃送达</div>
+            <p style="font-size: 14px;">
+                联邦民事诉讼规则（FRCP 4(d)）鼓励被告放弃正式的传票送达（Service of Process）以节省司法资源。如果被告无正当理由拒绝放弃，必须承担后续的送达费用。
+            </p>
+            <p style="font-size: 14px;">
+                <strong>但是！</strong>这一惩罚机制生效的前提是：原告必须<strong>严格遵守</strong>请求放弃的所有程序要求。
+            </p>
+        </div>
+
+        <!-- 检查清单 -->
+        <div class="rule-section">
+            <div class="rule-title">有效请求的必备要素 (Checklist)</div>
+            <ul class="checklist">
+                <li>书面形式并寄给被告本人</li>
+                <li>通过一类邮件 (First-class mail) 或其他可靠方式发送</li>
+                <li>指明法院名称和发送日期</li>
+                <li>附带诉状副本 (Copy of complaint)</li>
+                <li class="missing">附带两份放弃表格 (Two copies of waiver form)</li>
+                <li class="missing">附带预付邮资的回邮工具 (Prepaid means of compliance)</li>
+            </ul>
+            <div class="concept-card" style="border-color: #e74c3c; background-color: #ffebee;">
+                <span class="concept-title" style="color: #c62828;">本题陷阱分析</span>
+                题目中提到原告寄送了 "a form"（一份表格），且未提及 "prepaid envelope"（预付邮资信封）。<br><br>
+                由于原告未能提供<strong>两份表格</strong>（一份供被告寄回，一份供被告留存）和<strong>回邮信封</strong>，该请求在程序上是无效的。因此，被告没有义务放弃送达，也就无需承担后续费用。
+            </div>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="rule-section">
+            <div class="rule-title">为什么其他选项是错的？</div>
+            
+            <p style="font-size: 14px;"><strong>选项 B (关于60天)：</strong><br>
+            这是一个常见的时间混淆点。
+            <ul>
+                <li><strong>30天：</strong>原告必须给予被告至少30天的时间来决定是否放弃（从寄出请求之日算起）。本题中原告等待了31天，时间上是合规的。</li>
+                <li><strong>60天：</strong>如果被告<strong>同意放弃</strong>，被告有60天的时间（从请求寄出之日算起）来提交答辩状（Answer），而不是通常的21天。</li>
+            </ul>
+            <span style="font-size: 12px; color: #666;">结论：原告不需要等待60天再雇佣送达员，只要过了给被告的合理考虑期（30天）即可。</span>
+            </p>
+
+            <p style="font-size: 14px; margin-top: 10px;"><strong>选项 C & D (关于被告义务)：</strong><br>
+            这两个选项陈述了一般原则（被告有义务避免不必要的费用），但忽略了前提条件：<strong>原告的请求必须完美合规</strong>。如果原告自己都没把程序做对，法院不会惩罚被告。
+            </p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-card">
+            <span class="concept-title">💡 MBE 考试技巧</span>
+            在涉及 <strong>FRCP 4(d) Waiver of Service</strong> 的题目中，如果问“被告是否需要支付费用”，请立即检查原告寄出的包裹里是否包含：
+            <ol style="margin: 5px 0 0 20px; padding: 0;">
+                <li><strong>两份</strong>表格 (Two copies)</li>
+                <li><strong>预付邮资</strong>的信封 (Prepaid envelope)</li>
+            </ol>
+            如果缺了任何一个，原告就输了，被告无需付费。
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

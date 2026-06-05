@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            margin-top: 20px;
+        }
+        .section-title:first-child {
+            margin-top: 0;
+        }
+        .rule-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            border-radius: 0 4px 4px 0;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .analysis-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .step-icon {
+            background-color: #27ae60;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .step-text {
+            font-size: 14px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .option-analysis {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+        .correct-answer {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .exam-tip {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 12px;
+            font-size: 13px;
+            margin-top: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #95a5a6;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Civil Procedure: Motions for New Trial</p>
+    </div>
+
+    <div class="content">
+        
+        <div class="correct-answer">
+            ✅ 正确答案：A (No, because the comment was harmless.)
+        </div>
+
+        <div class="section-title">核心法律规则 (The Rule)</div>
+        <div class="rule-box">
+            <p><strong>无害错误原则 (Harmless Error Doctrine)</strong></p>
+            <p>根据《联邦民事诉讼规则》第61条 (FRCP 61)，并非所有的审判错误都会导致重新审判。只有当错误是<strong>具有损害性的 (Prejudicial)</strong>，即影响了当事人的<strong>实质性权利 (Substantial Rights)</strong> 时，法院才会批准重新审判。</p>
+            <p>如果错误没有改变案件的最终结果，它被视为“无害错误”，法院应予以忽略。</p>
+        </div>
+
+        <div class="section-title">本案逻辑分析 (Analysis)</div>
+        <p>要判断是否应批准重新审判 (Motion for New Trial)，我们需要进行以下三步测试：</p>
+
+        <div class="analysis-step">
+            <div class="step-icon">1</div>
+            <div class="step-text">
+                <strong>是否存在不当行为？</strong><br>
+                是的。律师在陪审团面前大声抱怨看守“有所隐瞒”，这属于不当评论 (Improper comment)。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">2</div>
+            <div class="step-text">
+                <strong>该行为是否得到了补救？</strong><br>
+                是的。律师立即道歉并撤回评论，法官也发出了<strong>更正指示 (Curative instruction/Admonishment)</strong>，要求陪审团忽略该评论。法律通常假定陪审团会遵守法官的指示。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">3</div>
+            <div class="step-text">
+                <strong>该行为是否影响了判决结果？</strong><br>
+                没有。题目明确指出有<span class="highlight">“压倒性的证据” (Overwhelming amount of evidence)</span> 支持原告。这意味着陪审团的裁决是基于证据而非那句不当评论。
+            </div>
+        </div>
+
+        <div class="option-analysis">
+            <strong>为什么选 A？</strong><br>
+            因为虽然发生了错误，但由于法官的及时补救和案件本身证据确凿，该错误并未影响案件结果，属于<strong>无害错误 (Harmless Error)</strong>。
+        </div>
+
+        <div class="section-title">干扰项排除 (Distractors)</div>
+        <ul>
+            <li><strong>选项 B (无意为之):</strong> 错误。是否给予重新审判主要看错误造成的<strong>后果 (Effect)</strong>，而不是律师的<strong>意图 (Intent)</strong>。即使是无意的错误，如果严重损害了公平性，也可能导致重审。</li>
+            <li><strong>选项 C (陪审团在场):</strong> 错误。虽然评论是在陪审团面前做出的，但这只是必要条件，不是充分条件。必须证明该评论产生了实质性的偏见 (Prejudice)。</li>
+            <li><strong>选项 D (具有损害性):</strong> 错误。这是对事实认定的错误。鉴于法官的更正指示和压倒性的证据，该评论在法律上被认定为未造成实质性损害。</li>
+        </ul>
+
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧</strong>
+            <br>
+            在处理 <strong>Motion for New Trial</strong> 的题目时，请寻找以下关键词组合：
+            <br>
+            1. <strong>"Judge admonished the jury"</strong> (法官告诫陪审团) → 通常意味着错误已被修正。
+            <br>
+            2. <strong>"Overwhelming evidence"</strong> (压倒性证据) → 强力暗示错误是无害的 (Harmless)。
+            <br><br>
+            只要看到这两个因素，通常都不足以支持重新审判。
+        </div>
+
+    </div>
+    
+</div>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --error-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #eef7fb;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .concept-tag {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .correct-reasoning {
+            color: var(--success-color);
+            font-weight: 500;
+        }
+        .wrong-option {
+            background-color: #fff5f5;
+            border: 1px solid #ffebeb;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .wrong-option strong {
+            color: var(--error-color);
+        }
+        .exam-tip {
+            background-color: #fffcf0;
+            border: 1px dashed var(--warning-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .exam-tip-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence: Authentication (证据法：认证)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">📚 核心规则：FRE 901</span>
+            <div>
+                <span class="concept-tag">Demonstrative Evidence</span>
+                <span class="concept-tag">Personal Knowledge</span>
+            </div>
+            <p>对于模型、地图、照片或图表等<strong>示范性证据 (Demonstrative Evidence)</strong>，其认证标准非常直观：</p>
+            <p>只需一名具有<strong>亲身认知 (Personal Knowledge)</strong> 的证人作证，确认该物品<strong>“公正且准确地描绘了” (Fairly and accurately depicts)</strong> 其声称所代表的场景或物体即可。</p>
+        </div>
+
+        <!-- 题目解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 正确答案解析 (选项 D)</div>
+            <p>本题考察的是如何将一个用于辅助说明的“模型”引入法庭。</p>
+            <p><strong>关键事实：</strong></p>
+            <ul>
+                <li>控方证人住在案发现场附近。</li>
+                <li>证人作证说他看到了模型。</li>
+                <li>证人确认该模型<strong>准确地描绘了 (Accurately depicts)</strong> 案发时的社区布局。</li>
+            </ul>
+            <p><strong>法律推论：</strong><br>
+            根据 <span class="correct-reasoning">FRE 901</span>，只要有人能证明该模型是现场的真实反映，它就被视为经过了认证。<strong>不需要</strong>模型的制作者出庭，也<strong>不需要</strong>证明制作模型的技术过程。</p>
+            <p>证人作为当地居民，拥有“亲身认知”，他的证词足以奠定证据基础 (Lay the foundation)。</p>
+        </div>
+
+        <!-- 错误选项排查 -->
+        <div class="analysis-section">
+            <div class="analysis-title">❌ 为什么其他选项是错的？</div>
+            
+            <div class="wrong-option">
+                <strong>选项 A (制作者必须出庭)：</strong><br>
+                错误。这是常见的干扰项。对于示范性证据，制作者 (Creator) 的证词不是必须的，只要有熟悉现场的证人即可。
+            </div>
+
+            <div class="wrong-option">
+                <strong>选项 B (可靠的制作过程)：</strong><br>
+                错误。这通常是针对科学证据或无人操作的监控录像（Silent Witness Theory）的要求。对于有人眼验证的模型，不需要证明制作工艺的科学可靠性。
+            </div>
+
+            <div class="wrong-option">
+                <strong>选项 C (自我认证)：</strong><br>
+                错误。<strong>Self-authenticating</strong> 证据仅限于 FRE 902 列出的特定文件（如公文封印件、报纸、经公证的文件等）。物理模型绝不是自我认证的。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 考试通关秘籍</span>
+            <p>在处理 <strong>Authentication (认证)</strong> 问题时，请区分以下两类：</p>
+            <ol>
+                <li><strong>通用物品 (Generic Items)：</strong> 如白色粉末、血液。这需要 <strong>Chain of Custody (监管链)</strong>，因为它们看起来都一样。</li>
+                <li><strong>独特物品/描绘性物品 (Unique/Pictorial Items)：</strong> 如本题的模型、照片、地图。这只需要 <strong>Witness with Personal Knowledge (知情证人)</strong> 说一句：“是的，这看起来和当时一样。”</li>
+            </ol>
+            <p>看到“模型”、“照片”或“地图”，首先寻找那个说“它很准确”的目击证人。</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

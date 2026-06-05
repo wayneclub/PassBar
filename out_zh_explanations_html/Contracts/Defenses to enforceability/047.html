@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .result-banner {
+            background-color: #e8f6f3;
+            border-left: 5px solid #2ecc71;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .result-title {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .rule-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        .key-term {
+            font-weight: bold;
+            color: var(--highlight-color);
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .analysis-step {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        .step-icon {
+            background-color: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .step-text {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .distractor {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #555;
+        }
+        .distractor strong {
+            color: #c0392b;
+        }
+        .footer {
+            background-color: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts · Capacity Defense</div>
+    </div>
+
+    <div class="content">
+        <!-- 结论部分 -->
+        <div class="result-banner">
+            <div class="result-title">✅ 正确答案：A</div>
+            <div>邻居不会胜诉，因为合同因妇人行为能力欠缺（Incapacity）而可撤销（Voidable）。</div>
+        </div>
+
+        <!-- 核心考点 -->
+        <div class="section-title">⚖️ 核心法律规则 (The Rule)</div>
+        <div class="rule-box">
+            <p>在合同法中，如果一方因<strong>醉态或药物影响 (Intoxication)</strong> 而导致行为能力欠缺，合同是<strong>可撤销的 (Voidable)</strong>，但必须同时满足以下两个条件：</p>
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li>受影响方<strong>无法合理理解</strong>合同的性质或后果，或无法就此采取合理行动；<br><span class="english-term">(Unable to understand nature/consequences or act reasonably)</span></li>
+                <li><strong>另一方有理由知道</strong>受影响方的这种状态。<br><span class="english-term">(The other party had reason to know)</span></li>
+            </ol>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="section-title">🔍 案情逻辑分析</div>
+        
+        <div class="analysis-step">
+            <div class="step-icon">1</div>
+            <div class="step-text">
+                <strong>药物导致的“醉态”：</strong><br>
+                题目明确指出妇人正在服用“强效止痛药”(Powerful pain medication)，并且看起来“精神恍惚”(Out of it)。这在法律上等同于 <span class="english-term">Intoxication</span>。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">2</div>
+            <div class="step-text">
+                <strong>无法合理行事：</strong><br>
+                她以 $450 出售价值 $3,000 的汽车，巨大的价格差异暗示她无法理解交易后果或无法合理行事。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">3</div>
+            <div class="step-text">
+                <strong>关键点：邻居的知情 (Reason to Know)：</strong><br>
+                这是本题最关键的考点。邻居<strong>知道</strong>她刚做完手术、正在服药，并且观察到她“精神恍惚”。因此，邻居不能主张自己是善意不知情的。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">4</div>
+            <div class="step-text">
+                <strong>后果：</strong><br>
+                合同并非自始无效 (Void)，而是<strong>可撤销 (Voidable)</strong>。妇人有权选择执行或撤销。当她拒绝交付汽车时，她行使了撤销权 (Disaffirmance)。
+            </div>
+        </div>
+
+        <!-- 排除干扰项 -->
+        <div class="section-title">❌ 为什么其他选项错误？</div>
+        
+        <div class="distractor">
+            <strong>选项 B (欺诈法 Statute of Frauds)：</strong><br>
+            错误。虽然这是货物买卖，但《统一商法典》(UCC) 规定只有价值 <strong>$500 或以上</strong> 的合同才必须书面形式。本案金额为 $450，口头合同在形式上是有效的，只是因为行为能力问题可被撤销。
+        </div>
+
+        <div class="distractor">
+            <strong>选项 C (信赖 Reliance/Promissory Estoppel)：</strong><br>
+            错误。邻居仅仅是说“太好了”，并没有表现出发生了实质性的、合理的信赖损害 (Detrimental Reliance)。此外，当存在有效（尽管可撤销）的合同时，通常优先分析合同抗辩，而非禁止反言。
+        </div>
+
+        <div class="distractor">
+            <strong>选项 D (合同成立 Formation)：</strong><br>
+            错误。虽然有要约 (Offer) 和承诺 (Acceptance)，表面上成立了合同，但“行为能力欠缺”是一个有效的<strong>抗辩理由 (Defense)</strong>，阻碍了合同的强制执行 (Enforceability)。
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <strong>MBE 考试技巧：</strong><br>
+        遇到“醉酒/服药”题型，务必寻找<strong>“另一方是否知情”</strong>的事实描述。如果另一方不知道且交易公平，合同通常不可撤销；如果另一方知情（趁人之危），合同可撤销。
+    </div>
+</div>
+
+</body>
+</html>

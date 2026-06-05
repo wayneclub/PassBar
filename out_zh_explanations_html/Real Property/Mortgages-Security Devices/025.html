@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        .step:last-child {
+            border-bottom: none;
+        }
+        .step-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .math-box {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .footer-note {
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：止赎收益分配</h1>
+    
+    <p>本题考察的核心法律原则是<b>止赎拍卖所得款项的分配顺序</b>（Distribution of Foreclosure Sale Proceeds）以及<b>判决留置权</b>（Judgment Lien）的效力。</p>
+
+    <div class="rule-box">
+        <strong>⚖️ 核心法则 (The Rule)</strong><br>
+        止赎拍卖的收益通常按照以下严格顺序分配：
+        <ol>
+            <li><b>销售费用</b> (Expenses of the sale)：如律师费、法庭费用。</li>
+            <li><b>被止赎的债务本息</b> (Principal and accrued interest on the foreclosed loan)。</li>
+            <li><b>次级留置权人</b> (Junior Lienholders)：按照优先顺位（Priority）依次受偿。</li>
+            <li><b>债务人/业主</b> (The Debtor/Mortgagor)：如果还有剩余盈余 (Surplus)。</li>
+        </ol>
+    </div>
+
+    <h2>🔍 案情深度拆解</h2>
+
+    <div class="step">
+        <span class="step-title">第一步：确定优先顺位 (Priority)</span>
+        <p>在<b>停车库 (Parking Garage)</b> 这一特定资产上，存在两个主要的担保权益：</p>
+        <ul>
+            <li><b>第一顺位 (Senior)：</b> 信用合作社 (Credit Union) 的抵押权。它是购买价款抵押权，且设立最早。</li>
+            <li><b>第二顺位 (Junior)：</b> 银行 (Bank) 的判决留置权 (Judgment Lien)。银行起诉欠款并获得判决后，根据法规，该判决自动成为债务人所有不动产（包括车库）的留置权。</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-title">第二步：计算银行的剩余债权</span>
+        <p>银行对酒店的止赎拍卖结果是：<br>
+        拍卖价 = 抵押余额 - $100,000。<br>
+        这意味着银行还有 <b>$100,000</b> 的债权未被满足（即 Deficiency）。这笔剩余债务由银行在车库上的判决留置权继续担保。</p>
+    </div>
+
+    <div class="step">
+        <span class="step-title">第三步：分配车库拍卖的盈余</span>
+        <p>题目指出，车库的拍卖价格比信用合作社（第一顺位）的余额高出 <b>$200,000</b>。</p>
+        <p>这意味着第一顺位已经全额受偿，现在的任务是分配这 $200,000 的“盈余”。</p>
+        
+        <div class="math-box">
+            总盈余池： $200,000<br>
+            - 支付次级债权人(银行)： $100,000<br>
+            ---------------------------<br>
+            = 剩余归债务人(特许经营人)：$100,000
+        </div>
+    </div>
+
+    <h2>💡 为什么选 B？</h2>
+    <p>根据分配规则：</p>
+    <ol>
+        <li><b>银行 (Bank)</b> 作为次级留置权人，有权优先于债务人受偿。银行还缺 $100,000，所以先拿走 $100,000。</li>
+        <li><b>特许经营人 (Franchisee)</b> 作为业主，享有所有次级债权被清偿后的剩余权益。剩下的 $100,000 归他所有。</li>
+    </ol>
+    <p>因此，正确分配是：银行 $100,000，特许经营人 $100,000。</p>
+
+    <div class="rule-box" style="background-color: #fff3cd; border-left-color: #f1c40f;">
+        <strong>🚫 避坑指南</strong><br>
+        不要因为银行是“原告”或者因为银行在酒店上亏了钱，就认为银行可以拿走全部 $200,000。银行只能拿走它<b>实际被亏欠</b>的金额（即剩余的 $100,000）。留置权是为了担保债务，债权人不能通过止赎获得超过债权金额的暴利。
+    </div>
+
+    
+</div>
+
+</body>
+</html>

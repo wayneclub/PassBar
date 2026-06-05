@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .concept-card {
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .rule-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .analysis-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .step-number {
+            background-color: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .distractor {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .distractor-label {
+            font-weight: bold;
+            color: var(--wrong-color);
+        }
+
+        .exam-tip {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .exam-tip-title {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .exam-tip-title::before {
+            content: "💡";
+            margin-right: 8px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析：口头证据规则与损害赔偿</h1>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：B</span>
+            采纳该证据，作为间接损害可预见性的证明 (Admit the evidence as proof of the foreseeability of consequential damages)。
+        </div>
+
+        <!-- 核心法律规则 -->
+        <div class="section-title">核心法律规则 (Legal Rules)</div>
+        
+        <div class="concept-card">
+            <div class="term">1. 口头证据规则 <span class="english-term">(Parol Evidence Rule, PER)</span></div>
+            <p>通常情况下，如果双方签署了一份<b>完全整合</b> <span class="english-term">(fully integrated)</span> 的书面合同，PER 禁止引入任何先前或同时期的口头/书面证据来<b>补充</b>或<b>反驳</b>合同条款。</p>
+        </div>
+
+        <div class="concept-card">
+            <div class="term">2. 规则的例外：证明救济措施 <span class="english-term">(Exception: Proof of Remedy)</span></div>
+            <div class="rule-box">
+                PER <b>不适用</b>于那些不是为了改变合同条款，而是为了确定违约后果（如损害赔偿金额）的证据。
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <div class="term">3. 间接损害 <span class="english-term">(Consequential Damages)</span></div>
+            <p>根据著名的 <i>Hadley v. Baxendale</i> 规则，只有当违约方在<b>订立合同时</b>能够<b>合理预见</b> <span class="english-term">(reasonably foreseeable)</span> 到这种损害，受害方才能获得间接损害赔偿。</p>
+        </div>
+
+        <!-- 题目解析 -->
+        <div class="section-title">逻辑推演 (Analysis)</div>
+        
+        <div class="analysis-step">
+            <div class="step-number">1</div>
+            <div>
+                <b>识别目的：</b> 运输公司试图排除的证据是“关于及时交付后果的谈话”。电力公司引入该证据<b>不是</b>为了改变“6月1日交货”这个条款，也<b>不是</b>为了增加新的义务。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-number">2</div>
+            <div>
+                <b>确定关联：</b> 电力公司引入该证据是为了证明：运输公司在签约前就已经<b>知晓</b>（预见到）如果迟延交付，电力公司将对第三方违约。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-number">3</div>
+            <div>
+                <b>得出结论：</b> 既然证据是用来证明<b>间接损害的可预见性</b>（即确定赔偿范围），而非改变合同条款，因此不受口头证据规则（PER）的限制。法院会采纳该证据。
+            </div>
+        </div>
+
+        <!-- 错误选项分析 -->
+        <div class="section-title">为什么其他选项错误？</div>
+        
+        <div class="distractor">
+            <span class="distractor-label">选项 A (附属协议) 错误：</span><br>
+            附属协议 <span class="english-term">(Collateral Agreement)</span> 通常指一个独立的、有单独对价的附带交易。本案中的谈话直接关系到主合同的履行后果，并非独立交易。
+        </div>
+
+        <div class="distractor">
+            <span class="distractor-label">选项 C & D (排除证据) 错误：</span><br>
+            这两个选项机械地应用了 PER。虽然合同是完全整合的，但这只意味着不能引入证据来<i>修改</i>条款。它并不阻止引入证据来证明<i>损害赔偿的可预见性</i>、<i>欺诈</i>、<i>错误</i>或<i>先决条件</i>。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <div class="exam-tip-title">MBE 考试通关秘籍</div>
+            <p>在处理 <b>Parol Evidence Rule</b> 题目时，不要看到“Fully Integrated”（完全整合）就直接选择“排除证据”。</p>
+            <p>一定要问自己：<b>引入这个证据的目的是什么？</b></p>
+            <ul>
+                <li>如果是为了<b>改变</b>条款（如日期、价格） ➡️ <b>排除</b> (Inadmissible)</li>
+                <li>如果是为了证明<b>解释歧义</b>、<b>抗辩事由</b>（如欺诈）或<b>损害赔偿</b>（如本题） ➡️ <b>采纳</b> (Admissible)</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

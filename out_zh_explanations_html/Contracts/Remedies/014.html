@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .answer-card {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .distractor {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .distractor strong {
+            color: #e74c3c;
+        }
+        .footer-tip {
+            background-color: #fff8e1;
+            border-top: 2px solid #ffc107;
+            padding: 15px;
+            font-size: 0.9rem;
+            color: #856404;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Contracts: Remedies (Consequential Damages)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法律规则：Hadley v. Baxendale</span>
+            <p>在合同法中，<strong>间接损失 (Consequential Damages)</strong> 只有在以下情况才能获得赔偿：</p>
+            <ul>
+                <li>违约方在<strong>签订合同时 (at the time of contracting)</strong> 已经知晓；或者</li>
+                <li>违约方有理由预见到该特殊情况会导致这种损失。</li>
+            </ul>
+            <p>如果损失是由于非违约方的特殊情况（Special Circumstances）引起的，且违约方对此不知情，则无需赔偿。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <h3>📝 案情逻辑分析</h3>
+            <p>本题的关键在于<strong>时间线</strong>和<strong>可预见性</strong>：</p>
+            <ol>
+                <li><strong>3月1日：</strong>技工与纺织公司签订维修合同。此时，双方都知道“通常情况下”延迟5天不会造成损失。</li>
+                <li><strong>3月2日：</strong>纺织公司才与客户签订高额违约金合同。</li>
+            </ol>
+            <p><strong>结论：</strong> 技工在3月1日签约时，根本不可能预见到3月2日才会发生的特殊高额违约金条款。因此，这笔25,000美元的损失属于不可预见的间接损失。</p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="answer-card">
+            <strong>✅ 最佳抗辩 (选项 C)</strong><br>
+            <p>技工的最佳抗辩是：他在3月1日签约时，没有理由预见到纺织公司会遭受25,000美元的间接损失。</p>
+            <p>根据普通法经典判例 <span class="latin">Hadley v. Baxendale</span>，损害赔偿仅限于那些自然产生的（一般损害）或双方在签约时均可预见的（特别损害）。由于高额违约金是后来才出现的特殊情况，技工无需对此负责。</p>
+        </div>
+
+        <!-- 错误选项排除 -->
+        <div class="analysis-section">
+            <h3>❌ 为什么其他选项无效？</h3>
+            
+            <div class="distractor">
+                <strong>选项 A (风险承担)：</strong> 错误。纺织公司并没有“承担风险”。它有权期望技工按时完工。问题不在于谁承担风险，而在于损害赔偿的范围是否包含不可预见的后果。
+            </div>
+
+            <div class="distractor">
+                <strong>选项 B (违约金与实际损失不符)：</strong> 错误。题目已经假设该违约金条款在纺织公司和客户之间是<strong>有效 (valid)</strong> 的。技工不能通过质疑第三方的合同条款来逃避责任，他只能通过“不可预见性”来抗辩。
+            </div>
+
+            <div class="distractor">
+                <strong>选项 D (时间非根本要素)：</strong> 错误。即使时间不是根本要素 (Time was not of the essence)，延迟仍然是<strong>违约 (Breach)</strong>，纺织公司仍有权获得损害赔偿。只是因为损失不可预见，所以拿不到那2.5万美元，而不是因为没有违约。
+            </div>
+        </div>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="footer-tip">
+        <strong>💡 MBE 考试技巧</strong><br>
+        在处理<strong>合同损害赔偿 (Remedies)</strong> 问题时，一旦看到涉及第三方的利润损失或高额罚款，立即检查：
+        <br>1. 违约方在<strong>签约那一刻</strong>是否知情？
+        <br>2. 如果不知情，这就是<strong>间接损失 (Consequential Damages)</strong>，通常不可追偿。
+        <br>记住关键词：<strong>Foreseeability at the time of contracting</strong>。
+    </div>
+</div>
+
+</body>
+</html>

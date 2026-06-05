@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header span {
+            font-size: 12px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            color: #2c3e50;
+            font-size: 18px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .concept-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .latin {
+            font-style: italic;
+            color: #8e44ad;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .wrong-option {
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 3px solid #e74c3c;
+        }
+        .wrong-title {
+            font-weight: bold;
+            color: #c0392b;
+            font-size: 14px;
+        }
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffecb3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .exam-tip-title {
+            color: #f57f17;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .exam-tip-title::before {
+            content: "💡";
+            margin-right: 8px;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <span>MBE Criminal Law</span>
+        <h1>法律错误与犯罪意图</h1>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：B</span>
+            <strong>无罪，因为他缺乏该罪行必要的犯罪意图要素。</strong><br>
+            (Acquitted, because he lacked a necessary mental element of the crime.)
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">核心法律原则解析</div>
+        <p>本题考察的核心是<strong>法律错误 (Mistake of Law)</strong> 何时可以作为刑事抗辩理由。</p>
+        
+        <div class="concept-card">
+            <strong>一般原则 (General Rule)：</strong><br>
+            通常情况下，“不知法不免责” (<span class="latin">Ignorantia juris non excusat</span>)。仅仅因为被告不知道自己的行为违法，或者错误地认为自己的行为合法，并不能作为抗辩理由。
+        </div>
+
+        <div class="concept-card">
+            <strong>关键例外 (The Exception)：</strong><br>
+            如果法律错误导致被告<strong>缺乏该犯罪所必需的特定心理状态 (Negates the Mens Rea)</strong>，则该错误可以作为抗辩理由。
+        </div>
+
+        <!-- 案情具体分析 -->
+        <div class="section-title">本案逻辑推演</div>
+        <p>要判定被告是否有罪，必须严格分析题目中给出的法条定义：</p>
+        
+        <ol>
+            <li><strong>法条要素：</strong>A州法律规定绑架罪的要素是“将子女从监护父母处带走，且<strong>明知 (Knowing)</strong> 自己无权 (Privilege) 这样做”。</li>
+            <li><strong>犯罪意图 (Mens Rea)：</strong>这是一个<strong>特定意图 (Specific Intent)</strong> 类型的要求。检方必须证明被告在带走孩子时，主观上“知道”自己是没有权利的。</li>
+            <li><strong>事实应用：</strong>
+                <ul>
+                    <li>被告咨询了律师。</li>
+                    <li>律师（错误地）告诉他，根据B州的判决，他有权带走孩子。</li>
+                    <li>被告<strong>相信</strong>了律师，认为自己有权带走孩子。</li>
+                </ul>
+            </li>
+            <li><strong>结论：</strong>由于被告真诚地相信自己有权带走孩子，他就<strong>不具备“明知自己无权”</strong>这一必要的心理要素。因此，犯罪构成要件不完整，应当无罪。</li>
+        </ol>
+
+        <!-- 干扰项辨析 -->
+        <div class="section-title">为什么其他选项是错的？</div>
+        
+        <div class="wrong-option">
+            <div class="wrong-title">选项 A：无罪，因为他根据律师建议行事</div>
+            <p><strong>错误原因：</strong>单纯“听从律师建议” (Reliance on counsel) 本身并不是一个独立的抗辩理由。它之所以在本案有效，仅仅是因为它帮助证明了被告缺乏犯罪意图。如果法条是严格责任 (Strict Liability)，即使听了律师建议也是有罪的。</p>
+        </div>
+
+        <div class="wrong-option">
+            <div class="wrong-title">选项 C & D：有罪...</div>
+            <p><strong>错误原因：</strong>这两个选项忽略了法条中明确规定的“明知 (Knowing)”这一心理要素。无论律师的建议多么离谱，只要被告真的信了，他就没有“明知自己违法”。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <div class="exam-tip-title">MBE 解题技巧</div>
+            <p>在处理刑法题目时，<strong>第一步永远是仔细阅读题目中给出的法条定义</strong>。</p>
+            <p>如果法条中包含表示特定心理状态的词汇，如：</p>
+            <ul>
+                <li><code>Knowing</code> (明知)</li>
+                <li><code>With intent to</code> (意图...)</li>
+                <li><code>Purposefully</code> (故意地/有目的地)</li>
+            </ul>
+            <p>那么任何导致被告<strong>未能形成该心理状态</strong>的错误（无论是事实错误还是法律错误），通常都是有效的抗辩理由。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

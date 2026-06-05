@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header h2 {
+            margin: 5px 0 0;
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-size: 18px;
+            font-weight: 600;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: #2c3e50;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .step-icon {
+            background: #27ae60;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .step-icon.cross {
+            background: #c0392b;
+        }
+        .distractor {
+            background-color: #fff5f5;
+            border: 1px solid #ffebeb;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .distractor strong {
+            color: #c0392b;
+        }
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #795548;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <h2>产品责任与默示担保</h2>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法则：特定目的适用性的默示担保</span>
+            <span style="font-size: 0.9em; color: #666;">Implied Warranty of Fitness for a Particular Purpose (UCC § 2-315)</span>
+            <p>要成立此项担保的违约，买方必须证明在缔约时满足以下<b>两个条件</b>：</p>
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li>卖方有理由知道买方购买该货物的<b>特定目的 (Particular Purpose)</b>；且</li>
+                <li>卖方有理由知道买方正在<b>依赖 (Relying)</b> 卖方的技能或判断来选择合适的货物。</li>
+            </ol>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情逻辑推演</div>
+            <p>本题考察的是上述规则的第一要素是否满足。</p>
+            
+            <div class="step">
+                <div class="step-icon cross">✖</div>
+                <div>
+                    <strong>要素缺失：卖方不知情</strong><br>
+                    题目明确指出：“销售助理<b>不知道</b>女裁缝购买缝纫机的特定目的（sewing leather）”。
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-icon">✔</div>
+                <div>
+                    <strong>要素存在：买方依赖</strong><br>
+                    题目指出女裁缝确实“信赖”了销售助理的意见。
+                </div>
+            </div>
+
+            <p><strong>结论：</strong> 由于卖方不知道买方的“特定目的”，因此<b>特定目的适用性的默示担保从未产生</b>。既然担保不存在，就不可能发生违约。</p>
+            <p>因此，法院会判决 <b>零售店胜诉 (Option A)</b>。</p>
+        </div>
+
+        <!-- 干扰项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么其他选项是错的？</div>
+            
+            <div class="distractor">
+                <strong>选项 B 错误 (经济损失规则)</strong><br>
+                虽然在侵权法(Tort)的严格责任中通常不能仅追偿纯粹经济损失，但在<b>违反担保 (Breach of Warranty)</b> 的诉讼中，买方是可以追偿经济损失的。B选项的理由不成立，且不是本案判决的关键。
+            </div>
+
+            <div class="distractor">
+                <strong>选项 C 错误 (仅有依赖是不够的)</strong><br>
+                虽然女裁缝确实依赖了销售员，但根据 UCC § 2-315，仅有依赖而卖方不知情，无法构成此项默示担保。
+            </div>
+
+            <div class="distractor">
+                <strong>选项 D 错误 (混淆了担保类型)</strong><br>
+                此选项描述的是<b>适销性默示担保 (Implied Warranty of Merchantability)</b>。
+                <ul>
+                    <li><b>适销性：</b> 保证产品能用于“通常目的” (Ordinary Purpose)。缝纫机能缝布，只是缝不了厚皮革，所以没有违反适销性。</li>
+                    <li><b>本案诉求：</b> 原告起诉的是“特定目的适用性”，而非“适销性”。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧</strong><br>
+            在处理产品责任题时，务必区分以下两个概念：
+            <br><br>
+            1. <b>Merchantability (适销性)</b>: 只要卖方是商人(Merchant)，产品必须能用于<b>普通用途</b> (如：车能开，鞋能穿)。
+            <br>
+            2. <b>Fitness for Particular Purpose (特定目的)</b>: 卖方不必是商人，但必须<b>知道</b>买方的特殊需求且买方<b>依赖</b>其推荐 (如：车能爬45度陡坡，鞋能防零下40度严寒)。
+            <br><br>
+            本题中，缝纫机能缝纫（符合适销性），但不能缝皮革（特定目的）。因卖方不知情，特定目的担保不成立。
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析：不动产租赁转让</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+            --shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background: transparent;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .diagram-box {
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 4px;
+            width: 30%;
+            background: #fff;
+        }
+
+        .arrow {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        .analysis-step {
+            margin-bottom: 10px;
+        }
+
+        .analysis-step strong {
+            display: block;
+            color: var(--accent-color);
+            margin-bottom: 4px;
+        }
+
+        .wrong-option {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .strategy {
+            background-color: #fff3cd;
+            border-left-color: #f1c40f;
+        }
+
+        .strategy h2 {
+            color: #d35400;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Real Property: Landlord & Tenant</p>
+        <p>不动产法：房东与租户</p>
+    </div>
+
+    <!-- Core Concept -->
+    <div class="card">
+        <h2>核心考点：转让 vs. 分租</h2>
+        <p>本题的关键在于判断租户（Tenant）将房屋交给朋友（Friend）的行为在法律上属于哪种性质。这决定了各方的责任归属。</p>
+        
+        <div class="concept-box">
+            <span class="term">转让 (Assignment)</span><br>
+            租户转让了其在租赁合同下的<b>全部剩余权益</b>（Entire remaining interest）。
+        </div>
+        
+        <div class="concept-box">
+            <span class="term">分租 (Sublease)</span><br>
+            租户只转让了<b>部分权益</b>（Less than the entire interest），即保留了部分租期或收回权。
+        </div>
+
+        <p><b>本题判定：</b>租户转让了剩余的<b>全部九个月</b>（remaining nine months），因此这是<b>Assignment</b>。</p>
+    </div>
+
+    <!-- Liability Analysis -->
+    <div class="card">
+        <h2>责任分析：Privity (债/关系)</h2>
+        <p>在 Assignment 的情况下，责任基于两种法律关系：</p>
+
+        <div class="analysis-step">
+            <strong>1. 合同之债 (Privity of Contract)</strong>
+            <ul>
+                <li>存在于<b>原房东</b>与<b>原租户</b>之间。</li>
+                <li>除非房东明确释放（Novation），否则原租户永远对租金负责。</li>
+                <li><span class="term">结论：</span>租户 (Tenant) 需承担责任。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 地产之债 (Privity of Estate)</strong>
+            <ul>
+                <li>存在于<b>原房东</b>与<b>当前占有人（受让人）</b>之间。</li>
+                <li>因为是 Assignment，受让人（Friend）获得了完整的剩余租期，与房东建立了直接的地产关系。</li>
+                <li>受让人对基于地产的义务（如付租金）负责，直到租期结束或他再次转让给别人。</li>
+                <li><span class="term">结论：</span>朋友 (Friend) 需承担责任。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Outcome -->
+    <div class="card">
+        <h2>正确答案解析 (Option A)</h2>
+        <p>由于存在上述两种关系：</p>
+        <div class="diagram">
+            <div class="diagram-box">房东<br>(Landlord)</div>
+            <div class="arrow">⚡</div>
+            <div class="diagram-box">租户<br>(Contract)</div>
+        </div>
+        <div class="diagram">
+            <div class="diagram-box">房东<br>(Landlord)</div>
+            <div class="arrow">⚡</div>
+            <div class="diagram-box">朋友<br>(Estate)</div>
+        </div>
+        <p>房东可以起诉<b>任何一方或双方</b>来追讨全部租金（Joint and Several Liability，连带责任）。</p>
+        <p>因此，<b>选项 A 正确</b>：租户基于合同责任，朋友基于地产责任，两者均需对全部 $3,500 负责。</p>
+    </div>
+
+    <!-- Why others are wrong -->
+    <div class="card">
+        <h2>易错项辨析</h2>
+        
+        <div class="wrong-option">
+            <span class="term">选项 B 错误 (关于朋友的责任范围)</span><br>
+            虽然朋友提前搬走了，但在 Assignment 中，他拥有的是<b>剩余的整个租期</b>。除非他将房子再转让给别人，否则他的 Privity of Estate 持续到租期结束。仅仅搬出（Abandonment）并不终止他对房东的地产之债。
+        </div>
+
+        <div class="wrong-option">
+            <span class="term">选项 C 错误 (误判为 Sublease)</span><br>
+            如果是 Sublease，分租人（Sublessee）确实对原房东没有个人责任（既无合同也无地产关系）。但本题是 Assignment，受让人有直接责任。
+        </div>
+
+        <div class="wrong-option">
+            <span class="term">选项 D 错误 (关于租户的免责)</span><br>
+            房东接受朋友的租金并不代表房东放弃了对原租户的追索权。要免除原租户的责任，必须有明确的<b>债务更替 (Novation)</b> 或免责声明。
+        </div>
+    </div>
+
+    <!-- Exam Strategy -->
+    <div class="card strategy">
+        <h2>🎓 MBE 抢分技巧</h2>
+        <p>在看到租户把房子给别人的题目时，按以下步骤思考：</p>
+        <ol>
+            <li><b>看时间：</b>转让的是剩余的<b>全部</b>时间吗？
+                <ul>
+                    <li>是 ➔ <b>Assignment</b> (受让人对房东负责)。</li>
+                    <li>否 ➔ <b>Sublease</b> (分租人只对原租户负责，对房东不负责)。</li>
+                </ul>
+            </li>
+            <li><b>看原租户：</b>房东有没有签过字说 "I release Tenant from liability"？
+                <ul>
+                    <li>没有 ➔ 原租户永远基于 <b>Privity of Contract</b> 负责。</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+</div>
+
+</body>
+</html>

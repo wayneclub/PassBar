@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+            --shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕 */
+            width: 100%;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .key-term {
+            background-color: var(--highlight-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .analysis-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .analysis-step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .wrong-answer {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        .tip-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- 标题区域 -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Intentional Torts: Battery & Transferred Intent</div>
+    </div>
+
+    <!-- 核心考点卡片 -->
+    <div class="card">
+        <div class="card-title">📚 核心法律规则</div>
+        <div class="analysis-step">
+            <strong>殴打 (Battery) 的构成要件：</strong>
+            <ul>
+                <li>被告有<strong>故意 (Intent)</strong>；</li>
+                <li>造成了与原告身体的<strong>有害或冒犯性接触 (Harmful or offensive contact)</strong>。</li>
+            </ul>
+        </div>
+        <div class="analysis-step">
+            <strong>关键概念：转移故意 (Transferred Intent)</strong><br>
+            如果被告意图实施<strong>袭击 (Assault)</strong>（即让受害者产生即将被击中的恐惧），但实际上造成了接触（击中了受害者），法律上视为被告具有实施<strong>殴打 (Battery)</strong> 的故意。
+        </div>
+    </div>
+
+    <!-- 正确答案解析 -->
+    <div class="card" style="border-left-color: #27ae60;">
+        <div class="card-title">✅ 正确答案解析 (选项 B)</div>
+        <p>本题的争议点在于初审法院是否应该直接判决被告胜诉（JMOL）。</p>
+        <p><strong>逻辑推演：</strong></p>
+        <ol>
+            <li><strong>事实认定：</strong> 投手向起哄者投掷了快速球，并击中了原告。这满足了“有害接触”的要件。</li>
+            <li><strong>故意要件：</strong> 虽然投手可能只是想“吓唬”起哄者（即 Assault 的故意），但根据<strong>转移故意原则</strong>，这种制造恐惧的故意足以支持 Battery 的指控。</li>
+            <li><strong>程序标准：</strong> 只有在“没有任何理性的陪审团能裁定原告胜诉”时，法院才能依法判决（JMOL）。</li>
+            <li><strong>结论：</strong> 既然陪审团完全可能认定投手意图让起哄者“担心被击中”（Assault），那么法律上这就构成了 Battery 的故意。因此，初审法院直接判决被告胜诉是错误的。</li>
+        </ol>
+        <p class="correct-answer">因此，如果陪审团能认定投手意图制造恐惧，上诉法院就不应维持原判。</p>
+    </div>
+
+    <!-- 易错点辨析 -->
+    <div class="card" style="border-left-color: #e74c3c;">
+        <div class="card-title">❌ 为什么其他选项是错的？</div>
+        
+        <div class="analysis-step">
+            <span class="wrong-answer">选项 A (极端和蛮横无理):</span><br>
+            这是<strong>故意施加精神痛苦 (IIED)</strong> 的标准，而不是殴打 (Battery) 的标准。Battery 只需要证明有接触的故意，不需要证明行为达到了“极端”的程度。
+        </div>
+
+        <div class="analysis-step">
+            <span class="wrong-answer">选项 C (不可预见性):</span><br>
+            <span class="key-term">这是最大的干扰项！</span><br>
+            “不可预见性” (Unforeseeability) 是<strong>过失侵权 (Negligence)</strong> 的抗辩理由。对于故意侵权 (Intentional Torts)，只要被告有故意（想扔球吓人或打人），具体的伤害方式（球穿过铁丝网）是否可预见通常不影响责任的成立。
+        </div>
+
+        <div class="analysis-step">
+            <span class="wrong-answer">选项 D (精神疾病):</span><br>
+            在侵权法中，精神疾病通常<strong>不是</strong>故意侵权的抗辩理由。只要被告能够形成“意图接触”的念头（即使是基于妄想），他就需要承担责任。
+        </div>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="tip-box">
+        <strong>💡 MBE 考试技巧</strong>
+        <p>遇到“球穿过铁丝网”这种看似意外的情节时，要区分<strong>过失 (Negligence)</strong> 和 <strong>故意侵权 (Intentional Torts)</strong> 的分析路径：</p>
+        <ul>
+            <li><strong>过失：</strong> 关注“可预见性” (Foreseeability)。如果不可预见，通常无责任。</li>
+            <li><strong>故意侵权：</strong> 关注“故意” (Intent)。一旦有了坏的意图（哪怕只是想吓唬人），结果发生了，通常就要负责，不论过程多么离奇。</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 动议裁决作为法律问题 (JMOL) 分析</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="card-header">
+            <h1>MBE 问题分析</h1>
+            <div class="sub-title">民事诉讼法: 动议</div>
+        </div>
+
+        <div class="concept-box">
+            <h3>核心问题：动议裁决作为法律问题 (JMOL) 的时机</h3>
+            <p class="latin"><i>Judgment as a Matter of Law (JMOL)</i></p>
+        </div>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>概念</th>
+                    <th>Rule 50(a) (JMOL)</th>
+                    <th>Rule 50(b) (续期 JMOL)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>时机</strong></td>
+                    <td>任何一方在对方完成证据呈示后，但在案件提交给陪审团之前。</td>
+                    <td>陪审团作出裁决后，但在判决录入后 28 天内。</td>
+                </tr>
+                <tr>
+                    <td><strong>目的</strong></td>
+                    <td>认为证据在法律上不足以支持对非动议方的裁决，请求法院直接判决。</td>
+                    <td>重新提出在 Rule 50(a) 下提出的 JMOL 动议，请求推翻陪审团裁决。</td>
+                </tr>
+                <tr>
+                    <td><strong>前提</strong></td>
+                    <td>无特定前提，是首次提出 JMOL 的机会。</td>
+                    <td><strong>必须</strong>在案件提交给陪审团之前已根据 Rule 50(a) 提出过 JMOL 动议。</td>
+                </tr>
+                <tr>
+                    <td><strong>效果</strong></td>
+                    <td>如果获准，法院将直接作出判决，无需陪审团审议。</td>
+                    <td>如果获准，法院将推翻陪审团裁决，作出有利于动议方的判决。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="diagram">
+            <h3>🎨 动议裁决作为法律问题 (JMOL) 寻求时机时间线</h3>
+            <div class="timeline-container">
+                <div class="timeline-bar-flex">
+                    <div class="timeline-bar-segment gray" style="flex-grow: 1;"></div> <!-- Trial starts to Opening (10%) -->
+                    <div class="timeline-bar-segment blue" style="flex-grow: 2;"></div> <!-- Opening to Presentation (20%) -->
+                    <div class="timeline-bar-segment red" style="flex-grow: 2;"></div> <!-- Presentation to Rebuttal (20%) -->
+                    <div class="timeline-bar-segment blue" style="flex-grow: 2;"></div> <!-- Rebuttal to Closing (20%) -->
+                    <div class="timeline-bar-segment red" style="flex-grow: 1;"></div> <!-- Closing to Submitted (10%) -->
+                    <div class="timeline-bar-segment gray" style="flex-grow: 1;"></div> <!-- Submitted to Judgment (10%) -->
+                    <div class="timeline-bar-segment green" style="flex-grow: 1;"></div> <!-- Judgment to 28 days (10%) -->
+                </div>
+
+                <div class="timeline-event event-start">
+                    <div class="marker"></div>
+                    <div class="label">审判开始</div>
+                </div>
+                <div class="timeline-event event-opening">
+                    <div class="marker"></div>
+                    <div class="label">开庭陈述</div>
+                </div>
+                <div class="timeline-event event-evidence">
+                    <div class="marker"></div>
+                    <div class="label">证据呈示</div>
+                </div>
+                <div class="timeline-event event-rebuttal">
+                    <div class="marker"></div>
+                    <div class="label">反驳与<br>再反驳</div>
+                </div>
+                <div class="timeline-event event-closing">
+                    <div class="marker"></div>
+                    <div class="label">结案陈词</div>
+                </div>
+                <div class="timeline-event event-submitted">
+                    <div class="marker"></div>
+                    <div class="label">案件提交<br>陪审团</div>
+                </div>
+                <div class="timeline-event event-judgment">
+                    <div class="marker"></div>
+                    <div class="label">判决录入</div>
+                </div>
+                <div class="timeline-event event-28days">
+                    <div class="marker"></div>
+                    <div class="label">判决后<br>28天</div>
+                </div>
+            </div>
+            <div class="timeline-legend">
+                <div class="timeline-legend-item">
+                    <div class="timeline-legend-color" style="background-color: #e74c3c;"></div>
+                    = 被告可寻求 JMOL
+                </div>
+                <div class="timeline-legend-item">
+                    <div class="timeline-legend-color" style="background-color: #3498db;"></div>
+                    = 原告可寻求 JMOL
+                </div>
+                <div class="timeline-legend-item">
+                    <div class="timeline-legend-color" style="background-color: #27ae60;"></div>
+                    = 败诉方可续期 JMOL
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <h3>⚖️ 法律依据与推理</h3>
+            <div class="analysis-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <p><strong>理解 <span class="term">JMOL</span> 的目的和性质</strong></p>
+                    <p><span class="term">JMOL</span> (动议裁决作为法律问题) 是一种请求法院在案件中作出有利于动议方的判决，因为证据在法律上不足以支持陪审团对非动议方的裁决。这意味着即使所有证据都以最有利于非动议方的方式解释，合理的陪审团也无法找到支持非动议方的证据。</p>
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <p><strong>初始 <span class="term">JMOL</span> 动议 (<span class="term">Rule 50(a)</span>) 的时机</strong></p>
+                    <p>根据联邦民事诉讼规则 <code>Rule 50(a)</code>，一方可以在对方完成证据呈示后，但在案件提交给陪审团之前，提出 <span class="term">JMOL</span> 动议。这是提出 <span class="term">JMOL</span> 的第一个也是唯一的机会，如果未在此阶段提出，则通常被视为放弃。</p>
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <p><strong>续期 <span class="term">JMOL</span> 动议 (<span class="term">Rule 50(b)</span>) 的时机和前提</strong></p>
+                    <p>如果一方在案件提交给陪审团之前已根据 <code>Rule 50(a)</code> 提出过 <span class="term">JMOL</span> 动议，那么在陪审团作出裁决后，该方可以在判决录入后 28 天内提出续期 <span class="term">JMOL</span> 动议 (通常称为 <span class="term">JNOV</span> 或 <span class="term">renewed JMOL</span>)。续期 <span class="term">JMOL</span> 动议的前提是必须在审判期间提出过初始 <span class="term">JMOL</span> 动议。</p>
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <p><strong>事实分析</strong></p>
+                    <p>本案中，制造商在陪审团返回其特别裁决后才提出 <span class="term">JMOL</span> 动议，并且在案件提交给陪审团之前没有提出过 <span class="term">JMOL</span> 动议。这直接违反了 <code>Rule 50(a)</code> 的时机要求，也使得其无法提出 <code>Rule 50(b)</code> 的续期动议。</p>
+                </div>
+            </div>
+            <div class="analysis-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <p><strong>结论</strong></p>
+                    <p>由于制造商未能及时在案件提交给陪审团之前提出 <span class="term">JMOL</span> 动议，因此其在陪审团裁决后提出的动议是不及时的，法官不应予以考虑。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="trap-alert">
+            <strong>⚠️ 核心规则/陷阱提示:</strong>
+            <p><code>Rule 50</code> 对 <span class="term">JMOL</span> 动议的时机有严格要求。要提出续期 <span class="term">JMOL</span> 动议 (在陪审团裁决后)，<strong>必须</strong>首先在案件提交给陪审团之前提出过初始 <span class="term">JMOL</span> 动议。这是 <span class="term">MBE</span> 考试中常见的陷阱点。未能遵守此前提条件将导致动议被驳回。</p>
+        </div>
+
+        <div class="case-box">
+            <strong>🔑 延伸情景:</strong>
+            <p>如果制造商在消费者完成证据呈示后，但在案件提交给陪审团之前，<strong>已经</strong>提出了 <span class="term">JMOL</span> 动议，那么即使陪审团返回了特别裁决，制造商仍然可以在判决录入后 28 天内提出续期 <span class="term">JMOL</span> 动议。在这种情况下，法官将需要考虑该动议，并评估证据是否在法律上足以支持陪审团的认定。</p>
+        </div>
+
+        <div class="option-analysis">
+            <h3>✅ 正确答案和排除干扰项</h3>
+            <div class="option correct">
+                <b>A. No, because the case has already been submitted to the jury.</b><br>
+                <p><strong>正确:</strong> 根据联邦民事诉讼规则 <code>Rule 50(a)</code>，<span class="term">JMOL</span> 动议必须在案件提交给陪审团之前提出。如果一方未在此阶段提出动议，则不能在陪审团作出裁决后提出续期 <span class="term">JMOL</span> 动议。本案中，制造商在陪审团返回特别裁决后才提出动议，这意味着它错过了在案件提交给陪审团之前提出初始 <span class="term">JMOL</span> 动议的时机。因此，法官不应考虑该动议。</p>
+            </div>
+            <div class="option wrong">
+                <b>B. No, because the jury is the conclusive determiner of the sufficiency of the evidence.</b><br>
+                <p><strong>错误:</strong> 陪审团是事实的裁决者，但法官是法律的裁决者。<span class="term">JMOL</span> 的目的正是允许法官在证据在法律上不足以支持陪审团裁决时推翻陪审团的认定。因此，陪审团并非证据充分性的“最终决定者”。法官有权评估证据在法律上是否足以支持陪审团的认定。</p>
+            </div>
+            <div class="option wrong">
+                <b>C. Yes, because the consumer has had the opportunity to present evidence to the jury.</b><br>
+                <p><strong>错误:</strong> 消费者有机会呈示证据是审判过程的一部分，但它与 <span class="term">JMOL</span> 动议的及时性无关。`JMOL` 动议的及时性取决于动议是否在 <code>Rule 50</code> 规定的特定时间点提出，即在案件提交给陪审团之前。仅仅有机会呈示证据并不能弥补动议时机不当的缺陷。</p>
+            </div>
+            <div class="option wrong">
+                <b>D. Yes, because the court has not yet entered a final judgment.</b><br>
+                <p><strong>错误:</strong> 尽管法院尚未录入最终判决，但这并不能弥补制造商未能及时提出初始 <span class="term">JMOL</span> 动议的缺陷。续期 <span class="term">JMOL</span> 动议 (在判决录入后 28 天内) 的前提是必须在案件提交给陪审团之前提出过初始 <span class="term">JMOL</span> 动议。仅仅因为尚未录入判决并不意味着任何时候都可以提出 <span class="term">JMOL</span> 动议。</p>
+            </div>
+        </div>
+
+        <div class="footer-tip">
+            <strong>🎓 考试技巧:</strong>
+            <p>记住 <span class="term">JMOL</span> 的“两步走”策略：第一步 (<code>Rule 50(a)</code>) 必须在案件提交陪审团之前提出；第二步 (<code>Rule 50(b)</code>) 可以在陪审团裁决后 28 天内提出，但<strong>前提是第一步已经完成</strong>。如果第一步被跳过，那么第二步就无法进行，动议将被视为不及时的。</p>
+        </div>
+    </div>
+</body>
+</html>

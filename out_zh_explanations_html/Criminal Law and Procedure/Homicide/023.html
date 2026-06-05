@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .theory-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        .theory-table th, .theory-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .theory-table th {
+            background-color: #f2f2f2;
+            color: var(--primary-color);
+        }
+
+        .answer-analysis {
+            margin-top: 20px;
+        }
+
+        .option-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .option-card.correct {
+            border-color: var(--correct-color);
+            background-color: #f0fff4;
+        }
+
+        .option-card.wrong {
+            border-color: var(--wrong-color);
+            background-color: #fff5f5;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .badge.correct {
+            background: var(--correct-color);
+            color: white;
+        }
+
+        .badge.wrong {
+            background: var(--wrong-color);
+            color: white;
+        }
+
+        .exam-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Criminal Law: Felony Murder</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点讲解 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：重罪谋杀中的代理理论 (Agency Theory)</span>
+            <p>本题考察的核心是：在重罪实施过程中，如果<b>非共犯（如受害者、警察或旁观者）</b>导致了死亡，被告是否需要承担 <b>Felony Murder</b> 的责任？</p>
+        </div>
+
+        <p>美国各司法管辖区对此有两种主要理论，MBE 考试通常默认适用<b>多数原则</b>：</p>
+
+        <table class="theory-table">
+            <thead>
+                <tr>
+                    <th>理论名称</th>
+                    <th>规则详解</th>
+                    <th>适用性</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>Agency Theory</b><br>(代理理论)</td>
+                    <td>被告<b>只对</b>由其本人或其<b>共犯 (Agents)</b> 造成的死亡负责。如果死亡是由第三方（如警察、受害者、旁观者）造成的，被告<b>不承担</b>重罪谋杀责任。</td>
+                    <td><span style="color:var(--correct-color)">★ 多数原则 (Majority Rule)</span><br>MBE 默认规则</td>
+                </tr>
+                <tr>
+                    <td><b>Proximate Cause Theory</b><br>(近因理论)</td>
+                    <td>只要死亡是重罪的自然且可预见的后果，无论谁开的枪，被告都要负责。</td>
+                    <td>少数原则 (Minority Rule)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 正确答案分析 -->
+        <div class="answer-analysis">
+            <div class="option-card correct">
+                <span class="badge correct">正确答案 D</span>
+                <p><b>理由：</b>根据 <b>Agency Theory</b>，开枪的顾客（Customer）不是作家的共犯（Co-felon/Agent），而是第三方。因此，作家不对顾客造成的死亡负责。</p>
+                <p>这是作家脱罪的<b>最佳辩护 (Best Argument)</b>，因为它直接切断了重罪谋杀指控中的归责链条。</p>
+            </div>
+
+            <!-- 错误选项分析 -->
+            <div class="option-card wrong">
+                <span class="badge wrong">选项 A 错误</span>
+                <p><b>理由：</b>Felony Murder 适用于重罪的<b>实施 (Commission)</b> 或 <b>企图 (Attempt)</b> 阶段。虽然作家没抢到钱（未遂），但他已经构成了 <b>Attempted Robbery</b>，这足以触发重罪谋杀法则。</p>
+            </div>
+
+            <div class="option-card wrong">
+                <span class="badge wrong">选项 B & C 错误</span>
+                <p><b>理由：</b>Felony Murder 是一种<b>严格责任 (Strict Liability)</b> 形式的谋杀。法律通过 <b>Transferred Intent</b>（转移意图）将实施重罪的恶意（Malice）转移到杀人行为上。</p>
+                <p>因此，检方<b>不需要证明</b>被告有杀人意图 (Intent to kill) 或造成伤害风险的意图。只要有实施重罪的意图即可。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 考场实战技巧：</strong>
+            <br>
+            当你在 MBE 刑法题中看到有人在抢劫/重罪过程中死亡，首先判断<b>“是谁扣动了扳机？”</b>
+            <ul>
+                <li>如果是被告或共犯 → <b>Felony Murder 成立</b>。</li>
+                <li>如果是警察、受害者或路人 → <b>Felony Murder 通常不成立</b>（基于 Agency Theory）。</li>
+            </ul>
+            除非题目明确说明该辖区适用 <i>Proximate Cause Theory</i>，否则始终优先考虑 <i>Agency Theory</i>。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

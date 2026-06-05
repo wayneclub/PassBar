@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            color: #2980b9;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        .key-term {
+            font-weight: bold;
+            color: #c0392b;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #bdc3c7;
+        }
+        .event {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .event::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: #3498db;
+            border-radius: 50%;
+        }
+        .event-date {
+            font-size: 12px;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+        .event-desc {
+            font-size: 14px;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .analysis-title {
+            font-size: 18px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .option-analysis {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+        .correct-tag {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        .wrong-tag {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .footer-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts / Remedies</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">⚖️ 核心考点：间接损失 (Consequential Damages)</div>
+            <p>根据普通法经典判例 <span class="latin">Hadley v. Baxendale</span>，非违约方要获得间接损失（即因特殊情况导致的损失）的赔偿，必须证明：</p>
+            <p>在<b>合同订立时 (at the time of contracting)</b>，违约方已经<b>知晓</b>或<b>应当合理预见</b>到这些特殊情况会导致此类损失。</p>
+        </div>
+
+        <!-- 案情时间轴分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">📅 关键时间线分析</div>
+            <div class="timeline">
+                <div class="event">
+                    <div class="event-date">4月1日</div>
+                    <div class="event-desc"><b>技工与玩具公司签订维修合同。</b><br><small>此时双方均认为：延迟5天通常不会造成损失。</small></div>
+                </div>
+                <div class="event">
+                    <div class="event-date">4月2日</div>
+                    <div class="event-desc"><b>玩具公司与客户签订销售合同。</b><br><small>包含高额违约金条款（特殊情况）。</small></div>
+                </div>
+                <div class="event">
+                    <div class="event-date">4月6日</div>
+                    <div class="event-desc">技工原本应完成工作的日期。</div>
+                </div>
+            </div>
+            <p><strong>关键逻辑：</strong> 技工的责任范围被锁定在<b>4月1日</b>。因为导致高额损失的“特殊情况”（4月2日的合同）在4月1日时尚未存在，技工不可能预见到这笔损失。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 正确答案解析 (选项 C)</div>
+            <div class="option-analysis" style="border-left: 4px solid #27ae60;">
+                <span class="correct-tag">正确理由</span>
+                <p><b>不可预见性 (Unforeseeability)：</b></p>
+                <p>题目明确指出，在4月1日签订合同时，技工没有理由预见到玩具公司会遭受25,000美元的间接损失。事实上，题目甚至说双方当时都知道“通常情况下不会有损失”。</p>
+                <p>由于这笔损失源于技工<b>无法预见</b>的特殊情况（Special Circumstances），根据合同法规则，这笔间接损失不能由技工承担。</p>
+            </div>
+
+            <div class="analysis-title">❌ 干扰项排除</div>
+            
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 A (风险承担)</span>
+                <p><b>错误：</b> 玩具公司与客户之间的风险分配（Assumption of Risk）不影响技工的责任。技工免责的原因不是因为玩具公司承担了风险，而是因为技工自己无法预见损失。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 B (违约金数额)</span>
+                <p><b>错误：</b> 玩具公司支付给客户的违约金是否合理，是玩具公司与客户之间的问题。即使该违约金是合理的，只要技工在签约时无法预见，技工就不需要赔偿。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 D (时间要素)</span>
+                <p><b>错误：</b> 即使合同中没有“时间是关键要素” (Time is of the essence) 条款，延迟履行仍然构成违约 (Breach)。这只能决定违约是“重大”还是“轻微”，并不改变损害赔偿的可预见性规则。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="footer-tip">
+            <strong>💡 </strong>
+            <br>
+            在处理<b>损害赔偿 (Remedies)</b> 问题时，一定要区分：
+            <ul style="margin-bottom:0; padding-left: 20px;">
+                <li><b>一般损害 (General Damages)：</b> 自然产生的，无需特殊通知（如维修的市场价差）。</li>
+                <li><b>间接损害 (Consequential Damages)：</b> 因特殊情况产生的。必须检查<b>“签约时”</b>违约方是否知情。如果特殊情况发生在签约后，违约方通常免责。</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

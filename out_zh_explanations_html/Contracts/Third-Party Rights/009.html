@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fff3cd;
+            --warning-text: #856404;
+            --text-color: #333;
+            --light-text: #666;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 10px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .diagram-box {
+            border: 1px solid #ccc;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: #fff;
+            margin-bottom: 5px;
+            width: 80%;
+            text-align: center;
+        }
+        .arrow {
+            font-size: 1.2rem;
+            color: #999;
+            margin: -5px 0;
+        }
+        .result-box {
+            background: #ffebee;
+            border: 1px solid #ffcdd2;
+            color: #c62828;
+            font-weight: bold;
+        }
+        .exam-tip {
+            background-color: var(--warning-bg);
+            color: var(--warning-text);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border: 1px solid #ffeeba;
+        }
+        .option-analysis {
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .option-item {
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 3px solid #ddd;
+        }
+        .correct-tag {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .wrong-tag {
+            color: #c0392b;
+            font-weight: bold;
+        }
+    </style>
+    <title>MBE 解析：第三方受益人</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts: Third-Party Rights</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">核心考点：第三方受益人</span>
+            在合同法中，非合同当事人（Nonparty）能否起诉违约，取决于其身份：
+            <ul style="margin: 5px 0 0 0; padding-left: 20px;">
+                <li>
+                    <span class="term">意定受益人</span> <span class="english-term">(Intended Beneficiary)</span>：<br>
+                    合同双方<b>意图</b>赋予其直接利益和执行权。只有这类人<b>有权起诉</b>。
+                </li>
+                <li style="margin-top: 8px;">
+                    <span class="term">附带受益人</span> <span class="english-term">(Incidental Beneficiary)</span>：<br>
+                    虽然从合同中受益，但并非合同的主要目的。这类人<b>无权起诉</b>。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">本案逻辑分析</div>
+            <p>本题的关键在于判断患者（Patient）在保洁公司（Janitorial Service）与医院（Hospital）的合同中处于什么地位。</p>
+            
+            <div class="diagram">
+                <div class="diagram-box" style="background:#f0f4c3;"><b>合同方 A：</b>保洁公司</div>
+                <div class="arrow">↕️ 签订合同</div>
+                <div class="diagram-box" style="background:#f0f4c3;"><b>合同方 B：</b>医院</div>
+                <div class="arrow">⬇️ 间接好处</div>
+                <div class="diagram-box result-box"><b>第三方：</b>患者<br><span style="font-size:0.8em; font-weight:normal;">(附带受益人 - 无权起诉)</span></div>
+            </div>
+
+            <p>虽然清洁服务确实让患者受益（环境更卫生），但合同的主要目的是为了医院的运营合规和商业需求。除非合同中有<b>明确条款</b>表明双方意图赋予患者直接的法律追索权，否则在法律上，患者仅被视为<span class="english-term">Incidental Beneficiary</span>。</p>
+            
+            <p>因此，患者<b>不能</b>基于合同关系（Breach of Contract）起诉保洁公司。</p>
+        </div>
+
+        <!-- 选项辨析 -->
+        <div class="option-analysis">
+            <div class="analysis-title">选项深度解析</div>
+            
+            <div class="option-item" style="border-left-color: #27ae60;">
+                <span class="correct-tag">选项 C (正确答案)</span><br>
+                <b>患者是附带受益人，无权索赔。</b><br>
+                这符合 <i>Restatement (Second) of Contracts § 302</i> 的规则。由于缺乏赋予患者执行权的意图，她无法强制执行合同。
+            </div>
+
+            <div class="option-item">
+                <span class="wrong-tag">选项 D (常见干扰项)</span><br>
+                <b>错误原因：混淆了“受益”与“意定”。</b><br>
+                虽然保洁是为了让所有患者受益（广义上），但在法律上，这不足以构成“意定受益人”。大多数涉及政府或公共服务（如医院、市政工程）的合同，公众成员通常都被视为附带受益人，除非合同另有明确规定。
+            </div>
+
+            <div class="option-item">
+                <span class="wrong-tag">选项 A (陷阱项)</span><br>
+                <b>错误原因：混淆了侵权与合同。</b><br>
+                违反卫生法规（Public Policy/Health Code）可能支持<b>侵权（Tort/Negligence）</b>诉讼，但这并不会自动创造<b>合同（Contract）</b>下的起诉权。题目明确问的是“违约索赔”（Breach of contract claim）。
+            </div>
+
+            <div class="option-item">
+                <span class="wrong-tag">选项 B (错误理由)</span><br>
+                <b>错误原因：理由不充分。</b><br>
+                未被“指名道姓”（Named）并不是不能起诉的绝对理由。如果合同说“为所有周二住院的患者提供服务”，这类未具名的群体（Class）如果是意定受益人，也可以起诉。患者不能起诉的根本原因是缺乏“意图”，而不是因为没写名字。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 提分技巧：</strong><br>
+            注意区分<b>侵权（Tort）</b>和<b>合同（Contract）</b>的责任基础。
+            <br><br>
+            本题中，患者很可能因为保洁公司的疏忽（Negligence）赢得侵权诉讼。但题目限定了问<b>“违约索赔”</b>。在合同法考题中，不要因为被告“做错了事”就想当然地认为原告在合同法上有权胜诉。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

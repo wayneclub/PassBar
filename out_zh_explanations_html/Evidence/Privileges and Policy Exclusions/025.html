@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机宽度 */
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .concept-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 0.95rem;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .tip-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence: Privileges (证据法：特免权)</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：B</span>
+            <p>不会，因为该陈述不在任何特免权的保护范围内。<br>
+            (No, because the statement was not within any privilege.)</p>
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">⚖️ 法律依据与推理</div>
+        
+        <p>本题的核心考点在于联邦法院中<b>特免权（Privilege）的适用范围</b>，特别是涉及医疗环境时的区分。</p>
+
+        <div class="concept-card">
+            <div class="concept-title">1. 联邦证据规则第501条 (FRE 501)</div>
+            <p>在联邦刑事案件（如本案中威胁总统）中，特免权由<b>联邦普通法 (Federal Common Law)</b> 管辖，而不是州法律。</p>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-title">2. 心理治疗师-患者特免权<br>(Psychotherapist-Patient Privilege)</div>
+            <p>根据最高法院判例 <i>Jaffee v. Redmond</i>，联邦法律承认心理治疗师与患者之间的特免权。但这有严格的限制：</p>
+            <ul>
+                <li><b>主体限制：</b>必须是向持照的心理治疗师、心理学家或临床社会工作者 (LCSW) 作出的。</li>
+                <li><b>目的限制：</b>必须是为了<b>诊断或治疗</b> (Diagnosis or Treatment) 目的。</li>
+            </ul>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-title">3. 为什么本案不适用？</div>
+            <p>虽然该男子在精神病院，但他的陈述存在两个致命缺陷，使其无法获得保护：</p>
+            <ul>
+                <li><b>对象错误：</b>他是对<b>护士 (Nurse)</b> 说的，而不是心理治疗师。联邦普通法通常不承认独立的“护士-患者”特免权，除非护士是作为治疗师的代理人协助治疗。</li>
+                <li><b>内容性质：</b>“计划枪杀总统”通常被视为犯罪威胁，而非为了医疗诊断或治疗的保密沟通。</li>
+            </ul>
+        </div>
+
+        <!-- 为什么其他选项错误 -->
+        <div class="section-title">❌ 陷阱选项分析</div>
+
+        <p><b>选项 A (非自愿收治)：</b><br>
+        这是干扰项。特免权的适用取决于沟通的保密性和治疗目的，与患者是自愿入院还是强制入院无关。</p>
+
+        <p><b>选项 C (违反保密义务)：</b><br>
+        这是 MBE 常见的混淆点。<b>保密义务 (Confidentiality)</b> 是职业道德概念，而<b>特免权 (Privilege)</b> 是证据法概念。护士可能违反了职业道德（尽管报告严重威胁通常是道德允许的），但这并不意味着该证词在法庭上不可采信 (Inadmissible)。</p>
+
+        <p><b>选项 D (医疗环境)：</b><br>
+        这是最大的陷阱。许多州承认广泛的“医患特免权” (Physician-Patient Privilege)，但在<b>联邦刑事案件</b>中，普通法<b>不承认</b>一般的医患特免权。仅仅因为在医院说话，并不自动产生特免权。</p>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <strong>🎓 MBE 考试技巧：</strong>
+            <br><br>
+            遇到联邦法院的特免权题目时，请记住：
+            <br>1. <b>联邦刑事案件</b>不适用州特免权法。
+            <br>2. 联邦普通法<b>没有</b>通用的“医生-患者”特免权（仅限于心理治疗）。
+            <br>3. 区分“道德上的保密”与“法律上的特免权”。
+        </div>
+
+    </div>
+
+    <div class="footer">
+        MBE Evidence Review | QID: Q87130
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-card {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .term-en {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .option-analysis {
+            margin-bottom: 15px;
+        }
+
+        .correct-tag {
+            background-color: #27ae60;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .wrong-tag {
+            background-color: #e74c3c;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .mbe-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.95em;
+        }
+
+        .mbe-tip-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts: Formation & Implied Contracts</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">核心考点：事实默示合同</span>
+            <span class="term-en">Implied-in-Fact Contract</span>
+            <p>合同的成立不仅可以通过书面或口头的言辞（Express Contract），也可以通过当事人的<b>行为（Conduct）</b>来推断。只要双方的行为表现出了订立合同的意图（Mutual Assent），合同即告成立。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情逻辑链条</div>
+            <ul>
+                <li><b>背景：</b>双方已有律师-客户关系（Prior Relationship）。</li>
+                <li><b>要约 (Offer)：</b>客户留便条询问法律意见，并提及“下周回来”，暗示了请求服务。</li>
+                <li><b>承诺 (Acceptance)：</b>律师审阅文件并出具法律意见书。</li>
+                <li><b>争议：</b>客户事后拒绝付款，理由是“未口头/书面明确同意”且“交易未成”。</li>
+            </ul>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">选项深度解析</div>
+            
+            <div class="option-analysis">
+                <span class="correct-tag">正确答案 D</span>
+                <strong>事实默示合同已成立</strong>
+                <p>这是本题的题眼。虽然客户没有签署正式聘用协议，但她的行为（留便条询问专业意见）在客观上构成了一个要约。律师通过履行行为（Performance）进行了承诺。在专业服务背景下，这种互动创造了支付合理费用的<b>客观预期</b>。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">干扰项 A</span>
+                <strong>目的落空 (Frustration of Purpose)</strong>
+                <p>错误。目的落空要求发生不可预见的事件导致合同价值完全丧失。虽然船没卖成，但律师提供的“法律合规性审查”这项服务本身是有价值的，且已交付。交易失败属于商业风险，不免除支付法律咨询费的义务。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">干扰项 B</span>
+                <strong>条款不确定 (Indefiniteness)</strong>
+                <p>错误。虽然双方未明确约定价格，但根据《合同法重述》，如果双方意图订立合同，法院可以填补缺失条款（Gap Filler）。对于服务合同，法院通常会填补“合理价值”（Reasonable Value）作为价格条款。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">陷阱项 C</span>
+                <strong>允诺禁反言 (Promissory Estoppel)</strong>
+                <p>这是一个常见的MBE陷阱。允诺禁反言通常用于<b>合同未成立</b>但需要通过公平原则进行救济的场合。既然本案已经通过行为成立了有效的“事实默示合同”，就应当依据合同法（Contract Law）而非衡平法（Equity）来判决。因此D比C更准确。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <span class="mbe-tip-title">💡 MBE 考试技巧</span>
+            <p><b>区分“合同”与“准合同”：</b></p>
+            <p>当题目问“律师能否胜诉”时，首先寻找是否存在有效的合同（包括默示合同）。</p>
+            <ul>
+                <li>如果有<b>相互的行为</b>表明了交易意图，选 <b>Implied-in-Fact Contract</b>（本题情况）。</li>
+                <li>如果<b>没有合同</b>，但一方不当得利，才考虑 <b>Quasi-Contract</b> 或 <b>Restitution</b>。</li>
+                <li>如果<b>没有合同</b>，但一方依赖承诺受损，才考虑 <b>Promissory Estoppel</b>。</li>
+            </ul>
+            <p><b>优先顺位：</b>有效合同 > 准合同/衡平法救济。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

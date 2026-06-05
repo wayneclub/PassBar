@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--bg-color);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .icon {
+            margin-right: 8px;
+        }
+
+        .highlight {
+            background-color: #e8f4fd;
+            color: var(--primary-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .mnemonic {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .mnemonic-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+        }
+
+        .mnemonic-item b {
+            color: var(--warning-color);
+            font-size: 1.2rem;
+            display: block;
+        }
+
+        .correct-answer {
+            border-left-color: var(--success-color);
+        }
+
+        .wrong-answer {
+            border-left-color: var(--warning-color);
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            margin-top: 30px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <p>Contracts: Statute of Frauds (防止欺诈法)</p>
+    </div>
+
+    <!-- Core Concept -->
+    <div class="card">
+        <div class="card-title">
+            <span class="icon">📚</span> 核心考点：防止欺诈法 (SoF)
+        </div>
+        <p>本题考察的是<b>防止欺诈法 (Statute of Frauds)</b> 在合同修改 (Modification) 中的应用。</p>
+        <p>根据普通法，某些特定类型的合同必须有<b>书面形式 (Writing)</b> 并由<b>被诉方签署 (Signed by the party to be charged)</b> 才能强制执行。记忆口诀为 <b>MY LEGS</b>：</p>
+        
+        <div class="mnemonic">
+            <div class="mnemonic-item"><b>M</b>arriage<br>婚姻相关</div>
+            <div class="mnemonic-item"><b>Y</b>ear<br>超过一年</div>
+            <div class="mnemonic-item"><b>L</b>and<br>土地权益</div>
+            <div class="mnemonic-item"><b>E</b>xecutor<br>遗嘱执行人</div>
+            <div class="mnemonic-item"><b>G</b>oods<br>货物($500+)</div>
+            <div class="mnemonic-item"><b>S</b>uretyship<br>保证/担保</div>
+        </div>
+    </div>
+
+    <!-- Correct Answer Analysis -->
+    <div class="card correct-answer">
+        <div class="card-title">
+            <span class="icon">✅</span> 正确答案解析 (选项 C)
+        </div>
+        <p><b>结论：</b> 交易员会胜诉，因为双方的电子邮件满足了防止欺诈法的要求。</p>
+        
+        <h4>1. 为什么需要书面形式？</h4>
+        <p>最初的9个月口头合同是有效的，因为它可以在一年内完成。但是，双方在第2个月进行了<b>修改 (Modification)</b>，延长了6个月。</p>
+        <ul>
+            <li><b>计算时间：</b> 从修改之时（第2个月）算起，剩余履行期为 7个月（原合同剩余）+ 6个月（延长期）= 13个月。</li>
+            <li><b>规则：</b> 如果修改后的合同无法在修改之日起<b>一年内 (One Year)</b> 完成，则该修改必须满足 SoF 要求。</li>
+        </ul>
+
+        <h4>2. 电子邮件是否满足要求？</h4>
+        <p>满足。SoF 对“书面”的要求很宽松：</p>
+        <ul>
+            <li><b>签名：</b> 董事的电子邮件末尾有 "/s/ Director"，这构成了有效的电子签名。</li>
+            <li><b>基本条款：</b> 邮件明确了延长期限（6个月）和薪资（参照月度支票）。</li>
+            <li><b>多份文件引用：</b> 法律允许通过<b>引用 (Incorporation by Reference)</b> 将多份文件结合起来。邮件中提到的“月度工资支票”使得薪资条款变得确定（Certain）。</li>
+        </ul>
+    </div>
+
+    <!-- Distractor Analysis -->
+    <div class="card wrong-answer">
+        <div class="card-title">
+            <span class="icon">❌</span> 干扰项排除
+        </div>
+        
+        <p><b>选项 A (错误)：</b> <span style="color: #7f8c8d;">关于薪资不确定。</span><br>
+        虽然邮件没有写明具体金额，但它引用了“月度工资支票”。在合同法中，如果条款可以通过参照客观存在的外部文件或标准来确定，即视为具有<b>合理的确定性 (Reasonable Certainty)</b>。</p>
+
+        <p><b>选项 B (错误)：</b> <span style="color: #7f8c8d;">关于信赖利益。</span><br>
+        这指的是<b>允诺禁反言 (Promissory Estoppel)</b>。这是一个“备胎”理论，仅在没有有效合同（例如不满足 SoF）时使用。既然这里已经满足了 SoF 形成了有效合同，就不需要证明“不利信赖” (Detrimental Reliance)。</p>
+
+        <p><b>选项 D (错误)：</b> <span style="color: #7f8c8d;">关于延长期不到一年。</span><br>
+        这是一个典型的陷阱。判断是否适用“一年规则”，不是看延长的部分是否超过一年，而是看<b>修改后的整个合同</b>从<b>修改之日</b>起，是否能在一年内履行完毕。本案中，从修改日到结束日超过了12个月。</p>
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="card">
+        <div class="card-title">
+            <span class="icon">💡</span> 考试技巧 (Exam Tip)
+        </div>
+        <p>在处理 <b>Statute of Frauds</b> 问题时，遵循以下步骤：</p>
+        <ol>
+            <li>判断合同类型是否落入 <b>MY LEGS</b> 范畴。</li>
+            <li>如果是<b>修改 (Modification)</b>，看修改后的合同是否落入 SoF（特别是时间计算，要从修改日重新开始算）。</li>
+            <li>寻找是否有满足要求的<b>书面材料 (Writing)</b>。记住：多封邮件、支票、备忘录只要能关联起来，都可以算作书面证据。</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        MBE Contracts Review | © 2025 Legal Study Aid
+    </div>
+
+</div>
+
+</body>
+</html>

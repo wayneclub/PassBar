@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            color: #2980b9;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .option-analysis {
+            margin-top: 15px;
+        }
+        .option {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+        .correct {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .tip-icon {
+            font-size: 1.2rem;
+            margin-right: 5px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Real Property: Mortgages</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心概念卡片 -->
+        <div class="concept-card">
+            <span class="concept-title">🔑 核心考点：以契据代替止赎 (Deed in Lieu of Foreclosure)</span>
+            <p>当借款人（Mortgagor）违约时，为了避免正式的止赎程序（Foreclosure），可以将抵押房产的所有权直接转让给贷款人（Mortgagee）。这种交易被称为 <b>Deed in Lieu of Foreclosure</b>。</p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">⚖️ 法律分析与推理</div>
+            <p>本题考察的是贷款人接受“以契据代替止赎”的有效性。根据普通法规则：</p>
+            <ol>
+                <li><b>有效性原则：</b> 只要交易是<b>公平且合理 (Fair and Reasonable)</b> 的，且没有欺诈、胁迫或显失公平的情况，法院通常会承认这种转让的有效性。</li>
+                <li><b>所有权转移：</b> 一旦契据交付并被接受，贷款人（本题中的建筑商）即获得该房产的<b>完全所有权 (Fee Simple Title)</b>，原始债务通常随之消灭。</li>
+                <li><b>本案事实：</b>
+                    <ul>
+                        <li>买方违约且无力支付。</li>
+                        <li>房产价值大幅下跌（意味着如果进行止赎拍卖，买方可能面临巨额的差额判决 Deficiency Judgment）。</li>
+                        <li>建筑商提议以此方式“了结所有索赔”。</li>
+                        <li>买方自愿同意。</li>
+                    </ul>
+                </li>
+            </ol>
+            <p>由于该交易在当时的情况下对双方都是合理的（买方免除了债务责任，卖方避免了止赎成本），因此建筑商获得了完全的所有权。</p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 为什么选 D？</div>
+            <div class="option correct">
+                <b>选项 D 正确：</b><br>
+                "Yes, because the transaction was reasonable and fair under the circumstances."<br>
+                <br>
+                这是判断 <b>Deed in Lieu</b> 是否有效的核心标准。法院会审查交易是否压榨了借款人。鉴于房产贬值严重，买方通过交还房产免除了潜在的个人债务（Deficiency），这被视为公平的对价。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">❌ 为什么其他选项错误？</div>
+            
+            <div class="option-analysis">
+                <div class="option incorrect">
+                    <b>选项 A 错误 (Disguised Mortgage)：</b><br>
+                    虽然法院有时会将契据认定为“变相抵押” (Equitable Mortgage)，但这通常发生在<b>债务未被免除</b>或<b>借款人保留占有权</b>的情况下。本案中，双方意图是“了结所有索赔”并转移所有权，而非将其作为新的担保。
+                </div>
+
+                <div class="option incorrect">
+                    <b>选项 B 错误 (Waiver of Foreclosure)：</b><br>
+                    法律禁止的是在<b>抵押设立时</b>就放弃赎回权（Clogging the Equity of Redemption）。但在<b>违约发生后</b>，借款人完全有权通过新协议（如 Deed in Lieu）放弃房产以抵债。
+                </div>
+
+                <div class="option incorrect">
+                    <b>选项 C 错误 (Equitable Redemption)：</b><br>
+                    <b>衡平法赎回权 (Equitable Redemption)</b> 是指借款人在止赎前通过还清全款来保住房子的权利。如果应用此原则，结果应该是<b>买方</b>拥有房子（前提是他还钱），而不是建筑商拥有房子。
+                </div>
+            </div>
+        </div>
+
+        <div class="exam-tip">
+            <span class="tip-icon">💡</span> <b>MBE 考试技巧：</b><br>
+            遇到 <b>Deed in Lieu</b> 的题目，首先检查是否存在“压榨”借款人的迹象。
+            <br><br>
+            如果题目中提到房产价值<b>低于</b>债务金额（Under water），且借款人借此免除了债务，这通常被视为<b>有效</b>的 Fee Simple 转让。
+            <br><br>
+            如果房产价值<b>远高于</b>债务，而贷款人强迫借款人交出房产，法院才可能介入将其视为无效或变相抵押。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

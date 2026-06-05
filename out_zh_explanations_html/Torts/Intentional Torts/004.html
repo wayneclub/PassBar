@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --success-color: #27ae60;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #eaf2f8;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .key-point {
+            font-weight: bold;
+            color: var(--highlight-color);
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+        .scenario-check {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            min-width: 25px;
+        }
+        .distractor {
+            background-color: #fff5f5;
+            border: 1px solid #ffebeb;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        .distractor strong {
+            color: #c0392b;
+        }
+        .exam-tip {
+            background-color: #fff9db;
+            border: 1px solid #f1e0a8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Intentional Torts: Assault</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <span style="background: var(--success-color); color: white; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 0.9rem;">正确答案：B</span>
+        </div>
+
+        <!-- 法律规则 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 法律规则 (Rule of Law)</span>
+            <p style="margin: 0;">
+                <strong>侵袭 (Assault)</strong> 的成立需要被告的行为导致原告对<strong>即刻 (Imminent)</strong> 的伤害性或冒犯性接触产生<strong>合理的恐惧/预期 (Reasonable Apprehension)</strong>。
+            </p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🔍 深度解析</div>
+            
+            <p>本题的核心考点在于原告的<strong>知情状态 (Knowledge)</strong> 如何影响“恐惧” (Apprehension) 的认定。</p>
+
+            <div class="scenario-check">
+                <span class="icon">❌</span>
+                <div>
+                    <strong>没有即刻的恐惧：</strong><br>
+                    虽然主人用枪指着客人，但客人<strong>明确知道</strong>枪里没有子弹。既然知道枪是空的，客人就不可能相信自己面临“即刻”的枪击风险。
+                </div>
+            </div>
+
+            <div class="scenario-check">
+                <span class="icon">❌</span>
+                <div>
+                    <strong>缺乏即刻性 (Imminence)：</strong><br>
+                    虽然有弹药，但弹药在两层楼下的锁闭壁橱里。获取弹药需要时间，无法构成“即刻”的威胁。法律要求接触必须是 <em>without significant delay</em>（无明显延迟）。
+                </div>
+            </div>
+
+            <p style="margin-top: 10px;">
+                因此，由于原告知道威胁无法立即兑现，法律上的 <strong>Apprehension</strong> 并不存在，Assault 不成立。
+            </p>
+        </div>
+
+        <!-- 干扰项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">💡 为什么其他选项是错的？</div>
+            
+            <div class="distractor">
+                <strong>选项 A 错误 (Intent)：</strong><br>
+                Assault 的意图可以是造成接触，也可以仅仅是<strong>造成恐惧 (Intent to frighten)</strong>。主人虽然不想开枪，但她想吓唬客人，这满足了 Assault 的意图要件。她不承担责任是因为<strong>结果</strong>未发生（客人没被吓到），而不是因为没有意图。
+            </div>
+
+            <div class="distractor">
+                <strong>选项 C 错误 (Accessibility)：</strong><br>
+                仅仅“可以拿到” (Accessible) 是不够的。Assault 要求威胁是<strong>即刻的 (Imminent)</strong>。两层楼下的距离打破了即刻性。
+            </div>
+
+            <div class="distractor">
+                <strong>选项 D 错误 (Threat alone)：</strong><br>
+                单纯的威胁 (Threat) 如果没有伴随造成即刻接触的能力（或表面能力），且没有导致受害者的恐惧，是不构成 Assault 的。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>🎓 MBE 提分技巧：空枪原则</strong><br>
+            <ul style="padding-left: 20px; margin: 5px 0;">
+                <li>如果原告<strong>不知道</strong>枪是空的 → 构成 Assault（因为恐惧是合理的）。</li>
+                <li>如果原告<strong>知道</strong>枪是空的 → 不构成 Assault（因为不存在对即刻伤害的预期）。</li>
+            </ul>
+            <br>
+            做题时务必关注原告的主观认知 (Plaintiff's knowledge)。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

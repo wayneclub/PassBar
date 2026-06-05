@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --text-color: #333;
+        --bg-color: #f4f4f4;
+        --card-bg: #ffffff;
+        --correct-green: #27ae60;
+        --wrong-red: #c0392b;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 14px;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+    }
+    .answer-section {
+        background-color: var(--highlight-bg);
+        border-left: 5px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .answer-label {
+        font-weight: bold;
+        color: var(--primary-color);
+        display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+    .answer-text {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--text-color);
+    }
+    .section-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+    }
+    .concept-card {
+        background-color: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .key-term {
+        font-weight: bold;
+        color: var(--accent-color);
+    }
+    .english-term {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 0.9em;
+    }
+    .case-box {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+    .distractor-list {
+        list-style: none;
+        padding: 0;
+    }
+    .distractor-item {
+        margin-bottom: 12px;
+        font-size: 14px;
+        padding-left: 10px;
+        border-left: 3px solid #ddd;
+    }
+    .distractor-item.wrong {
+        border-left-color: var(--wrong-red);
+    }
+    .mbe-tip {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 25px;
+        font-size: 14px;
+    }
+    .mbe-tip strong {
+        color: #f1c40f;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Constitutional Law: Judicial Review</p>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-section">
+            <span class="answer-label">正确答案 (Correct Answer)</span>
+            <div class="answer-text">选项 A</div>
+            <div style="margin-top: 5px; font-size: 14px;">
+                不应审理，因为该案提出了一个不可由司法审理的问题 (Nonjusticiable Issue)。
+            </div>
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">⚖️ 核心法律原则解析</div>
+        
+        <div class="concept-card">
+            <p>本题考察的是联邦法院管辖权中的<b>政治问题原则</b> <span class="english-term">(Political Question Doctrine)</span>。</p>
+            
+            <p>根据美国宪法第三条，联邦法院只能审理“案件和争议” <span class="english-term">(Cases and Controversies)</span>。如果一个问题被认定为“政治问题”，联邦法院将拒绝审理。判断标准通常包括：</p>
+            <ol style="padding-left: 20px; margin: 10px 0;">
+                <li>宪法将该问题明确赋予了其他政府分支（国会或总统）；或者</li>
+                <li><b>缺乏司法上可发现和可管理的标准</b> <span class="english-term">(Lack of judicially discoverable and manageable standards)</span> 来解决该问题。</li>
+            </ol>
+        </div>
+
+        <div class="case-box">
+            <strong>🔑 关键判例：Rucho v. Common Cause (2019)</strong><br><br>
+            美国最高法院在该案中明确裁定：<b>党派性杰利蝾螈</b> <span class="english-term">(Partisan Gerrymandering)</span> 属于不可由司法审理的政治问题。<br><br>
+            法院认为，虽然这种行为可能不公平，但联邦法院无法制定一个明确的法律标准来判断“多少政治偏见才算违宪”。因此，这类诉讼在联邦法院是不可诉的。
+        </div>
+
+        <!-- 为什么其他选项是错的 -->
+        <div class="section-title">❌ 干扰项分析</div>
+        <ul class="distractor-list">
+            <li class="distractor-item wrong">
+                <strong>选项 B (第十一修正案):</strong> 错误。<br>
+                虽然第十一修正案通常禁止起诉“州”，但根据 <i>Ex parte Young</i> 原则，公民可以起诉<b>州官员</b>以寻求<b>禁令救济</b> <span class="english-term">(Injunctive Relief)</span>，要求其停止违宪行为。本案正是起诉官员要求禁令，因此不受第十一修正案阻碍。
+            </li>
+            <li class="distractor-item wrong">
+                <strong>选项 C (共和政体条款):</strong> 错误。<br>
+                虽然宪法第四条规定联邦保证各州实行共和政体 <span class="english-term">(Republican Form of Government)</span>，但最高法院长期以来一直认为（如 <i>Luther v. Borden</i>），关于共和政体条款的主张本身就是<b>政治问题</b>，法院不予审理。因此，这不能成为法院审理此案的理由。
+            </li>
+            <li class="distractor-item wrong">
+                <strong>选项 D (一人一票原则):</strong> 错误。<br>
+                “一人一票”原则 <span class="english-term">(One Person, One Vote)</span> 关注的是选区<b>人口数量</b>是否相等。题目明确指出选区是“人口相等的” <span class="english-term">(equally populated)</span>。因此，该地图并未违反此原则。本案争议在于党派利益分配，而非人口权重。
+            </li>
+        </ul>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <strong>💡 MBE 抢分技巧</strong>
+            <br><br>
+            在遇到选区划分 <span class="english-term">(Redistricting)</span> 的题目时，请务必区分两种情况：
+            <br><br>
+            1. <b>种族杰利蝾螈 (Racial Gerrymandering)：</b> 如果是为了种族原因划分选区，这是<b>可诉的</b> <span class="english-term">(Justiciable)</span>，且适用严格审查标准。
+            <br><br>
+            2. <b>党派杰利蝾螈 (Partisan Gerrymandering)：</b> 如果仅仅是为了让某个政党获益（如本题），这是<b>不可诉的政治问题</b> <span class="english-term">(Nonjusticiable Political Question)</span>。
+            <br><br>
+            看到 "Partisan" + "Gerrymandering" + "Federal Court" ➡️ 直接选 "Nonjusticiable"。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

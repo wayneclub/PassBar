@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-bg: #e8f8f5;
+            --correct-border: #2ecc71;
+            --wrong-bg: #fdedec;
+            --wrong-border: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background: #fff;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .card-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .correct-analysis {
+            background-color: var(--correct-bg);
+            border-left-color: var(--correct-border);
+        }
+        .wrong-analysis {
+            background-color: var(--wrong-bg);
+            border-left-color: var(--wrong-border);
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 证据法考点解析</h2>
+        <div class="sub-title">Evidence: Form of Question</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="card">
+            <div class="card-title">核心考点：提问的形式</div>
+            <p>本题考察的重点不在于证据的“相关性”，而在于<b>交叉询问 (Cross-Examination)</b> 中允许的提问<b>形式 (Form)</b>。</p>
+            <p>根据《联邦证据规则》(FRE 611)，交叉询问有两个主要特征：</p>
+            <ol>
+                <li><b>范围 (Scope)：</b> 限于直接询问提及的事项及证人的可信度。</li>
+                <li><b>诱导性提问 (Leading Questions)：</b> 在交叉询问中通常是<b>允许</b>的。</li>
+            </ol>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="card correct-analysis">
+            <div class="card-title" style="color: #27ae60;">✅ 为什么选项 C 是正确的？</div>
+            <p><b>选项 C：</b>“在侵占资金调查开始前三个月，您与您的兄弟共同创立了数家离岸空壳公司，这难道不是事实吗？”</p>
+            <hr style="border: 0; border-top: 1px solid #bcebc9; margin: 10px 0;">
+            <ul>
+                <li><b>诱导性提问 (Leading Question)：</b> 这个问题本身包含了建议性的答案（“...难道不是事实吗？”）。虽然在直接询问中通常被禁止，但在<b>交叉询问中是被明确允许的</b>。</li>
+                <li><b>攻击可信度 (Impeachment)：</b> 该问题旨在揭示证人与被告（其兄弟）共同参与了可疑的财务活动，这显示了证人的偏见 (Bias) 或共同利益，属于攻击证人可信度的适当范围。</li>
+            </ul>
+        </div>
+
+        <!-- 错误选项解析 -->
+        <div class="card wrong-analysis">
+            <div class="card-title" style="color: #c0392b;">❌ 为什么其他选项是错误的？</div>
+            <p>即使问题内容相关，如果<b>形式不当 (Improper Form)</b>，也会被法庭驳回。</p>
+            
+            <p><b>🚫 选项 A：复合性提问 (Compound Question)</b></p>
+            <p>“你是权限有限，还是...不受限制？”</p>
+            <p class="term">解释：在一个句子里问了两个问题。这会让证人难以回答“是”或“否”，容易造成记录混乱。</p>
+
+            <p><b>🚫 选项 B：要求猜测/发表意见 (Calls for Speculation/Opinion)</b></p>
+            <p>“你的兄弟感觉如何？”</p>
+            <p class="term">解释：普通证人 (Lay Witness) 只能就其感知到的事实作证。证人无法得知他人的内心感受，只能描述观察到的行为或外表。</p>
+
+            <p><b>🚫 选项 D：争辩性/假设事实 (Argumentative / Assumes Facts)</b></p>
+            <p>“你一定是从...获得的，所以他肯定知情...”</p>
+            <p class="term">解释：这更像是在法庭辩论而非提问。它强行假设了一个尚未被证实的事实（“你一定是从被告处获得...”），并试图强迫证人接受律师的结论。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card">
+            <div class="card-title">🎓 MBE 答题技巧</div>
+            <p>在处理证据法题目时，请按以下步骤检查：</p>
+            <ol>
+                <li><b>判断阶段：</b> 是直接询问 (Direct) 还是交叉询问 (Cross)？
+                    <br><span class="term">如果是交叉询问，诱导性问题 (Leading) 通常是正确选项的特征。</span>
+                </li>
+                <li><b>检查形式：</b> 排除那些试图“设套”的错误形式：
+                    <ul>
+                        <li>一次问两件事 (Compound)</li>
+                        <li>问别人的想法 (Speculation)</li>
+                        <li>律师自己在作证/吵架 (Argumentative)</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

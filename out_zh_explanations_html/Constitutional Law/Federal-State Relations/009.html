@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 16px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+        .option-analysis {
+            margin-bottom: 15px;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .wrong-answer {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .exam-tip-title {
+            color: #f57f17;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        code {
+            background: #f1f1f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Federal-State Relations & Supremacy Clause</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">核心考点：政府间豁免权 (Intergovernmental Immunity)</span>
+            <p>根据 <b>Supremacy Clause</b>（至高条款），州政府不能直接对联邦政府征税或监管。但是，对于与联邦政府有业务往来的<b>私人第三方</b>（如承包商、承租人），州政府通常<b>可以</b>征税，除非：</p>
+            <ol style="margin-left: -20px;">
+                <li>税收具有歧视性（Discriminatory）；或者</li>
+                <li>税收实质性地干扰了联邦政策或法规（Substantially interferes with federal policy）。</li>
+            </ol>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">本案关键逻辑分析</div>
+            <p>这道题的陷阱在于：通常情况下，州政府对联邦土地上的私人承租人征收“使用税”（Use Tax）或“占用税”（Occupancy Tax）是合宪的，只要该税收是为了平衡私人土地所有者的税负（即非歧视性）。</p>
+            <p><b>但是，本案有一个特殊事实：</b></p>
+            <p>存在一项具体的<b>联邦法规 (Federal Statute)</b>，明确规定特许经营者只需支付“名义租金” (nominal rental)，目的是为了给美国人民提供利益。</p>
+            
+            <p><b>冲突点：</b></p>
+            <ul>
+                <li><b>联邦意图：</b> 通过低成本（低租金）补贴特许经营者，以促进公共利益。</li>
+                <li><b>州税收后果：</b> 州政府通过征税增加了经营者的成本，实际上抵消了联邦法规给予的经济优惠。</li>
+            </ul>
+        </div>
+
+        <!-- 答案解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 D？</div>
+            <p><span class="correct-answer">正确答案 D</span> 指出该税收违反了 <b>Supremacy Clause</b> 和授权该特许经营的联邦法规。</p>
+            <p>当有效的联邦法律与州法律发生冲突，或者州法律阻碍了联邦目标的实现时，联邦法律优先（Preemption）。</p>
+            <p>在本案中，州税收直接削弱了联邦法规设定的“名义租金”政策。如果没有这个特定的联邦法规，州税收很可能是合法的（参考 <i>United States v. County of Fresno</i>）；但因为有了这个法规，州税构成了对联邦目标的干扰。</p>
+        </div>
+
+        <!-- 错误选项简析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">其他选项为何错误？</div>
+            <div class="option-analysis">
+                <span class="wrong-answer">A. Commerce Clause (商务条款)</span><br>
+                该税收针对的是州内的不动产占用，属于州内活动。只要税收分配公平且不歧视州际贸易，通常不会违反 dormant commerce clause。题目中明确说该税是为了“平衡税负”，暗示其非歧视性。
+            </div>
+            <div class="option-analysis">
+                <span class="wrong-answer">B. Equal Protection (平等保护)</span><br>
+                经济类法规的分类只需通过<b>合理依据审查 (Rational Basis Test)</b>。州政府为了税收公平（让免税地块的使用者也承担公共服务成本）而征税，完全符合合理依据。
+            </div>
+            <div class="option-analysis">
+                <span class="wrong-answer">C. Privileges or Immunities (特权或豁免条款)</span><br>
+                第十四修正案的此条款适用范围极窄（主要涉及迁徙权等），并不包含“在联邦财产上做生意”的权利。这是MBE中常见的干扰项，几乎永远不是正确答案。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 解题技巧</span>
+            如果在题目中看到<b>具体的联邦法规</b>（Federal Statute）设定了某种政策（如低租金、特定标准），而州法律试图改变这种结果，首选思考方向应当是 <b>Supremacy Clause</b>（至高条款）。
+            <br><br>
+            问自己：州法律是否让联邦法律“落空”或“受阻”？如果是，那就是违宪的。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

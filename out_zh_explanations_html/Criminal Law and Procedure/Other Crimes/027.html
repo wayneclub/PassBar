@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --text-color: #333;
+        --border-radius: 8px;
+        --shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        background: #fff;
+        padding: 20px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+    }
+    h1 {
+        font-size: 20px;
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 10px;
+        margin-top: 0;
+    }
+    h2 {
+        font-size: 16px;
+        color: var(--primary-color);
+        margin-top: 20px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+    .concept-box {
+        background-color: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin: 15px 0;
+        font-size: 14px;
+    }
+    .case-citation {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 12px;
+        text-align: right;
+        margin-top: 5px;
+    }
+    .rule-breakdown {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .rule-item {
+        background: #fff;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 4px;
+        position: relative;
+    }
+    .rule-item::before {
+        content: "OR";
+        position: absolute;
+        bottom: -18px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fff;
+        padding: 0 5px;
+        color: #999;
+        font-size: 10px;
+        font-weight: bold;
+        z-index: 1;
+    }
+    .rule-item:last-child::before {
+        display: none;
+    }
+    .highlight {
+        color: #e74c3c;
+        font-weight: bold;
+    }
+    .correct-answer {
+        background-color: #dff0d8;
+        border: 1px solid #d6e9c6;
+        color: #3c763d;
+        padding: 10px;
+        border-radius: var(--border-radius);
+        margin-top: 15px;
+        font-weight: bold;
+    }
+    .wrong-answer {
+        font-size: 13px;
+        color: #666;
+        margin-top: 5px;
+        padding-left: 10px;
+        border-left: 2px solid #ddd;
+    }
+    .tip-box {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 12px;
+        border-radius: var(--border-radius);
+        margin-top: 20px;
+        font-size: 13px;
+    }
+    .latin {
+        font-style: italic;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：管控物质类似物</h1>
+    
+    <p>本题考察的是刑法中关于<b>“明知” (Knowingly)</b> 这一犯罪意图 (<i>Mens Rea</i>) 在涉及<b>管控物质类似物 (Controlled Substance Analogue, CSA)</b> 时的具体适用范围。</p>
+
+    <div class="concept-box">
+        <strong>核心考点：McFadden 规则</strong><br>
+        当法规规定“明知而持有”某物为犯罪时，“明知”不仅适用于“持有”这一行为，也适用于该物品的“非法性质”。
+        <div class="case-citation">Ref: McFadden v. United States (2015)</div>
+    </div>
+
+    <h2>⚖️ 判例确立的双重证明标准</h2>
+    <p>根据最高法院在 <i>McFadden</i> 案中的裁决，要证明被告“明知”其持有的是 CSA，检方只需证明以下<b>两种情况中的任意一种</b>：</p>
+
+    <div class="rule-breakdown">
+        <div class="rule-item">
+            <strong>路径一：明知非法性</strong><br>
+            被告知道该物质是受管控的或非法的（即使他不知道具体的化学名称或它是类似物）。<br>
+            <span style="font-size:12px; color:#666;">例如：被告承认“我知道这是违禁品”。</span>
+        </div>
+        <div class="rule-item">
+            <strong>路径二：明知物理特征</strong><br>
+            被告知道该物质具有使其成为 CSA 的特定特征（即：化学结构相似 + 生理效应相似/更强）。<br>
+            <span style="font-size:12px; color:#666;">即使被告不知道这在法律上叫 CSA，但他知道这东西的成分和药效像毒品一样。</span>
+        </div>
+    </div>
+
+    <h2>✅ 正确答案解析 (选项 B)</h2>
+    <div class="correct-answer">
+        选项 B 完美复述了上述法律标准。
+    </div>
+    <p>陪审团指令必须包含这两种可能性（用“或”连接）：</p>
+    <ol>
+        <li>被告明知该物质是<b>非法的 (Illegal)</b>；<br><b>或者 (OR)</b></li>
+        <li>被告明知该物质具有<b>类似管控物质的化学结构和生理效应</b>。</li>
+    </ol>
+    <p>只要满足其一，即可认定被告具有犯罪意图。</p>
+
+    <h2>❌ 为什么其他选项是错的？</h2>
+    <div class="wrong-answer">
+        <b>选项 A (太窄)：</b> 要求被告必须知道该物质被法律定义为“CSA”。这是错误的，被告只需知道它是非法的，或者知道它的药效特征即可，不需要知道具体的法律术语。
+    </div>
+    <div class="wrong-answer">
+        <b>选项 C (严格责任)：</b> 认为只要持有 CSA 就有罪，无需明知。这是错误的。该法规明确要求“Knowingly”，不能适用严格责任 (Strict Liability)。
+    </div>
+    <div class="wrong-answer">
+        <b>选项 D (客观标准)：</b> 强调“众所周知 (Commonly known)”。刑法中的“明知”通常是<b>主观标准 (Subjective Standard)</b>，即必须是被告本人知道，而不是大众知道。
+    </div>
+
+    <div class="tip-box">
+        <strong>🎓 考试技巧 (Exam Tip)</strong><br>
+        在处理涉及 <i>Mens Rea</i>（犯罪意图）的题目时：
+        <ul>
+            <li>注意修饰词（如 Knowingly）通常会穿透到宾语的性质。</li>
+            <li>对于类似物 (Analogue) 案件，记住<b>“身份 vs. 特征”</b> (Identity vs. Features) 的二选一逻辑：要么知道它是违禁品（身份），要么知道它像违禁品一样起作用（特征）。</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

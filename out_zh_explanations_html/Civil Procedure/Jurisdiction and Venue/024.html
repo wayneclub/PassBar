@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-banner {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+        }
+        .rule-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .rule-title {
+            color: #2980b9;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fafafa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px dashed #ccc;
+        }
+        .diagram-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .box {
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            text-align: center;
+            width: 45%;
+        }
+        .box-p { background-color: #ffeaa7; border: 1px solid #fdcb6e; }
+        .box-d { background-color: #74b9ff; border: 1px solid #0984e3; color: white; }
+        .arrow { font-size: 1.5rem; color: #555; margin: 5px 0; }
+        .block-sign {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+        .explanation-step {
+            margin-bottom: 15px;
+        }
+        .explanation-step strong {
+            color: #2c3e50;
+        }
+        .wrong-choice {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        .key-term {
+            font-family: "Georgia", serif;
+            font-style: italic;
+            color: #555;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">民事诉讼法：移送管辖与法院地被告规则</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-banner">
+            正确答案：C
+        </div>
+
+        <p>本题考察的是联邦民事诉讼中的一个核心陷阱：<strong>法院地被告规则 (The Forum Defendant Rule)</strong>。</p>
+
+        <!-- 核心法则 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 法律规则核心</span>
+            当案件的联邦管辖权<strong>仅基于</strong>多元化管辖权 (<span class="key-term">Diversity Jurisdiction</span>) 时，如果任何一名被告是<strong>提起诉讼所在州</strong>的公民，则该被告<strong>不得</strong>将案件移送 (<span class="key-term">Remove</span>) 至联邦法院。
+            <br><small style="color:#666; display:block; margin-top:5px;">参见：28 U.S.C. § 1441(b)(2)</small>
+        </div>
+
+        <!-- 图解分析 -->
+        <div class="diagram">
+            <div style="font-weight:bold; margin-bottom:10px; color:#333;">案件背景分析</div>
+            <div class="diagram-row">
+                <div class="box box-p">原告 (零售商)<br>A州公民</div>
+                <div class="box box-d">被告 (制造商)<br>B州公民</div>
+            </div>
+            <div style="font-size:0.9rem; color:#555;">起诉地点：<strong>B州</strong>州法院</div>
+            <div class="arrow">⬇️</div>
+            <div style="font-size:0.9rem; text-align:center;">
+                被告试图移送至<br>B州联邦法院
+            </div>
+            <div class="block-sign">🚫 禁止移送 (Remand Granted)</div>
+            <div style="font-size:0.8rem; color:#e74c3c; margin-top:5px;">原因：被告在自己的"主场" (B州) 被起诉</div>
+        </div>
+
+        <!-- 详细推理 -->
+        <div class="explanation-step">
+            <strong>1. 基础管辖权存在：</strong><br>
+            原告是A州公民，被告是B州公民，且争议金额超过7.5万美元。这确实满足了<strong>多元化管辖权</strong> (<span class="key-term">Diversity Jurisdiction</span>) 的条件。如果原告最初直接在联邦法院起诉，是可以的。
+        </div>
+
+        <div class="explanation-step">
+            <strong>2. 移送管辖的限制：</strong><br>
+            虽然联邦法院有管辖权，但<strong>移送程序</strong> (<span class="key-term">Removal</span>) 有特殊限制。移送制度的设计初衷是为了保护外州被告免受本州法院的偏见。
+        </div>
+
+        <div class="explanation-step">
+            <strong>3. 规则应用：</strong><br>
+            既然被告已经是B州的公民（在B州被起诉），法律认为他在B州的州法院不会受到地域歧视，因此不需要联邦法院的保护。这就是所谓的<strong>"主场优势规则" (Home-Court Advantage Rule)</strong>。因此，移送是不被允许的，案件必须移还 (<span class="key-term">Remand</span>) 州法院。
+        </div>
+
+        <!-- 错误选项解析 -->
+        <div class="wrong-choice">
+            <strong>❌ 为什么选项 A 错误？</strong><br>
+            虽然法院选择条款 (<span class="key-term">Forum-Selection Clause</span>) 允许在联邦法院诉讼，但它不能凌驾于联邦移送法规之上。被告想去联邦法院，必须符合法定移送程序。
+        </div>
+
+        <div class="wrong-choice">
+            <strong>❌ 为什么选项 B 错误？</strong><br>
+            这是一个典型的干扰项。它正确指出了存在多元化管辖权，但忽略了"法院地被告规则"这一程序性障碍。有管辖权不代表一定能移送。
+        </div>
+
+        <div class="wrong-choice">
+            <strong>❌ 为什么选项 D 错误？</strong><br>
+            移送的时限是收到诉状后30天内。被告在14天时提交，时间上是完全合规的。
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <strong>💡 考试技巧：</strong><br>
+        看到 Removal 题目，先看是否涉及 Federal Question。如果是 Diversity 案件，立刻检查被告是否是 Forum State 的公民。如果是，Removal 必死。
+    </div>
+</div>
+
+</body>
+</html>

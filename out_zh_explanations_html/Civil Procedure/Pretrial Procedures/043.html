@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            color: #333;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            color: #2980b9;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .step {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        .step-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background-color: #27ae60;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .step-content {
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        .wrong-option {
+            background-color: #fdecea;
+            border: 1px solid #e74c3c;
+            color: #c0392b;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .exam-tip {
+            background-color: #34495e;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        .exam-tip strong {
+            color: #f1c40f;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Federal Civil Procedure</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">⚖️ 核心规则：FRCP 65(b)</div>
+            <p><b>临时限制令 (TRO)</b> 的有效期非常短暂且严格：</p>
+            <ul>
+                <li><b>默认期限：</b>不超过 14 天。</li>
+                <li><b>延长条件 (Extension)：</b>仅在以下两种情况下可以延长（且通常只能延长一次，不超过额外的 14 天）：
+                    <ol>
+                        <li>获得了对方当事人的<b>同意 (Consent)</b>；或者</li>
+                        <li>证明存在<b>正当理由 (Good Cause)</b>。</li>
+                    </ol>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">本题逻辑链分析</div>
+            
+            <div class="step">
+                <div class="step-icon">1</div>
+                <div class="step-content">
+                    <strong>现状识别：</strong><br>
+                    原告获得了一个为期 14 天的 TRO。在听证会前 2 天（即 TRO 即将过期时），原告申请延期。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">2</div>
+                <div class="step-content">
+                    <strong>阻碍出现：</strong><br>
+                    被告<b>反对</b>延期。这意味着原告不能依赖“对方同意”这一条款，必须证明有“正当理由 (Good Cause)”。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">3</div>
+                <div class="step-content">
+                    <strong>判定“正当理由”：</strong><br>
+                    原告的理由是主要证人有“计划好的假期” (planned vacation)。
+                    <br><br>
+                    <span class="highlight">关键点：</span> 既然假期是“计划好的”，说明这是<b>可预见的 (foreseeable)</b>。原告在申请 TRO 时就应该考虑到这一点。法院通常认为，因当事人自身安排不当或缺乏尽职调查 (due diligence) 导致的问题，<b>不构成 Good Cause</b>。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">4</div>
+                <div class="step-content">
+                    <strong>结论：</strong><br>
+                    没有对方同意，也没有正当理由，TRO 不能延长。因此，法院很可能会批准被告解除 TRO 的动议。
+                </div>
+            </div>
+        </div>
+
+        <!-- 为什么选C -->
+        <div style="background-color: #e9f7ef; padding: 15px; border-radius: 8px; border: 1px solid #27ae60; margin-bottom: 15px;">
+            <strong>✅ 正确答案 C 的依据：</strong><br>
+            证人的假期是已知的，原告未能据此安排时间，这不符合延长 TRO 所需的严格“正当理由”标准。
+        </div>
+
+        <!-- 易错点辨析 -->
+        <div class="analysis-title">为什么其他选项是错的？</div>
+        
+        <div class="wrong-option">
+            <strong>❌ 选项 A (自动延长)：</strong><br>
+            TRO <b>绝不会自动</b>延长。必须满足“同意”或“正当理由”这两个条件之一。
+        </div>
+
+        <div class="wrong-option">
+            <strong>❌ 选项 B (保证金与重要性)：</strong><br>
+            虽然申请 TRO 需要保证金 (Bond)，但这只是<b>签发</b>的条件，不是<b>延长</b>的理由。证人证词虽重要，但不能掩盖原告在时间安排上的过失。
+        </div>
+
+        <!-- 考试技巧 -->
+        
+    </div>
+
+    
+</div>
+
+</body>
+</html>

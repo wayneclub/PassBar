@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
+    }
+    .header {
+        background-color: #2c3e50;
+        color: #ffffff;
+        padding: 15px;
+        text-align: center;
+    }
+    .header h2 {
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.4;
+    }
+    .content {
+        padding: 20px;
+    }
+    .answer-box {
+        background-color: #e8f5e9;
+        border-left: 5px solid #4caf50;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .answer-title {
+        color: #2e7d32;
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+    .section-title {
+        color: #34495e;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #ecf0f1;
+        padding-bottom: 5px;
+    }
+    .rule-box {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #495057;
+    }
+    .highlight {
+        color: #c0392b;
+        font-weight: bold;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .analysis-step {
+        margin-bottom: 12px;
+        font-size: 14px;
+        line-height: 1.6;
+        color: #333;
+    }
+    .distractor {
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #fff5f5;
+        border-left: 4px solid #ff6b6b;
+        font-size: 13px;
+        color: #555;
+    }
+    .footer {
+        background-color: #ecf0f1;
+        padding: 10px;
+        text-align: center;
+        font-size: 12px;
+        color: #7f8c8d;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 5px 0;
+    }
+    li {
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析<br>证据法：公共记录的缺失</h2>
+    </div>
+
+    <div class="content">
+        <!-- Correct Answer Section -->
+        <div class="answer-box">
+            <div class="answer-title">正确答案：D</div>
+            <p style="margin:0; font-size:14px;">是，用以证明公共记录不存在。</p>
+            <p style="margin:5px 0 0 0; font-size:12px; color:#666;">Yes, to prove the nonexistence of a public record.</p>
+        </div>
+
+        <!-- Core Legal Rule -->
+        <div class="section-title">⚖️ 核心考点：FRE 803(10)</div>
+        <div class="rule-box">
+            <p><strong>公共记录缺失的例外 (Absence of a Public Record)</strong></p>
+            <p>虽然这属于传闻证据 (Hearsay)，但《联邦证据规则》(FRE) 803(10) 规定了一个例外。如果满足以下条件，证明某记录<b>不存在</b>的证据是可采纳的：</p>
+            <ul>
+                <li>证据表明进行了<b>尽职搜查</b> (Diligent search)；且</li>
+                <li>未能找到记录。</li>
+            </ul>
+            <p>该证据通常用于证明：</p>
+            <ol>
+                <li>该记录不存在；或</li>
+                <li>通常会被记录的事项没有发生。</li>
+            </ol>
+        </div>
+
+        <!-- Analysis -->
+        <div class="section-title">🔍 题目解析逻辑</div>
+        
+        <div class="analysis-step">
+            <strong>1. 传闻证据的本质 (Hearsay Nature)</strong><br>
+            原告提供的“证明书”是一份庭外陈述，目的是为了证明其内容（即被告没有执照）的真实性。原则上这是传闻。
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 适用例外 (Applying the Exception)</strong><br>
+            根据 <span class="term">FRE 803(10)</span>，为了证明公共记录不存在，可以引入一份证明书。本案中，证明书声明秘书进行了“彻底搜查” (thorough search) 且未发现记录，完全符合规则要求。
+        </div>
+
+        <div class="analysis-step">
+            <strong>3. 自我认证 (Self-Authentication)</strong><br>
+            根据 <span class="term">FRE 902(1)</span>，带有政府印章 (Seal) 和官员签名 (Signature) 的国内公共文件是<b>自我认证</b>的 (Self-authenticating)。
+            <br>题目中明确提到该证明带有“印章” (Seal) 和“签名” (Signed)，因此不需要传唤保管员出庭作证来认证文件。
+        </div>
+
+        <!-- Distractor Analysis -->
+        <div class="section-title">❌ 为什么其他选项错误？</div>
+        
+        <div class="distractor">
+            <strong>选项 A (Hearsay) 错误：</strong><br>
+            虽然它是传闻，但它完全符合 FRE 803(10) 的<b>传闻例外</b>。既然符合例外，就是可采纳的。
+        </div>
+
+        <div class="distractor">
+            <strong>选项 B (Authentication) 错误：</strong><br>
+            该文件带有公章和签名，属于 FRE 902 下的<b>自证文件</b> (Self-authenticating document)，无需外部证人进行认证。
+        </div>
+
+        <div class="distractor">
+            <strong>选项 C (Impeachment) 错误：</strong><br>
+            这是一个常见的陷阱。虽然该证据确实可以用来弹劾 (Impeach) 被告的信誉，但由于它符合传闻例外，它也可以作为<b>实质性证据</b> (Substantive Evidence) 来证明“被告确实没有执照”这一事实，而不仅仅是用来攻击被告的可信度。
+        </div>
+
+        <!-- Exam Tip -->
+        <div class="section-title">💡 考试技巧 (Exam Tip)</div>
+        <div class="rule-box" style="background-color: #fff3cd; border-color: #ffeeba; color: #856404;">
+            <p><strong>区分“弹劾”与“实质证据”：</strong></p>
+            <p>在 MBE 中，如果一个证据符合传闻例外 (Hearsay Exception)，它通常既可以用于弹劾，也可以用于证明事实真相 (Substantive use)。</p>
+            <p>如果选项限制用途为“仅限弹劾” (Limited purpose of impeachment)，通常是错误的，除非该陈述不符合任何传闻例外（例如仅仅是先前的非宣誓不一致陈述）。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

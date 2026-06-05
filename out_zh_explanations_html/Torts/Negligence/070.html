@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background: transparent;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--primary-color);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--highlight-bg);
+            padding-bottom: 10px;
+        }
+        h2 {
+            font-size: 18px;
+            color: var(--accent-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .concept-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .wrong-option {
+            border-left-color: var(--warning-color);
+        }
+        .correct-option {
+            border-left-color: var(--success-color);
+        }
+        .icon {
+            margin-right: 8px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .footer-tip {
+            font-size: 12px;
+            color: #7f8c8d;
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 核心考点卡片 -->
+    <div class="card">
+        <h1>MBE 考点解析：多名被告与因果关系</h1>
+        <p>本题考察的是侵权法中关于<b>多名被告（Multiple Defendants）</b>的责任认定，特别是当原告无法确定具体侵害人时的举证责任分配问题。</p>
+        <p>核心争议点在于：<span class="term">Alternative Liability</span>（择一责任）与 <span class="term">Concert of Action</span>（共同行为/合谋）的区别。</p>
+    </div>
+
+    <!-- 法律规则解析 -->
+    <div class="card">
+        <h2>⚖️ 法律规则详解</h2>
+        
+        <div class="concept-box">
+            <strong>一般原则 (General Rule)</strong><br>
+            原告必须证明特定被告的行为是造成伤害的<b>事实原因 (Actual Cause)</b>。如果无法证明是谁扔了椅子，通常情况下原告败诉。
+        </div>
+
+        <div class="concept-box">
+            <strong>共同行为 (Concert of Action)</strong><br>
+            如果被告们共同实施了侵权行为（例如合谋、协助或鼓励），即使只有其中一人造成了直接伤害，所有人都要承担<b>连带责任 (Joint and Several Liability)</b>。
+            <br><br>
+            <span style="color:var(--warning-color)">❌ 本案情况：</span> 原告未能提供证据证明住客们有共同行为（Jointly engaged）。
+        </div>
+
+        <div class="concept-box">
+            <strong>择一责任 (Alternative Liability)</strong><br>
+            源自著名判例 <i>Summers v. Tice</i>。当满足以下<b>所有</b>条件时，举证责任倒置给被告：
+            <ol>
+                <li>所有可能的侵权人都在法庭上；</li>
+                <li><b>所有被告都实施了过失行为 (All acted negligently)</b>；</li>
+                <li>只有一个人的行为造成了伤害，但无法确定是谁。</li>
+            </ol>
+            <span style="color:var(--warning-color)">❌ 本案情况：</span> 仅仅是因为住在楼上并不代表有过失。原告无法证明<b>所有</b>被起诉的住客都扔了椅子或有过失行为。
+        </div>
+    </div>
+
+    <!-- 答案解析 -->
+    <div class="card correct-option">
+        <h2>✅ 正确答案分析 (选项 D)</h2>
+        <p><b>法院应批准指示裁决 (Directed Verdict)。</b></p>
+        <p>理由如下：</p>
+        <ul>
+            <li>原告无法指出具体是谁扔了椅子（无法证明个体的 Causation）。</li>
+            <li>原告也未能提供证据证明被告之间存在<b>共同侵权行为 (Joint Tortious Conduct)</b>。</li>
+        </ul>
+        <p>如果没有证据表明被告们是“一伙的”（Concert of Action），也没有证据表明每个被告都犯了错（Alternative Liability 的前提），那么原告就没有履行其举证责任，案件不能交给陪审团，法官应直接裁决被告胜诉。</p>
+    </div>
+
+    <!-- 易错点辨析 -->
+    <div class="card wrong-option">
+        <h2>🚫 易错项辨析 (选项 B)</h2>
+        <p>很多考生看到“无法确定是谁造成的伤害”就会联想到 <b>Alternative Liability</b>（选项 B）。</p>
+        <p><b>为什么 B 错误？</b></p>
+        <p>择一责任原则要求<b>每一个</b>被告都已经被证明有过失（Breached a duty）。</p>
+        <p><i>例子：</i>两个猎人同时向草丛开枪（两人都有过失），只有一颗子弹击中原告。此时责任倒置。</p>
+        <p><i>本题：</i>只有一个人扔了椅子。其他的住客只是住在那里，他们是无辜的，没有过失。你不能要求一群无辜的人证明自己无罪，仅仅因为他们住在同一栋楼里。</p>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card" style="background-color: #e8f6f3; border-left-color: #1abc9c;">
+        <h2>💡 MBE 考试技巧</h2>
+        <p>在处理多名被告无法确定具体致害人的题目时，请按以下步骤思考：</p>
+        <ol>
+            <li><b>是否有合谋？</b> (Concert of Action) &rarr; 若有，全员连带责任。</li>
+            <li><b>是否所有人都疏忽大意了？</b> (Alternative Liability) &rarr; 若是（如乱开枪、飙车），举证责任倒置。</li>
+            <li><b>是否属于特定集团控制？</b> (如 <i>Ybarra</i> 案中的医疗团队) &rarr; 若是，可能适用 Res Ipsa Loquitur。</li>
+            <li><b>如果以上都不是</b> &rarr; 原告因无法证明因果关系而败诉（Directed Verdict for Defendant）。</li>
+        </ol>
+    </div>
+
+    <div class="footer-tip">
+        Source: NCBE MBE 2019 | Torts Q83810
+    </div>
+
+</div>
+
+</body>
+</html>

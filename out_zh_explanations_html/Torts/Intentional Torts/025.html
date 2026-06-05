@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --highlight-bg: #ecf0f1;
+            --text-color: #34495e;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f8f5;
+            border-left: 5px solid #27ae60;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #bdc3c7;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title span {
+            margin-right: 8px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .tip-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Intentional Torts & Damages</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <div class="answer-label">正确答案</div>
+            <h3>选项 C：故意施加精神痛苦</h3>
+            <div class="english">Intentional Infliction of Emotional Distress (IIED)</div>
+        </div>
+
+        <p>本题的核心在于比较不同侵权行为（Torts）所能获得的<b>赔偿金额（Damages）</b>，而不仅仅是判断被告是否承担责任。</p>
+
+        <!-- 核心考点解析 -->
+        <div class="concept-card">
+            <div class="concept-title"><span>⚖️</span> 法律逻辑分析</div>
+            <p>虽然邻居杀猫的行为同时也构成了针对财产的侵权，但<b>IIED</b>能带来最高的赔偿。</p>
+            
+            <p><b>1. 财产侵权的局限性：</b><br>
+            在普通法中，宠物被视为<b>动产</b> <span class="english">(Chattel)</span>。对于动产的损害，法律通常只赔偿其<b>公平市场价值</b> <span class="english">(Fair Market Value)</span>。
+            <br>👉 题目明确指出猫的价值约为 <b>$25</b>。如果选择侵占动产或侵犯动产，赔偿上限基本就是这个数额。</p>
+
+            <p><b>2. IIED 的突破性：</b><br>
+            IIED 允许原告就<b>精神痛苦</b> <span class="english">(Emotional Distress)</span> 获得赔偿，且无需证明身体受到了物理伤害 <span class="english">(Physical Injury)</span>。</p>
+        </div>
+
+        <!-- IIED 构成要件 -->
+        <div class="concept-card">
+            <div class="concept-title"><span>🧠</span> IIED 的构成要件</div>
+            <p>要成立 IIED，原告需证明以下几点：</p>
+            <ol>
+                <li><b>极端和令人发指的行为</b> <span class="english">(Extreme and Outrageous Conduct)</span>：行为必须超出文明社会所有可能的界限。</li>
+                <li><b>故意或鲁莽</b> <span class="english">(Intent or Recklessness)</span>。</li>
+                <li><b>因果关系</b> <span class="english">(Causation)</span>。</li>
+                <li><b>严重的精神痛苦</b> <span class="english">(Severe Emotional Distress)</span>。</li>
+            </ol>
+            <hr style="border: 0; border-top: 1px dashed #ccc;">
+            <p><b>本案的关键点：</b><br>
+            邻居明知原告对猫有深厚感情（<b>利用已知的特殊弱点</b> <span class="english">Known Sensitivity</span>），却当着原告的面（<b>In Presence</b>）残忍杀害宠物。这种行为符合“极端和令人发指”的标准，且造成了巨大的精神痛苦，因此赔偿金额将远超 $25。</p>
+        </div>
+
+        <!-- 选项对比表 -->
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>诉因 (Claim)</th>
+                    <th>赔偿依据 (Remedy)</th>
+                    <th>预估金额</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>IIED</b><br>(正确)</td>
+                    <td>精神痛苦补偿</td>
+                    <td><b>$$$ (高)</b></td>
+                </tr>
+                <tr>
+                    <td><b>侵占动产</b><br>(Conversion)</td>
+                    <td>动产全额价值 (强制购买)</td>
+                    <td>$25</td>
+                </tr>
+                <tr>
+                    <td><b>侵犯动产</b><br>(Trespass to Chattel)</td>
+                    <td>维修费或价值减损</td>
+                    <td>$25</td>
+                </tr>
+                <tr>
+                    <td><b>伤害罪</b><br>(Battery)</td>
+                    <td>身体接触伤害</td>
+                    <td>$0 (未接触)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 为什么其他选项错误 -->
+        <div class="concept-card" style="border-left: 4px solid #e74c3c;">
+            <div class="concept-title"><span>🚫</span> 为什么不选 A, B, D?</div>
+            <ul>
+                <li><b>选项 A (Battery):</b> 伤害罪要求被告对原告的身体造成了有害或冒犯性的<b>接触</b> <span class="english">(Harmful or offensive contact)</span>。邻居射击的是猫，没有接触原告身体，因此不成立。</li>
+                <li><b>选项 B & D (Property Torts):</b> 虽然邻居确实构成了侵占动产（完全剥夺所有权）和侵犯动产（损害动产），但这两种诉因的赔偿原则是<b>“使原告恢复原状”</b>。对于一只价值 $25 的猫，法律上的“恢复原状”就是赔偿 $25。这显然不是“最大数额”的赔偿。</li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <b>🎓 MBE 考试技巧：</b><br>
+            当题目问“哪个诉求能获得<b>最大</b>赔偿”时，不要只看哪个侵权行为成立。通常会有多个侵权行为同时成立（如本题中的 Conversion 和 IIED）。<br><br>
+            你需要进一步分析<b>损害赔偿的计算方式</b> (Measure of Damages)。涉及宠物的题目中，财产类侵权往往赔偿极低，而涉及精神层面的侵权（如 IIED）往往是高额赔偿的突破口。
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

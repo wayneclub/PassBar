@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: #2c3e50;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header .sub-title {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .rule-box {
+        background-color: #e8f4f8;
+        border-left: 5px solid #3498db;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .rule-title {
+        color: #2980b9;
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 8px;
+        display: block;
+    }
+    .highlight {
+        color: #e74c3c;
+        font-weight: bold;
+    }
+    .concept-card {
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        background: #fafafa;
+    }
+    .concept-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #2c3e50;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+        display: inline-block;
+    }
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+        font-size: 14px;
+    }
+    .comparison-table th {
+        background: #34495e;
+        color: #fff;
+        padding: 8px;
+        text-align: left;
+    }
+    .comparison-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        vertical-align: top;
+    }
+    .option-analysis {
+        margin-top: 20px;
+    }
+    .option {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 6px;
+    }
+    .correct {
+        background-color: #dff0d8;
+        border: 1px solid #d6e9c6;
+        color: #3c763d;
+    }
+    .incorrect {
+        background-color: #f2dede;
+        border: 1px solid #ebccd1;
+        color: #a94442;
+    }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #777;
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 1px solid #eee;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence / Hearsay Impeachment</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">核心考点：FRE 806</span>
+            当传闻陈述（Hearsay Statement）被采纳为证据后，陈述人（Declarant）的可信度可以像在庭证人一样被攻击。
+        </div>
+
+        <p>本题考察的是如何处理<b>不在庭的传闻陈述人</b>（Hearsay Declarant）的前后不一致陈述。</p>
+
+        <!-- 案情简析 -->
+        <div class="concept-card">
+            <div class="concept-title">案情逻辑梳理</div>
+            <p><b>陈述 1 (已采纳):</b> 旁观者说“那个疯子站起来了！”（对被告有利）。这很可能是作为<i>激动性言语 (Excited Utterance)</i> 被采纳的传闻例外。</p>
+            <p><b>陈述 2 (待裁决):</b> 旁观者次日说“车猛地一颠，把他甩出去了”（对原告有利）。这与陈述 1 矛盾。</p>
+        </div>
+
+        <!-- 法律解析 -->
+        <h3>法律规则解析</h3>
+        <p>根据 <b>Federal Rule of Evidence (FRE) 806</b>，当传闻证据被采纳后，法律允许对该陈述人的可信度进行弹劾（Impeachment）。</p>
+        
+        <p>这里有一个关键的区别，也是本题的<b>陷阱</b>所在：</p>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>比较项目</th>
+                    <th>在庭证人 (Witness)</th>
+                    <th>传闻陈述人 (Declarant)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>规则依据</b></td>
+                    <td>FRE 613</td>
+                    <td>FRE 806</td>
+                </tr>
+                <tr>
+                    <td><b>解释机会</b></td>
+                    <td>通常需要给予证人解释或否认的机会 (Foundation)</td>
+                    <td><span class="highlight">不需要</span>给予解释或否认的机会</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>因为陈述人不在法庭上，要求其“解释或否认”是不可能的。因此，FRE 806 特别规定：<b>即使陈述人没有机会解释或否认，其不一致的陈述也是可采纳的。</b></p>
+
+        <!-- 选项分析 -->
+        <div class="option-analysis">
+            <div class="option correct">
+                <b>✅ 选项 A 正确</b><br>
+                <b>理由：</b>该陈述可用于弹劾（Impeachment）。因为陈述 2 与陈述 1 矛盾，它削弱了陈述 1 的可信度。但陈述 2 本身是事后一天的描述，属于普通的传闻（Hearsay），不符合激动性言语等例外，因此不能作为<b>实质性证据 (Substantive Evidence)</b> 来证明过失，只能用来攻击可信度。
+            </div>
+
+            <div class="option incorrect">
+                <b>❌ 选项 B 错误</b><br>
+                <b>理由：</b>虽然可以用于弹劾，但不能用于证明“游乐公司的过失”（即实质性目的）。除非陈述 2 本身符合某个传闻例外（如非传闻的对方当事人陈述），否则它只能用于质疑陈述 1 的真实性，而不能证明陈述 2 的内容是真的。
+            </div>
+
+            <div class="option incorrect">
+                <b>❌ 选项 C & D 错误</b><br>
+                <b>理由：</b>这两个选项都基于错误的假设。FRE 806 明确规定，弹劾传闻陈述人<b>不需要</b>该陈述人出庭，也<b>不需要</b>给予其解释或否认的机会。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+            <span class="rule-title" style="color: #d35400;">💡 考试技巧 (Exam Tip)</span>
+            看到“传闻陈述人被弹劾”的题目时，立刻想到 <b>FRE 806</b>。记住两点：
+            <ol style="margin-left: -20px;">
+                <li>不需要给陈述人解释的机会（Foundation is NOT required）。</li>
+                <li>如果不一致的陈述本身也是传闻且无例外，则仅限于弹劾用途 (Limited to impeachment)。</li>
+            </ol>
+        </div>
+
+    </div>
+    
+</div>
+
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .analysis-step strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary-color);
+        }
+        .correct-answer {
+            border: 2px solid var(--correct-color);
+            background-color: #eafaf1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .correct-badge {
+            background: var(--correct-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .trap-alert {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+        }
+        .trap-title {
+            color: var(--wrong-color);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+            padding: 15px;
+            background: #fafafa;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Real Property: Mortgages</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">📚 核心概念：衡平法抵押 (Equitable Mortgage)</span>
+            <p>当债务人为了担保债务，将土地的<b>绝对契据 (Absolute Deed)</b> 交付给债权人，而非签署标准的抵押文件时，法院会将此交易视为<b>抵押 (Mortgage)</b>，而非直接的买卖。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-step">
+            <strong>1. 交易的实质 (Substance over Form)</strong>
+            <p>虽然表面上土地所有者签署了 <span class="term">Warranty Deed</span>（担保契据，通常用于买卖），但双方的意图非常明确：</p>
+            <ul>
+                <li>存在借贷关系（借 $60k）。</li>
+                <li>有口头协议：还清贷款后归还土地。</li>
+                <li><b>价值差异：</b>土地值 $100k，但只拿了 $60k（这通常暗示是贷款而非低价出售）。</li>
+                <li><b>占有权：</b>原土地所有者仍占有土地。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 法律后果</strong>
+            <p>因为这在法律上被视为<b>衡平法抵押 (Equitable Mortgage)</b>：</p>
+            <ul>
+                <li><b>贷款人 (Lender)</b> = 抵押权人 (Mortgagee)。</li>
+                <li><b>土地所有者 (Landowner)</b> = 抵押人 (Mortgagor)。</li>
+            </ul>
+            <p>贷款人并不拥有土地的完全所有权 (Fee Simple)，而只是拥有土地的<b>担保权益 (Security Interest)</b>。</p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="correct-answer">
+            <span class="correct-badge">正确答案 C</span>
+            <strong>贷款人必须提起止赎程序</strong>
+            <p>既然该交易被视为抵押，当债务人违约时，债权人不能直接没收土地（这会违反 "Cluttering/Clogging the Equity of Redemption" 原则）。债权人必须遵循该司法管辖区的法律，通过正式的<b>止赎 (Foreclosure)</b> 程序来变卖土地并受偿。</p>
+        </div>
+
+        <!-- 陷阱排除 -->
+        <div class="trap-alert">
+            <div class="trap-title">⚠️ 常见陷阱与错误选项</div>
+            
+            <p><b>❌ 选项 A (Nullity)：</b><br>
+            这种安排并非“法律未知的”，相反，它是普通法中非常经典的衡平法原则。</p>
+
+            <p><b>❌ 选项 B (Summary Eviction)：</b><br>
+            即决驱逐 (Summary Eviction) 适用于房东驱逐租客。这里是抵押关系，必须走止赎流程。</p>
+
+            <p><b>❌ 选项 D (Statute of Frauds)：</b><br>
+            这是最大的干扰项！虽然《防止欺诈法》(Statute of Frauds) 要求土地转让必须书面，但在衡平法抵押案件中，<b>口头证据 (Parol Evidence)</b> 是允许被引入以证明契据的“担保意图”的。否则，允许贷款人利用书面契据侵吞土地将构成不当得利和欺诈。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

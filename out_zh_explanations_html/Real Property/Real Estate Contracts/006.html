@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕 */
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .card-title .icon {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-radius: 8px;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.85em;
+        }
+
+        .analysis-step {
+            margin-bottom: 12px;
+            padding-left: 12px;
+            border-left: 2px solid #ddd;
+        }
+
+        .correct-answer {
+            border-left-color: var(--correct-color);
+        }
+
+        .wrong-answer {
+            border-left-color: var(--wrong-color);
+            opacity: 0.85;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 5px;
+            color: white;
+        }
+
+        .tag-correct { background-color: var(--correct-color); }
+        .tag-wrong { background-color: var(--wrong-color); }
+
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Real Estate Contracts | Consideration</div>
+    </div>
+
+    <!-- Core Issue -->
+    <div class="card">
+        <div class="card-title">
+            <span class="icon">🎯</span> 核心考点
+        </div>
+        <p>本题考察的是不动产买卖合同（Land-sale Contract）成立的必要条件，特别是<b>对价（Consideration）</b>的要求。</p>
+        <div class="concept-box">
+            ❓ <b>关键问题：</b><br>
+            买方没有支付定金（Earnest Money），是否意味着合同缺乏对价而无效？
+        </div>
+    </div>
+
+    <!-- Legal Analysis -->
+    <div class="card correct-answer">
+        <div class="card-title">
+            <span class="icon">⚖️</span> 法律解析 (正确答案 A)
+        </div>
+        <p><b>结论：</b>所有人胜诉，因为合同符合关于对价的一般规则。</p>
+        
+        <div class="analysis-step">
+            <strong>1. 对价的本质 (Nature of Consideration)</strong><br>
+            在普通法合同中，对价是“讨价还价的交换”（Bargained-for exchange）。在双务合同（Bilateral Contract）中，<b>相互的承诺（Mutual Promises）</b>本身就是充分的对价。
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 不动产合同的应用</strong><br>
+            <ul>
+                <li><b>卖方的对价：</b>承诺转让地块的所有权（Convey title）。</li>
+                <li><b>买方的对价：</b>承诺支付购买价款（Promise to pay purchase price）。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <strong>3. 定金的误区 (Earnest Money Myth)</strong><br>
+            虽然在商业实践中，支付定金（Earnest Money Down Payment）非常普遍，用来表示诚意，但在法律上，它<b>并不是</b>形成有效不动产合同的必要条件。买方承诺在交割日支付 $100,000 这一承诺本身就已经构成了法律上的有效对价。
+        </div>
+    </div>
+
+    <!-- Why Others Are Wrong -->
+    <div class="card">
+        <div class="card-title">
+            <span class="icon">🚫</span> 干扰项排除
+        </div>
+        
+        <div class="analysis-step wrong-answer">
+            <span class="tag tag-wrong">选项 B</span> <b>部分履行 (Part Performance)</b><br>
+            <span class="english-term">Part performance</span> 是《反欺诈法》（Statute of Frauds）的例外情况，用于强制执行<b>口头</b>合同。本题中双方已经签署了<b>书面</b>合同，因此不需要依赖部分履行原则来证明合同的存在。
+        </div>
+
+        <div class="analysis-step wrong-answer">
+            <span class="tag tag-wrong">选项 C</span> <b>衡平法转换 (Equitable Conversion)</b><br>
+            <span class="english-term">Equitable conversion</span> 处理的是合同签署后到交割期间的<b>风险承担</b>（如房屋被烧毁谁承担损失）或所有权性质问题。它假定合同是有效的，但不能用来证明合同是否有效。
+        </div>
+
+        <div class="analysis-step wrong-answer">
+            <span class="tag tag-wrong">选项 D</span> <b>文件已登记 (Recording)</b><br>
+            登记法案（Recording Acts）的目的是保护买方对抗<b>第三人</b>（如后续购买者）。登记与否不影响合同在买卖双方当事人之间的有效性。
+        </div>
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="card" style="border-left-color: #f1c40f;">
+        <div class="card-title" style="color: #f39c12;">
+            <span class="icon">💡</span> 备考小贴士
+        </div>
+        <p>在 MBE 考试中，要区分<b>“商业习惯”</b>和<b>“法律要求”</b>。</p>
+        <p>虽然买房不付定金在现实中很少见，但只要有<b>书面协议</b>且包含<b>相互承诺</b>（一方卖，一方付钱），合同在法律上就是成立的。不要被“没有定金”这个事实迷惑。</p>
+    </div>
+
+    
+
+</div>
+
+</body>
+</html>

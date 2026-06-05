@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .step {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+        .step-icon {
+            background: #2c3e50;
+            color: #fff;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .case-ref {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: block;
+        }
+        .wrong-answer {
+            background-color: #fff5f5;
+            border-left: 5px solid #e74c3c;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        .footer {
+            background-color: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #bdc3c7;
+        }
+        ul {
+            margin: 5px 0 10px 20px;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>州际贸易与州税收权<br>(State Taxation of Interstate Commerce)</p>
+    </div>
+
+    <div class="content">
+        <p>本题考察的核心是<b>休眠贸易条款 (Dormant Commerce Clause)</b> 下，州政府是否有权对州际贸易征税。</p>
+
+        <div class="rule-box">
+            <span class="rule-title">核心规则：Complete Auto Test</span>
+            根据最高法院在 <i>Complete Auto Transit, Inc. v. Brady</i> (1977) 案中确立的标准，如果一项州税收满足以下四个条件，即被视为<b>没有对州际贸易造成不当负担 (Undue Burden)</b>，因而是合宪的：
+        </div>
+
+        <div class="step">
+            <div class="step-title"><span class="step-icon">1</span>实质性联系 (Substantial Nexus)</div>
+            <p>纳税人或其活动必须与征税州有实质性的物理或经济联系。</p>
+            <p><b>本案分析：</b>建筑公司在该州建造房屋，存在明显的物理存在和商业活动。</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title"><span class="step-icon">2</span>公平分配 (Fair Apportionment)</div>
+            <p>税收必须根据在该州发生的活动比例进行分配，以避免<b>双重征税 (Double Taxation)</b>。</p>
+            <p><b>本案分析：</b>这是本题的关键。该法律提供了<span class="highlight">税收抵免 (Tax Credit)</span>，即如果公司已在其他州缴纳了销售税，可以抵扣本州的使用税。这种机制确保了该商品不会被重复全额征税。</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title"><span class="step-icon">3</span>非歧视性 (Nondiscrimination)</div>
+            <p>州外商品承担的税负不能高于州内商品。</p>
+            <p><b>本案分析：</b>题目明确指出，使用税 (Use Tax) 的税率与州内购买的销售税 (Sales Tax) 税率<b>相同</b>。因此不存在歧视。</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title"><span class="step-icon">4</span>合理关联 (Fair Relationship)</div>
+            <p>税收必须与州提供的服务（如道路、警察保护等）合理相关。</p>
+            <p><b>本案分析：</b>公司在该州经营，享受了该州的公共服务。</p>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+        <h3>为什么选 C？</h3>
+        <p>因为该税收完全满足了上述四个条件，特别是通过<b>税收抵免</b>解决了双重征税问题，且税率平等。因此，它没有对州际贸易构成不当负担 (Undue Burden)。</p>
+
+        <h3>为什么其他选项错误？</h3>
+        
+        <div class="wrong-answer">
+            <b>选项 A (歧视)：</b>错误。只有当对州外商品的征税<b>高于</b>州内商品，或者没有提供已付税款的抵免时，才构成歧视。本案中税率相同且有抵免。
+        </div>
+
+        <div class="wrong-answer">
+            <b>选项 B (国会权力)：</b>错误。虽然国会有权监管州际贸易，但这并不意味着州政府完全不能征税。只要符合 Dormant Commerce Clause 的要求（即 <i>Complete Auto</i> 测试），州税是允许的。
+        </div>
+
+        <div class="wrong-answer">
+            <b>选项 D (第十修正案)：</b>错误。第十修正案确实保留了州的征税权，但这种权力<b>不能违反宪法的其他部分</b>（如贸易条款）。如果州税构成了对州际贸易的歧视，即使有第十修正案也是违宪的。因此，D 不是判断本案合宪性的最佳依据。
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <b>MBE 考试技巧：</b><br>
+        遇到涉及 "Use Tax"（使用税）的题目，重点检查是否提供了<b>"Credit for taxes paid to other states"</b>（对已在他州纳税的抵免）。如果有抵免且税率平等，该税收通常是合宪的。
+    </div>
+</div>
+
+</body>
+</html>

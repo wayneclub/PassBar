@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBE 考点解析</title>
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f6f8;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 14px;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+    }
+    .card {
+        background: #f9f9f9;
+        border-left: 5px solid #3498db;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .card-title {
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 8px;
+        display: block;
+        font-size: 16px;
+    }
+    .highlight {
+        background-color: #fff3cd;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-weight: bold;
+    }
+    .rule-box {
+        background-color: #e8f4f8;
+        border: 1px solid #b8dbe8;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+    .visual-analogy {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 20px 0;
+        text-align: center;
+        font-size: 12px;
+    }
+    .visual-item {
+        width: 45%;
+        padding: 10px;
+        border-radius: 8px;
+    }
+    .yes-rule {
+        background-color: #ffebee;
+        border: 1px solid #ffcdd2;
+        color: #c62828;
+    }
+    .no-rule {
+        background-color: #e8f5e9;
+        border: 1px solid #c8e6c9;
+        color: #2e7d32;
+    }
+    .icon {
+        font-size: 32px;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .answer-section {
+        background-color: #27ae60;
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+    .wrong-option {
+        font-size: 13px;
+        color: #7f8c8d;
+        margin-top: 10px;
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+    }
+    .latin {
+        font-style: italic;
+        color: #555;
+    }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 20px;
+        padding-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 证据法考点解析</h1>
+        <p>Evidence: Best Evidence Rule</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="card">
+            <span class="card-title">📌 核心考点：最佳证据规则的适用范围</span>
+            <p>本题考察的是<b>最佳证据规则 (Best Evidence Rule)</b>，即《联邦证据规则》(FRE) 第1002条的适用边界。</p>
+        </div>
+
+        <!-- 规则详解 -->
+        <div class="rule-box">
+            <strong>⚖️ 法律规则 (FRE 1002):</strong><br>
+            "To prove the content of a <b>writing, recording, or photograph</b>, the original... is required."<br><br>
+            为了证明<b>书面文件、录音或照片</b>的内容，必须出示原件（或可靠副本）。
+        </div>
+
+        <!-- 图解分析 -->
+        <div class="visual-analogy">
+            <div class="visual-item yes-rule">
+                <span class="icon">📄</span>
+                <strong>适用规则</strong><br>
+                合同、信件、X光片、录音带<br>
+                (Writings/Recordings)
+            </div>
+            <div class="visual-item no-rule">
+                <span class="icon">🤖</span>
+                <strong>不适用规则</strong><br>
+                枪支、车辆、模型、现场情况<br>
+                (Physical Objects)
+            </div>
+        </div>
+
+        <!-- 题目解析 -->
+        <p><b>🔍 案情分析：</b></p>
+        <p>原告想要作证描述一个<b>“动物机器人模型” (Model of an animal robot)</b> 的外观。这个模型是一个<b>实物 (Physical Object / Chattel)</b>，而不是书面文件、录音或照片。</p>
+        
+        <p><b>逻辑推导：</b></p>
+        <ol>
+            <li>最佳证据规则<b>仅</b>适用于证明“文件”的内容。</li>
+            <li>对于实物证据（如本案中的模型），证人可以基于<b>亲身感知 (Personal Knowledge, FRE 602)</b> 直接作证。</li>
+            <li>原告见过该模型，拥有第一手知识，因此她可以直接描述它，无需出示模型本身。</li>
+        </ol>
+
+        <!-- 正确答案 -->
+        <div class="answer-section">
+            <strong>✅ 正确答案：D</strong>
+            <p>原告无需做任何事情，因为“最佳证据规则”仅适用于书面文件、录音和照片。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="wrong-option">
+            <p><b>❌ 选项 A (提前通知)：</b> 联邦证据规则通常不要求当事人就引入普通言词证词 (Oral Testimony) 提前发出通知。</p>
+            <p><b>❌ 选项 B (必须出示照片)：</b> 既然最佳证据规则不适用于模型本身，原告就没有义务出示照片来替代模型。照片只是次要证据。</p>
+            <p><b>❌ 选项 C (证明非恶意销毁)：</b> 这是一个陷阱。只有当最佳证据规则<b>适用</b>（即必须出示原件），且原件丢失时，才需要讨论“是否恶意销毁”(Bad Faith) 以决定是否允许使用次级证据。既然规则本就不适用，销毁的原因在证据可采性上就变得不相关了。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="border-left-color: #e67e22; background: #fffdf6;">
+            <span class="card-title">💡 考试技巧 (Exam Tip)</span>
+            <p>不要被名字误导！<b>"Best Evidence Rule"</b> 并不意味着必须在法庭上出示“最好”的证据。</p>
+            <p>它实际上应该被称为 <b>"Original Document Rule"</b>（原件规则）。如果考题涉及的是一把刀、一辆车或一个模型，通常直接排除该规则的适用。</p>
+        </div>
+
+    </div>
+    
+</div>
+
+</body>
+</html>

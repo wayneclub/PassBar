@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #d4edda;
+            --correct-text: #155724;
+            --wrong-bg: #f8d7da;
+            --wrong-text: #721c24;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 10px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .header span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--correct-bg);
+            color: var(--correct-text);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .logic-step {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background-color: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+
+        .option-analysis {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .option-wrong {
+            background-color: #fff3f3;
+            border-left: 3px solid #ff6b6b;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+
+        ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考题解析</h1>
+        <span>Real Property: Deeds & Covenants</span>
+    </div>
+
+    <div class="content">
+        <!-- 答案展示 -->
+        <div class="answer-box">
+            正确答案：C (The niece)
+        </div>
+
+        <p>本题考察的是不动产交易中非常核心的两个概念：<b>合并原则 (Merger Doctrine)</b> 以及 <b>契据中的契约 (Covenants of Title)</b> 的范围。</p>
+
+        <!-- 核心考点 -->
+        <div class="section-title">核心法律规则</div>
+        
+        <div class="concept-card">
+            <span class="concept-title">1. 合并原则 (Merger Doctrine)</span>
+            一旦契据（Deed）被交付并接受，土地买卖合同（Contract）中的条款就“合并”进了契据中。此时，合同中关于“可售产权”<span class="english-term">(Marketable Title)</span>的默示保证终止。买方只能依据契据中的条款进行索赔。
+        </div>
+
+        <div class="concept-card">
+            <span class="concept-title">2. 担保契据的范围 (Scope of Warranty Deed)</span>
+            通用担保契据保证产权没有瑕疵（如第三方拥有所有权、未披露的抵押权等）。但是，<b>土地缺乏进出通道 (Lack of access / Landlocked)</b> 通常被视为物理缺陷或经济缺陷，而非“产权”缺陷。
+        </div>
+
+        <!-- 逻辑推演 -->
+        <div class="section-title">逻辑推演步骤</div>
+
+        <div class="logic-step">
+            <div class="step-number">1</div>
+            <div>
+                <strong>时间点判断：</strong>契据已经交付并登记（Deed delivered and recorded）。这意味着交易已经完成（Closing），我们不再看合同阶段的权利，只看契据阶段的权利。
+            </div>
+        </div>
+
+        <div class="logic-step">
+            <div class="step-number">2</div>
+            <div>
+                <strong>排除合同救济：</strong>虽然缺乏通道可能导致产权在合同阶段“不可售”<span class="english-term">(Unmarketable)</span>，但买方没有在过户前提出异议。过户后，该权利已消灭。
+            </div>
+        </div>
+
+        <div class="logic-step">
+            <div class="step-number">3</div>
+            <div>
+                <strong>分析契据责任：</strong>买方起诉的理由是土地“没有通道”。
+                <ul>
+                    <li>这是否违反了<b>所有权契约 (Seisin)</b>？没有，侄女确实拥有土地。</li>
+                    <li>这是否违反了<b>无负担契约 (Against Encumbrances)</b>？大多数法院认为，缺乏通道不是产权负担，而是土地价值的减损。</li>
+                    <li>这是否违反了<b>安宁享有契约 (Quiet Enjoyment)</b>？没有，因为没有第三方跳出来主张对土地拥有优越的权利。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="logic-step">
+            <div class="step-number">4</div>
+            <div>
+                <strong>结论：</strong>既然没有违反契据中的任何契约，侄女无需承担赔偿责任。
+            </div>
+        </div>
+
+        <!-- 选项辨析 -->
+        <div class="section-title">易错项辨析</div>
+
+        <div class="option-analysis option-wrong">
+            <strong>选项 A 错误 (Marketable Title)</strong><br>
+            这是最大的干扰项。如果在<b>过户前</b>（合同阶段），买方确实可以因为土地无法进入而主张产权不可售并拒绝交易。但一旦过户（Closing），“可售产权”的保证就失效了（被合并了）。
+        </div>
+
+        <div class="option-analysis option-wrong">
+            <strong>选项 B 错误 (Breach of Covenants)</strong><br>
+            <span class="term">Warranty</span> 和 <span class="term">Quiet Enjoyment</span> 是未来契约，只有当买方的占有被拥有“优越产权”<span class="english-term">(Superior Title)</span>的第三方干扰时才会被违反。这里只是买方自己进不去，并没有别人来抢地，所以没有违约。
+        </div>
+
+        <div class="option-analysis option-wrong">
+            <strong>选项 D 错误 (Statute of Frauds)</strong><br>
+            虽然土地合同必须书面（防止欺诈法），但该原则不适用于已经<b>完全履行</b><span class="english-term">(Fully Executed)</span>的合同。钱已付，地已过户，买方不能再拿“口头协议”作为理由来推翻交易或索赔。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-card" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+            <span class="concept-title">💡 MBE 考试技巧</span>
+            看到 <strong>"Deed was delivered"</strong> 或 <strong>"Closing"</strong>，立即划掉所有关于 "Marketable Title" 的选项。过户后，只谈 Deed Covenants（契据契约）。记住：Lack of access（没路走）通常不属于 Title Defect（产权瑕疵）。
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

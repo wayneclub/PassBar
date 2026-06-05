@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 10px;
+        color: #333;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 14px;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+    }
+    .card {
+        background-color: #f8f9fa;
+        border-left: 5px solid #3498db;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .card-title {
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 8px;
+        display: block;
+        font-size: 16px;
+    }
+    .highlight {
+        color: #e74c3c;
+        font-weight: bold;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .analysis-section {
+        margin-top: 20px;
+    }
+    .option {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    .option:last-child {
+        border-bottom: none;
+    }
+    .badge {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-right: 8px;
+    }
+    .badge-correct {
+        background-color: #d4edda;
+        color: #155724;
+    }
+    .badge-wrong {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+    .diagram {
+        text-align: center;
+        margin: 20px 0;
+        padding: 10px;
+        background: #fff;
+        border: 1px dashed #ccc;
+        border-radius: 8px;
+    }
+    .arrow {
+        font-size: 20px;
+        color: #3498db;
+    }
+    .footer {
+        background-color: #ecf0f1;
+        padding: 15px;
+        text-align: center;
+        font-size: 12px;
+        color: #7f8c8d;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Strict Products Liability & Design Defect</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点卡片 -->
+        <div class="card">
+            <span class="card-title">📚 核心法律原则</span>
+            <p>在<b>严格产品责任 (Strict Products Liability)</b> 下，如果产品存在<b>设计缺陷 (Design Defect)</b>，制造商必须承担责任。</p>
+            <p>判断设计缺陷的关键标准是：是否存在<b>合理的替代设计 (Reasonable Alternative Design, RAD)</b>。</p>
+        </div>
+
+        <!-- 逻辑推演图 -->
+        <div class="diagram">
+            <div><b>现有设计</b><br><span style="font-size:12px; color:red;">无安全装置，有致伤风险</span></div>
+            <div class="arrow">⬇</div>
+            <div><b>替代设计 (RAD)</b><br><span style="font-size:12px; color:green;">安装安全装置，成本仅略高</span></div>
+            <div class="arrow">⬇</div>
+            <div><b>结论</b><br><span style="font-size:12px;">未采用RAD = 产品有缺陷 (Defective)</span></div>
+        </div>
+
+        <div class="analysis-section">
+            <h3>⚖️ 案情深度解析</h3>
+            <p>本题考察的是著名的<b>“可选安全装置” (Optional Safety Device)</b> 问题。</p>
+            
+            <p>虽然制造商“强烈建议”购买安全装置，但它仍然将<b>没有安全装置</b>的冲压机投入了市场。根据 <span class="term">Restatement (Third) of Torts</span>：</p>
+            <ul>
+                <li>如果通过采用合理的替代设计（即安装安全装置），可以减少或避免可预见的伤害风险；且</li>
+                <li>不采用该替代设计导致产品不安全；</li>
+            </ul>
+            <p>那么该产品就是有缺陷的。</p>
+            
+            <p class="highlight">关键点：制造商不能通过让买家“选择”是否要安全装置，来推卸其提供安全产品的不可转让义务 (Non-delegable duty)。</p>
+        </div>
+
+        <div class="analysis-section">
+            <h3>🔍 选项分析</h3>
+            
+            <div class="option">
+                <span class="badge badge-correct">选项 C (正确)</span>
+                <p><b>理由：</b>公司出售了未安装安全装置的冲压机。由于存在经济上可行且技术上成熟的安全装置（合理的替代设计），出售不带该装置的产品构成了<b>设计缺陷</b>。在严格责任下，无论制造商是否发出警告或建议，只要产品有缺陷并造成伤害，制造商就需负责。</p>
+            </div>
+
+            <div class="option">
+                <span class="badge badge-wrong">选项 A (错误)</span>
+                <p><b>陷阱：警告/建议免责。</b><br>仅仅给出警告或建议（"Strongly recommended"）不能免除设计缺陷的责任。如果可以通过设计（安装装置）来消除危险，制造商必须这样做，而不能仅依靠警告。</p>
+            </div>
+
+            <div class="option">
+                <span class="badge badge-wrong">选项 B (错误)</span>
+                <p><b>陷阱：介入原因 (Superseding Cause)。</b><br>雇主为了省钱不买安全装置是完全<b>可预见的 (Foreseeable)</b>。在侵权法中，可预见的第三方过失（雇主的行为）不会切断因果链，因此不是介入性独立原因。</p>
+            </div>
+            
+            <div class="option">
+                <span class="badge badge-wrong">选项 D (错误)</span>
+                <p><b>陷阱：事实原因 (Cause in Fact)。</b><br>虽然产品确实是伤害的事实原因，但这还不够。严格责任要求证明产品<b>有缺陷 (Defective)</b>。选项D只提到了因果关系，忽略了责任的核心——缺陷的存在。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="border-left-color: #e67e22; background-color: #fff5e6;">
+            <span class="card-title">💡 MBE 提分技巧</span>
+            <p>遇到<b>工业设备伤害</b>的题目，如果制造商提供了“安全版”和“廉价不安全版”供买家选择：</p>
+            <p>法院通常认为制造商<b>有责任</b>只销售安全版。不能把“制造安全产品”的责任转嫁给想省钱的雇主。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

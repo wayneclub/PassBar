@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-block {
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--success-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .answer-block strong {
+            color: var(--success-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .rule-section {
+            margin-bottom: 20px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            margin-bottom: 10px;
+            padding-bottom: 2px;
+        }
+        .step-box {
+            background-color: #f1f8ff;
+            border: 1px solid #d1e3f8;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        .step-number {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background-color: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english-term {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+        .distractor {
+            background-color: #fff3e0;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .mbe-tip {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .mbe-tip-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 民事诉讼法解析</h2>
+        <div class="sub-title">电子证据开示与不当负担</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-block">
+            <strong>正确答案：D</strong>
+            法院应批准该动议，前提是公司能为文件出示展示出<b>正当理由 (Good Cause)</b>。
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="rule-section">
+            <div class="rule-title">核心法律规则：FRCP 26(b)(2)(B)</div>
+            <p>本题考查联邦民事诉讼规则中关于<b>电子存储信息 (ESI)</b> 的特殊规定。处理此类争议遵循“两步走”的举证责任转移逻辑：</p>
+
+            <div class="step-box">
+                <div class="step-number">1</div>
+                <div class="term">出示方举证 (Producing Party)</div>
+                <p>首先，被要求出示证据的一方（制造商）必须证明，由于<b>不当负担或高昂成本 (Undue Burden or Cost)</b>，该 ESI 是<b>无法合理获取 (Not Reasonably Accessible)</b> 的。</p>
+                <p><i>本案中：制造商已成功证明恢复已删除数据需要聘请昂贵的公司，构成了不当负担。</i></p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-number">2</div>
+                <div class="term">请求方反证 (Requesting Party)</div>
+                <p>一旦出示方证明了困难，法院通常不会强制要求出示。<b>但是</b>，如果请求方（公司）能证明出示该证据具有<b>正当理由 (Good Cause)</b>，法院仍可命令出示。</p>
+                <p><i>结论：法院的裁决取决于公司是否展示了 Good Cause。</i></p>
+            </div>
+        </div>
+
+        <!-- 错误选项分析 -->
+        <div class="rule-section">
+            <div class="rule-title">为什么其他选项是错误的？</div>
+            
+            <div class="distractor">
+                <span class="term">选项 A (形式问题)：</span>
+                错误。请求方<b>可以</b>指定 ESI 的形式（如 PDF, Native 格式），但不是必须的。如果未指定，出示方只需以通常维护的形式出示即可，这不能成为完全拒绝出示的理由。
+            </div>
+
+            <div class="distractor">
+                <span class="term">选项 B & C (实体抗辩/胜诉可能性)：</span>
+                错误。证据开示阶段（Discovery）的焦点是<b>相关性 (Relevance)</b> 和<b>成比例性 (Proportionality)</b>，而不是谁会在最终审判中胜诉。
+                <ul>
+                    <li>制造商是否有抗辩理由 (Meritorious Defense) 与是否有义务出示证据无关。</li>
+                    <li>公司无需证明自己会胜诉 (Prevail on Merits) 才能获得证据。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <span class="mbe-tip-title">MBE 考试技巧</span>
+            <p>在处理 ESI (电子证据) 题目时，记住关键词链条：</p>
+            <p style="text-align: center; font-weight: bold; margin: 10px 0;">
+                ESI <br>↓<br> 
+                Not Reasonably Accessible (难获取)<br>↓<br> 
+                Undue Burden (负担重)<br>↓<br> 
+                <span style="color: #e67e22;">Good Cause (正当理由)</span>
+            </p>
+            <p>如果题目说出示方已经证明了“负担重”，那么唯一的破局点就是请求方必须展示“正当理由”。此外，法院在发现 Good Cause 后，通常还会命令<b>费用分摊 (Cost-shifting)</b>，即让请求方承担恢复数据的费用。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

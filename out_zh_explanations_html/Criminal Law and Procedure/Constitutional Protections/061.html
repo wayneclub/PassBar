@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .answer-box {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .answer-circle {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background-color: var(--highlight-bg);
+            color: var(--primary-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- 标题头 -->
+    <div class="header">
+        <h2>MBE 考点解析：宪法保护层级</h2>
+    </div>
+
+    <!-- 正确答案展示 -->
+    <div class="answer-box">
+        <div class="answer-circle">D</div>
+        <p style="margin-top:10px; font-weight:bold; color:var(--primary-color);">正确选项</p>
+    </div>
+
+    <!-- 核心考点卡片 -->
+    <div class="card">
+        <h3>核心法律原则</h3>
+        <div>
+            <span class="concept-tag">Federalism (联邦主义)</span>
+            <span class="concept-tag">Supremacy Clause (至高条款)</span>
+        </div>
+        <p>
+            本题考察的是美国宪法与州宪法之间的关系，即<b>“底线与天花板”理论</b>。
+        </p>
+        <ul>
+            <li><b>联邦宪法 (U.S. Constitution)</b>：设定了个人权利保护的<b>最低标准 (Floor)</b>。任何州不得提供低于此标准的保护。</li>
+            <li><b>州宪法 (State Constitution)</b>：可以提供比联邦宪法<b>更高、更广泛 (Broader)</b> 的保护。</li>
+        </ul>
+    </div>
+
+    <!-- 深度解析卡片 -->
+    <div class="card">
+        <h3>案情深度解析</h3>
+        <p>
+            <b>1. 联邦宪法层面：</b><br>
+            根据美国最高法院的判例（如 <span class="latin">United States v. White</span>），警方使用线人（"False Friend"）携带窃听器进入嫌疑人家中录音，<b>并不违反</b>第四修正案 (Fourth Amendment)。因为嫌疑人是自愿向第三方透露信息，他承担了该第三方可能是警方线人的风险。
+        </p>
+        <p>
+            <b>2. 州宪法层面：</b><br>
+            题目明确指出：该州最高法院有<b>明确判例 (Clear Precedent)</b>，认定这种行为<b>违反了州宪法</b>。
+        </p>
+        <p>
+            <b>3. 结论：</b><br>
+            虽然警方的行为符合联邦宪法，但违反了提供“更高保护”的州宪法。在州法院审理州法指控的案件中，必须遵循州最高法院对州宪法的解释。因此，证据必须被排除。
+        </p>
+    </div>
+
+    <!-- 干扰项排除卡片 -->
+    <div class="card">
+        <h3>为什么其他选项是错的？</h3>
+        <p>
+            <span class="highlight">选项 A 错误：</span><br>
+            虽然联邦法律是最高法律（Supremacy Clause），但这仅适用于州法试图<b>剥夺</b>联邦权利的情况。州法给予被告<b>更多</b>权利并不与联邦法律冲突，因此联邦宪法不会“覆盖” (Override) 州宪法提供的额外保护。
+        </p>
+        <p>
+            <span class="highlight">选项 B 错误：</span><br>
+            <b>善意例外 (Good-faith exception)</b> 通常适用于联邦第四修正案的排除规则。但在本案中，排除证据的依据是<b>州宪法</b>。如果州最高法院决定不承认善意例外，或者认定州宪法的违规不能通过善意来补救，那么警方的善意信念就无关紧要。
+        </p>
+        <p>
+            <span class="highlight">选项 C 错误：</span><br>
+            这是一个事实错误。如前所述，根据现行联邦判例，秘密录制与线人的对话<b>并不违反</b>联邦宪法权利。
+        </p>
+    </div>
+
+    <!-- 考试技巧总结 -->
+    <div class="card" style="border-left-color: #e67e22;">
+        <h3>💡 MBE 考试技巧</h3>
+        <p>
+            当题目中出现<b>“州最高法院判例” (State Supreme Court Precedent)</b> 且涉及<b>个人权利</b>时，请记住：
+        </p>
+        <ol>
+            <li>州可以给被告<b>更多</b>权利，不能给更少。</li>
+            <li>如果州宪法说“这是违法的”，即使联邦最高法院说“这是合法的”，在州法院系统中，<b>州法说了算</b>。</li>
+            <li>这就是所谓的 <span class="latin">Independent and Adequate State Grounds</span>（独立且充分的州法依据）。</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        MBE Criminal Procedure & Constitutional Law Review
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+
+        .conclusion {
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            color: #3c763d;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .distractor {
+            font-size: 0.9rem;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 刑法考点解析</h2>
+        <p style="margin:5px 0 0 0; font-size:0.9rem; opacity:0.9;">Larceny vs. Robbery</p>
+    </div>
+
+    <div class="content">
+        
+        <div class="section-title">核心考点 (Key Issue)</div>
+        <p>本题主要考察两个核心法律概念的区别与认定：</p>
+        <ul>
+            <li><b>盗窃罪</b> <span class="english-term">(Larceny)</span> 的既遂标准。</li>
+            <li><b>抢劫罪</b> <span class="english-term">(Robbery)</span> 中“暴力或恐吓” <span class="english-term">(Force or Intimidation)</span> 的要件。</li>
+        </ul>
+
+        <div class="section-title">法律规则解析 (Legal Analysis)</div>
+
+        <div class="analysis-step">
+            <div class="term">1. 盗窃罪 (Larceny) 的认定</div>
+            <div class="concept-box">
+                <p>普通法下的 Larceny 定义为：以永久剥夺他人财产为目的，非法拿取并带走 <span class="english-term">(Trespassory taking and carrying away)</span> 他人的个人财产。</p>
+            </div>
+            <p><b>本案应用：</b></p>
+            <ul>
+                <li><b>拿取 (Taking)：</b> 顾客从醉汉口袋里拿出了钱包。</li>
+                <li><b>带走 (Carrying Away / Asportation)：</b> 顾客拿着钱包“开始走开”。在普通法中，哪怕只是极其轻微的移动 <span class="english-term">(slightest movement)</span>，只要发生了位移，该要件即满足。</li>
+                <li><b>意图 (Intent)：</b> 顾客拿走钱包时显然有据为己有的意图。</li>
+                <li><b>既遂 (Completed Crime)：</b> 尽管顾客后来扔掉了钱包，但这属于<b>犯罪既遂后的放弃</b>，不能作为抗辩理由。Larceny 在他迈步走开的那一刻已经完成。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <div class="term">2. 抢劫罪 (Robbery) 的排除</div>
+            <div class="concept-box">
+                <p>Robbery 是指通过<b>暴力 (Force)</b> 或 <b>恐吓 (Intimidation)</b> 从受害人身上或其在场范围内非法夺取财产。</p>
+            </div>
+            <p><b>本案应用：</b></p>
+            <ul>
+                <li><b>无恐吓：</b> 顾客虽然拔出了枪，但此时受害人已经<b>昏倒 (passed out)</b>。受害人没有看到枪，因此没有产生恐惧 <span class="english-term">(fear)</span>。</li>
+                <li><b>无暴力：</b> 顾客是从一个无意识的人身上拿走钱包。除非在拿取过程中使用了超出单纯拿取动作所需的物理力量（如推搡、击打），否则单纯的“扒窃” <span class="english-term">(pickpocketing)</span> 或从醉汉/睡着的人身上拿东西，通常被认定为 Larceny 而非 Robbery。</li>
+            </ul>
+        </div>
+
+        <div class="section-title">为什么选 B (Larceny)？</div>
+        <p>题目要求选择被告可能被定罪的<b>最严重</b>罪行。</p>
+        <ul>
+            <li><b>选项 A (Robbery)：</b> 错误。因为缺乏 Robbery 的核心要素——暴力或恐吓。</li>
+            <li><b>选项 D (Attempted Larceny)：</b> 错误。因为 Larceny 已经<b>既遂</b>（拿取并移动了）。既遂罪行吸收了未遂罪行。</li>
+            <li><b>选项 C (Attempted Robbery) vs. 选项 B (Larceny)：</b>
+                <br>虽然被告可能有抢劫的意图（拔枪），可以争辩构成抢劫未遂 <span class="english-term">(Attempted Robbery)</span>，但在 MBE 考试逻辑中，一个<b>已完成的</b>针对财产的实质性犯罪（Larceny，且是从人身上窃取），通常被视为比一个因客观条件（受害人昏倒）而未能实施暴力的“未遂”指控更确凿、更具实质性的定罪基础。
+                <br><br>
+                更重要的是，Larceny 的所有构成要件都完美符合事实，是无可争议的既遂重罪。
+            </li>
+        </ul>
+
+        <div class="conclusion">
+            正确答案：B (Larceny)
+        </div>
+
+        <div class="distractor">
+            <b>考试技巧 (Exam Tip)：</b>
+            <br>
+            注意“带走” <span class="english-term">(Asportation)</span> 的门槛极低。只要东西被拿起来并发生了位置移动，Larceny 就完成了。后续的归还、丢弃或被抓，都不改变既遂的事实。同时，Robbery 必须要有受害人的“感知”（恐吓）或身体上的“强制”（暴力）。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

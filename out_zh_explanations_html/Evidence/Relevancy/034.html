@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            color: #333;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-box strong {
+            color: #2e7d32;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #3498db;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .rule-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        .wrong-option {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fff5f5;
+            border-left: 3px solid #e57373;
+            font-size: 13px;
+        }
+        .mbe-tip {
+            background-color: #e3f2fd;
+            border: 1px dashed #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 13px;
+        }
+        .mbe-tip-title {
+            color: #1565c0;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence / Expert Testimony</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <strong>正确答案：D</strong>
+            法院应当采纳该意见，因为这是由具备资格的专家提供的、有助于事实认定的意见。
+        </div>
+
+        <p style="font-size: 14px; line-height: 1.6;">
+            本题的核心考点在于<strong>专家证言的可采性 (Admissibility of Expert Testimony)</strong> 以及<strong>关于“最终争议点” (Ultimate Issue) 的规则适用范围</strong>。
+        </p>
+
+        <!-- 核心法律规则 -->
+        <div class="section-title">核心法律依据 (FRE 702 & 704)</div>
+        
+        <div class="rule-card">
+            <strong>1. 专家证言的基本要求 (FRE 702)</strong><br>
+            专家证言若要被采纳，必须满足以下条件：
+            <ul>
+                <li>专家具备资格（知识、技能、经验等）；</li>
+                <li>证言具有<strong>相关性 (Relevance)</strong>，即能帮助陪审团理解证据或确定事实；</li>
+                <li>证言基于充分的事实和可靠的方法。</li>
+            </ul>
+            <p style="margin-top:8px; color:#555;">在本案中，精神科医生作为治疗医生，具备专业资格，且其关于驾驶员“是否有自毁倾向”的意见直接关系到案件的核心争议（是否故意自伤），因此具有高度相关性。</p>
+        </div>
+
+        <div class="rule-card" style="border-left: 4px solid #f39c12;">
+            <strong>2. 关键区分：民事 vs. 刑事 (FRE 704)</strong><br>
+            这是本题最大的陷阱。
+            <br><br>
+            <strong>一般规则 (FRE 704(a))：</strong><br>
+            专家意见即使触及了案件的<strong>最终争议点 (Ultimate Issue)</strong>，通常也是可采纳的。
+            <br><br>
+            <strong>例外规则 (FRE 704(b)) - 仅限刑事案件：</strong><br>
+            只有在<strong>刑事案件 (Criminal Case)</strong> 中，专家才被禁止就被告是否具备犯罪要素中的特定<strong>心理状态 (Mental State)</strong> 发表明确意见。
+            <br><br>
+            <span class="highlight">本案是保险合同纠纷，属于民事案件 (Civil Case)。</span>因此，FRE 704(b) 的限制不适用。专家完全可以直接就驾驶员当时的心理状态（是否想自杀）发表意见。
+        </div>
+
+        <!-- 错误选项解析 -->
+        <div class="section-title">为什么其他选项是错误的？</div>
+
+        <div class="wrong-option">
+            <strong>选项 A 错误 (Credibility)</strong><br>
+            虽然专家通常不能直接评价证人是否“诚实”（因为这是陪审团的工作），但本案中专家并非在评价驾驶员是否在撒谎，而是在诊断其<strong>案发时的精神状态</strong>（是否具有自毁倾向）。这是医学诊断，而非可信度评价。
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 B 错误 (Element of Defense)</strong><br>
+            这是最具迷惑性的干扰项。它描述了 FRE 704(b) 的规则，但该规则<strong>仅适用于刑事案件</strong>。在民事案件中，专家可以就构成抗辩要素的心理状态发表意见。
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 C 错误 (Basis of Opinion)</strong><br>
+            根据 <strong>FRE 705</strong>，专家可以在庭审中先给出意见，而无需先披露其依据的事实或数据（除非法庭另有要求）。对方律师可以在交叉询问 (Cross-examination) 中盘问其依据。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <div class="mbe-tip-title">💡 MBE 考试技巧</div>
+            <p>遇到关于<strong>专家证言 (Expert Testimony)</strong> 和<strong>心理状态 (Mental State)</strong> 的题目时，第一步必须确认案件性质：</p>
+            <ul style="margin-bottom:0; padding-left: 20px;">
+                <li>如果是<strong>刑事案件</strong> ➡️ 专家<strong>不能</strong>直接说“被告当时有/没有杀人意图”。</li>
+                <li>如果是<strong>民事案件</strong> ➡️ 专家<strong>可以</strong>就心理状态发表意见（只要符合 FRE 702 的要求）。</li>
+            </ul>
+            <p style="margin-top:10px;">出题人非常喜欢利用考生对 FRE 704(b) 的模糊记忆，在民事题目中设置类似选项 B 的陷阱。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

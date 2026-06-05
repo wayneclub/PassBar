@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --correct-color: #27ae60;
+        --wrong-color: #e74c3c;
+        --bg-color: #f4f6f7;
+        --card-bg: #ffffff;
+        --text-color: #333333;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #eef2f3;
+        margin: 0;
+        padding: 20px;
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px; /* 适配手机宽度 */
+        width: 100%;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .header .sub-title {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .answer-box {
+        background-color: #e8f5e9;
+        border-left: 5px solid var(--correct-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .answer-label {
+        color: var(--correct-color);
+        font-weight: bold;
+        font-size: 14px;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        display: block;
+    }
+    .answer-text {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .section-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+    }
+    .concept-card {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: var(--accent-color);
+        margin-bottom: 8px;
+        display: block;
+    }
+    .highlight {
+        background-color: #fff3cd;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+    .option-analysis {
+        margin-top: 15px;
+    }
+    .option {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+    .option.wrong {
+        background-color: #fff5f5;
+        border-left: 3px solid var(--wrong-color);
+    }
+    .latin {
+        font-style: italic;
+        color: #555;
+    }
+    .footer {
+        background-color: #f1f1f1;
+        padding: 15px;
+        text-align: center;
+        font-size: 12px;
+        color: #777;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    li {
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">侵权法 (Torts) - 过失 (Negligence)</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案</span>
+            <div class="answer-text">选项 B</div>
+            <div style="margin-top:5px; font-size:14px;">不应批准，因为该警官的受伤与她工作的任何特殊危险无关。</div>
+        </div>
+
+        <!-- 核心考点讲解 -->
+        <div class="section-title">⚖️ 核心法律原则：消防员规则</div>
+        <div class="concept-card">
+            <span class="concept-title">The Firefighter's Rule (消防员规则)</span>
+            <p>这是一个普通法上的规则，通常作为被告的抗辩理由。它规定：</p>
+            <ul>
+                <li><strong>原则：</strong>专业救援人员（如警察、消防员）不能因其工作所针对的<strong>固有风险 (Inherent Risks)</strong> 而起诉造成该风险的人。</li>
+                <li><strong>理由：</strong>他们已经因承担这些风险而获得了薪酬（包括工资和伤残福利），且公众不应因寻求帮助而面临被起诉的风险。</li>
+            </ul>
+        </div>
+
+        <div class="section-title">🔍 案件深度解析</div>
+        <p>为什么本案中<strong>不能</strong>使用消防员规则作为抗辩？</p>
+        
+        <p><strong>1. 区分“固有风险”与“一般风险”：</strong><br>
+        消防员规则只禁止对<strong>工作特有危险</strong>（Special Dangers/Inherent Risks）的索赔。例如：</p>
+        <ul>
+            <li>消防员在救火时被烧伤。</li>
+            <li>警察在逮捕嫌疑人时被袭击。</li>
+            <li>警察在高速追捕嫌疑人时发生车祸。</li>
+        </ul>
+        
+        <p><strong>2. 本案事实应用：</strong><br>
+        在本案中，警官是在处理完紧急情况后<strong>返回警局</strong>的途中被撞的。肇事司机是因为<strong>疲劳驾驶</strong>（与警官的职责无关）撞上了警车。</p>
+        
+        <div class="concept-card" style="border-left: 4px solid var(--accent-color);">
+            <p><strong>关键点：</strong>这种车祸风险（被其他疲劳驾驶的司机撞击）是<strong>道路上每个人都面临的普通风险</strong>，并不是警察工作所特有的“特殊危险”。</p>
+            <p>因此，该规则不适用，警官可以像普通公民一样起诉司机的过失。</p>
+        </div>
+
+        <!-- 错误选项分析 -->
+        <div class="section-title">❌ 干扰项排除</div>
+        
+        <div class="option-analysis">
+            <div class="option wrong">
+                <strong>选项 A 错误：</strong><br>
+                虽然结论（不批准）是对的，但理由错误。消防员规则（Firefighter's Rule）在普通法下<strong>确实适用于警察</strong>和其他专业救援人员，不仅仅是消防员。
+            </div>
+            
+            <div class="option wrong">
+                <strong>选项 C 错误：</strong><br>
+                这是关于<strong>事实因果关系 (Actual Cause)</strong> 的论述。虽然“若无紧急情况警官不会在那”，但这并不是禁止索赔的法律理由。被告不能因为原告恰好在场就免除责任。
+            </div>
+            
+            <div class="option wrong">
+                <strong>选项 D 错误：</strong><br>
+                仅仅“在执行公务期间 (on the job)”受伤并不足以触发消防员规则。必须是该工作<strong>特有的风险</strong>导致了伤害。如果是普通风险（如本案），即使在工作时间，也可以索赔。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        
+        <p>遇到涉及 <strong>Firefighter's Rule</strong> 的题目时，请按以下步骤思考：</p>
+        <ol>
+            <li>原告是否为专业救援人员？（是）</li>
+            <li>伤害是否由其工作<strong>意图处理的特定风险</strong>（如火灾、正在追捕的罪犯）造成的？</li>
+            <li>如果是<strong>独立</strong>的过失（如第三方撞击、房主未告知的隐藏陷阱、或与救援任务无关的普通风险），则该规则<strong>不适用</strong>，原告可以索赔。</li>
+        </ol>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

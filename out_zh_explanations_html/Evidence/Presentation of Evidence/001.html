@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fff3cd;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f7;
+            margin: 0;
+            padding: 10px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .answer-box {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            border-left: 5px solid #28a745;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--accent-color);
+            margin: 15px 0;
+        }
+        .trap-box {
+            background-color: var(--warning-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            border-left: 5px solid #ffc107;
+            margin: 15px 0;
+        }
+        .concept-tag {
+            display: inline-block;
+            background-color: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            margin-right: 5px;
+            color: #555;
+            font-weight: 600;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            text-align: center;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：证据的可采性</h1>
+    
+    <div class="answer-box">
+        正确答案：D
+    </div>
+
+    <p>本题考察的核心是<b>亲身感知（Personal Knowledge）</b>与<b>最佳证据规则（Best Evidence Rule）</b>之间的区别，以及证据的<b>可采性（Admissibility）</b>与<b>证明力（Weight）</b>的界限。</p>
+
+    <h2>1. 核心法律依据</h2>
+    
+    <div class="rule-box">
+        <strong>FRE 602 - 亲身感知 (Personal Knowledge)</strong><br>
+        证人只能就其亲身感知的事实作证。如果证人亲自听到了通话，他就有资格就他所听到的内容作证。
+    </div>
+
+    <p>在本案中，受害人（Victim）亲自接听了电话。因此，他拥有关于通话内容和对方声音特征的“独立知识”（Independent Knowledge）。</p>
+    
+    <p><b>为什么选项 D 正确？</b></p>
+    <ul>
+        <li><b>可采性 (Admissibility)：</b> 只要证据是相关的（Relevant）且证人有亲身感知，通常就是可采纳的。受害人听到了声音，这符合 FRE 602。</li>
+        <li><b>证明力 (Weight)：</b> 受害人“无法明确识别”（cannot positively identify）或缺乏绝对确定性，这并不导致证据被排除。这属于<b>证明力</b>的问题，应由陪审团（Jury）来决定是否相信受害人的判断，而不是由法官将其拒之门外。</li>
+    </ul>
+
+    <h2>2. 常见的 MBE 陷阱：最佳证据规则</h2>
+
+    <div class="trap-box">
+        <strong>⚠️ 陷阱警报：最佳证据规则 (Best Evidence Rule)</strong><br>
+        <span class="latin">Federal Rules of Evidence 1002</span>
+    </div>
+
+    <p>选项 A 是本题最大的干扰项。很多考生看到“录音带”（Recording）就会条件反射地想到“最佳证据规则”。</p>
+
+    <p><b>规则解析：</b></p>
+    <p>最佳证据规则（要求出示原件）<b>仅</b>在以下两种情况下适用：</p>
+    <ol>
+        <li><b>内容本身是争议焦点：</b> 法律要求必须通过文件证明（如遗嘱、合同条款）。</li>
+        <li><b>证人的知识仅来源于该文件：</b> 证人没有亲身经历，只是读了文件或听了录音后作证。</li>
+    </ol>
+
+    <p><b>为何本案不适用？</b></p>
+    <p>受害人并不是在复述录音带里有什么（Proving the content of the recording），而是在作证说明<b>他当时亲耳听到了什么</b>。录音带只是记录同一事件的另一种证据形式。当证人对事件有<b>独立记忆</b>时，最佳证据规则不适用。</p>
+
+    <h2>3. 声音识别规则 (Voice Identification)</h2>
+    
+    <p>根据 <b>FRE 901(b)(5)</b>，非专家证人（Lay Witness）可以对声音进行识别。这种识别可以基于听过该声音的任何时候（包括庭审前或通过录音）。</p>
+    <p>即使受害人说“有相似的口音”而不是“我确定就是他”，这依然是相关的意见证据（Opinion Testimony），符合 <b>FRE 701</b>。</p>
+
+    <h2>MBE 解题锦囊</h2>
+    
+    <div class="rule-box" style="background-color: #e3f2fd; border-left-color: #2196f3;">
+        <strong>💡 考试技巧</strong>
+        <br>
+        当题目中出现“录音”、“录像”或“文件”但证人也在现场时：
+        <ul>
+            <li>问自己：证人是根据自己的<b>记忆</b>作证，还是在复述<b>文件内容</b>？</li>
+            <li>如果是根据记忆（亲眼所见、亲耳所闻），<b>最佳证据规则通常不适用</b>。</li>
+            <li>证人的“不确定”、“犹豫”通常只影响<b>Weight（陪审团信不信）</b>，不影响<b>Admissibility（法官让不让说）</b>。</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        MBE Evidence Review | © 2025 Legal Exam Prep
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background-color: #f8f9fa;
+            border-left: 5px solid #4ca1af;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .card-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .card-title::before {
+            content: '⚖️';
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .option-analysis {
+            margin-top: 15px;
+        }
+        .option-header {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+        .correct {
+            color: #27ae60;
+        }
+        .incorrect {
+            color: #c0392b;
+        }
+        .tip-box {
+            background-color: #e8f4f8;
+            border: 1px dashed #4ca1af;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Real Property: Marketable Title</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="card">
+            <div class="card-title">核心法律原则</div>
+            <p>在每一个土地销售合同中，除非另有约定，卖方都默示保证在过户（Closing）时提供<b>可销售产权 (Marketable Title)</b>。</p>
+            <p>所谓“可销售产权”，是指产权没有合理的疑问，且不会让买方面临诉讼的风险。</p>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="option-analysis">
+            <div class="option-header correct">✅ 正确答案解析 (选项 C)</div>
+            <p><b>地役权 (Easement) 导致产权不可销售。</b></p>
+            <p>本题中，产权调查显示土地上存在一个<b>通行地役权 (Right-of-way easement)</b>。这是一种产权负担 (Encumbrance)，它限制了买方对土地的完全使用权，并可能降低土地价值。</p>
+            <p>根据 MBE 的一般规则（NCBE 观点）：</p>
+            <ul>
+                <li>未在合同中披露或豁免的地役权，会使产权变得“不可销售”。</li>
+                <li>因此，买方有权以此为由拒绝过户 (Refuse to close)。</li>
+            </ul>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+        <!-- 干扰项分析 -->
+        <div class="option-analysis">
+            <div class="option-header incorrect">❌ 陷阱一：产权放弃契据 (选项 B)</div>
+            <p><b>考点：合同义务 vs. 契据类型</b></p>
+            <p>很多考生看到买方同意接受 <span class="term">Quitclaim Deed</span>（产权放弃契据/无担保契据），就误以为买方放弃了对产权质量的要求。</p>
+            <p><b>这是错误的。</b> Quitclaim Deed 仅决定了过户<b>后</b>卖方对产权承担什么责任（即无担保责任）。但是，在过户<b>前</b>，卖方仍然必须履行合同中的承诺——即交付“可销售的产权”。契据的形式不能免除合同中关于产权质量的明示或默示条款。</p>
+        </div>
+
+        <div class="option-analysis">
+            <div class="option-header incorrect">❌ 陷阱二：抵押贷款 (选项 D)</div>
+            <p><b>考点：可补救的缺陷 (Curable Defect)</b></p>
+            <p>虽然未偿还的抵押贷款 (Mortgage) 也是一种产权负担，但它通常<b>不会</b>导致产权在过户前被视为不可销售。</p>
+            <p><b>理由：</b> 法律允许卖方在过户当天，使用买方支付的购房款来清偿抵押贷款。只要购房款足够支付这笔 $50,000 的贷款，这就是一个“可补救”的缺陷。买方不能仅因为存在尚未注销的抵押贷款就拒绝过户。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box" style="margin-top: 20px;">
+            <div class="card-title" style="margin-top:0; font-size:14px;">💡 MBE 实战技巧</div>
+            <p><b>区分“地役权”与“抵押贷款”：</b></p>
+            <ul style="padding-left: 20px; margin: 5px 0;">
+                <li><b>抵押贷款 (Mortgage)：</b>通常可以用钱解决。只要卖方打算用卖房款还债，产权就是可销售的。</li>
+                <li><b>地役权 (Easement)：</b>通常不能单方面用钱解决（需要第三方同意放弃）。如果合同没提到它，它就是产权瑕疵，买方可以跑路。</li>
+            </ul>
+            <p><b>注意：</b> 尽管现实中有些法院认为“可见的地役权”不影响产权销售，但在 MBE 考试中，除非题目明确说买方知情或豁免，否则应认定未披露的地役权导致产权不可销售。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

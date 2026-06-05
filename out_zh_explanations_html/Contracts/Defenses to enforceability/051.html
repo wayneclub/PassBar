@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .rule-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .rule-header {
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-header::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        .distractor {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+        .distractor strong {
+            color: #c0392b;
+        }
+        .mbe-tip {
+            background-color: #e3f2fd;
+            border: 1px dashed #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+        .mbe-tip-title {
+            color: #1976d2;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts / UCC Article 2</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <div class="answer-title">✅ 正确答案：C</div>
+            <p>面包师可以强制执行合同，因为他向供应商发送了签名的确认函，且供应商未在规定时间内提出异议。</p>
+        </div>
+
+        <!-- 核心法律规则解析 -->
+        <div class="section-title">核心考点：商人确认函例外</div>
+        
+        <p>本题考察的是《统一商法典》(UCC) 下的<b>反欺诈法 (Statute of Frauds)</b> 及其重要的例外情况。</p>
+
+        <div class="rule-card">
+            <div class="rule-header">基础规则 (General Rule)</div>
+            <p>根据 UCC § 2-201，价值 <b>$500 或以上</b>的货物销售合同，必须有<b>被请求履行方 (party to be charged)</b> 签署的书面文件才能强制执行。</p>
+            <p style="font-size: 13px; color: #666;">在本案中，供应商是被告，但他没有签字。按一般规则，合同本应无法执行。</p>
+        </div>
+
+        <div class="rule-card" style="border-left: 4px solid #f39c12;">
+            <div class="rule-header">商人例外 (Merchant's Confirmatory Memo)</div>
+            <p>但在<b>两个商人 (Merchants)</b> 之间，如果满足以下条件，未签字的一方也要受合同约束：</p>
+            <ul>
+                <li>一方发送了书面确认函 (Written confirmation)；</li>
+                <li>该确认函对发送方有约束力（已签名）；</li>
+                <li>接收方收到并有理由知道其内容；</li>
+                <li>接收方在收到后 <b>10天内</b> 未提出书面异议。</li>
+            </ul>
+        </div>
+
+        <div class="section-title">案情分析</div>
+        <p>让我们将规则应用到本题事实中：</p>
+        <ol>
+            <li><b>商人身份：</b>面包师和原料供应商都是各自领域的商人。</li>
+            <li><b>确认函：</b>面包师发送了“签名的便条”(signed note)，确认了条款和数量。</li>
+            <li><b>知情与沉默：</b>供应商收到并阅读了便条，但“未采取任何进一步行动”（即未在10天内反对）。</li>
+        </ol>
+        <p>因此，尽管供应商没有亲笔签名，但他通过<b>沉默 (Silence)</b> 接受了该书面确认函作为反欺诈法的满足条件。</p>
+
+        <!-- 干扰项解析 -->
+        <div class="section-title">为什么其他选项是错的？</div>
+        
+        <div class="distractor">
+            <strong>❌ 选项 A (价格条款)：</strong><br>
+            UCC 对合同条款非常宽容。只要确定了<b>数量 (Quantity)</b>，即使没有明确的价格（Open Price Term），合同依然有效。法院会根据 UCC § 2-305 填补合理的市场价格。
+        </div>
+
+        <div class="distractor">
+            <strong>❌ 选项 B (无签名)：</strong><br>
+            这是反欺诈法的一般抗辩理由，但本题恰恰考察的是针对此规则的“商人例外”。
+        </div>
+
+        <div class="distractor">
+            <strong>❌ 选项 D (口头协议)：</strong><br>
+            虽然口头协议存在，但因为涉及金额超过 $500（1000磅 × 最低$0.50 = $500），必须满足反欺诈法才能<b>强制执行 (Enforceable)</b>。选项 D 忽略了必须有书面证据这一法律要求。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <span class="mbe-tip-title">💡 MBE 提分技巧</span>
+            当你在题目中看到：
+            1. <b>双方都是商人</b> (Merchants)；
+            2. <b>口头协议</b>后紧接着发了<b>邮件/信件/发票</b>；
+            3. 接收方<b>没有回复</b>或保持沉默；
+            <br><br>
+            请立即联想 <b>UCC § 2-201(2) 商人确认函例外</b>。这是 Contract Law 中极高频的考点！
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

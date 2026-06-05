@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background-color: transparent;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-color);
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 1.2rem;
+            margin: 0;
+            font-weight: 600;
+        }
+        h2 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+        .tag {
+            display: inline-block;
+            background-color: var(--highlight-bg);
+            color: var(--accent-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .answer-box {
+            background-color: #dff0d8;
+            color: #3c763d;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid #d6e9c6;
+        }
+        .rule-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 20px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- 标题部分 -->
+    <div class="header">
+        <h1>MBE 考点解析：民事诉讼法</h1>
+        <div style="font-size: 0.9rem; opacity: 0.9;">Pretrial Procedures</div>
+    </div>
+
+    <!-- 正确答案 -->
+    <div class="answer-box">
+        正确答案：选项 D
+    </div>
+
+    <!-- 核心考点解析 -->
+    <div class="card">
+        <span class="tag">核心考点</span>
+        <h2>关联补正原则 (Relation-Back Doctrine)</h2>
+        <p>本题考察的是在<b>诉讼时效</b> (<span class="english-term">Statute of Limitations</span>) 过期后，修改诉状以添加新被告是否有效的问题。</p>
+        <p>根据 <b>Fed. R. Civ. P. 15(c)</b>，如果满足特定条件，修改后的诉状可以“溯及” (<span class="english-term">relate back</span>) 至原始诉状提交的日期，从而避免因时效过期而被驳回。</p>
+    </div>
+
+    <!-- 法律规则详解 -->
+    <div class="card">
+        <span class="tag">法律依据</span>
+        <h2>FRCP 15(c)(1) 的两条路径</h2>
+        <p>联邦民事诉讼规则第15(c)(1)条规定，在以下任一情况下，修改均可溯及既往：</p>
+        
+        <div class="rule-box">
+            <b>路径 A (Rule 15(c)(1)(A))：</b><br>
+            提供适用诉讼时效的法律（即州法）允许溯及既往。
+        </div>
+        
+        <div class="rule-box" style="background-color: #f8f9fa; border-color: #e9ecef; color: #666;">
+            <b>路径 B (Rule 15(c)(1)(C))：</b><br>
+            （联邦通用标准）满足三个条件：
+            <ol style="margin-top:5px; padding-left:20px;">
+                <li>涉及同一交易/事件；</li>
+                <li>新被告在送达期内（90天）收到通知；</li>
+                <li>新被告知道若非原告弄错身份，自己本会被起诉。</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 案情分析 -->
+    <div class="card">
+        <span class="tag">案情应用</span>
+        <h2>为什么本题选 D？</h2>
+        <p>本题是一个典型的“陷阱题”。如果只看联邦通用标准（路径 B），原告会输，因为新被告在原始诉状提交后超过90天（6月1日到次年1月3日）才收到通知，不满足 15(c)(1)(C) 的要求。</p>
+        <p><span class="highlight">但是！</span>题目中明确引用了一条具体的法规（Applicable Statute）：</p>
+        <p style="font-style: italic; color: #555; border-left: 3px solid #ccc; padding-left: 10px;">
+            "A complaint may be amended to properly name a defendant... if the complaint was filed within the designated limitations period."
+        </p>
+        <p>这条法规非常宽容，只要原始诉状在时效内提交，就允许修改被告名。根据 <b>Rule 15(c)(1)(A)</b>，联邦法院必须尊重这条允许溯及既往的法律。</p>
+        <p>因此，尽管新被告收到通知很晚，但因为适用的时效法规允许，该修改<b>根据关联补正原则（Relation-back doctrine）是允许的</b>。</p>
+    </div>
+
+    <!-- 错误选项辨析 -->
+    <div class="card">
+        <span class="tag">干扰项排除</span>
+        <h2>为什么其他选项错误？</h2>
+        <ul>
+            <li>
+                <b>选项 A (错误)：</b> 认为新被告未及时收到通知。这是基于 Rule 15(c)(1)(C) 的分析。但在本题中，具体的时效法规（Rule 15(c)(1)(A)路径）凌驾于通用的通知要求之上。
+            </li>
+            <li>
+                <b>选项 B (错误)：</b> 认为时效已过。关联补正原则的核心作用就是让修改后的诉状被视为在时效过期前提交的。
+            </li>
+            <li>
+                <b>选项 C (不准确)：</b> 虽然“同一交易”是必要条件，但仅凭这一点不足以在变更被告时实现溯及既往（通常还需要通知）。选项 D 更准确地指出了法律机制的名称。
+            </li>
+        </ul>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card" style="border-left-color: #e74c3c;">
+        <span class="tag" style="background-color: #fadbd8; color: #c0392b;">MBE 提分技巧</span>
+        <h2>仔细阅读题目中的法规文本</h2>
+        <p>MBE 题目中有时会给出一个虚构或特定的法规文本（Statute）。</p>
+        <p>当题目给出具体法规时，<b>不要</b>机械地套用你背诵的联邦规则（如90天通知期）。如果该法规比联邦规则更宽松，根据 Rule 15(c)(1)(A)，应当适用该宽松的法规。</p>
+    </div>
+
+    
+
+</div>
+
+</body>
+</html>

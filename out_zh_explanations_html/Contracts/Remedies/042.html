@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f0f2f5;
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+        padding: 10px;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: #2c3e50;
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header .sub-title {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .concept-card {
+        background-color: #e3f2fd;
+        border-left: 5px solid #2196f3;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: #1565c0;
+        margin-bottom: 8px;
+        display: block;
+    }
+    .highlight-box {
+        background-color: #fff3e0;
+        border: 1px solid #ffe0b2;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+    .answer-section {
+        margin-top: 20px;
+    }
+    .option-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 12px;
+        position: relative;
+    }
+    .option-card.correct {
+        border-color: #4caf50;
+        background-color: #f1f8e9;
+    }
+    .option-card.wrong {
+        border-color: #ef5350;
+        background-color: #ffebee;
+        opacity: 0.9;
+    }
+    .badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .badge-correct { background-color: #4caf50; color: white; }
+    .badge-wrong { background-color: #ef5350; color: white; }
+    
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .english-term {
+        font-style: italic;
+        color: #666;
+        font-size: 0.9em;
+    }
+    .diagram {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 0;
+        font-size: 12px;
+    }
+    .diagram-step {
+        background: #fff;
+        border: 2px solid #333;
+        padding: 8px 15px;
+        border-radius: 20px;
+        margin-bottom: 5px;
+        width: 80%;
+        text-align: center;
+    }
+    .arrow {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 5px;
+    }
+    .mbe-tip {
+        background-color: #34495e;
+        color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 13px;
+    }
+    .mbe-tip strong {
+        color: #f1c40f;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts / Remedies</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心概念 -->
+        <div class="concept-card">
+            <span class="concept-title">核心考点：合同修正 (Reformation)</span>
+            <p><b>Reformation</b> 是一种衡平法救济 (Equitable Remedy)。当书面合同因为双方的共同错误 (Mutual Mistake) 或文书错误 (Clerical Error)，未能准确反映双方<b>已经达成</b>的真实协议时，法院可以“重写”合同以反映真实意图。</p>
+        </div>
+
+        <!-- 逻辑图解 -->
+        <div class="diagram">
+            <div class="diagram-step" style="border-color: #2196f3; background: #e3f2fd;">
+                第一步：双方达成口头合意<br>
+                <span class="english-term">(Meeting of the Minds)</span>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="diagram-step" style="border-color: #ff9800; background: #fff3e0;">
+                第二步：书面记录出错<br>
+                <span class="english-term">(Scrivener's Error / Clerical Mistake)</span>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="diagram-step" style="border-color: #4caf50; background: #e8f5e9;">
+                救济：合同修正<br>
+                <span class="english-term">(Reformation)</span>
+            </div>
+        </div>
+
+        <!-- 答案解析 -->
+        <div class="answer-section">
+            <h3>选项分析</h3>
+
+            <!-- 正确选项 A -->
+            <div class="option-card correct">
+                <span class="badge badge-correct">正确答案 A</span>
+                <p><b>分析：</b>在本案中，买卖双方站在土地上，明确指出了边界（栅栏）。这表明双方就标的物达成了<b>明确的合意</b> (Meeting of the Minds)。</p>
+                <p>然而，在将协议落实为书面文件时，发生了<b>文书错误</b> (Clerical Mistake)，导致书面内容（包含栅栏外的两英亩）与双方的口头合意不符。这属于典型的<b>共同错误</b> (Mutual Mistake) —— 不是对交易内容的误解，而是对“书面记录是否反映了协议”的误解。</p>
+                <p>因此，法院最适合使用 <span class="term">Reformation</span> 来修正书面错误，使其符合双方原本的口头协议。</p>
+            </div>
+
+            <!-- 错误选项 B, C, D -->
+            <div class="highlight-box">
+                <b>为什么 B、C、D 是错误的？</b>
+                <br><br>
+                这三个选项的共同点是：<b>双方从未达成一致 (No Meeting of the Minds)。</b>
+                <ul style="padding-left: 20px; margin: 10px 0;">
+                    <li><b>选项 B：</b>买方认为包括拆棚屋，卖方不同意。</li>
+                    <li><b>选项 C：</b>买方认为是 $4,500，卖方认为是 $5,000。</li>
+                    <li><b>选项 D：</b>买方认为包括额外两英亩，卖方不同意。</li>
+                </ul>
+                <p>在这些情况下，双方对合同的核心条款（价格、标的物范围、义务）存在根本性的误解。既然没有达成过“原始协议”，法院就无法“修正”书面文件来反映一个不存在的协议。</p>
+                <p>此时适当的救济通常是<b>撤销合同 (Rescission)</b>，而不是修正。</p>
+            </div>
+        </div>
+
+        <!-- MBE 考试技巧 -->
+        <div class="mbe-tip">
+            <strong>🎓 MBE 考试技巧</strong>
+            <br><br>
+            在处理 <b>Reformation</b> 题目时，请寻找以下关键词：
+            <br>
+            1. <b>"Clerical error"</b> (文书错误) 或 <b>"Scrivener's error"</b> (代书错误)。
+            <br>
+            2. <b>"Reduced to writing"</b> (落实到书面) 时发生的变化。
+            <br><br>
+            <b>关键区别：</b>
+            <br>
+            如果双方想的一样，但写错了 ➡️ 选 <b>Reformation</b>。
+            <br>
+            如果双方想的不一样（根本没谈拢） ➡️ 选 <b>No Contract</b> 或 <b>Rescission</b>，绝对不能选 Reformation。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

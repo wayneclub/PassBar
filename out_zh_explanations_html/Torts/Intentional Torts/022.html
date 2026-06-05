@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-color: #e74c3c;
+        --bg-color: #f4f6f7;
+        --card-bg: #ffffff;
+        --text-color: #333333;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #eef2f3;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header .subtitle {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .rule-box {
+        background-color: #ecf0f1;
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 4px 4px 0;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+    }
+    .rule-title::before {
+        content: "⚖️";
+        margin-right: 8px;
+    }
+    .concept-tag {
+        display: inline-block;
+        background-color: var(--accent-color);
+        color: white;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+    .analysis-section {
+        margin-bottom: 20px;
+    }
+    .analysis-title {
+        font-size: 16px;
+        font-weight: bold;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+    }
+    .key-point {
+        margin-bottom: 15px;
+        line-height: 1.5;
+        font-size: 14px;
+    }
+    .latin {
+        font-style: italic;
+        color: #555;
+    }
+    .wrong-answer {
+        background-color: #fff5f5;
+        border: 1px solid #fed7d7;
+        padding: 10px;
+        border-radius: 6px;
+        margin-top: 10px;
+        font-size: 13px;
+    }
+    .wrong-title {
+        color: var(--highlight-color);
+        font-weight: bold;
+        margin-bottom: 4px;
+    }
+    .case-law {
+        background-color: #fff8e1;
+        border: 1px solid #ffe082;
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 13px;
+    }
+    .footer {
+        background-color: #f8f9fa;
+        padding: 15px;
+        text-align: center;
+        font-size: 12px;
+        color: #7f8c8d;
+        border-top: 1px solid #eee;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Intentional Torts: Battery</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心规则 -->
+        <div class="rule-box">
+            <div class="rule-title">核心考点：Battery (非法侵犯/殴打)</div>
+            <p style="font-size: 14px; margin: 0;">
+                构成 Battery 必须满足两个要素：<br>
+                1. <strong>意图 (Intent)</strong>：意图造成伤害性或冒犯性的接触。<br>
+                2. <strong>接触 (Contact)</strong>：实际造成了该接触。
+            </p>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 D？(正确答案解析)</div>
+            
+            <div class="key-point">
+                <span class="concept-tag">Intent (意图)</span>
+                <p>在侵权法中，“意图”不仅仅指“目的”(Purpose)。如果被告<strong>明知 (Knew with Substantial Certainty)</strong> 某种后果必然发生，法律也视其具有意图。</p>
+                <p><strong>本案逻辑：</strong>虽然舞台工作人员可能只是想开玩笑（目的），但他<strong>知道</strong>演说家正要坐下。抽走凳子，演说家<strong>必然</strong>会摔倒。这种“实质确定性”满足了 Battery 的意图要件。</p>
+            </div>
+
+            <div class="key-point">
+                <span class="concept-tag">Offensive Contact (冒犯性接触)</span>
+                <p>Battery 不要求受害者流血或骨折。只要接触是<strong>冒犯性的 (Offensive)</strong>——即侵犯了一个通情达理之人的尊严——就足以构成 Battery。让演说家当众摔个“狗吃屎”显然是对尊严的冒犯。</p>
+            </div>
+        </div>
+
+        <!-- 经典判例 -->
+        <div class="case-law">
+            <strong>📚 经典判例关联：Garratt v. Dailey</strong><br>
+            这是美国法学院一年级必学的经典案例。一个5岁的小男孩把椅子从一位老妇人身后抽走，导致她摔倒。法院裁定，即使小男孩没有伤害老妇人的恶意，只要他<strong>知道</strong>老妇人正要坐下且必然会摔倒，他就构成了 Battery。本题几乎是该案的翻版。
+        </div>
+
+        <!-- 陷阱排除 -->
+        <div class="analysis-section" style="margin-top: 20px;">
+            <div class="analysis-title">常见误区 (为什么其他选项错)</div>
+            
+            <div class="wrong-answer">
+                <div class="wrong-title">❌ 选项 A：没有身体伤害</div>
+                <p><strong>错误原因：</strong>Battery 保护的是身体完整性和个人尊严。<strong>Offensive Contact (冒犯性接触)</strong> 足以支持诉讼，无需 Physical Harm (身体伤害)。</p>
+            </div>
+
+            <div class="wrong-answer">
+                <div class="wrong-title">❌ 选项 B：只是恶作剧 (Prank)</div>
+                <p><strong>错误原因：</strong>动机 (Motive) 不等于意图 (Intent)。“开玩笑”不能作为故意侵权的抗辩理由。只要你意图造成接触，且该接触在法律上是冒犯性的，你就需要负责。</p>
+            </div>
+             <div class="wrong-answer">
+                <div class="wrong-title">❌ 选项 C：过失 (Negligence)</div>
+                <p><strong>错误原因：</strong>这是故意侵权 (Intentional Tort)。因为工作人员是<strong>故意</strong>抽走凳子的，而不是“不小心”撞倒了凳子。故意行为排除过失。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <strong>MBE 解题技巧：</strong><br>
+        看到“抽椅子”或“恶作剧”导致摔倒，<br>
+        第一反应应当是 <strong>Intent via Substantial Certainty</strong>。<br>
+        不要被“没有受伤”或“只是玩笑”迷惑。
+    </div>
+</div>
+
+</body>
+</html>

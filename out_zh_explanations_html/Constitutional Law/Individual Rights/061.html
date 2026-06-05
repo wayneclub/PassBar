@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .answer-box::before {
+            content: "✔";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+            font-size: 1.1rem;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .analysis-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #444;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .distractor {
+            margin-top: 15px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .distractor-title {
+            font-weight: bold;
+            color: var(--wrong-color);
+            font-size: 0.9rem;
+        }
+        .distractor-desc {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 4px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <h2>MBE 考题解析</h2>
+        <div class="sub-title">Constitutional Law | Individual Rights</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            正确答案：C
+        </div>
+
+        <!-- 核心考点 -->
+        <div class="section-title">核心考点：宗教信仰的审查界限</div>
+        <div class="rule-box">
+            <strong>Free Exercise Clause (自由行使条款)</strong><br>
+            根据美国宪法第一修正案，政府在审查宗教豁免申请时：
+            <ul>
+                <li>✅ <strong>可以</strong>审查信仰是否“真诚持有” (<span class="term">sincerely held</span>)。</li>
+                <li>❌ <strong>绝对禁止</strong>审查信仰是否“合理” (<span class="term">reasonable</span>) 或“真实” (<span class="term">true</span>)。</li>
+            </ul>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="section-title">为什么选 C？</div>
+        <div class="analysis-text">
+            <p>本题的关键在于法规中的一句话：“The statute allows the federal government to question the sincerity and <strong>reasonableness</strong> of religious objections.”（该法规允许联邦政府质疑宗教反对意见的真诚性和合理性。）</p>
+            <p><strong>法律推理：</strong></p>
+            <ol>
+                <li><strong>真诚性 vs. 合理性：</strong> 最高法院在 <em>United States v. Ballard</em> 等判例中确立，法院或政府机构不能充当宗教教义的仲裁者。如果政府试图判断一个人的宗教信仰是否符合逻辑、是否“合理”，这就直接违反了第一修正案。</li>
+                <li><strong>违宪性：</strong> 题目中的法规明确授权政府审查信仰的“合理性”，这是对 Free Exercise Clause 的直接侵犯。</li>
+                <li><strong>不可分割性 (Inseverability)：</strong> 题目特别提到条款是不可分割的。这意味着，一旦“审查合理性”这一条款被认定违宪，整个法规（或其对该男子的适用）就站不住脚了。</li>
+            </ol>
+            <p>因此，攻击该法规允许审查“合理性”，是该男子最致命、最直接的宪法论据。</p>
+        </div>
+
+        <!-- 干扰项分析 -->
+        <div class="section-title">为什么其他选项不是最强论点？</div>
+        
+        <div class="distractor">
+            <div class="distractor-title">选项 A：性别歧视 (Equal Protection)</div>
+            <div class="distractor-desc">
+                虽然基于性别的分类需要通过<strong>中度审查 (Intermediate Scrutiny)</strong>，但在 <em>Rostker v. Goldberg (1981)</em> 案中，最高法院已经裁定：仅要求男性进行兵役登记<strong>不违宪</strong>。法院认为这与政府在国防上的重要利益有实质性关联。因此，这不是一个赢面大的论点。
+            </div>
+        </div>
+
+        <div class="distractor">
+            <div class="distractor-title">选项 B：年龄歧视 (Equal Protection)</div>
+            <div class="distractor-desc">
+                年龄不是“受保护阶层” (Suspect Class)。针对年龄的分类只需通过<strong>合理基础审查 (Rational Basis Review)</strong>。政府征召适龄青年入伍显然是理性的。这个论点非常弱。
+            </div>
+        </div>
+
+        <div class="distractor">
+            <div class="distractor-title">选项 D：审查真诚性 (Sincerity)</div>
+            <div class="distractor-desc">
+                这是一个常见的陷阱。法律<strong>允许</strong>政府审查信仰是否“真诚”。如果一个人只是为了逃避兵役而撒谎说自己信教，政府有权揭穿谎言。因此，攻击政府审查“真诚性”的权力是无效的。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">💡 MBE 考试技巧</div>
+        <div class="rule-box" style="background-color: #fff3cd; border-left-color: #ffc107;">
+            在涉及宗教自由的题目中，看到政府试图评估宗教信仰的<strong>“真理” (truth)</strong>、<strong>“有效性” (validity)</strong> 或 <strong>“合理性” (reasonableness)</strong> 时，这通常就是违宪的“死穴”。记住：<strong>Sincerity (真诚) 可查，Truth (真理) 免谈。</strong>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

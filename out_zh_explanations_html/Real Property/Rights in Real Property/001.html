@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-color: #e74c3c;
+        --bg-color: #f4f6f7;
+        --card-bg: #ffffff;
+        --text-color: #333333;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 10px;
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.4rem;
+    }
+    .header .subtitle {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .concept-card {
+        background-color: #eef7fb;
+        border-left: 5px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        display: block;
+        font-size: 1.1rem;
+    }
+    .timeline {
+        position: relative;
+        margin: 20px 0;
+        padding-left: 20px;
+        border-left: 2px solid #ddd;
+    }
+    .timeline-item {
+        position: relative;
+        margin-bottom: 20px;
+    }
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -26px;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        background: var(--accent-color);
+        border-radius: 50%;
+        border: 2px solid white;
+    }
+    .timeline-item.critical::before {
+        background: var(--highlight-color);
+        transform: scale(1.3);
+    }
+    .timeline-title {
+        font-weight: bold;
+        font-size: 0.95rem;
+    }
+    .timeline-desc {
+        font-size: 0.9rem;
+        color: #666;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .english {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 0.9em;
+    }
+    .analysis-box {
+        background-color: #fff8f8;
+        border: 1px solid #f5c6cb;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 20px;
+    }
+    .analysis-title {
+        color: var(--highlight-color);
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .option-analysis {
+        margin-top: 15px;
+        font-size: 0.9rem;
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+    }
+    .option-tag {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    .tag-wrong { background: #ffebee; color: #c62828; }
+    .tag-right { background: #e8f5e9; color: #2e7d32; }
+    
+    .visual-merger {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 15px 0;
+        gap: 10px;
+    }
+    .lot {
+        width: 60px;
+        height: 60px;
+        border: 2px solid #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.8rem;
+        background: #fff;
+        position: relative;
+    }
+    .lot-merged {
+        width: 130px;
+        background: #d1ecf1;
+        border-color: var(--accent-color);
+    }
+    .arrow { font-size: 1.5rem; color: #999; }
+    
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Real Property: Easements (地役权)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">核心考点：混同原则 (Merger Doctrine)</span>
+            <p>当地役权中的<b>需役地</b> (Dominant Estate) 和<b>供役地</b> (Servient Estate) 的所有权归属于<b>同一人</b> (Common Ownership) 时，地役权自动消灭。</p>
+            <p><b>关键规则：</b>一旦因混同而消灭，地役权<b>不会</b>因为土地再次被分割或转让而自动恢复 (Revive)。</p>
+        </div>
+
+        <!-- 案情图解 -->
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-title">阶段 1：设立 (Creation)</div>
+                <div class="timeline-desc">
+                    男子拥有土地 (供役地)，女子拥有房屋 (需役地)。<br>
+                    <span class="term">地役权有效存在。</span>
+                </div>
+            </div>
+
+            <div class="timeline-item critical">
+                <div class="timeline-title" style="color: var(--highlight-color);">阶段 2：混同 (Merger)</div>
+                <div class="timeline-desc">
+                    女子将房屋转让给男子。<br>
+                    男子现在<b>同时拥有</b>供役地和需役地。<br>
+                    <span class="term" style="color: var(--highlight-color);">结果：地役权消灭 (Extinguished)。</span>
+                    <br><small>注：男子是否实际居住不影响所有权的统一。</small>
+                </div>
+                <!-- 可视化混同 -->
+                <div class="visual-merger">
+                    <div class="lot">Lot A</div>
+                    <div class="lot">Lot B</div>
+                    <div class="arrow">➔</div>
+                    <div class="lot lot-merged">Owner: Man<br>(Merged)</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-title">阶段 3：转让 (Conveyance)</div>
+                <div class="timeline-desc">
+                    男子将房屋卖给买方 (Purchaser)。<br>
+                    虽然土地再次被分割，但之前的地役权<b>已经死亡</b>，不会自动复活。
+                </div>
+            </div>
+        </div>
+
+        <!-- 答案解析 -->
+        <div class="analysis-box">
+            <div class="analysis-title">为什么选 A？</div>
+            <p><b>A. The man, because the easement was extinguished.</b></p>
+            <p>这是对混同原则的直接应用。当男子获得房屋所有权时，地役权因混同而永久消灭。买方购买房屋时，并没有获得任何有效的地役权，除非重新设立（本题事实未显示重新设立）。</p>
+        </div>
+
+        <!-- 干扰项排除 -->
+        <div class="option-analysis">
+            <p><span class="option-tag tag-wrong">选项 B 错误</span><br>
+            <b>Notice (知情) 无关紧要。</b> 买方是否知情 (Actual Notice) 只有在地役权<b>仍然存在</b>时才讨论。既然地役权已经消灭，知情与否不改变结果。</p>
+            
+            <p><span class="option-tag tag-wrong">选项 C 错误</span><br>
+            <b>Warranty Deed (担保契约) 不能复活地役权。</b> 担保契约保证的是产权的质量，它不会自动创造或恢复一个已经消灭的第三方权利。</p>
+            
+            <p><span class="option-tag tag-wrong">选项 D 错误</span><br>
+            <b>Record (登记) 不能拯救已消灭的权利。</b> 虽然地役权文件还在公共记录中，但法律上的混同事件已经使其失效。过期的记录不产生法律效力。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-card" style="background: #fff3cd; border-left-color: #f1c40f; margin-top: 20px;">
+            <span class="concept-title">💡 MBE 解题技巧</span>
+            <p>在做地役权题目时，如果看到<b>"Dominant owner buys servient land"</b> 或 <b>"Servient owner buys dominant land"</b>（即两块地归同一人），脑海中要立刻闪现单词：<b>MERGER (混同)</b>。</p>
+            <p>记住口诀：<b>"You cannot have an easement over your own land."</b> (你不能在自己的土地上拥有地役权)。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--bg-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .card-title::before {
+            content: '⚖️';
+            margin-right: 8px;
+        }
+        .rule-box {
+            background-color: #e8f4f8;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #2980b9;
+            margin-top: 10px;
+        }
+        .correct-answer {
+            border-left-color: var(--correct-color);
+        }
+        .correct-answer .card-title {
+            color: var(--correct-color);
+        }
+        .correct-answer .card-title::before {
+            content: '✅';
+        }
+        .trap-alert {
+            border-left-color: var(--wrong-color);
+        }
+        .trap-alert .card-title {
+            color: var(--wrong-color);
+        }
+        .trap-alert .card-title::before {
+            content: '⚠️';
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            padding: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Torts: Products Liability (Misrepresentation)</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="card">
+            <div class="card-title">核心法律规则</div>
+            <p style="font-size: 14px; line-height: 1.6;">
+                本题考查的是基于<b>虚假陈述 (Misrepresentation)</b> 的产品责任。
+            </p>
+            <div class="rule-box">
+                <strong>Restatement (Second) of Torts § 402B:</strong><br>
+                如果商业销售者通过广告、标签或其他方式向公众对产品的性质或质量做出了<b>重大事实的虚假陈述 (Misrepresentation of Material Fact)</b>，且消费者因<b>正当信赖 (Justifiable Reliance)</b> 该陈述而遭受物理伤害，则销售者需承担严格责任。
+            </div>
+            <p style="font-size: 13px; color: #666; margin-top: 8px;">
+                注意：即使该陈述并非欺诈性或过失性的，且产品本身没有设计缺陷，该责任依然成立。
+            </p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="card correct-answer">
+            <div class="card-title">正确答案：A</div>
+            <p style="font-size: 14px; font-weight: bold;">
+                "No, because a jury could find that the manufacturer expressly represented that the vaporizer was spillproof."
+            </p>
+            <p style="font-size: 14px; line-height: 1.6;">
+                <b>解析逻辑：</b>
+            </p>
+            <ul>
+                <li><b>陈述 (Representation):</b> 制造商在说明书中明确写道产品是 "spillproof"（防溢出）且 "safe"（安全）。</li>
+                <li><b>事实不符 (Falsity):</b> 事实证明，当蒸发器翻倒时，沸水洒出并烫伤了孩子，说明它并非 "spillproof"。</li>
+                <li><b>信赖 (Reliance):</b> 母亲阅读了说明书并购买使用，陪审团可以合理推断她信赖了这一安全承诺。</li>
+                <li><b>结论:</b> 既然存在明确的虚假陈述导致伤害，无论产品设计是否尽力，制造商都不能免责。因此，法院不应批准驳回起诉的动议。</li>
+            </ul>
+        </div>
+
+        <!-- 陷阱选项解析 -->
+        <div class="card trap-alert">
+            <div class="card-title">常见陷阱：选项 D</div>
+            <p style="font-size: 14px; color: #555;">
+                <i>"Yes, because there was no safer alternative design."</i>
+            </p>
+            <p style="font-size: 14px; line-height: 1.6;">
+                <b>为什么这是错的？</b><br>
+                这是 MBE 中非常经典的干扰项。
+            </p>
+            <ul>
+                <li><b>设计缺陷 vs. 虚假陈述：</b> "没有更安全的替代设计" (No safer alternative design) 是针对 <b>设计缺陷 (Design Defect)</b> 诉讼的有力抗辩。</li>
+                <li><b>本案特殊性：</b> 即使产品代表了当时的最高科技水平（State of the Art），如果制造商<b>吹嘘</b>了它实际上达不到的安全性能（如承诺“防溢出”却做不到），制造商仍需对该<b>虚假陈述</b>负责。</li>
+                <li><b>考点：</b> 你不能承诺你的产品做不到的事情，哪怕那个事情在当时的技术下确实做不到。</li>
+            </ul>
+        </div>
+
+        <!-- 快速排除其他选项 -->
+        <div class="card">
+            <div class="card-title">其他选项分析</div>
+            <ul style="font-size: 13px;">
+                <li><b>选项 B (错误):</b> 仅因为产品造成伤害并不足以让制造商承担责任。产品责任通常要求证明存在缺陷（Defect）或虚假陈述。严格责任 (Strict Liability) 不是绝对责任 (Absolute Liability)。</li>
+                <li><b>选项 C (错误):</b> 虽然沸水烫人是常识，但母亲依赖制造商关于“防溢出”的<b>特别承诺</b>是合理的 (Justifiable Reliance)。该承诺实际上是在说：“虽然里面有沸水，但我们的特殊设计能防止它洒出来。”</li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        
+            <p style="font-size: 14px; line-height: 1.5;">
+                当题目中出现具体的<b>标签 (Label)</b>、<b>说明书 (Booklet)</b> 或 <b>广告语</b> 时，请立即警惕 <b>Express Warranty</b> 或 <b>Misrepresentation</b> 考点。
+                <br><br>
+                在这种情况下，通常不需要证明产品存在“设计缺陷”或“制造缺陷”，只要证明<b>产品未能达到其承诺的性能</b>即可。
+            </p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

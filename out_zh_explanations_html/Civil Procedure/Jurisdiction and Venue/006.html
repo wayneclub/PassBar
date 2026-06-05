@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-badge {
+            display: inline-block;
+            background-color: var(--success-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .concept-box {
+            background-color: #eaf2f8;
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+        .diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 15px 5px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px dashed #ccc;
+        }
+        .party-group {
+            flex: 1;
+            text-align: center;
+            font-size: 0.85em;
+        }
+        .vs-badge {
+            background-color: var(--danger-color);
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin: 0 5px;
+            flex-shrink: 0;
+        }
+        .party-box {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 5px;
+            margin: 3px 0;
+            border-radius: 4px;
+        }
+        .us-citizen {
+            border-left: 3px solid var(--success-color);
+        }
+        .alien {
+            border-left: 3px solid var(--warning-color);
+        }
+        .trap-alert {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        MBE 考点解析：多元管辖权
+    </div>
+    
+    <div class="content">
+        <div class="answer-badge">正确答案：B</div>
+        
+        <p>本题考察的是联邦法院<b>属事管辖权 (Subject-Matter Jurisdiction)</b> 中的一个特殊细分领域：涉及外国公民的<b>多元管辖权 (Diversity Jurisdiction)</b>。</p>
+
+        <div class="section-title">核心法律规则</div>
+        <div class="concept-box">
+            根据 <b>28 U.S.C. § 1332(a)(3)</b>，联邦法院对以下情况拥有管辖权：
+            <ul>
+                <li><b>争议金额 (Amount in Controversy)</b> 超过 $75,000；且</li>
+                <li>诉讼发生在<b>不同州的公民之间</b>，且<b>外国公民 (Citizens or subjects of a foreign state)</b> 作为额外的当事方。</li>
+            </ul>
+        </div>
+
+        <div class="section-title">案情图解分析</div>
+        <p>让我们拆解本案的双方当事人：</p>
+
+        <div class="diagram">
+            <div class="party-group">
+                <strong>原告方 (Plaintiffs)</strong>
+                <div class="party-box us-citizen">寄宿家庭<br>(A州公民)</div>
+                <div class="party-box alien">交换生<br>(德国公民)</div>
+            </div>
+            <div class="vs-badge">VS</div>
+            <div class="party-group">
+                <strong>被告方 (Defendants)</strong>
+                <div class="party-box us-citizen">卡车司机<br>(B州公民)</div>
+                <div class="party-box alien">卡车公司<br>(德国公民)</div>
+            </div>
+        </div>
+
+        <p><b>逻辑推理步骤：</b></p>
+        <ol>
+            <li><b>检查争议金额：</b>原告分别寻求20万和50万美元，均超过7.5万美元门槛。✅</li>
+            <li><b>检查核心多元性：</b>原告中有A州公民，被告中有B州公民。美国公民之间存在完全多元性 (A vs B)。✅</li>
+            <li><b>检查外国当事方：</b>虽然原告和被告双方都有德国公民，但根据 § 1332(a)(3)，只要美国公民之间是多元的，双方均有外国公民作为<b>额外当事方 (Additional Parties)</b> 不会破坏管辖权。✅</li>
+        </ol>
+
+        <div class="section-title">为什么其他选项是错误的？</div>
+        
+        <p><b>❌ 选项 A (联邦问题)：</b><br>
+        错误。涉及外国人的案件并不自动产生<b>联邦问题管辖权 (Federal Question Jurisdiction)</b>。联邦问题必须源于宪法、联邦法律或条约。本案是基于州法的过失侵权 (Negligence)，属于州法范畴。</p>
+
+        <p><b>❌ 选项 C (不方便法院)：</b><br>
+        错误。<i>Forum non conveniens</i> 是一个允许法院拒绝行使管辖权的原则，而不是判断法院<b>是否拥有</b>管辖权的依据。此外，题目问的是“是否可能批准以<b>缺乏属事管辖权</b>为由的动议”，该原则与此无关。</p>
+
+        <div class="trap-alert">
+            <strong>⚠️ 考点陷阱 (选项 D)</strong><br>
+            选项D指出了“原告和被告都有德国公民”。
+            <br><br>
+            通常情况下，如果案件仅仅是 <b>Alien vs. Alien</b>（例如：德国人 vs. 德国人），联邦法院确实<b>没有</b>多元管辖权。
+            <br><br>
+            <b>但是！</b>本案的关键在于双方都有<b>来自不同州的美国公民</b> (A州 vs. B州)。这层“三明治”结构（美国人夹着外国人）保护了多元管辖权。
+        </div>
+
+        <div class="section-title">MBE 考试技巧</div>
+        <p>在处理涉及外国人的多元管辖权题目时，请按此流程判断：</p>
+        <ul>
+            <li>只有外国人 vs. 外国人 ➡️ ❌ 无管辖权</li>
+            <li>外国人 vs. 美国人 ➡️ ✅ 有管辖权</li>
+            <li>(美国人A + 外国人) vs. (美国人B + 外国人) ➡️ ✅ 有管辖权（本题情况）</li>
+            <li>(美国人A + 外国人) vs. (美国人A + 外国人) ➡️ ❌ 无管辖权（美国公民无多元性）</li>
+        </ul>
+
+    </div>
+</div>
+
+</body>
+</html>

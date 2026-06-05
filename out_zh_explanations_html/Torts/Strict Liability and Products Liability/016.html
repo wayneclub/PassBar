@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --light-text: #666;
+            --correct-green: #27ae60;
+            --wrong-red: #c0392b;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .tag-correct { background-color: #d4edda; color: var(--correct-green); }
+        .tag-wrong { background-color: #f8d7da; color: var(--wrong-red); }
+
+        .option-analysis {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .latin {
+            font-style: italic;
+            color: var(--light-text);
+        }
+
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .exam-tip strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #533f03;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Strict Products Liability vs. Services</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法律规则 (The Rule)</span>
+            <p><strong>严格产品责任 (Strict Products Liability)</strong> 仅适用于处于产品销售链条中的<strong>商业销售者 (Commercial Sellers)</strong>，如制造商、分销商或零售商。</p>
+            <p>仅仅在提供<strong>服务 (Service)</strong> 过程中<strong>使用 (Use)</strong> 缺陷产品的人，<strong>不</strong>承担严格产品责任。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情逻辑分析</div>
+            <p>本题的关键在于识别<strong>被告的身份</strong>。</p>
+            <ul>
+                <li><strong>原告：</strong> 受伤儿童及其父母。</li>
+                <li><strong>被告：</strong> 建筑公司 (Construction Company)。</li>
+                <li><strong>诉由：</strong> 严格产品责任 (Strict Products Liability)。</li>
+            </ul>
+            <p>虽然钉枪确实存在<strong>制造缺陷 (Manufacturing Defect)</strong>，但建筑公司的业务是提供“修屋顶”的服务，而不是销售钉枪。建筑工人只是将钉枪作为<strong>工具</strong>来使用。</p>
+            <p>因此，建筑公司属于<strong>服务的提供者 (Service Provider)</strong>，而非产品的销售者。根据侵权法重述 (Restatement of Torts)，服务提供者不对其使用的工具造成的伤害承担严格责任（尽管他们可能因疏忽承担过失责任，但本题限定了诉由为严格责任）。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">选项深度解析</div>
+            
+            <div class="option-analysis">
+                <span class="tag tag-correct">选项 D (正确)</span>
+                <strong>能抗辩，因为建筑工人仅仅是使用钉枪来更换屋顶瓦片。</strong>
+                <br>这是本题的正确答案。它直接指出了严格产品责任不适用的原因：被告是产品的使用者（服务提供方），而非商业销售链条中的一环。
+            </div>
+
+            <div class="option-analysis">
+                <span class="tag tag-wrong">选项 A (错误)</span>
+                <strong>替代责任 (Vicarious Liability)。</strong>
+                <br>虽然雇主通常对雇员的侵权行为承担替代责任 (<span class="latin">Respondeat Superior</span>)，但这前提是雇员本身有责任。既然雇员（工人）只是使用工具，不承担严格产品责任，那么雇主（公司）自然也不承担严格责任。
+            </div>
+
+            <div class="option-analysis">
+                <span class="tag tag-wrong">选项 B (错误)</span>
+                <strong>存在制造缺陷。</strong>
+                <br>虽然缺陷是事实，但这只能用来起诉钉枪的<strong>制造商 (Manufacturer)</strong> 或 <strong>零售商 (Retailer)</strong>。这个事实不能改变建筑公司作为“服务提供者”的法律地位。
+            </div>
+
+            <div class="option-analysis">
+                <span class="tag tag-wrong">选项 C (错误)</span>
+                <strong>比较过失 (Comparative Negligence)。</strong>
+                <br>这是一个干扰项。首先，因为被告根本不承担严格责任，所以无需讨论抗辩理由。其次，即使在过失侵权中，父母的过失通常也不会<strong>归责 (Imputed)</strong> 给受伤的儿童原告来减少儿童的赔偿。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>🎓 MBE 考试技巧 (Exam Tip)</strong>
+            <p>在处理 <strong>Strict Products Liability</strong> 的题目时，第一步永远是检查<strong>被告是谁</strong>。</p>
+            <p>如果被告是医生（使用有缺陷的起搏器）、建筑商（使用有缺陷的电钻）或理发师（使用有缺陷的染发剂），他们通常被视为<strong>服务提供者</strong>，不适用严格产品责任。除非题目明确指出他们同时也销售该产品。</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

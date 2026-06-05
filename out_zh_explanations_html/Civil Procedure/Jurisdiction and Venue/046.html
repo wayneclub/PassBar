@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --bg-color: #f4f6f7;
+        --card-bg: #ffffff;
+        --text-color: #333333;
+        --highlight-bg: #e8f4fd;
+        --border-radius: 8px;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #eef2f5;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background-color: var(--card-bg);
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+    .content {
+        padding: 20px;
+    }
+    .answer-banner {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 15px;
+        border-radius: var(--border-radius);
+        margin-bottom: 20px;
+        border-left: 5px solid #28a745;
+        font-weight: bold;
+    }
+    .section-title {
+        color: var(--primary-color);
+        font-size: 1.1em;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 5px;
+        display: flex;
+        align-items: center;
+    }
+    .rule-box {
+        background-color: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin: 10px 0;
+        font-size: 0.95em;
+        line-height: 1.5;
+    }
+    .analysis-step {
+        margin-bottom: 10px;
+        padding-left: 10px;
+        border-left: 2px solid #ddd;
+    }
+    .key-term {
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+    .wrong-option {
+        background-color: #fff3cd;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+        font-size: 0.9em;
+        color: #856404;
+    }
+    .tip-box {
+        background-color: #2c3e50;
+        color: white;
+        padding: 15px;
+        border-radius: var(--border-radius);
+        margin-top: 25px;
+        font-size: 0.9em;
+    }
+    .latin {
+        font-style: italic;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        MBE 考点解析<br>联邦民事诉讼法：审判地
+    </div>
+
+    <div class="content">
+        <!-- 结论 -->
+        <div class="answer-banner">
+            ✅ 正确答案：选项 B<br>
+            法院不会批准动议，因为审判地适当。
+        </div>
+
+        <!-- 核心考点 -->
+        <div class="section-title">⚖️ 核心法律规则 (The Rule)</div>
+        <p>本题考察的是 <b>28 U.S.C. § 1391(b)(1)</b> 关于<b>基于居住地的审判地 (Residency-Based Venue)</b> 的规定。</p>
+        
+        <div class="rule-box">
+            <p>在联邦民事诉讼中，如果<b>所有被告</b>都居住在同一个州 (State)，则该州的<b>任何一个</b>被告居住的司法区 (Judicial District) 都是适当的审判地。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="section-title">🔍 案情应用 (Application)</div>
+        <div class="analysis-step">
+            1. <b>确定被告居住地：</b><br>
+            设计师住在 B 州东区 (Eastern District of State B)。<br>
+            建筑师住在 B 州西区 (Western District of State B)。
+        </div>
+        <div class="analysis-step">
+            2. <b>检查是否同州：</b><br>
+            两名被告都居住在 <b>B 州</b>。条件满足。
+        </div>
+        <div class="analysis-step">
+            3. <b>确定适当审判地：</b><br>
+            根据规则，B 州的<b>任何</b>包含被告居住地的区域都是适当的。因此，<b>B 州东区</b>（设计师居住地）和 <b>B 州西区</b>（建筑师居住地）均为适当审判地 (Proper Venue)。
+        </div>
+        <p>因此，原告在 B 州东区起诉是完全合法的，法院不会因为审判地不当而驳回起诉。</p>
+
+        <!-- 易错点辨析 -->
+        <div class="section-title">🚫 为什么其他选项是错的？</div>
+        
+        <div class="wrong-option">
+            <b>选项 A (Personal Jurisdiction)：</b><br>
+            虽然被告确实受 B 州管辖，但审判地 (Venue) 和对人管辖权 (Personal Jurisdiction) 是两个不同的概念。除非没有其他适用的审判地规则（即适用 Fallback Provision），否则不直接用“管辖权”来决定审判地。
+        </div>
+
+        <div class="wrong-option">
+            <b>选项 C (Events-Based Venue)：</b><br>
+            A 州确实也是一个适当的审判地（因为合同履行地/事件发生地在 A 州），但这并不意味着 B 州就是<b>不当</b>的。一个案件可以有多个适当的审判地。
+        </div>
+
+        <div class="wrong-option">
+            <b>选项 D (Western District)：</b><br>
+            虽然 B 州西区也是适当的，但这并不排斥 B 州东区的适当性。只要符合规则，原告可以在多个适当的审判地中任选其一。
+        </div>
+
+        <!-- 备考锦囊 -->
+        
+    </div>
+</div>
+
+</body>
+</html>

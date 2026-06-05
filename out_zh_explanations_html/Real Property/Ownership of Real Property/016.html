@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #43a047;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .answer-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        .concept-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            color: #1565c0;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background-color: #1565c0;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .logic-step {
+            display: flex;
+            margin-bottom: 12px;
+        }
+        .step-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+            margin-right: 12px;
+            margin-top: 2px;
+        }
+        .step-content {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .comparison {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .comp-box {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+        .comp-lien {
+            background-color: #e3f2fd;
+            border: 1px solid #90caf9;
+        }
+        .comp-title {
+            background-color: #ffebee;
+            border: 1px solid #ef9a9a;
+            opacity: 0.7; /* Dimmed because it's not the rule here */
+        }
+        .comp-header {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            text-align: center;
+        }
+        .exam-tip {
+            background-color: #fff3e0;
+            border: 1px dashed #fb8c00;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .tip-title {
+            color: #e65100;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        ul {
+            margin: 5px 0 0 20px;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <p>Real Property: Joint Tenancy & Mortgages</p>
+    </div>
+
+    <div class="content">
+        <!-- Answer Section -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案</span>
+            <span class="answer-text">选项 D</span>
+            <p style="margin-top: 8px; font-size: 0.95rem;">
+                抵押权对儿子或女子均不可执行，因为该抵押权在男子死亡时即告失效。
+            </p>
+        </div>
+
+        <!-- Core Legal Logic -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点逻辑链</div>
+            
+            <div class="logic-step">
+                <div class="step-icon">1</div>
+                <div class="step-content">
+                    <strong>留置权理论 (Lien Theory)：</strong><br>
+                    在该理论下，抵押权被视为一种担保权益（Lien），而非所有权的转移。因此，共同共有人之一单方面设定抵押，<strong>不会切断 (Sever)</strong> 共同共有关系 (Joint Tenancy)。
+                </div>
+            </div>
+
+            <div class="logic-step">
+                <div class="step-icon">2</div>
+                <div class="step-content">
+                    <strong>生存者权 (Right of Survivorship)：</strong><br>
+                    由于共同共有关系未被切断，当男子死亡时，生存者权生效。女子的权益自动扩大至整个房产。
+                </div>
+            </div>
+
+            <div class="logic-step">
+                <div class="step-icon">3</div>
+                <div class="step-content">
+                    <strong>权益消失原则：</strong><br>
+                    男子的权益在死亡瞬间“消失”了（被女子吸收）。由于抵押权仅附着在男子的权益上，当该权益消失时，<strong>抵押权也随之消灭</strong>。
+                </div>
+            </div>
+        </div>
+
+        <!-- Theory Comparison -->
+        <div class="concept-card">
+            <div class="concept-title">关键区分：Lien vs. Title Theory</div>
+            <p style="font-size: 0.9rem; margin-bottom: 10px;">这是本题的解题关键，MBE常考这两种理论的区别：</p>
+            
+            <div class="comparison">
+                <div class="comp-box comp-lien">
+                    <span class="comp-header">Lien Theory<br>(本题情况)</span>
+                    <ul>
+                        <li>抵押 = 留置权</li>
+                        <li><strong>不切断</strong> Joint Tenancy</li>
+                        <li>死亡时：抵押权随死者权益消失</li>
+                        <li>幸存者获得无负担房产</li>
+                    </ul>
+                </div>
+                <div class="comp-box comp-title">
+                    <span class="comp-header">Title Theory<br>(对比情况)</span>
+                    <ul>
+                        <li>抵押 = 转让所有权</li>
+                        <li><strong>切断</strong> Joint Tenancy</li>
+                        <li>变为按份共有 (TIC)</li>
+                        <li>死亡时：抵押权保留，儿子继承份额及债务</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why other options are wrong -->
+        <div class="concept-card">
+            <div class="concept-title">排除错误选项</div>
+            <ul style="font-size: 0.9rem; list-style-type: disc; padding-left: 20px;">
+                <li><strong>选项 A (对两人均有效)：</strong> 错误。女子从未签署本票或抵押合同，男子的单方行为不能负担女子的权益。</li>
+                <li><strong>选项 B (对儿子有效)：</strong> 错误。由于是 Joint Tenancy，男子死后房产直接归女子，儿子作为继承人 (Heir) 什么都分不到，自然也不存在“抵押权在儿子继承的房产上执行”的情况。</li>
+                <li><strong>选项 C (对女子有效)：</strong> 错误。女子虽然得到了房产，但她是基于“生存者权”获得的，这被视为她原本权益的延续和扩大，而不是从男子那里“继承”来的。因此，她取得的房产不附带男子单方设定的债务（除非是 Title Theory 导致关系破裂）。</li>
+            </ul>
+        </div>
+
+        <!-- Exam Strategy -->
+        <div class="exam-tip">
+            <span class="tip-title">💡 MBE 抢分技巧</span>
+            在遇到 Joint Tenancy 和 Mortgage 的题目时，按以下步骤思考：
+            <ol style="margin-top: 5px; padding-left: 20px;">
+                <li>看题目是否指明 <strong>Lien Theory</strong> 还是 <strong>Title Theory</strong>。</li>
+                <li>如果是 <strong>Lien Theory</strong>（多数州规则）：Mortgage 不切断共有关系 → 死后抵押权消失 → 幸存者赢 (Winner)。</li>
+                <li>如果是 <strong>Title Theory</strong>（少数州规则）：Mortgage 切断共有关系 → 变为 Tenancy in Common → 死后抵押权保留 → 银行赢。</li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

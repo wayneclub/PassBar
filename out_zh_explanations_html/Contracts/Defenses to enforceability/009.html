@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .concept-title {
+            color: #2980b9;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .option-analysis {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .option-item {
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 2px solid #ddd;
+        }
+        .correct-reasoning {
+            background-color: #f0f9eb;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        .correct-title {
+            color: #155724;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+        }
+        .latin {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts / Statute of Frauds</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心法律原则：欺诈法与保证合同</span>
+            <p>根据<strong>《欺诈法》 (Statute of Frauds)</strong>，某些类型的合同必须以<strong>书面形式 (Writing)</strong> 订立并由被执行方签署，否则不可强制执行。</p>
+            <p>其中包括<strong>保证合同 (Suretyship)</strong>，即承诺为他人的债务承担责任（"If she doesn't pay, I will"）。</p>
+        </div>
+
+        <!-- 逻辑推理 -->
+        <div class="analysis-section">
+            <div class="analysis-title">本案逻辑分析</div>
+            <p>本题中，父亲做出了一个典型的<strong>保证承诺 (Suretyship Promise)</strong>：如果女儿不还钱，他来还。</p>
+            <p>这是一个<strong>口头 (Oral)</strong> 承诺，父亲没有签署任何文件。因此，父亲想要抗辩（拒绝还钱），最好的理由是援引《欺诈法》，主张口头承诺无效。</p>
+            
+            <p>但是，《欺诈法》对保证合同有一个重要的<strong>例外 (Exception)</strong>：</p>
+            <div class="concept-box" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+                <span class="concept-title" style="color: #d35400;">主要目的规则 (Main Purpose Rule)</span>
+                如果保证人（父亲）作出承诺的主要目的是为了<strong>自身的经济利益 (Own Economic Advantage)</strong>，则该承诺<strong>不受</strong>《欺诈法》约束，口头承诺即有效。
+            </div>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="correct-reasoning">
+            <span class="correct-title">为什么选项 B 是最佳抗辩？</span>
+            <p>父亲要成功利用《欺诈法》作为抗辩，他必须证明上述的“主要目的规则”例外<strong>不适用</strong>。</p>
+            <p>也就是说，父亲必须证明：<strong>他作出承诺的主要目的不是为了自己获利</strong>（而是为了帮助女儿）。</p>
+            <p>如果这一事实成立（即选项 B），那么：</p>
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li>例外规则不适用；</li>
+                <li>回归《欺诈法》的一般原则；</li>
+                <li>保证合同必须书面；</li>
+                <li>因无书面文件，合同不可强制执行。</li>
+            </ol>
+            <p>因此，这是父亲胜诉的关键事实依据。</p>
+        </div>
+
+        <!-- 错误选项分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">其他选项为何错误？</div>
+            <div class="option-analysis">
+                <div class="option-item">
+                    <strong>选项 A (Consideration)：</strong>错误。保证合同通常不需要单独给保证人对价。债权人（朋友）借款给主债务人（女儿）这一行为本身，就是支撑父亲保证承诺的有效<strong>对价 (Consideration)</strong>。
+                </div>
+                <div class="option-item">
+                    <strong>选项 C (One-Year Rule)：</strong>错误。虽然借款是一年后到期，但《欺诈法》的一年期规定仅适用于<strong>“不可能”</strong>在一年内履行的合同。如果女儿或父亲<strong>可能</strong>在一年内提前还款（即使概率很小），该合同就不受一年期规定的限制。
+                </div>
+                <div class="option-item">
+                    <strong>选项 D (Interest Rate)：</strong>错误。缺少利率条款不会导致合同无效，法院通常会填补法定利率。这不足以作为拒绝履行合同的抗辩。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <strong>MBE 解题技巧：</strong> 遇到“口头担保”题目，首先通过 Statute of Frauds 判断是否需要书面，其次立即检查 Main Purpose Rule 例外是否适用。
+    </div>
+</div>
+
+</body>
+</html>

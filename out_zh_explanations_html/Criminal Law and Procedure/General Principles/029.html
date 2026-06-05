@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-green: #27ae60;
+            --wrong-red: #c0392b;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #eee;
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-card {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .step-box {
+            margin: 15px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .step-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #7f8c8d;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .arrow-down {
+            text-align: center;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin: -10px 0;
+        }
+
+        .analysis-section {
+            margin-top: 25px;
+        }
+
+        .option-analysis {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .option-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .tag-correct {
+            background-color: rgba(39, 174, 96, 0.1);
+            color: var(--correct-green);
+            border: 1px solid var(--correct-green);
+        }
+
+        .tag-wrong {
+            background-color: rgba(192, 57, 43, 0.1);
+            color: var(--wrong-red);
+            border: 1px solid var(--wrong-red);
+        }
+
+        .english-term {
+            font-family: "Georgia", serif;
+            font-style: italic;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .exam-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .exam-tip strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            margin: 5px 0 5px 20px;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">刑法：自卫与最初攻击者</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <div class="concept-title">核心规则：最初攻击者规则 (Initial Aggressor Rule)</div>
+            <p>通常情况下，<b>最初攻击者</b>（即首先挑起肢体冲突的人）<b>没有</b>自卫权。</p>
+            <p>但在以下两种例外情况下，最初攻击者可以<b>恢复 (Regain)</b> 自卫权：</p>
+            <ul>
+                <li><b>善意退出 (Withdrawal)：</b> 攻击者明确表示停止战斗并试图离开。</li>
+                <li><b>局势升级 (Escalation)：</b> 攻击者使用<b>非致命武力</b>，但受害者反击时使用了<b>致命武力</b>。</li>
+            </ul>
+        </div>
+
+        <!-- 案情推演 -->
+        <div class="step-box">
+            <div class="step-label">第一阶段：冲突开始</div>
+            <p>被告走向受害人，举起拳头威胁。被告构成了<b>袭击 (Assault)</b>，并成为<b>最初攻击者 (Initial Aggressor)</b>。</p>
+            <p>⚠️ <b>关键点：</b> 此时被告使用的是<b>非致命武力 (Non-deadly force)</b>。</p>
+        </div>
+
+        <div class="arrow-down">↓</div>
+
+        <div class="step-box">
+            <div class="step-label">第二阶段：局势升级</div>
+            <p>受害人掏出刀并挥舞。受害人使用了<b>致命武力 (Deadly force)</b>。</p>
+            <p>⚖️ <b>法律后果：</b> 由于受害人将冲突从“非致命”升级为“致命”，被告作为最初攻击者，此时<b>恢复了自卫权</b>。</p>
+        </div>
+
+        <div class="arrow-down">↓</div>
+
+        <div class="step-box">
+            <div class="step-label">第三阶段：自卫行为</div>
+            <p>被告用拳头击打受害人直到对方松手。这是为了保护自己免受刺伤而使用的<b>合理武力 (Reasonable force)</b>。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <h3>选项深度解析</h3>
+
+            <div class="option-analysis">
+                <span class="option-tag tag-correct">选项 B (正确)</span>
+                <p><b>“不应定罪，因为该男子试图对他使用致命武力。”</b></p>
+                <p>这是本题的题眼。虽然被告先动手（挑衅/举拳），但他只使用了非致命武力。当受害人拿出刀（致命武力）时，被告面临死亡或重伤的紧迫威胁，因此有权使用武力进行自卫。被告的行为符合<b>“局势升级”例外 (Escalation Exception)</b>。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="option-tag tag-wrong">选项 D (错误)</span>
+                <p><b>“应该定罪，因为被告是最初的攻击者。”</b></p>
+                <p>这个选项只说对了一半。被告确实是最初攻击者，但它忽略了<b>例外情况</b>。MBE 经常考察规则的例外。当受害人反应过度（用刀回应拳头）时，最初攻击者的身份不再阻碍其行使自卫权。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="option-tag tag-wrong">选项 A (错误)</span>
+                <p><b>“...可以使用任何程度的武力...”</b></p>
+                <p>法律中的关键词是<b>“合理 (Reasonable)”</b>。自卫所使用的武力必须与威胁成比例。虽然本案中被告无罪，但理由不是因为他可以用“任何”武力，而是因为他用了“合理”的武力。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="option-tag tag-wrong">选项 C (错误)</span>
+                <p><b>“...因为被告未能退让。”</b></p>
+                <p>首先，在使用<b>非致命武力</b>进行自卫时，绝大多数司法管辖区都<b>没有退让义务 (Duty to Retreat)</b>。其次，即使有退让义务，当面对紧迫的致命威胁（刀）时，被告通过反击来解除武装通常被视为合理的。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>🎓 MBE 考试技巧</strong>
+            在刑法题目中，如果看到两人互殴：
+            <ol>
+                <li>先判断谁先动手（谁是 Initial Aggressor）。</li>
+                <li>紧接着看<b>武力等级</b>是否发生了变化（例如：拳头 vs 刀/枪）。</li>
+                <li>如果受害人突然将武力升级为<b>致命武力</b>，最初的挑衅者通常会获得自卫权（洗白）。</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

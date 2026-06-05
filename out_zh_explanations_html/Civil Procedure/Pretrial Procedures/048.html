@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 议题分析：诉讼时效回溯</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="card-header">
+            <h1>MBE 议题分析</h1>
+            <div class="sub-title">民事诉讼：审前程序</div>
+        </div>
+
+        <div class="content-section">
+            <div class="concept-box">
+                <strong>核心议题：诉状修正的回溯效力</strong>
+                <span class="latin">*Relation-back doctrine (FRCP 15(c))*</span>
+                <p>本案考察了联邦民事诉讼规则 <code>FRCP 15(c)</code> 中关于修正诉状回溯效力的规定，特别是当修正涉及更改被告方时，如何判断修正后的诉状是否可以回溯到原诉状提交日期，从而避免诉讼时效的限制。</p>
+            </div>
+
+            <h3>📊 概念比较表：FRCP 15(c) 回溯效力</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>回溯类型</th>
+                        <th>适用条件</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>新增诉讼请求或抗辩</strong></td>
+                        <td>修正后的请求或抗辩与原诉状中载明或试图载明的行为、交易或事件<strong>出自同一事实基础</strong>。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>更改被告方</strong></td>
+                        <td>
+                            <ol>
+                                <li>修正后的请求或抗辩与原诉状中载明或试图载明的行为、交易或事件<strong>出自同一事实基础</strong>；且</li>
+                                <li>在<code>FRCP 4(m)</code>规定的送达传票和诉状的期限内（即原诉状提交后<strong>90天内</strong>），被新增的当事人：
+                                    <ul>
+                                        <li>收到了诉讼通知，使其在实体辩护中不会受到损害；并且</li>
+                                        <li>知道或理应知道，如果不是因为原告对其身份的错误，本应被起诉。</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>🎨 自适应多功能图：回溯效力判断流程</h3>
+            <div class="diagram">
+                <div class="diagram-title">联邦民事诉讼规则 15(c) 回溯效力判断流程图</div>
+                <div class="diagram-content">
+                    <div class="flow-node start-node">修正诉状在诉讼时效届满后提交</div>
+                    <div class="flow-connector"></div>
+                    <div class="arrow"></div>
+                    <div class="flow-node decision-node">修正诉状是否可以回溯？</div>
+                    <div class="flow-connector"></div>
+                    <div class="arrow"></div>
+                    <div class="flow-branch">
+                        <div>
+                            <div class="flow-label">如果修正：新增诉讼请求</div>
+                            <div class="flow-node">
+                                诉讼时效法允许回溯
+                                <div class="flow-label">或</div>
+                                新请求与原诉状出自同一交易或事件
+                            </div>
+                            <div class="flow-connector"></div>
+                            <div class="arrow"></div>
+                            <div class="flow-node highlight-node">允许回溯</div>
+                        </div>
+                        <div>
+                            <div class="flow-label">如果修正：更改被告方</div>
+                            <div class="flow-node">
+                                诉讼时效法允许回溯
+                                <div class="flow-label">或</div>
+                                关注与原诉状出自同一交易或事件 <strong>且</strong>
+                                <ul>
+                                    <li>新当事人在原诉状提交后90天内收到诉讼通知 <strong>且</strong></li>
+                                    <li>新当事人知道（或理应知道）如果不是因为原告的错误，本应被起诉</li>
+                                </ul>
+                            </div>
+                            <div class="flow-connector"></div>
+                            <div class="arrow"></div>
+                            <div class="flow-node highlight-node">允许回溯</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>⚖️ 法律依据与推理</h3>
+            <div class="analysis-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>确定诉讼时效和关键日期。</strong>
+                    本案中，事故发生在2017年3月1日。适用的诉讼时效为一年，因此诉讼时效于2018年3月1日届满。原告于2018年2月28日（在诉讼时效届满前）提交了原始诉状。修正诉状是在2018年3月1日之后提交的，即在诉讼时效届满之后。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>识别修正诉状的类型。</strong>
+                    原告的修正诉状旨在“替换拥有邮轮的公司作为被告”，这属于 <code>FRCP 15(c)(1)(C)</code> 规定的“更改被告方”的情形。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <strong>评估 <code>FRCP 15(c)(1)(C)</code> 的第一项要求：是否出自同一交易或事件。</strong>
+                    修正后的诉状涉及与原始诉状相同的邮轮事故。因此，这一条件得到满足。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <strong>评估 <code>FRCP 15(c)(1)(C)</code> 的第二项要求：新被告是否在90天内收到通知且知道或理应知道。</strong>
+                    <ol>
+                        <li><strong>通知期限：</strong>原诉状于2018年2月28日提交。<code>FRCP 4(m)</code> 规定的90天送达期限大约在2018年5月29日届满。</li>
+                        <li><strong>实际通知：</strong>原始被告（票务代理）在2018年2月28日收到诉状后“立即”将其转交给了拥有邮轮的正确公司。这意味着正确公司在2018年2月28日或之后不久就收到了诉讼通知，这远在90天期限内。</li>
+                        <li><strong>知道或理应知道：</strong>由于票务代理公司与邮轮公司名称相似，且票务代理立即将诉状转交给了邮轮公司，邮轮公司知道或理应知道，如果不是因为原告对其身份的错误，本应被起诉。</li>
+                    </ol>
+                    所有这些条件都得到了满足。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <strong>得出结论。</strong>
+                    由于所有回溯条件均已满足，修正诉状可以回溯到2018年2月28日原诉状提交的日期。该日期在诉讼时效（2018年3月1日）届满之前。因此，法院不应批准邮轮公司的驳回动议。
+                </div>
+            </div>
+
+            <div class="rule-block">
+                <strong>⚠️ 核心规则 / 陷阱警示：FRCP 15(c) 更改被告方</strong>
+                当修正诉状更改被告方时，即使诉讼时效已过，只要满足以下三个条件，修正诉状仍可回溯：
+                <ol>
+                    <li>新请求与原诉状出自同一交易或事件；</li>
+                    <li>新被告在原诉状提交后90天内收到诉讼通知；以及</li>
+                    <li>新被告知道或理应知道，如果不是因为原告对其身份的错误，本应被起诉。</li>
+                </ol>
+                <strong>陷阱：</strong>原告的“疏忽”或“缺乏勤勉”本身并不能阻止回溯。关键在于新被告是否知道或理应知道原告的“错误”。
+            </div>
+
+            <div class="case-box">
+                <strong>🔑 独立案例 / 延伸情景：<code>Krupski v. Costa Crociere S.p.A.</code></strong>
+                在 <code>Krupski v. Costa Crociere S.p.A., 560 U.S. 538 (2010)</code> 案中，最高法院明确指出，<code>FRCP 15(c)(1)(C)(ii)</code> 的“知道或理应知道”测试关注的是<strong>被添加的当事人</strong>（即新被告）的知识，而不是原告的知识或原告是否“犯了错误”。即使原告知道正确被告的身份，但由于某种原因错误地起诉了另一方，只要新被告知道或理应知道自己是本应被起诉的一方，回溯仍然适用。本案中，邮轮公司通过票务代理的转交，理应知道原告的错误。
+            </div>
+
+            <h3>✅ 正确答案和排除干扰项</h3>
+            <div class="option correct">
+                <b>选项 A 是正确的：不应批准，因为修正诉状回溯到原诉状提交的日期。</b><br>
+                根据 <code>FRCP 15(c)(1)(C)</code>，当修正诉状更改被告方时，如果修正后的请求与原诉状出自同一交易或事件，并且在原诉状提交后90天内，新被告收到通知且知道或理应知道自己是本应被起诉的一方，则修正诉状可以回溯。本案中，所有条件均满足，因此修正诉状回溯到诉讼时效届满前，驳回动议应被拒绝。
+            </div>
+
+            <div class="option wrong">
+                <b>选项 B 是错误的：不应批准，因为该女子可以作为当然权利自由修正她的诉状一次。</b><br>
+                <code>FRCP 15(a)(1)</code> 确实允许原告在特定情况下（例如，在送达答辩状或动议之前21天内）作为当然权利修正诉状一次。然而，本案中，原始被告已经提交了答辩状，并且修正诉状是在诉讼时效届满之后提交的，因此不能简单地作为当然权利进行修正。修正必须依赖回溯原则。
+            </div>
+
+            <div class="option wrong">
+                <b>选项 C 是错误的：应批准，因为修正诉状是在诉讼时效届满后提交的。</b><br>
+                虽然修正诉状确实是在诉讼时效届满后提交的，但这正是回溯原则存在的目的。如果修正诉状能够成功回溯到原诉状提交的日期，那么它就被视为在诉讼时效内提交。本案中，回溯条件已满足，因此驳回动议不应被批准。
+            </div>
+
+            <div class="option wrong">
+                <b>选项 D 是错误的：应批准，因为适用的法律没有提及回溯。</b><br>
+                <code>FRCP 15(c)</code> 明确规定了联邦法院中修正诉状的回溯原则。即使州法（本案中指设定诉讼时效的法律）没有提及回溯，联邦法院在处理联邦民事诉讼时，通常会适用联邦民事诉讼规则。<code>FRCP 15(c)(1)(A)</code> 确实允许州法在某些情况下规定回溯，但 <code>FRCP 15(c)(1)(B)</code> 和 <code>(C)</code> 提供了独立的联邦回溯依据，即使州法没有提及。因此，州法未提及回溯并不妨碍适用联邦规则的回溯原则。
+            </div>
+        </div>
+
+        <div class="footer-tip">
+            <strong>🎓 考试技巧：回溯效力三步走</strong><br>
+            当遇到修正诉状涉及更改被告方的题目时，记住以下三步判断法：
+            1.  <strong>同一事件？</strong> 修正后的请求是否与原诉状出自同一交易或事件？（通常是）
+            2.  <strong>90天通知？</strong> 新被告是否在原诉状提交后90天内收到通知？
+            3.  <strong>知道错误？</strong> 新被告是否知道或理应知道，原告的错误导致它未被及时起诉？
+            如果这三点都满足，那么修正诉状就回溯，诉讼时效问题迎刃而解！
+        </div>
+
+        <div class="content-section references">
+            <h3>参考文献</h3>
+            <a href="https://www.law.cornell.edu/rules/frcp/rule_15" target="_blank">Fed. R. Civ. P. 15(c) (relation back of amended pleadings)</a>
+            <a href="https://supreme.justia.com/cases/federal/us/560/538/" target="_blank">Krupski v. Costa Crociere S.p.A., 560 U.S. 538, 557 (2010) (holding that the relation-back doctrine applies when a company should have known that it would have been sued had the plaintiff not made a mistake).</a>
+        </div>
+
+        <div class="metadata">
+            <div><strong>民事诉讼</strong><br>主题</div>
+            <div><strong>审前程序</strong><br>章节</div>
+            <div><strong>诉状</strong><br>议题</div>
+        </div>
+    </div>
+</body>
+</html>

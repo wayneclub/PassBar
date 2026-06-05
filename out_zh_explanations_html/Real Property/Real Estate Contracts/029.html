@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .concept-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #fff;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 3px solid #ddd;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+        .timeline-title {
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+        .timeline-desc {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .wrong-option {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f8f8;
+            border-radius: 6px;
+        }
+        .wrong-label {
+            color: var(--wrong-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .footer-tip {
+            background: #2c3e50;
+            color: #fff;
+            padding: 15px;
+            font-size: 0.9rem;
+            text-align: center;
+            border-top: 4px solid var(--accent-color);
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property: Marketable Title</div>
+    </div>
+
+    <div class="content">
+        <!-- Answer Section -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：D</span>
+            所有人为支付抵押所做的安排，完全履行了他交付可售卖所有权的义务。
+        </div>
+
+        <!-- Core Legal Concept -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：可售卖所有权 (Marketable Title)</div>
+            <p>在土地买卖合同中，卖方有一项<b>默示担保 (Implied Warranty)</b>，即在<b>交易完成时 (at closing)</b> 提供可售卖所有权。</p>
+            <p><b>什么是可售卖所有权？</b><br>
+            并非完美无瑕的所有权，而是指一个理性买家愿意接受、没有重大诉讼风险的所有权。</p>
+        </div>
+
+        <!-- The Specific Rule -->
+        <div class="concept-card">
+            <div class="concept-title">关键规则：同步清偿 (Simultaneous Satisfaction)</div>
+            <p>虽然抵押 (Mortgage) 确实是一种产权负担 (Encumbrance)，通常会使所有权不可售卖，但法律允许卖方利用<b>“时间差”</b>进行补救：</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-title">合同签订时</div>
+                    <div class="timeline-desc">土地上存在抵押，此时所有权有负担。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">交易完成日 (Closing Day)</div>
+                    <div class="timeline-desc">卖方有权使用买方支付的购房款 (Proceeds) 当场清偿抵押。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">结果</div>
+                    <div class="timeline-desc">只要卖方安排了在 Closing 时还款，所有权在交付的那一刻就是“干净”的。</div>
+                </div>
+            </div>
+            
+            <p>因此，买方不能以“存在抵押”为借口在 Closing 之前拒绝履行合同，除非卖方明显无力偿还（例如抵押金额高于房价）。</p>
+        </div>
+
+        <!-- Why other options are wrong -->
+        <div class="concept-card">
+            <div class="concept-title">干扰项分析</div>
+            
+            <div class="wrong-option">
+                <span class="wrong-label">A 错误</span>
+                <b>衡平法转换 (Equitable Conversion)：</b>
+                该原则主要涉及签约后、过户前房屋毁损的风险承担问题（Risk of Loss），与卖方是否有能力提供好标题无关。
+            </div>
+
+            <div class="wrong-option">
+                <span class="wrong-label">B 错误</span>
+                <b>买方的真实动机：</b>
+                虽然买方确实是想找借口毁约，但如果所有权<b>真的</b>不可售卖，买方的动机就不重要了（她有权合法退出）。她败诉的原因不是因为她动机不纯，而是因为卖方确实提供了合格的所有权。
+            </div>
+
+            <div class="wrong-option">
+                <span class="wrong-label">C 错误</span>
+                <b>抵押的优先权 (Priority)：</b>
+                抵押权是否针对“已有债务”设定，只影响债权人之间的受偿顺序，不影响该抵押权作为产权负担的性质。只要它存在，就需要被清除，而卖方已经安排了清除。
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-tip">
+        <b>💡 MBE 考试技巧</b><br>
+        看到“买方因发现抵押想毁约”的题目时，首先检查：<br>
+        卖方是否打算用<b>出售所得款 (Proceeds)</b> 在 Closing 时还贷？<br>
+        如果是，买方通常<b>不能</b>以此为由拒绝交易。
+    </div>
+</div>
+
+</body>
+</html>

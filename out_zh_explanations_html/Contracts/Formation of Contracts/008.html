@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考题解析：合同对价与已存义务</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        .answer-text {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .concept-card {
+            background-color: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #0366d6;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px dashed #ccc;
+        }
+        .diagram-step {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            text-align: center;
+            width: 85%;
+            margin: 5px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .arrow {
+            font-size: 18px;
+            color: #888;
+            margin: -5px 0;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .analysis-title {
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .term-tag {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Contracts / Consideration</p>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-box">
+            <div class="answer-label">Correct Answer</div>
+            <div class="answer-text">选项 C (Yes)</div>
+            <p style="margin: 5px 0 0; font-size: 14px;">
+                4月1日的协议对企业家构成了有效抗辩。
+            </p>
+        </div>
+
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <div class="concept-title">核心逻辑：为什么这属于“新对价”？</div>
+            <p>
+                考生常误认为企业家只是承诺了“本来就要付的利息”。但根据 <span class="highlight">Preexisting Duty Rule</span>，该协议引入了两个关键的法律变更：
+            </p>
+            <ul>
+                <li><b>时效重置：</b>原债务在 <b>6月30日</b> 后将因诉讼时效届满而失去强制执行力。企业家承诺支付到 12月31日的利息，意味着他承诺了法律本将豁免的额外利息。</li>
+                <li><b>权利放弃：</b>原合同是“利息计至付清时”，债务人本可<b>随时还钱</b>以停止利息。新协议锁定了 12月31日，他放弃了通过提前还款来节省利息的权利。</li>
+            </ul>
+        </div>
+
+        <!-- 时间轴对比图解 -->
+        <div class="diagram">
+            <div style="font-weight:bold; margin-bottom:10px; font-size:14px;">法律义务时间轴</div>
+            
+            <div class="diagram-step">
+                <b>原债务 (Original Debt)</b><br>
+                义务止于还款日，且最晚止于<br>
+                <span style="color:red; font-weight:bold;">6月30日 (诉讼时效届满)</span>
+            </div>
+            
+            <div class="arrow">⬇️ <i>4月1日签署新协议</i> ⬇️</div>
+            
+            <div class="diagram-step">
+                <b>新协议 (New Agreement)</b><br>
+                企业家承诺：利息<b>强制计算</b>至 12月31日<br>
+                <span style="color:green; font-weight:bold;">(超出的6个月利息即为“新对价”)</span>
+            </div>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">法律分析</div>
+            <p>
+                在法律上，只要存在任何形式的<b>法律受损 (Legal Detriment)</b>，即视为有对价。
+            </p>
+            <p>
+                1. 邻居的法律受损：承诺在12月31日前<b>放弃起诉的权利</b>。<br>
+                2. 企业家的法律受损：承诺支付原本在6月30日后就不再受法律保护的本金及利息，并<b>放弃了提前还款权</b>。
+            </p>
+            <p>
+                由于双方均提供了新对价，该协议是一份有效的合同修改，邻居在5月1日起诉违反了协议，因此企业家可以据此抗辩。
+            </p>
+
+            <div class="analysis-title" style="margin-top:20px;">为什么 B 是干扰项？</div>
+            <p>
+                选项 B 认为这只是“履行已存义务”。但它忽略了：<b>诉讼时效即将届满</b> 这一事实改变了义务的本质。在普通法下，对一个带有技术性防御（如时效、破产）的旧债做出新的书面还款承诺，本身就具有法律效力，若再伴随计息期的延长，对价则更加充分。
+            </p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-card" style="background-color: #fff8e1; border-color: #ffecb3;">
+            <div class="concept-title" style="color: #f57f17;">💡 考试避坑指南</div>
+            <p>
+                只要看到<b>还款日期被固定</b>或<b>计息方式被改变</b>，通常就存在新对价。不要简单地看到“金额没变”或“利率没变”就选无对价。
+            </p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

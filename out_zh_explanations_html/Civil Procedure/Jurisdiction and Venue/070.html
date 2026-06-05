@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：送达程序</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fff3cd;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机宽度 */
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .rule-section {
+            margin-bottom: 20px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .checklist li {
+            background: #f9f9f9;
+            margin-bottom: 8px;
+            padding: 10px;
+            border-radius: 6px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .checklist li.check::before {
+            content: "✅";
+            margin-right: 10px;
+        }
+
+        .checklist li.cross::before {
+            content: "❌";
+            margin-right: 10px;
+        }
+
+        .analysis-text {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .trap-alert {
+            background-color: var(--warning-bg);
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Civil Procedure: Service of Process</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：C</span>
+            法院应批准驳回动议，因为该侄子并非居住在该记者的家中 (did not reside in the reporter's home)。
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="rule-section">
+            <div class="rule-title">核心考点：替代送达 (Substituted Service)</div>
+            <p class="analysis-text">
+                根据《联邦民事诉讼规则》第 4(e)(2)(B) 条 (FRCP 4(e)(2)(B))，如果不在被告本人手中直接送达，可以将传票和起诉状留置在被告的<strong>住所 (Dwelling or usual place of abode)</strong>。但必须同时满足以下三个条件：
+            </p>
+            <ul class="checklist">
+                <li class="check">
+                    <div>
+                        <strong>地点正确：</strong><br>
+                        必须是被告的住所或惯常居住地。
+                    </div>
+                </li>
+                <li class="check">
+                    <div>
+                        <strong>接收人能力：</strong><br>
+                        接收人必须达到合适的年龄并具备相应的判断力 (Suitable age and discretion)。
+                    </div>
+                </li>
+                <li class="cross">
+                    <div>
+                        <strong>接收人身份（本题关键）：</strong><br>
+                        接收人必须是该住所的<strong>常住居民 (Residing therein)</strong>。
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 案情具体分析 -->
+        <div class="rule-section">
+            <div class="rule-title">案情分析</div>
+            <p class="analysis-text">
+                在本案中，送达员将文件交给了被告的侄子。让我们来检验有效性：
+            </p>
+            <ul class="checklist">
+                <li class="check">
+                    <strong>年龄与判断力：</strong>侄子 14 岁且是优等生，通常符合“合适年龄和判断力”的标准。
+                </li>
+                <li class="cross">
+                    <strong>居住要求：</strong>题目明确指出侄子只是“参加家庭聚会”并“暂住” (staying for a family reunion)。他是<strong>客人 (Guest)</strong>，而非<strong>居民 (Resident)</strong>。
+                </li>
+            </ul>
+            <p class="analysis-text">
+                因此，即使侄子很聪明且把文件放在了桌上，由于他不是该住所的居民，送达依然是<strong>无效的 (Insufficient)</strong>。
+            </p>
+        </div>
+
+        <!-- 陷阱提示 -->
+        <div class="trap-alert">
+            <strong>💡 考试陷阱 (Exam Tip)</strong><br>
+            MBE 经常会用“接收人很聪明”或“接收人确实把文件转交给了被告”来迷惑考生。请记住：如果接收人只是访客、管家（不住家）或临时亲戚，无论其实际通知效果如何，都不符合 FRCP 4(e)(2)(B) 的严格形式要求。
+        </div>
+
+        <!-- 其他选项简析 -->
+        <div class="rule-section">
+            <div class="rule-title">为什么其他选项是错的？</div>
+            <p class="analysis-text">
+                <strong>选项 A (No... suitable age):</strong> 错误。虽然年龄合适是必要条件，但不是充分条件。缺少“居住 (Residency)”这一要素使得送达无效。
+            </p>
+            <p class="analysis-text">
+                <strong>选项 B (Waiver):</strong> 错误。原告没有请求被告放弃送达 (Waiver of service)，因此被告没有义务放弃。
+            </p>
+            <p class="analysis-text">
+                <strong>选项 D (Process Server Age):</strong> 错误。FRCP 4(c)(2) 规定，任何年满 18 岁且非案件当事人的人都可以进行送达。送达员 20 岁，符合要求。
+            </p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

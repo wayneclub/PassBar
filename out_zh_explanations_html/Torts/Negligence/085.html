@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #f0f2f5;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+    }
+    .container {
+        max-width: 480px;
+        margin: 20px auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: linear-gradient(135deg, #2c3e50, #34495e);
+        color: #ffffff;
+        padding: 24px 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 14px;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+    }
+    .card {
+        background-color: #fff;
+        border: 1px solid #e1e4e8;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 20px;
+    }
+    .card-title {
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+    }
+    .card-title::before {
+        content: '';
+        display: inline-block;
+        width: 4px;
+        height: 18px;
+        background-color: #e74c3c;
+        margin-right: 8px;
+        border-radius: 2px;
+    }
+    .highlight-box {
+        background-color: #e8f4f8;
+        border-left: 4px solid #3498db;
+        padding: 12px;
+        margin: 10px 0;
+        font-size: 14px;
+        color: #2c3e50;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .english {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 0.9em;
+    }
+    .wrong-option {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #ddd;
+    }
+    .wrong-title {
+        color: #e74c3c;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .footer {
+        background-color: #f8f9fa;
+        padding: 15px;
+        text-align: center;
+        font-size: 12px;
+        color: #7f8c8d;
+        border-top: 1px solid #eee;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    li {
+        margin-bottom: 8px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>侵权法 (Torts) - 过失 (Negligence)</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="card">
+            <div class="card-title">核心考点：蛋壳脑袋规则</div>
+            <p>本题考察的是侵权法中关于损害赔偿的一个经典原则：<span class="term">蛋壳脑袋规则 (Eggshell Skull Rule)</span>。</p>
+            
+            <div class="highlight-box">
+                <strong>规则核心：</strong><br>
+                被告必须接受受害人的既有状况 ("Take the victim as you find him/her")。
+            </div>
+            
+            <p>这意味着，一旦确定被告存在过失 (Negligence) 且造成了伤害，被告必须对<b>所有</b>因其行为导致的身体伤害后果负责，即使受害人因为某种既有的身体状况（Preexisting Condition），导致其受到的伤害比普通人严重得多。</p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="card">
+            <div class="card-title">为何选 B？逻辑推演</div>
+            <p><strong>正确答案 B</strong> 指出：赔偿范围包括因电梯坠落造成的伤害，含既有残疾的加重部分。</p>
+            <ul>
+                <li><strong>事实认定：</strong>电梯公司有过失（Negligently maintained），且该过失是导致事故的事实原因和近因。</li>
+                <li><strong>法律适用：</strong>虽然普通人摔一下可能没事，但这位女商人有既有残疾。根据蛋壳脑袋规则，电梯公司不能以“她的身体太脆弱”为由逃避责任。</li>
+                <li><strong>赔偿范围：</strong>被告应对<b>加重部分 (Aggravation)</b> 负责。</li>
+            </ul>
+        </div>
+
+        <!-- 易错点辨析 -->
+        <div class="card">
+            <div class="card-title">易错点辨析</div>
+            
+            <div class="wrong-option">
+                <span class="wrong-title">为什么不选 A？（全额赔偿陷阱）</span>
+                <p>选项 A 错误地认为被告要赔偿“全部残疾”。<br>
+                <strong>关键区别：</strong>被告只对<b>因其过失造成的</b>伤害负责。
+                <br>公式：<br>
+                <code style="background:#eee; padding:2px 4px; border-radius:3px;">赔偿额 = (事故后状况) - (事故前状况)</code>
+                <br>被告不需要为女商人原本就有的残疾买单，只需要赔偿因摔倒导致病情<b>恶化</b>的那部分。</p>
+            </div>
+
+            <div class="wrong-option">
+                <span class="wrong-title">为什么不选 C 和 D？（可预见性陷阱）</span>
+                <p>这两个选项都试图用“不可预见 (Unforeseeable)”来免责。</p>
+                <p>在过失侵权中：
+                <ul>
+                    <li><strong>伤害的类型 (Type of harm)</strong> 需要是可预见的（近因要求）。</li>
+                    <li><strong>伤害的程度 (Extent of harm)</strong> <b>不需要</b>是可预见的。</li>
+                </ul>
+                这就是蛋壳脑袋规则的意义所在：只要你造成了伤害，不管后果多严重，你都要负责。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="background-color: #fff8e1; border-color: #ffe082;">
+            <div class="card-title" style="color: #f57f17;">MBE 答题锦囊</div>
+            <p>在 MBE 考试中，看到以下组合时请立即联想 <b>Eggshell Skull Rule</b>：</p>
+            <ol>
+                <li>题目中明确提到原告有 <b>Preexisting Condition</b>（既有疾病、残疾、脆弱体质）。</li>
+                <li>被告的行为构成了 <b>Negligence</b>。</li>
+                <li>原告受到的伤害<b>异常严重</b>。</li>
+            </ol>
+            <p><strong>结论总是：</strong>被告对伤害的<b>加重 (Aggravation)</b> 负全责，无论该后果多么不可预见。</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE 法律考点解析 | Torts: Damages
+    </div>
+</div>
+
+</body>
+</html>

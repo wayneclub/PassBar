@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50; /* Navy Blue */
+            --accent-color: #e74c3c; /* Red for emphasis */
+            --highlight-bg: #ecf0f1; /* Light Gray */
+            --success-color: #27ae60; /* Green */
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* Mobile width optimization */
+            width: 100%;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .card.answer-highlight {
+            border-left-color: var(--success-color);
+            background-color: #f0f9f4;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin: 10px 0;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.85rem;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .tip-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .tip-icon {
+            font-size: 1.2rem;
+            margin-right: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Real Property: Rights in Land</div>
+    </div>
+
+    <!-- Correct Answer Section -->
+    <div class="card answer-highlight">
+        <h2>✅ 正确答案：C</h2>
+        <p><strong>是的，因为该男子与木材公司之间的协议创设了一项取益权 (Profit à Prendre)。</strong></p>
+        <p>由于取益权属于一种<strong>土地权益 (Interest in Land)</strong>，当政府行使征收权 (Eminent Domain) 时，权益持有人有权获得补偿。</p>
+    </div>
+
+    <!-- Core Legal Concept -->
+    <div class="card">
+        <h2>⚖️ 核心考点：取益权 (Profit à Prendre)</h2>
+        <p>本题的关键在于识别木材公司拥有的权利性质。</p>
+        
+        <div class="concept-box">
+            <span class="term">定义：</span>
+            取益权是一种非占有性的土地权益 (Nonpossessory interest)，赋予持有人进入他人土地并<strong>取走土壤产物</strong>（如木材、矿产、石油、鱼类或野味）的权利。
+        </div>
+
+        <p><strong>法律逻辑推演：</strong></p>
+        <ol>
+            <li><strong>识别权利：</strong>协议允许公司进入土地并“采伐木材”(harvest timber)。这符合取益权的定义。</li>
+            <li><strong>权益性质：</strong>取益权不仅仅是合同权利，它被视为一种<strong>不动产权益 (Property Interest)</strong>。</li>
+            <li><strong>宪法保护：</strong>根据美国宪法第五修正案，政府征收私有财产必须给予“公正补偿”(Just Compensation)。</li>
+            <li><strong>结论：</strong>既然取益权是财产权益，政府征地导致该权益灭失，必须向公司支付补偿。</li>
+        </ol>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="card">
+        <h2>🔍 易混淆概念辨析</h2>
+        <p>MBE常考取益权与许可 (License) 的区别，这是解题的关键。</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>特征</th>
+                    <th>取益权 (Profit)</th>
+                    <th>许可 (License)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>性质</strong></td>
+                    <td>土地权益<br><span class="english">(Interest in land)</span></td>
+                    <td>个人特权<br><span class="english">(Privilege)</span></td>
+                </tr>
+                <tr>
+                    <td><strong>撤销性</strong></td>
+                    <td>通常不可随意撤销</td>
+                    <td>通常可随时撤销<br><span class="english">(Revocable)</span></td>
+                </tr>
+                <tr>
+                    <td><strong>征收补偿</strong></td>
+                    <td><strong>✅ 有权获得补偿</strong></td>
+                    <td>❌ 无权获得补偿</td>
+                </tr>
+                <tr>
+                    <td><strong>典型例子</strong></td>
+                    <td>采矿、伐木、狩猎</td>
+                    <td>电影票、晚宴邀请</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Why other options are wrong -->
+    <div class="card">
+        <h2>🚫 干扰项分析</h2>
+        <ul>
+            <li><strong>选项 A (License)：</strong>错误。如果是 License，确实无权获得补偿。但因为涉及“取走资源”且有书面协议登记，这是 Profit，属于土地权益，而非仅仅是可撤销的 License。</li>
+            <li><strong>选项 B (Not Exclusive)：</strong>错误。取益权可以是排他的 (Exclusive) 也可以是非排他的 (Non-exclusive)。非排他性只影响权益的<strong>价值</strong>（补偿金额可能较少），但不影响权益的<strong>存在</strong>及获得补偿的资格。</li>
+            <li><strong>选项 D (Paid Value)：</strong>虽然支付对价是商业常态，但获得补偿的法律基础是“拥有土地权益”，而不是“是否支付了钱”。即使是赠与的 Profit，在征收时也有权获得补偿。</li>
+        </ul>
+    </div>
+
+    <!-- Exam Strategy -->
+    
+
+    
+
+</div>
+
+</body>
+</html>

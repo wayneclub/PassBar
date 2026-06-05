@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - 宪法学</title>
+    
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">宪法学: 权力分立</p>
+        </header>
+
+        <div class="answer-box">
+            正确答案: D<br>
+            国会根据商务条款有权规制那些在总体上对州际商务有实质性影响的州内活动。
+        </div>
+
+        <div class="content-section">
+            <h2>核心法律规则</h2>
+            <div class="concept-box">
+                <p class="concept-title">商务条款 (Commerce Clause) 的权力范围</p>
+                <p>美国宪法中的 <span class="term">商务条款 (Commerce Clause)</span> 赋予国会广泛的权力来规制州际和对外商务。这种权力主要涵盖以下四个方面：</p>
+                <ol>
+                    <li>规制州际和对外商务的<span class="term">渠道 (channels)</span> (例如，公路、铁路、水路和互联网)。</li>
+                    <li>规制州际和对外商务的<span class="term">工具 (instrumentalities)</span> (例如，车辆、船舶、飞机和互联网服务提供商)。</li>
+                    <li>规制在州际或对外商务中<span class="term">移动的人和物 (persons and things)</span> (例如，商品、服务和人员)。</li>
+                    <li>规制<span class="term">州内活动 (in-state activities)</span>，无论其单独还是<span class="term">总体上 (in the aggregate)</span> 对州际或对外商务产生<span class="term">实质性影响 (substantially impact)</span>。</li>
+                </ol>
+                <p>当联邦法规规制州内活动时，只要国会有<span class="term">合理依据 (rational basis)</span> 认定该活动对州际或对外商务有实质性影响，该法规即为合宪。</p>
+            </div>
+
+            <h2>概念比较</h2>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>条款名称</th>
+                            <th>权力范围</th>
+                            <th>主要限制/特点</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="term">商务条款 (Commerce Clause)</span></td>
+                            <td>规制州际和对外商务，包括对州际商务有实质性总体影响的州内活动。</td>
+                            <td>要求被规制活动与州际商务之间存在合理联系，特别是对于州内非经济活动，其合宪性审查更为严格。</td>
+                        </tr>
+                        <tr>
+                            <td><span class="term">征税与支出条款 (Taxing and Spending Clause)</span></td>
+                            <td>国会拥有征税和支出以促进<span class="term">普遍福利 (general welfare)</span> 的权力。</td>
+                            <td>国会可以设定条件来提供资金，但这些条件必须与联邦支出计划相关，且不能强迫州政府。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>事实与适用逻辑</h2>
+            <ol class="analysis-step">
+                <li><strong>国会调查与立法意图：</strong>国会委员会调查发现，美国境内处方药的高昂零售价格对国家经济和公民健康产生了负面影响。这表明国会立法是为了解决一个全国性的经济问题。</li>
+                <li><strong>法规内容：</strong>国会通过的法规旨在规制“美国境内所有处方药购买和销售的零售价格”。这直接涉及了州内（以及跨州）的商业交易。</li>
+                <li><strong>适用商务条款第四类权力：</strong>尽管该法规规制的是“所有购买和销售”，其中包含大量纯粹的州内交易，但根据<span class="term">商务条款</span>的第四类权力，国会有权规制那些单独或<span class="term">总体上 (in the aggregate)</span> 对州际商务产生<span class="term">实质性影响 (substantially impact)</span> 的州内活动。</li>
+                <li><strong>合理依据：</strong>国会委员会的调查结果（即高昂的药价“负面影响了国家经济”）为国会提供了<span class="term">合理依据 (rational basis)</span>，以认定这些州内处方药的购买和销售活动，在总体上对州际商务产生了实质性影响。因此，国会规制这些价格是合宪的。</li>
+            </ol>
+
+            <h2>商务条款合宪性审查流程图</h2>
+            <div class="diagram">
+                <div class="diagram-flow">
+                    <div class="flow-node">联邦法规是否规制<br>州际商务本身？</div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-decision">
+                        <div>
+                            <div class="flow-label">是 (Yes)</div>
+                            <div class="arrow">↘</div>
+                            <div class="flow-node active">合宪 (Constitutional)</div>
+                        </div>
+                        <div>
+                            <div class="flow-label">否 (No)</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-node">联邦法规是否规制<br>对州际商务有<br>实质性总体影响的活动？</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-decision">
+                                <div>
+                                    <div class="flow-label">是 (Yes)</div>
+                                    <div class="arrow">↘</div>
+                                    <div class="flow-node active">合宪 (Constitutional)</div>
+                                </div>
+                                <div>
+                                    <div class="flow-label">否 (No)</div>
+                                    <div class="arrow">↓</div>
+                                    <div class="flow-node wrong-node">违宪 (Unconstitutional)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 20px; font-size: 16px; color: var(--muted-text);">
+                    <em>注：第一步规制的州际商务包括：渠道、工具、以及在州际商务中移动的人和物。</em>
+                </p>
+            </div>
+
+            <h2>陷阱警示</h2>
+            <div class="trap-alert">
+                <p><strong>误区一：混淆商务条款与征税与支出条款。</strong> 尽管国会可以为“普遍福利”立法，但<span class="term">征税与支出条款 (Taxing and Spending Clause)</span> 仅授权国会征税和支出，而非直接规制价格。本题中，法规是直接规制价格，而非通过税收或支出激励来影响价格。</p>
+                <p><strong>误区二：低估“总体影响”原则。</strong> 考生常认为国会只能规制直接跨越州界的活动。然而，根据<span class="term">总体影响原则 (aggregate effect doctrine)</span>，即使是纯粹的州内活动，只要其在总体上对州际商务产生实质性影响，国会也有权规制。这是<span class="term">商务条款</span>权力扩展的关键。</p>
+            </div>
+
+            <h2>正确答案与干扰项排除</h2>
+            <div class="option-analysis">
+                <div class="option correct">
+                    <strong>D. 美国境内处方药的购买和销售在总体上对州际商务有实质性影响。</strong>
+                    <p>这是支持该法规合宪性的最强论据。国会委员会的调查结果提供了<span class="term">合理依据 (rational basis)</span>，表明处方药的高昂成本对国家经济产生了负面影响。这意味着即使是纯粹的州内购买和销售，在<span class="term">总体上 (in the aggregate)</span> 也对州际商务产生了<span class="term">实质性影响 (substantially impact)</span>。根据<span class="term">商务条款 (Commerce Clause)</span>，国会有权规制此类活动。</p>
+                </div>
+
+                <div class="option wrong">
+                    <strong>A. 国会可以为普遍福利制定法规。</strong>
+                    <p>此选项援引的是<span class="term">征税与支出条款 (Taxing and Spending Clause)</span>，该条款允许国会为<span class="term">普遍福利 (general welfare)</span> 征税和支出。然而，本题中的法规是直接规制商品价格，而非征税或支出。因此，<span class="term">征税与支出条款</span>不能直接作为规制价格的依据，这不是最强的论据。</p>
+                </div>
+
+                <div class="option wrong">
+                    <strong>B. 国会可以规制所有国内商品购买和销售的价格。</strong>
+                    <p>这个说法过于宽泛且不准确。国会并非可以规制“所有”国内商品购买和销售的价格。国会的权力必须基于宪法授权，例如<span class="term">商务条款</span>。只有当这些购买和销售属于州际商务的渠道、工具、移动的人和物，或者在总体上对州际商务有<span class="term">实质性影响 (substantially impact)</span> 时，国会才能规制。此选项没有体现出<span class="term">商务条款</span>的限制条件。</p>
+                </div>
+
+                <div class="option wrong">
+                    <strong>C. 宪法赋予国会规制处方药州际运输的权力。</strong>
+                    <p>国会确实有权规制处方药的<span class="term">州际运输 (interstate transportation)</span>，因为这属于规制州际商务的<span class="term">渠道 (channels)</span> 和<span class="term">移动的物 (things moving)</span>。然而，本法规规制的是“所有购买和销售的零售价格”，而不仅仅是运输。虽然运输是商务的一部分，但“总体影响”原则是更直接、更全面的论据，能够涵盖所有购买和销售行为，包括州内交易，从而支持对价格的全面规制。因此，这不是最强的论据。</p>
+                </div>
+            </div>
+
+            <h2>备考小贴士</h2>
+            <div class="footer-tip">
+                <p>在 MBE 考试中，当遇到国会规制看似纯粹的<span class="term">州内活动 (in-state activities)</span> 的题目时，务必首先考虑<span class="term">商务条款 (Commerce Clause)</span> 下的<span class="term">总体影响原则 (aggregate effect doctrine)</span>。如果国会有<span class="term">合理依据 (rational basis)</span> 认定这些州内活动在总体上对州际商务有<span class="term">实质性影响 (substantially impact)</span>，那么该法规通常是合宪的。</p>
+            </div>
+
+            <div class="references">
+                <h3>参考文献</h3>
+                <ul>
+                    <li><a href="https://supreme.justia.com/cases/federal/us/545/1/" target="_blank" rel="noopener noreferrer">Gonzales v. Raich, 545 U.S. 1, 17 (2005)</a> (解释国会在商务条款下的广泛权力)</li>
+                </ul>
+            </div>
+
+            <div class="footer-meta">
+                <div><strong>Subject</strong><br>宪法学 (Constitutional Law)</div>
+                <div><strong>Chapter</strong><br>权力分立 (Separation of Powers)</div>
+                <div><strong>Topic</strong><br>商务条款 (Commerce)</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

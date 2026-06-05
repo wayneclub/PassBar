@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-box strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .rule-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .rule-header {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rule-header::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.85rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+        }
+
+        .wrong-option {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .wrong-option span {
+            color: var(--wrong-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .exam-tip {
+            background: #27ae60;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 0.95rem;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 证据法考点解析</h1>
+        <div class="sub-title">Hearsay Exceptions & Privileges</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <strong>✅ 正确答案：D</strong>
+            <p>可以采纳，作为对一项<b>激动言辞 (Excited Utterance)</b> 的报告。</p>
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">核心考点：激动言辞例外</div>
+        <div class="rule-card">
+            <div class="rule-header">规则解析 (FRE 803(2))</div>
+            <p>虽然妻子的尖叫属于<b>传闻证据 (Hearsay)</b>，但根据联邦证据规则，如果陈述满足以下两个条件，则属于传闻例外，可以采纳：</p>
+            <ul>
+                <li><b>惊人事件：</b>陈述与一个惊人的事件或状况有关 (Relating to a startling event)。</li>
+                <li><b>压力之下：</b>陈述是在陈述人仍处于该事件造成的兴奋或压力之下作出的 (Made while under the stress of excitement)。</li>
+            </ul>
+            <p><b>本案应用：</b><br>
+            1. 丈夫杀人（或被指控杀人）是一个惊人事件。<br>
+            2. 妻子<b>“尖叫” (screamed)</b> 且重复喊叫，表明她当时处于极度的情绪压力之下，没有时间去捏造谎言。因此符合激动言辞的定义。</p>
+        </div>
+
+        <!-- 易混淆点：配偶特权 -->
+        <div class="section-title">陷阱辨析：配偶特权为何不适用？</div>
+        <p>本题设计了两个关于配偶特权的干扰项（A和B），这是MBE常见的混淆点。</p>
+
+        <table class="comparison-table">
+            <tr>
+                <th>特权类型</th>
+                <th>配偶豁免权<br><span class="english-term">Spousal Immunity</span></th>
+                <th>配偶秘密通讯特权<br><span class="english-term">Confidential Marital Communications</span></th>
+            </tr>
+            <tr>
+                <td><b>适用案件</b></td>
+                <td>仅限刑事案件</td>
+                <td>民事与刑事案件</td>
+            </tr>
+            <tr>
+                <td><b>关键要求</b></td>
+                <td>配偶一方被传唤作证</td>
+                <td>通讯必须具有<b>保密性 (Confidentiality)</b></td>
+            </tr>
+            <tr>
+                <td><b>本题为何不适用</b></td>
+                <td><b>证人不是妻子</b>，而是邻居。邻居没有豁免权。</td>
+                <td>妻子大声尖叫被邻居听到，<b>破坏了保密性</b>。</td>
+            </tr>
+        </table>
+
+        <div class="wrong-option">
+            <span>❌ 选项 A 错误：</span>虽然这是夫妻间的对话，但因为妻子大声尖叫导致被第三人（邻居）听到，法律上视为当事人<b>无意保密</b>，因此失去了“秘密通讯特权”的保护。
+        </div>
+
+        <div class="wrong-option">
+            <span>❌ 选项 B 错误：</span>配偶豁免权是指配偶可以拒绝上台作证。但这里上台作证的是<b>邻居</b>，妻子无法阻止邻居转述她听到的话（只要该话语符合传闻例外）。
+        </div>
+
+        <div class="wrong-option">
+            <span>❌ 选项 C 错误：</span>“信念陈述” (Statement of belief) 通常<b>不</b>属于传闻例外（除非涉及遗嘱）。FRE 803(3) 允许“当时存在的精神状态”，但不允许用“对他人的信念”来证明过去发生的事实（即证明丈夫杀了人）。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 实战技巧</strong>
+            <br><br>
+            看到题目中有 <b>"Screamed" (尖叫)</b>、<b>"Cried" (哭喊)</b>、<b>"Exclaimed" (惊呼)</b> 或者句子末尾有感叹号 <b>(!)</b> 时，首先考虑 <b>Excited Utterance</b>。
+            <br><br>
+            法院认为处于极度兴奋或压力下的人没有时间编造谎言，因此这类证词具有固有的可靠性。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

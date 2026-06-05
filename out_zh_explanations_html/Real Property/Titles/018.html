@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .header h2 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        .tag {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-top: 5px;
+        }
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            font-weight: bold;
+            color: var(--correct-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+        .concept-card {
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .diagram {
+            background: #fafafa;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin: 15px 0;
+            border: 1px dashed #ccc;
+        }
+        .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .step-icon {
+            background: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        .wrong-option {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .wrong-label {
+            color: var(--wrong-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析：不动产法</h2>
+        <span class="tag">Real Property</span>
+        <span class="tag">Deeds & Delivery</span>
+    </div>
+
+    <div class="answer-box">
+        <span class="answer-title">正确答案：C (儿子胜诉)</span>
+        <p><strong>核心理由：</strong>地契（Deed）在出让人（Grantor）生前未能完成有效交付（Delivery），因此赠与无效，房产通过遗嘱由儿子继承。</p>
+    </div>
+
+    <div class="concept-card">
+        <div class="concept-title">核心考点：地契的交付 (Delivery of Deed)</div>
+        <p>在美国不动产法中，地契要生效，必须满足两个核心条件：</p>
+        <ol>
+            <li><strong>Donative Intent (赠与意图)：</strong>出让人必须有意图<strong>立即</strong>转移权益（即使占有权推迟到未来）。</li>
+            <li><strong>Delivery (交付)：</strong>出让人必须通过行为表明他已放弃对地契的控制权。</li>
+        </ol>
+        <p><strong>关键规则：</strong>如果出让人保留了收回地契的权利（Right to Recover/Recall），则视为<strong>没有交付</strong>。</p>
+    </div>
+
+    <div class="diagram">
+        <div style="font-weight:bold; margin-bottom:10px;">本案中的法律关系图解</div>
+        <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.85rem;">
+            <div style="border:1px solid #333; padding:5px; border-radius:4px;">父亲<br>(Grantor)</div>
+            <div style="flex-grow:1; border-top:2px dashed #999; position:relative; margin:0 5px;">
+                <span style="position:absolute; top:-20px; left:20%; font-size:0.7rem; color:var(--wrong-color);">保留撤销权 ❌</span>
+                <span style="position:absolute; top:-10px; right:0; font-size:1.2rem;">➔</span>
+            </div>
+            <div style="border:1px solid #333; padding:5px; border-radius:4px;">律师<br>(Agent)</div>
+        </div>
+        <div style="margin-top:10px; font-size:0.8rem; color:#666;">
+            律师仅作为父亲的代理人，而非独立的托管人。<br>
+            父亲去世时，代理关系终止，地契失效。
+        </div>
+    </div>
+
+    <div class="concept-card">
+        <div class="concept-title">深度解析：为什么交付失败？</div>
+        <div class="step">
+            <div class="step-icon">1</div>
+            <div><strong>有条件的指令：</strong>父亲告诉律师“除非我另有指示，否则在我死后登记”。</div>
+        </div>
+        <div class="step">
+            <div class="step-icon">2</div>
+            <div><strong>控制权未丧失：</strong>这句话意味着父亲随时可以改变主意收回地契。只要出让人还能把地契拿回来，法律就认为地契还在他手里。</div>
+        </div>
+        <div class="step">
+            <div class="step-icon">3</div>
+            <div><strong>代理人 vs. 托管人：</strong>因为父亲保留了控制权，律师在法律上被视为父亲的<strong>代理人 (Agent)</strong>，而不是为女儿持有地契的<strong>托管人 (Escrow Agent)</strong>。</div>
+        </div>
+        <div class="step">
+            <div class="step-icon">4</div>
+            <div><strong>结果：</strong>地契从未“离开”父亲的控制范围。当父亲去世时，未交付的地契变成废纸。房产属于遗产的一部分，根据遗嘱（Will）传给儿子。</div>
+        </div>
+    </div>
+
+    <div class="concept-card">
+        <div class="concept-title">干扰项排除</div>
+        
+        <div class="wrong-option">
+            <span class="wrong-label">选项 A 错误：</span>
+            律师不是受托人（Trustee）。如果父亲是<strong>无条件</strong>地将地契交给律师（例如：“拿着这个，我死后给女儿，我不拿回来了”），那么律师才是为女儿利益持有的托管人/受托人，那样交付才有效。本案中的“除非另有指示”破坏了这一点。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 B 错误：</span>
+            仅符合《反欺诈法》（Statute of Frauds）是不够的。反欺诈法只要求书面和签字，但不动产转移必须同时满足<strong>交付 (Delivery)</strong> 要求。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 D 错误：</span>
+            逻辑顺序错误。遗嘱并没有“撤销”赠与，因为赠与<strong>从未发生</strong>。如果赠与已经有效交付，遗嘱是无法撤销已完成的赠与的。这里是因为赠与本身无效，所以才轮到遗嘱发挥作用。
+        </div>
+    </div>
+
+    <div style="margin-top: 20px; font-size: 0.8rem; color: #888; text-align: center;">
+        MBE 解题技巧：在涉及向第三方（如律师）交付地契的题目中，<br>永远寻找出让人是否保留了“拿回地契的权利”。<br>保留权利 = 无交付。
+    </div>
+</div>
+
+</body>
+</html>

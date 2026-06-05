@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：专家证人披露</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f6f3;
+            border-left: 5px solid #27ae60;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        .rule-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .rule-card strong {
+            color: var(--accent-color);
+        }
+        .comparison {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .comp-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        .comp-item.yes {
+            background-color: #d4efdf;
+            border: 1px solid #a9dfbf;
+        }
+        .comp-item.no {
+            background-color: #fadbd8;
+            border: 1px solid #f5b7b1;
+        }
+        .icon {
+            font-size: 20px;
+            margin-right: 10px;
+            min-width: 25px;
+        }
+        .tip-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">民事诉讼法：审前程序与证据开示</div>
+    </div>
+
+    <div class="content">
+        <!-- 答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：B (仅经济学家)</span>
+            根据《联邦民事诉讼规则》(FRCP)，只有<b>预计在审判中作证</b>的专家才需要进行强制性披露。
+        </div>
+
+        <!-- 核心法律规则 -->
+        <div class="section-title">⚖️ 核心法律规则 (FRCP 26)</div>
+        <div class="rule-card">
+            <strong>强制性披露 (Mandatory Disclosure)</strong><br>
+            根据 FRCP 26(a)(2)，当事人必须在审判前至少 <b>90天</b>，向对方披露所有预计在审判中作证的专家证人身份。
+        </div>
+        <div class="rule-card">
+            <strong>书面报告 (Written Report)</strong><br>
+            如果证人是：
+            <ol style="margin:5px 0 5px 20px; padding-left:0;">
+                <li>专门受聘提供专家证言 (Retained specially); 或</li>
+                <li>其工作职责定期涉及提供专家证言的雇员;</li>
+            </ol>
+            则必须同时提供详细的书面报告。
+        </div>
+
+        <!-- 案情具体分析 -->
+        <div class="section-title">🔍 案情深度解析</div>
+        
+        <div class="comparison">
+            <!-- 经济学家 -->
+            <div class="comp-item yes">
+                <div class="icon">✅</div>
+                <div>
+                    <strong>经济学家 (The Economist)</strong><br>
+                    <span style="font-size: 0.9em;">
+                    <b>状态：</b>受聘在审判中作证 (Testifying Expert)。<br>
+                    <b>结论：</b>必须披露身份并提供报告。<br>
+                    <b>理由：</b>他是为了作证而专门受聘的，属于 FRCP 26(a)(2) 的核心披露对象。
+                    </span>
+                </div>
+            </div>
+
+            <!-- 开发人员 -->
+            <div class="comp-item no">
+                <div class="icon">❌</div>
+                <div>
+                    <strong>开发人员 (The Developer)</strong><br>
+                    <span style="font-size: 0.9em;">
+                    <b>状态：</b>咨询专家 (Consulting Expert)，不作证。<br>
+                    <b>结论：</b>无需披露。<br>
+                    <b>理由：</b>虽然他平时的工作包括作证，但在本案中他<b>不打算出庭作证</b>。根据 FRCP 26(b)(4)(D)，仅用于审判准备的非作证专家的意见通常是不可开示的 (privileged)，除非有特殊情况。
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 考点总结 -->
+        <div class="section-title">🎓 MBE 考试技巧</div>
+        <div class="tip-box">
+            <p><b>陷阱提示：</b></p>
+            <p>题目特意提到开发人员“定期提供专家证言”(regularly provides expert testimony)。</p>
+            <p>这是一个干扰项！这半句话的作用是告诉你：<b>如果</b>他要作证，他必须写报告（因为他是经常作证的雇员）。</p>
+            <p><b>解题关键：</b></p>
+            <p>首先判断<b>是否作证</b> (Testifying vs. Non-testifying)。</p>
+            <ul>
+                <li>如果不作证（咨询专家），通常完全不需要披露。</li>
+                <li>如果要作证，再看是否需要写报告。</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 20px; font-size: 12px; color: #7f8c8d; text-align: center;">
+            Reference: Fed. R. Civ. P. 26(a)(2), 26(b)(4)(D)
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

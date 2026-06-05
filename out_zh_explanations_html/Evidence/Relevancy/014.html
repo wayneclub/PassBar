@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --danger-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        .concept-card:last-child {
+            border-bottom: none;
+        }
+        .concept-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background-color: var(--accent-color);
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+        .highlight-box {
+            background-color: #f0f8ff;
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+            border-radius: 0 4px 4px 0;
+        }
+        .rule-ref {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-top: 4px;
+            display: block;
+        }
+        .correct-answer {
+            background-color: #e8f8f5;
+            border: 1px solid var(--success-color);
+            color: var(--success-color);
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .trap-alert {
+            background-color: #fdedec;
+            border: 1px solid var(--danger-color);
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+        .trap-title {
+            color: var(--danger-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        .latin {
+            font-style: italic;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+    <title>MBE Evidence Analysis</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence (证据法) - Q87808</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="correct-answer">
+            正确答案：C (间接证据)
+        </div>
+
+        <!-- 考点 1: 相关性与身份识别 -->
+        <div class="concept-card">
+            <div class="concept-title">1. 身份识别的间接证据 (Circumstantial Evidence of Identity)</div>
+            <p>本题的核心逻辑链条非常清晰：</p>
+            <ul>
+                <li><strong>事实 A：</strong>受害人听到绑架者叫同伙 "Speed"。</li>
+                <li><strong>事实 B：</strong>被告在监狱里被叫作 "Speed"。</li>
+                <li><strong>推论：</strong>被告很可能就是那个绑架者。</li>
+            </ul>
+            <div class="highlight-box">
+                根据 <strong>FRE 401</strong>，证据只要有任何倾向使重要事实（被告是否为绑架者）更可能或更不可能，即具有<strong>相关性 (Relevance)</strong>。
+            </div>
+            <p>这种证据被称为“间接证据”，因为它不直接证明犯罪行为，而是通过推论建立联系。在MBE中，独特的昵称（Nickname）是证明身份的强有力证据。</p>
+        </div>
+
+        <!-- 考点 2: 传闻证据的陷阱 -->
+        <div class="concept-card">
+            <div class="concept-title">2. 为什么这不是传闻 (Hearsay)?</div>
+            <p>这是本题最大的陷阱（选项A）。许多考生看到“狱友说...”就会立刻联想到传闻证据。</p>
+            
+            <div class="trap-alert">
+                <div class="trap-title">⚠️ 关键区分：断言 (Assertion)</div>
+                <p><strong>传闻 (Hearsay)</strong> 定义为：庭外陈述，被提出用于证明其所主张事项的真实性 (offered to prove the truth of the matter asserted)。</p>
+            </div>
+
+            <p>在此处，狱友叫被告 "Speed"：</p>
+            <ul>
+                <li><strong>不是断言：</strong>仅仅呼唤某人的名字或昵称通常不被视为一种事实主张（Assertion）。它更像是一个标签或口头行为。</li>
+                <li><strong>不为证明真实性：</strong>即使将其视为陈述，检察官也不是为了证明“他的法定名字真的是Speed”，而是为了证明“他<strong>回应</strong>这个名字”或“他<strong>被认知</strong>为这个名字”。</li>
+            </ul>
+            <span class="rule-ref">Reference: FRE 801(a) & (c)</span>
+        </div>
+
+        <!-- 考点 3: 偏见性权衡 -->
+        <div class="concept-card">
+            <div class="concept-title">3. FRE 403 平衡测试</div>
+            <p>选项B 提到了“不公平的偏见” (Unfair Prejudice)。虽然提及被告“在监狱候审”确实对被告形象不利，但证据法要求排除证据的标准极高：</p>
+            <div class="highlight-box">
+                偏见性必须 <strong>实质上超过 (Substantially Outweigh)</strong> 证明价值 (Probative Value)。
+            </div>
+            <p>在本案中，"Speed" 这个昵称对于确认罪犯身份（Identity）具有极高的证明价值。这种价值通常会压倒附带的偏见风险。因此，法院不会依据 FRE 403 排除此证据。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-card">
+            <div class="concept-title">💡 MBE 实战技巧</div>
+            <ul>
+                <li><strong>看到“昵称” (Nickname)：</strong>首先考虑身份识别 (Identity) 的相关性。通常不是传闻，因为名字不是 Assertion。</li>
+                <li><strong>区分“相关性”与“可信度”：</strong>选项D 提到支持受害人的可信度 (Truthfulness)。除非受害人的诚实受到攻击（Impeachment），否则不能主动支持（Bolster）。本题是被告身份问题，而非受害人是否撒谎的问题。</li>
+                <li><strong>FRE 403 很少是正确答案：</strong>除非证据的证明价值极低且偏见极高，否则在MBE中，证据通常倾向于可采纳 (Admissible)。</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

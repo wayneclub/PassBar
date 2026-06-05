@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .card-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .card-title::before {
+            content: '⚖️';
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #856404;
+        }
+        .rule-box {
+            background-color: #e8f4f8;
+            border: 1px solid #bce0fd;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .exception-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffeeba;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .analysis {
+            margin-top: 20px;
+        }
+        .step {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        .step-num {
+            background-color: #2c3e50;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-right: 10px;
+            margin-top: 2px;
+        }
+        .footer {
+            background-color: #f1f1f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        ul {
+            margin: 5px 0 5px 20px;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence | FRE 407</div>
+    </div>
+
+    <div class="content">
+        <div class="card">
+            <div class="card-title">核心考点：事后补救措施</div>
+            <p>本题考察的是《联邦证据规则》第407条 (<strong>FRE 407: Subsequent Remedial Measures</strong>)。</p>
+        </div>
+
+        <div class="rule-box">
+            <strong>🚫 一般规则 (General Rule)：</strong><br>
+            在伤害发生后，如果当事人采取了某种措施（如重新设计、修理、增加警示），而该措施如果早点采取本可以避免伤害，那么该措施的证据<strong>不可采纳 (Inadmissible)</strong> 用于证明：
+            <ul>
+                <li>疏忽 (Negligence)</li>
+                <li>应受谴责的行为 (Culpable conduct)</li>
+                <li>产品或设计缺陷 (Defect in product/design)</li>
+            </ul>
+            <div style="font-size: 12px; color: #666; margin-top: 5px;">💡 <strong>立法目的：</strong> 鼓励人们在事故后改进安全，而不必担心这会被当作“认罪”的证据。</div>
+        </div>
+
+        <div class="exception-box">
+            <strong>✅ 例外情况 (Exceptions)：</strong><br>
+            如果对方对以下事项提出<strong>争议 (Disputed)</strong>，则可以采纳该证据：
+            <ul>
+                <li>所有权或控制权 (Ownership or control)</li>
+                <li><strong>预防措施的可行性 (Feasibility of precautionary measures)</strong></li>
+                <li>弹劾证人 (Impeachment)</li>
+            </ul>
+        </div>
+
+        <div class="analysis">
+            <h3 style="border-bottom: 2px solid #eee; padding-bottom: 10px;">本题逻辑链分析</h3>
+            
+            <div class="step">
+                <div class="step-num">1</div>
+                <div>
+                    <strong>被告的抗辩 (The Defense)：</strong><br>
+                    制造商在法庭上声称，设计一种防止电线接触的机器“成本过高，不尽合理” (unreasonably expensive)。
+                    <br><span class="highlight">关键点：</span> 这实际上是在否认安全设计的<strong>可行性 (Feasibility)</strong>。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">2</div>
+                <div>
+                    <strong>原告的反驳 (The Rebuttal)：</strong><br>
+                    原告拿出证据说：“你在诉讼后重新设计了机器，防止了电线接触。”
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">3</div>
+                <div>
+                    <strong>法律适用 (Application)：</strong><br>
+                    虽然这项证据不能用来直接证明制造商当初很疏忽（即不能选 D），但因为制造商自己主动挑起了“这事儿太贵、做不到”的争论，原告就可以用事后重新设计的事实来打脸，证明“这事儿是可行的”。
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="border-left-color: #27ae60;">
+            <div class="card-title">✅ 正确答案：C</div>
+            <p><strong>Yes, as evidence tending to show that the machine could be designed to keep the wires from coming into contact.</strong></p>
+            <p>该证据可以采纳，专门用于反驳制造商关于“不可行”或“太贵”的说法，证明安全设计在技术和经济上是可行的。</p>
+        </div>
+
+        <div style="background-color: #fff0f0; padding: 10px; border-radius: 8px; font-size: 13px;">
+            <strong>❌ 为什么其他选项错误？</strong>
+            <ul style="margin-bottom: 0;">
+                <li><strong>选项 A：</strong> 相关性 (Relevance) 是门槛，但不是本题的核心障碍。重新设计显然与事故原因相关。</li>
+                <li><strong>选项 B：</strong> 这是 FRE 407 的一般原则，但忽略了本案中被告已经对“可行性”提出了争议，从而触发了例外条款。</li>
+                <li><strong>选项 D：</strong> 这是最强的干扰项。切记：事后补救措施<strong>永远不能</strong>直接用来证明疏忽 (Negligence)。它只能通过“可行性”这个侧门进入法庭。</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <strong>MBE 解题技巧：</strong><br>
+        看到“事后修理/改进”，先想“不可采纳”。<br>
+        然后立刻检查被告是否说了“我不是故意的”以外的话，比如“这根本做不到”或“这不归我管”。如果被告嘴硬否认可行性或控制权，证据就进来了。
+    </div>
+</div>
+
+</body>
+</html>

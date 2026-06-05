@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --bg-color: #f4f7f6;
+    --text-main: #333333;
+    --text-light: #666666;
+    --box-bg: #ffffff;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mbe-card {
+    max-width: 480px;
+    width: 100%;
+    background: var(--box-bg);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--primary-color), #34495e);
+    color: white;
+    padding: 24px 20px;
+    text-align: center;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .header p {
+    margin: 8px 0 0 0;
+    font-size: 14px;
+    color: #bdc3c7;
+  }
+
+  .content {
+    padding: 24px 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+    color: var(--primary-color);
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 8px;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-main);
+    margin-bottom: 16px;
+  }
+
+  .rule-box {
+    background: #eaf2f8;
+    border-left: 4px solid var(--secondary-color);
+    padding: 16px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 20px;
+  }
+
+  .rule-box strong {
+    color: var(--secondary-color);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .mimic-box {
+    background: #fff9e6;
+    border: 1px solid #f1c40f;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .mimic-box ul {
+    margin: 10px 0 0 0;
+    padding-left: 20px;
+    color: #d35400;
+    font-size: 14px;
+  }
+
+  .analysis-step {
+    display: flex;
+    margin-bottom: 12px;
+  }
+
+  .step-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    background: var(--secondary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 12px;
+    margin-top: 2px;
+  }
+
+  .options-review {
+    background: #fdfefe;
+    border: 1px solid #e5e8e8;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .option {
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  .option:last-child {
+    margin-bottom: 0;
+  }
+
+  .tag-wrong {
+    color: var(--accent-color);
+    font-weight: bold;
+    background: #fadbd8;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  .tag-correct {
+    color: #27ae60;
+    font-weight: bold;
+    background: #d5f5e3;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  .exam-tip {
+    background: #e8f8f5;
+    border: 1px dashed #1abc9c;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #117864;
+  }
+
+  .exam-tip strong {
+    color: #0e6251;
+    display: block;
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+
+<div class="mbe-card">
+  <div class="header">
+    <h1>MBE 考点深度解析</h1>
+    <p>Evidence | Character Evidence & Prior Bad Acts</p>
+  </div>
+  
+  <div class="content">
+    <h2>📚 核心法律规则 (Legal Rules)</h2>
+    
+    <div class="rule-box">
+      <strong>1. 禁止倾向性推理 (Propensity Inference)</strong>
+      <p style="margin:0; font-size: 14px;">根据 <b>Fed. R. Evid. 404(b)</b>，控方不得引入被告先前的犯罪、过错或其他不良行为（Prior Bad Acts）来证明被告的品格，并借此推断被告在本次案件中“按照该品格行事”（即有犯罪倾向）。</p>
+    </div>
+
+    <div class="rule-box" style="border-left-color: #e74c3c; background: #fdedec;">
+      <strong style="color: #e74c3c;">2. 核心排除理由：FRE 403 利益衡量</strong>
+      <p style="margin:0; font-size: 14px;">为什么禁止倾向性证据？因为其<b>证明价值 (Probative Value)</b> 被<b>不公正偏见的危险性 (Danger of Unfair Prejudice)</b> 实质上超过。陪审团极容易因为被告“是个坏人”或“以前犯过罪”而直接定罪，而不是基于本案的证据。</p>
+    </div>
+
+    <div class="mimic-box">
+      <strong>例外情况：MIMIC 规则</strong>
+      <p style="margin: 8px 0 0 0; font-size: 14px; color: #7f8c8d;">如果先前行为是为了证明<b>非品格目的</b>，则是可采纳的：</p>
+      <ul>
+        <li><b>M</b>otive (动机)</li>
+        <li><b>I</b>ntent (意图)</li>
+        <li><b>M</b>istake, absence of (不存在误解/意外)</li>
+        <li><b>I</b>dentity (身份) —— <i>本题关键考点！</i></li>
+        <li><b>C</b>ommon scheme or plan (共同计划)</li>
+      </ul>
+    </div>
+
+    <h2>⚖️ 本题逻辑推演</h2>
+    
+    <div class="analysis-step">
+      <div class="step-icon">1</div>
+      <div>
+        <p><b>控方意图：</b>引入被告过去一年抢劫过另外两家店的证据。这属于典型的“先前不良行为 (Prior Bad Acts)”。</p>
+      </div>
+    </div>
+    
+    <div class="analysis-step">
+      <div class="step-icon">2</div>
+      <div>
+        <p><b>能否适用 MIMIC 中的 Identity (身份)？</b><br>要通过先前犯罪证明“身份”，必须满足 <b>Signature Crime（签名式犯罪）</b> 的标准。即先前的犯罪手法必须极其独特 (highly distinctive)，且与本案高度相似，就像罪犯留下了签名一样。本题仅说明被告“抢劫了另外两家店”，没有提及任何独特的作案手法 (Modus Operandi)。因此，不能用于证明身份。</p>
+      </div>
+    </div>
+
+    <div class="analysis-step">
+      <div class="step-icon">3</div>
+      <div>
+        <p><b>得出结论：</b>既然不能适用 MIMIC 例外，该证据就沦为了纯粹的“倾向性证据 (Propensity Evidence)”。根据 FRE 403，这种证据会引发极大的不公正偏见（陪审团会想：“他以前抢过，这次肯定也是他”），这种偏见实质上超过了其合法的证明价值。因此，<b>证据不可采纳</b>。</p>
+      </div>
+    </div>
+
+    <h2>🚫 选项排雷分析</h2>
+    
+    <div class="options-review">
+      <div class="option">
+        <span class="tag-wrong">选项 A 错误</span>
+        <br>法律陈述过于绝对。虽然通常品格用声誉或意见证明，但在某些特定情况下（例如品格是案件的实质要素 Essential Element，或者在交叉询问品格证人时），品格是<b>可以</b>通过具体行为 (Specific Acts) 来证明的。
+      </div>
+      <div class="option">
+        <span class="tag-wrong">选项 C 错误</span>
+        <br>在刑事案件中，控方<b>不能主动</b>引入被告的品格证据。必须由被告先“打开大门 (Open the door)”（即被告先引入自己良好品格的证据），控方才能进行反驳 (Rebuttal)。
+      </div>
+      <div class="option">
+        <span class="tag-wrong">选项 D 错误</span>
+        <br>如前文分析，证明 Identity 需要独特的“签名式作案手法 (Signature Crime)”。普通的同类犯罪记录不足以证明身份。
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <strong>💡 考场解题技巧 (MBE Pro-Tip)</strong>
+      当你在 MBE 考题中看到控方试图引入被告<b>过去的犯罪记录</b>时：
+      <ol style="margin: 8px 0 0 0; padding-left: 20px;">
+        <li>先找 <b>MIMIC</b>。如果没有特殊的动机、意图或极其独特的作案手法（Signature），直接排除 MIMIC。</li>
+        <li>如果只是为了证明“他以前做过，所以这次也是他干的”，这就是 <b>Propensity</b>，绝对禁止！</li>
+        <li>排除的根本法理依据通常落在 <b>FRE 403 (Probative value substantially outweighed by unfair prejudice)</b>。</li>
+      </ol>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

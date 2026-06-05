@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: #e8f8f5;
+            border-left: 5px solid var(--success-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-box strong {
+            color: var(--success-color);
+            font-size: 1.1rem;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+
+        .event {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .event::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 2px solid white;
+        }
+
+        .event.critical::before {
+            background-color: var(--success-color);
+            transform: scale(1.2);
+        }
+
+        .event.death::before {
+            background-color: var(--warning-color);
+        }
+
+        .date {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+
+        .event-desc {
+            font-size: 0.95rem;
+        }
+
+        .concept-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: block;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        .exam-tip {
+            margin-top: 25px;
+            background-color: #fff8e1;
+            border: 1px dashed var(--warning-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #999;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 合同法解析</h1>
+        <div class="sub-title">Contracts: Offer & Acceptance</div>
+    </div>
+
+    <div class="content">
+        <!-- 答案部分 -->
+        <div class="answer-box">
+            正确答案：<strong>D</strong>
+            <p style="margin-top: 5px; font-size: 0.95rem;">存在合同，因为要约在收藏家去世前已被接受。</p>
+        </div>
+
+        <!-- 核心时间轴 -->
+        <div class="concept-title">📅 关键时间轴 (Timeline)</div>
+        <div class="timeline">
+            <div class="event">
+                <div class="date">6月1日 (June 1)</div>
+                <div class="event-desc">收藏家发出要约 (Offer sent)。</div>
+            </div>
+            <div class="event critical">
+                <div class="date">6月4日 (June 4)</div>
+                <div class="event-desc"><strong>合同成立时刻：</strong>专家开始修复工作 (Begins performance)。<br><span style="color:var(--success-color); font-size:0.85rem;">此处构成承诺 (Acceptance)。</span></div>
+            </div>
+            <div class="event death">
+                <div class="date">6月6日 (June 6)</div>
+                <div class="event-desc">收藏家去世。但因合同已于6月4日成立，死亡不影响合同效力。</div>
+            </div>
+            <div class="event">
+                <div class="date">6月7日 (June 7)</div>
+                <div class="event-desc">专家发出通知。这是履行后的通知义务，而非承诺生效时刻。</div>
+            </div>
+        </div>
+
+        <!-- 法律原理解析 -->
+        <div class="concept-card">
+            <span class="concept-title">⚖️ 法律原理 (Legal Analysis)</span>
+            
+            <p><strong>1. 要约的性质 (Nature of the Offer)</strong><br>
+            本题中的要约并未明确规定必须通过“承诺”还是“履行”来接受。根据 <em>Restatement (Second) of Contracts § 32</em>，当要约未指定承诺方式时，受要约人可以选择通过<strong>承诺履行</strong> (promise to perform) 或 <strong>开始履行</strong> (beginning performance) 来进行承诺。</p>
+
+            <p><strong>2. 开始履行的效力 (Effect of Beginning Performance)</strong><br>
+            根据 <em>Restatement (Second) of Contracts § 62</em>，在上述情况下，受要约人一旦<strong>开始履行</strong> (begins to perform)，即构成承诺。这不仅接受了要约，还构成了一份<strong>双务合同 (Bilateral Contract)</strong>，即受要约人同时也隐含承诺了会完成工作。</p>
+
+            <p><strong>3. 死亡的影响 (Effect of Death)</strong><br>
+            一般规则是：要约人在承诺生效前死亡，要约失效 (Lapse of Offer)。<br>
+            <span class="highlight">但是，如果合同在死亡前已经成立，死亡通常不会终止合同</span>（除非是必须由死者亲自履行的个人服务合同）。本案中，合同在6月4日专家动工时已成立，6月6日的死亡发生在合同成立之后，因此合同有效，约束遗产管理人。</p>
+        </div>
+
+        <!-- 为什么其他选项错误 -->
+        <div class="concept-card">
+            <span class="concept-title">❌ 为什么其他选项错误？</span>
+            <ul style="padding-left: 20px; margin: 0;">
+                <li><strong>选项 A & B：</strong> 错误地认为合同尚未成立。如果专家在6月6日之前没有采取任何行动，那么收藏家的死亡确实会让要约失效。但专家在6月4日已经通过行为接受了要约。</li>
+                <li><strong>选项 C：</strong> 错误地将“寄出便条”作为承诺生效的时间点。虽然通知是必要的，但在本案法律规则下，<strong>开始履行</strong>这一行为本身就是承诺的生效点。</li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>🎓 MBE 考试技巧 (Exam Tip)</strong><br>
+            <p>在 MBE 合同法题目中，除非要约明确规定“只有完全履行才能构成承诺”（即典型的单边合同 Unilateral Contract，如悬赏广告），否则法院倾向于适用<strong>双边合同 (Bilateral Contract)</strong> 规则。</p>
+            <p>记住：<strong>"Start of performance = Acceptance"</strong>（开始履行即承诺）。这不仅保护了开始干活的受要约人，也防止要约人随意撤销。</p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

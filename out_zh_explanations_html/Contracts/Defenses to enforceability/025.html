@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .sub-header {
+            font-size: 0.85rem;
+            color: #bdc3c7;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .result-box {
+            background-color: #e8f6f3;
+            border: 1px solid #a2d9ce;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .result-title {
+            color: #16a085;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .rule-card {
+            background-color: #fff;
+            border-left: 4px solid #3498db;
+            padding: 12px 15px;
+            margin: 15px 0;
+            background-color: #f8f9fa;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2980b9;
+            display: block;
+            margin-bottom: 5px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+        .wrong-option {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .wrong-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            padding: 15px;
+            background-color: #ecf0f1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-header">Contracts: UCC Modification & SoF</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="result-box">
+            <span class="result-title">✅ 正确答案：B</span>
+            制造商<b>不会胜诉</b>。因为3月25日的口头协议是对书面合同的<b>有效修改</b>。
+        </div>
+
+        <p>本题考察的核心是《统一商法典》（UCC）下合同修改的两个关键规则：<b>对价需求</b>与<b>欺诈法（Statute of Frauds）</b>。</p>
+
+        <!-- 知识点讲解 -->
+        <div class="rule-card">
+            <span class="rule-title">1. 法律适用：UCC Article 2</span>
+            <p>本案涉及钢笔（货物）的买卖，因此适用 UCC 而非普通法（Common Law）。</p>
+        </div>
+
+        <div class="rule-card">
+            <span class="rule-title">2. 合同修改不需要对价</span>
+            <p>在普通法下，修改合同通常需要新的对价（Pre-existing Duty Rule）。但在 UCC <span class="term">§ 2-209</span> 下，只要修改是基于<b>善意（Good Faith）</b>进行的，<b>不需要对价</b>即可生效。</p>
+            <p>👉 因此，零售商不需要为推迟付款提供额外的好处。</p>
+        </div>
+
+        <div class="rule-card">
+            <span class="rule-title">3. 口头修改与欺诈法 (SoF)</span>
+            <p>这是本题最难的考点。原合同金额为 $40,000，属于 UCC 欺诈法管辖范围（>$500），必须书面。</p>
+            <p><b>修改是否也必须书面？</b></p>
+            <ul>
+                <li><b>原则：</b>如果修改后的合同仍落在欺诈法范围内，修改通常应为书面。</li>
+                <li><b>例外/细则：</b>UCC 欺诈法主要强制要求<b>数量（Quantity）</b>条款必须书面。如果修改仅涉及付款时间、交货地点等条款，而不改变数量或标的物，且双方未约定“禁止口头修改条款”（No Oral Modification Clause），则<b>口头修改是有效的</b>。</li>
+            </ul>
+        </div>
+
+        <p><b>本案分析：</b><br>
+        3月25日的口头协议仅改变了<b>付款时间</b>（从默认的“交货时付款”改为“第二批交货时付全款”），并未改变钢笔的数量。因此，该口头修改有效。</p>
+
+        <!-- 错误选项解析 -->
+        <div class="wrong-option">
+            <div class="wrong-title">❌ 为什么其他选项错误？</div>
+            
+            <p><b>选项 A (No...)：</b><br>
+            错误。如果口头协议无效，根据 UCC 的缺省规则（Gap Filler），付款确实应在每次收货时进行。但如上所述，口头协议是有效的，因此这一缺省规则不再适用。</p>
+
+            <p><b>选项 C (Yes... Parol Evidence Rule)：</b><br>
+            错误。口头证据规则（<span class="term">Parol Evidence Rule</span>）仅禁止引入<b>先前</b>或<b>同时</b>的口头协议来反驳书面合同。它<b>绝不</b>禁止关于<b>后续（Subsequent）</b>修改的证据。3月25日的协议发生在3月15日签约之后，属于后续修改。</p>
+
+            <p><b>选项 D (Yes... Consideration)：</b><br>
+            错误。这是普通法的规则。UCC 明确规定合同修改不需要对价（<span class="term">Consideration</span>）。</p>
+        </div>
+
+        <div class="rule-card" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+            <span class="rule-title">💡 考试技巧 (Exam Tip)</span>
+            <p>在处理 UCC 合同修改题目时，按以下步骤思考：</p>
+            <ol>
+                <li><b>看条款：</b>合同里有没有“禁止口头修改”条款？(如有，口头修改通常无效)。</li>
+                <li><b>看内容：</b>修改是否改变了数量？(如改变数量，必须书面)。</li>
+                <li><b>看对价：</b>不要寻找对价！UCC 修改只要“善意”即可。</li>
+                <li><b>看时间：</b>如果是签约后的口头协议，不要选“Parol Evidence Rule”。</li>
+            </ol>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

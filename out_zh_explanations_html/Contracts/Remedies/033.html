@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        .section-title {
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .case-law {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .case-name {
+            font-style: italic;
+            font-weight: bold;
+            color: #d35400;
+        }
+        .option-analysis {
+            margin-top: 15px;
+        }
+        .option {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .option-label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .option.incorrect .option-label {
+            color: #c0392b;
+        }
+        .exam-tip {
+            background: #e3f2fd;
+            border: 1px dashed #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+        .exam-tip-title {
+            color: #1976d2;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        code {
+            background: #eee;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts: Remedies (合同法：救济)</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <div class="answer-label">正确答案：B</div>
+            <p>不可以，因为供应商不知道也没有理由知道关于提前完工的奖励性付款条款。</p>
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">核心考点：间接损害赔偿 (Consequential Damages)</div>
+        <p>本题考察的是合同法中关于损害赔偿范围的经典规则：<strong>可预见性规则 (Rule of Foreseeability)</strong>。</p>
+        
+        <p>在违约诉讼中，非违约方通常可以获得两种赔偿：</p>
+        <ol>
+            <li><strong>一般损害赔偿 (General Damages)：</strong> 违约自然产生的损失（例如替换齿轮的市场价差）。</li>
+            <li><strong>间接/特殊损害赔偿 (Consequential/Special Damages)：</strong> 因非违约方的特殊情况而产生的损失（例如本题中的提前完工奖金）。</li>
+        </ol>
+
+        <div class="case-law">
+            <div class="case-name">Hadley v. Baxendale (1854)</div>
+            <p>这是英美合同法中最著名的判例之一。规则如下：<br>
+            要追讨间接损害赔偿，该损失必须是违约方在<strong>订立合同时 (at the time of contracting)</strong> 能够合理预见到的。</p>
+            <p>如果损失是由特殊情况引起的，只有在违约方<strong>知道 (knew)</strong> 或<strong>有理由知道 (had reason to know)</strong> 这些特殊情况时，才需承担责任。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="section-title">案情具体分析</div>
+        <p>在本案中，公司损失的 $5,000 属于<strong>间接损害赔偿</strong>，因为它不是齿轮延迟交付的自然结果，而是源于公司与市政府合同中的特殊奖励条款。</p>
+        <ul>
+            <li><strong>事实关键点：</strong> 题目明确指出 "The supplier did not know... (供应商不知道...)" 且齿轮是 "unusual (不寻常的)"。</li>
+            <li><strong>结论：</strong> 由于供应商不知道该奖励条款，且该条款不是行业惯例，供应商无法预见到延迟交付会导致 $5,000 的额外损失。因此，这部分损失不可追偿。</li>
+        </ul>
+
+        <!-- 错误选项分析 -->
+        <div class="section-title">为什么其他选项是错误的？</div>
+        <div class="option-analysis">
+            <div class="option incorrect">
+                <span class="option-label">选项 A 错误：</span>
+                法律并不要求违约方必须“明确同意 (expressly agree)”承担间接损失。只要他们在订立合同时知情（即具有可预见性），法律就会默认其承担风险。
+            </div>
+            <div class="option incorrect">
+                <span class="option-label">选项 C 错误：</span>
+                虽然时间紧迫可能意味着“时间是关键要素 (Time is of the essence)”，但这仅决定了迟延履行是否构成重大违约，并不自动扩大损害赔偿的范围（即不自动包含不可预见的间接损失）。
+            </div>
+            <div class="option incorrect">
+                <span class="option-label">选项 D 错误：</span>
+                这是一个常见的陷阱。违约方<strong>不对</strong>“所有 (all)”直接流出的损害负责。责任范围受到<strong>可预见性 (Foreseeability)</strong> 的限制。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 考试技巧</span>
+            <p>当你看到题目涉及<strong>利润损失 (Lost Profits)</strong> 或<strong>第三方合同的奖金/罚款</strong>时，立即联想 <strong>Consequential Damages</strong>。</p>
+            <p>寻找题目中关于<strong>“通知 (Notice)”</strong>的事实：违约方在签合同前是否被告知了这些潜在的特殊损失？如果没有被告知，通常无需赔偿。</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

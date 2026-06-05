@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --success-color: #27ae60;
+            --fail-color: #c0392b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header-card {
+            background: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header-card h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header-card .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .card-title .icon {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #856404;
+        }
+
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 15px 0;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed #cbd5e0;
+        }
+
+        .step {
+            background: white;
+            border: 1px solid #cbd5e0;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-align: center;
+            width: 90%;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .arrow {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin: 5px 0;
+        }
+
+        .option-analysis {
+            font-size: 0.95rem;
+        }
+
+        .option {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .option:last-child {
+            border-bottom: none;
+        }
+
+        .option-label {
+            font-weight: bold;
+            display: inline-block;
+            width: 25px;
+        }
+
+        .correct {
+            color: var(--success-color);
+        }
+
+        .incorrect {
+            color: var(--fail-color);
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        .mbe-tip {
+            background-color: #e8f6f3;
+            border-left-color: var(--success-color);
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header-card">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Separation of Powers & Bankruptcy</div>
+    </div>
+
+    <!-- Core Answer Section -->
+    <div class="card">
+        <div class="card-title">
+            <span class="icon">⚖️</span>
+            核心考点：列举权力
+        </div>
+        <p>正确答案是 <strong>(B)</strong>。</p>
+        <p>本题考察的是国会制定法律的<strong>宪法依据 (Constitutional Basis)</strong>。虽然题目提到了联邦法律优先于州法律（基于至上条款），但联邦法律本身必须首先是有效的。</p>
+        <p>美国宪法 <strong>Article I, Section 8, Clause 4</strong> 明确授予国会以下权力：</p>
+        <div class="highlight" style="text-align: center; margin: 10px 0;">
+            "To establish... uniform Laws on the subject of Bankruptcies throughout the United States."<br>
+            （在全美范围内制定关于破产问题的统一法律）
+        </div>
+        <p><strong>自动中止 (Automatic Stay)</strong> 是联邦破产法的核心机制，旨在防止债权人争抢债务人资产。这直接源于国会的<strong>破产立法权</strong>。</p>
+    </div>
+
+    <!-- Logic Diagram -->
+    <div class="card">
+        <div class="card-title">
+            <span class="icon">🔗</span>
+            逻辑推导链条
+        </div>
+        <div class="diagram">
+            <div class="step"><strong>宪法依据 (Source of Power)</strong><br>Article I, §8: Bankruptcy Clause</div>
+            <div class="arrow">⬇️ 授权 (Authorizes)</div>
+            <div class="step"><strong>联邦法规 (Federal Statute)</strong><br>Bankruptcy Code (Automatic Stay)</div>
+            <div class="arrow">⬇️ 结合 (Combined with)</div>
+            <div class="step"><strong>至上条款 (Supremacy Clause)</strong><br>Article VI</div>
+            <div class="arrow">⬇️ 结果 (Result)</div>
+            <div class="step" style="border-color: var(--accent-color); background-color: #fffdf5;"><strong>优先于州法 (Preempts State Law)</strong><br>中止州法院诉讼程序</div>
+        </div>
+    </div>
+
+    <!-- Distractor Analysis -->
+    <div class="card option-analysis">
+        <div class="card-title">
+            <span class="icon">❌</span>
+            为什么其他选项是错的？
+        </div>
+        
+        <div class="option">
+            <span class="option-label incorrect">A</span>
+            <strong>公共福利 (General Welfare)：</strong>
+            <p>这是税收与支出条款 (Taxing and Spending Clause) 的一部分。国会可以为了公共福利征税或花钱，但不能以此为由直接制定非支出的监管性法规（如中止法院程序）。</p>
+        </div>
+
+        <div class="option">
+            <span class="option-label incorrect">C</span>
+            <strong>贸易条款 (Commerce Clause)：</strong>
+            <p>虽然贸易条款权力巨大，但在宪法有<strong>具体明确的列举权力 (Specific Enumerated Power)</strong> 针对该事项时（即破产条款），应优先选择最直接的依据。此外，单纯的债务诉讼中止并不直接涉及州际贸易的渠道或工具。</p>
+        </div>
+
+        <div class="option">
+            <span class="option-label incorrect">D</span>
+            <strong>规范法院管辖权：</strong>
+            <p>国会有权管理<strong>联邦法院</strong>的管辖权和程序，但通常无权直接规定<strong>州法院</strong>的程序规则。本案中，国会之所以能干预州法院程序，是因为这是实施“破产法”这一实体权力的必要手段，而非因为国会有权管理州法院。</p>
+        </div>
+    </div>
+
+    <!-- MBE Strategy Tip -->
+    <div class="card mbe-tip">
+        <div class="card-title">
+            <span class="icon">💡</span>
+            MBE 解题技巧
+        </div>
+        <p><strong>Specific > General</strong></p>
+        <p>当题目问某项联邦行动的依据时，如果该行动完全符合某项<strong>具体的列举权力</strong>（如 Bankruptcy, Postal, Copyright），请选择该具体权力，而不是万能的“贸易条款 (Commerce Clause)”或“必要和适当条款 (Necessary and Proper Clause)”。</p>
+        <p><strong>关键词匹配：</strong>看到 "Debtor/Creditor/Insolvency" ➡️ 优先考虑 <strong>Bankruptcy Power</strong>。</p>
+    </div>
+
+</div>
+
+</body>
+</html>

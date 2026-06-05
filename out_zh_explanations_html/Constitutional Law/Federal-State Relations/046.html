@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-bg: #e8f8f5;
+            --correct-border: #2ecc71;
+            --wrong-bg: #fdedec;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+
+        .step-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .option-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .option-correct {
+            background-color: var(--correct-bg);
+            border-color: var(--correct-border);
+        }
+
+        .option-wrong {
+            background-color: var(--wrong-bg);
+            border-color: #e74c3c;
+            opacity: 0.8;
+        }
+
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .exam-tip {
+            background: #fff8e1;
+            border: 1px dashed #f1c40f;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        ul {
+            margin: 5px 0 5px 20px;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Federal-State Relations / Dormant Commerce Clause</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法律规则：休眠商业条款 (Dormant Commerce Clause)</span>
+            <p>当国会没有立法时，各州可以监管商业，但不能<b>歧视 (Discriminate)</b> 或<b>不当负担 (Unduly Burden)</b> 州际贸易。</p>
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 10px 0;">
+            <strong>审查标准：</strong>
+            <ul>
+                <li><b>歧视性法规：</b>如果州法律偏袒本州利益（如本题），则被视为<b>几乎必然无效 (Virtually per se invalid)</b>。除非：
+                    <br>1. 为了合法的非经济目的（如健康安全）；<br>2. 且没有合理的非歧视性替代方案。
+                </li>
+                <li><b>非歧视性法规：</b>如果法律对本州和外州一视同仁，但造成负担，则使用 <i>Pike</i> 平衡测试。</li>
+            </ul>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-step">
+            <span class="step-badge">第一步</span> <strong>识别歧视</strong>
+            <p>A州的法律明确要求产品必须由<b>“位于A州的特定私营公司”</b>进行测试。这直接排除了所有外州的测试公司。因此，这是对州际贸易的<b>表面歧视 (Facial Discrimination)</b>。</p>
+        </div>
+
+        <div class="analysis-step">
+            <span class="step-badge">第二步</span> <strong>应用严格审查</strong>
+            <p>由于存在歧视，A州必须证明：</p>
+            <ol>
+                <li>目的是合法的（安全防火 = 合法）；</li>
+                <li><b>没有合理的替代方案 (No reasonable alternatives)。</b></li>
+            </ol>
+            <p>题目明确指出，B州的公司“程序完全相同”且“可靠”。这意味着A州完全可以接受B州的测试结果，或者制定统一标准让任何公司遵守。因此，<b>存在合理的替代方案</b>，该法律违宪。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <h3 style="border-bottom: 2px solid var(--primary-color); padding-bottom: 5px;">选项解析</h3>
+
+        <div class="option-card option-correct">
+            <strong>✅ 选项 B (正确答案)</strong>
+            <p><b>“否，因为它对州际贸易施加了不合理的负担。”</b></p>
+            <p>这是基于休眠商业条款的标准论述。该法律通过强制本地化服务，阻碍了外州服务提供商进入市场，且没有必要的理由（因为有替代方案），构成了对州际贸易的违宪负担。</p>
+        </div>
+
+        <div class="option-card option-wrong">
+            <strong>❌ 选项 C (常见干扰项)</strong>
+            <p>虽然保护公众安全是合法的<b>目的 (Ends)</b>，但<b>手段 (Means)</b> 必须是合宪的。如果手段具有歧视性且有非歧视性的替代方案，即使目的再高尚，法律也是无效的。</p>
+        </div>
+
+        <div class="option-card option-wrong">
+            <strong>❌ 选项 D (错误理由)</strong>
+            <p>保护“本地产业声誉”通常被视为一种<b>经济保护主义 (Economic Protectionism)</b>。最高法院通常不接受经济利益作为歧视州际贸易的正当理由。</p>
+        </div>
+
+        <div class="option-card option-wrong">
+            <strong>❌ 选项 A (法律依据较弱)</strong>
+            <p>虽然歧视性法律可能涉及平等保护 (Equal Protection)，但在商业监管领域，法院通常使用<b>合理性审查 (Rational Basis Review)</b>，这很容易通过。而<b>休眠商业条款</b>提供了更严格的审查标准，是本案中推翻该法律的最佳依据。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧</strong>
+            <p>看到州法律要求<b>“必须在本地处理”</b>、<b>“必须使用本地材料”</b>或<b>“必须由本地公司服务”</b>时：</p>
+            <ol>
+                <li>立即联想 <b>Dormant Commerce Clause</b>。</li>
+                <li>判定为<b>歧视性 (Discriminatory)</b>。</li>
+                <li>寻找是否存在<b>替代方案</b>。如果有（如本题中的B州公司），该法律几乎100%违宪。</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

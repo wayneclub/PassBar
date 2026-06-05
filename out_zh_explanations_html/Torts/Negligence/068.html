@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fef3c7;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            max-width: 480px;
+            width: 100%;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tag {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-color);
+        }
+
+        .analysis-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .wrong-option {
+            background-color: #fff5f5;
+            border-left: 4px solid #e74c3c;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .footer-tip {
+            background-color: var(--warning-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 13px;
+            margin-top: 20px;
+            border: 1px dashed #d97706;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：不动产出售后的过失责任</h1>
+    
+    <p>本题考察的是侵权法（Torts）中一个非常具体的考点：<b>卖方在房屋出售后，对因房屋状况造成的第三方伤害是否仍需承担责任？</b></p>
+
+    <!-- 核心法则 -->
+    <div class="rule-box">
+        <strong>⚖️ 核心法则 (The Rule):</strong><br>
+        不动产卖方（Seller）对因土地上的<b>人为状况 (Artificial Condition)</b> 导致<b>土地外人员 (Persons off the land)</b> 受伤，仍需承担过失责任，如果：
+        <ol style="margin-left: -20px;">
+            <li>该状况在出售时已经存在；且</li>
+            <li>卖方知道或理应知道该风险；且</li>
+            <li><b>买方尚未有“合理机会”发现并修复该状况。</b></li>
+        </ol>
+    </div>
+
+    <h2>1. 为什么选 C？(法律逻辑)</h2>
+    <div class="analysis-card">
+        <p>正确答案是 <b>C</b>。这基于 <i>Restatement (Second) of Torts § 373</i>。</p>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <strong>出售日 (Day 0)</strong><br>
+                <span class="english-term">Sale completed</span><br>
+                屋顶已有松动石板（人为状况），卖方知情。
+            </div>
+            <div class="timeline-item">
+                <strong>第二天 (Day 1)</strong><br>
+                <span class="english-term">Injury Occurs</span><br>
+                暴风雨导致石板击中人行道上的邻居。
+            </div>
+        </div>
+
+        <p><b>关键判定点：合理机会 (Reasonable Opportunity)</b></p>
+        <p>虽然所有权已经转移，但责任的转移不是瞬间完成的。法律认为，新房主（买方）需要时间来检查房产并修复隐患。</p>
+        <p>在本案中，事故发生在<b>搬出后的第二天</b>。买方显然没有足够的时间（Reasonable Opportunity）去发现屋顶松动并进行修缮。因此，<b>卖方的责任尚未终止</b>。</p>
+    </div>
+
+    <h2>2. 为什么其他选项是错的？</h2>
+    
+    <div class="wrong-option">
+        <strong>❌ 选项 A (No, not owner/occupier)</strong><br>
+        <b>错误原因：</b>这是最强的干扰项。通常情况下，责任随占有权（Possession）转移。但在上述“合理机会”的时间窗口内，卖方对<b>已知隐患</b>仍有残留责任。所有权转移并不自动切断过失链条。
+    </div>
+
+    <div class="wrong-option">
+        <strong>❌ 选项 B (Neighbor knew)</strong><br>
+        <b>错误原因：</b>这涉及共同过失/比较过失 (Contributory/Comparative Negligence)。
+        <ul>
+            <li>首先，MBE 默认适用<b>纯粹比较过失 (Pure Comparative Negligence)</b>，原告的过失只会减少赔偿，而不会完全阻断胜诉 (Bar recovery)。</li>
+            <li>其次，仅仅因为知道屋顶旧而在公共人行道上行走，并不一定构成过失。</li>
+        </ul>
+    </div>
+
+    <div class="wrong-option">
+        <strong>❌ 选项 D (Defective at sale)</strong><br>
+        <b>错误原因：</b>这个选项听起来像“严格责任” (Strict Liability)。但本案是<b>过失 (Negligence)</b> 诉讼。
+        <br>仅有“缺陷”是不够的，必须证明卖方<b>“知道或理应知道” (Knew or should have known)</b> 该缺陷构成危险。选项 C 包含了这一关键的心理状态要素 (Scienter)，因此比 D 更准确。
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="footer-tip">
+        <strong>🎓 MBE 考试技巧 (Exam Tip):</strong>
+        <br><br>
+        遇到“房屋出售后发生伤害”的题目，请画一条时间线：
+        <br>
+        1. <b>伤害发生在土地内还是土地外？</b>（土地外对卖方更严苛）
+        <br>
+        2. <b>时间过了多久？</b>
+        <ul>
+            <li>如果是<b>几天内</b>：买方没机会修，<b>卖方</b>通常负责。</li>
+            <li>如果是<b>几个月/年后</b>：买方已有机会修，责任通常转移给<b>买方</b>。</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

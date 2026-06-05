@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+        .math-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            background: #fff;
+            border: 1px dashed #ccc;
+            padding: 10px;
+        }
+
+        .math-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .total-line {
+            border-top: 2px solid #333;
+            width: 100%;
+            max-width: 250px;
+            margin-top: 5px;
+            padding-top: 5px;
+            font-weight: bold;
+        }
+
+        .excluded {
+            color: var(--wrong-color);
+            text-decoration: line-through;
+            font-size: 0.9rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .tag-latin {
+            background-color: #e8e8e8;
+            color: #555;
+            font-style: italic;
+        }
+
+        .tag-rule {
+            background-color: #d5f5e3;
+            color: #196f3d;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .footer-tip {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .highlight {
+            color: var(--wrong-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div style="font-size: 0.9rem; opacity: 0.9;">Civil Procedure: Subject-Matter Jurisdiction</div>
+    </div>
+
+    <!-- Core Issue Card -->
+    <div class="card">
+        <h3>核心考点：多元化管辖权</h3>
+        <p>本题考察联邦法院的<b>属事管辖权 (Subject-Matter Jurisdiction)</b>。由于本案不涉及联邦法律（违约和诽谤均为州法诉求），管辖权必须基于<b>多元化管辖权 (Diversity Jurisdiction)</b>。</p>
+        
+        <div class="concept-box">
+            <span class="tag tag-rule">28 U.S.C. § 1332</span>
+            <b>两大核心要素：</b>
+            <ol>
+                <li><b>完全多元化 (Complete Diversity)</b>：原告与被告必须是不同州的公民。</li>
+                <li><b>争议金额 (Amount in Controversy)</b>：必须<b>超过</b> $75,000。</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Analysis Card -->
+    <div class="card">
+        <h3>案情分析与计算</h3>
+        <p>本案中，A州原告起诉B州被告，满足了“完全多元化”的要求。关键在于<b>争议金额</b>的计算。</p>
+
+        <p><b>规则 1：聚合原则 (Aggregation)</b><br>
+        单一原告起诉单一被告时，可以将所有诉讼请求的金额相加。</p>
+
+        <p><b>规则 2：排除原则 (Exclusion)</b><br>
+        计算争议金额时，必须排除<b>利息 (interest)</b> 和 <b>诉讼费用 (costs)</b>。</p>
+
+        <div class="math-visual">
+            <div class="math-row">
+                <span>违约索赔:</span>
+                <span>$50,000</span>
+            </div>
+            <div class="math-row">
+                <span>诽谤索赔:</span>
+                <span>+ $20,000</span>
+            </div>
+            <div class="math-row excluded">
+                <span>诉讼费用:</span>
+                <span>+ $7,000</span>
+            </div>
+            <div class="total-line math-row">
+                <span>有效总额:</span>
+                <span style="color:var(--wrong-color)">$70,000</span>
+            </div>
+        </div>
+
+        <p style="text-align: center;">
+            <b>$70,000 < $75,000</b><br>
+            <span style="color: var(--wrong-color); font-weight: bold;">❌ 未满足管辖权要求</span>
+        </p>
+    </div>
+
+    <!-- Conclusion Card -->
+    <div class="card" style="border-left-color: var(--correct-color);">
+        <h3>正确答案：C</h3>
+        <p><b>裁定：</b>批准驳回动议 (Grant the motion)。</p>
+        <p><b>理由：</b>虽然原告可以将违约和诽谤的索赔金额合并（$70,000），但法律明确规定诉讼费用（costs）<b>不计入</b>争议金额。因此，总金额未超过 $75,000 的法定门槛，联邦法院缺乏管辖权。</p>
+    </div>
+
+    <!-- Distractors Card -->
+    <div class="card" style="border-left-color: #95a5a6;">
+        <h3>为什么其他选项是错误的？</h3>
+        <ul>
+            <li>
+                <b>选项 A (补充管辖权 Supplemental Jurisdiction):</b> 
+                <br>只有当法院对至少一项主张拥有原始管辖权（Original Jurisdiction）时，才能对其他相关主张行使补充管辖权。本案中连一项符合条件的主张都没有，皮之不存，毛将焉附。
+            </li>
+            <li>
+                <b>选项 B (已满足金额):</b> 
+                <br>这是典型的陷阱选项。它错误地将 $7,000 的诉讼费用计入了总额。
+            </li>
+            <li>
+                <b>选项 D (审判地 Venue):</b> 
+                <br>这是一个混淆视听的选项。虽然 B 州可能是合适的审判地，但目前的动议是关于<b>管辖权 (Jurisdiction)</b>，而不是审判地。即使在 B 州联邦法院，由于金额不足，同样没有管辖权。
+            </li>
+        </ul>
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+        💡 <b>MBE 考试技巧：</b><br>
+        看到具体的美元金额时，立即拿出“计算器”。<br>
+        记住口诀：<b>"Exclusive of interest and costs"</b>（不含利息和费用）。<br>
+        但在计算时，<b>惩罚性赔偿 (Punitive Damages)</b> 和 <b>律师费 (Attorney's fees)</b>（如果是合同或法规允许的）通常是可以计入的。
+    </div>
+
+</div>
+
+</body>
+</html>

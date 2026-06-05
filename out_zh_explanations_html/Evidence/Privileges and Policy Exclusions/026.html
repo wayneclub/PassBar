@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBE Question Analysis</title>
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 10px;
+        color: #333;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 14px;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+    }
+    .answer-box {
+        background-color: #e8f5e9;
+        border-left: 5px solid #4caf50;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .answer-text {
+        font-weight: bold;
+        color: #2e7d32;
+        font-size: 18px;
+    }
+    .section-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+    }
+    .rule-card {
+        background-color: #fff8e1;
+        border: 1px solid #ffe0b2;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .rule-icon {
+        font-size: 20px;
+        margin-right: 8px;
+    }
+    .analysis-point {
+        margin-bottom: 15px;
+    }
+    .eng-term {
+        color: #7f8c8d;
+        font-size: 0.9em;
+        font-style: italic;
+        background-color: #f8f9fa;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+    .wrong-option {
+        background-color: #ffebee;
+        border-left: 4px solid #ef5350;
+        padding: 10px;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+    .highlight {
+        font-weight: bold;
+        color: #d35400;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    li {
+        margin-bottom: 8px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Evidence / Privileges</p>
+    </div>
+
+    <div class="content">
+        <div class="answer-box">
+            <span class="answer-text">正确答案：B</span>
+            <p style="margin: 5px 0 0; font-size: 14px;">第一组邮件享有特免权，第二组不享有。</p>
+        </div>
+
+        <div class="section-title">⚖️ 核心考点：律师-当事人特免权</div>
+        <div class="rule-card">
+            <span class="rule-icon">💡</span>
+            <b>Attorney-Client Privilege (律师-当事人特免权)</b>
+            <p>根据联邦普通法（Federal Common Law），该特免权保护以下沟通：</p>
+            <ul>
+                <li><b>机密沟通 (Confidential Communications)</b></li>
+                <li>发生在律师与当事人之间</li>
+                <li>目的是为了<b>获取或提供法律意见 (Legal Advice)</b></li>
+            </ul>
+        </div>
+
+        <div class="section-title">🔍 深度解析</div>
+
+        <div class="analysis-point">
+            <p><b>1. 第一组邮件：法律意见 (Legal Advice)</b></p>
+            <p>业主指出标志相似并询问“潜在的法律责任”。这是典型的寻求法律专业判断的行为。</p>
+            <ul>
+                <li><b>关键点：</b>即使律师<b>从未回复</b>，特免权依然存在。特免权保护的是当事人为了寻求法律帮助而进行的坦诚披露。只要当事人是基于寻求法律代理或建议的目的发送邮件，该沟通即受保护。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-point">
+            <p><b>2. 第二组邮件：商业建议 (Business Advice)</b></p>
+            <p>业主和律师讨论的是“商业潜力” (Business potential)。</p>
+            <ul>
+                <li><b>关键点：</b>律师经常身兼多职（如商业顾问）。当沟通的内容纯粹关于商业策略、市场前景或非法律事务时，<b>不享有</b>律师-当事人特免权。</li>
+                <li>法院会审查沟通的<b>主要目的 (Primary Purpose)</b>。如果目的是商业决策而非法律合规，则必须披露。</li>
+            </ul>
+        </div>
+
+        <div class="section-title">🚫 为什么其他选项是错的？</div>
+        
+        <div class="wrong-option">
+            <b>关于选项 D (陷阱选项)：</b><br>
+            选项 D 认为邮件不享有特免权，因为它们证实了“故意侵权”。<br><br>
+            <b>解析：</b>这是对特免权逻辑的误解。特免权的核心目的正是为了让当事人能安全地向律师承认过去的错误或潜在的责任，以便获得辩护。
+            <br><br>
+            虽然存在<b>犯罪-欺诈例外 (Crime-Fraud Exception)</b>，但它仅适用于寻求建议以实施<b>未来</b>的犯罪或欺诈。本题中，业主是在咨询已发生行为的法律后果，这正是特免权保护的核心领域。
+        </div>
+
+        <div class="section-title">🎓 考试技巧 (Exam Tip)</div>
+        <p>在 MBE 证据法题目中，遇到涉及律师的沟通时，请立即进行两步测试：</p>
+        <ol>
+            <li><b>内容测试：</b>他们在谈论什么？是法律责任/诉讼策略（受保护），还是纯粹的商业/生意经（不受保护）？</li>
+            <li><b>保密性测试：</b>是否有无关的第三方在场？（本题未涉及，但常考）。</li>
+        </ol>
+        <p>记住：律师的身份不是“保护伞”，<b>沟通的目的</b>才是关键。</p>
+
+    </div>
+</div>
+
+</body>
+</html>

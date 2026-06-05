@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fdf2f2;
+            --warning-text: #c0392b;
+            --success-bg: #e9f7ef;
+            --success-text: #27ae60;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-card {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .option-analysis {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .correct-answer {
+            background: var(--success-bg);
+            color: var(--success-text);
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .wrong-answer {
+            background: var(--warning-bg);
+            color: var(--warning-text);
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .mbe-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .mbe-tip-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts / Formation</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <div class="concept-title">核心概念：虚幻承诺</div>
+            <p><strong>Illusory Promise</strong></p>
+            <p>如果一方的承诺完全取决于其自身的意愿，且未对该方施加任何实际的法律义务（Legal Detriment），则该承诺是“虚幻的”。虚幻承诺不能构成有效的对价（Consideration）。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情关键点分析</div>
+            <p>本案适用《统一商法典》（<strong>UCC</strong>），因为涉及货物（铲雪锹）的买卖。</p>
+            <ul>
+                <li><strong>关键条款：</strong>批发商保留在9月1日之前<strong>随时取消</strong>订单的权利。</li>
+                <li><strong>时间点：</strong>题目询问的是7月22日的状态（此时在9月1日之前）。</li>
+                <li><strong>法律后果：</strong>批发商拥有“不受限制的退出权”（Unfettered right to exit）。这意味着批发商实际上并没有承诺购买任何东西。</li>
+            </ul>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 C？</div>
+            <div class="correct-answer">✅ 选项 C：没有成立合同，因为批发商保留了取消的权利。</div>
+            <p>合同成立的核心要素是<strong>对价 (Consideration)</strong>，即双方必须存在“讨价还价的交换”（Bargained-for exchange）。</p>
+            <p>在本案中：</p>
+            <ol>
+                <li>制造商承诺出售铲子。</li>
+                <li>批发商表面上承诺购买，但附加了一个条款：它可以随时取消，没有任何惩罚或限制。</li>
+            </ol>
+            <p>这种承诺被称为<strong>虚幻承诺 (Illusory Promise)</strong>。因为批发商实际上没有承担任何义务（No Mutuality of Obligation），所以不存在有效的对价。没有对价，合同就不成立。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">其他选项为何错误</div>
+            
+            <div class="wrong-answer">❌ 选项 A & B：认为合同已成立</div>
+            <p>这两个选项的前提都是“合同已成立”。但由于缺乏对价（Consideration），合同自始至终未成立。此外，选项A提到的“选择权合同”（Option Contract）需要为“保持要约开放”这一行为支付额外的对价，本案中不存在。</p>
+
+            <div class="wrong-answer">❌ 选项 D：归咎于“可撤销的要约”</div>
+            <p>这是一个干扰项。虽然要约通常是可撤销的（Revocable），但一旦受要约人（制造商）发出承诺（Acceptance），合同通常就会成立。本案无法成立合同的原因<strong>不是</strong>因为要约本身可撤销，而是因为要约的内容（承诺的内容）是虚幻的，导致缺乏对价。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <span class="mbe-tip-title">💡 MBE 考试技巧</span>
+            <p>在合同法题目中，当你看到<strong>"Right to cancel at any time"</strong>（随时取消权）且没有任何限制（如通知期、特定条件）时，警惕<strong>虚幻承诺 (Illusory Promise)</strong>。</p>
+            <p><strong>区分点：</strong>
+            <br>1. <strong>随时取消 = 无合同</strong>（本题情况）。
+            <br>2. <strong>需提前10天通知取消 = 有合同</strong>（因为这10天的通知期构成了法律上的损害/义务）。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

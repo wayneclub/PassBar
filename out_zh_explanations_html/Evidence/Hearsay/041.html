@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .step-icon {
+            background: #27ae60;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .step-text {
+            font-size: 14px;
+        }
+        .distractor {
+            background-color: #fff5f5;
+            border-left: 5px solid #e74c3c;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+        .distractor strong {
+            color: #c0392b;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+        .eng-term {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence / Hearsay Exceptions</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">核心考点：不利于己方利益的陈述</span>
+            <span class="eng-term">Statement Against Interest (FRE 804(b)(3))</span>
+            <p style="font-size: 14px; margin-top: 8px;">
+                这是一项传闻证据的例外。如果陈述人在庭审时<b>无法出庭 (Unavailable)</b>，且该陈述在作出时严重违背其金钱、财产或<b>刑事利益 (Penal Interest)</b>，以至于理性人只有在相信其为真实时才会作出，则该陈述可采纳。
+            </p>
+        </div>
+
+        <!-- 案情简析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">本案逻辑链条</div>
+            
+            <div class="step">
+                <div class="step-icon">1</div>
+                <div class="step-text">
+                    <strong>传闻性质 (Hearsay):</strong><br>
+                    朋友的陈述“有人付钱让我放火”是庭外陈述，且被用于证明“他确实放火了”这一事实真相。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">2</div>
+                <div class="step-text">
+                    <strong>陈述人无法出庭 (Unavailability):</strong><br>
+                    朋友已经因烧伤感染死亡，符合 FRE 804 对“无法出庭”的要求。这是适用该例外的先决条件。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">3</div>
+                <div class="step-text">
+                    <strong>违背刑事利益 (Against Penal Interest):</strong><br>
+                    承认自己受雇纵火（Arson），直接将自己暴露在严重的刑事责任之下。理性人通常不会为了撒谎而承认重罪。
+                </div>
+            </div>
+            
+            <p style="font-size: 14px; color: #27ae60; font-weight: bold; text-align: center; margin-top: 10px;">
+                结论：符合例外，可以采纳 (Admissible)。
+            </p>
+        </div>
+
+        <!-- 排除干扰项 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么其他选项是错的？</div>
+
+            <div class="distractor">
+                <strong>❌ 夫妻特免权 (Marital Communications Privilege)</strong><br>
+                虽然该特免权在配偶死后仍然有效，但它仅保护<b>旨在保密 (Intended to be confidential)</b> 的交流。
+                <br><br>
+                <span class="highlight">关键破题点：</span> 朋友是在<b>护士 (Nurse)</b> 在场的情况下说的。第三方的在场破坏了保密性，因此特免权不适用。
+            </div>
+
+            <div class="distractor">
+                <strong>❌ 共谋者陈述 (Co-conspirator Statement)</strong><br>
+                共谋者陈述属于“非传闻” (Non-hearsay)，但必须是在共谋<b>期间 (During)</b> 且为了<b>推进 (In furtherance of)</b> 共谋而作出的。
+                <br><br>
+                <span class="highlight">关键破题点：</span> 朋友是在火灾发生后、躺在医院里说的。此时“纵火”的共谋已经结束，且该陈述只是事后承认，并非为了推进共谋。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+            <span class="rule-title" style="color: #d35400;">💡 MBE 提分技巧</span>
+            <p style="font-size: 13px; margin-top: 5px;">
+                区分 <b>Statement Against Interest</b> 和 <b>Admission by Party-Opponent</b>：
+                <ul style="padding-left: 20px; margin: 5px 0;">
+                    <li><b>Statement Against Interest:</b> 适用于任何人（包括非当事人），但必须要求陈述人<b>无法出庭 (Unavailable)</b>。</li>
+                    <li><b>Admission:</b> 仅适用于<b>对方当事人 (Party-Opponent)</b> 的陈述，不需要考虑是否无法出庭。</li>
+                </ul>
+                本题中，朋友不是诉讼当事人（原告是游艇主人，被告是保险公司），所以只能走 Statement Against Interest 这条路。
+            </p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

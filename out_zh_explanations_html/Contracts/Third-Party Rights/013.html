@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fff3cd;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .english-term {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-left: 4px;
+        }
+
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            background: var(--highlight-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+        }
+
+        .diagram-box {
+            background: white;
+            border: 1px solid var(--accent-color);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            text-align: center;
+            width: 80%;
+            margin: 5px 0;
+        }
+
+        .arrow {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .warning-box {
+            background-color: var(--warning-bg);
+            border-left-color: #f1c40f;
+            font-size: 0.95rem;
+        }
+
+        .key-takeaway {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts: Assignment & Delegation</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心结论 -->
+        <div class="card">
+            <span class="concept-title">✅ 正确答案解析 (Option A)</span>
+            <p>音乐家既可以起诉<strong>原来的设计师</strong>（委托人），也可以起诉<strong>接手的设计师</strong>（受托人）。</p>
+            <p>这道题考察的是合同法中关于<b>义务委托</b>（Delegation of Duties）后的责任归属问题。</p>
+        </div>
+
+        <!-- 逻辑图示 -->
+        <div class="diagram">
+            <div style="font-weight:bold; margin-bottom:10px; color:var(--primary-color)">责任流向图</div>
+            <div class="diagram-box">音乐家 (Musician)<br><small>债权人 / Obligee</small></div>
+            <div class="arrow">⬇️ 可起诉 (Sue)</div>
+            <div class="diagram-box">原设计师 (Decorator A)<br><small>委托人 / Delegator</small></div>
+            <div class="arrow">➕ 且 (AND)</div>
+            <div class="diagram-box">新设计师 (The Man)<br><small>受托人 / Delegatee</small></div>
+        </div>
+
+        <!-- 考点 1: 委托人的责任 -->
+        <div class="card warning-box">
+            <span class="concept-title">考点 1：委托不等于免责</span>
+            <p><strong>规则：</strong> 除非债权人明确同意释放原债务人的责任（即达成 <b>Novation</b>，更替合同），否则原债务人（委托人）在委托义务后，<b>仍然对合同履行承担责任</b>。</p>
+            <p><strong>本案分析：</strong> 虽然音乐家同意让新设计师干活（Consent to delegation），但她并没有签署协议免除原设计师的责任（No release of liability）。</p>
+            <p>👉 <i>Delegation does not discharge the delegator.</i></p>
+        </div>
+
+        <!-- 考点 2: 受托人的责任 -->
+        <div class="card">
+            <span class="concept-title">考点 2：受托人的承诺</span>
+            <p><strong>规则：</strong> 当受托人承诺履行原合同义务（Assumption of Duties）并以此作为对价（例如买下原设计师的生意）时，原债权人（音乐家）就成为了该协议的<b>意定受益人</b> <span class="english-term">(Intended Third-Party Beneficiary)</span>。</p>
+            <p><strong>本案分析：</strong> 新设计师承诺完成录音室合同。因此，音乐家可以直接起诉新设计师违约。</p>
+        </div>
+
+        <!-- 为什么其他选项错误 -->
+        <div class="card" style="border-left-color: #e74c3c;">
+            <span class="concept-title">为什么其他选项是错的？</span>
+            <ul>
+                <li><strong>选项 B 错：</strong> 认为只能起诉原设计师。错误，因为新设计师已经明确承诺履行义务，音乐家作为受益人有权起诉他。</li>
+                <li><strong>选项 C & D 错：</strong> 认为原设计师免责。这是MBE最常见的陷阱！<b>“同意委托” (Consenting to delegation) 不等于 “同意免责” (Release/Novation)。</b> 除非题目明确说 "Musician agreed to release the first decorator"，否则原设计师永远在钩子上。</li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="key-takeaway">
+            <strong>🎓 MBE 考试技巧</strong>
+            <p>在处理 <b>Delegation</b>（委托）题目时，请记住：</p>
+            <ol>
+                <li><strong>默认规则：</strong> 委托人（Delegator）<b>始终</b>承担责任。</li>
+                <li><strong>例外情况：</strong> 只有看到 <b>Novation</b>（更替合同）或 <b>Release</b>（免责声明）这两个词，委托人才会退场。</li>
+                <li><strong>受托人责任：</strong> 如果受托人承诺（Promise）去履行，他也被套牢了，债权人可以二选一或双管齐下。</li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

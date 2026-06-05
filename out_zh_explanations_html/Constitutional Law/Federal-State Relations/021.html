@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-badge {
+            display: inline-block;
+            background-color: #27ae60;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+        .rule-box {
+            background-color: #e8f6f3;
+            border-left: 4px solid #1abc9c;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .rule-box strong {
+            color: #16a085;
+        }
+        .analysis-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .check-icon {
+            color: #27ae60;
+            margin-right: 8px;
+            font-weight: bold;
+            min-width: 20px;
+        }
+        .trap-box {
+            background-color: #fdedec;
+            border-left: 4px solid #e74c3c;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        .trap-title {
+            color: #c0392b;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Constitutional Law: Dormant Commerce Clause</p>
+    </div>
+
+    <div class="content">
+        <div class="answer-badge">正确答案：C</div>
+
+        <p>本题的核心考点是<strong>休眠商业条款 (Dormant Commerce Clause)</strong> 下，州政府对州际贸易活动征税（或收费）的合宪性标准。</p>
+
+        <div class="section-title">⚖️ 核心法律规则</div>
+        
+        <div class="rule-box">
+            <strong>Complete Auto Transit Test (四要素测试)</strong><br>
+            根据最高法院在 <em>Complete Auto Transit v. Brady</em> 案中的确立的标准，一项影响州际贸易的州税（或类似费用）若要合宪，必须同时满足以下四个条件：
+            <ol style="margin: 5px 0 0 -20px;">
+                <li><strong>实质性联系 (Substantial Nexus):</strong> 纳税人或活动与该州有实质联系。</li>
+                <li><strong>公平分配 (Fair Apportionment):</strong> 税收必须公平分配，避免双重征税。</li>
+                <li><strong>非歧视性 (Non-discrimination):</strong> 不得歧视州际贸易。</li>
+                <li><strong>公平相关 (Fair Relationship):</strong> 税收与州提供的服务或福利合理相关。</li>
+            </ol>
+        </div>
+
+        <div class="section-title">🔍 案情分析</div>
+        
+        <p>让我们将本案事实代入上述测试：</p>
+
+        <div class="analysis-step">
+            <div class="check-icon">✔</div>
+            <div>
+                <strong>实质性联系：</strong>该公司在该州设有家禽加工厂，并在该州开展业务，满足 Nexus 要求。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="check-icon">✔</div>
+            <div>
+                <strong>公平分配：</strong>费用仅针对“在该州”饲养或加工的家禽征收。该州没有试图对该州以外发生的活动征税。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="check-icon">✔</div>
+            <div>
+                <strong>非歧视性：</strong>费用适用于该州内<span class="highlight">所有</span>的家禽养殖和加工业务，无论是本地公司还是跨州公司，一视同仁。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="check-icon">✔</div>
+            <div>
+                <strong>公平相关：</strong>费用的目的是资助检查系统，这直接造福于该行业（确保家禽无病毒），因此费用与服务是相关的。
+            </div>
+        </div>
+
+        <p><strong>结论：</strong>该费用满足所有条件，没有对州际贸易造成不当负担 (Undue Burden)，因此是合宪的。</p>
+
+        <div class="section-title">🚫 避坑指南 (为什么其他选项错)</div>
+
+        <div class="trap-box">
+            <span class="trap-title">陷阱 A：混淆了国会权力与州权力</span>
+            选项 A 提到“实质性影响 (substantially affects)”。这是判断<strong>国会 (Congress)</strong> 是否有权根据商业条款进行立法的标准（<em>Wickard v. Filburn</em>）。<br><br>
+            但在判断<strong>州 (State)</strong> 的法律是否违反休眠商业条款时，我们不看它是否有“实质影响”，而是看它是否构成“不当负担 (Undue Burden)”或“歧视”。
+        </div>
+
+        <div class="trap-box">
+            <span class="trap-title">陷阱 D：警察权不是万能牌</span>
+            虽然州拥有警察权 (Police Power) 来保护公众健康，但根据<strong>至上条款 (Supremacy Clause)</strong>，宪法（包括商业条款的负面含义）高于州法律。<br><br>
+            如果州法违反了休眠商业条款（例如具有歧视性），即使它是基于警察权颁布的，也会被判违宪。因此，不能简单地说警察权“优先于”商业条款。
+        </div>
+
+        <div class="section-title">🎓 考试技巧</div>
+        <p style="font-size: 14px; color: #555;">
+            遇到涉及<strong>州税 (State Tax)</strong> 或<strong>州收费 (State Fee)</strong> 的题目时，直接套用 <em>Complete Auto</em> 四要素测试。只要该税收是非歧视的、公平分配的，并且与在该州的活动有关，通常都是合宪的。
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

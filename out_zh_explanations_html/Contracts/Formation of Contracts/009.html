@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card.correct {
+            border-left-color: var(--success-color);
+        }
+
+        .card.wrong {
+            border-left-color: var(--warning-color);
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english {
+            font-style: italic;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px;
+            border-radius: 2px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>合同成立与书面记录<br><span class="english">Formation & Memorialization</span></p>
+    </div>
+
+    <!-- 核心考点 -->
+    <div class="card">
+        <h2>核心法律规则</h2>
+        <p>本题考察的核心在于区分以下两种情况：</p>
+        <ol>
+            <li><strong>合同成立后的书面记录</strong> <span class="english">(Memorialization of an agreement)</span>：双方已经达成合意，只是想把条款写下来留底。此时，口头或非正式协议已经具有约束力。</li>
+            <li><strong>以签署书面合同为生效条件</strong> <span class="english">(Condition of validity)</span>：双方明确表示，在正式书面合同签署之前，不受任何约束。</li>
+        </ol>
+        <p><strong>规则：</strong>除非双方明确表示在正式文件签署前不承担义务，否则只要对所有主要条款达成一致，合同即告成立。后续的起草工作仅仅是“记录” <span class="english">(Record)</span>，而非“条件” <span class="english">(Condition)</span>。</p>
+    </div>
+
+    <!-- 正确答案分析 -->
+    <div class="card correct">
+        <h2>✅ 为什么选 D？</h2>
+        <p><strong>选项 D 正确。</strong></p>
+        <p>在本案中，合同成立的时间线如下：</p>
+        <ul>
+            <li><strong>要约 (Offer)：</strong> 姑妈写信提出以 $125,000 出售，并设定了条件（房东同意）。</li>
+            <li><strong>承诺 (Acceptance)：</strong> 侄女回信接受。此时双方达成合意 <span class="english">(Mutual Assent)</span>。</li>
+            <li><strong>先决条件成就 (Condition Precedent Met)：</strong> 房东批准了租约转让。此时合同已完全生效。</li>
+        </ul>
+        <p>姑妈随后提到找律师起草合同，目的是“为了对条款进行记录” <span class="english">(so that there would be a record)</span>。这表明书面文件只是为了证据保存 <span class="english">(Evidentiary purpose)</span>，而不是合同成立的新条件。</p>
+        <p>因此，即使书面文件未完成，之前的协议依然有效且可执行。</p>
+    </div>
+
+    <!-- 错误选项分析 -->
+    <div class="card wrong">
+        <h2>❌ 为什么排除其他选项？</h2>
+        
+        <p><strong>选项 A：动机 (Motivation)</strong></p>
+        <p>错误。虽然姑妈是出于喜爱（Affection），但只要存在<strong>经过讨价还价的交换</strong> <span class="english">(Bargained-for exchange)</span>，即“书店业务”交换“$125,000”，合同就成立。动机不影响对价 <span class="english">(Consideration)</span> 的有效性。</p>
+
+        <p><strong>选项 B：对价是否充分 (Adequacy of Consideration)</strong></p>
+        <p>错误。普通法的一般原则是<strong>法院不审查对价的充分性</strong> <span class="english">(Courts do not inquire into the adequacy of consideration)</span>。只要不是象征性的虚假对价（如“1美元”），$125,000 购买价值 $200,000 的资产是完全有效的交易。</p>
+
+        <p><strong>选项 C：不可控条件 (Condition beyond control)</strong></p>
+        <p>错误。虽然房东是否同意确实超出了双方控制，但这只是一个<strong>先决条件</strong> <span class="english">(Condition Precedent)</span>。题目明确指出房东<strong>已经批准</strong>了。一旦条件满足，合同义务就被激活。这个事实支持合同有效，而不是反对。</p>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card">
+        <h2>🎓 MBE 考试技巧</h2>
+        <p>在处理涉及“后续书面合同” <span class="english">(Subsequent Written Contract)</span> 的题目时，请寻找关键词：</p>
+        <ul>
+            <li>如果题目说 "subject to a signed contract" 或 "not binding until signed"，则书面形式是条件。</li>
+            <li>如果题目说 "to memorialize"、"to keep a record" 或 "formalize the agreement"，通常意味着合同<strong>已经成立</strong>，后续文书工作不影响其效力。</li>
+        </ul>
+        <p><strong>记住：</strong>合同法倾向于保护双方已达成的合意 <span class="english">(Intent of the parties)</span>。</p>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

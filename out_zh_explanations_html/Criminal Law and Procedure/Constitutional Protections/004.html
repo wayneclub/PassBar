@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #34495e;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .concept-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        .timeline {
+            margin: 15px 0;
+            padding-left: 15px;
+            border-left: 2px solid #bdc3c7;
+        }
+        .event {
+            position: relative;
+            margin-bottom: 15px;
+            padding-left: 15px;
+        }
+        .event::before {
+            content: '';
+            position: absolute;
+            left: -21px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            background-color: #e74c3c;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+        .event-date {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考题解析</h1>
+        <div class="sub-title">宪法保护 & 刑事程序</div>
+    </div>
+
+    <div class="content">
+        <!-- 答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：A</span>
+            法院应基于两项理由（一事不再理和诉讼时效）<b>驳回被告的动议 (Deny the motion)</b>。
+        </div>
+
+        <p>本题考察了刑事程序中的两个核心概念：<b>一事不再理 (Double Jeopardy)</b> 的例外情况以及<b>诉讼时效 (Statute of Limitations)</b> 的起算点。</p>
+
+        <!-- 考点一：一事不再理 -->
+        <div class="section-title">考点一：一事不再理 (Double Jeopardy)</div>
+        <div class="concept-card">
+            <p><b>一般原则：</b>根据美国宪法第五修正案，通常禁止对“同一罪行”进行二次起诉。根据 <span class="latin">Blockburger</span> 测试，如果较轻的罪行（如鲁莽驾驶）是较重罪行（如过失杀人）的<b>包含性犯罪 (Lesser Included Offense)</b>，则通常禁止在定罪后再次起诉较重的罪行。</p>
+            
+            <p><b>关键例外 (The Diaz Exception)：</b><br>
+            如果证明较重罪行所需的<b>必要事实 (Necessary Facts)</b> 在第一次审判时<b>尚未发生</b>，则不适用一事不再理原则。</p>
+        </div>
+
+        <p><b>本案分析：</b></p>
+        <div class="timeline">
+            <div class="event">
+                <div class="event-date">2013年7月1日</div>
+                <div>被告因<b>鲁莽驾驶</b>被定罪。此时受害人还活着。</div>
+            </div>
+            <div class="event">
+                <div class="event-date">2014年4月1日</div>
+                <div>受害人<b>死亡</b>。</div>
+            </div>
+        </div>
+        <p>由于构成过失杀人罪（Manslaughter）的关键要素——<b>受害人死亡</b>——在第一次审判时并未发生，因此政府可以在受害人死后提起新的指控。这不违反 Double Jeopardy。</p>
+
+        <!-- 考点二：诉讼时效 -->
+        <div class="section-title">考点二：诉讼时效 (Statute of Limitations)</div>
+        <div class="concept-card">
+            <p><b>起算规则：</b><br>
+            诉讼时效从犯罪行为<b>完成 (Complete)</b> 之日起算。即犯罪的所有构成要件（Elements）都已满足的那一刻。</p>
+        </div>
+
+        <p><b>本案分析：</b></p>
+        <ul>
+            <li><b>犯罪完成日：</b>过失杀人罪是结果犯，必须有“死亡”这一结果才构成犯罪。因此，时效从受害人死亡之日（<b>2014年4月1日</b>）开始计算，而不是事故发生日。</li>
+            <li><b>时效届满日：</b>三年时效将于 <b>2017年4月1日</b> 届满。</li>
+            <li><b>起诉日期：</b>大陪审团于 <b>2017年3月1日</b> 提起公诉。</li>
+        </ul>
+        <p>因为起诉发生在时效届满之前（提前了一个月），所以诉讼时效未过。</p>
+
+        <!-- 结论 -->
+        <div class="section-title">结论与解题技巧</div>
+        <p>法院应驳回被告的两项抗辩理由：</p>
+        <ol>
+            <li><b>一事不再理：</b>不成立，因为定罪时受害人尚未死亡（例外情况）。</li>
+            <li><b>诉讼时效：</b>不成立，因为时效从死亡日开始计算，起诉时未过期。</li>
+        </ol>
+        
+        <div class="concept-card" style="background-color: #fff8e1; border-color: #ffe0b2;">
+            <span class="term">💡 MBE 考试技巧：</span><br>
+            遇到“先定罪，后死亡”的题目，几乎总是考察 <span class="latin">Diaz v. United States</span> 确立的例外规则。记住：<b>如果第一次审判时受害人还活着，后续的谋杀/杀人起诉通常是允许的。</b>同时注意检查日期的计算起点。
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

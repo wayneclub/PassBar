@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --light-text: #666;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        .container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .check-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .check-list li {
+            margin-bottom: 10px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .check-list li::before {
+            content: "✔";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .trap-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+        }
+
+        .trap-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--light-text);
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">侵权法 (Torts) - 隐私权 (Privacy)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法律规则</span>
+            本题考查的是隐私权侵权中的<span class="term">姓名或肖像盗用</span> <span class="english-term">(Appropriation of Name or Likeness)</span>。
+            <br><br>
+            <strong>构成要件：</strong>
+            <ol style="margin-top: 5px; padding-left: 20px;">
+                <li>被告使用了原告的姓名或肖像；</li>
+                <li>未经原告授权 <span class="english-term">(Unauthorized)</span>；</li>
+                <li>为了被告的<strong>商业利益</strong> <span class="english-term">(Commercial Advantage)</span>。</li>
+            </ol>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 C？(逻辑推演)</div>
+            <p>选项 C 指出“酒庄将照片用于商业用途”，这直接击中了本案的法律核心。</p>
+            <ul class="check-list">
+                <li><strong>商业使用：</strong>酒庄将照片放在全国发行的杂志广告中，目的是为了推销葡萄酒，这显然构成了商业利益。</li>
+                <li><strong>缺乏授权：</strong>虽然电影明星同意被“拍照”，但他并没有同意照片被用于“商业广告”。</li>
+            </ul>
+            <p>在 <em>Appropriation</em> 侵权中，只要证明被告未经许可利用原告的身份获取了商业利益，原告即可胜诉。</p>
+        </div>
+
+        <!-- 陷阱排除 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🚫 常见陷阱排除</div>
+            
+            <div style="margin-bottom: 15px;">
+                <strong>❌ 选项 A：同意的范围 (Scope of Consent)</strong><br>
+                <span style="font-size: 0.9em; color: #666;">
+                这是 MBE 常见的干扰项。同意“被拍照”<span style="text-decoration: underline;">不等于</span>同意“照片被用于商业广告”。同意是有范围限制的。
+                </span>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <strong>❌ 选项 B：公众人物 (Public Figure)</strong><br>
+                <span style="font-size: 0.9em; color: #666;">
+                公众人物并未放弃对其肖像商业价值的控制权。相反，因为他们的形象具有商业价值（Right of Publicity），这种侵权造成的损失往往更大。
+                </span>
+            </div>
+
+            <div class="trap-box">
+                <span class="trap-title">⚠️ 重点警示：选项 D (真相抗辩)</span>
+                选项 D 认为如果明星“真的喜欢”这酒，酒庄就没事。这是错误的！
+                <br><br>
+                <strong>真相 (Truth)</strong> 是针对<em>诽谤 (Defamation)</em> 或 <em>虚假光环 (False Light)</em> 的抗辩理由。
+                <br><br>
+                但在<strong>肖像盗用 (Appropriation)</strong> 中，无论陈述是否属实，只要你未经允许拿别人的脸去赚钱，就构成侵权。
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <strong>MBE 解题技巧：</strong><br>
+        看到“未经同意用于广告”，首先定位 Appropriation。<br>
+        区分“隐私权”与“名誉权”，不要被“内容真实”所迷惑。
+    </div>
+</div>
+
+</body>
+</html>

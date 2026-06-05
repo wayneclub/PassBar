@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - 宪法学: 司法审查</title>
+    
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">宪法学: 司法审查</p>
+        </header>
+
+        <main style="padding: 0 24px;">
+            <div class="answer-box">
+                正确答案: A
+                <p>国会根据第十四修正案的授权条款制定法律，可以废除州的第十一修正案主权豁免权，允许公民对州机构提起损害赔偿诉讼。</p>
+            </div>
+
+            <h2>核心法律规则</h2>
+            <div class="concept-box">
+                <p class="concept-title">第十一修正案与国会废除州主权豁免权</p>
+                <ul>
+                    <li><span class="term">第十一修正案</span> 通常禁止联邦法院审理私人针对州提起的损害赔偿诉讼，确立了州主权豁免权。</li>
+                    <li>然而，国会可以根据其在 <span class="term">第十四修正案第5节授权条款 (Enabling Clause)</span> 下的权力，废除州的第十一修正案豁免权。</li>
+                    <li>当国会根据第十四修正案行事时，它可以制定适当的补救性立法，明确规定州可以被私人起诉以追究损害赔偿责任。</li>
+                    <li>这种权力是独特的，不同于国会根据《商业条款》等其他条款行使的权力，后者通常不能废除州的损害赔偿豁免权。</li>
+                </ul>
+            </div>
+
+            <h3>第十一修正案豁免权概览</h3>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">第十一修正案 (州在联邦法院免受诉讼的豁免权)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="width: 30%; font-weight: 700;">豁免 (Immunity)</td>
+                            <td>
+                                <ul>
+                                    <li>私人或外国政府提起的诉讼</li>
+                                    <li>针对违反州法律的州官员提起的诉讼</li>
+                                    <li><strong>例外情况:</strong>
+                                        <ul>
+                                            <li>州同意被起诉</li>
+                                            <li>第十三、十四或十五修正案废除了豁免权</li>
+                                            <li>州官员因涉嫌违反宪法被起诉，要求禁令性或宣告性救济</li>
+                                            <li>损害赔偿由州官员个人支付 (而非州财政)</li>
+                                            <li>州官员因未来 (非追溯性) 损害赔偿被起诉，由州财政支付</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 30%; font-weight: 700;">无豁免 (No Immunity)</td>
+                            <td>
+                                <ul>
+                                    <li>美国政府或其他州提起的诉讼</li>
+                                    <li>针对地方政府 (例如，县、市) 提起的诉讼</li>
+                                    <li>破产程序</li>
+                                    <li>征用权程序</li>
+                                    <li>国会根据其战争和武装部队权力允许的诉讼</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>事实与适用逻辑</h2>
+            <div class="analysis-step">
+                <p>本案中，一项联邦法规禁止对残疾人进行歧视，并允许针对违规雇主（包括州机构）提起民事损害赔偿诉讼。该法规明确声明国会意图根据其在第十四修正案下的权力废除州豁免权。</p>
+                <p>根据 <span class="term">第十四修正案第5节授权条款</span>，国会拥有权力通过适当的立法来执行该修正案的规定。最高法院在 <span class="latin">Fitzpatrick v. Bitzer</span> 案中明确指出，国会根据第十四修正案行事时，可以废除州的第十一修正案主权豁免权，从而允许公民在联邦法院对州提起损害赔偿诉讼。</p>
+                <p>尽管雇员承认州机构的行为可能与合法的政府目的合理相关（暗示可能不直接违反平等保护条款的“合理基础”标准），但这并不妨碍国会根据第十四修正案第5节制定法律来禁止此类行为并废除州豁免权。国会在此条款下的权力是补救性的，可以禁止那些本身不违宪但有助于防止或补救宪法侵犯的行为，只要其立法是“相称且适当”的。</p>
+                <p>因此，由于国会明确根据第十四修正案的授权条款行事，法院不应以宪法豁免权为由驳回诉讼。</p>
+            </div>
+
+            <div class="diagram">
+                <h3>国会废除州主权豁免权的路径</h3>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 15px;">
+                    <div class="flow-node">第十一修正案</div>
+                    <span>&#10140;</span>
+                    <div class="flow-node">州主权豁免权 (一般规则)</div>
+                    <br style="clear: both;">
+                    <div class="flow-node highlight-node">第十四修正案第5节授权条款</div>
+                    <span>&#10140;</span>
+                    <div class="flow-node">国会执行权力</div>
+                    <span>&#10140;</span>
+                    <div class="flow-node active">废除州豁免权 (允许损害赔偿诉讼)</div>
+                </div>
+            </div>
+
+            <div class="trap-alert">
+                <h3>陷阱警示: 混淆国会权力来源</h3>
+                <p>MBE常考的一个陷阱是混淆国会根据不同宪法条款行使的权力对州主权豁免权的影响。虽然国会根据 <span class="term">《商业条款》</span> (Commerce Clause) 通常不能废除州的第十一修正案豁免权以允许私人提起损害赔偿诉讼（参见 <span class="latin">Seminole Tribe v. Florida</span>），但 <span class="term">第十四修正案第5节授权条款</span> 是一个重要的例外。务必记住，只有当国会明确根据第十四修正案行事时，它才能有效地废除州的主权豁免权，允许私人追溯性地向州寻求损害赔偿。</p>
+            </div>
+
+            <h2>正确答案与干扰项排除</h2>
+            <div class="option-analysis">
+                <div class="option correct">
+                    <strong>A. 不应驳回，因为国会根据第十四修正案的授权条款制定了该法规。</strong>
+                    <p><strong>正确。</strong> 国会根据第十四修正案第5节授权条款行事时，可以废除州的主权豁免权，允许私人对州提起损害赔偿诉讼。本案中的联邦法规明确声明了国会的这一意图。</p>
+                </div>
+
+                <div class="option wrong">
+                    <strong>B. 不应驳回，因为国会是根据其在《商业条款》下的权力行事。</strong>
+                    <p><strong>错误。</strong> 国会根据《商业条款》行事时，通常不能废除州的第十一修正案豁免权，以允许私人对州提起损害赔偿诉讼。这是《商业条款》与第十四修正案授权条款之间的一个关键区别。</p>
+                </div>
+
+                <div class="option wrong">
+                    <strong>C. 应驳回，因为第十一修正案阻止公民向州机构追回追溯性金钱损害赔偿。</strong>
+                    <p><strong>错误。</strong> 尽管第十一修正案通常会阻止追溯性金钱损害赔偿，但当国会根据第十四修正案第5节授权条款明确废除豁免权时，此规则有一个重要例外。本案中，国会正是这样做的。</p>
+                </div>
+
+                <div class="option wrong">
+                    <strong>D. 应驳回，因为州机构的行为并未违反《平等保护条款》。</strong>
+                    <p><strong>错误。</strong> 州机构行为是否违反《平等保护条款》是案件实体问题，与法院是否有管辖权审理此案（即州主权豁免权问题）无关。国会根据第十四修正案第5节的权力，可以禁止那些本身不构成宪法违宪但有助于防止或补救宪法违宪的行为，只要其立法是“相称且适当”的。因此，即使州的行为不直接违反《平等保护条款》的合理基础标准，国会仍可立法禁止并废除豁免权。</p>
+                </div>
+            </div>
+
+            <div class="footer-tip">
+                <h3>考试技巧</h3>
+                <p>在MBE考试中，当遇到涉及州主权豁免权的问题时，请立即检查国会立法所依据的宪法权力来源。如果国会明确依据 <span class="term">第十四修正案第5节授权条款</span> 行事，那么它通常可以有效地废除州的第十一修正案豁免权，允许私人提起损害赔偿诉讼。这是第十一修正案规则的一个核心例外。</p>
+            </div>
+
+            <div class="references">
+                <h3>参考文献</h3>
+                <ul>
+                    <li><a href="https://www.oyez.org/cases/1975/74-1027" target="_blank" rel="noopener noreferrer">Fitzpatrick v. Bitzer, 427 U.S. 445 (1976)</a> (判决国会根据第十四修正案的授权条款执行法律时，可以废除第十一修正案下的州主权豁免权)。</li>
+                </ul>
+            </div>
+        </main>
+
+        <footer class="footer-meta">
+            <div>
+                <strong>科目</strong>
+                <p>宪法学</p>
+            </div>
+            <div>
+                <strong>章节</strong>
+                <p>司法审查</p>
+            </div>
+            <div>
+                <strong>考点</strong>
+                <p>州主权豁免权</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

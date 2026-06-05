@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            margin: 0 auto;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .card-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            border-bottom: 2px solid var(--highlight-bg);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+        .english-term {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 10px 0;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2>MBE 考题解析</h2>
+        <p>Real Property: Deeds & Delivery</p>
+    </div>
+
+    <div class="card">
+        <div class="card-title">✅ 正确答案</div>
+        <div class="correct-answer">选项 C (The Friend)</div>
+        <p>法院应支持朋友，因为地契（Deed）已经完成了有效的<b>交付 (Delivery)</b>。</p>
+    </div>
+
+    <div class="card">
+        <div class="card-title">⚖️ 核心法律规则 (Legal Rule)</div>
+        <p>本题考察的是不动产法中关于<b>地契交付 (Delivery of Deed)</b> 的核心原则，特别是当交付附带<b>口头条件 (Oral Condition)</b> 时的处理方式。</p>
+        
+        <div class="concept-box">
+            <strong>规则一：交付即转让 (Delivery transfers title)</strong><br>
+            地契一旦有效交付并被受让人接受，所有权立即转移。此后，转让人不能单方面撤销（Revoke）或收回所有权。
+        </div>
+
+        <div class="concept-box">
+            <strong>规则二：对受让人的口头条件无效 (Oral condition to grantee is void)</strong><br>
+            如果转让人将地契<b>直接交给受让人 (Grantee)</b>，但口头附加了条件（例如：“在我死之前不要登记”或“如果我死在你前面这地才归你”），普通法（Common Law）的规则是：
+            <ul>
+                <li><b>交付是有效的且绝对的 (Absolute)。</b></li>
+                <li><b>口头条件是无效的 (Void/Unenforceable)。</b></li>
+            </ul>
+            这意味着所有权在交付的那一刻就已经无条件地转移了。
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">🔍 案情深度解析</div>
+        <p>让我们将规则应用到本案的具体事实中：</p>
+        
+        <ol>
+            <li>
+                <strong>交付行为 (Act of Delivery)：</strong><br>
+                土地所有者将地契<b>亲手交给了</b>朋友。这创造了强有力的交付推定。
+            </li>
+            <li>
+                <strong>转让意图 (Intent)：</strong><br>
+                他说：“这是你的了 (This is yours)”。这表明了立即转让所有权的意图 (Present intent to convey)。
+            </li>
+            <li>
+                <strong>口头条件 (The Oral Condition)：</strong><br>
+                他说：“但在我死之前请不要登记”。
+                <br><em>法律后果：</em>根据上述规则，因为地契是直接交给受让人的，这个口头条件被视为无效。法律认为地契已<b>绝对交付</b>。朋友在拿到地契的那一刻，就已经成为了土地的合法所有者。
+            </li>
+            <li>
+                <strong>后续的反悔 (Change of Mind)：</strong><br>
+                两天后所有者想要回地契改立遗嘱。
+                <br><em>法律后果：</em>无效。因为所有权在两天前已经转移了。撕毁地契或归还纸质文件并不能把所有权转回去（必须重新签署一份新的地契由朋友转回给所有者）。
+            </li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <div class="card-title">❌ 干扰项排除</div>
+        
+        <p><strong>选项 A 错误：</strong><br>
+        <span class="english-term">"Death deprived recording of effect"</span><br>
+        虽然登记 (Recording) 通常在生前进行，但所有权的转移取决于<b>交付 (Delivery)</b>，而不是登记。只要在生前完成了交付，死后登记并不影响所有权的有效性。登记的主要目的是对抗第三方（如后续购买者），而不是确立所有权本身。</p>
+
+        <p><strong>选项 B 错误：</strong><br>
+        <span class="english-term">"Dishonest in reporting"</span><br>
+        虽然朋友撒谎说销毁了地契是不道德的，但这在财产法上无关紧要。一旦所有权转移（在第一次交付时），朋友是否有撒谎、是否归还了纸张，都不影响他已经拥有土地这一法律事实。</p>
+
+        <p><strong>选项 D 错误：</strong><br>
+        <span class="english-term">"Because the deed was recorded"</span><br>
+        这个选项的推理逻辑是错误的。朋友胜诉的原因是<b>地契被交付 (Delivered)</b>，而不是因为被登记。如果地契从未交付（例如是被偷走的），即使登记了也是无效的。登记只是证据，交付才是关键。</p>
+    </div>
+
+    <div class="card">
+        <div class="card-title">💡 考试技巧 (Exam Tip)</div>
+        <p>在 MBE 考试中遇到 <b>Deed Delivery</b> 问题时，请记住：</p>
+        <ul>
+            <li><b>物理转移 (Handing over)</b> = 强烈的交付推定。</li>
+            <li><b>给受让人的口头条件 (Oral condition to grantee)</b> = 条件被忽略，交付视为绝对有效。</li>
+            <li><b>给第三方的条件 (To 3rd party/Escrow)</b> = 条件通常有效（这是与本题最大的区别）。</li>
+            <li><b>后续反悔</b> = 无效。地契不是遗嘱，一旦交付不能随意撤回。</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        MBE Property Law Review
+    </div>
+
+</body>
+</html>

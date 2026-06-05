@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 刑法考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .concept-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+
+        .wrong-option {
+            color: var(--wrong-color);
+            text-decoration: line-through;
+            margin-right: 5px;
+        }
+
+        .correct-option {
+            color: var(--correct-color);
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px dashed #f1c40f;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        .tip-icon {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考点解析</h1>
+        <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">Burglary & Larceny</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心结论 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：D</span>
+            <p style="margin:0;">朋友构成盗窃罪 (Larceny)，而邻居不构成任何犯罪。</p>
+        </div>
+
+        <p>本题考察的核心在于区分<b>刑事责任</b>与<b>民事责任</b>的界限，特别是关于“许可范围”(Scope of Consent) 的认定。</p>
+
+        <!-- 知识点 1: 邻居的责任 -->
+        <div class="concept-card">
+            <div class="concept-title">
+                <span>1. 邻居为何无罪？</span>
+                <span class="latin">Scope of Consent</span>
+            </div>
+            <p>邻居的行为虽然不道德甚至违约，但在刑法上不构成犯罪。</p>
+            <ul>
+                <li><b>关于非法侵入 (Trespass)：</b>
+                    <br>非法侵入要求“非法进入” (Unlawful Entry)。邻居持有钥匙并获得了主人的许可进入房子。
+                    <br><span class="highlight">关键点：</span>虽然主人没有许可“开派对”，但许可了“照看房子”。在刑法中，除非有明确的<b>空间限制</b>（如“不准进卧室”）或<b>时间限制</b>（如“只能白天来”），否则仅仅从事未经许可的<b>活动</b>（Activity），通常不会让最初的合法进入变成非法侵入。
+                </li>
+                <li><b>关于入室犯法罪 (Burglary)：</b>
+                    <br>Burglary = Trespassory Entry + Intent to commit a crime.
+                    <br>既然邻居的进入是合法的（非 Trespassory），Burglary 的第一个要素就不成立。此外，他进入是为了开派对，而非实施重罪或盗窃。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 知识点 2: 朋友的责任 -->
+        <div class="concept-card">
+            <div class="concept-title">
+                <span>2. 朋友为何构成盗窃？</span>
+                <span class="latin">Larceny</span>
+            </div>
+            <p>朋友的行为完全符合普通法盗窃罪 (Larceny) 的所有构成要件：</p>
+            <ul>
+                <li><b>非法拿取 (Trespassory Taking)：</b> 未经同意控制了戒指。</li>
+                <li><b>转移 (Carrying Away / Asportation)：</b> 将戒指放入自己的口袋。哪怕移动距离很短，只要发生了位移即可。</li>
+                <li><b>意图 (Intent)：</b> 意图永久剥夺 (Permanently Deprive) 主人的财产。</li>
+            </ul>
+            <p style="font-size: 0.9em; color: #666; border-top: 1px dashed #ccc; padding-top: 10px;">
+                <b>注意：</b>朋友不构成 Burglary。因为他是被邻居（当时的房屋实际控制者）邀请进来的，进入本身合法。且没有证据表明他在<b>进入房子的一瞬间</b>就有了盗窃的意图。
+            </p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="tip-icon">💡</span><b>MBE 实战技巧</b>
+            <p>在处理涉及“许可” (Consent) 的题目时，请务必区分：</p>
+            <ol>
+                <li><b>进入权 (Right of Entry)：</b> 是否有权进门？</li>
+                <li><b>活动权 (Right of Activity)：</b> 进门后做了什么？</li>
+            </ol>
+            <p>如果拥有广泛的进入权（如本题中的“照看房子”），仅仅是做了主人不喜欢的事（开派对），通常属于<b>民事违约</b>或<b>民事侵权</b>，而不会追溯性地使进入行为变成刑事上的“非法侵入”。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

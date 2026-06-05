@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e1f5fe;
+            color: #0277bd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .question-summary {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .rule-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            color: #d32f2f;
+            font-weight: 600;
+        }
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .analysis-step strong {
+            display: block;
+            color: #0277bd;
+            margin-bottom: 4px;
+        }
+        .correct-answer {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 20px;
+            padding-bottom: 10px;
+        }
+        ul {
+            margin: 5px 0 5px 20px;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>UCC 缺省条款 (Gap Fillers)</p>
+    </div>
+
+    <div class="content">
+        <span class="tag">Contracts / Sales (UCC Art. 2)</span>
+
+        <div class="question-summary">
+            <strong>📝 案情摘要：</strong><br>
+            零售商与公寓签订书面合同，销售50套水龙头。约定分两批交付（3月1日和4月1日各25套）。<br>
+            <span class="highlight">关键点：合同未约定交货地点、付款时间或地点。</span>
+        </div>
+
+        <div class="analysis-step">
+            <strong>1. 法律适用 (Applicable Law)</strong>
+            本案涉及货物买卖（水龙头），因此适用《统一商法典》第二篇 (UCC Article 2)。
+        </div>
+
+        <div class="rule-card">
+            <div class="rule-title">核心考点：UCC 缺省规则</div>
+            <p>当合同对某些条款保持沉默时，UCC 会自动填补这些空白（Gap Fillers）。</p>
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 10px 0;">
+            
+            <p><strong>📍 交货地点 (Place of Delivery):</strong><br>
+            根据 UCC § 2-308，除非另有约定，交货地点为<span class="highlight">卖方的营业地 (Seller's place of business)</span>。</p>
+            
+            <p><strong>⏰ 付款时间 (Time of Payment):</strong><br>
+            根据 UCC § 2-310，除非另有约定，付款应在买方<span class="highlight">收到货物的时间和地点 (Time and place of receipt)</span>进行。</p>
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 逻辑推演 (Legal Reasoning)</strong>
+            <ul>
+                <li>由于合同未规定地点，零售商不需要把货送到公寓（排除选项 D）。零售商只需在自己的店里把货准备好供买方提取。</li>
+                <li>由于合同未规定付款时间，且这是分批交付 (Installment Contract)，买方有义务在收到每一批货物时支付该批货物的价款（排除选项 C）。</li>
+                <li><strong>并发条件 (Concurrent Conditions):</strong> 在非信用交易中，交货和付款是并发条件。卖方不给钱不交货，买方不交货不给钱。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <strong>3. 为什么选项 A 是正确的？</strong>
+            <p>选项 A 准确结合了上述两个规则：</p>
+            <ol>
+                <li><strong>地点正确：</strong>提到“在零售商的营业地 (at the retailer's place of business)”。</li>
+                <li><strong>条件正确：</strong>零售商没有义务交货，<span class="highlight">除非 (unless)</span> 公寓大楼提示付款 (tenders payment)。这体现了“一手交钱，一手交货”的原则。</li>
+            </ol>
+        </div>
+
+        <div class="rule-card" style="background-color: #fff5f5; border-color: #ffcdd2;">
+            <div class="rule-title" style="color: #c62828;">🚫 陷阱辨析</div>
+            <ul>
+                <li><strong>选项 B 错误：</strong>付款不是在交货后“合理时间内”，而是在“收到货物时”立即到期。</li>
+                <li><strong>选项 C 错误：</strong>在分批交货合同中，如果价格可以分割，卖方可以要求对每一批次单独付款 (UCC § 2-307)，而不是等全部交完才付。</li>
+                <li><strong>选项 D 错误：</strong>UCC 默认交货地是卖方处，而非买方处。</li>
+            </ul>
+        </div>
+
+        <div class="correct-answer">
+            ✅ 正确答案：A
+        </div>
+
+        
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --text-color: #333;
+        --border-radius: 8px;
+        --shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        background: #fff;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        width: 100%;
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .header .subtitle {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+        line-height: 1.6;
+        color: var(--text-color);
+    }
+    .answer-box {
+        background-color: #dff0d8;
+        border-left: 5px solid #3c763d;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .answer-title {
+        color: #3c763d;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .section-title {
+        color: var(--primary-color);
+        font-weight: bold;
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 5px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+    }
+    .rule-box {
+        background-color: var(--highlight-bg);
+        border: 1px solid #bde0fe;
+        padding: 15px;
+        border-radius: var(--border-radius);
+        margin: 15px 0;
+        font-size: 0.95rem;
+    }
+    .case-law {
+        font-style: italic;
+        color: #555;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        display: block;
+    }
+    .wrong-option {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    .wrong-option:last-child {
+        border-bottom: none;
+    }
+    .option-label {
+        font-weight: bold;
+        color: #e74c3c;
+        margin-right: 5px;
+    }
+    .tip-box {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 15px;
+        border-radius: var(--border-radius);
+        margin-top: 20px;
+    }
+    .highlight {
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+    ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Constitutional Law: Taxation & Exports</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：A</span>
+            <strong>否，因为国会无权对出口商品征税。</strong><br>
+            (No, because Congress does not have the power to tax exported goods.)
+        </div>
+
+        <!-- 核心法律分析 -->
+        <div class="section-title">⚖️ 法律依据与推理</div>
+        
+        <p>本题的核心考点是美国宪法中的<b>出口条款 (Export Clause)</b>。</p>
+
+        <div class="rule-box">
+            <strong>宪法原文 (U.S. Const. art. I, § 9):</strong><br>
+            "No Tax or Duty shall be laid on Articles exported from any State."<br>
+            （任何州出口的物品均不得被征收税款或关税。）
+        </div>
+
+        <p>虽然国会拥有广泛的征税权（Taxing Power），但这并非无限的。出口条款是对联邦征税权的<b>绝对限制</b>。</p>
+
+        <p>最高法院对该条款的解释非常严格，禁止对以下两类对象征税：</p>
+        <ul>
+            <li><b>出口过程中的货物</b> (Goods in export transit)</li>
+            <li>与出口过程<b>密切相关的服务或活动</b> (Services and activities closely related to the export process)</li>
+        </ul>
+
+        <p>在本题中，国会对“承保货物运往国外的保单保险费”征税。由于保险是出口过程中不可或缺的一部分，对保险费征税实际上等同于对出口货物本身征税，因此该税法违宪。</p>
+
+        <div class="rule-box" style="background-color: #f9f9f9; border-color: #ddd;">
+            <span class="highlight">相关判例：</span><br>
+            <span class="case-law">United States v. International Business Machines Corp. (1996)</span><br>
+            最高法院在该案中明确裁定，对出口货物保险费征收的联邦税违反了出口条款。本题的事实模式与该判例几乎完全一致。
+        </div>
+
+        <!-- 错误选项分析 -->
+        <div class="section-title">❌ 为什么其他选项错误？</div>
+
+        <div class="wrong-option">
+            <span class="option-label">选项 B 错误</span>
+            <br>虽然税收通常需要与“增加收入” (Raising Revenue) 合理相关，但即使它确实能增加收入，也不能违反宪法的明文禁令（出口条款）。
+        </div>
+
+        <div class="wrong-option">
+            <span class="option-label">选项 C 错误</span>
+            <br><b>没有“紧迫利益”例外。</b> 出口条款是一个绝对禁令。即使政府能证明有“紧迫的政府利益” (Compelling Government Interest) 并通过了严格审查 (Strict Scrutiny)，也不能对出口商品征税。
+        </div>
+
+        <div class="wrong-option">
+            <span class="option-label">选项 D 错误</span>
+            <br><b>“统一性” (Uniformity) 无法挽救违宪的税收。</b> 虽然宪法要求间接税在各州必须统一适用 (Uniformity Clause)，但这只是针对<b>允许征收</b>的税的要求。它不能授权国会去征收一项被出口条款明确禁止的税。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <strong>🎓 MBE 考试技巧</strong>
+            <p>在处理宪法税务问题时，请遵循以下思维导图：</p>
+            <ol>
+                <li><b>是谁在征税？</b> 
+                    <br>如果是<b>州 (State)</b>，看进出口条款 (Import-Export Clause) 和商业条款 (Commerce Clause)。
+                    <br>如果是<b>联邦 (Congress)</b>，看第1条第9款的出口条款 (Export Clause)。
+                </li>
+                <li><b>征税对象是什么？</b>
+                    <br>如果是<b>出口 (Exports)</b>，联邦政府<b>绝对禁止</b>征税。不要被“为了普遍福利”或“统一适用”等理由迷惑。
+                </li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

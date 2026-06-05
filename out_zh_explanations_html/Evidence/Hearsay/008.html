@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .analysis-step strong {
+            color: var(--accent-color);
+        }
+        .trap-alert {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        .latin-term {
+            font-style: italic;
+            color: #555;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Evidence: Hearsay Exemptions</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法律规则 (The Rule)</span>
+            <strong>Federal Rules of Evidence 801(d)(2)(D)</strong><br>
+            对方当事人的陈述 (Opposing Party's Statement) 被定义为<strong>非传闻证据 (Nonhearsay)</strong>。
+            <br><br>
+            如果陈述是由对方当事人的<strong>代理人或雇员 (Agent or Employee)</strong> 作出的，且满足以下条件，则可采：
+            <ul>
+                <li>陈述是在雇佣关系存续期间作出的；且</li>
+                <li>陈述内容涉及其<strong>雇佣/职责范围 (Scope of Employment)</strong> 内的事项。</li>
+            </ul>
+        </div>
+
+        <!-- 案情分析 -->
+        <h3>🔍 案情逻辑分析</h3>
+        <div class="analysis-step">
+            <strong>1. 识别陈述人 (Declarant):</strong><br>
+            陈述人是被告的“负责版权事务的行政助理” (Executive Assistant for Copyright Matters)。这确认了其雇员身份。
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 判定职责范围 (Scope):</strong><br>
+            该助理的头衔明确指出其负责“版权事务”。陈述的内容是关于“被告如何获得房屋平面图（版权对象）”。<br>
+            因此，该陈述完全在她的<strong>职责范围 (Scope of Employment)</strong> 之内。
+        </div>
+
+        <div class="analysis-step">
+            <strong>3. 结论 (Conclusion):</strong><br>
+            原告（Plaintiff）将该陈述用于反对被告（Defendant）。符合 FRE 801(d)(2)(D) 的所有要素。因此，该证词作为<strong>对方当事人雇员的陈述 (Statement of an employee of a party-opponent)</strong> 是可采的。
+        </div>
+
+        <!-- 排除错误选项 -->
+        <div class="trap-alert">
+            <strong>⚠️ 常见陷阱：授权 (Authorization)</strong><br>
+            <p><strong>选项 D 是本题最大的干扰项。</strong></p>
+            <p>很多考生误以为雇员必须被“明确授权代表公司发言” (Authorized to speak) 才能使证词可采。这是<strong>旧的普通法规则</strong>或适用于 FRE 801(d)(2)(C) 的情况。</p>
+            <p>在现代联邦证据规则 (FRE 801(d)(2)(D)) 下，<strong>不需要</strong>证明雇员有“发言权”。只要陈述内容与其<strong>工作职责相关 (Relates to a matter within the scope)</strong>，即视为公司的替代性自认 (Vicarious Admission)。</p>
+        </div>
+
+        <div style="margin-top: 15px; font-size: 0.9rem;">
+            <strong>其他选项解析：</strong>
+            <ul>
+                <li><strong>选项 A (Coconspirator):</strong> 错误。虽然同谋者陈述也是非传闻，但本案是版权侵权，没有涉及共谋 (Conspiracy) 的事实基础。</li>
+                <li><strong>选项 C (Hearsay):</strong> 错误。根据 FRE 801(d)，这类陈述被定义为“非传闻” (Nonhearsay)，而不是传闻的例外 (Exception)。虽然结果都是可采，但法律定性不同。</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Evidence Strategy: Focus on the relationship and the topic, not the permission to speak.
+    </div>
+</div>
+
+</body>
+</html>

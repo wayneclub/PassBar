@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕 */
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header h2 {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .highlight-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background-color: #eee;
+            color: #555;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            color: #777;
+            text-transform: uppercase;
+        }
+
+        .timeline-content {
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .wrong-answer {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 标题部分 -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <h2>Real Estate Contracts (不动产合同)</h2>
+    </div>
+
+    <!-- 核心结论卡片 -->
+    <div class="card">
+        <h3>核心考点：所有权的时间点</h3>
+        <p>在不动产买卖合同中，卖方<b>不需要</b>在签订合同（Contract Execution）时就拥有所有权。</p>
+        <div class="highlight-box">
+            <strong>关键规则：</strong><br>
+            卖方只需在<b>交割日（Closing Date）</b>能够提供<b>可转让的所有权（Marketable Title）</b>即可。
+        </div>
+        <p>如果卖方在签订合同时没有产权，但在交割前获得了产权，合同即为有效且必须履行。</p>
+    </div>
+
+    <!-- 案情分析图解 -->
+    <div class="card">
+        <h3>本案时间线分析</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">阶段 1：签订合同</div>
+                <div class="timeline-content">儿子承诺卖地给朋友。<br><span style="font-size:0.85em; color:#666;">(此时儿子无产权，但合同有效)</span></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">阶段 2：待履行期 (Executory Period)</div>
+                <div class="timeline-content">父亲去世，儿子继承土地。<br><span style="font-size:0.85em; color:#27ae60;">(儿子获得了产权!)</span></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">阶段 3：预定交割日</div>
+                <div class="timeline-content">儿子拥有产权，必须履行合同。<br><span style="font-size:0.85em; color:#c0392b;">(拒绝履行构成违约)</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 答案解析 -->
+    <div class="card">
+        <h3>正确答案解析 (选项 A)</h3>
+        <p>朋友应获得 <span class="correct-answer">实际履行 (Specific Performance)</span> 的判决。</p>
+        
+        <p><b>法律依据：</b></p>
+        <ul>
+            <li><b>合同的约束力：</b> 双方签订书面合同时，交换的承诺（Promise to sell vs. Promise to pay）即产生法律效力。</li>
+            <li><b>履行能力：</b> 虽然签约时儿子无权，但他通过继承在交割前获得了所有权。此时他完全具备履行合同的能力。</li>
+            <li><b>救济方式：</b> 土地在法律上被视为是<b>独一无二的 (Unique)</b>。金钱赔偿通常不足以弥补买方的损失，因此法院会判决实际履行，强制卖方移交地契。</li>
+        </ul>
+    </div>
+
+    <!-- 错误选项辨析 -->
+    <div class="card">
+        <h3>为什么其他选项是错的？</h3>
+        
+        <p><span class="wrong-answer">选项 B (不当得利)</span><br>
+        虽然防止不当得利（Unjust Enrichment）是法律的一个原则，但在此类案件中，实际履行的基础是<b>合同法</b>（有效的承诺和土地的独特性），而不是为了惩罚儿子的获利。即使儿子没有收到更高的报价，只要他拒绝交割，朋友依然可以要求实际履行。</p>
+
+        <p><span class="wrong-answer">选项 C (事后取得所有权原则)</span><br>
+        这是一个常见的干扰项。
+        <br><b>区别在于：</b>
+        <ul>
+            <li><b>Estoppel by Deed (文书禁反言/事后取得所有权)：</b> 通常指某人先给出了<b>地契 (Deed)</b>，后来才获得产权，产权会自动转移。</li>
+            <li><b>本案情况：</b> 我们还在<b>合同 (Contract)</b> 阶段。合同法直接要求：只要你在交割日能给地，你就得给。不需要引用复杂的 Estoppel by Deed 原则来解释待履行合同。</li>
+        </ul>
+        </p>
+
+        <p><span class="wrong-answer">选项 D (无权限)</span><br>
+        一个人完全可以签订合同出售他不拥有的东西（例如期货、预售房），只要他确信能在交割日搞到手。这是一种商业风险。如果到期给不出来，就是违约；如果给得出来（如本案），就必须给。不需要父亲的“授权”来签订这份承诺。</p>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+        <h3>🎓 MBE 考试技巧</h3>
+        <p>看到“卖方签约时无产权”不要慌：</p>
+        <ol>
+            <li>检查在<b>交割日 (Closing)</b> 卖方是否搞到了产权。</li>
+            <li>如果是，买方通常可以强制交易 (Specific Performance)。</li>
+            <li>如果否，卖方违约 (Breach)，买方可以索赔。</li>
+        </ol>
+        <p><b>记住：</b>不动产合同看的是<b>Closing</b>时的状态，而不是<b>Signing</b>时的状态。</p>
+    </div>
+
+    
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #eef2f7;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        .scenario-analysis {
+            margin-bottom: 20px;
+        }
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            margin: 15px 0;
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+        .timeline-item {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #bdc3c7;
+        }
+        .timeline-item.active::before {
+            background-color: var(--warning-color);
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--warning-color);
+        }
+        .answer-box {
+            background-color: rgba(39, 174, 96, 0.1);
+            border: 1px solid var(--success-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .answer-title {
+            color: var(--success-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .answer-title::before {
+            content: '✔';
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        .distractor {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .distractor-label {
+            font-weight: bold;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .eng-term {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">联邦民事诉讼规则 (FRCP) 第 51 条</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 法律规则：陪审团指令的请求时间</span>
+            根据 <span class="eng-term">FRCP 51(a)</span>，当事人通常必须在<strong>证据调查结束 (Close of Evidence)</strong> 之前或之时提交陪审团指令请求。
+            <br><br>
+            <strong>例外情况：</strong>
+            如果请求涉及的问题是当事人在截止日期前<strong>无法合理预见 (Could not reasonably have anticipated)</strong> 的，当事人可以在证据调查结束后提交请求。
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="scenario-analysis">
+            <h3>📅 案情时间线分析</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>证据调查结束 (Close of Evidence)</strong><br>
+                    <small>通常的指令请求截止点。</small>
+                </div>
+                <div class="timeline-item">
+                    <strong>法官指示陪审团 (Jury Instructions)</strong>
+                </div>
+                <div class="timeline-item active">
+                    <strong>最后陈述 (Closing Arguments)</strong><br>
+                    <span style="color:var(--warning-color)">⚡ 突发事件：雇员大喊 "That's a lie!"</span>
+                </div>
+                <div class="timeline-item">
+                    <strong>雇主请求新指令</strong><br>
+                    <small>请求法官让陪审团忽略该喊叫。</small>
+                </div>
+            </div>
+            <p>本案的关键在于：导致需要新指令的事件（雇员大喊大叫）发生在<strong>证据调查结束之后</strong>。雇主在证据截止前不可能预见到雇员会在最后陈述时大闹法庭。</p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="answer-box">
+            <div class="answer-title">正确答案：选项 B</div>
+            <p><strong>理由：</strong>这是 FRCP 51(a)(2)(A) 规定的直接应用。</p>
+            <p>要说服法官接受这个迟交的指令请求 (Late Request)，最有力的论点是证明该请求符合“无法合理预见”的例外情况。既然干扰行为发生在最后陈述阶段，雇主在之前的截止日期（证据结束时）显然无法预知此事。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div>
+            <h3>❌ 为什么其他选项是错的？</h3>
+            
+            <div class="distractor">
+                <div class="distractor-label">选项 A：明显错误 (Plain Error)</div>
+                <p><strong>解析：</strong>“明显错误”标准通常用于<strong>上诉 (Appeal)</strong> 阶段，用来审查那些在审判中未被及时反对的错误。本案目前仍处于<strong>审判 (Trial)</strong> 阶段，雇主正在向初审法官提出请求，而不是在上诉，因此这不是最佳论据。</p>
+            </div>
+
+            <div class="distractor">
+                <div class="distractor-label">选项 C：法官未设截止日期</div>
+                <p><strong>解析：</strong>如果法官没有设定具体的截止日期，FRCP 51 规定的默认截止日期就是<strong>证据调查结束时</strong>。既然该时间点已过，强调“未设截止日期”并不能帮助雇主，因为默认期限已经过期了。</p>
+            </div>
+
+            <div class="distractor">
+                <div class="distractor-label">选项 D：任何时候都可以请求</div>
+                <p><strong>解析：</strong>这是对规则的误解。虽然<strong>法院 (The Court)</strong> 可以在陪审团解散前的任何时间给出指令，但<strong>当事人 (The Parties)</strong> 必须遵守提交请求的截止日期（除非符合例外情况）。当事人并没有“随时请求”的权利。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 解题技巧：</strong>
+            <br>
+            在处理程序性问题（如 FRCP）时，密切关注<strong>时间节点 (Timing)</strong>。
+            <br>
+            如果题目问的是“迟交的申请”为何有效，答案通常与“正当理由 (Good Cause)”或“无法预见 (Unforeseeability)”有关，而不是一般性的权利主张。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

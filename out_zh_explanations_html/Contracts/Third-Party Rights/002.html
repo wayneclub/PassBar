@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --highlight-bg: #e8f6f3;
+            --highlight-border: #1abc9c;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--highlight-border);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .icon {
+            font-size: 20px;
+            margin-right: 10px;
+            min-width: 25px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .option-analysis {
+            background-color: #fff8f8;
+            border: 1px solid #fcebeb;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.95em;
+        }
+
+        .correct-option {
+            background-color: #eafaf1;
+            border: 1px solid #d5f5e3;
+        }
+
+        .diagram {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border: 1px dashed #ccc;
+        }
+
+        .diagram-arrow {
+            font-size: 20px;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts: Third-Party Rights</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">核心考点：合同义务的委托</div>
+            <p><strong>一般规则：</strong> 合同义务通常是可以委托给第三方履行的 (Delegable)，除非合同明确禁止。</p>
+            <p><strong>例外情况 (本题关键)：</strong> 如果义务涉及<strong>独特的个人技能、品味或判断</strong> (Personal judgment, skill, or taste)，则未经债权人同意，该义务<strong>不可委托</strong>。</p>
+        </div>
+
+        <!-- 案情图解 -->
+        <div class="diagram">
+            <div>👨‍🍳 <strong>名厨 (Chef)</strong></div>
+            <div style="font-size: 12px; color: #666;">(依赖设计师的独特品味)</div>
+            <div class="diagram-arrow">⬇️ 🚫 委托被阻断</div>
+            <div>🎨 <strong>知名设计师 (Decorator)</strong></div>
+            <div style="font-size: 12px; color: #666;">(Unique Designs & Reputation)</div>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 A？</div>
+            <p>本题考察的是 <span class="english-term">Delegation of Duties</span>（义务委托）的限制。</p>
+            
+            <div class="key-point">
+                <span class="icon">🎯</span>
+                <div>
+                    <strong>人身性质的服务 (Personal Services)：</strong><br>
+                    题目特别强调了设计师是“因其独特设计而备受推崇” (<span class="english-term">respected for his unique designs</span>)。室内设计不仅仅是体力劳动，它高度依赖个人的艺术审美和声誉。
+                </div>
+            </div>
+
+            <div class="key-point">
+                <span class="icon">⚖️</span>
+                <div>
+                    <strong>法律后果：</strong><br>
+                    当合同履行涉及特定的个人才华时，债权人（厨师）有权要求特定的债务人（原设计师）履行。这种情况下，义务是<strong>不可委托的 (Non-delegable)</strong>。
+                </div>
+            </div>
+            
+            <div class="option-analysis correct-option">
+                <strong>✅ 选项 A 正确：</strong><br>
+                因为它准确指出了拒绝委托的法律依据——设计师的义务具有人身性质 (Personal nature)，涉及声誉、品味和技能。
+            </div>
+        </div>
+
+        <!-- 干扰项排除 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么其他选项错误？</div>
+            
+            <div class="key-point">
+                <span class="icon">❌</span>
+                <div>
+                    <strong>选项 B (Novation)：</strong><br>
+                    <span class="term">合同更新 (Novation)</span> 需要<strong>所有三方</strong>（包括厨师）的一致同意，用新合同取代旧合同。本案中厨师并未同意，因此不构成 Novation。
+                </div>
+            </div>
+
+            <div class="key-point">
+                <span class="icon">❌</span>
+                <div>
+                    <strong>选项 C (Silence in Contract)：</strong><br>
+                    虽然合同未禁止委托，但<strong>普通法 (Common Law)</strong> 默认规则中包含了“个人技能服务不可委托”的例外。沉默不代表允许转让具有人身性质的义务。
+                </div>
+            </div>
+
+            <div class="key-point">
+                <span class="icon">❌</span>
+                <div>
+                    <strong>选项 D (Adequate Assurances)：</strong><br>
+                    如果义务本身是不可委托的（如本案），新设计师的能力再强、保证再充分也<strong>无关紧要</strong>。厨师买的是原设计师的“独特设计”，而不是任何合格设计师的服务。
+                </div>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #fff3cd; border-color: #f1c40f;">
+            <div class="rule-title" style="color: #d35400;">🎓 MBE 答题技巧</div>
+            <p>在合同法题目中，如果看到服务提供者被描述为<strong>"Famous" (著名的)</strong>、<strong>"Unique" (独特的)</strong> 或涉及<strong>"Artistic taste" (艺术品味)</strong>，这通常是提示你该合同属于<strong>个人服务合同 (Personal Services Contract)</strong>，其义务通常不可委托。</p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Reference: Restatement (Second) of Contracts § 318
+    </div>
+</div>
+
+</body>
+</html>

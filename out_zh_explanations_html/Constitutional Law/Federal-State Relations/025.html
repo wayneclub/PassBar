@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --danger-color: #e74c3c;
+            --success-color: #27ae60;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--bg-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .concept-box {
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .conflict-visual {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .law-box {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .fed-law {
+            background-color: var(--primary-color);
+        }
+
+        .state-law {
+            background-color: var(--danger-color);
+        }
+
+        .vs-badge {
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            line-height: 28px;
+            text-align: center;
+            font-weight: bold;
+            margin: 0 5px;
+            z-index: 2;
+        }
+
+        .highlight {
+            color: var(--danger-color);
+            font-weight: bold;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .option-analysis {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .correct-answer {
+            border-left-color: var(--success-color);
+        }
+
+        .wrong-answer {
+            border-left-color: var(--danger-color);
+            opacity: 0.8;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">宪法：联邦与州的关系 (Federal-State Relations)</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="card">
+            <div class="card-title">⚖️ 核心法律原则：最高条款</div>
+            <p>本题考查的是美国宪法中的<b>最高条款 (Supremacy Clause)</b>，位于宪法第六条第二款。</p>
+            <div class="concept-box">
+                <strong>规则：</strong>联邦法律是国家的最高法律。当有效的联邦法律与州或地方法律发生冲突时，联邦法律<b>优先适用 (Preempts)</b>，州法无效。
+            </div>
+        </div>
+
+        <!-- 案情分析图解 -->
+        <div class="card">
+            <div class="card-title">🔍 案情冲突分析</div>
+            <p>本案中存在典型的<b>“物理上的不可能” (Physical Impossibility)</b>：</p>
+            
+            <div class="conflict-visual">
+                <div class="law-box fed-law">
+                    联邦法律<br>
+                    <span style="font-size:1.2em">🚫 禁止</span><br>
+                    使用动力锤
+                </div>
+                <div class="vs-badge">VS</div>
+                <div class="law-box state-law">
+                    市议会法规<br>
+                    <span style="font-size:1.2em">⚠️ 强制</span><br>
+                    使用动力锤
+                </div>
+            </div>
+            
+            <p>建筑商<b>不可能</b>同时遵守这两条法律：你无法在“必须使用”某工具的同时又“禁止使用”它。</p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="card correct-answer">
+            <div class="card-title">✅ 正确答案：选项 A</div>
+            <p><b>"No, because it conflicts with the provisions of the federal statute."</b></p>
+            <p><b>解析：</b></p>
+            <ul>
+                <li>这是<b>默示冲突优先适用 (Implied Conflict Preemption)</b> 的教科书式案例。</li>
+                <li>当遵守州法和联邦法在物理上是不可能的 (physically impossible) 时，联邦法自动废止州法。</li>
+                <li>不论州法的初衷多么良好（为了建筑更坚固），只要与联邦法直接冲突，即违宪。</li>
+            </ul>
+        </div>
+
+        <!-- 错误选项陷阱 -->
+        <div class="card wrong-answer">
+            <div class="card-title">❌ 为什么其他选项是错的？</div>
+            
+            <div class="option-analysis">
+                <p><b>选项 B (时间先后)：</b><br>
+                <span class="term">"enacted subsequent to..."</span><br>
+                <b>错误点：</b>在优先适用权 (Preemption) 问题上，<b>时间顺序无关紧要</b>。只要联邦法有效，它就优于任何时间颁布的州法。</p>
+                <hr style="border:0; border-top:1px dashed #ccc; margin:10px 0;">
+                
+                <p><b>选项 C (明示条款)：</b><br>
+                <span class="term">"does not expressly indicate..."</span><br>
+                <b>错误点：</b>优先适用分为“明示” (Express) 和“默示” (Implied)。即使国会没有写明“本法取代州法”，只要存在<b>实际冲突 (Actual Conflict)</b>，默示优先适用依然发生。</p>
+                <hr style="border:0; border-top:1px dashed #ccc; margin:10px 0;">
+                
+                <p><b>选项 D (正当理由)：</b><br>
+                <span class="term">"justifies some additional risk..."</span><br>
+                <b>错误点：</b>这是典型的<b>政策性干扰项</b>。法院在判定优先适用时，不进行“利益权衡” (Balancing Test)。一旦确定冲突，联邦法胜出，州法的立法目的（即使是为了公共安全）也无法挽救该法律。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="border-left-color: #f1c40f;">
+            <div class="card-title">💡 MBE 提分技巧</div>
+            <p>在处理 <b>Preemption</b> 题目时，按以下步骤思考：</p>
+            <ol>
+                <li><b>找冲突：</b>能不能同时遵守两部法律？
+                    <ul>
+                        <li>如果不能（如本题）→ <b>Direct Conflict (直接冲突)</b> → 联邦法胜。</li>
+                    </ul>
+                </li>
+                <li><b>找阻碍：</b>如果能同时遵守，州法是否阻碍了联邦目标的实现？
+                    <ul>
+                        <li>如果是 → <b>Obstacle Preemption (障碍优先适用)</b> → 联邦法胜。</li>
+                    </ul>
+                </li>
+                <li><b>看领域：</b>国会是否意图独占该领域？
+                    <ul>
+                        <li>如果是 → <b>Field Preemption (领域优先适用)</b> → 联邦法胜。</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

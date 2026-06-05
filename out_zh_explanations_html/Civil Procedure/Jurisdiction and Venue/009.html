@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #f8f9fa;
+            --correct-bg: #e8f5e9;
+            --correct-border: #4caf50;
+            --wrong-bg: #ffebee;
+            --text-color: #333;
+            --sub-text: #666;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .analysis-step {
+            margin-bottom: 20px;
+        }
+        .step-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .step-number {
+            background: var(--primary-color);
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        .result-box {
+            background: var(--correct-bg);
+            border: 1px solid var(--correct-border);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .result-title {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .wrong-option {
+            font-size: 0.9rem;
+            color: var(--sub-text);
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ddd;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .badge-gen { background: #e3f2fd; color: #1565c0; }
+        .badge-spec { background: #fff3e0; color: #ef6c00; }
+        
+        /* Diagram Styles */
+        .diagram {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        .diagram-col {
+            flex: 1;
+            padding: 10px;
+            background: #fafafa;
+            border-radius: 6px;
+            margin: 0 4px;
+            border: 1px solid #eee;
+        }
+        .diagram-icon { font-size: 1.5rem; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Civil Procedure: Personal Jurisdiction</p>
+    </div>
+
+    <div class="content">
+        
+        <!-- Core Concept Introduction -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：对人管辖权 (Personal Jurisdiction)</span>
+            <p>联邦法院要对被告行使管辖权，必须满足宪法第十四修正案的正当程序条款 (Due Process Clause)。这通常分为两类：</p>
+            <div class="diagram">
+                <div class="diagram-col">
+                    <div class="diagram-icon">🏠</div>
+                    <strong>一般管辖权</strong><br>
+                    (General Jurisdiction)<br>
+                    <span style="color:#666">被告“如同在地”</span>
+                </div>
+                <div class="diagram-col">
+                    <div class="diagram-icon">🎯</div>
+                    <strong>特定管辖权</strong><br>
+                    (Specific Jurisdiction)<br>
+                    <span style="color:#666">诉讼源于特定联系</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step-by-Step Analysis -->
+        <div class="analysis-step">
+            <div class="step-title">
+                <span class="step-number">1</span>
+                分析一般管辖权 (General PJ)
+            </div>
+            <p><strong>规则：</strong>对于公司被告，只有在其<b>“如同在地” (Essentially at Home)</b> 的州，法院才拥有一般管辖权（即可以审理关于该被告的任何案件，无论案件发生在哪里）。</p>
+            <p>根据 <i>Daimler AG v. Bauman</i>，公司的“家”通常只有两个地方：</p>
+            <ul>
+                <li>注册成立地 (State of Incorporation) → <b>State A</b></li>
+                <li>主要营业地 (Principal Place of Business / HQ) → <b>State B</b></li>
+            </ul>
+            <p><strong>结论：</strong>State C 只是存放库存的地方，不是公司的“家”。因此，State C 没有一般管辖权。</p>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-title">
+                <span class="step-number">2</span>
+                分析特定管辖权 (Specific PJ)
+            </div>
+            <p><strong>规则：</strong>如果被告不是“在家”，法院只能行使特定管辖权。这要求：</p>
+            <ol>
+                <li>被告与法院地州有<b>最低限度联系 (Minimum Contacts)</b>。</li>
+                <li>原告的诉讼请求<b>源于 (Arise out of)</b> 或关联于这些联系。</li>
+            </ol>
+            <p><strong>本案应用：</strong></p>
+            <ul>
+                <li><b>联系：</b>公司在 State C 存放库存（满足最低联系）。</li>
+                <li><b>关联性：</b>诉讼是关于“外国发生的袭击”。袭击行为与“在 State C 存放鞋子”没有任何因果关系。</li>
+            </ul>
+            <p><strong>结论：</strong>诉讼请求并非源于被告在 State C 的联系。因此，State C 没有特定管辖权。</p>
+        </div>
+
+        <!-- Correct Answer Explanation -->
+        <div class="result-box">
+            <div class="result-title">✅ 正确答案：选项 D</div>
+            <p><b>Yes, because the employee's claim does not arise out of the shoe company's contacts with State C and the shoe company is not domiciled in State C.</b></p>
+            <p>这个选项完美概括了上述两步分析：</p>
+            <ul>
+                <li>因为诉讼与 State C 的联系无关 → <b>无特定管辖权</b>。</li>
+                <li>因为公司不在 State C 定居（Domiciled/At Home）→ <b>无一般管辖权</b>。</li>
+            </ul>
+            <p>既无一般管辖权也无特定管辖权，法院必须批准驳回起诉的动议。</p>
+        </div>
+
+        <!-- Why other options are wrong -->
+        <div class="wrong-option">
+            <span class="badge badge-spec">陷阱 A</span> <b>错误原因：</b>虽然有“最低限度联系”（存库存），但忽略了特定管辖权的第二个要素——<b>Nexus（关联性）</b>。仅仅有联系是不够的，诉讼必须由该联系产生。
+        </div>
+        <div class="wrong-option">
+            <span class="badge badge-gen">陷阱 B</span> <b>错误原因：</b>混淆了“做生意”和“定居”。公司在某地有库存或做生意并不等于在该地“定居” (Domiciled)。定居仅限于注册地和总部。
+        </div>
+        <div class="wrong-option">
+            <span class="badge badge-gen">陷阱 C</span> <b>错误原因：</b>说法太绝对。虽然 State C 没有管辖权，但 <b>State A</b>（注册地）和 <b>State B</b>（总部）拥有一般管辖权，可以审理该外国侵权案件。
+        </div>
+
+        <!-- Exam Tip -->
+        <div style="margin-top: 20px; padding: 10px; background: #fff3cd; border-radius: 6px; font-size: 0.9rem; color: #856404;">
+            💡 <b>MBE 考试技巧：</b>
+            <br>看到 Personal Jurisdiction 题目，先画出公司的“家”（Inc + PPB）。如果案发地不在“家”里，立即检查案发事实是否与法院地州的商业活动有<b>因果关系</b>。如果没有关系，通常就没有管辖权。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

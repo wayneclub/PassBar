@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .rule-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .rule-title {
+            color: #1976d2;
+            font-weight: bold;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .wrong-option {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+            border-left: 3px solid #ff9800;
+            padding-left: 10px;
+        }
+        .tip-box {
+            background-color: #e3f2fd;
+            border: 1px dashed #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .tip-title {
+            font-weight: bold;
+            color: #0d47a1;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Evidence: Impeachment & Prior Convictions</p>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：C</span>
+            <p>是的，因为该证据对被告的诚信品格（Character for Truthfulness）具有证明力。</p>
+        </div>
+
+        <!-- 核心法律规则解析 -->
+        <div class="rule-card">
+            <div class="rule-title">⚖️ 核心考点：FRE 609 规则</div>
+            <p>本题考察的是《联邦证据规则》（Federal Rules of Evidence, FRE）第 609 条：<b>通过刑事定罪证据弹劾证人</b>。</p>
+            
+            <p><b>1. 只要作证，即可被弹劾</b><br>
+            被告一旦选择出庭作证（Testify），他的身份就不仅是被告，也是一名<b>证人</b>。因此，他的可信度（Credibility）成为争议点，检方可以攻击其诚信度。</p>
+
+            <p><b>2. 不诚实犯罪（Crimen Falsi）自动准入</b><br>
+            根据 FRE 609(a)(2)，如果先前的犯罪涉及<b>不诚实行为或虚假陈述</b>（dishonest act or false statement），无论其是重罪还是轻罪，法庭<b>必须</b>接纳该证据用于弹劾，法官没有自由裁量权进行排除（即不适用 FRE 403 平衡测试）。</p>
+            <ul>
+                <li>本题中的 <b>Wire Fraud</b>（电信欺诈）本质上包含欺骗，属于典型的涉及不诚实的犯罪。</li>
+            </ul>
+
+            <p><b>3. 上诉未决不影响可采性</b><br>
+            根据 FRE 609(e)，即使该定罪<b>正在上诉中</b>（Pending Appeal），该定罪证据依然是可以采纳的。不过，被告也可以引入证据说明该案件正在上诉。</p>
+        </div>
+
+        <!-- 错误选项分析 -->
+        <div class="rule-card">
+            <div class="rule-title">❌ 为什么其他选项是错的？</div>
+            
+            <div class="wrong-option">
+                <b>选项 A (品格证据规则误区)：</b><br>
+                虽然 FRE 404 禁止用“品格证据”证明某人“本性难移”（Propensity），但 FRE 609 是一个<b>专门的例外</b>。当用于<b>弹劾证人可信度</b>时，先前的犯罪记录是可以使用的。
+            </div>
+
+            <div class="wrong-option">
+                <b>选项 B (上诉的影响)：</b><br>
+                这直接违背了 FRE 609(e)。法律明确规定上诉状态不阻碍证据的采纳。
+            </div>
+
+            <div class="wrong-option">
+                <b>选项 D (MIMIC 例外)：</b><br>
+                "Absence of Mistake" 是 FRE 404(b) 下的 MIMIC 例外之一（用于证明非品格目的）。虽然理论上可能，但本题中“电信欺诈”与“妨碍司法公正”之间没有明显的逻辑链条来证明“无过失”。更重要的是，检方是在<b>交叉询问</b>（Cross-examination）环节引入，主要目的是攻击<b>可信度</b>（Impeachment），而非证明犯罪构成要件。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <span class="tip-title">💡 MBE 拿分技巧</span>
+            <p>看到 <b>"Prior Conviction"</b>（前科）用于 <b>"Impeachment"</b>（弹劾）时，请按以下步骤思考：</p>
+            <ol>
+                <li><b>罪行性质：</b>是否涉及欺诈/不诚实（Perjury, Fraud, Embezzlement）？如果是，<b>必须采纳</b>（Admissible）。</li>
+                <li><b>时间：</b>是否超过10年？（本题未涉及，但通常是考点）。</li>
+                <li><b>上诉状态：</b>是否在上诉？如果是，<b>完全不影响采纳</b>。</li>
+            </ol>
+            <p>记住：<b>Appeal does not peel away the conviction!</b>（上诉剥不掉定罪的证据效力！）</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

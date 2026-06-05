@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析：第三方受益人</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background-color: #eef7fb;
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #fafafa;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+        }
+
+        .diagram-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+        }
+
+        .box {
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            text-align: center;
+            font-weight: bold;
+            width: 30%;
+        }
+
+        .party-a { background: #d6eaf8; color: #2980b9; border: 1px solid #2980b9; }
+        .party-b { background: #d6eaf8; color: #2980b9; border: 1px solid #2980b9; }
+        .party-c { background: #f9e79f; color: #d35400; border: 1px solid #d35400; opacity: 0.7; }
+
+        .arrow {
+            font-size: 1.5rem;
+            color: #7f8c8d;
+        }
+
+        .label-text {
+            font-size: 0.75rem;
+            color: #7f8c8d;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .analysis-section {
+            margin-top: 20px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+
+        .option-analysis {
+            margin-top: 15px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .correct-tag {
+            background-color: var(--success-color);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .wrong-tag {
+            background-color: #e74c3c;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .exam-tip {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 0 0 12px 12px;
+            font-size: 0.9rem;
+        }
+
+        .exam-tip strong {
+            color: #f1c40f;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts: Third-Party Rights</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：意定 vs. 附带受益人</span>
+            <p>在合同法中，只有<b>意定受益人 (Intended Beneficiary)</b> 才有权起诉强制执行合同。而<b>附带受益人 (Incidental Beneficiary)</b> 仅仅是因为合同履行而“顺便”获益，没有诉权。</p>
+        </div>
+
+        <!-- 法律关系图解 -->
+        <div class="diagram">
+            <div class="label-text" style="margin-bottom: 10px;">合同关系 (Privity)</div>
+            <div class="diagram-row">
+                <div class="box party-a">化学公司<br>(Promisee)</div>
+                <div class="arrow">↔</div>
+                <div class="box party-b">铁路承运人<br>(Promisor)</div>
+            </div>
+            <div class="label-text">合同条款："服务于化学公司"</div>
+            
+            <div style="height: 20px; border-left: 2px dashed #ccc; margin-left: -50%;"></div>
+            
+            <div class="diagram-row" style="justify-content: center;">
+                <div class="box party-c" style="width: 60%;">
+                    制造商 (Manufacturer)<br>
+                    <span style="font-weight: normal; font-size: 0.75rem;">(仅获得附带利益)</span>
+                </div>
+            </div>
+            <div class="label-text">❌ 无权起诉 (No Standing)</div>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <h3>⚖️ 法律分析</h3>
+            <p>本题的关键在于判断制造商（Manufacturer）在铁路合同中的地位。</p>
+            
+            <p><b>1. 判别标准 (The Test)：</b><br>
+            要成为意定受益人，合同双方（特别是受诺人，即化学公司）必须有<b>明确的意图 (Clear Intent)</b> 让第三方受益。通常表现为：
+            </p>
+            <ul>
+                <li>合同明确提及第三方；</li>
+                <li>履行直接针对第三方；</li>
+                <li>受诺人意图赋予第三方执行权。</li>
+            </ul>
+
+            <p><b>2. 本案事实 (Application)：</b><br>
+            题目中的合同语言非常关键：
+            </p>
+            <ul>
+                <li>合同目的是运输“数百种产品”；</li>
+                <li>条款要求承运人“确保为<b>[化学公司]</b>提供优质服务”；</li>
+                <li>要求响应“<b>[化学公司]</b>的特殊需求”。</li>
+            </ul>
+            <p>这些措辞表明，合同的主要目的是为了化学公司的商业利益，而不是为了下游客户（制造商）。虽然制造商确实因为运输失败受损，但它只是该合同庞大运输网络中的一个<b>附带受益者</b>。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="option-analysis">
+            <h3>✅ 正确答案：选项 B</h3>
+            <p class="option">
+                <span class="correct-tag">正确</span>
+                <b>"No, because the manufacturer received only an incidental benefit..."</b>
+            </p>
+            <p>因为制造商只是<b>附带受益人 (Incidental Beneficiary)</b>，根据法律规定，附带受益人没有资格（Standing）起诉违约方。合同并非专门为其利益而设。</p>
+
+            <h3>❌ 错误选项辨析</h3>
+            <p class="option">
+                <span class="wrong-tag">选项 A</span>
+                <b>关于合同相对性 (Privity)</b><br>
+                虽然缺乏相对性是事实，但这并不是理由。如果是<i>意定</i>受益人，即使没有相对性也可以起诉。本题败诉的根本原因不是缺乏相对性，而是缺乏“意定受益人”的身份。
+            </p>
+            <p class="option">
+                <span class="wrong-tag">选项 C</span>
+                <b>关于既得利益 (Vested Interest)</b><br>
+                权利确定的前提是首先拥有权利。既然制造商只是附带受益人，它从一开始就没有合同权利，因此谈不上权利是否“确定 (Vested)”。
+            </p>
+            <p class="option">
+                <span class="wrong-tag">选项 D</span>
+                <b>关于当事人意图 (Intent)</b><br>
+                这是对事实的错误认定。合同语言明确指向服务于化学公司，而非制造商。
+            </p>
+        </div>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="exam-tip">
+        <strong>💡 MBE 解题技巧：</strong><br>
+        在涉及 Third-Party Beneficiary 的题目中，默认假设第三方是 <b>Incidental (附带的)</b>，除非你能在题干中找到<b>明确的语言</b>表明合同双方意图让该第三方直接受益（例如：指定向第三方付款，或合同明确说明是为了第三方的利益）。如果合同只是为了方便原合同方做生意，第三方通常无权起诉。
+    </div>
+</div>
+
+</body>
+</html>

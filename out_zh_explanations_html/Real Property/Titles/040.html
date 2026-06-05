@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background: #f8f9fa;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 16px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .rule-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .rule-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .footer {
+            background: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #bdc3c7;
+        }
+        .check-icon {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .cross-icon {
+            color: #c0392b;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Real Property: Adverse Possession</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="card" style="border-left-color: #27ae60;">
+            <h3>✅ 正确答案：B</h3>
+            <p>买方获得了邻居地块上 10 英尺宽地带的产权，但没有获得第二块土地的产权。</p>
+        </div>
+
+        <!-- 法律规则讲解 -->
+        <div class="rule-box">
+            <span class="rule-title">核心考点：侵权逆占 (Adverse Possession)</span>
+            <p>要通过时效占有获得土地产权，占有行为必须满足 <strong>OCEAN</strong> 原则：</p>
+            <ul>
+                <li><strong>O</strong>pen & Notorious (公开显眼)</li>
+                <li><strong>C</strong>ontinuous (持续不断)</li>
+                <li><strong>E</strong>xclusive (排他)</li>
+                <li><strong>A</strong>ctual (实际占有)</li>
+                <li><strong>N</strong>on-permissive / Hostile (未经许可/敌意)</li>
+            </ul>
+        </div>
+
+        <!-- 详细分析 -->
+        <div class="card">
+            <h3>1. 为什么获得了 10 英尺地带？</h3>
+            <p>买方在邻居的土地上建栅栏和种树的行为完全满足了上述要素：</p>
+            <ul>
+                <li><span class="check-icon">✓</span> <strong>Actual (实际占有):</strong> 栅栏和树木是对土地的物理侵占。</li>
+                <li><span class="check-icon">✓</span> <strong>Open & Notorious (公开):</strong> 栅栏是显而易见的，邻居只要检查就能发现。</li>
+                <li><span class="check-icon">✓</span> <strong>Hostile (敌意):</strong> 尽管买方是因“不确定边界”而建，但在大多数司法管辖区，只要占有人意图将土地据为己有（Claim of Right），即视为敌意。<strong>边界错误 (Boundary Mistake)</strong> 通常不影响敌意要件的成立。</li>
+                <li><span class="check-icon">✓</span> <strong>Continuous (持续):</strong> 已经存在 20 年，超过了法定的 15 年时效。</li>
+            </ul>
+        </div>
+
+        <div class="card" style="border-left-color: #e74c3c;">
+            <h3>2. 为什么没有获得第二块土地？</h3>
+            <p>虽然买方有一份无效契约（构成了 <span class="term">Color of Title</span>，即表面所有权凭证），但这并不能自动给他产权。他失败在以下两点：</p>
+            <ul>
+                <li><span class="cross-icon">✗</span> <strong>缺乏 Continuous (持续性):</strong> 题目指出他“每年不到一次”去猎兔子。对于这种性质的土地，这种频率太低，被视为断续的非法侵入 (Sporadic Trespass)，而非持续占有。</li>
+                <li><span class="cross-icon">✗</span> <strong>缺乏 Actual Possession (实际占有):</strong> 即使有 Color of Title，占有人也必须<strong>实际占有</strong>土地的至少一部分，才能通过“推定占有” (Constructive Possession) 获得整个地块的产权。由于他连一部分都没有满足持续占有的要求，因此无法获得任何产权。</li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="background-color: #e8f6f3; border-left-color: #1abc9c;">
+            <h3>🎓 MBE 考试技巧</h3>
+            <p><strong>警惕 "Color of Title" 陷阱：</strong></p>
+            <p>当题目提到买方手里有一份无效契约 (Defective Deed) 时，这是在测试 <strong>Constructive Adverse Possession</strong>。</p>
+            <p>规则是：如果你有无效契约，并且你<strong>实际占有</strong>了土地的<strong>一部分</strong>，法律会推定你占有了契约中描述的<strong>全部</strong>土地。但是，前提是你必须先满足对那“一部分”土地的 OCEAN 所有要素！本题中，买方连最基本的“持续占有”都没做到，所以无效契约帮不了他。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

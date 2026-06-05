@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-green: #27ae60;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 10px;
+            background: #fff;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+        }
+
+        .diagram-box {
+            flex: 1;
+            text-align: center;
+            font-size: 0.85rem;
+            padding: 5px;
+        }
+
+        .arrow {
+            flex: 0 0 30px;
+            text-align: center;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .analysis-section {
+            margin-top: 20px;
+        }
+
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .option-analysis {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .correct-tag {
+            display: inline-block;
+            background-color: var(--correct-green);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+
+        .wrong-tag {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+
+        .tip-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .tip-title {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts: Consideration & Conditions</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心法律原则</span>
+            <p>即使承诺是<b>附条件</b>的 (Conditional Promise)，只要该条件不是完全由承诺人随意控制（即不是虚幻承诺 Illusory Promise），该承诺依然构成有效的<b>对价 (Consideration)</b>。</p>
+        </div>
+
+        <!-- 逻辑图解 -->
+        <div class="diagram">
+            <div class="diagram-box">
+                <b>Business</b><br>
+                承诺购买<br>
+                <span style="font-size:0.75rem; color:#666;">(条件：母公司批准)</span>
+            </div>
+            <div class="arrow">⇄</div>
+            <div class="diagram-box">
+                <b>Shareholder</b><br>
+                承诺出售<br>
+                <span style="font-size:0.75rem; color:#666;">(无条件)</span>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 0.85rem; color: #666; margin-top: -10px;">
+            双方存在“交易磋商的交换” (Bargained-for Exchange)
+        </p>
+
+        <!-- 深度解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 D？</div>
+            <div class="option-analysis">
+                <span class="correct-tag">正确逻辑</span>
+                <p>本题的关键在于判断“附条件的承诺”是否足以构成对价。</p>
+                <ul>
+                    <li><b>法律规则：</b>如果一方的承诺以某个事件的发生为条件（Condition Precedent），只要该事件有可能发生，且不在该方的完全随意控制之下，那么这个承诺就是一种法律上的“受损” (Legal Detriment)，因此构成有效对价。</li>
+                    <li><b>本案应用：</b>企业承诺购买股票，条件是“母公司批准”。虽然这看起来给了企业退路，但法律通常认为寻求第三方（母公司）批准包含着<b>善意 (Good Faith)</b> 的义务，并非企业可以随意取消。</li>
+                    <li>因此，企业的承诺不是虚幻的，它与股东的出售承诺构成了有效的交换。</li>
+                </ul>
+            </div>
+
+            <div class="analysis-title">干扰项排除</div>
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 A 错误</span>
+                <p><b>Mutuality of obligation (义务的相互性)</b> 并未缺失。虽然企业的义务是附条件的，但一旦条件满足（母公司批准），企业就必须履行。这种潜在的约束力足以满足相互性的要求。</p>
+            </div>
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 B 错误</span>
+                <p><b>Condition (条件)</b> 不一定非要写在签署的文件中才有效。口头约定的先决条件（Condition Precedent to Effectiveness）通常是允许的，甚至在有书面合同时，根据口头证据规则 (Parol Evidence Rule) 的例外，往往也可以引入证据证明该条件的存在。更重要的是，本案中条件<b>已经发生</b>（母公司已批准），所以合同已经生效。</p>
+            </div>
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 C 错误</span>
+                <p>不需要讨论“放弃对价” (Waiver of Consideration)。因为对价本身就是<b>存在</b>的，不需要被放弃。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <span class="tip-title">💡 MBE 提分技巧</span>
+            <p>在 Contracts 题目中，当看到一方说“如果 X 发生，我就做 Y”时：</p>
+            <ol>
+                <li>检查 X 是否完全由该方<b>随意</b>控制（例如“如果我想买”）。如果是，这是 <i>Illusory Promise</i>，无对价。</li>
+                <li>如果 X 是客观事件或涉及第三方（如“如果银行批准贷款”、“如果母公司批准”），这是 <i>Valid Conditional Promise</i>，<b>有对价</b>。</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

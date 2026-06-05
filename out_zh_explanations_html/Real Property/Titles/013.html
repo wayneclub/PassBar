@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .highlight-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .highlight-box h3 {
+            margin-top: 0;
+            color: #2980b9;
+            font-size: 1.1rem;
+        }
+        .concept-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        .option-analysis {
+            margin-top: 20px;
+        }
+        .option {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        .correct {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            opacity: 0.8;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Real Property: Recording Acts & Priorities</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="highlight-box">
+            <h3>🏆 正确答案：C</h3>
+            <p><strong>核心理由：</strong>在该司法管辖区的登记法（Recording Act）下，保护对象仅限于“购买者”（Purchasers），而不包括“判决债权人”（Judgment Creditors）。</p>
+        </div>
+
+        <!-- 法律逻辑解析 -->
+        <div class="concept-card">
+            <span class="concept-title">1. 判决债权人 vs. 有偿购买者</span>
+            <p>这是本题的决胜点。MBE常考的一个概念是：<strong>判决债权人（Judgment Creditor）通常不被视为有偿购买者（Bona Fide Purchaser / Purchaser for Value）。</strong></p>
+            <ul>
+                <li><strong>购买者：</strong>支付了当下的价值（Value）来换取房产权益。</li>
+                <li><strong>判决债权人：</strong>其留置权（Lien）通常是为了担保“先前存在的债务”（Antecedent Debt），并没有为该特定的房产权益支付新的对价。</li>
+            </ul>
+        </div>
+
+        <div class="concept-card">
+            <span class="concept-title">2. 法律条文的严格解读</span>
+            <p>题目中的登记法明确规定：</p>
+            <p style="background:#eee; padding:5px; font-style:italic;">"No conveyance... shall be good against <strong>subsequent purchasers for value</strong>..."</p>
+            <p>既然法规只保护“Purchasers”，那么债权人（Creditor）就不能利用该法规来对抗未登记的契据。因此，案件回到普通法（Common Law）规则：<strong>“时间在先，权利在先” (First in time, first in right)。</strong></p>
+            <p>买方在债权人提交判决前已经获得了契据（Deed），虽然未登记，但买方的权益产生得更早，因此买方胜诉。</p>
+        </div>
+
+        <div class="concept-card">
+            <span class="concept-title">3. 所有权的时间点</span>
+            <p>判决留置权法规规定，留置权仅附着于债务人“当时拥有”（then owned）的财产。当债权人提交判决时，卖方已经将契据交付给买方，法律所有权（Legal Title）已经转移。卖方此时已不再拥有该房产，因此留置权无法附着。</p>
+        </div>
+
+        <!-- 选项分析 -->
+        <div class="option-analysis">
+            <h4>选项快速排查：</h4>
+            
+            <div class="option correct">
+                <strong>C. 该司法管辖区的登记法不保护债权人 (Correct)</strong>
+                <br>这是最直接的法律依据。因为债权人不是“Purchaser for value”，所以无法利用登记法击败未登记的买方。
+            </div>
+
+            <div class="option incorrect">
+                <strong>A. 买方是无通知的购买者</strong>
+                <br>错误。Notice（通知）是用来评估<strong>后续</strong>权益持有人的。买方是<strong>在此之前</strong>的权益人，他是否有通知与本案优先权争议无关。
+            </div>
+
+            <div class="option incorrect">
+                <strong>B. 衡平法转换原则 (Equitable Conversion)</strong>
+                <br>错误。该原则适用于“合同签订后”到“交割（Closing）前”的阶段。本案中，买方已经支付价款并收到了契据（Deed），已经完成了交割，获得了完整的法律所有权（Legal Title），不再适用衡平法转换。
+            </div>
+
+            <div class="option incorrect">
+                <strong>D. 卖方的占有构成推定通知</strong>
+                <br>错误。即使卖方的占有给了债权人某种通知，这也不重要。因为债权人根本不受登记法保护（见选项C），无论他是否有通知，他都输给了时间在先的买方。
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <strong>MBE 考试技巧：</strong><br>
+        做题时务必仔细阅读题目中给出的法规（Statute）文本。如果法规只写了 "Purchaser" 而没有明确包含 "Creditor"，千万不要默认债权人受保护。
+    </div>
+</div>
+
+</body>
+</html>

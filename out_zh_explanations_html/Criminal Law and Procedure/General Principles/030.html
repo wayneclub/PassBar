@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：刑事因果关系</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+
+        .option-analysis {
+            margin-bottom: 15px;
+        }
+
+        .correct-badge {
+            display: inline-block;
+            background-color: var(--correct-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .wrong-badge {
+            display: inline-block;
+            background-color: var(--wrong-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        .exam-tip strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #533f03;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Criminal Law: Causation</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点讲解 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：刑事因果关系 (Causation)</span>
+            <p>在刑法中，要证明被告对结果（如死亡）负责，必须同时证明两层因果关系：</p>
+            <ul>
+                <li><strong>事实原因 (Actual Cause / Cause-in-Fact)：</strong> 即 "But-for" test。若无被告行为，结果是否会发生？</li>
+                <li><strong>法律近因 (Proximate Cause / Legal Cause)：</strong> 结果是否是被告行为的<strong>可预见 (Foreseeable)</strong> 后果？</li>
+            </ul>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">本案深度解析</div>
+            <p>本题的核心在于<strong>法律近因 (Proximate Cause)</strong> 的中断。</p>
+            
+            <p>虽然学生的谎言是老师死亡的“事实原因”（没有谎言，老师不会失业，可能不会自杀），但法律上需要判断这种死亡是否是谎言的“自然且可预见”的后果。</p>
+
+            <p><strong>关键规则：</strong> 在普通法中，受害人自愿的<strong>自杀 (Suicide)</strong> 通常被视为一个独立的介入行为 <span class="term">Superseding Intervening Act</span>，它会切断被告行为与死亡结果之间的因果链条。</p>
+            
+            <p>除非被告的行为导致受害人精神失常无法控制自己，或者被告实施了极度残忍的行为导致受害人为了逃避痛苦而立即自杀，否则一年后的自杀在法律上被认为是<strong>不可预见的 (Unforeseeable)</strong>。</p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">选项分析</div>
+
+            <!-- 正确选项 -->
+            <div class="option-analysis">
+                <div class="correct-badge">选项 B (正确答案)</div>
+                <p><strong>"She committed no act that proximately caused the teacher's death."</strong></p>
+                <p>这是最佳辩护。因为老师的自杀打破了因果链条。如果缺乏法律近因 (Proximate Cause)，过失杀人罪 (Manslaughter) 的客观要件就不成立，无论被告是否有过错。</p>
+            </div>
+
+            <!-- 错误选项 D -->
+            <div class="option-analysis">
+                <div class="wrong-badge">选项 D (常见干扰项)</div>
+                <p><strong>"She did not intend to cause the teacher's death."</strong></p>
+                <p><strong>错误原因：</strong> 题目指控的是 <span class="term">Manslaughter</span>（过失杀人）。</p>
+                <p>过失杀人（特别是 Involuntary Manslaughter）<strong>不需要</strong>杀人意图 (Intent to kill)。它通常基于刑事过失 (Criminal Negligence) 或鲁莽 (Recklessness)。因此，“没有意图”并不是针对过失杀人罪的完整辩护。</p>
+            </div>
+
+            <!-- 错误选项 C -->
+            <div class="option-analysis">
+                <div class="wrong-badge">选项 C</div>
+                <p><strong>"She did not act with malice."</strong></p>
+                <p><strong>错误原因：</strong> <span class="term">Malice</span> (恶意/预谋) 是<strong>谋杀罪 (Murder)</strong> 的要素，而不是过失杀人罪的要素。证明没有 Malice 只能避免被判 Murder，但不能通过此点来辩护 Manslaughter。</p>
+            </div>
+
+            <!-- 错误选项 A -->
+            <div class="option-analysis">
+                <div class="wrong-badge">选项 A</div>
+                <p><strong>"She acted under extreme emotional distress."</strong></p>
+                <p><strong>错误原因：</strong> 情绪困扰通常只影响量刑，或者在特定情况下将 Murder 降格为 Voluntary Manslaughter（激情杀人）。但在本案中，因成绩不及格而诬告老师，法律上不认可其为合理的“激愤”理由，且这不能否定犯罪的基本构成要件。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>🎓 MBE 答题技巧</strong>
+            当题目涉及受害人自身的行为（如拒绝治疗、自杀、冒险行为）发生在被告行为之后时，请立即思考<strong>“介入原因” (Intervening Acts)</strong>。
+            <br><br>
+            如果该介入行为是<strong>不可预见的 (Unforeseeable)</strong>，它就是<strong>阻断原因 (Superseding Cause)</strong>，被告将对最终结果<strong>不承担</strong>刑事责任。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

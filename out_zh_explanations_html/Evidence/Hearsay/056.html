@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+            color: white;
+        }
+
+        .tag-correct { background-color: var(--correct-color); }
+        .tag-wrong { background-color: var(--wrong-color); }
+        .tag-concept { background-color: var(--accent-color); }
+
+        .option-analysis {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .option-analysis:last-child {
+            border-bottom: none;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        .footer {
+            background-color: #f0f2f5;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Evidence / Hearsay & Impeachment</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">🔑 核心考点 (Key Concept)</span>
+            当庭外陈述由<strong>当事人对手方 (Party-Opponent)</strong> 作出，并被用来对抗该方时，根据 <em>Federal Rules of Evidence (FRE) 801(d)(2)</em>，该陈述<strong>不是传闻证据 (Not Hearsay)</strong>。
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 正确答案解析 (Option D)</div>
+            <p>本题考察的是被告先前陈述的<strong>双重用途</strong>：</p>
+            
+            <p><strong>1. 弹劾 (Impeachment)：</strong><br>
+            被告在法庭上作证说是“自卫” (Self-defense)，但他之前对警察说是“意外走火” (Accident)。这构成了<strong>先前不一致陈述 (Prior Inconsistent Statement)</strong>。检方可以用此证据来攻击被告的可信度，证明他在撒谎。</p>
+
+            <p><strong>2. 实质性证据 (Substantive Evidence)：</strong><br>
+            通常，先前不一致陈述只能用于弹劾，不能证明陈述内容的真实性（除非是在宣誓下作出的）。<br>
+            <span style="color: var(--wrong-color); font-weight: bold;">但是！</span><br>
+            因为陈述人是<strong>被告（案件当事人）</strong>，且证据是由检方（对手方）引入的，这属于<strong>当事人对手方的自认 (Admission by Party-Opponent)</strong>。</p>
+            
+            <p>在联邦证据规则下，这被归类为<strong>非传闻 (Non-hearsay)</strong>。因此，它不仅可以用来弹劾，还可以作为<strong>实质性证据</strong>，证明被告确实是“意外走火”而非“自卫”。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">❌ 干扰项辨析</div>
+            
+            <div class="option-analysis">
+                <span class="tag tag-wrong">选项 A</span> <strong>自证其罪特权 (Self-Incrimination)</strong><br>
+                第五修正案的 <em>Miranda</em> 警告适用于<strong>“羁押讯问” (Custodial Interrogation)</strong>。本案中，警察刚到现场问“出了什么事”，这属于一般的现场调查，被告并未被羁押 (Not in custody)，因此其自愿回答不受第五修正案保护。
+            </div>
+
+            <div class="option-analysis">
+                <span class="tag tag-wrong">选项 B</span> <strong>传闻证据 (Hearsay)</strong><br>
+                这是一个常见的陷阱。根据 FRE 801(d)(2)，当事人自认被定义为<strong>“排除在传闻之外” (Exclusion / Exemption)</strong>，而不是传闻的“例外” (Exception)。虽然结果都是可采纳，但法律定性上它根本就“不是传闻”。
+            </div>
+
+            <div class="option-analysis">
+                <span class="tag tag-wrong">选项 C</span> <strong>激动性陈述 (Excited Utterance)</strong><br>
+                虽然这可能符合激动性陈述的条件，但不是最佳答案。因为即使没有激动情绪，基于“当事人自认”规则，该陈述也绝对可采纳。且选项 D 完整涵盖了证据的用途（弹劾+实质证据）。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #e8f6f3; border-left-color: #1abc9c;">
+            <span class="rule-title">💡 考试技巧 (Exam Tip)</span>
+            在 MBE 证据法题目中，如果看到<strong>被告 (Defendant)</strong> 以前说过的话被检方拿来用：
+            <ul>
+                <li>首先想：<strong>Admission by Party-Opponent</strong>。</li>
+                <li>结论通常是：既可以用来<strong>弹劾 (Impeach)</strong>，也可以用来<strong>证明事实 (Substantive Evidence)</strong>。</li>
+                <li>不需要找其他传闻例外（如 Excited Utterance），因为它是 Non-hearsay。</li>
+            </ul>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

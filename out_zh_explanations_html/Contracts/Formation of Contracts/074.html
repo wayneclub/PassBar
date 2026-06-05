@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+
+        .event {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .event::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            border: 2px solid #fff;
+        }
+
+        .event.critical::before {
+            background: var(--correct-color);
+            transform: scale(1.2);
+        }
+
+        .event.fail::before {
+            background: var(--wrong-color);
+        }
+
+        .date {
+            font-size: 0.85rem;
+            color: #777;
+            font-weight: bold;
+        }
+
+        .action {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .explanation {
+            font-size: 0.95rem;
+            margin-top: 5px;
+        }
+
+        .rule-box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background: #eee;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts / UCC Article 2</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心结论 -->
+        <div class="card">
+            <h3>✅ 正确答案：D</h3>
+            <p>是的，因为供应商在所有者撤销要约之前，已经有效地接受了该要约。</p>
+        </div>
+
+        <p>本题考察的核心是合同法中经典的<b>“邮箱规则” (Mailbox Rule)</b> 以及 UCC 对货物买卖合同成立的规定。</p>
+
+        <!-- 时间轴分析 -->
+        <div class="rule-box">
+            <span class="rule-title">关键时间线分析 (Timeline)</span>
+            <div class="timeline">
+                <div class="event">
+                    <div class="date">11月9日 (早些时候)</div>
+                    <div class="action">收到要约 (Offer Received)</div>
+                    <div class="explanation">供应商收到买方购买土豆的订单。</div>
+                </div>
+                
+                <div class="event critical">
+                    <div class="date">11月9日 (晚些时候)</div>
+                    <div class="action">寄出接受信 (Acceptance Mailed)</div>
+                    <div class="explanation">
+                        <span style="color:var(--correct-color); font-weight:bold;">合同在此刻成立！</span><br>
+                        根据邮箱规则，接受在<b>寄出时 (Dispatch)</b> 生效。
+                    </div>
+                </div>
+
+                <div class="event fail">
+                    <div class="date">11月10日</div>
+                    <div class="action">电话撤销 (Attempted Revocation)</div>
+                    <div class="explanation">
+                        买方试图撤销。但撤销通常在<b>收到时 (Receipt)</b> 才生效。此时合同已于昨日成立，撤销无效。
+                    </div>
+                </div>
+
+                <div class="event">
+                    <div class="date">11月11日</div>
+                    <div class="action">收到接受信 (Letter Received)</div>
+                    <div class="explanation">虽然此时才收到信，但法律效力追溯至寄出日。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 法律规则详解 -->
+        <h3>⚖️ 法律依据解析</h3>
+
+        <h4>1. 适用法律：UCC Article 2</h4>
+        <p>因为土豆属于<b>货物 (Goods)</b>，所以适用《统一商法典》(UCC) 而非普通法 (Common Law)。</p>
+        <p>根据 <b>UCC § 2-206</b>，对于要求立即发货的要约，卖方可以通过以下两种方式接受：</p>
+        <ul>
+            <li>实际发货 (Shipping the goods)</li>
+            <li><b>承诺发货 (Promising to ship)</b></li>
+        </ul>
+        <p>因此，供应商寄信承诺发货是有效的接受方式（排除选项 B）。</p>
+
+        <h4>2. 邮箱规则 (The Mailbox Rule)</h4>
+        <p>这是本题的决胜点。规则如下：</p>
+        <ul>
+            <li><b>接受 (Acceptance)：</b>通常在<b>寄出 (Dispatch)</b> 时生效（只要地址正确且贴足邮资）。</li>
+            <li><b>撤销 (Revocation)：</b>通常在受要约人<b>收到 (Receipt)</b> 时生效。</li>
+        </ul>
+        <p>在本案中，供应商在 11月9日 寄出信件时，接受已经生效，合同<b>已经锁死 (Formed)</b>。买方在 11月10日 的撤销电话为时已晚，因为你不能撤销一个已经存在的合同。</p>
+
+        <!-- 错误选项辨析 -->
+        <div class="rule-box" style="background-color: #fff5f5; border-color: #fed7d7;">
+            <span class="rule-title" style="color: var(--wrong-color);">为什么其他选项是错的？</span>
+            <p><b>❌ 选项 A (撤销有效)：</b> 错误。撤销必须在接受生效<b>之前</b>送达。这里接受生效在前（9日），撤销在后（10日）。</p>
+            <p><b>❌ 选项 B (必须发货)：</b> 错误。UCC 允许通过“承诺发货”来接受要约，不强制要求必须实际发货才能成立合同。</p>
+            <p><b>❌ 选项 C (不可撤销要约)：</b> 错误。虽然结果是“有合同”，但理由错误。买方的要约并非<b>“确定要约” (Firm Offer, UCC § 2-205)</b>，因为没有书面保证在特定时间内不撤销。如果买方在9日寄信之前打电话，撤销就是有效的。</p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

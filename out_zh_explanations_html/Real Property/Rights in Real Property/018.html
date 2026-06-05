@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --danger-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f8f5;
+            border-left: 5px solid var(--success-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: var(--success-color);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .concept-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #fff;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .element-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .element-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .element-list li::before {
+            content: "✓";
+            color: var(--success-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .trap-alert {
+            background-color: #fdedec;
+            border: 1px solid #fadbd8;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .trap-title {
+            color: var(--danger-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f8f9fa;
+        }
+        .footer-tip {
+            background: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Real Property: Easements</p>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：B</span>
+            该男子获得了使用该小路的<strong>时效地役权 (Easement by Prescription)</strong>。
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="concept-card">
+            <div class="concept-title">
+                📚 核心考点：时效地役权
+            </div>
+            <p><strong>Easement by Prescription</strong> 的取得方式类似于侵权逆占 (Adverse Possession)，但它获得的是<strong>使用权</strong>而非所有权。必须满足以下四个要素：</p>
+            <ul class="element-list">
+                <li>
+                    <strong>Open and Notorious (公开且众所周知)：</strong><br>
+                    男子清理了土地并开辟了小路，使用行为明显可见。
+                </li>
+                <li>
+                    <strong>Continuous (持续性)：</strong><br>
+                    使用了12年，超过了该司法管辖区规定的10年法定期限 (Statutory Period)。
+                </li>
+                <li>
+                    <strong>Actual (实际使用)：</strong><br>
+                    男子实际上一直在使用这条小路通行。
+                </li>
+                <li>
+                    <strong>Hostile / Non-permissive (敌对/未经许可)：</strong><br>
+                    邻居明确表示从未给予许可 ("had not given him permission")。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 难点辨析：为什么不是C？ -->
+        <div class="trap-alert">
+            <div class="trap-title">
+                ⚠️ 陷阱辨析：为什么不是侵权逆占？
+            </div>
+            <p>这是本题最大的干扰项 (Choice C)。</p>
+            <p><strong>侵权逆占 (Adverse Possession)</strong> 可以获得土地的<strong>完全所有权 (Fee Title)</strong>，但它比时效地役权多一个关键要素：</p>
+            <p style="text-align: center; font-weight: bold; font-size: 1.1em; color: var(--danger-color);">
+                Exclusivity (排他性)
+            </p>
+            <p>
+                在本案中，邻居的租户（猎人）也在使用这条路。因为男子没有<strong>独占</strong>这条路的使用权，他无法满足 Exclusivity 的要求，因此不能获得所有权，只能获得地役权。
+            </p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>比较项目</th>
+                        <th>时效地役权 (Prescription)</th>
+                        <th>侵权逆占 (Adverse Possession)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>权利结果</strong></td>
+                        <td>使用权 (Use)</td>
+                        <td>所有权 (Title)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>排他性 (Exclusivity)</strong></td>
+                        <td><span style="color:var(--success-color)">❌ 不需要</span></td>
+                        <td><span style="color:var(--danger-color)">✅ 必须</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 为什么不是A？ -->
+        <div class="concept-card" style="margin-top: 15px; border-left: 4px solid var(--warning-color);">
+            <div class="concept-title" style="color: var(--warning-color);">
+                🚫 为什么不是必要地役权 (Choice A)?
+            </div>
+            <p><strong>Easement by Necessity</strong> 必须满足两个严格条件：</p>
+            <ol>
+                <li><strong>Common Ownership (共同所有权)：</strong>两块土地过去必须属于同一个人。</li>
+                <li><strong>Strict Necessity (严格必要性)：</strong>土地分割导致一方无路可走。</li>
+            </ol>
+            <p>题目明确指出："The man's land and the neighbor's land have <strong>never been in common ownership</strong>."（从未有过共同所有权）。这一事实直接排除了必要地役权。</p>
+        </div>
+
+    </div>
+
+    <div class="footer-tip">
+        <strong>💡 考试技巧：</strong><br>
+        看到 "Used without permission" + "Statutory period" 时，首先判断是 Adverse Possession 还是 Prescriptive Easement。区分的关键在于<strong>是否独占 (Exclusivity)</strong>。如果原主或其他人也在用，选地役权 (Easement)。
+    </div>
+</div>
+
+</body>
+</html>

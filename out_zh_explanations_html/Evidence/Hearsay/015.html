@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考题解析 - Evidence</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .rule-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .rule-ref {
+            font-weight: bold;
+            color: #f57c00;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .analysis-point {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .icon {
+            margin-right: 10px;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .trap-box {
+            border: 1px solid var(--warning-color);
+            background-color: #fdf2f2;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+
+        .trap-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .footer {
+            background-color: #eee;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 证据法考点解析</h1>
+        <div class="sub-title">Evidence: Hearsay & Exclusions</div>
+    </div>
+
+    <div class="content">
+        <!-- 答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：D</span>
+            <strong>是的，作为对方当事人的陈述 (Statement of an opposing party)。</strong>
+        </div>
+
+        <!-- 核心法律规则 -->
+        <div class="section-title">⚖️ 核心考点：非传闻证据</div>
+        <div class="rule-box">
+            <span class="rule-ref">Federal Rule of Evidence 801(d)(2)</span>
+            <strong>对方当事人陈述 (Statement of an Opposing Party)</strong>：<br>
+            如果一项陈述是由一方当事人作出的，并且由对方当事人作为证据提出用来针对该当事人，那么该陈述<strong>不属于传闻证据 (Non-hearsay)</strong>，因此可以直接采纳。
+        </div>
+
+        <p>在证据法中，这不仅仅是一个“例外 (Exception)”，而是被定义为“排除 (Exclusion)”，即它从根本上就不被视为传闻。</p>
+
+        <!-- 题目解析 -->
+        <div class="section-title">🔍 逻辑推演</div>
+        
+        <div class="analysis-point">
+            <div class="icon">1.</div>
+            <div>
+                <strong>陈述人是谁？</strong><br>
+                被告 (The Defendant)。她是本案的当事人。
+            </div>
+        </div>
+
+        <div class="analysis-point">
+            <div class="icon">2.</div>
+            <div>
+                <strong>谁在提供证据？</strong><br>
+                检方（通过FBI调查员的证词）。检方是被告的“对方当事人” (Opposing Party)。
+            </div>
+        </div>
+
+        <div class="analysis-point">
+            <div class="icon">3.</div>
+            <div>
+                <strong>结论：</strong><br>
+                被告对自己不利的陈述（试图贿赂/交换条件），只要是由检方提出的，就是可采纳的。不需要寻找其他复杂的传闻例外。
+            </div>
+        </div>
+
+        <!-- 易错点分析 -->
+        <div class="trap-box">
+            <span class="trap-title">⚠️ 常见陷阱 (Distractor Analysis)</span>
+            <p><strong>为什么选项 B (和解谈判) 是错误的？</strong></p>
+            <p>很多考生会误以为这是“认罪协商 (Plea Negotiation)”。根据 <code>FRE 410</code>，认罪协商中的陈述确实通常不可采纳，但本题有两个关键点使其不适用：</p>
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li><strong>对象错误：</strong>FRE 410 保护的是与<strong>检察官 (Prosecuting Attorney)</strong> 的谈判。FBI 探员是执法人员，通常没有权力进行认罪协商，除非有明确授权（本题未提及）。</li>
+                <li><strong>性质错误：</strong>被告试图用“猛料”换取调查员“不再操心”，这更像是<strong>贿赂或妨碍司法</strong>的企图，而非善意的法律和解谈判。</li>
+            </ol>
+        </div>
+
+        <div class="section-title">💡 考试技巧 (MBE Tips)</div>
+        <p>在处理 MBE 证据法题目时，请遵循以下思维导图：</p>
+        <ul style="padding-left: 20px; font-size: 0.95rem;">
+            <li>看到庭外陈述 (Out-of-court statement)？ → 怀疑是传闻。</li>
+            <li>陈述人是被告/当事人吗？ → 检查 <strong>801(d)(2)</strong>。</li>
+            <li>如果是当事人陈述且被对方使用 → <strong>直接选“可采纳”</strong> (Admissible as Non-hearsay)。</li>
+            <li>不要被“这是否属于公共记录”或“是否属于反对利益声明”等其他选项干扰，<strong>801(d)(2) 是最直接的路径</strong>。</li>
+        </ul>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

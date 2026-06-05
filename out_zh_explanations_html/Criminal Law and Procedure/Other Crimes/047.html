@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+        .container {
+            max-width: 480px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            min-width: 24px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .tag-correct { background-color: #d4edda; color: var(--correct-color); }
+        .tag-wrong { background-color: #f8d7da; color: var(--wrong-color); }
+        
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            margin-top: 20px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考点解析</h1>
+        <div class="sub-title">Larceny (盗窃罪) 的构成要件</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 正确答案：选项 A</div>
+            <p>该男子不能被定罪，因为他<b>没有永久剥夺他人财产的意图</b> (Intent to permanently deprive)。</p>
+        </div>
+
+        <!-- 法律规则 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 法律规则 (Rule of Law)</span>
+            <strong>Larceny (普通法盗窃罪)</strong> 需要满足以下所有要素：
+            <ul>
+                <li><strong>Trespassory taking</strong> (非法拿取)</li>
+                <li><strong>And carrying away</strong> (并带走)</li>
+                <li><strong>Of personal property of another</strong> (他人的个人财产)</li>
+                <li><strong>With specific intent to permanently deprive</strong> (具有永久剥夺所有权的特定意图)</li>
+            </ul>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🔍 深度解析</div>
+            
+            <div class="key-point">
+                <span class="icon">🎸</span>
+                <div>
+                    <strong>借用 vs. 偷窃 (Borrowing vs. Stealing)</strong><br>
+                    Larceny 是典型的<strong>特定意图犯罪 (Specific Intent Crime)</strong>。如果被告在拿走财物时，仅仅是想“借用” (borrow) 并在稍后归还，那么他就缺乏“永久剥夺”的意图。
+                    <br><br>
+                    在本题中，男子拿吉他是为了当晚演出，且事发时正在<b>去归还吉他的路上</b>。这直接证明了他没有盗窃的意图。
+                </div>
+            </div>
+
+            <div class="key-point">
+                <span class="icon">💥</span>
+                <div>
+                    <strong>意外损坏不等于盗窃</strong><br>
+                    虽然吉他最终坏了，但这并不是男子的本意。MBE 经常考察这种区别：<b>结果 (Result)</b> 是永久剥夺了（吉他坏了），但<b>意图 (Intent)</b> 并不是。刑法看重的是拿取那一刻的心理状态。
+                </div>
+            </div>
+        </div>
+
+        <!-- 陷阱排除 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🚫 排除干扰项</div>
+            
+            <div class="key-point">
+                <span class="icon">❌</span>
+                <div>
+                    <span class="tag tag-wrong">选项 D</span> <strong>持续性侵权 (Continuing Trespass)</strong><br>
+                    这是一个经典的 MBE 陷阱。
+                    <br>
+                    <em>Continuing Trespass</em> 理论适用于：某人起初非法拿走财物（无盗窃意图），但<b>后来决定</b>将其据为己有。
+                    <br>
+                    <strong>为什么本题不适用？</strong> 因为男子从未形成“据为己有”的意图。吉他是被<b>意外 (accidentally)</b> 摔坏的，意外事件不能代替犯罪意图 (Mens Rea)。
+                </div>
+            </div>
+
+            <div class="key-point">
+                <span class="icon">❌</span>
+                <div>
+                    <span class="tag tag-wrong">选项 B</span> <strong>醉酒抗辩 (Intoxication)</strong><br>
+                    虽然自愿醉酒 (Voluntary Intoxication) 可以作为特定意图犯罪的抗辩，但本题中不需要用到这个抗辩。因为即使他没醉，他也是想“借用”。他无罪的根本原因是他想归还，而不是因为他醉得不知道自己在做什么。
+                </div>
+            </div>
+             <div class="key-point">
+                <span class="icon">❌</span>
+                <div>
+                    <span class="tag tag-wrong">选项 C</span> <strong>未经许可 (Without Permission)</strong><br>
+                    未经许可拿走只是构成了 Trespass (侵权/非法占有)，但如果没有盗窃意图，它仅仅是民事侵权或较轻的罪行（如 Joyriding），而不是 Larceny。
+                </div>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧</strong>
+            <br>
+            看到 <strong>Larceny</strong> 的题目，第一时间寻找 <strong>Intent (意图)</strong>。
+            <br>
+            如果题目中出现 "intends to return" (打算归还) 或 "borrow" (借用)，且被告有能力归还，通常都不构成 Larceny。不要被后来的意外损坏所迷惑！
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .highlight-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #fff;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 1.1rem;
+        }
+        .rule-title.green {
+            color: #27ae60;
+        }
+        .tag {
+            display: inline-block;
+            background: #eee;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            color: #555;
+            font-weight: 600;
+        }
+        .analysis {
+            margin-top: 20px;
+        }
+        .correct-answer {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid #c3e6cb;
+        }
+        .key-term {
+            font-weight: bold;
+            color: #2980b9;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <p>宪法：选举权与审查标准</p>
+    </div>
+
+    <div class="content">
+        
+        <div class="highlight-box">
+            <strong>核心考点：</strong> 本题考察的是针对选举法规（Election Regulations）合宪性挑战时的<strong>审查标准（Standard of Review）</strong>以及相应的<strong>举证责任（Burden of Persuasion）</strong>。
+        </div>
+
+        <h3>1. 法律规则：安德森-伯迪克原则</h3>
+        <p>在 <em>Anderson-Burdick</em> 理论下，法院审查选举法时采用“滑动标尺”标准：</p>
+
+        <div class="rule-card">
+            <span class="rule-title">🔴 严重限制 (Severe Restriction)</span>
+            <p>如果法规对第一修正案或第十四修正案权利施加了<strong>严重负担</strong>：</p>
+            <ul>
+                <li><strong>适用标准：</strong>严格审查 (Strict Scrutiny)</li>
+                <li><strong>举证责任：</strong><span class="key-term">政府 (State)</span> 必须证明。</li>
+                <li><strong>证明内容：</strong>该法律是实现<span class="key-term">重大的州利益 (Compelling State Interest)</span> 所采取的<span class="key-term">限制最少的方式 (Least Restrictive Means)</span>。</li>
+            </ul>
+        </div>
+
+        <div class="rule-card">
+            <span class="rule-title green">🟢 普通/合理限制 (Ordinary Restriction)</span>
+            <p>如果法规施加的负担是<strong>合理的、非歧视性的</strong>：</p>
+            <ul>
+                <li><strong>适用标准：</strong>理性基础审查 (Rational Basis Review) 的变体。</li>
+                <li><strong>举证责任：</strong>通常由 <span class="key-term">挑战者 (Challenger)</span> 承担。</li>
+                <li><strong>证明内容：</strong>该法律与合法的州利益 (Legitimate State Interest) 具有理性关联。</li>
+            </ul>
+        </div>
+
+        <h3>2. 题目解析</h3>
+        <p>本题的关键在于题干中的假设条件：</p>
+        <blockquote>
+            "If the court holds that the statute constitutes a <strong>severe restriction</strong>..."<br>
+            （如果法院认定该法规构成一项<strong>严重限制</strong>……）
+        </blockquote>
+        
+        <p>这一假设直接锁定了审查层级。既然是“严重限制”，就必须适用<strong>严格审查 (Strict Scrutiny)</strong>。</p>
+
+        <div class="analysis">
+            <h4>为什么选 B？</h4>
+            <p>选项 B 准确描述了<strong>严格审查</strong>的两个核心要素：</p>
+            <ol>
+                <li><strong>责任主体：</strong>由<strong>州政府 (The State)</strong> 承担举证责任。</li>
+                <li><strong>标准内容：</strong>必须证明是实现<strong>重大州利益 (Compelling Interest)</strong> 的<strong>限制最少手段 (Least Restrictive Means)</strong>（即必要性）。</li>
+            </ol>
+        </div>
+
+        <div class="analysis">
+            <h4>其他选项为何错误？</h4>
+            <ul>
+                <li><strong>选项 A (Rational Basis - State Burden):</strong> 错误。这是理性基础测试的内容，但错误地将举证责任加给了政府。且本题已定性为“严重限制”，不适用理性基础。</li>
+                <li><strong>选项 C (Strict Scrutiny - Challenger Burden):</strong> 错误。虽然提到了“重大州利益”和“必要性”，但它错误地要求<strong>原告（该女性）</strong>去证明法律“不必要”。在严格审查下，举证责任倒置，必须由政府来辩护。</li>
+                <li><strong>选项 D (Rational Basis - Challenger Burden):</strong> 错误。这是标准的理性基础测试。如果题目说限制是“普通的”或“合理的”，这个选项才可能是对的。</li>
+            </ul>
+        </div>
+
+        <div class="correct-answer">
+            <strong>✅ 正确答案：B</strong><br>
+            在认定为严重限制选举权的情况下，适用严格审查，州政府必须证明该法律是实现重大州利益的必要手段。
+        </div>
+
+        <div class="footer">
+            <strong>考试技巧：</strong> 在 MBE 宪法题中，一旦看到 "Severe Restriction" 或涉及基本权利（如投票权、言论自由）的核心限制，立即寻找 "Compelling Interest" 和 "Least Restrictive/Narrowly Tailored"，并确认举证责任在政府一方。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

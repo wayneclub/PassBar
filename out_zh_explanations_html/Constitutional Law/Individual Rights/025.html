@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50; /* Navy Blue */
+            --accent-color: #e74c3c; /* Red for emphasis */
+            --highlight-bg: #ecf0f1; /* Light Gray */
+            --success-color: #27ae60; /* Green */
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .case-law {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+
+        .case-title {
+            font-weight: bold;
+            color: #d35400;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .correct-answer {
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            color: #3c763d;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .wrong-option {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-left: 3px solid #bdc3c7;
+            font-size: 0.9em;
+        }
+
+        .mbe-tip {
+            margin-top: 25px;
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            font-size: 0.95em;
+        }
+
+        .mbe-tip strong {
+            color: #f1c40f;
+        }
+
+    </style>
+    <title>MBE 解析</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Constitutional Law: First Amendment</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：基于内容的规制 (Content-Based Regulation)</span>
+            当政府根据言论的主题或信息内容来限制言论时，这种限制被视为“基于内容的”。此类限制通常被推定为违宪。
+        </div>
+
+        <!-- 逻辑推演 -->
+        <div class="analysis-step">
+            <span class="step-number">1</span>
+            <strong>识别论坛类型：</strong><br>
+            居民区的街道和人行道属于<span class="term">传统公共论坛 (Traditional Public Forum)</span>。在这里，政府对言论的限制受到最严格的约束。
+        </div>
+
+        <div class="analysis-step">
+            <span class="step-number">2</span>
+            <strong>分析限制的性质：</strong><br>
+            本题中的条例禁止纠察示威，但<b>例外允许</b>涉及“区划要求” (zoning requirements) 的示威。
+            <br><br>
+            这意味着警察必须听示威者在说什么（内容），才能决定是否逮捕他们。如果谈论“区划”，合法；如果谈论“雇佣行为”，非法。这就是典型的<span class="term">基于内容的规制 (Content-Based Regulation)</span>。
+        </div>
+
+        <div class="analysis-step">
+            <span class="step-number">3</span>
+            <strong>适用审查标准：</strong><br>
+            基于内容的言论规制必须通过<span class="term">严格审查 (Strict Scrutiny)</span>。
+            <ul>
+                <li>政府必须证明该限制是为实现<b>紧迫的政府利益 (Compelling Government Interest)</b>。</li>
+                <li>且手段必须是<b>狭义定制的 (Narrowly Tailored)</b>。</li>
+            </ul>
+            这种标准极难满足，因此该条例极可能违宪。
+        </div>
+
+        <!-- 判例依据 -->
+        <div class="case-law">
+            <span class="case-title">⚖️ 经典判例：Carey v. Brown (1980)</span>
+            美国最高法院曾推翻了一项类似的伊利诺伊州法规，该法规禁止在居民区进行纠察，但豁免了劳资纠纷的纠察。法院裁定，这种基于主题（Subject Matter）的区别对待违反了第一修正案。
+        </div>
+
+        <!-- 正确答案 -->
+        <div class="correct-answer">
+            ✅ 正确答案：D<br>
+            会胜诉，因为该条例是一项基于内容的言论规制。
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="wrong-option">
+            <strong>❌ 选项 A (内容中立)：</strong><br>
+            如果条例禁止<b>所有</b>居民区纠察（无论主题如何），那才是内容中立的（如 <i>Frisby v. Schultz</i> 案）。本题中的“例外条款”破坏了中立性。
+        </div>
+
+        <div class="wrong-option">
+            <strong>❌ 选项 B (行为 vs 言论)：</strong><br>
+            纠察 (Picketing) 被视为<span class="english">Expressive Conduct</span>（表达性行为），受第一修正案保护。政府不能随意禁止。
+        </div>
+
+        <div class="wrong-option">
+            <strong>❌ 选项 C (不合理歧视)：</strong><br>
+            虽然结论是对的（会胜诉），但理由中的标准太低。这里不仅仅是“不合理” (Irrational)，而是未能通过“严格审查”。选项 C 暗示的是合理基础审查 (Rational Basis Review)，这不适用于公共论坛的言论限制。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <strong>💡 MBE 提分技巧</strong><br>
+            看到言论限制题，先问自己：<b>“警察需要听内容才能开罚单吗？”</b>
+            <ul>
+                <li>如果需要（如本题，需区分是谈区划还是谈雇佣），则是<b>基于内容</b> ➔ 严格审查 ➔ 通常违宪。</li>
+                <li>如果不需要（如“禁止在午夜后使用扩音器”），则是<b>内容中立</b> ➔ 中度审查 (Intermediate Scrutiny)。</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

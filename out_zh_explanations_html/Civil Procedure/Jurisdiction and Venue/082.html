@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            line-height: 1.6;
+        }
+
+        .card:first-of-type {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.1em;
+            border-bottom: 2px solid var(--highlight-bg);
+            padding-bottom: 8px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-size: 0.95em;
+        }
+
+        .concept-term {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .diagram {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 15px 0;
+            background: #fafafa;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px dashed #ccc;
+        }
+
+        .diagram-item {
+            text-align: center;
+            font-size: 0.8em;
+        }
+
+        .arrow {
+            font-size: 1.5em;
+            color: var(--accent-color);
+        }
+
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        MBE 考点解析：民事诉讼法
+    </div>
+
+    <!-- 核心结论卡片 -->
+    <div class="card">
+        <span class="tag">正确答案：D</span>
+        <h3>核心考点：一致同意规则</h3>
+        <p>本题考察的是案件从州法院移送至联邦法院（Removal）时的程序要求，特别是<b>一致同意规则</b> <span class="english-term">(Rule of Unanimity)</span>。</p>
+        <p>虽然本案满足联邦法院的<b>多元管辖权</b> <span class="english-term">(Diversity Jurisdiction)</span>，但由于其中一名被告（制造商）反对移送，导致移送程序有瑕疵，因此联邦法院必须将案件发回 <span class="english-term">(Remand)</span> 州法院。</p>
+    </div>
+
+    <!-- 法律规则详解 -->
+    <div class="card">
+        <h3>法律依据与推理</h3>
+        <div class="rule-box">
+            <strong>28 U.S.C. § 1446(b)(2)(A)</strong><br>
+            当民事诉讼是基于多元管辖权被移送时，<b>所有</b>已收到送达的被告必须都同意或加入该移送申请。
+        </div>
+        
+        <p><b>案情分析：</b></p>
+        <div class="diagram">
+            <div class="diagram-item">
+                被告 A<br>(发动机公司)<br>✅ 申请移送
+            </div>
+            <div class="arrow">+</div>
+            <div class="diagram-item">
+                被告 B<br>(制造商)<br>❌ 反对移送
+            </div>
+            <div class="arrow">=</div>
+            <div class="diagram-item">
+                🚫<br>移送失败
+            </div>
+        </div>
+
+        <ul>
+            <li><b>管辖权基础：</b> 原告（A州）起诉被告（B州和C州），金额$5亿。这确实满足多元管辖权（完全多元 + 超过$75k）。</li>
+            <li><b>程序障碍：</b> 尽管联邦法院<i>可以</i>审理此案，但移送（Removal）是一项被告的特权。法律规定，如果有多个被告，必须<b>全员一致</b>同意才能把案件从州法院“搬”到联邦法院。</li>
+            <li><b>结果：</b> 制造商提交了发回动议（Motion to Remand），明确表示不同意移送。因此，联邦法院必须批准该动议。</li>
+        </ul>
+    </div>
+
+    <!-- 干扰项辨析 -->
+    <div class="card">
+        <h3>为什么其他选项是错的？</h3>
+        
+        <p><b>❌ 选项 A (正当程序)：</b><br>
+        错误。<b>正当程序条款</b> <span class="english-term">(Due Process Clause)</span> 并不强制要求联邦法院审理多元案件。州法院完全有资格审理涉及外州当事人的案件（拥有一般管辖权）。</p>
+
+        <p><b>❌ 选项 B (多元管辖权存在)：</b><br>
+        这是最强的干扰项。虽然案件<b>实质上</b>符合联邦管辖条件（Diversity + Amount in Controversy），但<b>程序上</b>必须满足所有被告同意的要求。仅有管辖权是不够的，程序必须合法。</p>
+
+        <p><b>❌ 选项 C (原告所在地)：</b><br>
+        错误。原告是A州公民这一事实本身不影响移送。
+        <br><i>注意：</i> 如果<b>被告</b>是A州公民（法院地被告规则 <span class="english-term">Forum Defendant Rule</span>），那么确实不能移送。但这里原告的国籍不构成发回理由。</p>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card" style="background-color: #fff8e1; border-left: 4px solid #f1c40f;">
+        <h3>🎓 MBE 考试技巧</h3>
+        <p>在处理 <b>Removal (移送)</b> 问题时，请按以下步骤检查：</p>
+        <ol>
+            <li><b>Subject Matter Jurisdiction:</b> 是否有联邦管辖权（联邦问题或多元管辖）？</li>
+            <li><b>Forum Defendant Rule:</b> 如果是多元管辖案件，是否有任何被告是“本州人”（即在州法院所在州）？如果是，不能移送。</li>
+            <li><b>Rule of Unanimity:</b> 是否<b>所有</b>被送达的被告都同意移送？只要有一人反对，就不能移送。</li>
+        </ol>
+        <p>本题考查的就是第3点。</p>
+    </div>
+</div>
+
+</body>
+</html>

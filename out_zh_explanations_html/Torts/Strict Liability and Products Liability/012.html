@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --sub-text: #7f8c8d;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        .concept-card {
+            background-color: #eef7fb;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            color: var(--highlight-color);
+            font-weight: bold;
+            background-color: rgba(231, 76, 60, 0.1);
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+        .english-term {
+            font-style: italic;
+            color: var(--sub-text);
+            font-size: 0.9em;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .option-box {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+        .option-box.correct {
+            border-color: #27ae60;
+            background-color: #f0fcf4;
+        }
+        .option-box.wrong {
+            border-color: #e74c3c;
+            background-color: #fdedec;
+            opacity: 0.8;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .badge-correct { background-color: #27ae60; color: white; }
+        .badge-wrong { background-color: #e74c3c; color: white; }
+        
+        .footer-tip {
+            background-color: #f8f9fa;
+            padding: 15px;
+            font-size: 0.9rem;
+            color: var(--sub-text);
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Strict Liability & Products Liability</div>
+    </div>
+
+    <div class="content">
+        <!-- Core Legal Concept -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：被告的身份</div>
+            <p>
+                严格产品责任（Strict Products Liability）的核心原则是：该责任仅适用于<b>商业供应商</b>（Commercial Suppliers）。
+            </p>
+            <p>
+                这意味着被告必须是从事<b>销售</b>或分销该类产品业务的人。单纯的<b>服务提供者</b>（Service Providers）不承担严格产品责任。
+            </p>
+        </div>
+
+        <!-- Correct Answer Analysis -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 正确答案分析 (选项 C)</div>
+            <div class="option-box correct">
+                <p>
+                    <span class="badge badge-correct">正确</span>
+                    <b>法院应批准动议，因为健身俱乐部是服务提供者。</b>
+                </p>
+                <p>
+                    在本案中，健身俱乐部的主要业务是向会员提供健身服务（场地、指导、器械使用权），而不是销售椭圆机。
+                </p>
+                <p>
+                    根据侵权法重述（Restatement of Torts），服务提供者在提供服务过程中附带提供的产品（如医院提供的针头、健身房提供的器械），如果发生缺陷导致伤害，服务提供者通常<b>不承担严格责任</b>。
+                </p>
+                <p>
+                    <small>注意：会员仍可起诉健身俱乐部“过失”（Negligence），例如未能妥善维护机器，但题目问的是“严格责任”（Strict Liability），此路不通。</small>
+                </p>
+            </div>
+        </div>
+
+        <!-- Distractor Analysis -->
+        <div class="analysis-section">
+            <div class="analysis-title">❌ 干扰项陷阱解析</div>
+            
+            <div class="option-box wrong">
+                <span class="badge badge-wrong">选项 A 错误</span>
+                <b>制造缺陷 (Manufacturing Defect)</b>
+                <p>虽然机器确实有缺陷，但严格责任的前提是被告必须是该产品的“销售商”。既然被告身份不符，产品是否有缺陷对被告（健身房）而言无关紧要。</p>
+            </div>
+
+            <div class="option-box wrong">
+                <span class="badge badge-wrong">选项 D 错误</span>
+                <b>免责声明 (Waiver/Disclaimer)</b>
+                <p>这是一个经典的 MBE 陷阱。虽然会员签了免责书，但法律规则是：<b>针对人身伤害（Personal Injury）的严格产品责任，免责声明通常是无效的。</b></p>
+                <p>因此，法院批准动议的理由<b>不是</b>因为签了字（因为签字可能无法免除严格责任），而是因为根本不存在严格责任的请求权基础（被告不是销售商）。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-tip">
+        <b>💡 考试技巧：</b><br>
+        看到 Strict Products Liability 题目时，第一步先检查<b>被告身份</b>。如果是医生、牙医、修理工或健身房，他们通常被视为提供“服务”，而非销售“产品”，因此可以快速排除严格责任。
+    </div>
+</div>
+
+</body>
+</html>

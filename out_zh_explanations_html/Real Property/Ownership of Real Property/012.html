@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --text-color: #333;
+        --border-radius: 8px;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 10px;
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: var(--border-radius);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+        font-size: 20px;
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 10px;
+        margin-top: 0;
+    }
+    h2 {
+        font-size: 18px;
+        color: var(--primary-color);
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .concept-box {
+        background-color: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 4px;
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .english-term {
+        font-style: italic;
+        color: #7f8c8d;
+        font-size: 0.9em;
+    }
+    .diagram {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 0;
+        padding: 10px;
+        border: 1px dashed #ccc;
+        border-radius: var(--border-radius);
+    }
+    .timeline-item {
+        background: var(--primary-color);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        margin: 5px 0;
+        width: 90%;
+        text-align: center;
+        font-size: 14px;
+        position: relative;
+    }
+    .timeline-arrow {
+        font-size: 20px;
+        color: var(--accent-color);
+    }
+    .analysis-step {
+        margin-bottom: 15px;
+    }
+    .correct-answer {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 10px;
+        border-radius: var(--border-radius);
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .wrong-option {
+        font-size: 0.9em;
+        color: #666;
+        margin-top: 5px;
+        border-left: 2px solid #ccc;
+        padding-left: 10px;
+    }
+    .exam-tip {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 15px;
+        border-radius: var(--border-radius);
+        margin-top: 20px;
+        font-size: 0.95em;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：终身地产权与复归权</h1>
+    
+    <p>本题考察的是不动产法中关于<b>终身地产权 (Life Estate)</b> 的存续期间以及<b>生前转让 (Inter Vivos Conveyance)</b> 与<b>遗嘱 (Will)</b> 之间的效力层级。</p>
+
+    <div class="concept-box">
+        <h3>核心法律概念</h3>
+        <p><span class="term">终身地产权 (Life Estate)</span>：<br>
+        一种赋予持有者在其有生之年占有和使用土地的权利。除非明确说明是“为他人之身” (<i>pur autre vie</i>)，否则其期限由持有者 (Grantee) 的寿命决定。</p>
+        
+        <p><span class="term">复归权 (Reversion)</span>：<br>
+        当原所有者 (Grantor) 转让出的权益少于其拥有的全部权益时（例如，拥有完全所有权却只转让了终身地产权），剩余的权益自动保留在原所有者手中。</p>
+    </div>
+
+    <h2>逻辑推演步骤</h2>
+
+    <div class="analysis-step">
+        <strong>第一步：分析五年前的转让行为</strong><br>
+        男子签署并交付了契据 (Deed)。这是一个有效的生前转让。
+        <ul>
+            <li><b>受让人：</b>妹妹。</li>
+            <li><b>期限：</b>"for and during the term of her natural life"（在她自然生命期间）。</li>
+            <li><b>结论：</b>妹妹获得了以<b>她自己</b>的生命为量度的终身地产权。男子保留了复归权 (Reversion)。</li>
+        </ul>
+    </div>
+
+    <div class="diagram">
+        <div style="font-weight:bold; margin-bottom:5px;">权利状态时间轴</div>
+        <div class="timeline-item">5年前：契据交付<br><small>妹妹获得现时占有权 (Possession)</small></div>
+        <div class="timeline-arrow">↓</div>
+        <div class="timeline-item">15个月前：男子去世<br><small>妹妹还活着 → 她的权利未终止</small></div>
+        <div class="timeline-arrow">↓</div>
+        <div class="timeline-item">现在：诉讼<br><small>妹妹仍享有占有权</small></div>
+    </div>
+
+    <div class="analysis-step">
+        <strong>第二步：分析男子去世的影响</strong><br>
+        男子的死亡<b>不会</b>终止妹妹的终身地产权。
+        <p>因为契据中界定的期限是“妹妹的生命”，而不是“男子的生命”。只要妹妹还活着，她的地产权就继续存在。</p>
+    </div>
+
+    <div class="analysis-step">
+        <strong>第三步：分析遗嘱的效力</strong><br>
+        遗嘱 (Will) 只能处分死者在去世时<b>实际拥有</b>的财产。
+        <ul>
+            <li>男子去世时，该土地的<b>现时占有权</b>属于妹妹。</li>
+            <li>男子拥有的只是<b>复归权 (Reversion)</b>（即未来权益）。</li>
+            <li>因此，遗嘱有效地将这个“复归权”传给了妻子（作为新的终身权益）和儿子（作为余留权人）。</li>
+            <li>但是，妻子和儿子的权益必须等到妹妹去世后才能转变为<b>占有权</b>。</li>
+        </ul>
+    </div>
+
+    <div class="correct-answer">
+        正确答案：A (妹妹)
+    </div>
+    <p>妹妹拥有即时占有权，因为她的终身地产权尚未结束。男子的任何后续行为（包括立遗嘱）都不能单方面撤销已经有效交付的契据。</p>
+
+    <h2>为什么其他选项是错误的？</h2>
+
+    <div class="wrong-option">
+        <strong>选项 B (儿子)：</strong> 错误地认为妹妹的权益随男子死亡而终止。除非契据写明是“以男子的生命为期” (<i>pur autre vie</i>)，否则原所有者的死亡不影响受让人的终身地产权。
+    </div>
+
+    <div class="wrong-option">
+        <strong>选项 C & D (妻子)：</strong> 错误。遗嘱不能推翻之前已经完成的生前转让。男子不能通过遗嘱把已经送给妹妹的“现时占有权”再送给妻子。他只能遗赠他剩下的东西（即等待妹妹去世后的复归权）。
+    </div>
+
+    <div class="exam-tip">
+        <strong>💡 MBE 考试技巧</strong><br>
+        在做不动产题目时，牢记 <b>"Nemo dat quod non habet"</b>（人不能给付其本身未享有的权利）。
+        <br><br>
+        一旦题目中出现“契据已交付” (Deed delivered)，该权益就已经从授予人身上剥离了。授予人死后的遗嘱无法收回这部分权益。始终先画出时间轴，确定谁是“测量生命” (Measuring Life)。
+    </div>
+
+</div>
+
+</body>
+</html>

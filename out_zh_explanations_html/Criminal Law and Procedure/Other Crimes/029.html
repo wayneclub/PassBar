@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 10px;
+        color: #333;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h2 {
+        margin: 0;
+        font-size: 1.4rem;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+    }
+    .rule-card {
+        background-color: #e3f2fd;
+        border-left: 5px solid #2196f3;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: #1565c0;
+        margin-bottom: 8px;
+        display: block;
+    }
+    .highlight {
+        background-color: #fff3cd;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-weight: bold;
+    }
+    .analysis-section {
+        margin-bottom: 20px;
+    }
+    .option-card {
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 10px;
+        position: relative;
+    }
+    .option-card.correct {
+        border-color: #4caf50;
+        background-color: #f1f8e9;
+    }
+    .option-card.wrong {
+        border-color: #ef9a9a;
+        background-color: #ffebee;
+        opacity: 0.8;
+    }
+    .badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .badge-correct { background-color: #4caf50; color: white; }
+    .badge-wrong { background-color: #e53935; color: white; }
+    
+    .key-point {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        font-size: 0.9rem;
+        color: #555;
+    }
+    .icon { margin-right: 8px; font-size: 1.2rem; }
+    
+    .mbe-tip {
+        background-color: #333;
+        color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 0.9rem;
+    }
+    .mbe-tip strong { color: #ffeb3b; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 刑法考点解析</h2>
+        <p>Receiving Stolen Property<br>(收受赃物罪)</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心法则 -->
+        <div class="rule-card">
+            <span class="rule-title">⚖️ 核心法律规则 (Black Letter Law)</span>
+            <p>要构成<strong>收受赃物罪 (Receiving Stolen Property)</strong>，必须同时满足以下要素：</p>
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li><strong>收受 (Receiving)</strong>：占有或控制财产；</li>
+                <li><strong>赃物 (Stolen Property)</strong>：财产在收受时必须具有“被盗”的法律属性；</li>
+                <li><strong>明知 (Knowledge)</strong>：被告知道该财产是被盗的；</li>
+                <li><strong>意图 (Intent)</strong>：意图永久剥夺主人的所有权。</li>
+            </ol>
+        </div>
+
+        <!-- 题目解析核心 -->
+        <div class="analysis-section">
+            <h3 style="border-bottom: 2px solid #eee; padding-bottom: 10px;">🔍 为什么选项 A 是正确答案？</h3>
+            
+            <div class="option-card correct">
+                <span class="badge badge-correct">选项 A (Correct)</span>
+                <p><strong>案情关键点：</strong>小偷在警方卧底线人 (Informant) 的“帮助”下偷车，随后卖给被告。</p>
+                <p><strong>法律推理：</strong></p>
+                <ul>
+                    <li>虽然有线人参与，但线人只是假装合作，并没有代表警方<strong>实际控制 (Exercise Control)</strong> 或<strong>追回 (Recover)</strong> 这辆车。</li>
+                    <li>在被告购买的那一刻，这辆车在法律上和事实上仍然处于“被盗”状态 (Status of being stolen)。</li>
+                    <li>警方尚未介入切断“赃物”的属性链条。</li>
+                </ul>
+                <div class="key-point">
+                    <span class="icon">✅</span>
+                    <span>结论：被告接收的是真正的赃物，构成既遂犯。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="analysis-section">
+            <h3 style="border-bottom: 2px solid #eee; padding-bottom: 10px;">❌ 为什么其他选项是错误的？</h3>
+            <p style="font-size: 0.9rem; color: #666;">这三个选项都涉及同一个核心考点：<strong>赃物属性的丧失 (Loss of Stolen Status)</strong>。</p>
+
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">选项 B (Wrong)</span>
+                <p><strong>陷阱：</strong>小偷被抓后，同意配合警方“钓鱼执法” (Sting Operation)。</p>
+                <p><strong>解析：</strong>一旦警方抓住了小偷并控制了车辆，该车在法律上就被视为<strong>“已追回” (Recovered)</strong>。它不再是赃物。被告接收的不是赃物，因此不能构成收受赃物罪（可能构成未遂 Attempt）。</p>
+            </div>
+
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">选项 C (Wrong)</span>
+                <p><strong>陷阱：</strong>车主骗保 (Insurance Fraud)。</p>
+                <p><strong>解析：</strong>卖车的人就是车主本人。车主不可能“偷”自己的车（除非涉及特定担保权益）。该车从始至终都不是赃物。</p>
+            </div>
+
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">选项 D (Wrong)</span>
+                <p><strong>陷阱：</strong>警方合作经营的车场。</p>
+                <p><strong>解析：</strong>既然车场是与警方合作经营的，警方对车辆拥有控制权。这等同于车辆已被警方追回或处于警方控制之下，因此失去了“赃物”属性。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <strong>🎓 MBE 考试通关秘籍</strong>
+            <p>在处理 <em>Receiving Stolen Property</em> 的题目时，务必检查<strong>时间线 (Timeline)</strong>：</p>
+            <p>如果在被告接触财产<strong>之前</strong>，警方已经介入并实际控制了该财产（即使是为了钓鱼执法），那么该财产就<strong>不再是赃物</strong>。</p>
+            <p>此时，被告通常只能被判<strong>未遂 (Attempt)</strong>，因为这是“法律上的不能犯” (Legal Impossibility) 在现代刑法中通常被视为事实上的不能犯，从而允许定未遂罪，但绝不能定既遂罪。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

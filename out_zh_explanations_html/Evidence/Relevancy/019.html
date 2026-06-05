@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --danger-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: #e8f8f5;
+            border-left: 5px solid var(--success-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-title {
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rule-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+            font-weight: 600;
+        }
+
+        .wrong-option {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fce4e4;
+            border-left: 4px solid var(--danger-color);
+            font-size: 0.9rem;
+            border-radius: 4px;
+        }
+
+        .tip-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Evidence: Relevancy & Best Evidence Rule</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <div class="answer-title">
+                <span>✅ 正确答案：D</span>
+            </div>
+            <p>应采纳，因为它有助于证明一个有争议的事实 (tends to prove a controverted fact)。</p>
+        </div>
+
+        <p>本题考察的是证据法中的两个核心概念：<b>相关性 (Relevancy)</b> 与 <b>最佳证据规则 (Best Evidence Rule)</b> 的结合应用。</p>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">
+            <span>⚖️ 法律依据与推理</span>
+        </div>
+
+        <div class="rule-box">
+            <strong>1. 相关性 (FRE 401 & 403)</strong><br>
+            证据只要有任何趋势使某个重要事实（Material Fact）更可能或更不可能存在，即为相关。
+        </div>
+        <p>在本案中，被告否认原告伤势严重。照片显示了原告头部受伤的惨状，这直接证明了伤势的严重性（Severity of injuries）。因此，该照片具有极高的<b>证明价值 (Probative Value)</b>。</p>
+        
+        <p>虽然照片可能引起“不公正的偏见” (Unfair Prejudice)，但根据 <b>FRE 403</b>，只有当偏见<b>实质上超过 (Substantially Outweighed)</b> 证明价值时，证据才会被排除。由于该照片针对的是案件的核心争议点（伤势是否严重），法院通常会倾向于采纳。</p>
+
+        <div class="rule-box">
+            <strong>2. 最佳证据规则 (Best Evidence Rule, FRE 1001-1004)</strong><br>
+            为了证明书面文件、录音或照片的内容，通常需要出示原件。
+        </div>
+        <p>然而，本案中原告已经证明：</p>
+        <ul>
+            <li>原始录像带已被电视台例行删除（非恶意销毁）。</li>
+            <li>照片是从录像带制作的。</li>
+        </ul>
+        <p>根据 <b>FRE 1004</b>，如果原件丢失或被毁（且非提出者恶意所为），则<b>可以使用其他证据 (Secondary Evidence)</b> 来证明其内容。因此，这张照片作为次级证据是可采纳的。</p>
+
+        <!-- 错误选项分析 -->
+        <div class="section-title">
+            <span>❌ 为什么其他选项错误？</span>
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 A & B (错误)</strong><br>
+            这两个选项试图利用“最佳证据规则”来排除照片。但如上所述，当原件在正常业务过程中丢失时，规则并不要求必须找到副本或出示原件。次级证据（本案中的照片）即可满足要求。
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 C (错误)</strong><br>
+            这是一个常见的<b>绝对化陷阱</b>。选项称“证明争议事实的照片<b>不能</b>被排除”。这是错误的法律陈述。即使证据证明了争议事实，如果其引发的偏见、混淆或拖延时间<b>实质上超过</b>了其证明价值，法官仍有权根据 FRE 403 将其排除。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <strong>💡 MBE 考试技巧 (Exam Tip)</strong>
+            <br><br>
+            1. <b>面对“血腥照片”：</b> 除非照片完全没有证明价值（例如被告已经承认了伤势，照片纯粹为了激怒陪审团），否则法院通常倾向于采纳 (Admit)。FRE 403 偏向于采纳证据 (Weighted towards admissibility)。
+            <br><br>
+            2. <b>最佳证据规则的例外：</b> 看到“原件丢失”时，首先检查是否是“恶意销毁” (Bad faith)。如果是例行公事 (Routine course of business) 导致的丢失，次级证据（如证人证言、副本、照片）通常都是可采纳的。
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-green: #27ae60;
+            --wrong-red: #c0392b;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+        .card-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+        }
+        .card-title span {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-radius: 6px;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .highlight {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        .correct-answer {
+            border-left-color: var(--correct-green);
+        }
+        .correct-answer .card-title {
+            color: var(--correct-green);
+        }
+        .wrong-answer {
+            border-left-color: var(--wrong-red);
+            opacity: 0.9;
+        }
+        .wrong-answer .card-title {
+            color: var(--wrong-red);
+        }
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .step {
+            background: white;
+            border: 2px solid var(--primary-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-bottom: 5px;
+            text-align: center;
+            width: 80%;
+        }
+        .arrow {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        .result {
+            background: var(--correct-green);
+            color: white;
+            border: none;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 20px;
+        }
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Federal-State Relations & Commerce Clause</p>
+    </div>
+
+    <!-- Core Legal Principle -->
+    <div class="card">
+        <div class="card-title"><span>⚖️</span> 核心考点：国会同意权</div>
+        <div class="concept-box">
+            <strong>休眠商业条款 (Dormant Commerce Clause, DCC)</strong><br>
+            通常情况下，如果国会没有立法，各州不得通过歧视州际贸易或对其施加不当负担的法律。
+        </div>
+        <div class="concept-box" style="border: 2px dashed var(--correct-green); background: #fff;">
+            <strong>例外：国会的同意 (Congressional Consent)</strong><br>
+            如果国会通过联邦法规，<strong>明确授权 (Explicitly Authorizes)</strong> 州政府对州际贸易进行某种限制，那么该州法律即使具有歧视性，也是<strong>合宪</strong>的。
+        </div>
+        <p style="font-size: 0.9rem; color: #555;">
+            💡 <strong>逻辑：</strong> 商业条款赋予国会管理州际贸易的权力。如果国会说“可以限制”，那么州就是在行使国会授予的权力，不再受“休眠”条款的限制。
+        </p>
+    </div>
+
+    <!-- Logic Flow Diagram -->
+    <div class="card">
+        <div class="card-title"><span>🧠</span> 解题逻辑流</div>
+        <div class="diagram">
+            <div class="step">州法律禁止地下水出口</div>
+            <div class="arrow">↓</div>
+            <div class="step">通常情况：违反 DCC (歧视性)</div>
+            <div class="arrow">↓</div>
+            <div class="step highlight">关键事实：存在联邦法规授权</div>
+            <div class="arrow">↓</div>
+            <div class="step result">结论：州法律有效 (Answer B)</div>
+        </div>
+    </div>
+
+    <!-- Correct Answer Analysis -->
+    <div class="card correct-answer">
+        <div class="card-title"><span>✅</span> 选项 B 正确的原因</div>
+        <p><strong>论据：</strong> 联邦法规明确同意 (Explicitly Consents) 州对其地下水进行管制。</p>
+        <p><strong>解析：</strong></p>
+        <ul>
+            <li>题目中提到联邦法规规定：“从一州到另一州的地下水运输，可根据...法律进行限制或禁止”。</li>
+            <li>这构成了国会对州歧视性行为的<strong>明确许可</strong>。</li>
+            <li>一旦获得国会许可，该州法律就不再受制于休眠商业条款 (Dormant Commerce Clause) 的限制。</li>
+            <li>因此，这是支持驳回原告诉讼（即支持州法律合宪）的<strong>最佳论据</strong>。</li>
+        </ul>
+    </div>
+
+    <!-- Distractor Analysis -->
+    <div class="card wrong-answer">
+        <div class="card-title"><span>❌</span> 为什么其他选项错误？</div>
+        
+        <p><strong>选项 A (地下水非商品)：错误</strong></p>
+        <p style="font-size: 0.9rem;">
+            最高法院在 <em>Sporhase v. Nebraska</em> 案中已明确裁定，地下水 (Groundwater) 属于<strong>州际贸易的物品 (Article of Commerce)</strong>。因此，州对其管制必须遵守商业条款。
+        </p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+
+        <p><strong>选项 C (压倒性州利益)：较弱</strong></p>
+        <p style="font-size: 0.9rem;">
+            虽然保护水资源是重要利益，但该法律是<strong>歧视性 (Discriminatory)</strong> 的（只禁止出口，不禁止州内使用）。对于歧视性法律，通常适用<strong>严格审查 (Strict Scrutiny)</strong>，很难通过。相比之下，选项 B 的“国会同意”是绝对的抗辩理由，无需进行复杂的利益平衡。
+        </p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+
+        <p><strong>选项 D (第十修正案)：错误</strong></p>
+        <p style="font-size: 0.9rem;">
+            第十修正案并非各州违反宪法其他条款（如商业条款）的“免死金牌”。虽然各州有权管理自然资源，但这种权力不能凌驾于联邦管理州际贸易的权力之上。
+        </p>
+    </div>
+
+    <!-- Exam Tips -->
+    <div class="card" style="background: #fff8e1; border-left-color: #f1c40f;">
+        <div class="card-title" style="color: #f39c12;"><span>🎓</span> 考试技巧 (Exam Tips)</div>
+        <ul style="font-size: 0.9rem;">
+            <li><strong>扫描关键词：</strong> 看到 "State Law" 限制贸易 + "Federal Statute" 出现时，立刻警觉。</li>
+            <li><strong>判断顺序：</strong>
+                <ol>
+                    <li>该州法律是否歧视州际贸易？(是)</li>
+                    <li>国会是否批准了？(是 → <strong>合宪</strong>)</li>
+                    <li>如果国会没批准 → 几乎总是<strong>违宪</strong> (除非通过严格审查)。</li>
+                </ol>
+            </li>
+            <li><strong>陷阱：</strong> 不要被“自然资源”、“环境保护”等高尚目的迷惑，歧视性手段通常是违宪的，除非有国会撑腰。</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        MBE Constitutional Law Review <br>
+        © 2025 Exam Prep Assistant
+    </div>
+
+</div>
+
+</body>
+</html>

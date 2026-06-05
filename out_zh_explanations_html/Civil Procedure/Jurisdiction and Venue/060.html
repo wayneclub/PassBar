@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --correct-green: #27ae60;
+            --wrong-red: #c0392b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .rule-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .trap-alert {
+            background-color: #fdecea;
+            border-left: 4px solid var(--wrong-red);
+            padding: 12px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+
+        .exam-tip {
+            background-color: #e9f7ef;
+            border: 1px dashed var(--correct-green);
+            padding: 15px;
+            margin-top: 25px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure: Jurisdiction & Venue</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：选项 A</span>
+            不应，因为上诉法院对该上诉缺乏管辖权。<br>
+            <span class="english-term">(No, because the appellate court lacks jurisdiction over the appeal.)</span>
+        </div>
+
+        <!-- 核心法律规则 -->
+        <div class="section-title">核心法律规则 (The Rule)</div>
+        <div class="rule-box">
+            <p><strong>28 U.S.C. § 1447(d)</strong> 规定：</p>
+            <p>联邦地区法院将案件<strong>发回</strong> <span class="english-term">(Remand)</span> 州法院的命令，通常是<strong>不可审查的</strong> <span class="english-term">(Not reviewable)</span>。</p>
+            <p>如果发回的理由是：</p>
+            <ol>
+                <li>缺乏事由管辖权 <span class="english-term">(Lack of Subject-Matter Jurisdiction)</span>；或</li>
+                <li>移送程序中的瑕疵 <span class="english-term">(Defect in removal procedure)</span>。</li>
+            </ol>
+            <p>那么，无论是通过上诉 <span class="english-term">(Appeal)</span> 还是其他方式，上诉法院都无权审查该命令。</p>
+        </div>
+
+        <!-- 题目解析 -->
+        <div class="section-title">本题解析 (Analysis)</div>
+        <p>本题考察的是联邦民事诉讼中关于<strong>发回命令的可上诉性</strong>。</p>
+        
+        <ul>
+            <li><strong>事实认定：</strong> 地区法院依据“缺乏事由管辖权” <span class="english-term">(Lack of Subject-Matter Jurisdiction)</span> 下达了发回命令。</li>
+            <li><strong>法律适用：</strong> 根据 § 1447(d)，一旦地区法院以缺乏管辖权为由将案件发回州法院，该决定就是终局的。国会为了避免案件在联邦和州法院之间来回踢皮球 <span class="english-term">(Ping-pong effect)</span>，故意切断了上诉途径。</li>
+            <li><strong>结论：</strong> 既然法律禁止审查此类命令，联邦上诉法院就没有管辖权去受理会计师的上诉。</li>
+        </ul>
+
+        <!-- 陷阱警示 -->
+        <div class="section-title">高频陷阱 (The Trap)</div>
+        <div class="trap-alert">
+            <strong>为什么选项 D 是错误的？</strong>
+            <p>很多考生会选 D，因为他们分析出本案确实存在<strong>多元管辖权</strong> <span class="english-term">(Diversity Jurisdiction)</span>：</p>
+            <ul>
+                <li>原告 A州 vs 被告 B州 (完全多元)</li>
+                <li>索赔 $100,000 (> $75,000)</li>
+            </ul>
+            <p><strong>关键点：</strong> 地区法院认为自己没有管辖权，这个判断<strong>实际上是错误的</strong>。但是，§ 1447(d) 的禁止令非常严格：<strong>即使地区法院犯了明显的错误</strong>，只要它是以“缺乏事由管辖权”为由发回案件，上诉法院依然<strong>无权审查</strong>。</p>
+            <p>题目问的是“上诉法院是否应审理”，而不是“地区法院的判决是否正确”。</p>
+        </div>
+
+        <!-- 排除其他选项 -->
+        <div class="section-title">其他选项辨析</div>
+        <ul>
+            <li><strong>选项 B 错误：</strong> 联邦法院有权在发现缺乏事由管辖权时，依职权 <span class="english-term">(Sua Sponte)</span> 主动将案件发回，不需要原告提出动议。</li>
+            <li><strong>选项 C 错误：</strong> 即使上诉是在时限内提出的，也不能赋予法院原本就不拥有的管辖权。</li>
+        </ul>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            💡 <strong>MBE 必记口诀：</strong><br>
+            "Remand based on lack of SMJ = No Appeal."<br>
+            (基于缺乏事由管辖权的发回 = 不可上诉)<br>
+            <small>不管下级法院错得多么离谱，通常都不能上诉。</small>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

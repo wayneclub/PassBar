@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e3f2fd;
+            color: var(--accent-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .question-summary {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .rule-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .rule-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.85rem;
+        }
+        .comparison-table th {
+            background-color: #eceff1;
+            padding: 8px;
+            text-align: left;
+            border-bottom: 2px solid #cfd8dc;
+        }
+        .comparison-table td {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        .answer-section {
+            margin-top: 25px;
+        }
+        .correct-option {
+            background-color: #e8f5e9;
+            border: 1px solid #a5d6a7;
+            border-radius: 8px;
+            padding: 15px;
+            position: relative;
+        }
+        .correct-badge {
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background-color: var(--success-color);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .analysis-step strong {
+            display: block;
+            color: var(--primary-color);
+            margin-bottom: 4px;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.75rem;
+            color: #999;
+            border-top: 1px solid #eee;
+        }
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts: Statute of Frauds & Exceptions</div>
+    </div>
+
+    <div class="content">
+        <span class="tag">UCC Article 2</span>
+        
+        <div class="question-summary">
+            <strong>案情摘要：</strong><br>
+            买方（经纪商）口头同意以900万美元购买卖方（公司）的一架私人飞机，并支付了25万美元定金。双方交换了书面草案但<strong>均未签字</strong>。卖方随后反悔。
+        </div>
+
+        <div class="rule-box">
+            <div class="rule-title">核心考点：UCC 欺诈法 (Statute of Frauds)</div>
+            <p>根据 UCC § 2-201，价值 <strong>$500 或以上</strong>的货物销售合同通常必须有<strong>书面形式</strong>并由被执行方<strong>签字</strong>才能生效。</p>
+            <hr style="border: 0; border-top: 1px dashed #ffe0b2; margin: 10px 0;">
+            <p><strong>例外情况 (Exceptions)：</strong><br>
+            如果买方已付款且卖方已接受 (Payment Made and Accepted)，合同在一定范围内可强制执行。</p>
+        </div>
+
+        <div class="analysis-step">
+            <strong>关键区分：部分付款的效力</strong>
+            <p>当只支付了部分款项（Partial Payment）时，合同的可执行范围取决于货物是否可分割：</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>货物类型</th>
+                        <th>部分付款的法律后果</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>可分割货物</strong><br>
+                            <span style="font-size:0.75em; color:#666;">(Divisible Goods)<br>例：100台电脑</span>
+                        </td>
+                        <td>
+                            仅在<strong>已付款的数量范围内</strong>可强制执行。<br>
+                            <span style="color:var(--warning-color)">❌ 不能强制执行整个合同。</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>不可分割货物</strong><br>
+                            <span style="font-size:0.75em; color:#666;">(Indivisible Goods)<br>例：1架飞机、1辆车</span>
+                        </td>
+                        <td>
+                            <strong>整个合同</strong>均可强制执行。<br>
+                            <span style="color:var(--success-color)">✅ 因为无法将飞机切开交付。</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="answer-section">
+            <div class="correct-option">
+                <div class="correct-badge">正确答案 D</div>
+                <p><strong>是的，因为经纪商为该飞机支付了25万美元，且公司接受了该笔付款。</strong></p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">
+                    <strong>推理逻辑：</strong><br>
+                    1. 本案涉及货物销售（飞机），适用 UCC。<br>
+                    2. 虽然没有签字的书面合同（违反欺诈法一般原则），但买方支付了定金且卖方接受了。<br>
+                    3. 飞机是<strong>不可分割物 (Indivisible Good)</strong>。<br>
+                    4. 因此，部分付款使得<strong>整个合同</strong>免于欺诈法的限制，变得完全可强制执行。
+                </p>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <strong>为什么其他选项是错误的？</strong>
+            <ul style="font-size: 0.85rem; padding-left: 20px; color: #555;">
+                <li><strong>选项 A (错)：</strong> 认为部分付款无效。这是错误的，因为对于不可分割物，部分付款足以验证整个合同。</li>
+                <li><strong>选项 B (错)：</strong> 关注经纪商没签字。但在本案中，经纪商试图起诉公司，我们需要的是<strong>被起诉方（公司）</strong>的签名，或者适用例外情形（如付款）。</li>
+                <li><strong>选项 C (错)：</strong> 仅交换未签字的草案通常不足以满足欺诈法的书面要求（除非符合特定商户确认备忘录规则，但本题强调未签字且未提及备忘录规则的适用细节，付款例外是更直接的依据）。</li>
+            </ul>
+        </div>
+        
+        <div class="rule-box" style="background-color: #e3f2fd; border-color: #bbdefb; margin-top: 20px;">
+            <div class="rule-title" style="color: #1976d2;">🎓 考试技巧 (Exam Tip)</div>
+            <p>在 MBE 考试中遇到<strong>口头合同 (Oral Contract)</strong> + <strong>部分履行 (Partial Performance)</strong> 的题目时：</p>
+            <ol style="margin: 5px 0 0 20px; padding: 0; font-size: 0.9rem;">
+                <li>首先判断是服务（Common Law）还是货物（UCC）。</li>
+                <li>如果是货物，判断是<strong>单个大件物品</strong>还是<strong>多个小件物品</strong>。</li>
+                <li>单个大件（不可分割）+ 部分付款 = <strong>全同有效</strong>。</li>
+                <li>多个小件（可分割）+ 部分付款 = <strong>仅付款部分有效</strong>。</li>
+            </ol>
+        </div>
+
+    </div>
+    <div class="footer">
+        MBE Question Analysis | Contracts | UCC § 2-201
+    </div>
+</div>
+
+</body>
+</html>

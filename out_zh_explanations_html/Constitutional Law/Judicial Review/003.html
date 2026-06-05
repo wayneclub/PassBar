@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .rule-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .case-law {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+        .analysis-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        .analysis-table th {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            padding: 10px;
+            text-align: left;
+            color: #495057;
+        }
+        .analysis-table td {
+            border-bottom: 1px solid #dee2e6;
+            padding: 10px;
+            vertical-align: top;
+        }
+        .icon-check {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .icon-cross {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .tip-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <p>第十一修正案与主权豁免</p>
+    </div>
+
+    <div class="content">
+        <p>本题考察的核心是<b>第十一修正案 (Eleventh Amendment)</b> 下的州主权豁免权及其重要例外：针对州官员的诉讼。</p>
+
+        <div class="rule-box">
+            <span class="rule-title">核心原则：Ex parte Young (1908)</span>
+            虽然第十一修正案通常禁止私人起诉州政府，但允许私人起诉<b>州官员 (State Officials)</b>，前提是：
+            <ol style="margin: 5px 0 5px 20px; padding-left: 0;">
+                <li>针对的是官员违反联邦法律的行为；</li>
+                <li>寻求的是<b>预期性禁令救济 (Prospective Injunctive Relief)</b>。</li>
+            </ol>
+        </div>
+
+        <h3>关键区分：追溯性 vs. 预期性</h3>
+        <p>根据最高法院判例 <i>Edelman v. Jordan (1974)</i>，联邦法院在处理此类案件时必须区分两种救济请求：</p>
+
+        <table class="analysis-table">
+            <thead>
+                <tr>
+                    <th>救济类型</th>
+                    <th>是否允许？</th>
+                    <th>理由</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <b>追溯性损害赔偿</b><br>
+                        <span style="font-size:12px; color:#666;">(Retroactive Damages)</span>
+                    </td>
+                    <td><span class="icon-cross">禁止</span></td>
+                    <td>要求支付过去被扣留的福利金，实际上是从<b>州国库 (State Treasury)</b> 拿钱赔偿。这被视为直接起诉州政府，受第十一修正案豁免。</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>预期性禁令</b><br>
+                        <span style="font-size:12px; color:#666;">(Prospective Injunction)</span>
+                    </td>
+                    <td><span class="icon-check">允许</span></td>
+                    <td>要求官员在<b>未来</b>遵守联邦法律。虽然这也会导致州政府花钱（支付未来的福利），但这被视为遵守法律的“附带后果” (Ancillary Effect)，是被允许的。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>本题解析</h3>
+        <p>题目中，居民提出了两项请求：</p>
+        <ol>
+            <li><b>追溯性赔偿：</b>要求支付过去被扣发的福利金。
+                <br>👉 <b>结果：</b>法院不能审理。因为这笔钱将直接来自州财政，属于第十一修正案禁止的范围。</li>
+            <li><b>未来禁令：</b>要求强制支付未来的福利金。
+                <br>👉 <b>结果：</b>法院可以审理。这是为了制止官员目前和未来持续违反联邦法律的行为。</li>
+        </ol>
+
+        <p>因此，正确答案是 <b>C</b>：法院只能审理关于未来福利金的禁令请求。</p>
+
+        <div class="tip-box">
+            <b>🎓 MBE 考试技巧：</b>
+            <br>
+            看到起诉州官员 (State Official) 时，请立即检查“钱从哪里来”：
+            <ul>
+                <li>如果是<b>过去</b>的损害，且钱从<b>州国库</b>出 ➡️ <b>禁止 (Barred)</b>。</li>
+                <li>如果是为了<b>未来</b>遵守法律，即使州政府要花钱 ➡️ <b>允许 (Allowed)</b>。</li>
+                <li>如果是官员<b>个人</b>掏腰包（个人责任）➡️ <b>允许 (Allowed)</b>。</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Constitutional Law Review
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background-color: #eef2f3;
+            border-left: 5px solid var(--accent-color);
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        .term-en {
+            color: #7f8c8d;
+            font-size: 0.85rem;
+            font-family: serif;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            color: var(--primary-color);
+        }
+        .correct-answer {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .correct-label {
+            color: var(--success-color);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .trap-box {
+            background-color: #fff3e0;
+            border: 1px solid #ffe0b2;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .trap-title {
+            color: var(--warning-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .footer-tip {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts: Third-Party Beneficiaries</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：第三方受益人</span>
+            <span class="term-en">Third-Party Beneficiary (TPB)</span>
+            <p>在合同法中，如果合同双方（Promisor & Promisee）在订立合同时，<b>意图</b>将合同利益直接赋予第三方，该第三方即为<b>意定受益人 (Intended Beneficiary)</b>，有权起诉强制执行合同。</p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 正确答案解析 (Choice D)</div>
+            <div class="correct-answer">
+                <span class="correct-label">为什么选 D？</span>
+                <p>本题的关键在于识别母亲在儿子和女儿的合同中扮演的角色。</p>
+                <ul>
+                    <li><b>合同的形成 (Formation)：</b> 儿子和女儿签署了书面协议，相互承诺每月支付500美元。这种<b>相互承诺 (Mutual Promises)</b> 构成了有效的<b>对价 (Consideration)</b>。</li>
+                    <li><b>意图 (Intent)：</b> 双方订立合同的明确目的是为了让母亲有钱雇佣同伴。</li>
+                    <li><b>受益人身份：</b> 母亲虽然不是合同的签字方，但她是合同利益的直接接收者。在法律上，她被称为<b>受赠受益人 (Donee Beneficiary)</b>（意定受益人的一种）。</li>
+                </ul>
+                <p>根据 <i>Restatement (Second) of Contracts § 302</i>，意定受益人有权直接起诉承诺人（儿子）违约。</p>
+            </div>
+        </div>
+
+        <!-- 陷阱选项排除 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🚫 陷阱选项排除</div>
+            
+            <div class="trap-box" style="margin-bottom: 10px;">
+                <span class="trap-title">选项 B 的陷阱：赠与 (Gift) vs. 合同</span>
+                <p><b>错误原因：</b> 很多考生看到“Gift”就认为没有法律约束力。虽然儿子给母亲钱的行为本质上是赠与，但他与女儿之间的<b>协议</b>是合同。儿子对女儿承诺给母亲钱，女儿也对儿子承诺给母亲钱，这种“为了第三人利益的合同”是完全有效的。</p>
+            </div>
+
+            <div class="trap-box" style="margin-bottom: 10px;">
+                <span class="trap-title">选项 A 的陷阱：家庭豁免</span>
+                <p><b>错误原因：</b> 法律中并没有“父母不能起诉子女违约”的通用规则。只要满足合同要素（要约、承诺、对价），家庭成员间的合同同样具有法律效力。</p>
+            </div>
+
+            <div class="trap-box">
+                <span class="trap-title">选项 C 的陷阱：部分履行</span>
+                <p><b>错误原因：</b> 儿子在前三个月付款确实表明了意图，但合同的约束力来自于<b>签署协议的那一刻</b>，而不是来自于后续的付款行为。即使他一次都没付，母亲依然可以基于书面协议起诉。</p>
+            </div>
+        </div>
+
+        <!-- 备考锦囊 -->
+        
+            <p>在处理涉及三方关系的合同题时，请按以下步骤思考：</p>
+            <ol>
+                <li><b>识别三方：</b> 两个订立合同的人（Promisor/Promisee）和一个受益的人（Third Party）。</li>
+                <li><b>判断意图：</b> 订立合同的人是否<b>意图 (Intend)</b> 让第三方直接受益？
+                    <ul>
+                        <li>如果是 <span style="color:var(--success-color)">➡ Intended Beneficiary (有执行权)</span></li>
+                        <li>如果只是巧合受益 <span style="color:var(--warning-color)">➡ Incidental Beneficiary (无执行权)</span></li>
+                    </ul>
+                </li>
+                <li><b>检查权利归属 (Vesting)：</b> 虽然本题未深入考察，但通常当受益人<b>知晓并同意</b>、<b>起诉</b>或<b>基于合同发生信赖 (Reliance)</b> 时，权利即确立，合同方不可随意撤销。</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="footer-tip">
+        <b>Key Takeaway:</b> Intended beneficiaries can enforce contracts made for their benefit.
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .concept-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #1976d2;
+            border-bottom: 2px solid #e3f2fd;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .rule-box {
+            background-color: #f3f4f6;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .wrong-choice {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+            border-top: 1px dashed #ccc;
+            padding-top: 10px;
+        }
+        .wrong-title {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            margin-top: 20px;
+            padding-bottom: 10px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p style="margin:5px 0 0 0; font-size:14px; opacity:0.9;">共谋罪与受保护群体</p>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <div class="answer-title">正确答案：D</div>
+            <p><strong>撤销 (Reversed)</strong>，因为女友不能成为此项罪行的共谋者。</p>
+        </div>
+
+        <p>本题的核心考点在于<strong>共谋罪 (Conspiracy)</strong> 在涉及<strong>受保护群体 (Protected Class)</strong> 时的特殊规则。</p>
+
+        <!-- 核心考点解析 -->
+        <div class="concept-card">
+            <div class="concept-title">
+                <span>⚖️ 法律规则解析</span>
+            </div>
+            <p>题目明确指出该司法管辖区遵循<strong>普通法 (Common Law)</strong> 的共谋规则。普通法的共谋罪适用<strong>双边理论 (Bilateral Theory)</strong>。</p>
+            
+            <div class="rule-box">
+                <strong>双边理论 (Bilateral Theory)：</strong><br>
+                共谋必须由<strong>两个或两个以上</strong>具有“有罪意图” (Guilty Mind) 的人达成合意。如果其中一方不能被定罪（例如是卧底警察或受法律保护的人），则另一方也不能单独构成共谋罪。
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-title">
+                <span>🛡️ 受保护群体例外原则</span>
+            </div>
+            <p>这是一个关键的立法意图原则 (Legislative Intent Exception)：</p>
+            <ul>
+                <li>如果一项犯罪的设立是为了<strong>保护特定群体</strong>（如未成年人、高利贷受害者），那么该群体的成员<strong>不能</strong>被视为该犯罪的共谋者或帮凶。</li>
+                <li>在本案中，<strong>法定强奸罪 (Statutory Rape)</strong> 的设立是为了保护未达到同意年龄（15岁）的未成年人。</li>
+            </ul>
+            <p><strong>逻辑推导：</strong></p>
+            <ol>
+                <li>14岁的女友是法律旨在保护的受害者。</li>
+                <li>因此，她不能成为法定强奸罪的共谋者（她没有法律上的“有罪意图”）。</li>
+                <li>由于女友不能成为共谋者，剩下的只有18岁的被告一人。</li>
+                <li>根据普通法双边理论，<strong>一人无法构成共谋</strong>。</li>
+            </ol>
+        </div>
+
+        <!-- 易错点辨析 -->
+        <div class="wrong-choice">
+            <p><span class="wrong-title">为什么不选 C (Wharton's Rule)?</span></p>
+            <p>这是一个极具迷惑性的选项。<strong>Wharton's Rule</strong> 通常适用于那些<strong>本质上必然需要两人参与</strong>的犯罪（如通奸 Adultery、重婚 Bigamy、乱伦 Incest、决斗 Dueling）。</p>
+            <p>规则内容：如果犯罪本身必然需要两人，除非参与人数多于犯罪构成要件所需的人数，否则不能控告共谋。</p>
+            <p><strong>不选 C 的原因：</strong>虽然法定强奸看似需要两人，但 Wharton's Rule 适用的前提是两人都具有<strong>可归责性 (Culpability)</strong>。在本案中，因为女友是受保护方，她根本不承担刑事责任。因此，排除共谋责任的首要原因是“受保护群体原则”，而不是 Wharton's Rule。</p>
+        </div>
+
+        <div class="wrong-choice">
+            <p><span class="wrong-title">为什么不选 A?</span></p>
+            <p>虽然事实上有“合意” (Agreement)，但在法定强奸案中，法律视未成年人的同意为无效。更重要的是，由于她属于受保护阶层，她的“合意”不能构成共谋罪所需的犯罪合意。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-card" style="background-color: #fff8e1; border-color: #ffecb3;">
+            <div class="concept-title" style="color: #f57f17; border-color: #ffe082;">
+                <span>💡 考试技巧 (Exam Tip)</span>
+            </div>
+            <p>在 MBE 刑法题中，如果看到<strong>成年人 + 未成年人</strong>（或受害者）共同实施某种犯罪：</p>
+            <ol>
+                <li>首先判断该法规是否旨在保护该未成年人。</li>
+                <li>如果是，该未成年人不能成为共谋者。</li>
+                <li>如果是普通法辖区（双边理论），成年被告的共谋罪名通常<strong>不成立</strong>。</li>
+            </ol>
+        </div>
+
+    </div>
+    <div class="footer">
+        MBE Criminal Law Review
+    </div>
+</div>
+
+</body>
+</html>

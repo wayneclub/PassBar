@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --highlight-bg: #ecf0f1;
+            --text-color: #34495e;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            color: var(--primary-color);
+            margin: 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+            font-size: 20px;
+        }
+
+        .key-point {
+            background-color: var(--highlight-bg);
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: 500;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .english-term {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-style: italic;
+            font-family: "Georgia", serif;
+        }
+
+        .analysis-list {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .analysis-list li {
+            margin-bottom: 8px;
+        }
+
+        .verdict {
+            text-align: center;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+
+        .wrong-option {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 5px;
+            border-top: 1px dashed #bdc3c7;
+            padding-top: 5px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            font-size: 0.75em;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p style="font-size: 14px; color: #7f8c8d;">Intentional Torts (IIED)</p>
+    </div>
+
+    <!-- 核心考点 -->
+    <div class="card">
+        <div class="card-title">核心考点：IIED 的构成要件</div>
+        <p>本题考查的是<b>故意施加精神损害</b> <span class="english-term">(Intentional Infliction of Emotional Distress, IIED)</span> 的核心要素。原告若要胜诉，必须证明以下四点：</p>
+        <ol class="analysis-list">
+            <li><b>行为 (Act)：</b> 极端且骇人听闻的行为 <span class="english-term">(Extreme and Outrageous Conduct)</span>。</li>
+            <li><b>意图 (Intent)：</b> 故意 <span class="english-term">(Intent)</span> 或鲁莽 <span class="english-term">(Recklessness)</span> 地造成精神损害。</li>
+            <li><b>因果关系 (Causation)：</b> 行为导致了损害。</li>
+            <li><b>损害 (Damages)：</b> 严重的精神损害 <span class="english-term">(Severe Emotional Distress)</span>。</li>
+        </ol>
+    </div>
+
+    <!-- 案情分析 -->
+    <div class="card">
+        <div class="card-title">为什么选 B？</div>
+        <p>本题的决胜点在于<b>损害的严重程度</b>。</p>
+        
+        <div class="key-point">
+            法律规则：IIED 要求原告遭受的精神损害必须是“严重的” (Severe)。
+        </div>
+
+        <p><b>如何定义“严重”？</b><br>
+        这种痛苦必须强烈到“任何通情达理的人都无法忍受” <span class="english-term">(no reasonable person could be expected to endure)</span>。通常需要考量：</p>
+        <ul class="analysis-list">
+            <li>痛苦的强度和持续时间（Intensity and Duration）。</li>
+            <li>是否有身体症状（如心脏病发作、流产等，虽非必须，但有助于证明严重性）。</li>
+            <li>是否寻求了医疗介入。</li>
+        </ul>
+
+        <p><b>本案事实应用：</b><br>
+        题目中描述寡妇感到“害怕” <span class="english-term">(frightened)</span> 和“愤怒” <span class="english-term">(outraged)</span>。
+        <br><br>
+        ❌ <b>不足之处：</b> 这些仅仅是暂时的情绪反应。没有证据表明她失眠、抑郁、无法正常生活或寻求了心理治疗。仅仅感到生气或受到惊吓，不足以构成 IIED 所要求的 <span class="english-term">Severe Emotional Distress</span>。</p>
+        
+        <div class="verdict">因此，原告败诉，选 B。</div>
+    </div>
+
+    <!-- 干扰项解析 -->
+    <div class="card">
+        <div class="card-title">陷阱排除</div>
+        
+        <p><b>🚫 选项 A 错误 (关于意图)</b></p>
+        <div class="wrong-option">
+            选项 A 称开发商“目的不是造成精神损害”。这是错误的抗辩理由。IIED 的意图要素不仅包含“特定目的” <span class="english-term">(Specific Intent)</span>，也包含“鲁莽” <span class="english-term">(Recklessness)</span>。如果开发商明知其撒谎行为极可能导致老妇人痛苦却无视该风险，即满足意图要素。
+        </div>
+
+        <p><b>🚫 选项 C 错误 (关于行为)</b></p>
+        <div class="wrong-option">
+            选项 C 强调行为是“极端且骇人听闻的”。虽然开发商利用法律谎言欺压弱势群体的行为确实恶劣，可能满足“行为”要素，但侵权法 <span class="english-term">(Torts)</span> 通常要求<b>行为 + 损害</b>。仅有恶劣行为而无严重损害，IIED 无法成立。
+        </div>
+
+        <p><b>🚫 选项 D 错误 (关于感受)</b></p>
+        <div class="wrong-option">
+            选项 D 称她“感到害怕和愤怒”。如前所述，这是普通的情绪反应，未达到法律要求的“严重”门槛。
+        </div>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card" style="border-left-color: var(--accent-color);">
+        <div class="card-title" style="color: var(--accent-color);">🎓 MBE 考试技巧</div>
+        <p>在处理 IIED 题目时，请务必进行<b>双重检查</b>：</p>
+        <ol class="analysis-list">
+            <li><b>行为够不够坏？</b> 必须超出人类文明的底线 <span class="english-term">(transcends all bounds of decency)</span>，仅仅是侮辱、烦扰或不礼貌是不够的。</li>
+            <li><b>伤得够不够深？</b> 必须是严重的痛苦。如果题目只说了 "cried" (哭泣), "upset" (心烦), "could not sleep for one night" (失眠一晚)，通常都不构成 Severe。</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

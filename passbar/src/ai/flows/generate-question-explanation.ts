@@ -84,7 +84,7 @@ Please provide a comprehensive explanation covering:
     }
 
     const response = await ai.generate({
-      // The model is implicitly 'googleai/gemini-2.5-flash' from genkit.ts
+      // The model is implicitly 'googleai/gemini-3.5-flash' from genkit.ts
       prompt: promptParts,
       config: {
         safetySettings: [

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #e9f7ef;
+            --correct-border: #27ae60;
+            --warning-bg: #fff3cd;
+            --warning-border: #ffc107;
+            --text-color: #333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #ffffff;
+            padding: 16px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .header .sub-title {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-banner {
+            background-color: var(--correct-bg);
+            border: 1px solid var(--correct-border);
+            color: #1e8449;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 4px;
+            display: inline-block;
+        }
+        .concept-card {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        .concept-card h4 {
+            margin: 0 0 8px 0;
+            color: var(--primary-color);
+        }
+        .eng-term {
+            font-family: "Georgia", serif;
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .analysis-step strong {
+            color: var(--primary-color);
+        }
+        .trap-alert {
+            background: var(--warning-bg);
+            border-left: 4px solid var(--warning-border);
+            padding: 12px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+        li {
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Evidence / Civil Procedure</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-banner">
+            ✅ 正确答案：A (All of the notes)
+        </div>
+
+        <p>本题考察的是公司背景下的<strong>律师-当事人特免权</strong> (<span class="eng-term">Attorney-Client Privilege</span>) 和<strong>律师工作成果原则</strong> (<span class="eng-term">Work Product Doctrine</span>) 的交叉应用。</p>
+
+        <!-- 核心考点 1 -->
+        <div class="section-title">考点一：Upjohn 原则</div>
+        <div class="concept-card">
+            <h4>公司特免权的范围</h4>
+            <p>在联邦法律下（本题涉及 IRS 调查，适用联邦法），判断公司员工与公司律师的沟通是否享有特免权，适用 <strong>Upjohn Doctrine</strong>。</p>
+            <p>只要满足以下条件，即便是<strong>低层员工</strong>（非管理层）的沟通也受保护：</p>
+            <ul>
+                <li>沟通是为了让公司获得法律建议 (<span class="eng-term">Legal Advice</span>)；</li>
+                <li>沟通内容属于该员工的公司职责范围 (<span class="eng-term">Scope of Corporate Duties</span>)；</li>
+                <li>沟通是保密的。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <strong>📝 案情应用：</strong><br>
+            律师访谈了会计部门员工。虽然他们不是高管（非 Control Group），但付款属于他们的职责范围，且访谈是为了应对法律合规问题。因此，<strong>会计师的陈述享有律师-当事人特免权</strong>。
+        </div>
+
+        <!-- 核心考点 2 -->
+        <div class="section-title">考点二：工作成果原则</div>
+        <div class="concept-card">
+            <h4>Work Product Doctrine</h4>
+            <p>律师为诉讼或调查准备的材料受保护，分为两类：</p>
+            <ol>
+                <li><strong>普通工作成果</strong> (<span class="eng-term">Ordinary Work Product</span>)：如事实记录。若对方证明有“重大需求”且“难以获取”，可能被披露。</li>
+                <li><strong>意见工作成果</strong> (<span class="eng-term">Opinion Work Product</span>)：包含律师的心理印象、策略、结论。享有<strong>近乎绝对的保护</strong>，极难被披露。</li>
+            </ol>
+        </div>
+
+        <div class="analysis-step">
+            <strong>📝 案情应用：</strong><br>
+            律师的笔记中包含了“心理印象” (<span class="eng-term">Mental Impressions</span>)。这部分属于核心工作成果，享有最高等级的保护。
+        </div>
+
+        <!-- 综合分析 -->
+        <div class="section-title">为什么选 A？</div>
+        <p>笔记由两部分组成：</p>
+        <ul>
+            <li><strong>会计师的陈述：</strong>受 <em>Attorney-Client Privilege</em> 保护（因为符合 Upjohn 标准）。特免权是绝对的，除非被放弃。</li>
+            <li><strong>律师的心理印象：</strong>受 <em>Opinion Work Product</em> 保护。</li>
+        </ul>
+        <p>因此，笔记的<strong>全部内容</strong>（All of the notes）都受到保护，IRS 无法获取。</p>
+
+        <!-- 陷阱解析 -->
+        <div class="trap-alert">
+            <strong>⚠️ 考场陷阱：选项 D</strong>
+            <p>选项 D 提到了“重大需求” (<span class="eng-term">Substantial Need</span>) 和“过度困难” (<span class="eng-term">Undue Hardship</span>)。</p>
+            <p>这是针对<strong>普通工作成果</strong>（如单纯的证人名单或非特免权的事实收集）的例外规则。但是：</p>
+            <ol>
+                <li>它<strong>不能</strong>攻破律师-当事人特免权（Privilege）。</li>
+                <li>它几乎<strong>不能</strong>攻破包含心理印象的意见工作成果。</li>
+            </ol>
+            <p>由于本题中的笔记既包含特免权内容，又包含心理印象，仅凭“重大需求”是无法获取的。</p>
+        </div>
+
+        
+    </div>
+</div>
+
+</body>
+</html>

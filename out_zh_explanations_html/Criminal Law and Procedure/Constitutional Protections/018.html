@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+        .case-law {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .case-law strong {
+            color: var(--primary-color);
+        }
+
+        .exam-tip {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 25px;
+        }
+
+        .exam-tip-title {
+            color: #1565c0;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .exam-tip-title::before {
+            content: "💡";
+            margin-right: 8px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">宪法修正案第四条与证据排除规则</div>
+    </div>
+
+    <div class="content">
+        <div class="answer-box">
+            <span class="answer-title">正确答案：A</span>
+            不应批准动议。因为州警可以合理信赖电脑报告，且该搜查属于合法的附带逮捕搜查 (Search Incident to Arrest)。
+        </div>
+
+        <div class="section-title">核心考点：善意例外原则</div>
+        <p>本题的核心在于<strong>证据排除规则 (Exclusionary Rule)</strong> 的<strong>善意例外 (Good Faith Exception)</strong>。</p>
+        
+        <p>通常情况下，违反第四条修正案获得的证据（如基于无效逮捕令的逮捕）应当被排除。然而，最高法院确立了一个重要例外：如果警察的行为是基于对搜查令或记录的<strong>客观合理的信赖 (Objectively Reasonable Reliance)</strong>，即使该令状后来被证明无效，证据通常也是可采纳的。</p>
+
+        <div class="case-law">
+            <strong>⚖️ 关键判例：Herring v. United States (2009)</strong><br>
+            此案事实与考题几乎完全一致。最高法院裁定，当警察根据另一个司法管辖区的数据库中因<strong>过失 (Negligence)</strong>（如书记员未更新记录）而显示的错误逮捕令进行逮捕时，证据排除规则不适用。
+        </div>
+
+        <p><strong>推理逻辑：</strong></p>
+        <ul>
+            <li>证据排除规则的目的是<strong>威慑警察的不当行为 (Deter Police Misconduct)</strong>，而不是惩罚法院书记员的文书错误。</li>
+            <li>在本案中，警察查询了电脑，系统显示有逮捕令。警察依靠该信息进行逮捕是“客观合理”的。</li>
+            <li>既然逮捕被视为是“善意”合法的，那么基于该逮捕进行的<strong>附带搜查 (Search Incident to Arrest)</strong> 也是合法的，因此发现的海洛因可以作为证据。</li>
+        </ul>
+
+        <div class="section-title">为什么其他选项是错误的？</div>
+        
+        <p><strong>选项 B (错误)：</strong><br>
+        虽然警察可以进行交通拦截，但<strong>仅凭交通拦截 (Traffic Stop)</strong> 本身并不能授权警察对司机进行全面的搜查（Full Search）。只有在有逮捕 (Arrest) 或相当理由 (Probable Cause) 的情况下才能进行全面搜查。普通的交通拦截通常只允许进行有限的武器拍身搜查 (Terry Frisk)，且前提是警察有合理怀疑认为司机持有武器。</p>
+
+        <p><strong>选项 C & D (错误)：</strong><br>
+        这两个选项主张证据应被排除，因为逮捕令实际上无效或缺乏相当理由。这忽略了<strong>善意例外</strong>这一关键原则。虽然逮捕令在技术上无效，但警察的<strong>信赖 (Reliance)</strong> 弥补了这一缺陷，使得证据具有可采性。</p>
+
+        <div class="exam-tip">
+            <div class="exam-tip-title">MBE 考试技巧</div>
+            <p>在处理涉及<strong>无效搜查令 (Invalid Warrant)</strong> 或<strong>错误记录 (Erroneous Record)</strong> 的题目时，请按以下步骤思考：</p>
+            <ol>
+                <li><strong>是否存在错误？</strong> 是的，逮捕令已撤销。</li>
+                <li><strong>谁犯了错？</strong> 是法院书记员或非系统性的过失，还是警察故意/鲁莽的行为？</li>
+                <li><strong>警察是否知情？</strong> 如果警察不知道错误且行为合理，则适用<strong>善意例外 (Good Faith Exception)</strong>，证据<strong>不被排除</strong>。</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

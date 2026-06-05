@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点精析：布雷迪规则与证据披露</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="card-header">
+            <h1>MBE 考点精析</h1>
+            <div class="sub-title">刑事诉讼法：宪法保护</div>
+        </div>
+
+        <div class="concept-box">
+            <h3>核心考点：布雷迪规则与证据披露</h3>
+            <p class="latin"><i>Brady Rule and Disclosure of Favorable & Material Evidence</i></p>
+            <p>本题考察检察官在刑事案件中根据宪法正当程序条款（<code>Due Process Clause</code>）所承担的披露义务，特别是关于有利于辩方的证据（<code>Brady evidence</code>）。</p>
+        </div>
+
+        <div class="section">
+            <h3>📊 概念对比：开脱性证据 vs. 弹劾性证据</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>概念</th>
+                        <th>定义</th>
+                        <th>影响</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="term">开脱性证据 (Exculpatory Evidence)</span></td>
+                        <td>能够否定被告人有罪或减轻其刑罚的证据。</td>
+                        <td>直接支持被告人无罪，或降低其罪责。</td>
+                    </tr>
+                    <tr>
+                        <td><span class="term">弹劾性证据 (Impeachment Evidence)</span></td>
+                        <td>能够削弱或质疑控方证人可信度的证据。</td>
+                        <td>间接支持辩方，通过攻击控方证人证词的可靠性。</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>图像说明：</strong> 原始图像左侧的DNA实验室报告显示犯罪现场DNA与被告人DNA不匹配，但与嫌疑人2匹配，这属于典型的<span class="term">开脱性证据</span>。右侧的法庭场景中，律师质疑证人有伪证前科，这属于<span class="term">弹劾性证据</span>。</p>
+        </div>
+
+        <div class="diagram">
+            <h4>🎨 案件流程与证据披露关键点</h4>
+            <div class="flow-container">
+                <div class="flow-node">谋杀案报告</div>
+                <span class="arrow">➡️</span>
+                <div class="flow-node">侦探询问唯一目击证人</div>
+                <span class="arrow">➡️</span>
+                <div class="flow-node active">侦探报告：目击证人无法识别凶手 (有利证据)</div>
+                <span class="arrow">➡️</span>
+                <div class="flow-node">报告提交给检察官</div>
+                <span class="arrow">❌</span>
+                <div class="flow-node active">检察官<br>未披露报告</div>
+                <span class="arrow">➡️</span>
+                <div class="flow-node">被告人被控谋杀</div>
+                <span class="arrow">➡️</span>
+                <div class="flow-node">审判中：目击证人<br>识别被告人</div>
+                <span class="arrow">➡️</span>
+                <div class="flow-node">被告人被定罪</div>
+                <span class="arrow">➡️</span>
+                <div class="flow-node highlight-node">上诉：辩方发现未披露报告，要求撤销定罪</div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.85em; color: #666;"><strong>关键点：</strong> 侦探报告是<span class="term">有利于辩方的证据</span>，检察官未能及时披露导致了正当程序权利的侵犯。</p>
+        </div>
+
+        <div class="section">
+            <h3>⚖️ 法律依据与推理分析</h3>
+
+            <div class="analysis-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>识别核心法律原则：布雷迪规则 (<code>Brady Rule</code>)</strong><br>
+                    根据美国最高法院在<code>Brady v. Maryland</code>一案中确立的原则，检察官有宪法义务向辩方披露所有<span class="term">有利的 (favorable)</span> 且<span class="term">重要的 (material)</span> 证据，无论辩方是否提出请求，也无论检察官是否故意隐瞒。
+                    <ul>
+                        <li><span class="term">有利性 (Favorability)</span>：证据必须有利于辩方，即能够否定被告人的罪责（<span class="term">开脱性证据</span>）或减轻其刑罚，或者能够弹劾控方证人的可信度（<span class="term">弹劾性证据</span>）。</li>
+                        <li><span class="term">重要性 (Materiality)</span>：证据必须是重要的，即如果该证据被披露，存在<span class="term">合理可能性 (reasonable probability)</span> 案件结果会有所不同。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>事实分析：侦探报告的有利性</strong><br>
+                    本案中，侦探报告明确指出唯一的目击证人<span class="term">无法识别</span>犯罪嫌疑人。这份报告显然对被告人有利：
+                    <ul>
+                        <li>它是一份<span class="term">开脱性证据</span>，因为它暗示被告人可能不是凶手。</li>
+                        <li>它也是一份<span class="term">弹劾性证据</span>，因为它直接与目击证人在审判中指认被告人的证词相矛盾，可以用来质疑目击证人的可信度。</li>
+                    </ul>
+                    因此，侦探报告满足了布雷迪规则的“有利性”要求。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <strong>事实分析：侦探报告的重要性</strong><br>
+                    题目明确指出，“如果该报告被披露给辩方，存在<span class="term">合理可能性</span>案件结果会有所不同”。这直接满足了布雷迪规则的“重要性”要求。在一个谋杀案中，唯一的目击证人最初无法识别凶手，但在审判中却指认了被告人，这份报告的披露无疑会极大地影响陪审团的判断，甚至可能导致被告人被宣告无罪。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <strong>结论：撤销定罪</strong><br>
+                    由于检察官未能披露一份既<span class="term">有利</span>又<span class="term">重要</span>的证据，这侵犯了被告人的宪法正当程序权利。因此，上诉法院应当撤销被告人的定罪。
+                </div>
+            </div>
+        </div>
+
+        <div class="trap-alert">
+            <strong>⚠️ 核心规则 / 陷阱警示</strong><br>
+            <p>1. <strong>检察官的意图无关紧要：</strong> 检察官是否<span class="term">故意 (intentionally)</span> 隐瞒证据，对于构成<code>Brady</code>违反而言是<span class="term">无关紧要的 (irrelevant)</span>。即使是无意中（<code>inadvertently</code>）未能披露，只要证据有利且重要，就构成违宪。</p>
+            <p>2. <strong>辩方请求并非必要条件：</strong> 检察官的披露义务是<span class="term">主动的 (affirmative duty)</span>，不依赖于辩方是否提出请求。即使辩方没有请求，检察官也必须披露。</p>
+            <p>3. <strong>“有利”包括开脱和弹劾：</strong> <code>Brady</code>证据不仅包括直接证明被告人无罪的证据，也包括可以弹劾控方证人可信度的证据。</p>
+        </div>
+
+        <div class="case-box">
+            <strong>🔑 独立案例 / 延伸情景：<code>United States v. Bagley</code></strong><br>
+            <p>最高法院在<code>United States v. Bagley</code>一案中进一步阐明了<code>Brady</code>规则的“重要性”标准，即“如果证据被披露，存在<span class="term">合理可能性</span>案件结果会有所不同”。这意味着检察官未能披露的证据必须足以动摇对判决的信心。</p>
+            <p><strong>延伸情景：</strong> 如果侦探报告仅指出目击证人对凶手的描述与被告人有细微差异，但不足以动摇对判决的信心，那么该证据可能不满足“重要性”标准，定罪可能不会被撤销。</p>
+        </div>
+
+        <div class="option-analysis">
+            <h3>✅ 正确答案与干扰项排除</h3>
+
+            <div class="option correct">
+                <b>C. Yes, because the man was prejudiced by the prosecutor's failure to disclose the detective's report.</b><br>
+                <p><strong>正确。</strong> 检察官未能披露侦探报告，该报告既有利于辩方（开脱性且弹劾性），又具有重要性（存在合理可能性改变案件结果）。“被告人受到损害 (prejudiced)”正是指证据的重要性，即未披露导致了不公平的审判结果。这直接构成了对被告人正当程序权利的侵犯，因此上诉法院应撤销定罪。</p>
+            </div>
+
+            <div class="option wrong">
+                <b>A. No, because the evidence impeached the eyewitness's testimony but did not exonerate the man.</b><br>
+                <p><strong>错误。</strong> 首先，侦探报告不仅是弹劾性证据，它也具有开脱性（目击证人最初无法识别凶手）。其次，即使证据仅用于弹劾控方证人，只要它具有重要性，检察官也有义务披露。<code>Brady</code>规则涵盖了所有有利于辩方且重要的证据，无论其是直接开脱还是仅用于弹劾。</p>
+            </div>
+
+            <div class="option wrong">
+                <b>B. No, because the prosecutor did not intentionally withhold the detective's report.</b><br>
+                <p><strong>错误。</strong> 检察官是否故意隐瞒证据对于<code>Brady</code>违规的认定是<span class="term">无关紧要的</span>。即使是无意中未能披露，只要证据有利于辩方且具有重要性，就构成宪法违规。这是<code>Brady</code>规则的一个重要考点陷阱。</p>
+            </div>
+
+            <div class="option wrong">
+                <b>D. Yes, because the man's attorney requested that the prosecution turn over all favorable evidence.</b><br>
+                <p><strong>错误。</strong> 尽管辩方律师确实提出了请求，但这并非撤销定罪的根本原因。检察官披露有利且重要证据的义务是<span class="term">主动的</span>，不依赖于辩方是否提出请求。即使没有请求，检察官也必须披露。撤销定罪的根本原因是检察官未能履行其宪法义务，侵犯了被告人的正当程序权利。</p>
+            </div>
+        </div>
+
+        <div class="footer-tip">
+            <strong>🎓 考试技巧：布雷迪规则三要素</strong><br>
+            记住<code>Brady</code>规则的三个核心要素：
+            <ol>
+                <li>证据必须<span class="term">有利于 (Favorable)</span> 辩方（开脱性或弹劾性）。</li>
+                <li>证据必须<span class="term">重要 (Material)</span>（合理可能性改变结果）。</li>
+                <li>检察官的<span class="term">意图 (Intent)</span> 和辩方的<span class="term">请求 (Request)</span> <span class="term">无关紧要</span>。</li>
+            </ol>
+            只要满足前两点，即使检察官是无意遗漏，且辩方未提出特定请求，也构成违宪。
+        </div>
+    </div>
+</body>
+</html>

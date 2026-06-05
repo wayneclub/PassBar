@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--correct-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .rule-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+        .english-term {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        .option-analysis {
+            margin-top: 10px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            background-color: #fafafa;
+            border: 1px solid #eee;
+        }
+
+        .option.wrong {
+            border-left: 3px solid var(--wrong-color);
+        }
+
+        .exam-tip {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 0.95rem;
+        }
+
+        .exam-tip strong {
+            color: var(--accent-color);
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+    <title>MBE Question Analysis</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts: Third-Party Rights</div>
+    </div>
+
+    <div class="content">
+        <!-- Correct Answer Section -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：D</span>
+            <p>儿子胜诉，因为他作为第三方意图受益人的权利，因其不利信赖（Detrimental Reliance）而已经归属（Vested）。</p>
+        </div>
+
+        <!-- Core Legal Rule -->
+        <div class="section-title">核心考点：第三方受益人权利的归属</div>
+        <div class="rule-card">
+            <p>在合同法中，原始合同双方通常有权修改或解除（Rescind）合同。但是，一旦<strong>第三方意图受益人（Intended Third-Party Beneficiary）</strong>的权利发生<strong>“归属”（Vesting）</strong>，原始双方未经该受益人同意，不得修改或解除合同。</p>
+            <p><strong>权利归属（Vesting）通常发生在以下三种情况之一：</strong></p>
+            <ul>
+                <li>受益人得知合同并产生了<strong>不利信赖（Detrimental Reliance）</strong>；</li>
+                <li>受益人应合同方要求对合同表示了<strong>同意（Manifests Assent）</strong>；</li>
+                <li>受益人提起<strong>诉讼（Lawsuit）</strong>以执行合同。</li>
+            </ul>
+        </div>
+
+        <!-- Case Analysis -->
+        <div class="section-title">本案案情分析</div>
+        <p>本题考察的是上述规则的具体应用：</p>
+        <ol>
+            <li><strong>合同性质：</strong>寡妇与经销商签订合同，目的是送给儿子礼物。儿子是典型的<strong>受赠受益人（Donee Beneficiary）</strong>，属于意图受益人，有权执行合同。</li>
+            <li><strong>关键时间点：</strong>
+                <ul>
+                    <li><strong>5月20日：</strong>儿子得知合同，并基于信赖以低价卖掉了旧车（构成了实质性的地位改变/不利信赖）。他通知了寡妇和经销商。<strong>此时，儿子的权利已经归属（Vested）。</strong></li>
+                    <li><strong>5月25日：</strong>寡妇和经销商试图解除合同。</li>
+                </ul>
+            </li>
+            <li><strong>结论：</strong>由于儿子的权利在5月20日已经归属，5月25日的解除协议对儿子无效。经销商拒绝交付车辆构成违约。</li>
+        </ol>
+
+        <!-- Distractor Analysis -->
+        <div class="section-title">干扰项解析</div>
+        <div class="option-analysis">
+            <div class="option wrong">
+                <strong>选项 A 错误</strong><br>
+                经销商不能主张“信赖解除协议”。因为在解除协议签署前，经销商已经被告知儿子卖掉了旧车（即已知晓受益人的权利已归属）。此时再试图解除合同属于恶意或不合理的行为，不受法律保护。
+            </div>
+            <div class="option wrong">
+                <strong>选项 B 错误</strong><br>
+                虽然儿子确实是“受赠受益人”（Donee Beneficiary），但这并不妨碍他胜诉。现代合同法（及 Restatement）规定，一旦权利归属，无论是债权受益人还是受赠受益人，其权利都受到保护，不可被随意剥夺。
+            </div>
+            <div class="option wrong">
+                <strong>选项 C 错误</strong><br>
+                这是一个术语混淆项。儿子是“受益人”（Beneficiary），而不是“受让人”（Assignee）。<span class="english-term">Assignment</span>（转让）涉及权利的转移，而本案是合同初衷就是为了第三方利益。虽然结果相似（儿子有权起诉），但法律定性错误。
+            </div>
+        </div>
+
+        <!-- Exam Tip -->
+        
+    </div>
+</div>
+
+</body>
+</html>

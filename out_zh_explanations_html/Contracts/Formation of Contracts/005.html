@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin: 0;
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .card.correct {
+            border-left-color: var(--correct-color);
+        }
+
+        .card.wrong {
+            border-left-color: var(--wrong-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .icon {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .badge-correct { background-color: var(--correct-color); }
+        .badge-rule { background-color: var(--primary-color); }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p style="font-size: 14px; color: #666;">Contracts / UCC Formation</p>
+    </div>
+
+    <!-- 核心结论 -->
+    <div class="card correct">
+        <span class="badge badge-correct">正确答案：A</span>
+        <div class="card-title">
+            <span class="icon">✅</span> 核心结论
+        </div>
+        <p>供应商<b>无法胜诉</b>。因为合同缺少必要的<b>数量条款 (Quantity Term)</b>，导致合同因不确定 (Indefiniteness) 而无法成立。</p>
+    </div>
+
+    <!-- 法律规则讲解 -->
+    <div class="card">
+        <span class="badge badge-rule">法律规则 (The Rule)</span>
+        <div class="card-title">
+            <span class="icon">⚖️</span> UCC 的“填补空白”规则
+        </div>
+        <p>本案涉及货物买卖，适用 <span class="term">Uniform Commercial Code (UCC)</span>。</p>
+        <p>UCC 旨在促成交易，因此对于许多缺失的条款（Missing Terms），法律允许法院使用“填补规则” (<span class="term">Gap Fillers</span>) 来补充，例如：</p>
+        <ul>
+            <li>💰 <b>价格 (Price)：</b> 若未约定，视为交付时的合理价格。</li>
+            <li>🚚 <b>交付 (Delivery)：</b> 若未约定，视为合理时间、卖方营业地交付。</li>
+            <li>💳 <b>付款 (Payment)：</b> 若未约定，视为收货时付款。</li>
+        </ul>
+        <p style="border-top: 1px solid #eee; padding-top: 10px;">
+            ⚠️ <b>致命例外：数量 (Quantity)</b><br>
+            UCC <b>不会</b>填补数量条款。如果合同没有明确数量，或者没有提供计算数量的客观方法（如需求合同 Requirements Contract），则<b>合同不成立</b>。
+        </p>
+    </div>
+
+    <!-- 案情分析 -->
+    <div class="card">
+        <div class="card-title">
+            <span class="icon">🔍</span> 案情应用
+        </div>
+        <p>在本案中，经销商的邮件仅写道：“Offer to purchase industrial straight-blade sockets”（要约购买工业直片插座）。</p>
+        <ul>
+            <li>它没有说“购买 100 个” (Specific Quantity)。</li>
+            <li>它也没有说“购买我所需要的所有插座” (Requirements Contract)。</li>
+        </ul>
+        <p>由于<b>数量完全缺失</b>，法院无法确定违约赔偿的基数。因此，尽管卖方发货了，但双方并未形成具有法律约束力的合同。</p>
+    </div>
+
+    <!-- 干扰项解析 -->
+    <div class="card wrong">
+        <div class="card-title">
+            <span class="icon">❌</span> 为什么其他选项是错的？
+        </div>
+        <ul>
+            <li><b>选项 B (价格缺失)：</b> 错误。如前所述，UCC 可以填补价格条款 (Reasonable Price)，价格缺失不会导致合同无效。</li>
+            <li><b>选项 C (合理数量)：</b> 错误。这是考生常犯的错误。法院<b>不会</b>凭空捏造一个“合理数量”来挽救合同。没有数量 = 没有合同。</li>
+            <li><b>选项 D (剔除规则 Knockout Rule)：</b> 错误。剔除规则用于解决双方格式条款冲突的问题 (Battle of the Forms, UCC § 2-207)。但在使用该规则前，必须先有一个有效的合同。本案因缺数量连合同都没成立，自然谈不上剔除条款。</li>
+        </ul>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="footer">
+        <p>💡 <b>MBE 提分技巧：</b><br>看到 UCC 合同题目，首先检查 <b>Quantity (数量)</b>。<br>如果数量缺失且不是 Output/Requirements Contract，<br>直接选“合同不成立”。</p>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --text-color: #333;
+            --bg-color: #f7f9fc;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background-color: var(--accent-color);
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--highlight-bg);
+            color: var(--accent-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+
+        .rule-box {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            font-size: 14px;
+            margin: 10px 0;
+            color: #5d4037;
+        }
+
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+
+        .analysis-step strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .correct-answer {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            color: var(--success-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .wrong-option {
+            font-size: 13px;
+            color: #666;
+            margin-top: 5px;
+            border-top: 1px dashed #eee;
+            padding-top: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Evidence Law | 证据法</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心问题 -->
+        <div class="card">
+            <div class="card-title">核心考点</div>
+            <p>本题考察两个证据法规则的交叉点：</p>
+            <div>
+                <span class="tag">FRE 803(3)</span>
+                <span class="tag">Hearsay Exception</span>
+            </div>
+            <div style="margin-top:5px;">
+                <span class="tag">FRE 412</span>
+                <span class="tag">Rape Shield Law</span>
+            </div>
+        </div>
+
+        <!-- 法律分析步骤 -->
+        <div class="card">
+            <div class="card-title">⚖️ 法律推理步骤</div>
+            
+            <div class="analysis-step">
+                <strong>第一步：传闻证据 (Hearsay) 障碍</strong>
+                <p>受害者在庭外说“我打算与被告发生性关系”，这是为了证明她确实有此意图并可能付诸行动。这属于传闻证据。</p>
+                <div class="rule-box">
+                    <b>FRE 803(3) State of Mind Exception:</b><br>
+                    陈述人关于其<b>当时存在的精神状态</b>（如动机、意图、计划）的陈述，属于传闻例外，可被采纳。
+                </div>
+                <p>根据 <i>Hillmon</i> 原则，意图的陈述可以用来证明陈述人随后实施了该意图所指的行为。</p>
+            </div>
+
+            <div class="analysis-step">
+                <strong>第二步：强奸盾牌法 (Rape Shield Law) 障碍</strong>
+                <p>FRE 412 通常禁止采纳受害者的性行为证据。但是，在<b>刑事案件</b>中有重要例外。</p>
+                <div class="rule-box">
+                    <b>FRE 412(b)(1)(B) Exception:</b><br>
+                    如果是关于受害者与<b>被告(Accused)</b>之间具体的性行为实例，且由被告提出以证明<b>同意(Consent)</b>，则可采纳。
+                </div>
+            </div>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="correct-answer">
+            ✅ 正确答案：C
+            <div style="font-size: 14px; font-weight: normal; color: #333; margin-top: 5px;">
+                "Yes, because the testimony goes to the issue of consent."
+            </div>
+        </div>
+        <p style="font-size: 14px; color: #555; line-height: 1.5;">
+            <b>解析：</b>该证词通过了传闻规则（作为意图的陈述）和强奸盾牌法（作为证明同意的例外）。因此，它是因为与“同意”这一抗辩理由直接相关而被允许的。
+        </p>
+
+        <!-- 错误选项陷阱 -->
+        <div class="card">
+            <div class="card-title">🚫 避坑指南 (为何其他选项错误)</div>
+            
+            <div class="wrong-option">
+                <b>选项 A (Inadmissible due to sexual behavior):</b><br>
+                错误。忽略了 FRE 412 在刑事案件中关于“与被告的过往行为以证明同意”的例外。
+            </div>
+
+            <div class="wrong-option">
+                <b>选项 B (Hearsay):</b><br>
+                错误。虽然是传闻，但符合 FRE 803(3) "Then-existing state of mind" 例外。
+            </div>
+
+            <div class="wrong-option">
+                <b>选项 D (Probative value > Harm):</b><br>
+                <span style="color:var(--warning-color); font-weight:bold;">高频陷阱！</span><br>
+                这种“反向 403 平衡测试”（证明价值必须<b>实质上超过</b>伤害）仅适用于<b>民事案件 (Civil Cases)</b> (FRE 412(b)(2))。在刑事案件中，只要符合特定例外（如证明同意），通常不需要通过这个严苛的平衡测试。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="background-color: #e3f2fd; border: none;">
+            <div class="card-title" style="color: #1565c0;">🎓 MBE 考试技巧</div>
+            <p style="font-size: 13px; margin: 0;">
+                当题目涉及<b>性犯罪受害者的言行</b>时：
+                <ol style="font-size: 13px; padding-left: 20px; margin: 5px 0;">
+                    <li>首先检查是否属于 <b>Hearsay</b> 及其例外（通常是 State of Mind）。</li>
+                    <li>然后检查 <b>FRE 412</b>。记住刑事案件的三大例外：
+                        <ul style="margin-top:3px;">
+                            <li>证明精液/伤害来源 (Source of semen/injury)</li>
+                            <li>与被告的过往行为证明同意 (Consent with accused)</li>
+                            <li>宪法权利要求 (Constitutional rights)</li>
+                        </ul>
+                    </li>
+                    <li>警惕区分<b>民事</b>与<b>刑事</b>的采纳标准。</li>
+                </ol>
+            </p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

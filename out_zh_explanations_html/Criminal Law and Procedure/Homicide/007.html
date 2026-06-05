@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --highlight-bg: #ecf0f1;
+            --text-color: #34495e;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .logic-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #bdc3c7;
+        }
+        .logic-step:last-child {
+            border-bottom: none;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .badge-correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .badge-wrong {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Criminal Law: Homicide</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点介绍 -->
+        <div class="concept-card">
+            <span class="concept-title">核心考点：激情复燃原则 (Rekindling Doctrine)</span>
+            <p>本题考察的是将谋杀罪（Murder）降格为自愿过失杀人罪（Voluntary Manslaughter）的特殊情况。特别是当“冷静期”过去后，新的挑衅行为如何重新点燃被告的激情。</p>
+        </div>
+
+        <!-- 法律逻辑分析 -->
+        <h3>⚖️ 法律推理逻辑</h3>
+        
+        <div class="logic-step">
+            <span class="term">1. 基础规则：自愿过失杀人</span><br>
+            <span class="english-term">Voluntary Manslaughter</span><br>
+            通常需要满足四个要素：
+            <ul>
+                <li>存在充分的激怒（Adequate Provocation）。</li>
+                <li>被告实际上被激怒了（Heat of Passion）。</li>
+                <li>理性人没有足够的时间冷静（No Reasonable Cooling Off）。</li>
+                <li>被告实际上没有冷静下来。</li>
+            </ul>
+        </div>
+
+        <div class="logic-step">
+            <span class="term">2. 本案的时间问题</span><br>
+            <span class="english-term">Cooling Off Period</span><br>
+            邻居殴打儿子是严重的激怒行为。但是，<b>10天</b>的时间对于一个“理性人”来说，通常足以冷静下来。如果仅仅是因为10天后见到邻居而杀人，通常会被认定为谋杀（Murder）。
+        </div>
+
+        <div class="logic-step">
+            <span class="term">3. 关键转折：嘲讽与复燃</span><br>
+            <span class="english-term">The Rekindling Doctrine</span><br>
+            虽然“单纯的言语”（Words alone）通常不足以构成充分激怒，但普通法承认一个例外：
+            <p>如果之前存在<b>严重的激怒行为</b>（殴打儿子），且受害人后来通过言语<b>嘲弄该特定行为</b>（"打你的小子的确很有趣"），这种言语可以被视为<b>激情复燃</b>。</p>
+            <p>这使得原本已经过去的激怒重新变得“充分”，足以让陪审团考虑将其定性为过失杀人。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <h3>✅ 为什么选 D？</h3>
+        <div class="logic-step">
+            <span class="badge badge-correct">正确答案 D</span>
+            <p><b>理由：</b>邻居的嘲讽再次激怒了该男子。</p>
+            <p>法院在决定是否给予陪审团指示（Jury Instruction）时，标准是：是否有证据支持该理论？</p>
+            <p>根据<b>Rekindling Doctrine</b>，邻居关于先前暴行的嘲讽可以被视为新的、充分的激怒。因此，陪审团有权判定这是否构成了“激情杀人”。只要存在这种可能性，法官就必须批准该指示。</p>
+        </div>
+
+        <h3>❌ 为什么其他选项错误？</h3>
+        
+        <div class="logic-step">
+            <span class="badge badge-wrong">选项 A</span>
+            <p><b>错误点：忽略了新的激怒。</b><br>虽然10天足以让理性人冷静，但该选项忽略了见面时的“嘲讽”这一新事件。如果只是见面而无言语，A 才是对的。</p>
+        </div>
+
+        <div class="logic-step">
+            <span class="badge badge-wrong">选项 B</span>
+            <p><b>错误点：规则适用过于僵化。</b><br>虽然“言语本身不足以激怒”是通用规则，但本题考查的是该规则的<b>例外情况</b>（即言语涉及先前的严重挑衅）。</p>
+        </div>
+
+        <div class="logic-step">
+            <span class="badge badge-wrong">选项 C</span>
+            <p><b>错误点：混淆了主客观标准。</b><br>冷静期的标准是<b>客观的</b>（理性人是否会冷静），而不是主观的（被告是否冷静了）。如果理性人已经冷静，被告未冷静通常不能作为辩护理由——除非有新的激怒（即本案的情况）。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>🎓 MBE 考试技巧：</strong>
+            <br><br>
+            看到 <b>"Words alone"</b>（仅凭言语）作为排除项时要小心。虽然它是刑法中的黄金法则，但 MBE 喜欢考查它的两个例外：
+            <ol>
+                <li><b>信息性言语 (Informational Words)：</b> 例如告诉丈夫“我刚才通奸了”，这被视为目睹通奸的等价物。</li>
+                <li><b>激情复燃 (Rekindling)：</b> 如本题，针对先前严重伤害的嘲讽。</li>
+            </ol>
+            如果题目中出现了这两种情况，不要因为“言语不能激怒”的原则而直接排除 Voluntary Manslaughter。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

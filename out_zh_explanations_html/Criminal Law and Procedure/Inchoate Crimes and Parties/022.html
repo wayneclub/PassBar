@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fdf2f2;
+            --warning-text: #c0392b;
+            --success-text: #27ae60;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        .concept-box {
+            margin-bottom: 20px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .rule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .rule-table th, .rule-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .rule-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .rule-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .badge-correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .badge-wrong {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .footer {
+            background-color: #eee;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考点解析</h1>
+        <div class="sub-title">吸收原则与共犯责任</div>
+    </div>
+
+    <div class="content">
+        <div class="card">
+            <h3>✅ 正确答案：A</h3>
+            <p><strong>Conspiracy and murder</strong><br>（共谋罪和谋杀罪）</p>
+        </div>
+
+        <p>本题考察的是刑法中关于<strong>未完成罪</strong>（Inchoate Crimes）的<strong>吸收原则</strong>（Merger Doctrine）以及<strong>共犯责任</strong>（Accomplice Liability）。</p>
+
+        <div class="concept-box">
+            <span class="concept-title">1. 为什么构成谋杀罪 (Murder)？</span>
+            <p>虽然男子没有亲手杀人，但他雇佣了杀手。根据<strong>共犯责任</strong>（Accomplice Liability）：</p>
+            <ul>
+                <li>男子协助并鼓励（雇佣并付款）杀手犯罪；</li>
+                <li>男子具有该犯罪完成的具体意图（Specific Intent）。</li>
+            </ul>
+            <p>因此，男子对杀手实施的既遂谋杀负有同等刑事责任。</p>
+        </div>
+
+        <div class="concept-box">
+            <span class="concept-title">2. 为什么构成共谋罪 (Conspiracy)？</span>
+            <p>共谋罪的构成要件是：</p>
+            <ul>
+                <li>两人或多人达成犯罪协议（Agreement）；</li>
+                <li>具有达成协议并实施犯罪的意图；</li>
+                <li>（大多数辖区要求）实施了<strong>明显行为</strong>（Overt Act）。</li>
+            </ul>
+            <p>本案中，男子与杀手达成协议并支付报酬，符合所有要件。<strong>关键点：</strong>共谋罪是一个独立的罪行，它<strong>不</strong>与既遂罪行合并。</p>
+        </div>
+
+        <div class="concept-box">
+            <span class="concept-title">3. 为什么不选教唆罪 (Solicitation)？</span>
+            <p>这就是本题的核心考点——<strong>吸收原则 (Merger Doctrine)</strong>。</p>
+            <p>男子确实实施了教唆行为（Solicitation），即请求他人犯罪。但是，普通法和现代刑法规则均规定：</p>
+            <div style="background-color: var(--warning-bg); padding: 10px; border-radius: 5px; border-left: 3px solid var(--warning-text);">
+                一旦被教唆的罪行<strong>实际完成</strong>（Completed），教唆罪即被该既遂罪行<strong>吸收</strong>（Merge）。
+            </div>
+            <p>因此，被告不能同时被判教唆罪和既遂罪（谋杀）。教唆罪消失，只剩下谋杀罪。</p>
+        </div>
+
+        <h3>📊 考点总结：吸收原则表</h3>
+        <table class="rule-table">
+            <thead>
+                <tr>
+                    <th>罪行 (Inchoate Crime)</th>
+                    <th>既遂后是否吸收? (Merger?)</th>
+                    <th>结果</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>教唆罪</strong><br><span class="english-term">Solicitation</span></td>
+                    <td><span style="color:var(--warning-text)">✅ 是 (Merges)</span></td>
+                    <td>只定既遂罪</td>
+                </tr>
+                <tr>
+                    <td><strong>未遂罪</strong><br><span class="english-term">Attempt</span></td>
+                    <td><span style="color:var(--warning-text)">✅ 是 (Merges)</span></td>
+                    <td>只定既遂罪</td>
+                </tr>
+                <tr>
+                    <td><strong>共谋罪</strong><br><span class="english-term">Conspiracy</span></td>
+                    <td><span style="color:var(--success-text)">❌ 否 (No Merger)</span></td>
+                    <td><strong>既遂罪 + 共谋罪</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="card" style="background-color: #fff8e1; border-color: #ffc107;">
+            <h3>💡 MBE 考试技巧</h3>
+            <p>记住口诀：<strong>"Conspiracy never merges"</strong>（共谋罪从不吸收）。</p>
+            <p>如果你看到题目中罪行已经完成，选项中同时包含“Solicitation”（教唆）和“Completed Crime”（既遂罪），该选项通常是错误的。但如果选项是“Conspiracy”（共谋）和“Completed Crime”，这通常是正确答案。</p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

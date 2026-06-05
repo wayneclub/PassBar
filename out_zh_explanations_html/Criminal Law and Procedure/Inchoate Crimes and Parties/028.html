@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 1.1rem;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .analysis-step:last-child {
+            border-bottom: none;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .badge-correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .badge-wrong {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Criminal Law: Parties to Crime</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：无辜代理人 (Innocent Agent)</span>
+            <p>当被告人利用一个没有犯罪意图或没有责任能力的人（如儿童、精神病患者、不知情者）来实施犯罪行为时，法律将该被告人视为<b>一级主犯 (Principal in the First Degree)</b>，而不是共犯。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-step">
+            <h3>1. 盗窃罪的构成要件 (Elements of Larceny)</h3>
+            <p>盗窃罪需要同时满足两个条件：</p>
+            <ul>
+                <li><b>Actus Reus (犯罪行为):</b> 非法占有并移动他人财产 (Trespassory taking and carrying away)。</li>
+                <li><b>Mens Rea (犯罪意图):</b> 永久剥夺他人财产的意图 (Intent to permanently deprive)。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <h3>2. 为什么选 D？(法律推理)</h3>
+            <p><span class="badge badge-correct">正确答案</span> <b>Larceny by use of an innocent agent</b></p>
+            <p>在本案中，犯罪行为和意图是分离的：</p>
+            <ul>
+                <li><b>男孩 (The Boy):</b> 实施了“拿走并移动”的行为，但他被骗了，以为那是保姆的电脑。因此他没有“偷窃”的意图 (Lack of Mens Rea)。男孩是无罪的。</li>
+                <li><b>保姆 (The Babysitter):</b> 拥有“偷窃”的意图，但没有亲手拿电脑。</li>
+            </ul>
+            <p><b>法律拟制：</b>法律认为，利用无辜的代理人就像利用工具（如长棍或训练有素的猴子）一样。保姆通过男孩的手完成了犯罪行为。因此，保姆被视为<b>亲自实施了盗窃</b> (Principal)。</p>
+        </div>
+
+        <div class="analysis-step">
+            <h3>3. 为什么其他选项错误？</h3>
+            
+            <p><span class="badge badge-wrong">错误</span> <b>选项 A & C (共犯责任 Accomplice Liability)</b></p>
+            <p>共犯责任通常是<b>衍生责任 (Derivative Liability)</b>。要成为共犯，必须有一个有罪的主犯 (Principal)。因为男孩没有犯罪意图，他没有犯罪，所以保姆不能作为“共犯”被定罪。她就是主犯本人。</p>
+
+            <p><span class="badge badge-wrong">错误</span> <b>选项 B (未遂 Attempt)</b></p>
+            <p>盗窃罪在财产被<b>移动 (Asportation)</b> 的那一刻即告完成。哪怕只是轻微的移动。男孩已经把电脑拿出了前门，犯罪行为已经<b>既遂 (Completed)</b>。邻居后来拿回电脑并不影响犯罪的成立，只影响损失的挽回。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-box" style="background-color: #fff3cd; border-color: #ffc107;">
+            <span class="concept-title" style="color: #856404;">🎓 MBE 考试技巧</span>
+            <p>看到“利用不知情者/儿童/精神病人”实施犯罪的题目时，请立即联想 <b>Innocent Agent</b> 理论：</p>
+            <ol>
+                <li>幕后操纵者是<b>主犯 (Principal)</b>，直接对既遂罪行负责。</li>
+                <li>如果被利用的人不知情，操纵者<b>不是</b>共犯 (Accomplice)。</li>
+                <li>只要被利用者完成了犯罪动作，操纵者即构成既遂，而非未遂。</li>
+            </ol>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

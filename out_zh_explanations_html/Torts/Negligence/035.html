@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #f0f7fb;
+        --text-color: #333;
+        --bg-color: #f4f4f4;
+        --card-bg: #ffffff;
+        --correct-green: #27ae60;
+        --wrong-red: #c0392b;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .header .sub-title {
+        font-size: 0.85rem;
+        opacity: 0.9;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .content {
+        padding: 20px;
+        color: var(--text-color);
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+
+    .concept-box {
+        background-color: var(--highlight-bg);
+        border-left: 5px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+
+    .concept-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .term-en {
+        font-family: "Georgia", serif;
+        font-style: italic;
+        color: #555;
+        font-size: 0.9em;
+    }
+
+    .analysis-section {
+        margin-top: 20px;
+    }
+
+    .analysis-title {
+        font-weight: bold;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+    }
+
+    .option-analysis {
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #eee;
+    }
+
+    .option-analysis.correct {
+        border-color: var(--correct-green);
+        background-color: rgba(39, 174, 96, 0.05);
+    }
+
+    .option-analysis.wrong {
+        border-color: var(--wrong-red);
+        background-color: rgba(192, 57, 43, 0.05);
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        color: white;
+        margin-right: 5px;
+    }
+
+    .badge-correct { background-color: var(--correct-green); }
+    .badge-wrong { background-color: var(--wrong-red); }
+
+    .exam-tip {
+        background-color: #fff8e1;
+        border: 1px solid #ffe082;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 0.9rem;
+    }
+
+    .exam-tip-icon {
+        font-size: 1.2rem;
+        margin-right: 5px;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Torts: Negligence & Custom</div>
+    </div>
+
+    <div class="content">
+        <p>本题考察的是侵权法中<strong>行业惯例（Custom/Industry Practice）</strong>在认定过失（Negligence）时的法律效力。</p>
+
+        <div class="concept-box">
+            <span class="concept-title">核心考点：惯例的证据效力</span>
+            在过失侵权案件中，被告是否遵守了行业惯例是<strong>相关证据（Relevant Evidence）</strong>，但绝非<strong>决定性证据（Conclusive Evidence）</strong>。
+            <br><br>
+            <span class="term-en">"Custom is relevant, but not conclusive."</span>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">法律逻辑解析</div>
+            <p><strong>1. 惯例 ≠ 合理注意义务标准</strong><br>
+            即使整个行业都遵循某种做法（如本题中“工人离开后打开舱口通风”），这并不意味着该做法本身是合理的。如果整个行业都为了省钱或省事而采取不安全的做法，那么整个行业都可能存在过失。</p>
+            
+            <p><strong>2. 著名的 T.J. Hooper 规则</strong><br>
+            这一原则源自著名的 <em>The T.J. Hooper</em> 案。法官 Learned Hand 指出，法院不能让行业自己设定法律标准，否则行业可能会设定过低的标准。</p>
+
+            <p><strong>3. 陪审团的角色</strong><br>
+            本案中，船主虽然证明了这是惯例，但原告仍可以主张：尽管是惯例，但在夜间无人看管时敞开舱口且没有防护措施是不合理的（Unreasonable）。这是一个事实问题，必须交给<strong>陪审团（Jury）</strong>去权衡，而不能由法官通过<strong>简易判决（Summary Judgment）</strong>直接裁定。</p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">选项深度剖析</div>
+            
+            <div class="option-analysis correct">
+                <span class="badge badge-correct">正确选项 A</span>
+                <strong>驳回动议，提交陪审团。</strong><br>
+                法院应驳回船主的简易判决申请。法官应指示陪审团：可以将“惯例”作为考量被告是否尽到合理注意义务的因素之一，但不能直接因为被告遵守了惯例就判定其无过失。
+            </div>
+
+            <div class="option-analysis wrong">
+                <span class="badge badge-wrong">错误选项 D</span>
+                <strong>批准动议，视为决定性因素。</strong><br>
+                这是本题最大的陷阱。MBE 经常测试这一点：遵守惯例<strong>从来不是</strong>过失问题的“免死金牌”（Conclusive）。
+            </div>
+
+            <div class="option-analysis wrong">
+                <span class="badge badge-wrong">错误选项 B</span>
+                <strong>关于受害者的位置。</strong><br>
+                这涉及<strong>共同过失（Contributory/Comparative Negligence）</strong>。即使受害者有过错，在现代比较过失制度下，这通常只是减少赔偿金额，而不是让被告直接胜诉（除非是极少数适用严格共同过失的辖区，但MBE默认适用比较过失）。更重要的是，这属于事实争议，不能作为简易判决的依据。
+            </div>
+        </div>
+
+        <div class="exam-tip">
+            <span class="exam-tip-icon">💡</span><strong>MBE 答题技巧</strong>
+            <br>
+            看到题目中出现“Custom”（惯例）、“Industry Standard”（行业标准）时，脑海中要立刻浮现这句话：
+            <br>
+            <strong>"Floor, not a ceiling."</strong>
+            <br>
+            （惯例是底线，不是上限）。
+            <br><br>
+            如果选项说惯例是 "Conclusive"（决定性的）或者 "Complete defense"（完全抗辩），该选项通常是<strong>错误</strong>的。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

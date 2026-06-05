@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            display: block;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f6f3;
+            border-left: 5px solid var(--success-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .concept-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .rule-box {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--warning-color);
+            margin: 10px 0;
+        }
+        .math-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: bold;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+        .math-item {
+            text-align: center;
+        }
+        .math-operator {
+            margin: 0 10px;
+            color: var(--warning-color);
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <span>民事诉讼法 (Civil Procedure)</span>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：C</span>
+            <p>是的，因为这些索赔被恰当地合并，并且联邦法院拥有多元管辖权 (Diversity Jurisdiction)。</p>
+        </div>
+
+        <p>本题考察的是联邦法院的两个核心概念：<b>索赔的合并 (Joinder of Claims)</b> 和 <b>争议金额的计算 (Amount in Controversy)</b>。</p>
+
+        <!-- 考点 1：索赔的合并 -->
+        <div class="concept-card">
+            <div class="concept-title">考点一：索赔的合并 (Rule 18)</div>
+            <p>根据《联邦民事诉讼规则》第18条 (FRCP 18)，原告可以在同一个诉讼中，针对同一个被告提出<b>任意数量</b>的索赔。</p>
+            <div class="rule-box">
+                <strong>关键规则：</strong>这些索赔<b>不需要</b>相互关联，也不需要源于同一事实 (Transaction or Occurrence)。
+            </div>
+            <p>因此，尽管本案中的“违约”和“过失”源于不同的事实，公司完全有权将它们合并在同一个起诉书中。这排除了选项 B。</p>
+        </div>
+
+        <!-- 考点 2：争议金额的合并计算 -->
+        <div class="concept-card">
+            <div class="concept-title">考点二：争议金额 (Amount in Controversy)</div>
+            <p>要建立多元管辖权 (Diversity Jurisdiction)，除了双方要是不同州的公民外，争议金额必须<b>超过 $75,000</b>。</p>
+            <p>虽然单独看，$60,000 和 $30,000 都不满足要求，但联邦法院适用<b>合并计算规则 (Aggregation Rule)</b>。</p>
+            
+            <div class="math-visual">
+                <div class="math-item">$60k<br><span style="font-size:0.8rem; color:#7f8c8d">违约</span></div>
+                <div class="math-operator">+</div>
+                <div class="math-item">$30k<br><span style="font-size:0.8rem; color:#7f8c8d">过失</span></div>
+                <div class="math-operator">=</div>
+                <div class="math-item" style="color:var(--success-color)">$90k</div>
+            </div>
+            
+            <div class="rule-box">
+                <strong>单一原告 vs. 单一被告：</strong>原告可以将针对同一被告的所有索赔金额相加，以满足 $75,000 的门槛。
+            </div>
+            <p>因为 $90,000 > $75,000，且双方位于不同州 (State A vs. State B)，所以法院拥有<b>多元管辖权</b>。这排除了选项 A。</p>
+        </div>
+
+        <!-- 为什么不是补充管辖权？ -->
+        <div class="concept-card" style="border-color: var(--warning-color);">
+            <div class="concept-title" style="color: var(--warning-color);">⚠️ 陷阱辨析：补充管辖权 (Supplemental Jurisdiction)</div>
+            <p>选项 D 是一个常见的干扰项。补充管辖权通常用于让法院审理那些本身不满足管辖权要求、但与主索赔源于<b>“共同的核心案件事实” (Common Nucleus of Operative Fact)</b> 的索赔。</p>
+            <p>本题中明确指出索赔源于<b>“不同的事实”</b>，因此补充管辖权的条件并不满足。但我们不需要它，因为通过金额合并，整个案件已经直接满足了多元管辖权的要求。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-card" style="background-color: #fdf2e9;">
+            <div class="concept-title">🎓 MBE 解题思路</div>
+            <ol style="padding-left: 20px; margin: 0;">
+                <li><b>第一步：</b>检查合并 (Joinder) 是否允许。记住 FRCP 18 对原告非常宽容（只要是针对同一被告，什么都可以合并）。</li>
+                <li><b>第二步：</b>检查管辖权 (Jurisdiction)。
+                    <ul>
+                        <li>如果是<b>单一原告 vs. 单一被告</b> ➡️ <b>相加</b>所有索赔金额。</li>
+                        <li>如果是<b>多个原告</b> ➡️ 通常<b>不能</b>相加（除非是在执行共同/不可分割的利益）。</li>
+                    </ul>
+                </li>
+                <li><b>第三步：</b>确认事实关联性。如果题目强调“不同事实”，通常是为了排除补充管辖权，或者测试你对 Rule 18 宽容度的理解。</li>
+            </ol>
+        </div>
+
+        
+    </div>
+</div>
+
+</body>
+</html>

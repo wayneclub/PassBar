@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #eef2f5;
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .key-point {
+            font-weight: bold;
+            color: var(--highlight-color);
+        }
+        .list-item {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .list-item::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e1f0fa;
+            color: var(--accent-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            font-weight: 600;
+        }
+        .wrong-option {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #666;
+            background-color: #fff5f5;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #fab1a0;
+        }
+        .mbe-tip {
+            margin-top: 25px;
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .mbe-tip-title {
+            font-weight: bold;
+            color: #f57c00;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Homicide / Common Law Murder</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法则：普通法谋杀 (Common Law Murder)</span>
+            <p>在普通法下，谋杀被定义为具有<b>“预谋恶意” (Malice Aforethought)</b> 的非法杀人。</p>
+            <p>“预谋恶意”并不一定意味着恨意或仅仅是杀人意图，它包含以下四种心态中的<b>任意一种</b>：</p>
+            <div class="list-item"><b>Intent to kill</b> (杀人意图)</div>
+            <div class="list-item"><span class="key-point">Intent to inflict great bodily injury</span> (造成严重身体伤害的意图)</div>
+            <div class="list-item"><b>Depraved heart / Reckless indifference</b> (堕落之心/极端鲁莽)</div>
+            <div class="list-item"><b>Felony Murder</b> (重罪谋杀意图)</div>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情深度解析</div>
+            <p>本题的正确答案是 <span class="tag">A. Murder</span>。</p>
+            
+            <p><b>1. 行为人的意图 (Mens Rea)：</b><br>
+            题目明确指出，该男子开枪射击受害者的腿部，目的是“使其在几个月内无法使用腿部”。</p>
+            
+            <p><b>2. 法律定性：</b><br>
+            虽然该男子<b>没有</b>“杀人意图” (Intent to kill)，但他开枪射击他人腿部并意图致其残疾，这在法律上构成了<b>“造成严重身体伤害的意图” (Intent to inflict great bodily injury)</b>。</p>
+            
+            <p><b>3. 结论：</b><br>
+            只要具备上述四种恶意中的一种（本案中为第二种），由此导致的死亡即构成<b>谋杀 (Murder)</b>。即使死亡结果（击中动脉失血过多）超出了他的预期，他仍需对谋杀负责。</p>
+        </div>
+
+        <!-- 排除错误选项 -->
+        <div class="wrong-option">
+            <strong>为什么不是 B (Voluntary Manslaughter)?</strong><br>
+            自愿过失杀人通常需要“激情杀人” (Heat of Passion) 且有“充分挑衅” (Adequate Provocation)。本案中男子是为了比赛优势而冷静策划的袭击，不存在法律认可的挑衅。
+        </div>
+
+        <div class="wrong-option">
+            <strong>为什么不是 C (Involuntary Manslaughter)?</strong><br>
+            非自愿过失杀人通常基于“过失” (Negligence) 或“鲁莽” (Recklessness)。但本案中男子是<b>故意</b>开枪伤人，其心态（恶意）程度高于过失，因此定罪升级为谋杀。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <span class="mbe-tip-title">💡 MBE 考试技巧</span>
+            <p>看到“他不想杀人” (He did not intend to kill) 时，千万不要急着排除 Murder！</p>
+            <p>一定要检查是否存在<b>“造成严重伤害的意图” (Intent to cause serious bodily harm)</b>。如果被告故意实施了极可能导致重伤的行为（如向四肢开枪、用重物击打头部），在普通法下这就是谋杀。</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

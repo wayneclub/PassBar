@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-box strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .rule-block {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .rule-block i {
+            color: #f57c00;
+            font-weight: bold;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+
+        .analysis-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .step-icon {
+            background-color: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .exam-tip {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+
+        .exam-tip h3 {
+            margin: 0 0 10px 0;
+            color: var(--correct-color);
+            font-size: 1rem;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure (民事诉讼法)</div>
+    </div>
+
+    <div class="content">
+        <!-- 答案揭晓 -->
+        <div class="answer-box">
+            <strong>正确答案：B</strong>
+            <p>Defendant 未能保留上诉理由，因为在法官告知双方拟议指令后，Defendant 未提出异议。</p>
+        </div>
+
+        <!-- 核心法律规则 -->
+        <div class="section-title">⚖️ 法律依据：FRCP Rule 51</div>
+        <p>本题考查《联邦民事诉讼规则》第51条关于<b>陪审团指令 (Jury Instructions)</b> 的异议保留规则。</p>
+        
+        <div class="rule-block">
+            <i>Rule 51(c)(1) - 异议的要求</i><br>
+            当事人若要针对陪审团指令提出上诉（保留错误），必须在记录在案 (on the record) 的情况下提出异议，明确指出：
+            <ol style="margin: 5px 0 5px 20px; padding-left: 0;">
+                <li>反对的事项；</li>
+                <li>反对的理由。</li>
+            </ol>
+        </div>
+
+        <div class="rule-block">
+            <i>Rule 51(b)(2) - 时间点</i><br>
+            法官必须在指示陪审团和进行最终辩论 (Final Arguments) <b>之前</b>，告知双方其拟议的指令。此时是当事人提出异议的关键窗口期。
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="section-title">🔍 逻辑推演</div>
+        
+        <div class="analysis-step">
+            <div class="step-icon">1</div>
+            <div>
+                <b>提交并非保留：</b> 被告虽然提交了拟议指令 (Proposed Instruction)，但这仅仅是“请求”。单纯提交请求并不等同于对法官拒绝该请求后的“异议”。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">2</div>
+            <div>
+                <b>法官的通知：</b> 法官告知双方她将使用自己的指令，而不包括被告的指令。此时，法官履行了 Rule 51(b)(1) 的义务。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">3</div>
+            <div>
+                <b>沉默即放弃 (Waiver)：</b> 当法官告知不使用被告的指令时，被告<b>必须</b>在此时（或在法官指示陪审团之前）提出正式异议 (Object)。
+            </div>
+        </div>
+        
+        <div class="analysis-step">
+            <div class="step-icon">4</div>
+            <div>
+                <b>结论：</b> 题目明确指出“Neither party objected”。因此，被告没有满足 Rule 51 的要求，该错误未被保留 (Not Preserved)。
+            </div>
+        </div>
+
+        <!-- 为什么其他选项错误 -->
+        <div class="section-title">❌ 陷阱排除</div>
+        <p><b>选项 A 错误：</b> 虽然在指示陪审团后也可以提出异议，但最关键的失误是在法官告知拟议指令后（指示陪审团前）没有利用机会提出异议。选项B更精准地指出了最早且最主要的程序失误。</p>
+        <p><b>选项 C 错误：</b> 仅仅提交拟议指令是不够的。除非法官对该请求做出了<b>明确的驳回裁定 (Definitive Ruling)</b> 并记录在案，否则当事人仍需在法官决定不使用该指令时提出异议。</p>
+        <p><b>选项 D 错误：</b> 法官仅仅是“告知”将使用自己的指令，这通常不被视为 Rule 51(d)(1)(B) 所规定的“明确裁定”。为了安全起见，律师必须在此时口头提出异议以确立记录。</p>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <h3>🎓 MBE 考试技巧</h3>
+            <p>在处理 <b>Jury Instructions</b> 的题目时，记住黄金法则：</p>
+            <p><b>"No Objection, No Appeal"</b></p>
+            <p>除非发生极罕见的“明显错误 (Plain Error)”，否则如果你在审判庭上没有大声说出 "I object" 并说明理由，你就失去了上诉的权利。不要以为提交了书面文件就万事大吉。</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Civil Procedure Q88830 Analysis
+    </div>
+</div>
+
+</body>
+</html>

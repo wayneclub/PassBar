@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .header p {
+            margin: 8px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 24px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .answer-badge {
+            display: inline-block;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 16px;
+            border: 1px solid #c8e6c9;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            border-left: 4px solid #4ca1af;
+            padding-left: 10px;
+        }
+        .concept-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+        .key-term {
+            font-weight: 600;
+            color: #d35400;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 13px;
+        }
+        th {
+            background-color: #34495e;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            background-color: #fff;
+        }
+        .exam-tip {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-top: 24px;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f8f9fa;
+            font-size: 12px;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+        }
+    </style>
+<style data-getbar-card-sanitizer>
+html, body {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
+.container {
+    height: auto !important;
+    min-height: 0 !important;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Civil Procedure / Evidence</p>
+    </div>
+
+    <div class="content">
+        <div class="answer-badge">正确答案：C</div>
+        
+        <p>本题的核心考点在于<strong>律师工作成果原则 (Attorney Work-Product Doctrine)</strong> 的例外情况。虽然律师的笔记通常受到保护，但在特定条件下必须披露。</p>
+
+        <div class="section-title">1. 法律规则解析</div>
+        <div class="concept-box">
+            根据《联邦民事诉讼规则》第26(b)(3)条 (Fed. R. Civ. P. 26(b)(3))，律师为预期诉讼而准备的材料享有特免权。但是，这种保护并非绝对。
+        </div>
+
+        <p>我们需要区分两种类型的工作成果：</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th width="30%">类型</th>
+                    <th>定义与保护程度</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>意见性工作成果</strong><br>(Opinion Work Product)</td>
+                    <td>包含律师的法律理论、策略、印象或意见。<br><span style="color:#e74c3c">几乎绝对受保护</span>，极难被强制披露。</td>
+                </tr>
+                <tr>
+                    <td><strong>普通工作成果</strong><br>(Ordinary Work Product)</td>
+                    <td>律师收集的事实性材料（如本题中的证人访谈笔记）。<br><span style="color:#27ae60">有条件受保护</span> (Qualified Immunity)。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-title">2. 强制披露的“两步测试”</div>
+        <p>对于<strong>普通工作成果</strong>（如事实笔记），如果请求方能证明以下两点，法院可强制要求出示：</p>
+        <ol>
+            <li><strong>实质性需求 (Substantial Need)：</strong> 请求方在准备案件时非常需要这些材料。</li>
+            <li><strong>过度困难 (Undue Hardship)：</strong> 请求方无法通过其他手段获得相当的资料，或者获得这些资料需要付出极大的代价。</li>
+        </ol>
+
+        <div class="section-title">3. 案情应用</div>
+        <p>在本案中：</p>
+        <ul>
+            <li><strong>事实：</strong> 原告律师采访了<strong>唯一</strong>的目击证人。</li>
+            <li><strong>关键点：</strong> 该证人现已<strong>去世</strong> (Deceased)。</li>
+            <li><strong>结论：</strong> 被告无法通过约谈证人来获取信息（因为人已经死了），且没有其他目击者。这构成了典型的“过度困难”和“实质性需求”。</li>
+        </ul>
+        <p>因此，尽管这些笔记是律师的工作成果，但由于证人死亡且不可替代，<strong>特免权被打破</strong>，笔记必须被出示。</p>
+
+        <div class="section-title">4. 为什么其他选项是错的？</div>
+        
+        <p><strong>❌ 选项 A (Attorney-Client Privilege):</strong><br>
+        律师-当事人特免权仅保护律师与<strong>客户</strong>之间的沟通。本案中的目击证人是第三方，不是客户，因此不适用此特免权。</p>
+
+        <p><strong>❌ 选项 B (Work-Product Doctrine):</strong><br>
+        虽然笔记确实属于工作成果，但如上所述，本案满足了“实质性需求”和“过度困难”的例外条件，因此保护失效。</p>
+
+        <p><strong>❌ 选项 D (Inconsistent Statements):</strong><br>
+        仅凭“有理由相信存在矛盾陈述”通常不足以克服工作成果特免权。必须证明无法通过其他途径获取该信息（即Undue Hardship）。</p>
+
+        <div class="exam-tip">
+            <strong>💡 考试技巧 (Exam Tip)</strong><br>
+            在 MBE 考试中，看到“律师笔记 (Attorney's notes)” + “证人死亡/失踪 (Witness deceased/unavailable)” 的组合时，几乎总是指向 <strong>Work-Product Doctrine 的例外</strong>。
+            <br><br>
+            注意区分：如果是律师的<strong>纯法律分析</strong>（Opinion），即使证人死了通常也不用交；如果是<strong>事实记录</strong>（Ordinary），证人死了通常必须交。
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

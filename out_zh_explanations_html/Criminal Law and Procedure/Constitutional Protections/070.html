@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕 */
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--correct-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .case-law {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border: 1px solid #bce0fd;
+        }
+
+        .case-name {
+            font-weight: bold;
+            font-style: italic;
+            color: var(--primary-color);
+        }
+
+        .wrong-option {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #fff5f5;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .wrong-label {
+            color: var(--wrong-color);
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .latin {
+            font-style: italic;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Criminal Procedure: Search & Seizure</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：D</span>
+            <strong>是，因为该执法人员没有搜查令。</strong><br>
+            (Yes, because the officer had no warrant.)
+        </div>
+
+        <p>本题的核心考点在于<strong>第四修正案（Fourth Amendment）</strong>对搜查的要求，特别是<strong>第三方同意（Third-Party Consent）</strong>在酒店环境中的适用性。</p>
+
+        <div class="section-title">⚖️ 法律推理 (Legal Reasoning)</div>
+        
+        <p>根据美国宪法第四修正案，警方进行搜查通常需要基于<strong>相当理由（Probable Cause）</strong>并取得<strong>搜查令（Warrant）</strong>。无证搜查（Warrantless Search）原则上被视为不合理，除非适用特定的例外情况（如同意、紧急情况等）。</p>
+
+        <p>本案中，执法人员没有搜查令，而是依赖酒店经理的“同意”进入房间。这里涉及两个关键概念：</p>
+        
+        <ul>
+            <li><strong>实际权限 (Actual Authority)：</strong> 酒店经理虽然有权进入房间进行打扫或维修，但<strong>没有权利</strong>代表客人放弃其隐私权，允许警方进行搜查。</li>
+            <li><strong>表见权限 (Apparent Authority)：</strong> 警方是否可以“合理地相信”经理有权同意？最高法院已明确裁定，警方依赖酒店职员的同意进入客房是不合理的。</li>
+        </ul>
+
+        <div class="case-law">
+            <div class="case-name">Stoner v. California (1964)</div>
+            <p>这是一个经典的 MBE 判例。最高法院裁定，酒店客人对自己的房间享有<strong>合理的隐私期待 (Reasonable Expectation of Privacy)</strong>。虽然客人默示同意酒店员工（如清洁工）进入，但这并不意味着同意让警察进入搜查。因此，酒店经理无权同意警方的无证搜查。</p>
+        </div>
+
+        <p>由于经理的同意无效，警方的进入是非法的。因此，即使日记是“一目了然”（Plain View）地放在床上，由于警方<strong>非法进入</strong>在先，该证据是<strong>毒树之果（Fruit of the Poisonous Tree）</strong>，必须被排除。</p>
+
+        <div class="section-title">❌ 为什么其他选项是错误的？</div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 A (实际权限) 错误：</span><br>
+            如上所述，酒店经理拥有管理酒店的权限，但没有“实际权限”去放弃客人的宪法权利。客人支付房费后，在该期间内拥有房间的专属占有权。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 B (表见权限) 错误：</span><br>
+            表见权限要求警方的信赖是“合理的”（Reasonable）。由于法律明确规定酒店经理无权同意搜查，执法人员如果认为经理有权同意，这种信念是<strong>法律上的错误</strong>，不被视为合理信赖。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 C (第五修正案) 错误：</span><br>
+            这是一个常见的干扰项。<strong>第五修正案（Privilege against Self-Incrimination）</strong>保护的是不被“强迫”自证其罪。日记是该女子<strong>自愿</strong>写下的，并非警方强迫她写的。搜查日记属于第四修正案（搜查与扣押）的问题，而非第五修正案的问题。
+        </div>
+
+        <div class="section-title">🎓 MBE 考试技巧 (Exam Tip)</div>
+        
+        <p>在处理<strong>搜查与扣押 (Search and Seizure)</strong> 的题目时，请遵循以下逻辑链条：</p>
+        <ol>
+            <li><strong>政府行为？</strong> (是，联邦官员)</li>
+            <li><strong>合理的隐私期待？</strong> (是，酒店房间如同家一样受保护)</li>
+            <li><strong>有搜查令吗？</strong> (无)</li>
+            <li><strong>有例外情况吗？</strong> (本题考察“同意”例外)</li>
+        </ol>
+        <p><strong>记住：</strong> 房东（Landlord）和酒店经理（Hotel Manager）通常<strong>不能</strong>同意警方搜查租客或客人的房间。如果题目中警察仅凭房东或经理开门就进去搜查，该搜查通常是非法的。</p>
+
+    </div>
+    
+    <div class="footer">
+        MBE 模拟题解析 | Constitutional Law & Criminal Procedure
+    </div>
+</div>
+
+</body>
+</html>

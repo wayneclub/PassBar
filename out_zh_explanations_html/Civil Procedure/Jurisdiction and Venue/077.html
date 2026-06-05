@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析：民事诉讼法 - 管辖权与审判地</title>
+    
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">民事诉讼法: 管辖权与审判地</p>
+        </header>
+
+        <div class="content-section">
+            <div class="answer-box">
+                <p><strong>正确答案：B</strong></p>
+                <p><strong>判决理由：</strong>法院应驳回司机提出的动议，因为该女性的诉求与该男性的诉求源于共同的诉讼事实核心，且符合联邦法院行使补充管辖权的条件。</p>
+            </div>
+
+            <h2>核心法律规则</h2>
+            <div class="concept-box">
+                <p class="concept-title">联邦法院的管辖权</p>
+                <ul>
+                    <li><strong>原始主题事项管辖权 (<span class="term">Original Subject-Matter Jurisdiction</span>)</strong>：联邦地区法院对以下两种争议拥有原始主题事项管辖权：</li>
+                    <ul>
+                        <li><strong>联邦问题管辖权 (<span class="term">Federal-Question Jurisdiction</span>)</strong>：争议源于美国宪法、联邦条约或联邦法律。</li>
+                        <li><strong>多元化管辖权 (<span class="term">Diversity Jurisdiction</span>)</strong>：对立双方是不同州的公民，且争议金额超过 $75,000。</li>
+                    </ul>
+                    <li><strong>补充管辖权 (<span class="term">Supplemental Jurisdiction</span>)</strong>：当法院对某个诉求拥有原始主题事项管辖权时，可以对其他不满足原始管辖权要求的相关诉求行使补充管辖权，前提是这些诉求与原始诉求共享<strong>共同的诉讼事实核心 (<span class="term">common nucleus of operative facts</span>)</strong>。</li>
+                    <li><strong>多元化管辖下的补充管辖限制 (<span class="term">Limitations on Supplemental Jurisdiction in Diversity Cases</span>)</strong>：当原始诉求仅基于多元化管辖权时，如果补充诉求符合以下任一情况，则<strong>不允许 (<span class="term">not permitted</span>)</strong> 行使补充管辖权：</li>
+                    <ul>
+                        <li>会<strong>破坏完全多元化 (<span class="term">contaminate diversity</span>)</strong>（例如，引入与现有当事人不多元化的新当事人）。</li>
+                        <li>由<strong>原告 (<span class="term">plaintiff</span>)</strong> 提出，且争议金额为 <strong>$75,000 或更少</strong>，并且是针对通过加入 (<span class="term">joinder</span>)、干预 (<span class="term">intervention</span>) 或第三方诉讼 (<span class="term">impleader</span>) 加入的当事人，或者原告寻求通过强制加入 (<span class="term">compulsory joinder</span>) 或干预加入的诉求。</li>
+                    </ul>
+                </ul>
+            </div>
+
+            <h2>概念对比：原始管辖权 vs. 补充管辖权</h2>
+            <div style="overflow-x: auto;">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>特征</th>
+                            <th>原始主题事项管辖权 (<span class="term">Original Subject-Matter Jurisdiction</span>)</th>
+                            <th>补充管辖权 (<span class="term">Supplemental Jurisdiction</span>)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>基础</td>
+                            <td>联邦问题或多元化公民身份与争议金额</td>
+                            <td>与法院已有原始管辖权的诉求共享共同的诉讼事实核心</td>
+                        </tr>
+                        <tr>
+                            <td>要求</td>
+                            <td>必须满足联邦问题或多元化管辖的所有法定要求</td>
+                            <td>不需独立满足原始管辖权要求，但需与原始诉求关联</td>
+                        </tr>
+                        <tr>
+                            <td>目的</td>
+                            <td>确保联邦法院处理特定类型的案件</td>
+                            <td>提高司法效率，避免同一争议在不同法院审理</td>
+                        </tr>
+                        <tr>
+                            <td>限制</td>
+                            <td>法定明确规定</td>
+                            <td>当原始诉求仅基于多元化管辖时，对某些原告提出的某些诉求有特定限制 (28 U.S.C. § 1367(b))</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>案件事实与适用逻辑</h2>
+            <div class="analysis-step">
+                <p>本案中，一名男性和一名女性在骑自行车时被一名司机撞伤。他们都在联邦地区法院提起了过失诉讼。</p>
+                <ol>
+                    <li><strong>男性的诉求：</strong>男性索赔 $80,000，超过了多元化管辖的 $75,000 争议金额要求。男性和女性是 A 州公民，司机是 B 州公民，满足了完全多元化公民身份的要求。因此，联邦法院对男性的诉求拥有<strong>原始多元化管辖权</strong>。</li>
+                    <li><strong>女性的诉求：</strong>女性索赔 $2,000，未达到多元化管辖的 $75,000 争议金额要求。虽然她与司机是多元化公民，但其诉求本身不满足原始多元化管辖权。</li>
+                    <li><strong>共同的诉讼事实核心：</strong>男性和女性的诉求均源于同一场交通事故，因此它们共享<strong>共同的诉讼事实核心</strong>。</li>
+                    <li><strong>补充管辖权的适用：</strong>由于男性的诉求满足原始多元化管辖权，且女性的诉求与男性的诉求共享共同的诉讼事实核心，法院可以考虑对女性的诉求行使补充管辖权。</li>
+                    <li><strong>补充管辖权的限制：</strong>根据 28 U.S.C. § 1367(b)，当原始诉求仅基于多元化管辖权时，对某些由原告提出的诉求行使补充管辖权会受到限制。然而，这些限制通常适用于原告针对通过规则 14、19、20 或 24 加入的当事人提出的诉求，或寻求根据规则 19 或 24 干预的原告提出的诉求。本案中，女性是原始原告，她针对原始被告（司机）提出诉求，且她的诉求不会破坏完全多元化。因此，这些限制不适用于女性的诉求。</li>
+                    <li><strong>结论：：</strong>联邦法院可以对女性的诉求行使补充管辖权。因此，司机要求驳回女性诉求的动议不应被批准。</li>
+                </ol>
+            </div>
+
+            <h2>主题事项管辖权判断流程图</h2>
+            <div class="diagram">
+                <div class="diagram-flow">
+                    <div class="flow-node">原始管辖权</div>
+                    <div class="flow-node">
+                        <ul>
+                            <li>联邦问题 – 诉求源于美国宪法、条约或联邦法律</li>
+                            <li>多元化 – 对立双方是不同州的公民 & 争议金额 &gt; $75,000</li>
+                        </ul>
+                    </div>
+                    <div class="flow-question">满足原始管辖权条件吗？</div>
+                    <div class="flow-branches">
+                        <div class="flow-branch">
+                            <div class="flow-label">是</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-node active">主题事项管辖权</div>
+                        </div>
+                        <div class="flow-branch">
+                            <div class="flow-label">否</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-node">补充管辖权</div>
+                            <div class="flow-node">诉求与原始诉求共享共同的诉讼事实核心吗？</div>
+                            <div class="flow-branches">
+                                <div class="flow-branch">
+                                    <div class="flow-label">否</div>
+                                    <div class="arrow">↓</div>
+                                    <div class="flow-node">无主题事项管辖权</div>
+                                </div>
+                                <div class="flow-branch">
+                                    <div class="flow-label">是</div>
+                                    <div class="arrow">↓</div>
+                                    <div class="flow-node">原始诉求是否仅基于多元化管辖权？</div>
+                                    <div class="flow-branches">
+                                        <div class="flow-branch">
+                                            <div class="flow-label">否</div>
+                                            <div class="arrow">↓</div>
+                                            <div class="flow-node active">主题事项管辖权</div>
+                                        </div>
+                                        <div class="flow-branch">
+                                            <div class="flow-label">是</div>
+                                            <div class="arrow">↓</div>
+                                            <div class="flow-node">补充诉求是否属于 28 U.S.C. § 1367(b) 限制范围？</div>
+                                            <div class="flow-node">
+                                                <ul>
+                                                    <li>原告的允许性加入会破坏完全多元化 或</li>
+                                                    <li>由现有原告提出：针对已加入、干预或第三方诉讼的当事人 或</li>
+                                                    <li>寻求强制加入或干预</li>
+                                                </ul>
+                                            </div>
+                                            <div class="flow-branches">
+                                                <div class="flow-branch">
+                                                    <div class="flow-label">是</div>
+                                                    <div class="arrow">↓</div>
+                                                    <div class="flow-node">无主题事项管辖权</div>
+                                                </div>
+                                                <div class="flow-branch">
+                                                    <div class="flow-label">否</div>
+                                                    <div class="arrow">↓</div>
+                                                    <div class="flow-node">法院是否酌情拒绝管辖？</div>
+                                                    <div class="flow-node">
+                                                        <ul>
+                                                            <li>诉求提出新颖/复杂的州法律问题</li>
+                                                            <li>诉求压倒原始诉求</li>
+                                                            <li>原始诉求已被驳回 或</li>
+                                                            <li>其他令人信服的理由</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="flow-branches">
+                                                        <div class="flow-branch">
+                                                            <div class="flow-label">是</div>
+                                                            <div class="arrow">↓</div>
+                                                            <div class="flow-node">无主题事项管辖权</div>
+                                                        </div>
+                                                        <div class="flow-branch">
+                                                            <div class="flow-label">否</div>
+                                                            <div class="arrow">↓</div>
+                                                            <div class="flow-node active">主题事项管辖权</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>考点陷阱</h2>
+            <div class="trap-alert">
+                <p><strong>误区警示：</strong>许多考生错误地认为，只要原始诉求是基于多元化管辖权，那么任何不满足争议金额要求的补充诉求都不能获得补充管辖权。然而，联邦法律 (28 U.S.C. § 1367(b)) 对此有<strong>具体限制</strong>，并非一概而论。</p>
+                <p>这些限制主要针对由<strong>原告</strong>提出的、针对<strong>通过规则 14、19、20 或 24 加入的当事人</strong>的诉求，或<strong>寻求根据规则 19 或 24 干预的原告</strong>的诉求。本案中，女性是原始原告，针对原始被告提出诉求，因此这些限制不适用。</p>
+                <p>此外，请注意<strong>争议金额的聚合规则</strong>：多个原告通常不能将他们的索赔金额加总以满足争议金额要求，除非他们寻求强制执行共同的或未分割的权益。</p>
+            </div>
+
+            <h2>正确答案与干扰项排除</h2>
+            <div class="option-analysis">
+                <div class="option correct">
+                    <p><strong>B. 否，因为该女性的诉求与该男性的诉求源于共同的诉讼事实核心。</strong></p>
+                    <p><strong>正确。</strong>联邦法院对男性的 $80,000 索赔拥有原始多元化管辖权。女性的 $2,000 索赔虽然不满足争议金额要求，但与男性的索赔源于同一交通事故，因此共享共同的诉讼事实核心。根据 28 U.S.C. § 1367(a)，法院可以对共享共同诉讼事实核心的补充诉求行使补充管辖权。本案中，女性是原始原告，针对原始被告提出诉求，且不会破坏完全多元化，因此 28 U.S.C. § 1367(b) 的限制不适用。</p>
+                </div>
+                <div class="option wrong">
+                    <p><strong>A. 否，因为法院拥有绝对的自由裁量权来对该女性的诉求行使补充管辖权。</strong></p>
+                    <p><strong>错误。</strong>法院行使补充管辖权并非拥有“绝对”的自由裁量权。虽然法院在某些情况下可以酌情拒绝行使补充管辖权（如诉求提出新颖复杂的州法律问题），但其权力受到联邦法律（如 28 U.S.C. § 1367(b)）的法定限制。</p>
+                </div>
+                <div class="option wrong">
+                    <p><strong>C. 是，因为该女性的诉求不满足争议金额要求。</strong></p>
+                    <p><strong>错误。</strong>虽然女性的诉求本身不满足多元化管辖的争议金额要求 ($2,000 &lt; $75,000)，但这正是需要补充管辖权来覆盖的原因。如果满足原始管辖权，则无需补充管辖权。由于其与男性的诉求共享共同的诉讼事实核心，且不属于 § 1367(b) 的例外情况，法院可以行使补充管辖权。</p>
+                </div>
+                <div class="option wrong">
+                    <p><strong>D. 是，因为该女性的诉求会破坏多元化公民身份。</strong></p>
+                    <p><strong>错误。</strong>该女性是 A 州公民，司机是 B 州公民，他们之间存在多元化公民身份。女性的诉求不会“破坏”多元化，因为她没有引入与现有当事人不多元化的新当事人。破坏多元化通常发生在补充诉求引入与现有当事人来自同一州的新当事人时。</p>
+                </div>
+            </div>
+
+            <h2>备考锦囊</h2>
+            <div class="footer-tip">
+                <p>在 MBE 考试中，关于补充管辖权，尤其是在多元化管辖权案件中，要记住：</p>
+                <ul>
+                    <li>如果一个诉求与法院已有的原始管辖权诉求共享<strong>共同的诉讼事实核心</strong>，那么即使它本身不满足原始管辖权要求，法院通常也可以行使补充管辖权。</li>
+                    <li>关键在于识别 28 U.S.C. § 1367(b) 中针对<strong>多元化管辖案件的特定限制</strong>。这些限制主要适用于<strong>原告</strong>针对<strong>通过特定规则加入的当事人</strong>提出的诉求，或<strong>寻求干预的原告</strong>。如果补充诉求不属于这些例外情况，即使金额不足，也可能获得补充管辖权。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

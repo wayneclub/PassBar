@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            line-height: 1.4;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            border-left: 4px solid var(--accent-color);
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .timeline-container {
+            margin: 20px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 20px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+        }
+
+        .timeline-item:last-child {
+            border-left: none;
+        }
+
+        .key-point {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .analysis {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .option-analysis {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        .footer-tip {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析<br>判决错误的修正 (FRCP 60(a))</h2>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心规则 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 法律规则：FRCP 60(a)</span>
+            <p>联邦民事诉讼规则第 60(a) 条规定，法院可以随时纠正判决、命令或记录中的<b>笔误 (Clerical Mistakes)</b> 或因疏忽、遗漏造成的错误。</p>
+            <p>纠正的方式取决于案件是否已进入上诉程序：</p>
+        </div>
+
+        <!-- 时间轴图解 -->
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <strong>阶段 1：上诉登记前 (Before Appeal Docketed)</strong><br>
+                法院可以<span class="key-point">依职权主动 (Sua Sponte)</span> 或应一方动议纠正错误。无需上诉法院许可。
+            </div>
+            <div class="timeline-item">
+                <strong>阶段 2：上诉登记后 (After Appeal Docketed)</strong><br>
+                只有在获得<span class="key-point">上诉法院许可 (Leave of Appellate Court)</span> 后，地区法院才能纠正错误。
+            </div>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis">
+            <h3>📝 本案分析</h3>
+            <p><b>1. 错误的性质：</b><br>
+            陪审团裁定赔偿 $1,000,000，但判决书写成 $1,000。这显然是一个典型的<b>笔误 (Clerical Mistake)</b>，属于 FRCP 60(a) 的管辖范围。</p>
+            
+            <p><b>2. 时间节点：</b><br>
+            被告刚刚提交了“上诉通知” (Notice of Appeal)。虽然上诉程序启动了，但题目暗示上诉尚未在上一级法院<b>正式登记在册 (Docketed)</b>。</p>
+            
+            <p><b>3. 结论：</b><br>
+            因为上诉尚未被 Docketed，地区法院仍保留纠正笔误的管辖权。法院无需通知当事人，也无需请求上诉法院许可，即可<b>依职权主动 (on its own initiative)</b> 修正金额。</p>
+        </div>
+
+        <!-- 选项辨析 -->
+        <div class="option-analysis">
+            <p>❌ <b>选项 B 错误：</b> 地区法院无权“指示”上诉法院如何行动。这是上下级法院关系的倒置。</p>
+            <p>❌ <b>选项 C 错误：</b> 对于纯粹的笔误 (Clerical Mistake)，FRCP 60(a) 允许法院在不通知当事人的情况下直接修正。</p>
+            <p>❌ <b>选项 D 错误：</b> 只有在上诉已经<b>登记 (Docketed)</b> 后，才需要上诉法院的许可 (Leave)。仅提交上诉通知 (Filing Notice of Appeal) 尚不需要许可。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="footer-tip">
+            <strong>💡 考试技巧 (Exam Tip)：</strong><br>
+            在 MBE 考试中，注意区分 <b>"Filing a Notice of Appeal"</b>（向地区法院提交）和 <b>"Appeal Docketed"</b>（上诉法院立案登记）。<br><br>
+            FRCP 60(a) 的分界线是 <b>Docketing</b>。在此之前，地区法院说了算；在此之后，必须先问过“上级”。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

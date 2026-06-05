@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --text-color: #333;
+        --bg-color: #f4f6f7;
+        --card-bg: #ffffff;
+        --correct-color: #27ae60;
+        --wrong-color: #c0392b;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background-color: var(--bg-color);
+    }
+    .header {
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+    .card {
+        background-color: var(--card-bg);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        border-left: 5px solid var(--accent-color);
+    }
+    .card-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        font-size: 1.1rem;
+    }
+    .icon {
+        margin-right: 8px;
+    }
+    .rule-box {
+        background-color: var(--highlight-bg);
+        border: 1px solid #bee3f8;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 10px 0;
+    }
+    .key-term {
+        font-weight: bold;
+        color: var(--primary-color);
+        background-color: #eee;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.9em;
+    }
+    .answer-analysis {
+        margin-top: 10px;
+    }
+    .option {
+        margin-bottom: 8px;
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #eee;
+    }
+    .option.correct {
+        border-color: var(--correct-color);
+        background-color: #f0fff4;
+    }
+    .option.wrong {
+        border-color: #eee;
+        opacity: 0.8;
+    }
+    .badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        color: white;
+        margin-right: 5px;
+    }
+    .badge-correct { background-color: var(--correct-color); }
+    .badge-wrong { background-color: var(--wrong-color); }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0;
+        font-size: 0.9rem;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: var(--primary-color);
+        color: white;
+    }
+    .footer {
+        text-align: center;
+        font-size: 0.8rem;
+        color: #777;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Civil Procedure: Res Judicata & Choice of Law</p>
+    </div>
+
+    <!-- Core Concept -->
+    <div class="card">
+        <div class="card-title">
+            <span>⚖️ 核心考点：判决效力的法律适用</span>
+        </div>
+        <p>本题考察的核心问题是：<b>当一个判决由联邦法院作出时，另一个法院（无论是州法院还是联邦法院）应依据什么法律来判断该判决的既判力（Res Judicata/Claim Preclusion）？</b></p>
+        
+        <div class="rule-box">
+            <strong>黄金法则 (The Golden Rule):</strong><br>
+            决定判决既判力（Preclusive Effect）的法律，由<b>作出判决的法院（Rendering Court）</b>所属的体系决定。
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>判决作出法院<br>(Rendering Court)</th>
+                    <th>适用的法律<br>(Applicable Law)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>联邦法院</b></td>
+                    <td><b>联邦法律</b> (Federal Law)</td>
+                </tr>
+                <tr>
+                    <td><b>州法院</b></td>
+                    <td>该<b>州的法律</b> (State Law)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Correct Answer Analysis -->
+    <div class="card" style="border-left-color: var(--correct-color);">
+        <div class="card-title" style="color: var(--correct-color);">
+            <span>✅ 正确答案解析 (选项 A)</span>
+        </div>
+        <p><b>答案：联邦法律，因为判决是由联邦法院作出的。</b></p>
+        <p><b>法律依据：</b>根据美国最高法院在 <i>Semtek Int'l Inc. v. Lockheed Martin Corp.</i> (2001) 一案中的裁决，联邦法院判决的既判力效力由<b>联邦普通法 (Federal Common Law)</b> 决定。</p>
+        
+        <p><b>逻辑推演：</b></p>
+        <ol>
+            <li>本案中，第一个判决（Dismissal with prejudice）是由<b>联邦法院</b>作出的。</li>
+            <li>因此，必须依据<b>联邦法律</b>来决定该判决是否具有阻断后续诉讼（Preclusion）的效力。</li>
+            <li>虽然在多样性管辖（Diversity Jurisdiction）案件中，联邦普通法通常会采纳该联邦法院所在州的既判力规则，但<b>法律的源头（Source of Authority）</b>依然是联邦法。</li>
+        </ol>
+    </div>
+
+    <!-- Distractor Analysis -->
+    <div class="card" style="border-left-color: var(--wrong-color);">
+        <div class="card-title" style="color: var(--wrong-color);">
+            <span>❌ 干扰项排除</span>
+        </div>
+        
+        <div class="option wrong">
+            <span class="badge badge-wrong">选项 B 错误</span>
+            <p><b>理由：</b>虽然案件涉及联邦集体诉讼规则 (FRCP 23)，但决定既判力法律适用的是<b>法院的性质</b>（联邦 vs 州），而不是具体的程序规则。</p>
+        </div>
+
+        <div class="option wrong">
+            <span class="badge badge-wrong">选项 C 错误</span>
+            <p><b>理由：</b>这是最常见的陷阱。虽然现在的诉讼在州法院进行（Court of Recognition），但州法院不能用自己的法律去评价联邦法院判决的效力，否则会破坏联邦判决的权威性。</p>
+        </div>
+
+        <div class="option wrong">
+            <span class="badge badge-wrong">选项 D 错误</span>
+            <p><b>理由：</b>这是一个法理错误。<b>联邦普通法 (Federal Common Law)</b> 在特定领域是存在的，其中就包括决定联邦判决的既判力效力。</p>
+        </div>
+    </div>
+
+    <!-- Exam Strategy -->
+    <div class="card">
+        <div class="card-title">
+            <span>🎓 备考锦囊 (Exam Tip)</span>
+        </div>
+        <p>在 MBE 考试中遇到 <b>Res Judicata (Claim Preclusion)</b> 或 <b>Collateral Estoppel (Issue Preclusion)</b> 的法律适用问题时，请遵循以下步骤：</p>
+        <ol>
+            <li><b>第一步：</b>找到<b>第一个判决 (Judgment 1)</b> 是哪里作出的。</li>
+            <li><b>第二步：</b>
+                <ul>
+                    <li>如果是<b>联邦法院</b>作出的 → 选 <b>Federal Law</b>。</li>
+                    <li>如果是<b>州法院</b>作出的 → 选 <b>State Law</b> (该州的法律)。</li>
+                </ul>
+            </li>
+            <li><b>注意 Semtek 规则的细微差别：</b> 如果题目问具体的排除规则是什么，对于联邦多元管辖权（Diversity）案件，联邦法通常会“借用”所在州的规则。但如果题目问（如本题）“依据什么法律”，答案永远是<b>联邦法</b>。</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        MBE Civil Procedure Review <br>
+        Based on NCBE Standards
+    </div>
+</div>
+
+</body>
+</html>

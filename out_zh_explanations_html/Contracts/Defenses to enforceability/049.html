@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: var(--primary-color);
+            font-size: 20px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            color: var(--primary-color);
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        .key-term {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .wrong-answer {
+            font-size: 14px;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .tip-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .badge {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <span class="badge">Contracts / Defenses</span>
+    <h1>核心考点：显失公平<br><small style="font-size: 0.7em; color: #666;">(Unconscionability)</small></h1>
+
+    <p>本题的正确答案是 <b>(D) Unconscionability</b>。这是土地所有者想要撤销合同的最佳法律依据。</p>
+
+    <div class="concept-box">
+        <strong>⚖️ 法律规则解析</strong>
+        <p><b>Unconscionability (显失公平/不合情理)</b> 是合同法中的一种抗辩理由，允许法院拒绝执行那些极其不公的合同。根据《统一商法典》(UCC § 2-302) 和《合同法重述》(Restatement § 208)，判定显失公平通常需要同时具备两个要素：</p>
+        <ol>
+            <li><b>程序上的显失公平 (Procedural Unconscionability)：</b> 指谈判过程中的不公。例如：双方议价能力悬殊、一方缺乏专业知识、或者没有真正的选择权。</li>
+            <li><b>实体上的显失公平 (Substantive Unconscionability)：</b> 指合同条款本身极其苛刻或单方面压榨。例如：价格“震惊良知 (shocks the conscience)”。</li>
+        </ol>
+    </div>
+
+    <h2>本案事实分析</h2>
+    <p>为什么本案符合 <b>Unconscionability</b> 的标准？</p>
+    <ul>
+        <li><b>巨大的价格差异 (Substantive)：</b> 伐木工的出价只有市场价的 <b>30%</b>（低了70%）。这种价格差异极其悬殊，属于条款本身的极度不公。</li>
+        <li><b>议价能力与知识的不对等 (Procedural)：</b> 
+            <br>- <b>卖方：</b> 现金短缺、急迫、对木材价值“知之甚少 (knowing little about timber values)”。
+            <br>- <b>买方：</b> 拥有大型综合企业的专业伐木工，视察过土地，拥有专业知识。
+        </li>
+    </ul>
+    <p>当一个专业人士利用另一方的无知和财务困境，以极低的价格获取巨额利益时，法院极有可能认定该合同因“显失公平”而不可执行。</p>
+
+    <div class="wrong-answer">
+        <strong>🚫 为什么其他选项是错的？</strong>
+        <ul>
+            <li><b>(A) Bad Faith (恶意)：</b> 虽然价格低，但伐木工并没有违反“诚实信用”的具体义务（如撒谎或阻碍履行）。单纯的低价报价通常不构成法律上的 Bad Faith。</li>
+            <li><b>(B) Duress (胁迫)：</b> 这是一个常见的陷阱。<b>Economic Duress (经济胁迫)</b> 要求困境是由<b>对方的不当行为</b>造成的。本案中，土地所有者的财务危机是自己投资失败造成的，并非伐木工造成的。伐木工只是利用了这一机会，而非制造了这一威胁。</li>
+            <li><b>(C) Equitable Estoppel (衡平法上的禁止反言)：</b> 这通常用于防止一方否认其之前的陈述。本案中伐木工没有做出虚假陈述让土地所有者依赖，因此不适用。</li>
+        </ul>
+    </div>
+
+    <div class="tip-box">
+        <strong>🎓 MBE 考试技巧</strong>
+        <p>在处理合同抗辩题目时，请注意区分 <b>Duress</b> 和 <b>Unconscionability</b>：</p>
+        <ul style="margin-bottom:0;">
+            <li>如果题目强调一方受到了<b>威胁</b>（"Sign or I'll ruin you"），选 <b>Duress</b>。</li>
+            <li>如果题目强调<b>议价能力悬殊</b> + <b>条款极度不公</b>（"Gross disparity in price"），选 <b>Unconscionability</b>。</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

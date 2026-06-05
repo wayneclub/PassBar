@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --warning-bg: #fff3cd;
+        --warning-text: #856404;
+        --correct-bg: #d4edda;
+        --correct-text: #155724;
+        --text-color: #333;
+        --bg-color: #f4f7f6;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .header .sub-title {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .concept-box {
+        background: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        display: block;
+    }
+    .analysis-section {
+        margin-bottom: 20px;
+    }
+    .analysis-title {
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+    }
+    .option-analysis {
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+    }
+    .correct {
+        background-color: var(--correct-bg);
+        color: var(--correct-text);
+        border: 1px solid #c3e6cb;
+    }
+    .trap {
+        background-color: var(--warning-bg);
+        color: var(--warning-text);
+        border: 1px solid #ffeeba;
+    }
+    .exam-tip {
+        background: #2c3e50;
+        color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 0.9rem;
+    }
+    .exam-tip strong {
+        color: #f1c40f;
+    }
+    ul {
+        margin: 5px 0 5px 20px;
+        padding: 0;
+    }
+    li {
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property: Marketable Title</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心概念 -->
+        <div class="concept-box">
+            <span class="concept-title">📚 核心考点：默示的可销售产权 (Implied Covenant of Marketable Title)</span>
+            <p>在每一份土地买卖合同中（除非另有明确约定），卖方都默示承诺在交割（Closing）时向买方提供<b>可销售产权 (Marketable Title)</b>。</p>
+            <p><b>定义：</b>产权必须合理地免于疑问，且没有诉讼风险 (Reasonably free from doubt and threat of litigation)。</p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">💡 深度解析</div>
+            
+            <p>本题的核心矛盾在于：<b>“事实上的所有权” vs. “可销售的产权”</b>。</p>
+            
+            <p>虽然卖方通过<b>侵权逆占 (Adverse Possession)</b> 实际上可能已经获得了土地的所有权（占有了12年，法定时限为10年），但这并不意味着该产权是“可销售”的。</p>
+
+            <p><b>为什么侵权逆占的产权通常被视为“不可销售” (Unmarketable)？</b></p>
+            <ul>
+                <li><b>缺乏书面记录：</b>侵权逆占依赖于事实证明（如公开、持续占有等），而不是登记系统中的契据 (Deed)。</li>
+                <li><b>诉讼风险：</b>如果买方买下这块地，原登记所有权人 (Record Owner) 可能会起诉买方。买方将被迫在法庭上证明卖方当年的占有符合所有法律要件。</li>
+                <li><b>解决方案：</b>卖方必须先进行<b>确认产权诉讼 (Action to Quiet Title)</b>，获得法院判决后，该产权才变为“可销售”。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 正确答案分析 (选项 B)</div>
+            <div class="option-analysis correct">
+                <b>结论：买方不必购买。</b><br>
+                <b>理由：</b>因为产权存在不合理的诉讼风险 (Unreasonable risk of litigation)。<br><br>
+                虽然卖方可能最终能在法庭上胜诉，但<b>买方没有义务“买一场官司” (Buy a lawsuit)</b>。只要产权不是登记在册的 (Record Title)，且未经法院判决确认，它就被视为不可销售，买方有权解除合同。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">❌ 陷阱选项分析</div>
+            
+            <div class="option-analysis trap">
+                <b>选项 D (最强干扰项)：</b><br>
+                <i>“是，因为卖方通过侵权逆占取得了良好且可销售的产权。”</i><br><br>
+                <b>错误点：</b>这是MBE最经典的陷阱。卖方确实拥有<b>有效的 (Valid)</b> 产权，但这<b>不等于可销售的 (Marketable)</b> 产权。未经法院确权的侵权逆占产权，在合同法层面被视为不可销售。
+            </div>
+
+            <div class="option-analysis" style="background:#f8f9fa; border:1px solid #ddd;">
+                <b>选项 A (欺诈)：</b><br>
+                单纯的沉默通常不构成欺诈，除非存在披露义务。更重要的是，即使没有欺诈，产权不可销售本身就足以让买方退出，无需证明欺诈。
+            </div>
+
+            <div class="option-analysis" style="background:#f8f9fa; border:1px solid #ddd;">
+                <b>选项 C (合同沉默)：</b><br>
+                合同沉默恰恰意味着<b>默示</b>了可销售产权条款。正因为合同没提，卖方才必须提供好产权；如果卖方想卖“现状” (As-is) 或“仅转让现有权益” (Quitclaim)，必须明确写明。
+            </div>
+        </div>
+
+        <div class="exam-tip">
+            <strong>🎓 MBE 考试技巧 (Exam Tip)</strong><br><br>
+            看到 <b>"Adverse Possession" (侵权逆占)</b> 出现在不动产买卖合同 (Contract of Sale) 的题目中时，请立即警惕：<br><br>
+            1. 如果题目问“谁拥有土地？” → 答案通常是<b>占有人</b>（如果满足时效）。<br>
+            2. 如果题目问“买方必须购买吗？”或“产权是否可销售？” → 答案通常是<b>否 (No)</b>，除非卖方已经拿到了法院的判决书 (Judicial Decree)。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

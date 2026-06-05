@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-green: #27ae60;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .correct-choice {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--correct-green);
+        }
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .concept-tag {
+            background-color: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+            color: #555;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 2px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考题解析</h1>
+        <div class="sub-title">Civil Procedure | Claim Preclusion</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案</span>
+            <span class="correct-choice">选项 B</span>
+            <p style="margin-top: 5px; font-size: 14px;">"No, because the second action involves a different claim."<br>（不会，因为第二次诉讼涉及不同的请求权。）</p>
+        </div>
+
+        <!-- 核心考点 -->
+        <div class="section-title">核心考点：请求权排除</div>
+        <p>本题考察的是<b>请求权排除</b>（Claim Preclusion，又称 <i>Res Judicata</i>）的适用范围，特别是针对<b>分期履行合同</b>（Installment Contracts）或持续性义务的违约认定。</p>
+        
+        <p><b>规则三要素：</b><br>
+        请求权排除要生效，必须满足以下三个条件：</p>
+        <ol>
+            <li><b>相同当事人</b>（Same Parties）：原被告相同或具有利害关系（Privity）。</li>
+            <li><b>有效终局判决</b>（Valid Final Judgment on the Merits）。</li>
+            <li><b>相同请求权</b>（Same Claim）：源于同一交易或事件（Same Transaction or Occurrence）。</li>
+        </ol>
+
+        <!-- 深度解析 -->
+        <div class="section-title">法律推理与逻辑</div>
+        <p>本题的关键在于判断第二次诉讼是否属于“<b>相同请求权</b>”。</p>
+        
+        <p><b>1. 时间维度的切割：</b><br>
+        虽然两次诉讼都源于同一份合同，甚至涉及同一个条款（版税率），但根据美国联邦法律原则（及大多数州法），<b>请求权排除仅适用于在第一次诉讼提起时已经存在的请求权</b>。</p>
+        
+        <p><b>2. 新的违约 = 新的请求权：</b><br>
+        作家第一次起诉时，仅针对<b>第一年</b>的版税违约。当时，<b>第二年</b>的违约尚未发生，作家不可能在第一次诉讼中主张第二年的权利。因此，第二年的违约构成了一个<b>新的、独立的请求权</b>（Separate Claim）。</p>
+        
+        <p><b>3. 结论：</b><br>
+        由于第二次诉讼涉及的是一个新的请求权（第二年的版税），不满足 <i>Res Judicata</i> 的第三个要素，因此联邦法院不会因前诉判决而驳回本案。</p>
+
+        <!-- 易混淆概念辨析 -->
+        <div class="section-title">易混淆点：争点排除</div>
+        <p>考生常混淆<b>请求权排除</b>（Claim Preclusion）与<b>争点排除</b>（Issue Preclusion / Collateral Estoppel）。</p>
+        <ul>
+            <li><b>请求权排除</b>：试图将整个案件“拒之门外”。本题中出版商试图用此抗辩直接驳回起诉，但失败了。</li>
+            <li><b>争点排除</b>：试图不再争论某个具体事实或法律问题。如果作家主张：“法院啊，第一年诉讼已经判定版税率是7%了，出版商不能再辩称是4%了”，这属于争点排除，<b>这是可能会成功的</b>。</li>
+        </ul>
+        <p>但题目问的是出版商主张的 <i>Res Judicata</i>（即试图完全阻止作家起诉），这在法律上是不成立的。</p>
+
+        <!-- 错误选项分析 -->
+        <div class="section-title">为什么其他选项错误？</div>
+        <ul>
+            <li><b>选项 A (State Court)：</b>错误。根据《宪法》的<b>充分信任和尊重条款</b>（Full Faith and Credit Clause），联邦法院必须尊重州法院的判决。</li>
+            <li><b>选项 C (Identical Claims)：</b>错误。这是最大的干扰项。虽然合同条款相同，但违约发生在不同时间段。对于分期付款或周期性义务，随后的违约产生新的请求权。</li>
+            <li><b>选项 D (Actually Litigated)：</b>错误。“实际诉讼”是<b>争点排除</b>的要求，而非请求权排除的要求（请求权排除甚至适用于缺席判决）。且该选项未触及核心问题：请求权本身是不同的。</li>
+        </ul>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">MBE 考试技巧 💡</div>
+        <p>在遇到“前诉判决是否阻止后诉”的题目时：</p>
+        <ol>
+            <li>先看是<b>Claim Preclusion</b>（封杀整个案件）还是<b>Issue Preclusion</b>（封杀具体事实/法律点）。</li>
+            <li>如果是持续性合同（租金、版税、分期付款），记住口诀：<b>"You can't sue for tomorrow's breach today."</b>（你不能为明天的违约在今天起诉）。</li>
+            <li>后发生的违约永远是新的 Claim。</li>
+        </ol>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

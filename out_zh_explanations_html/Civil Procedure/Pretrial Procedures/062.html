@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --sub-text: #7f8c8d;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: #ebf5fb;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .rule-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+
+        .step-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+
+        .step-icon {
+            background-color: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 12px;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .step-content {
+            font-size: 14px;
+        }
+
+        .step-content strong {
+            color: var(--primary-color);
+        }
+
+        .alert-box {
+            background-color: #fdedec;
+            border: 1px solid #fadbd8;
+            color: var(--highlight-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .alert-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .footer-note {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .latin {
+            font-style: italic;
+            font-family: "Georgia", serif;
+        }
+
+        .choice-analysis {
+            margin-top: 10px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        
+        .correct-answer {
+            color: var(--highlight-color);
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            border: 2px dashed var(--highlight-color);
+            border-radius: 8px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure | Voluntary Dismissal</div>
+    </div>
+
+    <div class="content">
+        
+        <div class="correct-answer">
+            正确答案：D
+        </div>
+
+        <div class="rule-box">
+            <div class="rule-title">核心考点：两次撤诉规则</div>
+            <p style="font-size: 14px; margin: 0;">
+                <span class="concept-tag">Two-Dismissal Rule</span><br>
+                根据联邦民事诉讼规则 (FRCP) 41(a)(1)(B)，如果原告此前已经自愿撤回过基于<b>同一诉由 (same claim)</b> 的诉讼（无论是在联邦法院还是州法院），那么其<b>第二次</b>提交撤诉通知 (Notice of Dismissal) 将被视为<b>“对案件实体的是非判决” (Adjudication on the Merits)</b>。
+            </p>
+        </div>
+
+        <h3>📝 案件逻辑推演</h3>
+        <ul class="step-list">
+            <li class="step-item">
+                <div class="step-icon">1</div>
+                <div class="step-content">
+                    <strong>第一次诉讼：</strong>原告提起诉讼，被告动议驳回。原告在被告答辩前自愿撤诉。<br>
+                    <span style="color: green; font-size: 12px;">➡ 结果：无偏见撤诉 (Without Prejudice)。原告可以重来。</span>
+                </div>
+            </li>
+            <li class="step-item">
+                <div class="step-icon">2</div>
+                <div class="step-content">
+                    <strong>第二次诉讼：</strong>原告基于同一诉由再次起诉。被告再次动议驳回。原告再次自愿撤诉。<br>
+                    <span style="color: var(--highlight-color); font-size: 12px;">➡ 结果：触发“两次撤诉规则”。本次撤诉变为“有偏见” (With Prejudice)。</span>
+                </div>
+            </li>
+            <li class="step-item">
+                <div class="step-icon">3</div>
+                <div class="step-content">
+                    <strong>第三次诉讼：</strong>原告再次起诉。由于第二次撤诉已构成“实体判决”，根据既判力原则 (<span class="latin">Res Judicata</span>)，原告不得再诉。<br>
+                    <span style="color: var(--highlight-color); font-size: 12px;">➡ 结论：法院将批准被告的驳回动议。</span>
+                </div>
+            </li>
+        </ul>
+
+        <div class="alert-box">
+            <span class="alert-title">⚠️ 关键陷阱 (Exam Tip)</span>
+            考生常误以为只要是在“被告提交答辩状 (Answer) 或即决判决动议 (Summary Judgment)”之前撤诉就是安全的。
+            <br><br>
+            虽然 Rule 41(a)(1) 允许在此时段内<b>无需法院命令</b>即可撤诉，但它并不豁免<b>两次撤诉规则</b>的后果。一旦使用了两次“撤诉通知 (Notice of Dismissal)”，案子就彻底结束了。
+        </div>
+
+        <h3>🔍 选项深度解析</h3>
+        
+        <div class="choice-analysis">
+            <p><strong>✅ 选项 D 正确：</strong><br>
+            第二次自愿撤诉构成了 <span class="latin">Adjudication on the Merits</span>（即实质性判决）。这意味着法院视同原告已经输掉了官司，因此禁止其就同一事项提起第三次诉讼。</p>
+            
+            <p style="color: var(--sub-text); font-size: 13px;"><strong>❌ 选项 A 错误：</strong><br>
+            原告是否“勤勉 (diligently)”或试图修正诉状缺陷与该规则的适用无关。这是一个严格的程序性规则。</p>
+
+            <p style="color: var(--sub-text); font-size: 13px;"><strong>❌ 选项 B 错误：</strong><br>
+            虽然原告确实是在被告 Answer 之前撤诉的（程序上是合法的），但这不能阻止“两次撤诉规则”产生的法律后果（即禁止再诉）。</p>
+
+            <p style="color: var(--sub-text); font-size: 13px;"><strong>❌ 选项 C 错误：</strong><br>
+            原告不需要法院命令即可撤诉（因为被告仅提交了 Rule 12(b)(6) 动议，这既不是 Answer 也不是 Summary Judgment）。问题不在于是否需要命令，而在于撤诉的<b>次数</b>。</p>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <strong>备考建议：</strong><br>
+        遇到 "Voluntary Dismissal" 的题目，立即数一下这是第几次撤诉。如果是第二次且基于同一诉由，直接找 "Adjudication on the Merits" 或 "With Prejudice" 的选项。
+    </div>
+</div>
+
+</body>
+</html>

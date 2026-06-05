@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e1e4e8;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .concept-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+        .wrong-option {
+            font-size: 13px;
+            color: #666;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #eee;
+        }
+        .footer {
+            background-color: #f9fafb;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+        .english-term {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts / Third-Party Rights</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心结论 -->
+        <div class="answer-box">
+            <div class="answer-title">✅ 正确答案：B</div>
+            <p>贷款人（Lender）无法直接起诉房主（Homeowner）。因为建筑商（Builder）签署的文件仅仅是一个<b>未来付款的承诺</b>，而不是有效的<b>债权转让（Assignment）</b>。</p>
+        </div>
+
+        <!-- 考点深度解析 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：债权转让 vs. 付款承诺</div>
+            <p>在合同法中，要构成有效的<b>债权转让 (Assignment of Rights)</b>，让与人（Assignor）必须表现出<b>立即转移 (Present Intent to Transfer)</b> 权利的意图。</p>
+            <p>关键区别在于权利的控制权：</p>
+            <ul>
+                <li><b>转让 (Assignment):</b> 让与人放弃了向债务人收款的权利，受让人（Assignee）直接取代其位置。</li>
+                <li><b>付款承诺 (Promise to Pay):</b> 让与人保留向债务人收款的权利，只是承诺收到钱后再转给第三方。</li>
+            </ul>
+        </div>
+
+        <!-- 案情具体分析 -->
+        <div class="concept-card">
+            <div class="concept-title">本案分析</div>
+            <p>题目中的关键措辞是：</p>
+            <p class="highlight">"Any money <b>I receive</b> from the homeowner will be paid..."</p>
+            <p>（“我从房主处收到的任何款项将支付给……”）</p>
+            <p>这句话表明：</p>
+            <ol>
+                <li>建筑商打算<b>自己先收款</b>（"I receive"）。</li>
+                <li>然后再付给贷款人。</li>
+            </ol>
+            <p>这说明建筑商并没有把“直接向房主收款的权利”转移给贷款人。因此，贷款人与房主之间没有法律关系（Privity），贷款人不能直接起诉房主。</p>
+        </div>
+
+        <!-- 对比表格 -->
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>措辞类型</th>
+                    <th>法律后果</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>"I hereby assign my rights under the contract to Lender."<br><span class="english-term">（我特此将合同权利转让给贷款人）</span></td>
+                    <td><b>有效转让</b><br>贷款人可直接起诉房主。</td>
+                </tr>
+                <tr>
+                    <td>"Pay Lender directly."<br><span class="english-term">（直接付给贷款人）</span></td>
+                    <td><b>有效转让</b><br>表明放弃收款权。</td>
+                </tr>
+                <tr>
+                    <td>"I will pay you whatever I collect."<br><span class="english-term">（我会把收到的钱付给你）</span></td>
+                    <td><b>无效转让</b><br>仅为个人承诺，贷款人只能起诉建筑商（或其遗产）。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 为什么其他选项是错的 -->
+        <div class="concept-card">
+            <div class="concept-title">排除干扰项</div>
+            
+            <div class="wrong-option">
+                <b>❌ 选项 A (关于死亡):</b><br>
+                如果这是一个有效的“有偿转让”（Assignment for Value），让与人的死亡<b>不会</b>终止转让。本题错误的原因是根本没有发生转让，而不是因为建筑商死了。
+            </div>
+
+            <div class="wrong-option">
+                <b>❌ 选项 C (关于意图):</b><br>
+                虽然建筑商有意图让贷款人拿到钱，但他表现出的意图是“我收钱后给你”，而不是“你直接去收钱”。法律看重的是权利转移的具体方式。
+            </div>
+
+            <div class="wrong-option">
+                <b>❌ 选项 D (意定受益人 Intended Beneficiary):</b><br>
+                意定受益人必须在<b>原合同（建筑商与房主）订立时</b>就被考虑在内。本案中，贷款协议是后来才发生的，所以贷款人只是附带受益人（Incidental Beneficiary），无权执行原合同。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="answer-box" style="background-color: #fff8e1; border-left-color: #ffc107;">
+            <div class="answer-title" style="color: #b00020;">💡 MBE 解题技巧</div>
+            <p>看到涉及第三方的金钱支付题目时，仔细检查措辞：</p>
+            <p>如果是 <b>"I will pay you from the fund"</b>（我会用这笔资金付你）👉 <b>不是转让</b>。</p>
+            <p>如果是 <b>"You are entitled to the fund"</b>（你有权获得这笔资金）👉 <b>是转让</b>。</p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

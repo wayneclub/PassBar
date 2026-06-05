@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-banner {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            color: #2e7d32;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .rule-card {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 0.95rem;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #007bff;
+        }
+        .timeline-item.warning::before {
+            background-color: #dc3545;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .analysis-section {
+            margin-top: 25px;
+        }
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        .option-block {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+        .option-label {
+            font-weight: bold;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+        .footer-tip {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            border: 1px solid #ffe0b2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">民事诉讼法 (Civil Procedure)</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-banner">
+            ✅ 正确答案：选项 B
+        </div>
+
+        <p>本题的核心考点是 <strong>FRCP 11 制裁动议的“安全港规则” (Safe Harbor Rule)</strong>。</p>
+
+        <!-- 核心法律规则 -->
+        <div class="rule-card">
+            <span class="rule-title">⚖️ 法律规则：FRCP 11(c)(2)</span>
+            <p>当一方当事人（party）提出制裁动议（Motion for Sanctions）时，必须遵循严格的程序步骤：</p>
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li><strong>送达 (Serve):</strong> 必须先将动议送达给违规方。</li>
+                <li><strong>等待 (Wait):</strong> 必须等待 <strong>21天</strong>（安全港期）。</li>
+                <li><strong>提交 (File):</strong> 只有在对方于这21天内未撤回或更正违规文件后，才能将动议提交给法院。</li>
+            </ol>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情关键点分析</div>
+            <p>在本案中，警官虽然有理由认为司机的诉讼是无理取闹（frivolous）且无事实依据的，但她在程序上犯了致命错误：</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>第一步：</strong> 警官向司机送达了制裁动议。<br>
+                    <span style="color: green; font-size: 0.85rem;">(程序正确)</span>
+                </div>
+                <div class="timeline-item warning">
+                    <strong>第二步：</strong> 警官<strong>立即 (Immediately)</strong> 向法院提交了该动议。<br>
+                    <span style="color: #dc3545; font-weight: bold; font-size: 0.85rem;">(程序错误 ❌)</span>
+                </div>
+            </div>
+
+            <p>由于警官没有给予司机 21 天的“安全港”时间来撤回诉讼，法院<strong>必须</strong>驳回该制裁动议，无论动议本身的实体理由多么充分。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">选项详细解析</div>
+
+            <div class="option-block">
+                <span class="option-label" style="color: #2e7d32;">选项 B (正确)</span>
+                <p><strong>理由：</strong>这准确指出了程序缺陷。FRCP 11 的安全港条款是强制性的。未等待 21 天直接向法院提交动议会导致动议被驳回。</p>
+            </div>
+
+            <div class="option-block">
+                <span class="option-label" style="color: #c62828;">选项 A (错误)</span>
+                <p><strong>理由：</strong>混淆了制裁的发起方式。“说明理由令” (<span class="latin">Order to Show Cause</span>) 仅在<strong>法院主动</strong> (<span class="latin">Sua Sponte</span>) 发起制裁时才需要。本案是由当事人（警官）发起动议，因此不需要法官先发出该命令。</p>
+            </div>
+
+            <div class="option-block">
+                <span class="option-label" style="color: #c62828;">选项 C & D (错误)</span>
+                <p><strong>理由：</strong>这两个选项关注的是<strong>实体理由</strong>（证据不足、骚扰目的）。虽然这些是实施制裁的实质性基础，但 FRCP 11 首先要求满足<strong>程序性前提</strong>。如果违反了安全港规则，法院甚至不会审视动议的实质内容。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        
+    </div>
+</div>
+
+</body>
+</html>

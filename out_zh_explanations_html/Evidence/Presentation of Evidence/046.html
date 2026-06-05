@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            font-size: 0.95rem;
+        }
+        .concept-tag {
+            display: inline-block;
+            background-color: #eee;
+            color: #555;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+        .wrong-option {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+        }
+        .wrong-option strong {
+            color: #e74c3c;
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 25px;
+            font-size: 0.9rem;
+        }
+        .latin {
+            font-style: italic;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>MBE 考点解析：证据的可采性</h2>
+    
+    <p>本题考察的核心是<b>普通证人证言的要求</b>以及<b>最佳证据规则的适用范围</b>。正确答案是 <b>(C)</b>。</p>
+
+    <div class="rule-box">
+        <strong>核心法则 (The Golden Rule):</strong><br>
+        根据《联邦证据规则》第602条 (FRE 602)，证人只要对某一事项具有<b>亲身认知 (Personal Knowledge)</b>，即有资格就该事项作证。
+    </div>
+
+    <h3>1. 为什么证言可以采纳？</h3>
+    <p>在证据法中，普通证人（Lay Witness）作证的门槛相对较低，主要要求是：</p>
+    <ul>
+        <li><b>相关性 (Relevance):</b> 证言必须能让某个重要事实更可能或更不可能成立。刹车片的状况直接关系到过失责任，因此具有相关性。</li>
+        <li><b>亲身认知 (Personal Knowledge):</b> 证人必须是通过自己的感官（看、听、摸等）获取的信息。</li>
+    </ul>
+    <p>在本案中，原告曾持有该刹车蹄片，并在和解会议上向专家指出缺陷。这意味着他<b>亲眼见过</b>并检查过该物体。因此，他有资格在法庭上描述他所看到的内容。</p>
+
+    <h3>2. 为什么“最佳证据规则”不适用？</h3>
+    <p>这是本题最大的陷阱（对应选项 B）。</p>
+    <p><span class="concept-tag">Best Evidence Rule</span> <b>最佳证据规则</b>（FRE 1002）通常要求提供原件来证明内容，但它仅适用于：</p>
+    <ul>
+        <li>书面文件 (Writings)</li>
+        <li>录音 (Recordings)</li>
+        <li>照片 (Photographs)</li>
+    </ul>
+    <p><b>关键点：</b>刹车蹄片是<b>实物证据 (Real Evidence)</b>，不是文件。因此，最佳证据规则不适用。即使原物丢失，证人依然可以口头描述它的样子。</p>
+    <p><i>退一步讲，即使适用该规则，由于丢失是“无意中 (inadvertently)”发生的（非恶意），次级证据（口头证言）也是允许的。</i></p>
+
+    <h3>3. 排除干扰项</h3>
+
+    <div class="wrong-option">
+        <strong>选项 A 错误 (和解特权):</strong><br>
+        虽然 FRE 408 禁止引入和解谈判中的陈述来证明责任，但这并不意味着在谈判中展示过的<b>实物证据</b>就获得了“豁免权”。原告对刹车片的认知并非仅源于和解会议，而是基于他对实物的观察。事实本身不会因为在谈判中被提及而变得不可采纳。
+    </div>
+
+    <div class="wrong-option">
+        <strong>选项 B 错误 (丢失的过错):</strong><br>
+        如上所述，最佳证据规则不适用于3D实物。且题目明确指出是“无意丢失”，并非恶意销毁证据 (Spoliation)，因此不会导致证言被排除。
+    </div>
+
+    <div class="wrong-option">
+        <strong>选项 D 错误 (专家已检查):</strong><br>
+        虽然专家检查过是事实，但这并不是原告可以作证的<b>理由</b>。原告能作证是因为他自己知道（亲身认知），而不是因为对方专家也知道。
+    </div>
+
+    <div class="exam-tip">
+        <strong>💡 考场技巧 (MBE Tip)</strong><br>
+        当题目涉及“丢失的物体”并询问证人能否描述它时：
+        <ol>
+            <li>首先判断该物体是否为<b>文件、录音或照片</b>。</li>
+            <li>如果是普通的实物（如枪支、刹车片、车辆），<b>最佳证据规则 (Best Evidence Rule) 不适用</b>。</li>
+            <li>只要证人<b>看过</b>该物体（Personal Knowledge），通常就可以作证描述它。</li>
+        </ol>
+    </div>
+</div>
+
+</body>
+</html>

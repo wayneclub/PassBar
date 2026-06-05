@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - 合同法: 合同的成立</title>
+    
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">合同法: 合同的成立</p>
+        </header>
+
+        <div class="answer-box">
+            正确答案：C
+            <p><strong>持有：</strong>在受要约人收到要约人采取了与要约不符的明确行动的可靠信息后，要约自动撤销。</p>
+        </div>
+
+        <div class="content-section">
+            <h2>核心法律规则</h2>
+            <div class="concept-box">
+                <p class="concept-title">要约的撤销 (Revocation of Offer)</p>
+                <p>要约 (<span class="term">offer</span>) 通常可以在受要约人 (<span class="term">offeree</span>) 接受之前随时被要约人 (<span class="term">offeror</span>) 撤销。撤销要约必须传达给受要约人才能生效。然而，如果受要约人从<strong>可靠来源 (<span class="term">reliable source</span>)</strong> 获得<strong>与要约不符 (<span class="term">inconsistent with the offer</span>)</strong> 的<strong>明确行动 (<span class="term">definite action</span>)</strong> 的信息，即使要约人没有直接沟通撤销，要约也会<strong>自动撤销 (<span class="term">automatically revoked</span>)</strong>。这被称为<strong>推定撤销 (<span class="term">constructive revocation</span>)</strong>。</p>
+            </div>
+
+            <h2>概念对比：无偿承诺与选择权合同</h2>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>特征</th>
+                            <th>无偿承诺 (<span class="term">Gratuitous Promise</span>)</th>
+                            <th>选择权合同 (<span class="term">Option Contract</span>)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>定义</td>
+                            <td>要约人无偿承诺在一定时间内保持要约有效。</td>
+                            <td>要约人承诺在一定时间内保持要约有效，且该承诺有对价 (<span class="term">consideration</span>) 支持。</td>
+                        </tr>
+                        <tr>
+                            <td>可撤销性</td>
+                            <td><strong>可撤销</strong>。要约人可以在承诺期内随时撤销要约。</td>
+                            <td><strong>不可撤销</strong>。要约人不能在承诺期内撤销要约。</td>
+                        </tr>
+                        <tr>
+                            <td>法律效力</td>
+                            <td>不具有约束力，不构成独立的合同。</td>
+                            <td>具有约束力，构成独立的合同。</td>
+                        </tr>
+                        <tr>
+                            <td>本案适用</td>
+                            <td>本案中，所有者无偿承诺给大学一个月时间考虑，属于无偿承诺。</td>
+                            <td>本案中，大学未提供任何对价以使该承诺具有约束力。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>案情分析与法律适用</h2>
+            <div class="analysis-step">
+                <p>1. <strong>要约与无偿承诺：</strong> 所有者向大学书面要约出售手稿，并口头无偿承诺给大学一个月时间考虑。这个无偿承诺不构成一个有约束力的选择权合同，因为大学没有提供任何对价来支持这个承诺。因此，所有者仍然有权在大学接受之前撤销要约。</p>
+                <p>2. <strong>推定撤销的发生：</strong> 在大学接受要约之前，大学从一个<strong>可靠的第三方</strong>得知所有者已将手稿出售给博物馆。所有者将手稿出售给博物馆的行为，与她向大学出售手稿的要约<strong>不符</strong>。</p>
+                <p>3. <strong>撤销的生效：</strong> 根据合同法原则，当受要约人从可靠来源获得要约人采取了与要约不符的明确行动的信息时，要约即<strong>自动撤销</strong>。这意味着，即使所有者没有直接通知大学撤销要约，大学在得知手稿已售出时，其接受要约的权力就已经终止了。</p>
+                <p>4. <strong>接受的无效性：</strong> 大学在得知手稿已售出（即要约已被推定撤销）之后才发出接受通知。此时，要约已不再有效，因此大学的接受是无效的，未能形成合同。</p>
+                <p>5. <strong>最佳抗辩：</strong> 鉴于上述分析，所有者最好的抗辩理由是<strong>要约已被撤销</strong>。</p>
+            </div>
+
+            <h2>流程图：要约撤销时间线</h2>
+            <div class="diagram">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                    <div class="flow-node">所有者向大学发出要约 (出售手稿)</div>
+                    <div style="font-size: 24px; color: var(--accent-color);">↓</div>
+                    <div class="flow-node">所有者无偿承诺给大学一个月考虑时间</div>
+                    <div style="font-size: 24px; color: var(--accent-color);">↓</div>
+                    <div class="flow-node">三周后，所有者将手稿出售给博物馆</div>
+                    <div style="font-size: 24px; color: var(--accent-color);">↓</div>
+                    <div class="flow-node highlight-node">大学从可靠第三方得知手稿已售出<br>(推定撤销发生，要约终止)</div>
+                    <div style="font-size: 24px; color: var(--accent-color);">↓</div>
+                    <div class="flow-node">大学发出接受通知 (无效接受)</div>
+                </div>
+            </div>
+
+            <h2>陷阱警示</h2>
+            <div class="trap-alert">
+                <p><strong>MBE 陷阱：</strong> 许多考生可能会混淆<span class="term">无偿承诺 (gratuitous promise)</span> 与<span class="term">选择权合同 (option contract)</span>。请记住，仅仅口头承诺或书面承诺在一定时间内保持要约有效，如果受要约人没有提供任何对价，该承诺是<strong>不具约束力</strong>的。要约人仍然可以在承诺期内撤销要约。此外，撤销不一定需要直接沟通，通过可靠的第三方获得与要约不符的明确行动信息，也构成<strong>推定撤销</strong>。</p>
+            </div>
+
+            <h2>正确答案与干扰项排除</h2>
+            <div class="option correct">
+                <p><strong>C. 撤销 (Revocation)</strong></p>
+                <p>这是所有者最好的抗辩。所有者向大学发出的要约在大学接受之前已被撤销。虽然所有者口头承诺给大学一个月时间考虑，但这是一个无偿承诺，没有对价支持，因此不具有约束力。当大学从可靠的第三方得知手稿已出售给博物馆时，这构成了推定撤销。此时，大学接受要约的权力已经终止，其后续的接受行为无效。</p>
+            </div>
+            <div class="option wrong">
+                <p><strong>A. 履行不能 (Impracticability)</strong></p>
+                <p>此选项不正确。履行不能是指在合同成立后，由于不可预见或异常事件的发生，使得合同的履行变得极端困难或成本过高。在本案中，合同尚未成立，因为要约在接受前已被撤销。因此，不存在履行不能的问题。</p>
+            </div>
+            <div class="option wrong">
+                <p><strong>B. 口头证据规则 (Parol evidence rule)</strong></p>
+                <p>此选项不正确。口头证据规则适用于当事人已达成最终书面合同时，限制引入先前的口头或书面证据来修改或矛盾书面合同的条款。在本案中，大学和所有者之间从未形成过书面合同，甚至没有形成任何合同，因此口头证据规则不适用。</p>
+            </div>
+            <div class="option wrong">
+                <p><strong>D. 欺诈性法规 (Statute of frauds)</strong></p>
+                <p>此选项不正确。欺诈性法规要求某些类型的合同必须以书面形式存在才能强制执行。在本案中，问题在于合同是否成立，而不是其可执行性。由于要约在接受前已被撤销，因此根本没有合同成立，也就无需考虑欺诈性法规是否要求其书面化。</p>
+            </div>
+
+            <h2>考试技巧</h2>
+            <div class="footer-tip">
+                <p>在 MBE 考试中，遇到要约人承诺保持要约开放的情况时，务必区分<strong>无偿承诺</strong>和<strong>选择权合同</strong>。只有当有对价支持时，承诺才具有约束力。同时，记住<strong>推定撤销</strong>的概念：受要约人从可靠来源获知要约人采取了与要约不符的行动，要约即自动撤销，无需直接通知。</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .concept-card {
+            background-color: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.85rem;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            padding: 8px;
+            text-align: left;
+        }
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            vertical-align: top;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Civil Procedure: Appealability and Review</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">✅ 正确答案：B</span>
+            上诉法院将维持原判，因为初审法官对事实的认定不存在<b>明显错误 (Clearly Erroneous)</b>。
+        </div>
+
+        <!-- 核心考点讲解 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：上诉审查标准</div>
+            <p>本题的核心在于区分<b>法官审判 (Bench Trial)</b> 中，上诉法院对“事实认定”与“法律结论”采用的不同审查标准。</p>
+            
+            <p>根据 <span class="term">FRCP 52(a)</span>，在没有陪审团的审判中，法官既是法律的解释者，也是事实的认定者。</p>
+        </div>
+
+        <!-- 审查标准表格 -->
+        <div class="concept-card">
+            <div class="concept-title">MBE 必背：审查标准速查表</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>审查对象</th>
+                        <th>审查标准 (Standard)</th>
+                        <th>尊重程度</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>法律结论</b><br><span class="english-term">Conclusions of Law</span></td>
+                        <td><b>重新审查</b><br><span class="english-term">De Novo</span></td>
+                        <td><b>无 (None)</b><br>上诉法院完全重新判断，不需尊重初审法官意见。</td>
+                    </tr>
+                    <tr>
+                        <td><b>事实认定</b><br><span class="english-term">Findings of Fact</span><br>(法官审判)</td>
+                        <td><b>明显错误</b><br><span class="english-term">Clear Error</span></td>
+                        <td><b>高 (High)</b><br>除非错得离谱，否则维持原判。</td>
+                    </tr>
+                    <tr>
+                        <td><b>自由裁量权</b><br><span class="english-term">Discretionary Matters</span><br>(如证据采纳)</td>
+                        <td><b>滥用裁量权</b><br><span class="english-term">Abuse of Discretion</span></td>
+                        <td><b>极高 (Very High)</b><br>只要决定不武断，通常维持原判。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 题目解析 -->
+        <div class="concept-card">
+            <div class="concept-title">本题逻辑分析</div>
+            <p><b>1. 确定审判类型：</b><br>题目明确指出 "Neither party demanded a jury trial"（双方均未要求陪审团），因此这是<b>法官审判 (Bench Trial)</b>。</p>
+            
+            <p><b>2. 确定上诉内容：</b><br>借款人挑战的是法官关于“她未能支付抵押贷款”的认定。这是一个<b>事实问题 (Question of Fact)</b>，而非法律解释问题。</p>
+            
+            <p><b>3. 应用规则：</b><br>对于法官的事实认定，上诉法院必须适用<b>明显错误 (Clear Error)</b> 标准。题目中提到有 "overwhelming evidence"（压倒性证据）支持这一事实，因此法官的认定显然没有“明显错误”。</p>
+            
+            <p><b>结论：</b>上诉法院必须<b>维持 (Affirm)</b> 判决。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="concept-card">
+            <div class="concept-title">易错点辨析</div>
+            
+            <p>❌ <b>选项 A (Final Arbiter)：</b><br>错误。虽然初审法官权力很大，但并非“最终仲裁者”。上诉法院有权审查，只是标准很严格。</p>
+
+            <p>❌ <b>选项 C (Jury Requirement)：</b><br>错误。虽然宪法第七修正案保障陪审团审判权，但如果当事人未在规定时间内（通常是最后一份相关诉状送达后14天内）提出书面要求，该权利即被视为<b>放弃 (Waived)</b>。</p>
+
+            <p>❌ <b>选项 D (Writing Requirement)：</b><br>错误。根据 <span class="term">FRCP 52(a)(1)</span>，法官的事实认定和法律结论可以在庭审记录中<b>口头 (Orally)</b> 陈述，也可以书面形式作出。只要记录在案即可，不强制要求必须是书面文件。</p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

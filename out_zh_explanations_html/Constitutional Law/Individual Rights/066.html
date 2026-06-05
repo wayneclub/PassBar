@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-color: #e74c3c;
+        --bg-color: #f4f6f7;
+        --card-bg: #ffffff;
+        --text-color: #333333;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #e9ecef;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.4rem;
+        line-height: 1.4;
+    }
+    .header .sub-title {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        margin-top: 5px;
+        font-weight: 300;
+    }
+    .content {
+        padding: 20px;
+    }
+    .concept-card {
+        background-color: #ecf0f1;
+        border-left: 5px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+    }
+    .concept-title::before {
+        content: "⚖️";
+        margin-right: 8px;
+    }
+    .highlight {
+        color: var(--highlight-color);
+        font-weight: bold;
+        background-color: rgba(231, 76, 60, 0.1);
+        padding: 0 4px;
+        border-radius: 3px;
+    }
+    .case-study {
+        background-color: #fff8e1;
+        border: 1px solid #ffe0b2;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 0.95rem;
+    }
+    .case-title {
+        font-weight: bold;
+        color: #f57c00;
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .analysis-section {
+        margin-bottom: 20px;
+    }
+    .analysis-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+    }
+    .option-analysis {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+    }
+    .option-wrong {
+        background-color: #fce4ec;
+        border-left: 3px solid #e91e63;
+    }
+    .mbe-tip {
+        background-color: #e8f5e9;
+        border: 1px dashed #4caf50;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        color: #2e7d32;
+    }
+    .footer {
+        text-align: center;
+        padding: 15px;
+        font-size: 0.8rem;
+        color: #7f8c8d;
+        border-top: 1px solid #eee;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Constitutional Law: Individual Rights</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：剥夺公权法案</div>
+            <p><strong>Bill of Attainder Clause</strong> (U.S. Const. art. I, § 9)</p>
+            <p>宪法禁止国会通过任何<b>未经司法审判</b>即对<b>特定个人或群体</b>施加<b>惩罚</b>的立法。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🔍 题目逻辑分析</div>
+            <p>本题的三个关键要素完全符合 <i>Bill of Attainder</i> 的定义：</p>
+            <ol>
+                <li><strong>特定对象 (Specificity)：</strong> 法案直接点名了三位具体的个人 (naming these three individuals)。</li>
+                <li><strong>施加惩罚 (Punishment)：</strong> 禁止他们在联邦政府任职。最高法院已裁定，永久性禁止从事某种职业属于一种“惩罚”。</li>
+                <li><strong>无司法审判 (No Trial)：</strong> 这是由立法机关（国会）直接判定的，而非通过法院的司法程序。</li>
+            </ol>
+            <p>因此，挑战该法案合宪性的最佳依据是 <span class="highlight">Bill of Attainder Clause</span>。</p>
+        </div>
+
+        <!-- 判例链接 -->
+        <div class="case-study">
+            <div class="case-title">经典判例 (Key Precedent)</div>
+            <p><strong>United States v. Lovett (1946)</strong></p>
+            <p>本题的情节几乎直接取材于该案。在该案中，国会通过法案切断了三名被指控从事“颠覆活动”的政府雇员的薪水。最高法院裁定，这种针对特定个人并将其排除在政府服务之外的立法行为，构成了违宪的 <b>Bill of Attainder</b>。</p>
+        </div>
+
+        <!-- 干扰项排除 -->
+        <div class="analysis-section">
+            <div class="analysis-title">❌ 为什么其他选项不是最佳？</div>
+            
+            <div class="option-analysis option-wrong">
+                <strong>(B) Due Process (正当程序)</strong><br>
+                虽然未经听证就解雇可能涉及程序性正当程序问题，但 <i>Bill of Attainder</i> 是更具体、更直接的宪法障碍。当立法机关试图扮演法官的角色时，首先触犯的是剥夺公权法案条款。
+            </div>
+
+            <div class="option-analysis option-wrong">
+                <strong>(C) Ex Post Facto (追溯既往)</strong><br>
+                该条款通常仅适用于<b>刑事</b>法规的追溯。虽然失去工作是一种“惩罚”，但在 Ex Post Facto 的语境下，它通常被视为民事或监管性质，而非严格的刑事惩罚。相比之下，Bill of Attainder 对“惩罚”的定义更宽泛，包括剥夺就业资格。
+            </div>
+
+            <div class="option-analysis option-wrong">
+                <strong>(D) Takings Clause (征收条款)</strong><br>
+                政府职位通常不被视为可以通过征收条款获得金钱补偿的“私有财产”。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <strong>💡 MBE 考试技巧</strong>
+            <br>
+            当你看到题目中出现<b>“立法机关通过法律点名惩罚特定人”</b>（Legislature passes a law naming individuals...）的情节时，请立即联想 <b>Bill of Attainder</b>。
+            <br><br>
+            这是立法权侵犯司法权的典型表现。
+        </div>
+
+    </div>
+    <div class="footer">
+        MBE Constitutional Law Review
+    </div>
+</div>
+
+</body>
+</html>

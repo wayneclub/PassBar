@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-card {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .correct-answer {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #c3e6cb;
+            margin-bottom: 15px;
+        }
+        .wrong-option {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 6px;
+        }
+        .wrong-label {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-right: 5px;
+        }
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+        .exam-tip-icon {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <p>Evidence / 证据法</p>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="rule-card">
+            <span class="rule-title">⚖️ 核心规则：FRE 411</span>
+            <strong>责任保险 (Liability Insurance)</strong><br>
+            证据显示某人是否投保了责任保险，<span style="color:#c0392b; font-weight:bold;">不能</span>用于证明该人行事疏忽 (Negligence) 或有过错 (Wrongful Action)。
+        </div>
+
+        <div class="section-title">法律分析与推理</div>
+        
+        <p>本题考察的是《联邦证据规则》第411条 (FRE 411) 的细微差别。虽然一般规则禁止提及保险，但该规则包含重要的<strong>例外情况</strong>。</p>
+
+        <p><strong>1. 一般禁止 (General Ban)：</strong><br>
+        你不能告诉陪审团被告有保险，仅仅是为了暗示“因为他有保险，所以他可能更不小心”或者“反正保险公司会赔钱，判他输也没关系”。这是为了防止陪审团因被告的支付能力而产生偏见。</p>
+
+        <p><strong>2. 允许的例外 (Exceptions)：</strong><br>
+        如果证据是为了<strong>其他目的 (Other Purposes)</strong>，则是可采纳的 (Admissible)。常见的“其他目的”包括：</p>
+        <ul>
+            <li>证明代理关系、所有权或控制权 (Agency, ownership, or control)</li>
+            <li><strong>弹劾证人的偏见或成见 (Impeachment for bias or prejudice)</strong></li>
+        </ul>
+
+        <div class="correct-answer">
+            <strong>✅ 正确答案：D</strong><br>
+            <small>Yes, for impeachment purposes only.</small><br><br>
+            <strong>解析：</strong>在本案中，证人是被告保险公司的理赔员 (Adjuster)。这意味着如果原告胜诉，证人的雇主（保险公司）将遭受经济损失。这直接证明了证人存在<strong>经济利益冲突 (Financial Interest)</strong> 和潜在的<strong>偏见 (Bias)</strong>。<br><br>
+            原告引入这一证据并非为了证明被告开车疏忽，而是为了攻击证人的可信度（即：他在撒谎或夸大其词，以保护雇主的钱袋子）。这完全符合 FRE 411 的例外情况。
+        </div>
+
+        <div class="section-title">为什么其他选项是错的？</div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 A 错误</span><br>
+            虽然证据规则确实限制保险证据，但这并非绝对禁止 (Absolute Bar)。当用于弹劾偏见时，它是允许的。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 B 错误</span><br>
+            <strong>附带问题 (Collateral Issue)：</strong>通常指与案件核心事实无关的小细节。但在证据法中，<strong>偏见 (Bias) 永远不是附带问题</strong>。你总是可以通过外部证据 (Extrinsic Evidence) 来证明证人有偏见。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 C 错误</span><br>
+            <strong>实体目的 (Substantive Purposes)：</strong>指用来证明案件核心事实（如被告是否闯红灯/疏忽）。FRE 411 明确禁止将保险证据用于证明疏忽。因此，该证据只能用于弹劾，不能用于实体证明。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-icon">💡</span><strong>MBE 考试技巧</strong><br>
+            在处理<strong>公共政策排除 (Policy Exclusions)</strong> 类题目（如保险、后续补救措施、和解提议）时，关键在于识别证据的<strong>用途 (Purpose)</strong>：
+            <ul>
+                <li>如果是为了证明<strong>责任 (Liability)</strong>或<strong>过错 (Fault)</strong> ➡️ <span style="color:#c0392b;">不可采 (Inadmissible)</span></li>
+                <li>如果是为了<strong>弹劾 (Impeachment)</strong>或证明<strong>控制权 (Control)</strong> ➡️ <span style="color:#27ae60;">可采 (Admissible)</span></li>
+            </ul>
+            如果题目问“是否允许”，且存在合法的“其他目的”，通常答案是“允许，但仅限于该特定目的”（通常伴随法官的限制性指示 Limiting Instruction）。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

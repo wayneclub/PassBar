@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析: 土地买卖与防止欺诈法</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50; /* 深蓝 */
+            --accent-color: #e67e22; /* 橙色重点 */
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --success-color: #27ae60;
+            --error-color: #c0392b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title::before {
+            content: '⚖️';
+            margin-right: 8px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .english-term {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        .answer-box {
+            background-color: #e8f8f5;
+            border: 1px solid #d1f2eb;
+            border-left: 5px solid var(--success-color);
+        }
+
+        .answer-box .card-title {
+            color: var(--success-color);
+        }
+
+        .answer-box .card-title::before {
+            content: '✅';
+        }
+
+        .trap-box {
+            border-left: 5px solid var(--error-color);
+        }
+
+        .trap-box .card-title {
+            color: var(--error-color);
+        }
+
+        .trap-box .card-title::before {
+            content: '❌';
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #95a5a6;
+            margin-top: 20px;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property | Statute of Frauds</div>
+    </div>
+
+    <!-- Correct Answer Section -->
+    <div class="card answer-box">
+        <div class="card-title">正确答案：B</div>
+        <p><strong>买方胜诉。</strong></p>
+        <p>法院会推断双方意图在<strong>合理时间</strong> <span class="english-term">(Reasonable Time)</span> 内履行合同。</p>
+    </div>
+
+    <!-- Core Legal Rule -->
+    <div class="card">
+        <div class="card-title">核心考点：防止欺诈法 (SOF)</div>
+        <p>土地买卖合同必须符合<strong>《防止欺诈法》</strong> <span class="english-term">(Statute of Frauds)</span> 才能强制执行。这意味着合同必须：</p>
+        <ul>
+            <li>是书面的 <span class="english-term">(In writing)</span></li>
+            <li>由被执行方签署 <span class="english-term">(Signed by the party to be charged)</span></li>
+            <li>包含所有<strong>必要条款</strong> <span class="english-term">(Essential Terms)</span></li>
+        </ul>
+        <p><strong>关键点：</strong>什么是必要条款？</p>
+        <ul>
+            <li>✅ 当事人身份 <span class="english-term">(Parties)</span></li>
+            <li>✅ 土地描述 <span class="english-term">(Description of land)</span></li>
+            <li>✅ 价格 <span class="english-term">(Price)</span></li>
+            <li>❌ <strong>履行时间/过户日期</strong> <span class="english-term">(Time for performance)</span> <span class="highlight">不是</span>必要条款！</li>
+        </ul>
+    </div>
+
+    <!-- Analysis Logic -->
+    <div class="card">
+        <div class="card-title">本案逻辑分析</div>
+        <p>卖方试图利用 SOF 撤销合同，理由是缺少“过户日期”。</p>
+        <p>然而，根据普通法规则，如果土地买卖合同中遗漏了过户日期，合同<strong>不会</strong>因此无效。相反，法院会自动填补这一空白，推定双方意图在<strong>合理的时间内</strong>完成交易。</p>
+        <p>因此，卖方关于“合同因缺少必要条款而不可执行”的抗辩是无效的。</p>
+    </div>
+
+    <!-- Distractor Analysis -->
+    <div class="card trap-box">
+        <div class="card-title">易错陷阱辨析</div>
+        
+        <p><strong>🚫 选项 C (卖方胜诉)：</strong></p>
+        <p>这是本题最大的干扰项。考生容易误以为所有条款都必须写在纸上。请记住：<strong>时间不是土地合同的必要条款</strong>。</p>
+
+        <p><strong>🚫 选项 D (时间至关重要)：</strong></p>
+        <p>这是一个常见的概念混淆。只有当合同<strong>明确规定</strong>“时间至关重要” <span class="english-term">(Time is of the essence)</span> 时，迟延履行才构成实质性违约。法律<strong>不会</strong>自动推定时间是至关重要的。本案合同未提及此点，因此该推定不成立。</p>
+
+        <p><strong>🚫 选项 A (不当得利)：</strong></p>
+        <p>不当得利 <span class="english-term">(Unjust Enrichment)</span> 通常用于一方已付款或提供服务，而另一方未履行的情况。本案中买方尚未支付现金，卖方也没有从中获利，因此该原则不适用。</p>
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="card" style="border-left-color: var(--accent-color);">
+        <div class="card-title" style="color: var(--accent-color);">💡 考试技巧 (Exam Tip)</div>
+        <p>在 MBE 财产法题目中，看到卖方因为“价格上涨”想毁约，并试图找合同漏洞（如缺少日期）时，通常法院会倾向于维护合同的有效性。</p>
+        <p>记住公式：<br><strong>缺少日期 ≠ 合同无效</strong><br><strong>缺少日期 = 合理期限</strong></p>
+    </div>
+
+    
+
+</div>
+
+</body>
+</html>

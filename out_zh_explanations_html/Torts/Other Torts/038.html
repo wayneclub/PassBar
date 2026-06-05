@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #d4edda;
+            --correct-text: #155724;
+            --wrong-bg: #f8d7da;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .answer-analysis {
+            margin-bottom: 20px;
+        }
+
+        .option-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .correct-option {
+            background-color: var(--correct-bg);
+            border-color: #c3e6cb;
+            color: var(--correct-text);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .badge-correct {
+            background: #28a745;
+            color: white;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .tip-box {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Torts: Nuisance (侵权法：妨害)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法则 (Black Letter Law)</span>
+            <p><strong>私人妨害 (Private Nuisance)</strong> 是对他人使用和享用土地的实质性且不合理的干扰。</p>
+            <p>关键在于：原告必须对受影响的土地拥有<strong>占有权益 (Possessory Interest)</strong>，例如所有权 (Ownership) 或租赁权 (Leasehold)。</p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="answer-analysis">
+            <h3>✅ 正确答案：选项 B</h3>
+            <div class="option-card correct-option">
+                <span class="badge badge-correct">B</span>
+                <strong>这些母亲对公园不具有占有权益。</strong>
+                <br><br>
+                <small>The mothers do not have a possessory interest in the park.</small>
+            </div>
+            
+            <p><strong>深度解析：</strong></p>
+            <p>本题的解题关键在于识别原告提起的诉讼类型——<strong>私人妨害 (Private Nuisance)</strong>。</p>
+            <ul>
+                <li>私人妨害旨在保护土地占有人对土地的使用和享用权。</li>
+                <li>原告（母亲们）只是公园的访客，她们并不拥有公园，也没有租用公园。</li>
+                <li>因为她们对公园没有<span class="key-term">占有权益 (Possessory Interest)</span>，所以她们根本没有资格（Lack Standing）提起私人妨害诉讼。</li>
+                <li>这就是被告（老人）最好的抗辩：从程序上直接否定原告的起诉资格。</li>
+            </ul>
+        </div>
+
+        <!-- 陷阱辨析 -->
+        <h3>🚫 为什么其他选项是错的？</h3>
+        
+        <div class="option-card">
+            <strong>选项 C (陷阱)：</strong> 关于“特殊损害” (Different in kind)。
+            <p style="font-size: 0.9rem; color: #666;">
+                这是一个经典的混淆项。如果原告提起的是<strong>公共妨害 (Public Nuisance)</strong> 之诉，私人原告确实需要证明自己受到的伤害与公众不同（Special Injury）。但本题明确指出原告提起的是<em>私人妨害</em>，因此主要障碍是缺乏土地权益，而不是伤害的种类。
+            </p>
+        </div>
+
+        <div class="option-card">
+            <strong>选项 A：</strong> 关于“自寻妨害” (Coming to the nuisance)。
+            <p style="font-size: 0.9rem; color: #666;">
+                这通常指原告搬到了已经存在的妨害源旁边。这只是法院考虑的一个因素，而不是绝对的抗辩理由 (Not a complete defense)。
+            </p>
+        </div>
+
+        <!-- 知识点对比表 -->
+        <h3>📊 考点对比：Private vs. Public Nuisance</h3>
+        <table class="comparison-table">
+            <tr>
+                <th>特征</th>
+                <th>私人妨害 (Private)</th>
+                <th>公共妨害 (Public)</th>
+            </tr>
+            <tr>
+                <td><strong>保护利益</strong></td>
+                <td>个人对土地的使用/享用</td>
+                <td>公众的健康、安全、福利</td>
+            </tr>
+            <tr>
+                <td><strong>原告资格</strong></td>
+                <td>必须有<strong>土地占有权益</strong></td>
+                <td>通常由政府提起；私人提起需证明<strong>特殊损害</strong></td>
+            </tr>
+        </table>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <strong>💡 MBE 考试技巧</strong>
+            <p>看到 "Nuisance"（妨害）题目时，第一步先判断是 <strong>Private</strong> 还是 <strong>Public</strong>。</p>
+            <p>如果是 <strong>Private Nuisance</strong>，立即检查原告是否拥有土地权益（Owner/Tenant）。如果是访客、雇员或路人，他们通常没有资格提起私人妨害诉讼。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

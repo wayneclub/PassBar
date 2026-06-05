@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+            display: block;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .analysis-step:last-child {
+            border-bottom: none;
+        }
+        .step-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #27ae60;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+        .conclusion {
+            background-color: #dff0d8;
+            color: #3c763d;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .wrong-option {
+            background-color: #f2dede;
+            color: #a94442;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        .highlight {
+            background-color: #fffacd;
+            padding: 0 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Criminal Procedure / Fifth Amendment</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心概念 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：豁免权 (Immunity)</span>
+            <p>根据美国宪法第五修正案，政府可以通过授予豁免权来强制证人作证。最常见的类型是<span class="term">使用和派生使用豁免权</span> <span class="english">(Use and Derivative Use Immunity)</span>。</p>
+            <p style="font-size: 0.9em; margin-top: 8px;">这意味着：政府不能使用该证词，也不能使用<b>从该证词中获得的任何线索或证据</b>来指控该证人。</p>
+        </div>
+
+        <!-- 法律推理 -->
+        <h3>法律推理与案情分析</h3>
+        
+        <div class="analysis-step">
+            <span class="step-icon">1</span>
+            <strong>豁免权的范围</strong><br>
+            最高法院在 <i>Kastigar v. United States</i> (1972) 案中确立，如果政府授予了“使用和派生使用豁免权”，检方在随后对该证人进行刑事起诉时，负有<b>举证责任</b>，必须证明其证据来自完全独立的合法来源 <span class="english">(legitimate independent source)</span>。
+        </div>
+
+        <div class="analysis-step">
+            <span class="step-icon">2</span>
+            <strong>本案中的“毒树之果”</strong><br>
+            在本案中，检察官在合伙人 (Partner) 作证前并不知道同伙 (Associate) 的存在或参与。
+            <ul>
+                <li>合伙人的受豁免证词供出了同伙。</li>
+                <li>检方利用这一信息找到了同伙。</li>
+                <li>同伙的证词因此直接<b>派生</b> <span class="english">(derived)</span> 于合伙人的受豁免证词。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <span class="step-icon">3</span>
+            <strong>结论</strong><br>
+            由于同伙的证词不是来自“独立来源”，而是直接源于合伙人被迫提供的证词，因此在针对合伙人的审判中引入该证词违反了豁免协议和第五修正案。
+        </div>
+
+        <div class="conclusion">
+            正确答案：C<br>
+            支持异议，因为同伙的证词是从合伙人的大陪审团证词派生而来的。
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <h3 style="margin-top: 25px;">为什么其他选项是错的？</h3>
+        
+        <div class="wrong-option">
+            <strong>选项 A (辩诉交易)</strong><br>
+            错误。虽然同伙确实达成了辩诉交易 <span class="english">(plea bargain)</span>，但这与证据的可采性无关。关键问题在于该证据的<b>来源</b>是否受到豁免权的污染。
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 B (嫌疑人身份)</strong><br>
+            错误。即使合伙人之前就是嫌疑人，检方并没有关于“同伙”的独立证据。检方对合伙人的怀疑不能洗白从受豁免证词中获得的新证据（即同伙的证词）。
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 D (共同被告权利)</strong><br>
+            错误。这是一个干扰项。法律并不禁止利用共同被告的证词，只要该证词来源合法。本案的问题不在于“出卖权利”，而在于违反了豁免权保护的“派生使用”规则。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧</strong>
+            <br><br>
+            看到 <b>"Use and Derivative Use Immunity"</b> 时，请立即寻找检方证据的<b>来源链条</b>。
+            <br><br>
+            如果检方使用的证人、文件或线索是<b>因为</b>被告的受豁免证词才被发现的，那么这些证据就是“派生”的，通常不可用于指控该被告（除非检方能证明有独立来源）。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

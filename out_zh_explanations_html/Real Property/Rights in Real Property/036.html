@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.4em;
+        }
+        .header .sub-title {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-box strong {
+            color: #2e7d32;
+            font-size: 1.1em;
+        }
+        .concept-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3e0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .wrong-option {
+            background-color: #ffebee;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #c62828;
+        }
+        .mnemonic {
+            background-color: #f3e5f5;
+            border: 1px dashed #9c27b0;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .mnemonic-title {
+            color: #7b1fa2;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Real Property: Easements & Estoppel</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <strong>正确答案：A</strong>
+            <p>不正确，因为女儿签署了地役权的弃权书 (Release)。</p>
+        </div>
+
+        <p>本题考察的是地役权的终止 (Termination of Easements) 与禁止反言 (Estoppel) 原则的交叉应用。</p>
+
+        <!-- 核心考点解析 -->
+        <div class="concept-card">
+            <div class="concept-title">1. 防止欺诈法 (Statute of Frauds)</div>
+            <p>地役权 (Easement) 是土地权益。根据防止欺诈法，终止地役权的弃权书 (Release) 必须由<b>地役权持有人 (Easement Holder)</b> 签署才有效。</p>
+            <p>在本案中，签署弃权书时，邻居（父亲）还活着，他才是地役权持有人。女儿当时并没有所有权。因此，从技术上讲，这份弃权书在当时是<b>无效的</b>。</p>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-title">2. 禁止反言 (Estoppel)</div>
+            <p>这是本题的解题关键。虽然弃权书最初因签署人无权处分而无效，但情况发生了变化：</p>
+            <ul>
+                <li>女儿继承了土地，成为了真正的地役权持有人。</li>
+                <li>女儿之前亲自签署了弃权书并接受了对价（钱）。</li>
+            </ul>
+            <p>法律原则是：<b>如果一个人声称放弃某项权利（即使当时她没有该权利），当她后来真正获得该权利时，她被“禁止反言” (Estopped)，即不能推翻自己之前的声明。</b></p>
+            <p>因此，女儿不能现在跳出来说：“嘿，我签字的时候这地不是我的，所以那个签字不算数，我现在要行使地役权。”</p>
+        </div>
+
+        <!-- 为什么其他选项是错的 -->
+        <div class="concept-card" style="border-color: #ffccbc;">
+            <div class="concept-title" style="color: #d84315;">为什么排除其他选项？</div>
+            
+            <div class="wrong-option">
+                <strong>选项 B 错误：</strong>
+                它声称弃权书是“有效的” (Valid)。这是不准确的法律表述。弃权书本身因违反防止欺诈法（非权利人签署）在当时是无效的。女儿无法行使权利是因为<b>个人被禁止 (Personal Estoppel)</b>，而不是因为文件本身完美无瑕。
+            </div>
+
+            <div class="wrong-option">
+                <strong>选项 D 错误：</strong>
+                这是一个典型的“陷阱选项”。它正确地指出了弃权书违反了防止欺诈法（未由邻居签署）。但是，它忽略了<b>禁止反言</b>这一衡平法原则 (Equitable Doctrine)。在MBE中，如果一方的不当行为或承诺导致了不公平的结果，衡平法通常会介入。
+            </div>
+            
+            <div class="wrong-option">
+                <strong>选项 C 错误：</strong>
+                虽然地役权确实通常会通过遗嘱传递（不像许可 License 那样随死亡终止），但这里的关键阻碍是女儿自己的签字行为，而非继承规则。
+            </div>
+        </div>
+
+        <!-- 助记词 -->
+        <div class="mnemonic">
+            <div class="mnemonic-title">💡 考试锦囊：DAMPER</div>
+            <p>地役权终止的六种方式</p>
+            <div style="text-align: left; display: inline-block; font-size: 0.9em;">
+                <b>D</b>estruction (毁损)<br>
+                <b>A</b>bandonment (放弃)<br>
+                <b>M</b>erger (混同)<br>
+                <b>P</b>rescription (时效)<br>
+                <b>E</b>stoppel (禁止反言) ✅<br>
+                <b>R</b>elease (书面弃权)
+            </div>
+            <p style="margin-top:10px; font-size: 0.85em; color: #666;">本题结合了 Release（形式要件未满足）和 Estoppel（最终结果）。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

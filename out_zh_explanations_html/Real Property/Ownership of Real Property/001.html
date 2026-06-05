@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            font-size: 1.4em;
+            margin-top: 0;
+        }
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .eng-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #bdc3c7;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+        .answer-box {
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            color: #3c763d;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+        }
+        .mbe-tip {
+            background-color: #fff3cd;
+            border: 1px solid #faebcc;
+            color: #8a6d3b;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>MBE 考点解析：未来权益与占有权</h2>
+    
+    <p>本题考察的是不动产法中关于<b>可废止地产 (Defeasible Fees)</b> 和 <b>未来执行权益 (Executory Interests)</b> 的核心规则，特别是“时间空档”导致的所有权归属问题。</p>
+
+    <div class="answer-box">
+        <strong>正确答案：C</strong><br>
+        该男子（父亲）有权占有，因为他的完全所有权权益尚未被儿子的触发型未来执行权益 (Springing Executory Interest) 所剥夺。
+    </div>
+
+    <h3>逻辑推演图解</h3>
+    
+    <div class="timeline">
+        <div class="timeline-item">
+            <strong>初始转让</strong><br>
+            父亲转让给女儿，条件是“直到大学毕业”。<br>
+            <span class="eng-term">Fee Simple Determinable</span>
+        </div>
+        <div class="timeline-item">
+            <strong>事件发生：女儿毕业</strong><br>
+            女儿的权益<b>自动终止</b>。此时儿子仅18岁，未满足“年满21岁”的条件。
+        </div>
+        <div class="timeline-item">
+            <strong>当前状态：空档期 (The Gap)</strong><br>
+            谁持有土地？<br>
+            由于女儿权益结束，儿子权益尚未开始，土地<b>复归 (Revert)</b> 给父亲。
+        </div>
+        <div class="timeline-item">
+            <strong>未来展望：儿子满21岁</strong><br>
+            届时，儿子的权益将从父亲手中夺取所有权。<br>
+            <span class="eng-term">Springing Executory Interest</span>
+        </div>
+    </div>
+
+    <h3>核心法律概念解析</h3>
+
+    <div class="concept-card">
+        <h4>1. 自动终止 (Automatic Termination)</h4>
+        <p>契据使用了“直到” (<span class="eng-term">until</span>) 这一期间性用语。这创造了<b>可决定的完全所有权 (Fee Simple Determinable)</b>。当条件（毕业）发生时，女儿的权益立即、自动结束，无需任何法律行动。</p>
+    </div>
+
+    <div class="concept-card">
+        <h4>2. 填补空档 (Filling the Gap)</h4>
+        <p>这是本题的关键。女儿毕业时，儿子才18岁。法律厌恶所有权的真空。既然儿子还不能接手，所有权必须回到源头。</p>
+        <p>因此，所有权<b>复归 (Reverts)</b> 给转让人（父亲）。父亲现在拥有土地，直到儿子满21岁。</p>
+    </div>
+
+    <div class="concept-card">
+        <h4>3. 转移型 vs. 触发型 (Shifting vs. Springing)</h4>
+        <p>这是区分选项A、B和C的关键：</p>
+        <ul>
+            <li><b>转移型 (Shifting)</b>：权益从一个受让人 (<span class="eng-term">Grantee</span>) 转移给另一个受让人。
+                <br><i>例如：如果儿子在女儿毕业时已满21岁，所有权直接从女儿转给儿子。</i></li>
+            <li><b>触发型 (Springing)</b>：权益从转让人 (<span class="eng-term">Grantor</span>) 转移给受让人。
+                <br><i>本案情况：因为出现了空档，土地回到了父亲手中。将来儿子满21岁时，权益将从父亲（转让人）手中“触发”转移给儿子。</i></li>
+        </ul>
+    </div>
+
+    <h3>选项辨析</h3>
+    
+    <ul>
+        <li><b>选项 A 错误</b>：女儿的权益是“可决定的” (<span class="eng-term">Determinable</span>)，在毕业那一刻即自动终止。她没有权利继续占有直到儿子满21岁。</li>
+        <li><b>选项 B 错误</b>：虽然父亲现在拥有土地，但儿子的权益是<b>触发型 (Springing)</b> 而非转移型 (Shifting)，因为将来它是从父亲（转让人）那里切断所有权，而不是从女儿那里。</li>
+        <li><b>选项 D 错误</b>：儿子没有获得<b>剩余权益 (Remainder)</b>。剩余权益通常紧随终身地产 (<span class="eng-term">Life Estate</span>) 自然结束后发生。此处是跟随一个可废止的完全所有权，且存在时间间隔，因此是未来执行权益。</li>
+    </ul>
+
+    <div class="mbe-tip">
+        <strong>🎓 MBE 考试技巧</strong><br>
+        在做此类题目时，请务必画出时间轴：
+        <ol>
+            <li>当前持有人的权益何时结束？</li>
+            <li>下一个持有人的条件是否已满足？</li>
+            <li>如果条件未满足，中间是否存在<b>时间空档 (Gap)</b>？</li>
+        </ol>
+        如果存在空档，所有权通常会回到<b>转让人 (Grantor)</b> 手中。一旦回到转让人手中，第三方的未来权益通常就变成了<b>触发型 (Springing)</b>。
+    </div>
+
+</div>
+
+</body>
+</html>

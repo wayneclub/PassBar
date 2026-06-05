@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考题解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-box strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .concept-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+        .concept-term {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 0.95rem;
+        }
+        .concept-desc {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 4px;
+        }
+        .wrong-option {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 8px;
+            padding-left: 10px;
+            border-left: 3px solid #bdc3c7;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence Law (证据法)</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <strong>✅ 正确答案：D</strong>
+            <p>是，因为原告对对方当事人的陈述有亲身认知 (Personal Knowledge)。</p>
+        </div>
+
+        <p>本题考察了证据法中两个核心概念的交叉点：<strong>最佳证据规则</strong>与<strong>亲身认知</strong>。</p>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">核心法律依据</div>
+
+        <div class="concept-card">
+            <div class="concept-term">1. 亲身认知 (Personal Knowledge)</div>
+            <div class="concept-desc">
+                根据 <code>FRE 602</code>，证人只能就其亲身感知（看、听、闻等）的事实作证。在本案中，原告当时就在现场，<strong>亲耳听到</strong>了被告的陈述，因此她拥有“亲身认知”，有资格出庭作证。
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-term">2. 最佳证据规则 (Best Evidence Rule)</div>
+            <div class="concept-desc">
+                又称“原始文件规则” (Original Document Rule, <code>FRE 1002</code>)。规则要求：当一方试图证明<strong>文书、录音或照片的内容</strong> (Content of a writing, recording, or photograph) 时，必须提供原件。
+            </div>
+        </div>
+
+        <!-- 逻辑推理 -->
+        <div class="section-title">逻辑推理：为什么不需要录音带？</div>
+        <p>这是本题最大的陷阱。考生需要区分以下两种情况：</p>
+        
+        <ul style="padding-left: 20px; font-size: 0.95rem;">
+            <li style="margin-bottom: 10px;">
+                <strong>情况 A（本题情况）：</strong><br>
+                原告试图证明<strong>“被告说了什么”</strong>。这一事件（谈话）独立于录音带而存在。原告当时在场，可以通过自己的记忆作证。录音带只是记录该事件的一种方式，并非事件本身。
+            </li>
+            <li>
+                <strong>情况 B（适用最佳证据规则）：</strong><br>
+                如果原告不在场，只是后来听了录音带，并试图作证说<strong>“我在录音带里听到被告说了什么”</strong>；或者案件争议焦点是录音带本身的质量/真伪。此时，原告试图证明的是“录音带的内容”，必须出示录音带。
+            </li>
+        </ul>
+        <p style="font-weight: bold; color: var(--accent-color); text-align: center;">
+            结论：因为原告有独立于录音带的记忆，所以最佳证据规则不适用。
+        </p>
+
+        <!-- 传闻证据简析 -->
+        <div class="section-title">关于传闻证据 (Hearsay)</div>
+        <p style="font-size: 0.9rem;">
+            虽然题目主要考察最佳证据规则，但答案 D 提到了“对方当事人陈述”。
+            根据 <code>FRE 801(d)(2)</code>，<strong>对方当事人的陈述 (Statement by a Party-Opponent)</strong> 被定义为“非传闻” (Not Hearsay)。只要该陈述是由被告作出并由原告用来对抗被告，它就是可采的。
+        </p>
+
+        <!-- 错误选项分析 -->
+        <div class="section-title">为什么其他选项是错的？</div>
+        
+        <div class="wrong-option">
+            <strong>❌ 选项 A (Deception/欺骗)：</strong><br>
+            在民事诉讼中，除非有特定的排除规则（如某些州的非法窃听法，但 MBE 通常适用联邦普通法原则），否则取证手段的“欺骗性”并不自动排除证据。只要证据相关 (Relevant) 且不违反宪法或特定法规，通常是可采的。
+        </div>
+
+        <div class="wrong-option">
+            <strong>❌ 选项 B (Must prove by audiotape)：</strong><br>
+            这是对最佳证据规则的错误应用。如上所述，只有当证人缺乏亲身认知，完全依赖录音带，或者试图证明录音带本身的内容时，才必须出示录音带。
+        </div>
+
+        <div class="wrong-option">
+            <strong>❌ 选项 C (Rule does not apply)：</strong><br>
+            法律表述错误。最佳证据规则<strong>确实</strong>适用于录音带 (Recordings)，只是在本案的具体事实情境下（证人有独立记忆），该规则未被触发。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">💡 MBE 考试技巧</div>
+        <div style="background: #fff3cd; padding: 10px; border-radius: 6px; font-size: 0.9rem; color: #856404;">
+            遇到涉及“录音”、“文件”或“照片”的题目时，问自己一个关键问题：<br>
+            <strong>“证人是想证明该文件/录音的内容，还是想证明一个他亲身经历的独立事件？”</strong><br>
+            如果是后者，最佳证据规则 (Best Evidence Rule) 通常不适用。
+        </div>
+
+    </div>
+
+    <div class="footer">
+        MBE Evidence Review | © 2025 Exam Prep
+    </div>
+</div>
+
+</body>
+</html>

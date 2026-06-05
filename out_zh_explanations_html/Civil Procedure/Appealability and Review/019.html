@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #eef7fb;
+            --warning-bg: #fff3cd;
+            --warning-border: #ffc107;
+            --text-color: #333;
+            --bg-color: #f4f4f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-card {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        .concept-tag {
+            display: inline-block;
+            background: #e0e0e0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-right: 5px;
+            color: #555;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        .trap-box {
+            background-color: #fff5f5;
+            border: 1px solid #ffcccc;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            margin-top: 15px;
+        }
+        .trap-title {
+            color: #c0392b;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Civil Procedure (民事诉讼法)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-card">
+            <span class="rule-title">⚖️ 核心考点：终局判决规则</span>
+            <span class="latin">The Final Judgment Rule</span> (28 U.S.C. § 1291)
+            <p>联邦上诉法院通常只对<b>终局判决 (Final Judgment)</b> 拥有管辖权。终局判决是指在实体问题上完全解决了争议，法庭除了执行判决外无事可做的裁决。</p>
+        </div>
+
+        <!-- 题目解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🔍 案件分析</div>
+            <p>本案中，被告（外科医生）提出了驳回起诉的动议 (Motion to Dismiss)，理由是缺乏<b>属人管辖权 (Personal Jurisdiction)</b>。</p>
+            <p>关键事实是：<b>法院“驳回”了该动议 (Denied the motion)。</b></p>
+            <ul>
+                <li>这意味着案件<b>并没有结束</b>，诉讼将继续进行（进入证据开示和审判阶段）。</li>
+                <li>因此，这<b>不是</b>一个终局判决。</li>
+            </ul>
+            <p>由于不是终局判决，且不符合特定的中间上诉 (Interlocutory Appeal) 例外情况，上诉法院<b>缺乏管辖权 (Lacks Jurisdiction)</b>。</p>
+            <p>✅ <b>正确答案是 A。</b></p>
+        </div>
+
+        <!-- 常见陷阱与错误选项分析 -->
+        <div class="trap-box">
+            <span class="trap-title">🚫 避坑指南 (Distractor Analysis)</span>
+            
+            <p><b>陷阱 1：宪法问题 (Constitutional Question)</b><br>
+            <span class="concept-tag">选项 D</span> 错误。虽然属人管辖权确实涉及宪法第十四修正案的正当程序条款 (Due Process Clause)，但这并不自动赋予立即上诉的权利。宪法问题通常也必须等到终局判决后一并上诉。</p>
+
+            <p><b>陷阱 2：效率论 (Efficiency Argument)</b><br>
+            <span class="concept-tag">选项 C</span> 错误。虽然如果上诉法院现在介入并裁定无管辖权确实能“终止诉讼”并节省时间，但这不足以打破终局判决规则。除非地区法院根据 <b>§ 1292(b)</b> 进行认证 (Certification)，否则不能仅因效率原因提起中间上诉。</p>
+
+            <p><b>陷阱 3：终局性误解</b><br>
+            <span class="concept-tag">选项 B</span> 错误。地区法院关于管辖权的裁定在当前阶段不是“可上诉的终局判决”，但这不代表它永远不能被挑战。在最终判决 (Final Judgment) 作出后，被告可以就此问题提起上诉。它不是 absolute final，只是 interlocutory（非终局的）。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-card" style="background-color: #fff3cd; border-left-color: #ffc107;">
+            <span class="rule-title">💡 MBE 实战技巧</span>
+            <p>看到 <b>"Denied Motion to Dismiss"</b>（驳回驳回起诉动议）或 <b>"Denied Motion for Summary Judgment"</b>（驳回简易判决动议）时，第一反应应当是：<b>案件还在继续，通常不可立即上诉。</b></p>
+            <p>除非题目明确提到：
+            <br>1. 禁令 (Injunctions)
+            <br>2. 涉及多个当事人的部分终局判决 (Rule 54(b))
+            <br>3. 地区法院认证 (Certification under § 1292(b))
+            <br>4. 附带命令原则 (Collateral Order Doctrine)</p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        MBE Civil Procedure Review <br>
+        Based on NCBE Standards
+    </div>
+</div>
+
+</body>
+</html>

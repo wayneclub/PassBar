@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: #dff0d8;
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-box strong {
+            color: var(--correct-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title span {
+            margin-right: 8px;
+        }
+
+        .rule-card {
+            background: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .wrong-option {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fdedec;
+            border-left: 3px solid var(--wrong-color);
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考题解析</h1>
+        <div class="sub-title">Contracts: Assignment & Delegation</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <strong>✅ 正确答案：D</strong>
+            没有任何法律论点支持面包师拒绝接受货物。
+        </div>
+
+        <p>本题考察的是《统一商法典》（UCC）下关于<strong>合同转让与委托</strong>（Assignment and Delegation）的核心规则。</p>
+
+        <!-- 法律规则解析 -->
+        <div class="section-title">
+            <span>⚖️</span> 核心法律依据 (UCC § 2-210)
+        </div>
+
+        <div class="rule-card">
+            <p>由于本案涉及面粉（货物）买卖，因此适用 <strong>UCC (Uniform Commercial Code)</strong>。</p>
+            <p>UCC 规定，除非合同另有约定，当事人使用“转让合同”（Assign the contract）或“转让所有合同”这类概括性语言时，法律将其解释为：</p>
+            <ol>
+                <li><strong>权利的转让</strong> <span class="english-term">(Assignment of Rights)</span>：即收款或收货的权利转给第三方。</li>
+                <li><strong>义务的委托</strong> <span class="english-term">(Delegation of Duties)</span>：即履行合同义务的责任转给第三方。</li>
+            </ol>
+        </div>
+
+        <p>受托人（Delegatee，本案中的批发商）接受转让，即构成其对履行义务的<strong>承诺</strong> <span class="english-term">(Promise to perform)</span>。因此，受托人有义务交付，买方（面包师）也有义务接受。</p>
+
+        <!-- 为什么可以转让 -->
+        <div class="section-title">
+            <span>🔍</span> 深度解析：为何面包师必须接受？
+        </div>
+
+        <p>面包师拒绝接受货物通常需要证明“义务不可委托” <span class="english-term">(Non-delegable duties)</span>。但在本案中，义务是可以委托的：</p>
+
+        <ul>
+            <li><strong>非个人服务合同：</strong> 面粉是标准化的商品 <span class="english-term">(Standardized commodity)</span>。面包师关心的是面粉的质量和数量，而不是必须由特定的制造商亲自研磨。这与“画肖像画”或“做手术”等高度依赖个人技能的合同不同。</li>
+            <li><strong>需求合同的可转让性：</strong> 尽管旧的普通法认为需求合同 <span class="english-term">(Requirements Contracts)</span> 包含个人信赖因素不可转让，但 <strong>UCC 明确允许</strong>需求合同的转让，只要受让人是善意的，且需求量没有发生其无法预见的重大变化。</li>
+            <li><strong>受托人资质：</strong> 题目特别提到批发商是“声誉良好且长期经营的” <span class="english-term">(Reputable and longtime)</span>，这意味着面包师获得履行的安全性没有受到实质性损害。</li>
+        </ul>
+
+        <!-- 错误选项分析 -->
+        <div class="section-title">
+            <span>❌</span> 为什么其他选项是错误的？
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 A & C 错误：</strong><br>
+            它们声称“转让”一词仅转移权利而不转移义务。这是错误的。根据 UCC § 2-210(4)，概括性的“转让”语言自动包含义务的委托。
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 B & C 错误：</strong><br>
+            它们声称“待履行的需求合同不可转让”。这是旧法的观点。在现代商业法（UCC）下，需求合同是可以转让的，除非转让会实质性地改变义务人的负担。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">
+            <span>💡</span> MBE 考试通关技巧
+        </div>
+
+        <div class="rule-card" style="background-color: #fff8e1; border: 1px solid #ffe0b2;">
+            <p><strong>1. 区分 UCC 与 Common Law：</strong> 看到货物（Goods）买卖，优先适用 UCC。UCC 倾向于促进商业交易的自由流转。</p>
+            <p><strong>2. 默认规则：</strong> 在没有禁止转让条款的情况下，合同通常是可转让的（Assignable）和可委托的（Delegable）。</p>
+            <p><strong>3. 例外情况：</strong> 只有当履行涉及独特的个人技能（Personal skill/judgment）或转让会实质性改变风险时，才禁止委托。</p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

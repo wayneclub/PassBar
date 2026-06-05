@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-card {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .section-title {
+            color: #1976d2;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #e3f2fd;
+            padding-bottom: 5px;
+        }
+        .rule-box {
+            background-color: #fff3e0;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        .rule-icon {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english {
+            font-style: italic;
+            color: #78909c;
+            font-size: 0.9em;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 3px solid #cfd8dc;
+        }
+        .case-ref {
+            font-family: "Georgia", serif;
+            font-style: italic;
+            color: #555;
+        }
+        .footer {
+            background-color: #eceff1;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #607d8b;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Civil Procedure: Venue Transfer & Choice of Law</p>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-card">
+            <span class="answer-title">✅ 正确答案：选项 A</span>
+            <p>制造商不会成功。因为案件转移后，法院仍将适用 <b>A州</b> 的产品责任法。</p>
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">⚖️ 核心法律规则</div>
+        
+        <div class="rule-box">
+            <span class="rule-icon">📌</span>
+            <b>规则总结：</b><br>
+            在基于多元管辖权 (<span class="english">Diversity Jurisdiction</span>) 的案件中，如果原法院的审判地 (<span class="english">Venue</span>) 是<b>适当的</b>，那么案件根据 § 1404(a) 转移后，受移送法院 (<span class="english">Transferee Court</span>) 必须适用<b>原法院</b> (<span class="english">Transferor Court</span>) 所在州的法律选择规则。
+        </div>
+
+        <p>这一规则源自著名的最高法院判例 <span class="case-ref">Van Dusen v. Barrack</span> 和 <span class="case-ref">Ferens v. John Deere Co.</span>。简单来说，被告不能通过转移案件来改变适用的法律（即防止 <span class="english">Forum Shopping</span>）。</p>
+
+        <!-- 详细推理步骤 -->
+        <div class="section-title">🔍 案件逻辑推演</div>
+
+        <div class="analysis-step">
+            <span class="term">第一步：确认管辖权类型</span><br>
+            本案原告是A州公民，被告是B州公民，诉讼标的额$100,000。这是典型的<b>多元管辖权</b> (<span class="english">Diversity Jurisdiction</span>) 案件。
+        </div>
+
+        <div class="analysis-step">
+            <span class="term">第二步：判断原审判地是否适当</span><br>
+            事故发生在A州。根据联邦规则，<b>大部分关键案情发生地</b> (<span class="english">substantial part of events</span>) 是适当的审判地。因此，A州联邦法院是<b>适当的审判地</b> (<span class="english">Proper Venue</span>)。
+        </div>
+
+        <div class="analysis-step">
+            <span class="term">第三步：适用转移规则</span><br>
+            制造商依据 § 1404(a) 为了便利原则申请转移到B州（B州也是适当审判地，因为是被告居住地）。<br><br>
+            <span class="highlight" style="color:#d32f2f; font-weight:bold;">关键点：</span>当案件从一个<b>适当</b>的审判地转移时，原法院的法律选择规则“随案同行”。
+        </div>
+
+        <div class="analysis-step">
+            <span class="term">第四步：得出结论</span><br>
+            A州的法律选择规则要求适用A州法律。因此，即使案件转移到了B州联邦法院，B州法院也必须像A州法院那样行事，适用A州的法律选择规则，最终适用 <b>A州的产品责任法</b>。
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="section-title">❌ 为什么其他选项错误？</div>
+        
+        <ul>
+            <li><b>选项 B 错误：</b> B州是被告的注册地和主要营业地，因此B州是<b>适当的</b>审判地，而非不适当。</li>
+            <li><b>选项 C 错误：</b> A州是事故发生地，因此A州也是<b>适当的</b>审判地。</li>
+            <li><b>选项 D 错误：</b> 只有当原法院（A州）的审判地<b>不适当</b> (<span class="english">Improper Venue</span>) 时，案件转移后才会适用受移送法院（B州）的法律选择规则。本案中A州审判地适当，故不适用此例外。</li>
+        </ul>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #e1f5fe; border-color: #81d4fa;">
+            <span class="rule-icon">💡</span>
+            <b>MBE 考试技巧：</b><br>
+            看到 "Transfer of Venue"（审判地转移）题目时，先问自己：<b>原来的法院选对了吗？</b>
+            <ul>
+                <li>如果原法院是对的 ➡️ 带走原法院的法律 (Take the law with you)。</li>
+                <li>如果原法院是错的 ➡️ 适用新法院的法律。</li>
+            </ul>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

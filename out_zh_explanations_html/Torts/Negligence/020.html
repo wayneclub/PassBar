@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin: 10px 0;
+            border: 1px solid #b3e5fc;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .eng {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .analysis-text {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .option-analysis {
+            font-size: 13px;
+            margin-top: 15px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+
+        .option-item {
+            margin-bottom: 8px;
+        }
+
+        .wrong-badge {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .correct-badge {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .tip-box {
+            background-color: #fff3e0;
+            border: 1px solid #ffe0b2;
+            color: #e65100;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 13px;
+            display: flex;
+            align-items: start;
+        }
+
+        .tip-icon {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>MBE 考点解析</h1>
+            <div class="subtitle">Torts: Vicarious Liability</div>
+        </div>
+
+        <!-- Core Answer Section -->
+        <div class="card">
+            <div class="card-title">正确答案：C</div>
+            <div class="analysis-text">
+                <p>本题考查的核心是<b>独立承包商的转承责任例外情况</b>。</p>
+                <p>虽然一般原则是委托人不对独立承包商的侵权行为负责，但本案涉及<b>爆破（Blasting）</b>，属于<b>异常危险活动（Abnormally Dangerous Activity）</b>，因此开发商必须承担责任。</p>
+            </div>
+        </div>
+
+        <!-- Legal Principle Section -->
+        <div class="card">
+            <div class="card-title">法律规则详解</div>
+            
+            <div class="concept-box">
+                <span class="term">一般规则 (General Rule)</span><br>
+                委托人通常不对<span class="term">独立承包商 (Independent Contractor)</span> 的侵权行为承担<span class="term">转承责任 (Vicarious Liability)</span>。
+            </div>
+
+            <div class="concept-box" style="background-color: #fff8e1; border-color: #ffecb3;">
+                <span class="term">关键例外 (The Exception)</span><br>
+                当工作涉及<b>不可转委托的义务 (Non-delegable Duty)</b> 时，委托人仍需负责。最典型的不可转委托义务就是从事<span class="term">异常危险活动 (Abnormally Dangerous Activities)</span>。
+            </div>
+
+            <div class="analysis-text">
+                <p><b>逻辑推演：</b></p>
+                <ol>
+                    <li><b>爆破 = 严格责任：</b> 爆破是教科书级的“异常危险活动”。从事此类活动的一方承担<span class="term">严格责任 (Strict Liability)</span>，即无论是否尽到合理注意义务，只要造成损害就要赔偿。</li>
+                    <li><b>责任不可转移：</b> 出于公共政策考量，法律禁止委托人将这种高风险活动的责任通过雇佣承包商“甩锅”。</li>
+                    <li><b>结论：</b> 即使开发商雇佣了专业的泳池公司，且开发商自己没有过失，开发商仍需对爆破造成的损害承担转承责任。</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Distractor Analysis -->
+        <div class="card">
+            <div class="card-title">选项辨析</div>
+            <div class="option-analysis">
+                <div class="option-item">
+                    <span class="wrong-badge">选项 A 错误</span>
+                    <b>理由：</b> 提到“合理注意 (Reasonable Care)”。对于异常危险活动适用<b>严格责任</b>，合理注意不是抗辩理由。
+                </div>
+                <div class="option-item">
+                    <span class="wrong-badge">选项 B 错误</span>
+                    <b>理由：</b> 提到“谨慎雇佣 (Negligent Hiring)”。虽然谨慎雇佣可以免除开发商的<i>直接</i>过失责任，但无法免除因异常危险活动产生的<i>转承</i>责任。
+                </div>
+                <div class="option-item">
+                    <span class="wrong-badge">选项 D 错误</span>
+                    <b>理由：</b> 提到“控制权 (Right to Control)”。这是区分雇员与独立承包商的标准。但在异常危险活动面前，无论是否保留控制权，委托人都必须负责。
+                </div>
+            </div>
+        </div>
+
+        <!-- Exam Tip -->
+        <div class="tip-box">
+            <div class="tip-icon">💡</div>
+            <div>
+                <b>MBE 考试技巧：</b><br>
+                看到 <b>Blasting (爆破)</b>、<b>Fumigation (熏蒸)</b> 或 <b>Wild Animals (野生动物)</b>，请立即联想两个概念：
+                <br>1. <b>Strict Liability</b> (严格责任 - 无论多小心都要赔)
+                <br>2. <b>Non-delegable Duty</b> (不可转委托 - 即使外包也要赔)
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

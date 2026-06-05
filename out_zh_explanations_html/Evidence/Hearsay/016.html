@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f0f2f5;
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+        padding: 10px;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: #2c3e50;
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .header .sub-title {
+        font-size: 0.85rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .answer-section {
+        background-color: #e8f5e9;
+        border-left: 6px solid #4caf50;
+        padding: 15px;
+        margin: 20px;
+        border-radius: 4px;
+    }
+    .answer-title {
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+    }
+    .content-block {
+        padding: 0 20px 20px 20px;
+    }
+    .rule-box {
+        background-color: #e3f2fd;
+        border: 1px solid #bbdefb;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+    .rule-title {
+        color: #1565c0;
+        font-weight: bold;
+        font-size: 0.95rem;
+        margin-bottom: 5px;
+        display: block;
+    }
+    .trap-box {
+        background-color: #fff3e0;
+        border-left: 4px solid #ff9800;
+        padding: 12px;
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+    }
+    .highlight {
+        font-weight: bold;
+        color: #d32f2f;
+    }
+    .latin {
+        font-style: italic;
+        color: #555;
+    }
+    .footer {
+        background-color: #fafafa;
+        padding: 15px;
+        text-align: center;
+        font-size: 0.8rem;
+        color: #888;
+        border-top: 1px solid #eee;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    li {
+        margin-bottom: 8px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考题解析</h1>
+        <div class="sub-title">Evidence / Hearsay</div>
+    </div>
+
+    <div class="answer-section">
+        <div class="answer-title">正确答案：D</div>
+        <div>Yes, as the statement of a party-opponent.<br>(是，作为对方当事人的陈述。)</div>
+    </div>
+
+    <div class="content-block">
+        <p>本题考察的是证据法中关于<b>传闻证据（Hearsay）</b>的核心规则及其豁免情况，特别是如何区分“和解要约”与“当事人陈述”。</p>
+
+        <div class="rule-box">
+            <span class="rule-title">核心考点：对方当事人陈述 (FRE 801(d)(2))</span>
+            根据《联邦证据规则》(FRE)，如果一项庭外陈述是由<b>对方当事人（Party-Opponent）</b>作出的，并且被用来<b>反对该当事人</b>，那么该陈述在定义上<b>不属于传闻（Non-hearsay）</b>。
+            <br><br>
+            在本案中：
+            <ul>
+                <li><b>陈述人：</b>被告（Defendant）。</li>
+                <li><b>提出者：</b>原告（Plaintiff）。</li>
+                <li><b>用途：</b>用来证明被告有责任（反对被告）。</li>
+            </ul>
+            因此，这属于典型的“对方当事人陈述”，可以直接作为实体证据采纳。
+        </div>
+
+        <h3>为什么选项 B 是最大的陷阱？</h3>
+        <div class="trap-box">
+            许多考生会误选 <b>B (Offer of Compromise)</b>，因为被告提到了给钱（$100）。
+            <br><br>
+            <b>MBE 破题关键：时间点与争议的存在。</b>
+            <br><br>
+            根据 FRE 408（和解要约规则），要排除证据，必须满足前提：<b>在陈述作出时，双方必须已经存在关于责任或金额的实际争议（Disputed Claim）。</b>
+            <br><br>
+            题目明确指出被告是在事件发生后<b>“立即”（immediately）</b>说的这句话。此时：
+            <ul>
+                <li>原告还没有提出索赔。</li>
+                <li>双方还没有就责任发生争执。</li>
+                <li>甚至连律师都还没介入。</li>
+            </ul>
+            既然没有“争议”，就不存在“和解”。因此，这只是一个自发的承认（Admission），不受 FRE 408 保护，可以被采纳。
+        </div>
+
+        <h3>其他选项解析</h3>
+        <ul>
+            <li><b>选项 A (Relevance)：</b>错误。相关性的门槛很低。被告道歉并给钱，倾向于表明他觉得自己有错（Consciousness of guilt），这显然与责任问题相关。</li>
+            <li><b>选项 C (Present Sense Impression)：</b>不准确。虽然这句话可能符合“当前感官印象”的定义（描述刚刚发生的事件），但在 MBE 考试中，如果一个陈述既符合传闻例外（Exception），又符合<b>传闻豁免/非传闻（Exemption/Non-hearsay）</b>，通常优先选择后者（即选项 D），因为它是更直接的采纳理由。</li>
+        </ul>
+
+        <div class="rule-box" style="background-color: #f3e5f5; border-color: #e1bee7;">
+            <span class="rule-title" style="color: #7b1fa2;">💡 考试技巧 (Exam Tip)</span>
+            看到“我给你钱”或“对不起”，首先检查时间点：
+            <br>
+            1. <b>事故现场立即说：</b>通常是 Party Admission，<b>可采纳</b>。
+            <br>
+            2. <b>收到律师函或起诉后说：</b>通常是 Settlement Offer，<b>不可采纳</b>。
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Evidence Review | 证据法考点总结
+    </div>
+</div>
+
+</body>
+</html>

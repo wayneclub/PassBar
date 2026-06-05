@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-card {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #1565c0;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .case-card {
+            background-color: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .analysis-section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #34495e;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+        .highlight {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .option-analysis {
+            background-color: #f9f9f9;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+        .correct-tag {
+            display: inline-block;
+            background-color: #4caf50;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+        .wrong-tag {
+            display: inline-block;
+            background-color: #ef5350;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Evidence / Hearsay</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="rule-card">
+            <span class="rule-title">核心规则：先前指认 (Prior Identification)</span>
+            根据 <b>FRE 801(d)(1)(C)</b>，如果满足以下条件，庭外陈述<b>不属于传闻证据 (Non-hearsay)</b>，可以采纳：
+            <ul>
+                <li>陈述人在当前的审判中作证；</li>
+                <li>陈述人就该陈述接受交叉诘问 (Subject to cross-examination)；</li>
+                <li>该陈述是指认其早些时候感知到的人 (Identifies a person perceived earlier)。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-section">
+            <div class="section-title">题目解析逻辑</div>
+            <p>本题考察的是传闻证据规则中的一个重要豁免（Exemption）以及证人的亲身认知（Personal Knowledge）要求。</p>
+            
+            <p><b>1. 为什么不是传闻证据？</b><br>
+            受害人（Victim）正在出庭作证，并且可以接受辩方的交叉诘问。尽管受害人现在“失忆”了，但他之前的陈述是指认被告为攻击者。这完全符合 FRE 801(d)(1)(C) 的定义。</p>
+
+            <p><b>2. 记忆丧失是否影响“交叉诘问”？</b><br>
+            这是本题最大的陷阱。根据最高法院在 <span class="term">United States v. Owens</span> 一案中的判决：只要证人出庭宣誓并回答问题，即便他声称因失忆无法回忆起犯罪细节，也被视为“受制于交叉诘问”。辩方可以通过质询其记忆缺失来攻击其可信度。</p>
+
+            <div class="case-card">
+                <span class="rule-title">关键判例：United States v. Owens</span>
+                即使证人无法回忆起作为指认依据的事件（如本案中的攻击过程），只要他能就“作出指认”这一行为接受质询，对质条款（Confrontation Clause）和传闻规则即被满足。
+            </div>
+
+            <p><b>3. 亲身认知 (Personal Knowledge) 问题</b><br>
+            被告反对的理由之一是受害人没有亲眼看到攻击者。然而，法医证据显示受害人前臂有<b>防御性伤口 (defensive wounds)</b>。这足以让理性的陪审员推断受害人在被击打时是面对攻击者的，从而具有亲身认知。</p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="section-title">选项深度剖析</div>
+            
+            <div class="option-analysis">
+                <span class="correct-tag">正确</span> <b>选项 D</b><br>
+                <b>理由：</b>受害人出庭并接受交叉诘问，且防御性伤口提供了足够的证据基础（Foundation），证明其具有亲身认知。因此，该先前指认陈述可作为实质性证据（Substantive Evidence）被采纳。
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">错误</span> <b>选项 A (证据标准)</b><br>
+                <b>理由：</b>关于亲身认知的证据标准不需要达到“大于50%的可能性” (More likely than not)。根据 FRE 602，只要证据足以支持一个理性的陪审员<b>能够认定</b>证人有亲身认知即可。这是一个很低的门槛。
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">错误</span> <b>选项 B (记忆缺失)</b><br>
+                <b>理由：</b>如前所述，记忆缺失并不意味着无法进行法律意义上的“有效交叉诘问”。辩方依然可以针对证人的失忆、偏见或感知能力进行质询。
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">错误</span> <b>选项 C (仅因是本人陈述)</b><br>
+                <b>理由：</b>这是一个常见的误区。证人自己的庭外陈述通常也是传闻（Hearsay），除非它符合特定的非传闻定义（如本题的先前指认）或传闻例外。仅凭“是受害人自己说的”这一点，不足以使其可采纳。
+            </div>
+        </div>
+
+        <div class="rule-card" style="background-color: #e8f5e9; border-left-color: #4caf50;">
+            <span class="rule-title">考试技巧 (Exam Tip)</span>
+            在 MBE 证据法题目中，看到<b>“先前指认” (Prior Identification)</b> 时，立即检查两个条件：
+            <ol>
+                <li>指认者现在是否坐在证人席上？</li>
+                <li>指认者是否可以被交叉诘问？</li>
+            </ol>
+            如果两者都满足，该陈述通常<b>不是传闻</b>且<b>可采纳</b>，即使证人现在声称“我不记得了”。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

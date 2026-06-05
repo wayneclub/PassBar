@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --correct-color: #27ae60;
+        --wrong-color: #c0392b;
+        --text-color: #333;
+        --bg-color: #f4f7f6;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .header .sub-title {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .card {
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-left: 4px solid var(--accent-color);
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .diagram {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 15px 0;
+        background: var(--highlight-bg);
+        padding: 15px;
+        border-radius: 8px;
+    }
+    .step {
+        background: #fff;
+        border: 1px solid var(--accent-color);
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        margin: 5px 0;
+        width: 80%;
+        text-align: center;
+        position: relative;
+    }
+    .arrow {
+        font-size: 1.2rem;
+        color: var(--accent-color);
+        margin: -5px 0;
+    }
+    .key-point {
+        display: flex;
+        align-items: start;
+        margin-bottom: 10px;
+    }
+    .icon {
+        margin-right: 10px;
+        font-size: 1.2rem;
+    }
+    .correct-box {
+        background-color: #eafaf1;
+        border: 1px solid var(--correct-color);
+        color: var(--correct-color);
+        padding: 10px;
+        border-radius: 8px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .trap-box {
+        background-color: #fdedec;
+        border: 1px solid var(--wrong-color);
+        padding: 10px;
+        border-radius: 8px;
+        margin-top: 10px;
+        font-size: 0.9rem;
+    }
+    .trap-title {
+        color: var(--wrong-color);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 5px 0;
+    }
+    li {
+        margin-bottom: 5px;
+        font-size: 0.95rem;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property: Future Interests</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="correct-box">
+            ✅ 正确答案：B
+        </div>
+        <p style="font-size: 0.9rem; color: #666; text-align: center; margin-bottom: 20px;">
+            朋友拥有终身地产权，慈善机构拥有既定剩余地产权。
+        </p>
+
+        <!-- 考点图解 -->
+        <div class="card">
+            <div style="font-weight: bold; margin-bottom: 10px;">⚖️ 权益流转图解</div>
+            <div class="diagram">
+                <div class="step">
+                    <b>原始授予 (Grant)</b><br>
+                    朋友：终身地产权 (Life Estate)<br>
+                    邻居：既定剩余权 (Vested Remainder)
+                </div>
+                <div class="arrow">⬇️</div>
+                <div class="step">
+                    <b>邻居去世 (Neighbor Dies)</b><br>
+                    有遗嘱 (Will) ➡️ 赠与慈善机构
+                </div>
+                <div class="arrow">⬇️</div>
+                <div class="step" style="border-color: var(--correct-color); background: #eafaf1;">
+                    <b>当前状态</b><br>
+                    朋友：持有终身地产权<br>
+                    慈善机构：持有剩余权
+                </div>
+            </div>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="card">
+            <div style="font-weight: bold; margin-bottom: 10px;">🔍 核心法律分析</div>
+            
+            <div class="key-point">
+                <span class="icon">1️⃣</span>
+                <div>
+                    <strong>既定剩余权的可处分性</strong><br>
+                    <span class="term">Vested Remainder</span> 是完全的财产权益。它具有以下三个特征：
+                    <ul>
+                        <li>可生前转让 (Alienable)</li>
+                        <li>可遗嘱处分 (Devisable)</li>
+                        <li>可被继承 (Descendible)</li>
+                    </ul>
+                    在本案中，邻居拥有既定剩余权。当她去世时，该权益<b>通过遗嘱</b>合法转移给了慈善机构。
+                </div>
+            </div>
+
+            <div class="key-point">
+                <span class="icon">2️⃣</span>
+                <div>
+                    <strong>限制性词语 vs. 购买词语</strong><br>
+                    题目中 "to neighbor <b>and her heirs</b>" 是经典的陷阱。
+                    <br><br>
+                    <span class="term">Words of Limitation</span>： "and her heirs" 仅表示邻居获得的是<b>完全简单所有权 (Fee Simple)</b> 的剩余权，而不是仅仅给她个人的终身权益。
+                    <br><br>
+                    这<b>并不</b>意味着邻居的继承人直接获得了权益。继承人只有在邻居无遗嘱死亡 (Intestate) 时才有希望继承。但本案中邻居有遗嘱，所以女儿一无所获。
+                </div>
+            </div>
+        </div>
+
+        <!-- 干扰项排除 -->
+        <div class="trap-box">
+            <span class="trap-title">🚫 为什么女儿的 Quitclaim Deed 无效？（排除 A & C）</span>
+            因为邻居留有遗嘱将财产给了慈善机构，女儿作为继承人（Heir）没有继承到任何东西。
+            <br>
+            既然女儿对这块土地没有任何权益，她签署的 <span class="term">Quitclaim Deed</span>（放弃索赔契据）就是空的，不能将任何权益转让给朋友。因此，朋友的终身地产权无法与剩余权合并 (Merger)。
+        </div>
+
+        <div class="trap-box">
+            <span class="trap-title">🚫 反永久所有权规则 (RAP) 适用吗？（排除 D）</span>
+            <b>不适用。</b> RAP 通常不适用于授予给<b>已出生且可识别</b>之人的既定剩余权 (Indefeasibly Vested Remainder)。邻居是确定的在世之人，她的权益在设立时就已经既定 (Vested)，不存在“可能在21年后才既定”的风险。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="border-left-color: #f1c40f;">
+            <div style="font-weight: bold; margin-bottom: 5px;">💡 MBE 提分技巧</div>
+            <p style="font-size: 0.9rem; margin: 0;">
+                看到 "and his/her heirs" 时，请立即在脑海中划掉它，并标记为“这是 Fee Simple 的标志，不是给继承人的礼物”。
+                <br><br>
+                时刻关注当事人是<b>有遗嘱 (Testate)</b> 还是<b>无遗嘱 (Intestate)</b> 死亡。遗嘱优先于法定继承。
+            </p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

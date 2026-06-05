@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #d4edda;
+            --correct-text: #155724;
+            --warning-bg: #fff3cd;
+            --text-color: #333;
+            --light-gray: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 5px;
+        }
+
+        .key-point {
+            background-color: var(--correct-bg);
+            color: var(--correct-text);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .wrong-option {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+        }
+
+        .wrong-option strong {
+            color: #dc3545;
+        }
+
+        .exam-tip {
+            background-color: var(--warning-bg);
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .exam-tip-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        code {
+            background-color: rgba(0,0,0,0.05);
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">民事诉讼法 (Civil Procedure)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-card">
+            <div class="rule-title">核心规则：Fed. R. Civ. P. 4(m)</div>
+            <p>在美国联邦法院，原告必须在提交起诉状（Complaint）后的 <strong>90天内</strong> 完成对被告的送达（Service of Process）。</p>
+            <p><strong>例外条款：</strong>如果原告能证明未能及时送达存在<span style="color: #d35400; font-weight: bold;">“正当理由” (Good Cause)</span>，法院<strong>必须</strong>将送达时间延长一个适当的期限。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">本案分析</div>
+            <p>本题考察的是法院在面对逾期送达时的裁量权标准。</p>
+            
+            <p><strong>1. 时间线计算：</strong><br>
+            原告提交起诉状 → 90天期限开始计算。本案中，送达发生在第100天，确实超过了法定的90天期限。</p>
+
+            <p><strong>2. 是否存在“正当理由” (Good Cause)？</strong><br>
+            原告在起诉后立即遭遇严重车祸并住院3个月（约90天）。这属于原告无法控制的外部因素（External factors outside the plaintiff's control）。</p>
+
+            <div class="key-point">
+                ✅ 结论：<br>
+                由于原告的严重受伤和住院构成了“正当理由”，根据 Rule 4(m)，法院必须批准延期，而不是驳回起诉。因此，法院不会批准被告的驳回请求。
+            </div>
+        </div>
+
+        <!-- 选项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 B？</div>
+            <p><strong>选项 B (正确)：</strong> 直接指出了法律依据——原告可以展示“正当理由”。一旦确立 Good Cause，延期就是强制性的（Mandatory），而非自由裁量。</p>
+
+            <div class="wrong-option">
+                <strong>❌ 选项 A 错误：</strong><br>
+                送达期限是从<strong>提交起诉状 (Filing of the complaint)</strong> 之日开始计算，而不是从聘请律师之日开始。原告即使是无律师代表 (Pro Se)，也需遵守规则，除非有正当理由。
+            </div>
+
+            <div class="wrong-option">
+                <strong>❌ 选项 C 错误：</strong><br>
+                虽然确实超过了90天，但该选项忽略了 Rule 4(m) 中的“正当理由”例外条款。法院不会仅仅因为超时就自动驳回，必须先考察是否有理由。
+            </div>
+
+            <div class="wrong-option">
+                <strong>❌ 选项 D 错误：</strong><br>
+                虽然被告的不当行为（如逃避送达）可以构成正当理由，但这并不是唯一的理由。原告自身的突发疾病或不可抗力同样构成正当理由。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 考试技巧 (Exam Tip)</span>
+            在处理 <strong>Rule 4(m)</strong> 问题时，请遵循两步法：
+            <ol style="margin: 5px 0 0 20px; padding: 0;">
+                <li>计算是否超过90天。</li>
+                <li>如果超过，检查事实模式中是否有<strong>“正当理由” (Good Cause)</strong>。</li>
+            </ol>
+            <br>
+            <strong>注意区分：</strong>
+            <ul>
+                <li><strong>Good Cause (正当理由)：</strong> 通常指外部阻碍（如重病、被告躲避），法院<strong>必须</strong>延期。</li>
+                <li><strong>Excusable Neglect (可原谅的疏忽)：</strong> 即使没有正当理由，法院仍<strong>可以</strong>（Discretionary）行使自由裁量权批准延期，但这并非强制性的。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            font-size: 1.4em;
+            margin-top: 0;
+        }
+        h3 {
+            color: #2980b9;
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .rule-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .case-ref {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+        .english-term {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-weight: normal;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .wrong-answer {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 0.85em;
+            color: #999;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>MBE 考点解析：大陪审团程序的特殊性</h2>
+    
+    <p>本题考察的是美国刑事诉讼法中关于<b>大陪审团（Grand Jury）</b>程序的两个核心考点：律师协助权的范围和证据排除规则的适用性。</p>
+
+    <div class="highlight-box">
+        <p><b>正确答案：A</b></p>
+        <p>法院不应驳回起诉，因为证人在大陪审团室内无权要求律师在场，且非法获取的证据不影响起诉书的有效性。</p>
+    </div>
+
+    <h3>核心考点一：证据排除规则不适用</h3>
+    <p><b>规则：</b>证据排除规则（Exclusionary Rule）通常禁止在刑事审判（Trial）中使用违反第四修正案（Fourth Amendment）获取的证据。但是，这一规则<b>不适用</b>于大陪审团程序。</p>
+    
+    <div class="rule-box">
+        <p><b>法律依据：</b><br>
+        大陪审团是一个调查机构（Investigatory Body），而非裁决机构。最高法院在 <i>United States v. Calandra (1974)</i> 中裁定，允许大陪审团使用非法搜查获得的证据，因为将排除规则延伸至此会阻碍大陪审团的调查职能。</p>
+    </div>
+    
+    <p><b>结论：</b>即使起诉书（Indictment）部分基于非法搜查获得的证据，该起诉书仍然有效。因此，选项 C 错误。</p>
+
+    <h3>核心考点二：大陪审团室内的律师权</h3>
+    <p><b>规则：</b>虽然证人有权在作证间隙走出房间咨询律师，但第六修正案（Sixth Amendment）的律师协助权并不延伸至大陪审团室<b>内部</b>。</p>
+    
+    <ul>
+        <li><b>Outside:</b> 证人可以离开房间咨询律师。</li>
+        <li><b>Inside:</b> 律师不能进入大陪审团室陪伴证人。</li>
+    </ul>
+
+    <div class="rule-box">
+        <p><b>法律依据：</b><br>
+        在 <i>United States v. Mandujano (1976)</i> 中，法院确认证人没有宪法权利要求律师在大陪审团室内在场。</p>
+    </div>
+
+    <p><b>结论：</b>检察官拒绝律师进入房间并未侵犯证人的宪法权利。因此，选项 D 错误。</p>
+
+    <h3>其他选项分析</h3>
+    <ul>
+        <li><span class="wrong-answer">选项 B (错误)：</span> 虽然证人作证确实放弃了第五修正案（Fifth Amendment）的反对自证其罪特权，但这并不是法院拒绝驳回起诉的主要理由。法院拒绝驳回是因为起诉本身的程序和依据在法律上是允许的（即没有违反律师权，且可以使用非法证据）。</li>
+    </ul>
+
+    <h3>🎓 考试技巧 (Exam Tip)</h3>
+    <p>在处理涉及 <b>Grand Jury</b> 的 MBE 题目时，请记住它是“低保护区”：</p>
+    <ol>
+        <li><b>证据规则宽松：</b>可以使用传闻证据（Hearsay）和非法搜查得来的证据。</li>
+        <li><b>律师限制：</b>律师只能在门外等候，不能进屋。</li>
+        <li><b>目的不同：</b>它的目的是决定是否有“合理根据”（Probable Cause）起诉，而不是判定有罪。</li>
+    </ol>
+
+    <div class="footer">
+        MBE Criminal Procedure Review
+    </div>
+</div>
+
+</body>
+</html>

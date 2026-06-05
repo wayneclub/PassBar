@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        .header p {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .rule-box {
+            background-color: #eaf2f8;
+            border-left: 4px solid var(--accent-color);
+            padding: 10px;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        .correct-analysis {
+            background-color: #e8f8f5;
+            border-left: 4px solid var(--correct-color);
+            padding: 10px;
+        }
+        .wrong-analysis {
+            background-color: #fdedec;
+            border-left: 4px solid var(--wrong-color);
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .diagram {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        .diagram-box {
+            width: 48%;
+            padding: 10px;
+            border-radius: 6px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Civil Procedure: Bench Trials & Findings</p>
+    </div>
+
+    <!-- 核心考点 -->
+    <div class="card">
+        <div class="section-title">⚖️ 核心法律规则</div>
+        <div class="rule-box">
+            <strong>Federal Rule of Civil Procedure 52(a)</strong><br>
+            <span style="font-size: 0.9em;">(Findings and Conclusions by the Court)</span>
+        </div>
+        <p>在<strong>法官审判 (Bench Trial)</strong> 中，即没有陪审团的审判，法官身兼两职：</p>
+        
+        <div class="diagram">
+            <div class="diagram-box">
+                <strong>Finder of Fact</strong><br>
+                (事实认定者)<br>
+                <span style="color: #7f8c8d; font-size: 0.8em;">替代陪审团</span>
+            </div>
+            <div class="diagram-box">
+                <strong>Interpreter of Law</strong><br>
+                (法律适用者)<br>
+                <span style="color: #7f8c8d; font-size: 0.8em;">法官本职</span>
+            </div>
+        </div>
+
+        <p>因此，FRCP 52(a) 强制要求法官在作出判决时，必须在记录中（口头或书面）明确说明：</p>
+        <ol>
+            <li><strong>Findings of Fact</strong> (事实认定)</li>
+            <li><strong>Conclusions of Law</strong> (法律结论)</li>
+        </ol>
+        <p><strong>目的：</strong> 让上诉法院 (Appellate Court) 能够理解法官的判决逻辑，从而进行有效的审查。</p>
+    </div>
+
+    <!-- 题目解析 -->
+    <div class="card">
+        <div class="section-title">🔍 题目分析与正确答案</div>
+        <p><strong>案情回顾：</strong> 这是一个法官审判 (tried to the court)。证据呈示结束后，法官直接宣布“判决制造商胜诉”，除此之外什么都没说。</p>
+        
+        <div class="correct-analysis">
+            <strong>✅ 正确答案：D</strong>
+            <p><strong>理由：</strong> 审判法院犯了程序性错误，因为未提供事实认定和法律结论。</p>
+            <p>仅仅宣布“谁赢了”是不够的。根据 FRCP 52(a)，法官必须解释<strong>为什么</strong>赢（基于哪些事实，适用了什么法律）。没有这些记录，上诉法院无法履行其审查职能，因此这是推翻判决 (Reverse/Remand) 的最佳理由。</p>
+        </div>
+    </div>
+
+    <!-- 错误选项解析 -->
+    <div class="card">
+        <div class="section-title">❌ 干扰项排除</div>
+        
+        <div class="wrong-analysis">
+            <strong>选项 A (错误)：关于书面证据</strong>
+            <p><strong>解析：</strong> 案件仅基于书面证据 (Documentary Evidence) 审理并不是错误的理由。法官完全可以依据书面材料进行事实认定。除非该认定是“明显错误” (Clearly Erroneous) 的，否则上诉法院不会推翻。但本题的问题在于法官根本没有给出认定，而不是认定本身错了。</p>
+        </div>
+
+        <div class="wrong-analysis">
+            <strong>选项 B & C (错误)：关于拟议认定 (Proposed Findings)</strong>
+            <p><strong>解析：</strong> 虽然当事人<strong>可以</strong>提交拟议的事实认定和法律结论，但这并非强制性要求 (unless ordered by court)，法院也不必非要给当事人机会提交后才能判决。关键错误在于法官自己没有做这件事，而不是当事人有没有做。</p>
+        </div>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card" style="background: #fff8e1; border: 1px solid #ffe082;">
+        <div class="section-title" style="color: #f57c00; border-bottom-color: #ffe082;">💡 MBE 提分技巧</div>
+        <p>看到 <strong>"Tried to the court"</strong> 或 <strong>"Bench trial"</strong> 时，立即联想以下考点：</p>
+        <ul style="padding-left: 20px; margin: 5px 0;">
+            <li>法官必须分别陈述 <strong>Findings of Fact</strong> 和 <strong>Conclusions of Law</strong>。</li>
+            <li>上诉审查标准 (Standard of Review)：
+                <ul>
+                    <li>法律问题 (Law) ➡️ <strong>De Novo</strong> (重新审视)</li>
+                    <li>事实问题 (Fact) ➡️ <strong>Clearly Erroneous</strong> (明显错误)</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

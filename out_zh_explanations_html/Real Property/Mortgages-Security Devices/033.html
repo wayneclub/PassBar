@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-color: #ddd;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: #fff;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 25px 0;
+            padding-left: 20px;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            border: 2px solid #fff;
+        }
+
+        .timeline-item.active::before {
+            background-color: var(--success-color);
+            transform: scale(1.2);
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            color: #7f8c8d;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .timeline-content {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .highlight-answer {
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            color: #3c763d;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .exam-tip strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #856404;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            color: var(--primary-color);
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Real Property / Mortgages</div>
+    </div>
+
+    <div class="content">
+        <p>本题考察的核心知识点是抵押贷款中的<strong>赎回权 (Right of Redemption)</strong>。在 MBE 考试中，区分“止赎前”和“止赎后”的权利是解题的关键。</p>
+
+        <div class="concept-box">
+            <span class="concept-title">核心考点：两种赎回权的区别</span>
+            <p>抵押人（借款人）试图保住或拿回房产，主要依据时间点分为两个阶段：</p>
+            <table>
+                <tr>
+                    <th>类型</th>
+                    <th>衡平法赎回权<br>(Equitable Right)</th>
+                    <th>法定赎回权<br>(Statutory Right)</th>
+                </tr>
+                <tr>
+                    <td><strong>时间点</strong></td>
+                    <td>止赎拍卖<strong>前</strong><br>(Before Foreclosure Sale)</td>
+                    <td>止赎拍卖<strong>后</strong><br>(After Foreclosure Sale)</td>
+                </tr>
+                <tr>
+                    <td><strong>依据</strong></td>
+                    <td>所有州均承认<br>(Common Law)</td>
+                    <td>仅部分州通过立法规定<br>(Statute)</td>
+                </tr>
+                <tr>
+                    <td><strong>代价</strong></td>
+                    <td>支付全部欠款 + 利息</td>
+                    <td>支付<strong>拍卖成交价</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>案件时间轴分析</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">阶段 1：违约 (Default)</div>
+                <div class="timeline-content">
+                    男子违约，银行启动止赎程序。<br>
+                    <span style="color:var(--warning-color); font-size:12px;">此时男子拥有 <strong>Equitable Right of Redemption</strong>。</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">阶段 2：止赎拍卖 (Foreclosure Sale)</div>
+                <div class="timeline-content">
+                    银行作为唯一竞标者买下房产，获得所有权 (Title)。<br>
+                    <span style="color:red; font-size:12px;">注意：拍卖落槌时刻，Equitable Right 终止。</span>
+                </div>
+            </div>
+
+            <div class="timeline-item active">
+                <div class="timeline-date">阶段 3：拍卖后 (Post-Sale)</div>
+                <div class="timeline-content">
+                    男子获得遗产，试图回购。<br>
+                    <strong>这是本题的关键节点。</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-answer">
+            <strong>正确答案解析 (选项 D)</strong>
+            <p>题目明确指出，该男子是在<strong>止赎拍卖之后 (Shortly after the foreclosure sale)</strong> 才试图赎回房产。</p>
+            <p>在普通法下，一旦止赎拍卖完成，借款人的权益即告终止。要在拍卖后重新获得所有权，必须依赖该州具体的<strong>成文法 (Statute)</strong> 规定。这种权利被称为<strong>法定赎回权 (Statutory Right of Redemption)</strong>。</p>
+            <p>因此，如果该男子胜诉，唯一的原因只能是该司法管辖区提供了这种法定权利。</p>
+        </div>
+
+        <h3>为什么其他选项是错误的？</h3>
+        
+        <p><strong>❌ 选项 A (Residence)：</strong><br>
+        虽然某些州对家庭住宅 (Homestead) 有保护，但法定赎回权通常适用于各类不动产，并非仅限于住宅。且“用作住宅”这一事实本身不足以推翻有效的止赎拍卖结果。</p>
+
+        <p><strong>❌ 选项 B (Equitable Right)：</strong><br>
+        <strong>衡平法赎回权 (Equitable Right of Redemption)</strong> 必须在止赎拍卖<strong>之前</strong>行使。一旦拍卖结束，这项权利就被切断 (Foreclosed) 了。题目中男子是在拍卖后才行动，因此时间太晚。</p>
+
+        <p><strong>❌ 选项 C (Exoneration)：</strong><br>
+        <strong>免除负担原则 (Doctrine of Exoneration)</strong> 涉及继承法。它允许遗嘱受益人要求用遗产中的流动资产偿还继承房产上的债务。本题中，男子是自己抵押了自己的房产，而非继承了带有抵押的房产，且该原则与止赎后的赎回无关。</p>
+
+        <div class="exam-tip">
+            <strong>🎓 MBE 考试技巧</strong>
+            <p>看到 "Redemption"（赎回）字眼时，立即在脑海中画一条线：<strong>止赎拍卖 (Foreclosure Sale)</strong>。</p>
+            <ul>
+                <li>线左边（拍卖前） = <strong>Equitable</strong> Right (支付债务全款)。</li>
+                <li>线右边（拍卖后） = <strong>Statutory</strong> Right (支付拍卖价)。</li>
+            </ul>
+            <p>如果题目发生在“线右边”，必须选带有 "Statutory" 字眼的选项。</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

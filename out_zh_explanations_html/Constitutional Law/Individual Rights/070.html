@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --correct-green: #27ae60;
+            --wrong-red: #c0392b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .highlight {
+            background-color: var(--highlight-bg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 1.5;
+            border-left: 3px solid var(--accent-color);
+            margin: 10px 0;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background-color: #eee;
+            color: #555;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 4px;
+            font-weight: 600;
+        }
+
+        .step-box {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 10px;
+        }
+
+        .step-num {
+            background-color: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .answer-reveal {
+            background-color: #eafaf1;
+            border: 1px solid var(--correct-green);
+            color: var(--correct-green);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .wrong-option {
+            font-size: 13px;
+            color: #666;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .latin {
+            font-style: italic;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+
+        .footer-tip {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>宪法：程序性正当程序<br>(Procedural Due Process)</p>
+    </div>
+
+    <!-- 结论先行 -->
+    <div class="answer-reveal">
+        ✅ 正确答案：选项 A
+    </div>
+
+    <!-- 核心考点 -->
+    <div class="card">
+        <div class="card-title">核心法律规则</div>
+        <div class="step-box">
+            <div class="step-num">1</div>
+            <div class="step-text">
+                <strong>第十四修正案 (14th Amendment)：</strong><br>
+                政府在剥夺一个人的生命 (Life)、自由 (Liberty) 或财产 (Property) 之前，必须提供正当程序（即通知和听证会）。
+            </div>
+        </div>
+        <div class="step-box">
+            <div class="step-num">2</div>
+            <div class="step-text">
+                <strong>门槛问题 (Threshold Question)：</strong><br>
+                在讨论“需要什么样的听证会”之前，必须先问：<br>
+                <span style="color:var(--wrong-red); font-weight:bold;">是否存在受宪法保护的利益？</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 案情分析 -->
+    <div class="card">
+        <div class="card-title">本案深度解析</div>
+        <p style="font-size:14px; margin-top:0;">为什么该男子败诉？</p>
+        
+        <div class="highlight">
+            <strong>关键事实：</strong><br>
+            1. 法令规定执照数量<strong>不设上限</strong>。<br>
+            2. 男子反对的理由是“新执照会降低我现有执照的价值”（即竞争导致贬值）。
+        </div>
+
+        <p style="font-size:14px;">
+            <strong>法律推理：</strong><br>
+            虽然营业执照本身通常被视为一种“财产利益”（因为它是政府授予的权利），但这种利益的范围是由相关法律界定的。
+        </p>
+        <p style="font-size:14px;">
+            由于该市的法令明确规定不限制执照数量，因此现有的执照持有人<strong>没有权利要求免受竞争 (Freedom from competition)</strong>。
+        </p>
+        <p style="font-size:14px;">
+            既然他没有“垄断经营”的财产权利，政府颁发新执照并没有剥夺他的任何受宪法保护的财产。没有财产剥夺，就不需要正当程序（听证会）。
+        </p>
+    </div>
+
+    <!-- 选项辨析 -->
+    <div class="card" style="border-left-color: var(--wrong-red);">
+        <div class="card-title" style="color: var(--wrong-red);">干扰项陷阱</div>
+        
+        <div style="font-size:14px; font-weight:bold; margin-bottom:5px;">❌ 选项 D (The man...)</div>
+        <p style="font-size:13px; margin-top:0;">
+            这是一个典型的<strong>过度概括 (Overbroad)</strong> 选项。
+        </p>
+        <ul style="font-size:13px;">
+            <li>它声称只要财产受到“不利影响 (Adversely affected)”就需要听证会。这是错误的。</li>
+            <li><strong>宪法标准：</strong>必须是<strong>剥夺 (Deprivation)</strong> 某种合法的权利 (Entitlement)，而不仅仅是造成经济损失或不利影响。</li>
+        </ul>
+
+        <div class="wrong-option">
+            <strong>❌ 选项 C</strong> 错误，因为只有在确定存在受保护的权利后，才需要讨论听证会的裁量权问题。第一步（是否存在权利）都没通过，就不用讨论第二步了。
+        </div>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+        <div class="card-title" style="color: #d35400;">💡 MBE 考试技巧</div>
+        <p style="font-size:14px;">
+            遇到 <strong>Due Process</strong> 题目，请遵循“两步走”策略：
+        </p>
+        <ol style="font-size:14px; padding-left:20px;">
+            <li><strong>第一步（本题考点）：</strong> 原告是否被剥夺了生命、自由或财产？
+                <ul>
+                    <li>如果是单纯的经济竞争、名誉受损（无形资产）或单方面的期待，通常<strong>不是</strong>受保护的利益。</li>
+                </ul>
+            </li>
+            <li><strong>第二步：</strong> 如果有受保护利益，政府提供的程序（通知+听证）是否足够？
+                <ul>
+                    <li>此时才使用 <span class="latin">Mathews v. Eldridge</span> 平衡测试。</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <div class="footer-tip">
+        NCBE © Question Analysis
+    </div>
+
+</div>
+
+</body>
+</html>

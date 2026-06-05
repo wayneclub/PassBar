@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--bg-color);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+        .header h2 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        .header span {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+        .card.success {
+            border-left-color: var(--success-color);
+        }
+        .card.warning {
+            border-left-color: var(--warning-color);
+        }
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: currentColor;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #e8f4fd;
+            color: var(--primary-color);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .answer-box {
+            background-color: #e9f7ef;
+            color: var(--success-color);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border: 1px solid #d4efdf;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <span>MBE 考点解析</span>
+        <h2>行政搜查与高度管制行业</h2>
+    </div>
+
+    <!-- 核心结论 -->
+    <div class="answer-box">
+        正确答案：B<br>
+        <span style="font-size: 0.9em; font-weight: normal; color: #333;">驳回动议，因为该法规对一个受到高度管制的行业进行了合理的规制。</span>
+    </div>
+
+    <!-- 考点解析 -->
+    <div class="card">
+        <div class="card-title">核心法律规则</div>
+        <p>本题考查的是<b>第四修正案 (Fourth Amendment)</b> 中关于<b>行政搜查 (Administrative Searches)</b> 的例外情况。</p>
+        <p>通常情况下，搜查商业场所需要搜查令。但是，对于<b>“受到高度管制的行业” (Closely/Highly Regulated Industries)</b>，如果满足特定条件，无证搜查是允许的。</p>
+        <p>典型的“高度管制行业”包括：</p>
+        <ul>
+            <li>枪支销售 (Firearms)</li>
+            <li>酒类销售 (Liquor)</li>
+            <li>采矿业 (Mining)</li>
+            <li><b>机动车废品场 (Automobile Junkyards)</b> —— 本题考点</li>
+        </ul>
+    </div>
+
+    <!-- 判例分析 -->
+    <div class="card success">
+        <div class="card-title">关键判例：New York v. Burger (1987)</div>
+        <p>本题的事实模式几乎直接照搬了 <i>New York v. Burger</i> 案。最高法院在该案中确立了针对高度管制行业进行无证搜查的<b>“三步测试法”</b>：</p>
+        <ol>
+            <li><b>重大的政府利益 (Substantial Government Interest)：</b><br>法规必须基于重大的政府利益（如本题中的遏制汽车盗窃）。</li>
+            <li><b>必要性 (Necessity)：</b><br>无证搜查对于实现监管目标必须是必要的（例如，如果需要提前申请搜查令，可能会让违法者有时间转移赃物，从而破坏突击检查的效果）。</li>
+            <li><b>宪法上充分的替代方案 (Constitutionally Adequate Substitute)：</b><br>法规必须为搜查令提供充分的替代，即：
+                <ul>
+                    <li>通知业主搜查是合法的；</li>
+                    <li>限制执法人员的<b>裁量权 (Discretion)</b>（如限制搜查的时间、地点和范围）。</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <!-- 题目应用 -->
+    <div class="card">
+        <div class="card-title">本题案情分析</div>
+        <p>将上述规则应用到本题：</p>
+        <ul>
+            <li><b>行业性质：</b>机动车废品场属于高度管制行业。</li>
+            <li><b>政府利益：</b>遏制机动车盗窃是重大的政府利益。</li>
+            <li><b>限制裁量权：</b>法规明确限制了搜查时间（<span class="highlight">normal business hours</span>）和范围（<span class="highlight">inventory of motor vehicles and parts</span>）。</li>
+        </ul>
+        <p>因此，这次无证搜查是合理的，法院应<b>驳回 (Deny)</b> 排除证据的动议。</p>
+    </div>
+
+    <!-- 错误选项辨析 -->
+    <div class="card warning">
+        <div class="card-title">为什么其他选项是错的？</div>
+        <p><b>选项 A 错误（陷阱）：</b><br>虽然本案不需要搜查令，但理由<b>不是</b>“所有商业机构的行政搜查都不需要搜查令”。对于普通商业场所（如办公室、服装店），行政搜查通常<b>仍然需要</b>行政搜查令 (<i>Marshall v. Barlow's, Inc.</i>)。只有“高度管制行业”才是例外。</p>
+        <p><b>选项 C 错误：</b><br>最高法院在 <i>Burger</i> 案中明确指出，行政监管目标（如管理废品场）和刑事执法目标（如抓捕盗车贼）可以重叠。只要搜查符合行政法规的要求，它就不会仅仅因为发现了犯罪证据而被视为“借口 (Pretext)”。</p>
+        <p><b>选项 D 错误：</b><br>法规并没有给予警察“不受限制的裁量权 (Unbridled Discretion)”。相反，法规通过限定时间（营业时间）和对象（车辆盘点）对警察的权力进行了具体的限制。</p>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card">
+        <div class="card-title">MBE 考试技巧</div>
+        <p>看到<b>“无证搜查 (Warrantless Search)”</b> + <b>“特定行业 (Specific Business)”</b> 的组合时：</p>
+        <ol>
+            <li>首先判断该行业是否属于<b>“高度管制”</b>（枪、酒、矿、废品场）。</li>
+            <li>如果是，检查法规是否限制了警察的搜查<b>时间</b>和<b>范围</b>。</li>
+            <li>如果都满足，则搜查通常是合宪的，无需搜查令。</li>
+        </ol>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

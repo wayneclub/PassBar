@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-card {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .section-title {
+            color: #1565c0;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #e3f2fd;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+        .key-point {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .distractor {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fff5f5;
+            border-left: 3px solid #ef5350;
+            font-size: 0.9rem;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 30px;
+            padding-bottom: 10px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence / Hearsay</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-card">
+            <div class="answer-title">正确答案：C</div>
+            <p><strong>It is a statement by a party-opponent's agent.</strong><br>（这是由对方当事人的代理人所作的陈述。）</p>
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">⚖️ 核心法律规则 (The Rule)</div>
+        <div class="rule-box">
+            <p>本题考察的是 <strong>FRE 801(d)(2)(D)</strong>：<strong>对方当事人的陈述 (Opposing Party's Statement)</strong>。</p>
+            <p>在联邦证据规则下，如果一个陈述符合以下条件，它被定义为<strong>非传闻 (Non-Hearsay)</strong>，可以直接作为<strong>实质性证据 (Substantive Evidence)</strong> 采纳：</p>
+            <ul>
+                <li><strong>针对对方当事人提出</strong> (Offered against an opposing party)；且</li>
+                <li><strong>由该当事人的代理人或雇员作出</strong> (Made by the party's agent or employee)；且</li>
+                <li><strong>涉及代理或雇佣关系范围内的事项</strong> (On a matter within the scope of that relationship)；且</li>
+                <li><strong>在关系存续期间作出</strong> (While it existed)。</li>
+            </ul>
+        </div>
+
+        <!-- 逻辑推演 -->
+        <div class="section-title">🔍 案情分析 (Application)</div>
+        <div class="rule-box">
+            <p><strong>1. 身份关系：</strong> 司机是被告公司（Corporation）的雇员（Employee）。</p>
+            <p><strong>2. 范围 (Scope)：</strong> 事故发生在司机为公司送货期间，驾驶也是其工作职责。因此，关于事故的陈述属于“雇佣关系范围内的事项”。</p>
+            <p><strong>3. 针对性：</strong> 原告（骑行者）将此证据用于针对被告（公司）。</p>
+            <p><strong>结论：</strong> 尽管这是庭外陈述，但根据 FRE 801(d)(2)(D)，它被视为<strong>非传闻</strong>。因此，它可以用来证明陈述内容的真实性（即证明过失）。</p>
+        </div>
+
+        <!-- 干扰项辨析 -->
+        <div class="section-title">🚫 为什么其他选项是错的？</div>
+        
+        <div class="distractor">
+            <strong>选项 A：先前不一致陈述 (Prior Inconsistent Statement)</strong>
+            <p>这是一个常见的陷阱。虽然司机的庭外道歉与庭上证词不一致，但根据 FRE 801(d)(1)(A)，只有当先前陈述是在<strong>宣誓程序 (under penalty of perjury)</strong> 中作出的，才能作为实质性证据。本案中道歉发生在医院，非宣誓场合，因此若仅按此规则，只能用于<strong>弹劾 (Impeachment)</strong>，不能直接证明过失。而选项 C 的规则允许其证明过失。</p>
+        </div>
+
+        <div class="distractor">
+            <strong>选项 B：违反利益的陈述 (Statement Against Interest)</strong>
+            <p>这是传闻证据的<strong>例外 (Exception)</strong>，适用规则 FRE 804(b)(3)。该规则的一个硬性前提是<strong>陈述人必须不可出庭 (Unavailable)</strong>。本案中，司机已经出庭作证，因此不适用此例外。</p>
+        </div>
+
+        <div class="distractor">
+            <strong>选项 D：当时的心智状态 (Then-existing State of Mind)</strong>
+            <p>FRE 803(3) 通常用于证明意图、情感或身体感觉，但不包括“对记忆或信念的陈述” (statement of memory or belief) 用以证明所记忆的事实。道歉是对过去行为的反思，而非当下的心智状态本身作为争议点。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">💡 MBE 考试技巧 (Exam Tip)</div>
+        <div class="rule-box" style="background-color: #e3f2fd; border-color: #bbdefb;">
+            <p>在处理传闻证据题目时，请遵循以下思维顺序：</p>
+            <ol>
+                <li><strong>是不是传闻？</strong> (庭外陈述 + 证明内容真实性)</li>
+                <li><strong>是不是“非传闻” (Exemption/Non-Hearsay)？</strong> 优先检查 <strong>Admission (对方当事人陈述)</strong>。如果是，直接可采。</li>
+                <li><strong>是不是“传闻例外” (Exception)？</strong> 如果不是 Admission，再检查是否符合 803 (无视证人是否在场) 或 804 (证人必须缺席) 的例外。</li>
+            </ol>
+            <p><strong>切记：</strong> 只要是对方当事人（或其代理人）说的话，且对该当事人不利，通常都是 <strong>Admissible Non-Hearsay</strong>。</p>
+        </div>
+
+        
+    </div>
+</div>
+
+</body>
+</html>

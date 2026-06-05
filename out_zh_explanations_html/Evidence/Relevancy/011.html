@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            display: block;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            color: var(--correct-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .rule-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .key-term {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.85em;
+        }
+        .tip-box {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .tip-icon {
+            font-size: 1.2rem;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <span>证据法：笔迹认证 (Authentication)</span>
+    </div>
+
+    <div class="content">
+        <!-- 答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案</span>
+            <strong>选项 C (Yes)</strong>
+            <p>应准许，因为陪审员被允许通过与经认证的样本进行比较来确定笔迹样本的真实性。</p>
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="section-title">⚖️ 法律依据 (Legal Rule)</div>
+        <p>本题考查的是 <strong>联邦证据规则 901 (FRE 901)</strong> 关于书面证据的认证，特别是笔迹认证的方法。</p>
+        
+        <div class="rule-box">
+            <strong>FRE 901(b)(3) - 专家或事实审理者的比较</strong><br>
+            <span class="english-term">Comparison by an Expert Witness or the Trier of Fact</span><br><br>
+            法律允许通过将有争议的样本与已经确认真实的样本（Exemplars）进行比较来认证笔迹。这种比较可以由以下两类主体进行：
+            <ol style="margin-bottom:0; padding-left: 20px;">
+                <li><strong>专家证人</strong> (Expert Witness)</li>
+                <li><strong>事实审理者</strong> (Trier of Fact)，即陪审团 (Jury) 或法官 (Judge)。</li>
+            </ol>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="section-title">🔍 案情分析 (Analysis)</div>
+        <p>在本案中，认证过程分为两步：</p>
+        
+        <p><strong>第一步：确立基准样本 (The Exemplars)</strong><br>
+        同案被告（目击者）作证说他亲眼看到被告签署了5张支票。这属于通过“有亲身感知的证人证词” <span class="english-term">(Testimony of a Witness with Knowledge)</span> 进行认证。因此，这5张支票是<strong>已认证的样本</strong>。</p>
+
+        <p><strong>第二步：比较分析 (Comparison)</strong><br>
+        检察官希望陪审团将这5张已认证的支票与另外70张有争议的支票进行比对。根据 FRE 901(b)(3)，<strong>陪审团作为事实审理者，完全有权进行这种比较</strong>，无需专家介入。</p>
+
+        <!-- 知识点对比表 -->
+        <div class="section-title">📊 笔迹认证的三种方式</div>
+        <table class="comparison-table">
+            <tr>
+                <th>方式</th>
+                <th>谁来执行？</th>
+                <th>要求/限制</th>
+            </tr>
+            <tr>
+                <td><strong>非专家意见</strong><br><span class="english-term">Lay Opinion</span></td>
+                <td>普通证人</td>
+                <td>必须基于<strong>诉讼前</strong>已有的熟悉度。不能为了作证而临时去熟悉笔迹。</td>
+            </tr>
+            <tr>
+                <td><strong>比较分析</strong><br><span class="english-term">Comparison</span></td>
+                <td><strong>专家</strong> (Expert)</td>
+                <td>专家可以在法庭上将争议文件与样本进行比对。</td>
+            </tr>
+            <tr>
+                <td><strong>比较分析</strong><br><span class="english-term">Comparison</span></td>
+                <td><strong>陪审团</strong> (Jury)</td>
+                <td>陪审团可以将争议文件与已认证的样本进行比对（本题考点）。</td>
+            </tr>
+        </table>
+
+        <!-- 错误选项解析 -->
+        <div class="section-title">❌ 为什么其他选项错误？</div>
+        <ul>
+            <li><strong>选项 A & B 错：</strong> 它们错误地声称比较“只能”由专家进行。法律明确规定陪审团（非专家）也可以进行比对。</li>
+            <li><strong>选项 D 错：</strong> 法院不需要对那70张争议支票做初步裁定。法院只需要确保作为基准的那5张支票已初步认证（本案中已通过证人证词完成），剩下的比较工作由陪审团完成。</li>
+        </ul>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <span class="tip-icon">💡</span><strong>MBE 考试技巧</strong><br>
+            在处理笔迹认证问题时，记住这个区别：
+            <ul>
+                <li><strong>普通证人 (Lay Witness)</strong> 靠的是“记忆”和“熟悉度”（不能现场比对）。</li>
+                <li><strong>专家 (Expert)</strong> 和 <strong>陪审团 (Jury)</strong> 靠的是“现场比对” (Side-by-side comparison)。</li>
+            </ul>
+            只要有一份确定的真迹（Exemplar），陪审团就可以自己动手比对！
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

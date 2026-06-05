@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            color: #2980b9;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            color: #c0392b;
+            font-weight: bold;
+            background-color: #fce4e4;
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .option-analysis {
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        .correct-tag {
+            display: inline-block;
+            background-color: #27ae60;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .wrong-tag {
+            display: inline-block;
+            background-color: #95a5a6;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .exam-tip-title {
+            color: #f39c12;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure | Pretrial Disclosures</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">核心规则：FRCP 26(a)(3)</div>
+            <p>根据《联邦民事诉讼规则》(FRCP)，当事人必须在庭审前进行自动披露（Pretrial Disclosures），列出所有预计传唤的证人。</p>
+            <p><strong>例外情况：</strong>如果该证据或证人是<span class="highlight">仅用于弹劾 (Solely for Impeachment)</span>，则<b>不需要</b>在庭审前披露中列出。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情逻辑分析</div>
+            <p>本题中，房主（原告）想隐藏证人（友人）的身份，搞个“突然袭击”。</p>
+            <ul>
+                <li><strong>房主的预期：</strong>渔夫会撒谎说他不知道侵入地产，也没见过雕像。</li>
+                <li><strong>房主的策略：</strong>传唤友人出庭，证明渔夫曾吹嘘过此事，从而证明渔夫在撒谎。</li>
+                <li><strong>法律障碍：</strong>通常必须披露证人名单。</li>
+                <li><strong>突破口：</strong>利用“弹劾证据例外”规则。</li>
+            </ul>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">选项深度解析</div>
+            
+            <div class="option-analysis">
+                <span class="correct-tag">选项 D (正确)</span>
+                <strong>该友人的证言将仅被用于弹劾渔夫的证言。</strong>
+                <br>这是房主<b>唯一</b>合法的法律依据。如果房主能成功主张该证人的作用仅仅是为了攻击渔夫证词的可信度（Impeachment），而非为了证明案件的实体事实（Substantive Evidence），那么根据 FRCP 26(a)(3)，她就不需要披露该证人。
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 A</span>
+                <strong>渔夫本可以自行发现该证据。</strong>
+                <br>这与披露义务无关。披露规则是为了防止庭审突袭，不论对方是否“能够”发现，当事人都必须履行披露义务。
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 B</span>
+                <strong>渔夫将有充分机会交叉询问。</strong>
+                <br>庭审中的交叉询问机会不能免除庭审前的披露义务。披露是为了让对方准备交叉询问。
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 C</span>
+                <strong>友人担心被伤害。</strong>
+                <br>如果证人有安全顾虑，正确的程序是申请法院的保护令（Protective Order），而不是单方面决定隐瞒证人身份。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <div class="exam-tip-title">💡 MBE 考试技巧</div>
+            <p><strong>区分“实体证据”与“弹劾证据”：</strong></p>
+            <ul>
+                <li><strong>Substantive Evidence (实体证据)：</strong> 用于证明案件要素（如过失、损害）的证据。必须披露。</li>
+                <li><strong>Impeachment Evidence (弹劾证据)：</strong> 仅用于证明证人不可信（如撒谎、偏见）的证据。无需在 Pretrial Disclosure 阶段披露。</li>
+            </ul>
+            <p><i>注意：虽然本题中友人的证言其实也包含了实体内容（承认侵权），但题目问的是“最有力的论点”。在所有选项中，只有 D 引用了一个能豁免披露义务的法律规则。</i></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

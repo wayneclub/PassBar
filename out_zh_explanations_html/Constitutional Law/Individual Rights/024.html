@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --highlight-bg: #e8f8f5;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --error-color: #c0392b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--bg-color);
+        }
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            line-height: 1.4;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+        .card-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .card-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin: 10px 0;
+            border: 1px solid #d1f2eb;
+        }
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .analysis-step {
+            margin-bottom: 10px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .wrong-option {
+            border-left-color: var(--error-color);
+        }
+        .wrong-option .card-title::before {
+            content: "❌";
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            margin-right: 5px;
+        }
+        .badge-correct { background-color: var(--accent-color); }
+        .badge-wrong { background-color: var(--error-color); }
+        
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>宪法：结社自由 vs. 反歧视条例</p>
+    </div>
+
+    <!-- Core Legal Rule -->
+    <div class="card">
+        <div class="card-title">核心考点：表达性结社自由</div>
+        <div class="analysis-step">
+            本题考察的是美国宪法第一修正案中的<span class="key-term">结社自由 (Freedom of Association)</span>。
+        </div>
+        <div class="concept-box">
+            <strong>规则 (Rule):</strong><br>
+            政府不能强迫一个私人团体接纳那些会<span class="key-term">严重损害 (Significantly Burden)</span> 该团体表达其观点或执行其使命能力的成员。
+        </div>
+        <div class="analysis-step">
+            这被称为<strong>表达性结社 (Expressive Association)</strong>。如果强迫接纳某些成员会稀释或改变该团体想要传达的信息，那么该团体的第一修正案权利通常优先于反歧视法。
+        </div>
+        <div class="analysis-step" style="font-size: 12px; color: #666;">
+            <em>经典判例参考: Boy Scouts of America v. Dale (2000)</em>
+        </div>
+    </div>
+
+    <!-- Correct Answer Analysis -->
+    <div class="card">
+        <div class="card-title"><span class="badge badge-correct">正确</span> 选项 B 解析</div>
+        <div class="analysis-step">
+            <strong>为什么居民不会胜诉？</strong>
+        </div>
+        <ul>
+            <li><strong>组织的性质：</strong> 这是一个环保组织，其核心使命是支持环保事业（反对采矿）。</li>
+            <li><strong>冲突点：</strong> 试图加入的居民是支持采矿的（为了迫使组织撤回反对意见）。</li>
+            <li><strong>法律适用：</strong> 如果政府（通过执行反歧视条例）强迫该组织接纳这些意图破坏其使命的居民，将直接破坏该组织的言论表达能力。</li>
+        </ul>
+        <div class="concept-box">
+            因此，该组织有权依据<span class="english-term">Freedom of Association</span>拒绝接纳不认同其核心使命的成员。地方法令在此处若强制执行则<strong>违宪</strong>。
+        </div>
+    </div>
+
+    <!-- Distractor Analysis -->
+    <div class="card wrong-option">
+        <div class="card-title">易错项辨析</div>
+        
+        <div class="analysis-step">
+            <strong><span class="badge badge-wrong">A</span> 错误原因：州政府行为 (State Action)</strong><br>
+            虽然私人组织本身不是州政府行为体，但本案中居民依据的是一项<strong>地方法令 (Local Ordinance)</strong> 并通过法院起诉。法院执行该法令的行为构成了“州政府行为”。因此，宪法是适用的（作为组织的防御手段），不能简单地说“因为是私人组织所以宪法不适用”。
+        </div>
+
+        <div class="analysis-step">
+            <strong><span class="badge badge-wrong">C</span> 错误原因：平等保护 (Equal Protection)</strong><br>
+            第十四修正案的平等保护条款仅限制<strong>政府</strong>行为，不限制<strong>私人</strong>行为。该环保组织是私人实体，其歧视行为不直接违反第十四修正案。
+        </div>
+
+        <div class="analysis-step">
+            <strong><span class="badge badge-wrong">D</span> 错误原因：迫切利益 (Compelling Interest)</strong><br>
+            虽然消除歧视通常是政府的重要利益，但在这种情况下（强迫接纳政治对手进入倡导团体），政府并没有“迫切利益”去牺牲该团体的第一修正案权利。
+        </div>
+    </div>
+
+    <!-- Exam Strategy -->
+    <div class="card" style="border-left-color: #f39c12;">
+        <div class="card-title" style="color: #d35400;">🎓 考试技巧 (Exam Tip)</div>
+        <div class="analysis-step">
+            在 MBE 宪法题中，遇到<strong>“私人团体拒绝接纳成员”</strong> vs <strong>“反歧视法”</strong> 的冲突时：
+            <ol>
+                <li>判断该团体是否有明确的<strong>表达性目的 (Expressive Purpose)</strong>。</li>
+                <li>判断强迫接纳该成员是否会<strong>破坏</strong>这一目的。</li>
+            </ol>
+            如果答案是肯定的，<strong>结社自由 (Freedom of Association)</strong> 通常会胜出。
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

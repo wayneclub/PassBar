@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机宽度 */
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+        .option-analysis {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+        .option-correct {
+            border-color: var(--correct-color);
+            background-color: #f0f9f4;
+        }
+        .option-wrong {
+            border-color: #eee;
+            opacity: 0.8;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .badge-correct {
+            background: var(--correct-color);
+            color: #fff;
+        }
+        .badge-wrong {
+            background: #eee;
+            color: #777;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            position: relative;
+            font-size: 12px;
+            text-align: center;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            height: 2px;
+            background: #ddd;
+            z-index: 0;
+        }
+        .t-point {
+            position: relative;
+            z-index: 1;
+            background: #fff;
+            padding: 0 5px;
+        }
+        .t-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            margin: 0 auto 5px;
+        }
+        .t-dot.fire {
+            background: var(--wrong-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Real Property: Risk of Loss</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心概念 -->
+        <div class="concept-box">
+            <div class="concept-title">核心考点：衡平法转换</div>
+            <p>本题考察的是普通法下的<span class="term">衡平法转换原则 (Doctrine of Equitable Conversion)</span>。</p>
+            <p>该原则规定：一旦房地产买卖合同签署并具有可强制执行性（Specifically Enforceable），所有权在法律上发生分离：</p>
+            <ul>
+                <li><b>买方 (Buyer)：</b>获得<span class="term">衡平法上的所有权 (Equitable Title)</span>。</li>
+                <li><b>卖方 (Seller)：</b>保留<span class="term">法定所有权 (Legal Title)</span>，但这仅作为买方支付价款的担保。</li>
+            </ul>
+        </div>
+
+        <!-- 时间轴示意图 -->
+        <div class="timeline">
+            <div class="t-point">
+                <div class="t-dot"></div>
+                <div>合同签署<br>(Contract)</div>
+            </div>
+            <div class="t-point">
+                <div class="t-dot fire"></div>
+                <div><b>房屋烧毁<br>(Fire)</b></div>
+            </div>
+            <div class="t-point">
+                <div class="t-dot"></div>
+                <div>过户日<br>(Closing)</div>
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 D？</div>
+            <div class="option-analysis option-correct">
+                <div><span class="badge badge-correct">正确答案 D</span></div>
+                <p><b>法律依据：</b>根据普通法（Common Law），损失风险（Risk of Loss）跟随<b>衡平法所有权</b>。</p>
+                <p><b>推理逻辑：</b></p>
+                <ol>
+                    <li>题目指出合同是无条件的且满足《防止欺诈法》，因此合同一旦签署即成立。</li>
+                    <li>此时，衡平法转换原则生效，<b>买方</b>立即获得了衡平法所有权。</li>
+                    <li>虽然此时买方还未过户（Closing）也未占有（Possession），但风险已经转移。</li>
+                    <li>题目特别说明“没有适用的成文法”（No applicable statute），这意味着必须应用普通法规则，而不是现代的成文法修正案。</li>
+                </ol>
+                <p>因此，尽管卖方没有保险且房屋已毁，买方仍需履行合同支付价款。</p>
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">其他选项为何错误？</div>
+            
+            <div class="option-analysis option-wrong">
+                <div><span class="badge badge-wrong">选项 A</span> <b>不利于起草方解释</b></div>
+                <p>这是一个合同解释的一般原则（Contra Proferentem），用于解决合同条款模棱两可的情况。但本案中合同是<b>沉默 (Silent)</b> 而非模糊。当合同对风险未作规定时，法律默认规则（衡平法转换）自动填补空白，无需进行合同解释。</p>
+            </div>
+
+            <div class="option-analysis option-wrong">
+                <div><span class="badge badge-wrong">选项 B</span> <b>贷款承诺</b></div>
+                <p>这是一个干扰项。题目中提到要约是“无条件的”（Unconditional）。一旦卖方签字，合同即具有约束力。买方是否获得贷款承诺不影响合同的成立或风险的转移。</p>
+            </div>
+
+            <div class="option-analysis option-wrong">
+                <div><span class="badge badge-wrong">选项 C</span> <b>占有转移风险</b></div>
+                <p>这是《统一卖方与买方风险法》(Uniform Vendor and Purchaser Risk Act, UVPRA) 的规则，属于<b>少数派规则</b>。该规则规定风险在交付占有或过户时才转移。但题目明确指出“没有适用的成文法”，因此必须适用普通法（即选项 D 的规则）。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <b>🎓 MBE 考试技巧：</b>
+            <br><br>
+            看到 <b>"Risk of Loss"</b>（损失风险）题目时，请按以下步骤思考：
+            <ol style="margin-left: -20px;">
+                <li><b>看合同：</b>合同里有规定风险由谁承担吗？如果有，按合同办。</li>
+                <li><b>看成文法：</b>题目是否提到该州采纳了 UVPRA？如果是，风险在过户或占有时转移。</li>
+                <li><b>默认规则：</b>如果合同沉默且无特殊成文法（如本题），适用<b>普通法 (Common Law)</b> = <b>衡平法转换</b> = <b>买方承担风险</b>（一旦签字）。</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

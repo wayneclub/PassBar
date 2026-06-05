@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .concept-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3e0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .step-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+        }
+        .step-item::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+        .step-item.fail::before {
+            content: "✗";
+            color: #f44336;
+        }
+        .case-law {
+            background-color: #f3f4f6;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            border-left: 4px solid #607d8b;
+            margin-top: 10px;
+        }
+        .distractor {
+            font-size: 14px;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            color: #999;
+            background: #fafafa;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Civil Procedure: Jurisdiction & Venue</p>
+    </div>
+
+    <div class="content">
+        <!-- Correct Answer Section -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：D</span>
+            <p>是的，因为牧场主与开发商之间具有多元性，且两位牧场主的索赔源于相同的事实。</p>
+        </div>
+
+        <p>本题考察的核心是联邦法院的<b>补充管辖权 (Supplemental Jurisdiction)</b>，特别是在<b>多元管辖权 (Diversity Jurisdiction)</b> 案件中，当一名原告满足争议金额要求而另一名不满足时，法院如何处理。</p>
+
+        <!-- Logic Breakdown -->
+        <div class="concept-card">
+            <div class="concept-title">解题逻辑三步走</div>
+            <ul class="step-list">
+                <li class="step-item">
+                    <b>第一步：检查初审管辖权 (Original Jurisdiction)</b><br>
+                    第一位牧场主 (P1) 索赔 $250,000，且与被告 (D) 属于不同州 (State A vs. State B)。<br>
+                    <span class="highlight">结论：</span> P1 的索赔完全满足多元管辖权的要求（>$75k + 完全多元）。
+                </li>
+                <li class="step-item fail">
+                    <b>第二步：检查第二位牧场主 (P2)</b><br>
+                    P2 索赔 $50,000。虽然有多元性，但未达到 $75,000 的争议金额门槛。<br>
+                    <span class="highlight">结论：</span> P2 的索赔本身不能独立进入联邦法院。
+                </li>
+                <li class="step-item">
+                    <b>第三步：应用补充管辖权 (Supplemental Jurisdiction)</b><br>
+                    P2 的索赔与 P1 的索赔源于“共同的有效事实核心” (Common Nucleus of Operative Fact) —— 即同一施工造成的径流。<br>
+                    <span class="highlight">关键判例：</span> 根据 <i>Exxon Mobil Corp. v. Allapattah Services</i>，只要有一名原告满足争议金额要求，法院可以对其他不满足金额要求的原告行使补充管辖权，前提是这不破坏完全多元性 (Complete Diversity)。
+                </li>
+            </ul>
+        </div>
+
+        <!-- Key Legal Rule -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：Allapattah 规则</div>
+            <p>在 <i>Exxon Mobil Corp. v. Allapattah Services, Inc. (2005)</i> 一案中，最高法院明确了 28 U.S.C. § 1367 的适用范围：</p>
+            <div class="case-law">
+                如果案件属于多元管辖权 (Diversity Jurisdiction)，只要<b>至少有一名原告</b>满足了争议金额 (Amount in Controversy) 要求，联邦法院就可以对其他未达到金额要求的原告行使<b>补充管辖权</b>，只要这些额外的索赔不破坏当事人之间的<b>完全多元性 (Complete Diversity)</b>。
+            </div>
+            <p style="margin-top:10px; font-size: 0.9em;">
+                在本案中，两名原告都是 A 州人，被告是 B 州人。加入 P2 并没有破坏“原告方 vs 被告方”的州籍多元性，因此移送 (Removal) 是适当的。
+            </p>
+        </div>
+
+        <!-- Distractor Analysis -->
+        <div class="concept-card">
+            <div class="concept-title">为什么其他选项是错的？</div>
+            
+            <div class="distractor">
+                <b>选项 A (错误)：</b> 牧场主之间 (P1 vs P2) 不需要有多元性。多元性要求是指<b>原告方</b>与<b>被告方</b>之间不同籍。
+            </div>
+
+            <div class="distractor">
+                <b>选项 B (错误)：</b> 这是旧法的观点。在 <i>Allapattah</i> 判决后，P2 不需要独立满足争议金额，只要 P1 满足即可“带”入 P2。
+            </div>
+
+            <div class="distractor">
+                <b>选项 C (错误)：联邦问题 (Federal Question)</b><br>
+                这是一个常见的陷阱。仅仅在诉状中引用联邦法律作为“计算损害赔偿”的依据，通常不足以构成联邦问题管辖权 (§ 1331)。
+                <br>根据<b>“诉状主要内容规则” (Well-Pleaded Complaint Rule)</b>，原告的诉由必须源于联邦法。本案本质是<b>州法侵权 (State Law Tort)</b>，联邦法只是辅助计算，不是诉讼的核心依据。
+            </div>
+        </div>
+
+        <!-- Exam Tip -->
+        <div class="concept-card" style="background: #fff8e1; border-color: #ffecb3;">
+            <div class="concept-title" style="color: #f57f17;">🎓 考试技巧</div>
+            <p style="font-size: 14px; margin: 0;">
+                看到<b>多个原告</b>针对<b>一个被告</b>的多元管辖权题目时：
+                <br>1. 确认<b>所有人</b>都与被告不同籍（必须满足）。
+                <br>2. 确认<b>至少有一人</b>索赔超过 $75,000。
+                <br>如果这两点都满足，根据 § 1367 和 <i>Allapattah</i>，案件可以留在联邦法院。
+            </p>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

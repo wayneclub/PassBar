@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card.correct-answer {
+            border-left-color: var(--correct-color);
+        }
+
+        .card.wrong-answer {
+            border-left-color: var(--wrong-color);
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .highlight {
+            background-color: #e8f4fd;
+            color: var(--primary-color);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .tip-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        .tip-title {
+            font-weight: bold;
+            color: #f57c00;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Evidence (证据法) - Hearsay (传闻证据)</div>
+    </div>
+
+    <!-- Core Issue Analysis -->
+    <div class="card">
+        <h3>核心考点：传闻证据与增信 (Bolstering)</h3>
+        <p>本题考察的是<b>联邦证据规则 (FRE) 801</b> 关于传闻证据的定义以及“先前一致性陈述” (Prior Consistent Statement) 的适用条件。</p>
+        <p><b>关键事实：</b></p>
+        <ul>
+            <li>被告在<b>直接询问 (Direct Examination)</b> 阶段作证。</li>
+            <li>被告试图引入自己之前对警察说的“我没进过那家店”的陈述。</li>
+            <li>目的：证明他当时说的话和现在一样（即他是诚实的）。</li>
+        </ul>
+    </div>
+
+    <!-- Correct Answer Explanation -->
+    <div class="card correct-answer">
+        <h3>正确答案解析：选项 B</h3>
+        <p><b>结论：</b>该证言不可采纳，因为它是传闻证据且不符合任何例外。</p>
+        <p><b>法律依据：</b></p>
+        <ol>
+            <li><b>传闻证据 (Hearsay)：</b> 被告在庭外（被捕时）所做的陈述，现在在庭上提出，目的是为了证明该陈述内容的真实性（即他确实没进过商店）。这符合 FRE 801(c) 的传闻定义。</li>
+            <li><b>自我增信 (Bolstering) 禁止：</b> 一般规则是，证人不能通过引入先前的陈述来通过“自我印证”提升自己的可信度。</li>
+            <li><b>例外不适用：</b> 虽然 FRE 801(d)(1)(B) 允许引入“先前一致性陈述”，但有一个严格的前提条件：<b>必须是为了反驳关于“近期捏造” (Recent Fabrication) 或“不正当动机” (Improper Motive) 的指控。</b></li>
+        </ol>
+        <p><b>本案分析：</b> 此时正处于直接询问阶段，检察官尚未进行交叉询问 (Cross-Examination)，也没有指控被告在撒谎或有不良动机。因此，引入先前一致性陈述为时过早 (Premature)，仅仅属于不可采纳的传闻。</p>
+    </div>
+
+    <!-- Why Choice C is the Trap -->
+    <div class="card wrong-answer">
+        <h3>陷阱选项分析：选项 C</h3>
+        <p><b>错误原因：</b> 选项 C 认为是“先前一致性陈述”所以可采纳。这是 MBE 中最常见的陷阱之一。</p>
+        <p><b>区分关键：</b></p>
+        <ul>
+            <li><b>仅仅“一致”是不够的。</b> 法律不允许证人仅仅因为“我以前也这么说过”来证明自己现在说的是真话。</li>
+            <li><b>触发条件 (Trigger)：</b> 只有当证人的可信度受到特定类型的攻击（如被指控最近才编造谎言）后，先前一致性陈述才可作为<b>恢复名誉 (Rehabilitation)</b> 的手段被引入。</li>
+        </ul>
+    </div>
+
+    <!-- Other Options -->
+    <div class="card">
+        <h3>其他选项简析</h3>
+        <ul>
+            <li><b>选项 A (错误)：</b> 证人有“捏造动机”是对方律师在交叉询问时用来弹劾 (Impeach) 证人的理由，而不是法官在直接询问时排除证词的理由。动机影响的是证据的<b>分量 (Weight)</b>，而非<b>可采性 (Admissibility)</b>。</li>
+            <li><b>选项 D (错误)：</b> 这恰恰描述了传闻证据的定义——为了证明所主张事项的真实性 (To prove the truth of the matter asserted)。正因为目的是为了证明他没进过商店，所以它是传闻，应当被排除。</li>
+        </ul>
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="tip-box">
+        <span class="tip-title">💡 MBE 考试技巧</span>
+        <p>看到证人试图引用自己过去的陈述来支持现在的证词时，请立即警惕 <b>"Bolstering" (增信)</b> 问题。</p>
+        <p>记住公式：<br>
+        <b>直接询问 (Direct Exam) + 引用自己过去的一致陈述 = 通常不可采纳 (Inadmissible Hearsay)</b>。</p>
+        <p>除非题目明确指出对方已经指控其“最近捏造” (Charge of recent fabrication)，否则不要选“先前一致性陈述”这个例外。</p>
+    </div>
+
+</div>
+
+</body>
+</html>

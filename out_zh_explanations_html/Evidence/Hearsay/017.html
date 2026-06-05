@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #ecf0f1;
+        --text-color: #333;
+        --border-radius: 8px;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        background: #fff;
+        padding: 20px;
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h2 {
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 10px;
+        margin-top: 0;
+        font-size: 1.4em;
+    }
+    .rule-box {
+        background-color: #e8f4f8;
+        border-left: 5px solid var(--accent-color);
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 4px;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        display: block;
+        margin-bottom: 5px;
+    }
+    .concept-card {
+        border: 1px solid #ddd;
+        border-radius: var(--border-radius);
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .concept-header {
+        font-weight: bold;
+        color: #e74c3c;
+        margin-bottom: 8px;
+    }
+    .latin {
+        font-style: italic;
+        color: #7f8c8d;
+    }
+    .key-point {
+        background-color: #fff3cd;
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-weight: bold;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    li {
+        margin-bottom: 8px;
+    }
+    .footer-tip {
+        margin-top: 20px;
+        font-size: 0.9em;
+        color: #7f8c8d;
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>MBE 考点解析：传闻陈述人的弹劾</h2>
+    
+    <p>本题考察的核心是<b>《联邦证据规则》第806条 (FRE 806)</b>，即如何攻击不在庭上的传闻陈述人（Hearsay Declarant）的可信度。</p>
+
+    <div class="rule-box">
+        <span class="rule-title">⚖️ 核心规则 (FRE 806)</span>
+        当一条传闻证据（Hearsay）被法庭采纳后，该陈述人的可信度可以被攻击，<b>攻击方式与该陈述人亲自出庭作证时完全一致</b>。
+    </div>
+
+    <div class="concept-card">
+        <div class="concept-header">🔍 案情逻辑分析</div>
+        <ol>
+            <li><b>陈述 A（红灯）：</b>旁观者的"激动陈述" (Excited Utterance)。这是传闻，但符合例外，因此<b>已被采纳</b>。</li>
+            <li><b>陈述 B（黄灯）：</b>旁观者后来的陈述。这与陈述 A 不一致。</li>
+            <li><b>被告的目的：</b>引入陈述 B 来攻击陈述 A 的可信度。</li>
+        </ol>
+    </div>
+
+    <h3>为什么选 D？(法律推理)</h3>
+    
+    <p><b>1. 可用于弹劾 (Impeachment)：</b><br>
+    根据 FRE 806，既然旁观者的第一句话（红灯）作为证据进入了法庭，被告就有权攻击这个旁观者的可信度。证明该旁观者后来讲了不一样的话（黄灯），是经典的<b>"先前不一致陈述" (Prior Inconsistent Statement)</b> 弹劾手段。因此，该证词是可以采纳的。</p>
+
+    <p><b>2. 不可作为实质性证据 (Not Substantive Evidence)：</b><br>
+    虽然陈述 B 可以用来证明旁观者"说话前后矛盾"，从而降低其可信度，但陈述 B 本身也是传闻（庭外陈述，为了证明当时是黄灯）。<br>
+    除非陈述 B 也符合某个传闻例外（题目未提及），否则它<b>不能</b>用来直接证明"当时确实是黄灯"。它只能用来证明"旁观者不可信"。</p>
+
+    <div class="rule-box" style="background-color: #fff0f0; border-left-color: #e74c3c;">
+        <span class="rule-title">🚫 关键区别：FRE 613 vs. FRE 806</span>
+        <p>这是本题最大的陷阱（排除选项 B）：</p>
+        <ul>
+            <li><b>弹劾出庭证人 (FRE 613)：</b>通常要求给证人解释不一致的机会。</li>
+            <li><b>弹劾传闻陈述人 (FRE 806)：</b><span class="key-point">不需要</span>给陈述人解释或否认的机会。</li>
+        </ul>
+        <p>因此，即使旁观者已去世（无法解释），也不影响被告引入不一致陈述进行弹劾。</p>
+    </div>
+
+    <h3>其他选项为何错误？</h3>
+    <ul>
+        <li><b>选项 A：</b> 错误。虽然它是传闻，但如果仅用于弹劾（不为了证明事实真相），则不被视为传闻排除规则下的不可采纳证据。</li>
+        <li><b>选项 B：</b> 错误。如上所述，FRE 806 明确规定，弹劾传闻陈述人时，无需该陈述人有解释或否认的机会。</li>
+        <li><b>选项 C：</b> 错误。它不能作为<b>实质性证据 (Substantive Evidence)</b>。因为"黄灯"这句话本身是普通的庭外陈述，没有符合任何传闻例外（如激动陈述、临终遗言等），所以不能用来证明灯真的是黄色的。</li>
+    </ul>
+
+    <div class="footer-tip">
+        <b>💡 考试技巧：</b><br>
+        在 MBE 证据法题目中，当看到"不一致陈述" (Inconsistent Statement) 时，务必区分两个用途：
+        1. <b>弹劾 (Impeachment)：</b> 几乎总是允许。
+        2. <b>实质性证据 (Substantive Truth)：</b> 只有当该陈述本身符合传闻例外（或非传闻定义）时才允许。
+    </div>
+</div>
+
+</body>
+</html>

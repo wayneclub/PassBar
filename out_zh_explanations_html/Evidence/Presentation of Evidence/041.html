@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-banner {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-banner strong {
+            color: #2e7d32;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .rule-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .rule-box .ref {
+            font-weight: bold;
+            color: #f57f17;
+            font-size: 12px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .analysis-text {
+            font-size: 15px;
+            text-align: justify;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+        .wrong-choice {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fafafa;
+            border-left: 3px solid #bdbdbd;
+            font-size: 13px;
+        }
+        .wrong-choice strong {
+            color: #757575;
+        }
+        .exam-tip {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            border: 1px solid #90caf9;
+        }
+        .exam-tip-title {
+            color: #1565c0;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .exam-tip-title::before {
+            content: "💡";
+            margin-right: 8px;
+        }
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence / Impeachment</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案展示 -->
+        <div class="answer-banner">
+            <strong>正确答案：A</strong>
+            少年裁决不可被用于攻击刑事被告的品格真实性。
+        </div>
+
+        <!-- 核心法律规则 -->
+        <div class="section-title">⚖️ 法律依据 (The Rule)</div>
+        <div class="rule-box">
+            <span class="ref">Federal Rule of Evidence (FRE) 609(d)</span>
+            <p><strong>一般原则：</strong> 少年裁决 (Juvenile Adjudications) 通常不可采纳用于弹劾证人。</p>
+            <p><strong>唯一例外：</strong> 仅在满足以下<b>所有</b>条件时可采纳：</p>
+            <ol style="margin-left: -20px;">
+                <li>用于刑事案件 (Criminal case)；</li>
+                <li>针对<b>被告以外的证人</b> (Witness other than the defendant)；</li>
+                <li>如果是成年人定罪本可采纳；且</li>
+                <li>对公正审判是必要的。</li>
+            </ol>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="section-title">🔍 考题分析 (Analysis)</div>
+        <div class="analysis-text">
+            <p>本题的核心在于识别证人的身份。虽然 FRE 609 允许使用某些过去的定罪记录来弹劾证人的诚实度，但对于<b>少年裁决</b>有极其严格的限制。</p>
+            
+            <p>在本案中：</p>
+            <ul>
+                <li><strong>证人是谁？</strong> 正在受审的企业家本人，即<b>刑事被告</b> (Criminal Defendant)。</li>
+                <li><strong>证据是什么？</strong> 9年前的<b>少年裁决</b> (Juvenile Adjudication)。</li>
+            </ul>
+
+            <p>根据 FRE 609(d)，针对<b>刑事被告</b>的少年裁决是<b>绝对不可采纳</b>的 (Inadmissible)。无论该裁决是否涉及重罪，或者是否发生在10年以内，只要证人是被告本人，FRE 609(d) 的例外条款就不适用。</p>
+            
+            <p>因此，该证据必须被排除。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="section-title">🚫 干扰项排除</div>
+        
+        <div class="wrong-choice">
+            <strong>选项 B 错误：</strong>
+            虽然本题结论是不予采纳，但理由陈述错误。根据 FRE 608(b)，特定的行为事例 (Specific instances of conduct) <b>可以</b>在交叉询问中被问及，只要它们涉及诚实度。此外，如果是成年人的刑事定罪 (Criminal Conviction)，根据 FRE 609 也是可以采纳的。选项 B 的说法过于绝对。
+        </div>
+
+        <div class="wrong-choice">
+            <strong>选项 C & D 错误：</strong>
+            这两个选项试图用成年人定罪的规则（重罪、10年有效期）来混淆视听。虽然对于成年人定罪来说，重罪和10年内是可采纳的重要因素，但对于<b>被告的少年裁决</b>，这些因素无关紧要，因为规则首先就屏蔽了针对被告的使用。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <div class="exam-tip-title">MBE 解题锦囊</div>
+            <p>看到 <b>Juvenile Adjudication</b>（少年裁决）时，请立即检查证人是谁：</p>
+            <ul style="margin-bottom:0; padding-left: 20px;">
+                <li>如果是 <b>Defendant</b> (被告)：<b>永远不可采纳</b> (Inadmissible)。直接选 No。</li>
+                <li>如果是 <b>Other Witness</b> (其他证人)：可能可采纳，但需要进行利益平衡测试。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

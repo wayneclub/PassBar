@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .header span {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .concept-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .highlight {
+            background-color: #fff9c4;
+            padding: 0 2px;
+        }
+        .wrong-option {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ccc;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .exam-tip {
+            background-color: #fff3e0;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .exam-tip-title {
+            color: #ef6c00;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <span>MBE Criminal Law</span>
+        <h2>凶杀案中的恶意与重罪谋杀</h2>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：B</span>
+            如果陪审团认定，该经理意图杀人或意图造成严重身体伤害。
+        </div>
+
+        <p>本题的核心考点在于如何定义普通法中的<b>谋杀（Murder）</b>以及<b>预谋恶意（Malice Aforethought）</b>的构成要件。</p>
+
+        <!-- 核心考点解析 -->
+        <div class="concept-card">
+            <div class="concept-title">核心概念：预谋恶意 (Malice Aforethought)</div>
+            <p>在普通法中，谋杀并非仅指“蓄意杀人”。只要被告具备以下四种心态（Mens Rea）之一，即被视为具有“预谋恶意”：</p>
+            <ol>
+                <li><b>Intent to kill</b>（杀人意图）</li>
+                <li><b>Intent to inflict serious bodily harm</b>（造成严重身体伤害的意图）</li>
+                <li><b>Depraved heart</b>（堕落之心/极端鲁莽，即对人命极度漠视）</li>
+                <li><b>Felony Murder</b>（重罪谋杀意图）</li>
+            </ol>
+            <p><b>本案应用：</b>经理用玻璃瓶击打销售员头部。这种行为即使没有明确的“杀人”目的，也明显表现出了<b>造成严重身体伤害的意图</b>。因此，只要陪审团认定存在这种意图，就满足了谋杀罪的心理要件。</p>
+        </div>
+
+        <!-- 难点辨析：合并原则 -->
+        <div class="concept-card">
+            <div class="concept-title">难点辨析：合并原则 (The Merger Doctrine)</div>
+            <p>为什么<b>选项 A</b> 是错误的？这是一个经典的MBE陷阱。</p>
+            <p>题目中定义的重罪谋杀规则要求必须是<b>“独立的重罪” (Independent Felony)</b>。</p>
+            <ul>
+                <li><b>规则：</b>如果原本的重罪（如严重伤害 Aggravated Assault）是导致死亡的直接行为本身，那么该重罪会<b>“合并” (Merge)</b> 进杀人罪中，不能作为重罪谋杀（Felony Murder）的基础重罪。</li>
+                <li><b>逻辑：</b>如果所有的伤害致死都能算作“重罪谋杀”，那么“过失杀人” (Manslaughter) 这一罪名将不复存在，因为几乎所有杀人行为都始于某种形式的攻击。</li>
+            </ul>
+            <div class="wrong-option">
+                ❌ <b>选项 A 错误原因：</b>严重伤害罪不是“独立的”，它是杀人行为的一部分，因此适用合并原则，不能据此定重罪谋杀。
+            </div>
+        </div>
+
+        <!-- 排除其他选项 -->
+        <div class="concept-card">
+            <div class="concept-title">为何排除激情杀人？</div>
+            <p><b>选项 C</b> 涉及<b>激情过失杀人 (Voluntary Manslaughter)</b> 的抗辩。</p>
+            <p>虽然受到挑衅（Provocation）可以将谋杀降格为过失杀人，但这需要满足三个条件：</p>
+            <ol>
+                <li>充分的挑衅；</li>
+                <li>被告确实被激怒；</li>
+                <li><b>没有冷却期 (No cooling-off period)。</b></li>
+            </ol>
+            <div class="wrong-option">
+                ❌ <b>选项 C 错误原因：</b>题目明确指出袭击发生在<b>“第二天” (The next day)</b>。法律上认定这段时间足以让理智的人冷静下来（Cooling off）。因此，经理不能主张激情杀人，他的行为恢复为谋杀。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 考试技巧</span>
+            当题目给出具体的法律定义（Statutory Definition）时，<b>严格按照定义解题</b>。
+            <br><br>
+            本题定义明确指出谋杀包括“预谋恶意”或“独立重罪”。
+            <ul>
+                <li>看到 <b>"Assault"</b> + <b>"Felony Murder"</b> 组合时，警惕 <b>Merger Doctrine</b>（通常不能定重罪谋杀）。</li>
+                <li>看到 <b>"Glass bottle to head"</b>（致命武器对要害部位），直接联想 <b>Intent to SBH</b>（属于预谋恶意）。</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

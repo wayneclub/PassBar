@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        .key-point {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .analysis {
+            font-size: 14px;
+            text-align: justify;
+        }
+
+        .wrong-option {
+            background-color: #fff5f5;
+            border: 1px solid #ffcccc;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：商业记录传闻例外</h1>
+    
+    <div class="analysis">
+        <p>本题考察的是证据法中的核心考点：<b>商业记录传闻例外 (Business Records Exception)</b>。正确答案是 <b>C</b>。</p>
+        <p>在联邦证据规则 (Federal Rules of Evidence, FRE) 下，医疗记录通常被视为商业记录，因此可以作为传闻证据规则的例外被采纳。</p>
+    </div>
+
+    <h2>⚖️ 法律规则：FRE 803(6)</h2>
+    <div class="rule-box">
+        <p>根据 <b>FRE 803(6)</b>，一份记录（包括备忘录、报告、数据汇编等）如果满足以下条件，则不被视为不可采纳的传闻证据：</p>
+        <ul>
+            <li><b>时间性 (Timing)：</b> 在事件发生时或临近之时制作；</li>
+            <li><b>知识来源 (Knowledge)：</b> 由具有亲身认知的人制作，或基于具有亲身认知的人提供的信息制作；</li>
+            <li><b>常规性 (Regular Practice)：</b> 制作该记录是该机构日常商业活动 (Regularly Conducted Activity) 的一部分。</li>
+        </ul>
+        <p>特别注意：该规则明确包含了<b>“意见” (Opinions)</b> 和 <b>“诊断” (Diagnoses)</b>。</p>
+    </div>
+
+    <h2>🔍 本案分析</h2>
+    <div class="analysis">
+        <p>让我们将规则应用到题目中的事实：</p>
+        <ol>
+            <li><b>记录内容：</b> 包含了医生的诊断（"C4和C5椎骨骨折"）。FRE 803(6) 明确允许记录中包含诊断意见。</li>
+            <li><b>制作过程：</b> 实习医生 (Intern) 在医生查房时“立即” (Immediately) 记录，满足时间性要求。</li>
+            <li><b>知识链条：</b> 医生检查了X光片（具有亲身认知），并将信息传达给实习医生记录。这符合“基于具有亲身认知的人提供的信息”这一要求。</li>
+            <li><b>基础奠定 (Foundation)：</b> 记录保管员 (Custodian) 已经在法庭上作证，确认该记录是在医院日常业务过程中制作和保存的。</li>
+        </ol>
+        <p>因此，该记录完全符合商业记录例外的所有要素，可以被采纳。</p>
+    </div>
+
+    <h2>🚫 为什么其他选项是错误的？</h2>
+    
+    <div class="wrong-option">
+        <span class="tag">选项 A 错误</span>
+        <b>关于专家资格 (Expert Competence)</b><br>
+        这是最强的干扰项。如果医生是作为<b>证人</b>出庭作证，确实需要奠定专家基础 (FRE 702)。但这里引入的是<b>商业记录</b>本身。只要满足 FRE 803(6) 的要求，记录中的诊断即被推定为可信，无需在引入记录时额外证明医生的专家资格。
+    </div>
+
+    <div class="wrong-option">
+        <span class="tag">选项 B 错误</span>
+        <b>关于基础数据 (Underlying Data)</b><br>
+        专家意见所依据的事实或数据（如本案中的X光片）不需要必须作为证据提交。即使在专家作证时 (FRE 703)，只要是该领域专家合理依赖的数据即可。对于商业记录而言，只要记录本身符合规定，其依据的原始材料无需同时呈堂。
+    </div>
+
+    <div class="wrong-option">
+        <span class="tag">选项 D 错误</span>
+        <b>当时存在的身体状况 (Then-existing Physical Condition)</b><br>
+        这是 FRE 803(3) 例外。这个例外通常适用于<b>陈述人 (Declarant)</b> 描述<b>自己</b>当下的感受（如病人喊“我背好痛”）。它不适用于医生对病人状况的<b>诊断</b>或<b>观察</b>。
+    </div>
+
+    <h2>💡 考试技巧 (Exam Tip)</h2>
+    <div class="rule-box" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+        <p>在 MBE 证据法题目中，看到<b>“医院记录” (Hospital Records)</b> 时，首先联想 <b>FRE 803(6) 商业记录例外</b>。</p>
+        <p>切记：虽然医疗记录包含“专家意见”，但引入记录时使用的是<b>传闻例外规则</b>，而不是专家证人规则。不要被“没有奠定专家基础”这类选项迷惑。</p>
+    </div>
+
+</div>
+
+</body>
+</html>

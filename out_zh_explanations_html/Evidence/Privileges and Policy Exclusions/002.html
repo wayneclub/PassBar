@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --warning-color: #e74c3c;
+        --text-color: #333;
+        --bg-color: #f4f7f6;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+    }
+    .container {
+        max-width: 480px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header .sub-title {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .rule-box {
+        border-left: 4px solid var(--accent-color);
+        background: var(--highlight-bg);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        font-size: 16px;
+    }
+    .section-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+    }
+    p {
+        line-height: 1.6;
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+    .highlight {
+        color: var(--warning-color);
+        font-weight: bold;
+    }
+    .tag {
+        display: inline-block;
+        background: #eee;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 12px;
+        color: #555;
+        margin-right: 4px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+        margin: 15px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: var(--primary-color);
+        color: white;
+    }
+    .footer {
+        background: #f9f9f9;
+        padding: 15px;
+        text-align: center;
+        font-size: 12px;
+        color: #888;
+        border-top: 1px solid #eee;
+    }
+    .check-icon {
+        color: var(--accent-color);
+        font-weight: bold;
+    }
+    .cross-icon {
+        color: var(--warning-color);
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence (证据法)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">⚖️ 核心规则：FRE 409</div>
+            <p><strong>Payment of Medical and Similar Expenses</strong> (支付医疗及类似费用)</p>
+            <p>根据《联邦证据规则》第 409 条，提供、承诺支付或实际支付因伤害导致的医疗、住院或类似费用的证据，<strong>不可采纳 (Inadmissible)</strong> 用于证明该伤害的责任 (Liability)。</p>
+        </div>
+
+        <!-- 答案解析 -->
+        <div class="section-title">为什么选 A？</div>
+        <p>本题考查的是<strong>公共政策排除规则 (Public Policy Exclusions)</strong>。</p>
+        <p>司机说："Don't worry, I'll pay your hospital bill."（别担心，我会付你的医疗费。）</p>
+        <p>这句话是一个典型的<strong>支付医疗费用的要约 (Offer to pay medical expenses)</strong>。法律为了鼓励人们在他人受伤时伸出援手（人道主义行为），规定此类善意的要约不能在法庭上被用来作为承认错误的证据。</p>
+        <p>因此，无论该陈述是否符合传闻证据 (Hearsay) 的例外，它首先被 FRE 409 直接排除，不能用于证明责任。</p>
+
+        <!-- 难点辨析 -->
+        <div class="section-title">🎓 MBE 进阶：FRE 408 vs. 409</div>
+        <p>这是 MBE 考试中极易混淆的两个规则，请务必区分：</p>
+        
+        <table>
+            <tr>
+                <th style="width: 25%">规则</th>
+                <th>FRE 408<br>和解要约 (Compromise)</th>
+                <th>FRE 409<br>医疗费 (Medical Exp.)</th>
+            </tr>
+            <tr>
+                <td><strong>前提</strong></td>
+                <td>必须存在<strong>争议 (Dispute)</strong>（关于责任或金额）</td>
+                <td><strong>不需要</strong>存在争议</td>
+            </tr>
+            <tr>
+                <td><strong>保护范围</strong></td>
+                <td>保护要约<strong>以及</strong>谈判过程中的所有陈述 (Conduct or statements)</td>
+                <td><strong>仅保护</strong>支付费用的要约/行为本身</td>
+            </tr>
+            <tr>
+                <td><strong>附带承认</strong></td>
+                <td><span class="check-icon">✓</span> 同时也排除</td>
+                <td><span class="cross-icon">✗</span> <strong>不排除</strong>（可采纳）</td>
+            </tr>
+        </table>
+
+        <p><strong>⚠️ 关键区别：</strong>如果在支付医疗费的要约中夹杂了事实承认（例如：“是我闯红灯了，我会付医药费”），根据 FRE 409：</p>
+        <ul>
+            <li>“我会付医药费” <span class="cross-icon">→</span> <strong>不可采纳</strong></li>
+            <li>“是我闯红灯了” <span class="check-icon">→</span> <strong>可采纳</strong> (Admissible)</li>
+        </ul>
+        <p>但在本题中，司机<strong>只</strong>说了要付钱，没有承认具体过错，所以整句话都不可采纳。</p>
+
+        <!-- 排除干扰项 -->
+        <div class="section-title">为什么其他选项错误？</div>
+        
+        <p><strong>选项 C (Admission) 和 D (Excited Utterance)：</strong></p>
+        <p>这两个选项试图用<strong>传闻证据规则 (Hearsay Rule)</strong> 来解决问题。虽然司机的陈述确实属于“对方当事人陈述”(Party-Opponent Statement) 或者是“激动言辞”(Excited Utterance)，在传闻规则层面通常是可采纳的。</p>
+        <p><strong>但是！</strong>证据的可采纳性必须通过所有关卡。即使通过了传闻规则这一关，它被 <strong>FRE 409 (相关性/政策排除)</strong> 这一关拦下了。政策性排除规则优先于传闻例外。</p>
+
+        <p><strong>选项 B (Condition)：</strong></p>
+        <p>FRE 409 的排除规则是绝对的，不取决于承诺是否被履行。</p>
+
+    </div>
+
+    <div class="footer">
+        <strong>解题口诀：</strong><br>
+        看到 "Pay Medical Bill" → 想到 FRE 409。<br>
+        只排除 "Pay" 的部分，不排除 "Fault" 的承认。<br>
+        (本题只有 Pay，所以全排除)
+    </div>
+</div>
+
+</body>
+</html>

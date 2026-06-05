@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: #e8f8f5;
+            border: 2px solid var(--success-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--success-color);
+        }
+
+        .rule-section {
+            margin-bottom: 20px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .highlight-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background-color: #eef2f7;
+            color: var(--primary-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-family: monospace;
+            margin: 0 2px;
+        }
+
+        .analysis-step {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+
+        .step-icon {
+            background-color: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .wrong-option {
+            color: var(--warning-color);
+            font-weight: bold;
+        }
+
+        .footer-tip {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .latin {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure (民事诉讼法)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="answer-box">
+            正确答案：A<br>
+            Remand the entire case<br>
+            (将整个案件发回重审)
+        </div>
+
+        <!-- 法律规则 -->
+        <div class="rule-section">
+            <div class="rule-title">核心考点：移送管辖权 (Removal Jurisdiction)</div>
+            <p>本题考察的是谁有权将案件从州法院移送至联邦法院。</p>
+            
+            <div class="highlight-box">
+                <strong>黄金法则：</strong><br>
+                根据 <span class="concept-tag">28 U.S.C. § 1441</span>，只有<strong>被告 (Defendant)</strong> 有权寻求移送 (Removal)。<br><br>
+                <span style="color: var(--warning-color);">❌ 原告 (Plaintiff) 永远不能移送案件</span>，即使原告在起诉后提出了联邦法诉求，或者面临州法院的反诉。
+            </div>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="rule-section">
+            <div class="rule-title">本案分析</div>
+            
+            <div class="analysis-step">
+                <div class="step-icon">1</div>
+                <div class="step-text">
+                    <strong>谁发起了移送？</strong><br>
+                    题目中明确指出是“该女性的律师” (The woman's attorney) 移送了案件。该女性是原告 (Plaintiff)。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-icon">2</div>
+                <div class="step-text">
+                    <strong>是否存在程序错误？</strong><br>
+                    是的。原告移送案件属于严重的<strong>程序错误 (Procedural Defect)</strong>。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-icon">3</div>
+                <div class="step-text">
+                    <strong>法院如何处理？</strong><br>
+                    由于被告及时提出了<strong>发回重审动议 (Motion to Remand)</strong>，联邦法院必须批准该动议，将整个案件退回州法院。
+                </div>
+            </div>
+        </div>
+
+        <!-- 干扰项解析 -->
+        <div class="rule-section">
+            <div class="rule-title">为什么其他选项是错的？</div>
+            <ul>
+                <li>
+                    <strong>选项 B (部分发回)：</strong> 只有在移送本身是合法的（即由被告发起），但某些诉求缺乏联邦管辖权时，才会考虑分离诉求。本案中移送主体错误，整个移送无效。
+                </li>
+                <li>
+                    <strong>选项 C (保留案件)：</strong> 即使案件涉及联邦问题 (Federal Question)，也不赋予原告移送权。原告既然选择了州法院作为起诉地 (Forum)，就必须受其约束。
+                </li>
+                <li>
+                    <strong>选项 D (因偏见保留)：</strong> 
+                    <span class="wrong-option">偏见 (Bias) 不是移送的理由。</span><br>
+                    如果州法官有偏见，原告的正确救济途径是在州法院申请法官回避 (Recusal)，而不是移送至联邦法院。
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="footer-tip">
+        <strong>💡 MBE 拿分技巧：</strong><br>
+        看到 "Removal" (移送) 题目时，第一步先检查<strong>是谁</strong>在移送。<br>
+        如果是 <strong>Plaintiff</strong>，直接选 "Remand" (发回重审)。不要被题目中提到的“联邦问题”、“多元管辖权”或“法官偏见”所迷惑，这些都是干扰信息。
+    </div>
+</div>
+
+</body>
+</html>

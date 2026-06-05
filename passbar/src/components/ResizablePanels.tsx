@@ -11,6 +11,8 @@ interface ResizablePanelsProps {
   className?: string;
   /** Only shows side-by-side layout when true */
   enabled?: boolean;
+  /** Increment this value to reset split back to defaultLeftPct */
+  resetKey?: number;
 }
 
 export function ResizablePanels({
@@ -20,9 +22,15 @@ export function ResizablePanels({
   minPx = 280,
   className,
   enabled = true,
+  resetKey,
 }: ResizablePanelsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [leftPct, setLeftPct] = useState(defaultLeftPct);
+
+  useEffect(() => {
+    if (resetKey !== undefined) setLeftPct(defaultLeftPct);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resetKey]);
   const [isMobile, setIsMobile] = useState(false);
   const dragging = useRef(false);
 

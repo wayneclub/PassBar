@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: #333;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-label {
+            color: #2e7d32;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .logic-step {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .logic-icon {
+            min-width: 24px;
+            height: 24px;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .wrong-option {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .wrong-label {
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 0.85rem;
+            background: #fadbd8;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+        .exam-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE Contracts 解析</h2>
+        <div class="sub-title">合同法：缔约过失与信赖利益</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：B</span>
+            <p>制作人无法获得任何赔偿。因为双方已明确约定在签署最终合同前不承担义务，制作人在此期间产生费用的行为不构成“合理信赖”。</p>
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">⚖️ 法律逻辑深度解析</div>
+        
+        <div class="concept-card">
+            <p>本题的核心在于区分<b>合同谈判阶段</b>与<b>合同成立</b>，以及<b>允诺禁反言</b>的适用边界。</p>
+        </div>
+
+        <div class="logic-step">
+            <div class="logic-icon">1</div>
+            <div>
+                <strong>没有违约 (No Breach of Contract)</strong><br>
+                双方明确约定：<span class="term">"No enforceable contractual obligations... until... final, signed contract"</span>（在签署最终合同前无强制执行力）。<br>
+                这是一个生效条件（Condition Precedent）。既然最终合同从未签署，合同从未成立，因此不存在违约行为。
+            </div>
+        </div>
+
+        <div class="logic-step">
+            <div class="logic-icon">2</div>
+            <div>
+                <strong>允诺禁反言不适用 (Promissory Estoppel Fails)</strong><br>
+                虽然没有合同，通常原告会试图通过 <span class="english-term">Promissory Estoppel</span> 寻求救济。该原则要求原告必须<b>合理地信赖 (Reasonably Relied)</b> 被告的承诺。<br>
+                <br>
+                在本案中，由于双方已经<b>明确书面约定</b>“签约前无义务”，制作人明知这一点却仍然在谈判期间花钱，这种行为被法律视为<b>风险自担</b>，不属于“合理”的信赖。
+            </div>
+        </div>
+
+        <!-- 干扰项分析 -->
+        <div class="section-title">❌ 为什么其他选项错误？</div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 A 错误</span>
+            <strong>预期损害赔偿 (Expectation Damages)</strong><br>
+            这是违约后的标准赔偿方式，旨在让受害方处于“合同已履行”的状态。既然本案中合同从未成立，自然不存在预期利益赔偿。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 C 错误</span>
+            <strong>信赖损害赔偿 (Reliance Damages)</strong><br>
+            虽然这是允诺禁反言的典型救济方式，但前提是信赖必须是“合理的”。如前所述，无视“签约前无义务”条款而进行的投入是不合理的，因此无法获得赔偿。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 D 错误</span>
+            <strong>不当得利返还 (Restitution)</strong><br>
+            这要求被告（歌手）获得了利益且保留该利益是不公正的。本案中，制作人虽然花了钱，但歌手并没有从中获得任何实质性利益（Unjust Enrichment），因此不适用。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧</strong>
+            <br><br>
+            遇到“谈判破裂”类的题目，请寻找是否有<b>“意图不受法律约束” (Intent not to be bound)</b> 的明确声明。
+            <br><br>
+            如果双方明确表示“直到签署文件前都不算数”，那么在此之前的任何支出通常都被视为<b>预备性谈判 (Preliminary Negotiations)</b> 的成本，由各方自行承担，法院极少会介入进行救济。
+        </div>
+
+    </div>
+    
+    <div class="footer">
+        MBE Contracts Review | QID: Q81828
+    </div>
+</div>
+
+</body>
+</html>

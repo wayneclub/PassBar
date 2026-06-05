@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --success-color: #27ae60;
+        --warning-color: #f39c12;
+        --danger-color: #c0392b;
+        --bg-color: #f4f6f7;
+        --card-bg: #ffffff;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #eef2f3;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px; /* 适配手机逻辑宽度 */
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+        color: #333;
+        line-height: 1.6;
+    }
+    .header {
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 14px;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+    }
+    .rule-box {
+        background-color: #e8f4f8;
+        border-left: 4px solid var(--accent-color);
+        padding: 12px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 5px;
+        display: block;
+    }
+    .case-study {
+        background-color: #fff8e1;
+        border: 1px solid #ffe0b2;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    .case-title {
+        color: var(--warning-color);
+        font-weight: bold;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .analysis-step {
+        margin-bottom: 15px;
+    }
+    .analysis-step strong {
+        color: var(--primary-color);
+    }
+    .option-analysis {
+        margin-top: 20px;
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+    }
+    .correct-answer {
+        color: var(--success-color);
+        font-weight: bold;
+    }
+    .wrong-answer {
+        color: var(--danger-color);
+        font-weight: bold;
+    }
+    .tag {
+        display: inline-block;
+        background-color: #eee;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.8em;
+        margin-right: 4px;
+        color: #555;
+    }
+    .footer {
+        background-color: #f9f9f9;
+        padding: 15px;
+        text-align: center;
+        font-size: 12px;
+        color: #777;
+        border-top: 1px solid #eee;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 5px 0;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Intentional Torts: Defenses</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心考点：私人紧急避险 (Private Necessity)</span>
+            <p>当一个人为了保护自己、他人或财产免受严重伤害（serious harm）而有必要（或合理地认为有必要）进入他人土地时，该侵入行为享有<b>特权 (Privilege)</b>。</p>
+            <p>这种特权是<b>不完全的 (Incomplete Privilege)</b>：</p>
+            <ul>
+                <li>侵入者<b>有权</b>停留在土地上，土地所有者<b>无权</b>驱逐。</li>
+                <li>但侵入者必须为对土地造成的<b>实际损害 (Actual Damages)</b> 负责。</li>
+            </ul>
+        </div>
+
+        <!-- 经典判例 -->
+        <div class="case-study">
+            <div class="case-title">📚 经典判例回顾</div>
+            <p>本题的情境几乎完全复刻了美国侵权法中的著名案例 <b><i>Ploof v. Putnam (1908)</i></b>。</p>
+            <p>在该案中，原告因暴风雨将船系在被告的码头上，被告的仆人解开了缆绳，导致船只损毁和人员受伤。法院判决：<b>土地所有者无权在紧急情况下驱逐侵入者，并需对驱逐行为造成的损害承担责任。</b></p>
+        </div>
+
+        <!-- 题目解析 -->
+        <div class="analysis-step">
+            <h3>🔍 案情分析</h3>
+            <p><strong>1. 紧急情况 (Emergency):</strong> 船主遭遇突发风暴，合理担心船只倾覆。</p>
+            <p><strong>2. 特权产生 (Privilege Arises):</strong> 为了保全财产（船），船主有权进行“侵入”（系船在码头）。这构成了 <i>Private Necessity</i>。</p>
+            <p><strong>3. 所有者的义务 (Owner's Duty):</strong> 面对享有特权的侵入者，码头所有者必须容忍其停留。虽然他可以要求船主赔偿码头的损坏（如有），但他<b>绝对不能</b>切断缆绳或驱逐船主。</p>
+            <p><strong>4. 责任归属 (Liability):</strong> 所有者强行解开缆绳的行为是非法的（构成了 Conversion 或 Trespass to Chattels），因此他必须对船只的灭失负责。</p>
+        </div>
+
+        <!-- 选项辨析 -->
+        <div class="option-analysis">
+            <h3>💡 选项辨析</h3>
+            
+            <p><span class="correct-answer">✅ 选项 D 正确</span><br>
+            <b>"Yes, because the boater was privileged to enter..."</b><br>
+            这是最准确的法律依据。因为船主享有特权（Privilege），所以她的行为不是非法的侵入，而所有者阻止她行使该特权的行为则是非法的。</p>
+
+            <p><span class="wrong-answer">❌ 选项 A 错误</span><br>
+            <b>(Owner's objection)</b><br>
+            在紧急避险（Necessity）的特权面前，土地所有者的反对或“禁止入内”标志是无效的。特权凌驾于所有者的排他权之上。</p>
+
+            <p><span class="wrong-answer">❌ 选项 B 错误</span><br>
+            <b>(Possibility of no damage)</b><br>
+            法律标准是<b>“合理的信念” (Reasonable belief)</b>。只要船主当时合理地认为有必要系船以防倾覆，即使事后证明风暴可能不会损坏船只，特权依然存在。</p>
+
+            <p><span class="wrong-answer">❌ 选项 C 错误</span><br>
+            <b>(Offer to pay)</b><br>
+            虽然这是一个干扰项，但逻辑不严密。船主是否有权进入，取决于“紧急情况”，而不是她是否“提议付费”。即使她没带钱，只要情况紧急，她依然有权系船。当然，根据 <i>Vincent v. Lake Erie</i> 规则，她事后必须赔偿码头的实际损失，但这与她是否有权<b>进入</b>是两个问题。</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <b>MBE 考试技巧：</b><br>
+        遇到“风暴”、“躲避追杀”或“紧急着陆”进入他人领地的情形，<br>
+        首先判断是 <b>Public Necessity</b>（为了公众利益，完全免责）<br>
+        还是 <b>Private Necessity</b>（为了私利，有权进入但需赔偿损耗）。<br>
+        <br>
+        本题考查的是 Private Necessity 中<b>土地所有者的容忍义务</b>。
+    </div>
+</div>
+
+</body>
+</html>

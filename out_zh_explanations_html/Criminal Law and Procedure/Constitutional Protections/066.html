@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #edf7ed;
+            border: 1px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .answer-label {
+            color: var(--correct-color);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .rule-card {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .case-title {
+            font-weight: bold;
+            font-style: italic;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 8px;
+        }
+        .concept-tag {
+            display: inline-block;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            color: #555;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f2f2f2;
+            font-weight: 600;
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        strong {
+            color: var(--primary-color);
+        }
+    </style>
+    <title>MBE Answer Analysis</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Criminal Law / Constitutional Law</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：D</span>
+            <strong>陪审团</strong>根据<strong>“排除合理怀疑”</strong>标准作出的裁定。<br>
+            (A jury finding beyond a reasonable doubt.)
+        </div>
+
+        <p>本题考察的是美国宪法第六修正案（陪审团审判权）和第十四修正案（正当程序条款）在刑事量刑中的核心原则，即著名的 <strong>Apprendi 规则</strong>。</p>
+
+        <!-- 核心法则卡片 -->
+        <div class="rule-card">
+            <span class="case-title">Apprendi v. New Jersey (2000)</span>
+            <p><strong>规则核心：</strong>除了前科（prior conviction）这一事实外，任何能够增加犯罪<strong>法定最高刑罚</strong>（statutory maximum）的事实，都必须：</p>
+            <ol>
+                <li>提交给<strong>陪审团</strong>（Jury）；</li>
+                <li>并由陪审团以<strong>“排除合理怀疑”</strong>（Beyond a reasonable doubt）的标准予以证实。</li>
+            </ol>
+        </div>
+
+        <h3>⚖️ 法律推理逻辑</h3>
+        
+        <p><strong>1. 标签不重要，效果才重要</strong><br>
+        虽然题目中的法规将“持有致命武器”标记为“量刑因素”（Sentencing Factor），但这并不意味着法官可以随意裁量。最高法院认为，如果一个事实的认定会导致被告面临的刑罚<strong>超过</strong>了原本法规规定的最高限度，那么这个事实在宪法意义上就等同于犯罪的<strong>构成要件</strong>（Element of the crime）。</p>
+
+        <p><strong>2. 本案的具体分析</strong></p>
+        <table class="comparison-table">
+            <tr>
+                <th>情形</th>
+                <th>最高刑期</th>
+                <th>裁决者 & 标准</th>
+            </tr>
+            <tr>
+                <td>普通攻击罪</td>
+                <td>5年</td>
+                <td>陪审团 / 排除合理怀疑</td>
+            </tr>
+            <tr>
+                <td><strong>攻击 + 致命武器</strong></td>
+                <td><strong>10年</strong></td>
+                <td><strong>?</strong></td>
+            </tr>
+        </table>
+        
+        <p>由于“持有致命武器”这一事实将最高刑期从5年提高到了10年，根据 <em>Apprendi</em> 规则，它必须被视为犯罪构成要件处理。因此：</p>
+        <ul>
+            <li><strong>谁来决定？</strong> 必须是<strong>陪审团</strong>（除非被告放弃陪审团权利），不能是法官。</li>
+            <li><strong>什么标准？</strong> 必须是刑事定罪的最高标准——<strong>排除合理怀疑</strong>（Beyond a reasonable doubt），而不能是民事或普通量刑听证中使用的“优势证据”（Preponderance of the evidence）标准。</li>
+        </ul>
+
+        <h3>🚫 为什么其他选项是错误的？</h3>
+        
+        <ul>
+            <li><strong>选项 A & B (优势证据):</strong> 刑事案件中，任何增加法定最高刑罚的事实必须达到“排除合理怀疑”的证明标准。优势证据标准（>50%可能性）仅适用于不改变法定刑罚范围的普通量刑因素。</li>
+            <li><strong>选项 A & C (法官裁定):</strong> 既然该事实增加了法定最高刑，被告就有权要求由陪审团对此事实进行裁决。法官无权单方面认定该事实来突破原有的5年上限。</li>
+        </ul>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>🎓 MBE 考试技巧：</strong><br>
+            看到题目中出现<strong>“Sentence Enhancement”</strong>（刑罚加重）或<strong>“Sentencing Factor”</strong>（量刑因素）时，请立即检查该因素是否提高了<strong>法定最高刑</strong>（Statutory Maximum）。
+            <br><br>
+            <ul>
+                <li>如果<strong>提高了上限</strong> ➡️ 必须由<strong>陪审团</strong>按<strong>排除合理怀疑</strong>标准认定（Apprendi Rule）。</li>
+                <li>如果只是在<strong>原有范围内</strong>影响法官的量刑裁量（例如从0-5年变为3-5年，但上限仍是5年） ➡️ 法官可以根据优势证据认定。</li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="footer">
+        MBE Criminal Law Review
+    </div>
+</div>
+
+</body>
+</html>

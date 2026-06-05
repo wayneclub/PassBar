@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --danger-color: #e74c3c;
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            color: #333;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #eef7fd;
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            margin: 20px 0 30px 10px;
+            border-left: 2px solid #ddd;
+            padding-left: 20px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -27px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            border: 2px solid white;
+        }
+        .timeline-dot.active {
+            background-color: var(--success-color);
+            box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.2);
+        }
+        .timeline-dot.critical {
+            background-color: var(--warning-color);
+        }
+        .timeline-date {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        .timeline-content {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .timeline-note {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+        .icon {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+        .pitfall {
+            background-color: #fff5f5;
+            border: 1px solid #fed7d7;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+        }
+        .pitfall-title {
+            color: var(--danger-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Civil Procedure: Appealability & Review</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <span style="font-size: 1.1rem; font-weight: bold;">正确答案：D</span>
+            <p style="font-size: 0.9rem; color: #666;">上诉法院拥有管辖权</p>
+        </div>
+
+        <!-- 法律规则 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心考点：上诉时效的中止 (Tolling)</span>
+            根据 <b>Fed. R. App. P. 4</b>：
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li><b>一般规则：</b>上诉通知书必须在最终判决录入后 <b>30天</b> 内提交。</li>
+                <li><b>例外 (Tolling)：</b>如果在判决后 <b>28天</b> 内提交了特定的审后动议（如 Renewed JMOL），上诉时效会<b>暂停</b>。</li>
+                <li><b>重新计算：</b>时效从法院处置该动议的命令录入之日起，重新计算 30 天。</li>
+            </ol>
+        </div>
+
+        <!-- 时间轴分析 -->
+        <div class="analysis-title">📅 本案时间轴分析</div>
+        <div class="timeline">
+            <!-- Event 1 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">3月1日 (March 1)</div>
+                <div class="timeline-content">最终判决录入 (Final Judgment)</div>
+                <div class="timeline-note">30天倒计时开始...</div>
+            </div>
+
+            <!-- Event 2 -->
+            <div class="timeline-item">
+                <div class="timeline-dot critical"></div>
+                <div class="timeline-date">3月21日 (March 21)</div>
+                <div class="timeline-content">提交 Renewed JMOL 动议</div>
+                <div class="timeline-note" style="color: var(--success-color);">
+                    ✅ 判决后20天 (28天内)<br>
+                    🛑 <b>上诉时钟暂停 (Tolled)</b>
+                </div>
+            </div>
+
+            <!-- Event 3 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">4月15日 (April 15)</div>
+                <div class="timeline-content">法官驳回动议 (Order Denying Motion)</div>
+                <div class="timeline-note">▶️ <b>上诉时钟重新开始 (30天)</b></div>
+            </div>
+
+            <!-- Event 4 -->
+            <div class="timeline-item">
+                <div class="timeline-dot active"></div>
+                <div class="timeline-date">5月1日 (May 1)</div>
+                <div class="timeline-content">提交上诉通知书 (Notice of Appeal)</div>
+                <div class="timeline-note" style="color: var(--success-color);">
+                    ✅ 动议驳回后16天 (30天内)<br>
+                    ✅ <b>及时提交 (Timely)</b>
+                </div>
+            </div>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">💡 为什么选 D？</div>
+            <div class="key-point">
+                <span class="icon">1️⃣</span>
+                <div>
+                    <b>动议及时性：</b>男子在判决后28天内（3月21日）提交了 Renewed JMOL，这属于 <b>Fed. R. Civ. P. 50(b)</b> 规定的动议，具有中止上诉时效的效力。
+                </div>
+            </div>
+            <div class="key-point">
+                <span class="icon">2️⃣</span>
+                <div>
+                    <b>上诉及时性：</b>新的30天期限从4月15日（动议被驳回）开始计算。5月1日提交上诉显然在30天内。
+                </div>
+            </div>
+            <div class="key-point">
+                <span class="icon">3️⃣</span>
+                <div>
+                    <b>提交地点：</b>上诉通知书必须提交给<b>地区法院 (District Court)</b> 的书记官，而不是上诉法院。题目中男子向地区法院提交，程序正确。
+                </div>
+            </div>
+        </div>
+
+        <!-- 易错点排雷 -->
+        <div class="pitfall">
+            <span class="pitfall-title">🚫 避坑指南 (为何排除其他选项)</span>
+            <ul style="margin: 5px 0; padding-left: 20px;">
+                <li>
+                    <b>选项 A 错误：</b>这是常见的程序陷阱。上诉通知书是告诉初审法院“我要上诉了”，所以必须交给<b>地区法院书记官</b>，由他们转交卷宗。
+                </li>
+                <li>
+                    <b>选项 B 错误：</b>该选项忽略了审后动议对上诉时效的<b>中止 (Tolling)</b> 作用。如果没有那个动议，3月31日确实是截止日期，但动议改变了计算方式。
+                </li>
+                <li>
+                    <b>选项 C 错误：</b>虽然“保留权利”是提交 Renewed JMOL 的前提（即必须在审判中先提过 JMOL），但这只是动议合法的条件，而不是上诉法院获得管辖权的直接原因。管辖权的核心在于<b>“及时提交了上诉通知”</b>。
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

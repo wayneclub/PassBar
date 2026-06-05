@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .concept-card {
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+
+        .english-term {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        .logic-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .step-icon {
+            background: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .wrong-option {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+            border-top: 1px dashed #ddd;
+            padding-top: 10px;
+        }
+
+        .exam-tip {
+            background-color: #27ae60;
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .exam-tip strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考题解析</h1>
+        <div class="sub-title">宪法 (Constitutional Law) - 个人权利</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：选项 A</span>
+            <p>不会，因为宪法关于法律平等保护的保障不适用于这些保险公司的行为。</p>
+        </div>
+
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：州行为理论 (State Action Doctrine)</div>
+            <p>美国宪法第十四修正案的<strong>平等保护条款 (Equal Protection Clause)</strong> 仅限制政府（州）的行为，而不限制私人行为。</p>
+            <p>除非存在例外情况，否则私人公司（如本题中的保险公司）的歧视性行为不构成违宪。</p>
+        </div>
+
+        <!-- 逻辑推演 -->
+        <div class="concept-card">
+            <div class="concept-title">解题逻辑推演</div>
+            
+            <div class="logic-step">
+                <div class="step-icon">1</div>
+                <div>
+                    <strong>识别主体：</strong><br>
+                    题目明确指出保险是由“私营公司” (private companies) 提供的。
+                </div>
+            </div>
+
+            <div class="logic-step">
+                <div class="step-icon">2</div>
+                <div>
+                    <strong>判断是否构成“州行为”：</strong><br>
+                    私营主体要被视为政府行为者，必须满足以下极其严格的条件之一：
+                    <ul>
+                        <li><strong>公共职能 (Public Function)：</strong> 该实体履行了传统上由政府独占的职能（如选举）。保险显然不是。</li>
+                        <li><strong>纠缠/关联 (Entanglement/Nexus)：</strong> 政府必须积极授权、鼓励或促进该违宪行为。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="logic-step">
+                <div class="step-icon">3</div>
+                <div>
+                    <strong>分析政府监管：</strong><br>
+                    题目中提到州政府“检查偿付能力” (inspects for solvency) 但“不监管费率” (does not regulate rates)。<br>
+                    <span class="highlight">单纯的政府监管或发放牌照并不足以将私人行为转化为州行为。</span>
+                </div>
+            </div>
+
+            <div class="logic-step">
+                <div class="step-icon">4</div>
+                <div>
+                    <strong>结论：</strong><br>
+                    由于没有“州行为”，宪法不适用。无论费率差异多么不公平，原告无法依据宪法起诉。
+                </div>
+            </div>
+        </div>
+
+        <!-- 错误选项分析 -->
+        <div class="wrong-option">
+            <strong>为什么其他选项是错的？</strong>
+            <ul style="padding-left: 20px; margin-top: 5px;">
+                <li><strong>选项 B (Rational Basis)：</strong> 只有确定宪法适用后，才进行审查标准（如理性基础审查）的分析。既然宪法不适用，审查标准就无从谈起。</li>
+                <li><strong>选项 C & D：</strong> 这些选项讨论了事实上的不公平或歧视性。虽然这些可能是事实，但在缺乏“州行为”的前提下，它们不能作为<strong>宪法诉讼</strong>的依据。</li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧</strong>
+            <p>当你在宪法题中看到被告是<strong>私人个体或公司</strong>时，第一反应必须是检查是否存在<strong>州行为 (State Action)</strong>。</p>
+            <p>如果政府仅仅是颁发执照、提供水电服务或进行一般性监管，通常<strong>不构成</strong>州行为。如果不存在州行为，直接选择“宪法不适用”类的选项。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

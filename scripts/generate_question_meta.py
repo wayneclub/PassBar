@@ -59,7 +59,7 @@ _load_env_file()
 
 # ── Gemini ────────────────────────────────────────────────────────────────────
 
-GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_MODEL = "gemini-3.5-flash"
 RATE_LIMIT_DELAY = 3   # 秒
 MAX_RETRIES = 3
 

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-box strong {
+            color: #2e7d32;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            color: #2c3e50;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .rule-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #2c3e50;
+        }
+        .timeline-item.red::before {
+            background: #e74c3c;
+        }
+        .timeline-date {
+            font-size: 12px;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .footer {
+            background: #f1f1f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure (民事诉讼法)</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            <strong>正确答案：B</strong>
+            Move for relief from the judgment based on the newly discovered evidence.<br>
+            (基于新发现的证据，申请判决救济)
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="section-title">⚖️ 核心法律规则：FRCP 60(b)</div>
+        <div class="rule-card">
+            <p>本题考察的是<b>联邦民事诉讼规则 (FRCP)</b> 中关于判决后动议的时间限制。</p>
+            <p>当终局判决 (Final Judgment) 作出后，败诉方有不同的救济途径，但每种途径都有严格的<b>时间窗口</b>。</p>
+        </div>
+
+        <!-- 时间线图解 -->
+        <div class="section-title">📅 关键时间线分析</div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Day 0</div>
+                <div>法院作出终局判决 (Entry of Judgment)</div>
+            </div>
+            <div class="timeline-item red">
+                <div class="timeline-date">Day 28 (截止日)</div>
+                <div>
+                    ❌ <b>重新审判 (New Trial)</b><br>
+                    ❌ <b>变更判决 (Alter/Amend)</b><br>
+                    <span style="font-size:12px; color:#e74c3c;">(FRCP 59 期限已过)</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">6 Months Later</div>
+                <div>大学发现了新证据 (录音)</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">1 Year (截止日)</div>
+                <div>
+                    ✅ <b>判决救济 (Relief from Judgment)</b><br>
+                    <span style="font-size:12px; color:#27ae60;">(FRCP 60(b) 仍在期限内)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 详细理由 -->
+        <div class="section-title">🔍 深度解析</div>
+        <p>根据 <b>FRCP 60(b)</b>，当事人可以在判决作出后的<b>一年内</b>，基于以下理由申请解除判决：</p>
+        <ol style="padding-left: 20px;">
+            <li><b>新发现的证据 (Newly discovered evidence)</b>：该证据在审判时已存在，但尽职调查下未能发现。</li>
+            <li><b>欺诈或不当行为 (Fraud, misrepresentation, or misconduct)</b>：对方当事人隐瞒证据。</li>
+            <li>错误、疏忽或意外 (Mistake, inadvertence, surprise, or excusable neglect)。</li>
+        </ol>
+        <p><b>本案应用：</b>大学在判决后6个月发现了教练隐瞒的录音。这既属于“新发现的证据”，也涉及对方的“不当行为”。由于时间超过了28天但未满1年，唯一的程序性选择是根据 Rule 60(b) 申请判决救济。</p>
+
+        <!-- 为什么其他选项错误 -->
+        <div class="section-title">🚫 为什么排除其他选项？</div>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>对应的规则</th>
+                <th>错误原因</th>
+            </tr>
+            <tr>
+                <td><b>A & C</b><br>重新审判 / 变更判决</td>
+                <td>FRCP 59</td>
+                <td><b>超时。</b>此类动议必须在判决后 <b>28天</b> 内提出。本案已过6个月。</td>
+            </tr>
+            <tr>
+                <td><b>D</b><br>纠正错误判决</td>
+                <td>FRCP 60(a)</td>
+                <td><b>适用范围错误。</b>Rule 60(a) 仅用于纠正<b>笔误 (Clerical Mistakes)</b>（如写错金额、名字）。本案涉及实质性证据问题，而非文书错误。</td>
+            </tr>
+        </table>
+
+        <!-- 考试技巧 -->
+        <div class="rule-card" style="border-left: 4px solid #f39c12; background: #fffdf5;">
+            <strong>💡 MBE 考试技巧</strong>
+            <p>看到“判决后动议”(Post-trial Motions) 的题目，首先看<b>时间</b>：</p>
+            <ul style="margin: 5px 0 0 20px; padding: 0;">
+                <li><b>&le; 28 天：</b> 优先考虑 Rule 59 (New Trial / JMOL)。</li>
+                <li><b>> 28 天 且 &le; 1 年：</b> 只能选 Rule 60(b) (Relief from Judgment)。</li>
+                <li><b>> 1 年：</b> 除非是判决无效 (Void) 或已履行 (Satisfied)，否则通常无法救济。</li>
+            </ul>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --correct-color: #27ae60;
+        --wrong-color: #e74c3c;
+        --bg-color: #f4f6f7;
+        --card-bg: #ffffff;
+        --text-color: #333333;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 14px;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+    }
+    .answer-box {
+        background-color: #e8f8f5;
+        border-left: 5px solid var(--correct-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .answer-title {
+        color: var(--correct-color);
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    .section-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+    }
+    .rule-card {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .case-name {
+        font-style: italic;
+        font-weight: bold;
+        color: var(--accent-color);
+    }
+    .logic-step {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+    .step-icon {
+        background-color: var(--accent-color);
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+    .distractor {
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+    .distractor strong {
+        color: var(--wrong-color);
+    }
+    .highlight {
+        background-color: #fff3cd;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+    .footer {
+        text-align: center;
+        padding: 15px;
+        font-size: 12px;
+        color: #7f8c8d;
+        border-top: 1px solid #eee;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>宪法第一修正案与非法获取的信息</p>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <div class="answer-title">正确答案：B</div>
+            <p>不合宪，因为该主持人并非非法获取录音，也不知道是谁获取的。</p>
+        </div>
+
+        <!-- 核心法律规则 -->
+        <div class="section-title">⚖️ 核心法律规则 (Legal Rule)</div>
+        <div class="rule-card">
+            <p>本题考察的是 <strong>First Amendment</strong>（第一修正案）对媒体发布非法获取信息的保护范围。核心判例是 <span class="case-name">Bartnicki v. Vopper (2001)</span>。</p>
+            <p>规则如下：如果媒体发布的信息满足以下三个条件，即使该信息最初是由第三方非法获取的（如非法窃听），媒体也受到宪法保护，免受刑事或民事处罚：</p>
+            <ol style="padding-left: 20px; margin: 10px 0;">
+                <li>信息涉及<strong>公众关注的事务</strong> (Matter of public concern)；</li>
+                <li>发布者<strong>本人没有参与</strong>非法获取行为 (Did not participate in the interception)；</li>
+                <li>发布者是通过<strong>合法途径</strong>获得该信息的（例如匿名邮件）。</li>
+            </ol>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="section-title">🔍 案情逻辑分析</div>
+        <div class="logic-step">
+            <div class="step-icon">1</div>
+            <div>
+                <strong>公众关注 (Public Concern)：</strong><br>
+                录音内容涉及学校董事会与工会的集体谈判。这是典型的公共事务，具有新闻价值。
+            </div>
+        </div>
+        <div class="logic-step">
+            <div class="step-icon">2</div>
+            <div>
+                <strong>发布者行为 (Publisher's Conduct)：</strong><br>
+                主持人收到的是匿名包裹。虽然她可能猜到录音是非法的（因为是窃听），但她<strong>本人并没有安装窃听器</strong>，也不知道是谁安装的。
+            </div>
+        </div>
+        <div class="logic-step">
+            <div class="step-icon">3</div>
+            <div>
+                <strong>结论：</strong><br>
+                根据 <span class="case-name">Bartnicki</span> 案，政府对隐私的保护利益不足以压倒针对公共事务的言论自由利益。因此，起诉违宪。
+            </div>
+        </div>
+
+        <!-- 错误选项解析 -->
+        <div class="section-title">❌ 干扰项解析</div>
+        
+        <div class="distractor">
+            <strong>选项 A (Prior Restraint) 错误：</strong><br>
+            “事先限制”是指政府在信息发布<strong>之前</strong>禁止其发布（如禁令 Injunction）。本案是对发布<strong>之后</strong>的行为进行刑事处罚，这属于事后惩罚 (Subsequent Punishment)，而非事先限制。
+        </div>
+
+        <div class="distractor">
+            <strong>选项 C (Public Concern) 错误：</strong><br>
+            这在事实认定上是错误的。公立学校董事会的谈判显然属于公众关注的事务，而非纯粹的私事。
+        </div>
+
+        <div class="distractor">
+            <strong>选项 D (Knowledge) 错误：这是最强的干扰项。</strong><br>
+            虽然法律条文规定“知悉非法录制”即犯罪，但在宪法层面，仅仅“知悉来源非法”并不足以剥夺媒体的 First Amendment 保护权。只要媒体本身没有参与非法行为（Clean Hands），且内容涉及公共利益，即便知道来源不仅是违规的甚至是犯罪的，媒体仍有权发布。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">💡 MBE 考试技巧</div>
+        <div class="rule-card" style="background-color: #fff8e1; border-color: #ffe0b2;">
+            <p>遇到涉及<strong>媒体发布泄密/非法材料</strong>的题目时，请检查：</p>
+            <ul>
+                <li><strong>内容：</strong>是否涉及公共利益？(通常是的)</li>
+                <li><strong>手段：</strong>媒体自己偷了吗？还是别人偷了给媒体的？</li>
+            </ul>
+            <p>如果是<strong>别人偷了给媒体</strong>，且媒体没有教唆或参与盗窃，First Amendment 通常会保护媒体。</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Constitutional Law Review
+    </div>
+</div>
+
+</body>
+</html>

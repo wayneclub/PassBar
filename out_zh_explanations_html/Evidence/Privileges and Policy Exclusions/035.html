@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Q87145 解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 100%;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .header span {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+        .answer-section {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .big-answer {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--correct-color);
+            margin: 10px 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+        .latin {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.85rem;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .option-analysis {
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .option {
+            margin-bottom: 8px;
+            padding: 8px;
+            border-radius: 6px;
+        }
+        .option.correct {
+            background-color: rgba(39, 174, 96, 0.1);
+            border: 1px solid var(--correct-color);
+        }
+        .option.wrong {
+            background-color: rgba(192, 57, 43, 0.1);
+            border: 1px solid var(--wrong-color);
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .badge-correct { background: var(--correct-color); color: white; }
+        .badge-wrong { background: var(--wrong-color); color: white; }
+        
+        .footer-tip {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            font-size: 0.9rem;
+            border-top: 1px solid #ffeeba;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <span>Evidence / Privileges</span>
+        <h2>MBE 考题解析</h2>
+    </div>
+
+    <div class="answer-section">
+        <div>正确答案</div>
+        <div class="big-answer">C</div>
+        <div>The wife can refuse to be a witness against her husband.</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">核心考点：配偶作证豁免权</span>
+            <span class="latin">Spousal Immunity (Testimonial Privilege)</span>
+            <p>在联邦刑事案件中，证人配偶拥有<b>拒绝</b>指控其配偶的特权。关键在于：这项特权的持有人是<b>证人配偶 (Witness-Spouse)</b>，而不是被告配偶。</p>
+        </div>
+
+        <!-- 详细解析 -->
+        <h3>⚖️ 法律推理逻辑</h3>
+        
+        <div class="analysis-step">
+            <div class="step-title">1. 区分两种配偶特免权</div>
+            <p>MBE 证据法中最常见的陷阱是混淆以下两者：</p>
+            <table>
+                <tr>
+                    <th>特权类型</th>
+                    <th>配偶作证豁免权<br>(Spousal Immunity)</th>
+                    <th>婚姻通信保密<br>(Marital Communications)</th>
+                </tr>
+                <tr>
+                    <td><b>适用案件</b></td>
+                    <td>仅限刑事案件 (Criminal)</td>
+                    <td>民事与刑事 (Civil & Criminal)</td>
+                </tr>
+                <tr>
+                    <td><b>保护内容</b></td>
+                    <td>所有证言 (Testimony)</td>
+                    <td>保密通信 (Communications)</td>
+                </tr>
+                <tr>
+                    <td><b>持有人</b></td>
+                    <td><b>仅证人配偶</b></td>
+                    <td>配偶双方</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-title">2. 案件事实分析</div>
+            <ul>
+                <li><b>案件性质：</b>联邦刑事案件（麻醉品销售）。</li>
+                <li><b>证言内容：</b>妻子<b>看到</b>丈夫卖海洛因（这是行为/观察，不是口头或书面通信）。</li>
+                <li><b>结论：</b>由于涉及的是“观察到的行为”而非“通信”，<b>婚姻通信保密特免权不适用</b>。本题仅涉及<b>配偶作证豁免权</b>。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-title">3. 谁掌握决定权？(The Trammel Rule)</div>
+            <p>根据美国最高法院判例 <i>Trammel v. United States (1980)</i>，在联邦法院，配偶作证豁免权的持有人是<b>证人配偶</b>。</p>
+            <p>这意味着：</p>
+            <ul>
+                <li>妻子<b>可以选择</b>作证（丈夫不能阻止）。</li>
+                <li>妻子<b>可以拒绝</b>作证（检察官不能强迫）。</li>
+            </ul>
+        </div>
+
+        <!-- 选项分析 -->
+        <div class="option-analysis">
+            <h3>❌ 为什么其他选项是错的？</h3>
+            
+            <div class="option wrong">
+                <span class="badge badge-wrong">选项 A & D 错误</span>
+                <b>理由：</b>这两个选项都暗示丈夫有权阻止妻子作证（"over her husband's objection"）。根据 <i>Trammel</i> 规则，被告配偶无权阻止愿意作证的配偶。
+            </div>
+
+            <div class="option wrong">
+                <span class="badge badge-wrong">选项 B 错误</span>
+                <b>理由：</b>选项称妻子“可被要求 (required)”作证。这是错误的。因为她持有作证豁免权，她有权拒绝上台作证指控其合法配偶。虽然她与检察官达成了协议，但在特权法层面，她依然拥有拒绝的权利（尽管违约可能导致她失去宽大处理）。
+            </div>
+
+            <div class="option correct">
+                <span class="badge badge-correct">选项 C 正确</span>
+                <b>理由：</b>这准确陈述了法律规则。作为特权持有人，妻子拥有<b>拒绝权</b>。她既可以自愿放弃特权去作证，也可以行使特权拒绝作证。
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-tip">
+        <b>💡 MBE 考试技巧：</b><br>
+        看到“配偶 (Spouse)”题目时，第一步先看是<b>刑事</b>还是<b>民事</b>。如果是刑事，第二步看是<b>行为</b>还是<b>对话</b>。
+        <br><br>
+        如果是“看到行为”且在“刑事法庭”，记住口诀：<b>"Witness holds the keys"</b>（证人掌握钥匙）。只有证人配偶能决定是否作证。
+    </div>
+</div>
+
+</body>
+</html>

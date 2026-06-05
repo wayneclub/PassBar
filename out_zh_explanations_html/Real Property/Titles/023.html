@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 16px;
+            color: var(--accent-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+
+        .event {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .event::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .date {
+            font-weight: bold;
+            font-size: 0.9em;
+            color: var(--primary-color);
+        }
+
+        .action {
+            font-size: 0.95em;
+        }
+
+        .highlight-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .wrong-answer {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 核心考点卡片 -->
+    <div class="card">
+        <h1>MBE 考点解析：不动产登记法</h1>
+        <p>本题的核心考点在于识别并应用<b>竞赛-通知型法规</b> <span class="english">(Race-Notice Statute)</span>。</p>
+        <p>在不动产法中，当同一块土地出现多个相互冲突的权益时（本案中为“朋友的抵押权”与“买方的所有权”），谁拥有优先权取决于该司法管辖区的登记法规。</p>
+    </div>
+
+    <!-- 法规识别卡片 -->
+    <div class="card">
+        <h2>1. 识别法规类型</h2>
+        <p>题目中的关键法条是：</p>
+        <div class="highlight-box">
+            "No unrecorded conveyance... shall be good against subsequent purchasers for value without notice, <b>who shall first record</b>."
+        </div>
+        <p>这句话包含了两个要素：</p>
+        <ul>
+            <li><b>Without notice</b>（不知情）：要求后续购买者是善意的。</li>
+            <li><b>Who shall first record</b>（率先登记）：要求后续购买者必须赢得“登记竞赛”。</li>
+        </ul>
+        <p>因此，这是一个 <span class="term">Race-Notice Jurisdiction</span>（竞赛-通知型管辖区）。</p>
+    </div>
+
+    <!-- 时间线分析卡片 -->
+    <div class="card">
+        <h2>2. 关键时间线分析</h2>
+        <div class="timeline">
+            <div class="event">
+                <div class="date">1月10日</div>
+                <div class="action">朋友获得抵押权（未登记）。</div>
+            </div>
+            <div class="event">
+                <div class="date">1月11日</div>
+                <div class="action">买方购买土地（支付对价，不知情）。<br><i>*此时买方是善意购买者 (BFP)。</i></div>
+            </div>
+            <div class="event">
+                <div class="date">1月18日</div>
+                <div class="action" style="color: #d35400; font-weight:bold;">朋友登记抵押权。</div>
+            </div>
+            <div class="event">
+                <div class="date">1月23日</div>
+                <div class="action">买方登记地契。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 判决逻辑卡片 -->
+    <div class="card">
+        <h2>3. 法律适用与结论</h2>
+        <p>在 <b>Race-Notice</b> 规则下，后续购买者（买方）要战胜先前的权益持有者（朋友），必须同时满足两个条件：</p>
+        <ol>
+            <li><b>善意 (Bona Fide)：</b> 购买时不知情且支付了对价。 <span class="correct-answer">✔ (满足)</span></li>
+            <li><b>率先登记 (Record First)：</b> 在先前权益登记之前完成登记。 <span class="wrong-answer">✘ (未满足)</span></li>
+        </ol>
+        <p><b>结论：</b> 虽然买方是善意购买者 <span class="english">(BFP)</span>，但他输掉了“登记竞赛”（1月23日晚于1月18日）。因此，朋友的抵押权优先。</p>
+        
+        <div class="highlight-box">
+            <span class="correct-answer">正确答案 D</span>：朋友胜诉，因为买方未能在朋友登记之前登记其地契。
+        </div>
+    </div>
+
+    <!-- 干扰项解析卡片 -->
+    <div class="card">
+        <h2>4. 为什么其他选项是错的？</h2>
+        <ul>
+            <li>
+                <span class="wrong-answer">选项 A (错在忽略了"Race")</span><br>
+                这是典型的陷阱。如果该州是 <b>Notice Jurisdiction</b>（通知型管辖区），买方只需在购买时“不知情”即可胜诉，无需率先登记。但本题明确规定了 "who shall first record"，所以仅有不知情是不够的。
+            </li>
+            <li>
+                <span class="wrong-answer">选项 B (错在 Estoppel)</span><br>
+                单纯的延迟登记（1月10日到18日）并不构成<b>禁止反言</b> <span class="english">(Estoppel)</span>。法律没有规定必须在多少天内登记，只要在竞争对手登记前登记即可。
+            </li>
+            <li>
+                <span class="wrong-answer">选项 C (错在逻辑)</span><br>
+                这描述的是普通法下的“时间优先”原则。但在有登记法的情况下，登记法会改变优先顺序。朋友胜诉不是因为地契“必然”受限，而是因为她赢得了登记竞赛。
+            </li>
+        </ul>
+    </div>
+
+    <!-- 考试技巧卡片 -->
+    <div class="card">
+        <h2>💡 MBE 考试技巧</h2>
+        <p>看到登记法题目，请按以下步骤操作：</p>
+        <ol>
+            <li><b>找关键词：</b>
+                <ul>
+                    <li>仅有 "without notice" = <b>Notice Statute</b></li>
+                    <li>仅有 "first record" = <b>Race Statute</b></li>
+                    <li>同时有 "without notice" 和 "first record" = <b>Race-Notice Statute</b></li>
+                </ul>
+            </li>
+            <li><b>画时间轴：</b> 标出权益产生时间和<b>登记时间</b>。</li>
+            <li><b>定胜负：</b> 根据法规类型判断谁优先。</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

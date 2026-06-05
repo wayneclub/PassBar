@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        .analysis-step:last-child {
+            border-bottom: none;
+        }
+        .correct-answer {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .wrong-answer {
+            color: #721c24;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            font-size: 13px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：地役权的位置与变更</h1>
+    
+    <p>本题考察的是不动产法中关于<b>明示地役权 (Express Easement)</b> 的位置确定以及供役地所有人是否有权单方面变更位置的规则。</p>
+
+    <div class="concept-box">
+        <strong>核心法律规则：</strong><br>
+        当一份地役权契据（Deed）没有明确规定具体的路径位置时，如果双方通过<b>行为 (Conduct)</b> 和<b>默许 (Acquiescence)</b> 确立了实际使用的位置，该位置即被法律视为“固定”。
+    </div>
+
+    <h2>1. 为什么选 A？(法律推理)</h2>
+    <div class="analysis-step">
+        <p><b>第一步：初始位置的确定</b><br>
+        题目中，兄长授予妹妹的是一个一般的“通行权” (<span class="english">Right-of-way</span>)，并未在契据中画出具体路线。然而，妹妹修建了一条车道，且兄长并未反对。这种长期的使用和默许，在法律上已经将地役权的位置<b>固定 (Fixed)</b> 在了该车道上。</p>
+    </div>
+    
+    <div class="analysis-step">
+        <p><b>第二步：位置固定后的效力</b><br>
+        一旦地役权的位置通过双方的行为被固定下来，它就如同最初写在契据里一样明确。根据普通法传统规则，未经需役地所有人（朋友）同意，供役地所有人（堂亲）<b>无权单方面改变</b>该位置。</p>
+    </div>
+
+    <div class="correct-answer">
+        ✅ 正确答案 A：不应胜诉，因为地役权的位置已由兄长和妹妹的行为确立。
+    </div>
+
+    <h2>2. 进阶考点：现代规则 (Restatement)</h2>
+    <p>虽然选项 A 基于传统规则已足够解题，但本题还涉及一个现代趋势，即《财产法重述（第三次）》(<span class="english">Restatement (Third) of Property</span>) 的观点。即使应用这一更有利于堂亲的规则，他依然会败诉。</p>
+    
+    <div class="concept-box">
+        <b>重述规则 (Restatement Rule)：</b><br>
+        供役地所有人可以单方面变更地役权位置，但必须满足以下条件：
+        <ul>
+            <li>自费 (At their own expense)；</li>
+            <li>不显著降低地役权的效用 (Utility)；</li>
+            <li>不增加需役地所有人的负担；</li>
+            <li>不妨碍地役权的目的。</li>
+        </ul>
+    </div>
+
+    <p><b>在本案中的应用：</b></p>
+    <ul>
+        <li><b>费用问题：</b>堂亲要求朋友“修建”新车道（暗示让朋友出钱），违反了自费原则。</li>
+        <li><b>效用问题：</b>朋友指出新路线“更加绕远” (<span class="english">More circuitous</span>)，这显著降低了地役权的效用。</li>
+    </ul>
+    <p>因此，无论依据传统规则（位置已固定不可变）还是现代规则（变更条件未满足），堂亲都无法胜诉。</p>
+
+    <h2>3. 为什么其他选项是错的？</h2>
+    
+    <div class="wrong-answer">
+        ❌ <b>选项 B (时效取得 Prescription)：</b><br>
+        时效取得地役权 (<span class="english">Easement by Prescription</span>) 需要“敌意” (<span class="english">Hostile/Adverse</span>) 的使用。本案中，妹妹是基于兄长的<b>明示授予 (Grant)</b> 使用车道，属于在此许可下的权利行使，并非敌意占有。
+    </div>
+
+    <div class="wrong-answer">
+        ❌ <b>选项 C (合理性与拒绝)：</b><br>
+        朋友作为地役权持有人，没有义务去协商或建议替代路线。只要堂亲的提议损害了她的权益（如绕路），她就有权拒绝。
+    </div>
+
+    <div class="wrong-answer">
+        ❌ <b>选项 D (供役地选择权)：</b><br>
+        虽然在地役权<b>最初</b>设立且位置不明时，供役地所有人有权指定一个合理位置，但这个权利在位置<b>已经通过使用被确立</b>后就消失了。堂亲不能在几十年后重新行使这个权利。
+    </div>
+
+    <div class="exam-tip">
+        <b>💡 考试技巧 (Exam Tip)：</b><br>
+        在 MBE 地役权题目中，注意区分<b>“未定位的地役权” (Undefined Easement)</b> 的两个阶段：
+        <ol>
+            <li><b>初始阶段：</b>如果契据没写位置，双方可以通过行为（如修建道路、铺设管道）来确定。</li>
+            <li><b>确立后阶段：</b>一旦位置确定，供役地所有人想改位置非常困难。如果题目提到“新路线更远”、“更不方便”或“要求持有人出钱”，供役地所有人通常会败诉。</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

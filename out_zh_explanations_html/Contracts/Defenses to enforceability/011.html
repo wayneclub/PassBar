@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - 合同法: 可执行性抗辩</title>
+    
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">Contracts: Defenses to enforceability (合同法: 可执行性抗辩)</p>
+        </header>
+
+        <main style="padding: 0 24px 24px;">
+            <div class="answer-box">
+                正确答案: B
+                <p style="margin-top: 10px; margin-bottom: 0;">因为校长已完全履行了她在协议下的义务。</p>
+            </div>
+
+            <h2>核心法律规则</h2>
+            <div class="concept-box">
+                <h3 class="concept-title">一年期条款与完全履行例外 (One-Year Provision & Full Performance Exception)</h3>
+                <p>根据 <span class="term">欺诈法 (Statute of Frauds)</span> 的 <span class="term">一年期条款 (One-Year Provision)</span>，任何无法在协议签订之日起一年内完成履行的合同，必须以书面形式存在才能强制执行。然而，如果合同的一方当事人已经 <span class="term">完全履行 (full performance)</span> 了其在口头协议下的义务，则该协议将不再受欺诈法的约束，另一方当事人不能以欺诈法作为抗辩理由。</p>
+                <p>判断合同是否适用一年期条款的关键在于，从合同<strong>签订之日</strong>起，是否有可能在一年内完成所有义务的履行，而非从履行开始之日起计算。</p>
+            </div>
+
+            <h3>欺诈法一年期条款的适用与效力</h3>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>条款要素</th>
+                            <th>一年期条款 (One-Year Provision)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>适用性 (Applicability)</strong></td>
+                            <td>
+                                <ul>
+                                    <li>合同条款使其任何一方不可能在一年内完全履行。</li>
+                                    <li>排除期限不确定的合同 (例如，终身合同)。</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>履行效力 (Effect of performance)</strong></td>
+                            <td>
+                                <ul>
+                                    <li><span class="term">部分履行 (Part performance)</span>：不使合同脱离欺诈法，但可获得已履行部分的合理价值补偿。</li>
+                                    <li><span class="term">完全履行 (Full performance)</span>：使合同脱离欺诈法，无论是否在一年内完成履行。</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>终止选择权效力 (Effect of option to terminate within a year*)</strong></td>
+                            <td>
+                                <ul>
+                                    <li><span class="term">多数规则 (Majority rule)</span>：不使合同脱离欺诈法，因为终止不是履行。</li>
+                                    <li><span class="term">少数规则 (Minority rule)</span>：使合同脱离欺诈法，因为合同期限不确定。</li>
+                                </ul>
+                                <p style="font-size: 0.9em; color: var(--muted-text); margin-top: 8px;">*司法管辖区同意，如果只有原告有终止选择权，则适用欺诈法。</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>事实分析与法律适用</h2>
+            <div class="case-box">
+                <p>本案中，教师与校长于<strong>第一年4月1日</strong>达成口头协议，约定教师从<strong>第一年9月1日</strong>开始教学，为期九个月。这意味着教学期将持续到<strong>第二年5月31日</strong>。</p>
+                <ol>
+                    <li><strong>合同是否适用欺诈法的一年期条款？</strong>
+                        <p>合同签订日期是第一年4月1日。合同的履行期从第一年9月1日开始，到第二年5月31日结束。从签订之日（第一年4月1日）到履行结束之日（第二年5月31日）的时间跨度为14个月。由于合同无法在签订之日起一年内（即第一年4月1日到第二年3月31日）完成履行，因此该口头合同<strong>适用</strong>欺诈法的一年期条款，原则上需要书面形式才能强制执行。</p>
+                    </li>
+                    <li><strong>是否存在欺诈法的例外情况？</strong>
+                        <p>校长同意每月预付1,000美元。在第二年5月1日，校长支付了1,000美元，这是她根据协议应支付的最后一笔款项。至此，校长已经支付了所有九个月的工资，从而<strong>完全履行</strong>了她在口头协议下的所有义务。</p>
+                    </li>
+                    <li><strong>完全履行对欺诈法抗辩的影响：</strong>
+                        <p>根据法律规则，当合同的一方当事人（本案中是校长）已经完全履行了其义务时，该合同将不再受欺诈法的约束。这意味着教师不能成功地以欺诈法作为抗辩理由来拒绝履行其教学义务。</p>
+                    </li>
+                </ol>
+            </div>
+
+            <h2>时间线图示</h2>
+            <div class="diagram-wrapper">
+                <div class="diagram">
+                    <p style="font-weight: 700; margin-bottom: 15px; color: var(--primary-ink);">合同履行时间线</p>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px;">
+                        <div class="flow-node">第一年4月1日 (合同签订)</div>
+                        <span style="font-size: 24px; color: var(--muted-text);">→</span>
+                        <div class="flow-node">第一年9月1日 (教学开始)</div>
+                        <span style="font-size: 24px; color: var(--muted-text);">→</span>
+                        <div class="flow-node highlight-node">第二年5月1日 (校长支付最后一笔款项)</div>
+                        <span style="font-size: 24px; color: var(--muted-text);">→</span>
+                        <div class="flow-node">第二年5月31日 (教学期结束)</div>
+                    </div>
+                    <p style="margin-top: 20px; font-size: 0.9em; color: var(--muted-text);">从签订到结束总计14个月，超过一年，但校长已完全履行。</p>
+                </div>
+            </div>
+
+            <div class="trap-alert">
+                <h3>🚨 易错点警示: 一年期条款的计算与完全履行</h3>
+                <p>MBE 考试中，关于欺诈法一年期条款的常见陷阱在于：</p>
+                <ul>
+                    <li><strong>计算起始点：</strong> 一年期条款的计算是从合同<strong>签订之日</strong>开始，而不是从合同履行开始之日。本案中，合同签订于第一年4月1日，但履行于第一年9月1日开始。如果从履行开始计算，9个月的教学期似乎在一年内，但从签订之日计算，则超过一年。</li>
+                    <li><strong>完全履行与部分履行：</strong> 只有一方当事人的<strong>完全履行</strong>才能使合同脱离欺诈法。部分履行通常只允许恢复已履行部分的价值，而不能强制执行整个合同。</li>
+                </ul>
+            </div>
+
+            <h2>正确答案与干扰项排除</h2>
+            <div class="option-analysis">
+                <div class="option correct">
+                    <strong>B. 否，因为校长已完全履行了她在协议下的义务。</strong>
+                    <p><strong>正确。</strong>尽管该口头合同最初因无法在一年内履行而受欺诈法约束，但校长通过支付所有九个月的工资，已经完全履行了她的义务。根据欺诈法的一项重要例外，一方当事人的完全履行使得口头合同可强制执行，另一方不能再以欺诈法为由拒绝履行。因此，教师的抗辩不会成功。</p>
+                </div>
+
+                <div class="option wrong">
+                    <strong>A. 否，因为协议规定教师只教九个月。</strong>
+                    <p><strong>错误。</strong>虽然教师的实际教学期是九个月，但欺诈法一年期条款的计算是从合同签订之日（第一年4月1日）到合同履行结束之日（第二年5月31日），总计14个月。这超过了一年。因此，合同本身是受欺诈法约束的。这个选项的错误在于它混淆了合同的实际履行期限与欺诈法一年期条款的计算方式。</p>
+                </div>
+
+                <div class="option wrong">
+                    <strong>C. 是，因为协议无法在签订之日起一年内完成。</strong>
+                    <p><strong>错误。</strong>这个陈述本身是正确的——协议确实无法在签订之日起一年内完成，因此最初受欺诈法约束。然而，它忽略了关键的“完全履行”例外。由于校长已经完全履行了她的义务，欺诈法不再是有效的抗辩。因此，教师的抗辩不会成功，使得这个选项成为错误答案。</p>
+                </div>
+
+                <div class="option wrong">
+                    <strong>D. 是，因为他的服务价值超过500美元。</strong>
+                    <p><strong>错误。</strong>500美元的门槛是针对《统一商法典》(UCC) 中规定的 <span class="term">货物买卖合同 (contracts for the sale of goods)</span>。本案涉及的是 <span class="term">服务合同 (service contract)</span>（教学服务），因此500美元的门槛不适用。对于服务合同，没有类似的美元价值门槛来触发欺诈法。</p>
+                </div>
+            </div>
+
+            <div class="footer-tip">
+                <h3>💡 考试技巧: 欺诈法一年期条款速记</h3>
+                <p>在 MBE 考试中遇到欺诈法的一年期条款时，请记住以下两点：</p>
+                <ol>
+                    <li><strong>计算起点：</strong> 始终从合同<strong>签订之日</strong>开始计算一年，而不是从履行开始之日。</li>
+                    <li><strong>完全履行：</strong> 如果合同一方已<strong>完全履行</strong>其义务，则欺诈法不再适用，合同可强制执行。</li>
+                </ol>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

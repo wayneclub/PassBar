@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+
+        .analysis-step strong {
+            color: var(--accent-color);
+        }
+
+        .wrong-option {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+        }
+
+        .wrong-option-title {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Remedies & Contracts</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="card">
+            <h3>核心考点：准合同与不当得利</h3>
+            <div>
+                <span class="concept-tag">Quasi-Contract</span>
+                <span class="concept-tag">Unjust Enrichment</span>
+            </div>
+            <p>本题考察的是当双方没有正式合同关系时，法律如何通过<b>“法律默示合同”</b>（Implied-in-law Contract）来防止一方不公平地获利。</p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <h3>✅ 正确答案分析 (选项 D)</h3>
+        <p><b>准合同 (Quasi-Contract)</b> 并非真正的合同，而是一种法律拟制（Legal Fiction）。法院使用这一工具来提供<b>对人救济</b> (<span class="latin">in personam</span> remedy)，目的是防止<b>不当得利</b> (Unjust Enrichment)。</p>
+        
+        <div class="analysis-step">
+            <strong>1. 利益的授予 (Benefit Conferred):</strong><br>
+            窗户店 (Store) 修复了窗户，房东 (Landlord) 获得了一个完好的建筑物。这是一种非无偿的利益 (Non-gratuitous benefit)。
+        </div>
+
+        <div class="analysis-step">
+            <strong>2. 关键事实 - 保证金 (The Security Deposit):</strong><br>
+            这是本题最关键的转折点。通常情况下，房东不对租户订购的装修负责。但是，房东扣留了租户的 <b>$2,000 保证金</b>。
+            <ul>
+                <li>保证金的用途明确为“修复损坏”。</li>
+                <li>唯一的损坏就是窗户。</li>
+                <li>房东既拿到了修好的窗户，又拿到了修窗户的钱。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <strong>3. 结论 (Conclusion):</strong><br>
+            如果允许房东保留窗户且不支付费用，同时还没收了本应用于支付该费用的保证金，房东就构成了<b>不当得利</b>。因此，法院会构建一个准合同，强制房东向窗户店支付费用的合理价值。
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+        <!-- 错误选项辨析 -->
+        <h3>❌ 为什么其他选项是错误的？</h3>
+        
+        <div class="wrong-option">
+            <div class="wrong-option-title">选项 A：第三方意定受益人 (Third-party Beneficiary)</div>
+            <p><b>错误原因：缺乏意图 (Intent)。</b><br>
+            要成为意定受益人，原始合同双方（房东和租户）在签订租约时必须有意图让窗户店受益。显然，他们在签租约时根本不知道窗户会碎，更没有意图让未来的维修店受益。</p>
+        </div>
+
+        <div class="wrong-option">
+            <div class="wrong-option-title">选项 B：事实默示合同 (Implied-in-fact Contract)</div>
+            <p><b>错误原因：缺乏行为合意 (Mutual Assent by Conduct)。</b><br>
+            事实默示合同是真正的合同，需要双方通过行为达成一致。本案中，房东甚至不知道合同的存在，完全没有参与，因此不存在合意。</p>
+        </div>
+
+        <div class="wrong-option">
+            <div class="wrong-option-title">选项 C：允诺禁反言 (Promissory Estoppel)</div>
+            <p><b>错误原因：缺乏承诺 (No Promise)。</b><br>
+            此原则要求被告做出了一个承诺，且原告合理信赖了该承诺。房东从未对窗户店做出任何承诺，窗户店是基于与租户的合同行事。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="background-color: #fff8e1; border-left-color: #f1c40f; margin-top: 20px;">
+            <h3>🎓 MBE 考试技巧</h3>
+            <p>在处理 <b>Remedies</b> 问题时，如果原告无法基于合同（Contract）或侵权（Tort）索赔，请立即检查 <b>Restitution（返还请求权）</b> 或 <b>Quasi-Contract（准合同）</b>。</p>
+            <p>寻找<b>“双重获利”</b>或<b>“明显不公”</b>的事实模式。如果被告在没有正当理由的情况下保留了利益且未付款，答案通常指向“不当得利”。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：义务转委托与合同更新</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+            background-color: #dfe6e9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        .diagram-step {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px 0;
+            width: 80%;
+            text-align: center;
+            position: relative;
+        }
+
+        .arrow {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin: -5px 0;
+        }
+
+        .answer-section {
+            border-left-color: var(--correct-color);
+        }
+
+        .wrong-option {
+            color: var(--wrong-color);
+            font-weight: bold;
+        }
+
+        .correct-option {
+            color: var(--correct-color);
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Contracts: Delegation & Novation</p>
+    </div>
+
+    <!-- Core Legal Rule -->
+    <div class="card">
+        <div class="card-title">核心考点：义务转委托 (Delegation)</div>
+        <p>本题考察的是合同法中关于义务转委托后的责任承担问题。核心规则如下：</p>
+        <div class="concept-box">
+            <strong>一般规则：</strong><br>
+            当合同一方（Delegator）将其义务转委托给第三方（Delegatee）时，原合同方<strong>仍然对另一方（Obligee）承担责任</strong>。
+        </div>
+        <p>除非发生了<strong>合同更新 (Novation)</strong>，否则仅仅通知对方或获得对方对转委托的同意，并不能免除原合同方的责任。</p>
+    </div>
+
+    <!-- Case Analysis -->
+    <div class="card answer-section">
+        <div class="card-title">本案分析</div>
+        <div class="diagram">
+            <div class="diagram-step">专家 (Expert) 有义务安装空调</div>
+            <div class="arrow">⬇️</div>
+            <div class="diagram-step">专家将义务转给承包商 (Delegation)</div>
+            <div class="arrow">⬇️</div>
+            <div class="diagram-step">业主同意承包商干活 (Consent)</div>
+            <div class="arrow">⚠️ 关键点 ⚠️</div>
+            <div class="diagram-step" style="border-color: var(--wrong-color); color: var(--wrong-color);">
+                业主<strong>没有</strong>明确免除专家的责任
+            </div>
+        </div>
+        <p>虽然业主口头同意接受承包商的服务，但这仅是对<strong>转委托 (Delegation)</strong> 的同意，而非对<strong>免责 (Release)</strong> 的同意。</p>
+        <p>因此，专家作为原合同义务人，对承包商的违约行为（安装了错误的设备）仍需承担连带责任。</p>
+        <p><strong>结论：</strong> 业主可以起诉专家。正确答案是 <span class="correct-option">C</span>。</p>
+    </div>
+
+    <!-- Why other options are wrong -->
+    <div class="card">
+        <div class="card-title">易错项辨析</div>
+        
+        <p><span class="wrong-option">选项 A 错误 (Novation)：</span></p>
+        <p>这是最强的干扰项。<strong>Novation (合同更新)</strong> 需要三个要素：</p>
+        <ol>
+            <li>之前的合同有效；</li>
+            <li>所有当事人同意新合同；</li>
+            <li><strong>明确免除 (Release)</strong> 原当事人的义务。</li>
+        </ol>
+        <p>本题中，业主只是同意让承包商来干活（Acceptance of performance），并没有说“我不再追究专家的责任了”。没有 Release，就没有 Novation。</p>
+
+        <hr style="border: 0; border-top: 1px dashed #ddd; margin: 15px 0;">
+
+        <p><span class="wrong-option">选项 B 错误 (Liquidated Damages)：</span></p>
+        <p>合同中的<strong>约定违约金条款 (Liquidated Damages Clause)</strong> 仅针对“延迟履约” (Delay)。本案的违约形式是“安装了错误的设备” (Defective Performance)，属于不同类型的违约，因此不受该条款限制。</p>
+
+        <hr style="border: 0; border-top: 1px dashed #ddd; margin: 15px 0;">
+
+        <p><span class="wrong-option">选项 D 错误 (Consideration)：</span></p>
+        <p>业主同意转委托<strong>不需要</strong>额外的对价 (Consideration)。即使没有对价，业主同意后也不能再以“禁止转委托”为由拒绝承包商履约，但这并不影响专家继续承担责任。</p>
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="card" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+        <div class="card-title" style="color: #d35400;">💡 MBE 考试技巧</div>
+        <p>在 MBE 合同法题目中，看到一方将工作交给另一方做（Delegation）：</p>
+        <ul>
+            <li>默认假设：<strong>原合同方依然承担责任 (Liable)</strong>。</li>
+            <li>只有当题目明确出现 <strong>"Release" (免除)</strong>、<strong>"Discharge" (解除)</strong> 或 <strong>"Novation" (更新)</strong> 等字眼时，原合同方才退场。</li>
+            <li>仅仅是 "Consented to the substitution" (同意替换) 通常不足以构成 Novation。</li>
+        </ul>
+    </div>
+
+    
+
+</div>
+
+</body>
+</html>

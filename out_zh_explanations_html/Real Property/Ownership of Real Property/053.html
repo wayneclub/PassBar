@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4fc;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .concept-card {
+            border: 1px solid #e1e4e8;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            border-bottom: 2px solid #f0f2f5;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .step-item {
+            display: flex;
+            margin-bottom: 12px;
+        }
+
+        .step-num {
+            background: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .diagram {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        .arrow {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Real Property: Future Interests</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：D</span>
+            <p>朋友胜诉，因为他获得了绝对无条件继承权 (Fee Simple Absolute)。</p>
+        </div>
+
+        <!-- 核心考点解析 -->
+        <div class="concept-card">
+            <div class="concept-title">核心法律原则</div>
+            <p>本题的关键在于题目明确指出<b>“普通法规则未被修改” (Common law rules have not been modified)</b>。这触发了古老的财产法规则：</p>
+            
+            <ul class="step-list">
+                <li class="step-item">
+                    <div class="step-num">1</div>
+                    <div>
+                        <span class="highlight">雪莱案规则 (Rule in Shelley's Case)</span><br>
+                        如果一份文书将土地授予某人（A）终身，并将剩余地产权授予<b>A的继承人 (A's Heirs)</b>，普通法强制将该剩余地产权授予<b>A本人</b>，而不是A的继承人。
+                    </div>
+                </li>
+                <li class="step-item">
+                    <div class="step-num">2</div>
+                    <div>
+                        <span class="highlight">合并原则 (Doctrine of Merger)</span><br>
+                        如果同一个人持有现在的终身地产权 (Life Estate) 和紧随其后的既得剩余地产权 (Vested Remainder)，这两个权益会合并。
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 案情推演 -->
+        <div class="concept-card">
+            <div class="concept-title">本案逻辑推演</div>
+            
+            <div class="diagram">
+                <div><b>遗嘱措辞：</b></div>
+                <div>"To Son for life" + "To heirs of his body"</div>
+                <div class="arrow">↓</div>
+                <div><b>应用雪莱案规则：</b></div>
+                <div>"Heirs" 的权益变成了 Son 的权益</div>
+                <div>Son 拥有：Life Estate + Remainder</div>
+                <div class="arrow">↓</div>
+                <div><b>应用合并原则：</b></div>
+                <div>Life Estate + Remainder = <span class="highlight">Fee Simple Absolute</span></div>
+            </div>
+
+            <p><b>结论：</b></p>
+            <p>当遗嘱生效时，儿子实际上获得了这块土地的<b>完整所有权 (Fee Simple Absolute)</b>。因此：</p>
+            <ol>
+                <li>儿子向银行抵押的是完整所有权。</li>
+                <li>银行止赎并卖给买方的是完整所有权。</li>
+                <li>朋友从买方手中买到的也是完整所有权。</li>
+                <li>儿子去世时，他的孩子们没有任何剩余权益，因为该权益早在几十年前就已经“合并”给了儿子并被卖掉了。</li>
+            </ol>
+        </div>
+
+        <!-- 为什么其他选项错误 -->
+        <div class="concept-card">
+            <div class="concept-title">干扰项排除</div>
+            <p><b>选项 A (Children prevail):</b><br>这是现代法律（废除雪莱案规则后）的结果。但题目特意强调适用“未修改的普通法”，因此不能选此项。</p>
+            <p><b>选项 B & C (Marketable Title Act):</b><br>这是干扰项（Red Herring）。可售卖产权法 (Marketable Title Act) 旨在清除陈旧的产权瑕疵，但它<b>不能创造权益</b>。由于根据普通法，孩子们从一开始就没有获得任何权益（权益归父亲所有），无论是否登记，他们都没有权利主张。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧：</strong>
+            <br>
+            看到 <b>"Common Law"</b> 字眼时要警惕！
+            <br>
+            现代财产法大多已废除了 <i>Rule in Shelley's Case</i> 和 <i>Doctrine of Worthier Title</i>。但如果 MBE 题目设定在“普通法管辖区”，你必须应用这些古老的规则。这些规则通常会<b>挫败</b>授予人的意图（即本想给孩子留地，结果被父亲卖掉了）。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

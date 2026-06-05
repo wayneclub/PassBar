@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-card {
+            background-color: #e8f4fc;
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .concept-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .rule-explanation {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+            font-weight: 600;
+        }
+
+        .analysis-section {
+            margin-top: 20px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+
+        .option-analysis {
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .correct-tag {
+            display: inline-block;
+            background-color: var(--correct-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .wrong-tag {
+            display: inline-block;
+            background-color: var(--wrong-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 13px;
+        }
+
+        .exam-tip-title {
+            font-weight: bold;
+            color: #f57c00;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Torts / Negligence</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：蛋壳原告规则</div>
+            <div class="rule-explanation">
+                本题考查的是侵权法中著名的 <strong>"Eggshell Plaintiff Rule"</strong>（蛋壳原告规则），也被称为 "Thin Skull Rule"。
+                <br><br>
+                <strong>法律原则：</strong><br>
+                "The defendant takes the victim as he finds him."<br>
+                （被告必须接受受害者的现状。）
+            </div>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="section-title">案情逻辑推演</div>
+            <p style="font-size: 14px; line-height: 1.6;">
+                1. <strong>过失成立：</strong> 题目已假设男子能证明 Negligence 的所有要素（Duty, Breach, Causation, Damages）。<br>
+                2. <strong>初始伤害：</strong> 餐厅火灾导致男子嗅觉细胞受损（Physical Harm）。<br>
+                3. <strong>特殊体质：</strong> 男子是高级调香师，嗅觉极其敏锐且对其职业至关重要。<br>
+                4. <strong>后果：</strong> 尽管普通人只感到轻微不适，但该男子遭受了严重的职业生涯打击和巨额经济损失。
+            </p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="section-title">选项深度解析</div>
+
+            <!-- 正确选项 C -->
+            <div class="option-analysis">
+                <span class="correct-tag">正确答案 C</span>
+                <strong>理由：</strong>
+                根据 <span class="english-term">Eggshell Plaintiff Rule</span>，一旦被告的过失行为造成了原告的身体伤害（Physical Harm），被告必须对<strong>所有</strong>由此产生的后果负责。
+                <br><br>
+                即使伤害的<strong>程度 (Extent)</strong> 是不可预见的（Unforeseeable），被告仍需全额赔偿。在本案中，虽然餐厅无法预见顾客是调香师，但既然造成了身体伤害，就必须赔偿由此导致的失业损失。
+            </div>
+
+            <!-- 错误选项 A -->
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 A 错误</span>
+                虽然纯粹的经济损失（Pure Economic Loss）通常不可赔偿，但本案中的经济损失是<strong>附带于身体伤害</strong>（Parasitic to physical injury）的。因为嗅觉细胞受损（身体伤害）导致了无法工作，所以这部分经济损失是可以追偿的。
+            </div>
+
+            <!-- 错误选项 B -->
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 B 错误</span>
+                这恰恰是蛋壳原告规则保护的情况。原告的<strong>既存状况</strong>（Preexisting Condition，即敏锐的嗅觉）并不能成为被告免责的理由。被告必须对加重或引发的后果负责。
+            </div>
+
+            <!-- 错误选项 D -->
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 D 错误</span>
+                逻辑重心错误。原告获赔不是因为他的损失“比别人严重”，而是因为根据法律规则，被告必须对受害者的实际损失负责。比较其他顾客的损失并不是判断被告是否承担责任的法律标准。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 考试通关秘籍</span>
+            在 Negligence 题目中，区分 <strong>"Type of Harm"</strong>（伤害类型）和 <strong>"Extent of Harm"</strong>（伤害程度）：
+            <ul style="padding-left: 20px; margin: 5px 0;">
+                <li><strong>伤害类型：</strong>必须是可预见的（Foreseeable）。例如，火灾导致烟雾吸入是可预见的。</li>
+                <li><strong>伤害程度：</strong>不需要是可预见的。只要造成了伤害，哪怕原告是“玻璃做的”，被告也要赔到底。</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

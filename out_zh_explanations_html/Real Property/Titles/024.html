@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：庇护规则与登记法案</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-card {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 25px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+
+        .event {
+            position: relative;
+            margin-bottom: 20px;
+            padding-left: 15px;
+        }
+
+        .event::before {
+            content: "";
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #bbb;
+            border: 2px solid white;
+        }
+
+        .event.winner::before {
+            background: var(--success-color);
+            transform: scale(1.2);
+        }
+
+        .event-title {
+            font-weight: bold;
+            font-size: 14px;
+            color: var(--primary-color);
+        }
+
+        .event-desc {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .tag-bfp { background: var(--success-color); color: white; }
+        .tag-gift { background: #f39c12; color: white; }
+        .tag-record { background: var(--accent-color); color: white; }
+
+        .analysis-box {
+            margin-top: 20px;
+        }
+
+        .rule-box {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .answer-section {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .correct-answer {
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Real Property / Recording Acts</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点卡片 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：庇护规则 (Shelter Rule)</div>
+            <p style="font-size: 13px; margin: 0;">
+                即使受让人（Transferee）本身不满足善意购买人（BFP）的条件（例如他是受赠人或知情人），只要他是从一个<b>受登记法案保护的 BFP</b> 处获得产权，他就“继承”了该 BFP 的保护地位。
+            </p>
+        </div>
+
+        <!-- 法律依据分析 -->
+        <div class="analysis-box">
+            <h3 style="margin-bottom: 10px; font-size: 16px;">案件逻辑推演</h3>
+            
+            <div class="rule-box">
+                <strong>本案适用的法规 (Race-Notice Act)：</strong><br>
+                后续购买者若要胜出，必须满足两点：<br>
+                1. 支付对价且无通知 (BFP)；<br>
+                2. <b>率先登记 (First Record)</b>。
+            </div>
+
+            <div class="timeline">
+                <!-- 事件 1 -->
+                <div class="event">
+                    <div class="event-title">1. 父亲赠与女儿 <span class="tag tag-gift">Gift</span></div>
+                    <div class="event-desc">女儿未登记。此时女儿拥有产权，但面临风险。</div>
+                </div>
+
+                <!-- 事件 2 -->
+                <div class="event winner">
+                    <div class="event-title">2. 父亲卖给买家 <span class="tag tag-bfp">BFP</span> <span class="tag tag-record">先登记</span></div>
+                    <div class="event-desc">
+                        买家支付了对价，不知情，且<b>先于女儿登记</b>。<br>
+                        <span style="color:var(--success-color)">➡ 买家切断了女儿的权利 (Cut off rights)。</span>
+                    </div>
+                </div>
+
+                <!-- 事件 3 -->
+                <div class="event">
+                    <div class="event-title">3. 女儿补登记</div>
+                    <div class="event-desc">太晚了，买家已经根据法案胜出。</div>
+                </div>
+
+                <!-- 事件 4 -->
+                <div class="event winner">
+                    <div class="event-title">4. 买家赠与儿子 <span class="tag tag-gift">Gift</span></div>
+                    <div class="event-desc">
+                        虽然儿子是受赠人（Donee），但他受到<b>庇护规则 (Shelter Rule)</b> 的保护。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 答案解析 -->
+        <div class="answer-section">
+            <div class="correct-answer">正确答案：C</div>
+            <p style="font-size: 14px;">
+                <b>"The son, because the buyer's purchase cut off the daughter's rights."</b>
+            </p>
+            
+            <p style="font-size: 13px;">
+                <b>深度解析：</b><br>
+                本题的关键在于理解权利链条。
+                <br><br>
+                1. <b>买家 vs. 女儿：</b> 买家是善意购买人（BFP）且率先登记。根据 Race-Notice 法案，买家拥有优于女儿的产权。此时，女儿的产权实际上已被“消灭”。
+                <br><br>
+                2. <b>儿子 vs. 女儿：</b> 儿子虽然是受赠人（Donee），通常不受登记法案保护（因为没有支付对价）。但是，<b>Shelter Rule</b> 允许儿子“躲在”买家的保护伞下。既然买家已经拥有了对抗女儿的完美产权，买家就有权将这个完美的产权转让给任何人（包括受赠人）。
+            </p>
+
+            <div style="background: #f9f9f9; padding: 10px; border-radius: 6px; margin-top: 10px;">
+                <strong style="font-size: 12px; color: var(--warning-color);">为什么其他选项是错的？</strong>
+                <ul style="font-size: 12px; padding-left: 20px; margin: 5px 0;">
+                    <li><b>A (女儿先于儿子登记):</b> 错误。关键比较是“买家 vs 女儿”。买家赢了，儿子继承买家的地位。儿子何时登记已不重要。</li>
+                    <li><b>B & D (儿子是受赠人):</b> 错误。虽然受赠人通常不被保护，但 Shelter Rule 是例外。如果不能将产权传给受赠人，买家的产权价值就会打折，这违背了保护 BFP 的初衷。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Property Law | Race-Notice Jurisdiction
+    </div>
+</div>
+
+</body>
+</html>

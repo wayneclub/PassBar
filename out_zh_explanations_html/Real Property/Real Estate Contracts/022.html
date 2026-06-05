@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .result-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .result-title {
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            color: #34495e;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .highlight-term {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+            color: #856404;
+        }
+        .latin {
+            font-style: italic;
+            color: #8e44ad;
+        }
+        .wrong-option {
+            background-color: #ffebee;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+        .wrong-option strong {
+            color: #c62828;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .tip-box {
+            background-color: #e3f2fd;
+            border: 1px dashed #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+        .tip-title {
+            color: #1565c0;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .tip-title::before {
+            content: "💡";
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property / Contracts</div>
+    </div>
+
+    <div class="content">
+        <!-- 结论部分 -->
+        <div class="result-box">
+            <div class="result-title">正确答案：B</div>
+            <div>买方不会胜诉，因为卖方未就房屋状况提供任何保证。</div>
+        </div>
+
+        <!-- 核心法律解析 -->
+        <div class="section-title">核心考点：买方自慎 (Caveat Emptor)</div>
+        <p>
+            本题的核心在于普通法下的 <span class="latin">Caveat Emptor</span>（买方自慎）原则。
+        </p>
+        <p>
+            在没有成文法（Statute）特别规定的情况下，对于<strong>二手住宅（Used Residential Property）</strong>的销售：
+        </p>
+        <ul>
+            <li>卖方对房屋的物理状况（Physical Condition）<strong>没有默示保证</strong>。</li>
+            <li>除非卖方在合同中做出了明确的<strong>明示保证（Express Warranty）</strong>，否则买方需自行承担房屋瑕疵的风险。</li>
+        </ul>
+        <p>
+            <strong>本案关键事实：</strong>
+            <br>1. 合同对房屋状况保持沉默（无明示保证）。
+            <br>2. 卖方对瑕疵并不知情（Genuinely surprised），因此不存在欺诈（Fraud）或隐瞒已知潜在瑕疵（Failure to disclose known latent defects）的行为。
+        </p>
+        <p>
+            因此，卖方没有违反任何义务，买方无法获得赔偿。
+        </p>
+
+        <!-- 为什么其他选项是错的 -->
+        <div class="section-title">陷阱选项分析</div>
+        
+        <div class="wrong-option">
+            <strong>选项 C 错误：关于保证契据 (Warranty Deed)</strong>
+            <p>这是 MBE 中最常见的混淆点。<strong>Warranty Deed</strong> 中的六大契约（Covenants of Title）仅担保<strong>产权（Title）</strong>的完整性（例如：卖方确实拥有房产、房产无未披露的抵押权等），它<strong>不担保</strong>房屋的<strong>物理状况</strong>（如屋顶漏水、暖炉损坏）。</p>
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 D 错误：关于适宜性默示保证 (Implied Warranty of Fitness)</strong>
+            <p>适宜性或宜居性默示保证（Implied Warranty of Habitability/Fitness）通常仅适用于<strong>建筑商销售的新房（New Construction）</strong>。本案中的房屋已有 60 年房龄，不适用此规则。</p>
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 A 错误：关于合并原则 (Doctrine of Merger)</strong>
+            <p>虽然合并原则（合同条款在交割后合并入契据）是一个有效的法律概念，但它不是本案买方败诉的根本原因。买方败诉是因为<strong>从一开始就没有关于房屋状况的保证</strong>，而不是因为该保证被合并消失了。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <div class="tip-title">MBE 答题技巧</div>
+            <p style="font-size: 13px; margin: 0;">
+                遇到房屋瑕疵（Defects）问题时，请按以下步骤思考：
+                <br>1. <strong>新房还是旧房？</strong> 新房找 Builder 可能有默示保证；旧房通常适用 Caveat Emptor。
+                <br>2. <strong>卖方是否知情？</strong> 如果卖方知道且隐瞒（Fraud/Concealment），卖方赔；如果卖方不知情（Surprised），通常不赔。
+                <br>3. <strong>区分 Title 和 Condition：</strong> 题目提到 "Warranty Deed" 通常是想诱导你认为它包含物理质量保证，切记它只管产权！
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

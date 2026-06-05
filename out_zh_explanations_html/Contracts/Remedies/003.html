@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header span {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            color: #2980b9;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+        .step-icon {
+            background: #2c3e50;
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 0.8rem;
+        }
+        .trap-alert {
+            background-color: #ffebee;
+            border: 1px solid #ffcdd2;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .exam-tip {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .calc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .calc-table td {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .calc-total {
+            font-weight: bold;
+            border-top: 2px solid #333;
+        }
+        .english-term {
+            color: #7f8c8d;
+            font-style: italic;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <span>MBE Contracts Analysis</span>
+        <h2>雇佣合同违约与减轻损害</h2>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法律规则</span>
+            当雇主违反雇佣合同时，雇员有权获得<b>预期利益损害赔偿 (Expectation Damages)</b>。
+            <br><br>
+            计算公式：<br>
+            <b>合同薪资 - 雇员本可以避免的损失</b>
+            <br><br>
+            <small>*“本可以避免的损失”指雇员通过合理努力找到<b>可比工作 (Comparable Employment)</b> 能赚取的收入。</small>
+        </div>
+
+        <!-- 案情分析 -->
+        <h3>📝 案情逻辑推演</h3>
+
+        <div class="analysis-step">
+            <div class="step-title"><span class="step-icon">1</span>违约责任确立</div>
+            <p>建筑商在合同开始前通知无法雇佣，构成了<b>预期违约 (Anticipatory Repudiation)</b>。砖瓦匠有权获得赔偿。</p>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-title"><span class="step-icon">2</span>减轻损害义务 (Duty to Mitigate)</div>
+            <p>这是本题的关键。受害方有义务采取合理措施减轻损失，即寻找新工作。但是，法律<b>不要求</b>受害方接受以下类型的工作：</p>
+            <ul>
+                <li><b>不同类型 (Different in kind)</b></li>
+                <li><b>低级/劣等 (Inferior)</b></li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-title"><span class="step-icon">3</span>工作性质对比</div>
+            <p>
+                <b>原职位：</b>砖瓦匠 (Brick Mason) —— 熟练技术工种。<br>
+                <b>替代职位1：</b>夜间警卫 (Night Guard) —— 性质完全不同。<br>
+                <b>替代职位2：</b>日工 (Day Laborer) —— 通常被视为比熟练技工“低级”或性质不同。
+            </p>
+            <p>因此，砖瓦匠<b>没有法律义务</b>接受这两份工作来减轻建筑商的赔偿责任。</p>
+        </div>
+
+        <!-- 计算展示 -->
+        <h3>🧮 赔偿金计算</h3>
+        <table class="calc-table">
+            <tr>
+                <td>合同约定薪资</td>
+                <td align="right">$45,000</td>
+            </tr>
+            <tr>
+                <td>减：已赚取的收入</td>
+                <td align="right">- $0</td>
+            </tr>
+            <tr>
+                <td>减：本应赚取的可比收入<br><span class="english-term">(Avoidable damages)</span></td>
+                <td align="right">- $0 *</td>
+            </tr>
+            <tr class="calc-total">
+                <td>最终赔偿额</td>
+                <td align="right">$45,000</td>
+            </tr>
+        </table>
+        <p style="font-size: 0.8rem; color: #666;">* 注：题目明确指出社区内没有其他的砖瓦匠工作 (No employment for brick masons was available)，因此可减扣金额为0。</p>
+
+        <!-- 陷阱解析 -->
+        <div class="trap-alert">
+            <strong>🚫 为什么选项 A ($20,000) 是错误的？</strong>
+            <br>
+            选项 A 错误地扣除了 $25,000。虽然砖瓦匠“本可以”赚到这笔钱，但法律不强迫他去从事“日工”或“警卫”的工作。只有当他拒绝了<b>同等的砖瓦匠工作</b>时，这笔钱才会被扣除。
+        </div>
+
+        <div class="trap-alert" style="margin-top: 10px; background-color: #fff8e1; border-color: #ffe082; color: #f57f17;">
+            <strong>🚫 为什么选项 C 是错误的？</strong>
+            <br>
+            合同法是<b>严格责任 (Strict Liability)</b>。违约方的动机（是否恶意 Bad Faith）与是否需要支付补偿性赔偿金无关。即使雇主是因为破产或经济困难而违约，仍需赔偿。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <h4>💡 MBE 考试技巧</h4>
+            <p>在处理雇佣合同违约题时，如果题目给出了替代工作机会，请务必检查该工作是否与原工作<b>“实质相似” (Substantially Similar)</b>。</p>
+            <p>如果替代工作涉及：</p>
+            <ul>
+                <li>不同的地点 (Different location)</li>
+                <li>不同的工种 (Different kind)</li>
+                <li>较低的地位/声望 (Inferior rank/status)</li>
+            </ul>
+            <p>那么雇员<b>没有义务</b>接受它，拒绝该工作<b>不会减少</b>可获得的赔偿金。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

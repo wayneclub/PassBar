@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：最佳证据规则与职能分工</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕 */
+            width: 100%;
+            background: transparent;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 20px;
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .role-split {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .role-card {
+            flex: 1;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .role-icon {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            font-size: 13px;
+            margin-top: 15px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 核心考点卡片 -->
+    <div class="card">
+        <h1>核心考点：最佳证据规则中的职能分工</h1>
+        <p>本题考察的是<b>联邦证据规则 (Federal Rules of Evidence, FRE) 第 1008 条</b>：在涉及文件内容证明时，法官与陪审团的职能划分。</p>
+        
+        <div class="concept-box">
+            <span class="key-term">最佳证据规则 (Best Evidence Rule)</span><br>
+            原则上，要证明文件内容，必须出示原件。但如果原件丢失或被毁（非恶意），允许使用次级证据（如证人证言）。
+        </div>
+    </div>
+
+    <!-- 法律解析卡片 -->
+    <div class="card">
+        <h1>法官 vs. 陪审团：谁来决定？</h1>
+        <p>通常情况下，证据的可采性（Admissibility）由<b>法官</b>决定。但是，FRE 1008 规定了三个特定的事实问题，必须留给<b>陪审团</b>（Jury）决定：</p>
+
+        <div class="role-split">
+            <div class="role-card" style="border-color: #95a5a6;">
+                <span class="role-icon">⚖️</span>
+                <b>法官 (Judge)</b><br>
+                决定事实条件是否满足<br>
+                <span class="english-term">(Preliminary questions of fact)</span><br>
+                <br>
+                <i>例如：原件是否真的丢失了？是否是恶意销毁的？</i>
+            </div>
+            <div class="role-card" style="border-color: #e74c3c; background-color: #fff5f5;">
+                <span class="role-icon">👥</span>
+                <b>陪审团 (Jury)</b><br>
+                决定文件的存在与内容<br>
+                <span class="english-term">(Existence and Content)</span><br>
+                <br>
+                <i>例如：<b>文件是否曾经存在过？</b></i>
+            </div>
+        </div>
+
+        <h2>本案分析</h2>
+        <ul>
+            <li><b>原告主张：</b>合同存在，但被烧毁了（解释了为何不出示原件）。</li>
+            <li><b>被告主张：</b>合同根本从未存在过（Existence issue）。</li>
+        </ul>
+        <p>这就触及了 FRE 1008 的核心：<b>“所主张的文件是否曾经存在” (whether the asserted writing ever existed)</b> 是一个必须由陪审团决定的事实问题。</p>
+    </div>
+
+    <!-- 答案推导卡片 -->
+    <div class="card">
+        <h1>正确答案解析</h1>
+        <p>正确答案是 <span class="correct-answer">选项 B</span>。</p>
+        
+        <p><b>逻辑链条：</b></p>
+        <ol>
+            <li>被告动议删除证词的理由是“合同从未存在”。</li>
+            <li>如果法官批准动议，等于法官代替陪审团裁定了“合同不存在”这一核心事实。</li>
+            <li>根据 FRE 1008，当文件的<b>存在性</b>受到争议时，这是一个陪审团问题 (Jury Question)。</li>
+            <li>因此，法官必须<b>驳回动议 (Deny the motion)</b>，让陪审团听取双方证词，自行判断谁在说真话。</li>
+        </ol>
+
+        <div class="exam-tip">
+            <b>💡 考试技巧 (Exam Tip)</b><br>
+            在 MBE 证据法题目中，注意区分<b>“可采性门槛”</b>（法官管）和<b>“案件实质争议”</b>（陪审团管）。<br><br>
+            如果争议点在于“原件是不是原告故意烧的”，这是法官决定的（因为这决定了次级证据是否可采）。<br>
+            但如果争议点是“这文件压根没写过”，这是陪审团决定的（因为这是案件胜负的关键事实）。
+        </div>
+    </div>
+
+    <!-- 错误选项简析 -->
+    <div class="card">
+        <h1>为什么其他选项是错的？</h1>
+        <ul>
+            <li><b>选项 A (错误)：</b>虽然一方可以通过证词证明合同条款，但这并不是法官驳回动议的<i>根本原因</i>。根本原因是“存在性争议归陪审团管”。</li>
+            <li><b>选项 C (错误)：</b>法官<b>不能</b>仅仅因为自己确信合同不存在就批准动议。除非证据极其匮乏以至于可以做出指示裁决 (Directed Verdict)，否则法官不能篡夺陪审团认定事实的权力。</li>
+            <li><b>选项 D (错误)：</b>这是对最佳证据规则的误解。如果原件被毁（非恶意），<b>不需要</b>出示原件即可证明其内容。</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

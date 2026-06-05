@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --warning-color: #e74c3c;
+            --success-color: #27ae60;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background: #e1e8ed;
+            color: #555;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .wrong-option {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+        }
+
+        .wrong-option strong {
+            color: var(--warning-color);
+        }
+
+        .mbe-tip {
+            background: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .mbe-tip-title {
+            color: #f57c00;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+
+        code {
+            background: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Evidence: Rule 403 & Motion to Strike</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点标签 -->
+        <div>
+            <span class="concept-tag">Federal Rules of Evidence (FRE) 403</span>
+            <span class="concept-tag">Unfair Prejudice</span>
+            <span class="concept-tag">Motion to Strike</span>
+        </div>
+
+        <!-- 核心法律规则 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法律依据 (FRE 403)</span>
+            <p>即使证据是相关的 (Relevant)，如果其<strong>证明价值 (Probative Value)</strong> 实质上被<strong>不公正偏见 (Unfair Prejudice)</strong> 的危险所超越，法院可以排除该证据。</p>
+            <p><strong>Motion to Strike (排除动议)</strong>：当证人给出了不可采纳 (Inadmissible) 或答非所问 (Non-responsive) 的回答时，律师应立即提出此动议，要求法官指示陪审团忽略该证言。</p>
+        </div>
+
+        <!-- 案情深度解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🔍 为什么选 C？(正确答案解析)</div>
+            <p>本题的关键在于权衡证据的价值与风险。</p>
+            <ol>
+                <li><strong>答非所问 (Non-responsive):</strong> 律师问的是“光线是否太暗”，证人却回答“我通过了测谎”。这属于非回答性证言。</li>
+                <li><strong>不可采纳的内容:</strong> 题目明确指出该司法管辖区<strong>禁止</strong>测谎仪结果作为证据。</li>
+                <li><strong>Rule 403 平衡测试:</strong>
+                    <ul>
+                        <li><strong>证明价值:</strong> 证人通过测谎确实能某种程度上佐证她是诚实的。</li>
+                        <li><strong>不公正偏见:</strong> 陪审团往往倾向于过度迷信“科学”的测谎仪，认为其绝对准确，从而放弃自己判断证人可信度的职责。</li>
+                    </ul>
+                </li>
+            </ol>
+            <p><strong>结论：</strong> 提及测谎仪造成的偏见<strong>实质上超越 (Substantially Outweighed)</strong> 了其证明价值。因此，法院必须批准 Motion to Strike。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">❌ 为什么其他选项错误？</div>
+            
+            <div class="wrong-option">
+                <strong>选项 A (Rehabilitation):</strong> <br>
+                错误。只有当证人的“诚实品格” (Character for truthfulness) 被攻击时，才能进行信誉修复。本案中，律师攻击的是证人的<strong>感知能力 (Perception)</strong>（即光线太暗看不清），而非她在撒谎。此外，不能用不可采纳的证据来修复信誉。
+            </div>
+
+            <div class="wrong-option">
+                <strong>选项 B (Open the Door):</strong> <br>
+                错误。“打开方便之门”通常是指律师主动询问了某个话题，导致对方可以引入原本不可采纳的证据来反驳。这里律师只问了“光线”，是证人自己<strong>抢答 (Blurted out)</strong> 了测谎仪的事，律师并没有打开这扇门。
+            </div>
+
+            <div class="wrong-option">
+                <strong>选项 D (Leading Question):</strong> <br>
+                错误。在<strong>交叉询问 (Cross-examination)</strong> 中，诱导性提问 (Leading questions) 是完全允许的，甚至是标准的提问方式。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <div class="mbe-tip-title">💡 MBE 实战技巧</div>
+            <p><strong>1. 警惕“抢答”：</strong> 当题目中证人的回答超出了问题的范围（特别是提及保险、和解谈判、测谎等敏感话题时），通常会触发 <code>Motion to Strike</code>。</p>
+            <p><strong>2. 区分弹劾类型：</strong> 仔细分辨律师是在攻击证人的<strong>“眼睛”</strong>（感知能力）还是<strong>“良心”</strong>（诚实度）。攻击感知能力并不允许引入支持诚实度的品格证据。</p>
+            <p><strong>3. 诱导性问题：</strong> 记住口诀：Direct Exam (直接询问) 🚫 No Leading; Cross Exam (交叉询问) ✅ Leading OK。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

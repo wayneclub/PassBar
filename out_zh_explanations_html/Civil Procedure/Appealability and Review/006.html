@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .card-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: #f2f2f2;
+            color: var(--primary-color);
+        }
+
+        .answer-reveal {
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+            color: #3c763d;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .tip-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Civil Procedure: Standards of Review</div>
+    </div>
+
+    <!-- 核心考点解析 -->
+    <div class="card">
+        <div class="card-title">核心考点：陪审团指示的双重性</div>
+        <p>在联邦上诉程序中，针对陪审团指示（Jury Instructions）的上诉通常涉及两个不同的层面，每个层面适用不同的审查标准：</p>
+        
+        <div class="concept-box">
+            <span class="term">1. 措辞与形式 (Formulation)</span><br>
+            <span class="english-term">Standard: Abuse of Discretion</span>
+            <p>法官在决定<b>如何表达</b>指示、是否采纳某一方的具体建议措辞时，享有广泛的自由裁量权。只要指示整体上涵盖了法律要点，法官没有义务必须使用当事人建议的特定语言。</p>
+        </div>
+
+        <div class="concept-box">
+            <span class="term">2. 法律内容的正确性 (Legal Correctness)</span><br>
+            <span class="english-term">Standard: De Novo Review</span>
+            <p>指示中包含的<b>法律原则</b>必须准确无误。这是一个纯粹的法律问题。上诉法院在法律问题上不需要尊重下级法院的意见，因此进行“从头审查”。</p>
+        </div>
+    </div>
+
+    <!-- 题目具体分析 -->
+    <div class="card">
+        <div class="card-title">本题逻辑推演</div>
+        <p>原告在上诉中提出了两个具体的论点，我们需要分别定性：</p>
+        
+        <ul>
+            <li>
+                <b>论点一：法院拒绝了原告建议的指示。</b>
+                <br>这是关于“是否使用特定措辞”的决定。属于法官管理审判的自由裁量范围。
+                <br>👉 适用 <b>Abuse of Discretion</b>（滥用自由裁量权）。
+            </li>
+            <li>
+                <b>论点二：法院的指示实质上错误陈述了法律。</b>
+                <br>这是关于“法律是什么”的问题。如果法官把法律讲错了，误导了陪审团，这是法律错误。
+                <br>👉 适用 <b>De Novo</b>（全新审查）。
+            </li>
+        </ul>
+    </div>
+
+    <!-- 总结对比表 -->
+    <div class="card">
+        <div class="card-title">审查标准速查表</div>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>上诉问题</th>
+                    <th>审查标准</th>
+                    <th>尊重程度</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>法律问题<br><span class="english-term">(Questions of Law)</span></td>
+                    <td><b>De Novo</b><br>全新审查</td>
+                    <td>无 (0%)</td>
+                </tr>
+                <tr>
+                    <td>自由裁量决定<br><span class="english-term">(Discretionary Matters)</span></td>
+                    <td><b>Abuse of Discretion</b><br>滥用自由裁量权</td>
+                    <td>高 (High)</td>
+                </tr>
+                <tr>
+                    <td>事实认定<br><span class="english-term">(Questions of Fact)</span></td>
+                    <td><b>Clear Error</b><br>明显错误</td>
+                    <td>极高 (Very High)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="tip-box">
+        <b>💡 MBE 考试技巧：</b><br>
+        看到 "Jury Instructions" 的上诉题时，立即区分原告是在抱怨<b>“没用我的词”</b>（Formulation）还是抱怨<b>“法律讲错了”</b>（Misstatement of Law）。
+        <br><br>
+        前者是法官的权力（Discretion），后者是法律的红线（De Novo）。
+    </div>
+
+    <!-- 正确答案 -->
+    <div class="answer-reveal">
+        正确答案：选项 B
+    </div>
+</div>
+
+</body>
+</html>

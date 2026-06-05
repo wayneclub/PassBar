@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+        .date {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: bold;
+        }
+        .event {
+            font-size: 0.95rem;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        .key-term {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+            color: #c0392b;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .wrong-answer {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #eee;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts: UCC Offer & Acceptance<br>合同法：UCC 要约与承诺</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">💡 核心考点 (Key Concept)</span>
+            本题考察《统一商法典》(UCC) 第 2-206 条关于<strong>承诺 (Acceptance)</strong> 的方式，以及<strong>通融 (Accommodation)</strong> 规则的适用前提。
+        </div>
+
+        <!-- 时间线分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">📅 案情时间线分析</div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="date">6月1日 (Offer)</div>
+                    <div class="event">买方发出要约，要求立即发货。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">6月2日 (Acceptance)</div>
+                    <div class="event"><strong>关键点：</strong>卖方寄信承诺发货。<br><span style="color:var(--accent-color); font-size:0.9em;">此时合同已经成立 (Contract Formed)。</span></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">6月3日 (Breach)</div>
+                    <div class="event">卖方发现缺货，发送了不同型号的电脑（不符货物），并附带通融通知。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">⚖️ 法律推理 (Legal Reasoning)</div>
+            
+            <p><strong>1. 合同何时成立？</strong><br>
+            根据 UCC § 2-206(1)(b)，对于要求立即发货的要约，卖方可以通过两种方式承诺：
+            <ul>
+                <li>承诺发货 (Promise to ship)</li>
+                <li>实际发货 (Prompt shipment)</li>
+            </ul>
+            在本案中，卖方在6月2日寄出了接受订单的信函。根据<strong>投邮生效原则 (Mailbox Rule)</strong>，合同在这一刻已经成立。双方已受合同约束。</p>
+
+            <p><strong>2. 为什么“通融”规则不适用？</strong><br>
+            UCC 规定，如果卖方直接发运不符货物作为对要约的回应，这通常构成“承诺+违约”。但如果卖方同时附带了<strong>通融通知 (Notice of Accommodation)</strong>，则该发货被视为<strong>反要约 (Counteroffer)</strong>，而不是承诺。<br>
+            <span style="color:#c0392b;">但是！</span>通融规则仅适用于“发货行为本身是唯一的承诺方式”的情况。如果卖方已经通过“承诺发货”接受了要约（如本案6月2日的信），合同已经锁死。后续的发货只是履行合同的行为。</p>
+
+            <p><strong>3. 法律后果</strong><br>
+            由于合同已于6月2日成立，卖方在6月3日发运错误型号的电脑属于<strong>违约 (Breach of Contract)</strong>。通融通知在法律上无效，不能将违约转化为反要约。</p>
+        </div>
+
+        <!-- 选项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 为什么选 A？</div>
+            <p>根据<strong>完美履行规则 (Perfect Tender Rule, UCC § 2-601)</strong>，当货物不符合同规定时，买方有三个选择：</p>
+            <ol>
+                <li>拒绝所有货物 (Reject the whole)</li>
+                <li>接受所有货物 (Accept the whole)</li>
+                <li>接受部分商业单位并拒绝其余部分</li>
+            </ol>
+            <p>无论买方选择接受还是拒绝，卖方发运错误货物都已构成违约，因此买方有权要求<strong>损害赔偿 (Damages)</strong>。选项 A 准确描述了这一权利。</p>
+
+            <div style="margin-top: 15px; border-top: 1px dashed #ccc; padding-top: 10px;">
+                <span class="wrong-answer">❌ 选项 C 错误原因：</span><br>
+                它错误地认为发货构成了反要约。实际上，因为卖方之前已经承诺（Promise），合同已成立，发货是违约履行，而非新的要约。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+            <span class="rule-title">🎓 考试技巧 (Exam Tip)</span>
+            看到“发运不符货物 (Nonconforming goods)”和“通融 (Accommodation)”时，<strong>必须</strong>先检查卖方是否已经通过<strong>承诺发货 (Promise to ship)</strong> 接受了要约。<br>
+            <ul>
+                <li>如果<strong>先承诺</strong>，后发货 ➡️ 违约 (Breach)。</li>
+                <li>如果<strong>直接发货</strong>且附带通知 ➡️ 反要约 (Counteroffer)。</li>
+            </ul>
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

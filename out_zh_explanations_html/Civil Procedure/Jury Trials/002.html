@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.85rem;
+            color: #bdc3c7;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .answer-title {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .rule-section {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            color: #1565c0;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 1.1em;
+        }
+        .key-point {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .icon {
+            margin-right: 10px;
+            color: #2196f3;
+            font-weight: bold;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .analysis {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+        .trap-alert {
+            background-color: #ffebee;
+            border: 1px solid #ffcdd2;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #fafafa;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">民事诉讼法 (Civil Procedure) - 陪审团指令</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="answer-box">
+            <span class="answer-title">正确答案：C</span>
+            法院犯了错误。因为法院未能在双方进行<b>最后陈述 (Closing Arguments)</b> 之前，告知双方其拟定的陪审团指令并给予反对机会。
+        </div>
+
+        <!-- 法律规则讲解 -->
+        <div class="rule-section">
+            <span class="rule-title">核心考点：FRCP 51(b)</span>
+            <p>根据《联邦民事诉讼规则》第51条，法院在处理陪审团指令 (Jury Instructions) 时必须遵守严格的时间线：</p>
+            
+            <div class="key-point">
+                <span class="icon">1.</span>
+                <div>
+                    <b>告知义务 (Inform):</b><br>
+                    法院必须在指示陪审团和当事人进行最后陈述<b>之前</b>，将其拟采用的指令告知当事人。
+                </div>
+            </div>
+            
+            <div class="key-point">
+                <span class="icon">2.</span>
+                <div>
+                    <b>反对机会 (Opportunity to Object):</b><br>
+                    法院必须在指示陪审团和最后陈述<b>之前</b>，给予当事人在陪审团不在场的情况下提出反对意见的机会。
+                </div>
+            </div>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis">
+            <h3>📝 案情分析</h3>
+            <p>本题的关键在于<b>时间顺序</b>：</p>
+            <ol>
+                <li>双方提交建议指令。</li>
+                <li>法院让双方先进行<span class="highlight">最后陈述 (Closing Arguments)</span>。</li>
+                <li>陈述结束后，法院才告知其拟定的指令（且与双方建议的不同）。</li>
+            </ol>
+            <p><b>为什么这是错误的？</b><br>
+            律师在做最后陈述时，需要根据法院即将告诉陪审团的法律规则来构建论点。如果律师不知道法院最终会使用什么法律指令，他们就无法有效地向陪审团辩论案情。因此，FRCP 51 要求必须先定指令，再做陈述。</p>
+        </div>
+
+        <!-- 易错点提示 -->
+        <div class="trap-alert">
+            <b>⚠️ 考试陷阱 (Distinction)</b><br>
+            注意区分“告知指令内容”和“向陪审团宣读指令”的时间点：
+            <ul style="margin: 5px 0 0 20px; padding: 0;">
+                <li><b>告知律师 (Notice):</b> 必须在最后陈述<b>之前</b>。</li>
+                <li><b>宣读指令 (Instructing the Jury):</b> 可以在最后陈述之前，也可以在之后（只要在陪审团解散前即可）。</li>
+            </ul>
+            <br>
+            选项 D 错误的原因就在于此：法院没有义务必须在最后陈述前<i>宣读</i>指令，但有义务在最后陈述前<i>告知</i>指令内容。
+        </div>
+    </div>
+
+    <div class="footer">
+        MBE Civil Procedure Review<br>
+        Focus: Rule 51 - Instructions to the Jury
+    </div>
+</div>
+
+</body>
+</html>

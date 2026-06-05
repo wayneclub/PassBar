@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            font-size: 1.4em;
+            margin-top: 0;
+        }
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        .analysis-step:last-child {
+            border-bottom: none;
+        }
+        .correct-answer {
+            background-color: #dff0d8;
+            color: #3c763d;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .wrong-option {
+            font-size: 0.95em;
+            color: #666;
+            margin-top: 5px;
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.9em;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>MBE 考点解析：遗赠撤回<br><span style="font-size:0.8em; color:#7f8c8d;">Ademption by Extinction</span></h2>
+
+    <div class="correct-answer">
+        正确答案：D (侄女)
+    </div>
+
+    <div class="concept-box">
+        <h3>核心法律原则：遗赠撤回 (Ademption)</h3>
+        <p>在普通法下，如果遗嘱中<b>特定遗赠</b>（Specific Devise）的财产在立遗嘱人去世时已不属于其遗产范围（例如已被出售、灭失或赠予他人），该遗赠即告失效。这被称为<b>因标的物灭失而导致的遗赠撤回</b>（Ademption by Extinction）。</p>
+        <p><b>结果：</b>受遗赠人通常什么也得不到，既得不到原物，也得不到出售原物的对价（Proceeds）或替代物。</p>
+    </div>
+
+    <h3>本案逻辑推演</h3>
+
+    <div class="analysis-step">
+        <strong>1. 确定遗赠类型</strong><br>
+        遗嘱中写明“将我的农场给侄子”（"devised her farm to her nephew"）。这是一个<b>特定遗赠</b>（Specific Devise），因为它指向了一个具体可识别的特定资产。
+    </div>
+
+    <div class="analysis-step">
+        <strong>2. 事实认定</strong><br>
+        立遗嘱人生前卖掉了农场，并用所得款项买了城里的房子。
+        <ul>
+            <li><b>去世时状态：</b>遗产中没有“农场”。</li>
+            <li><b>结果：</b>给侄子的特定遗赠发生<b>Ademption</b>（失效）。侄子无法获得农场，也无权获得替代的房子。</li>
+        </ul>
+    </div>
+
+    <div class="analysis-step">
+        <strong>3. 财产归属</strong><br>
+        由于给侄子的遗赠失效，新购买的“城里的房子”属于立遗嘱人去世时拥有的财产，但没有被特定遗赠给任何人。因此，它落入<b>剩余遗产</b>（Residuary Estate）。
+    </div>
+
+    <div class="analysis-step">
+        <strong>4. 最终分配</strong><br>
+        遗嘱规定将“剩余遗产遗赠给侄女”（"bequeathed the residue... to her niece"）。因此，侄女作为剩余遗产受遗赠人（Residuary Legatee）获得该房子。
+    </div>
+
+    <h3>为什么其他选项是错的？</h3>
+    
+    <div class="wrong-option">
+        <span class="term">选项 A (侄子/Ademption)</span>：这是最具迷惑性的选项。虽然本案确实涉及 <b>Ademption</b> 原则，但该原则的作用是<b>剥夺</b>侄子的权利，而不是赋予他权利。Ademption 导致遗赠失败，而不是让受遗赠人有权追踪变卖后的资产（除非有特定成文法支持，但题目注明 "no applicable statute"）。
+    </div>
+
+    <div class="wrong-option">
+        <span class="term">选项 B (衡平法禁止反言)</span>：<b>Equitable Estoppel</b> 需要一方基于对另一方陈述的信赖而采取行动并受损。本案中没有证据表明侄子基于对获得农场的信赖而采取了任何行动，且立遗嘱人有权在生前处置自己的财产。
+    </div>
+
+    <div class="wrong-option">
+        <span class="term">选项 C (遗赠失效/Lapse)</span>：<b>Lapse</b> 原则仅适用于受遗赠人<b>先于</b>立遗嘱人去世的情况。本案中侄子和侄女都活着，所以不适用。
+    </div>
+
+    <div class="exam-tip">
+        <strong>🎓 MBE 考试技巧</strong>
+        <p>在处理遗嘱（Wills）题目时，遵循以下步骤：</p>
+        <ol>
+            <li><b>分类：</b>判断是特定遗赠（Specific）、概括遗赠（General）还是剩余遗赠（Residuary）。</li>
+            <li><b>检查：</b>如果是特定遗赠，检查该物品在死者去世时是否存在。</li>
+            <li><b>原则：</b>如果物品不存在，应用 <b>Identity Theory</b>（同一性理论）。即：东西不在了，礼物就没了（Adeemed）。不要试图去探究立遗嘱人的意图，也不要进行资产追踪（Tracing），除非题目明确引用了允许追踪的现代成文法（如UPC）。</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

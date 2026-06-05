@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --text-color: #333;
+        --border-radius: 8px;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+    }
+    .container {
+        max-width: 480px;
+        background: #fff;
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+        line-height: 1.6;
+    }
+    .rule-box {
+        background: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        display: block;
+        margin-bottom: 8px;
+    }
+    .waterfall-chart {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin: 20px 0;
+    }
+    .step {
+        padding: 10px;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+    .step-1 { background-color: #95a5a6; } /* Costs */
+    .step-2 { background-color: #7f8c8d; } /* Senior Mortgage */
+    .step-3 { background-color: #e74c3c; position: relative; } /* Junior Mortgage - Focus */
+    .step-4 { background-color: #2ecc71; } /* Borrower */
+    
+    .arrow-down {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #bdc3c7;
+        margin: -5px 0;
+    }
+    
+    .focus-point {
+        border: 2px dashed var(--accent-color);
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: var(--border-radius);
+    }
+.term {
+        background: transparent;
+        border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+        padding: 0 1px 1px;
+        border-radius: 0;
+        font-size: 1em;
+        font-weight: 800;
+        white-space: normal;
+    }
+    .latin {
+        font-style: italic;
+        color: #666;
+    }
+    .analysis-section {
+        margin-top: 20px;
+    }
+    .analysis-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+    }
+    .option-analysis {
+        font-size: 0.9rem;
+        margin-top: 15px;
+        background: #fafafa;
+        padding: 10px;
+        border-radius: 4px;
+    }
+    .correct-tag {
+        background: #27ae60;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        margin-right: 5px;
+        vertical-align: middle;
+    }
+    .wrong-tag {
+        background: #c0392b;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        margin-right: 5px;
+        vertical-align: middle;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Mortgages & Security Devices</p>
+    </div>
+
+    <div class="content">
+        <div class="rule-box">
+            <span class="rule-title">核心考点：止赎收益的分配顺序</span>
+            在司法止赎（Judicial Foreclosure）中，拍卖所得款项必须严格按照特定的优先顺序（Priority）进行分配。
+        </div>
+
+        <p>当房屋被强制拍卖后，资金流向就像瀑布一样，必须先填满上一层，溢出的部分才能流向下一层：</p>
+
+        <div class="waterfall-chart">
+            <div class="step step-1">1. 止赎费用 (Expenses of Sale)<br><span style="font-size:0.8em; font-weight:normal">律师费、法庭费用</span></div>
+            <div class="arrow-down">↓</div>
+            <div class="step step-2">2. 发起止赎的抵押贷款 (Foreclosing Lien)<br><span style="font-size:0.8em; font-weight:normal">本金 + 利息</span></div>
+            <div class="arrow-down">↓</div>
+            <div class="step step-3">3. 次级留置权 (Junior Liens)<br><span style="font-size:0.8em; font-weight:normal">按登记顺序 (本题考点)</span></div>
+            <div class="arrow-down">↓</div>
+            <div class="step step-4">4. 债务人/房主 (Mortgagor)<br><span style="font-size:0.8em; font-weight:normal">仅在所有留置权被清偿后</span></div>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">本案法律分析</div>
+            <p>本题中，银行是第一顺位抵押权人（Senior Mortgagee），信用社是第二顺位抵押权人（Junior Mortgagee）。</p>
+            
+            <div class="focus-point">
+                <p><strong>关键事实：</strong></p>
+                <ul>
+                    <li>银行止赎并已获得全额偿付。</li>
+                    <li>剩余盈余（Surplus）：<strong>$5,000</strong>。</li>
+                    <li>信用社（次级债权人）被欠款：<strong>$20,000</strong>。</li>
+                </ul>
+            </div>
+
+            <p>根据分配规则，盈余必须先用于偿还<strong>次级留置权人</strong>（Junior Lienholders），然后才轮到债务人。</p>
+            <p>因为 $5,000 远不足以偿还信用社的 $20,000 债务，所以信用社拿走全部 $5,000。债务人（该男子）在本阶段拿不到任何钱。</p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">选项深度解析</div>
+            
+            <div class="option-analysis">
+                <span class="correct-tag">正确</span> <strong>选项 A (Choice A)</strong><br>
+                <strong>"The credit union, because the credit union has priority."</strong><br>
+                这是最准确的法律表述。信用社作为次级抵押权人，其对拍卖收益的权利<strong>优先于</strong>债务人。虽然止赎消灭了信用社在房子上的抵押权（Lien on the land），但该权益转移到了剩余的收益金上。
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">陷阱</span> <strong>选项 B (Choice B)</strong><br>
+                <strong>"...because the man is personally liable..."</strong><br>
+                虽然男子确实承担个人责任（Personal Liability），但这并不是信用社获得这 $5,000 的直接法律依据。信用社之所以能拿走这笔钱，是因为它是<strong>担保债权人（Secured Creditor）</strong>。个人责任意味着信用社可以就剩余的 $15,000 缺口起诉男子，但这与分配止赎款的优先权逻辑不同。
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">错误</span> <strong>选项 C (Choice C)</strong><br>
+                <strong>衡平法赎回权 (Equitable Right of Redemption)</strong><br>
+                此权利允许债务人在<strong>止赎拍卖之前</strong>通过还清所有债务来赎回房产。一旦拍卖结束，该权利即告终止（除非有法定赎回权 Statutory Redemption，但题目说没有适用法规）。这与拍卖后的收益分配无关。
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">错误</span> <strong>选项 D (Choice D)</strong><br>
+                <strong>受第二抵押权约束 (Subject to...)</strong><br>
+                这是一个重要的MBE考点：如果次级抵押权人（信用社）被列为止赎诉讼的当事人（Necessary Party），止赎拍卖将<strong>清洗</strong>掉该房产上的次级抵押权。买家获得的是产权清晰的房子。因此，信用社必须从收益中受偿，而不能再对房子主张权利。
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

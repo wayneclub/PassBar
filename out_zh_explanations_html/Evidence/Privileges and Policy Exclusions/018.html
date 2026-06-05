@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #d4edda;
+            --correct-text: #155724;
+            --wrong-bg: #f8d7da;
+            --wrong-text: #721c24;
+            --text-color: #333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: var(--correct-bg);
+            color: var(--correct-text);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #28a745;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        .concept-card strong {
+            color: var(--accent-color);
+        }
+        .list-item {
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 3px solid #ddd;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .wrong-option {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .wrong-badge {
+            display: inline-block;
+            background-color: #eee;
+            color: #555;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence / Privilege</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-box">
+            ✅ 正确答案：选项 C
+        </div>
+
+        <p>本题的核心考点在于区分<strong>受保护的法律咨询</strong>与<strong>不受保护的附带事实</strong>。</p>
+
+        <!-- 核心法律规则 -->
+        <div class="section-title">⚖️ 核心法律规则解析</div>
+        <div class="concept-card">
+            <strong>律师-当事人特权 (Attorney-Client Privilege)</strong><br>
+            该特权旨在保护客户为了寻求法律建议而与律师进行的<strong>保密通讯 (Confidential Communications)</strong>。
+        </div>
+
+        <p>然而，并非所有与律师的互动都属于“特权通讯”。联邦法院普遍认定以下信息通常<strong>不享有特权</strong>：</p>
+        <ul>
+            <li>客户的身份 (Client Identity)</li>
+            <li>律师费用的支付安排 (Fee Arrangements)</li>
+            <li>支付的金额 (Amount of Fees Paid)</li>
+            <li>案件的基本事实 (Underlying Facts)</li>
+        </ul>
+
+        <div class="concept-card" style="background-color: #fff3cd; border-left: 4px solid #ffc107;">
+            <strong>💡 逻辑推导：</strong><br>
+            支付律师费被视为一种商业交易行为或代理关系的附带后果 (Incidental to representation)，而非为了获取法律建议而进行的“通讯”。
+        </div>
+
+        <p>在本案中，检察官要求的是<strong>费用记录 (Fee Records)</strong>。这些记录仅显示被告支付了多少钱，不涉及被告向律师咨询的具体法律内容或律师提供的建议。因此，这些记录不属于特权范围。</p>
+
+        <!-- 选项辨析 -->
+        <div class="section-title">❌ 干扰项排除</div>
+        
+        <div class="list-item">
+            <span class="wrong-badge">选项 A 错误</span>
+            <strong>律师工作成果 (Work-Product Doctrine)</strong><br>
+            该原则保护的是律师为准备诉讼而形成的思维过程、策略、备忘录等 (Mental impressions, conclusions, opinions)。单纯的收费记录不包含律师的法律策略，因此不受此保护。
+        </div>
+
+        <div class="list-item">
+            <span class="wrong-badge">选项 B 错误</span>
+            <strong>律师-当事人特权 (Attorney-Client Privilege)</strong><br>
+            如上所述，费用记录通常被视为非特权信息。除非披露费用会直接暴露法律咨询的实质内容（极少数例外情况），否则该选项不成立。
+        </div>
+
+        <div class="list-item">
+            <span class="wrong-badge">选项 D 错误</span>
+            <strong>犯罪-欺诈例外 (Crime-Fraud Exception)</strong><br>
+            虽然特权确实不能用于掩盖犯罪，但这个选项的推理逻辑是多余的。我们不需要动用“犯罪-欺诈例外”来强行突破特权，因为<strong>特权从一开始就不存在</strong>（即费用记录本身就不是特权信息）。
+        </div>
+
+        <!-- 考试技巧 -->
+        
+        <p>在处理 <strong>Evidence (证据法)</strong> 中的特权问题时，请记住以下公式：</p>
+        
+        <div style="text-align: center; margin: 15px 0; font-weight: bold; color: var(--primary-color);">
+            特权 = 通讯 (Communication) + 保密意图 (Confidentiality) + 法律咨询目的 (Legal Purpose)
+        </div>
+
+        <p>如果题目问的是关于律师的<strong>行政性事务</strong>（如：谁是客户？付了多少钱？什么时候见的面？），这些通常属于<strong>事实 (Facts)</strong>，而非受保护的通讯。</p>
+
+    </div>
+
+    <div class="footer">
+        MBE 知识点复习卡片
+    </div>
+</div>
+
+</body>
+</html>

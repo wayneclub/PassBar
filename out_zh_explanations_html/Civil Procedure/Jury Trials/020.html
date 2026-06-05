@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            font-size: 1.2rem;
+            margin-top: 0;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .option-analysis {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .option-analysis:last-child {
+            border-bottom: none;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .badge-cause {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        .badge-peremptory {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .exam-tip {
+            background-color: #fff3e0;
+            border: 1px dashed #ff9800;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>MBE 考点解析：陪审团遴选与回避</h2>
+
+    <p>本题考查的核心知识点是<b>联邦民事诉讼中的陪审员回避制度</b>（Jury Challenges under FRCP 47）。</p>
+
+    <div class="concept-box">
+        <span class="concept-title">⚖️ 法律规则核心 (The Rule)</span>
+        在陪审团遴选（Voir Dire）过程中，律师主要有两种方式排除潜在陪审员：
+        <ol style="margin-left: -20px;">
+            <li><b>有因回避 (Challenge for Cause)：</b> 基于偏见（Bias）、经济利益或亲属关系，证明陪审员无法公正履职。<b>数量无限制</b>。</li>
+            <li><b>无因回避 (Peremptory Challenge)：</b> 无需说明理由（但不得基于种族或性别）。<b>数量有限</b>（联邦民事案件中通常每方3次）。</li>
+        </ol>
+    </div>
+
+    <div class="analysis-section">
+        <h3>💡 案情深度分析</h3>
+        <p>题目要求找出<b>只能</b>通过“无因回避”排除的候选人。这意味着该候选人<b>不存在</b>法律认可的“有因回避”理由。</p>
+
+        <div class="option-analysis">
+            <span class="badge badge-peremptory">正确答案</span> <b>承包商 (The Contractor)</b><br>
+            <p><b>理由：</b> 承包商表示“想回去工作”，这属于个人意愿或不便，而非法律上的<b>偏见 (Bias)</b>。虽然他不情愿，但这并不证明他无法公正地听取证据并做出裁决。因此，律师若想排除他，必须消耗一次宝贵的<b>无因回避 (Peremptory Challenge)</b>。</p>
+        </div>
+
+        <div class="option-analysis">
+            <span class="badge badge-cause">有因回避</span> <b>年长女士 (The Elderly Woman)</b><br>
+            <p><b>理由：</b> 她明确表示不相信因歧视被解雇的女性应获赔偿。这表现出了针对案件特定类型的<b>实际偏见 (Actual Bias)</b>，直接构成有因回避的理由。</p>
+        </div>
+
+        <div class="option-analysis">
+            <span class="badge badge-cause">有因回避</span> <b>男子 (The Man)</b><br>
+            <p><b>理由：</b> 他是被告律师的兄弟。这种近亲属关系产生了<b>推定偏见 (Implied Bias)</b>，法院必须将其排除，无需使用无因回避。</p>
+        </div>
+
+        <div class="option-analysis">
+            <span class="badge badge-cause">有因回避</span> <b>女商人 (The Businesswoman)</b><br>
+            <p><b>理由：</b> 她可能持有被告公司的股票（通过基金）。在法律上，对当事方拥有<b>经济利益 (Pecuniary Interest)</b>，无论金额大小，通常都是取消资格的法定理由。</p>
+        </div>
+    </div>
+
+    <h3>📊 两种回避方式对比</h3>
+    <table>
+        <tr>
+            <th>特征</th>
+            <th>有因回避 (For Cause)</th>
+            <th>无因回避 (Peremptory)</th>
+        </tr>
+        <tr>
+            <td><b>理由</b></td>
+            <td>必须证明有偏见、利益冲突或关系</td>
+            <td>无需理由 (No reason needed)</td>
+        </tr>
+        <tr>
+            <td><b>数量</b></td>
+            <td>无限制 (Unlimited)</td>
+            <td>有限制 (通常3次)</td>
+        </tr>
+        <tr>
+            <td><b>限制</b></td>
+            <td>由法官裁定是否成立</td>
+            <td>不得基于种族/性别 (<i>Batson</i> 规则)</td>
+        </tr>
+    </table>
+
+    <div class="exam-tip">
+        <b>🎓 考试技巧 (Exam Tip)</b><br>
+        在 MBE 考试中，区分“不想当陪审员”和“不能当陪审员”是关键。
+        <ul>
+            <li>如果陪审员说“我有急事”、“我不想来”，这通常<b>不是</b>有因回避的理由（除非法官因困难豁免他们，但这属于法官的行政权力，而非律师的“回避”权利）。</li>
+            <li>如果陪审员表现出任何形式的<b>预判 (Prejudgment)</b> 或与案件的<b>连接点 (Connection)</b>，那就是有因回避。</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

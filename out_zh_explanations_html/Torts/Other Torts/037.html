@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .rule-box {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+        }
+
+        .rule-header {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+
+        .analysis-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .step-icon {
+            background: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">侵权法：私人妨害 (Private Nuisance)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点介绍 -->
+        <div class="concept-card">
+            <span class="concept-title">核心考点：异常敏感的原告</span>
+            在私人妨害案件中，判断干扰是否构成“实质性干扰”时，采用的是<strong>客观标准</strong>，而非主观标准。
+        </div>
+
+        <!-- 法律规则详解 -->
+        <div class="rule-box">
+            <div class="rule-header">法律规则 (The Rule)</div>
+            <p><strong>私人妨害 (Private Nuisance)</strong> 的构成要件要求被告的行为对原告使用和享用土地造成了：</p>
+            <ul>
+                <li><strong>实质性的 (Substantial)</strong> 且</li>
+                <li><strong>不合理的 (Unreasonable)</strong> 干扰。</li>
+            </ul>
+            <hr style="border: 0; border-top: 1px dashed #ccc; margin: 10px 0;">
+            <p><strong>关键测试 (The Test)：</strong>干扰必须是对社区中的<span class="key-term">普通人 (Average Person)</span> 而言是冒犯的、恼人的或无法忍受的。</p>
+            <p>如果原告因为自身的<strong>异常敏感性 (Hypersensitivity)</strong> 或土地的特殊用途而感到受干扰，而普通人不会受到影响，则不构成妨害。</p>
+        </div>
+
+        <!-- 题目解析 -->
+        <div class="rule-box" style="background-color: #fff;">
+            <div class="rule-header">本题案情分析</div>
+            
+            <div class="analysis-step">
+                <div class="step-icon">1</div>
+                <div>
+                    <strong>客观事实：</strong>工厂发出的噪音是“微弱的” (faint)，且该区域的其他居民“并未注意到此噪音”。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-icon">2</div>
+                <div>
+                    <strong>原告情况：</strong>原告之所以无法入睡，是因为他上“夜班” (night shift)，需要在白天睡觉。这属于特殊的生活作息。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-icon">3</div>
+                <div>
+                    <strong>结论：</strong>原告对白天噪音的反应属于<strong>异常敏感 (Unusually Sensitive)</strong>。既然普通邻居没有受到干扰，那么该噪音在法律上不构成“实质性干扰”。
+                </div>
+            </div>
+        </div>
+
+        <!-- 选项辨析 -->
+        <div class="concept-card" style="background-color: #fff3cd; border-color: #f1c40f;">
+            <span class="concept-title">为什么选 A 而不选 D？</span>
+            <p><strong>选项 A (正确)：</strong>直接指出了法律抗辩理由——原告的异常敏感性导致其索赔失败。</p>
+            <p><strong>选项 D (错误陷阱)：</strong>虽然工厂确实“妨碍”了该特定房主的安宁，但这只是<strong>主观后果</strong>。MBE 题目常设此类陷阱：描述了事实上的干扰，但忽略了法律上的“客观标准”要件。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #e8f8f5; border-color: #2ecc71;">
+            <div class="rule-header">MBE 考试技巧 (Exam Tip)</div>
+            <p>在做 Nuisance 题目时，如果看到以下关键词，请立即警惕“异常敏感性”考点：</p>
+            <ul>
+                <li>"Dog whistle" (只有狗能听到的声音)</li>
+                <li>"Mink farm" (对噪音极度敏感的水貂)</li>
+                <li>"Night shift worker" (夜班工人)</li>
+                <li>"Other residents did not notice" (其他居民未察觉)</li>
+            </ul>
+            <p>记住：<strong>Nuisance 保护的是普通人的感受，而不是特立独行者的感受。</strong></p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Reference: Restatement (Second) of Torts § 821F
+    </div>
+</div>
+
+</body>
+</html>

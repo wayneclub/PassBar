@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2980b9;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .answer-section {
+            margin-bottom: 20px;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .correct-answer::before {
+            content: "✓";
+            background: #27ae60;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        .explanation {
+            font-size: 15px;
+            color: #444;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+        .trap-section {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .trap-title {
+            font-weight: bold;
+            color: #c0392b;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        .trap-item {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .trap-label {
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 证据法解析</h1>
+        <div class="sub-title">Character Evidence & Impeachment</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">⚖️ 核心考点：FRE 405(a)</div>
+            当被告引入证明其良好品格的证据（"Opening the Door"）后，检方可以在<b>交叉询问</b>（Cross-Examination）中询问关于被告<b>特定行为事例</b>（Specific Instances of Conduct）的问题，目的是为了<b>弹劾品格证人的可信度</b>。
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="answer-section">
+            <div class="correct-answer">正确答案：D</div>
+            <div class="explanation">
+                <p><b>为什么选 D？</b></p>
+                <p>本题考察的是品格证据的反驳规则。逻辑链条如下：</p>
+                <ol>
+                    <li><b>被告先出招</b>：被告传唤证人证明其有“完全诚实”的声誉（Reputation for honesty）。这符合 FRE 404(a)(2)(A)，即被告可以主动引入相关的良好品格证据。</li>
+                    <li><b>检方反击（开门理论）</b>：一旦被告将品格置于争议中（Put character in issue），检方就可以反驳。</li>
+                    <li><b>反驳方式</b>：根据 FRE 405(a)，检方可以在<b>交叉询问</b>该品格证人时，询问相关的<b>特定行为</b>（如伪造成绩单）。</li>
+                    <li><b>目的</b>：这种提问的目的<b>不是</b>为了证明被告真的伪造了成绩单（Extrinsic evidence is generally barred），而是为了测试证人对被告声誉了解的程度或评估标准。</li>
+                </ol>
+                <p>如果证人说“没听说过”，说明他对社区声誉了解不全；如果证人说“听说过但不在乎”，说明他的诚实标准有问题。因此，这直接影响证人的<b>可信度 (Credibility)</b>。</p>
+            </div>
+        </div>
+
+        <!-- 陷阱选项分析 -->
+        <div class="trap-section">
+            <div class="trap-title">🚫 为什么其他选项是错误的？</div>
+            
+            <div class="trap-item">
+                <span class="trap-label">选项 A (Hearsay):</span> 
+                <span class="highlight">错误。</span> 这里的提问不构成传闻（Hearsay）。因为检方提问的目的不是为了证明“被告确实伪造了成绩单”这一事实的真伪，而是为了测试证人是否“听说过”此事（State of mind / Knowledge）。
+            </div>
+
+            <div class="trap-item">
+                <span class="trap-label">选项 B (Prejudice):</span> 
+                <span class="highlight">错误。</span> 虽然 FRE 403（排除偏见证据）始终适用，但在交叉询问品格证人时，测试其可信度的证明价值（Probative Value）通常被认为很高。只要检方有<b>善意基础 (Good Faith Basis)</b>——本题中检察官已向法官展示了记录——这种提问通常是被允许的。
+            </div>
+
+            <div class="trap-item">
+                <span class="trap-label">选项 C (Propensity/Guilt):</span> 
+                <span class="highlight">错误。</span> 这是最大的陷阱。检方<b>不能</b>利用这些特定行为来直接证明被告具有不诚实的倾向从而推断其有罪（Propensity Argument）。这些问题仅限于<b>弹劾证人</b>。
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <b>💡 考试技巧 (Exam Tip)</b><br>
+        记住 "Have you heard" 或 "Did you know" 句式。<br>
+        在交叉询问品格证人时，只要检方有 Good Faith Basis，<br>
+        就可以问 Specific Acts，但如果证人否认，<br>
+        检方<b>不能</b>引入外部证据（Extrinsic Evidence）来反驳。
+    </div>
+</div>
+
+</body>
+</html>

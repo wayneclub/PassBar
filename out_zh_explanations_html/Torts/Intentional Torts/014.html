@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f6f8;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: #333;
+    }
+    .container {
+        max-width: 480px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: #2c3e50;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .header .subtitle {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .rule-box {
+        background-color: #e8f4fd;
+        border-left: 5px solid #3498db;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .rule-title {
+        color: #2980b9;
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+    }
+    .rule-title::before {
+        content: "⚖️";
+        margin-right: 8px;
+    }
+    .highlight {
+        font-weight: bold;
+        color: #e74c3c;
+    }
+    .analysis-section {
+        margin-bottom: 20px;
+    }
+    .analysis-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+    }
+    .case-ref {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin-top: 10px;
+    }
+    .option-analysis {
+        margin-top: 15px;
+    }
+    .option {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+    .option.correct {
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+    }
+    .option.wrong {
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: #721c24;
+        opacity: 0.8;
+    }
+    .badge {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    .badge-correct { background: #28a745; color: white; }
+    .badge-wrong { background: #dc3545; color: white; }
+    
+    .footer {
+        background-color: #f8f9fa;
+        padding: 15px;
+        text-align: center;
+        font-size: 12px;
+        color: #6c757d;
+        border-top: 1px solid #eee;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Intentional Torts & Defenses</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">核心法则：财产防卫 (Defense of Property)</div>
+            <p>业主可以使用<b>合理武力 (Reasonable Force)</b> 来保护财产，但<b>绝不能</b>仅为了保护财产而使用<b>致命武力 (Deadly Force)</b> 或造成严重身体伤害的武力。</p>
+            <p style="margin-top:10px; font-size: 13px;">
+                🚫 <b>禁止使用机械陷阱：</b> 法律禁止使用弹簧枪 (Spring guns) 或陷阱来伤害入侵者，除非该入侵者对业主构成了死亡或严重伤害的威胁。
+            </p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情逻辑推演</div>
+            <p>本题考察的是故意侵权行为中的<b>非法侵犯/殴打 (Battery)</b> 及其抗辩理由。</p>
+            <ol style="padding-left: 20px; line-height: 1.6;">
+                <li><b>原告身份：</b> 推销员无视警告牌进入，属于<b>非法侵入者 (Trespasser)</b>。</li>
+                <li><b>被告行为：</b> 埋设强力爆炸装置 (Powerful explosive charge)。这属于<b>致命武力</b>。</li>
+                <li><b>法律后果：</b> 尽管原告是非法侵入者，但被告无权使用致命武力来保卫空无一人的财产（车道）。</li>
+                <li><b>意图 (Intent)：</b> 埋设地雷/陷阱意味着被告对有人触发并受伤具有“实质确定性 (Substantial Certainty)”，因此构成 Battery 的意图。</li>
+            </ol>
+            
+            <div class="case-ref">
+                📚 <b>经典判例联想：Katko v. Briney (1971)</b><br>
+                这是美国法学院著名的“弹簧枪案”。房主在无人居住的农舍安装了猎枪陷阱，打伤了小偷。法院判决房主败诉，因为<b>“法律对人类生命和肢体安全的重视高于对财产权益的保护”</b>。
+            </div>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="option-analysis">
+            <div class="analysis-title">选项深度解析</div>
+            
+            <div class="option correct">
+                <span class="badge badge-correct">正确 C</span>
+                <b>会，如果该女子对车道下的爆炸装置负有责任。</b>
+                <br>这是唯一正确的结论。只要证明是该女子埋设了炸弹（即证明了 Causation 和 Intent），她就必须为 Battery 负责。因为使用致命武力保护财产不是有效的抗辩理由 (Privilege)。
+            </div>
+
+            <div class="option wrong">
+                <span class="badge badge-wrong">错误 A</span>
+                <b>不会，因为推销员无视了警告...</b>
+                <br>虽然推销员是 Trespasser，但这并不赋予房主将其“炸飞”的权利。非法侵入不是遭受致命武力的正当理由。此外，警告牌只说了“会被起诉 (Prosecuted)”，并没有警告“会被炸死”。
+            </div>
+
+            <div class="option wrong">
+                <span class="badge badge-wrong">错误 B</span>
+                <b>不会，如果该女子有合理理由担心...</b>
+                <br>这是一个干扰项。<b>自卫 (Self-Defense)</b> 需要面对<b>迫在眉睫 (Imminent)</b> 的威胁。预先埋设的炸弹是无差别的，它无法判断当下的入侵者是否真的构成威胁。除非炸弹爆炸时，该女子正面临生命危险，否则此抗辩不成立。
+            </div>
+
+            <div class="option wrong">
+                <span class="badge badge-wrong">错误 D</span>
+                <b>会，除非...意图仅为威慑...</b>
+                <br>法律上的<b>意图 (Intent)</b> 不等于<b>动机 (Motive)</b>。即使动机是“威慑”，但埋设炸弹的行为本身就包含了对“有人会受伤”的实质确定性 (Substantial Certainty)。因此，仅有威慑的动机不能免除 Battery 的责任。
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <b>MBE 考试技巧：</b><br>
+        看到“保护财产” + “致命陷阱/恶犬/枪支”<br>
+        👉 几乎总是判定房主<b>有罪/赔偿</b>。<br>
+        生命权 (Life/Limb) > 财产权 (Property)。
+    </div>
+</div>
+
+</body>
+</html>

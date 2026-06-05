@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background-color: #eee;
+            color: #555;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .rule-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .wrong-option {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .wrong-label {
+            color: var(--wrong-color);
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .footer-tip {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            color: #d35400;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>民事诉讼法 | Civil Procedure</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点标签 -->
+        <div>
+            <span class="concept-tag">FRCP 12(b)(2)</span>
+            <span class="concept-tag">Personal Jurisdiction</span>
+            <span class="concept-tag">Motion to Dismiss</span>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="answer-box">
+            <span class="answer-title">✅ 正确答案：D</span>
+            <p><strong>核心逻辑：</strong>被告应在提交答辩状之前，通过<strong>驳回起诉动议 (Motion to Dismiss)</strong> 来提出管辖权异议，并附上<strong>宣誓书 (Affidavit)</strong> 证明事实。</p>
+        </div>
+
+        <div class="section-title">⚖️ 法律依据与推理</div>
+        
+        <p>本题考查的是如何在联邦法院正确地挑战<strong>对人管辖权 (Personal Jurisdiction)</strong>。</p>
+
+        <div class="rule-box">
+            <strong>FRCP 12(b) 规则：</strong><br>
+            被告必须在提交答辩状 (Answer) 之前，或者在答辩状中（如果未提交动议），提出缺乏对人管辖权的抗辩。这被称为“答辩前动议” (Pre-answer Motion)。
+        </div>
+
+        <p><strong>1. 为什么选择动议驳回 (Motion to Dismiss)？</strong><br>
+        根据《联邦民事诉讼规则》第12(b)(2)条，缺乏对人管辖权是必须在首次回应中提出的抗辩。如果被告先提交了关于案情的答辩而未提及管辖权，该抗辩权即被视为<strong>放弃 (Waived)</strong>。</p>
+
+        <p><strong>2. 为什么要附上宣誓书 (Affidavit)？</strong><br>
+        与挑战“未能陈述请求” (12(b)(6)) 不同，挑战管辖权 (12(b)(2)) 时，法院可以考虑<strong>诉状之外的证据</strong>。原告在诉状中可能仅仅声称法院有管辖权，被告需要通过宣誓书提供具体事实（如“从未去过A州”、“在A州无生意往来”），以反驳原告的主张。</p>
+
+        <div class="section-title">❌ 为什么其他选项是错的？</div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 A (Discovery) 错误：</span><br>
+            证据开示 (Discovery) 通常是在诉讼程序正式开始后进行的。虽然法院可以允许就管辖权问题进行有限的证据开示，但这并不是<strong>提出</strong>管辖权异议的程序性方式。必须先有动议，才可能有针对该动议的证据开示。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 B (Judgment on the Pleadings) 错误：</span><br>
+            <strong>FRCP 12(c)</strong> 规定的“诉状裁决动议”必须在<strong>诉状程序终结 (Pleadings are closed)</strong> 后才能提出，即原告起诉和被告答辩之后。此时再提管辖权异议通常为时已晚（视为已放弃）。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 C (Sanctions) 错误：</span><br>
+            虽然根据 <strong>Rule 11</strong> 可以申请制裁，但这通常是后续步骤。被告的首要任务是让法院驳回案件。只有在成功证明法院无管辖权，且原告起诉明显无理时，制裁才可能适用。
+        </div>
+
+    </div>
+
+    <div class="footer-tip">
+        <strong>💡 MBE 考试技巧</strong><br>
+        记住 "Use it or Lose it"（不用即失）原则：<br>
+        对人管辖权 (Personal Jurisdiction)、送达程序 (Service of Process) 和审判地 (Venue) 的异议，必须在<strong>第一次</strong>提交给法院的文件（无论是动议还是答辩状）中提出，否则视为放弃！
+    </div>
+</div>
+
+</body>
+</html>

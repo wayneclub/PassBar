@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考题解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .tag {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+            margin: 20px 0 10px 0;
+            font-size: 1.1rem;
+        }
+        .law-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid #f1c40f;
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        .analysis-text {
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+        .option-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+        }
+        .option-card.correct {
+            border-color: var(--correct-color);
+            background-color: rgba(39, 174, 96, 0.05);
+        }
+        .option-card.wrong {
+            border-color: var(--wrong-color);
+            opacity: 0.8;
+        }
+        .icon {
+            margin-right: 5px;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考点解析</h1>
+        <div class="sub-title">Kidnapping under MPC</div>
+    </div>
+
+    <div class="content">
+        <span class="tag">Criminal Law</span>
+        
+        <div class="section-title">核心考点：模范刑法典下的绑架罪</div>
+        <div class="analysis-text">
+            本题考察的是在《模范刑法典》(Model Penal Code, MPC) 体系下，<b>绑架罪 (Kidnapping)</b> 的构成要件以及跨州犯罪的管辖权问题。
+        </div>
+
+        <div class="law-box">
+            <strong>⚖️ 法律规则 (MPC § 212.1)</strong><br>
+            根据 MPC，绑架罪成立需满足以下条件：
+            <ul>
+                <li><b>非法移动 (Unlawful Removal):</b> 将受害人从其住所、工作场所带离，或将其移动<b>相当长的距离 (Substantial Distance)</b>。</li>
+                <li><b>特定目的 (Specific Purpose):</b> 移动受害人是为了便于实施重罪 (Facilitate commission of any felony)、逃跑、索取赎金或造成伤害等。</li>
+            </ul>
+        </div>
+
+        <div class="section-title">✅ 正确答案解析</div>
+        <div class="option-card correct">
+            <strong>选项 D: Yes (可以定罪)</strong><br>
+            <p style="margin-top: 5px; font-size: 0.9rem;">
+                <span class="icon">🎯</span><b>理由：</b>司机在邻州是在武力威胁下被转移的。
+            </p>
+            <hr style="border: 0; border-top: 1px solid var(--correct-color); opacity: 0.3;">
+            <p style="font-size: 0.9rem;">
+                <b>1. 相当长的距离 (Substantial Distance):</b><br>
+                虽然绑架开始于本州，但在进入邻州后，他们又行驶了“数英里”到达“偏僻地点”。在 MPC 下，这构成了“相当长的距离”的移动 (Asportation)。这种移动增加了受害人的风险，且不仅仅是抢劫罪的附带行为。
+            </p>
+            <p style="font-size: 0.9rem;">
+                <b>2. 便于实施重罪 (Facilitate Felony):</b><br>
+                移动受害人是为了在偏僻地点实施抢劫 (Robbery) 并抢走车辆。
+            </p>
+            <p style="font-size: 0.9rem;">
+                <b>3. 管辖权 (Jurisdiction):</b><br>
+                绑架是一个<b>持续性犯罪 (Continuing Offense)</b>。只要犯罪的关键部分（如强迫移动）发生在邻州，该州就有管辖权。
+            </p>
+        </div>
+
+        <div class="section-title">❌ 错误选项辨析</div>
+        
+        <div class="option-card wrong">
+            <strong>选项 A: 错误</strong><br>
+            <span style="font-size: 0.9rem;">
+                <b>管辖权误区：</b>虽然绑架<b>开始</b>于本州，但这并不意味着它<b>结束</b>于那里。由于受害人被强迫跨越州界并在邻州继续被移动，两个州均对该犯罪拥有管辖权。
+            </span>
+        </div>
+
+        <div class="option-card wrong">
+            <strong>选项 B: 错误</strong><br>
+            <span style="font-size: 0.9rem;">
+                <b>附带性 (Incidental) 测试：</b>如果移动仅仅是为了完成抢劫（例如在屋内从一个房间推到另一个房间），则可能被视为“附带的”。但本案中，行驶数英里至偏僻地点大大增加了受害人的危险，超出了抢劫罪本身的必要范围。
+            </span>
+        </div>
+
+        <div class="option-card wrong">
+            <strong>选项 C: 错误</strong><br>
+            <span style="font-size: 0.9rem;">
+                <b>赎金 (Ransom) 定义：</b>赎金是指为换取受害人释放而支付的钱财。本案中，抢走钱包和车是<b>抢劫 (Robbery)</b> 的行为，而非支付赎金。虽然两者都涉及财物，但法律定义不同。
+            </span>
+        </div>
+
+        <div class="section-title">💡 考试技巧 (Exam Tip)</div>
+        <div class="analysis-text">
+            在处理 MPC 绑架题目时，重点寻找<b>“距离”</b>和<b>“危险增加”</b>。
+            <br><br>
+            如果受害人被移动了很长一段路（特别是跨州或到偏僻地），通常满足 MPC 的<b>Substantial Distance</b> 要求，从而构成绑架，而不仅仅是相关重罪（如抢劫或强奸）的附带行为。
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-card {
+            background-color: #eef6fc;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            color: #2980b9;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        .comparison-table th {
+            background-color: #34495e;
+            color: white;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            background-color: #fff;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .option-box {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .option-box.correct {
+            border-color: #27ae60;
+            background-color: #f0fbf4;
+        }
+        .option-box.wrong {
+            border-color: #e74c3c;
+            opacity: 0.8;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 5px;
+        }
+        .badge-correct { background-color: #27ae60; }
+        .badge-wrong { background-color: #e74c3c; }
+        
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Civil Procedure | Sanctions</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点讲解 -->
+        <div class="rule-card">
+            <div class="rule-title">核心考点：FRCP 11 制裁程序</div>
+            <p>本题考察《联邦民事诉讼规则》第11条（FRCP 11）关于制裁（Sanctions）的程序要求。关键在于区分制裁是由<b>当事人动议</b>启动，还是由<b>法院依职权</b>启动。</p>
+        </div>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>启动方式</th>
+                    <th>安全港规则 (Safe Harbor)</th>
+                    <th>程序要求</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>当事人动议</b><br>(Party's Motion)</td>
+                    <td><span class="highlight">适用 (21天)</span><br>必须先送达对方，等待21天纠正，若未纠正方可提交法院。</td>
+                    <td>必须单独提出动议。</td>
+                </tr>
+                <tr>
+                    <td><b>法院依职权</b><br>(Sua Sponte)</td>
+                    <td><span class="highlight">不适用</span><br>法院无需给予纠正机会。</td>
+                    <td>法院必须先发出<b>说明理由令</b> (Order to Show Cause)。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="section-title">案情逻辑推演</div>
+            <p>在本案中，制裁程序是由<b>法官依职权（Sua Sponte）</b>启动的：</p>
+            <ol>
+                <li>律师提交的起诉状仅有一句空洞的管辖权陈述，违反了 FRCP 8(a)(1) 的要求，进而违反了 FRCP 11(b)（法律主张需有依据）。</li>
+                <li>法官发出了<b>说明理由令 (Order to Show Cause)</b>。</li>
+                <li>法官举行了听证会。</li>
+                <li>法官处以了制裁。</li>
+            </ol>
+            <p>虽然律师后来提交了修改后的起诉状（Amended Complaint），但这并不能免除其提交原始有缺陷文件时的责任。因为是法院主动发起的制裁，<b>不需要遵守21天的安全港规则</b>。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="section-title">选项深度解析</div>
+
+            <div class="option-box correct">
+                <span class="badge badge-correct">正确答案 A</span>
+                <p><b>维持处以制裁的命令 (Affirm the order)。</b></p>
+                <p><b>法律依据：</b>上诉法院审查制裁令的标准是<b>“滥用裁量权” (Abuse of Discretion)</b>。这意味着上诉法院会高度尊重初审法官的决定。</p>
+                <p><b>推理：</b>初审法官遵循了正确的程序（发出说明理由令 -> 听证 -> 裁决）。律师违反 FRCP 11 的行为（提交无事实依据的管辖权声明）是客观存在的。因此，法官的制裁决定既不武断也不违法，上诉法院将予以维持。</p>
+            </div>
+
+            <div class="option-box wrong">
+                <span class="badge badge-wrong">错误选项 B</span>
+                <p><b>撤销命令，因为接受了修改后的起诉状。</b></p>
+                <p><b>解析：</b>FRCP 11 制裁针对的是<b>提交文件时的行为</b>。虽然修改起诉状解决了案件继续审理的问题，但它不能“擦除”律师最初提交轻率文件（Frivolous filing）的违规行为。制裁的目的在于惩戒和威慑。</p>
+            </div>
+
+            <div class="option-box wrong">
+                <span class="badge badge-wrong">错误选项 C</span>
+                <p><b>撤销命令，因为法官依职权行事。</b></p>
+                <p><b>解析：</b>FRCP 11(c)(3) 明确授权法院可以依职权（<span class="latin">sua sponte</span>）启动制裁程序。这完全在法官的权力范围内。</p>
+            </div>
+
+            <div class="option-box wrong">
+                <span class="badge badge-wrong">错误选项 D</span>
+                <p><b>撤销命令，因为未给予21天期限。</b></p>
+                <p><b>解析：</b>这是一个经典的干扰项。<b>21天安全港规则 (Safe Harbor Rule) 仅适用于当事人提出的制裁动议</b>。当法院依职权启动制裁时，无需给予律师撤回文件的机会。</p>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

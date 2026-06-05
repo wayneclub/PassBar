@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --highlight-bg: #ecf0f1;
+            --success-color: #27ae60;
+            --text-color: #34495e;
+            --card-bg: #ffffff;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-card {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .concept-title span {
+            margin-left: 8px;
+            font-size: 0.9em;
+            color: #7f8c8d;
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        .rule-box {
+            border: 1px solid #bdc3c7;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .rule-label {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: white;
+            padding: 0 5px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .analysis-section {
+            margin-top: 25px;
+        }
+
+        .option-analysis {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ecf0f1;
+        }
+
+        .option-analysis:last-child {
+            border-bottom: none;
+        }
+
+        .correct-tag {
+            background: var(--success-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .wrong-tag {
+            background: #95a5a6;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .exam-tip {
+            background: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+
+        .exam-tip-title {
+            color: #f57c00;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .latin {
+            font-style: italic;
+            font-family: serif;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Torts: Private Nuisance</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心概念 -->
+        <div class="concept-card">
+            <div class="concept-title">
+                ⚖️ 私人妨害 <span>Private Nuisance</span>
+            </div>
+            <p>定义：对原告使用和享用其土地的权利造成了<b>实质性</b> (Substantial) 且<b>不合理</b> (Unreasonable) 的干扰。</p>
+        </div>
+
+        <!-- 关键考点：自愿接近妨害 -->
+        <div class="rule-box">
+            <div class="rule-label">本题核心考点</div>
+            <p><b>自愿接近妨害 (Coming to the Nuisance)</b></p>
+            <p>当原告在购买土地时，已经知道附近存在妨害源（如本题中的兄弟会派对），这在法律上如何认定？</p>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+            <p><b>📜 现代法律规则 (Restatement of Torts):</b></p>
+            <p>“自愿接近妨害”<b>不是</b>绝对的抗辩理由 (Not a complete bar)，但它是法院在权衡妨害是否“不合理”时必须考虑的一个<b>重要因素</b>。</p>
+        </div>
+
+        <!-- 答案解析 -->
+        <div class="analysis-section">
+            <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 5px;">选项深度解析</h3>
+
+            <div class="option-analysis">
+                <span class="correct-tag">选项 C (正确)</span>
+                <p><b>法律依据：</b> 选项 C 准确地反映了现代规则。买家知情购房这一事实（Coming to the nuisance）虽然不会直接剥夺她的起诉权，但会作为权衡因素，大大削弱她的胜诉几率。</p>
+                <p>法院会认为：既然你利用了因噪音而降低的房价（"very good price"），现在反过来要求停止噪音，这可能是不公平的。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 A (错误)</span>
+                <p><b>理由：</b> 财产权不是绝对的。土地所有者只能以<b>合理</b> (Reasonable) 的方式使用土地，不能随心所欲地干扰邻居。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 B (错误)</span>
+                <p><b>理由：</b> 这是旧的普通法规则。在现代法律下，"Coming to the nuisance" 不再是绝对的阻却事由 (Complete defense)，只是考量因素之一。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 D (错误)</span>
+                <p><b>理由：</b> 过于绝对。虽然噪音干扰了安宁，但法院必须进行<b>利益衡量</b> (Balancing test)。买家知情且低价购房的事实很可能导致法院判定该干扰在特定情境下并非“不合理”，从而导致她败诉。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <div class="exam-tip-title">💡 MBE 考试通关秘籍</div>
+            <p>在处理 <b>Nuisance</b> 题目时，请注意区分：</p>
+            <ul style="margin: 5px 0 0 20px; padding: 0;">
+                <li><b>Public Nuisance</b> vs. <b>Private Nuisance</b>。</li>
+                <li><b>绝对规则</b> vs. <b>权衡因素</b>。现代侵权法倾向于使用“合理性权衡” (Reasonableness balancing test)。</li>
+            </ul>
+            <p style="margin-top: 10px;">看到 "Coming to the nuisance" 时，<b>不要</b>选“直接败诉”或“完全无关”，要选<b>“这是一个会影响结果的考量因素”</b>。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

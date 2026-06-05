@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-card {
+            background-color: #eef7fc;
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .option-analysis {
+            margin-top: 15px;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+
+        .option.correct {
+            background-color: #e8f8f5;
+            border-color: var(--success-color);
+        }
+
+        .option.wrong {
+            background-color: #fdf2e9;
+            border-color: var(--warning-color);
+            opacity: 0.8;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .badge-correct {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .badge-wrong {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .exam-tip {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .exam-tip strong {
+            color: #f1c40f;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考题解析</h1>
+        <div class="subtitle">Constitutional Law: State Action</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">⚖️ 核心考点：州行为原则 (State Action Doctrine)</span>
+            <p>美国宪法第十四修正案 (14th Amendment) 仅限制<b>政府行为</b>，不限制私人行为。除非存在例外情况，私人组织的歧视行为并不违反宪法。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情关键点分析</div>
+            <ul>
+                <li><b>主体：</b>一个私人组织 (Private Organization)。</li>
+                <li><b>行为：</b>租用市政府拥有的礼堂举办活动，且该组织内部规定歧视女性。</li>
+                <li><b>政府角色：</b>市政府仅仅是房东，按“先到先得”原则出租，收取租金，没有参与组织的管理或决策。</li>
+            </ul>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为何选 B？</div>
+            <p>本题的关键在于判断该私人组织是否因为租用了公共设施而变成了<b>“州行为体” (State Actor)</b>。</p>
+            
+            <p>根据最高法院的判例（如 <i>Gilmore v. Montgomery</i>），仅仅使用公共设施并不足以构成“州行为”。要将私人行为转化为州行为，通常需要满足以下两个条件之一：</p>
+            
+            <ol>
+                <li><b>公共职能例外 (Public Function Exception)：</b>私人实体行使了传统上由政府<b>独占</b>的权力（如管理城镇、举行选举）。<br><span class="english-term">→ 租礼堂开会显然不是政府独占的职能。</span></li>
+                <li><b>纠缠/参与例外 (Entanglement/Involvement Exception)：</b>政府在很大程度上授权、鼓励或从私人歧视中获利（如 <i>Burton v. Wilmington Parking Authority</i> 中的共生关系）。<br><span class="english-term">→ 本案中，市政府只是中立地出租场地，没有“深度参与” (Significant Involvement)。</span></li>
+            </ol>
+
+            <div class="option correct">
+                <span class="badge badge-correct">正确</span>
+                <div>
+                    <b>选项 B</b> 指出该组织不是州行为体，因此不受第十四修正案约束。这是原告败诉的根本原因。
+                </div>
+            </div>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">干扰项排除</div>
+            
+            <div class="option wrong">
+                <span class="badge badge-wrong">选项 D</span>
+                <div>
+                    <b>错误理由：</b>仅仅“使用” (Use) 城市礼堂并不足以建立州行为。如果只要用了水电或走了公路就受宪法约束，那宪法将无限扩大。
+                </div>
+            </div>
+
+            <div class="option wrong">
+                <span class="badge badge-wrong">选项 C</span>
+                <div>
+                    <b>错误理由：</b>“邀请公众” (Inviting the public) 并不使私人俱乐部变成政府。虽然民权法案 (Civil Rights Acts) 可能通过立法禁止公共场所歧视，但本题问的是<b>宪法第十四修正案</b>，而宪法本身不直接约束此类私人行为。
+                </div>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>🎓 MBE 考试技巧</strong>
+            <br><br>
+            遇到“私人歧视”被起诉违反“宪法”的题目时，首先问自己：<b>“这是政府在歧视吗？”</b>
+            <br><br>
+            如果被告是私人：
+            1. 除非它是<b>“公司市镇” (Company Town)</b>；
+            2. 或者政府与它有<b>“共生关系” (Symbiotic Relationship)</b>（如利润分成）；
+            <br>
+            否则，宪法管不着它！直接选“No, because not a state actor”。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

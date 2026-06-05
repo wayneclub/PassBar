@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析：公共记录的认证</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #d4edda;
+            --correct-text: #155724;
+            --wrong-bg: #f8d7da;
+            --wrong-text: #721c24;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .question-summary {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .answer-section {
+            margin-bottom: 20px;
+        }
+
+        .correct-answer {
+            background: var(--correct-bg);
+            color: var(--correct-text);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #c3e6cb;
+            margin-bottom: 15px;
+        }
+
+        .explanation-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .distractor {
+            margin-bottom: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            background: #f8f9fa;
+            border: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .distractor strong {
+            display: block;
+            margin-bottom: 4px;
+            color: #555;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .tag-fre {
+            background: #e2e6ea;
+            color: #495057;
+        }
+
+        .mbe-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .mbe-tip-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        code {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Evidence / Authentication</div>
+    </div>
+
+    <div class="content">
+        
+        <div class="question-summary">
+            <strong>案情简述：</strong> 检察官试图引入一份未签名、未盖章、未认证的“州地契登记册”副本，以证明被告隐瞒资产。被告以“未适当认证”为由反对。
+        </div>
+
+        <div class="rule-box">
+            <div class="rule-title">核心考点：公共记录的认证</div>
+            <p>根据《联邦证据规则》(FRE) 901条，非“自我认证”的文件必须通过外部证据证明其真实性。</p>
+            <p><strong>FRE 901(b)(7)</strong> 规定，公共记录可以通过以下证据进行认证：</p>
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li>证明该文件已依法在公共部门记录或存档；或</li>
+                <li>证明该文件来自保管此类文件的公共部门。</li>
+            </ol>
+        </div>
+
+        <div class="answer-section">
+            <div class="explanation-title">✅ 正确答案解析 (选项 B)</div>
+            <div class="correct-answer">
+                <strong>结论：</strong> 法院不应采纳，除非检察官能提供证据证明该记录来自官方存档处。
+                <hr style="border: 0; border-top: 1px solid rgba(0,0,0,0.1); margin: 10px 0;">
+                <strong>逻辑推理：</strong>
+                <br>
+                本案中的地契登记册副本<strong>未经过</strong>签署、盖章或认证 (Certified)，因此它不符合 FRE 902 的“自我认证” (Self-authenticating) 标准。
+                <br><br>
+                既然不能自我认证，检察官必须按照 FRE 901 的一般规则进行认证。对于公共记录，最标准的方法就是传唤证人或提供证据，证明该文件确实来自保管此类记录的公共办公室。选项 B 准确描述了这一补救措施。
+            </div>
+        </div>
+
+        <div class="explanation-title">❌ 错误选项分析</div>
+        
+        <div class="distractor">
+            <strong>选项 A：传闻证据 (Hearsay)</strong>
+            <span class="tag tag-fre">FRE 803(8)/(14)</span>
+            虽然地契是庭外陈述，但公共记录 (Public Records) 是著名的传闻证据例外。如果文件被成功认证，传闻规则通常不会阻碍其采纳。本题的核心障碍是“认证”而非“传闻”。
+        </div>
+
+        <div class="distractor">
+            <strong>选项 C：自我认证 (Self-authenticating)</strong>
+            <span class="tag tag-fre">FRE 902</span>
+            错误。只有<strong>经认证的副本 (Certified Copies)</strong>、带有公章的文件或带有官员签名及认证的文件才是自我认证的。本题明确指出该副本“未签署、未盖章、未认证”，因此必须有外部证据支持。
+        </div>
+
+        <div class="distractor">
+            <strong>选项 D：保管链 (Chain of Custody)</strong>
+            <span class="tag tag-fre">FRE 901</span>
+            错误。保管链通常用于容易被篡改或无法通过外观区分的<strong>实物证据</strong>（如毒品粉末、血液样本）。对于独特的文件（如地契记录），只要证明其来源即可，不需要繁琐的保管链证明。
+        </div>
+
+        <div class="mbe-tip">
+            <span class="mbe-tip-title">💡 MBE 答题技巧</span>
+            在处理<strong>文件证据 (Documentary Evidence)</strong> 题目时，请遵循两步走：
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li><strong>看形式：</strong> 是否有公章、认证章？如果有，它是 FRE 902 自我认证。</li>
+                <li><strong>看来源：</strong> 如果没有章（如本题），它需要基础证言 (Foundation Testimony) 来证明它来自正确的地方 (FRE 901)。</li>
+            </ol>
+            切勿混淆“保管链”（针对实物）与“文件认证”（针对书证）。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

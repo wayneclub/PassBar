@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .key-concept {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .key-concept h3 {
+            margin-top: 0;
+            color: #1565c0;
+            font-size: 16px;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .analysis-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .correct-answer {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .correct-answer strong {
+            color: #2e7d32;
+        }
+        .distractor {
+            background-color: #fff;
+            border: 1px solid #eee;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .distractor-title {
+            font-weight: bold;
+            color: #d32f2f;
+            margin-bottom: 4px;
+            display: block;
+        }
+        .mbe-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffecb3;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #856404;
+        }
+        .mbe-tip strong {
+            color: #ff6f00;
+        }
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Torts: Negligence Defenses</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="key-concept">
+            <h3>🔑 核心考点：与有过失 (Contributory Negligence)</h3>
+            <p>本题的关键在于题目明确指出适用<b>“基于原告行为的传统抗辩” (Traditional defenses based on the plaintiff's conduct)</b>。</p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">正确答案解析 (选项 B)</div>
+            <div class="correct-answer">
+                <strong>为什么这是决定性问题？</strong>
+                <p>在侵权法中，关于原告自身过失对赔偿的影响，主要分为两种管辖规则：</p>
+                <ol style="padding-left: 20px; margin: 10px 0;">
+                    <li><b>比较过失 (Comparative Negligence)</b>：现代大多数州的规则。原告的过失只会按比例减少赔偿。</li>
+                    <li><b>与有过失 (Contributory Negligence)</b>：传统的普通法规则。如果原告对自己的伤害有任何一点过失（哪怕是1%），将<b>完全阻却 (Complete Bar)</b> 其获得任何赔偿。</li>
+                </ol>
+                <p>题目中的“传统抗辩”暗示适用<b>与有过失</b>规则。原告醉酒并同意玩俄罗斯轮盘赌，这显然偏离了理性人的行为标准。如果陪审团认定她有过失，在传统规则下，她将<b>一分钱都拿不到</b>。因此，这直接决定了案件的胜败。</p>
+            </div>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">干扰项辨析</div>
+            
+            <div class="distractor">
+                <span class="distractor-title">❌ 选项 A：关于同意 (Consent)</span>
+                虽然<b>风险自甘 (Assumption of Risk)</b> 也是过失的抗辩理由，但它要求原告<b>“明知且自愿”</b>承担风险。由于原告处于“法律上的醉酒状态” (legally intoxicated)，她可能无法有效地理解风险或给予有效的同意。因此，相比于显而易见的“与有过失”，同意是否有效存在事实争议，不如选项B那样具有决定性。
+            </div>
+
+            <div class="distractor">
+                <span class="distractor-title">❌ 选项 C：共同冒险 (Joint Venture)</span>
+                共同冒险理论通常用于让参与者对<b>第三方</b>受害者承担连带责任。当共同冒险的参与者<b>互相</b>造成伤害时，该理论并不适用，案件仍回归到基本的过失分析。
+            </div>
+
+            <div class="distractor">
+                <span class="distractor-title">❌ 选项 D：被告的醉酒状态</span>
+                这是一个常见的陷阱。在过失侵权中，<b>自愿醉酒 (Voluntary Intoxication)</b> 并不是抗辩理由。醉酒者仍需遵守“理性的清醒人” (Reasonable Sober Person) 的注意义务标准。因此，被告是否醉酒不影响对其责任的认定。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <strong>💡 MBE 实战技巧</strong>
+            <br>
+            注意审题中的<b>管辖权提示词</b>！
+            <br>
+            MBE 默认适用<b>纯粹比较过失 (Pure Comparative Negligence)</b> 规则。但是，如果题目特意提到“Traditional defenses”或“Common law jurisdiction”，你必须立即切换思维到<b>与有过失 (Contributory Negligence)</b>，即“全有或全无” (All or Nothing) 的赔偿模式。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

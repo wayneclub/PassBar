@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><style>
+:root{--primary-color:#2c3e50;--accent-color:#3498db;--highlight-bg:#e8f4f8;--correct-bg:#d4edda;--correct-text:#155724;--wrong-bg:#f8d7da;--wrong-text:#721c24;--text-color:#333;--bg-color:#f4f7f6;--card-bg:#ffffff;--border-radius:8px}
+strong,b{display:inline!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--bg-color);margin:0;padding:20px;display:flex;justify-content:center;font-size:14px}
+.container{max-width:480px;width:100%;background:transparent}
+/* Header variants */
+.header,.card-header,.header-card{background:var(--primary-color);color:#fff;padding:15px;text-align:center;border-radius:var(--border-radius);margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.2)}
+.header h1,.card-header h1,.header-card h1{margin:0;font-size:20px;font-weight:600}
+.header p,.header .sub-title,.card-header p,.card-header .sub-title,.header-card p,.header-card .sub-title{margin:5px 0 0;font-size:14px;opacity:.9}
+.header + .card,.card-header + .card,.header-card + .card{margin-top:0}
+.header-title{font-size:20px;font-weight:600;margin:0}
+.header-subtitle{font-size:14px;opacity:.9;margin:5px 0 0}
+/* Content */
+.content,.content-section{padding:20px}
+/* Section headings — unified 1rem */
+h3{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+.section-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-top:20px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px}
+/* Core concept / rule box */
+.concept-box,.rule-box{background-color:var(--highlight-bg);padding:10px;border-radius:4px;margin:10px 0;font-size:.95rem}
+.concept-box h2,.concept-box h3,.concept-box h4{color:var(--accent-color);margin-top:0;font-size:1rem;font-weight:600;border:none!important;padding-bottom:0!important;margin-bottom:8px}
+.rule-title{font-weight:bold;color:var(--primary-color);margin-bottom:8px;display:block}
+/* Concept cards */
+.concept-card{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
+.concept-card h3{margin-top:0;font-size:1rem;color:var(--accent-color);border-bottom:1px solid #eee;padding-bottom:8px;margin-bottom:10px}
+/* Comparison table — solid borders, border-collapse */
+.comparison-table{margin:15px 0}
+.comparison-table h3,.comparison-table h4{color:var(--primary-color);font-size:.95rem;margin-top:0;margin-bottom:8px;border:none!important;padding-bottom:0!important}
+table.comparison-table,.comparison-table table{width:100%;border-collapse:collapse;font-size:.9em}
+table.comparison-table th,table.comparison-table td,.comparison-table table th,.comparison-table table td{border:1px solid #ddd;padding:8px 10px;text-align:left}
+table.comparison-table th,.comparison-table table th{background-color:#f8f9fa;font-weight:bold;color:var(--primary-color)}
+/* Diagram */
+.diagram{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center}
+.diagram h3{margin-top:0;border:none!important;padding-bottom:0!important;font-size:.95rem}
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flow-node{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:6px;font-size:.9em;max-width:90%;text-align:center}
+.flow-node.active{border-color:var(--accent-color);box-shadow:0 0 0 2px rgba(52,152,219,.3)}
+.flow-node.highlight-node{background-color:var(--correct-bg);border-color:var(--correct-text);color:var(--correct-text)}
+.arrow{font-size:1.2em;color:#aaa;line-height:1}
+/* Analysis steps — step-number floats left; step-content fills rest via BFC */
+.analysis-step{display:block;margin-bottom:14px;overflow:hidden}
+.step-number,.step-label{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px}
+.step-content{overflow:hidden;font-size:.95em}
+/* Answer box */
+.answer-box{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+.answer-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Answer options */
+.option{padding:12px 15px;margin-bottom:10px;border-radius:8px;font-size:.9em;line-height:1.5}
+.option.correct,.option-item.correct{background-color:var(--correct-bg);color:var(--correct-text);border:1px solid #c3e6cb}
+.option.wrong{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb}
+.option-item{margin-bottom:12px;padding:10px;border-radius:6px;background-color:#f9f9f9;border:1px solid #eee;font-size:.9em}
+.option-label{font-weight:bold;display:inline-block;margin-right:5px}
+.correct-label{color:#27ae60}
+.wrong-label{color:#c0392b}
+/* Rule / trap alert */
+.rule-block,.trap-alert{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.rule-block h4,.trap-alert h4{margin-top:0;color:#665000;font-size:.95em}
+/* Case reference box */
+.case-box{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+.case-box h4,.case-title{color:#1565c0;font-weight:bold;margin-top:0;margin-bottom:8px;display:block;font-size:.95em}
+/* span.case-box — inline badge usage: compact padding, no line-height blowout */
+span.case-box{display:inline-block;padding:2px 8px;margin:0 4px;font-size:.85em;border-radius:4px;vertical-align:middle;background-color:#e3f2fd;border:1px solid #bbdefb;color:#1565c0;font-weight:500}
+/* Term highlight */
+.term {
+    background: transparent;
+    border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+    padding: 0 1px 1px;
+    border-radius: 0;
+    font-size: 1em;
+    font-weight: 800;
+    white-space: normal;
+}
+.highlight{background-color:#fff3cd;padding:2px 4px;border-radius:3px;font-weight:500}
+.key-concept{font-weight:bold;color:#e74c3c}
+/* Wrong options list */
+.wrong-options{background-color:#fafafa;padding:15px;border-radius:8px;font-size:.9em;color:#555;border:1px solid #eee}
+.wrong-options li{margin-bottom:8px}
+/* Exam tip — all variants → yellow left-bordered box */
+.footer-tip,.tip-box,.exam-tip{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.footer-tip{border-radius:0 0 12px 12px;margin-top:0}
+.footer{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;font-size:.9em;color:#6d4c41;border-radius:0 0 12px 12px}
+.tip-title,.exam-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Misc */
+code{background:#eee;padding:2px 4px;border-radius:4px;font-family:monospace;font-size:.9em}
+ul,ol{padding-left:20px;margin:8px 0}
+p{margin:8px 0}
+/* ── Aliases for legacy Gemini-generated class names ── */
+/* Card variants */
+.card{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid var(--accent-color)}
+.card.option.wrong{background:var(--card-bg);color:var(--wrong-text);border-left-color:#e74c3c;opacity:.95;font-size:.95rem}
+.card-title,.step-title{color:var(--primary-color);font-size:1rem;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+/* Correct answer variants */
+.correct-answer,.answer-banner,.correct-section{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:15px;margin-bottom:20px;border-radius:4px}
+/* Wrong answer / distractor variants */
+.wrong-option,.wrong-answer,.distractor,.option-wrong,.incorrect,.wrong-choice{background:var(--card-bg);border-radius:var(--border-radius);box-shadow:0 4px 6px rgba(0,0,0,.1);padding:20px;margin-bottom:20px;border-left:5px solid #e74c3c;opacity:.95;font-size:.95rem;color:var(--wrong-text)}
+/* Option analysis wrapper */
+.option-analysis,.option-card,.option-box,.choice-analysis{margin-bottom:8px}
+/* English term / key term variants */
+.english-term,.eng-term,.en-term,.term-en,.english,.eng,.key-term,.latin-term{background-color:#e1ecf4;color:#2980b9;padding:1px 5px;border-radius:4px;font-size:.9em;font-weight:500}
+/* Analysis section variants — block containers, NOT flex */
+.analysis-section,.analysis-box,.analysis-title,.rule-section{display:block;margin-bottom:16px}
+/* Analysis step variants — same as .analysis-step (float-based) */
+.analysis-point,.logic-step,.step-item,.step-card{display:block;margin-bottom:14px;overflow:hidden}
+/* Step variants */
+.step{display:block;margin-bottom:14px;overflow:hidden}
+.step-num,.step-icon{float:left;clear:left;background:var(--primary-color);color:#fff;width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;margin-right:10px;box-sizing:border-box;margin-top:1px;flex-shrink:0}
+.step-text,.analysis-text,.explanation-text{flex-grow:1;font-size:.95em}
+/* Highlight / key point / rule card variants */
+.highlight-box,.key-point,.rule-card,.rule-section,.result-box,.answer-analysis{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:15px;margin-bottom:20px;border-radius:0 8px 8px 0}
+/* Subtitle */
+.subtitle{margin:4px 0 0;font-size:14px;opacity:.9}
+/* MBE tip variants */
+.mbe-tip,.tip-box-alt,.exam-tip-box{background:#fff8e1;border-left:5px solid #ffc107;padding:15px 20px;margin-top:20px;font-size:.9em;color:#6d4c41}
+.mbe-tip-title{font-weight:bold;color:#ff8f00;display:block;margin-bottom:8px}
+/* Badge / tag variants */
+.badge,.tag,.concept-tag,.concept-term{display:inline-block;background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em;margin-right:5px}
+.card.option.wrong .badge,.wrong-option .badge{background:#e74c3c;color:#fff}
+.badge-wrong,.wrong-tag,.tag-wrong,.wrong-badge{background-color:var(--wrong-bg);color:var(--wrong-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+.badge-correct,.correct-tag{background-color:var(--correct-bg);color:var(--correct-text);padding:1px 5px;border-radius:4px;font-size:.85em;display:inline-block}
+/* Case law / case ref */
+.case-law,.case-ref,.case-study{background-color:#e3f2fd;border:1px solid #bbdefb;border-radius:8px;padding:15px;margin-bottom:20px;font-size:.9em}
+/* Trap box */
+.trap-box{background-color:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}
+.trap-title{font-weight:bold;color:#856404;margin-bottom:8px;display:block}
+/* Timeline → diagram-like */
+.timeline{background-color:#f9f9f9;border:1px solid #e0e0e0;padding:15px;border-radius:8px;margin-bottom:20px}
+.timeline-item,.event{display:flex;align-items:flex-start;margin-bottom:10px;gap:10px}
+.timeline-date{background:var(--primary-color);color:#fff;padding:2px 8px;border-radius:4px;font-size:.8em;white-space:nowrap;flex-shrink:0}
+.timeline-content,.timeline-desc,.event-desc{flex-grow:1;font-size:.9em}
+/* Party box (already in canonical, add alias) */
+.party-box{background:#e8fcff;border:1px solid #22b8cf;border-radius:6px;padding:10px 14px;font-weight:700;color:#05606a}
+/* Flow arrow alias */
+.flow-arrow{font-size:1.2em;color:#aaa;text-align:center;padding:2px 0}
+/* Distractor variants */
+.distractor-item,.wrong-distractor{background-color:var(--wrong-bg);color:var(--wrong-text);border:1px solid #f5c6cb;padding:10px 12px;margin-bottom:8px;border-radius:6px;font-size:.9em}
+.distractor-label,.wrong-title,.distractor-title{font-weight:bold;color:var(--wrong-text);display:block;margin-bottom:4px}
+/* Section/label */
+.section,.rule-item{margin-bottom:10px}
+.answer-label,.answer-title-text{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Concept header */
+.concept-header,.rule-header{color:var(--accent-color);font-size:1rem;font-weight:600;margin-bottom:8px}
+/* Legal rule / law block variants */
+.legal-rule,.law-block,.rule-content,.legal-principle{background-color:var(--highlight-bg);border-left:4px solid var(--accent-color);padding:14px 15px;margin-bottom:16px;border-radius:0 8px 8px 0;font-size:.95em}
+.result-title,.correct-title{color:#2e7d32;font-weight:bold;display:block;margin-bottom:5px}
+/* Icon (decorative) */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:.9em}
+/* Misc */
+.list-item{margin-bottom:6px}
+.label{font-size:.85em;font-weight:600;color:var(--primary-color)}
+.conclusion{background-color:#e8f5e9;border-left:5px solid #4caf50;padding:12px 15px;margin:15px 0;border-radius:4px}
+/* Remaining high-frequency aliases */
+.timeline-title{font-weight:600;color:var(--primary-color);margin-bottom:6px}
+.comparison-table-wrapper{overflow-x:auto;margin:15px 0}
+.text{font-size:.95em;line-height:1.6}
+.flow-label{font-size:.8em;color:#555;text-align:center;margin:2px 0}
+.diagram-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin:10px 0}
+.diagram-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.diagram-content,.diagram-arrow{font-size:.9em;color:#555}
+.tip-icon,.check-icon,.logic-icon{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;margin-right:4px}
+.answer-badge{background-color:var(--correct-bg);color:var(--correct-text);padding:2px 8px;border-radius:4px;font-size:.85em;font-weight:600}
+.rule-list{list-style:disc;padding-left:18px;margin:8px 0}
+.rule-tag,.option-tag{background-color:#e8f4f8;color:#1565c0;padding:1px 6px;border-radius:4px;font-size:.82em;font-weight:500;display:inline-block}
+.flow-branch{display:flex;gap:8px;margin:6px 0}
+.option-title,.wrong-item{font-weight:600;margin-bottom:4px}
+.date{font-size:.82em;color:#666;white-space:nowrap}
+.explanation{font-size:.9em;color:var(--text-color);line-height:1.6}
+.wrong-item{color:var(--wrong-text)}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - 宪法学: 权力分立</title>
+    
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">宪法学: 权力分立</p>
+        </header>
+
+        <div class="content-padding">
+            <div class="answer-box">
+                正确答案: B
+                <p><strong>总统对其就任前的私人事务，不享有绝对豁免权，且在刑事传票面前，不享有更高的证明标准。</strong></p>
+            </div>
+
+            <h2>核心法律规则</h2>
+            <div class="concept-box">
+                <p class="concept-title">总统的豁免权与特权</p>
+                <p>作为行政部门的首脑，总统拥有《宪法》第二条所赋予的所有权力，包括执行联邦法律和担任武装部队总司令的权力。为保障总统履行这些重要职责的能力，总统在司法程序中享有以下保护：</p>
+                <ul>
+                    <li><strong>行政特权 (<span class="term">Executive Privilege</span>)</strong>：防止披露总统在履行其<strong>官方职责和责任</strong>时所作的机密文件和通信。</li>
+                    <li><strong>绝对豁免权 (<span class="term">Absolute Immunity</span>)</strong>：防止因总统作为其<strong>官方职责和责任</strong>一部分的任何行为而提起的民事损害赔偿诉讼。</li>
+                </ul>
+                <p>然而，这些保护并非无限。例如，行政特权不适用于总统履行<strong>私人职能</strong>（即私人文件）时所作的文件和通信。此外，总统在刑事诉讼中不享有绝对豁免权，不能免于遵守有效发出的传票。</p>
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>类别</th>
+                        <th>总统豁免权与特权</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>豁免权 (<span class="term">Immunity</span>)</strong></td>
+                        <td>
+                            <ul>
+                                <li>对官方行政行为造成的损害，享有<strong>绝对民事诉讼豁免权</strong>。</li>
+                                <li><strong>不适用于</strong>就任前发生的行为。</li>
+                                <li><strong>不适用于</strong>与行政职能无关的行为。</li>
+                                <li><strong>不适用于</strong>刑事传票。</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>特权 (<span class="term">Privilege</span>)</strong></td>
+                        <td>
+                            <p>扣留官方文件和通信的权力：</p>
+                            <ul>
+                                <li><strong>国家安全机密</strong> – 享有最高程度的尊重。</li>
+                                <li><strong>民事案件</strong> – 享有比刑事审判更高的尊重。</li>
+                                <li><strong>刑事案件</strong> – 享有最低程度的尊重（如果检方证明有需要，则要求披露）。</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>事实与适用逻辑</h2>
+            <p>本案中，县地方检察官对总统就任前进行的商业交易启动了刑事调查。大陪审团有效发出了<span class="latin">subpoena duces tecum</span>（文件提交传票），要求总统提供与这些商业交易相关的各种财务记录。总统以绝对豁免权和行政特权为由拒绝提供这些记录。</p>
+            <ol>
+                <li><strong>行政特权不适用私人事务：</strong> 总统的行政特权<strong>不延伸至</strong>其履行私人职能（即私人文件）。由于本案涉及的财务记录与总统就任前的私人事务有关，因此这些记录<strong>不受</strong>行政特权的保护。</li>
+                <li><strong>绝对豁免权不适用于刑事传票：</strong> 总统在刑事诉讼中<strong>不享有绝对豁免权</strong>，不能免于遵守有效发出的传票。总统必须像其他公民一样遵守大陪审团发出的传票。</li>
+                <li><strong>无需更高证明标准：</strong> 大陪审团在发出传票时，<strong>无需提供任何额外理由</strong>来强制生产这些记录。最高法院在 <cite class="case-box">Trump v. Vance, 140 S. Ct. 2412 (2020)</cite> 案中明确指出，总统不享有绝对豁免权，也不享有更高的证明标准来对抗州刑事传票对其私人文件的要求。</li>
+            </ol>
+            <p>因此，大陪审团可以强制总统提供这些财务记录，而无需提供任何额外的理由。</p>
+
+            <h2>流程图解</h2>
+            <div class="diagram">
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+                    <div class="flow-node">大陪审团发出传票</div>
+                    <span class="arrow">➡️</span>
+                    <div class="flow-node">总统主张豁免权/特权</div>
+                    <span class="arrow">⬇️</span>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+                        <div class="flow-node">传票涉及<br><strong>官方职责/文件</strong>？</div>
+                        <span class="arrow">❌</span>
+                        <div class="flow-node highlight-node">传票涉及<br><strong>私人事务/文件</strong>？</div>
+                        <span class="arrow">✅</span>
+                        <div class="flow-node highlight-node">是<br><strong>刑事传票</strong>？</div>
+                        <span class="arrow">✅</span>
+                        <div class="flow-node active">总统必须遵守传票</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>考点陷阱提示</h2>
+            <div class="trap-alert">
+                <p>MBE 考试中常见的陷阱在于混淆总统的<strong>官方行为</strong>与<strong>私人行为</strong>，以及<strong>民事诉讼</strong>与<strong>刑事传票</strong>的区别。</p>
+                <ul>
+                    <li>总统的豁免权和特权主要保护其在<strong>官方职责</strong>范围内的行为。</li>
+                    <li>在<strong>刑事传票</strong>面前，尤其涉及<strong>私人文件</strong>时，总统的保护程度会大大降低，甚至不适用。</li>
+                    <li>不要混淆“绝对豁免权”的范围，它并非在所有情况下都适用。</li>
+                </ul>
+            </div>
+
+            <h2>正确答案与干扰项排除</h2>
+            <div class="option-analysis">
+                <div class="option correct">
+                    <strong>B. 它可以在不提供任何额外理由的情况下强制生产。</strong>
+                    <p><strong>正确。</strong> 最高法院在《特朗普诉万斯案》中明确指出，总统对其就任前的私人事务不享有绝对豁免权，且在刑事传票面前，不享有更高的证明标准。因此，大陪审团无需提供任何额外理由即可强制生产这些记录。</p>
+                </div>
+
+                <div class="option wrong">
+                    <strong>A. 它只能在传票寻求无法通过任何其他方式获得的“关键证据”时强制生产。</strong>
+                    <p><strong>错误。</strong> 此选项描述的是一个更高的证明标准，即传票必须寻求无法通过其他方式获得的“关键证据”。然而，最高法院在《特朗普诉万斯案》中明确指出，总统在面对刑事传票时，不享有此种更高的证明标准。因此，大陪审团无需满足此条件。</p>
+                </div>
+
+                <div class="option wrong">
+                    <strong>C. 在任何情况下都不能强制生产，因为财务记录的披露受行政特权保护。</strong>
+                    <p><strong>错误。</strong> 行政特权不保护总统的私人财务记录，尤其是在刑事调查中。行政特权主要保护总统在履行官方职责时的机密通信，而非其就任前的私人商业交易记录。</p>
+                </div>
+
+                <div class="option wrong">
+                    <strong>D. 在任何情况下都不能强制生产，因为总统享有绝对豁免权，可以不遵守传票。</strong>
+                    <p><strong>错误。</strong> 总统不享有绝对豁免权来对抗刑事传票，特别是当传票涉及其就任前的私人事务时。总统必须像普通公民一样遵守有效的大陪审团传票。</p>
+            </div>
+            </div>
+
+            <h2>考试技巧</h2>
+            <div class="footer-tip">
+                <p>在处理总统豁免权和特权问题时，务必区分以下关键点：</p>
+                <ul>
+                    <li><strong>行为性质：</strong> 是<strong>官方行为</strong>还是<strong>私人行为</strong>？私人行为通常不受保护。</li>
+                    <li><strong>诉讼类型：</strong> 是<strong>民事诉讼</strong>还是<strong>刑事传票</strong>？刑事传票的保护程度远低于民事诉讼。</li>
+                    <li><strong>证据类型：</strong> 是<strong>官方机密通信</strong>（可能受行政特权保护）还是<strong>私人文件</strong>（通常不受保护）？</li>
+                </ul>
+                <p>记住，总统的保护并非绝对，尤其是在涉及其私人事务的刑事调查中。</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e1e4e8;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .key-point {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .english-term {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+        .case-study {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .case-title {
+            font-weight: bold;
+            color: #f57c00;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        th {
+            background-color: #2c3e50;
+            color: white;
+            padding: 8px;
+            text-align: left;
+        }
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .correct-logic {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .wrong-logic {
+            color: #c0392b;
+            text-decoration: line-through;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .badge-core { background-color: #e1f5fe; color: #0277bd; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>宪法：平等保护与教育拨款</p>
+    </div>
+
+    <div class="content">
+        <p>本题考察的是美国宪法第十四修正案<b>平等保护条款 (Equal Protection Clause)</b> 下的审查标准，特别是针对<b>财富差异 (Wealth Classification)</b> 和<b>公共教育 (Public Education)</b> 的审查层级。</p>
+
+        <div class="highlight-box">
+            <span class="key-point">正确答案：C</span><br>
+            学生必须证明该法律与任何合法的州利益均无理性关联。<br>
+            <span class="english-term">The students must demonstrate that the law is not rationally related to any legitimate state interest.</span>
+        </div>
+
+        <h3>⚖️ 核心法律逻辑解析</h3>
+        
+        <p>在处理平等保护问题时，MBE解题的第一步永远是确定<b>审查标准 (Standard of Review)</b>。这取决于受影响的群体或权利类型：</p>
+
+        <ol>
+            <li>
+                <b>受教育权不是基本权利</b><br>
+                尽管教育非常重要，但美国最高法院裁定，受教育权并非宪法明确保障的<b>基本权利 (Fundamental Right)</b>。
+            </li>
+            <li>
+                <b>贫富不是可疑分类</b><br>
+                基于财富（如富裕学区 vs. 贫困学区）的分类，不属于<b>可疑分类 (Suspect Class)</b>（如种族、国籍），也不属于<b>准可疑分类 (Quasi-suspect Class)</b>（如性别、非婚生子女）。
+            </li>
+        </ol>
+
+        <p>因此，法院不会适用严格审查 (Strict Scrutiny) 或中度审查 (Intermediate Scrutiny)，而是适用最低级别的<b>理性基础审查 (Rational Basis Review)</b>。</p>
+
+        <div class="case-study">
+            <span class="case-title">📚 经典判例 (Key Precedent)</span>
+            <b>San Antonio Independent School District v. Rodriguez (1973)</b><br>
+            本题的案情几乎直接取自该案。最高法院在该案中裁定，得克萨斯州的学校融资体系（主要依赖地方房产税，导致贫富学区资金差异）<b>不违反</b>平等保护条款，因为该体系通过了理性基础审查。
+        </div>
+
+        <h3>🔍 举证责任 (Burden of Persuasion)</h3>
+        
+        <p>这是本题的另一个关键考点：<b>谁来举证？</b></p>
+        
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>审查级别</th>
+                    <th>举证方</th>
+                    <th>证明标准</th>
+                </tr>
+                <tr>
+                    <td><b>严格审查</b><br><span class="english-term">Strict Scrutiny</span></td>
+                    <td>政府</td>
+                    <td>必要且紧迫利益<br>(Necessary & Compelling)</td>
+                </tr>
+                <tr>
+                    <td><b>中度审查</b><br><span class="english-term">Intermediate Scrutiny</span></td>
+                    <td>政府</td>
+                    <td>实质关联重要利益<br>(Substantially Related & Important)</td>
+                </tr>
+                <tr style="background-color: #e8f5e9;">
+                    <td><b>理性基础</b><br><span class="english-term">Rational Basis</span></td>
+                    <td><b>挑战者</b><br>(原告/学生)</td>
+                    <td>无理性关联任何合法利益<br>(Not Rationally Related & Legitimate)</td>
+                </tr>
+            </table>
+        </div>
+
+        <p>在<b>理性基础审查</b>下，法律被<b>推定为合宪</b>。举证责任在于<b>挑战者（本题中的学生）</b>，他们必须证明该法律是任意的、反复无常的，与任何合法的政府利益（如地方对学校的控制权）都没有理性关联。</p>
+
+        <h3>❌ 为什么其他选项是错的？</h3>
+        
+        <ul>
+            <li><b>选项 A (严格审查)：</b> 错误。只有涉及种族、国籍或基本权利（如投票权、跨州旅行权）时才适用。教育不是基本权利。</li>
+            <li><b>选项 B (举证责任倒置)：</b> 错误。虽然提到了“理性关联”，但它声称<b>州政府</b>必须证明。在理性基础测试中，政府不需要自证清白，原告必须证明其违宪。</li>
+            <li><b>选项 D (中度审查)：</b> 错误。这通常适用于性别歧视案件。贫富差异不适用此标准。</li>
+        </ul>
+
+    </div>
+
+    <div class="footer">
+        <span class="badge badge-core">MBE Tip</span> 遇到“教育经费不均”题目，直接联想 Rational Basis + 原告举证。
+    </div>
+</div>
+
+</body>
+</html>

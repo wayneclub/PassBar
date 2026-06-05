@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .analysis-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .correct-answer {
+            border: 2px solid var(--success-color);
+            background-color: #f0f9f4;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .correct-tag {
+            background-color: var(--success-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .distractor {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .distractor-tag {
+            color: var(--warning-color);
+            font-weight: bold;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .pro-tip {
+            background-color: #34495e;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .pro-tip strong {
+            color: #f1c40f;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>侵权法 (Torts) - 私有妨害</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心概念：私有妨害 (Private Nuisance)</span>
+            <p>私有妨害是指对原告使用和享用其土地的权利造成了<b>实质性 (Substantial)</b> 且 <b>不合理 (Unreasonable)</b> 的非侵入式干扰 (Non-trespassory interference)。</p>
+        </div>
+
+        <!-- 法律分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">法律规则详解</div>
+            <p>在判断干扰是否“不合理”时，法院通常会进行<b>权衡测试 (Balancing Test)</b>：比较原告受到的伤害严重程度与被告行为的社会效用。</p>
+            <p>但是，MBE 考试中有一个非常重要的<b>例外规则</b>（也是本题的关键）：</p>
+            <p class="highlight">如果干扰对原告造成了严重的人身伤害 (Severe Physical Harm)，则该干扰在法律上直接被视为“不合理” (Unreasonable as a matter of law)。</p>
+            <p>此时，不再需要权衡被告工厂的经济效益或社会价值。</p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="correct-answer">
+            <div><span class="correct-tag">正确答案 D</span></div>
+            <p><b>理由：</b>题目明确指出，由于工厂扩建排放烟雾，该女子遭受了“呼吸困难、持续性头痛和其他疾病”。</p>
+            <p>这属于<b>严重的人身伤害</b>。根据侵权法原则，造成严重人身伤害的干扰自动满足“不合理”这一要件。因此，烟雾不合理地妨碍了她对财产的使用和享用，她将胜诉。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么其他选项是错的？</div>
+            
+            <div class="distractor">
+                <span class="distractor-tag">选项 A (合规抗辩) - 错误</span>
+                虽然遵守政府规定 (Government Regulations) 是证明被告行为“合理”的证据之一，但它<b>不是绝对的免责金牌</b>。一旦造成了严重的人身伤害，即使合规也不能免除私有妨害的责任。
+            </div>
+
+            <div class="distractor">
+                <span class="distractor-tag">选项 B (自投妨害) - 错误</span>
+                “自投妨害” (Coming to the nuisance) 即原告搬到了污染源附近。在现代法律中，这只是法院考虑的一个<b>因素 (Factor)</b>，而不是被告的绝对抗辩理由 (Defense)。它不能阻止原告胜诉。
+            </div>
+
+            <div class="distractor">
+                <span class="distractor-tag">选项 C (财产贬值) - 错误</span>
+                这是一个极具迷惑性的选项。虽然财产贬值是事实，也是计算损害赔偿 (Damages) 的依据，但它不是<b>胜诉的法律标准</b>。胜诉的法律依据是“不合理的干扰 (Unreasonable Interference)”，而不是贬值本身。D 选项更准确地陈述了法律要件。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="pro-tip">
+            <strong>💡 MBE 考试技巧</strong>
+            <br><br>
+            遇到 Nuisance（妨害）题目时，请立即寻找原告是否有<b>身体上的不适</b>（如头痛、恶心、失眠）。
+            <br><br>
+            如果有，这通常是出题人在暗示你：<b>“伤害严重，直接判定为不合理 (Unreasonable)”</b>，此时被告的工厂哪怕再赚钱、再合规，也通常会败诉。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

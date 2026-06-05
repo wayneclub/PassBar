@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --text-color: #333;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .step-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .step-list li {
+            margin-bottom: 5px;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .case-ref {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9rem;
+            background: #e8e8e8;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .option-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+        }
+
+        .option-card.correct {
+            border-color: var(--correct-color);
+            background-color: #f0f9f4;
+        }
+
+        .option-card.wrong {
+            border-color: #eee;
+            opacity: 0.7;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .badge-correct {
+            background-color: var(--correct-color);
+            color: white;
+        }
+
+        .badge-wrong {
+            background-color: #95a5a6;
+            color: white;
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px dashed #f1c40f;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .latin {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Constitutional Law: Commercial Speech</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法则：Central Hudson Test</span>
+            <p>对于<strong>商业言论 (Commercial Speech)</strong>，政府的规制必须通过<strong>中度审查 (Intermediate Scrutiny)</strong>。根据 <em>Central Hudson</em> 案确立的标准，规制合宪需满足以下四点：</p>
+            <ol class="step-list">
+                <li>言论必须涉及<strong>合法活动</strong>且<strong>不具误导性</strong> (Protected Speech)。</li>
+                <li>政府必须主张一项<strong>重大的利益</strong> (Substantial Interest)。</li>
+                <li>规制必须<strong>直接促进</strong>该利益 (Directly Advance)。</li>
+                <li>规制手段必须<strong>精准制定</strong>，即限制性没有实质上超出必要范围 (Narrowly Drawn / Reasonable Fit)。</li>
+            </ol>
+        </div>
+
+        <!-- 案例分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🔍 题目解析</div>
+            <p>本题改编自美国最高法院的著名判例 <span class="case-ref">Florida Bar v. Went For It, Inc. (1995)</span>。</p>
+            
+            <p><strong>1. 言论性质：</strong><br>
+            心理治疗师的邮件属于商业言论。题目明确指出PTSD是“可能的后果”，因此邮件内容<strong>并非虚假或误导性</strong> (Not misleading)，属于受宪法第一修正案保护的言论。</p>
+
+            <p><strong>2. 政府利益：</strong><br>
+            州政府提出了两项利益：(1) 保护受害者隐私；(2) 保护该行业的声誉。法院认定这些属于<strong>重大的政府利益 (Substantial Interest)</strong>。</p>
+
+            <p><strong>3. 手段的合理性：</strong><br>
+            法律仅禁止在事故后<strong>30天内</strong>发送邮件。这并非永久禁止，而是一个短暂的“冷却期”。这种限制直接缓解了受害者在创伤初期的困扰，且没有过度限制言论自由（治疗师仍可以通过其他方式广告，或在30天后联系）。这符合“限制性未实质上超出必要范围”的要求。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 正确答案：D</div>
+            <div class="option-card correct">
+                <span class="badge badge-correct">正确理由</span>
+                <p><strong>D 选项</strong>完美复述了商业言论审查的后半部分标准。它指出了法律保护了隐私（重大利益），且限制手段（30天禁令）没有实质上超出必要范围（Narrowly Drawn）。</p>
+            </div>
+
+            <div class="analysis-title" style="margin-top: 20px; font-size: 1rem; border:none;">❌ 错误选项速览</div>
+            
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">选项 A</span>
+                <p><strong>错误点：</strong>虽然这是“基于内容的限制” (Content-based)，但在商业言论领域，只要满足中度审查，政府<strong>可以</strong>针对特定内容的商业广告进行规制。严格审查 (Strict Scrutiny) 通常不适用于商业言论。</p>
+            </div>
+
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">选项 B</span>
+                <p><strong>错误点：</strong>虽然邮件提供了信息，但这并不意味着它享有绝对豁免权。只要通过了 <em>Central Hudson</em> 测试，提供信息的商业言论依然可以被限制。</p>
+            </div>
+
+            <div class="option-card wrong">
+                <span class="badge badge-wrong">选项 C</span>
+                <p><strong>错误点：</strong>题目事实已说明PTSD是“可能的”后果，因此邮件内容在法律上<strong>不构成误导</strong>。如果言论本身是误导性的，政府可以直接禁止，无需进行后续的利益平衡测试。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 提分技巧：</strong><br>
+            看到“律师/医生/专业人士”向“事故受害者”发送“邮件/信件”的题目：
+            <ul>
+                <li>如果是<strong>面对面 (In-person)</strong> 招揽生意：通常可以完全禁止（因为存在压迫和欺诈风险）。</li>
+                <li>如果是<strong>邮件 (Mail)</strong>：通常受保护，但政府可以设置合理的<strong>时间限制</strong>（如本题的30天）来保护隐私。</li>
+                <li>关键词记忆：<strong>Commercial Speech = Intermediate Scrutiny</strong>。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #eef2f5;
+            --correct-bg: #e8f5e9;
+            --correct-border: #4caf50;
+            --wrong-bg: #ffebee;
+            --wrong-border: #ef5350;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+        }
+
+        .diagram-box {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            width: 80%;
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        .box-fed { background-color: #2c3e50; color: white; }
+        .box-state { background-color: #ecf0f1; color: #7f8c8d; text-decoration: line-through; }
+        .arrow { font-size: 1.5rem; color: #333; }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .option-analysis {
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+
+        .correct-option {
+            background-color: var(--correct-bg);
+            border-left: 4px solid var(--correct-border);
+            padding: 12px;
+            border-radius: 4px;
+        }
+
+        .wrong-option {
+            background-color: var(--wrong-bg);
+            border-left: 4px solid var(--wrong-border);
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 4px;
+            color: #666;
+        }
+
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffecb3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .exam-tip-title {
+            font-weight: bold;
+            color: #f57f17;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Federal-State Relations (Constitutional Law)</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">⚖️ 核心原则：政府间豁免权 (Intergovernmental Immunity)</span>
+            <p>根据美国宪法第六条的<b>至上条款 (Supremacy Clause)</b>，联邦政府及其机构 (Agencies and Instrumentalities) 在履行联邦职能时，<b>免受</b>州和地方政府的直接监管或税收，除非国会 (Congress) 明确表示同意。</p>
+            <p class="latin">Key Case: McCulloch v. Maryland (1819)</p>
+        </div>
+
+        <!-- 图解逻辑 -->
+        <div class="diagram">
+            <div style="font-size: 0.9rem; margin-bottom: 10px; color: #666;">法律效力层级</div>
+            <div class="diagram-box box-fed">联邦法律/机构 (Federal)</div>
+            <div class="arrow">⬇️ 监管 (Regulate) ❌</div>
+            <div class="diagram-box box-state">州/地方法律 (State/Local)</div>
+            <div style="font-size: 0.8rem; margin-top: 5px; color: #e74c3c;">未经国会同意，下级不可监管上级</div>
+        </div>
+
+        <!-- 题目分析 -->
+        <div class="analysis-section">
+            <h3>📝 题目分析</h3>
+            <p><b>事实：</b>美国能源部 (Department of Energy, 联邦机构) 正在运输核材料（联邦职能）。某市通过法令禁止此类运输（地方监管）。</p>
+            <p><b>冲突：</b>地方法令试图阻止联邦机构履行其职责。</p>
+            <p><b>结论：</b>基于至上条款，联邦机构具有豁免权。无论地方法律的初衷多么合理（如为了安全），它都不能凌驾于联邦运作之上。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="option-analysis">
+            <div class="correct-option">
+                <strong>✅ 正确答案：选项 C</strong>
+                <p><b>理由：</b>能源部是联邦机构，运输核材料是其合法职能。根据<b>至上条款</b>，地方政府无权监管或禁止联邦机构的运作，除非国会给予了明确的“同意 (Consent)”。题目中未提及国会同意，因此该市法令对能源部无效。</p>
+            </div>
+
+            <div class="wrong-option">
+                <strong>❌ 选项 A 错误 (Police Power)</strong>
+                <p>虽然州拥有<b>警察权 (Police Power)</b> 来保护居民健康和安全，但这种权力<b>不能</b>用来违反宪法。当州警察权与联邦豁免权冲突时，联邦地位至上。</p>
+            </div>
+
+            <div class="wrong-option">
+                <strong>❌ 选项 B 错误 (10th Amendment)</strong>
+                <p><b>第十修正案</b>保留了州的权力，但并没有赋予州凌驾于联邦政府之上的权力。它不能作为违反至上条款的借口。</p>
+            </div>
+
+            <div class="wrong-option">
+                <strong>❌ 选项 D 错误 (Equal Protection)</strong>
+                <p><b>平等保护条款</b>通常涉及对人的歧视。本案的核心是联邦制下的权力分配（结构性问题），而不是个人权利问题。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 答题锦囊</span>
+            <p>在处理 <b>Federal-State Relations</b> 问题时，请遵循以下步骤：</p>
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li>识别主体：是<b>联邦机构</b>还是私人？</li>
+                <li>识别行为：州/地方试图<b>监管 (Regulate)</b> 或 <b>征税 (Tax)</b> 联邦？</li>
+                <li>判断：如果是<b>直接</b>针对联邦机构的监管，除非题目明确说“国会同意”，否则一律选<b>“无效”</b>或<b>“联邦豁免”</b>。</li>
+            </ol>
+            <p style="margin-top:8px; font-size:0.9em;"><b>记住口诀：</b>States cannot mandate what the Feds must do.</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

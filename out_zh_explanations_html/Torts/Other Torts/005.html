@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+        .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .step-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        .step-icon {
+            background: var(--accent-color);
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+        .analysis-section {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .option-analysis {
+            background: #fff5f5;
+            border: 1px solid #fed7d7;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .option-analysis.correct {
+            background: #f0fff4;
+            border-color: #c6f6d5;
+        }
+        .tag {
+            display: inline-block;
+            padding: 2px 6px;
+            background: #edf2f7;
+            color: #4a5568;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+            font-weight: 600;
+        }
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Torts: Products Liability (Misrepresentation)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">核心考点：虚假陈述 (Misrepresentation)</span>
+            <p>本题考查的是基于<b>虚假陈述 (Misrepresentation)</b> 的产品严格责任。这与基于产品缺陷 (Defect) 的责任不同。</p>
+            <p style="font-size: 0.9em; color: #555;">依据：《侵权法重述（第二版）》§ 402B</p>
+        </div>
+
+        <p>如果商业销售者通过广告、标签或手册对产品的性质或质量做出了<b>公开的虚假陈述</b>，即使产品本身没有设计或制造缺陷，销售者仍需对因消费者<b>正当信赖 (Justifiable Reliance)</b> 该陈述而遭受的物理损害承担严格责任。</p>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <h3>⚖️ 案情三步分析</h3>
+            <ul class="step-list">
+                <li class="step-item">
+                    <div class="step-icon">1</div>
+                    <div>
+                        <strong>虚假陈述 (Misrepresentation)</strong><br>
+                        制造商在手册中明确承诺：“不会损坏原有的油饰面” (Will not damage original oil finishes)。这是一个关于产品质量的重大事实陈述。
+                    </div>
+                </li>
+                <li class="step-item">
+                    <div class="step-icon">2</div>
+                    <div>
+                        <strong>正当信赖 (Justifiable Reliance)</strong><br>
+                        收藏家阅读了手册，并基于该承诺购买并使用了产品。这种信赖是合理的。
+                    </div>
+                </li>
+                <li class="step-item">
+                    <div class="step-icon">3</div>
+                    <div>
+                        <strong>因果关系与损害 (Causation & Harm)</strong><br>
+                        产品实际上损坏了饰面。如果手册的陈述是真的（即产品不伤饰面），损失就不会发生。
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <h3>✅ 为什么选 C？</h3>
+            <div class="option-analysis correct">
+                <strong>选项 C 正确：</strong>
+                <p>“如果手册中的陈述属实，损失就不会发生。”</p>
+                <p>这句话确立了<b>因果关系</b>和<b>陈述的虚假性</b>。既然损失发生了，说明陈述是假的。根据 § 402B，只要存在虚假陈述且导致了物理损害（包括财产损失），制造商就必须承担责任，无需证明产品有“缺陷”。</p>
+            </div>
+
+            <h3>❌ 陷阱排除</h3>
+            <div class="option-analysis">
+                <span class="tag">选项 A</span> <strong>错误观点：仅限人身伤害</strong><br>
+                基于虚假陈述的严格责任适用于所有<b>物理损害 (Physical Harm)</b>，这既包括对人的伤害，也包括对<b>财产 (Chattels)</b> 的损害。
+            </div>
+            
+            <div class="option-analysis">
+                <span class="tag">选项 B</span> <strong>常见陷阱：必须有缺陷</strong><br>
+                这是最大的干扰项。对于普通的严格产品责任 (§ 402A)，产品确实需要有“缺陷”。但对于<b>虚假陈述 (§ 402B)</b>，只要产品未能达到其宣称的性能，<b>即使产品本身设计完美、制造无误</b>，制造商也要负责。
+            </div>
+
+            <div class="option-analysis">
+                <span class="tag">选项 D</span> <strong>错误观点：无其他替代方案</strong><br>
+                是否有其他技术能保存饰面与本案无关。关键在于制造商做出了特定的承诺（“本产品不会损坏...”），而该承诺未兑现。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background: #fff8e1; border-left-color: #f6e05e;">
+            <span class="rule-title">💡 MBE 提分技巧</span>
+            <p>看到题目中有<b>具体的承诺</b>（如“防碎”、“防爆”、“不伤漆”）且该承诺未兑现时，优先考虑 <b>Misrepresentation</b> 理论，而不是普通的 Defect 理论。此时，产品是否有“缺陷”不再是关键，关键是它是否“撒谎”了。</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

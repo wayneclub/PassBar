@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            color: #2980b9;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        .step-item {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        .step-icon {
+            background: #27ae60;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .step-text {
+            font-size: 14px;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+        .wrong-option {
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 6px;
+        }
+        .exam-tip {
+            background: #fff0f0;
+            border: 1px dashed #e74c3c;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #c0392b;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            color: #95a5a6;
+            border-top: 1px solid #eee;
+        }
+        code {
+            font-family: Consolas, monospace;
+            color: #e74c3c;
+            background: #fce4ec;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Civil Procedure · Default Judgment</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">核心规则：FRCP 55(b)(2)</div>
+            <p>如果被告已经<b>出庭 (Appeared)</b>，原告必须在缺席判决听证会前至少 <b>7天</b> 向被告送达书面通知。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">本案关键事实梳理</div>
+            <ul class="step-list">
+                <li class="step-item">
+                    <div class="step-icon">1</div>
+                    <div class="step-text">被告（水管工）提交了驳回动议 (Motion to Dismiss)。<br><span style="color:#e67e22; font-size:12px;">👉 关键点：这构成了“出庭”(Appearance)。</span></div>
+                </li>
+                <li class="step-item">
+                    <div class="step-icon">2</div>
+                    <div class="step-text">动议被驳回后，被告未提交答辩状 (Answer)。</div>
+                </li>
+                <li class="step-item">
+                    <div class="step-icon">3</div>
+                    <div class="step-text">原告申请缺席判决 (Default Judgment)，但仅提前 <b>3天</b> 通知被告。</div>
+                </li>
+                <li class="step-item">
+                    <div class="step-icon" style="background:#c0392b">!</div>
+                    <div class="step-text"><b>结论：</b>通知时间不足 7 天，程序违规。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 C？</div>
+            <p>选项 C 正确指出了程序瑕疵。根据《联邦民事诉讼规则》第55条：</p>
+            <p>虽然被告后来没有提交答辩状，但他之前的驳回动议已经表明他参与了诉讼（Appeared）。对于已经“出庭”的当事人，法院在作出缺席判决前，必须给予至少 <b>7天</b> 的通知。</p>
+            <p>本案中只给了3天通知，剥夺了被告在听证会上对赔偿金额提出异议的机会，因此法院很可能会批准撤销该判决的动议。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="wrong-option">
+            <strong>🚫 选项 A 错误：</strong><br>
+            虽然法院确实可以在没有被告证据的情况下确定赔偿额，但这不能免除原告履行<b>通知义务</b>的责任。程序正义要求被告有机会出席听证会。
+        </div>
+
+        <div class="wrong-option">
+            <strong>🚫 选项 B 错误：</strong><br>
+            被告未能抗辩并不意味着他放弃了获得程序性通知的权利。只要他之前“出庭”过一次，他就享有 7 天通知权。
+        </div>
+
+        <div class="wrong-option">
+            <strong>🚫 选项 D 错误：</strong><br>
+            这是一个干扰项。虽然管辖权是重要的，但题目事实表明水管工在A州工作导致损害，这通常满足“最低限度联系” (Minimum Contacts)，因此法院很可能有管辖权。更直接的撤销理由是<b>程序通知不足</b>。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 提分技巧</strong>
+            <br><br>
+            <b>1. 定义“出庭” (Appearance)：</b> 在联邦民诉中，"Appearance" 的定义非常宽泛。不仅仅是提交答辩状 (Answer)，提交任何动议 (Motion) 甚至某些非正式的联系都可能被视为已出庭。
+            <br><br>
+            <b>2. 区分两个步骤：</b> 
+            <br>① <b>Entry of Default</b> (由书记官记录，无裁量权) 
+            <br>② <b>Default Judgment</b> (由法院作出，需听证和通知)。
+            <br><br>
+            <b>3. 记住数字：</b> 看到 Default Judgment + Appeared，立刻寻找 <b>7 Days Notice</b>。
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

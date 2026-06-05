@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：建筑合同违约赔偿</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .math-box {
+            background-color: #fff;
+            border: 1px dashed #bdc3c7;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.9rem;
+        }
+
+        .math-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .math-row.total {
+            border-top: 2px solid #333;
+            padding-top: 5px;
+            font-weight: bold;
+        }
+
+        .highlight-green {
+            color: var(--correct-color);
+            font-weight: bold;
+        }
+
+        .highlight-red {
+            color: var(--wrong-color);
+            font-weight: bold;
+        }
+
+        .explanation-section {
+            margin-bottom: 20px;
+        }
+
+        .explanation-section h3 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+
+        .option-analysis {
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+
+        .option-item {
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 3px solid #ddd;
+        }
+
+        .mbe-tip {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .mbe-tip strong {
+            color: #f57f17;
+        }
+
+        /* 标签样式 */
+        .tag {
+            display: inline-block;
+            padding: 2px 6px;
+            background-color: #eee;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts: Remedies (Construction Breach)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="explanation-section">
+            <h3>核心结论</h3>
+            <p>正确答案是 <strong>(C)</strong>。</p>
+            <p>在建筑合同中，如果施工方（Builder）在施工中途违约，非违约方（Owner/Contractor）有权获得<b>期待利益赔偿 (Expectation Damages)</b>，即获得“如同合同被完全履行”时的经济地位。</p>
+        </div>
+
+        <!-- 法律规则解析 -->
+        <div class="concept-card">
+            <span class="concept-title">⚖️ 法律规则：期待利益 (Expectation Interest)</span>
+            <p>非违约方应获得的赔偿金额 = <br>
+            <b>(完成工作的实际总成本) - (原合同价格)</b></p>
+            <p><i>注：如果非违约方还有未支付的合同款项，通常直接用完成成本减去未付余额来计算，结果是一样的。</i></p>
+        </div>
+
+        <!-- 算术推导 -->
+        <div class="explanation-section">
+            <h3>📊 算术推导 (The Math)</h3>
+            <p>让我们站在非违约方（承包商）的角度算一笔账：</p>
+            
+            <div class="math-box">
+                <div class="math-row">
+                    <span>已支付给违约方:</span>
+                    <span>$100,000</span>
+                </div>
+                <div class="math-row">
+                    <span>支付给第三方完成工作:</span>
+                    <span>+ $120,000</span>
+                </div>
+                <div class="math-row total">
+                    <span>承包商实际总支出:</span>
+                    <span class="highlight-red">$220,000</span>
+                </div>
+                <div class="math-row">
+                    <span>原合同约定价格:</span>
+                    <span>- $200,000</span>
+                </div>
+                <div class="math-row total">
+                    <span>承包商的损失 (赔偿额):</span>
+                    <span class="highlight-green">$20,000</span>
+                </div>
+            </div>
+            <p>承包商原本只需支付20万，结果为了完成同样的工作花了22万。因此，违约的混凝土公司必须赔偿这多出来的 <strong>2万美元</strong>，以使承包商回到“只花了20万”的经济地位。</p>
+        </div>
+
+        <!-- 难点辨析 -->
+        <div class="explanation-section">
+            <h3>🚫 为什么违约方拿不到钱？(Restitution)</h3>
+            <p>这是一个常见的陷阱（对应选项 A 和 B）。</p>
+            <p>虽然现代合同法（如 <i>Restatement (Second) of Contracts</i>）允许违约方就其提供的利益请求<b>不当得利返还 (Restitution/Quantum Meruit)</b>，但有一个严格的限制：</p>
+            <div class="concept-card" style="background-color: #fff0f0; border-left-color: var(--wrong-color);">
+                <b>限制规则：</b><br>
+                违约方的追偿金额 <strong>不能</strong> 导致非违约方最终支付超过原合同价格的总成本。
+            </div>
+            <p>在本案中：</p>
+            <ul style="padding-left: 20px; font-size: 0.9rem;">
+                <li>混凝土公司提供了 $150k 的价值。</li>
+                <li>但它的违约导致承包商多花了 $20k。</li>
+                <li>如果法院判给混凝土公司任何钱（例如选项A的$50k或选项B的$30k），承包商的总支出将变成 $220k + 赔款，这会让无辜的承包商损失更惨重。</li>
+            </ul>
+            <p>因此，因为<b>完成成本 ($120k) > 未付合同余额 ($100k)</b>，违约方不仅拿不到钱，还得倒贴差价。</p>
+        </div>
+
+        <!-- 选项简析 -->
+        <div class="option-analysis">
+            <h3>❌ 其他选项错误原因</h3>
+            <div class="option-item">
+                <span class="tag">选项 A</span> <b>错误。</b> 忽略了承包商因违约而产生的额外完成成本。这会让承包商处于比合同履行更糟糕的境地。
+            </div>
+            <div class="option-item">
+                <span class="tag">选项 B</span> <b>错误。</b> 这是一个极具迷惑性的计算。它试图用“提供的价值”减去“损害”。但逻辑上，只要承包商的总支出已经超过了合同价，违约方就无权再获得任何补偿。
+            </div>
+            <div class="option-item">
+                <span class="tag">选项 D</span> <b>错误。</b> 认为“双方都无所获”是不对的。承包商确实遭受了实际的金钱损失（多掏了2万），必须得到补偿。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <strong>💡 MBE 考试技巧</strong><br>
+            遇到建筑合同违约题，先画一条时间线或简单的收支表：
+            <ol style="margin: 5px 0 0 20px; padding: 0;">
+                <li>确定是非违约方（Owner/Contractor）还是违约方（Builder）在起诉。</li>
+                <li>计算非违约方的<b>Cost to Complete (完成成本)</b>。</li>
+                <li>如果 <b>(已付 + 完成成本) > 原合同价</b>，差额就是非违约方的赔偿金（违约方一分钱拿不到）。</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

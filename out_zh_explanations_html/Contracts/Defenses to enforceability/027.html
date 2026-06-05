@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title::before {
+            content: '⚖️';
+            margin-right: 8px;
+        }
+
+        .highlight {
+            background-color: var(--highlight-bg);
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #2980b9;
+            font-weight: 500;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .rule-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin: 10px 0;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: #e67e22;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .wrong-option {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        .correct-option {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Contracts: Mistake & Formation</p>
+    </div>
+
+    <!-- Conclusion Section -->
+    <div class="card" style="border-left-color: #27ae60;">
+        <div class="card-title">结论与答案</div>
+        <p>本题的正确答案是 <span class="correct-option">B</span>。</p>
+        <p>合同以书面形式的 <strong>$1,100/英亩</strong> 成立。尽管开发商内心意图是 $1,000，但根据合同法的客观理论，其书面要约对无辜的受要约人（农场主）具有约束力。</p>
+    </div>
+
+    <!-- Core Legal Analysis -->
+    <div class="card">
+        <div class="card-title">核心考点：单方错误</div>
+        <p>本题考察的是合同法中的 <strong>单方错误 (Unilateral Mistake)</strong>。</p>
+        
+        <p><strong>一般规则：</strong><br>
+        如果只有一方在合同条款上犯了错误（例如打字错误），该错误通常<strong>不能</strong>作为撤销合同的理由。合同将按照客观表现出来的条款（Objective Manifestation）执行。</p>
+
+        <div class="rule-box">
+            <span class="rule-title">例外情况 (Exceptions)：</span>
+            只有在以下两种情况之一发生时，单方错误才可以导致合同可撤销 (Voidable)：
+            <ol>
+                <li><strong>显失公平 (Unconscionability)：</strong> 强制执行该错误会导致结果极其不公；或者</li>
+                <li><strong>对方知情 (Reason to Know)：</strong> 另一方（未犯错方）知道该错误，或者有理由知道该错误（例如价格好得离谱）。</li>
+            </ol>
+        </div>
+
+        <p><strong>本案分析：</strong></p>
+        <ul>
+            <li>开发商打错了价格（$1,100 而非 $1,000），这是单方错误。</li>
+            <li><strong>关键事实：</strong> 市场价格在 $1,000 到 $1,200 之间。</li>
+            <li>因此，$1,100 的报价完全在合理范围内。农场主<strong>没有理由知道 (Had no reason to know)</strong> 这是一个错误。</li>
+            <li>每英亩 $100 的差价也不足以构成“显失公平”。</li>
+        </ul>
+        <p>结论：合同有效，且必须按书面价格执行。</p>
+    </div>
+
+    <!-- Distinguishing Other Options -->
+    <div class="card">
+        <div class="card-title">为什么其他选项是错的？</div>
+        
+        <p><span class="wrong-option">选项 A 错误：</span><br>
+        法院不会根据一方的<strong>主观意图 (Subjective Intent)</strong> 来重写合同，除非有证据表明双方原本达成了该意图（即共同错误）。这里农场主并不知道开发商想出 $1,000。</p>
+
+        <p><span class="wrong-option">选项 C 错误：</span><br>
+        这不属于<strong>误解 (Misunderstanding)</strong>。误解通常发生在术语有歧义时（例如著名的 <em>Raffles v. Wichelhaus</em> "Peerless" 案，两艘船都叫 Peerless）。这里 "$1,100" 这个词没有歧义，意思非常明确。</p>
+
+        <p><span class="wrong-option">选项 D 错误：</span><br>
+        这不属于<strong>共同错误 (Mutual Mistake)</strong>。共同错误要求<strong>双方</strong>都对同一个基本事实有错误的信念（例如双方都以为这头牛不孕，但其实它怀孕了）。本案中，只有开发商搞错了价格，农场主没有错。</p>
+    </div>
+
+    <!-- Exam Strategy -->
+    <div class="card" style="border-left-color: #f1c40f;">
+        <div class="card-title">MBE 考试技巧</div>
+        <p>遇到“价格写错”类的题目，请按以下步骤思考：</p>
+        <ol>
+            <li><strong>看差价：</strong> 错误价格是否与市场价相差巨大？
+                <ul>
+                    <li>如果差价巨大（如卖法拉利只要 $10），对方属于 "Snapping up the offer"（捡漏），合同通常不可强制执行。</li>
+                    <li>如果差价合理（如本题），对方属于 "Good faith reliance"（善意信赖），合同有效。</li>
+                </ul>
+            </li>
+            <li><strong>分清单方/共同：</strong> 是只有一方搞错了，还是双方都基于一个错误的假设？</li>
+            <li><strong>坚持客观理论：</strong> 除非有欺诈或知情，否则写下来的就是算数的。</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        MBE Contracts Review | 2025 Edition
+    </div>
+
+</div>
+
+</body>
+</html>

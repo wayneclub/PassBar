@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-card {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+        }
+        .answer-card strong {
+            color: #2e7d32;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        .section-title {
+            font-size: 17px;
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 18px;
+            background-color: #3498db;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        .concept-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .key-term {
+            color: #d35400;
+            font-weight: bold;
+            background-color: #fff3e0;
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+        .analysis-text {
+            font-size: 15px;
+            text-align: justify;
+        }
+        .option-analysis {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .option-item {
+            margin-bottom: 12px;
+            padding-left: 12px;
+            border-left: 3px solid #ddd;
+        }
+        .option-item.wrong {
+            border-left-color: #e74c3c;
+        }
+        .option-label {
+            font-weight: bold;
+            color: #555;
+        }
+        .mbe-tip {
+            background-color: #fff8e1;
+            border: 1px dashed #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #795548;
+            margin-top: 30px;
+        }
+        .mbe-tip strong {
+            color: #d35400;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Negligence & Proximate Cause</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案 -->
+        <div class="answer-card">
+            <strong>正确答案：A</strong>
+            <p style="margin:0; font-size:14px;">驳回双方的动议（Deny both motions），将案件交给陪审团裁决。</p>
+        </div>
+
+        <!-- 核心法律原则 -->
+        <div class="section-title">核心考点：近因与介入原因</div>
+        <div class="analysis-text">
+            本题考察的是过失侵权（Negligence）中的<span class="key-term">近因 (Proximate Cause)</span>，特别是第三方的犯罪行为是否构成切断责任链条的<span class="key-term">介入原因 (Superseding Cause)</span>。
+        </div>
+
+        <div class="concept-box">
+            <strong>一般规则：</strong><br>
+            通常情况下，第三方的犯罪行为（Criminal acts of third parties）被视为不可预见的介入原因，会切断被告的责任。
+            <br><br>
+            <strong>例外规则（本题考点）：</strong><br>
+            如果被告的过失行为<b>增加</b>了该犯罪行为发生的风险，或者被告<b>有理由预见</b>（Foreseeable）该犯罪行为可能发生，则该犯罪行为<b>不构成</b>介入原因，被告仍需负责。
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="section-title">案情深度解析</div>
+        <div class="analysis-text">
+            <p><strong>1. 事实认定：</strong><br>
+            建筑公司承认其未放置警示灯存在过失（Breach of Duty）。卡车掉入沟中是直接后果。争议点在于随后的盗窃。</p>
+
+            <p><strong>2. 关键细节：</strong><br>
+            题目特别强调了施工地点位于<b>“高犯罪率社区” (high-crime neighborhood)</b>，且此前施工区域发生过<b>“多起盗窃” (many thefts)</b>。</p>
+
+            <p><strong>3. 法律推理：</strong><br>
+            由于存在高犯罪率和过往盗窃史，一个理性的陪审团可能会认定：建筑公司应当预见到，如果让一辆卡车在夜间因事故瘫痪在无人看管的壕沟旁，极有可能招致盗窃。因此，盗窃并非完全不可预见。</p>
+
+            <p><strong>4. 程序问题（即决判决）：</strong><br>
+            即决判决（Summary Judgment）仅在“无实质性事实争议”时适用。本案中，“盗窃是否可预见”是一个事实问题，存在争议，应由陪审团（Fact Finder）根据证据来决定，而不是由法官直接裁决。</p>
+        </div>
+
+        <!-- 选项辨析 -->
+        <div class="section-title">选项辨析</div>
+        <div class="option-analysis">
+            <div class="option-item wrong">
+                <span class="option-label">选项 B 错误：</span>
+                它断言“没有人能够预见”损失。这是一个过于绝对的事实结论。鉴于高犯罪率的背景，预见性是存在的，不能作为法律问题直接判定被告胜诉。
+            </div>
+            <div class="option-item wrong">
+                <span class="option-label">选项 C 错误：</span>
+                它直接将盗窃定性为“介入原因”（Superseding Cause）。如前所述，如果犯罪行为是可预见的（Foreseeable），它就只是“并发原因”（Intervening Cause），不会切断被告的责任。
+            </div>
+            <div class="option-item wrong">
+                <span class="option-label">选项 D 错误：</span>
+                它仅依据“事实原因”（But-for Cause/Actual Cause）——即“若无被告行为，货物不会被盗”。但在过失侵权中，原告必须同时证明“事实原因”和“近因”（Proximate Cause）。仅有事实原因不足以获得即决判决。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="mbe-tip">
+            <strong>🎓 MBE 答题技巧：</strong>
+            <br>
+            当题目涉及<b>即决判决 (Summary Judgment)</b> 时，要注意寻找是否存在<b>“事实争议”</b>。
+            <br><br>
+            在过失侵权（Negligence）案件中，<b>“可预见性” (Foreseeability)</b> 通常是一个事实问题（Question of Fact），应留给陪审团解决。除非事实极其清晰，否则法院很少会直接通过即决判决来认定是否存在近因。因此，<b>“驳回双方动议”</b>往往是正确方向。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

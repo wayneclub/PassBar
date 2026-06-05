@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-card {
+            background-color: #eef6fc;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.85rem;
+        }
+        .comparison-table th {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 8px;
+            text-align: left;
+            color: #495057;
+        }
+        .comparison-table td {
+            border: 1px solid #dee2e6;
+            padding: 8px;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .option-analysis {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+        .correct {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            opacity: 0.8;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .badge-correct { background-color: #28a745; color: white; }
+        .badge-wrong { background-color: #dc3545; color: white; }
+        
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Intentional Torts: Conversion</p>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心概念 -->
+        <div class="concept-card">
+            <span class="concept-title">核心考点：侵占动产 vs. 侵犯动产</span>
+            <p>本题考察的是对动产干扰程度的区分。在普通法中，根据干扰的严重程度，分为两种侵权行为：</p>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>比较维度</th>
+                        <th>侵犯动产<br>(Trespass to Chattels)</th>
+                        <th>侵占动产<br>(Conversion)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>干扰程度</strong></td>
+                        <td>轻微干扰 (Minor interference)</td>
+                        <td>严重干扰，行使支配权 (Substantial dominion & control)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>法律后果</strong></td>
+                        <td>赔偿实际损失</td>
+                        <td><strong>强制出售 (Forced Sale)</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>赔偿金额</strong></td>
+                        <td>维修费或价值减损额 (Actual damages)</td>
+                        <td><strong>侵占时的公平市价 (FMV at time of conversion)</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">案情法律分析</div>
+            <p>本案中，邻居未经许可拿走链锯（Intentional interference），并且在使用过程中导致链锯<strong>损坏 (Saw broke)</strong>。</p>
+            <p>根据 <em>Restatement (Second) of Torts § 222A</em>，当动产被完全损坏或严重损毁时，这种干扰极其严重，足以构成<strong>侵占动产 (Conversion)</strong>。</p>
+            <p>法律逻辑是：既然你像主人一样行使权利并把它弄坏了，法律就强制你把它“买下来”。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">选项深度解析</div>
+
+            <div class="option-analysis correct">
+                <span class="badge badge-correct">正确 D</span>
+                <strong>会，就邻居借用链锯时的价值获得赔偿。</strong>
+                <br><br>
+                这是 Conversion 的标准赔偿原则。一旦构成侵占，被告必须支付该物品在<strong>侵占发生时</strong>（即邻居拿走链锯时）的<strong>公平市价 (Fair Market Value)</strong>。这相当于被告强行买下了这个链锯。
+            </div>
+
+            <div class="option-analysis incorrect">
+                <span class="badge badge-wrong">错误 A</span>
+                <strong>关于意图 (Intent)。</strong>
+                <br>
+                Conversion 是故意侵权，但这里的“故意”仅指<strong>故意实施了干扰行为</strong>（拿走锯子），并不要求被告有“偷窃”或“永久占有”的恶意。邻居故意拿走了锯子，这就满足了 Intent 的要件。
+            </div>
+
+            <div class="option-analysis incorrect">
+                <span class="badge badge-wrong">错误 B</span>
+                <strong>关于动机 (Motive)。</strong>
+                <br>
+                虽然邻居后来是为了帮房主修剪树枝（Good motive），但这不能免除 Conversion 的责任。未经许可的严重干扰（导致损坏）本身就是侵权，动机良好不是抗辩理由。
+            </div>
+
+            <div class="option-analysis incorrect">
+                <span class="badge badge-wrong">错误 C</span>
+                <strong>关于赔偿范围。</strong>
+                <br>
+                这是最具迷惑性的选项。如果只是轻微刮擦，适用 Trespass to Chattels，赔偿实际修理费（选项C）。但本题中链锯<strong>坏了 (Broke)</strong>，属于严重干扰，适用 Conversion。Conversion 的赔偿是<strong>全额价值</strong>，而非仅仅是修理费。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>🎓 MBE 提分技巧：</strong>
+            <br>
+            在动产侵权题中，看到物品<strong>"丢失" (Lost)</strong>、<strong>"被毁" (Destroyed)</strong> 或 <strong>"长时间未归还" (Long duration)</strong>，通常指向 <strong>Conversion</strong>，对应的赔偿永远是 <strong>Full Value (FMV)</strong>。
+            <br><br>
+            如果只是<strong>"划伤" (Scratched)</strong> 或 <strong>"短时间借用" (Brief use)</strong> 且归还了，通常是 <strong>Trespass to Chattels</strong>，赔偿是 <strong>Cost of Repair</strong>。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

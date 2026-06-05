@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考题解析：伤害罪与间接正犯</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background: #f8f9fa;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .card-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .card-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #e8f4fd;
+            color: #2980b9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .wrong-option {
+            border-left-color: #e74c3c;
+            background: #fdf2f2;
+        }
+        .wrong-option .card-title::before {
+            content: "❌";
+        }
+        .correct-option {
+            border-left-color: #27ae60;
+            background: #f0f9f4;
+        }
+        .correct-option .card-title::before {
+            content: "✅";
+        }
+        .tip-box {
+            background: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95em;
+        }
+        .tip-title {
+            font-weight: bold;
+            color: #f57c00;
+            margin-bottom: 5px;
+            display: block;
+        }
+        ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考点解析</h1>
+        <p>Battery & Accomplice Liability</p>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点 -->
+        <div class="card">
+            <div class="card-title">核心考点：伤害罪的构成</div>
+            <p><strong>伤害罪 (Battery)</strong> 的定义是对他人非法施加武力，导致身体伤害或冒犯性接触。</p>
+            <p>关键点在于“施加武力” (Application of Force) 的方式：</p>
+            <ul>
+                <li><strong>直接施加：</strong> 被告亲自拳打脚踢。</li>
+                <li><strong>间接施加：</strong> 被告启动某种力量（如扔石头、放狗咬人）。</li>
+                <li><strong>通过他人施加：</strong> 命令或指使他人实施伤害。</li>
+            </ul>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="card correct-option">
+            <div class="card-title">正确答案 D 的逻辑</div>
+            <p>本题中，团长 (Ringmaster) 虽然没有亲手打人，但他<strong>命令</strong>小丑去打。</p>
+            <p>在法律上，小丑成为了团长实施犯罪的“工具” (Instrumentality)。当团长命令小丑实施非法武力，且该行为导致了受害人内出血（有害接触）时，团长的行为完全符合 <span class="highlight">Battery</span> 的构成要件。</p>
+            <p><strong>结论：</strong> 团长通过命令他人实施了伤害，视同自己实施。</p>
+        </div>
+
+        <!-- 易错点辨析 -->
+        <div class="card wrong-option">
+            <div class="card-title">陷阱辨析：为何不是教唆罪？</div>
+            <p><strong>选项 B (Solicitation) 是最大的干扰项。</strong></p>
+            <p>确实，团长“教唆”了小丑。但是，MBE 刑法中有一个重要的原则叫 <span class="highlight">Merger Doctrine (吸收原则)</span>。</p>
+            <ul>
+                <li>如果小丑<strong>拒绝</strong>了命令，团长只犯<strong>教唆罪 (Solicitation)</strong>。</li>
+                <li>一旦小丑<strong>实施</strong>了犯罪，教唆罪就会“被吸收”进既遂的犯罪中。</li>
+            </ul>
+            <p>因此，团长现在是<strong>伤害罪的共犯 (Accomplice to Battery)</strong> 或直接被视为正犯，而不仅仅是教唆犯。</p>
+        </div>
+
+        <div class="card wrong-option">
+            <div class="card-title">陷阱辨析：同意与转移意图</div>
+            <p><strong>选项 A (Consent)：</strong> 观众同意上台表演，通常只包含对轻微接触（如被推搡、被水泼）的默示同意，绝对不包括<strong>导致内出血的重击</strong>。这种伤害超出了同意的范围 (Scope of Consent)。</p>
+            <p><strong>选项 C (Transferred Intent)：</strong> <span class="english-term">Transferred Intent</span> 适用于“想打甲却误伤乙”的情况。本案中，团长就是想打这名男子，意图非常明确，不需要“转移”。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <span class="tip-title">💡 MBE 实战技巧</span>
+            <p>在处理 <strong>Battery</strong> 题目时，切记不要局限于“被告的手是否碰到了受害人”。</p>
+            <p>只要被告引发了接触（无论是通过下毒、设陷阱、还是命令他人），只要存在<strong>非法意图 (Unlawful Intent)</strong> 和<strong>有害接触 (Harmful Contact)</strong>，Battery 即成立。</p>
+            <p>看到“命令他人犯罪且罪行已完成”，优先选择<strong>实体犯罪 (Substantive Crime)</strong> 的定罪，而不是教唆罪。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --text-color: #333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .answer-box {
+            background-color: #e8f8f5;
+            border: 2px solid var(--correct-color);
+            color: var(--correct-color);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .concept-card {
+            background: #fff;
+            border-left: 4px solid var(--accent-color);
+            padding: 12px 15px;
+            background-color: #f8fbfe;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        .rule-highlight {
+            background-color: #fff3cd;
+            border-left: 4px solid var(--warning-color);
+            padding: 12px 15px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .eng {
+            color: #7f8c8d;
+            font-size: 0.85em;
+            font-family: "Georgia", serif;
+            font-style: italic;
+        }
+        .option-analysis {
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+        .option-label {
+            font-weight: bold;
+            display: inline-block;
+            width: 25px;
+        }
+        .wrong-option {
+            color: #e74c3c;
+        }
+        .footer-tip {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 15px;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 20px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Remedies & Contracts</div>
+    </div>
+
+    <div class="content">
+        <!-- Answer Section -->
+        <div class="answer-box">
+            正确答案：C
+        </div>
+
+        <p>本题考察的核心法律原则是：<b>法院通常不会强制执行个人服务合同。</b></p>
+
+        <!-- Core Legal Concept -->
+        <div class="section-title">⚖️ 核心考点：强制履行 (Specific Performance)</div>
+        
+        <div class="concept-card">
+            <span class="term">基本规则：</span><br>
+            强制履行是一种衡平法救济 <span class="eng">(Equitable Remedy)</span>。通常只有在法律救济（即金钱赔偿）不足以弥补损失时 <span class="eng">(Inadequate Remedy at Law)</span>，法院才会判决强制履行。这常见于土地买卖或稀有物品交易。
+        </div>
+
+        <div class="rule-highlight">
+            <span class="term">例外情况（本题考点）：</span><br>
+            对于<b>个人服务合同</b> <span class="eng">(Personal Services Contracts)</span>，法院<b>绝不会</b>判决强制履行。
+        </div>
+
+        <p>法院拒绝强制执行个人服务合同主要基于以下两个理由：</p>
+        <ul>
+            <li><b>监管困难 <span class="eng">(Difficulty of Supervision)</span>：</b> 法院难以持续监督服务的质量和表现（例如：很难判断木匠是否尽心尽力地装修了厨房）。</li>
+            <li><b>宪法顾虑 <span class="eng">(Involuntary Servitude)</span>：</b> 强制某人违背意愿去工作可能触犯美国宪法第13修正案关于禁止“非自愿奴役”的规定。</li>
+        </ul>
+
+        <!-- Case Analysis -->
+        <div class="section-title">🔍 案情分析</div>
+        <p>在本案中，合同明确规定木匠要<b>“亲自”</b> <span class="eng">(personally)</span> 改造厨房。这使其成为了一个典型的个人服务合同。</p>
+        <p>尽管房主找不到替代者（这意味着金钱赔偿可能不足，通常是申请强制履行的理由），但由于合同性质是“个人服务”，<b>该性质构成了强制履行的绝对障碍</b>。因此，木匠的最佳抗辩就是：强制履行不适用于个人服务合同。</p>
+
+        <!-- Distractor Analysis -->
+        <div class="section-title">❌ 干扰项解析</div>
+        
+        <div class="option-analysis">
+            <span class="option-label wrong-option">A</span> <b>懈怠原则 (Laches)：</b><br>
+            错误。懈怠原则要求原告无理拖延起诉<b>且</b>该拖延对被告造成了损害 <span class="eng">(Prejudice)</span>。本案中，房主花时间寻找替代者是合理的，并未显示对木匠造成不公平的损害。
+        </div>
+
+        <div class="option-analysis">
+            <span class="option-label wrong-option">B</span> <b>预期违约 (Anticipatory Repudiation)：</b><br>
+            错误。预期违约本身并不阻碍强制履行。如果这是一个土地买卖合同，卖方提前毁约，买方依然可以要求强制过户。
+        </div>
+
+        <div class="option-analysis">
+            <span class="option-label wrong-option">D</span> <b>象征性赔偿 (Nominal Damages)：</b><br>
+            错误。虽然强制履行的前提通常是金钱赔偿不足，但本题的关键在于“个人服务”这一性质直接排除了强制履行的可能性，无论赔偿金额如何计算。
+        </div>
+    </div>
+
+    <div class="footer-tip">
+        <b>💡 考试技巧 (Exam Tip)</b><br>
+        看到 "Specific Performance" + "Service/Employment"（雇佣/服务/装修/表演），直接选 <b>NO</b>。法院不会强迫任何人去工作，也不会强迫雇主接受不想要的服务。
+    </div>
+</div>
+
+</body>
+</html>

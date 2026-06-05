@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --success-color: #27ae60;
+        --error-color: #c0392b;
+        --bg-color: #f0f2f5;
+        --card-bg: #ffffff;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        color: #333;
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 20px;
+    }
+    .rule-box {
+        background-color: #eef7fd;
+        border-left: 5px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        display: block;
+        font-size: 1.1rem;
+    }
+    .concept-tag {
+        display: inline-block;
+        background-color: #e2e8f0;
+        color: #4a5568;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        margin-right: 5px;
+        font-weight: 600;
+    }
+    .analysis-section {
+        margin-bottom: 20px;
+    }
+    .analysis-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+        color: var(--primary-color);
+    }
+    .result-box {
+        background-color: #fdf2f2;
+        border: 1px solid #fadbd8;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    .result-box.correct {
+        background-color: #f0fff4;
+        border-color: #c6f6d5;
+    }
+    .check-icon {
+        color: var(--success-color);
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    .cross-icon {
+        color: var(--error-color);
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    .footer-tip {
+        background-color: #fff8e1;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        border: 1px solid #ffeeba;
+    }
+    .highlight {
+        font-weight: bold;
+        color: var(--error-color);
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Real Property: Deeds & Conveyance</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">⚖️ 核心法律规则</span>
+            <p>一份有效的契据（Valid Deed）必须具备以下要素：</p>
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li>书面形式并由出让人签字；</li>
+                <li>明确指明出让人（Grantor）和受让人（Grantee）；</li>
+                <li>包含转让意图的词语；</li>
+                <li>充分描述土地。</li>
+            </ol>
+            <p style="margin-top: 10px;"><strong>关键点：</strong>如果受让人是<b>不存在的实体（Nonexistent Grantee）</b>，该契据自始<b>无效（Void）</b>。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🔍 案情深度分析</div>
+            <p>本案的关键在于受让人的法律地位：</p>
+            <ul>
+                <li>契据将土地转让给“该公司”（The Corporation）。</li>
+                <li><strong>事实：</strong>两个朋友“从未提交任何文件”（No papers were ever filed）。</li>
+                <li><strong>结论：</strong>公司在法律上从未成立。既不是法律上的公司（De Jure Corporation），也不是事实上的公司（De Facto Corporation，因为没有善意尝试遵守法规）。</li>
+            </ul>
+            <p>因此，契据上的受让人是一个<strong>不存在的主体</strong>。</p>
+        </div>
+
+        <!-- 答案解析 -->
+        <div class="result-box correct">
+            <div class="analysis-title"><span class="check-icon">✓</span>正确答案：选项 B</div>
+            <p><strong>该女商人拥有土地，因为契据无效。</strong></p>
+            <p>根据普通法（Common Law），向一个不存在的受让人（如尚未成立的公司）转让土地的契据是<strong>无效的（Void）</strong>。由于契据无效，所有权（Title）从未离开过出让人。因此，土地仍归女商人所有。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">❌ 为什么其他选项错误？</div>
+            
+            <p><strong>选项 A (因为是担保契据):</strong></p>
+            <p style="font-size: 0.9rem; color: #666;">契据的类型（Warranty Deed vs. Quitclaim Deed）只影响出让人承担的担保责任范围，不能补救受让人不存在这一致命缺陷。契据本身无效，担保条款自然也无效。</p>
+
+            <p><strong>选项 C & D (作为分权共有人):</strong></p>
+            <p style="font-size: 0.9rem; color: #666;">虽然法院有时会运用衡平法原则（Equitable Principles）来防止不公，但在严格的财产法（Property Law）考试中，如果契据指向的是公司，而公司不存在，所有权不会自动“跳跃”到发起人（Promoters）身上成为共有财产（Tenancy in Common）。契据的受让人栏写的是公司，不是那两个朋友。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="footer-tip">
+            <strong>💡 MBE 抢分技巧</strong>
+            <br><br>
+            遇到涉及“公司成立前交易”（Pre-incorporation transactions）的财产题时，首先检查公司是否已经成立：
+            <br>
+            1. 如果提到 <b>"No papers filed"</b>，则公司不存在（Nonexistent）。
+            <br>
+            2. 针对不存在实体的契据是 <b>Void（无效）</b>，而不是 Voidable（可撤销）。
+            <br>
+            3. 结果通常是：<b>所有权留在原地（出让人手中）。</b>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

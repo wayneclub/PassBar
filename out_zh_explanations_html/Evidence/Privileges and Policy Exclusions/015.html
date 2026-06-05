@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机屏幕 */
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .concept-card {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.85rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+
+        .analysis-step strong {
+            color: var(--primary-color);
+        }
+
+        .option-analysis {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .option.correct {
+            background-color: rgba(39, 174, 96, 0.1);
+            border: 1px solid var(--correct-color);
+        }
+
+        .option.wrong {
+            background-color: rgba(192, 57, 43, 0.05);
+            border: 1px solid #eee;
+            color: #777;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .badge-correct { background: var(--correct-color); color: white; }
+        .badge-wrong { background: var(--wrong-color); color: white; }
+
+        .footer-tip {
+            background: #fdf2e9;
+            color: #d35400;
+            padding: 15px;
+            font-size: 0.9rem;
+            text-align: center;
+            border-top: 1px solid #fae5d3;
+        }
+        
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Evidence: Spousal Privileges</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-card">
+            <span class="concept-title">💡 核心考点：区分两种配偶特免权</span>
+            本题的陷阱在于混淆了联邦法院承认的两种截然不同的配偶特免权：
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li><strong>配偶豁免权</strong> (Spousal Immunity)</li>
+                <li><strong>婚姻交流特免权</strong> (Marital Communications Privilege)</li>
+            </ol>
+        </div>
+
+        <!-- 对比表格 -->
+        <p>在联邦刑事案件中（根据 <em>Fed. R. Evid. 501</em> 和普通法），两者的关键区别如下：</p>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>特征</th>
+                    <th>配偶豁免权<br><span style="font-weight:normal; font-size:0.7em">(Spousal Immunity)</span></th>
+                    <th>婚姻交流特免权<br><span style="font-weight:normal; font-size:0.7em">(Marital Communications)</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>保护范围</strong></td>
+                    <td>拒绝出庭作证指控配偶</td>
+                    <td>拒绝披露<strong>保密交流</strong> (Confidential Communications)</td>
+                </tr>
+                <tr>
+                    <td><strong>权利持有人</strong><br>(Holder)</td>
+                    <td>仅限<strong>证人配偶</strong><br>(Witness-Spouse)</td>
+                    <td><strong>双方配偶</strong><br>(Both Spouses)</td>
+                </tr>
+                <tr>
+                    <td><strong>适用案件</strong></td>
+                    <td>仅限刑事案件</td>
+                    <td>民事与刑事案件</td>
+                </tr>
+                <tr>
+                    <td><strong>婚姻状态</strong></td>
+                    <td>审判时必须已婚</td>
+                    <td>交流时必须已婚<br>(离婚后仍有效)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 案情分析 -->
+        <div class="analysis-step">
+            <h3>⚖️ 案情逻辑推演</h3>
+            <p><strong>第一步：确定适用法律</strong><br>
+            这是一个联邦刑事案件（虚假陈述获取联邦保险贷款）。根据 <em>Fed. R. Evid. 501</em>，特免权适用联邦普通法 (Federal Common Law)。</p>
+            
+            <p><strong>第二步：分析“配偶豁免权”</strong><br>
+            检察官传唤妻子，妻子是<strong>自愿证人 (Willing Witness)</strong>。根据最高法院在 <span class="latin">Trammel v. United States</span> 中的判例，配偶豁免权属于证人。既然妻子愿意作证，被告丈夫<strong>无权</strong>基于此特免权阻止她上证人席。</p>
+
+            <p><strong>第三步：分析“婚姻交流特免权”</strong><br>
+            证词内容是被告在婚姻期间<strong>私下 (in confidence)</strong> 告诉妻子的关于犯罪的事实。这属于保密的婚姻交流。该特免权的持有人是<strong>双方</strong>。这意味着，即使妻子愿意披露，被告丈夫作为另一方持有人，仍有权<strong>行使否决权</strong>，禁止该特定内容的披露。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="option-analysis">
+            <div class="option correct">
+                <span class="badge badge-correct">选项 A 正确</span>
+                <strong>不应采纳。</strong>虽然妻子自愿作证（放弃了配偶豁免权），但被告仍持有“婚姻交流特免权”，有权排除关于婚姻期间保密交流的证词。
+            </div>
+
+            <div class="option wrong">
+                <span class="badge badge-wrong">选项 B 错误</span>
+                <strong>法律适用错误。</strong>联邦刑事案件中的特免权由联邦普通法管辖，而不是州法（State Law）。州法仅在联邦法院审理的民事案件且基于多元管辖权 (Diversity Jurisdiction) 时才适用。
+            </div>
+
+            <div class="option wrong">
+                <span class="badge badge-wrong">选项 C 错误</span>
+                <strong>混淆概念。</strong>该选项描述的是“配偶豁免权”（即不作证的权利属于证人）。但这忽略了被告仍拥有独立的“婚姻交流特免权”来保护具体的谈话内容。
+            </div>
+
+            <div class="option wrong">
+                <span class="badge badge-wrong">选项 D 错误</span>
+                <strong>法律认知错误。</strong>联邦法院同时承认这两种特免权。认为联邦法院不承认婚姻交流特免权是错误的。
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-tip">
+        <strong>🎓 考试技巧 (Exam Tip)</strong><br>
+        看到配偶作证题，先问自己：<br>
+        1. 是为了阻止配偶<strong>上台</strong>？(看证人意愿)<br>
+        2. 还是为了阻止配偶<strong>说悄悄话</strong>？(被告可阻止)<br>
+        本题中，妻子愿意上台，但丈夫可以捂住她的嘴不让她说悄悄话。
+    </div>
+</div>
+
+</body>
+</html>

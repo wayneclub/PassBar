@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .header h2 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        .tag {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-top: 5px;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .analysis-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .dual-purpose {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .purpose-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: var(--border-radius);
+        }
+        .purpose-header {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+        .wrong-option {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff5f5;
+            border-left: 4px solid #e74c3c;
+            font-size: 0.9rem;
+        }
+        .exam-tip {
+            margin-top: 25px;
+            background-color: #fff8e1;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            border: 1px dashed #f1c40f;
+            font-size: 0.9rem;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d35400;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析：证据的双重目的</h2>
+        <span class="tag">Evidence / 证据法</span>
+        <span class="tag">Impeachment / 弹劾证人</span>
+    </div>
+
+    <p>本题考察的是证据法中一个非常经典的概念：<b>同一证据可以同时服务于多个目的</b>。正确答案是 <b>(D)</b>。</p>
+
+    <div class="concept-box">
+        <span class="concept-title">核心考点：证据的可采性 (Admissibility)</span>
+        根据《联邦证据规则》(FRE)，如果证据与案件中的<b>实质性问题 (Substantive Issue)</b> 相关，或者是为了<b>弹劾 (Impeach)</b> 证人的可信度，该证据通常是可采的。本题中的提问同时满足了这两个条件。
+    </div>
+
+    <div class="analysis-section">
+        <div class="analysis-title">深度解析：为什么选 D？</div>
+        <p>原告律师问主管：“你是否被告知原告向警方举报你偷钱？”这个问题有两个独立的法律效力：</p>
+        
+        <div class="dual-purpose">
+            <!-- Purpose 1 -->
+            <div class="purpose-card">
+                <div class="purpose-header">1. 弹劾目的 (Impeachment Purpose)</div>
+                <p><b>证明偏见 (Bias)：</b><br>
+                主管在作证说原告“不称职”。如果主管知道原告举报了她，那么她就对原告怀有敌意或<b>偏见 (Bias)</b>。这种偏见构成了她在法庭上撒谎的动机。根据 FRE 607 和相关判例（如 <i>United States v. Abel</i>），证明证人的偏见永远是允许的。</p>
+            </div>
+
+            <!-- Purpose 2 -->
+            <div class="purpose-card">
+                <div class="purpose-header">2. 实质性目的 (Substantive Purpose)</div>
+                <p><b>证明不当动机 (Improper Motive)：</b><br>
+                本案的核心诉由是“报复性解雇”。要赢得官司，原告必须证明解雇的<b>原因</b>是报复。主管“知晓举报”这一事实，是证明她具有报复动机的<b>关键事实 (Material Fact)</b>。这不仅仅是为了攻击证人可信度，更是为了直接证明案件的要素。</p>
+            </div>
+        </div>
+        
+        <p style="margin-top: 15px;">因为该问题既能攻击证人可信度，又能直接证明案件事实，所以选项 D 是最完整的答案。</p>
+    </div>
+
+    <div class="wrong-option">
+        <strong>⚠️ 易错点辨析 (选项 B 为什么错)：</strong><br>
+        选项 B 提到了“因不诚实而弹劾”(Dishonesty)。这通常涉及 FRE 608(b)，即询问证人过去的<b>具体不良行为 (Specific Instances of Conduct)</b> 来攻击其诚实品格。<br><br>
+        虽然“偷钱”是不诚实的行为，但律师问的<b>不是</b>“你有没有偷钱”，而是“你有没有<b>被告知</b>原告举报你”。<br>
+        “被告知”这件事本身并不反映主管的诚实品格，而是反映了她的<b>心理状态 (State of Mind)</b> 和<b>偏见 (Bias)</b>。因此，这不是基于 FRE 608 的品格弹劾，而是基于偏见的弹劾。
+    </div>
+
+    <div class="exam-tip">
+        <strong>🎓 考试技巧 (Exam Tip)：</strong><br>
+        在 MBE 证据法题目中，当看到一个证据似乎既能说明证人不可信（弹劾），又能说明案件本身的事实（实质性证据）时，<b>不要局限于单一用途</b>。<br><br>
+        特别是涉及<b>偏见 (Bias)</b> 的证据，它往往同时也与案件的动机 (Motive) 紧密相关。如果选项中有“Both... and...”的表述，请务必仔细核对是否两个目的都成立。
+    </div>
+</div>
+
+</body>
+</html>

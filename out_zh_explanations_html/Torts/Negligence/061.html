@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fff3cd;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .rule-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+        .trap-box {
+            background-color: var(--warning-bg);
+            border-left: 4px solid #f1c40f;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .key-term {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        .english {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <span class="tag">MBE Torts / Negligence</span>
+    <h2>考点解析：土地占有者的责任</h2>
+    
+    <p>本题考察的是侵权法中经典的<b>场所责任 (Premises Liability)</b>。在MBE考试中，除非题目特别说明适用现代规则（Rowland v. Christian），否则默认适用<b>普通法传统规则 (Common Law Traditional Approach)</b>。</p>
+
+    <div class="rule-box">
+        <strong>核心原则：</strong><br>
+        土地占有者对进入者的注意义务 (Duty of Care) 取决于进入者的<b>法律身份 (Status)</b>。
+    </div>
+
+    <h3>1. 确定原告身份</h3>
+    <p>首先，我们必须界定徒步旅行者的身份：</p>
+    <ul>
+        <li>他进入私人领地未获许可。</li>
+        <li>业主不知道他在那里。</li>
+    </ul>
+    <p>结论：他是<b>未被发现的非法侵入者 <span class="english">(Undiscovered Trespasser)</span></b>。</p>
+
+    <h3>2. 对应的法律义务</h3>
+    <p>根据传统规则，土地占有者对不同身份者的义务如下表：</p>
+
+    <table>
+        <tr>
+            <th>身份 (Status)</th>
+            <th>义务 (Duty)</th>
+        </tr>
+        <tr>
+            <td><b>未被发现的非法侵入者</b><br><span class="english">(Undiscovered Trespasser)</span></td>
+            <td><b>无义务 (No Duty)</b>。<br>例外：不得故意或肆意伤害（如设置陷阱）。</td>
+        </tr>
+        <tr>
+            <td><b>已被发现/预料到的非法侵入者</b><br><span class="english">(Discovered/Anticipated Trespasser)</span></td>
+            <td>需警告已知的、隐藏的、<b>人为的</b>危险 (Artificial Conditions)。</td>
+        </tr>
+        <tr>
+            <td><b>许可进入者</b><br><span class="english">(Licensee)</span></td>
+            <td>需警告所有已知的、隐藏的危险（含自然和人为）。</td>
+        </tr>
+    </table>
+
+    <h3>3. 本案分析 (为何选 A)</h3>
+    <p>由于原告是“未被发现的非法侵入者”，业主对他<b>没有任何注意义务 (No Duty)</b>。在过失侵权 (Negligence) 的分析框架中：</p>
+    <p style="text-align:center; font-weight:bold;">
+        Duty (义务) → Breach (违背) → Causation (因果关系) → Damages (损害)
+    </p>
+    <p>如果第一步 <b>Duty</b> 不存在，整个诉讼请求直接被驳回。因此，选项 A 是最准确的法律依据。</p>
+
+    <div class="trap-box">
+        <strong>⚠️ 易错点辨析：为什么不选 B？</strong><br>
+        选项 B 提到了“不可预见性 (Unforeseeability)”。虽然这在事实层面看似合理，但在法律逻辑上，<b>选项 A 优于 选项 B</b>。
+        <br><br>
+        原因在于：
+        <ul>
+            <li><b>选项 A (No Duty)</b> 是法律上的阻断 (Legal Bar)。只要身份是未发现的非法侵入者，法官可以直接以此驳回起诉，无需讨论事实细节。</li>
+            <li><b>选项 B (Unforeseeability)</b> 是事实抗辩。如果选 B，隐含的意思是“如果有预见性就要负责”，但这对于未发现的非法侵入者是错误的。即使业主知道树有白蚁（可预见树会倒），只要他不知道有非法侵入者，他依然不负责。</li>
+        </ul>
+    </div>
+
+    <h3>4. 其他选项排除</h3>
+    <ul>
+        <li><b>选项 C：</b> 错误。防止树木变得危险通常是对<b>受邀者 (Invitee)</b> 的义务，或者是针对路边行人的义务，不适用于非法侵入者。</li>
+        <li><b>选项 D：</b> 错误。即使对于“已被发现的非法侵入者”，业主也只对<b>人为的 (Artificial)</b> 危险负责。本案中的白蚁蛀树属于<b>自然状况 (Natural Condition)</b>，业主通常无需负责。</li>
+    </ul>
+
+    <div class="rule-box">
+        <strong>🎓 考试技巧 (Exam Tip)：</strong><br>
+        在做 Premises Liability 的题目时，第一步永远是<b>“定身份”</b>。
+        <br>如果是 Undiscovered Trespasser，直接找“No Duty”的选项。不要被题目中关于危险程度（如白蚁、烂树）的描述干扰。
+    </div>
+
+</div>
+
+</body>
+</html>

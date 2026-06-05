@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-card {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            color: #2980b9;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #bdc3c7;
+        }
+        .timeline-item.key-moment::before {
+            background-color: #e74c3c;
+            border: 2px solid #fff;
+            width: 12px;
+            height: 12px;
+            left: -28px;
+        }
+        .timeline-date {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+        .analysis-section {
+            margin-top: 20px;
+        }
+        .option-analysis {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .option-label {
+            font-weight: bold;
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-right: 5px;
+        }
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+        .latin {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">民事诉讼法 (Civil Procedure)</div>
+    </div>
+
+    <div class="content">
+        <p>本题考察的核心知识点是联邦法院的<strong>州籍多元化管辖权 (Diversity Jurisdiction)</strong> 及其判定的<strong>时间节点</strong>。</p>
+
+        <!-- 核心法则 -->
+        <div class="rule-card">
+            <span class="rule-title">⚖️ 黄金法则：起诉时原则 (Time-of-Filing Rule)</span>
+            <p>根据 28 U.S.C. § 1332 和最高法院判例（如 <span class="latin">Grupo Dataflux v. Atlas Global Group</span>），当事人的公民身份（Citizenship）仅在<strong>诉状提交之日 (Date the complaint is filed)</strong> 确定。</p>
+            <p>此后的住所变更<strong>不影响</strong>已经确立的管辖权。</p>
+        </div>
+
+        <!-- 案情时间线分析 -->
+        <h3>📅 案情时间线分析</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">合同签订时</div>
+                <div>原告：A州 | 被告：A州<br><small>(此时无多元化，但不重要)</small></div>
+            </div>
+            <div class="timeline-item key-moment">
+                <div class="timeline-date">🚨 提交诉状时 (关键时刻)</div>
+                <div><strong>原告：B州</strong> | <strong>被告：A州</strong></div>
+                <div style="color:#27ae60; font-weight:bold; margin-top:5px;">✅ 满足完全多元化 (Complete Diversity)</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">起诉后第二天</div>
+                <div>原告搬回 A州<br><small>(根据规则，这一变化被忽略)</small></div>
+            </div>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <h3>🔍 选项深度解析</h3>
+
+            <div class="option-analysis">
+                <span class="option-label correct">选项 B (正确)</span>
+                <p><strong>理由：</strong>联邦法院拥有管辖权，因为：</p>
+                <ol>
+                    <li><strong>争议金额：</strong>$100,000 > $75,000 法定门槛。</li>
+                    <li><strong>州籍多元：</strong>在<strong>起诉的那一刻</strong>，原告是B州公民，被告是A州公民。</li>
+                </ol>
+                <p>法院将驳回被告的动议（Deny the motion），因为管辖权已经有效建立。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="option-label incorrect">选项 A (错误)</span>
+                <p><strong>陷阱点：管辖权抗辩的放弃。</strong><br>
+                虽然大多数抗辩（如缺乏对人管辖权 Personal Jurisdiction）若未在答辩状中提出即视为放弃，但<strong>缺乏标的物管辖权 (Subject-Matter Jurisdiction, SMJ)</strong> 是<strong>永远不会被放弃 (Never Waived)</strong> 的。被告可以在诉讼的任何阶段提出，甚至法院也可以依职权 (Sua Sponte) 提出。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="option-label incorrect">选项 C (错误)</span>
+                <p><strong>错误逻辑：</strong>此选项错误地依据了“当前”或“起诉后”的公民身份。只要起诉那一刻是多元的，后续搬回A州不会破坏管辖权。</p>
+            </div>
+
+            <div class="option-analysis">
+                <span class="option-label incorrect">选项 D (错误)</span>
+                <p><strong>错误逻辑：专属管辖权。</strong><br>
+                州法院对州法诉求（如违约）确实有管辖权，但这通常是<strong>并行管辖权 (Concurrent Jurisdiction)</strong>，而非专属管辖权。只要满足多元化条件，联邦法院完全可以审理州法合同纠纷。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>🎓 MBE 提分技巧：</strong>
+            <br><br>
+            看到题目中出现当事人<strong>“搬家” (Moving)</strong> 的情节，立即警觉：
+            <ol style="margin-left: -20px;">
+                <li>检查搬家是在<strong>起诉前</strong>还是<strong>起诉后</strong>。</li>
+                <li>如果是<strong>起诉前</strong>搬家，检查是否有意图定居（改变了州籍）。</li>
+                <li>如果是<strong>起诉后</strong>搬家（如本题），直接忽略该变化！它旨在干扰你的判断。</li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

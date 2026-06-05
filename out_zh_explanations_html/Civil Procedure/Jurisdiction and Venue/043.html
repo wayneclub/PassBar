@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .rule-comparison {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.85rem;
+        }
+        .rule-comparison th, .rule-comparison td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .rule-comparison th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .step-label {
+            display: inline-block;
+            background-color: #27ae60;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        .wrong-option {
+            background-color: #fff5f5;
+            border-left: 4px solid #e74c3c;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .key-term {
+            font-weight: bold;
+            color: #d35400;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f8f9fa;
+            font-size: 0.8rem;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Civil Procedure: Class Action Jurisdiction</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：集体诉讼的管辖权</span>
+            本题考察联邦法院对集体诉讼（Class Action）行使<b>标的物管辖权（Subject-Matter Jurisdiction, SMJ）</b>的两种途径：
+            <ol style="margin-top:5px; padding-left:20px;">
+                <li><b>标准多元管辖权</b> (Standard Diversity)</li>
+                <li><b>集体诉讼公平法案</b> (CAFA)</li>
+            </ol>
+        </div>
+
+        <p>法院将<b>驳回 (Deny)</b> 被告的动议，因为本案满足标准多元管辖权的要求。</p>
+
+        <!-- 法律规则解析 -->
+        <h3>⚖️ 法律规则解析</h3>
+        
+        <p>在联邦民事诉讼中，集体诉讼要进入联邦法院，通常需要满足以下两套标准之一：</p>
+
+        <table class="rule-comparison">
+            <thead>
+                <tr>
+                    <th>标准</th>
+                    <th>Standard Diversity<br>(常规多元性)</th>
+                    <th>CAFA<br>(公平法案)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>当事人多元性</b></td>
+                    <td><b>完全多元 (Complete Diversity)</b><br>仅看<u>具名</u>当事人 (Named Parties)</td>
+                    <td><b>最低多元 (Minimal Diversity)</b><br>任何一名成员 vs 任何一名被告</td>
+                </tr>
+                <tr>
+                    <td><b>争议金额 (AIC)</b></td>
+                    <td><b>> $75,000</b><br>(针对具名原告)</td>
+                    <td><b>> $5,000,000</b><br>(汇总总额)</td>
+                </tr>
+                <tr>
+                    <td><b>人数要求</b></td>
+                    <td>无特定要求</td>
+                    <td><b>≥ 100 人</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 案情分析 -->
+        <h3>🔍 案情逻辑推演</h3>
+
+        <div class="analysis-step">
+            <span class="step-label">第一步</span>
+            <span class="key-term">检查标准多元管辖权</span><br>
+            根据最高法院在 <i>Supreme Tribe of Ben-Hur v. Cauble</i> 案中的判例，对于集体诉讼的多元性判断，<b>只看具名代表 (Named Representative) 的国籍</b>，忽略未具名的集体成员。
+            <ul>
+                <li><b>具名原告：</b> A州公民。</li>
+                <li><b>被告：</b> B州公民（注册地+主营业地）。</li>
+                <li><b>结论：</b> A vs B，满足完全多元性。那10个住在B州的未具名原告<b>不影响</b>管辖权。</li>
+            </ul>
+        </div>
+
+        <div class="analysis-step">
+            <span class="step-label">第二步</span>
+            <span class="key-term">检查争议金额</span><br>
+            具名原告的索赔额为 $100,000，超过了 $75,000 的法定门槛。
+            <br><i>注意：只要具名原告满足金额要求，法院通常可以对其他金额不足的成员行使补充管辖权（Supplemental Jurisdiction），尽管本案中所有人都满足。</i>
+        </div>
+
+        <div class="analysis-step">
+            <span class="step-label">结论</span>
+            既然满足了标准多元管辖权，法院就有权审理。不需要再考虑 CAFA 的要求。
+        </div>
+
+        <!-- 错误选项解析 -->
+        <h3>🚫 为什么其他选项是错的？</h3>
+
+        <div class="wrong-option">
+            <b>选项 C 错误 (关于未具名成员)：</b><br>
+            虽然有10名未具名原告与被告同属B州，但在集体诉讼的<b>标准多元管辖权</b>分析中，我们<b>只看具名当事人</b>。未具名成员的国籍不会破坏多元性 (Diversity is not destroyed)。
+        </div>
+
+        <div class="wrong-option">
+            <b>选项 D 错误 (关于 CAFA)：</b><br>
+            这个选项试图用 <b>Class Action Fairness Act (CAFA)</b> 的标准来迷惑你。CAFA 确实要求集体成员至少 100 人。但是，CAFA 只是建立管辖权的<b>额外</b>途径，而不是唯一途径。既然本案已经满足了常规的 § 1332 多元管辖权，是否满足 CAFA 就无关紧要了。
+        </div>
+
+        <div class="wrong-option">
+            <b>选项 B 错误 (关于豁免)：</b><br>
+            <b>标的物管辖权 (Subject-Matter Jurisdiction) 永远不会被豁免 (Never Waived)。</b> 即使被告在答辩状 (Answer) 之后才提出动议，法院也必须受理该动议。如果法院发现缺乏 SMJ，必须随时驳回案件。
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

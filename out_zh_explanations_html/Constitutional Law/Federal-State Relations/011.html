@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 解析：州对对外贸易的征税</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50; /* 深蓝 */
+            --accent-color: #e67e22; /* 橙色重点 */
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --light-text: #7f8c8d;
+            --success-color: #27ae60;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #856404;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: var(--light-text);
+            font-size: 0.9em;
+        }
+
+        .rule-box {
+            background-color: #e8f4f8;
+            border: 1px solid #b8daff;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            margin: 10px 0;
+        }
+
+        .rule-list {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+
+        .rule-list li {
+            margin-bottom: 5px;
+        }
+
+        .correct-answer {
+            border-left-color: var(--success-color);
+            background-color: #f0fff4;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            color: var(--light-text);
+            font-size: 0.8rem;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Visual Diagram for Tests */
+        .step-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .step {
+            background: white;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .arrow {
+            text-align: center;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>宪法：州对对外贸易的征税权</p>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点卡片 -->
+        <div class="card">
+            <div class="card-title">核心考点：休眠商业条款</div>
+            <p>本题考察的是<b>休眠商业条款 (Dormant Commerce Clause)</b> 对州政府向从事<b>对外贸易 (Foreign Commerce)</b> 的公司征税的限制。</p>
+            <p>虽然国会拥有监管对外贸易的权力，但州在满足特定严格条件时，也可以对外国公司征税。</p>
+        </div>
+
+        <!-- 法律规则图解 -->
+        <div class="card">
+            <div class="card-title">法律规则：两步测试法</div>
+            <p>州税要合宪，必须同时通过以下两个测试：</p>
+            
+            <div class="step-diagram">
+                <div class="step">
+                    <strong>第一步：Complete Auto 测试</strong><br>
+                    <span class="english-term">(适用于所有州际贸易)</span><br>
+                    1. 实质性联系 (Substantial Nexus)<br>
+                    2. 公平分配 (Fair Apportionment)<br>
+                    3. 非歧视性 (Nondiscriminatory)<br>
+                    4. 公平关联 (Fairly Related)
+                </div>
+                <div class="arrow">⬇️ 必须同时满足</div>
+                <div class="step" style="border-color: var(--accent-color); border-width: 2px;">
+                    <strong>第二步：Japan Line 额外测试</strong><br>
+                    <span class="english-term">(专门针对对外贸易)</span><br>
+                    1. 不得造成国际多重征税的必然风险<br>
+                    2. <b>不得妨碍联邦政府“用一个声音说话”</b>
+                </div>
+            </div>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="card correct-answer">
+            <div class="badge">正确答案 D</div>
+            <div class="card-title">为什么选 D？</div>
+            <p>选项 D 准确地指出了针对<b>对外贸易</b>的特殊宪法要求。</p>
+            <p>题目中的州税采用了“全球合并报告法”（Worldwide Combined Reporting），这在 <i>Barclays Bank PLC v. Franchise Tax Board</i> (1994) 案中已被最高法院确认合宪。</p>
+            <div class="rule-box">
+                <strong>关键逻辑：</strong><br>
+                只要州税满足了基本的 <i>Complete Auto</i> 要求，且<b>不损害联邦在对外贸易中的统一性</b>（即不阻止联邦政府在国际事务中 Speak with One Voice），该税收就是合宪的。
+            </div>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="card">
+            <div class="card-title">陷阱排除</div>
+            <ul class="rule-list">
+                <li>
+                    <strong>选项 A 错误：</strong>虽然国会权力很大，但并非“独占”到禁止州进行任何征税。只要不冲突，州有权征税。
+                </li>
+                <li>
+                    <strong>选项 B 错误：</strong>题目中提到该税收基于“合理估算”和“州内运营归属比例”，这表明它是<b>公平分配 (Fairly Apportioned)</b> 的，并非表面上的歧视。
+                </li>
+                <li>
+                    <strong>选项 C 错误：</strong>这是一个经典的宪法陷阱。<b>至高无上条款 (Supremacy Clause)</b> 规定宪法（包括商业条款）高于州的警察权 (Police Power)。州不能用警察权作为违反商业条款的借口。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="background-color: #fff8e1; border-left-color: #ffc107;">
+            <div class="card-title" style="color: #d35400;">💡 考试技巧 (Exam Tip)</div>
+            <p>看到 <b>"Foreign Corporations" (外国公司)</b> 和 <b>"State Tax" (州税)</b> 的组合时：</p>
+            <ol>
+                <li>首先检查是否歧视（Discrimination）？如果是，通常违宪。</li>
+                <li>如果非歧视，检查是否干扰了联邦政府的<b>外交政策统一性 (Federal Uniformity)</b>。</li>
+                <li>记住关键词：<b>"Speak with One Voice" (用一个声音说话)</b>。</li>
+            </ol>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        MBE Constitutional Law Review <br>
+        © 2025 Legal Exam Prep
+    </div>
+</div>
+
+</body>
+</html>

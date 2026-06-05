@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            color: #2980b9;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .option-analysis {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .correct-tag {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 12px;
+            background: #eafaf1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+        .wrong-tag {
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 12px;
+            background: #fdedec;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+        .exam-tip {
+            background-color: #fff8e1;
+            border: 1px dashed #f1c40f;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #7f8c8d;
+        }
+        .exam-tip strong {
+            color: #d35400;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence / Hearsay Exceptions</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">核心规则：公共记录例外</div>
+            <div style="font-size: 14px;">
+                根据 <strong>FRE 803(8) (Public Records)</strong>，即使是传闻证据(Hearsay)，如果满足以下条件，公共机关的记录或陈述也是可采纳的：
+                <ul>
+                    <li>记录了该机构的活动；或</li>
+                    <li>记录了<strong>依据法律义务观察并报告的事项</strong> (Matters observed pursuant to a legal duty to report)；或</li>
+                    <li>(在民事案件中) 法律授权的调查得出的事实认定。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为何选项 C 是正确的？</div>
+            <p style="font-size: 14px;">
+                本题的核心在于识别<strong>公共记录例外 (Public Records Exception)</strong> 的适用范围。
+            </p>
+            <p style="font-size: 14px;">
+                消防局长 (Fire Marshal) 是一名公职人员。根据题意，他有法律义务检查场所并报告违规情况。他在火灾前检查并记录原告储存汽油的行为，完全符合 FRE 803(8) 中关于“<strong>依据法律义务观察到的事项</strong>”的规定。
+            </p>
+            <p style="font-size: 14px;">
+                因此，这份报告虽然是庭外陈述且用于证明事实真相（即原告确实储存了汽油），但符合传闻证据例外，可以采纳。
+            </p>
+        </div>
+
+        <!-- 干扰项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">陷阱排除</div>
+            
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 A 错误</span>
+                <span style="color: #666;">(Hearsay)</span><br>
+                虽然报告确实是传闻证据，但题目问的是“是否可采纳”。由于存在公共记录例外，所以它不是不可采纳的。
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 B 错误</span>
+                <span style="color: #666;">(Civil vs. Criminal)</span><br>
+                这是一个常见的混淆点。FRE 803(8) 确实限制了“执法人员观察到的事项”在<strong>刑事案件</strong>(Criminal Cases)中作为不利于被告的证据使用。但本案是<strong>民事诉讼</strong>(Civil Case)，该限制不适用。实际上，公共记录在民事案件中的可采纳性比刑事案件更宽泛。
+            </div>
+
+            <div class="option-analysis">
+                <span class="wrong-tag">选项 D 错误</span>
+                <span style="color: #666;">(Unavailable)</span><br>
+                这是一个关于“证人是否必须不可用”的考点。
+                <ul>
+                    <li><strong>FRE 803</strong>（包括商业记录、公共记录等）的例外，<strong>无论证人是否可用</strong>(Availability of declarant is immaterial) 均适用。</li>
+                    <li>只有 <strong>FRE 804</strong>（如临终遗言、前次证词等）才要求证人不可用。</li>
+                </ul>
+                因此，选项 D 附加的“前提是消防局长无法出庭”这一条件是错误的法律陈述。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 提分技巧：</strong><br>
+            在处理 Hearsay 问题时，请遵循以下思维导图：
+            <ol style="margin-top:5px; padding-left: 15px;">
+                <li>这是 Hearsay 吗？(Out of court statement + Truth of matter asserted)</li>
+                <li>如果是，有例外吗？</li>
+                <li>如果是<strong>公共记录 (Public Record)</strong>，检查是否涉及<strong>刑事案件中的执法人员观察</strong>。如果是民事案件，通常都是绿灯通行 (Green Light)。</li>
+                <li>最后，切记 FRE 803 系列例外<strong>不需要</strong>证人失踪或死亡。</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

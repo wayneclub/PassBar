@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background-color: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .card-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background-color: #3498db;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+        .highlight {
+            background-color: #e8f4f8;
+            color: #2980b9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .eng {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .diagram {
+            background-color: #f9f9f9;
+            border: 1px dashed #bdc3c7;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        .arrow {
+            font-size: 1.2em;
+            color: #3498db;
+            margin: 5px 0;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Real Property | Adverse Possession</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心结论 -->
+        <div class="card">
+            <div class="card-title">核心考点：多人时效占有</div>
+            <p>本题考察的是当两人共同完成<span class="term">时效占有</span> (Adverse Possession) 后，他们所获得的产权性质是什么。</p>
+            <p><strong>结论：</strong>如果不具备特定的法律语言或意图，多人共同时效占有获得的产权默认为<span class="highlight">按份共有 (Tenancy in Common)</span>。</p>
+        </div>
+
+        <!-- 法律推理图解 -->
+        <div class="card">
+            <div class="card-title">逻辑推演步骤</div>
+            
+            <div class="diagram">
+                <strong>第一步：是否获得产权？</strong><br>
+                占有15年 > 法定10年<br>
+                <span class="eng">Statutory Period Met</span>
+                <div class="arrow">↓</div>
+                <strong>第二步：产权性质为何？</strong><br>
+                默认为按份共有<br>
+                <span class="eng">Tenancy in Common</span>
+                <div class="arrow">↓</div>
+                <strong>第三步：一方死亡后归谁？</strong><br>
+                无遗属权 (No Right of Survivorship)<br>
+                份额归继承人 (Heir)
+            </div>
+        </div>
+
+        <!-- 详细解析 -->
+        <div class="card">
+            <div class="card-title">深度解析</div>
+            <p><strong>1. 为什么是按份共有 (Tenancy in Common)?</strong></p>
+            <p>在美国财产法中，<span class="term">联权共有</span> (Joint Tenancy) 具有“遗属权” (Right of Survivorship)，即一方死亡，其份额自动归幸存者所有。但这通常需要明确的法律文书（如地契）声明，并满足“四个统一” (Four Unities: Time, Title, Interest, Possession)。</p>
+            <p>时效占有是基于事实行为获得的产权，缺乏建立联权共有所需的明确意图表达。因此，法院推定适用最基础的共有形式——<strong>按份共有</strong>。</p>
+
+            <p><strong>2. 为什么不是选项 B (存活者独占)?</strong></p>
+            <p>选项 B 描述的是联权共有 (Joint Tenancy) 的特征。由于本案中两人仅建立了按份共有关系，死者的份额不会自动转移给生者，而是根据无遗嘱继承法流转给其继承人。</p>
+
+            <p><strong>3. 为什么原房主 (Woman) 败诉?</strong></p>
+            <p>时效期为10年，两人已占有15年。产权在第10年结束时就已经从原房主手中转移给了占有人。之后的土地用途改变或其中一人死亡，都不会让产权“回流”给原房主。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="border-left: 5px solid #e74c3c;">
+            <div class="card-title">MBE 避坑指南</div>
+            <ul>
+                <li><strong>默认规则：</strong> 只要题目没有提到“带有遗属权的联权共有” (Joint Tenancy with Right of Survivorship) 的明确语言，多人共有几乎总是<strong>按份共有</strong>。</li>
+                <li><strong>时间点：</strong> 注意占有时间是否超过法定时效。一旦超过，产权即刻转移 (Title vests immediately)，后续事件（如死亡、搬离）仅影响新产权人之间的关系，原房主已无权干涉。</li>
+                <li><strong>用途变更：</strong> 只要用途符合该类土地的常规使用方式，中途改变具体用途（从小屋变工厂）通常不中断“持续性” (Continuity)。</li>
+            </ul>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

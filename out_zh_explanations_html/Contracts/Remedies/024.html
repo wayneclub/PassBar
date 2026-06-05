@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: transparent;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--accent-color);
+        }
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .formula-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-family: "Courier New", Courier, monospace;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 10px 0;
+            text-align: center;
+        }
+.term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+        .english {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .analysis-step {
+            margin-bottom: 10px;
+        }
+        .wrong-option {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .correct-option {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .tip-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 标题部分 -->
+    <div class="header">
+        <h2>MBE 考点解析：<br>特制商品的违约赔偿</h2>
+        <div style="font-size: 0.8em; margin-top: 5px;">Subject: Contracts / Remedies</div>
+    </div>
+
+    <!-- 核心结论 -->
+    <div class="card">
+        <div class="section-title">正确答案与核心规则</div>
+        <p>本题的正确答案是 <span class="correct-option">选项 C</span>。</p>
+        <p><b>核心考点：</b>根据美国统一商法典 (<span class="english">UCC</span>)，当买方违约时，卖方有权获得<b>预期利益损害赔偿</b> (<span class="english">Expectation Damages</span>)，即让卖方处于“如同合同被完整履行”时的经济地位。</p>
+        <p>对于<b>特制商品</b> (<span class="english">Specially Manufactured Goods</span>)，由于缺乏标准市场价格，赔偿计算公式通常为：</p>
+        <div class="formula-box">
+            赔偿金 = 预期利润 + 发生的成本 - 转售所得
+        </div>
+    </div>
+
+    <!-- 详细解析 -->
+    <div class="card">
+        <div class="section-title">逻辑推演与计算</div>
+        <p>让我们拆解本题的数字逻辑：</p>
+        
+        <div class="analysis-step">
+            1. <b>预期利润 (<span class="english">Expected Profit</span>)</b><br>
+            合同价 $10 - 成本 $8 = <b>$2</b><br>
+            <span style="font-size:0.9em; color:#666;">这是卖方如果交易成功本应赚到的钱。</span>
+        </div>
+
+        <div class="analysis-step">
+            2. <b>已发生成本 (<span class="english">Costs Incurred</span>)</b><br>
+            卖方已经完成了制造，投入了 <b>$8</b>。<br>
+            <span style="font-size:0.9em; color:#666;">这是卖方的实际支出（信赖利益）。</span>
+        </div>
+
+        <div class="analysis-step">
+            3. <b>转售所得/减损 (<span class="english">Resale/Mitigation</span>)</b><br>
+            卖方将废品卖给旧货公司回收了 <b>$2</b>。<br>
+            <span style="font-size:0.9em; color:#666;">这部分钱必须从赔偿中扣除，否则卖方会获得双重收益。</span>
+        </div>
+
+        <div class="formula-box" style="text-align: left; font-size: 0.9em;">
+            计算过程：<br>
+            $2 (利润) + $8 (成本) - $2 (回收) = <b>$8</b>
+        </div>
+        
+        <p><b>另一种理解方式：</b><br>
+        卖方实际损失了 $6 的本金（$8 成本 - $2 回收），加上他本该赚到的 $2 利润。总共需要赔偿 $8。</p>
+    </div>
+
+    <!-- 错误选项分析 -->
+    <div class="card">
+        <div class="section-title">为什么其他选项是错的？</div>
+        <ul>
+            <li>
+                <span class="wrong-option">选项 A ($2) 错误：</span><br>
+                这仅仅是利润。如果卖方<b>尚未开始生产</b>就得知买方违约，那么他没有投入成本，只赔 $2 是对的。但这里卖方已经投入了成本。
+            </li>
+            <li>
+                <span class="wrong-option">选项 B ($6) 错误：</span><br>
+                这是“未收回的成本” ($8 - $2)。这只补偿了卖方的本金损失，却忽略了卖方本应获得的<b>利润</b>。合同法不仅保护本金，还保护预期的利润。
+            </li>
+            <li>
+                <span class="wrong-option">选项 D (象征性赔偿) 错误：</span><br>
+                UCC 并不强制要求必须通过“公开拍卖” (<span class="english">Public Auction</span>) 来转售货物。只要转售是商业上合理的 (<span class="english">Commercially Reasonable</span>) 即可。
+            </li>
+        </ul>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="tip-box">
+        <b>🎓 MBE 抢分技巧：</b>
+        <p>看到 <b>"Specially Manufactured"</b>（特制/定制）商品时，立即警惕：</p>
+        <ol>
+            <li>通常没有标准的<b>市场价格</b> (<span class="english">Market Price</span>)，所以不能用简单的 "合同价 - 市场价" 公式。</li>
+            <li>适用 <b>UCC § 2-708(2)</b>：赔偿核心是 <b>利润 (Profit)</b>。</li>
+            <li>如果货物已经制成，必须加上<b>成本</b>并减去<b>残值</b>。</li>
+        </ol>
+        <p><b>简单记忆法：</b><br>
+        如果是定制品且无法转卖给他人（或只能当废品卖），直接用：<br>
+        <b>合同价 ($10) - 转售残值 ($2) = 赔偿金 ($8)</b><br>
+        <i>*前提是转售行为合理。</i></p>
+    </div>
+
+</div>
+
+</body>
+</html>

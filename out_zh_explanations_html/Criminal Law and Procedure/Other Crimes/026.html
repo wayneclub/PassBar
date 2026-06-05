@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --text-color: #333;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .result-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .result-title {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .concept-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-header {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .concept-header::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .keyword {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 刑法考点解析</h1>
+        <div class="sub-title">Battery & Conspiracy</div>
+    </div>
+
+    <div class="content">
+        <!-- 结论部分 -->
+        <div class="result-box">
+            <span class="result-title">✅ 正确答案：B</span>
+            <p style="margin:0;">他们伤害罪（Battery）成立，但共谋罪（Conspiracy）不成立。</p>
+        </div>
+
+        <p>本题的核心考点在于区分<b>一般意图犯罪 (General Intent Crimes)</b> 与 <b>特定意图犯罪 (Specific Intent Crimes)</b> 的心理状态要求。</p>
+
+        <!-- 考点一：伤害罪 -->
+        <div class="section-title">1. 为什么伤害罪 (Battery) 成立？</div>
+        <div class="concept-card">
+            <div class="concept-header">法律规则</div>
+            <p>普通法下的 Battery 定义为对他人身体进行非法的、有害的或冒犯性的接触。</p>
+            <p>关键在于：Battery 是<b>一般意图犯罪 (General Intent Crime)</b>。</p>
+        </div>
+        
+        <p>这意味着检方<b>不需要</b>证明被告“想要”伤害别人。只要证明被告的行为构成了<b>刑事过失 (Criminal Negligence)</b> 或鲁莽 (Recklessness) 即可。</p>
+        
+        <ul>
+            <li><b>本案分析：</b>在拥挤的教学楼拉响火警警报，明显会制造恐慌和踩踏风险。这种行为严重偏离了理性人的注意义务，构成了刑事过失。</li>
+            <li><b>结果：</b>因为过失行为导致了实际的身体伤害，Battery 罪名成立。</li>
+            <li><b>共犯责任 (Accomplice Liability)：</b>男友虽然没有亲自拉警报，但他教唆/怂恿 (Solicited/Encouraged) 女友实施该行为，因此作为共犯 (Accomplice) 承担同等责任。</li>
+        </ul>
+
+        <!-- 考点二：共谋罪 -->
+        <div class="section-title">2. 为什么共谋罪 (Conspiracy) 不成立？</div>
+        <div class="concept-card">
+            <div class="concept-header">法律规则</div>
+            <p>Conspiracy 是<b>特定意图犯罪 (Specific Intent Crime)</b>。</p>
+            <p>它要求两个层面的意图：<br>
+            1. 达成协议的意图 (Intent to agree)<br>
+            2. <b>实现犯罪目标的特定意图 (Intent to achieve the objective)</b></p>
+        </div>
+
+        <p>这是本题最大的陷阱。虽然他们“共谋”去做一件坏事（拉警报），但要构成“共谋伤害罪 (Conspiracy to commit Battery)”，他们必须<b>特意想要</b>导致有人受伤。</p>
+
+        <ul>
+            <li><b>本案分析：</b>题目明确指出目的是“因为没准备好考试而想拖延时间”。他们达成协议是为了拉警报，而不是为了打人或让人受伤。</li>
+            <li><b>缺乏特定意图：</b>由于他们没有“让人受伤”的特定目的 (Specific Intent)，因此不能构成共谋伤害罪。</li>
+        </ul>
+
+        <!-- 考试技巧 -->
+        <div class="section-title">💡 MBE 考试技巧</div>
+        <p>在处理 MBE 刑法题时，请务必遵循以下思维路径：</p>
+        <ol>
+            <li><b>识别罪名类型：</b>首先判断该罪名是 General Intent 还是 Specific Intent。
+                <br><span class="latin" style="font-size:0.9em;">(常见 Specific Intent: Conspiracy, Attempt, Solicitation, First Degree Murder, Larceny, Burglary 等)</span>
+            </li>
+            <li><b>检查心理状态 (Mens Rea)：</b>
+                <ul>
+                    <li>如果是 <b>Battery</b> (General Intent)，问自己：被告是否鲁莽/过失？如果是，且造成伤害，则有罪。</li>
+                    <li>如果是 <b>Conspiracy</b> (Specific Intent)，问自己：被告是否<b>渴望</b>那个特定的犯罪结果发生？如果只是导致了结果但并非本意，则无罪。</li>
+                </ul>
+            </li>
+        </ol>
+
+    </div>
+
+    <div class="footer">
+        NCBE 考题解析 | 助您通过 Bar Exam
+    </div>
+</div>
+
+</body>
+</html>

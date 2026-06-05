@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+            font-size: 15px;
+        }
+        .rule-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: 600;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .option-analysis {
+            margin-bottom: 15px;
+        }
+        .option-label {
+            font-weight: bold;
+            display: inline-block;
+            width: 20px;
+        }
+        .correct {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .incorrect {
+            color: #c0392b;
+        }
+        .latin {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+        ul {
+            margin: 5px 0 15px 20px;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Evidence Law | FRE 615</div>
+    </div>
+
+    <div class="content">
+        <p>本题考察的是《联邦证据规则》（Federal Rules of Evidence, FRE）中关于<b>证人隔离</b>（Sequestration of Witnesses）的强制性规定。</p>
+
+        <div class="rule-box">
+            <span class="rule-title">核心考点：FRE 615</span>
+            该规则规定：应一方当事人的请求（At a party's request），法院<span class="highlight">必须（Must）</span>下令将证人排除在法庭之外，以防止他们听到其他证人的证词。
+        </div>
+
+        <div class="section-title">✅ 正确答案分析 (选项 A)</div>
+        <p><b>法律依据：</b>根据 FRE 615，证人隔离通常是<b>强制性的（Mandatory）</b>权利，而非法院的自由裁量权（Discretion）。</p>
+        <p><b>逻辑推理：</b></p>
+        <ul>
+            <li>题目中，原告（Man）提出了请求。</li>
+            <li>被请求排除的是“非当事方目击证人”（Nonparty eyewitnesses）。</li>
+            <li>FRE 615 虽然有例外情况（如下文所述），但普通的目击证人通常不属于例外。</li>
+            <li>因此，法院<b>没有选择权</b>，必须批准该请求。</li>
+        </ul>
+
+        <p><b>FRE 615 的三个例外（不能排除的人）：</b></p>
+        <ol>
+            <li><b>当事人</b>（A party who is a natural person）；</li>
+            <li>当事人是法人时的<b>指定代表</b>（Designated representative）；</li>
+            <li>被证明其在场对案件陈述<b>至关重要</b>的人（如专家证人 Expert Witness）。</li>
+        </ol>
+        <p>本题中的目击证人不属于上述任何例外，故必须被隔离。</p>
+
+        <div class="section-title">❌ 干扰项快速排除</div>
+        
+        <div class="option-analysis">
+            <span class="option-label incorrect">B</span>
+            <b>错误原因：资格与弹劾 (Competency vs. Impeachment)</b><br>
+            根据 FRE 601，每个人都有作证资格。伪证罪（Perjury）定罪记录可用于<b>弹劾</b>（Impeach）证人的可信度（FRE 609），但不能作为完全<b>阻止</b>其作证的理由。
+        </div>
+
+        <div class="option-analysis">
+            <span class="option-label incorrect">C</span>
+            <b>错误原因：交叉询问范围 (Scope of Cross)</b><br>
+            虽然 FRE 611(b) 一般将交叉询问限制在直接询问的范围内，但它同时也赋予了法院<b>自由裁量权</b>（Discretion），允许法院批准超出范围的提问。题目问的是法院“必须”做什么，法院并非“必须”拒绝，而是“可以”允许。
+        </div>
+
+        <div class="option-analysis">
+            <span class="option-label incorrect">D</span>
+            <b>错误原因：唤醒记忆 (Refreshing Recollection)</b><br>
+            这是一个经典的 MBE 陷阱：
+            <ul>
+                <li>如果文件是在<b>作证时</b>（While testifying）使用，必须出示。</li>
+                <li>如果文件是在<b>作证前</b>（Before testifying）使用（如本题），根据 FRE 612，法院拥有<b>自由裁量权</b>决定是否要求出示（if justice requires），并非强制性“必须”。</li>
+            </ul>
+        </div>
+
+        <div class="section-title">🎓 考试技巧 (Exam Tip)</div>
+        <p>在 MBE 证据法题目中，务必区分：</p>
+        <ul>
+            <li><b>Must (Mandatory):</b> 法院必须执行（如 FRE 615 的证人隔离请求）。</li>
+            <li><b>May (Discretionary):</b> 法院可以自行决定（如 FRE 611 交叉询问范围、FRE 612 作证前文件的出示）。</li>
+        </ul>
+        <p>看到题目问 "must" 时，排除所有涉及司法自由裁量权的选项。</p>
+    </div>
+
+    <div class="footer">
+        MBE Evidence Review © 2025
+    </div>
+</div>
+
+</body>
+</html>

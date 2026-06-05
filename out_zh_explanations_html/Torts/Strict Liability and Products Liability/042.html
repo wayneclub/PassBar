@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --success-color: #27ae60;
+        --warning-color: #e67e22;
+        --danger-color: #c0392b;
+        --bg-color: #f4f6f7;
+        --card-bg: #ffffff;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #e9ecef;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: #333;
+    }
+    .container {
+        max-width: 480px;
+        width: 100%;
+        background-color: var(--bg-color);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header .subtitle {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .card {
+        background-color: var(--card-bg);
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-left: 4px solid var(--accent-color);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .card-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+    .card-title span {
+        margin-right: 8px;
+    }
+    .concept-box {
+        background-color: #e8f4f8;
+        border: 1px solid #b3d7ff;
+        border-radius: 6px;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 14px;
+    }
+    .highlight {
+        font-weight: bold;
+        color: var(--danger-color);
+    }
+    .diagram {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 15px 0;
+        padding: 10px;
+        background: white;
+        border-radius: 8px;
+        border: 1px dashed #ccc;
+    }
+    .step {
+        background: var(--primary-color);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        margin: 5px 0;
+        width: 80%;
+        text-align: center;
+    }
+    .arrow {
+        font-size: 18px;
+        color: #aaa;
+    }
+    .result-box {
+        border: 2px solid var(--success-color);
+        background-color: #eafaf1;
+        color: var(--success-color);
+        font-weight: bold;
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .wrong-box {
+        border: 1px solid #fadbd8;
+        background-color: #fdedec;
+        color: var(--danger-color);
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin-top: 5px;
+    }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #777;
+        padding: 15px;
+        border-top: 1px solid #ddd;
+    }
+    ul {
+        padding-left: 20px;
+        margin: 5px 0;
+    }
+    li {
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Strict Liability & Scope of Risk</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="card">
+            <div class="card-title">
+                <span>⚖️</span> 核心法律规则
+            </div>
+            <p style="font-size: 14px; line-height: 1.5;">
+                <strong>异常危险活动 (Abnormally Dangerous Activities)</strong> 的严格责任有一个关键限制：
+            </p>
+            <div class="concept-box">
+                被告仅对<b>源于该活动“异常危险特性”</b>所造成的损害承担严格责任。<br>
+                <small style="color: #666;">Defendant is strictly liable only for harm that flows from the abnormally dangerous characteristic of the activity.</small>
+            </div>
+            <p style="font-size: 13px; color: #555;">
+                参考：<i>Restatement (Third) of Torts § 29</i>
+            </p>
+        </div>
+
+        <!-- 案情分析图解 -->
+        <div class="card" style="border-left-color: var(--warning-color);">
+            <div class="card-title">
+                <span>🔍</span> 案情逻辑分析
+            </div>
+            <div class="diagram">
+                <div class="step">🚛 活动：运输有毒材料</div>
+                <div class="arrow">↓</div>
+                <div class="step" style="background-color: var(--warning-color);">⚠️ 危险特性：<b>毒性 (Toxicity)</b></div>
+                <div class="arrow">↓</div>
+                <div class="step" style="background-color: #95a5a6;">💧 实际事故：<b>滑倒 (Slipping)</b></div>
+                <div class="arrow">↓</div>
+                <div class="step" style="background-color: var(--danger-color);">❌ 结论：不适用严格责任</div>
+            </div>
+            <p style="font-size: 14px;">
+                虽然运输有毒物质是异常危险活动，但其“异常危险”在于<b>它有毒</b>（会让人中毒、灼伤），而不是在于<b>它是液体</b>（会让人滑倒）。
+            </p>
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="card" style="border-left-color: var(--success-color);">
+            <div class="card-title">
+                <span>✅</span> 为什么选 A？
+            </div>
+            <p style="font-size: 14px;">
+                <strong>选项 A 正确。</strong><br>
+                因为司机的伤害并非由材料的<b>毒性 (Toxicity)</b> 导致。
+            </p>
+            <p style="font-size: 14px;">
+                如果是运输牛奶或水泄漏导致路面湿滑，结果也是一样的（车祸）。因此，这次事故并非源于该活动区别于普通活动的“异常危险”特性。对于这种普通风险（路面湿滑），原告应主张<b>过失 (Negligence)</b>，而非严格责任。
+            </p>
+        </div>
+
+        <!-- 错误选项陷阱 -->
+        <div class="card" style="border-left-color: var(--danger-color);">
+            <div class="card-title">
+                <span>🚫</span> 避坑指南
+            </div>
+            
+            <div class="wrong-box">
+                <strong>选项 B (介入原因) 错误：</strong><br>
+                只有<b>不可预见 (Unforeseeable)</b> 的介入原因才能切断责任。在湿滑路面上失控是完全可预见的，所以这本身不是免责理由。
+            </div>
+
+            <div class="wrong-box">
+                <strong>选项 D (绝对责任) 错误：</strong><br>
+                这是典型的“诱导性选项”。虽然制造商对泄漏负有责任，但严格责任不是<b>绝对责任 (Absolute Liability)</b>。它受到“风险范围规则” (Scope of Risk Rule) 的限制。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="background-color: #fff8e1; border-left: 4px solid #ffc107;">
+            <div class="card-title">
+                <span>💡</span> MBE 实战技巧
+            </div>
+            <p style="font-size: 14px;">
+                遇到 <b>Strict Liability</b> 题目时，请按以下两步走：
+            </p>
+            <ol style="font-size: 14px; padding-left: 20px;">
+                <li><b>定性：</b>这是异常危险活动吗？（本题：是）</li>
+                <li><b>匹配：</b>发生的伤害是否正是让该活动变得“异常危险”的那种伤害？（本题：否，滑倒 vs 中毒）</li>
+            </ol>
+            <p style="font-size: 14px;">
+                如果第2步不匹配，严格责任不成立。
+            </p>
+        </div>
+
+    </div>
+    
+</div>
+
+</body>
+</html>

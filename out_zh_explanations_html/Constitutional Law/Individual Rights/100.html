@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .rule-box {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 8px;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .tag-correct {
+            background: #e9f7ef;
+            color: var(--correct-color);
+            border: 1px solid var(--correct-color);
+        }
+        .tag-wrong {
+            background: #fdedec;
+            color: var(--wrong-color);
+            border: 1px solid var(--wrong-color);
+        }
+        .case-law {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        .exam-tip {
+            background: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+        .exam-tip-icon {
+            font-size: 1.2rem;
+            margin-right: 5px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 宪法考点解析</h1>
+        <div class="subtitle">Constitutional Law: State Action</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <span class="rule-title">🔑 核心考点：州政府行为原则 (State Action Doctrine)</span>
+            美国宪法（包括第一修正案的言论自由）通常只限制<b>政府行为</b>，而不限制<b>私人行为</b>。除非满足极少数的例外情况，私人实体（如购物中心）没有义务保障他人的言论自由。
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">✅ 为什么选 A？</div>
+            <p><b>逻辑链条：</b></p>
+            <ol>
+                <li><b>主体识别：</b>题目明确指出该购物中心是“私人拥有和经营的” (privately owned and operated)。</li>
+                <li><b>原则适用：</b>宪法第一修正案 (First Amendment) 仅针对政府行为。私人业主有权将不受欢迎的访客（包括抗议者）驱逐出其财产。</li>
+                <li><b>例外测试：</b>本案是否属于“公共职能” (Public Function) 例外？
+                    <ul>
+                        <li><b>标准：</b>私人实体必须行使<b>传统上由政府专属</b> (traditionally and exclusively) 的职能。</li>
+                        <li><b>结论：</b>经营购物中心<b>不是</b>政府的专属职能。</li>
+                    </ul>
+                </li>
+            </ol>
+            <p>因此，不存在“州政府行为” (State Action)，抗议者无法引用宪法权利来对抗私人业主。</p>
+        </div>
+
+        <!-- 陷阱解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">❌ 为什么 C 是最大的陷阱？</div>
+            <p><span class="tag tag-wrong">选项 C</span> 认为购物中心“功能上等同于城镇” (functionally equivalent to a town)。</p>
+            <p>这是 MBE 常见的干扰项，利用了考生的两个误区：</p>
+            <ul>
+                <li><b>误区 1：</b>被题目中的事实误导。题目提到有图书馆、溜冰场，还自称“小镇感觉”。这些是为了诱导你认为它像一个“公司市镇” (Company Town)。</li>
+                <li><b>误区 2：</b>误用判例。虽然在 <i>Marsh v. Alabama</i> (1946) 中，最高法院认为某些完全由私人拥有的“公司市镇”受宪法约束，但这一例外非常狭窄。</li>
+            </ul>
+            <div class="case-law">
+                ⚖️ <b>关键判例：Hudgens v. NLRB (1976)</b><br>
+                最高法院明确裁定：仅仅因为购物中心向公众开放且功能繁多，并不使其成为“政府行为者”。购物中心<b>不等同于</b>城镇。
+            </div>
+        </div>
+
+        <!-- 其他选项排除 -->
+        <div class="analysis-section">
+            <div class="analysis-title">🚫 排除选项 B 和 D</div>
+            <p><span class="tag tag-wrong">选项 B & D</span> 都在讨论限制是否合理（时间地点方式限制 / 狭义剪裁）。</p>
+            <p><b>错误原因：</b>这属于“第二步”分析。只有当你确定宪法<b>适用</b>（即存在政府行为）后，才需要分析限制是否合理。既然本案是私人行为，宪法根本不适用，因此无需讨论限制的合理性。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-icon">💡</span> <b>MBE 实战技巧</b><br>
+            看到“私人购物中心” (Private Shopping Mall) 限制言论自由的题目：
+            <br><br>
+            1. 默认<b>没有</b>宪法保护。<br>
+            2. 除非题目明确说是“公司市镇” (Company Town - 拥有街道、下水道、警察等全部市政功能)，否则不要选“功能等同于城镇”的选项。<br>
+            3. 即使里面有政府机构（如本题的图书馆），只要政府没有<b>深度参与</b> (Significant Involvement) 制定驱逐抗议者的决策，依然不算政府行为。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

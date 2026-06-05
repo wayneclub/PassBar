@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --warning-bg: #fef9e7;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .answer-box {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: #e74c3c;
+            background-color: #fff0f0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .concept-card {
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin: 10px 0;
+            background: #fff;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            background: var(--warning-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            border: 1px dashed #f39c12;
+        }
+
+        .arrow {
+            font-size: 20px;
+            color: #f39c12;
+            margin: 5px 0;
+        }
+
+        .box {
+            background: white;
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            width: 80%;
+            font-size: 0.9em;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：抵押承担与差额责任</h1>
+
+    <div class="answer-box">
+        <strong>正确答案：C</strong>
+        <p>是的，因为即使在受让人承担（Assume）抵押贷款后，原债务人（The Man）在没有获得贷款人豁免的情况下，仍作为投资者的<b>保证人</b>（Surety）承担责任。</p>
+    </div>
+
+    <h2>核心法律规则解析</h2>
+    
+    <p>本题考察的是不动产法中关于<b>抵押转让</b>（Transfer of Mortgage）的核心规则，特别是当受让人“承担”债务时，原债务人的责任状态。</p>
+
+    <div class="concept-card">
+        <span class="concept-title">1. 承担抵押 (Assumption of Mortgage)</span>
+        <p>当买方（受让人）明确同意<b>承担</b>（Assume）抵押贷款时：</p>
+        <ul>
+            <li><b>买方（Investor）：</b> 成为该债务的<span class="key-term">主要责任人</span> (Primarily Liable)。</li>
+            <li><b>卖方（Original Mortgagor）：</b> 变为<span class="key-term">次要责任人</span> (Secondarily Liable)，即充当<b>保证人</b> (Surety) 的角色。</li>
+        </ul>
+    </div>
+
+    <div class="concept-card">
+        <span class="concept-title">2. 保证人责任 (Suretyship Liability)</span>
+        <p>除非贷款人（Lender）签署了<b>债务更替/更新</b>（<span class="english-term">Novation</span>）协议明确释放原债务人，否则原债务人<b>永远不会</b>自动免除责任。</p>
+        <p>这意味着：如果主要责任人（买方）违约且无法偿还，贷款人完全有权向原债务人追偿差额（Deficiency）。</p>
+    </div>
+
+    <h2>责任关系图解</h2>
+    <div class="diagram">
+        <div class="box"><b>投资者 (Investor)</b><br><span style="font-size:0.8em; color:red;">主要责任 (Primary)</span></div>
+        <div class="arrow">⬆️ 承担债务 (Assumed)</div>
+        <div class="box"><b>原债务人 (The Man)</b><br><span style="font-size:0.8em; color:orange;">次要责任/保证人 (Surety)</span></div>
+        <div class="arrow">⬆️ 原始借据 (Note)</div>
+        <div class="box"><b>贷款人 (Lender)</b><br><span style="font-size:0.8em;">有权起诉上述任一方</span></div>
+    </div>
+
+    <h2>为什么其他选项是错误的？</h2>
+
+    <ul>
+        <li>
+            <b>选项 A 错误：</b> <span class="english-term">Assumption</span>（承担）本身并不构成 <span class="english-term">Release</span>（免除）。只有贷款人明确签署 Release 或 Novation 才能免除原债务人的责任。
+        </li>
+        <li>
+            <b>选项 B 错误：</b> 虽然投资者负主要责任，但这只是投资者和原债务人之间的内部关系。对贷款人而言，他可以选择起诉任何一方或双方。贷款人不需要先耗尽对投资者的法律程序才能起诉原债务人（尽管在公平原则下通常先找主要责任人，但在法律上原债务人仍有连带责任）。
+        </li>
+        <li>
+            <b>选项 D 错误：</b> <span class="english-term">Due-on-sale clause</span>（售出即付条款）的存在与否，只决定贷款人能否在转让时立即要求还清全款。它不影响止赎后谁对差额判决（Deficiency Judgment）负责的问题。
+        </li>
+    </ul>
+
+    <h2>MBE 考试技巧 (Exam Tip)</h2>
+    <p>在处理抵押转让题目时，请寻找以下关键词：</p>
+    <ol>
+        <li>
+            <b>"Assumed the mortgage"</b>（承担抵押）：
+            <br>买方主要责任，卖方次要责任（保证人）。
+        </li>
+        <li>
+            <b>"Took subject to the mortgage"</b>（承受/附带抵押）：
+            <br>买方<b>无</b>个人责任（Personal Liability），卖方仍负唯一责任。如果止赎后有差额，贷款人只能找卖方，不能找买方。
+        </li>
+        <li>
+            <b>"Novation" / "Release"</b>（债务更替/免除）：
+            <br>只有看到这些词，卖方才彻底脱身。
+        </li>
+    </ol>
+
+    <div class="footer-note">
+        Reference: Restatement (Third) of Property: Mortgages § 5.1
+    </div>
+</div>
+
+</body>
+</html>
