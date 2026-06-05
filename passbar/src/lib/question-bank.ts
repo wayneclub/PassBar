@@ -1,6 +1,15 @@
 import { MBE_SUBJECTS, MOCK_QUESTIONS } from './mock-data';
 import { supabase } from './supabase';
-import { ExplanationOcr, Question, Subject } from './types';
+import {
+  ChoiceKeywordMeta,
+  ExplanationOcr,
+  Question,
+  QuestionHighlight,
+  QuestionHighlightMeta,
+  QuestionKeyword,
+  QuestionKeywordMeta,
+  Subject,
+} from './types';
 
 type QuestionRow = {
   id: string;
@@ -24,6 +33,7 @@ type QuestionRow = {
   source_explanation_image_url: string | null;
   en_explanation_html: string | null;  // gemini-generated English interactive HTML
   explanation_html: string | null;      // zh explanation html
+  raw: unknown;
 };
 
 type ChapterSummaryRow = {
@@ -45,7 +55,125 @@ type ExplanationOcrRow = {
   words: ExplanationOcr['words'];
 };
 
-const questionSelectFields = 'id, index, subject, chapter_id, topic, question_text, fetched_question_stem, zh_question_stem, options, bilingual_options, zh_options, correct_answer, correct_answer_letter, api_answer_key, api_match_ok, explain_imgs, source_explanation_image_file, source_explanation_image_url, en_explanation_html, explanation_html';
+const questionSelectFields = 'id, index, subject, chapter_id, topic, question_text, fetched_question_stem, zh_question_stem, options, bilingual_options, zh_options, correct_answer, correct_answer_letter, api_answer_key, api_match_ok, explain_imgs, source_explanation_image_file, source_explanation_image_url, en_explanation_html, explanation_html, raw';
+
+const VALID_HIGHLIGHT_KINDS = new Set([
+  'key_sentence',
+  'keyword',
+  'issue',
+  'rule_trigger',
+  'fact_trigger',
+]);
+
+const VALID_KEYWORD_KINDS = new Set([
+  'legal_term',
+  'fact_trigger',
+  'procedural_posture',
+  'party_role',
+  'time_marker',
+  'trap_phrase',
+  'remedy_or_relief',
+]);
+
+function getQuestionAnalysisMeta(raw: unknown): Record<string, unknown> | undefined {
+  if (!raw || typeof raw !== 'object') return undefined;
+  const rawRecord = raw as Record<string, unknown>;
+  const nestedMeta = rawRecord.meta && typeof rawRecord.meta === 'object'
+    ? (rawRecord.meta as Record<string, unknown>).question_analysis
+    : undefined;
+  return nestedMeta && typeof nestedMeta === 'object'
+    ? nestedMeta as Record<string, unknown>
+    : rawRecord;
+}
+
+function parseQuestionHighlightMeta(raw: unknown): QuestionHighlightMeta | undefined {
+  const meta = getQuestionAnalysisMeta(raw);
+  if (!meta) return undefined;
+  const value = meta.question_highlight_meta ?? meta.questionHighlightMeta;
+  if (!value || typeof value !== 'object') return undefined;
+
+  const highlights = (value as { highlights?: unknown }).highlights;
+  if (!Array.isArray(highlights)) return undefined;
+
+  const parsed: QuestionHighlight[] = highlights
+    .map((item): QuestionHighlight | null => {
+      if (!item || typeof item !== 'object') return null;
+      const source = item as Record<string, unknown>;
+      const text = typeof source.text === 'string' ? source.text.trim() : '';
+      const kind = typeof source.kind === 'string' && VALID_HIGHLIGHT_KINDS.has(source.kind)
+        ? source.kind as QuestionHighlight['kind']
+        : 'keyword';
+      if (!text) return null;
+      return {
+        id: typeof source.id === 'string' ? source.id : undefined,
+        text,
+        kind,
+        label: typeof source.label === 'string' ? source.label : undefined,
+        reason: typeof source.reason === 'string' ? source.reason : undefined,
+        importance: source.importance === 'high' || source.importance === 'medium' || source.importance === 'low'
+          ? source.importance
+          : undefined,
+        occurrence: typeof source.occurrence === 'number' ? source.occurrence : undefined,
+      };
+    })
+    .filter((item): item is QuestionHighlight => Boolean(item));
+
+  if (parsed.length === 0) return undefined;
+  return {
+    version: typeof (value as { version?: unknown }).version === 'number'
+      ? (value as { version: number }).version
+      : 1,
+    highlights: parsed,
+  };
+}
+
+function parseKeyword(item: unknown): QuestionKeyword | null {
+  if (!item || typeof item !== 'object') return null;
+  const source = item as Record<string, unknown>;
+  const text = typeof source.text === 'string' ? source.text.trim() : '';
+  if (!text) return null;
+  const kind = typeof source.kind === 'string' && VALID_KEYWORD_KINDS.has(source.kind)
+    ? source.kind as QuestionKeyword['kind']
+    : 'legal_term';
+  return {
+    id: typeof source.id === 'string' ? source.id : undefined,
+    text,
+    label: typeof source.label === 'string' ? source.label : undefined,
+    kind,
+    reason: typeof source.reason === 'string' ? source.reason : undefined,
+    importance: source.importance === 'high' || source.importance === 'medium' || source.importance === 'low'
+      ? source.importance
+      : undefined,
+  };
+}
+
+function parseQuestionKeywordMeta(raw: unknown): QuestionKeywordMeta | undefined {
+  const meta = getQuestionAnalysisMeta(raw);
+  const value = meta?.question_keyword_meta ?? meta?.questionKeywordMeta;
+  if (!value || typeof value !== 'object') return undefined;
+  const keywords = (value as { keywords?: unknown }).keywords;
+  if (!Array.isArray(keywords)) return undefined;
+  const parsed = keywords.map(parseKeyword).filter((item): item is QuestionKeyword => Boolean(item));
+  return parsed.length ? { keywords: parsed } : undefined;
+}
+
+function parseChoiceKeywordMeta(raw: unknown): ChoiceKeywordMeta | undefined {
+  const meta = getQuestionAnalysisMeta(raw);
+  const value = meta?.choice_keyword_meta ?? meta?.choiceKeywordMeta;
+  if (!value || typeof value !== 'object') return undefined;
+  const choices = (value as { choices?: unknown }).choices;
+  if (!choices || typeof choices !== 'object') return undefined;
+
+  const parsed: ChoiceKeywordMeta['choices'] = {};
+  (['A', 'B', 'C', 'D'] as const).forEach((choice) => {
+    const source = choices as Record<string, unknown>;
+    const keywords = source[choice] ?? source[choice.toLowerCase()];
+    if (!Array.isArray(keywords)) return;
+    const items = keywords.map(parseKeyword).filter((item): item is QuestionKeyword => Boolean(item));
+    if (items.length) parsed[choice] = items;
+  });
+  return Object.keys(parsed).length ? { choices: parsed } : undefined;
+}
 
 function toQuestion(row: QuestionRow, ocrByQuestion = new Map<string, ExplanationOcr[]>()) : Question {
   // Prefer gemini-generated English HTML over raw source image when available
@@ -74,6 +202,9 @@ function toQuestion(row: QuestionRow, ocrByQuestion = new Map<string, Explanatio
     enExplanationHtml: row.en_explanation_html ?? undefined,
     explanationHtml: row.explanation_html ?? undefined,
     explanationOcr: ocrByQuestion.get(row.id) ?? [],
+    questionHighlightMeta: parseQuestionHighlightMeta(row.raw),
+    questionKeywordMeta: parseQuestionKeywordMeta(row.raw),
+    choiceKeywordMeta: parseChoiceKeywordMeta(row.raw),
   };
 }
 

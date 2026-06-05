@@ -21,6 +21,7 @@ interface ExplanationViewProps {
   userAnswer: string;
   selectedChoiceKey?: string | null;
   correctChoiceKey?: string | null;
+  activeChoiceKey?: string | null;
   display?: DisplayOptions;
   contentMode?: ContentMode;
   textSize?: TextSize;
@@ -450,10 +451,32 @@ function GeminiQuestionFeedback({
 
 function buildIframeResizeScript(channelId: string) {
   return `
+<style>
+[data-choice].pbx-choice-active {
+  background-color: rgba(185, 138, 29, 0.16) !important;
+  outline: 2px solid rgba(185, 138, 29, 0.82) !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 0 5px rgba(185, 138, 29, 0.12) !important;
+  border-radius: 8px !important;
+  transition: background-color 140ms ease, outline-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+}
+[data-choice].pbx-choice-active[data-choice-role="correct"] {
+  background-color: rgba(34, 197, 94, 0.14) !important;
+  outline-color: rgba(34, 197, 94, 0.8) !important;
+  box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.1) !important;
+}
+[data-choice].pbx-choice-active[data-choice-role="distractor"],
+[data-choice].pbx-choice-active[data-choice-role="wrong"] {
+  background-color: rgba(239, 68, 68, 0.12) !important;
+  outline-color: rgba(239, 68, 68, 0.72) !important;
+  box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.08) !important;
+}
+</style>
 <script>
 (function(){
   var ch = ${JSON.stringify(channelId)};
   var lastH = 0;
+  var lastChoice = '';
   var pending = false;
 
   function contentHeight(){
@@ -485,8 +508,42 @@ function buildIframeResizeScript(channelId: string) {
     requestAnimationFrame(send);
   }
 
+  function choiceMatches(value, choice) {
+    if (!value || !choice) return false;
+    return value.split(/[\\s,|/]+/).map(function(part){ return part.trim().toUpperCase(); }).indexOf(choice) !== -1;
+  }
+
+  function setActiveChoice(choice) {
+    choice = choice ? String(choice).trim().toUpperCase() : '';
+    var nodes = document.querySelectorAll('[data-choice]');
+    var firstActive = null;
+    for (var i = 0; i < nodes.length; i++) {
+      var active = choiceMatches(nodes[i].getAttribute('data-choice'), choice);
+      nodes[i].classList.toggle('pbx-choice-active', active);
+      if (active && !firstActive) firstActive = nodes[i];
+    }
+    if (choice && firstActive && choice !== lastChoice) {
+      var bodyTop = document.body ? document.body.getBoundingClientRect().top : 0;
+      var rect = firstActive.getBoundingClientRect();
+      window.parent.postMessage({
+        type:'passbar-choice-focus',
+        ch:ch,
+        choice:choice,
+        top:rect.top - bodyTop,
+        height:rect.height
+      }, '*');
+    }
+    lastChoice = choice;
+    schedule();
+  }
+
   window.addEventListener('load', schedule);
   document.addEventListener('DOMContentLoaded', schedule);
+  window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'passbar-choice-hover') {
+      setActiveChoice(event.data.choice || '');
+    }
+  });
   new MutationObserver(schedule).observe(document.documentElement, {childList:true, subtree:true, attributes:true, characterData:true});
   if (window.ResizeObserver) {
     new ResizeObserver(schedule).observe(document.documentElement);
@@ -505,9 +562,10 @@ function injectIframeResizeScript(html: string, channelId: string) {
   return script + html;
 }
 
-const HtmlPanel = React.memo(function HtmlPanel({ html, title, minHeight = 80 }: { html: string; title: string; minHeight?: number }) {
+const HtmlPanel = React.memo(function HtmlPanel({ html, title, activeChoiceKey, minHeight = 80 }: { html: string; title: string; activeChoiceKey?: string | null; minHeight?: number }) {
   const channelId = React.useMemo(() => `html-${Math.random().toString(36).slice(2)}`, [html]);
   const srcDoc = React.useMemo(() => injectIframeResizeScript(html, channelId), [channelId, html]);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [height, setHeight] = useState(minHeight);
 
   useEffect(() => {
@@ -515,6 +573,18 @@ const HtmlPanel = React.memo(function HtmlPanel({ html, title, minHeight = 80 }:
   }, [html, minHeight]);
 
   useEffect(() => {
+    function findScrollParent(element: HTMLElement | null): HTMLElement | Window {
+      let current = element?.parentElement ?? null;
+      while (current) {
+        const style = window.getComputedStyle(current);
+        if (/(auto|scroll)/.test(`${style.overflowY} ${style.overflow}`) && current.scrollHeight > current.clientHeight) {
+          return current;
+        }
+        current = current.parentElement;
+      }
+      return window;
+    }
+
     const handler = (event: MessageEvent) => {
       if (
         event.data?.type === 'passbar-html-resize'
@@ -524,25 +594,65 @@ const HtmlPanel = React.memo(function HtmlPanel({ html, title, minHeight = 80 }:
       ) {
         setHeight(Math.ceil(event.data.height));
       }
+      if (
+        event.data?.type === 'passbar-choice-focus'
+        && event.data.ch === channelId
+        && typeof event.data.top === 'number'
+      ) {
+        const iframe = iframeRef.current;
+        if (!iframe) return;
+        const scroller = findScrollParent(iframe);
+        const targetHeight = typeof event.data.height === 'number' ? event.data.height : 0;
+
+        if (scroller === window) {
+          const absoluteTop = iframe.getBoundingClientRect().top + window.scrollY + event.data.top;
+          window.scrollTo({
+            top: Math.max(0, absoluteTop - window.innerHeight * 0.28 + targetHeight * 0.2),
+            behavior: 'smooth',
+          });
+        } else {
+          const container = scroller as HTMLElement;
+          const iframeRect = iframe.getBoundingClientRect();
+          const containerRect = container.getBoundingClientRect();
+          const targetTop = container.scrollTop + (iframeRect.top - containerRect.top) + event.data.top;
+          container.scrollTo({
+            top: Math.max(0, targetTop - container.clientHeight * 0.28 + targetHeight * 0.2),
+            behavior: 'smooth',
+          });
+        }
+      }
     };
 
     window.addEventListener('message', handler);
     return () => window.removeEventListener('message', handler);
   }, [channelId]);
 
+  const postActiveChoice = React.useCallback(() => {
+    iframeRef.current?.contentWindow?.postMessage({
+      type: 'passbar-choice-hover',
+      choice: activeChoiceKey ?? '',
+    }, '*');
+  }, [activeChoiceKey]);
+
+  useEffect(() => {
+    postActiveChoice();
+  }, [postActiveChoice]);
+
   return (
     <iframe
+      ref={iframeRef}
       title={title}
       srcDoc={srcDoc}
       className="block w-full border-0"
       style={{ height }}
       sandbox="allow-scripts allow-popups"
       scrolling="no"
+      onLoad={postActiveChoice}
     />
   );
 });
 
-function ExplanationViewComponent({ question, userAnswer, selectedChoiceKey, correctChoiceKey, display = defaultStudySettings.display, contentMode = 'english', textSize = 'medium' }: ExplanationViewProps) {
+function ExplanationViewComponent({ question, userAnswer, selectedChoiceKey, correctChoiceKey, activeChoiceKey, display = defaultStudySettings.display, contentMode = 'english', textSize = 'medium' }: ExplanationViewProps) {
   const { t } = useI18n();
   const ocrByUrl = new Map((question.explanationOcr ?? []).map((ocr) => [ocr.publicUrl, ocr.words]));
 
@@ -585,7 +695,7 @@ function ExplanationViewComponent({ question, userAnswer, selectedChoiceKey, cor
       {/* HTML explanation panels — can show en, zh, or both; height auto-adjusts */}
       {htmlPanels.map(({ key, html, title }) => (
         <div key={key} className="text-slate-700">
-          <HtmlPanel html={html} title={title} />
+          <HtmlPanel html={html} title={title} activeChoiceKey={activeChoiceKey} />
         </div>
       ))}
 

@@ -10,8 +10,8 @@ import { useAuth } from '@/components/AuthProvider';
 import { useI18n } from '@/lib/i18n';
 import { getMbeChineseLabel } from '@/lib/mbe-labels';
 import { getQuestionsByChapterIds, getSubjects } from '@/lib/question-bank';
-import { getBrowseProgressByUser, BrowseProgressRow } from '@/lib/topic-study-progress';
-import { getBrowseChapterStateCounts } from '@/lib/topic-study-question-states';
+import { getBrowseProgressByUser, BrowseProgressRow, deleteBrowseProgressForUser } from '@/lib/topic-study-progress';
+import { getBrowseChapterStateCounts, deleteBrowseQuestionStatesForChapter } from '@/lib/topic-study-question-states';
 import { saveTestQuestionSnapshot } from '@/lib/offline-cache';
 import { Subject, TestSession } from '@/lib/types';
 import { BookOpen, Footprints, ArrowRight, RotateCcw, BookOpenCheck, Bookmark } from 'lucide-react';
@@ -113,8 +113,14 @@ export default function FootprintPage() {
   );
   const overallPct = totalQuestions > 0 ? Math.round((totalViewed / totalQuestions) * 100) : 0;
 
-  const handleContinue = async (chapterId: string, startIndex: number) => {
+  const handleContinue = async (chapterId: string, startIndex: number, restart = false) => {
     setStartingChapter(chapterId);
+    if (restart && user) {
+      await Promise.all([
+        deleteBrowseProgressForUser(user.id, [chapterId]),
+        deleteBrowseQuestionStatesForChapter(user.id, chapterId),
+      ]);
+    }
     const questions = await getQuestionsByChapterIds([chapterId], 99999);
     const sessionId = crypto.randomUUID();
     const session: TestSession = {
@@ -269,7 +275,7 @@ export default function FootprintPage() {
                                 size="sm"
                                 className="h-8 gap-1.5 text-xs text-slate-400 hover:text-slate-600"
                                 disabled={isStarting}
-                                onClick={() => handleContinue(cs.chapterId, 0)}
+                                onClick={() => handleContinue(cs.chapterId, 0, true)}
                               >
                                 <RotateCcw className="h-3.5 w-3.5" />
                                 {t('footprint.startOver')}
@@ -280,7 +286,7 @@ export default function FootprintPage() {
                               size="sm"
                               className="h-8 gap-1.5 text-sm group-hover:text-primary"
                               disabled={isStarting}
-                              onClick={() => handleContinue(cs.chapterId, cs.isCompleted ? 0 : resumeIndex)}
+                              onClick={() => handleContinue(cs.chapterId, cs.isCompleted ? 0 : resumeIndex, cs.isCompleted)}
                             >
                               {isStarting ? (
                                 <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-primary border-t-transparent" />

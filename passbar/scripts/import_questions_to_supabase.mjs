@@ -14,6 +14,20 @@ const uploadImages =
   process.env.UPLOAD_IMAGES === 'true' || process.argv.includes('--upload-images');
 const uploadConcurrency = Number.parseInt(process.env.SUPABASE_UPLOAD_CONCURRENCY ?? '8', 10);
 
+// --subject / --chapter filtering (supports multi-word values without quotes)
+function getArg(flag) {
+  const idx = process.argv.indexOf(flag);
+  if (idx === -1) return null;
+  const parts = [];
+  for (let i = idx + 1; i < process.argv.length; i++) {
+    if (process.argv[i].startsWith('--')) break;
+    parts.push(process.argv[i]);
+  }
+  return parts.length > 0 ? parts.join(' ') : null;
+}
+const filterSubject = getArg('--subject');
+const filterChapter = getArg('--chapter');
+
 if (!dryRun && (!supabaseUrl || !serviceRoleKey)) {
   const missing = [
     supabaseUrl ? null : 'SUPABASE_URL or NEXT_PUBLIC_SUPABASE_URL',
@@ -63,6 +77,43 @@ function chapterId(meta) {
 
 function isErrorHtml(html) {
   return !html || String(html).trimStart().startsWith('<!-- ERROR:');
+}
+
+function questionAnalysisMeta(item) {
+  const nested = item?.meta && typeof item.meta === 'object'
+    ? item.meta.question_analysis
+    : null;
+  const legacy = item?.question_analysis_meta
+    ?? (item?.question_highlight_meta ? {
+      micro_concept: item.micro_concept,
+      trap_type: item.trap_type,
+      skill_tested: item.skill_tested,
+      question_highlight_meta: item.question_highlight_meta,
+    } : null);
+  const meta = nested && typeof nested === 'object' ? nested : legacy;
+  return {
+    micro_concept: typeof meta?.micro_concept === 'string' && meta.micro_concept.trim()
+      ? meta.micro_concept.trim()
+      : null,
+    trap_type: typeof meta?.trap_type === 'string' && meta.trap_type.trim()
+      ? meta.trap_type.trim()
+      : null,
+    trap_type_is_new: typeof meta?.trap_type_is_new === 'boolean'
+      ? meta.trap_type_is_new
+      : null,
+    skill_tested: typeof meta?.skill_tested === 'string' && meta.skill_tested.trim()
+      ? meta.skill_tested.trim()
+      : null,
+    keyword_meta: (meta?.question_keyword_meta || meta?.choice_keyword_meta)
+      ? {
+          question_keyword_meta: meta.question_keyword_meta ?? null,
+          choice_keyword_meta:   meta.choice_keyword_meta   ?? null,
+        }
+      : null,
+    highlight_meta: meta?.question_highlight_meta
+      ? { question_highlight_meta: meta.question_highlight_meta }
+      : null,
+  };
 }
 
 async function fileExists(filePath) {
@@ -240,10 +291,27 @@ async function upsert(table, rows, onConflict) {
 
 await ensureBucket();
 
-const allFiles = await listEnrichedFiles(outDir);
+let allFiles = await listEnrichedFiles(outDir);
 if (allFiles.length === 0) {
   console.error(`No *_enriched.json files found in ${outDir}`);
   process.exit(1);
+}
+
+// Apply --subject / --chapter filter before canonical selection
+if (filterSubject || filterChapter) {
+  const subjectPart = filterSubject ? filterSubject.toLowerCase() : null;
+  const chapterPart = filterChapter ? filterChapter.toLowerCase() : null;
+  allFiles = allFiles.filter((f) => {
+    const rel = path.relative(outDir, f).toLowerCase();
+    if (subjectPart && !rel.includes(subjectPart)) return false;
+    if (chapterPart && !rel.includes(chapterPart)) return false;
+    return true;
+  });
+  if (allFiles.length === 0) {
+    console.error(`No enriched files matched --subject "${filterSubject}" --chapter "${filterChapter}"`);
+    process.exit(1);
+  }
+  console.log(`Filter: subject="${filterSubject ?? '*'}" chapter="${filterChapter ?? '*'}" → ${allFiles.length} file(s)`);
 }
 
 const files = await selectCanonicalFiles(allFiles);
@@ -312,6 +380,7 @@ for (const file of files) {
     }
 
     const questionId = idByIndex.get(item.index) ?? `${chapId}-${String(item.index).padStart(4, '0')}`;
+    const analysisMeta = questionAnalysisMeta(item);
     allQuestionIds.push(questionId);
 
     questionItems.push({
@@ -326,6 +395,12 @@ for (const file of files) {
       source_correct_answer: answer,
       source_explanation_html: isErrorHtml(item.explanation) ? null : item.explanation,
       source_explanation_image_file: item.source_img ?? null,
+      micro_concept:    analysisMeta.micro_concept,
+      trap_type:        analysisMeta.trap_type,
+      trap_type_is_new: analysisMeta.trap_type_is_new,
+      skill_tested:     analysisMeta.skill_tested,
+      keyword_meta:     analysisMeta.keyword_meta,
+      highlight_meta:   analysisMeta.highlight_meta,
       raw: item,
       updated_at: new Date().toISOString(),
     });

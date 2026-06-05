@@ -71,9 +71,12 @@ create table if not exists public.question_items (
   api_match_score numeric,
   api_url text,
   api_status int,
-  micro_concept text,
-  trap_type     text,
-  skill_tested  text,
+  micro_concept     text,
+  trap_type         text,
+  trap_type_is_new  boolean,
+  skill_tested      text,
+  keyword_meta      jsonb,   -- { question_keyword_meta, choice_keyword_meta }
+  highlight_meta    jsonb,   -- { question_highlight_meta }
   raw jsonb,
   created_at timestamptz default now(),
   updated_at timestamptz default now(),
@@ -493,7 +496,10 @@ select
   -- new metadata columns
   q.micro_concept,
   q.trap_type,
+  q.trap_type_is_new,
   q.skill_tested,
+  q.keyword_meta,
+  q.highlight_meta,
   q.raw
 from public.question_items q
 join public.chapters ch on ch.id = q.chapter_id
@@ -836,6 +842,11 @@ alter table public.question_items add column if not exists micro_concept text;
 alter table public.question_items add column if not exists trap_type text;
 alter table public.question_items add column if not exists skill_tested text;
 alter table public.question_items add column if not exists difficulty text check (difficulty is null or difficulty in ('easy','medium','hard'));
+
+-- question_items: extended AI meta (trap_type_is_new, keyword_meta, highlight_meta)
+alter table public.question_items add column if not exists trap_type_is_new boolean;
+alter table public.question_items add column if not exists keyword_meta   jsonb;
+alter table public.question_items add column if not exists highlight_meta jsonb;
 
 -- practice_answers enrichment
 alter table public.practice_answers add column if not exists confidence text check (confidence is null or confidence in ('low','medium','high'));

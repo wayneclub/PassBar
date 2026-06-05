@@ -1,15 +1,15 @@
 "use client";
 
-import React, { Suspense, useCallback, useEffect, useState } from 'react';
+import React, { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { TestHeader } from '@/components/TestHeader';
 import { TestFooter } from '@/components/TestFooter';
 import { ExplanationView } from '@/components/ExplanationView';
-import { RichText } from '@/components/RichText';
+import { RichText, ChoiceText, ChoiceState } from '@/components/RichText';
 import { AuthGuard } from '@/components/AuthGuard';
 import { useAuth } from '@/components/AuthProvider';
-import { Question, TestSession } from '@/lib/types';
+import { Question, QuestionHighlight, TestSession } from '@/lib/types';
 import { getQuestionsByIds } from '@/lib/question-bank';
 import {
   getMarkedQuestionIds,
@@ -108,6 +108,7 @@ function TestSessionContent() {
   const [pendingEndSession, setPendingEndSession] = useState<TestSession | null>(null);
   const [ending, setEnding] = useState(false);
   const [shortcutHelpOpen, setShortcutHelpOpen] = useState(false);
+  const [activeExplanationChoiceKey, setActiveExplanationChoiceKey] = useState<string | null>(null);
 
   useEffect(() => {
     const settings = getStudySettings();
@@ -295,6 +296,19 @@ function TestSessionContent() {
   const showSubmitBtn = Boolean(session?.mode === 'Tutor' && !isPaused && !submitted && selectedAnswer);
   const currentAnswerMeta = currentQuestion ? answerMetaByQuestion[currentQuestion.id] : undefined;
   const currentEliminatedOptions = currentQuestion ? (eliminatedOptionsByQuestion[currentQuestion.id] || new Set<string>()) : new Set<string>();
+  const questionTextHighlights = useMemo<QuestionHighlight[]>(() => {
+    if (!currentQuestion) return [];
+    const phraseHighlights = currentQuestion.questionHighlightMeta?.highlights ?? [];
+    const keywordHighlights: QuestionHighlight[] = (currentQuestion.questionKeywordMeta?.keywords ?? []).map((keyword) => ({
+      id: keyword.id ? `keyword-${keyword.id}` : `keyword-${keyword.text}`,
+      text: keyword.text,
+      kind: keyword.kind === 'fact_trigger' ? 'fact_trigger' : keyword.kind === 'procedural_posture' ? 'rule_trigger' : 'keyword',
+      label: keyword.label,
+      reason: keyword.reason,
+      importance: keyword.importance,
+    }));
+    return [...phraseHighlights, ...keywordHighlights];
+  }, [currentQuestion]);
 
   const persistAnswerProgress = useCallback(async (question: Question, answer: string, nextSession?: TestSession, elapsedSeconds?: number) => {
     if (!user?.id) return;
@@ -505,15 +519,14 @@ function TestSessionContent() {
         localStorage.setItem('passbar_sessions', JSON.stringify(stored.filter((s) => s.id !== session.id)));
         setEndConfirmOpen(false);
         setPendingEndSession(null);
-        if (currentIndex > 0) {
+        if (viewedQuestionIds.size > 0 || currentIndex > 0) {
           const lastQuestion = questions[currentIndex];
+          const actuallyViewed = new Set(viewedQuestionIds);
+          actuallyViewed.add(questions[currentIndex].id);
           const chapterIds = nextSession.chapters;
           await Promise.all(chapterIds.map((chapterId) => {
             const chapterQuestions = questions.filter((q) => q.chapterId === chapterId);
-            const reachedQIds = new Set(questions.slice(0, currentIndex + 1).map((q) => q.id));
-            const viewedCount = chapterQuestions.length > 0
-              ? chapterQuestions.filter((q) => reachedQIds.has(q.id)).length
-              : currentIndex + 1;
+            const viewedCount = chapterQuestions.filter((q) => actuallyViewed.has(q.id)).length;
             return upsertBrowseProgress({
               userId: user.id!,
               chapterId,
@@ -630,31 +643,31 @@ function TestSessionContent() {
       persistSession(nextSession);
     }
 
-    // Browse mode: mark questions up to max(current, new) as viewed in local state
+    // Browse mode: mark only current + new question as viewed in local state
     if (session.mode === 'TopicStudy') {
-      const viewedIndex = Math.max(currentIndex, newIndex);
       setViewedQuestionIds((prev) => {
         const next = new Set(prev);
-        questions.slice(0, viewedIndex + 1).forEach((q) => next.add(q.id));
+        next.add(questions[currentIndex].id);
+        next.add(questions[newIndex].id);
         return next;
       });
     }
 
     // Browse mode: auto-save progress after viewing each question
     if (session.mode === 'TopicStudy' && user?.id) {
-      const viewedIndex = Math.max(currentIndex, newIndex);
-      const reachedQIds = new Set(questions.slice(0, viewedIndex + 1).map((q) => q.id));
+      // Use the actually-viewed set (plus the two questions involved in this navigation)
+      const actuallyViewed = new Set(viewedQuestionIds);
+      actuallyViewed.add(questions[currentIndex].id);
+      actuallyViewed.add(questions[newIndex].id);
       void Promise.all(session.chapters.map((chapterId) => {
         const chapterQuestions = questions.filter((q) => q.chapterId === chapterId);
-        const viewedCount = chapterQuestions.length > 0
-          ? chapterQuestions.filter((q) => reachedQIds.has(q.id)).length
-          : viewedIndex + 1;
+        const viewedCount = chapterQuestions.filter((q) => actuallyViewed.has(q.id)).length;
         return upsertBrowseProgress({
           userId: user.id!,
           chapterId,
           viewedCount: Math.max(viewedCount, 1),
-          lastQuestionId: questions[viewedIndex]?.id ?? null,
-          lastQuestionIndex: viewedIndex,
+          lastQuestionId: questions[newIndex]?.id ?? null,
+          lastQuestionIndex: newIndex,
         });
       }));
       // Mark the question being left as learned
@@ -895,6 +908,7 @@ function TestSessionContent() {
                 {(display.enQA || (!display.enQA && !display.zhQA)) && (
                   <RichText
                     text={enQuestionText}
+                    highlights={questionTextHighlights}
                     className={cn('text-left font-normal text-slate-900', questionTextClass)}
                   />
                 )}
@@ -932,16 +946,23 @@ function TestSessionContent() {
                       percentageText = `(${currentAnswerMeta.correctPercent}%)`;
                     }
 
-                    return (
-                      <div key={`${label}-${option}`} className={cn(
-                        "group flex w-full items-start gap-2 sm:gap-3 py-3 px-1 sm:px-2 rounded-lg transition-colors cursor-pointer",
-                        // Highlight background when revealed
-                        isRevealed && isCorrect
-                          ? "bg-green-50 border border-green-200 hover:bg-green-50"
-                          : isRevealed && isSelected && !isCorrect
-                            ? "bg-red-50 border border-red-200 hover:bg-red-50"
-                            : "hover:bg-slate-50 border border-transparent",
-                      )}>
+	                    return (
+	                      <div
+	                        key={`${label}-${option}`}
+	                        className={cn(
+	                          "group flex w-full items-start gap-2 sm:gap-3 py-3 px-1 sm:px-2 rounded-lg transition-colors cursor-pointer",
+	                          // Highlight background when revealed
+	                          isRevealed && isCorrect
+	                            ? "bg-green-50 border border-green-200 hover:bg-green-50"
+	                            : isRevealed && isSelected && !isCorrect
+	                              ? "bg-red-50 border border-red-200 hover:bg-red-50"
+	                              : "hover:bg-slate-50 border border-transparent",
+	                        )}
+	                        onMouseEnter={() => { if (window.matchMedia("(pointer: fine)").matches) setActiveExplanationChoiceKey(label); }}
+	                        onMouseLeave={() => { if (window.matchMedia("(pointer: fine)").matches) setActiveExplanationChoiceKey(null); }}
+	                        onFocus={() => { if (window.matchMedia("(pointer: fine)").matches) setActiveExplanationChoiceKey(label); }}
+	                        onBlur={() => { if (window.matchMedia("(pointer: fine)").matches) setActiveExplanationChoiceKey(null); }}
+	                      >
 
                         {/* Desktop-only ✓/✗ gutter — same mt offset as radio to stay aligned */}
                         <div className={cn(
@@ -1009,9 +1030,20 @@ function TestSessionContent() {
                             <span className="flex-1">
                               {/* EN option text */}
                               {(display.enQA || (!display.enQA && !display.zhQA)) && (
-                                <span className="block">
-                                  {enOptions[idx]?.replace(/^\s*[A-D]\.\s*/i, '') ?? option.replace(/^\s*[A-D]\.\s*/i, '')}
-                                </span>
+                                <ChoiceText
+                                  className="block"
+                                  text={enOptions[idx]?.replace(/^\s*[A-D]\.\s*/i, '') ?? option.replace(/^\s*[A-D]\.\s*/i, '')}
+                                  keywords={currentQuestion?.choiceKeywordMeta?.choices?.[label as 'A' | 'B' | 'C' | 'D']}
+                                  state={
+                                    isRevealed
+                                      ? isCorrect
+                                        ? 'correct'
+                                        : isSelected
+                                          ? 'wrong'
+                                          : 'unselected'
+                                      : 'neutral'
+                                  }
+                                />
                               )}
                               {/* ZH option text stacked below */}
                               {display.zhQA && zhOptionsArr[idx] && (
@@ -1102,9 +1134,10 @@ function TestSessionContent() {
                     selectedChoiceKey={selectedChoiceKey}
                     correctChoiceKey={normalizedCorrectAnswerKey}
                     display={display}
-                    contentMode={contentMode}
-                    textSize={textSize}
-                  />
+	                    contentMode={contentMode}
+	                    textSize={textSize}
+	                    activeChoiceKey={activeExplanationChoiceKey}
+	                  />
               </div>
             </div>
           ) : <div />}

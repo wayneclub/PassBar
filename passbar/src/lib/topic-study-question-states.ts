@@ -122,6 +122,16 @@ export async function upsertBrowseQuestionState(input: {
   return true;
 }
 
+/** Delete all question states for a user's chapter (used when restarting from scratch). */
+export async function deleteBrowseQuestionStatesForChapter(userId: string, chapterId: string) {
+  if (!supabase) return;
+  await supabase
+    .from('topic_study_question_states')
+    .delete()
+    .eq('user_id', userId)
+    .eq('chapter_id', chapterId);
+}
+
 /** Get per-chapter counts of learned and marked questions. Returns Map<chapterId, {learnedCount, markedCount}>. */
 export async function getBrowseChapterStateCounts(
   userId: string,

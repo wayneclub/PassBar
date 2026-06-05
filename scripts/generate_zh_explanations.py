@@ -126,38 +126,78 @@ MAX_RETRIES = 3        # API 失敗重試次數
 # ── Gemini Prompt ─────────────────────────────────────────────────────────────
 
 GEMINI_EXPLANATION_PROMPT = """\
-You are an expert in front-end development (HTML/JS/Tailwind CSS) and legal/academic instructional design.
-Please help me completely convert the content of this uploaded image into a "single-file and highly exquisite" HTML interactive learning webpage.
+You are an expert front-end developer and legal/academic instructional designer.
+Your task is to convert the uploaded source explanation image into a faithful, single-file HTML document for embedding in PassBar's ExplanationView iframe.
 
-Please strictly follow the design requirements and specifications below, excluding any redundant top toolbars or control buttons, and focus entirely on "pure detailed analysis" and "the ultimate visual restoration of text and graphics":
+The highest priority is visual and textual fidelity to the source explanation image. Do not redesign the explanation, do not rewrite the legal analysis, and do not add new sections that are not present in the image. Recreate the image's actual content, typography hierarchy, spacing, cards, tables, flowcharts, emphasis, and ordering as closely as possible using HTML and scoped CSS.
 
-### 1. Visual and Layout Restoration Specifications (No Toolbar, No Explanation Tabs)
-* **No Top Toolbar**: Absolutely do not generate any top navigation bar (Header), search box, font scaling buttons, or manual dark mode toggle buttons.
-* **No Redundant Tabs**: Completely remove any switching tabs or labels similar to "Explanation" or "Quiz". The top of the webpage should start directly with the main graphic card or the main title.
-* **Precise Text Formatting Restoration**: Accurately preserve all "Bold", "Italic", "color contrasts (such as the first letter of a mnemonic in red)", and structured lists from the image.
-* **Clean Footer**: Turn the classification information at the very bottom of the image (e.g., Subject, Chapter, Topic, etc.) into a beautifully designed three-column footer.
-* **Filter Out Copyright Notices**: Automatically detect and remove any "Copyright © ..." watermarks or copyright text from the image to keep the layout absolutely pristine.
+### 1. Faithful Restoration Rules
+* Preserve the original explanation's English text exactly as it appears, except for obvious OCR spacing mistakes.
+* Preserve bold, italics, underline/dotted underline, color emphasis, bullets, numbered lists, tables, timelines, flowcharts, callouts, and date highlights.
+* Rebuild diagrams/tables/flowcharts as native HTML/CSS boxes and lines. Do not embed the uploaded image itself.
+* Do not invent a new "learning card" design if the source image already has a design. Match the source image.
+* Do not add a toolbar, navigation bar, dark-mode toggle, search box, tabs, quiz controls, title labels like "Explanation", or any app chrome.
+* Remove copyright notices, watermarks, source-site branding, and bottom copyright footer text. Keep subject/chapter/topic metadata only if it is part of the educational explanation layout and not a copyright/branding notice.
 
-### 2. Responsive Reconstruction of Realistic Graphic Cards/Tables (Critical Item)
-* **Do Not Use Images**: Use Tailwind CSS Grid/Flex layouts, borders, subtle shadows (`shadow-md`), and rounded corners (`rounded-xl`) to perfectly rebuild the "tables" or "flowcharts" from the image natively within the webpage.
-* **Responsive Layout Protection**: Apply an `overflow-x-auto` container to the outermost layer of the graphic cards to ensure smooth horizontal scrolling on mobile devices, absolutely preventing layout crushing or distortion.
+### 2. CSS Architecture: No Tailwind, No Frameworks
+* Do NOT use Tailwind CSS, Tailwind CDN, Bootstrap, external CSS frameworks, icon libraries, web components, React/Vue, or external JavaScript.
+* Use one inline `<style>` block only. All CSS must be vanilla CSS scoped under a root wrapper class such as `.pbx-explanation`.
+* Every custom class should be prefixed with `pbx-` to avoid collisions.
+* Do not style global `html`, global `body`, or global `*` except for a minimal body margin/font/background needed for the standalone HTML. Prefer `.pbx-explanation ...` selectors.
+* Do not set `height: 100vh`, `min-height: 100vh`, `position: fixed`, or full-screen viewport layouts. The document must naturally grow to its content height inside an iframe.
+* Do not rely on generated utility classes such as `md:*`, `hover:*`, `min-w-[840px]`, etc. Write explicit CSS rules instead.
 
-### 3. Advanced Interactive Learning Features (Vanilla JS)
-* **Mnemonic Hover Highlight**:
-    * If there is a mnemonic in the graphic card, please set each letter or word in the mnemonic as a triggerable element (`.mnemonic-char`).
-    * When the mouse hovers over a specific mnemonic element, the corresponding "exceptions/elimination items" in the card above must automatically receive a highlight class (e.g., slightly enlarged, adding an exquisite faint red background and a red border `.highlight-active`), which reverts immediately once the cursor moves away.
-* **Terminology Tooltips**:
-    * Identify core legal terms, case names, or specialized vocabulary within the English text (e.g., easement, dominant estate, etc.).
-    * Add `class="term-tooltip"` to them. When a user hovers over the term, a floating bubble should appear displaying "the corresponding explanation in Simplified Chinese alongside its core original English meaning".
-    * The background and text of the bubble must perfectly adapt to the system's light/dark mode (light background with dark text in dark mode; dark background with light text in light mode).
+### 3. Layout and Responsive Behavior
+* The content must render correctly at full iframe width.
+* For wide diagrams/tables, wrap them in a `.pbx-scroll-x` container with `overflow-x: auto`.
+* If a diagram requires a fixed minimum width to preserve the original layout, set that width explicitly in vanilla CSS, e.g. `.pbx-flow-inner { min-width: 840px; }`.
+* Do not crush or vertically collapse horizontal timelines/flowcharts on desktop. On small screens, allow horizontal scrolling instead of reflowing the diagram into an unreadable stack.
+* Text must wrap naturally and never overflow its card. Use ordinary CSS properties, not viewport-width font scaling.
 
-### 4. Code Integrity and Specifications
-* **Single-File Mandate**: All HTML, CSS (imported via Tailwind CDN), and minimalist JavaScript must be entirely written within the same single `.html` file; no external dependencies are allowed.
-* **No Omissions in Generation**: Please output complete, well-structured, and neatly formatted HTML source code without any code omissions or placeholders (such as `// ... rest of code`), ensuring the webpage can be executed directly and loads 100% correctly.
+### 4. Interactivity: Prefer CSS, Use Minimal Vanilla JS Only When Needed
+* Preserve source-image interactivity only when it helps explain the existing graphic, such as hover-linked dates, terms, timeline nodes, or mnemonic highlights.
+* Choice-linked highlighting contract for PassBar:
+  - If any explanation paragraph, card, list item, table row, timeline node, tooltip, or callout explains a particular answer choice, add `data-choice="A"`, `data-choice="B"`, `data-choice="C"`, or `data-choice="D"` to that exact element.
+  - If it explains the correct choice, also add `data-choice-role="correct"`.
+  - If it explains a distractor/wrong choice, also add `data-choice-role="distractor"`.
+  - Put the attribute on the smallest useful block, not the whole page. Example: `<li data-choice="C" data-choice-role="distractor">...</li>`.
+  - If one block discusses multiple choices, use a space-separated value, e.g. `data-choice="A D"`.
+  - Do not write custom JavaScript for this; PassBar will highlight these anchors from the parent app.
+  - If the source explanation contains an answer-choice explanation section, preserve its visual/textual style but add anchors using this required structure:
+    `<div data-choice="B" data-choice-role="correct">...</div>` for the correct answer block and
+    `<li data-choice="A" data-choice-role="distractor">...</li>` for each wrong-answer line.
+  - The final HTML should contain one correct `data-choice` anchor and, when the source discusses distractors, one distractor anchor for each wrong choice. Use the provided Answer Choice Context below to identify the correct letter.
+* Use CSS-only hover/focus when possible:
+  - `.pbx-term:hover .pbx-tooltip`
+  - `.pbx-date:hover`
+  - `.pbx-hotspot:hover`
+* If JavaScript is necessary, use a short inline vanilla JS script only. No dependencies, no network calls, no storage, no timers.
+* Interactive popups/tooltips must stay inside the explanation card, must not be clipped, and must work inside an iframe.
+* Tooltips for legal terms may include concise Simplified Chinese explanations, but do not alter the visible original English explanation text.
+* Support keyboard focus for interactive terms using `tabindex="0"` and `:focus-within` where practical.
 
----
-Now, please analyze the image I provided and begin constructing this "no-toolbar, pure detailed analysis" webpage for me:
+### 5. Output Contract
+* Return one complete HTML document only: `<!doctype html><html>...`.
+* Include all CSS and any minimal JS inline in that same document.
+* Do not use external assets, external scripts, external stylesheets, CDN links, or placeholders.
+* Do not include Markdown fences, explanations, comments about your process, or omitted-code markers.
+* The file must work directly in a browser and inside an iframe.
+
+Now analyze the uploaded image and produce the faithful single-file HTML restoration:
 """
+
+def build_english_explanation_prompt(en_options: dict[str, str], correct_answer: str) -> str:
+    context = "\n".join(
+        f"{key}. {value}"
+        for key, value in sorted(en_options.items())
+    )
+    return (
+        GEMINI_EXPLANATION_PROMPT
+        + "\n\nAnswer Choice Context for PassBar data-choice anchors:\n"
+        + f"Correct Answer: {correct_answer or '(unknown)'}\n"
+        + f"{context or '(No answer choices available)'}\n"
+        + "\nWhen the uploaded source explanation discusses a choice, use this context to add the correct data-choice and data-choice-role attributes without changing the visible explanation text.\n"
+    )
 
 GEMINI_PROMPT_TEMPLATE = """\
 【Role and Task】
@@ -196,10 +236,13 @@ Please strictly follow the CSS visual requirements below. Embed refined styles d
    The HTML must include CSS equivalent to the following contract. You may add selectors, but do not override these values with another theme:
 
    CRITICAL LAYOUT RULES (do not violate):
-   - DO NOT use `display: flex` or `justify-content: center` on `body` — the page is rendered inside an iframe that forces `body {{ display: block }}`, and flex centering will be stripped.
-   - DO NOT use `margin: 0 auto` on `.container` — the iframe resets `margin-left` and `margin-right` to 0, so auto-margin centering does not work.
-   - DO NOT set a fixed `max-width` less than 100% on `.container` — the iframe forces `width: 100%`. Instead, use horizontal padding on `.container` for breathing room.
-   - The page MUST look correct at full width (100% of the iframe), not as a narrow centered card.
+   - Do NOT use Tailwind CSS, Tailwind CDN, Bootstrap, external CSS frameworks, external JavaScript, icon libraries, or web fonts.
+   - Use only vanilla HTML and one inline `<style>` block. Optional inline vanilla JS is allowed only for small CSS-like interactions such as hover/focus tooltips.
+   - DO NOT use `display: flex` or `justify-content: center` on `body`; the document is embedded in an iframe and must naturally grow to content height.
+   - DO NOT set `height: 100vh`, `min-height: 100vh`, `position: fixed`, or app-like full-screen layouts.
+   - DO NOT use `margin: 0 auto` on `.container` for the main layout. The page must look correct at full iframe width, not as a narrow centered landing page.
+   - DO NOT set a fixed `max-width` less than 100% on `.container`. Instead, use horizontal padding on `.container` for breathing room.
+   - Wide tables/diagrams must be wrapped in a horizontal-scroll container and keep their natural minimum width rather than collapsing.
 
    ```css
    * {{ box-sizing: border-box; }}
@@ -285,6 +328,17 @@ Please strictly follow the CSS visual requirements below. Embed refined styles d
    - `.case-box`: light blue card, `background: var(--highlight-bg)`, `border-radius: 8px`, `padding: 20px 22px`, `margin: 20px 0`.
    - `.option.correct`: green card with `background: var(--correct-bg)`, `border-left: 5px solid var(--correct-border)`.
    - `.option.wrong`: red may appear only here, with `background: var(--wrong-bg)`, `border-left: 5px solid var(--wrong-border)`, `color: var(--wrong-text)`.
+   - Any answer-choice explanation block MUST include a PassBar anchor attribute: `data-choice="A"` / `data-choice="B"` / `data-choice="C"` / `data-choice="D"`. Correct-answer blocks must also include `data-choice-role="correct"`; wrong-answer/distractor blocks must include `data-choice-role="distractor"`.
+   - `.option .option-title`: short blue/green/red heading, `font-size: 22px`, `font-weight: 800`, `margin: 0 0 12px`.
+   - `.key-clue`: inline key fact marker, `font-weight: 800`, `background: rgba(52,152,219,0.12)`, `border-bottom: 2px solid rgba(52,152,219,0.45)`, `padding: 0 2px`.
+   - `.term-grid`: compact legal-term grid, `display: grid`, `grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))`, `gap: 12px`, `margin: 18px 0`.
+   - `.term-card`: concise term card, `background: #f8fbff`, `border: 1px solid #d7e9f8`, `border-radius: 8px`, `padding: 12px 14px`.
+   - `.term-card strong`: term heading, `color: var(--primary-ink)`.
+   - `.keyword-strip`: compact key-clue strip, `display: flex`, `flex-wrap: wrap`, `gap: 8px`, `margin: 12px 0 18px`.
+   - `.keyword-chip`: small clue chip, `background: rgba(52,152,219,0.12)`, `border: 1px solid rgba(52,152,219,0.35)`, `border-radius: 999px`, `padding: 4px 10px`, `font-weight: 700`.
+   - `.elimination-list`: compact list for wrong choices, `margin: 12px 0 0`, `padding-left: 0`, `list-style: none`.
+   - `.elimination-list li`: compact lines, `margin: 8px 0`, `line-height: 1.55`.
+   - `.method-box`: systematic solving-method card, `background: var(--highlight-bg)`, `border-left: 5px solid var(--accent-color)`, `border-radius: 8px`, `padding: 18px 20px`, `margin: 22px 0`.
    - `code`: `background: rgba(0,0,0,0.05)`, `padding: 2px 4px`, `border-radius: 4px`, `font-size: 0.92em`.
    - `.term`: quiet textbook-style emphasis, not a pill/badge. Do not set an explicit `color`; it must inherit the surrounding text color. Use `background: transparent`, `border-bottom: 1px solid rgba(36,52,71,0.26)`, `padding: 0 1px 1px`, `border-radius: 0`, `font-size: 1em`, `font-weight: 800`, `white-space: normal`. It must read as part of the sentence, blend naturally inside green/red/yellow cards, and should never look like a separate button, label, or badge.
    - When marking a legal term with `.term`, wrap the complete bilingual term in one span whenever English appears with Chinese. Correct: `<span class="term">要约（offer）</span>` or `<span class="term">确定要约规则（firm offer rule）</span>`. Incorrect: `<span class="term">要约</span>（offer）`. Do not mark only the Chinese half when the English term is present.
@@ -297,21 +351,49 @@ Please strictly follow the CSS visual requirements below. Embed refined styles d
 5. Core sections for the multi-dimensional deep analysis card (all sections must be included; do not delete or merge):
    - 【Card Top Header】: Use class `.header`, fixed navy `var(--primary-color)`, title text exactly “MBE 考点解析”, and subtitle as `[Subject]: [Chapter or Issue]`.
    - 【Correct Answer Box (.answer-box)】: Put the correct answer and one-sentence holding near the top, immediately after the header.
-   - 【Core Legal Rule <h2> + .concept-box】: Explain the governing doctrine in Chinese, preserving essential English terms.
+   - 【Core Legal Rule <h2> + .concept-box】: Explain the governing doctrine in Chinese, preserving essential English terms. Before the rule explanation, include a concise `.term-grid` titled “先抓法律术语” with 3-6 high-value bilingual terms from the English question, choices, and uploaded official English explanation image(s). Each term card must use this style: `中文术语（English term） — 一句话说明它在本题中的作用`. Do not list generic terms that do not matter to the answer.
    - 【Concept Comparison Table (.comparison-table)】: Compare the tested rule with a commonly confused rule when useful.
-   - 【Fact/Application Logic <h2> + .analysis-step】: Apply rule elements to the facts in progressive steps.
+   - 【Fact/Application Logic <h2> + .analysis-step】: Apply rule elements to the facts in progressive steps. Start this section with a `.keyword-strip` titled “题干得分关键字”, containing 3-5 bilingual clue chips such as `timing / 时间点`, `procedural posture / 程序姿态`, `relief requested / 请求救济`, `jurisdiction / 管辖`, etc. Then explain the application in 3-5 short steps, using `<span class="key-clue">...</span>` for the decisive words from the question.
    - 【Diagram (.diagram)】: Include a simple flow/timeline/relationship diagram only when it clarifies the analysis. Use the standardized `.flow-node`/`.party-box` styles above.
    - 【Trap Alert (.trap-alert or .rule-block)】: Explain the MBE trap in warm yellow.
-   - 【Answer-Choice Breakdown (.option-analysis / .option)】: The section title must be “正确答案与干扰项排除”. Correct card green; wrong cards red only inside `.option.wrong`. Do NOT restate the full answer-choice text. Use only the choice letter and a concise status label, then explain in Simplified Chinese why the choice is correct/wrong. For wrong choices, focus on the precise legal error, the mistaken assumption, and whether the option is a deliberate MBE trap or distractor pattern.
+   - 【Answer-Choice Breakdown (.option-analysis / .option)】: The section title must be “正确答案与干扰项排除”. This section must be concise, exam-useful, and structured like a tutor explaining elimination logic. Correct card green; wrong cards red only inside `.option.wrong`. Do NOT restate the full answer-choice text. Do NOT write only “正确/错误”. Use the required format below.
+     Required format:
+     1. Start with a short subheading: `为什么选 [letter]？`
+     2. Wrap the correct explanation block in an element with `data-choice="[letter]" data-choice-role="correct"`.
+     3. In 2 short sentences, explain why the correct option wins. Must cite one exact trigger fact from the English question and one rule concept read from the uploaded official English explanation image(s). Use `<span class="key-clue">...</span>` for the trigger fact, and keep the English legal term in parentheses.
+     4. Then include a compact “为什么排除其他选项：” block using `.elimination-list`. Each wrong choice must have one line only, in this style: `✕ A (No): 错在把 ___ 当成 ___；关键字 ___ 排除它。`
+        Each wrong-choice `<li>` MUST include `data-choice="A"` etc. and `data-choice-role="distractor"`.
+     5. For every wrong choice, identify the precise wrong assumption, missing element, wrong legal consequence, or trap in that choice. Avoid generic lines like “不符合规则”, “法律结论错误”, “本题不适用”, or repeating the same rule in long form.
+     6. End this section with a `.method-box` titled `这题建议用什么方法？`, explaining the best solving method: elimination, timeline, element checklist, party-role mapping, jurisdiction-first, remedy-first, exception spotting, or issue-trigger matching. Also explain in 1-2 sentences the exam writer's design logic: what tempting rule/trap they expected the student to fall for.
+     Length control: the correct-answer explanation should be 60-110 Chinese characters; each wrong-choice line should be 28-60 Chinese characters; the method box should be 70-130 Chinese characters. Be sharp, not verbose.
+     Mandatory interaction skeleton (adapt the text, but preserve the attributes exactly):
+     ```html
+     <section class="option-analysis">
+       <h2>正确答案与干扰项排除</h2>
+       <div class="option correct" data-choice="B" data-choice-role="correct">
+         <h3 class="option-title">为什么选 B？</h3>
+         <p>...</p>
+       </div>
+       <p><strong>为什么排除其他选项：</strong></p>
+       <ul class="elimination-list">
+         <li data-choice="A" data-choice-role="distractor">✕ A (...): ...</li>
+         <li data-choice="C" data-choice-role="distractor">✕ C (...): ...</li>
+         <li data-choice="D" data-choice-role="distractor">✕ D (...): ...</li>
+       </ul>
+     </section>
+     ```
+     Replace `B` with the actual correct answer letter and include all three wrong choices. Before finalizing, self-check that the final HTML contains at least four `data-choice="..."` attributes: one correct block and three distractor lines. If it does not, fix the HTML before answering.
    - 【Exam Tip (.footer-tip)】: End with a concise exam shortcut or decision rule.
 
 【Special Restrictions and Quality Assurance】
 - ⚠️ Absolutely do not include the original English question text or English answer-choice buttons, such as A/B/C/D buttons, from the source materials in the HTML!
-- ⚠️ In “正确答案与干扰项排除”, do not copy or paraphrase the complete original answer choices. Avoid verbose lines like “正确选项：买方可以立即提起违约诉讼（对应原题 A 选项）” or “错误选项：买方必须给珠宝商补救的机会（对应原题 B 选项）”. Instead use compact labels such as “A. 正确” / “B. 错误”, followed by a Chinese explanation of the legal reason and trap logic.
+- ⚠️ You MUST read and use all three English inputs: the original English question, the English answer choices, and the uploaded official English explanation image(s) attached to this prompt. The Chinese analysis must be derived from these materials, not from guessing based only on the correct answer.
+- ⚠️ Every major legal term and decisive keyword should appear in bilingual form at least once, e.g. `重新审判动议（motion for a new trial）`, `判决登录（entry of judgment）`, `自动暂缓执行（automatic stay）`. Use Chinese first, English in parentheses.
+- ⚠️ In “正确答案与干扰项排除”, do not copy or paraphrase the complete original answer choices. Avoid verbose lines like “正确选项：买方可以立即提起违约诉讼（对应原题 A 选项）” or “错误选项：买方必须给珠宝商补救的机会（对应原题 B 选项）”. Also avoid bare labels like “A. 正确” / “B. 错误” without real reasoning. The section must read like: “为什么选 B？” → key clue from the question → concise elimination of A/C/D → recommended solving method and trap logic.
 - ⚠️ Do NOT generate any footer, watermark, branding, or copyright notice of any kind — no "MBE 备考助手", no "© MBE", no "仅供学习参考", no "PassBar", and no similar text anywhere in the HTML. The page must contain zero branding elements.
 - OUTPUT LANGUAGE: Every sentence of analysis, explanation, and UI label must be written in Simplified Chinese (简体中文). Traditional Chinese characters (繁體字) are strictly forbidden. English is permitted only for: legal terms of art, case names, statutes (e.g. U.S.C. §), Latin maxims, MBE exam keywords, and key concepts that must stay in English for exam accuracy. All other text must be 简体中文.
 - Do not simplify, cut down, or abbreviate any legal analysis! All nine sections listed above must be fully presented.
-- Return only a complete, ready-to-use, single HTML code block that does not require any external JS/CSS files.
+- Return only a complete, ready-to-use, single HTML document that does not require any external JS/CSS files.
 
 ---
 【Original Legal Analysis Material Input Area】
@@ -325,6 +407,12 @@ Answer Choices:
 {choices}
 
 Correct Answer: {correct_answer_letter}. {correct_answer_text}
+
+Official English Explanation Source:
+The official English explanation is provided as uploaded image(s), usually from `source_img` / `sourceExplanationImageFile`. Read those image(s) carefully and extract the rule, legal terms, factual triggers, and option logic from them. If supplemental OCR/plain text is available below, use it only as a helper and trust the uploaded image when there is a conflict.
+
+Supplemental OCR/plain text, if available:
+{english_explanation}
 
 (Please use the analysis materials to generate a complete Simplified Chinese HTML analysis card.)
 """
@@ -565,6 +653,25 @@ def strip_copyright_footers(html: str) -> str:
     # 清理連續空行
     html = re.sub(r'\n{3,}', '\n\n', html)
     return html.strip()
+
+
+def html_to_prompt_text(html: str) -> str:
+    """Convert source explanation HTML into compact plain text for AI prompts."""
+    if not html:
+        return ""
+    text = re.sub(r"(?is)<(script|style)\b[^>]*>.*?</\1>", " ", html)
+    text = re.sub(r"(?i)<br\s*/?>", "\n", text)
+    text = re.sub(r"(?i)</(p|div|li|tr|h[1-6]|section|article|table)>", "\n", text)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = (
+        text.replace("&nbsp;", " ")
+        .replace("&amp;", "&")
+        .replace("&lt;", "<")
+        .replace("&gt;", ">")
+        .replace("&quot;", '"')
+        .replace("&#39;", "'")
+    )
+    return re.sub(r"[ \t\r\f\v]+", " ", text).strip()[:6000]
 
 
 def extract_html_from_response(text: str) -> str:
@@ -813,6 +920,7 @@ def process_question(
     existing_record: dict | None = None,
     no_gemini: bool = False,
     translate_only: bool = False,
+    force_zh_html: bool = False,
 ) -> dict:
     """將一道題目轉為結構化格式，必要時呼叫 AI。"""
 
@@ -825,8 +933,9 @@ def process_question(
     # 英文選項 dict（A/B/C/D → 文字）
     en_options = parse_choices_from_json(choices_raw)
 
-    # 英文解析（純文字，從 sourceExplanationHtml 提取或空字串）
+    # 英文解析輔助文字；主要官方解析來源是 source_img / explain_img_files 圖片。
     en_explanation = q.get("sourceExplanationHtml", "")
+    en_explanation_text = html_to_prompt_text(en_explanation)
 
     # 檢查是否已有 API 雙語資料
     castudy_zh_question, castudy_zh_choices, castudy_zh_html, api_data = (
@@ -866,7 +975,7 @@ def process_question(
             return ""
         print(f"  {ai_label()}(explanation) → Q{index:04d}…", end=" ", flush=True)
         try:
-            raw = call_ai_rest(GEMINI_EXPLANATION_PROMPT, img_paths)
+            raw = call_ai_rest(build_english_explanation_prompt(en_options, correct_answer), img_paths)
             html = extract_html_from_response(raw)
             print("✓")
             time.sleep(RATE_LIMIT_DELAY)
@@ -896,13 +1005,13 @@ def process_question(
                     collect_img_paths(api_data))
 
             # 若 htmlContent 存在則直接使用；否則呼叫 AI 生成
-            if not _is_error_html(zh_explanation):
+            if not force_zh_html and not _is_error_html(zh_explanation):
                 source_tag = "cached"
-            elif castudy_zh_html and castudy_zh_html.strip().startswith("<"):
+            elif not force_zh_html and castudy_zh_html and castudy_zh_html.strip().startswith("<"):
                 zh_explanation = strip_copyright_footers(castudy_zh_html)
                 source_tag = "api"
             else:
-                source_tag = "api_no_html"
+                source_tag = "force_zh_html" if force_zh_html else "api_no_html"
                 if no_gemini or translate_only:
                     print(f"  ⏭ Q{index:04d} missing zh HTML ({'translate-only' if translate_only else 'no-ai'})")
                 else:
@@ -913,6 +1022,7 @@ def process_question(
                         choices=format_choices_for_prompt(en_options),
                         correct_answer_letter=correct_answer,
                         correct_answer_text=en_options.get(correct_answer, ""),
+                        english_explanation=en_explanation_text or "(No supplemental OCR/plain text available; use the uploaded official explanation image.)",
                     )
                     print(
                         f"  {ai_label()}(zh-html) → Q{index:04d}: {en_question[:55]}…", end=" ", flush=True)
@@ -1009,6 +1119,7 @@ def process_question(
                         choices=format_choices_for_prompt(en_options),
                         correct_answer_letter=correct_answer,
                         correct_answer_text=en_options.get(correct_answer, ""),
+                        english_explanation=en_explanation_text or "(No supplemental OCR/plain text available; use the uploaded official explanation image.)",
                     )
                     print(
                         f"  {ai_label()}(zh-html) → Q{index:04d}: {en_question[:60]}…", end=" ", flush=True)
@@ -1050,6 +1161,7 @@ def process_json_file(
     limit: int = 0,
     no_gemini: bool = False,
     translate_only: bool = False,
+    force_zh_html: bool = False,
 ) -> str | None:
     """處理一個章節的 castudy JSON，輸出 _enriched.json。"""
 
@@ -1242,6 +1354,7 @@ def process_json_file(
                 existing_record=existing_records.get(idx),
                 no_gemini=no_gemini,
                 translate_only=translate_only,
+                force_zh_html=force_zh_html,
             )
         except RateLimitedError:
             print(f"  ⏭ Q{idx:04d} SKIPPED (all keys rate limited, will retry next run)")
@@ -1321,6 +1434,8 @@ def main():
                         help="Alias for --no-gemini")
     parser.add_argument("--translate-only", action="store_true",
                         help="Only call AI to translate zh_question/zh_choices; skip en_html and zh_html generation")
+    parser.add_argument("--force-zh-html", action="store_true",
+                        help="Regenerate zh-explanation HTML with AI even when castudy/API zh HTML exists")
     args = parser.parse_args()
     no_ai = args.no_gemini or args.no_ai
     set_ai_provider(args.provider, args.model or None)
@@ -1372,7 +1487,8 @@ def main():
         process_json_file(json_file, dry_run=args.dry_run,
                           force=args.force, limit=args.limit,
                           no_gemini=no_ai,
-                          translate_only=args.translate_only)
+                          translate_only=args.translate_only,
+                          force_zh_html=args.force_zh_html)
 
     print("\n🎉 Done.")
 

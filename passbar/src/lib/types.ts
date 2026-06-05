@@ -13,6 +13,49 @@ export interface Subject {
   chapters: Chapter[];
 }
 
+export type QuestionHighlightKind = 'key_sentence' | 'keyword' | 'issue' | 'rule_trigger' | 'fact_trigger';
+
+export interface QuestionHighlight {
+  id?: string;
+  text: string;
+  kind: QuestionHighlightKind;
+  label?: string;
+  reason?: string;
+  importance?: 'high' | 'medium' | 'low';
+  occurrence?: number;
+}
+
+export interface QuestionHighlightMeta {
+  version?: number;
+  highlights: QuestionHighlight[];
+}
+
+export type QuestionKeywordKind =
+  | 'legal_term'
+  | 'fact_trigger'
+  | 'procedural_posture'
+  | 'party_role'
+  | 'time_marker'
+  | 'trap_phrase'
+  | 'remedy_or_relief';
+
+export interface QuestionKeyword {
+  id?: string;
+  text: string;
+  label?: string;
+  kind: QuestionKeywordKind;
+  reason?: string;
+  importance?: 'high' | 'medium' | 'low';
+}
+
+export interface QuestionKeywordMeta {
+  keywords: QuestionKeyword[];
+}
+
+export interface ChoiceKeywordMeta {
+  choices: Partial<Record<'A' | 'B' | 'C' | 'D', QuestionKeyword[]>>;
+}
+
 export interface Question {
   id: string;
   index: number;
@@ -36,6 +79,9 @@ export interface Question {
   enExplanationHtml?: string;       // gemini-generated English interactive HTML
   explanationHtml?: string;         // zh explanation html
   explanationOcr?: ExplanationOcr[];
+  questionHighlightMeta?: QuestionHighlightMeta;
+  questionKeywordMeta?: QuestionKeywordMeta;
+  choiceKeywordMeta?: ChoiceKeywordMeta;
 }
 
 export interface ExplanationOcrWord {
