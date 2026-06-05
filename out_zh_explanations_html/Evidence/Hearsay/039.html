@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点深度解析 - 证据法</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.active {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-weight: bold;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .trap-alert h4, .footer-tip h4 {
+      margin: 0 0 8px 0;
+      color: #b7791f;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .option-analysis {
+      margin-top: 30px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 16px 0;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+      }
+      .container {
+        padding: 0 12px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table {
+        font-size: 15px;
+      }
+      .diagram-container {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点深度解析</h1>
+      <div class="sub-title">Evidence (证据法) — Hearsay Exception: Former Testimony</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：B. The prosecution lacked the motive to develop the wife's testimony at the grand jury proceeding. (公诉方在大陪审团程序中缺乏开发该证人证言的动机。)
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法律原理</h2>
+    <div class="concept-box">
+      <div class="concept-title">前述证言传闻例外 (Former Testimony Exception)</div>
+      <p>根据 <span class="latin">Federal Rule of Evidence (FRE) 804(b)(1)</span>，当传闻陈述属于陈述者在先前的诉讼、听证会或宣誓口供（Deposition）中作出的证言时，若满足以下条件，则可作为传闻例外予以采信：</p>
+      <ol>
+        <li><strong>陈述者当前不可用 (Declarant is <span class="term">unavailable</span>)</strong>：例如陈述者拒绝遵守法院命令出庭作证、去世、或享有特权等。</li>
+        <li><strong>先前的程序属性</strong>：该证言是在当前的诉讼、或涉及<strong>相似当事人与争点</strong>的其他诉讼/听证会/口供程序中作出的。</li>
+        <li><strong>机会与相似动机 (Opportunity and <span class="term">similar motive</span>)</strong>：该证言现在所针对的当事人（在刑事案件中通常为政府/公诉方，或在民事案件中为对方当事人），在先前的程序中必须有<strong>机会</strong>且具有<strong>相似的动机</strong>去通过直接询问、交叉询问或重新询问来开发（即检验、质证或澄清）该证言。</li>
+      </ol>
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h2>关键概念对比：大陪审团证言的传闻例外适用</h2>
+    <p>大陪审团证言（Grand Jury Testimony）在庭审中作为实质证据采信时，通常面临极高的传闻障碍。以下是两种最常见的分析路径对比：</p>
+    
+    <div style="overflow-x: auto;">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>分析路径</th>
+            <th>陈述者状态 (Availability)</th>
+            <th>核心采信要求</th>
+            <th>大陪审团场景下的适用性</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>前述证言例外<br><small>(FRE 804(b)(1))</small></strong></td>
+            <td>必须<strong>不可用 (Unavailable)</strong></td>
+            <td>针对方在先前程序中拥有<strong>机会</strong>与<strong>相似动机</strong>去开发证言。</td>
+            <td><strong>极难适用</strong>。因为大陪审团仅需证明“合理依据（Probable Cause）”，一旦证据足够，公诉方通常没有动机去交叉询问或反驳不一致的证言。</td>
+          </tr>
+          <tr>
+            <td><strong>非传闻：先前不一致陈述<br><small>(FRE 801(d)(1)(A))</small></strong></td>
+            <td>必须<strong>出庭作证 (Available)</strong> 并接受交叉询问</td>
+            <td>先前的陈述必须是在宣誓下（Under Oath）作出的，且与庭审证言不一致。</td>
+            <td><strong>非常容易适用</strong>。大陪审团证言是宣誓证言，若证人出庭且改口，可直接作为实质证据（Substantive Evidence）采信。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Fact/Application Logic -->
+    <h2>案件事实与逻辑推导</h2>
+    <p>在本案中，被告试图引入妻子在<strong>大陪审团（Grand Jury）</strong>中所作的有利于被告的证言。我们逐步拆解其是否符合 <span class="term">前述证言例外</span>：</p>
+    
+    <div class="concept-box" style="background: #fdfefe; border-left-color: #7f8c8d;">
+      <ul>
+        <li><strong>第一步：陈述者是否“不可用”？</strong> 
+          <br>👉 <strong>是。</strong> 妻子尽管收到法院命令（Court Order），仍拒绝在庭审中作证。根据 <code>FRE 804(a)(2)</code>，这属于法定“不可用”状态。</li>
+        <li><strong>第二步：公诉方是否有“机会”开发证言？</strong> 
+          <br>👉 <strong>是。</strong> 妻子是在大陪审团程序中作证，公诉方当时在场，确实有提问的机会。</li>
+        <li><strong>第三步：公诉方是否有“相似动机”去开发证言？</strong> 
+          <br>👉 <strong>否。</strong> 大陪审团的唯一目的是确定是否存在<strong>合理依据（Probable Cause）</strong>以起诉被告。由于公诉方当时已经掌握了“绰绰有余”的证据来锁定起诉，他们完全没有必要或动机去在大陪审团面前对妻子的“未摘面具”言论进行死磕或交叉质询。因此，公诉方在当时缺乏开发该证言的<strong>相似动机</strong>。</li>
+      </ul>
+    </div>
+
+    <!-- Diagram -->
+    <h2>规则适用流程图</h2>
+    <div class="diagram">
+      <div style="font-weight: 800; margin-bottom: 10px; color: var(--primary-color);">大陪审团证言作为“前述证言”采信分析</div>
+      <div class="diagram-container">
+        <div class="flow-node">证人拒绝法庭命令作证</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node active">满足“不可用” (Unavailable)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">审查先前程序 (大陪审团)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node" style="background: #fff5f5; border-color: #ff8787; color: #e03131;">缺乏“相似动机” (No Similar Motive)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node" style="background: #f1f3f5; border-color: #adb5bd; color: #495057;">排除适用 / 维持传闻排除</div>
+      </div>
+    </div>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <h4>⚠️ 避坑指南 (MBE Trap Alert)</h4>
+      <p><strong>陷阱 1：误以为大陪审团证言被“绝对排除”</strong>
+        <br>有些考生会选择 A 选项，认为大陪审团证言在定义上就被排除在前述证言之外。这是错误的。法律并没有绝对禁止大陪审团证言适用该例外，只是在实践中，由于大陪审团单方程序（Ex Parte）的性质，<strong>被告人</strong>从未有过交叉询问的机会（若公诉方想引入该证言对抗被告，由于被告没机会质证，绝对不满足例外）；而<strong>公诉方</strong>虽然在场，也往往因为证明标准低而缺乏“相似动机”（若被告想引入对抗公诉方，如本题，则因动机不同而不满足）。
+      </p>
+      <p><strong>陷阱 2：混淆“不可用”的定义</strong>
+        <br>即使证人身体在场，只要其<strong>拒绝遵守法院命令作证</strong>，在法律上就属于“不可用（Unavailable）”。不要误以为只有证人死亡或失踪才算不可用。
+      </p>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">B. 正确</div>
+        <p>如前所述，大陪审团的证明标准仅为合理依据（Probable Cause）。公诉方在已经拥有足够证据获得起诉书的情况下，没有动机去在大陪审团程序中对妻子的不利证言进行深入的交叉质询或反驳。由于缺乏“相似动机”，该证言不满足 <code>FRE 804(b)(1)</code> 的要求，法院应以传闻为由拒绝采信。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">A. 错误</div>
+        <p>该选项声称“大陪审团证言被明确排除在前述证言的定义之外”。这是对法条的误读。<code>FRE 804(b)(1)</code> 适用于任何“在审判、听证会或合法口供中”给出的证言。大陪审团程序属于听证会（Hearing）的一种，并未被法条明文排除。它无法采信是因为<strong>个案中无法满足“相似动机”这一事实要素</strong>，而非法律上的成文排除。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">C. 错误</div>
+        <p>该选项认为妻子在法律上是“可用的（Available）”。根据 <code>FRE 804(a)(2)</code>，当证人无视法院命令拒绝作证时，即属于法律意义上的“不可用”。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">D. 错误</div>
+        <p>该选项虽然正确地指出妻子是“不可用”的，但它得出的结论是“这是不予采信的解释”。仅仅指出“不可用”并不能解释为什么不采信，因为“不可用”是<strong>允许</strong>引入前述证言的前提条件之一。不予采信的真正原因在于未能满足“相似动机”这一实质性要件。</p>
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <h4>💡 快速秒杀公式 (Exam Shortcut)</h4>
+      <p>在 MBE 考试中，一旦看到<strong>被告人</strong>试图引入<strong>大陪审团中的证人证言</strong>来对抗<strong>公诉方</strong>：</p>
+      <p style="text-align: center; font-weight: 800; font-size: 20px; color: #b7791f; margin: 10px 0;">
+        直接寻找指向“公诉方在大陪审团中缺乏相似动机 (Lacked Similar Motive)”的选项！
+      </p>
+      <p>因为大陪审团不是完整审判，控方只要拿到起诉书就会“鸣金收兵”，绝无动机在当时去彻底弹劾每一个对被告有利的细节证言。</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

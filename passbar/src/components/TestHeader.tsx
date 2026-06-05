@@ -170,18 +170,7 @@ export function TestHeader({
               <span className="text-lg font-semibold tabular-nums">{questionIndex + 1}/{totalQuestions}</span>
               <ChevronDown className={cn('h-4 w-4 text-primary transition-transform', questionMenuOpen && 'rotate-180')} />
             </span>
-            {/* Subject · Chapter together — desktop only */}
-            {(subject || topic) && (
-              <span className="hidden sm:flex w-full max-w-sm items-center justify-center gap-1.5 overflow-hidden text-xs text-slate-400">
-                {subject && (
-                  <span className="shrink-0 truncate font-medium text-slate-300" style={{ maxWidth: topic ? '45%' : '100%' }}>{subject}</span>
-                )}
-                {subject && topic && <span className="shrink-0 text-slate-600">·</span>}
-                {topic && (
-                  <span className="min-w-0 truncate font-medium text-primary/80">{topic}</span>
-                )}
-              </span>
-            )}
+            {/* Subject · Chapter — removed from top bar, now shown as pills below question number */}
           </button>
         </PopoverTrigger>
         <PopoverContent className="w-[360px] border-slate-200 bg-white p-4 text-slate-900" sideOffset={10}>

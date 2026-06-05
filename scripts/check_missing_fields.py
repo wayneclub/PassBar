@@ -62,11 +62,18 @@ def enriched_score(path: str) -> tuple[int, int, str]:
 
 def check_question(q: dict) -> dict[str, bool]:
     """回傳各欄位的缺失狀態（True = 缺失）。"""
+    meta = q.get("meta")
+    qa = meta.get("question_analysis") if meta else None
     return {
-        "missing_zh_question":     not q.get("zh-question", "").strip(),
-        "missing_zh_choices":      not q.get("zh-choices"),
-        "missing_zh_explanation":  is_error_html(q.get("zh-explanation", "")),
-        "missing_en_explanation":  is_error_html(q.get("explanation", "")),
+        "missing_zh_question":        not q.get("zh-question", "").strip(),
+        "missing_zh_choices":         not q.get("zh-choices"),
+        "missing_zh_explanation":     is_error_html(q.get("zh-explanation", "")),
+        "missing_en_explanation":     is_error_html(q.get("explanation", "")),
+        "missing_meta":               not meta,
+        "missing_question_analysis":  not qa,
+        "missing_micro_concept":      not (qa or {}).get("micro_concept", "").strip() if qa else True,
+        "missing_keyword_meta":       not (qa or {}).get("question_keyword_meta") if qa else True,
+        "missing_highlight_meta":     not (qa or {}).get("question_highlight_meta") if qa else True,
     }
 
 
@@ -128,15 +135,20 @@ def main():
         if not enriched_files:
             total_no_enriched += 1
             chapter_stats.append({
-                "subject":              subject,
-                "chapter":              chapter,
-                "total":                0,
-                "missing_any":          0,
-                "no_enriched_file":     True,
-                "missing_zh_question":  0,
-                "missing_zh_choices":   0,
-                "missing_zh_explanation": 0,
-                "missing_en_explanation": 0,
+                "subject":                   subject,
+                "chapter":                   chapter,
+                "total":                     0,
+                "missing_any":               0,
+                "no_enriched_file":          True,
+                "missing_zh_question":       0,
+                "missing_zh_choices":        0,
+                "missing_zh_explanation":    0,
+                "missing_en_explanation":    0,
+                "missing_meta":              0,
+                "missing_question_analysis": 0,
+                "missing_micro_concept":     0,
+                "missing_keyword_meta":      0,
+                "missing_highlight_meta":    0,
             })
             continue
 
@@ -168,6 +180,11 @@ def main():
             "missing_zh_choices": 0,
             "missing_zh_explanation": 0,
             "missing_en_explanation": 0,
+            "missing_meta": 0,
+            "missing_question_analysis": 0,
+            "missing_micro_concept": 0,
+            "missing_keyword_meta": 0,
+            "missing_highlight_meta": 0,
         }
 
         for q in all_questions:
@@ -229,7 +246,12 @@ def main():
                   f"[zh_q:{cs['missing_zh_question']} "
                   f"zh_c:{cs['missing_zh_choices']} "
                   f"zh_html:{cs['missing_zh_explanation']} "
-                  f"en_html:{cs['missing_en_explanation']}]")
+                  f"en_html:{cs['missing_en_explanation']} "
+                  f"meta:{cs['missing_meta']} "
+                  f"qa:{cs['missing_question_analysis']} "
+                  f"concept:{cs['missing_micro_concept']} "
+                  f"kw:{cs['missing_keyword_meta']} "
+                  f"hl:{cs['missing_highlight_meta']}]")
         else:
             status = "⚠️ "
             print(f"     {status} {cs['chapter']:<45} "
@@ -237,7 +259,12 @@ def main():
                   f"[zh_q:{cs['missing_zh_question']} "
                   f"zh_c:{cs['missing_zh_choices']} "
                   f"zh_html:{cs['missing_zh_explanation']} "
-                  f"en_html:{cs['missing_en_explanation']}]")
+                  f"en_html:{cs['missing_en_explanation']} "
+                  f"meta:{cs['missing_meta']} "
+                  f"qa:{cs['missing_question_analysis']} "
+                  f"concept:{cs['missing_micro_concept']} "
+                  f"kw:{cs['missing_keyword_meta']} "
+                  f"hl:{cs['missing_highlight_meta']}]")
     print()
 
     # ── 寫出報告檔 ────────────────────────────────────────────────────────────

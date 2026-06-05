@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBE 考点解析 - Trespass to Chattels</title>
+<style>
+:root {
+  --primary-color: #2c3e50;
+  --primary-ink: #243447;
+  --accent-color: #3498db;
+  --accent-strong: #2980d9;
+  --highlight-bg: #e8f4f8;
+  --correct-bg: #dff0d8;
+  --correct-border: #27ae60;
+  --correct-text: #1f8f4d;
+  --wrong-bg: #f8d7da;
+  --wrong-border: #f5c6cb;
+  --wrong-text: #721c24;
+  --warning-bg: #fff8e1;
+  --warning-border: #ffb300;
+  --text-color: #333333;
+  --muted-text: #666666;
+  --border-color: #dddddd;
+  --card-bg: #ffffff;
+  --bg-color: #ffffff;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 18px;
+  line-height: 1.72;
+  letter-spacing: 0;
+  display: block;
+}
+.container {
+  width: 100%;
+  padding: 0 24px 32px;
+  background: var(--card-bg);
+}
+.header {
+  background: var(--primary-color);
+  color: #ffffff;
+  border-radius: 12px 12px 0 0;
+  padding: 34px 24px 32px;
+  text-align: center;
+  margin-bottom: 26px;
+}
+.header h1 {
+  margin: 0 0 12px;
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+.sub-title {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: rgba(255,255,255,0.92);
+}
+h2, h3 {
+  color: var(--primary-ink);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+h2 {
+  font-size: 26px;
+  border-bottom: 3px solid var(--accent-color);
+  padding-bottom: 10px;
+  margin: 34px 0 20px;
+}
+h3 {
+  font-size: 22px;
+  margin: 28px 0 16px;
+}
+p, li {
+  font-size: 18px;
+  line-height: 1.72;
+}
+strong, b {
+  display: inline !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  font-weight: 800;
+}
+.answer-box {
+  background: var(--correct-bg);
+  border-left: 6px solid var(--correct-border);
+  border-radius: 6px;
+  padding: 20px 24px;
+  margin: 22px 0 30px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--correct-text);
+}
+.concept-box {
+  background: var(--highlight-bg);
+  border-left: 6px solid var(--accent-color);
+  border-radius: 8px;
+  padding: 22px 24px;
+  margin: 24px 0;
+}
+.concept-box .concept-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--accent-strong);
+  margin-bottom: 12px;
+}
+.latin {
+  font-style: italic;
+  font-size: 18px;
+  color: #555555;
+  font-weight: 500;
+}
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 17px;
+}
+.comparison-table th {
+  background: #f8f9fa;
+  color: var(--primary-color);
+  font-weight: 800;
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+.comparison-table td {
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  vertical-align: top;
+}
+.diagram {
+  background: #ffffff;
+  border: 1px dashed #cccccc;
+  border-radius: 8px;
+  padding: 22px;
+  margin: 28px 0;
+  text-align: center;
+}
+.flow-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.flow-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.flow-node {
+  background: #e8fcff;
+  border: 1px solid #22b8cf;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-weight: 700;
+  color: #05606a;
+  min-width: 180px;
+  text-align: center;
+}
+.flow-node.highlight-node {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #ffffff;
+}
+.arrow {
+  color: var(--muted-text);
+  font-weight: bold;
+}
+.rule-block, .trap-alert, .footer-tip {
+  background: var(--warning-bg);
+  border-left: 5px solid var(--warning-border);
+  border-radius: 6px;
+  padding: 18px 20px;
+  margin: 22px 0;
+}
+.case-box {
+  background: var(--highlight-bg);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin: 20px 0;
+}
+.option-analysis {
+  margin-top: 24px;
+}
+.option {
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin: 14px 0;
+}
+.option.correct {
+  background: var(--correct-bg);
+  border-left: 5px solid var(--correct-border);
+}
+.option.wrong {
+  background: var(--wrong-bg);
+  border-left: 5px solid var(--wrong-border);
+  color: var(--wrong-text);
+}
+.option-title {
+  font-weight: 800;
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+code {
+  background: rgba(0,0,0,0.05);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 0.92em;
+}
+.term {
+  background: transparent;
+  border-bottom: 1px solid rgba(36,52,71,0.26);
+  padding: 0 1px 1px;
+  border-radius: 0;
+  font-size: 1em;
+  font-weight: 800;
+  white-space: normal;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 12px;
+  }
+  .container {
+    padding: 0 12px 20px;
+  }
+  .header {
+    padding: 26px 16px;
+  }
+  .header h1 {
+    font-size: 26px;
+  }
+  .sub-title {
+    font-size: 17px;
+  }
+  body, p, li {
+    font-size: 16px;
+  }
+  h2 {
+    font-size: 22px;
+  }
+  h3 {
+    font-size: 19px;
+  }
+  .comparison-table {
+    display: block;
+    overflow-x: auto;
+  }
+  .flow-row {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- 【Card Top Header】 -->
+  <div class="header">
+    <h1>MBE 考点解析</h1>
+    <div class="sub-title">Torts (侵权法) — Intentional Torts (故意侵权)</div>
+  </div>
+
+  <!-- 【Correct Answer Box】 -->
+  <div class="answer-box">
+    正确答案：B. 否，因为原告（楼上邻居）无法证明其遭受了任何实际损害（actual damages）。
+  </div>
+
+  <!-- 【Core Legal Rule】 -->
+  <h2>核心法律规则</h2>
+  <div class="concept-box">
+    <div class="concept-title">动产侵权（Trespass to Chattels）</div>
+    <p>
+      <span class="term">动产侵权（trespass to chattels）</span>是指被告<b>故意干扰</b>原告对动产的<span class="term">占有权（right of possession）</span>。这种干扰可以通过以下两种方式之一实施：
+    </p>
+    <ul>
+      <li>
+        <strong>剥夺占有（Dispossession）：</strong>被告故意夺取动产的物理控制权，并以破坏原告占有利益的方式进行处置。
+        <br><span class="latin">※ 损害赔偿规则：</span>法律直接<b>推定存在损害（harm inferred）</b>，原告无需证明实际损失即可获得至少名义上的赔偿金（nominal damages）。
+      </li>
+      <li>
+        <strong>使用或干涉（Use or Intermeddling）：</strong>被告仅仅是物理上接触或使用该动产，但<b>并未破坏</b>原告的占有利益（例如在原告不使用时私自借用并完好归还）。
+        <br><span class="latin">※ 损害赔偿规则：</span>原告必须证明存在<b>实际损害（actual damages）</b>。
+      </li>
+    </ul>
+  </div>
+
+  <div class="rule-block">
+    <strong>实际损害（Actual Damages）的法定证明途径：</strong>
+    <p>在“使用或干涉（Use or Intermeddling）”的情况下，原告必须证明以下三种损害之一，否则诉讼必将失败：</p>
+    <ol>
+      <li>动产本身受到<b>实际损坏（actual harm to chattel）</b>；</li>
+      <li>原告对动产的<b>使用权遭受实质性剥夺（substantial loss of use）</b>；或</li>
+      <li>对原告造成了<b>人身伤害（bodily harm）</b>。</li>
+    </ol>
+  </div>
+
+  <!-- 【Concept Comparison Table】 -->
+  <h2>概念对比表</h2>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>干扰类型</th>
+        <th>核心行为特征</th>
+        <th>是否需要证明实际损害？</th>
+        <th>本案事实对应</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>剥夺占有 (Dispossession)</strong></td>
+        <td>完全剥夺原告的物理控制权，破坏其占有状态。</td>
+        <td><strong>否</strong>（损害由法律直接推定，可获名义赔偿）。</td>
+        <td>不适用。被告在原告度假期间借用，未在原告需要时剥夺其占有。</td>
+      </tr>
+      <tr>
+        <td><strong>使用/干涉 (Use/Intermeddling)</strong></td>
+        <td>未经许可使用或接触动产，但未摧毁占有利益。</td>
+        <td><strong>是</strong>（必须证明实际损坏、使用权实质剥夺或人身伤害）。</td>
+        <td><strong style="color: var(--accent-strong);">适用。</strong>被告在原告出国期间借用大衣一万并完好归还。</td>
+      </tr>
+      <tr>
+        <td><strong>动产转化 (Conversion)</strong></td>
+        <td>严重干扰原告的动产权利，以至于被告应支付该动产的全部市场价值。</td>
+        <td><strong>是</strong>（要求达到“严重干扰”的程度，通常要求返还全额价值）。</td>
+        <td>不适用。大衣完好无损归还，干扰程度极轻，不构成 Conversion。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 【Fact/Application Logic】 -->
+  <h2>案件事实与适用逻辑</h2>
+  <div class="case-box">
+    <p>在本案中，楼下邻居在楼上邻居出国度假期间，未经允许私自借用并穿着了其皮草大衣一周，随后在原告回国前完好归还。分析步骤如下：</p>
+    <ol>
+      <li>
+        <strong>行为定性：</strong>由于原告当时正在国外度假，被告借用大衣的行为并没有在原告需要使用时剥夺其占有。因此，这属于<b>“使用或干涉（Use or Intermeddling）”</b>，而非“剥夺占有（Dispossession）”。
+      </li>
+      <li>
+        <strong>损害要件审查：</strong>
+        <ul>
+          <li><b>大衣本身是否受损？</b> 否。大衣被完好无损地归还。</li>
+          <li><b>原告是否遭受实质性使用剥夺？</b> 否。原告当时在国外度假，根本无法使用该大衣，因此不存在“使用权的实质性丧失”。</li>
+          <li><b>是否造成人身伤害？</b> 否。</li>
+        </ul>
+      </li>
+      <li>
+        <strong>结论：</strong>由于原告无法证明任何实际损害（actual damages），其动产侵权（trespass to chattels）的诉讼请求无法满足法定要件，案件必将败诉。
+      </li>
+    </ol>
+  </div>
+
+  <!-- 【Diagram】 -->
+  <h2>逻辑示意图</h2>
+  <div class="diagram">
+    <div class="flow-container">
+      <div class="flow-node highlight-node">故意干扰动产 (Intentional Interference)</div>
+      <div class="arrow">↓</div>
+      <div class="flow-row">
+        <div class="flow-node">剥夺占有 (Dispossession)</div>
+        <div class="flow-node highlight-node">使用/干涉 (Use/Intermeddling)</div>
+      </div>
+      <div class="flow-row">
+        <div style="width: 180px; text-align: center; color: var(--muted-text);">↓</div>
+        <div style="width: 180px; text-align: center; color: var(--muted-text);">↓</div>
+      </div>
+      <div class="flow-row">
+        <div class="flow-node" style="background: #f4fbf7; border-color: #a3e2c9; color: #2b6a4f;">损害可推定 (Harm Inferred)</div>
+        <div class="flow-node highlight-node" style="background: #fff9db; border-color: #fab005; color: #865c00;">须证明实际损害 (Actual Damages)</div>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="flow-node" style="background: #fff5f5; border-color: #ffc9c9; color: #c92a2a; min-width: 260px;">本案：无损坏 + 无使用权剥夺 = 败诉</div>
+    </div>
+  </div>
+
+  <!-- 【Trap Alert】 -->
+  <div class="trap-alert">
+    <strong>⚠️ MBE 常见陷阱提示：</strong>
+    <ul>
+      <li>
+        <strong>情感价值（Sentimental Value）的误导：</strong>题干中特别提到“大衣具有极高的情感价值（belonged to her great-grandmother）”，这是为了激发考生的同情心，诱导考生认为原告“受到了精神伤害”从而应当胜诉。但在动产侵权中，单纯的情感伤害不属于法定的“实际损害”。
+      </li>
+      <li>
+        <strong>归还行为不免责：</strong>有些考生会误选 A，认为“只要归还了就不承担责任”。事实上，如果被告在借用期间对大衣造成了哪怕一丁点污渍或磨损（实际损害），即使归还了，被告依然要承担动产侵权的赔偿责任。本案不承担责任的根本原因在于<b>“没有实际损害”</b>，而不是“已经归还”。
+      </li>
+    </ul>
+  </div>
+
+  <!-- 【Answer-Choice Breakdown】 -->
+  <h2>正确答案与干扰项排除</h2>
+  <div class="option-analysis">
+    
+    <div class="option wrong">
+      <div class="option-title">A. 错误</div>
+      <p>
+        <strong>错误原因：</strong>该选项混淆了“免责事由”。归还动产（return of the chattel）并不能免除被告在占有期间因造成实际损害而应承担的侵权责任。如果被告在使用期间损坏了大衣，即使归还也必须赔偿。本案原告败诉的真正原因在于<b>无法证明实际损害</b>，而非被告归还了大衣。
+      </p>
+    </div>
+
+    <div class="option correct">
+      <div class="option-title">B. 正确</div>
+      <p>
+        <strong>正确原因：</strong>本案被告的行为属于未经许可的“使用/干涉（intermeddling）”。在此类动产侵权诉讼中，原告必须证明实际损害（动产受损、实质性丧失使用或人身伤害）。由于大衣完好无损，且原告在度假期间并无使用需求，因此无法证明任何实际损害，诉讼无法成立。
+      </p>
+    </div>
+
+    <div class="option wrong">
+      <div class="option-title">C. 错误</div>
+      <p>
+        <strong>错误原因：</strong>该选项仅指出了被告存在“使用（use）”的行为，但忽略了动产侵权中“使用/干涉”必须伴随“实际损害”这一核心构成要件。仅仅有使用行为而无损害，不构成可诉的侵权。
+      </p>
+    </div>
+
+    <div class="option wrong">
+      <div class="option-title">D. 错误</div>
+      <p>
+        <strong>错误原因：</strong>法律表述错误。只有在“剥夺占有（dispossession）”的情况下，原告才无需证明实际损害（可获得名义赔偿）。而在“使用或干涉（use or intermeddling）”的情况下，原告<b>必须</b>证明实际损害。
+      </p>
+    </div>
+
+  </div>
+
+  <!-- 【Exam Tip】 -->
+  <div class="footer-tip">
+    <strong>💡 备考金手指 (Decision Rule)：</strong>
+    <p>
+      在 MBE 考试中，遇到“私自借用动产”的题目，请立即启动三步审查法：
+      <br>1. <b>物归原主了吗？</b> 如果没还且严重损坏/不给，考虑 <span class="term">动产转化（Conversion）</span>。
+      <br>2. <b>借用期间主人需要用吗？</b> 如果主人需要用却用不到，构成“实质性剥夺使用”，可告 <span class="term">动产侵权（Trespass to Chattels）</span>。
+      <br>3. <b>东西坏了吗？</b> 如果没坏，且借用时主人根本不在家（无使用权剥夺），则<b>无实际损害 = 不构成侵权</b>。
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>

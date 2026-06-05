@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - Torts</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    /* Component Styles */
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .flow-node, .party-box {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      display: inline-block;
+    }
+
+    .flow-node.active, .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .arrow {
+      color: var(--muted-text);
+      font-weight: bold;
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .option-analysis {
+      margin-top: 24px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 16px 0;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    /* Responsive Rules */
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 12px 20px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+      .diagram-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Torts: Negligence — Duty of Care to Unborn Child & Imputed Negligence</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：C. Yes, because the child was viable at the time of the accident.
+      <div style="font-size: 16px; font-weight: normal; margin-top: 8px; color: var(--primary-ink);">
+        解析要点：当胎儿在受伤时已具备存活能力（viable）时，被告对其负有注意义务；且父母的过失不得归责（impute）于未成年子女，因此母亲的同等过失不影响子女向第三方索赔。
+      </div>
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法理与规则</h2>
+    
+    <div class="concept-box">
+      <div class="concept-title">1. 对未出生胎儿的注意义务（Duty to Unborn Child）</div>
+      <p>在侵权法过失诉讼（negligence action）中，原告必须证明被告对其负有<span class="term">注意义务（duty of care）</span>。对于未出生的胎儿，多数司法管辖区（Majority Rule）规定：</p>
+      <ul>
+        <li>如果胎儿在<strong>受伤发生时</strong>已经具备了<span class="term">存活能力（viable）</span>，那么被告对该胎儿同样负有注意义务。</li>
+        <li>若被告因过失导致该胎儿出生后带有身体缺陷或神经损伤，该孩子在出生后有权以自己的名义向被告提起过失诉讼并要求赔偿。</li>
+      </ul>
+    </div>
+
+    <div class="concept-box">
+      <div class="concept-title">2. 父母过失不归责原则（No Imputed Negligence to Child）</div>
+      <p>在涉及未成年子女的侵权诉讼中，一个极其重要的抗辩限制是：</p>
+      <ul>
+        <li><strong>父母的过失不得归责（impute）给子女。</strong></li>
+        <li>当未成年子女（或其代表）起诉第三方侵权人时，即使父母对事故的发生也存在过失，父母的过失比例<strong>不会</strong>用来减少或免除第三方对该子女的赔偿责任。</li>
+        <li>因此，即使本案中母亲与警察各承担 50% 的责任，且该州采用<span class="term">修正的比较过失规则（modified comparative fault）</span>（原告过失 &ge; 50% 则禁止恢复赔偿），该限制也仅适用于母亲自己的诉讼，<strong>完全不影响</strong>孩子作为独立原告的索赔。</li>
+      </ul>
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h2>注意义务范围：两大流派对比</h2>
+    <p>在确定被告的注意义务范围时，美国侵权法存在著名的 Cardozo 观点与 Andrews 观点：</p>
+    
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>学说流派</th>
+          <th>核心主张</th>
+          <th>对本案胎儿的适用</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Cardozo 观点 (多数派)</strong></td>
+          <td>被告仅对<strong>可预见受害范围</strong>（zone of foreseeable harm）内的原告负有注意义务。</td>
+          <td>警察在停车场过失驾驶，可预见会撞伤行人。孕妇处于该危险区域内，其体内已存活的胎儿（viable fetus）作为其身体的延伸，同样属于可预见受害人。<strong>负有注意义务。</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Andrews 观点 (少数派)</strong></td>
+          <td>“对一人的过失即是对全世界的过失”。只要被告的行为可能对任何人造成可预见的伤害，被告就对全人类负有注意义务。</td>
+          <td>警察过失驾驶危及他人，即对所有人（包括未出生的胎儿）负有注意义务。<strong>负有注意义务。</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Fact/Application Logic -->
+    <h2>案件事实与逻辑推导</h2>
+    
+    <div class="diagram">
+      <div style="font-weight: 800; margin-bottom: 10px; color: var(--primary-ink);">法律关系与责任流向图</div>
+      <div class="diagram-container">
+        <div class="party-box">警察（被告）<br><small>过失驾驶 (50% 过失)</small></div>
+        <div class="arrow">➔ 撞击 ➔</div>
+        <div class="party-box">孕妇（母亲）<br><small>看手机 (50% 过失)</small></div>
+      </div>
+      <div style="margin: 12px 0; font-weight: bold; color: #e67e22;">⬇ 过失是否归责？</div>
+      <div class="diagram-container">
+        <div class="flow-node highlight-node">已存活胎儿（原告）<br><small>受伤时已 viable (0% 归责过失)</small></div>
+        <div class="arrow">➔ 独立诉讼 ➔</div>
+        <div class="flow-node active">警察须全额赔偿孩子损失</div>
+      </div>
+    </div>
+
+    <p>本案的推导步骤如下：</p>
+    <ol>
+      <li><strong>步骤一：确定被告对胎儿是否负有注意义务。</strong> 事故发生时，孕妇距离预产期不足一个月，胎儿显然已经具备<span class="term">存活能力（viable）</span>。因此，警察对该胎儿负有注意义务。</li>
+      <li><strong>步骤二：确定因果关系与损害。</strong> 警察因疏忽未能看到孕妇并将其撞伤，直接导致几天后出生的孩子患有神经系统损伤。过失与损害之间的因果关系成立。</li>
+      <li><strong>步骤三：排除“比较过失”抗辩对孩子的干扰。</strong> 尽管母亲因走路看手机承担 50% 的过失，且该州法律规定“原告过失 &ge; 被告过失时禁止索赔”，但<strong>孩子才是本案的实际原告</strong>。母亲的过失不能归责于孩子，孩子的自身过失为 0%，因此该修正的比较过失法条对孩子不适用。</li>
+      <li><strong>步骤四：排除“消防员规则”的误用。</strong> 消防员规则（firefighters' rule）限制的是公职应急人员向他人索赔，而不是豁免公职人员因自身过失伤害无辜第三方的民事责任。</li>
+    </ol>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <strong>⚠️ MBE 常见陷阱提示：</strong>
+      <ul>
+        <li><strong>陷阱一：混淆诉讼主体。</strong> 题目中明确指出是“The woman, <span class="term">on behalf of her child</span>, brought a negligence suit”（母亲代表孩子提起诉讼）。这意味着<strong>原告是孩子</strong>，而不是母亲个人。不要被题目中“母亲和警察同等过失（equally at fault）”以及“修正的比较过失法”这些干扰信息误导，去选择阻碍原告恢复赔偿的选项。</li>
+        <li><strong>陷阱二：误用消防员规则（Firefighters' Rule）。</strong> 该规则旨在防止消防员、警察等在执行公务因公受伤时，向导致险情发生的物业业主或相关责任人索赔。它<strong>绝对不是</strong>警察在执行公务时可以肆意过失撞伤路人而不承担责任的“免罪金牌”。</li>
+      </ul>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">C. 正确</div>
+        <p>因为在事故发生时，胎儿已经具备了存活能力（viable）。根据多数派侵权法规则，被告对已具备存活能力的胎儿负有注意义务，且由于父母的过失不归责于子女，孩子有权获得全额赔偿。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">A. 错误</div>
+        <p>该选项主张“因为事故发生时孩子还在子宫内（in utero），所以无法恢复赔偿”。这属于过时的普通法观点。现代侵权法普遍允许在受伤时已具备存活能力（viable）的胎儿在出生后就其遭受的产前伤害（prenatal injuries）提起诉讼。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. 错误</div>
+        <p>该选项试图适用“消防员规则（firefighters' rule）”。如前所述，消防员规则仅限制专业救援人员因工作固有危险受伤时向他人索赔，并不免除救援人员因自身疏忽大意伤害普通市民的侵权责任。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">D. 错误</div>
+        <p>该选项虽然得出了“Yes（可以恢复赔偿）”的结论，但其给出的理由是“因为母亲的过失没有大于警察的过失”。这完全混淆了法律关系。即使母亲的过失大于警察（例如母亲占 90% 过失），由于<strong>过失不归责原则</strong>，孩子依然可以向警察索赔（在共同及连带责任下，警察仍需对孩子承担全部或相应比例的责任，具体取决于管辖区规则，但绝不会因为母亲的过失而直接剥夺孩子的诉权）。因此，D 选项的逻辑是错误的。</p>
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <strong>💡 考试必背口诀：</strong>
+      <p>“胎儿 viable 享有诉权，父母有过失不累及子女；消防员规则只限制自己索赔，不豁免对外侵权。” 记住这两个核心考点，即可在 30 秒内秒杀此类 Torts 综合交叉题。</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - 严格产品责任之实质性改变抗辩</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { 
+      box-sizing: border-box; 
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+    }
+
+    .answer-box .answer-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--correct-text);
+      margin-bottom: 8px;
+    }
+
+    .answer-box .answer-desc {
+      font-size: 18px;
+      color: #2c3e50;
+      margin: 0;
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+    }
+
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 12px 18px;
+      font-weight: 700;
+      color: #05606a;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-strong);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-size: 20px;
+      color: var(--muted-text);
+      font-weight: bold;
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .trap-alert .alert-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #b25e00;
+      margin-bottom: 8px;
+    }
+
+    .option-analysis {
+      margin-top: 30px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin-bottom: 18px;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-label {
+      font-weight: 800;
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .option.correct .option-label {
+      color: var(--correct-text);
+    }
+
+    .option.wrong .option-label {
+      color: var(--wrong-text);
+    }
+
+    code {
+      background: rgba(0, 0, 0, 0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 12px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 16px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 18px;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- 【Card Top Header】 -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Torts — Strict Products Liability: Substantial Change Defense</div>
+    </div>
+
+    <!-- 【Correct Answer Box】 -->
+    <div class="answer-box">
+      <div class="answer-title">正确答案：A</div>
+      <p class="answer-desc">
+        <strong>核心裁决：</strong>原告无法向热水器制造商索赔。因为健身房雇人故意绕过安全保护装置的行为，构成了对产品的<span class="term">实质性改变（substantial change）</span>。该改变属于<span class="term">超然介入原因（superseding cause）</span>，切断了制造商设计缺陷与原告受伤之间的因果关系。
+      </p>
+    </div>
+
+    <!-- 【Core Legal Rule】 -->
+    <h2>核心法理：实质性改变抗辩（Substantial Change Defense）</h2>
+    <div class="concept-box">
+      <div class="concept-title">严格产品责任的免责事由</div>
+      <p>
+        在<span class="term">严格产品责任（strict products liability）</span>中，商业销售商（包括制造商、批发商和零售商）应对其售出的缺陷产品所造成的伤害承担严格责任。然而，如果产品在售出后发生了实质性改变，制造商可以主张免责。
+      </p>
+      <p><strong>抗辩成立的三大核心要素：</strong></p>
+      <ul>
+        <li><strong>产品发生了实质性改变（Substantially Changed）：</strong> 该改变显著增加了产品发生缺陷或故障的可能性（例如拆除或绕过安全装置）。</li>
+        <li><strong>改变发生的时间点：</strong> 改变发生在产品离开制造商控制（分销）<strong>之后</strong>，但在到达原告（受害者）<strong>之前</strong>。</li>
+        <li><strong>因果关系链条：</strong> 该实质性改变是导致原告受伤的<span class="term">近因（proximate cause）</span>。在法律上，这种未经授权的重大改装构成了解除制造商责任的<span class="term">超然介入原因（superseding cause）</span>。</li>
+      </ul>
+    </div>
+
+    <!-- 【Concept Comparison Table】 -->
+    <h2>概念辨析：实质性改变 vs. 可预见的误用</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>抗辩概念</th>
+          <th>定义与特征</th>
+          <th>法律后果</th>
+          <th>本案适用</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>实质性改变<br><span class="latin">(Substantial Change)</span></strong></td>
+          <td>第三方对产品进行了重大物理改装，改变了其原本的安全设计或运行机制。</td>
+          <td>构成<strong>超然介入原因</strong>，完全切断原制造商的因果关系，免除其严格责任。</td>
+          <td><strong>适用。</strong>健身房故意绕过安全阀以提高水温，直接导致了烫伤隐患。</td>
+        </tr>
+        <tr>
+          <td><strong>可预见的误用<br><span class="latin">(Foreseeable Misuse)</span></strong></td>
+          <td>消费者以非设计用途但属于“可预见”的方式使用产品（如用椅子垫高拿东西）。</td>
+          <td>制造商<strong>不能免责</strong>，仍有义务针对此类可预见误用进行安全设计或提供警示。</td>
+          <td><strong>不适用。</strong>故意破坏、绕过内置核心安全保护装置不属于常规的“可预见误用”。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 【Fact/Application Logic】 -->
+    <h2>案情深度剖析与逻辑推导</h2>
+    <p>结合本案事实，我们可以通过以下三步逻辑链条判定制造商无需承担责任：</p>
+    
+    <div class="flow-container" style="margin: 20px 0;">
+      <div class="flow-node">第一步：产品是否被实质性改变？<br><strong>【是】</strong> 健身房雇佣管道工绕过了防止水温过高的内置安全保护装置。</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-node">第二步：改变是否发生在分销后、原告使用前？<br><strong>【是】</strong> 发生在制造商交付并安装热水器之后，在顾客使用淋浴并受伤之前。</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-node">第三步：该改变是否是原告受伤的近因？<br><strong>【是】</strong> 绕过安全装置使得水温能够升至极高。虽然冬天加装保温层是后续事件，但若安全装置完好，水温绝不会达到致伤高度。</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-node highlight-node">结论：抗辩成立，制造商免于承担严格产品责任！</div>
+    </div>
+
+    <!-- 【Trap Alert】 -->
+    <div class="trap-alert">
+      <div class="alert-title">⚠️ 避坑指南：警惕 MBE 事实干扰项</div>
+      <p>
+        <strong>1. “新保温层（New Insulation）”的因果关系陷阱：</strong><br>
+        题目中提到“冬天健身房加装了新保温层，导致热水在管道中不再降温，最终烫伤顾客”。这极易诱导考生选择 B 选项，认为“在加装保温层前产品并不危险”。
+        <br><em>解析：</em>保温层只是一个正常的维护行为。真正创造“不合理危险”的源头是<strong>健身房绕过安全装置</strong>的行为。如果安全装置没有被绕过，即使加装了保温层，水温也绝对不会超过安全界限。因此，绕过安全装置才是根本的超然介入原因。
+      </p>
+      <p>
+        <strong>2. “可预见原告（Foreseeable Plaintiff）”的身份陷阱：</strong><br>
+        D 选项指出“顾客是可预见的使用者，因此是合格的原告”。
+        <br><em>解析：</em>这属于典型的“正确废话”干扰项。顾客确实是可预见的原告，但这仅仅满足了提起诉讼的<span class="term">原告资格（standing）</span>，并不能击败被告强有力的“实质性改变”实体法抗辩。
+      </p>
+    </div>
+
+    <!-- 【Answer-Choice Breakdown】 -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-label">A. 正确</div>
+        <p>
+          健身房故意绕过安全保护装置的行为，属于对产品的实质性改变。这一改变发生在产品交付之后，且是导致原告受伤的近因（构成超然介入原因），依法免除了制造商的严格产品责任。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-label">B. 错误</div>
+        <p>
+          该选项认为“直到安装新保温层前，热水器都不存在不合理危险”。实际上，在健身房绕过安全装置的那一刻起，该系统就已经处于不合理危险的状态。保温层的安装只是让这一隐患最终暴露并转化为实际伤害的诱因，不能免除健身房改装行为作为超然介入原因的定性。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-label">C. 错误</div>
+        <p>
+          该选项主张“制造商因未尽到警示义务（failure to warn）而应承担责任”。然而，警示义务的前提是产品在出厂时存在某种已知或可预见的危险。本案中，热水器出厂时设计了完美的内置安全保护装置，没有任何证据表明该产品在被健身房改装前存在任何缺陷或需要警示的危险。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-label">D. 错误</div>
+        <p>
+          该选项虽然正确地指出顾客是“可预见的原告”，但它忽略了因果关系要件。由于健身房的实质性改装切断了制造商与伤害之间的因果链条，即使原告身份合格，也无法对制造商胜诉。
+        </p>
+      </div>
+
+    </div>
+
+    <!-- 【Exam Tip】 -->
+    <div class="footer-tip">
+      <strong>💡 MBE 临考秒杀技巧：</strong><br>
+      在产品责任（Products Liability）题干中，一旦看到<strong>“买方/第三方故意拆除、绕过、禁用安全装置（bypassing/removing/disabling safety features）”</strong>的情节，90% 以上的概率考查<strong>“实质性改变抗辩（Substantial Change Defense）”</strong>。此时应直接寻找表明“因改装构成超然介入原因，制造商不承担责任”的选项。
+    </div>
+
+  </div>
+
+</body>
+</html>

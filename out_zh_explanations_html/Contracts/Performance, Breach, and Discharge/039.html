@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        .option-analysis {
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+        .correct-option {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .wrong-option {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .term {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+        .footer {
+            background-color: #eee;
+            padding: 15px;
+            font-size: 0.85rem;
+            color: #666;
+            text-align: center;
+            border-top: 1px solid #ddd;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Contracts: Divisibility & Breach</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心概念：可分合同 (Divisible Contracts)</span>
+            <p>当一份合同包含多个独立的履行部分，且每一部分都有对应的独立对价（Apportioned Consideration）时，该合同被称为<b>可分合同</b>。</p>
+            <p><b>规则：</b>如果一方完成了一部分可分义务，他有权要求获得该部分对应的合同价款，即使他违反了合同的其余部分。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">本案分析逻辑</div>
+            <p>本题的关键在于判断合同是否具有<b>可分性 (Divisibility)</b>。</p>
+            <ul>
+                <li><b>事实特征：</b>合同约定建造三个<b>不同</b>的结构，且每个结构都有<b>具体约定的价格</b> (Specific price for each)。</li>
+                <li><b>法律定性：</b>这是一份典型的可分合同。每一栋建筑的建造与每一笔对应的付款构成了独立的交换对价。</li>
+                <li><b>后果：</b>建筑商完成了第一栋建筑，因此他已经“挣得”了这部分的付款。</li>
+                <li><b>违约处理：</b>建筑商拒绝建造剩余两栋属于<b>故意违约 (Willful Breach)</b>。但这并不剥夺他获得第一栋款项的权利。</li>
+            </ul>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 D？</div>
+            <p class="option-analysis">
+                <span class="correct-option">选项 D 正确。</span>
+                它准确指出了两个法律后果：
+            </p>
+            <ol>
+                <li><b>有权收款：</b>因为合同是可分的，建筑商对已完成的第一部分享有合同项下的付款请求权。</li>
+                <li><b>损害抵销 (Offset/Recoupment)：</b>土地所有者并非必须全额支付。他有权从应付给建筑商的款项中，<b>扣除</b>因建筑商违约（未建后两栋）给他造成的损失（例如找别人续建产生的额外费用）。</li>
+            </ol>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">其他选项为何错误？</div>
+            <p class="option-analysis">
+                <span class="wrong-option">选项 A 错误：</span>
+                <span class="term">Substantial Performance</span>（实质性履行）通常用于不可分合同（Entire Contract）。在不可分合同中，必须实质性履行整个合同才能要求付款。但在可分合同中，只需完成“可分部分”即可要求该部分的付款。
+            </p>
+            <p class="option-analysis">
+                <span class="wrong-option">选项 B 错误：</span>
+                虽然建筑商是<span class="term">Willful Breach</span>（故意违约），但这并不妨碍他在<b>可分合同</b>中就已完成的部分获得报酬。故意违约通常会阻止违约方在“量子计酬”（Restitution/Quantum Meruit）中获赔，但不会阻止其获得合同约定的可分对价。
+            </p>
+            <p class="option-analysis">
+                <span class="wrong-option">选项 C 错误：</span>
+                虽然合同是可分的，但这并不意味着土地所有者必须另行起诉（Separate Claim）。在同一诉讼中，土地所有者可以直接主张<b>抵销 (Set-off)</b> 或反诉，直接从应付款中扣除损失，这是最高效的程序。
+            </p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="concept-box" style="background-color: #fff8e1; border-left-color: #f1c40f;">
+            <span class="concept-title">💡 MBE 考试技巧</span>
+            <p>看到“多个项目”对应“多个具体价格”时，立即联想 <b>Divisible Contract</b>。</p>
+            <p><b>公式：</b><br>
+            应付金额 = (已完成部分的合同价) - (未完成部分造成的损害赔偿)</p>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>

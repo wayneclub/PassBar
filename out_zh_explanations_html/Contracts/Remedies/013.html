@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - Contracts Remedies</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    /* Component Styles */
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+    .flow-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+    .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+    .flow-arrow {
+      font-weight: bold;
+      color: var(--muted-text);
+    }
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 22px 0;
+    }
+    .option-analysis {
+      margin-top: 24px;
+    }
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 16px 0;
+    }
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+      }
+      .container {
+        padding: 0 12px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table-wrapper {
+        overflow-x: auto;
+      }
+      .flow-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .flow-arrow {
+        text-align: center;
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Contracts: Remedies — UCC Perfect Tender Rule &amp; Conversion</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：D. $15,000, damages for conversion (侵占罪/侵权损害赔偿)
+      <br>
+      <span style="font-size: 16px; font-weight: normal; color: #333; display: block; margin-top: 8px;">
+        <strong>核心裁决：</strong>当买方在合法拒收（rightful rejection）不符货物后，若违反保管义务擅自将货物转售他人，即构成对卖方财产的<span class="term">侵占（conversion）</span>。卖方有权诉请侵占侵权赔偿，其最高赔偿额为<strong>侵占发生时货物的公允市场价值（fair market value, FMV）</strong>，即本案中的转售价 $15,000。
+      </span>
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法律原理</h2>
+    <div class="concept-box">
+      <div class="concept-title">UCC 完美交付规则与拒收后的保管义务</div>
+      <p>
+        本案受《统一商法典》（UCC）管辖，因为交易标的物为“戏服”（属于货物 Sale of Goods）。
+      </p>
+      <ul>
+        <li>
+          <strong>完美交付规则（Perfect-Tender Rule）：</strong>根据 UCC 规定，卖方交付的货物必须与合同约定完全一致。若货物存在任何瑕疵（如本案中运输途中的轻微水渍），买方有权<span class="term">拒绝接受整批货物（reject the goods）</span>。
+        </li>
+        <li>
+          <strong>拒收后的保管义务：</strong>买方在合法拒收货物后，必须在合理时间内<span class="term">保留对货物的占有（retain possession）</span>，以便卖方重新收回。在此期间，买方充当类似于保管人的角色，不得擅自处分货物。
+        </li>
+        <li>
+          <strong>擅自处分的侵权责任：</strong>如果买方<span class="term">非法处分（wrongfully disposes of）</span>了已被其拒收的货物（例如在卖方前来提取前擅自将其转售），该行为构成民事上的<span class="term">侵占（conversion）</span>。
+        </li>
+        <li>
+          <strong>侵占的救济标准：</strong>在侵占诉讼中，所有权人（卖方）有权收回<strong>侵占发生时该财产的公允市场价值（fair market value at the time of conversion）</strong>。
+        </li>
+      </ul>
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h2>概念对比：买方不同行为下的卖方救济路径</h2>
+    <div class="comparison-table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>买方行为类型</th>
+            <th>法律性质</th>
+            <th>卖方可主张的最高救济 (Remedy)</th>
+            <th>本案适用性分析</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>合法拒收并妥善保管</strong><br><span class="latin">Rightful Rejection</span></td>
+            <td>合规行为</td>
+            <td>要求退货，并就违约造成的损失索赔（如补救费用）</td>
+            <td>商店最初的行为合法，但后续擅自转售打破了这一合规状态。</td>
+          </tr>
+          <tr>
+            <td><strong>无理/非法拒收</strong><br><span class="latin">Wrongful Rejection</span></td>
+            <td>违约行为 (Breach)</td>
+            <td>合同价与市场价差额（Contract-Market Differential, $5,000）或转售损失</td>
+            <td>不适用。因为戏服在运输中受损，商店有权拒收，其拒收本身是合法的。</td>
+          </tr>
+          <tr>
+            <td><strong>接受货物后拒绝付款</strong><br><span class="latin">Acceptance &amp; Non-payment</span></td>
+            <td>违约行为 (Breach)</td>
+            <td>诉请支付合同全价（Action for the Price, $10,000）</td>
+            <td>不适用。题干明确设定“商店的转售行为不构成接受（NOT an acceptance）”。</td>
+          </tr>
+          <tr>
+            <td><strong>合法拒收后擅自转售</strong><br><span class="latin">Wrongful Disposal / Conversion</span></td>
+            <td>侵权行为 (Tort)</td>
+            <td><strong>侵占发生时的公允市场价值（FMV, $15,000）</strong></td>
+            <td><strong>完全适用。</strong>商店擅自以 $15,000 转售，该转售价即为当时 FMV 的最佳证据。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Fact/Application Logic -->
+    <h2>案件事实与法律逻辑推导</h2>
+    <div class="diagram">
+      <div class="flow-container">
+        <div class="flow-node">合同成立 (约定价 $10,000)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">运输受损 (不符完美交付)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">商店合法拒收 (Rightful Rejection)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node highlight-node">商店擅自转售 $15,000 (构成 Conversion)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node" style="background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text);">追偿 FMV $15,000 (最高救济)</div>
+      </div>
+    </div>
+
+    <p><strong>具体推导步骤：</strong></p>
+    <ol>
+      <li><strong>第一步：判定拒收的合法性。</strong> 戏服在运输途中遭受轻微水损，未能满足完美交付。因此，商店通知收藏家拒绝收货是合法的（Rightful Rejection）。</li>
+      <li><strong>第二步：判定商店转售行为的性质。</strong> 商店在拒收后，本应履行保管义务等待收藏家提取。然而，在收藏家提取前，商店擅自将戏服以 $15,000 的价格卖给剧团。由于该转售未经收藏家授权，且商店保留了该笔款项，这构成了对收藏家财产的<span class="term">侵占（conversion）</span>。</li>
+      <li><strong>第三步：计算侵占救济金额。</strong> 侵占罪/侵权行为的损害赔偿金等于财产被侵占时的公允市场价值（FMV）。剧团在明知有水损的情况下仍自愿支付 $15,000，这直接证明了该批戏服在被侵占时的实际市场价值为 $15,000。</li>
+      <li><strong>第四步：对比各项救济的数额。</strong> 
+        <ul>
+          <li>若按合同违约救济（如预期利润或合同价），最高仅为 $10,000。</li>
+          <li>若按侵占侵权救济，可获得 $15,000。</li>
+          <li>因此，收藏家可获得的<strong>最高价值救济（highest-value remedy）</strong>为 $15,000。</li>
+        </ul>
+      </li>
+    </ol>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <strong>⚠️ MBE 常见陷阱：</strong>
+      <p style="margin: 8px 0 0 0;">
+        许多考生会本能地在<strong>合同法（Contracts）</strong>的框架内寻找答案，从而纠结于预期利益（Expectation Damages, $2,000）或合同价格（Contract Price, $10,000）。但请记住：<strong>当合同一方的行为跨越了违约的边界，直接侵害了对方的财产所有权时，侵权法（Torts）上的侵占救济（Conversion Damages）往往能提供比合同救济更高的赔偿额。</strong> 题干问的是“最高价值的救济（highest-value remedy）”，因此必须跳出合同法限制，选择侵占赔偿。
+      </p>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <!-- Option D -->
+      <div class="option correct">
+        <div class="option-title">D. 正确 — 侵占损害赔偿金 $15,000</div>
+        <p style="margin: 0;">
+          商店在合法拒收后，对戏服仅有保管义务。其擅自转售并保留 $15,000 收益的行为构成侵占（conversion）。收藏家作为所有权人，有权要求赔偿该批货物在侵占发生时的公允市场价值（FMV）。剧团自愿支付的 $15,000 即为该价值的体现。这是所有选项中价值最高的救济。
+        </p>
+      </div>
+
+      <!-- Option A -->
+      <div class="option wrong">
+        <div class="option-title">A. 错误 — 收藏家的流失利润 $2,000</div>
+        <p style="margin: 0;">
+          该选项属于<span class="term">销量流失卖家（lost-volume seller）</span>的预期利润损失计算法。只有当卖家拥有<strong>无限的货物供应</strong>，且每多卖出一件就能多赚取一份利润时，才能主张该救济。本案中，收藏家卖的是“限量且独特的原版戏服”（limited supply），不属于销量流失卖家，因此不能适用该计算标准。且 $2,000 远低于 $15,000。
+        </p>
+      </div>
+
+      <!-- Option B -->
+      <div class="option wrong">
+        <div class="option-title">B. 错误 — 市场价与合同价的差额 $5,000</div>
+        <p style="margin: 0;">
+          根据 UCC § 2-708(1)，当买方<strong>无理/非法拒收（wrongfully rejects）</strong>货物时，卖方通常可以主张“合同价与市场价的差额”。但本案中，商店是因为货物受损而<strong>合法拒收（rightfully rejected）</strong>，因此该违约救济公式不适用。
+        </p>
+      </div>
+
+      <!-- Option C -->
+      <div class="option wrong">
+        <div class="option-title">C. 错误 — 合同约定价格 $10,000</div>
+        <p style="margin: 0;">
+          根据 UCC § 2-709，只有在买方<strong>已经接受了货物（accepted the goods）</strong>且未付款，或者符合特定条件（如货物在风险转移后毁损、或卖方无法转售）时，卖方才能诉请支付合同全价（Action for the Price）。题干已明确设定“商店的转售行为不构成接受”，且收藏家很容易就找到了其他买家，因此不能主张合同全价。此外，$10,000 低于侵占赔偿的 $15,000。
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <strong>💡 考试通关绝招 (Exam Shortcut)：</strong>
+      <p style="margin: 8px 0 0 0;">
+        在 MBE 考试中，如果看到<strong>“买方拒收货物后，又私自把货物卖给第三方”</strong>的情节，直接在脑海中联想两个词：<strong>“侵占 (Conversion)”</strong> 和 <strong>“转售价 (Resale Price = FMV)”</strong>。这类题目往往是合同法与侵权法的交叉考点，最高救济永远是那个“买方私自转售卖出的高价”，而不是原合同的约定价。
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>

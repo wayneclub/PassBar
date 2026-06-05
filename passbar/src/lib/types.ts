@@ -60,7 +60,7 @@ export interface Question {
   id: string;
   index: number;
   subject: string;
-  topic: string;
+  chapterName: string;
   chapterId?: string;
   questionText: string;
   bilingualQuestionText?: string;
@@ -79,6 +79,7 @@ export interface Question {
   enExplanationHtml?: string;       // gemini-generated English interactive HTML
   explanationHtml?: string;         // zh explanation html
   explanationOcr?: ExplanationOcr[];
+  topic?: string;                       // fine-grained topic from source image (e.g. "Right to counsel")
   questionHighlightMeta?: QuestionHighlightMeta;
   questionKeywordMeta?: QuestionKeywordMeta;
   choiceKeywordMeta?: ChoiceKeywordMeta;

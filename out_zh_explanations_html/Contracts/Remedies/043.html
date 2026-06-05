@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { 
+      box-sizing: border-box; 
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .answer-box .holding {
+      font-size: 17px;
+      font-weight: normal;
+      color: #2c3e50;
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-flow {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.active {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-weight: bold;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .trap-alert h4, .footer-tip h4 {
+      margin: 0 0 8px 0;
+      color: #b27b00;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .option-analysis {
+      margin-top: 24px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+      line-height: 1.65;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-letter {
+      font-weight: 800;
+      font-size: 20px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    code {
+      background: rgba(0, 0, 0, 0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 12px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+      .diagram-flow {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Contracts: Remedies & Restitution Interests</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：C
+      <div class="holding">
+        <strong>核心裁决：</strong>即使原告因实质性违约（Material Breach）无法依据合同主张权利，但若被告实际使用并受益于原告的部分履行，原告仍可基于<strong>恢复原状（Restitution）</strong>主张不当得利返还。
+      </div>
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法律原理</h2>
+    <div class="concept-box">
+      <div class="concept-title">违约方的恢复原状救济 (Restitution for a Party in Breach)</div>
+      <p>
+        在普通法合同中，如果原告未能<span class="term">实质性履行（substantial performance）</span>，即构成<span class="term">实质性违约（material breach）</span>，则原告通常<strong>无权</strong>依据合同本身要求被告付款。
+      </p>
+      <p>
+        然而，为了防止被告获得<span class="term">不当得利（unjust enrichment）</span>，法律允许违约的原告在满足以下条件时，通过<span class="term">准合同（quasi-contract）</span>或<span class="term">量子价值（quantum meruit）</span>诉求寻求<span class="term">恢复原状赔偿（restitutionary damages）</span>：
+      </p>
+      <ul>
+        <li><strong>被告实际受益：</strong>被告从原告的“部分履行”中获得了实际利益（例如本案中网站使用了标清视频）。</li>
+        <li><strong>不予补偿将显失公平：</strong>如果允许被告免费保留并使用该利益而不支付任何对价，将构成不当得利。</li>
+      </ul>
+      <p>
+        <strong>计算公式：</strong><br>
+        <code>违约方的恢复原状赔偿 = 原告授予被告的利益价值 (Benefit Conferred) - 被告因原告违约遭受的实际损失 (Defendant's Damages)</code>
+      </p>
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h2>概念对比：合同救济 vs 准合同救济</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>对比维度</th>
+          <th>合同项下救济 (Recovery Under Contract)</th>
+          <th>准合同/恢复原状救济 (Restitution / Quasi-Contract)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>请求权基础</strong></td>
+          <td>双方当事人订立的有效合同条款。</td>
+          <td>法律拟制的默示合同，旨在防止不当得利。</td>
+        </tr>
+        <tr>
+          <td><strong>原告履行要求</strong></td>
+          <td>原告必须已<span class="term">实质性履行（substantial performance）</span>。</td>
+          <td>原告未实质性履行（已构成实质性违约），但已进行部分履行。</td>
+        </tr>
+        <tr>
+          <td><strong>计算标准</strong></td>
+          <td>合同约定价格（Contract Price）减去完工所需成本或瑕疵损失。</td>
+          <td>被告所获利益的合理价值（如市价或增值额），须扣除违约给被告造成的损失。</td>
+        </tr>
+        <tr>
+          <td><strong>本案适用</strong></td>
+          <td><strong>不适用。</strong>原告交付标清视频且逾期，未满足“高清”的明示条件，构成实质性违约，无法依合同索赔。</td>
+          <td><strong>适用。</strong>网站实际使用了标清视频，获得了利益。原告可主张标清视频的合理价值（扣除迟延及画质降低给网站造成的损失）。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Fact/Application Logic -->
+    <h2>案件事实与适用逻辑</h2>
+    <div class="diagram">
+      <strong>本案救济路径传导图</strong>
+      <div class="diagram-flow">
+        <div class="flow-node">原告交付标清且迟延 (违约)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">无法依合同主张 $1,500/部</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node active">被告选择使用该标清视频 (受益)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">触发 Restitution (防止不当得利)</div>
+      </div>
+    </div>
+    <ol>
+      <li><strong>合同明示条件未满足：</strong>合同约定每部视频支付 $1,500 的前提是“高清（high definition）”。原告交付的是“标清（standard definition）”且迟延交付，这不满足合同的<span class="term">明示条件（express condition）</span>，构成实质性违约。</li>
+      <li><strong>被告接受并使用：</strong>尽管视频不符合合同约定，但网站并没有退回或拒绝，而是<strong>选择在网站上实际使用</strong>了这些标清视频。</li>
+      <li><strong>不当得利的成立：</strong>网站既然使用了视频并从中受益，就不能以“原告违约”为由完全拒绝付款，否则将免费占有原告的劳动成果，构成典型的不当得利。</li>
+      <li><strong>结论：</strong>制作公司有权获得恢复原状赔偿，其金额为标清视频给网站带来的合理价值，减去因迟延和画质降低给网站造成的任何实际损失。</li>
+    </ol>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <h4>⚠️ MBE 常见陷阱提示</h4>
+      <p>
+        <strong>陷阱 1：混淆“合同诉权”与“准合同诉权”。</strong><br>
+        许多考生看到原告违约或未满足明示条件（Express Condition），就直接选择“No, because the plaintiff breached”。请记住：<strong>违约方虽然失去了“合同法上的诉权”，但通常保留了“衡平法/准合同上的恢复原状诉权（Restitution）”</strong>，只要被告实际接受并受益于该履行。
+      </p>
+      <p>
+        <strong>陷阱 2：误认为“明示条件未满足”会绝对阻断一切救济。</strong><br>
+        明示条件未满足只会导致合同项下的付款义务不触发，但如果被告在条件未满足的情况下仍然自愿接受并使用了该给付，原告依然可以通过 Restitution 获得补偿。
+      </p>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <span class="option-letter">C. 正确</span>
+        网站在其平台上实际使用了这些标清视频，意味着它已经从制作公司的部分履行中获得了实际利益。为了防止网站不当得利，制作公司有权提起恢复原状（restitution）之诉，要求网站支付视频的合理价值（需扣除因违约给网站造成的损失）。
+      </div>
+
+      <div class="option wrong">
+        <span class="option-letter">A. 错误</span>
+        制作公司违约确实导致其无法<strong>依据合同（under the contract）</strong>索赔，但并不能阻止其通过<strong>恢复原状（restitution）</strong>获得救济。如果完全不予救济，网站将免费获得 10 部视频，构成不当得利。
+      </div>
+
+      <div class="option wrong">
+        <span class="option-letter">B. 错误</span>
+        “高清”确实是合同约定的明示条件，未满足该条件意味着制作公司不能要求网站支付合同约定的每部 $1,500 报酬。但这并不妨碍制作公司基于网站实际使用视频的事实，提起准合同之诉寻求恢复原状救济。
+      </div>
+
+      <div class="option wrong">
+        <span class="option-letter">D. 错误</span>
+        是否存在“时间至关重要（time is of the essence）”条款，仅关系到迟延交付是否构成实质性违约，进而影响合同项下的诉权。但无论是否构成实质性违约，只要网站实际使用了视频并受益，制作公司都有权获得恢复原状救济。该选项未能切中“不当得利”这一核心救济基础。
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <h4>💡 快速解题提炼 (Exam Shortcut)</h4>
+      <p>
+        在 MBE 合同法题干中，一旦看到<strong>“一方违约/未满足条件” + “但另一方仍然保留/使用了该成果”</strong>的模式，考点几乎必然是 <strong>Restitution / Unjust Enrichment</strong>。
+      </p>
+      <p>
+        此时的正确答案选项通常会指向：<strong>“Yes, to prevent unjust enrichment”</strong> 或 <strong>“Yes, because the defendant benefited/used the goods/services”</strong>。
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - 严格产品责任</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .diagram-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      text-align: center;
+      min-width: 180px;
+    }
+
+    .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-strong);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-size: 20px;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+
+    .option-analysis {
+      margin-top: 24px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+      }
+      .container {
+        padding: 0 12px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+      .diagram-row {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- 【Card Top Header】 -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Torts: Strict Liability and Products Liability — Strict Products Liability</div>
+    </div>
+
+    <!-- 【Correct Answer Box】 -->
+    <div class="answer-box">
+      正确答案：A. 否，因为该男子并非商业销售商（commercial supplier）。
+    </div>
+
+    <!-- 【Core Legal Rule】 -->
+    <h2>核心法律原则：严格产品责任的被告主体资格</h2>
+    <div class="concept-box">
+      <div class="concept-title">严格产品责任（Strict Products Liability）</div>
+      <p>在侵权法中，原告若要基于严格产品责任提出索赔，必须证明被告是该缺陷产品的<span class="term">商业供应商（commercial supplier）</span>。商业供应商是指在常规业务中从事制造、分销或销售该类缺陷产品的实体（如制造商、批发商、分销商、零售商）。</p>
+      <p>严格产品责任<strong>不适用于</strong><span class="term">偶发销售商（casual seller）</span>。偶发销售商是指在常规业务范围之外，偶尔进行产品销售或转让的个人或实体（例如通过车库拍卖、二手交易平台、个人闲置转让等方式售出物品的人）。</p>
+    </div>
+
+    <!-- 【Concept Comparison Table】 -->
+    <h3>销售商/服务商类型对比</h3>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>主体类型</th>
+          <th>定义与典型示例</th>
+          <th>是否适用严格产品责任？</th>
+          <th>其他潜在责任</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>商业供应商 (Commercial Supplier)</strong></td>
+          <td>在常规业务中制造、分销、批发或零售该类产品的实体（如：工具专卖店、汽车制造商）。</td>
+          <td><strong style="color: var(--correct-text);">是</strong>（只要产品在离开其控制时已存在缺陷）。</td>
+          <td>疏忽责任、默示保证违约、虚假陈述等。</td>
+        </tr>
+        <tr>
+          <td><strong>偶发销售商 (Casual Seller)</strong></td>
+          <td>偶尔、非在常规业务中出售物品的个人（如：个人在车库拍卖、二手网站转让闲置工具）。</td>
+          <td><strong style="color: var(--wrong-text);">否</strong>（绝对不适用严格产品责任）。</td>
+          <td>若明知缺陷未告知，可能承担<strong>疏忽（Negligence）</strong>或<strong>欺诈（Misrepresentation）</strong>责任。</td>
+        </tr>
+        <tr>
+          <td><strong>服务提供商 (Service Provider)</strong></td>
+          <td>主要提供服务，产品仅作为服务的附带工具（如：医生使用注射器、牙医使用补牙材料）。</td>
+          <td><strong style="color: var(--wrong-text);">否</strong>（服务占主导地位，不视为产品销售商）。</td>
+          <td>适用<strong>职业疏忽/医疗事故（Malpractice）</strong>标准，而非严格责任。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 【Fact/Application Logic】 -->
+    <h2>案件事实适用与逻辑推导</h2>
+    <p>要判断原告（购买钻头的女子）能否对被告（退休男子）主张严格产品责任，需进行以下三步审查：</p>
+    <ol>
+      <li><strong>审查被告的交易身份：</strong> 被告是一名退休的钻头制造厂销售代表。他在网络车库拍卖（online garage sale）上列出了几件个人工具进行出售。这种行为属于典型的<span class="term">偶发销售（casual sale）</span>，而非其常规商业业务。</li>
+      <li><strong>排除商业供应商身份：</strong> 尽管被告以前是该产品制造厂的雇员，但在本次交易中，他是以个人名义出售闲置物品，并非该钻头的零售商或商业分销商。</li>
+      <li><strong>得出结论：</strong> 由于被告仅为偶发销售商，他不满足严格产品责任中对被告必须是“商业供应商”的强制性要求。因此，原告无法通过严格产品责任向其索赔。</li>
+    </ol>
+
+    <!-- 【Diagram】 -->
+    <h2>产品责任分析决策树</h2>
+    <div class="diagram">
+      <div class="diagram-container">
+        <div class="flow-node">原告是否因产品缺陷受到人身或财产损害？</div>
+        <div class="flow-arrow">↓ 是</div>
+        <div class="flow-node highlight-node">被告在交易中的身份是什么？</div>
+        <div class="flow-arrow">↓</div>
+        <div class="diagram-row">
+          <div class="flow-node" style="border-color: #27ae60; background: #ebf7ee; color: #27ae60;">
+            <strong>商业供应商</strong><br>
+            (制造商/分销商/零售商)<br>
+            ↓<br>
+            <span style="color: #27ae60;">可起诉严格产品责任</span>
+          </div>
+          <div class="flow-node" style="border-color: #e67e22; background: #fdf5e6; color: #e67e22;">
+            <strong>偶发销售商</strong><br>
+            (如车库拍卖、二手转让)<br>
+            ↓<br>
+            <span style="color: #e67e22;">无严格产品责任</span><br>
+            <small>(仅能基于疏忽/欺诈起诉)</small>
+          </div>
+          <div class="flow-node" style="border-color: #95a5a6; background: #f2f2f2; color: #7f8c8d;">
+            <strong>服务提供商</strong><br>
+            (如医生、美容院)<br>
+            ↓<br>
+            <span style="color: #7f8c8d;">无严格产品责任</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 【Trap Alert】 -->
+    <div class="trap-alert">
+      <strong>⚠️ MBE 常见陷阱提示：</strong>
+      <ul>
+        <li><strong>前雇员/背景陷阱：</strong> 题目故意提及被告“曾是该钻头制造厂的销售代表”，试图诱导考生认为他与制造商有商业关联，从而将其归类为“零售商”或“商业链条中的一环”。请记住：判断商业供应商身份的标准是<strong>本次交易的性质</strong>，而非被告的历史职业背景。</li>
+        <li><strong>全新未拆封陷阱：</strong> 钻头“从未被使用且密封在原装盒内”这一事实，容易让人联想到零售商销售的新品。但这无法改变该交易属于“个人二手偶发销售”的本质。</li>
+      </ul>
+    </div>
+
+    <!-- 【Answer-Choice Breakdown】 -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">A. 正确</div>
+        <p>如上所述，严格产品责任仅适用于商业供应商。该男子在网上车库拍卖中出售个人工具，属于偶发销售商，因此不承担严格产品责任。原告无法通过此诉由获得赔偿。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. 错误</div>
+        <p>该选项认为原告因“未按预期方式使用钻头（在砖墙上使用）”而无法恢复。虽然<span class="term">产品误用（misuse）</span>在某些情况下可以作为严格产品责任的抗辩事由，但前提是该误用必须是<strong>不可预见的（unforeseeable）</strong>。在本案中，包装盒上印有“禁止在金属或石材上使用”的警告，这恰恰证明了制造商已经预见到用户可能会在石材（如砖墙）上使用该钻头。因此，这种误用是可预见的，不能构成免责抗辩。更重要的是，由于被告根本不是商业供应商，本案甚至不需要讨论误用抗辩，被告直接不承担严格责任。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">/C. 错误</div>
+        <p>该选项指出“钻头存在缺陷部件”，试图以此支持原告的严格责任诉求。虽然产品确实存在制造或设计缺陷，但严格产品责任的成立必须同时满足“被告是商业供应商”这一前提。由于被告身份不符，即使产品存在严重缺陷，原告也无法向该男子主张严格责任（但原告可以向制造该钻头的厂商提起严格产品责任诉讼）。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">D. 错误</div>
+        <p>该选项试图将该男子定性为“零售商（retailer）”。然而，该男子只是在网上车库拍卖中出售自己闲置工具的个人，并非在常规业务中经营工具零售。他以前作为该制造商销售代表的职业经历，并不能使他在这次私人偶发交易中自动晋升为法律意义上的商业零售商。</p>
+      </div>
+
+    </div>
+
+    <!-- 【Exam Tip】 -->
+    <div class="footer-tip">
+      <strong>💡 快速做题口诀：</strong><br>
+      做产品责任题，第一步永远是看<strong>“谁是被告”</strong>（Who is the defendant?）。如果是个人闲置转让、车库拍卖（garage sale）、邻里交易，直接排除严格产品责任（Strict Liability），无需纠结产品是否有缺陷或原告是否有过错！
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - Real Property</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+      margin: 10px 0;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      italic: true;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+      font-style: italic;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .flow-node, .party-box {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .flow-node.active, .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .arrow {
+      font-weight: bold;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .case-box {
+      background: var(--highlight-bg);
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 20px 0;
+    }
+
+    .option-analysis {
+      margin-top: 30px;
+    }
+
+    .option {
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 16px 0;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 12px 20px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+      .diagram-container {
+        flex-direction: column;
+      }
+      .arrow {
+        transform: rotate(90deg);
+        margin: 5px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Real Property: Landlord-Tenant Law (房东与租户法)</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：B. $1,000
+      <p style="font-size: 16px; font-weight: normal; margin: 8px 0 0; color: var(--text-color);">
+        <strong>核心判旨：</strong>在多数诉讼规则下，<span class="term">预期违约（anticipatory repudiation）</span>不适用于租约。因此，房东无权主张未来未到期的租金损失。此外，由于租户已依约提前30天通知解约，租约在第9个月末合法终止，房东最多只能追讨第9个月已到期未付的租金 $1,000。
+      </p>
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法律原理：租户不付租金时房东的救济措施</h2>
+    
+    <div class="concept-box">
+      <div class="concept-title">多数诉讼规则 vs. 预期违约不适用租约</div>
+      <p>当租户未能按期支付租金并违约时，房东可以就已到期的租金提起诉讼。但在确定房东的损害赔偿范围时，必须遵循以下关键规则：</p>
+      <ul>
+        <li><strong>多数诉讼规则（Majority Rule）：</strong><span class="term">预期违约（anticipatory repudiation）</span>教义<strong>不适用于租约</strong>。这意味着，如果租户在中途违约或表示不再履行租约，房东<strong>无权</strong>就未来尚未到期的租金主张损害赔偿，除非租约中明确包含<span class="term">租金加速条款（rent-acceleration clause）</span>。</li>
+        <li><strong>少数诉讼规则（Minority Rule）：</strong>允许将预期违约教义扩展至租约。房东可以就未来租金起诉，但损害赔偿额必须扣除：(1) 剩余租期内房屋的合理租金价值，或 (2) 重新出租实际收到的租金。</li>
+      </ul>
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h3>房东追讨租金的规则对比</h3>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>救济维度</th>
+          <th>多数诉讼规则（Majority Rule）</th>
+          <th>少数诉讼规则（Minority Rule）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>未来租金追讨</strong></td>
+          <td><strong>原则上禁止</strong>。只能在租金实际到期后逐期起诉，或在租期结束时统一结算。</td>
+          <td><strong>允许起诉</strong>。可立即就未来租金的预期损失提起诉讼。</td>
+        </tr>
+        <tr>
+          <td><strong>例外情况</strong></td>
+          <td>若租约包含<span class="term">租金加速条款（rent-acceleration clause）</span>，则可要求立即支付未来所有租金。</td>
+          <td>无须加速条款，但必须履行减损义务（Mitigation of Damages）。</td>
+        </tr>
+        <tr>
+          <td><strong>计算公式</strong></td>
+          <td>仅限：<strong>已到期且未付的实际租金</strong>。</td>
+          <td>未来租金总额 - 房屋合理租金价值（或实际转租租金）。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Fact/Application Logic -->
+    <h2>案件事实与逻辑推导</h2>
+    
+    <div class="case-box">
+      <p><strong>本案关键事实步骤解析：</strong></p>
+      <ol>
+        <li><strong>解约条款的行使：</strong> 租约规定“任何一方均可通过提前至少30天通知来终止租约”。第9个月初，租户未付租金，并在被催告后拒绝支付，同时给出了“30天后搬离”的通知。这属于<strong>行使合同约定的解约权</strong>。</li>
+        <li><strong>租约终止时间：</strong> 租户在第9个月初给出30天通知，意味着租约在第9个月末（30天届满时）<strong>合法终止</strong>。</li>
+        <li><strong>债务计算：</strong>
+          <ul>
+            <li><strong>第9个月：</strong> 租户在第9个月初未付租金，此时该月租金 $1,000 已到期，租户必须支付。</li>
+            <li><strong>第10-12个月（未来租期）：</strong> 由于租约已在第9个月末合法终止，且本案租约中<strong>没有</strong>租金加速条款，根据多数诉讼规则，租户对未来的租金不承担任何支付义务。</li>
+          </ul>
+        </li>
+        <li><strong>结论：</strong> 房东最多只能向租户追讨第9个月的租金，即 <strong>$1,000</strong>。</li>
+      </</ol>
+    </div>
+
+    <!-- Diagram -->
+    <div class="diagram">
+      <strong style="display: block; margin-bottom: 10px;">租期与违约时间线示意图</strong>
+      <div class="diagram-container">
+        <div class="flow-node">第 1 - 8 个月<br><small>正常付租 ($1,000/月)</small></div>
+        <div class="arrow">➔</div>
+        <div class="flow-node active">第 9 个月<br><small>未付租金 + 给出30天解约通知</small></div>
+        <div class="arrow">➔</div>
+        <div class="flow-node">第 10 - 12 个月<br><small>租约已终止 (房东以 $800/月转租)</small></div>
+      </div>
+      <p style="font-size: 15px; color: var(--muted-text); margin-top: 15px;">
+        ※ 多数规则下，第10-12个月的转租差额损失（$200/月）不可追讨，因为租约已依通知条款合法终止，且无加速条款。
+      </p>
+    </div>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <strong>⚠️ MBE 常见陷阱提示：</strong>
+      <p>1. <strong>合同法与财产法的混淆：</strong> 很多考生会习惯性地套用普通合同法中的“预期违约”规则，计算房东重新出租后的差额损失（即 $1,600，对应选项 C）。但必须牢记，<strong>财产法（租约）在多数州不适用预期违约</strong>。</p>
+      <p>2. <strong>忽略合同自带的解约条款：</strong> 本案中双方约定了“提前30天通知即可解约”。租户给出了通知，因此第9个月末租约已不复存在。即使在适用预期违约的少数州，由于租约已合法终止，租户也无需承担终止后的租金差额。</p>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">B. 正确</div>
+        <p>如上所述，租户通过给予30天通知合法终止了租约。租户仅对通知期内（即第9个月）已到期未付的 $1,000 租金负有债务。由于多数诉讼规则不支持预期违约适用于租约，且合同无加速条款，租户无须承担未来租金。因此，房东最多只能收集 $1,000。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">A. 错误</div>
+        <p>该选项认为房东因为没有给租户“补救机会（opportunity to cure）”而不能获得任何赔偿。然而，<strong>通知和补救机会仅在房东试图驱逐（evict）违约租户时才是必需的</strong>。本案中是租户主动寻求终止租约并搬离，房东起诉是为了追讨已产生的损害赔偿，而非驱逐，因此不受该规则限制。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">C. 错误</div>
+        <p>该选项计算出的 $1,600 是基于少数诉讼规则下的未来租金差额计算（剩余4个月租金 $4,000 - 实际转租收入 $2,400 = $1,600）。但在多数诉讼规则下，预期违约不适用；且本案中租户是依约合法终止合同，不构成未来租期的违约，故不适用此计算方式。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">D. 错误</div>
+        <p>该选项认为租户应支付当前月份（第9个月）以及30天通知期内累积的租金，共计 $2,000。这是对时间线的误读。租户在第9个月初给出了30天通知，这意味着30天的通知期与第9个月是重合的。租户在第9个月末即可合法搬离，因此他只欠第9个月这一个月的租金（$1,000），而非两个月的租金。</p>
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <strong>💡 快速做题口诀：</strong>
+      <p>租务纠纷看多数，预期违约不入户；若无加速（acceleration）条款在，未来租金莫追讨；依约通知解约成，只付到期不付空。</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

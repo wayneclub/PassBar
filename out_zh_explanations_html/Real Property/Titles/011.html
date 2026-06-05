@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - 矿产所有权的时效占有</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { 
+      box-sizing: border-box; 
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 18px;
+    }
+
+    .answer-box .answer-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--correct-text);
+      margin-bottom: 8px;
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-title {
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: var(--primary-ink);
+    }
+
+    .flow-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      color: var(--muted-text);
+      font-weight: bold;
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .trap-alert h4, .footer-tip h4 {
+      margin: 0 0 8px 0;
+      font-size: 19px;
+      font-weight: 800;
+      color: #b27a00;
+    }
+
+    .option-analysis {
+      margin-top: 24px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-label {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 6px;
+    }
+
+    .option.correct .option-label {
+      color: var(--correct-text);
+    }
+
+    .option.wrong .option-label {
+      color: var(--wrong-text);
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 12px 20px;
+      }
+      .header {
+        padding: 26px 16px;
+        margin-top: 10px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 16px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .flow-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .flow-arrow {
+        text-align: center;
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- 【Card Top Header】 -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Real Property: Adverse Possession of a Severed Mineral Estate</div>
+    </div>
+
+    <!-- 【Correct Answer Box】 -->
+    <div class="answer-box">
+      <div class="answer-title">正确答案：A</div>
+      <p><strong>核心裁决：</strong>如果矿产所有权（mineral estate）在时效占有开始前已被分割（severed），仅占有地表（surface estate）不能使占有人获得矿产所有权；时效占有人必须对矿产进行实际占有（如开采或钻井）满法定期间，方可取得其所有权。</p>
+    </div>
+
+    <!-- 【Core Legal Rule】 -->
+    <h2>核心法理：矿产所有权的时效占有规则</h2>
+    <div class="concept-box">
+      <div class="concept-title">所有权分割（Severance）与时效占有（Adverse Possession）</div>
+      <p>在普通法中，土地的所有权默认包括地表及地下的所有矿产资源。然而，土地所有者可以通过契据（deed）将矿产所有权转让给他人，从而将<span class="term">地表所有权（surface estate）</span>与<span class="term">矿产所有权（mineral estate）</span>进行<strong>法定分割（severance）</strong>。</p>
+      <p>一旦发生分割，时效占有的规则将取决于占有开始时两项所有权是否属于同一主体：</p>
+      <ul>
+        <li><strong>未分割状态（Same Owner）：</strong>如果地表和地下矿产归同一人所有，时效占有人只需满足对地表的时效占有要素（公开且臭名昭著、连续、排他、实际占有、敌对），即可在法定期间届满时<strong>同时获得地表和地下矿产</strong>的所有权（即使其从未进行过地下开采）。</li>
+        <li><strong>已分割状态（Different Owners）：</strong>如果矿产所有权在时效占有开始前已被分割并归他人所有，地表占有人对地表的占有<strong>不能</strong>延伸至地下矿产。占有人若想取得矿产所有权，必须对矿产进行<strong>实际物理占有（actual possession）</strong>（例如通过实际开采、钻井等操作）并持续满法定期间。</li>
+      </ul>
+    </div>
+
+    <!-- 【Concept Comparison Table】 -->
+    <h2>概念对比：未分割 vs 已分割状态下的时效占有</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>对比维度</th>
+          <th>未分割状态 (Unsevered Estate)</th>
+          <th>已分割状态 (Severed Estate)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>所有权结构</strong></td>
+          <td>地表与地下矿产归同一主体所有。</td>
+          <td>地表与地下矿产归不同主体所有（已通过契据等方式分割）。</td>
+        </tr>
+        <tr>
+          <td><strong>地表时效占有的效果</strong></td>
+          <td>自动获得地表和地下矿产的<strong>双重所有权</strong>。</td>
+          <td><strong>仅能</strong>获得地表所有权，无法获得矿产所有权。</td>
+        </tr>
+        <tr>
+          <td><strong>如何获得矿产所有权</strong></td>
+          <td>仅需对地表进行符合法定要素的占有即可。</td>
+          <td>必须对矿产进行<strong>实际物理占有</strong>（如持续钻井、采矿）满法定期间。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 【Fact/Application Logic】 -->
+    <h2>案件事实与法律逻辑分析</h2>
+    <p>本案的权利归属演变及法律适用步骤如下：</p>
+    <ol>
+      <li><strong>所有权分割的发生：</strong>20年前，原土地所有者（Man）通过 Warranty Deed 将全部矿产权利转让给邻居。此时，矿产所有权与地表所有权正式<strong>分割（severed）</strong>。</li>
+      <li><strong>未登记不影响分割效力：</strong>虽然邻居未能登记（failed to record）该契据，但契据在转让双方之间完全有效。分割在契据交付时即已完成，矿产所有权已归邻居所有。</li>
+      <li><strong>时效占有的开始：</strong>19年前（分割发生后），女子搬入该土地。由于此时地表与地下矿产已处于分割状态，女子对地表（surface）的占有无法自动延伸至地下矿产。</li>
+      <li><strong>缺乏对矿产的“实际占有”：</strong>在10年的法定期间内，女子仅在地面居住，从未尝试在土地上进行任何采矿或钻井活动。因此，她从未“实际占有”过该矿产所有权。</li>
+      <li><strong>签署租约不构成实际占有：</strong>女子在第10年签署矿产租赁协议的行为，仅属于法律文书的签署，不构成对矿产的物理开采（且签署时已是第10年，未满足10年的法定持续期间）。</li>
+    </ol>
+
+    <!-- 【Diagram】 -->
+    <div class="diagram">
+      <div class="diagram-title">所有权分割与时效占有时间线</div>
+      <div class="flow-container">
+        <div class="flow-node">20年前：契据交付<br>(地表与矿产分割完成)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">19年前：女子入住地表<br>(仅对地表开始时效占有)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">9年前：10年届满<br>(女子仅取得地表所有权)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node highlight-node">今日争议：矿产所有权<br>(仍归邻居所有)</div>
+      </div>
+    </div>
+
+    <!-- 【Trap Alert】 -->
+    <div class="trap-alert">
+      <h4>⚠️ 避坑指南：警惕“未登记”与“签署租约”的双重陷阱</h4>
+      <p><strong>陷阱 1：邻居未登记契据（Failed to Record）。</strong>很多考生会误选C，认为邻居未登记契据导致其权利无法对抗女子。实际上，登记法（Recording Acts）保护的是后续的<span class="term">善意购买人（BFP）</span>。时效占有人（Adverse Possessor）并不是通过支付对价取得权利的购买人，因此不能利用登记法来剥夺未登记真实所有人的权利。契据未登记并不影响分割的法律效力。</p>
+      <p><strong>陷阱 2：签署租约（Signing a Lease）。</strong>有些考生认为女子签署并登记了租约，且有钻井公司成功钻探，就构成了对矿产的占有。然而，时效占有要求在<strong>整个法定期间（10年）</strong>内都存在实际占有。女子在第10年才签署租约，且“签署租约”本身只是法律行为，并非物理上的开采。在钻井公司实际开钻前，根本不存在对地下矿产的物理占有。</p>
+    </div>
+
+    <!-- 【Answer-Choice Breakdown】 -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-label">A. 正确</div>
+        <p>女子实际上仅占有了先前已与矿产所有权分割的地表所有权。由于矿产所有权在女子占有开始前已被分割，女子对地表的占有不能使其获得矿产所有权。法院不会将矿产所有权判给女子。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-label">B. 错误</div>
+        <p>该选项暗示女子在签署租约后就“实际占有”了矿产。实际上，仅仅签署租约并不构成对矿产的物理占有（必须有实际的钻探或开采行为）。此外，签署租约发生在女子入住10年之后，即便算作占有，也未满足法定10年的持续期间要求。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-label">C. 错误</div>
+        <p>邻居未登记契据不影响所有权分割的效力。契据在交付时即在转让双方之间生效，完成了地表与矿产的分割。时效占有人不能利用登记法来击败未登记的真实所有权人。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-label">D. 错误</div>
+        <p>女子未能满足时效占有矿产的“实际占有”要素。由于两权已分割，仅占有地表无法自动获得矿产所有权。</p>
+      </div>
+
+    </div>
+
+    <!-- 【Exam Tip】 -->
+    <div class="footer-tip">
+      <h4>💡 考场速记公式</h4>
+      <p><strong>矿产时效占有“两步走”：</strong></p>
+      <p>第一步：看占有开始时，矿产与地表是否<strong>已分割</strong>（未登记的有效契据也算分割！）。</p>
+      <p>第二步：若<strong>未分割</strong>，占地表 = 得全部；若<strong>已分割</strong>，占地表 = 仅得地表。要想得矿产，必须在法定期间内<strong>真钻井、真开采</strong>！</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

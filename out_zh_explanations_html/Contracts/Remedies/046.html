@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - Contracts</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --primary-ink: #243447;
+            --accent-color: #3498db;
+            --accent-strong: #2980d9;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #dff0d8;
+            --correct-border: #27ae60;
+            --correct-text: #1f8f4d;
+            --wrong-bg: #f8d7da;
+            --wrong-border: #f5c6cb;
+            --wrong-text: #721c24;
+            --warning-bg: #fff8e1;
+            --warning-border: #ffb300;
+            --text-color: #333333;
+            --muted-text: #666666;
+            --border-color: #dddddd;
+            --card-bg: #ffffff;
+            --bg-color: #ffffff;
+        }
+
+        * { 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-size: 18px;
+            line-height: 1.72;
+            letter-spacing: 0;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            padding: 0 24px 32px;
+            background: var(--card-bg);
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 34px 24px 32px;
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 26px;
+        }
+
+        .header h1 {
+            margin: 0 0 12px;
+            font-size: 32px;
+            line-height: 1.15;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        .sub-title {
+            margin: 0;
+            font-size: 20px;
+            line-height: 1.35;
+            font-weight: 700;
+            color: rgba(255,255,255,0.92);
+        }
+
+        h2, h3 {
+            color: var(--primary-ink);
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: 0;
+        }
+
+        h2 {
+            font-size: 26px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin: 34px 0 20px;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin: 28px 0 16px;
+        }
+
+        p, li {
+            font-size: 18px;
+            line-height: 1.72;
+        }
+
+        ul, ol {
+            padding-left: 24px;
+            margin: 12px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong, b {
+            display: inline !important;
+            white-space: normal !important;
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+            font-weight: 800;
+        }
+
+        .answer-box {
+            background: var(--correct-bg);
+            border-left: 6px solid var(--correct-border);
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin: 22px 0 30px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--correct-text);
+        }
+
+        .concept-box {
+            background: var(--highlight-bg);
+            border-left: 6px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 22px 24px;
+            margin: 24px 0;
+        }
+
+        .concept-box .concept-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-strong);
+            margin-bottom: 12px;
+        }
+
+        .latin {
+            font-style: italic;
+            font-size: 18px;
+            color: #555555;
+            font-weight: 500;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 17px;
+        }
+
+        .comparison-table th {
+            background: #f8f9fa;
+            color: var(--primary-color);
+            font-weight: 800;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        .diagram {
+            background: #ffffff;
+            border: 1px dashed #cccccc;
+            border-radius: 8px;
+            padding: 22px;
+            margin: 28px 0;
+            text-align: center;
+        }
+
+        .flow-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .flow-node {
+            background: #e8fcff;
+            border: 1px solid #22b8cf;
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-weight: 700;
+            color: #05606a;
+            font-size: 16px;
+        }
+
+        .flow-node.active {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #ffffff;
+        }
+
+        .flow-arrow {
+            color: var(--muted-text);
+            font-weight: bold;
+        }
+
+        .rule-block, .trap-alert, .footer-tip {
+            background: var(--warning-bg);
+            border-left: 5px solid var(--warning-border);
+            border-radius: 6px;
+            padding: 18px 20px;
+            margin: 24px 0;
+        }
+
+        .trap-alert h4, .footer-tip h4 {
+            margin: 0 0 8px 0;
+            color: #b7791f;
+            font-size: 19px;
+            font-weight: 800;
+        }
+
+        .case-box {
+            background: var(--highlight-bg);
+            border-radius: 8px;
+            padding: 20px 22px;
+            margin: 20px 0;
+        }
+
+        .option-analysis {
+            margin-top: 28px;
+        }
+
+        .option {
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            font-size: 17px;
+        }
+
+        .option.correct {
+            background: var(--correct-bg);
+            border-left: 5px solid var(--correct-border);
+        }
+
+        .option.wrong {
+            background: var(--wrong-bg);
+            border-left: 5px solid var(--wrong-border);
+            color: var(--wrong-text);
+        }
+
+        .option-title {
+            font-weight: 800;
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        code {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.92em;
+        }
+
+        .term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36,52,71,0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 12px;
+            }
+            .container {
+                padding: 0 12px 20px;
+            }
+            .header {
+                padding: 26px 16px;
+                margin-top: 12px;
+            }
+            .header h1 {
+                font-size: 26px;
+            }
+            .sub-title {
+                font-size: 17px;
+            }
+            body, p, li {
+                font-size: 16px;
+            }
+            h2 {
+                font-size: 22px;
+            }
+            h3 {
+                font-size: 19px;
+            }
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+            .flow-container {
+                flex-direction: column;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin: 4px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Card Top Header -->
+        <div class="header">
+            <h1>MBE 考点解析</h1>
+            <p class="sub-title">Contracts — Land-Sale Contract Remedies & Specific Performance</p>
+        </div>
+
+        <!-- Correct Answer Box -->
+        <div class="answer-box">
+            正确答案：D. Yes, because time is ordinarily not of the essence in a land-sale contract.
+            <div style="font-size: 17px; font-weight: normal; color: #333333; margin-top: 10px; line-height: 1.6;">
+                <strong>核心判旨：</strong>在土地买卖合同中，履行时间通常并非合同的关键要素（<span class="term">time is not of the essence</span>）。卖方在合理延期内（本案中为15天）交付产权与占有不构成重大违约（material breach），买方无权以此为由拒绝履行。买方拒绝付款构成违约，且因土地具有独特性，卖方有权申请特定履行（<span class="term">specific performance</span>）。
+            </div>
+        </div>
+
+        <!-- Core Legal Rule -->
+        <h2>核心法理：土地买卖合同中的时间条款与特定履行</h2>
+        
+        <div class="concept-box">
+            <div class="concept-title">1. 时间并非合同关键要素原则 (Time is Not of the Essence)</div>
+            <p>在普通的土地买卖合同（land-sale contract）中，除非合同条款或交易环境有明确相反的指示，否则<strong>合同中规定的交割日期（closing date）在法律上默认不属于“关键要素”</strong>。</p>
+            <ul>
+                <li><strong>法律后果：</strong>如果卖方未能准时在交割日交付产权或占有，这仅构成<strong>轻微违约（minor breach）</strong>，而非重大违约（material breach）。</li>
+                <li><strong>合理宽限期：</strong>违约方只要在交割日之后的<strong>合理时间（reasonable time）</strong>内完成履行（通常2-4周内均被视为合理），对方就<strong>不得撤销合同或拒绝履行</strong>（即不能拒绝付款）。</li>
+                <li><strong>例外情况：</strong>只有在以下情况，时间才会被视为关键要素，此时任何迟延均构成重大违约：
+                    <ul>
+                        <li>合同中明确写明 “<span class="term">Time is of the essence</span>” 条款；</li>
+                        <li>交易环境暗示时间至关重要（例如，买方急需在特定日期前入住以避免无家可归，且卖方对此知情）。</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="concept-box">
+            <div class="concept-title">2. 卖方的特定履行救济 (Specific Performance)</div>
+            <p>当买方无故拒绝履行土地买卖合同时，卖方可以向法院申请<span class="term">特定履行（specific performance）</span>，即强制命令买方支付约定的购房款并接受土地。</p>
+            <ul>
+                <li><strong>适用前提：</strong>普通法下的金钱损害赔偿（monetary damages）不足以弥补损失。</li>
+                <li><strong>土地的独特性：</strong>在法律上，<strong>所有土地都被推定为是独一无二的（unique）</strong>。即使是普通的农田或标准化的公寓，其地理位置和物理特性也是不可替代的。因此，针对土地买卖合同，特定履行是默认可行的救济手段。</li>
+            </ul>
+        </div>
+
+        <!-- Concept Comparison Table -->
+        <h2>概念对比：时间条款的法律效力与救济差异</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>维度的对比</th>
+                    <th>时间非关键 (Time NOT of the Essence)</th>
+                    <th>时间属关键 (Time IS of the Essence)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>默认规则</strong></td>
+                    <td>土地买卖合同的<strong>默认法律推定</strong>。</td>
+                    <td>必须由合同明示或由特殊交易环境决定。</td>
+                </tr>
+                <tr>
+                    <td><strong>迟延履行的性质</strong></td>
+                    <td>属于<strong>轻微违约 (Minor Breach)</strong>。</td>
+                    <td>属于<strong>重大违约 (Material Breach)</strong>。</td>
+                </tr>
+                <tr>
+                    <td><strong>非违约方的权利</strong></td>
+                    <td>必须接受迟延履行，但可就迟延造成的实际损失索赔。<strong>无权拒绝付款或撤销合同</strong>。</td>
+                    <td>有权<strong>立即撤销合同（rescind）</strong>，拒绝付款，并索取全面违约损害赔偿。</td>
+                </tr>
+                <tr>
+                    <td><strong>救济手段选择</strong></td>
+                    <td>卖方在合理时间内履行后，若买方拒绝付款，卖方可诉请<strong>特定履行 (Specific Performance)</strong>。</td>
+                    <td>若卖方迟延，买方可诉请<strong>解除合同并退还定金 (Rescission & Restitution)</strong>。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Fact/Application Logic -->
+        <h2>案件事实与法律逻辑链条</h2>
+        <div class="case-box">
+            <p><strong>本案事实梳理：</strong></p>
+            <ol>
+                <li><strong>合同约定：</strong>1月15日交割，买方付款50万美元，卖方交付产权和占有。</li>
+                <li><strong>卖方迟延：</strong>1月15日，卖方因租户非法滞留（wrongful holdover）无法交付占有，但承诺于1月30日交付。</li>
+                <li><strong>卖方履行：</strong>1月30日（迟延15天），卖方正式向买方提供产权和占有。</li>
+                <li><strong>买方违约：</strong>买方拒绝接受并拒绝付款。</li>
+            </ol>
+            <p><strong>法律适用推导：</strong></p>
+            <ul>
+                <li>由于合同中未规定“时间是关键要素”，且无特殊环境表明1月15日必须交割，因此<strong>15天的延迟属于在合理时间内的履行</strong>。</li>
+                <li>卖方在1月30日的履行是有效的。买方在1月30日<strong>无权拒绝履行</strong>。</li>
+                <li>买方拒绝付款的行为构成了<strong>重大违约（material breach）</strong>。</li>
+                <li>由于本案标的物是500英亩的农田（土地），具有天然的独特性，金钱赔偿不足，因此卖方有权获得<strong>特定履行（specific performance）</strong>，强制买方付款买地。</li>
+            </ul>
+        </div>
+
+        <!-- Diagram -->
+        <h2>交易流程与违约判定图示</h2>
+        <div class="diagram">
+            <div style="font-weight: 800; margin-bottom: 10px; color: var(--primary-color);">土地买卖合同履行时间线</div>
+            <div class="flow-container">
+                <div class="flow-node">1月15日 (约定交割日)<br>卖方因租户滞留未能交付</div>
+                <div class="flow-arrow">➔</div>
+                <div class="flow-node">时间非关键要素<br>卖方享有合理宽限期</div>
+                <div class="flow-arrow">➔</div>
+                <div class="flow-node">1月30日 (合理时间内)<br>卖方正式提供产权与占有</div>
+                <div class="flow-arrow">➔</div>
+                <div class="flow-node active">买方拒绝接受/付款<br>【买方构成重大违约】</div>
+            </div>
+            <div style="margin-top: 18px; font-size: 15px; color: var(--muted-text);">
+                结论：卖方有权就独一无二的土地申请<strong>特定履行 (Specific Performance)</strong>，强制买方支付50万美元。
+            </div>
+        </div>
+
+        <!-- Trap Alert -->
+        <div class="trap-alert">
+            <h4>⚠️ MBE 常见陷阱提示</h4>
+            <p><strong>陷阱 1：混淆“履行不能”的适用边界（干扰项 C）</strong></p>
+            <p>有些考生会认为卖方迟延是因为租户非法滞留，属于“临时履行不能（temporary impossibility）”从而免责。这是错误的。履行不能要求发生<strong>不可预见且无法控制的超常事件</strong>。租户期满不退房是房东（卖方）在签约时应当预见并承担的商业风险，不属于法律上的 impossibility。卖方迟延不违约的真正原因，是因为<strong>时间本来就不是合同的关键要素</strong>，而非因为履行不能而获得豁免。</p>
+            
+            <p><strong>陷阱 2：误判金钱赔偿的充分性（干扰项 B）</strong></p>
+            <p>题目中给出了土地的市场价值（$510,000）和租金（$5,000），试图诱导考生计算损害赔偿金（Loss of Bargain），并得出“金钱赔偿已足够，无需特定履行”的错误结论。请牢记：<strong>在土地交易中，法律绝对推定土地具有独特性，金钱赔偿永远被视为不充分（inadequate）</strong>。卖方随时可以主张特定履行。</p>
+        </div>
+
+        <!-- Answer-Choice Breakdown -->
+        <h2>正确答案与干扰项排除</h2>
+        <div class="option-analysis">
+            <div class="option wrong">
+                <div class="option-title">A. 错误</div>
+                <p>该选项认为卖方在1月15日未交付构成重大违约，因此买方可以撤销合同。如前所述，在土地买卖合同中，除非有明确约定，否则时间并非关键要素。15天的延迟属于合理时间内的轻微违约，买方无权以此为由拒绝履行整个合同。</p>
+            </div>
+
+            <div class="option wrong">
+                <div class="option-title">B. 错误</div>
+                <p>该选项认为卖方的金钱赔偿救济是充分的。这是对土地独特性原则的直接违背。在普通法中，由于每一块土地的地理位置都是独一无二的，金钱损害赔偿在法律上被推定为不充分，因此特定履行是土地买卖中随时可用的标准救济。</p>
+            </div>
+
+            <div class="option wrong">
+                <div class="option-title">C. 错误</div>
+                <p>该选项虽然得出了“卖方能胜诉（Yes）”的正确结论，但其给出的法律依据是错误的。租户非法滞留不属于法律上的“临时履行不能（temporary impossibility）”，因为这属于卖方作为房东应当控制和预见的范围。卖方无需主张 impossibility，只需依赖“时间非关键要素”原则即可支持其合理延期履行。</p>
+            </div>
+
+            <div class="option correct">
+                <div class="option-title">D. 正确</div>
+                <p>该选项准确地指出了本案的核心考点：在土地买卖合同中，时间默认不是关键要素。卖方在1月30日（合理时间内）提供了符合要求的产权和占有，买方拒绝接受并拒绝付款的行为构成了违约。因此，卖方有权就该独特的土地交易申请特定履行。</p>
+            </div>
+        </div>
+
+        <!-- Exam Tip -->
+        <div class="footer-tip">
+            <h4>💡 快速解题捷径 (Exam Shortcut)</h4>
+            <p>在 MBE 考试中，一旦看到<strong>土地买卖合同（land-sale contract）</strong>中卖方迟延了几天或几周（通常在1个月以内），且合同中没有写明 “time is of the essence”，请直接应用<strong>“时间非关键要素”</strong>原则。此时：<br>
+            1. 卖方的轻微迟延<strong>不免除</strong>买方的付款义务；<br>
+            2. 买方若因此拒绝交易，<strong>买方构成违约</strong>；<br>
+            3. 卖方针对买方违约，首选且必胜的救济手段就是<strong>特定履行（Specific Performance）</strong>。</p>
+        </div>
+    </div>
+</body>
+</html>

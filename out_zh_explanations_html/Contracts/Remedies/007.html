@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - 期待利益损害赔偿</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px 12px 0 0;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-bottom: 26px;
+    }
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    /* Component Styles */
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+      overflow-x: auto;
+    }
+    .diagram-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 600px;
+      justify-content: center;
+      padding: 10px 0;
+    }
+    .flow-node, .party-box {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+      text-align: center;
+    }
+    .flow-node.active, .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-strong);
+      color: #ffffff;
+    }
+    .arrow {
+      color: var(--muted-text);
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 22px 0;
+    }
+    .case-box {
+      background: var(--highlight-bg);
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 20px 0;
+    }
+    .option-analysis {
+      margin-top: 30px;
+    }
+    .option {
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border-color);
+    }
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+      color: var(--correct-text);
+    }
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 6px;
+    }
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 12px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Contracts — Remedies: Expectation Damages in Construction Contracts</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：B. $20,000。非违约方（业主）有权获得期待利益损害赔偿，其数额等于聘请第二家承包商完工的成本（$35,000）减去因合同中止而避免支付给原承包商的尾款（$15,000）。
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法律原则：期待利益损害赔偿</h2>
+    <div class="concept-box">
+      <div class="concept-title">期待利益损害赔偿（Expectation Damages）</div>
+      <p>在合同违约救济中，最常用的金钱赔偿方式是<span class="term">期待利益损害赔偿（expectation damages）</span>。其核心目的是使非违约方处于<b>“如果合同得到完全履行”</b>时其本应处于的经济地位。</p>
+      <p>期待利益损害赔偿的标准计算公式如下：</p>
+      <p style="text-align: center; font-weight: 800; background: #ffffff; padding: 12px; border-radius: 6px; border: 1px solid var(--border-color);">
+        期待利益 = 价值损失 (Loss in Value) + 其他损失 (Other Loss) - 避免的成本 (Costs Avoided) - 避免的损失 (Loss Avoided)
+      </p>
+      <ul>
+        <li><b>价值损失（Loss in Value）：</b>指非违约方本应获得的价值与实际收到的价值之间的差额。在建筑合同中，如果承包商未完工，通常表现为<span class="term">完工成本（cost of completion）</span>。</li>
+        <li><b>其他损失（Other Loss）：</b>包括<span class="term">附随损失（incidental damages）</span>和<span class="term">间接损失（consequential damages）</span>。</li>
+        <li><b>避免的成本（Costs Avoided）：</b>因对方违约导致非违约方无需继续履行而“省下”的成本（例如无需支付的合同尾款）。</li>
+        <li><b>避免的损失（Loss Avoided）：</b>非违约方通过采取合理措施减轻损失（mitigation）而实际避免的损失。</li>
+      </ul>
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h2>合同救济方式对比</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>救济类型</th>
+          <th>核心目的</th>
+          <th>计算基础</th>
+          <th>本案适用性</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>期待利益 (Expectation Interest)</b></td>
+          <td>实现合同完全履行后的预期状态。</td>
+          <td>完工成本 - 避免支付的尾款 + 其他损失。</td>
+          <td><b>适用。</b> 业主有权要求获得完工后的房屋，赔偿额为 $20,000。</td>
+        </tr>
+        <tr>
+          <td><b>信赖利益 (Reliance Interest)</b></td>
+          <td>恢复到合同订立前的状态（因信赖合同而支出的费用）。</td>
+          <td>非违约方因准备或履行合同实际支出的成本。</td>
+          <td>不适用。仅在期待利益无法可靠估算时作为替代。</td>
+        </tr>
+        <tr>
+          <td><b>返还利益 (Restitution Interest)</b></td>
+          <td>剥夺违约方的不当得利，防止其无端受益。</td>
+          <td>违约方因非违约方的履行而获得的净利益。</td>
+          <td>不适用。本案业主诉求是完成工程，而非要回已付工程款。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Fact/Application Logic -->
+    <h2>案情适用与双重验证计算</h2>
+    <div class="case-box">
+      <p>本案中，原承包商在完成 2/3 工程后无故罢工，构成<span class="term">重大违约（material breach）</span>。业主聘请第二家承包商完工。我们可以通过两种方法精确计算业主的期待利益损害赔偿：</p>
+      
+      <h3>方法一：标准公式法（Formula Method）</h3>
+      <ol>
+        <li><b>价值损失（Loss in Value）：</b>原承包商承诺交付一个完整的加盖建筑，但实际只交付了 2/3。要使建筑达到承诺的状态，业主实际支付给第二家承包商的完工成本为 <b>$35,000</b>。</li>
+        <li><b>避免的成本（Costs Avoided）：</b>原合同总价为 $75,000。业主之前已支付了 $60,000（$10,000 + $25,000 + $25,000）。由于原承包商违约，业主无需再支付最后的尾款 <b>$15,000</b>。这笔钱是业主“省下来”的成本。</li>
+        <li><b>计算：</b>
+          <br><code>期待利益 = 价值损失 ($35,000) - 避免的成本 ($15,000) = $20,000</code>
+        </li>
+      </ol>
+
+      <h3>方法二：实际总支出对比法（Total Cost Method）</h3>
+      <ol>
+        <li><b>如果合同正常履行：</b>业主本应支付的总金额 = 原合同价 <b>$75,000</b>。</li>
+        <li><b>因违约导致的实际总支出：</b>
+          <ul>
+            <li>支付给第一家承包商：$10,000 + $25,000 + $25,000 = $60,000</li>
+            <li>支付给第二家承包商（完工费）：$35,000</li>
+            <li>实际总支出 = $60,000 + $35,000 = <b>$95,000</b></li>
+          </ul>
+        </li>
+        <li><b>计算超额支出（损害赔偿）：</b>
+          <br><code>赔偿金 = 实际总支出 ($95,000) - 原合同约定总价 ($75,000) = $20,000</code>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Diagram -->
+    <h2>资金流向与赔偿计算图示</h2>
+    <div class="diagram">
+      <div class="diagram-container">
+        <div class="party-box">原合同总价<br><b>$75,000</b></div>
+        <div class="arrow">➔</div>
+        <div class="flow-node">已付第一家<br><b>$60,000</b></div>
+        <div class="arrow">+</div>
+        <div class="flow-node">付第二家完工<br><b>$35,000</b></div>
+        <div class="arrow">=</div>
+        <div class="flow-node highlight-node">实际总支出<br><b>$95,000</b></div>
+      </div>
+      <p style="margin-top: 15px; font-size: 16px; color: var(--muted-text);">
+        期待利益赔偿金 = 实际总支出 ($95,000) - 原合同价 ($75,000) = <b>$20,000</b>
+      </p>
+    </div>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <p><b>⚠️ MBE 易错陷阱提示：</b></p>
+      <p>很多考生会直接选择 <b>$35,000</b>（即 Choice A），认为“既然我多花了 $35,000 找人完工，那对方就应该赔我 $35,000”。</p>
+      <p>这种想法忽略了<b>“避免的成本（Costs Avoided）”</b>。如果原承包商完工，业主本来也必须再掏出 $15,000 的尾款。因为对方违约，这 $15,000 留在业主口袋里了。如果不扣除这笔省下的钱，业主相当于只花了 $60,000（已付）+ $35,000（完工费）- $35,000（赔偿金）= $60,000 就得到了价值 $75,000 的建筑，这会让非违约方获得不当的超额暴利（windfall），违反了合同法损害赔偿的补偿性原则。</p>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">正确答案：B. $20,000</div>
+        <p>如上所述，该选项完美体现了期待利益的计算逻辑。通过扣除业主避免支付的 $15,000 尾款，使业主的净支出保持在原合同约定的 $75,000 水平（实际支出 $95,000 - 获赔 $20,000 = 净支出 $75,000）。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">错误干扰项：A. $35,000</div>
+        <p>该选项仅计算了聘请第二家承包商的直接成本（完工成本），但未能扣除业主因合同中止而合法避免支付的 $15,000 尾款。这会导致业主过度受偿。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">错误干扰项：C. $15,000</div>
+        <p>该金额代表了第一家承包商原本预计在该合同中获得的利润（合同价 $75,000 - 预期总成本 $60,000 = $15,000 利润）。但是，本案的诉讼主体是<b>非违约的买方（业主）</b>，而非违约的卖方（承包商）。违约承包商的预期利润与业主应得的期待利益损害赔偿毫无关系。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">错误干扰项：D. $10,000</div>
+        <p>该选项试图将合同视为<span class="term">可分合同（divisible contract）</span>进行分割计算。然而，本案是一个完整的建筑加盖合同，虽然约定了按进度付款，但双方的根本目的是交付一个完整的建筑，而非三个独立可分割的子合同。此外，该计算方法完全忽略了业主雇佣第二家承包商完工所产生的实际超额成本。</p>
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <p><b>💡 考场秒杀公式（针对买方诉建筑承包商未完工案）：</b></p>
+      <p style="text-align: center; font-weight: 800; margin: 10px 0;">
+        赔偿金 = 实际总花费（已付原承包商 + 支付新承包商） - 原合同总价
+      </p>
+      <p>记住这个公式，无需纠结于复杂的公式拆解，5秒钟即可锁定正确答案！</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

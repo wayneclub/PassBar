@@ -50,10 +50,10 @@
     @apply border-border;
   }
   html[data-passbar-text-size="medium"] {
-    font-size: 18px;
+    font-size: 1.125rem; /* 18px at browser default 16px */
   }
   html[data-passbar-text-size="large"] {
-    font-size: 20px;
+    font-size: 1.25rem; /* 20px at browser default 16px */
   }
   body {
     @apply bg-background text-foreground font-body antialiased;
@@ -68,7 +68,7 @@
   }
 
   [data-sidebar="content"]::-webkit-scrollbar {
-    width: 12px;
+    width: 0.75rem;
   }
 
   [data-sidebar="content"]::-webkit-scrollbar-track {
@@ -77,7 +77,7 @@
 
   [data-sidebar="content"]::-webkit-scrollbar-thumb {
     background-color: hsl(var(--sidebar-border));
-    border: 3px solid hsl(var(--sidebar-background));
+    border: 0.1875rem solid hsl(var(--sidebar-background));
     border-radius: 999px;
   }
 

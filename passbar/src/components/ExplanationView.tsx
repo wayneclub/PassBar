@@ -375,7 +375,7 @@ function GeminiQuestionFeedback({
           isCorrect,
           explanationText,
           explanationImageUrls: Array.from(englishImageUrls).filter((url): url is string => Boolean(url)),
-          topic: question.topic,
+          topic: question.chapterName,
           interfaceLanguage: language
         });
         
@@ -708,15 +708,7 @@ function ExplanationViewComponent({ question, userAnswer, selectedChoiceKey, cor
         </div>
       )}
 
-      {/* Only show AI analysis when no enriched HTML explanation is available */}
-      {!htmlToShow && (
-        <GeminiQuestionFeedback
-          question={question}
-          selectedChoiceKey={selectedChoiceKey}
-          correctChoiceKey={correctChoiceKey}
-          textSize={textSize}
-        />
-      )}
+      {/* GeminiQuestionFeedback disabled — real-time Gemini calls replaced by pre-generated en-html/zh-html */}
     </div>
   );
 }

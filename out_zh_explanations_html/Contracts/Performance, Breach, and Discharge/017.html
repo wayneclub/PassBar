@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考题解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: #e8f8f5;
+            border-left: 5px solid var(--correct-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            color: var(--correct-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .concept-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .concept-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .concept-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+        .english-term {
+            color: #7f8c8d;
+            font-size: 0.85em;
+            font-style: italic;
+        }
+
+        .wrong-option {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #666;
+            border-top: 1px dashed #eee;
+            padding-top: 10px;
+        }
+
+        .wrong-label {
+            color: var(--wrong-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .exam-tip {
+            background-color: #fdf2e9;
+            border: 1px solid #fadbd8;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .exam-tip-title {
+            color: #d35400;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts: Performance & Breach</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：A</span>
+            <strong>否，因为根据合同，在所有三个谷仓都粉刷完毕之前，农场主没有义务向油漆工支付任何款项。</strong>
+        </div>
+
+        <!-- 核心法律原则 -->
+        <div class="concept-card">
+            <div class="concept-title">核心考点：合同的可分割性 vs. 明确条款</div>
+            <p>本题的核心在于判断合同是<strong>可分割的 (Divisible)</strong> 还是<strong>不可分割的 (Entire/Indivisible)</strong>。</p>
+            
+            <p>虽然通常情况下，如果工作可以按单位划分（如3个谷仓，每个$2,000），法院倾向于认定合同是可分割的。但是，<strong>合同的明确语言 (Express Language) 具有最高效力</strong>。</p>
+        </div>
+
+        <!-- 详细解析 -->
+        <div class="concept-card">
+            <div class="concept-title">法律推理分析</div>
+            <p><strong>1. 默示条件 (Implied Conditions)：</strong><br>
+            根据《合同法重述（第二版）》<span class="english-term">(Restatement (Second) of Contracts § 234)</span>，如果一方的履行需要时间（如刷漆），而另一方的履行是付款，那么完成工作通常是付款的<strong>先决条件 (Condition Precedent)</strong>。</p>
+
+            <p><strong>2. 明确条款覆盖默认规则：</strong><br>
+            本案中，合同明确规定：<span class="highlight">"payment of $6,000 upon the painter's completion of the work on all three barns"</span>（在完成所有三个谷仓的工作后支付6,000美元）。</p>
+            
+            <p>这一条款明确设立了一个先决条件：必须完成<strong>所有三个</strong>谷仓，付款义务才会被触发。因此，即使油漆工完成了两个，由于未满足合同约定的先决条件，农场主此时尚无付款义务。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div class="concept-card">
+            <div class="concept-title">为什么其他选项是错的？</div>
+            
+            <div class="wrong-option">
+                <span class="wrong-label">选项 C (Divisible) 错误：</span>
+                <p>虽然这看起来像是一个可分割合同（每个谷仓对应$2,000），但法院不会在合同有<strong>明确相反规定</strong>的情况下强行将其解释为可分割合同。这里的付款条款明确将合同定性为不可分割。</p>
+            </div>
+
+            <div class="wrong-option">
+                <span class="wrong-label">选项 D (Substantial Performance) 错误：</span>
+                <p><strong>实质性履行 (Substantial Performance)</strong> 通常适用于建筑合同中存在细微瑕疵的情况。这里油漆工只完成了2/3的工作，遗漏了整整一个谷仓，这属于<strong>重大违约 (Material Breach)</strong>，而非实质性履行。</p>
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <span class="exam-tip-title">💡 MBE 考试技巧</span>
+            <p>在处理合同题时，永远先看<strong>明确的合同条款 (Express Terms)</strong>。即使普通法有倾向于公平的默认规则（如倾向于认定合同可分割以避免不当得利），明确的合同语言（"upon completion of all..."）几乎总是会覆盖这些默认规则。</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

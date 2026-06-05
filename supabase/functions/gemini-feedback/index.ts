@@ -42,7 +42,7 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
-const fallbackModels = ['gemini-3.5-flash'];
+const fallbackModels = ['gemini-2.0-flash', 'gemini-1.5-flash'];
 
 function json(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -59,7 +59,7 @@ function apiKey() {
 }
 
 function modelsToTry() {
-  const preferred = Deno.env.get('GEMINI_MODEL') || 'gemini-3.5-flash';
+  const preferred = Deno.env.get('GEMINI_MODEL') || 'gemini-2.0-flash';
   return Array.from(new Set([preferred, ...fallbackModels]));
 }
 

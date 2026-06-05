@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点深度解析</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --primary-ink: #243447;
+            --accent-color: #3498db;
+            --accent-strong: #2980d9;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #dff0d8;
+            --correct-border: #27ae60;
+            --correct-text: #1f8f4d;
+            --wrong-bg: #f8d7da;
+            --wrong-border: #f5c6cb;
+            --wrong-text: #721c24;
+            --warning-bg: #fff8e1;
+            --warning-border: #ffb300;
+            --text-color: #333333;
+            --muted-text: #666666;
+            --border-color: #dddddd;
+            --card-bg: #ffffff;
+            --bg-color: #ffffff;
+        }
+
+        * { 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-size: 18px;
+            line-height: 1.72;
+            letter-spacing: 0;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            padding: 0 24px 32px;
+            background: var(--card-bg);
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #ffffff;
+            border-radius: 12px 12px 0 0;
+            padding: 34px 24px 32px;
+            text-align: center;
+            margin-bottom: 26px;
+            margin-top: 20px;
+        }
+
+        .header h1 {
+            margin: 0 0 12px;
+            font-size: 32px;
+            line-height: 1.15;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        .sub-title {
+            margin: 0;
+            font-size: 20px;
+            line-height: 1.35;
+            font-weight: 700;
+            color: rgba(255,255,255,0.92);
+        }
+
+        h2, h3 {
+            color: var(--primary-ink);
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: 0;
+        }
+
+        h2 {
+            font-size: 26px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin: 34px 0 20px;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin: 28px 0 16px;
+        }
+
+        p, li {
+            font-size: 18px;
+            line-height: 1.72;
+        }
+
+        strong, b {
+            display: inline !important;
+            white-space: normal !important;
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+            font-weight: 800;
+        }
+
+        .answer-box {
+            background: var(--correct-bg);
+            border-left: 6px solid var(--correct-border);
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin: 22px 0 30px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--correct-text);
+        }
+
+        .concept-box {
+            background: var(--highlight-bg);
+            border-left: 6px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 22px 24px;
+            margin: 24px 0;
+        }
+
+        .concept-box .concept-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-strong);
+            margin-bottom: 12px;
+        }
+
+        .latin {
+            italic;
+            font-size: 18px;
+            color: #555555;
+            font-weight: 500;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 17px;
+        }
+
+        .comparison-table th {
+            background: #f8f9fa;
+            color: var(--primary-color);
+            font-weight: 800;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        .diagram {
+            background: #ffffff;
+            border: 1px dashed #cccccc;
+            border-radius: 8px;
+            padding: 22px;
+            margin: 28px 0;
+            text-align: center;
+        }
+
+        .flow-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .flow-node {
+            background: #e8fcff;
+            border: 1px solid #22b8cf;
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-weight: 700;
+            color: #05606a;
+            font-size: 16px;
+        }
+
+        .flow-node.active {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #ffffff;
+        }
+
+        .flow-arrow {
+            color: var(--muted-text);
+            font-weight: bold;
+        }
+
+        .rule-block, .trap-alert, .footer-tip {
+            background: var(--warning-bg);
+            border-left: 5px solid var(--warning-border);
+            border-radius: 6px;
+            padding: 18px 20px;
+            margin: 24px 0;
+        }
+
+        .option-analysis {
+            margin-top: 24px;
+        }
+
+        .option {
+            border-radius: 8px;
+            padding: 20px 22px;
+            margin: 16px 0;
+        }
+
+        .option.correct {
+            background: var(--correct-bg);
+            border-left: 5px solid var(--correct-border);
+        }
+
+        .option.wrong {
+            background: var(--wrong-bg);
+            border-left: 5px solid var(--wrong-border);
+            color: var(--wrong-text);
+        }
+
+        .option-title {
+            font-weight: 800;
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        .term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36,52,71,0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        code {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.92em;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 12px;
+            }
+            .container {
+                padding: 0 12px 20px;
+            }
+            .header {
+                padding: 26px 16px;
+            }
+            .header h1 {
+                font-size: 26px;
+            }
+            .sub-title {
+                font-size: 16px;
+            }
+            body, p, li {
+                font-size: 16px;
+            }
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+            .flow-container {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin: 4px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 【Card Top Header】 -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property: Real Estate Contracts & Statute of Frauds</div>
+    </div>
+
+    <!-- 【Correct Answer Box】 -->
+    <div class="answer-box">
+        正确答案：D. For the seller, because the oral rescission was valid.
+        <span style="font-size: 17px; font-weight: normal; display: block; margin-top: 8px; color: var(--primary-ink);">
+            <strong>核心裁决：</strong>土地买卖合同的设立和变更须符合欺诈法（Statute of Frauds）的书面要求，但双方口头协议撤销（oral rescission）该合同是完全有效的，无需书面形式。
+        </span>
+    </div>
+
+    <!-- 【Core Legal Rule】 -->
+    <h2>核心法理</h2>
+    <div class="concept-box">
+        <div class="concept-title">土地买卖合同与欺诈法（Statute of Frauds）</div>
+        <p>根据美国普通法，<span class="term">欺诈法（Statute of Frauds, SoF）</span>适用于旨在转让土地权益的合同。其核心规则如下：</p>
+        <ul>
+            <li><strong>设立与变更（Creation & Modification）：</strong>任何创设或修改土地买卖合同的协议，必须以<strong>书面形式（writing）</strong>呈现，并由<strong>被请求承担责任的一方（party to be charged）</strong>签署，方可强制执行。</li>
+            <li><strong>撤销（Rescission）：</strong>与设立和变更不同，土地买卖合同的<strong>口头撤销协议（oral agreement to rescind）是合法有效的</strong>。因为纯粹的撤销（解除合同）只是终止了双方未履行的合同义务，并不涉及土地权益的实际转让，因此不属于 SoF 的规制范围。</li>
+            <li><strong>必要条款（Essential Terms）：</strong>SoF 要求书面合同必须包含必要条款，包括：当事人身份、买卖意图、物业描述以及销售价格。然而，<strong>交割日期（closing date）并非必要条款</strong>。若合同未约定交割日期，法院会推定双方同意在“合理时间”内进行交割。</li>
+        </ul>
+    </div>
+
+    <!-- 【Concept Comparison Table】 -->
+    <h2>概念对比表</h2>
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>法律行为 / 条款类型</th>
+                <th>是否需要书面形式 (SoF)</th>
+                <th>法律效果与推定</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>合同设立 (Creation)</strong></td>
+                <td><span style="color: var(--wrong-text); font-weight: bold;">是 (Yes)</span></td>
+                <td>必须有书面凭证，并包含必要条款，否则合同不可强制执行。</td>
+            </tr>
+            <tr>
+                <td><strong>合同变更 (Modification)</strong></td>
+                <td><span style="color: var(--wrong-text); font-weight: bold;">是 (Yes)</span></td>
+                <td>若变更后的合同内容仍属于 SoF 范围（如修改价格、土地范围），则变更必须采用书面形式。</td>
+            </tr>
+            <tr>
+                <td><strong>合同撤销 (Rescission)</strong></td>
+                <td><span style="color: var(--correct-text); font-weight: bold;">否 (No)</span></td>
+                <td><strong>口头协议撤销完全有效</strong>。合同一旦撤销，原合同义务立即消灭。</td>
+            </tr>
+            <tr>
+                <td><strong>交割日期 (Closing Date)</strong></td>
+                <td><span style="color: var(--correct-text); font-weight: bold;">否 (No)</span></td>
+                <td>非必要条款。缺失时不影响合同效力，法院将依法推定<span class="term">合理时间（reasonable time）</span>。</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 【Fact/Application Logic】 -->
+    <h2>案件事实与法律适用步骤</h2>
+    <p>本案的法律关系演变可分为以下三个步骤进行剖析：</p>
+    <ol>
+        <li><strong>步骤一：初始书面合同的效力评估</strong>
+            <br>买卖双方签署了书面土地买卖合同，且该合同满足了 SoF 的基本要求。虽然合同中因为买方需要时间办理贷款而<strong>未约定交割日期</strong>，但这并不影响合同的成立与效力。交割日期并非必要条款，法律会自动填补这一空白，推定在合理时间内交割。
+        </li>
+        <li><strong>步骤二：口头撤销协议的法律效力</strong>
+            <br>在合同签署10天后，双方<strong>口头达成一致撤销该合同</strong>。根据普通法规则，该口头撤销协议是合法有效的，无需任何书面文件。此时，原书面合同已被依法终止，双方不再负有任何履行义务。
+        </li>
+        <li><strong>步骤三：后续转售与买方反悔的后果</strong>
+            <br>合同撤销后，卖方将土地卖给第三方的行为完全合法。买方在两天后单方面反悔并要求履行原合同，由于原合同早已因双方合意撤销而消灭，卖方拒绝履行并不构成违约。因此，法院应判决卖方胜诉。
+        </li>
+    </</ol>
+
+    <!-- 【Diagram】 -->
+    <h2>交易流程与法律状态图示</h2>
+    <div class="diagram">
+        <div class="flow-container">
+            <div class="flow-node">1. 签署书面合同<br>(未定交割日，但合同有效)</div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-node active">2. 双方口头撤销<br>(口头撤销有效，合同终止)</div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-node">3. 卖方售予第三方<br>(合法行使处分权)</div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-node" style="background: #fce8e6; border-color: #f03e3e; color: #c92a2a;">4. 买方反悔起诉<br>(合同已不存在，买方败诉)</div>
+        </div>
+    </div>
+
+    <!-- 【Trap Alert】 -->
+    <div class="trap-alert">
+        <div style="font-weight: 800; font-size: 20px; color: #b57a00; margin-bottom: 8px;">⚠️ MBE 常见陷阱提示</div>
+        <ul>
+            <li><strong>“对称性思维”陷阱（Symmetry Trap）：</strong>考生极易直觉地认为“既然设立土地买卖合同必须采用书面形式，那么撤销该合同也必须采用书面形式”。请务必牢记：<strong>SoF 仅限制合同的创设与变更，不限制纯粹的撤销。</strong></li>
+            <li><strong>“必要条款”混淆陷阱：</strong>MBE 常通过“未约定交割日期”或“未约定具体付款时间”来诱导考生选择“合同因缺乏必要条款而无效”。记住，土地买卖合同的 SoF 必要条款<strong>不包括</strong>交割日期。</li>
+        </ul>
+    </div>
+
+    <!-- 【Answer-Choice Breakdown】 -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+        
+        <div class="option wrong">
+            <div class="option-title">A. 错误 ｜ 混淆履行期限与合同存续状态</div>
+            <p>该选项主张“买方在合理时间内通知了卖方，因此买方胜诉”。然而，在买方通知卖方之前，<strong>该合同已经通过双方的口头协议被有效撤销</strong>。合同一旦终止，买方是否在合理时间内提出交割均无任何法律意义，卖方已无履行合同的义务。</p>
+        </div>
+
+        <div class="option wrong">
+            <div class="option-title">B. 错误 ｜ 错误适用欺诈法（SoF）范围</div>
+            <p>该选项认为“撤销协议必须由双方签署书面文件方可生效”。这直接违背了普通法下<strong>“土地买卖合同可以口头撤销”</strong>的明确规则。SoF 不适用于纯粹的合同撤销协议。</p>
+        </div>
+
+        <div class="option wrong">
+            <div class="option-title">C. 错误 ｜ 错误界定必要条款（Essential Terms）</div>
+            <p>该选项主张“合同因未约定交割日期而无效”。如前所述，交割日期并非土地买卖合同满足 SoF 的必要条款。若合同未写明交割日期，法院会通过推定“合理时间”来填补该条款，合同本身在签署时是完全有效的。</p>
+        </div>
+
+        <div class="option correct">
+            <div class="option-title">D. 正确 ｜ 准确适用口头撤销规则</div>
+            <p>该选项正确指出，双方的口头撤销协议是有效的。由于合同在卖方将土地卖给第三方之前已被有效撤销，买方无权再要求履行原合同，卖方不构成违约，法院应当判决卖方胜诉。</p>
+        </div>
+
+    </div>
+
+    <!-- 【Exam Tip】 -->
+    <div class="footer-tip">
+        <div style="font-weight: 800; font-size: 20px; color: #b57a00; margin-bottom: 6px;">💡 快速解题秒杀公式</div>
+        <p style="margin: 0;">
+            在 Real Property 考题中，看到<strong>“书面土地合同 + 口头撤销（oral rescission）”</strong>：
+            <br>👉 <strong>直接秒杀：</strong>口头撤销有效！原合同消灭！后续拒绝履行不违约！
+            <br>👉 <strong>对比记忆：</strong>如果是合同<strong>变更（modification）</strong>，则必须看变更后的合同是否仍在 SoF 范围内。
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

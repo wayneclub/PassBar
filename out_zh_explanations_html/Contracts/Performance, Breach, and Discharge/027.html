@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机宽度 */
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            background-color: #eee;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-align: justify;
+        }
+        .highlight-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 10px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+        .timeline-date {
+            font-weight: bold;
+            font-size: 12px;
+            color: #666;
+        }
+        .timeline-content {
+            font-size: 13px;
+        }
+        .key-term {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .footer-tip {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #777;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：预期违约</h1>
+    
+    <p>本题考察的核心法律原则是美国统一商法典（UCC）下的 <strong>预期拒绝履行 (Anticipatory Repudiation)</strong> 及其撤回限制。</p>
+
+    <div class="highlight-box">
+        <strong>正确答案：C</strong><br>
+        该女士6月9日的信函构成了明确的拒绝履行，且供应商已产生信赖利益（将货物转卖），因此该女士无法再撤回其拒绝表示。
+    </div>
+
+    <h2>1. 案件时间线梳理</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-date">6月2日 (Vendor)</div>
+            <div class="timeline-content">发出明确要约 (Offer)。</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">6月5日 (Woman)</div>
+            <div class="timeline-content">发出接受信函。合同成立 (Contract Formed)。<br><span class="english-term">注：付款条件的变更建议不影响合同成立。</span></div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">6月9日 (Woman)</div>
+            <div class="timeline-content">信函送达："我从不与无法满足我要求的人做生意。" <br><strong>➔ 预期拒绝履行 (Repudiation)</strong></div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">6月10日早些时候 (Vendor)</div>
+            <div class="timeline-content">将货物卖给第三方。<br><strong>➔ 实质性改变处境 (Material Change of Position)</strong></div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">6月10日晚些时候 (Woman)</div>
+            <div class="timeline-content">试图撤回拒绝并履约。<br><strong>➔ 撤回无效 (Ineffective Retraction)</strong></div>
+        </div>
+    </div>
+
+    <h2>2. 核心法理解析</h2>
+    
+    <p><strong>什么是预期拒绝履行？</strong><br>
+    根据 <span class="english-term">UCC § 2-610</span>，当一方在履行期到来前，<strong>明确且毫不含糊地 (unequivocally)</strong> 表示其将不履行合同时，即构成预期拒绝履行。</p>
+    
+    <p>在本案中，女士在6月9日的信中称“我从不与无法满足我简单要求的人做生意”，这被视为明确拒绝履行合同义务。</p>
+
+    <p><strong>拒绝履行后的撤回 (Retraction)</strong><br>
+    根据 <span class="english-term">UCC § 2-611</span>，违约方通常可以在履行期届满前撤回其拒绝履行的表示。<strong>但是</strong>，如果受害方（供应商）在收到撤回通知之前已经：</p>
+    <ul>
+        <li>取消了合同；或者</li>
+        <li><strong>实质性地改变了处境 (Materially changed position)</strong>；或者</li>
+        <li>表示认为该拒绝履行是最终的。</li>
+    </ul>
+    <p>那么，违约方就<strong>不能</strong>再撤回了。</p>
+    
+    <p><strong>本案关键点：</strong>供应商在收到女士6月10日的“妥协”电报之前，已经将货物卖给了别人。这种转卖行为属于基于信赖而发生的“实质性处境改变”。因此，女士的撤回无效，供应商的抗辩成立。</p>
+
+    <h2>3. 为什么其他选项是错的？</h2>
+    
+    <ul>
+        <li><strong>选项 A (报价 vs 要约)：</strong>错误。供应商6月2日的电报包含具体的数量（100台）、价格（$60/台）、交货时间和地点，且用语（"You're in luck"）表明了受约束的意图，因此是有效的 <strong>要约 (Offer)</strong>，而非简单的报价邀请。</li>
+        <li><strong>选项 B (格式之战)：</strong>错误。本案涉及货物买卖，适用 UCC。UCC 废除了普通法下的“镜像规则” (Mirror Image Rule)。根据 <span class="english-term">UCC § 2-207</span>，除非接受明确以同意新条款为条件，否则包含不同条款的接受仍然构成有效的承诺。女士的信中只是表达“希望 (Would prefer)”，这只是建议，不阻碍合同成立。</li>
+        <li><strong>选项 D (承诺方式)：</strong>错误。除非要约明确规定了必须使用的承诺方式，否则使用合理的商业媒介（如邮件）进行承诺是有效的。</li>
+    </ul>
+
+    <div class="footer-tip">
+        <strong>💡 考试技巧：</strong><br>
+        在处理 UCC 合同题时，务必画出时间线。特别注意“拒绝履行 (Repudiation)”发生后，非违约方是否采取了行动（如转卖货物）。一旦非违约方采取了行动，违约方就失去了“反悔”的机会。
+    </div>
+</div>
+
+</body>
+</html>

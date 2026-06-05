@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { 
+      box-sizing: border-box; 
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-flow {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-strong);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-weight: bold;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .trap-alert h4, .footer-tip h4 {
+      margin: 0 0 8px 0;
+      color: #b25e00;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .option-analysis {
+      margin-top: 30px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 16px 0;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 12px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .diagram-flow {
+        flex-direction: column;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Torts (侵权法) — 严格产品责任与经济损失规则 (Strict Products Liability & Economic Loss Rule)</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：B. 制造商对原告的纯经济损失不承担严格产品责任。
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法律原则</h2>
+    <div class="concept-box">
+      <div class="concept-title">严格产品责任的构成要件与损害限制</div>
+      <p>在侵权法中，原告基于<span class="term">严格产品责任（Strict Products Liability）</span>向商业销售者索赔，必须证明以下三个核心要素：</p>
+      <ol>
+        <li><strong>被告是商业销售者</strong>（Commercial Seller）：包括制造商（Manufacturer）、批发商/分销商（Distributor）及零售商（Retailer）。</li>
+        <li><strong>产品在离开被告控制时存在缺陷</strong>（Defective when left defendant's control）：包括制造缺陷（Manufacturing defect）、设计缺陷（Design defect）或警示缺陷（Failure to warn）。</li>
+        <li><strong>该缺陷导致了原告的“物理伤害”</strong>（Physical Harm）：即<strong>人身伤害（Bodily harm）</strong>或<strong>除缺陷产品本身以外的财产损失（Property damage）</strong>。</li>
+      </ol>
+      <p>⚠️ <strong>经济损失规则（Economic Loss Rule）：</strong><br>
+      严格产品责任<strong>不保护纯粹的经济损失（Purely Economic Loss）</strong>。纯经济损失包括：缺陷产品自身的损坏（Harm to the defective product itself）、因产品缺陷导致的间接营业损失（如利润损失 Lost profits、误工费 Lost wages）等。如果原告没有遭受人身伤害或其它财产损失，则不能通过侵权法上的严格产品责任获得赔偿，而必须诉诸合同法或默示保证（Implied Warranty）理论。</p>
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h2>概念对比：侵权法 vs. 合同法下的产品责任</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>对比维度</th>
+          <th>严格产品责任 (Strict Products Liability - 侵权)</th>
+          <th>默示保证违约 (Breach of Implied Warranty - 合同/UCC)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>法律性质</strong></td>
+          <td>侵权法（Torts）</td>
+          <td>合同法（Contracts / UCC Article 2）</td>
+        </tr>
+        <tr>
+          <td><strong>核心损害要求</strong></td>
+          <td>必须有<strong>人身伤害</strong>或<strong>其它财产损失</strong>。</td>
+          <td>不要求物理伤害，可直接起诉产品不符合使用目的。</td>
+        </tr>
+        <tr>
+          <td><strong>纯经济损失赔偿</strong></td>
+          <td><strong style="color: var(--wrong-text);">绝对不赔偿</strong>（受经济损失规则限制）。</td>
+          <td><strong style="color: var(--correct-text);">可以赔偿</strong>（包括缺陷产品自身价值减损及间接商业损失）。</td>
+        </tr>
+        <tr>
+          <td><strong>免责条款 (Disclaimers)</strong></td>
+          <td>商业销售者对消费者的免责条款通常<strong>无效</strong>。</td>
+          <td>可以通过符合 UCC 规定的条款（如 "As Is"）进行<strong>限制或免除</strong>。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Fact/Application Logic -->
+    <h2>案情深度剖析与逻辑推导</h2>
+    <p>本案的因果链条和原告的诉讼请求可以通过以下步骤进行拆解：</p>
+    
+    <div class="diagram">
+      <strong>产品流通与损害发生链条</strong>
+      <div class="diagram-flow">
+        <div class="flow-node">轮胎制造商 (Mfr)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">零售商 (Retailer)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">女顾客 (退回)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">零售商 (打折)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">绿化商 (Landscaper)</div>
+      </div>
+      <div class="diagram-flow" style="margin-top: 20px;">
+        <div class="flow-node" style="background: #fff0f0; border-color: #ffc9c9; color: #c92a2a;">制造缺陷 (回火不当)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node" style="background: #fff0f0; border-color: #ffc9c9; color: #c92a2a;">轮胎漏气 (Flat)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node highlight-node">错失预约/营业收入损失</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node" style="background: #fff9db; border-color: #fab005; color: #8f6b00;">纯经济损失 (No Physical Harm)</div>
+      </div>
+    </div>
+
+    <ol>
+      <li><strong>被告身份与缺陷判定：</strong> 制造商在生产轮胎时“回火不当”（Improperly tempered），属于典型的<span class="term">制造缺陷（Manufacturing defect）</span>。该缺陷在产品离开制造商控制时就已经存在。</li>
+      <li><strong>原告的损害性质：</strong> 绿化商因轮胎漏气，错过了两次绿化预约，导致了商业利润/工资损失（Lost business/wages）。</li>
+      <li><strong>物理伤害的缺失：</strong> 轮胎漏气并没有引发车祸，没有造成任何人员受伤（No bodily harm），也没有损坏绿化商卡车上的工具或其它财产（No other property damage）。轮胎自身的损坏和错失预约的损失属于纯粹的<span class="term">纯经济损失（Purely economic loss）</span>。</li>
+      <li><strong>结论：</strong> 既然原告仅遭受了纯经济损失，根据<span class="term">经济损失规则（Economic Loss Rule）</span>，他无法通过严格产品责任（侵权法）向制造商索赔。制造商的最佳抗辩即为“不应对纯经济损失承担严格侵权责任”。</li>
+    </ol>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <h4>⚠️ MBE 经典陷阱提示</h4>
+      <p><strong>陷阱 1：混淆起诉理论（Theory of Liability）。</strong><br>
+      许多考生会认为“绿化商确实亏了钱，制造商的产品确实有缺陷，为什么不能赔？”。请务必看清原告的<strong>起诉依据</strong>。本题明确指出原告是基于 <strong>"strict products liability theory"（严格产品责任理论）</strong> 起诉。如果是基于侵权法起诉，没有物理伤害就绝对不赔。如果原告换用合同法上的 <strong>"implied warranty of merchantability"（商售默示保证）</strong> 起诉，这些经济损失（Consequential damages）则是可以主张的。</p>
+      <p><strong>陷阱 2：误以为中间退货断裂了责任链条。</strong><br>
+      有些考生会选 C，认为零售商把轮胎卖给女顾客又退回的过程断开了因果关系。但事实表明，女顾客并未实际使用轮胎，退回时轮胎状况完好如初。缺陷在出厂时就存在，且中间没有被篡改或发生实质改变，因此因果关系链条（Chain of causation）完好无损。</p>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">B. 正确</div>
+        <p>根据侵权法中的<strong>经济损失规则</strong>，严格产品责任不赔偿纯经济损失。原告因轮胎漏气导致的错失预约和营业收入损失属于典型的纯经济损失，且未伴随任何人身伤害或其它财产损失。因此，制造商对此不承担严格产品责任。这是制造商最致命、最有效的抗辩。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">A. 错误</div>
+        <p><strong>自担风险（Assumption of risk）</strong>要求原告主观上知悉具体危险并自愿面对。绿化商仅仅因为支付了打折价格购买“非全新”轮胎，并不意味着他知悉并自愿承担“轮胎存在制造缺陷会导致漏气”的风险。此外，本选项混淆了商售默示保证（Implied warranty of merchantability）的抗辩，而本案是严格侵权诉讼。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">C. 错误</div>
+        <p><strong>责任链条并未断裂。</strong> 虽然零售商曾将轮胎卖给一位女士，但该女士因尺寸不对立即原样退回，零售商也确认轮胎状况与出厂时一致。由于缺陷（回火不当）在离开制造商控制时就已经存在，且中间过程未发生任何改变，因此因果关系链条并未断裂。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">D. 错误</div>
+        <p>首先，标注“非全新”（"Not brand new"）不足以有效免除商售默示保证（通常需要明确使用 "As Is"、"With all faults" 或书面显著免责声明）。其次，更重要的是，原告提起的是<strong>严格产品责任诉讼（侵权法）</strong>，而非默示保证诉讼（合同法），免责声明（Disclaimer）对严格侵权责任不产生免责效力。</p>
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <h4>💡 考试秒杀秘籍</h4>
+      <p>在做 MBE 产品责任题时，请牢记以下<strong>两步决策法</strong>：</p>
+      <ol>
+        <li><strong>看原告起诉的理论（Theory）：</strong>
+          <ul>
+            <li>如果是 <strong>Strict Liability / Negligence (侵权)</strong> ➡️ 必须寻找“人身伤害”或“其它财产损失”。若只有产品自身坏了或纯丢钱（Lost profits），直接选“不承担责任/经济损失不赔”。</li>
+            <li>如果是 <strong>Warranty (合同/UCC)</strong> ➡️ 纯经济损失可以赔，但要注意免责条款（Disclaimers）和通知义务（Notice）。</li>
+          </ul>
+        </li>
+        <li><strong>看被告的身份：</strong> 只要是商业链条上的主体（制造商、分销商、零售商），在严格产品责任中均需对出厂缺陷承担连带责任，中间的正常转售和退货不切断责任。</li>
+      </ol>
+    </div>
+
+  </div>
+
+</body>
+</html>

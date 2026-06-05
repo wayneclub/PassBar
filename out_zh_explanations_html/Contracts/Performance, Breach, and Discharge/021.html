@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机屏幕逻辑宽度 */
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .concept-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        .term {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 2px solid #bdc3c7;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+        .timeline-content {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .wrong-option {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 5px;
+            padding: 8px;
+            background: #fdf2f2;
+            border-radius: 4px;
+        }
+        .mbe-tip {
+            background-color: #e8f6f3;
+            border: 1px dashed #1abc9c;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+        }
+        .mbe-tip-title {
+            font-weight: bold;
+            color: #16a085;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MBE 考点解析：条件的放弃与信赖</h1>
+
+    <p>本题考查的核心法律概念是合同法中的<b>“条件的放弃” (Waiver of Condition)</b> 及其不可撤销性。</p>
+
+    <div class="concept-card">
+        <strong>核心规则：</strong><br>
+        当合同义务受制于某个<b>先决条件 (Condition Precedent)</b> 时，受益方可以通过言语或行为<b>放弃 (Waive)</b> 该条件。<br><br>
+        虽然一般的放弃是可以撤回的，但如果对方已经基于该放弃产生了<b>合理的、有损害的信赖 (Detrimental Reliance)</b>，则该放弃变为<b>不可撤销 (Irrevocable)</b>。
+    </div>
+
+    <h2>案情逻辑推演</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <strong>1. 合同成立</strong><br>
+                包含先决条件：法律合伙人必须批准设计。
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <strong>2. 条件未成就 (Non-occurrence)</strong><br>
+                合伙人明确表示“不批准”。此时，房主本可以免除付款义务。
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <strong>3. 放弃 (Waiver)</strong><br>
+                房主（受益方）明知条件未成就，仍命令规划师“继续工作”。这是对条件的明确放弃。
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <strong>4. 信赖 (Reliance)</strong><br>
+                规划师基于房主的命令，完成了40%的工作。
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <strong>5. 结论</strong><br>
+                由于规划师已产生信赖，房主的放弃<b>不可撤销</b>。房主必须履行合同（付款），拒绝付款构成违约。
+            </div>
+        </div>
+    </div>
+
+    <h2>为什么选 A (Irrevocable waiver)？</h2>
+    <p>房主的行为（命令开工）构成了对“合伙人批准”这一条件的放弃。一旦规划师开始工作（信赖行为），房主就不能再以“条件未成就”为由拒绝付款。因此，规划师起诉违约的最佳依据是房主已经不可撤销地放弃了该条件。</p>
+
+    <h2>为什么其他选项是错误的？</h2>
+
+    <div class="wrong-option">
+        <strong>B. Promissory Estoppel (允诺禁反言)</strong><br>
+        <span class="english-term">错误原因：</span> 允诺禁反言通常用于<b>没有有效合同</b>（例如缺乏对价）的情况，作为对价的替代品来执行承诺。本案中双方有明确的有效书面合同，问题在于合同条款的执行，而非合同的成立。
+    </div>
+
+    <div class="wrong-option">
+        <strong>C. Substantial Performance (实质性履行)</strong><br>
+        <span class="english-term">错误原因：</span> 实质性履行通常要求完成绝大部分工作（例如90%以上）。本案中规划师只完成了 <b>40%</b>，远未达到实质性履行的标准。此外，该原则通常用于保护已完成大部分工作的违约方，而非本案这种被动停止的情况。
+    </div>
+
+    <div class="wrong-option">
+        <strong>D. Unjust Enrichment (不当得利)</strong><br>
+        <span class="english-term">错误原因：</span> 这是一个准合同 (Quasi-contract) 概念，适用于合同无效或不可执行时，为了防止一方不公平获利。既然本案可以通过“放弃”理论在<b>合同法</b>框架内解决，法院首选执行合同条款，而非诉诸衡平法上的不当得利。
+    </div>
+
+    <div class="mbe-tip">
+        <span class="mbe-tip-title">💡 MBE 考试技巧</span>
+        在处理<b>Condition (条件)</b> 题目时，请遵循以下三步分析法：
+        <ol style="margin: 5px 0 0 -20px;">
+            <li><b>识别条件：</b> 寻找 "unless", "provided that", "if" 等词汇。</li>
+            <li><b>判断结果：</b> 条件是否发生？如果没有，义务通常被免除。</li>
+            <li><b>寻找豁免 (Excuse)：</b> 受益方是否说了“没关系”或“继续做”？这就是 <b>Waiver</b>。如果对方因此行动了，Waiver 就锁死（Irrevocable）了。</li>
+        </ol>
+    </div>
+</div>
+
+</body>
+</html>

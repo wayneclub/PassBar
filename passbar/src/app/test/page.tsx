@@ -863,7 +863,7 @@ function TestSessionContent() {
         onFeedback={handleFeedback}
         isBrowse={session.mode === 'TopicStudy'}
         subject={currentQuestion?.subject}
-        topic={currentQuestion?.topic}
+        topic={currentQuestion?.chapterName}
         timeLimitSeconds={session.timeLimitSeconds}
         onTimeUp={session.mode === 'SimExam' && !isReviewMode ? handleTimeUp : undefined}
         shortcutHelpOpen={shortcutHelpOpen}
@@ -887,16 +887,21 @@ function TestSessionContent() {
               "space-y-8 py-8",
               showExplanation ? "px-6 lg:px-8" : "mx-auto w-full max-w-5xl px-6 lg:px-8"
             )}>
-              {/* ── Mobile-only subject · chapter tag ─────────────────────── */}
-              {(currentQuestion?.subject || currentQuestion?.topic) && (
-                <div className="sm:hidden flex flex-wrap items-center gap-1.5 -mt-4 mb-0">
+              {/* ── Subject / Chapter / Topic pills ─────────────────────── */}
+              {(currentQuestion?.subject || currentQuestion?.chapterName || currentQuestion?.topic) && (
+                <div className="flex flex-wrap items-center gap-2 -mt-2 mb-1">
                   {currentQuestion.subject && (
-                    <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
+                    <span className="inline-flex items-center rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary leading-none">
                       {currentQuestion.subject}
                     </span>
                   )}
+                  {currentQuestion.chapterName && (
+                    <span className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600 leading-none">
+                      {currentQuestion.chapterName}
+                    </span>
+                  )}
                   {currentQuestion.topic && (
-                    <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-500">
+                    <span className="inline-flex items-center rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-medium text-sky-600 leading-none">
                       {currentQuestion.topic}
                     </span>
                   )}

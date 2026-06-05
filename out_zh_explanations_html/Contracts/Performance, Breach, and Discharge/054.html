@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE Question Analysis</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-box {
+            background-color: #e8f8f5;
+            border-left: 5px solid var(--success-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .answer-label {
+            color: var(--success-color);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .rule-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .step-item {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            background-color: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .wrong-option {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .wrong-label {
+            color: var(--warning-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .tip-box {
+            background-color: #ebf5fb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 25px;
+            font-size: 0.9rem;
+            border: 1px dashed var(--accent-color);
+        }
+
+        .tip-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考题解析</h1>
+        <div class="sub-title">Contracts / Sales (UCC Article 2)</div>
+    </div>
+
+    <div class="content">
+        <!-- 正确答案部分 -->
+        <div class="answer-box">
+            <span class="answer-label">正确答案：D</span>
+            <p>分包商会胜诉。因为总承包商没有感到不安的合理理由，所以分包商没有义务提供保证，其拒绝行为不构成毁约。</p>
+        </div>
+
+        <!-- 核心考点 -->
+        <div class="section-title">核心考点：UCC § 2-609</div>
+        <div class="rule-card">
+            <strong>要求履约保证的权利 (Right to Adequate Assurance)</strong><br><br>
+            根据《统一商法典》(UCC)，一方当事人只有在拥有<b>“对另一方履约感到不安的合理理由” (reasonable grounds for insecurity)</b> 时，才有权书面要求对方提供履约保证。
+        </div>
+
+        <!-- 逻辑推演 -->
+        <div class="section-title">逻辑推演步骤</div>
+        <ul class="step-list">
+            <li class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-text">
+                    <strong>事实认定：</strong>题目明确指出总承包商“没有理由怀疑分包商的履约能力” (had no reason to doubt)。他只是单纯想“确定”一下。
+                </div>
+            </li>
+            <li class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-text">
+                    <strong>法律适用：</strong>由于缺乏<span class="highlight">合理的不安理由</span>，总承包商发出的“保证要求函”在法律上是无效的。
+                </div>
+            </li>
+            <li class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-text">
+                    <strong>分包商的权利：</strong>既然要求无效，分包商就没有义务回复或提供保证。因此，分包商的拒绝或沉默<b>不构成</b>预期毁约 (Anticipatory Repudiation)。
+                </div>
+            </li>
+            <li class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-text">
+                    <strong>结论：</strong>总承包商在分包商未违约的情况下，擅自找第三方购买钢材，这构成了总承包商自己的违约。因此，分包商起诉将胜诉。
+                </div>
+            </li>
+        </ul>
+
+        <!-- 错误选项解析 -->
+        <div class="section-title">为什么其他选项是错的？</div>
+        
+        <div class="wrong-option">
+            <span class="wrong-label">选项 A (错误)</span>
+            虽然合同没有写明具体数字，但<b>需求合同 (Requirements Contract)</b> 在 UCC 下是有效的。只要数量是基于买方的实际善意需求，合同就具有可执行性。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 B (错误)</span>
+            这是最强的干扰项。如果总承包商有“合理理由”感到不安，那么分包商拒绝提供保证确实会构成预期毁约。但本题的关键在于<b>没有合理理由</b>。
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-label">选项 C (错误)</span>
+            要求保证本身并不构成违约，它只是在没有合理理由时没有法律效力而已。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <span class="tip-title">💡 MBE 考试技巧</span>
+            在处理 <b>UCC § 2-609</b> 问题时，务必仔细寻找题目中关于<b>“不安理由” (Grounds for Insecurity)</b> 的描述。
+            <br><br>
+            如果题目说一方仅仅是“nervous”（紧张）或“wanted to be sure”（想确认），而没有具体的财务危机或履约瑕疵作为依据，那么他们通常<b>无权</b>要求保证。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

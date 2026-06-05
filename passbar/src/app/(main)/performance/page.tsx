@@ -56,7 +56,7 @@ type QuestionMetaRow = {
   id: string;
   subject: string;
   chapter_id: string;
-  topic: string;
+  chapter_name: string;
   micro_concept: string | null;
   trap_type: string | null;
   skill_tested: string | null;
@@ -515,11 +515,11 @@ function ConceptMapTab({
     data.answers.forEach((a) => {
       const meta = data.metadata.get(a.question_id);
       if (!meta) return;
-      const key = `${meta.subject}::${meta.topic}::${meta.micro_concept ?? meta.topic}`;
+      const key = `${meta.subject}::${meta.chapter_name}::${meta.micro_concept ?? meta.chapter_name}`;
       const entry = map.get(key) ?? {
-        concept: meta.micro_concept ?? meta.topic,
+        concept: meta.micro_concept ?? meta.chapter_name,
         subject: meta.subject,
-        topic: meta.topic,
+        topic: meta.chapter_name,
         attempts: 0,
         correct: 0,
         avgTime: 0,
@@ -840,7 +840,7 @@ function ErrorTrapTab({
             </CardTitle>
             {wrongMeta && (
               <span className="text-xs text-muted-foreground">
-                {t('performance.sourceLabel')}: {wrongMeta.subject} · {wrongMeta.topic}
+                {t('performance.sourceLabel')}: {wrongMeta.subject} · {wrongMeta.chapter_name}
               </span>
             )}
           </div>
@@ -853,7 +853,7 @@ function ErrorTrapTab({
               <div className="rounded-lg border bg-amber-50 border-amber-100 p-4">
                 <p className="text-xs font-bold text-amber-700 mb-2">{t('performance.trapScenarioTitle')}</p>
                 <p className="text-sm text-slate-700">
-                  {t('performance.inConceptPrefix')} <strong>{wrongMeta.subject}</strong> · <strong>{wrongMeta.topic}</strong>:
+                  {t('performance.inConceptPrefix')} <strong>{wrongMeta.subject}</strong> · <strong>{wrongMeta.chapter_name}</strong>:
                   {wrongMeta.trap_type
                     ? t('performance.trapTypeEncountered', { trap: wrongMeta.trap_type })
                     : t('performance.trapUnknownDescription')}
@@ -875,11 +875,11 @@ function ErrorTrapTab({
                 <div className="rounded-lg border border-green-200 bg-green-50 p-4">
                   <p className="text-xs font-bold text-green-600 mb-2">{t('performance.correctAnswerShouldBe')}</p>
                   <p className="text-sm text-green-800 font-medium mb-2">
-                    {wrongMeta.micro_concept ?? wrongMeta.topic}
+                    {wrongMeta.micro_concept ?? wrongMeta.chapter_name}
                   </p>
                   <p className="text-xs text-green-600 flex items-start gap-1">
                     <span className="font-bold">{t('performance.keyConcept')}</span>
-                    {wrongMeta.skill_tested ?? t('performance.masterCorePrinciple', { topic: wrongMeta.topic })}
+                    {wrongMeta.skill_tested ?? t('performance.masterCorePrinciple', { topic: wrongMeta.chapter_name })}
                   </p>
                 </div>
               </div>
@@ -1168,7 +1168,7 @@ export default function PerformancePage() {
       for (const ids of chunk(questionIds, 400)) {
         const { data: rows, error: rowsError } = await supabase
           .from('questions')
-          .select('id, subject, chapter_id, topic, micro_concept, trap_type, skill_tested')
+          .select('id, subject, chapter_id, chapter_name, micro_concept, trap_type, skill_tested')
           .in('id', ids);
         if (rowsError) console.warn('[PassBar] questions fetch error:', rowsError.message);
         if (rows) metaRows.push(...(rows as QuestionMetaRow[]));
@@ -1187,8 +1187,8 @@ export default function PerformancePage() {
       answers.forEach((a) => {
         const meta = metadata.get(a.question_id);
         if (!meta) return;
-        const key = `${meta.subject}::${meta.topic}::${meta.micro_concept ?? meta.topic}`;
-        const entry = conceptMap.get(key) ?? { concept: meta.micro_concept ?? meta.topic, subject: meta.subject, topic: meta.topic, attempts: 0, correct: 0, totalTime: 0 };
+        const key = `${meta.subject}::${meta.chapter_name}::${meta.micro_concept ?? meta.chapter_name}`;
+        const entry = conceptMap.get(key) ?? { concept: meta.micro_concept ?? meta.chapter_name, subject: meta.subject, topic: meta.chapter_name, attempts: 0, correct: 0, totalTime: 0 };
         entry.attempts++;
         if (a.is_correct) entry.correct++;
         entry.totalTime += a.time_spent_seconds ?? 0;

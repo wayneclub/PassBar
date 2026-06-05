@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点深度解析 - 盗窃罪的既遂标准与事后归还</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --primary-ink: #243447;
+            --accent-color: #3498db;
+            --accent-strong: #2980d9;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #dff0d8;
+            --correct-border: #27ae60;
+            --correct-text: #1f8f4d;
+            --wrong-bg: #f8d7da;
+            --wrong-border: #f5c6cb;
+            --wrong-text: #721c24;
+            --warning-bg: #fff8e1;
+            --warning-border: #ffb300;
+            --text-color: #333333;
+            --muted-text: #666666;
+            --border-color: #dddddd;
+            --card-bg: #ffffff;
+            --bg-color: #ffffff;
+        }
+
+        * { 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-size: 18px;
+            line-height: 1.72;
+            letter-spacing: 0;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            padding: 0 24px 32px;
+            background: var(--card-bg);
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #ffffff;
+            border-radius: 12px 12px 0 0;
+            padding: 34px 24px 32px;
+            text-align: center;
+            margin-bottom: 26px;
+        }
+
+        .header h1 {
+            margin: 0 0 12px;
+            font-size: 32px;
+            line-height: 1.15;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        .sub-title {
+            margin: 0;
+            font-size: 20px;
+            line-height: 1.35;
+            font-weight: 700;
+            color: rgba(255,255,255,0.92);
+        }
+
+        h2, h3 {
+            color: var(--primary-ink);
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: 0;
+        }
+
+        h2 {
+            font-size: 26px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin: 34px 0 20px;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin: 28px 0 16px;
+        }
+
+        p, li {
+            font-size: 18px;
+            line-height: 1.72;
+        }
+
+        strong, b {
+            display: inline !important;
+            white-space: normal !important;
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+            font-weight: 800;
+        }
+
+        .answer-box {
+            background: var(--correct-bg);
+            border-left: 6px solid var(--correct-border);
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin: 22px 0 30px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--correct-text);
+        }
+
+        .concept-box {
+            background: var(--highlight-bg);
+            border-left: 6px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 22px 24px;
+            margin: 24px 0;
+        }
+
+        .concept-box .concept-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-strong);
+            margin-bottom: 12px;
+        }
+
+        .latin {
+            font-style: italic;
+            font-size: 18px;
+            color: #555555;
+            font-weight: 500;
+        }
+
+        .comparison-table-wrapper {
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 17px;
+            min-width: 600px;
+        }
+
+        .comparison-table th {
+            background: #f8f9fa;
+            color: var(--primary-color);
+            font-weight: 800;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        .diagram {
+            background: #ffffff;
+            border: 1px dashed #cccccc;
+            border-radius: 8px;
+            padding: 22px;
+            margin: 28px 0;
+            text-align: center;
+        }
+
+        .diagram-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .flow-node {
+            background: #e8fcff;
+            border: 1px solid #22b8cf;
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-weight: 700;
+            color: #05606a;
+            font-size: 16px;
+        }
+
+        .flow-node.active {
+            background: var(--accent-color);
+            border-color: var(--accent-strong);
+            color: #ffffff;
+        }
+
+        .flow-arrow {
+            font-weight: bold;
+            color: var(--muted-text);
+        }
+
+        .rule-block, .trap-alert, .footer-tip {
+            background: var(--warning-bg);
+            border-left: 5px solid var(--warning-border);
+            border-radius: 6px;
+            padding: 18px 20px;
+            margin: 24px 0;
+        }
+
+        .trap-alert-title {
+            font-weight: 800;
+            color: #b25900;
+            margin-bottom: 8px;
+            font-size: 19px;
+        }
+
+        .case-box {
+            background: var(--highlight-bg);
+            border-radius: 8px;
+            padding: 20px 22px;
+            margin: 20px 0;
+        }
+
+        .option-analysis {
+            margin-top: 30px;
+        }
+
+        .option {
+            margin-bottom: 16px;
+            padding: 16px 20px;
+            border-radius: 6px;
+        }
+
+        .option.correct {
+            background: var(--correct-bg);
+            border-left: 5px solid var(--correct-border);
+        }
+
+        .option.wrong {
+            background: var(--wrong-bg);
+            border-left: 5px solid var(--wrong-border);
+            color: var(--wrong-text);
+        }
+
+        .option-title {
+            font-weight: 800;
+            font-size: 19px;
+            margin-bottom: 6px;
+        }
+
+        code {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.92em;
+        }
+
+        .term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36,52,71,0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 12px;
+            }
+            .container {
+                padding: 0 16px 24px;
+            }
+            .header {
+                padding: 26px 16px;
+            }
+            .header h1 {
+                font-size: 26px;
+            }
+            .sub-title {
+                font-size: 17px;
+            }
+            body, p, li {
+                font-size: 16px;
+            }
+            h2 {
+                font-size: 22px;
+            }
+            h3 {
+                font-size: 19px;
+            }
+            .diagram-container {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin: 4px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Card Top Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Criminal Law and Procedure • Crimes Against Property (Larceny)</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+        正确答案：D. 构成盗窃罪（Larceny），因为被告人已将皮包移离原位并予以隐匿，且当时具有盗窃意图。
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法律规则</h2>
+    <div class="concept-box">
+        <div class="concept-title">普通法盗窃罪（Larceny）的构成要件</div>
+        <p>在普通法（Common Law）上，<span class="term">盗窃罪（larceny）</span>是指：</p>
+        <ol>
+            <li><strong>非法夺取（Unlawful taking / Caption）</strong>：未经所有人同意，非法取得对他人个人财产的控制权。</li>
+            <li><strong>移运（Carrying away / Asportation）</strong>：将该财产移动。</li>
+            <li><strong>他人的个人财产（Personal property of another）</strong>：客体必须是他人占有的有形动产。</li>
+            <li><strong>特定意图（Specific intent to permanently deprive）</strong>：在夺取和移运财物时，行为人必须具有<strong>永久剥夺</strong>他人财产所有权的意图。</li>
+        </ol>
+    </div>
+
+    <h3>关于“移运（Asportation）”的认定标准</h3>
+    <p>移运要素的门槛极低。只要财产被<span class="term">移动了极微小的距离（moved even a short distance）</span>（哪怕只有几英寸），即满足移运的要求。在部分现代司法管辖区（少数派规则），甚至不要求物理上的位移，只要财产被置于行为人的支配与控制之下即可。</p>
+
+    <h3>关于“事后归还/放弃（Return / Abandonment）”的法律效力</h3>
+    <p>盗窃罪属于<strong>即成犯</strong>。一旦“非法夺取”和“移运”伴随“盗窃意图”同时发生，<span class="term">盗窃罪即告既遂（Larceny complete）</span>。既遂之后，被告人因任何原因（如害怕警报、良心发现等）自愿将财物放回原处或归还所有人：</p>
+    <ul>
+        <li><strong>不构成任何抗辩（No defense）</strong>，不能免除其既遂的刑事责任。</li>
+        <li>自愿放弃（Abandonment/Withdrawal）抗辩<strong>仅适用于未遂阶段（Attempt）</strong>，一旦犯罪既遂，则不存在“放弃”的空间。</li>
+    </ul>
+
+    <!-- Concept Comparison Table -->
+    <h2>概念对比表</h2>
+    <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>犯罪状态/行为</th>
+                    <th>行为要素（Actus Reus）</th>
+                    <th>主观要素（Mens Rea）</th>
+                    <th>法律后果与抗辩</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>盗窃罪既遂（Completed Larceny）</strong></td>
+                    <td>非法夺取并移动财物（哪怕仅数英寸或藏于衣内）</td>
+                    <td>夺取时具有永久剥夺的特定意图</td>
+                    <td><strong>构成既遂。</strong>事后放回或归还<strong>不构成抗辩</strong>。</td>
+                </tr>
+                <tr>
+                    <td><strong>盗窃罪未遂（Attempted Larceny）</strong></td>
+                    <td>着手实施夺取，但在完成“移运”或取得控制前被阻止</td>
+                    <td>具有永久剥夺的特定意图</td>
+                    <td>构成未遂。在极少数承认“自愿放弃”抗辩的管辖区可能免责（普通法通常不承认）。</td>
+                </tr>
+                <tr>
+                    <td><strong>临时借用（Trespassory Taking）</strong></td>
+                    <td>非法夺取并移动财物</td>
+                    <td>仅意图临时使用，无永久剥夺意图</td>
+                    <td><strong>不构成盗窃罪</strong>（可能构成侵权或轻微罪行）。若后续产生永久剥夺意图，则通过“持续侵害理论”转化为盗窃罪。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Fact/Application Logic -->
+    <h2>案件事实与应用逻辑</h2>
+    <div class="case-box">
+        <p>本案中，女演员的行为发展完全符合盗窃罪既遂的演变轨迹：</p>
+        <ol>
+            <li><strong>意图产生：</strong>女演员决定不付钱拿走皮包 ➔ 具备了<span class="term">永久剥夺的特定意图（specific intent）</span>。</li>
+            <li><strong>非法夺取与隐匿：</strong>她将皮包藏在大衣下 ➔ 实现了对他人财产的<span class="term">非法占有与控制（unlawful taking）</span>。</li>
+            <li><strong>移运完成：</strong>她向出口移动了数步 ➔ 满足了<span class="term">移运（asportation）</span>要素。此时，<strong>盗窃罪已完全既遂</strong>。</li>
+            <li><strong>事后放回：</strong>因担心感应扣触发警报而将皮包放回柜台 ➔ 属于既遂后的退赃行为，<strong>不影响盗窃罪既遂的成立</strong>。</li>
+        </ol>
+    </div>
+
+    <!-- Diagram -->
+    <h2>逻辑图解</h2>
+    <div class="diagram">
+        <div class="diagram-container">
+            <div class="flow-node">产生盗窃意图<br><small>(Specific Intent)</small></div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-node">藏于大衣下<br><small>(Taking & Concealment)</small></div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-node">移动数步<br><small>(Asportation)</small></div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-node active">盗窃罪既遂<br><small>(Larceny Complete)</small></div>
+        </div>
+        <div style="margin: 15px 0; font-weight: bold; color: var(--muted-text);">▼ 既遂后的后续行为 ▼</div>
+        <div class="diagram-container">
+            <div class="flow-node" style="background: #fff0f0; border-color: #ffccd5; color: #b71c1c;">因担心警报放回柜台<br><small>(Return due to fear)</small></div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-node active" style="background: var(--warning-bg); border-color: var(--warning-border); color: #b25900;">无抗辩效力<br><small>(No Defense)</small></div>
+        </div>
+    </div>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+        <div class="trap-alert-title">⚠️ MBE 经典陷阱</div>
+        <p><strong>1. “未离开商店不构成盗窃”的直觉陷阱：</strong><br>
+        考生常受日常生活常识误导，认为只要没走出店门、没过收银台就不算盗窃。但在刑法上，只要行为人怀着盗窃意图，将商品移离原位并置于自己的排他性控制下（如藏在衣服里），移运即告完成，构成盗窃罪既遂。</p>
+        <p><strong>2. “自愿放回可免责”的道德直觉陷阱：</strong><br>
+        刑法不保护“既遂后的悔改”。一旦犯罪既遂，即使被告人立刻将物品原封不动地归还，也只能在量刑时作为酌定情节，而不能撤销已经成立的犯罪。放弃抗辩（Abandonment）仅存在于未遂（Attempt）阶段。</p>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+        
+        <div class="option wrong">
+            <div class="option-title">A. 错误（不构成犯罪，因为皮包从未被带出商店）</div>
+            <p><strong>解析：</strong>该选项混淆了“移运（asportation）”与“带离场所”的概念。法律只要求财物发生物理位移，并不要求将其带离所有人占有的物理边界（如商店）。女演员将皮包藏在大衣下并走动，已满足移运要素。</p>
+        </div>
+
+        <div class="option wrong">
+            <div class="option-title">B. 错误（不构成犯罪，因为她退出了犯罪计划）</div>
+            <p><strong>解析：</strong>撤回或放弃（withdrawal/abandonment）抗辩仅适用于<strong>未遂犯（attempt）</strong>。由于女演员的行为已经完全满足了盗窃罪的所有既遂要件，犯罪已经既遂，因此不存在“退出”或“放弃”以规避刑事责任的余地。</p>
+        </div>
+
+        <div class="option wrong">
+            <div class="option-title">C. 错误（仅构成盗窃未遂，因为她意图将皮包带出商店但未果）</div>
+            <p><strong>解析：</strong>未遂是指行为人着手实施犯罪但未能完成既遂要件。本案中，女演员已经完成了非法夺取和移运，盗窃罪已经既遂，因此不能被认定为“仅构成未遂”。</p>
+        </div>
+
+        <div class="option correct">
+            <div class="option-title">D. 正确（构成盗窃罪，因为她将皮包移离原位并予以隐匿，且具有盗窃意图）</div>
+            <p><strong>解析：</strong>女演员在具有永久剥夺意图的前提下，非法夺取并移动了皮包（移运），盗窃罪的所有要件均已满足，构成盗窃罪既遂。其后续将皮包放回的行为不影响既遂罪名的成立。</p>
+        </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+        <strong>💡 备考金手指（Decision Rule）：</strong><br>
+        在 MBE 考试中，判断盗窃罪是否既遂，只需盯紧两点：
+        <ol>
+            <li><strong>动了没有？</strong>（哪怕一厘米、藏在身上走了一步，也算 <code>Asportation</code>）</li>
+            <li><strong>动的时候有没有贼心？</strong>（是否有 <code>Intent to permanently deprive</code>）</li>
+        </ol>
+        只要两者同时满足，<strong>盗窃即刻既遂</strong>。此后无论发生什么（放回、扔掉、送还、被抓），一律是<strong>既遂</strong>，绝无“未遂”或“无罪”的可能！
+    </div>
+</div>
+
+</body>
+</html>

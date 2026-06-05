@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - 证据法</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --primary-ink: #243447;
+            --accent-color: #3498db;
+            --accent-strong: #2980d9;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #dff0d8;
+            --correct-border: #27ae60;
+            --correct-text: #1f8f4d;
+            --wrong-bg: #f8d7da;
+            --wrong-border: #f5c6cb;
+            --wrong-text: #721c24;
+            --warning-bg: #fff8e1;
+            --warning-border: #ffb300;
+            --text-color: #333333;
+            --muted-text: #666666;
+            --border-color: #dddddd;
+            --card-bg: #ffffff;
+            --bg-color: #ffffff;
+        }
+
+        * { 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-size: 18px;
+            line-height: 1.72;
+            letter-spacing: 0;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            padding: 0 24px 32px;
+            background: var(--card-bg);
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 34px 24px 32px;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 26px;
+        }
+
+        .header h1 {
+            margin: 0 0 12px;
+            font-size: 32px;
+            line-height: 1.15;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        .sub-title {
+            margin: 0;
+            font-size: 20px;
+            line-height: 1.35;
+            font-weight: 700;
+            color: rgba(255,255,255,0.92);
+        }
+
+        h2, h3 {
+            color: var(--primary-ink);
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: 0;
+        }
+
+        h2 {
+            font-size: 26px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin: 34px 0 20px;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin: 28px 0 16px;
+        }
+
+        p, li {
+            font-size: 18px;
+            line-height: 1.72;
+        }
+
+        strong, b {
+            display: inline !important;
+            white-space: normal !important;
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+            font-weight: 800;
+        }
+
+        .answer-box {
+            background: var(--correct-bg);
+            border-left: 6px solid var(--correct-border);
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin: 22px 0 30px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--correct-text);
+        }
+
+        .concept-box {
+            background: var(--highlight-bg);
+            border-left: 6px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 22px 24px;
+            margin: 24px 0;
+        }
+
+        .concept-box .concept-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-strong);
+            margin-bottom: 12px;
+        }
+
+        .latin {
+            italic;
+            font-size: 18px;
+            color: #555555;
+            font-weight: 500;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 17px;
+        }
+
+        .comparison-table th {
+            background: #f8f9fa;
+            color: var(--primary-color);
+            font-weight: 800;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        .diagram {
+            background: #ffffff;
+            border: 1px dashed #cccccc;
+            border-radius: 8px;
+            padding: 22px;
+            margin: 28px 0;
+            text-align: center;
+        }
+
+        .flow-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .flow-node {
+            background: #e8fcff;
+            border: 1px solid #22b8cf;
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-weight: 700;
+            color: #05606a;
+            min-width: 180px;
+            text-align: center;
+        }
+
+        .flow-node.highlight-node {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #ffffff;
+        }
+
+        .arrow {
+            font-weight: bold;
+            color: var(--muted-text);
+        }
+
+        .rule-block, .trap-alert, .footer-tip {
+            background: var(--warning-bg);
+            border-left: 5px solid var(--warning-border);
+            border-radius: 6px;
+            padding: 18px 20px;
+            margin: 22px 0;
+        }
+
+        .option-analysis {
+            margin-top: 24px;
+        }
+
+        .option {
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+        }
+
+        .option.correct {
+            background: var(--correct-bg);
+            border-left: 5px solid var(--correct-border);
+        }
+
+        .option.wrong {
+            background: var(--wrong-bg);
+            border-left: 5px solid var(--wrong-border);
+            color: var(--wrong-text);
+        }
+
+        .option-title {
+            font-weight: 800;
+            font-size: 19px;
+            margin-bottom: 6px;
+        }
+
+        code {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.92em;
+        }
+
+        .term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36,52,71,0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                font-size: 16px;
+            }
+            .container {
+                padding: 0 12px 20px;
+            }
+            .header {
+                padding: 26px 16px;
+            }
+            .header h1 {
+                font-size: 26px;
+            }
+            .sub-title {
+                font-size: 16px;
+            }
+            h2 {
+                font-size: 22px;
+            }
+            h3 {
+                font-size: 18px;
+            }
+            .flow-container {
+                flex-direction: column;
+            }
+            .arrow {
+                transform: rotate(90deg);
+                margin: 5px 0;
+            }
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 【Card Top Header】 -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p class="sub-title">Evidence: Lay vs. Expert Opinion Testimony (外行证人与专家证人意见证言)</p>
+    </div>
+
+    <!-- 【Correct Answer Box】 -->
+    <div class="answer-box">
+        正确答案：C. 仅允许被告提供该项证言，因为只有被告的证言不需要专业知识。
+    </div>
+
+    <!-- 【Core Legal Rule】 -->
+    <h2>核心法理：外行证人意见证言的可采性</h2>
+    <div class="concept-box">
+        <div class="concept-title">联邦证据规则第 701 条 (FRE 701)</div>
+        <p>根据 <span class="term">FRE 701</span>，未被限定为专家证人的<span class="term">外行证人（lay witness）</span>，其以“意见或推论”形式作出的证言，只有在满足以下<b>三个条件</b>时才具有可采性：</p>
+        <ul>
+            <li><b>合理基于感知 (Rationally based on perception)：</b>该意见必须是证人通过自己的感官（视觉、听觉等）直接观察、感知到的。</li>
+            <li><b>有助于理解或事实认定 (Helpful to clear understanding)：</b>该意见必须有助于陪审团或法官清晰理解该证人的证言，或有助于确定争议事实。</li>
+            <li><b>非基于专业知识 (Not based on specialized knowledge)：</b>该意见<b>不得</b>基于科学、技术或其他《联邦证据规则》第 702 条所涵盖的专业/系统性知识。</li>
+        </ul>
+    </div>
+
+    <p>在司法实践中，外行证人被允许就一些<b>“常识性印象”（common-sense impressions）</b>发表意见，例如：物体的速度、人的情绪状态（如愤怒或害怕）、声音的来源、笔迹的辨认、以及个体的神智是否清醒等。这些都属于普通人无需经过专业训练即可做出的日常判断。</p>
+
+    <!-- 【Concept Comparison Table】 -->
+    <h2>概念对比：外行意见 vs. 专家意见</h2>
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>对比维度</th>
+                <th>外行意见证言 (Lay Opinion - FRE 701)</th>
+                <th>专家意见证言 (Expert Opinion - FRE 702)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>知识基础</b></td>
+                <td>普通人的日常经验与常识性印象。</td>
+                <td>科学、技术或其他领域的专业/系统性知识。</td>
+            </tr>
+            <tr>
+                <td><b>信息来源</b></td>
+                <td>必须源于证人对事件的<b>亲自、直接感知</b>（Firsthand perception）。</td>
+                <td>可以基于亲自观察，也可以基于法庭上向其呈现的数据、案卷材料或假设性问题。</td>
+            </tr>
+            <tr>
+                <td><b>典型示例（车速）</b></td>
+                <td>站在路边<b>亲眼目睹</b>车辆驶过，并评估其车速（如：“车速极快，至少有 60 码”）。</td>
+                <td>未目睹车祸，但通过事后车辆受损程度、碰撞位置和<b>胎痕/刹车痕（skid marks）</b>进行物理力学重建，推算出碰撞时的车速。</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 【Fact/Application Logic】 -->
+    <h2>案情适用与逻辑推演</h2>
+    <p>本案中涉及两份关于“车速”的意见证言，其可采性因<b>信息获取渠道</b>和<b>所需知识性质</b>的不同而产生截然相反的结果：</p>
+    
+    <h3>1. 被告（Defendant）的证言 —— 可采（Proper）</h3>
+    <ul>
+        <li><b>事实基础：</b>被告是车祸中唯一的幸存目击者。她在事故发生前，亲眼目睹了受害人的车辆朝她驶来。</li>
+        <li><b>法律分析：</b>被告关于“受害人车速超速至少 10 mph”的陈述，是基于她当时的<b>直接视觉感知</b>。评估迎面驶来车辆的大致速度属于普通人的常识性印象，不需要任何物理学或事故重建的专业背景。因此，这完全符合 <span class="term">FRE 701</span> 的要求，属于合法的普通人意见证言。</li>
+    </ul>
+
+    <h3>2. 路人（Passerby）的证言 —— 不可采（Improper）</h3>
+    <ul>
+        <li><b>事实基础：</b>路人是在车祸发生<b>之后</b>才到达现场的，他并未亲眼目睹车辆行驶的过程。</li>
+        <li><b>法律分析：</b>路人关于“受害人当时正以限速行驶”的结论，是基于他对事故后车辆位置、车身受损程度以及地面<b>刹车痕（skid marks）</b>的观察和推导。这种通过物理痕迹反推车辆碰撞前瞬时速度的行为，在法律上属于<b>事故重建（accident reconstruction）</b>。这需要动力学、材料力学等专业科学知识，超出了普通外行证人的常识范围。由于路人并未被限定为专家证人，其证言违反了 <span class="term">FRE 701(c)</span>，法院不应准许其入庭。</li>
+    </ul>
+
+    <!-- 【Diagram】 -->
+    <h2>逻辑示意图</h2>
+    <div class="diagram">
+        <div class="flow-container">
+            <div class="flow-node highlight-node">亲眼目睹车辆行驶</div>
+            <div class="arrow">➔</div>
+            <div class="flow-node">常识性印象 (Speed)</div>
+            <div class="arrow">➔</div>
+            <div class="flow-node" style="background: #dff0d8; border-color: #27ae60; color: #1f8f4d;">外行意见：可采 (被告)</div>
+        </div>
+        <div style="margin: 20px 0; border-top: 1px dashed #ccc;"></div>
+        <div class="flow-container">
+            <div class="flow-node highlight-node" style="background: #7f8c8d; border-color: #7f8c8d;">事后观察胎痕/受损</div>
+            <div class="arrow">➔</div>
+            <div class="flow-node" style="color: #c0392b; border-color: #e74c3c; background: #fdf2e9;">事故重建 (Reconstruction)</div>
+            <div class="arrow">➔</div>
+            <div class="flow-node" style="background: #f8d7da; border-color: #f5c6cb; color: #721c24;">专家意见：外行不可采 (路人)</div>
+        </div>
+    </div>
+
+    <!-- 【Trap Alert】 -->
+    <div class="trap-alert">
+        <h4>⚠️ MBE 常见陷阱警示</h4>
+        <p><b>陷阱：自利性（Self-serving）不影响证据的可采性！</b><br>
+        干扰项 D 试图引导考生认为“被告的证言因为具有自利性（self-serving）而应当被排除，或者路人的证言因为客观中立而更具可采性”。<br>
+        <b>正确法理：</b>在现代证据法中，证人证言是否“自利”<b>不影响其可采性（Admissibility）</b>。自利性仅仅是弹劾（Impeachment）证人可信度（Credibility）的事由，由陪审团在决定给予该证据多少<b>分量（Weight）</b>时予以考虑。法院不能仅因证言自利就将其拒之门外。</p>
+    </div>
+
+    <!-- 【Answer-Choice Breakdown】 -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+        <div class="option wrong">
+            <div class="option-title">A. 错误</div>
+            <p>该选项错误地认为两人的证言均可采。虽然外行证人确实可以就车速等常识性印象发表意见，但路人的意见并不是基于对车辆行驶的直接感知，而是基于事后物理痕迹的专业推导，这已经跨越到了专家意见的领域，因此路人的证言不可采。</p>
+        </div>
+
+        <div class="option wrong">
+            <div class="option-title">B. 错误</div>
+            <p>该选项混淆了“对现场痕迹的感知”与“对事件发生过程的感知”。路人虽然亲自感知了“事故后的现场”（胎痕和受损），但他并未感知到“车祸发生的瞬间过程”。他试图对未感知的事实（碰撞时的车速）通过专业痕迹进行推导，这不属于合法的 <span class="term">FRE 701</span> 外行感知意见。</p>
+        </div>
+
+        <div class="option correct">
+            <div class="option-title">C. 正确</div>
+            <p>如前所述，被告的证言基于其在车祸发生前对受害人车辆的直接目击，属于无需专业知识的常识性外行意见；而路人的证言试图通过胎痕和车辆受损进行事故重建，这必须具备物理学或工程学等专业知识（Specialized knowledge），非专家不得提供此类证言。因此，法院仅应当允许被告进行该项陈述。</p>
+        </div>
+
+        <div class="option wrong">
+            <div class="option-title">D. 错误</div>
+            <p>该选项认为只有路人的证言可采，理由是被告的证言具有自利性。这在法律上是完全错误的。自利性（Self-serving nature）属于可信度弹劾范畴，不属于排除性证据规则。被告作为当事人，其亲身经历的证言绝对具有可采性，而路人的证言则因缺乏专家资质而被排除。</p>
+        </div>
+    </div>
+
+    <!-- 【Exam Tip】 -->
+    <div class="footer-tip">
+        <h4>💡 备考黄金法则 (Exam Shortcut)</h4>
+        <p>在 MBE 考试中，一旦涉及<b>“车速（Speed）”</b>的证言：
+        <br>1. 如果证人说：<b>“我看着那辆车开过去，它开得极快/大约 70 码。”</b> ➔ <b>外行意见，可采！</b>
+        <br>2. 如果证人说：<b>“我没看见车开，但我看了地上的刹车印和撞击凹槽，我认为它当时开 70 码。”</b> ➔ <b>事故重建，必须是专家才能说，外行说则不可采！</b>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .flow-node, .party-box {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.active, .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-weight: bold;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .case-box {
+      background: var(--highlight-bg);
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 20px 0;
+    }
+
+    .option-analysis {
+      margin-top: 28px;
+    }
+
+    .option {
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 12px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+      .diagram-container {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- 【Card Top Header】 -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Evidence: Hearsay — Prior Identification (FRE 801(d)(1)(C))</div>
+    </div>
+
+    <!-- 【Correct Answer Box】 -->
+    <div class="answer-box">
+      正确答案：C
+      <br>
+      <span style="font-size: 17px; font-weight: normal; display: block; margin-top: 8px; color: #2c3e50;">
+        解析：警官关于“目击者在警局辨认出被告人照片”的转述证言属于可采的实质性证据。因为该陈述属于证人先前的辨认声明（Prior Identification），且该证人目前在庭审中作证并可接受交叉询问，根据 FRE 801(d)(1)(C) 法定排除在传闻之外（属于 Non-hearsay）。
+      </span>
+    </div>
+
+    <!-- 【Core Legal Rule】 -->
+    <h2>核心法律规则</h2>
+    <div class="concept-box">
+      <div class="concept-title">证人先前的辨认声明（Prior Identification）</div>
+      <p>根据《美国联邦证据规则》（FRE）第 801(d)(1)(C) 条，一个庭外声明如果满足以下条件，则<strong>排除在传闻证据之外（Non-hearsay）</strong>，可作为<span class="term">实质性证据（Substantive Evidence）</span>采信：</p>
+      <ol>
+        <li><strong>陈述者（Declarant）在庭审中作证</strong>，并且</li>
+        <li>陈述者<strong>当庭接受交叉询问（Subject to Cross-examination）</strong>，并且</li>
+        <li>该庭外声明<strong>辨认了陈述者此前感知过的人（Identifies a person perceived earlier）</strong>。</li>
+      </ol>
+      <p><strong>关键考点：</strong></p>
+      <ul>
+        <li>该规则<strong>不要求</strong>先前的辨认声明是在宣誓下（Under penalty of perjury）做出的。</li>
+        <li>即使证人在庭审时<strong>无法再次辨认</strong>被告人，或者证人当庭<strong>改变了说法/失忆</strong>，只要该证人出庭并可接受关于该辨认的交叉询问，其先前的辨认声明依然可采。</li>
+      </ul>
+    </div>
+
+    <!-- 【Concept Comparison Table】 -->
+    <h2>传闻排除：证人先前的三种庭外声明对比</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>声明类型 (FRE 801(d)(1))</th>
+          <th>是否要求“宣誓下” (Under Oath)</th>
+          <th>核心采信目的与条件</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>A. 先前不一致声明 (Prior Inconsistent)</strong></td>
+          <td><span style="color: #c0392b; font-weight: bold;">必须</span>在法庭、听证会、宣誓翻译等程序中做出</td>
+          <td>可作为实质性证据（证明其陈述内容的真实性）。若非宣誓下做出，则仅能用于弹劾（Impeachment）。</td>
+        </tr>
+        <tr>
+          <td><strong>B. 先前一致声明 (Prior Consistent)</strong></td>
+          <td>不需要</td>
+          <td>用于反驳对方关于“近期编造”或“受不当影响”的指控，或用于恢复证人的可信度。</td>
+        </tr>
+        <tr>
+          <td><strong>C. 先前辨认声明 (Prior Identification)</strong></td>
+          <td><span style="color: #27ae60; font-weight: bold;">不需要</span>（如警局指认、照片辨认）</td>
+          <td><strong>直接作为实质性证据</strong>。只要证人出庭且可接受交叉询问即可，即使证人当庭失忆或无法指认。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 【Fact/Application Logic】 -->
+    <h2>案件事实与法律适用逻辑</h2>
+    <div class="case-box">
+      <p><strong>本案事实推导步骤：</strong></p>
+      <ol>
+        <li><strong>识别庭外声明：</strong> 目击者在警局接受警官面谈时，指着照片说“这就是劫匪”。这是一个典型的庭外声明（Out-of-court statement），且被用来证明声明内容的真实性（即被告人就是劫匪）。</li>
+        <li><strong>审查传闻排除条件：</strong>
+          <ul>
+            <li><strong>条件一（作证）：</strong> 目击者（陈述者）已经在庭审中出庭作证。</li>
+            <li><strong>条件二（交叉询问）：</strong> 尽管目击者当庭表示“无法辨认被告人”，但她目前仍在法院内，可以被重新传唤（Recalled）上庭接受关于其先前照片指认的交叉询问。这完全满足“接受交叉询问”的要求。</li>
+            <li><strong>条件三（辨认）：</strong> 该声明属于对她此前感知过的人（抢劫犯）的辨认（Prior Identification）。</li>
+          </ul>
+        </li>
+        <li><strong>结论：</strong> 警官关于目击者先前指认的证言不属于传闻，具有可采性（Admissible）。</li>
+      </ol>
+    </div>
+
+    <!-- 【Diagram】 -->
+    <h2>证据流向示意图</h2>
+    <div class="diagram">
+      <div style="font-weight: bold; margin-bottom: 10px; color: var(--primary-color);">目击者先前辨认声明的可采性路径</div>
+      <div class="diagram-container">
+        <div class="party-box">目击者在警局指认照片<br>(庭外辨认声明)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">目击者当庭作证<br>(但表示无法辨认)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node active">目击者仍在法院<br>(可被召回接受交叉询问)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node highlight-node" style="background: var(--correct-border); border-color: var(--correct-border); color: white;">警官转述指认<br>(非传闻/实质性证据可采)</div>
+      </div>
+    </div>
+
+    <!-- 【Trap Alert】 -->
+    <div class="trap-alert">
+      <strong>⚠️ MBE 常见陷阱提示：</strong>
+      <ul>
+        <li><strong>陷阱一：误以为证人必须在法庭上“成功指认”被告人。</strong> 很多考生认为，既然证人当庭说“我不认识/认不出来”，先前的辨认就失效了。实际上，FRE 801(d)(1)(C) 正是为了应对证人出庭时因恐惧、时间流逝或记忆模糊而无法指认的情况。只要证人出庭，先前的辨认声明就具有独立的实质证据效力。</li>
+        <li><strong>陷阱二：混淆“交叉询问的可能性”与“实际交叉询问”。</strong> 只要证人人在法庭，对方有“机会”对其进行交叉询问即可。本案中证人“仍在法院且可被召回”，满足了交叉询问的程序要求。</li>
+      </ul>
+    </div>
+
+    <!-- 【Answer-Choice Breakdown】 -->
+    <div class="option-analysis">
+      <h2>正确答案与干扰项排除</h2>
+      
+      <div class="option correct">
+        <div class="option-title">C. 正确</div>
+        <p>警官转述的目击者辨认声明符合 FRE 801(d)(1)(C) 的非传闻（Non-hearsay）定义。由于目击者在庭审中作证且可被召回接受交叉询问，该庭外辨认声明不被传闻证据规则排除，可作为证明被告人有罪的实质性证据。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">A. 错误</div>
+        <p>该选项认为“因为目击者在庭审中无法辨认被告，所以警官的转述不可采”。这完全违背了先前辨认规则的设计初衷。即使证人当庭失忆或拒绝指认，其在案发后不久做出的、更接近事实发生时间的先前辨认声明依然具有极高的可信度，只要其出庭接受质询，该声明即具可采性。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. 错误</div>
+        <p>该选项试图适用历史上的“实质性损害规则”（Affirmative-damage rule）。在过去，一方当事人除非受到己方证人证言的“意外且实质性损害”，否则不得弹劾己方证人。但该规则早已被现代证据规则废除（FRE 607 允许任何一方弹劾任何证人）。更重要的是，警官的证言在此是作为<strong>实质性证据</strong>（证明被告就是劫匪）引入的，而非仅仅为了弹劾目击者，因此该规则根本不适用。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">D. 错误</div>
+        <p>该选项的表述<strong>过于宽泛且法律错误</strong>。它声称“只要陈述者作证并可接受交叉询问，传闻规则就不排除任何庭外声明”。事实上，证人出庭并接受交叉询问只是排除传闻的必要条件之一，该声明还必须符合 FRE 801(d)(1) 规定的三种特定情形之一（即：不一致且宣誓、一致且用于反驳/恢复、或先前辨认）。并非所有证人说过的庭外话语都可以随意拿来当证据。</p>
+      </div>
+    </div>
+
+    <!-- 【Exam Tip】 -->
+    <div class="footer-tip">
+      <strong>💡 快速秒杀公式：</strong>
+      <br>
+      <span style="font-size: 19px; font-weight: bold; color: var(--primary-ink);">先前辨认（Prior ID） + 证人在庭/可召回（Declarant on Stand） = 100% 可采实质性证据（无需宣誓，无视当庭失忆）</span>
+    </div>
+
+  </div>
+
+</body>
+</html>

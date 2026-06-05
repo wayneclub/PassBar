@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点深度解析 - 抢劫罪与权利主张抗辩</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #f4f6f9;
+    }
+
+    * { 
+      box-sizing: border-box; 
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px 12px 0 0;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-left: -24px;
+      margin-right: -24px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flow-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-strong);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      color: var(--muted-text);
+      font-weight: bold;
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 22px 0;
+    }
+
+    .option-analysis {
+      margin-top: 24px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 16px 0;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 16px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+        margin-left: -16px;
+        margin-right: -16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Criminal Law & Procedure: Robbery & Claim of Right</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：C. 是的，因为该男子使用枪支强行索要欠款，从而构成了抢劫罪。
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法律原则</h2>
+    <div class="concept-box">
+      <div class="concept-title">抢劫罪与权利主张抗辩的关系</div>
+      <p>
+        1. <strong><span class="term">盗窃罪（larceny）</span></strong>的构成要求被告人具有<span class="term">非法占有目的（intent to permanently deprive / animus furandi）</span>。如果被告人真诚地相信自己对该财产拥有合法的权利（例如收回对方拖欠的债务），则属于<strong><span class="term">权利主张（claim of right）</span></strong>。这种真诚的信念（无论是否合理）会否定盗窃罪所需的特定意图（specific intent），因此不构成盗窃罪。
+      </p>
+      <p>
+        2. <strong><span class="term">抢劫罪（robbery）</span></strong>是指通过<strong>武力（force）</strong>或<strong>威胁（threat of force/intimidation）</strong>，从被害人的人身或其面前强行夺取财产的行为。
+      </p>
+      <p>
+        3. <strong>多数司法管辖区（Majority Rule）的公共政策限制：</strong>基于防止暴力自力救济（self-help）和维护社会治安的公共政策，绝大多数州<strong>不承认</strong>将“权利主张”作为抢劫罪的抗辩事由。换言之，即使被告人确实享有债权，也绝不允许使用武器或暴力手段强行讨债。一旦使用武力或武力威胁，即构成抢劫罪。
+      </p>
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h2>概念对比：盗窃罪 vs. 抢劫罪中的“权利主张”</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>罪名</th>
+          <th>行为手段</th>
+          <th>权利主张（Claim of Right）是否适用？</th>
+          <th>法律效果与政策考量</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong><span class="term">盗窃罪（larceny）</span></strong></td>
+          <td>和平获取、秘密窃取或非暴力夺取</td>
+          <td><strong>适用</strong>（即使该信念是不合理的，只要是真诚的即可）</td>
+          <td>否定特定意图（specific intent），被告人无罪。</td>
+        </tr>
+        <tr>
+          <td><strong><span class="term">抢劫罪（robbery）</span></strong></td>
+          <td>使用武力（force）或武力威胁（threat of force）</td>
+          <td><strong>不适用</strong>（多数管辖区绝对禁止）</td>
+          <td>公共政策禁止暴力讨债。被告人仍构成抢劫罪。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Fact/Application Logic -->
+    <h2>案情深度剖析</h2>
+    <p>
+      在本案中，该男子的行为逻辑和法律定性可分为以下三个层次进行剖析：
+    </p>
+    <ul>
+      <li>
+        <strong>主观信念分析：</strong>该男子真诚地（虽然不合理地）认为朋友的弟弟承诺过代为偿还 200 美元债务。这种真诚的信念在盗窃罪的语境下，本可以构成<span class="term">权利主张（claim of right）</span>抗辩，因为他主观上认为自己是在收回属于自己的钱，从而否定了盗窃罪的“非法占有目的”。
+      </li>
+      <li>
+        <strong>客观行为分析：</strong>当朋友的弟弟拒绝给钱时，该男子<strong>拔出枪支（pull out a gun）</strong>并重复要求。这属于典型的<strong>武力威胁（threat of force）</strong>，迫使被害人因恐惧而交出财产。
+      </li>
+      <li>
+        <strong>法律定性：</strong>由于该男子使用了致命武器（枪支）强行执法，其行为已经超出了和平自力救济的范畴。根据多数管辖区的法律，权利主张不能作为抢劫罪的免责理由。因此，该男子强行用枪索要 200 美元的行为完全符合抢劫罪的全部构成要件，应被判处抢劫罪。
+      </li>
+    </ul>
+
+    <!-- Diagram -->
+    <h2>逻辑推导流程图</h2>
+    <div class="diagram">
+      <div class="flow-container">
+        <div class="flow-node">被告人真诚相信自己有权索回 200 美元（Claim of Right）</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node">索债手段：拔出枪支进行威胁（Threat of Force）</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row">
+          <div class="flow-node">是否构成盗窃罪？<br><b>不构成</b>（缺乏非法占有目的）</div>
+          <div class="flow-node highlight-node">是否构成抢劫罪？<br><b>构成</b>（公共政策禁止暴力自力救济）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <strong>⚠️ MBE 常见陷阱：</strong>
+      <p>
+        考生极易混淆“特定意图犯罪（specific intent crime）”的抗辩与“公共政策限制”。虽然抢劫罪包含盗窃罪的所有要素，且盗窃罪是特定意图犯罪（允许真诚的<span class="term">事实错误 mistake of fact</span>作为抗辩），但<strong>抢劫罪因涉及暴力，在法律政策上被单独施加了限制</strong>。MBE 经常利用“真诚但合理/不合理的信念”来诱骗考生选择“不构成抢劫罪”的选项。请牢记：<strong>只要动用了武力或枪支，权利主张抗辩即刻失效！</strong>
+      </p>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">C. 正确</div>
+        <p>
+          该男子用枪支强行索要欠款，构成了抢劫罪。在多数管辖区，权利主张抗辩不适用于抢劫罪。因此，即使他主观上认为自己有权获得这笔钱，其持枪强索的行为依然构成抢劫。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">A. 错误</div>
+        <p>
+          该选项认为“因为男子真诚相信朋友的弟弟承诺过还款，所以不构成抢劫”。这混淆了盗窃罪与抢劫罪的抗辩边界。真诚的信念只能否定盗窃罪的特定意图，但不能豁免持枪威胁他人交出财产的抢劫行为。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. 错误</div>
+        <p>
+          该选项主张“男子是在通过权利主张收回债务，因此不构成抢劫”。这属于典型的少数派规则（Minority Rule）或已被现代刑法废弃的观点。在现代多数管辖区，出于维护社会治安的考量，绝对禁止通过武力或武力威胁进行自力救济讨债。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">D. 错误</div>
+        <p>
+          该选项认为“男子有罪，是因为他的信念是不合理的（unreasonable）”。这属于干扰项。在特定意图犯罪中，只要信念是<strong>真诚（honest）</strong>的，即使不合理，也可以否定犯罪意图。该男子构成抢劫罪的根本原因<strong>不是因为他的信念不合理，而是因为他使用了枪支（武力威胁）</strong>。即使他的信念完全合理（例如对方真的白纸黑字写了保证书），他持枪讨债也同样构成抢劫罪。
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <strong>💡 考试秒杀秘籍：</strong>
+      <p>
+        在 MBE 考试中，一旦看到<strong>“用枪讨债”（collecting debt with a gun/weapon）</strong>或<strong>“暴力索债”（using force to collect debt）</strong>的考题，可以直接秒选<strong>构成抢劫罪（Guilty of Robbery）</strong>。任何关于“权利主张（claim of right）”或“真诚信念（honest belief）”的无罪抗辩选项均为干扰项。
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

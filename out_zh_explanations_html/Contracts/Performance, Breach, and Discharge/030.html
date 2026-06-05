@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: transparent;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .concept-box {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin: 10px 0;
+        }
+
+        .key-term {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .analysis-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .step-icon {
+            background-color: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .wrong-option {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            border-left: 3px solid #e74c3c;
+            padding-left: 10px;
+            margin-top: 10px;
+        }
+
+        .footer-tip {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts: Discharge by Impracticability</div>
+    </div>
+
+    <!-- Core Legal Principle -->
+    <div class="card">
+        <h2>核心考点：履行不能</h2>
+        <p>本题考察的是合同法中的<b>履行不能 (Impracticability)</b> 抗辩，特别是因当事人丧失能力而导致的合同解除。</p>
+        
+        <div class="concept-box">
+            <span class="key-term">规则 (Rule)：</span><br>
+            根据《合同法重述（第二次）》§ 262，如果合同的履行依赖于某个<b>特定的人 (Specific Person)</b> 的存在，而该人不幸死亡或<b>丧失能力 (Incapacity)</b>，则其履行义务被免除。
+        </div>
+        <p>这通常被称为“基于基本假设的抗辩” (Defense based on Basic Assumption)。</p>
+    </div>
+
+    <!-- Case Analysis -->
+    <div class="card">
+        <h2>本案分析逻辑</h2>
+        
+        <div class="analysis-step">
+            <div class="step-icon">1</div>
+            <div>
+                <strong>合同性质：</strong><br>
+                工程师担任“现场主管”这一<b>关键职位 (Essential Position)</b>。这意味着这是一份<b>个人服务合同 (Personal Services Contract)</b>，即必须由该工程师本人履行，不能随意转包。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">2</div>
+            <div>
+                <strong>突发事件：</strong><br>
+                工程师受伤导致<b>身体上无法履行 (Physically Incapable)</b>。这是一个不可预见且非当事人过错的事件。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">3</div>
+            <div>
+                <strong>法律后果：</strong><br>
+                工程师的身体健康是合同订立的<b>基本假设 (Basic Assumption)</b>。既然假设破灭，履行义务即被<b>免除 (Discharged)</b>。
+            </div>
+        </div>
+
+        <div class="analysis-step">
+            <div class="step-icon">4</div>
+            <div>
+                <strong>结论：</strong><br>
+                义务已免除 = 没有违约 (No Breach)。<br>
+                没有违约 = 业主无法胜诉。
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Answer B is Correct -->
+    <div class="card">
+        <h2>为什么选 B？</h2>
+        <p>选项 B 准确地指出了法律依据：<b>"Basic Assumption" (基本假设)</b>。</p>
+        <p>在涉及特定人身依附性的合同中，当事人的存活及健康状况是合同成立的基石。一旦这一基石因不可抗力（如严重受伤）崩塌，法律允许当事人免责。</p>
+    </div>
+
+    <!-- Why Others are Wrong -->
+    <div class="card" style="border-left-color: #e74c3c;">
+        <h2>易错项辨析</h2>
+        
+        <div class="wrong-option">
+            <strong>选项 A (提供替代方案)：错误</strong><br>
+            虽然工程师提供了“非现场顾问”作为替代，但这是对原合同的修改要约 (Offer to Modify)。业主没有义务接受“次等”的履行。但这并不意味着工程师违约，他只是因为受伤而免责了。
+        </div>
+
+        <div class="wrong-option">
+            <strong>选项 D (绝对义务)：错误</strong><br>
+            虽然合同义务通常是严格的，但并非“绝对” (Absolute)。法律承认<b>履行不能 (Impracticability)</b>、<b>目的落空 (Frustration of Purpose)</b> 等抗辩理由。认为义务是绝对且不可免除的观点在现代合同法中是错误的。
+        </div>
+    </div>
+
+    <!-- Exam Strategy -->
+    <div class="footer-tip">
+        💡 <b>MBE 答题技巧：</b><br>
+        看到“Essential Position”（关键职位）、“Unique Skill”（独特技能）或“Personal Service”（个人服务）+ “Death/Illness”（死亡/疾病），首先反应应当是：<b>义务免除 (Discharge)，无违约责任。</b>
+    </div>
+
+</div>
+
+</body>
+</html>

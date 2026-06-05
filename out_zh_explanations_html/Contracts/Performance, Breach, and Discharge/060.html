@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background: #f8f9fa;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .card-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 16px;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .term {
+            background-color: #e8f4fd;
+            color: #2980b9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        .rule-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .analysis-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .step-icon {
+            background: #27ae60;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .footer {
+            background: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #bdc3c7;
+        }
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Contracts / Sales (UCC Art. 2)</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="card">
+            <span class="card-title">核心考点：完全履行与补救权</span>
+            本题考察的是 <span class="term">UCC Article 2</span> 下的两个相互制衡的规则：
+            <ul>
+                <li><strong>完全履行规则 (Perfect Tender Rule)</strong></li>
+                <li><strong>卖方的补救权 (Seller's Right to Cure)</strong></li>
+            </ul>
+        </div>
+
+        <!-- 法律规则详解 -->
+        <div class="rule-box">
+            <strong>法律规则 (UCC § 2-508)：</strong><br>
+            虽然买方有权拒绝任何不符合同的货物（哪怕只是少了一个备胎），但卖方拥有<strong>补救 (Cure)</strong> 的权利，具体分为两种情况：
+            <hr style="border: 0; border-top: 1px dashed #d3d3d3; margin: 10px 0;">
+            <ol>
+                <li><strong>履行期届满前 (Time for performance has not expired)：</strong><br>
+                如果卖方在合同截止日期前交付，且被拒绝，卖方有<strong>绝对权利</strong>进行补救，只要他通知买方并能在截止日期前完成修复。</li>
+                <li><strong>履行期届满后：</strong><br>
+                仅当卖方有“合理理由相信”货物会被接受时，才会有额外的合理时间进行补救。</li>
+            </ol>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="card" style="border-left-color: #27ae60;">
+            <span class="card-title">本案逻辑推演</span>
+            
+            <div class="analysis-step">
+                <div class="step-icon">1</div>
+                <div>
+                    <strong>合同截止日：</strong>6月1日。<br>
+                    <strong>实际交付日：</strong>5月31日（星期日）。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-icon">2</div>
+                <div>
+                    <strong>违约情况：</strong>缺少备胎。根据 <span class="term">Perfect Tender Rule</span>，货物不符，买方有权拒绝 (Reject)。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-icon">3</div>
+                <div>
+                    <strong>关键转折：</strong>因为今天是5月31日，距离合同截止日（6月1日）还有时间。经销商提出在周一（即6月1日）安装备胎。
+                </div>
+            </div>
+
+            <div class="analysis-step">
+                <div class="step-icon">4</div>
+                <div>
+                    <strong>结论：</strong>经销商是在<strong>履行期限内</strong>提出补救。因此，经销商有权补救，买方不能直接终止合同，必须给经销商这个机会。
+                </div>
+            </div>
+        </div>
+
+        <!-- 为什么其他选项是错的 -->
+        <div class="card" style="border-left-color: #e74c3c;">
+            <span class="card-title">易混淆陷阱解析</span>
+            
+            <p><strong>❌ 选项 A (终止合同)：</strong><br>
+            虽然买方可以拒绝接收 (Reject)，但他不能立即终止合同 (Terminate)，因为卖方的履行时间还没用完。</p>
+
+            <p><strong>❌ 选项 D (实质性损害)：</strong><br>
+            这是一个常见的 MBE 陷阱！<br>
+            <span class="term">Substantial Impairment</span> (实质性损害) 标准<strong>不适用</strong>于单次交付合同 (Single Delivery Contract) 的初始拒绝。<br>
+            它只适用于：
+            <ul>
+                <li>分批交货合同 (Installment Contracts)；或者</li>
+                <li>撤销接受 (Revocation of Acceptance)。</li>
+            </ul>
+            本题是单次交付且买方尚未接受，所以适用严格的“完全履行规则”，只要有一点瑕疵就可以拒绝，不需要证明损害了核心价值。但必须给卖方补救机会。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="rule-box" style="background-color: #e8f4fd; border-color: #b6e1fc; color: #2c3e50;">
+            <strong>💡 MBE 拿分技巧：</strong><br>
+            看到买方因为小瑕疵拒绝货物时，首先检查<strong>日期</strong>！<br>
+            如果卖方提早交货或准时交货但合同期限未过，卖方几乎总是拥有 <span class="term">Right to Cure</span>。不要被“买方有权拒绝”这一半真理迷惑，要看完整的法律后果。
+        </div>
+
+    </div>
+
+    
+</div>
+
+</body>
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - Real Property</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --primary-ink: #243447;
+            --accent-color: #3498db;
+            --accent-strong: #2980d9;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #dff0d8;
+            --correct-border: #27ae60;
+            --correct-text: #1f8f4d;
+            --wrong-bg: #f8d7da;
+            --wrong-border: #f5c6cb;
+            --wrong-text: #721c24;
+            --warning-bg: #fff8e1;
+            --warning-border: #ffb300;
+            --text-color: #333333;
+            --muted-text: #666666;
+            --border-color: #dddddd;
+            --card-bg: #ffffff;
+            --bg-color: #ffffff;
+        }
+
+        * { 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-size: 18px;
+            line-height: 1.72;
+            letter-spacing: 0;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            padding: 0 24px 32px;
+            background: var(--card-bg);
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 34px 24px 32px;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 26px;
+        }
+
+        .header h1 {
+            margin: 0 0 12px;
+            font-size: 32px;
+            line-height: 1.15;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        .sub-title {
+            margin: 0;
+            font-size: 20px;
+            line-height: 1.35;
+            font-weight: 700;
+            color: rgba(255,255,255,0.92);
+        }
+
+        h2, h3 {
+            color: var(--primary-ink);
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: 0;
+        }
+
+        h2 {
+            font-size: 26px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin: 34px 0 20px;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin: 28px 0 16px;
+        }
+
+        p, li {
+            font-size: 18px;
+            line-height: 1.72;
+        }
+
+        strong, b {
+            display: inline !important;
+            white-space: normal !important;
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+            font-weight: 800;
+        }
+
+        /* Component Styles */
+        .answer-box {
+            background: var(--correct-bg);
+            border-left: 6px solid var(--correct-border);
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin: 22px 0 30px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--correct-text);
+        }
+
+        .concept-box {
+            background: var(--highlight-bg);
+            border-left: 6px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 22px 24px;
+            margin: 24px 0;
+        }
+
+        .concept-box .concept-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-strong);
+            margin-bottom: 12px;
+        }
+
+        .latin {
+            font-style: italic;
+            font-size: 18px;
+            color: #555555;
+            font-weight: 500;
+        }
+
+        .comparison-table-wrapper {
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 17px;
+            min-width: 600px;
+        }
+
+        .comparison-table th {
+            background: #f8f9fa;
+            color: var(--primary-color);
+            font-weight: 800;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        .diagram {
+            background: #ffffff;
+            border: 1px dashed #cccccc;
+            border-radius: 8px;
+            padding: 22px;
+            margin: 28px 0;
+        }
+
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .flow-node {
+            background: #e8fcff;
+            border: 1px solid #22b8cf;
+            border-radius: 6px;
+            padding: 12px 18px;
+            font-weight: 700;
+            color: #05606a;
+            text-align: center;
+            max-width: 100%;
+        }
+
+        .flow-node.highlight-node {
+            background: var(--accent-color);
+            border-color: var(--accent-strong);
+            color: #ffffff;
+        }
+
+        .flow-branches {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            gap: 16px;
+        }
+
+        .flow-branch {
+            flex: 1;
+            background: #f8f9fa;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .rule-block, .trap-alert, .footer-tip {
+            background: var(--warning-bg);
+            border-left: 5px solid var(--warning-border);
+            border-radius: 6px;
+            padding: 18px 20px;
+            margin: 22px 0;
+        }
+
+        .option-analysis {
+            margin-top: 24px;
+        }
+
+        .option {
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            border-left: 5px solid transparent;
+        }
+
+        .option.correct {
+            background: var(--correct-bg);
+            border-left-color: var(--correct-border);
+        }
+
+        .option.wrong {
+            background: var(--wrong-bg);
+            border-left-color: var(--wrong-border);
+            color: var(--wrong-text);
+        }
+
+        .option-title {
+            font-weight: 800;
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        .term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36,52,71,0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        /* Responsive Rules */
+        @media (max-width: 640px) {
+            body {
+                font-size: 16px;
+            }
+            .container {
+                padding: 0 12px 24px;
+            }
+            .header {
+                padding: 26px 16px;
+                margin-top: 10px;
+            }
+            .header h1 {
+                font-size: 26px;
+            }
+            .sub-title {
+                font-size: 17px;
+            }
+            h2 {
+                font-size: 22px;
+            }
+            h3 {
+                font-size: 19px;
+            }
+            .flow-branches {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Card Top Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Real Property: Landlord-Tenant Law (Tenant's Abandonment & Landlord's Remedies)</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+        正确答案：A. 租约已经终止，因为房东已将公寓重新出租给了一位访问教授。
+        <div style="font-size: 17px; font-weight: normal; margin-top: 8px; color: #333333;">
+            承租人无理弃租在法律上构成“放弃租赁权的要约”。房东通过将房屋重新出租给第三人的行为，在法律上构成了对该要约的默示接受，从而终止了租约，承租人无需承担未来的租金责任。
+        </div>
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法律原则</h2>
+    <div class="concept-box">
+        <div class="concept-title">无理弃租与放弃租赁权（Unjustifiable Abandonment & Surrender）</div>
+        <p>当承租人（Tenant）在没有法律正当理由的情况下，意图终止租约并搬离租赁物时，构成<span class="term">无理弃租（unjustifiable abandonment）</span>。在普通法上，无理弃租被视为承租人向房东发出的<span class="term">放弃租赁权的默示要约（offer to surrender rights under the lease）</span>。</p>
+        <p>房东（Landlord）对此有两种选择：</p>
+        <ul>
+            <li><strong>接受要约（Accept the offer）</strong>：租约立即终止，承租人**不再**对未来的租金承担责任。房东可以通过以下方式接受要约：
+                <ul>
+                    <li><span class="term">明示同意（express agreement）</span>；或</li>
+                    <li><span class="term">重新占有房屋（retaking possession）</span>并用于**房东自用**或**重新出租给第三人**。</li>
+                </ul>
+            </li>
+            <li><strong>拒绝要约（Reject the offer）</strong>：租约继续有效，承租人仍需对未来的租金负责。
+                <ul>
+                    <li>在多数司法管辖区（Majority Rule）下，房东负有<span class="term">减轻损害的义务（duty to mitigate damages）</span>，必须尽合理努力重新出租房屋。</li>
+                    <li>在少数司法管辖区（Minority Rule）下，房东无减轻损害的义务，可直接起诉承租人追讨到期未付租金。</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h2>概念对比：正当弃租 vs. 无理弃租</h2>
+    <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>概念</th>
+                    <th>触发原因 / 事实特征</th>
+                    <th>法律定性</th>
+                    <th>承租人未来租金责任</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>正当弃租<br>(Justifiable Abandonment)</strong></td>
+                    <td>房东的行为或不作为导致<span class="term">推定驱逐（constructive eviction）</span>（如严重漏水、无暖气，实质性干扰承租人使用）。</td>
+                    <td>承租人依法终止租约。</td>
+                    <td><strong>完全免除</strong>（因房东违约在先）。</td>
+                </tr>
+                <tr>
+                    <td><strong>无理弃租<br>(Unjustifiable Abandonment)</strong></td>
+                    <td>承租人因个人原因（如出国留学、买房）或轻微房屋瑕疵（如地砖裂缝）擅自搬离并停止付租。</td>
+                    <td>构成<strong>放弃租赁权的要约</strong>（Offer to Surrender）。</td>
+                    <td>取决于房东是否接受该要约：<br>• <strong>接受</strong>：免除未来租金。<br>• <strong>拒绝</strong>：继续承担（但房东须履行减轻损害义务）。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Fact/Application Logic -->
+    <h2>案件事实与法律适用逻辑</h2>
+    <div style="margin-bottom: 24px;">
+        <p><strong>第一步：评估学生弃租行为的法律性质</strong><br>
+        学生因厨房地砖裂缝割伤脚，虽然通知了房东但房东未予修理。地砖裂缝属于轻微的维修瑕疵，远未达到“实质性干扰其对房屋使用和享有”的严重程度，因此不构成<span class="term">推定驱逐（constructive eviction）</span>。学生因获得出国留学奖学金而搬往欧洲并停止支付租金，属于典型的<span class="term">无理弃租（unjustifiable abandonment）</span>，在法律上视为向房东发出了“放弃租赁权的要约”。</p>
+
+        <p><strong>第二步：分析房东后续行为的法律后果</strong><br>
+        房东在发现学生弃租后，重新占有了公寓，并将其**重新出租给了一位访问教授**（re-rented to a visiting professor）。这一行为在法律上构成了对学生“放弃租赁权要约”的**默示接受（acceptance of the offer to surrender）**。</p>
+
+        <p><strong>第三步：得出最终结论</strong><br>
+        由于房东接受了放弃，该租约已于房东重新出租时**依法终止（terminated）**。因此，学生对未来的租金不再承担任何责任。</p>
+    </div>
+
+    <!-- Diagram -->
+    <h2>流程图示：无理弃租的法律路径</h2>
+    <div class="diagram">
+        <div class="flow-container">
+            <div class="flow-node highlight-node">
+                承租人无理弃租 (Unjustifiable Abandonment)<br>
+                ⬇️<br>
+                法律定性：放弃租赁权的要约 (Offer to Surrender)
+            </div>
+            <div style="font-size: 24px; color: var(--muted-text);">⬇️</div>
+            <div class="flow-branches">
+                <div class="flow-branch" style="border-top: 4px solid var(--correct-border);">
+                    <div style="font-weight: 800; color: var(--correct-text); margin-bottom: 8px; font-size: 19px;">路径 A：房东接受要约 (Accept)</div>
+                    <div style="font-size: 16px; color: var(--text-color);">
+                        • 房东明示同意，或<br>
+                        • 房东重新占有并<b>自用</b>，或<br>
+                        • 房东<b>重新出租给第三人</b>（本案情况）
+                    </div>
+                    <div style="margin-top: 12px; font-weight: 800; color: var(--correct-text); font-size: 17px;">
+                        ➔ 结果：租约终止，承租人无需承担未来租金！
+                    </div>
+                </div>
+                <div class="flow-branch" style="border-top: 4px solid var(--warning-border);">
+                    <div style="font-weight: 800; color: var(--primary-ink); margin-bottom: 8px; font-size: 19px;">路径 B：房东拒绝要约 (Reject)</div>
+                    <div style="font-size: 16px; color: var(--text-color);">
+                        • 房东明确拒绝，租约继续有效。<br>
+                        • 房东必须尽合理努力重新招租（减轻损害义务）。
+                    </div>
+                    <div style="margin-top: 12px; font-weight: 800; color: var(--primary-ink); font-size: 17px;">
+                        ➔ 结果：租约未终止，承租人须补足租金差额。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+        <div style="font-weight: 800; font-size: 20px; color: #b26a00; margin-bottom: 8px;">⚠️ MBE 经典逻辑陷阱：“前提正确，结论错误”</div>
+        <p style="margin: 0; font-size: 17px;">
+            本题的 <strong>D 选项</strong> 是一个极具迷惑性的干扰项。D 选项指出：“租约未终止，因为学生没有被推定驱逐（not constructively evicted）”。<br>
+            这个选项的<strong>事实前提是完全正确的</strong>（学生确实没有被推定驱逐），但它推导出的<strong>法律结论是错误的</strong>。即使学生没有被推定驱逐，租约也并没有继续存续，因为房东随后的“重新出租”行为已经通过“接受放弃”终止了租约。考生必须警惕这种“前半句对，后半句错”的因果关系陷阱。
+        </p>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+        <div class="option correct">
+            <div class="option-title">A. 正确</div>
+            <p style="margin: 0; font-size: 17px;">
+                房东将公寓重新出租给第三人（访问教授）的行为，在法律上构成了对学生放弃租赁权要约的默示接受。这导致租约依法终止，学生无需承担未来的租金。
+            </p>
+        </div>
+
+        <div class="option wrong">
+            <div class="option-title">B. 错误</div>
+            <p style="margin: 0; font-size: 17px;">
+                该选项认为“学生属于正当弃租”。如前所述，厨房瓷砖裂缝属于轻微维修瑕疵，不构成推定驱逐，因此学生的弃租行为不具有法律正当性（unjustifiable）。
+            </p>
+        </div>
+
+        <div class="option wrong">
+            <div class="option-title">C. 错误</div>
+            <p style="margin: 0; font-size: 17px;">
+                该选项认为“租约未终止，学生仍需承担未来租金”。由于房东已经通过重新出租的行为接受了放弃，租约已经终止，学生未来的租金责任已被免除。
+            </p>
+        </div>
+
+        <div class="option wrong">
+            <div class="option-title">D. 错误</div>
+            <p style="margin: 0; font-size: 17px;">
+                该选项混淆了租约终止的途径。虽然学生确实没有被推定驱逐，但租约已经通过“房东接受放弃（重新出租）”这一独立途径终止，而非“未终止”。
+            </p>
+        </div>
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+        <div style="font-weight: 800; font-size: 20px; color: #b26a00; margin-bottom: 8px;">💡 备考捷径：承租人退租（Abandonment）解题三步法</div>
+        <p style="margin: 0; font-size: 17px;">
+            1. <strong>看退租是否有理</strong>：若有理（如构成 Constructive Eviction），租约终止，承租人无责。<br>
+            2. <strong>若无理（Abandonment）</strong>：视为向房东发出放弃租约的要约（Offer to Surrender）。<br>
+            3. <strong>看房东后续行为</strong>：房东若“自用”或“重租”，视为接受要约 ➔ 租约终止，承租人免除未来租金责任。
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

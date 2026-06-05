@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - 商业租约中的房东维修义务</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px 12px 0 0;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-bottom: 26px;
+    }
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    /* Component Styles */
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+    .flow-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-top: 15px;
+    }
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+    .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+    .flow-arrow {
+      color: var(--muted-text);
+      font-weight: bold;
+    }
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+    .option-analysis {
+      margin-top: 24px;
+    }
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 16px 0;
+    }
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+    
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+      }
+      .container {
+        padding: 0 12px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+      .flow-container {
+        flex-direction: column;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Real Property: Landlord-Tenant Law (房东与租客法)</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：A. 判归房东胜诉，因为房东对该管道没有维修义务。
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法理：租约中房东的维修义务</h2>
+    <div class="concept-box">
+      <div class="concept-title">普通法与现代多数派规则的区分</div>
+      <p>在房东与租客法中，房东是否承担维修租赁财产的义务，取决于<strong>租约的性质</strong>（住宅 vs. 商业）以及适用的法律规则：</p>
+      <ul>
+        <li><strong>普通法（Common Law）背景：</strong> 无论是住宅租约还是商业租约，房东在普通法下均<strong>不承担维修义务</strong>，除非法律法规（Statute）或租约合同（Lease Contract）另有明确约定。</li>
+        <li><strong>住宅租约（Residential Lease）：</strong> 现代多数派规则引入了不可放弃的<span class="term">默示适租性保证（implied warranty of habitability）</span>。房东必须维修影响基本居住安全的重大缺陷。</li>
+        <li><strong>商业租约（Commercial Lease）：</strong> 法院极度<strong>不愿</strong>将默示适租性保证扩展至商业租约。因此，在商业租约中，房东<strong>没有义务进行普通维修</strong>，除非合同或成文法另有规定。</li>
+      </ul>
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h3>住宅租约与商业租约维修义务对比</h3>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>租约类型</th>
+          <th>普通法规则 (Common Law)</th>
+          <th>现代多数派规则 (Majority Rule)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>住宅租约 (Residential)</strong></td>
+          <td>无维修义务（除非合同或成文法另有规定）。</td>
+          <td>房东负有强制性维修义务，必须满足<span class="term">默示适租性保证（implied warranty of habitability）</span>。</td>
+        </tr>
+        <tr>
+          <td><strong>商业租约 (Commercial)</strong></td>
+          <td>无普通维修义务（除非合同或成文法另有规定）。</td>
+          <td><strong>维持普通法原状：</strong> 房东无普通维修义务。仅在极少数例外情况下才需承担维修责任。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>商业房东承担维修义务的“极少数例外”</h3>
+    <p>在商业租约中，只有在满足以下两个例外条件之一时，房东才在无合同约定的情况下承担维修义务：</p>
+    <ol>
+      <li>该维修属于<strong>极其重大的结构性损坏</strong>（如修复屋顶、承重外墙），超出了租客在普通法下的日常维护（ordinary repair）范围。</li>
+      <li>该维修<strong>主要使房东的财产价值受益</strong>（而不是仅便利租客当前的临时商业使用）。</li>
+    </ol>
+
+    <!-- Fact/Application Logic -->
+    <h2>案情适用与逻辑推导</h2>
+    <p>本案中，美甲师（租客）与房东签订的是为期一年的<strong>商业租约</strong>（美甲店）。在租期第七个月，洗手池下方的水管发生漏水并导致水淹：</p>
+    <ol>
+      <li><strong>合同与法律检索：</strong> 案情中没有任何迹象表明成文法或双方的商业租约合同要求房东负责水管维修。</li>
+      <li><strong>损坏性质评估：</strong> 漏水的水管属于<strong>普通维修（ordinary repair）</strong>，而非重大的结构性损坏（如地基或屋顶塌陷）。</li>
+      <li><strong>受益对象评估：</strong> 修复水管主要受益于美甲师对店面的日常商业运营，而非主要增加房东房产的长期资本价值。</li>
+      <li><strong>结论：</strong> 房东对该漏水管道<strong>不承担维修义务</strong>。美甲师不能以房东不履行维修义务为由拒付租金。美甲师拒付租金的行为构成违约，房东起诉其违约将获得胜诉。</li>
+    </ol>
+
+    <!-- Diagram -->
+    <div class="diagram">
+      <strong style="display:block; margin-bottom:10px;">商业租约维修义务判定决策树</strong>
+      <div class="flow-container">
+        <div class="flow-node">1. 是否为商业租约？</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">2. 合同或成文法是否有约定？(无)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">3. 是否为重大结构性损坏或主要使房东财产增值？(否)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node highlight-node">结论：房东无维修义务</div>
+      </div>
+    </div>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <strong>⚠️ MBE 常见陷阱提示：</strong>
+      <ul>
+        <li><strong>混淆住宅与商业规则：</strong> 考生极易将住宅租约中的“默示适租性保证”套用到商业租约中。请牢记：商业租客是具有平等谈判能力的商主体，法律不提供这种家长式的默示保护。</li>
+        <li><strong>误认为减损义务创造了实体权利：</strong> 租客采取合理措施防止损失扩大（mitigate damages）是其在违约法下的义务，但这<strong>不能</strong>凭空为房东创设一项原本不存在的维修义务。</li>
+      </ul>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">A. 正确</div>
+        <p>如上所述，在商业租约中，房东对普通管道漏水不承担默示的维修义务。既然房东没有维修义务，其拒绝维修就不构成违约，美甲师无权拒付租金。因此，法院会判决房东胜诉。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. 错误</div>
+        <p>该选项声称“<span class="term">默示宁静享有权契约（implied covenant of quiet enjoyment）</span>不适用于商业租约”。这是错误的法律陈述。宁静享有权契约<strong>同时适用于</strong>商业和住宅租约，它承诺房东不会实质性干扰租客对房屋的占有。本案中房东并未干扰美甲师的占有，因此该契约只是不适用本案事实，而非不适用于商业租约类型。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">C. 错误</div>
+        <p>美甲师采取合理措施减少损失（mitigate damages）是正确的做法，但这与房东是否存在维修义务无关。减损义务是计算损害赔偿时的规则，不能用来免除租客支付租金的核心合同义务。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">D. 错误</div>
+        <p>构成<span class="term">推定驱逐（constructive eviction）</span>必须满足两个前提：(1) 房东违反了某项法定义务；(2) 该违约严重到实质上剥夺了租客对房屋的使用和享有。本案中，房东根本没有维修义务（未违约），且美甲店仍能继续运营（未达到实质性剥夺的程度），因此不构成推定驱逐，美甲师不能以此免除租金义务。</p>
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <strong>💡 考试秒杀秘籍：</strong>
+      在 MBE 考试中，一旦看到<strong>商业租约（commercial lease）</strong>中发生非结构性的普通损坏（如漏水、空调坏了、门锁坏了），且合同没有特别约定，<strong>直接寻找“房东无维修义务（Landlord has no duty to repair）”的选项</strong>。不要在“适租性保证”或“推定驱逐”上浪费时间！
+    </div>
+
+  </div>
+
+</body>
+</html>

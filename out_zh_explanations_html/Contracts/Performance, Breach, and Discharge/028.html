@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .tag {
+            display: inline-block;
+            background: #e1f5fe;
+            color: #0277bd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .rule-box {
+            background: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .highlight {
+            background-color: #fff9c4;
+            padding: 0 2px;
+        }
+        .wrong-option {
+            margin-top: 15px;
+            padding: 10px;
+            background: #ffebee;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+        .wrong-title {
+            color: #c62828;
+            font-weight: bold;
+            margin-bottom: 4px;
+            display: block;
+        }
+        .footer {
+            background: #eceff1;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #546e7a;
+            border-top: 1px solid #cfd8dc;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Contracts / Installment Breach</p>
+    </div>
+
+    <div class="content">
+        <span class="tag">正确答案：B</span>
+
+        <p>本题考查的是普通法下<b>分期付款合同（Installment Contracts）</b>中关于金钱债务违约的特殊规则。</p>
+
+        <div class="rule-box">
+            <span class="rule-title">核心考点：单方金钱债务例外</span>
+            当合同一方已经<b>完全履行</b>了其义务（如借出款项），而另一方仅剩下的义务是<b>分期支付金钱</b>时，即使违约方明确表示将来不付款（Repudiation），非违约方也<b>不能</b>立即就未来的所有款项起诉，只能就<b>已到期未付</b>的款项起诉。
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">法律逻辑分析</div>
+            <p>通常情况下，如果一方预期违约（Anticipatory Repudiation），另一方可以立即起诉要求赔偿全部损失（Total Breach）。</p>
+            <p>但是，根据《合同法重述（第二次）》§ 243(3)，存在一个重要的例外：</p>
+            <ul>
+                <li><b>事实认定：</b>邻居已经借出了1000美元，意味着邻居已经完成了合同下的所有义务。</li>
+                <li><b>剩余义务：</b>律师唯一的义务就是分期还钱。</li>
+                <li><b>违约状态：</b>律师未付3期款项（10月、11月、12月），并表示将来也不付。</li>
+                <li><b>结论：</b>由于这是单方面的金钱债务（Unilateral obligation to pay money），邻居不能适用“预期违约”规则来加速整个债务的到期。</li>
+            </ul>
+            <p>因此，邻居只能起诉<b>已经到期</b>的款项：<br>
+            <b>$100 × 3个月 = $300</b>（加上利息）。</p>
+        </div>
+
+        <div class="analysis-section">
+            <div class="analysis-title">为什么不能拿回全部 $1000？</div>
+            <p>除非合同中明确写有<b>加速到期条款（Acceleration Clause）</b>，否则法院不会替当事人重写合同。如果允许邻居现在拿回全部$1000，实际上是剥夺了律师原本享有的“分期付款”的时间利益。</p>
+        </div>
+
+        <div class="wrong-option">
+            <span class="wrong-title">易错项辨析</span>
+            <ul>
+                <li><b>选项 A (Splitting cause of action)：</b>错误。在分期付款合同中，起诉已到期的款项并不视为分割诉因。债权人可以起诉现在的欠款，以后再起诉未来的欠款。</li>
+                <li><b>选项 C (Insolvency)：</b>错误。无力偿债（Insolvency）本身并不自动导致债务加速到期（Acceleration）。除非合同里有专门针对无力偿债的加速条款，否则普通法不予自动加速。</li>
+                <li><b>选项 D (Material Breach)：</b>错误。虽然不付款是重大违约，但在纯金钱债务的单务合同中，重大违约也不能触发对“未来”款项的索赔权。</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <b>Exam Tip:</b> 看到“借款合同”且一方已放款，另一方分期还款时，警惕“预期违约”规则的例外。没有加速条款，只能讨要已过期的钱。
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #ecf0f1;
+            --correct-bg: #d4edda;
+            --correct-text: #155724;
+            --wrong-bg: #f8d7da;
+            --wrong-text: #721c24;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .step-number {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+        }
+        .correct-answer {
+            background: var(--correct-bg);
+            color: var(--correct-text);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #c3e6cb;
+        }
+        .distractor {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #666;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .distractor strong {
+            color: var(--wrong-text);
+        }
+        .exam-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE Contracts 解析</h1>
+        <div class="subtitle">Conditions & Waiver (条件与弃权)</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：条件的弃权 (Waiver of Condition)</span>
+            <p>在合同法中，如果一方的履行义务取决于某个<b>先决条件 (Condition Precedent)</b>，而该条件未发生，该方通常可以拒绝履行。</p>
+            <p>但是，如果受益于该条件的一方通过言语或行为表示不再要求该条件发生，这被称为<b>弃权 (Waiver)</b>。一旦弃权，该方不能再以条件未发生为由拒绝履行。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <h3>本案逻辑链分析</h3>
+        
+        <div class="analysis-step">
+            <span class="step-number">1</span>
+            <strong>明确条件：</strong>
+            合同中有一个明示的先决条件：建筑师必须在6个月内戒酒 (Abstain from alcohol)。
+        </div>
+
+        <div class="analysis-step">
+            <span class="step-number">2</span>
+            <strong>条件未满足 (Non-occurrence)：</strong>
+            建筑师在两个月后开始饮酒。此时，开发商本有权终止合同或拒绝付款。
+        </div>
+
+        <div class="analysis-step">
+            <span class="step-number">3</span>
+            <strong>关键行为 (Conduct)：</strong>
+            开发商<b>知情</b> (became aware) 后，仍然审查了初步方案，表示“印象深刻”，并<b>鼓励</b>建筑师继续工作 ("looked forward to seeing the final plans")。
+        </div>
+
+        <div class="analysis-step">
+            <span class="step-number">4</span>
+            <strong>法律后果：</strong>
+            开发商在知晓条件未满足的情况下，选择继续合同并接受建筑师的后续工作。这种行为构成了对“戒酒条件”的<b>弃权 (Waiver)</b>。
+        </div>
+
+        <!-- 正确答案 -->
+        <div class="correct-answer">
+            <strong>✅ 正确答案：选项 B</strong>
+            <br>
+            "The developer waived the condition of no alcohol use."
+            <br><br>
+            开发商的行为表明他选择忽略条件的失败，并允许合同继续进行。因此，他放弃了以饮酒为由拒绝付款的权利。
+        </div>
+
+        <!-- 错误选项解析 -->
+        <h3>为什么其他选项是错的？</h3>
+
+        <div class="distractor">
+            <strong>❌ 选项 A (Material Breach)：</strong>
+            这是一个常见的陷阱。<b>明示条件 (Express Condition)</b> 通常要求<b>严格遵守 (Strict Compliance)</b>。这与“承诺 (Promise)”不同，承诺只需要“实质性履行 (Substantial Performance)”。因为这是明确的条件，是否影响工作质量在法律上通常是不相关的（除非涉及极端的没收规则，但弃权是更直接的理由）。
+        </div>
+
+        <div class="distractor">
+            <strong>❌ 选项 C (Penalty Clause)：</strong>
+            惩罚性条款通常指金额过高的违约金 (Liquidated Damages)。本案中的条款是履行的<b>条件</b>，而不是规定违约赔偿金额的条款，因此不适用惩罚性条款的分析。
+        </div>
+
+        <div class="distractor">
+            <strong>❌ 选项 D (Interpretation)：</strong>
+            法院确实倾向于将模糊的条款解释为承诺而非条件（以避免权利丧失）。但本案中合同语言非常明确 ("conditioned on")，不存在模糊性，因此必须作为条件来执行（除非被弃权）。
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧</strong>
+            <br>
+            当题目中出现<b>“先决条件 (Condition)”</b>被违反，但受益方（Beneficiary）在知情后仍然允许对方继续工作或接受服务时，首先要寻找的答案就是<b>“弃权 (Waiver)”</b>或<b>“选择 (Election)”</b>。
+            <br><br>
+            记住：你不能在知晓违约后让对方把活干完，最后才跳出来说“啊哈，你两个月前就违约了，我不付钱！”
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background-color: #f8f9fa;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .card-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .card-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #856404;
+        }
+        .term {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .english {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .logic-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .step-icon {
+            background-color: #3498db;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #bdc3c7;
+        }
+        .wrong-option {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fff5f5;
+            border: 1px solid #feb2b2;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .wrong-title {
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Contracts (UCC Article 2)</p>
+    </div>
+
+    <div class="content">
+        <!-- 核心法律规则 -->
+        <div class="card" style="border-left-color: #27ae60;">
+            <div class="card-title">核心考点：履约保证请求权</div>
+            <p>本题考察的是 <span class="term">UCC § 2-609</span> 中的“履约保证请求权” (<span class="english">Right to Adequate Assurance of Performance</span>)。</p>
+            <p><strong>规则：</strong>当一方有<span class="highlight">合理理由</span> (<span class="english">Reasonable Grounds</span>) 担心另一方无法履行合同时，感到不安的一方有权：</p>
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li>提出<strong>书面要求</strong>，要求对方提供履约保证；</li>
+                <li>在收到保证之前，可以暂停自己的履约（如果商业上合理）。</li>
+            </ol>
+        </div>
+
+        <!-- 案情逻辑分析 -->
+        <div class="card">
+            <div class="card-title">本案逻辑推演</div>
+            
+            <div class="logic-step">
+                <div class="step-icon">1</div>
+                <div>
+                    <strong>触发事件：</strong><br>
+                    卖方毁约了“小麦合同”。理由是供应商拒绝提供信贷 (<span class="english">Credit</span>)，导致无货可交。
+                </div>
+            </div>
+
+            <div class="logic-step">
+                <div class="step-icon">2</div>
+                <div>
+                    <strong>产生不安：</strong><br>
+                    虽然“大豆合同”是独立的，但卖方在小麦合同中的违约原因（财务/信贷危机）显示其经营状况恶化。这给了买方对卖方履行大豆合同能力的<strong>合理不安理由</strong> (<span class="english">Reasonable Grounds for Insecurity</span>)。
+                </div>
+            </div>
+
+            <div class="logic-step">
+                <div class="step-icon">3</div>
+                <div>
+                    <strong>法律后果：</strong><br>
+                    买方不能直接终止大豆合同（因为大豆合同尚未违约），但有权要求卖方提供<strong>履约保证</strong> (<span class="english">Demand Assurances</span>)。
+                </div>
+            </div>
+        </div>
+
+        <!-- 为什么选A -->
+        <div style="background-color: #e8f8f5; padding: 15px; border-radius: 8px; border: 1px solid #2ecc71; margin-bottom: 20px;">
+            <strong style="color: #27ae60;">✅ 正确答案 A 的依据</strong><br>
+            选项 A 准确描述了 UCC § 2-609 的机制。卖方的财务困境跨越了合同界限，成为了买方要求大豆合同履约保证的合理基础。
+        </div>
+
+        <!-- 易错点辨析 -->
+        <div class="card" style="border-left-color: #e74c3c;">
+            <div class="card-title">为什么不选其他项？</div>
+            
+            <div class="wrong-option">
+                <div class="wrong-title">❌ 选项 B & C (直接终止合同)</div>
+                <strong>错误原因：</strong> 除非合同之间有明确的“交叉违约条款” (<span class="english">Cross-default clause</span>) 或属于分期履行合同的严重违约，否则一份合同的违约通常<strong>不会自动导致</strong>另一份独立合同的终止。
+                <br><br>
+                <span class="english">Doctrine of Dependent Covenants</span>（从属承诺原则）在此不适用，因为两份合同是独立签署的。买方必须先索要保证，只有卖方无法提供保证时，才能视为毁约并终止合同。
+            </div>
+
+            <div class="wrong-option">
+                <div class="wrong-title">❌ 选项 D (完全无影响)</div>
+                <strong>错误原因：</strong> 虽然合同是独立的，但UCC承认商业现实。一方的财务崩溃（导致小麦无法交付）显然会影响其交付大豆的可信度。法律保护买方不必在“提心吊胆”中等待违约，因此赋予了要求保证的权利。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="card" style="background-color: #fff; border: 2px dashed #95a5a6; border-left: none;">
+            <div class="card-title" style="justify-content: center;">🎓 考试通关技巧</div>
+            <p style="font-size: 14px;">在 MBE 合同法题目中，如果看到一方在<strong>另一个</strong>交易中出现问题（特别是涉及偿付能力、信贷、罢工等普遍性问题），不要急着选“直接解约”或“毫无关系”。</p>
+            <p style="font-size: 14px; font-weight: bold; text-align: center; color: #2980b9;">
+                中间路线往往是正确答案：<br>
+                "Reasonable Grounds" ➡️ "Demand Assurances"
+            </p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        MBE Contracts Review | UCC Article 2
+    </div>
+</div>
+
+</body>
+</html>

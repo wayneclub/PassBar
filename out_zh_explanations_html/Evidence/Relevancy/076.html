@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - 证据法</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { 
+      box-sizing: border-box; 
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-title {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--primary-ink);
+      margin-bottom: 16px;
+    }
+
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flow-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.active {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-weight: 800;
+      color: var(--accent-color);
+      font-size: 20px;
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .trap-title {
+      font-weight: 800;
+      color: #b7791f;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .option-analysis {
+      margin: 28px 0;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 16px 0;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 12px 20px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+      .flow-row {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Evidence (证据法) — Relevancy & Habit Evidence (关联性与习惯证据)</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：D. 是的，因为该证言属于相关的习惯证据（relevant habit evidence）。
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法律规则</h2>
+    <div class="concept-box">
+      <div class="concept-title">1. 证据的关联性（Relevancy）</div>
+      <p>根据《联邦证据规则》（Federal Rules of Evidence, <span class="term">FRE 401</span>），证据必须同时满足以下两个条件才具有关联性（relevant），进而通常具有可采性（admissible）：</p>
+      <ul>
+        <li><strong>证明力（Probative）：</strong> 证据具有使某项事实比没有该证据时“更有可能”或“更无可能”发生的倾向。</li>
+        <li><strong>实质性（Material）：</strong> 该事实是确定诉讼结果的关键或具有法律后果的事实（fact of consequence）。</li>
+      </ul>
+    </div>
+
+    <div class="concept-box">
+      <div class="concept-title">2. 习惯证据（Habit Evidence）</div>
+      <p>根据 <span class="term">FRE 406</span>，个人的<span class="term">习惯（habit）</span>或组织的常规惯例（routine practice）的证据，可用于证明该人或组织在特定场合下的行为与该习惯或常规惯例一致。习惯证据的采信<strong>不需要</strong>目击者佐证，也不受品性证据（character evidence）的排斥规则限制。</p>
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h2>概念辨析：习惯（Habit）vs. 品性（Character）</h2>
+    <p>在 MBE 考试中，习惯证据常与不可采的品性证据混淆。两者的核心区别在于<strong>具体性（specificity）</strong>和<strong>规律性（regularity）</strong>：</p>
+    
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>维度</th>
+          <th>习惯证据（Habit Evidence - FRE 406）</th>
+          <th>品性证据（Character Evidence - FRE 404）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>定义</strong></td>
+          <td>个人在特定刺激下做出的<strong>具体、自动、半意识且一贯的</strong>重复反应。</td>
+          <td>个人的一般性倾向、道德品质或行为特征（如诚实、谨慎、粗心、爱干净）。</td>
+        </tr>
+          <td><strong>可采性</strong></td>
+          <td><strong>通常可采</strong>，用于证明当事人在案发时做出了与该习惯一致的行为。</td>
+          <td><strong>通常不可采</strong>，不能用于在民事或刑事案件中证明“因循品性的行为”（conduct in conformity）。</td>
+        </tr>
+        <tr>
+          <td><strong>典型表述</strong></td>
+          <td>“每次……”、“总是……”、“无一例外地……”（例如：每次开车必系安全带；饭后立即洗碗）。</td>
+          <td>“是一个……的人”（例如：是一个谨慎的驾驶员；是一个有洁癖的人）。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Fact/Application Logic -->
+    <h2>案情深度剖析与逻辑推导</h2>
+    <p>本案中，控辩双方的核心争议在于：被告人离开被害人公寓时，被害人是否还活着。室友的证言对于解决这一争议具有关键的逻辑链条：</p>
+    
+    <!-- Diagram -->
+    <div class="diagram">
+      <div class="diagram-title">证据逻辑推导链条</div>
+      <div class="flow-container">
+        <div class="flow-row">
+          <div class="flow-node">被告人辩解：吃完饭立即离开，当时被害人还活着</div>
+        </div>
+        <div class="flow-arrow">↓ 对抗</div>
+        <div class="flow-row">
+          <div class="flow-node">物证：水槽里留有被告人指纹的【未洗餐盘】</div>
+          <div class="flow-arrow">+</div>
+          <div class="flow-node active">室友证言：被害人因怕虫子，【饭后必定立即洗碗】（习惯）</div>
+        </div>
+        <div class="flow-arrow">↓ 逻辑推论</div>
+        <div class="flow-row">
+          <div class="flow-node">若被害人当时活着，餐盘不可能不洗 → 被害人可能在洗碗前已被杀害</div>
+        </div>
+        <div class="flow-arrow">↓ 结论</div>
+        <div class="flow-node active">直接削弱被告人辩解，具有高度关联性，属于可采的习惯证据</div>
+      </div>
+    </div>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <div class="trap-title">⚠️ 避坑指南：识别“伪装成习惯的品性”</div>
+      <p>如果室友仅仅证明“被害人是一个非常爱干净、有洁癖的人（fastidious/neat person）”，这属于<strong>品性证据</strong>，在刑事案件中不能用于证明被害人当天洗了碗，因而是不可采的。但本案中，证言明确指出被害人“因为害怕虫子，<strong>每次饭后必定立即洗碗</strong>”，这属于针对特定场景（饭后）做出的具体、一贯的自动反应，完全符合<strong>习惯证据</strong>的定义。</p>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">D. 正确（Yes, because it is relevant habit evidence.）</div>
+        <p><strong>解析：</strong>室友关于被害人“饭后立即洗碗”的证言属于典型的习惯证据（habit evidence）。该证据具有高度的规律性和具体性（"invariably"），且对于反驳被告人的不在场/无罪辩解（claim that she was alive when he left）具有极强的关联性（relevancy），因此法院应当准许引入。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">A. 错误（No, because it does not prove that the defendant killed the woman.）</div>
+        <p><strong>解析：</strong>该选项犯了“终极问题谬误”（ultimate issue fallacy）。根据 FRE 401，证据不需要单独、直接证明被告人有罪。只要它能使案情中的某一实质性事实（如被告人离开时被害人是否还活着）变得“更有可能或更无可能”，就满足了关联性要求。室友的证言通过间接推理削弱了被告人的辩解，完全符合关联性标准。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. 错误（No, because it is inadmissible character evidence.）</div>
+        <p><strong>解析：</strong>该证言并非不可采的品性证据（character evidence）。品性证据是对一个人整体性格特征的描述（例如“爱干净”），而本案中“饭后立即洗碗以防虫子”是一种在特定刺激下（吃完饭）做出的具体、自动且一贯的行为模式，属于可采的习惯证据。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">C. 错误（Yes, because impeachment evidence is not subject to the relevancy requirement.）</div>
+        <p><strong>解析：</strong>弹劾证据（impeachment evidence）同样必须满足关联性（relevancy）的要求。任何拟引入的证据，无论是实质证据（substantive evidence）还是弹劾证据，其首要前提都是必须具有关联性（FRE 401）。本案中，该证据通过反驳被告人的证言（即弹劾被告人）来发挥作用，其关联性体现在它能降低被告人证言的可信度。</p>
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <strong>💡 MBE 提分秘籍：</strong>
+      在做 Evidence 题目时，一旦看到 <code>always</code>, <code>invariably</code>, <code>automatically</code>, <code>habitually</code>, <code>routinely</code>, <code>without fail</code> 等表示“毫无例外、自动发生”的绝对副词，应当高度敏感，这几乎 100% 指向<strong>可采的习惯证据（Habit Evidence）</strong>。
+    </div>
+
+  </div>
+</body>
+</html>

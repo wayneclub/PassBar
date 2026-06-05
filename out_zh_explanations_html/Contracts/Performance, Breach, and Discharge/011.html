@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .analysis-step {
+            margin-bottom: 15px;
+        }
+        .step-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+        }
+        .option-analysis {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .correct-answer {
+            color: var(--correct-color);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .wrong-answer {
+            color: var(--wrong-color);
+            font-weight: bold;
+        }
+        .term {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+        .exam-tip {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            font-size: 0.8rem;
+        }
+        .arrow {
+            flex-grow: 1;
+            height: 2px;
+            background: #ccc;
+            margin: 0 10px;
+            position: relative;
+        }
+        .arrow::after {
+            content: '>';
+            position: absolute;
+            right: -5px;
+            top: -10px;
+            font-size: 16px;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="subtitle">Contracts: Performance & Breach</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：推定条件 (Constructive Conditions)</span>
+            <p>在双务合同（尤其是和解协议）中，除非另有约定，一方的履行义务通常被推定为以另一方的履行为条件。如果一方发生<b>重大违约 (Material Breach)</b>，另一方的履行义务即被免除。</p>
+        </div>
+
+        <!-- 案情图解 -->
+        <div class="analysis-step">
+            <h3>案情逻辑流</h3>
+            <div class="diagram">
+                <div style="text-align:center">
+                    <strong>5月1日</strong><br>
+                    签订协议<br>
+                    (Agreement)
+                </div>
+                <div class="arrow"></div>
+                <div style="text-align:center; color:var(--wrong-color)">
+                    <strong>6月1日</strong><br>
+                    朋友起诉<br>
+                    (Breach!)
+                </div>
+                <div class="arrow"></div>
+                <div style="text-align:center">
+                    <strong>12月31日</strong><br>
+                    原定还款日
+                </div>
+            </div>
+        </div>
+
+        <!-- 深度解析 -->
+        <div class="analysis-step">
+            <h3>为什么选 B？</h3>
+            <p><span class="step-number">1</span><b>协议的本质：</b> 5月1日的协议是一个典型的<b>和解协议 (Settlement Agreement)</b>。
+            <br>• 女子的对价：承诺延期全额还款 + 利息。
+            <br>• 朋友的对价：承诺<b>不予起诉 (Forbearance to sue)</b> 直到12月31日。</p>
+
+            <p><span class="step-number">2</span><b>条件的互依性：</b> 女子在12月31日付款的义务，是以朋友“在此期间不起诉”为<b>前提条件 (Condition Precedent)</b> 的。这在法律上被称为“推定条件”。</p>
+
+            <p><span class="step-number">3</span><b>违约的后果：</b> 朋友在6月1日提起诉讼，直接破坏了协议的核心目的（即女子花钱买“安宁”）。这构成了<b>重大违约</b>。一旦朋友违约，女子在5月1日协议下的付款义务就被免除（Discharged）。因此，朋友不能依据该协议要求救济。</p>
+        </div>
+
+        <!-- 干扰项辨析 -->
+        <div class="option-analysis">
+            <p><span class="wrong-answer">选项 A 错误：</span><br>
+            虽然诉讼时效 (Statute of Limitations) 是为了防止陈旧债权，但当事人可以通过新协议（如本案中的书面承诺）合法地延长或恢复债务。本案不能执行的原因是朋友违约，而不是因为时效政策。</p>
+
+            <p><span class="wrong-answer">选项 C 错误：</span><br>
+            这是一个常见的陷阱。朋友的违约发生在6月1日，那是一个<b>完成时态</b>的重大违约。女子后来（12月31日）没付钱，并不能“治愈”朋友之前的违约，也不能让朋友的违约变得“不重要”。朋友先动手打破了协议，他就失去了执行协议的权利。</p>
+
+            <p><span class="wrong-answer">选项 D 错误：</span><br>
+            虽然“道德义务” (Moral Obligation) 有时可以作为过去对价的例外，但在本案中，5月1日的协议是有<b>真实对价</b>的（承诺付款 vs. 承诺不起诉）。该协议不可执行不是因为缺乏对价，而是因为朋友自己先违约了。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 提分技巧：</strong><br>
+            在处理<b>和解或延期协议</b>的题目时，一定要检查债权人是否遵守了“不起诉”的承诺。
+            <br><br>
+            如果债权人提前起诉，这就是<b>重大违约 (Material Breach)</b>。根据普通法，重大违约方<b>不能</b>要求对方履行合同义务（即 "Unclean Hands" 原理在合同法中的体现）。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

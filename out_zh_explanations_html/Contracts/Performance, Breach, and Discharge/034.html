@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析 - Contracts</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --primary-ink: #243447;
+            --accent-color: #3498db;
+            --accent-strong: #2980d9;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #dff0d8;
+            --correct-border: #27ae60;
+            --correct-text: #1f8f4d;
+            --wrong-bg: #f8d7da;
+            --wrong-border: #f5c6cb;
+            --wrong-text: #721c24;
+            --warning-bg: #fff8e1;
+            --warning-border: #ffb300;
+            --text-color: #333333;
+            --muted-text: #666666;
+            --border-color: #dddddd;
+            --card-bg: #ffffff;
+            --bg-color: #ffffff;
+        }
+
+        * { 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-size: 18px;
+            line-height: 1.72;
+            letter-spacing: 0;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            padding: 0 24px 32px;
+            background: var(--card-bg);
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 34px 24px 32px;
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 26px;
+        }
+
+        .header h1 {
+            margin: 0 0 12px;
+            font-size: 32px;
+            line-height: 1.15;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        .sub-title {
+            margin: 0;
+            font-size: 20px;
+            line-height: 1.35;
+            font-weight: 700;
+            color: rgba(255,255,255,0.92);
+        }
+
+        h2, h3 {
+            color: var(--primary-ink);
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: 0;
+        }
+
+        h2 {
+            font-size: 26px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin: 34px 0 20px;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin: 28px 0 16px;
+        }
+
+        p, li {
+            font-size: 18px;
+            line-height: 1.72;
+        }
+
+        strong, b {
+            display: inline !important;
+            white-space: normal !important;
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+            font-weight: 800;
+        }
+
+        .answer-box {
+            background: var(--correct-bg);
+            border-left: 6px solid var(--correct-border);
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin: 22px 0 30px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--correct-text);
+        }
+
+        .concept-box {
+            background: var(--highlight-bg);
+            border-left: 6px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 22px 24px;
+            margin: 24px 0;
+        }
+
+        .concept-box .concept-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-strong);
+            margin-bottom: 12px;
+        }
+
+        .latin {
+            italic,
+            font-size: 18px;
+            color: #555555;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 17px;
+            min-width: 600px;
+        }
+
+        .comparison-table th {
+            background: #f8f9fa;
+            color: var(--primary-color);
+            font-weight: 800;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        .diagram {
+            background: #ffffff;
+            border: 1px dashed #cccccc;
+            border-radius: 8px;
+            padding: 22px;
+            margin: 28px 0;
+            text-align: center;
+        }
+
+        .diagram-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .flow-node {
+            background: #e8fcff;
+            border: 1px solid #22b8cf;
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-weight: 700;
+            color: #05606a;
+            font-size: 16px;
+        }
+
+        .flow-node.active {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #ffffff;
+        }
+
+        .flow-arrow {
+            font-weight: bold;
+            color: var(--muted-text);
+        }
+
+        .rule-block, .trap-alert, .footer-tip {
+            background: var(--warning-bg);
+            border-left: 5px solid var(--warning-border);
+            border-radius: 6px;
+            padding: 18px 20px;
+            margin: 24px 0;
+        }
+
+        .case-box {
+            background: var(--highlight-bg);
+            border-radius: 8px;
+            padding: 20px 22px;
+            margin: 20px 0;
+        }
+
+        .option-analysis {
+            margin-top: 30px;
+        }
+
+        .option {
+            border-radius: 8px;
+            padding: 20px 22px;
+            margin-bottom: 16px;
+        }
+
+        .option.correct {
+            background: var(--correct-bg);
+            border-left: 5px solid var(--correct-border);
+        }
+
+        .option.wrong {
+            background: var(--wrong-bg);
+            border-left: 5px solid var(--wrong-border);
+            color: var(--wrong-text);
+        }
+
+        .option-title {
+            font-weight: 800;
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        code {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.92em;
+        }
+
+        .term {
+            background: transparent;
+            border-bottom: 1px solid rgba(36,52,71,0.26);
+            padding: 0 1px 1px;
+            border-radius: 0;
+            font-size: 1em;
+            font-weight: 800;
+            white-space: normal;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                font-size: 16px;
+            }
+            .container {
+                padding: 0 12px 24px;
+            }
+            .header {
+                padding: 26px 16px;
+                margin-top: 12px;
+            }
+            .header h1 {
+                font-size: 26px;
+            }
+            .sub-title {
+                font-size: 17px;
+            }
+            h2 {
+                font-size: 22px;
+            }
+            h3 {
+                font-size: 19px;
+            }
+            .diagram-container {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin: 4px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Card Top Header -->
+        <div class="header">
+            <h1>MBE 考点解析</h1>
+            <div class="sub-title">Contracts: Performance, Breach, and Discharge — Conditions</div>
+        </div>
+
+        <!-- Correct Answer Box -->
+        <div class="answer-box">
+            正确答案：C
+            <span style="font-size: 17px; font-weight: normal; color: #333333; display: block; margin-top: 10px;">
+                <strong>核心裁决：</strong>球队老板无需支付额外奖金，因为该笔额外补偿的支付是以球员在赛季内“至少攻入20个球”为<span class="term">明示条件（express condition）</span>。由于球员仅攻入19球，该明示条件未成就，老板的付款义务被依法免除。
+            </span>
+        </div>
+
+        <!-- Core Legal Rule -->
+        <h2>核心法理：合同条件（Conditions）的分类与履行标准</h2>
+        <div class="concept-box">
+            <div class="concept-title">明示条件 vs. 默示条件</div>
+            <p>在普通法合同法中，<span class="term">条件（condition）</span>是除非被免除（excused），否则必须发生或不发生才能触发另一方履行义务的未来不确定事件。根据条件的创设方式，其履行标准有着本质区别：</p>
+            <ul>
+                <li><strong><span class="term">明示条件（express condition）</span>：</strong>由合同条款明确约定的条件。明示条件必须<strong>完全、严格地履行（strict compliance）</strong>，任何微小的偏差都会导致条件不成就。在明示条件中，<strong><span class="term">实质性履行原则（substantial performance doctrine）</span>不适用</strong>。</li>
+                <li><strong><span class="term">法定默示/推定条件（implied-in-law / constructive condition）</span>：</strong>由法院根据公平和合理信用原则推定的条件。此类条件只需<strong>实质性履行（substantial performance）</strong>即可触发对方的履行义务。</li>
+            </ul>
+        </div>
+
+        <!-- Concept Comparison Table -->
+        <h3>合同条件类型对比表</h3>
+        <div class="table-wrapper">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>条件类型 (Type of condition)</th>
+                        <th>创设方式 (How created)</th>
+                        <th>履行要求 (Performance required)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>明示条件 (Express)</strong></td>
+                        <td>在合同中明确、具体地写明（例如：“若……”、“以……为条件”）</td>
+                        <td><strong>必须完全符合（Strict compliance）</strong>；实质性履行（Substantial performance）不足以使条件成就。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>法定默示/推定条件 (Implied-in-law / Constructive)</strong></td>
+                        <td>由法院根据具体案情推定，以实现公平交易（如：先履行义务）</td>
+                        <td><strong>实质性履行（Substantial performance）即足够</strong>；不要求百分之百完美履行。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>事实默示条件 (Implied-in-fact)</strong></td>
+                        <td>合同性质或双方行为表明双方有意创设该条件，但未明文写出</td>
+                        <td><strong>实质性履行（Substantial performance）即足够</strong>；不要求百分之百完美履行。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Fact/Application Logic -->
+        <h2>案情深度剖析与逻辑推导</h2>
+        <div class="case-box">
+            <p>本案中，球员与球队老板签署的合同中包含一项条款：<strong>“如果球员在赛季中攻入20个或更多进球，他将获得额外补偿”</strong>。</p>
+            <ol>
+                <li><strong>识别条款性质：</strong>“攻入20个或更多进球”是老板支付额外补偿的<span class="term">明示条件（express condition）</span>。只有当该事件完全发生时，老板的付款义务才会被激活。</li>
+                <li><strong>评估履行情况：</strong>球员在赛季中尽了最大努力，但最终只攻入了19个球。</li>
+                <li><strong>适用法律规则：</strong>因为这是明示条件，必须严格满足“20球”的标准。19球虽然非常接近20球，但在法律上<strong>不构成完全履行</strong>。由于<span class="term">实质性履行原则</span>不适用于明示条件，因此不能以“球员已经尽力且完成了95%的指标”为由要求老板付款。</li>
+                <li><strong>得出结论：</strong>由于明示条件未成就，老板支付额外补偿的合同义务从未被激活，因此老板无需支付该笔款项。</li>
+            </ol>
+        </div>
+
+        <!-- Diagram -->
+        <div class="diagram">
+            <strong style="font-size: 18px; color: var(--primary-ink);">明示条件履行逻辑图示</strong>
+            <div class="diagram-container">
+                <div class="flow-node">合同约定明示条件：进球数 &ge; 20</div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-node">实际结果：进球数 = 19</div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-node" style="background: #fff0f0; border-color: #ff8787; color: #e03131;">条件未成就 (Strict Compliance Failed)</div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-node active">老板付款义务免除 (Excused)</div>
+            </div>
+        </div>
+
+        <!-- Trap Alert -->
+        <div class="trap-alert">
+            <strong>⚠️ MBE 常见陷阱提示：</strong>
+            <p>1. <strong>“尽了最大努力”的误导：</strong>干扰项经常强调“球员已经尽了最大努力（tried his best）”或“非故意未达成（not willful）”，试图诱导考生适用衡平法或实质性履行原则。请记住，在明示条件面前，主观意图和努力程度通常是<strong>不相关（irrelevant）</strong>的。</p>
+            <p>2. <strong>混淆“条件”与“承诺”：</strong>球员并没有“承诺”一定要进20个球。如果他承诺了却没做到，那属于违约（breach）；而这里这只是一个“条件”，条件不成就仅仅是免除了对方的履行义务，并不构成球员违约，老板不能因此起诉球员。</p>
+        </div>
+
+        <!-- Answer-Choice Breakdown -->
+        <h2>正确答案与干扰项排除</h2>
+        <div class="option-analysis">
+            
+            <div class="option correct">
+                <div class="option-title">正确答案：C. Yes, because the additional compensation was conditioned on the player scoring at least 20 goals during the season.</div>
+                <p><strong>解析：</strong>完全正确。额外补偿的支付取决于一个明确的明示条件（至少攻入20球）。由于球员未能满足这一条件，老板支付额外补偿的合同义务从未产生，因此老板有权拒绝支付。</p>
+            </div>
+
+            <div class="option wrong">
+                <div class="option-title">排除 A. No, because the player substantially complied with the condition regarding goals scored.</div>
+                <p><strong>解析：</strong>错误。<span class="term">实质性履行原则（substantial compliance/performance）</span>仅适用于法定默示条件或推定条件，<strong>绝不适用于明示条件</strong>。在明示条件中，差一个球也是未满足条件。</p>
+            </div>
+
+            <div class="option wrong">
+                <div class="option-title">排除 B. No, because the player's failure to satisfy the condition was not willful.</div>
+                <p><strong>解析：</strong>错误。虽然违约是否为“故意（willful）”在评估“实质性履行”时是一个考虑因素，但由于本案涉及的是明示条件，实质性履行原则根本不适用，因此球员是否故意、是否尽力均与本案结果无关。</p>
+            </div>
+
+            <div class="option wrong">
+                <div class="option-title">排除 D. Yes, because the player promised to score 20 goals.</div>
+                <p><strong>解析：</strong>错误。球员并没有“承诺（promise）”去攻入20个球，合同条款只是将“攻入20球”作为老板付款的“条件（condition）”。如果球员做出了承诺而未达成，老板不仅可以不付款，还可以起诉球员违约。但本案中球员并未违约，只是条件未成就。</p>
+            </div>
+
+        </div>
+
+        <!-- Exam Tip -->
+        <div class="footer-tip">
+            <strong>💡 考场秒杀秘籍：</strong>
+            <p>在 MBE 考试中，一旦看到合同中含有明确的数字、时间或特定事件作为付款前提（如“若进20球则给奖金”、“必须在10月1日前交付”），这属于<strong>明示条件</strong>。直接寻找含有<strong>“必须严格遵守/完全履行（strict compliance）”</strong>或<strong>“实质性履行不适用（substantial performance does not apply）”</strong>的选项，快速锁定正确答案！</p>
+        </div>
+    </div>
+</body>
+</html>

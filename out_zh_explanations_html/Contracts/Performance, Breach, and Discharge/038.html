@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点深度解析 - 预期违约与撤回</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin: 15px 0;
+    }
+
+    .flow-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-strong);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-weight: bold;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 22px 0;
+    }
+
+    .option-analysis {
+      margin-top: 24px;
+    }
+
+    .option {
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 12px 20px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      p, li {
+        font-size: 16px;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- 【Card Top Header】 -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Contracts (合同法) — 预期违约与撤回 (Anticipatory Repudiation & Retraction)</div>
+    </div>
+
+    <!-- 【Correct Answer Box】 -->
+    <div class="answer-box">
+      正确答案：书店在 3 月 6 日成功撤回了其预期违约行为，因此出版商若不发货将构成违约。
+    </div>
+
+    <!-- 【Core Legal Rule】 -->
+    <h2>核心法律原理</h2>
+    <div class="concept-box">
+      <div class="concept-title">预期违约的撤回规则 (Retraction of Anticipatory Repudiation)</div>
+      <p>根据《统一商法典》<span class="term">U.C.C. § 2-611</span>，当合同一方在履行期届满前，通过言语或行为明确且无保留地表示拒绝履行合同，即构成<span class="term">预期违约（anticipatory repudiation）</span>。然而，违约方在<b>其下一次履行义务到期前</b>，可以依法撤回该违约表示，除非非违约方在收到撤回通知前已经采取了以下三种行动之一：</p>
+      <ul>
+        <li><b>取消了合同</b>（Canceled the contract）；</li>
+        <li><b>实质性改变了立场</b>以示信赖（Materially changed position in reliance）；或者</li>
+        <li><b>明示认为该预期违约是终局的</b>（Indicated that the repudiation is considered final，例如提起诉讼）。</li>
+      </ul>
+      <p>如果非违约方未采取上述任何行动，违约方的撤回即产生法律效力，原合同关系完全恢复，双方均须继续履行。若此时非违约方拒绝履行，则非违约方构成违约。</p>
+    </div>
+
+    <!-- 【Concept Comparison Table】 -->
+    <h2>关键概念对比</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>概念维度</th>
+          <th>预期违约 (Anticipatory Repudiation)</th>
+          <th>预期履约能力不足 (Prospective Inability to Perform)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>定义与标准</b></td>
+          <td>必须是<b>明确且无保留的（clear and unequivocal）</b>拒绝履行表示。</td>
+          <td>由于客观原因或财务困境，导致一方履行能力存在<b>合理的疑虑（reasonable grounds for insecurity）</b>。</td>
+        </tr>
+        <tr>
+          <td><b>救济途径</b></td>
+          <td>非违约方可立即起诉、取消合同、或等待履行。</td>
+          <td>非违约方只能<b>要求提供履约担保（demand adequate assurance）</b>，在收到担保前可暂停自身履行。</td>
+        </tr>
+        <tr>
+          <td><b>撤回/补救</b></td>
+          <td>在非违约方改变立场、取消合同或明示终局前，可随时撤回。</td>
+          <td>在合理期限内（U.C.C. 下为 30 天内）提供充足担保即可消除疑虑。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 【Fact/Application Logic】 -->
+    <h2>案件事实与逻辑推导</h2>
+    <p>本案的合同关系形成及违约、撤回的时间线如下：</p>
+    
+    <div class="diagram">
+      <div class="flow-container">
+        <div class="flow-row">
+          <div class="flow-node">3月1日：书店询价</div>
+          <div class="flow-arrow">➔</div>
+          <div class="flow-node">3月2日：出版商报价邀请</div>
+          <div class="flow-arrow">➔</div>
+          <div class="flow-node">3月3日：书店发出订单 (要约)</div>
+        </div>
+        <div class="flow-arrow">⬇</div>
+        <div class="flow-row">
+          <div class="flow-node highlight-node">3月4日：出版商接受 (合同成立)</div>
+          <div class="flow-arrow">➔</div>
+          <div class="flow-node highlight-node">3月5日：书店要求取消 (预期违约)</div>
+        </div>
+        <div class="flow-arrow">⬇</div>
+        <div class="flow-row">
+          <div class="flow-node">出版商：未作任何回应 (未改变立场/未取消)</div>
+          <div class="flow-arrow">➔</div>
+          <div class="flow-node highlight-node">3月6日：书店要求发货 (成功撤回违约)</div>
+        </div>
+      </div>
+    </div>
+
+    <p><b>具体步骤分析：</b></p>
+    <ol>
+      <li><b>合同的成立（3月4日）：</b> 3月3日书店发送的订单构成<span class="term">要约（offer）</span>。3月4日出版商回复“接受订单”构成有效的<span class="term">承诺（acceptance）</span>。虽然出版商提到了运费条款，但根据 <span class="term">U.C.C. § 2-207</span>，这并不影响合同的成立。</li>
+      <li><b>预期违约的发生（3月5日）：</b> 书店邮件称“无法接受运费，请取消订单”，这构成了明确且无保留的拒绝履行表示，属于<span class="term">预期违约（anticipatory repudiation）</span>。</li>
+      <li><b>撤回的有效性（3月6日）：</b> 3月6日书店要求“请按3月3日的订单发货”，这属于撤回其预期违约的明示。由于在3月5日至3月6日期间，出版商<b>没有回复</b>，既没有取消合同，也没有因为信赖该违约而改变立场（例如将书卖给他人），更没有向书店表示该违约是终局的。因此，书店的撤回完全有效，合同恢复效力。</li>
+      <li><b>出版商的责任：</b> 既然合同已恢复，出版商若不按约定发货，将构成实质性违约，须承担违约赔偿责任。</li>
+    </ol>
+
+    <!-- 【Trap Alert】 -->
+    <div class="trap-alert">
+      <h4>⚠️ 易错陷阱提示</h4>
+      <p><b>陷阱一：误以为预期违约一旦发生，合同就立即永久终止。</b><br>
+      很多考生认为书店在 3 月 5 日说了“取消订单”，合同就彻底没了。实际上，预期违约只是给了非违约方终止合同的“选择权”。如果非违约方“什么都没做”（没有确认取消、没有改变立场、没有起诉），违约方在履行期届满前随时有权“反悔”（即撤回违约）。</p>
+      <p><b>陷阱二：过度纠缠于 U.C.C. § 2-207 格式条款之争（Battle of the Forms）。</b><br>
+      虽然本案涉及运费条款的加入，但核心考点在于书店在 3 月 5 日和 6 日的行为性质。即使运费条款属于新增条款，合同也已经在 3 月 4 日成立，后续的争议属于合同履行与违约撤回的范畴，不应因纠结于“商人间条款是否自动生效”而偏离主线。</p>
+    </div>
+
+    <!-- 【Answer-Choice Breakdown】 -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">正确答案：书店在 3 月 6 日撤回了其预期违约行为</div>
+        <p>书店在 3 月 5 日的邮件构成了预期违约。但在出版商采取任何取消合同、改变立场或宣布违约终局的行为之前，书店于 3 月 6 日发送邮件要求发货，这在法律上构成了有效的撤回（retraction）。合同因此完全恢复，出版商不发货将构成违约。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">错误干扰项 A：书店在 3 月 5 日已明确且无保留地拒绝履行</div>
+        <p>虽然书店在 3 月 5 日的行为确实构成了明确的预期违约，但该选项忽略了书店在 3 月 6 日依法享有的<b>撤回权</b>。由于出版商未作任何信赖改变，撤回已生效，不能再以 3 月 5 日的违约作为不履行的借口。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">错误干扰项 B：出版商 3 月 2 日的邮件并非要约</div>
+        <p>该表述的事实部分正确（3 月 2 日的邮件确实只是价格查询的回复，属于报价邀请，而非要约）。但是，合同是在 3 月 4 日通过书店 3 月 3 日的要约和出版商 3 月 4 日的承诺正式成立的。因此，不能以 3 月 2 日不是要约来否定合同的存在。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">错误干扰项 C：双方均属于商人（Merchants）</div>
+        <p>在 U.C.C. 下，双方是商人这一事实决定了新增条款（运费）是否自动并入合同（U.C.C. § 2-207）。然而，这与预期违约的撤回机制无关。无论双方是否为商人，预期违约的撤回规则均适用，因此该商人的身份并非决定出版商是否违约的直接法律依据。</p>
+      </div>
+
+    </div>
+
+    <!-- 【Exam Tip】 -->
+    <div class="footer-tip">
+      <h4>💡 快速解题捷径 (Exam Shortcut)</h4>
+      <p>在 MBE 考试中，一旦看到<b>“一方先说不履行（Repudiate），随后又反悔要求履行（Retract），而对方在此期间保持沉默或未采取行动”</b>的场景，直接适用<b>撤回有效（Retraction is effective）</b>的规则。此时合同依然存续，拒绝发货的一方必将承担违约责任！</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

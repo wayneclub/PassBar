@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - Contracts Remedies</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px 12px 0 0;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .answer-box .holding {
+      font-size: 18px;
+      font-weight: normal;
+      color: var(--text-color);
+      margin-top: 8px;
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+      overflow-x: auto;
+    }
+
+    .diagram-flow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 600px;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 15px;
+      max-width: 200px;
+      text-align: center;
+    }
+
+    .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-strong);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-size: 20px;
+      color: var(--muted-text);
+      font-weight: bold;
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 22px 0;
+    }
+
+    .trap-alert h4, .rule-block h4 {
+      margin: 0 0 8px 0;
+      color: #b7791f;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .option-analysis {
+      margin-top: 24px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 16px 0;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .option-desc {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--text-color);
+    }
+
+    .option.wrong .option-desc {
+      color: #5c1a1a;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+        font-size: 16px;
+      }
+      .container {
+        padding: 0 12px 20px;
+      }
+      .header {
+        padding: 26px 16px;
+        margin-bottom: 18px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 22px;
+        margin: 24px 0 16px;
+      }
+      h3 {
+        font-size: 18px;
+      }
+      .answer-box {
+        font-size: 18px;
+        padding: 16px 18px;
+      }
+      .concept-box {
+        padding: 16px 18px;
+      }
+      .comparison-table {
+        font-size: 15px;
+      }
+      .comparison-table th, .comparison-table td {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- 【Card Top Header】 -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <p class="sub-title">Contracts — Remedies: Anticipatory Repudiation & Buyer's Cover</p>
+    </div>
+
+    <!-- 【Correct Answer Box】 -->
+    <div class="answer-box">
+      正确答案：A. 否（No），因为买方有权收回购买替代货物的成本。
+      <div class="holding">
+        <strong>判旨要点：</strong>当卖方明确且无条件地表示不履行合同（预期违约）后，买方一旦通过签署替代购买合同（Cover）等方式实质性改变了立场，卖方即丧失撤回违约的权利。买方有权索赔替代购买价与原合同价之间的差额。
+      </div>
+    </div>
+
+    <!-- 【Core Legal Rule】 -->
+    <h2>核心法理：UCC 预期违约与买方补救措施</h2>
+    
+    <div class="concept-box">
+      <div class="concept-title">1. 预期违约（Anticipatory Repudiation）</div>
+      <p>根据《统一商法典》（UCC），在合同履行期届满前，如果一方<strong>明确且无条件地（clearly and unequivocally）</strong>表示其将不履行合同义务，即构成<span class="term">预期违约（anticipatory repudiation）</span>。此时，非违约方（买方）有两种选择：</p>
+      <ul>
+        <li><strong>视作实质性违约：</strong>立即终止合同，并<strong>立即提起违约诉讼</strong>或寻求补救措施。</li>
+        <li><strong>等待履行：</strong>忽略该预期违约，敦促对方履行，并等待履行期届满。</li>
+      </ul>
+    </div>
+
+    <div class="concept-box">
+      <div class="concept-title">2. 替代购买权（Right to Cover）</div>
+      <p>当买方选择将预期违约视为违约时，其最核心的补救措施是进行<span class="term">替代购买（cover）</span>。根据 UCC § 2-712，买方在进行替代购买时必须满足以下条件：</p>
+      <ul>
+        <li><strong>及时且善意：</strong>必须在合理时间内、善意地（promptly & in good faith）购买替代货物。</li>
+        <li><strong>赔偿计算公式：</strong><br>
+          <code>买方可得赔偿 = 替代购买价（Cover Price） - 原合同价（Contract Price） + 附带损失（Incidental Damages） + 间接损失（Consequential Damages） - 节省的费用（Expenses Saved）</code>
+        </li>
+      </ul>
+    </div>
+
+    <div class="concept-box">
+      <div class="concept-title">3. 预期违约的撤回限制（Retraction of Repudiation）</div>
+      <p>违约方在履行期届满前，原则上可以<span class="term">撤回预期违约（retract the repudiation）</span>并按原约定履行。但是，如果非违约方在撤回前已经发生了以下行为，则<strong>违约方丧失撤回权</strong>：</p>
+      <ul>
+        <li>非违约方已向违约方表示其认为该违约是<strong>终局的（final）</strong>；或</li>
+        <li>非违约方因信赖该违约而<strong>实质性改变了立场（materially changed position）</strong>（例如：已与其他供应商签署了替代购买合同）。</li>
+      </ul>
+    </div>
+
+    <!-- 【Concept Comparison Table】 -->
+    <h2>概念对比：撤回预期违约的“允许”与“禁止”</h2>
+    <div style="overflow-x: auto;">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>情形</th>
+            <th>法律后果</th>
+            <th>典型事实表现</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>撤回有效 (Retraction Effective)</strong></td>
+            <td>合同关系恢复，双方须按原约定履行。若买方拒绝收货，买方构成违约。</td>
+            <td>卖方宣告无法交货，但在买方采取任何行动（如寻找新卖家、起诉、宣告合同终止）之前，卖方撤回了该宣告并提供履约保证。</td>
+          </tr>
+          <tr>
+            <td><strong>撤回无效 (Retraction Barred)</strong></td>
+            <td>卖方撤回失败，买方有权拒绝卖方履约，并直接起诉卖方索赔差价。</td>
+            <td>买方在收到卖方违约通知后，<strong>已经与第三方签署了替代购买合同</strong>，或已向法院提起诉讼。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 【Fact/Application Logic】 -->
+    <h2>案件事实与法律逻辑链条</h2>
+    <p>本案中，面包房（买方）与磨坊（卖方）的合同纠纷逻辑演进如下：</p>
+    <ul>
+      <li><strong>第一步：预期违约的成立</strong><br>磨坊在交货期前无正当理由通知面包房“无法供货”，该表态明确且无条件，构成<span class="term">预期违约（anticipatory repudiation）</span>。</li>
+      <li><strong>第二步：买方选择补救措施</strong><br>面包房有权立即将此视为实质性违约，并寻求<span class="term">替代购买（cover）</span>。</li>
+      <li><strong>第三步：替代购买的合理性判定</strong><br>
+        <ul>
+          <li><strong>第二渠道（可靠）：</strong>报价 $120,000。该渠道过去表现良好，面包房与其签约是完全<strong>合理且善意</strong>的。</li>
+          <li><strong>第三渠道（不可靠）：</strong>报价 $100,000。虽然价格较低，但该渠道此前曾有违约记录。面包房出于对及时交货的合理担忧而拒绝该渠道，<strong>不违反减轻损失义务（duty to mitigate）</strong>。</li>
+        </ul>
+      </li>
+      <li><strong>第四步：撤回权的消灭</strong><br>在面包房与第二渠道<strong>正式签署合同后</strong>，磨坊试图撤回其预期违约。由于面包房已经因信赖其违约而<strong>实质性改变了立场（签署了替代合同）</strong>，磨坊的撤回无效。</li>
+      <li><strong>第五步：赔偿金计算</strong><br>面包房有权索赔替代购买差价：<code>$120,000 (替代价) - $100,000 (原合同价) = $20,000</code>。磨坊无法提出有效抗辩。</li>
+    </ul>
+
+    <!-- 【Diagram】 -->
+    <h2>交易流程与撤回权消灭时点</h2>
+    <div class="diagram">
+      <div class="diagram-flow">
+        <div class="flow-node">1. 签署原合同<br>($100,000)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">2. 磨坊预期违约<br>(明确拒绝履行)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node highlight-node">3. 面包房签署替代合同<br>(立场实质改变)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node" style="background: #fee2e2; border-color: #f87171; color: #991b1b;">4. 磨坊试图撤回<br>(【已失效！】)</div>
+      </div>
+      <p style="font-size: 14px; color: var(--muted-text); margin-top: 12px;">※ 关键节点：在步骤 3 发生后，步骤 4 的撤回在法律上已不产生效力。</p>
+    </div>
+
+    <!-- 【Trap Alert】 -->
+    <div class="trap-alert">
+      <h4>⚠️ MBE 常见陷阱提示</h4>
+      <p><strong>陷阱 1：减损义务（Mitigation）的绝对化。</strong><br>
+      MBE 常设干扰项声称“买方必须接受任何更低的报价以减轻损失”。这是错误的。法律只要求<strong>合理的减轻损失（reasonable mitigation）</strong>。买方无需承担不合理的商业风险（undue risk）。拒绝一个曾经违约、信用不佳的供应商（即使其报价极低）是完全合理的。</p>
+      <p><strong>陷阱 2：混淆撤回预期违约的截止点。</strong><br>
+      违约方并不是在“履行期届满前”任何时候都可以无条件撤回。一旦非违约方起诉、宣告合同终止、或<strong>改变了立场（如本案中向他人买货）</strong>，撤回的大门就彻底关闭了。</p>
+    </div>
+
+    <!-- 【Answer-Choice Breakdown】 -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">A. 正确</div>
+        <div class="option-desc">
+          面包房有权获得替代购买的差价赔偿。磨坊的预期违约赋予了面包房立即寻求替代货物的权利。一旦面包房与第二渠道签署了合同，磨坊便失去了撤回违约并要求履行原合同的机会。
+        </div>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. 错误</div>
+        <div class="option-desc">
+          该选项认为“一旦磨坊做出预期违约的表示，就<strong>立即且自动</strong>失去了履约机会”。这不符合法律规定。在买方改变立场、起诉或宣告合同终止之前，预期违约方实际上是有机会撤回并继续履约的。磨坊失去机会是因为面包房<strong>已经签署了替代合同</strong>，而不是在磨坊口头违约的瞬间自动失去。
+        </div>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">C. 错误</div>
+        <div class="option-desc">
+          该选项认为“面包房必须接受第三渠道的低价以履行减损义务”。如前所述，第三渠道过去曾有无法交付的劣迹，面包房对其履约能力产生合理怀疑是正当的。强迫买方与不诚信或不稳定的商家交易属于“不合理风险”，不属于减损义务的强制范围。
+        </div>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">D. 错误</div>
+        <div class="option-desc">
+          该选项认为“磨坊在原定履行期之前撤回了违约，因此抗辩成功”。这忽略了撤回权消灭的限制条件。磨坊试图撤回时，面包房已经与第二渠道缔结了具有约束力的替代合同，立场已发生实质性改变，因此磨坊的撤回在法律上是无效的。
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 【Exam Tip】 -->
+    <div class="footer-tip">
+      <strong>💡 考试速通决策树：</strong><br>
+      收到预期违约通知 ➔ 寻找替代商家 ➔ <strong>一旦签署新合同（Cover Contract）</strong> ➔ 违约方撤回权锁死 ➔ 违约方必输 ➔ 赔偿金 = <code>新合同价 - 旧合同价</code>。
+    </div>
+
+  </div>
+</body>
+</html>

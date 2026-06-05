@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - Torts</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px 12px 0 0;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    /* Component Styles */
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .diagram-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.active {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-weight: bold;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .case-box {
+      background: var(--highlight-bg);
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 20px 0;
+    }
+
+    .option-analysis {
+      margin-top: 24px;
+    }
+
+    .option {
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    /* Responsive Rules */
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 12px 20px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      p, li, .latin {
+        font-size: 16px;
+      }
+      .comparison-table-wrapper {
+        overflow-x: auto;
+      }
+      .comparison-table {
+        font-size: 15px;
+      }
+      .diagram-row {
+        flex-direction: column;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Torts (侵权法) — Intentional Torts: False Imprisonment</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：A. 否，因为原告在去编程员家中并未受到实际拘禁（not actually confined）。
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法律规则</h2>
+    <div class="concept-box">
+      <div class="concept-title">非法拘禁罪/侵权（False Imprisonment）</div>
+      <p>要成功提起 <span class="term">非法拘禁（false imprisonment）</span> 诉讼，原告必须证明以下四个核心构成要件：</p>
+      <ol>
+        <li>被告具有将原告限制或拘禁在特定区域内的<strong>意图（intent to confine）</strong>；</li>
+        <li>被告的行为<strong>导致了原告的实际拘禁（caused the plaintiff's confinement）</strong>，或者被告在负有释放义务时未能履行该义务；</li>
+        <li>原告在拘禁发生时<strong>意识到了拘禁（conscious of the confinement）</strong>，或者因拘禁受到了<strong>实际身体伤害（harmed by it）</strong>；</li>
+        <li>原告对该拘禁<strong>未予同意（did not consent）</strong>。</li>
+      </ol>
+    </div>
+
+    <h3>拘禁的认定与“安全出口”例外</h3>
+    <p>拘禁可以通过多种方式实现，包括物理屏障、物理暴力或威胁、胁迫、主张法律权威以及拒绝释放。然而，法律上存在一个关键的抗辩/否定要件：</p>
+    <div class="rule-block">
+      <strong>安全出口规则（Safe Exit Rule）：</strong><br>
+      如果原告<strong>知晓（knows）</strong>存在一个<strong>易得的、可行的且安全的（readily available, feasible, and safe）</strong>逃生或离开途径，则原告在法律上<strong>不构成被拘禁（not confined）</strong>。
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h2>要件深度解析</h2>
+    <div class="comparison-table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>拘禁成立的情形 (Confinement)</th>
+            <th>不构成拘禁的情形 (No Confinement)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>物理屏障（Physical Barrier）：</strong><br>
+              原告被锁在房间内，没有任何可以安全离开的出口。
+            </td>
+            <td>
+              <strong>存在已知安全出口：</strong><br>
+              虽然大门被锁，但原告明知旁边有一扇未锁且容易通过的窗户，可以直接安全走到街上。
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>危险的逃生途径：</strong><br>
+              唯一的出口需要原告从三楼跳下，或者需要穿过有恶犬看守的院子（不属于“安全”或“可行”的途径）。
+            </td>
+            <td>
+              <strong>可行的求助途径：</strong><br>
+              原告拥有充足的机会直接开门离开，或者可以随时拨打电话联系警察求助，且原告对此完全知情。
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Fact/Application Logic -->
+    <h2>案情深度剖析</h2>
+    <p>在本案中，原告的父母将其带到反洗脑专家（cult deprogrammer）的家中。虽然专家的房屋在物理上是一个封闭空间，且原告最初违背了自己的意愿（against her will），但案情明确指出：</p>
+    <ul>
+      <li>原告在到达时即<strong>明知（knew upon arrival）</strong>自己有<strong>充足的机会离开（ample opportunity to leave）</strong>或<strong>联系警察（contact the police）</strong>。</li>
+      <li>这意味着原告随时拥有一个“易得、可行且安全”的脱身途径。</li>
+      <li>由于原告并非处于无法逃避的受控状态，其在法律上<strong>并未受到实际拘禁（not actually confined）</strong>。</li>
+    </ul>
+    <p>因此，由于缺乏“实际拘禁”这一核心客观要件，原告对反洗脑专家提起的非法拘禁诉讼将无法获得支持。</p>
+
+    <!-- Diagram -->
+    <h2>逻辑图解</h2>
+    <div class="diagram">
+      <div class="diagram-container">
+        <div class="diagram-row">
+          <div class="flow-node">被告意图限制原告</div>
+          <div class="flow-arrow">➔</div>
+          <div class="flow-node">原告违背意愿进入特定空间</div>
+        </div>
+        <div class="flow-arrow">▼</div>
+        <div class="diagram-row">
+          <div class="flow-node active">是否存在已知、安全、可行的逃生途径？</div>
+        </div>
+        <div class="flow-arrow">▼</div>
+        <div class="diagram-row">
+          <div class="flow-node" style="background: #ffe3e3; border-color: #ff8787; color: #c92a2a;">【是】(如本案：可随时离开或报警)</div>
+          <div class="flow-arrow">➔</div>
+          <div class="flow-node" style="background: #f1f3f5; border-color: #adb5bd; color: #495057;">不构成实际拘禁 (No Confinement)</div>
+        </div>
+        <div class="flow-arrow">▼</div>
+        <div class="diagram-row">
+          <div class="flow-node" style="background: #ebfbee; border-color: #40c057; color: #2b8a3e;">【否】(无安全出口或原告不知情)</div>
+          <div class="flow-arrow">➔</div>
+          <div class="flow-node" style="background: #e8f4f8; border-color: var(--accent-color); color: var(--primary-ink);">构成实际拘禁 ➔ 诉讼可能成功</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <strong>⚠️ MBE 常见陷阱：</strong><br>
+      <ol>
+        <li><strong>“结果良好”不免责：</strong> 即使原告在离开后 grades 提高、生活变好（即没有遭受实质损害），这也不能作为免除故意侵权责任的理由。故意侵权（如 False Imprisonment）通常不以造成实际身体或财产损害为必要前提，只要原告意识到拘禁即可。</li>
+        <li><strong>“违背意愿”不等于“法律拘禁”：</strong> 仅仅证明“违背意愿（against will）”或“被告有拘禁意图（intent to confine）”是不够的。如果客观上存在原告明知的安全逃生通道，法律上即阻却“拘禁”的成立。</li>
+      </ol>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">A. 正确</div>
+        <p>如上所述，非法拘禁要求存在实际的拘禁。因为原告明知自己有随时安全离开或报警的充足机会，因此在法律上不构成实际拘禁（not actually confined）。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. 错误</div>
+        <p>该选项认为原告不能起诉是因为“没有受到伤害（not harmed）”。这是错误的法律陈述。在绝大多数司法管辖区，非法拘禁属于 <span class="latin">actionable per se</span>（自身即可诉的侵权行为）。只要原告在拘禁期间<strong>意识到了（conscious of）</strong>拘禁，即使没有遭受任何实际的身体或精神损害，也可以主张名义赔偿（nominal damages）并胜诉。本案败诉的根本原因在于“根本不存在拘禁”，而非“没有损害”。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">C. 错误</div>
+        <p>该选项仅强调了被告的“主观意图（intended to confine）”。虽然被告确实有拘禁原告的意图，但故意侵权必须同时满足主观意图与客观行为/结果。由于安全出口的存在，客观上并未造成实际拘禁的结果，因此仅有主观意图不能成立侵权。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">D. 错误</div>
+        <p>该选项错误地断定被告实施了“非法拘禁”。它混淆了“违背原告意愿（against her will）”与“法律上的实际拘禁”。由于原告知道自己随时可以自由离开，因此不存在法律意义上的拘禁行为。</p>
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <strong>💡 考试速记口诀：</strong><br>
+      做 False Imprisonment 题目时，先看<strong>“门锁没锁”</strong>。如果锁了，再看<strong>“有没有窗户可以爬”</strong>（即是否有安全、可行的出口）。如果原告明明知道有扇没锁的窗户可以轻松走出去，却非要坐在屋里哭，那在法律上他就<strong>没有被拘禁</strong>！
+    </div>
+
+  </div>
+
+</body>
+</html>

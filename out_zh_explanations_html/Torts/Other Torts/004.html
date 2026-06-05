@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - Invasion of Privacy</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.active {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .arrow {
+      font-weight: bold;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 22px 0;
+    }
+
+    .trap-alert h4 {
+      margin: 0 0 8px 0;
+      color: #b25e00;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .option-analysis {
+      margin-top: 24px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 16px 0;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-label {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+      }
+      .container {
+        padding: 0 12px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table {
+        font-size: 15px;
+      }
+      .table-wrapper {
+        overflow-x: auto;
+      }
+      .diagram-container {
+        flex-direction: column;
+      }
+      .arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Torts — Other Torts: Invasion of Privacy</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：C. Publicity in a false light (虚假光晕)
+    </div>
+    <p><strong>核心裁决：</strong>当被告向公众传播关于原告的虚假信息，且该虚假信息使原告陷入高度令人反感（highly offensive）的虚假形象中，并伴随实际恶意（actual malice）时，原告可依“虚假光晕”理论主张隐私权受侵害。本案中杂志社发表不实报道暗示助学金会成员参与违规招募，导致其被开除，完全符合该侵权行为的构成要件。</p>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法律规则</h2>
+    <div class="concept-box">
+      <div class="concept-title">虚假光晕侵权构成要件 (Publicity in a False Light)</div>
+      <p>隐私权侵权中的<span class="term">虚假光晕（publicity in a false light）</span>要求原告证明以下四个要素：</p>
+      <ol>
+        <li><strong>公开传播虚假信息 (Publicity of False Information)：</strong>被告将关于原告的虚假信息公之于众，使原告陷入虚假形象中（要求向大众或不特定多数人传播，而非仅向少数人披露）。</li>
+        <li><strong>高度令人反感 (Highly Offensive)：</strong>该虚假形象对一个合理的普通人（reasonable person）而言是高度令人难堪、反感或痛苦的。</li>
+        <li><strong>实际恶意 (Actual Malice)：</strong>如果涉及公共事务或公共人物，原告必须证明被告在发表时具有实际恶意，即明知其虚假（knowledge of falsity）或轻率地不顾其真实性（reckless disregard for its truthfulness）。</li>
+        <li><strong>实际损害 (Damages)：</strong>原告因此遭受了实际损害（例如名誉受损、被俱乐部开除、精神痛苦等）。</li>
+      </ol>
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h2>隐私权四大侵权行为对比</h2>
+    <div class="table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>侵权类型 (Tort Type)</th>
+            <th>核心定义 (Core Definition)</th>
+            <th>关键特征 (Key Feature)</th>
+            <th>本案适用性分析</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Intrusion upon seclusion</strong><br>(侵入私密空间)</td>
+            <td>故意侵入原告的私密领域或私人事务，且该侵入高度令人反感。</td>
+            <td><strong>无需公开传播</strong>；针对的是“获取信息”时的侵扰行为。</td>
+            <td>❌ <strong>不适用</strong>。四分卫是自愿接受采访并透露其居住情况的，不存在对原告私密空间的物理或违背意愿的侵入。</td>
+          </tr>
+          <tr>
+            <td><strong>Appropriation of likeness</strong><br>(盗用姓名/肖像)</td>
+            <td>未经授权将原告的姓名或肖像用于商业利益（如广告代言）。</td>
+            <td>必须以<strong>商业推广/代言</strong>为目的。</td>
+            <td>❌ <strong>不适用</strong>。杂志社是在新闻报道中使用原告信息，而非用于商业广告。</td>
+          </tr>
+          <tr>
+            <td><strong>Public disclosure of private facts</strong><br>(公开私人事实)</td>
+            <td>公开传播高度令人反感且非公共关注的<strong>真实</strong>私人事实。</td>
+            <td>披露的信息必须是<strong>真实的</strong>。</td>
+            <td>❌ <strong>不适用</strong>。原告明确主张报道内容是<strong>虚假的</strong>（四分卫实际上干了活），因此不能依此理论索赔。</td>
+          </tr>
+          <tr>
+            <td><strong>Publicity in a false light</strong><br>(虚假光晕)</td>
+            <td>公开传播<strong>虚假</strong>信息，使原告陷入高度令人反感的虚假形象中。</td>
+            <td>披露的信息必须是<strong>虚假的</strong>，且需证明实际恶意。</td>
+            <td>✅ <strong>完美适用</strong>。报道虚假，且原告主张杂志社具有实际恶意（reckless disregard）。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Fact/Application Logic -->
+    <h2>案件事实与逻辑推导</h2>
+    <p>本案中，原告（助学金俱乐部成员）的起诉完全满足了<span class="term">虚假光晕（false light）</span>的全部构成要件：</p>
+    <ul>
+      <li><strong>公开传播 (Publicity)：</strong>被告是一家“流行体育杂志”，其发表的调查性文章面向公众发行，满足了“向大众公开传播”的要求。</li>
+      <li><strong>虚假性 (Falsity)：</strong>文章暗示原告通过提供“挂名工作”（不干活白拿钱）来违规招募球员。原告主张四分卫实际上在农场干了零活，证明报道内容具有虚假性。</li>
+      <li><strong>高度令人反感 (Highly Offensive)：</strong>在大学体育界，违规招募和向球员变相行贿属于严重违规行为。报道使原告在公众眼中呈现为“违规招募的帮凶”，导致公众强烈愤慨并使其被俱乐部开除，这显然对理性人而言是高度令人反感的。</li>
+      <li><strong>实际恶意 (Actual Malice)：</strong>原告指控杂志社在发表文章时具有“轻率地不顾事实真相”（reckless disregard for its truthfulness）的主观状态，这完全符合宪法要求的实际恶意标准。</li>
+    </ul>
+
+    <!-- Diagram -->
+    <h2>逻辑关系图解</h2>
+    <div class="diagram">
+      <div class="diagram-container">
+        <div class="flow-node">杂志社发表文章 (Publicity)</div>
+        <div class="arrow">➔</div>
+        <div class="flow-node">虚假陈述：挂名不干活 (Falsehood)</div>
+        <div class="arrow">➔</div>
+        <div class="flow-node active">公众愤怒/被开除 (Highly Offensive & Damages)</div>
+      </div>
+      <div style="margin-top: 15px; font-size: 16px; color: var(--muted-text);">
+        同时满足主观要件：<strong>轻率不顾真相 (Reckless Disregard) ➔ 实际恶意 (Actual Malice) 成立</strong>
+      </div>
+    </div>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <h4>⚠️ 避坑指南：MBE 经典干扰项拆解</h4>
+      <p><strong>1. 警惕口头诽谤 (Slander) 与书面诽谤 (Libel) 的媒介陷阱：</strong></p>
+      <p>本案中，虚假报道确实损害了原告的名誉，可能构成名誉侵权（Defamation）。但是，由于虚假信息是通过<strong>杂志（印刷媒体）</strong>传播的，这在法律上属于 <span class="term">书面诽谤（libel）</span>，而非 <span class="term">口头诽谤（slander）</span>。选项 D 故意给出 Slander，属于媒介类型混淆陷阱。</p>
+      <p><strong>2. 区分 False Light 与 Public Disclosure of Private Facts 的“真假”对立：</strong></p>
+      <p>这是 MBE 最常考的对比点：<strong>公开私人事实（Private Facts）</strong>必须基于<strong>真实</strong>的事实；而<strong>虚假光晕（False Light）</strong>必须基于<strong>虚假</strong>的事实。一旦原告声称“被告说谎/报道不实”，立即排除 Private Facts 选项。</p>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option wrong">
+        <span class="option-label">A. 错误 ｜ Intrusion upon seclusion</span>
+        <p><strong>解析：</strong>侵入私密空间侵权关注的是被告通过违背原告意愿的手段（如窃听、偷拍、非法搜查）侵入原告的私人领域。本案中，四分卫是自愿接受杂志社采访并透露其居住和工作情况的，杂志社并没有采取任何违背意愿的侵入或窥探行为，因此该理论不适用。</p>
+      </div>
+
+      <div class="option wrong">
+        <span class="option-label">B. 错误 ｜ Public disclosure of private facts</span>
+        <p><strong>解析：</strong>公开私人事实侵权的前提是被告披露了<strong>真实</strong>的隐私。而本案中，原告起诉的逻辑核心在于“四分卫实际上干了活，报道是不真实的”。既然原告主张报道内容是<strong>虚假</strong>的，就不能适用公开私人事实理论。</p>
+      </div>
+
+      <div class="option correct">
+        <span class="option-label">C. 正确 ｜ Publicity in a false light</span>
+        <p><strong>解析：</strong>如前所述，杂志社公开发表了关于原告的虚假报道，使其陷入“违规招募帮凶”的高度令人反感的虚假形象中，且原告指控其具有实际恶意并因此遭受了被开除的实际损害，完全符合虚假光晕的全部要件，是最有可能获得支持的诉由。</p>
+      </div>
+
+      <div class="option wrong">
+        <span class="option-label">D. 错误 ｜ Slander</span>
+        <p><strong>解析：</strong>虽然杂志社的虚假报道损害了原告的名誉，但通过报纸、杂志、书籍或广播等持久性媒介传播的诽谤属于 <span class="term">书面诽谤（libel）</span>。口头诽谤（slander）仅适用于口头言语或非持久性的手势。因此，原告不能依 Slander 理论获得救济。</p>
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <strong>💡 快速做题决策树：</strong><br>
+      1. 被告传播的信息是<strong>真的</strong>吗？ ➔ 是 ➔ 考虑 <strong>Public Disclosure of Private Facts</strong>。<br>
+      2. 被告传播的信息是<strong>假的</strong>吗？ ➔ 是 ➔ 考虑 <strong>False Light</strong> 或 <strong>Defamation</strong>。<br>
+      3. 如果是假信息且损害名誉，媒介是<strong>书面/印刷</strong>还是<strong>口头</strong>？ ➔ 书面 ➔ <strong>Libel</strong>（排除 Slander）。
+    </div>
+
+  </div>
+
+</body>
+</html>

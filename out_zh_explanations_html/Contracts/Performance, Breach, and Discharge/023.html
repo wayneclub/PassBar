@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBE Contracts Analysis</title>
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --highlight-bg: #e8f4f8;
+        --correct-color: #27ae60;
+        --wrong-color: #c0392b;
+        --text-color: #333;
+        --bg-color: #f4f4f4;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+    }
+    .container {
+        max-width: 480px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h2 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .header span {
+        font-size: 0.8rem;
+        opacity: 0.9;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .concept-box {
+        background: var(--highlight-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+    .concept-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        display: block;
+    }
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+        font-size: 0.9rem;
+    }
+    .comparison-table th {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 8px;
+        text-align: left;
+    }
+    .comparison-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        vertical-align: top;
+    }
+    .analysis-section {
+        margin-top: 20px;
+    }
+    .step {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+    .step-icon {
+        background: var(--accent-color);
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+    .answer-box {
+        border: 2px solid var(--correct-color);
+        background-color: #e9f7ef;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+    .answer-title {
+        color: var(--correct-color);
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .exam-tip {
+        background: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 0.9rem;
+    }
+    .latin {
+        font-style: italic;
+        color: #555;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <span>MBE Contracts</span>
+        <h2>满意度条款与付款条件</h2>
+        <div style="font-size: 0.8rem; margin-top: 5px;">Conditions of Satisfaction</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点讲解 -->
+        <div class="concept-box">
+            <span class="concept-title">📚 核心考点：满意度条件 (Condition of Satisfaction)</span>
+            <p>在合同法中，当一方的付款义务取决于其对另一方履行的“满意”时，这是一个<b>先决条件 (Condition Precedent)</b>。如果条件未满足，付款义务就不会产生。</p>
+            <p>MBE 考试中，判断标准分为两类：</p>
+        </div>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th width="50%">客观标准<br><small>(Objective)</small></th>
+                    <th width="50%">主观标准<br><small>(Subjective)</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>适用场景：</b><br>商业价值、机械效用、功能性合同。<br>(Commercial value, utility)</td>
+                    <td><b>适用场景：</b><br>个人品味、审美、艺术性合同。<br>(Personal taste, aesthetics)</td>
+                </tr>
+                <tr>
+                    <td><b>判断依据：</b><br>通情达理的人是否会满意？<br>(Reasonable Person Standard)</td>
+                    <td><b>判断依据：</b><br>当事人个人是否真的满意？<br>(Personal Satisfaction)</td>
+                </tr>
+                <tr>
+                    <td><b>限制：</b><br>即使当事人说不满意，如果合理人满意，则条件满足。</td>
+                    <td><b>限制：</b><br>必须是<b>诚实且善意</b>的不满意 (Honest and in Good Faith)。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 题目解析 -->
+        <div class="analysis-section">
+            <h3 style="color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 5px;">本题案情分析</h3>
+            
+            <div class="step">
+                <div class="step-icon">1</div>
+                <div>
+                    <strong>合同性质：</strong>厨房翻新，特别是涉及“橱柜饰面”(finish on the cabinets)。这属于<b>审美与个人品味 (Aesthetics)</b> 的范畴，而非单纯的结构功能。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">2</div>
+                <div>
+                    <strong>合同条款：</strong>明确约定 "subject to the homeowner's <b>complete personal satisfaction</b>"（取决于房主完全的个人满意）。这加强了适用主观标准的理由。
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">3</div>
+                <div>
+                    <strong>关键事实：</strong>题目指出房主是 "<b>truthfully</b> saying"（如实地说）她不喜欢。这证明她的不满意是<b>善意的 (Good Faith)</b>，并非为了赖账而撒谎。
+                </div>
+            </div>
+        </div>
+
+        <!-- 正确答案解释 -->
+        <div class="answer-box">
+            <div class="answer-title">✅ 正确答案：A</div>
+            <p><b>"No, because a condition to the homeowner's obligation to pay was not satisfied."</b></p>
+            <p>由于适用<b>主观标准</b>，且房主的不满意是诚实的（Good Faith），因此付款的<b>先决条件未满足</b>。条件未满足意味着付款义务未到期，房主拒绝付款不构成违约。</p>
+        </div>
+
+        <!-- 错误选项辨析 -->
+        <div style="margin-top: 15px; font-size: 0.9rem; color: #555;">
+            <p>❌ <b>选项 B 错误：</b> 承包商没有违反诚信义务。提供房主主观不喜欢的材料并不等同于材料本身有质量缺陷或恶意行为。</p>
+            <p>❌ <b>选项 C 错误：</b> 房主没有违约。在主观标准下，她不需要“合理理由” (Justification)，只需要“诚实” (Honest)。只有在客观标准下才需要看理由是否合理。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 快速解题技巧：</strong>
+            <br>看到 "Satisfaction" 条款时，立即进行两步判断：
+            <ol style="padding-left: 20px; margin: 5px 0;">
+                <li><b>看对象：</b>是修水管/造机器（客观标准），还是画肖像/装修风格（主观标准）？</li>
+                <li><b>看心态：</b>如果是主观标准，题目中是否出现了 "Honestly", "Truthfully", "Good faith" 等词？如果有，房主这就赢了。</li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

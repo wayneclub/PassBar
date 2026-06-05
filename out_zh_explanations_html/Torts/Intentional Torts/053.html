@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - Torts</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-title {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--primary-ink);
+      margin-bottom: 16px;
+    }
+
+    .flow-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      min-width: 140px;
+      text-align: center;
+    }
+
+    .flow-node.active {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-weight: 800;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 22px 0;
+    }
+
+    .trap-alert-title {
+      font-weight: 800;
+      color: #b25900;
+      margin-bottom: 6px;
+      font-size: 19px;
+    }
+
+    .option-analysis {
+      margin-top: 30px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 16px 0;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 12px 20px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+      .flow-container {
+        flex-direction: column;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Torts — Intentional Torts: Assault & Requisite Intent</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：C. 同学有极大概率在袭扰罪（Assault）诉讼中胜诉，因为该青少年行为时具备法定的“故意”（Intent）。
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法律原理</h2>
+    
+    <div class="concept-box">
+      <div class="concept-title">袭扰罪（Assault）的构成要件</div>
+      <p>在侵权法中，<span class="term">袭扰罪（assault）</span>是指被告人<b>故意</b>使原告产生对<b>即刻发生的、伤害性或冒犯性身体接触</b>的<b>合理预见（anticipation/apprehension）</b>，且被告人的积极行为确实导致了原告产生该种预见。</p>
+      <p>袭扰罪的成立必须满足以下两个核心要件：</p>
+      <ul>
+        <li><b>主观故意（Intent）：</b> 被告人必须具备导致原告产生上述预见的“故意”。</li>
+        <li><b>客观结果（Anticipation）：</b> 被告人的行为导致原告合理地预见到即刻发生的身体接触（无需实际发生接触）。</li>
+      </ul>
+    </div>
+
+    <h3>故意（Intent）的双重定义</h3>
+    <p>在故意侵权行为（Intentional Torts）中，满足主观“故意”并不要求被告人必须怀有恶意或伤害对方的恶念。法律上，故意可以通过以下<b>两种途径</b>之一来证明：</p>
+    
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>故意类型</th>
+          <th>法律定义</th>
+          <th>本案适用与具象化（以雪仗为例）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>目的（Purpose）</b></td>
+          <td>被告人主观上<b>渴望（desire）</b>该结果发生。</td>
+          <td>女孩扔出雪球，主观上<b>渴望/想要</b>砸中男孩 A。</td>
+        </tr>
+          <td><b>明知（Knowledge）</b></td>
+          <td>被告人主观上<b>实质确定（substantially certain）</b>其行为会导致该结果发生（即使其主观目的并非如此）。</td>
+          <td>女孩朝男孩 A 扔雪球，她知道男孩 B 紧挨着 A 站着，她扔雪球的行为<b>实质上必然（substantially certain）</b>也会砸中或波及男孩 B（即使她并不想砸 B）。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Fact/Application Logic -->
+    <h2>案情深度剖析与逻辑推导</h2>
+    <p>在本案中，青少年的行为完全符合袭扰罪的构成要件：</p>
+    
+    <div class="diagram">
+      <div class="diagram-title">袭扰罪（Assault）逻辑传导链条</div>
+      <div class="flow-container">
+        <div class="flow-node">积极行为<br><small>(骑车冲向同学)</small></div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node active">主观明知<br><small>(实质确定对方会害怕)</small></div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">客观结果<br><small>(同学恐慌/预见接触)</small></div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node active">袭扰罪成立<br><small>(Assault Liable)</small></div>
+      </div>
+    </div>
+
+    <ol>
+      <li><b>被告人的主观状态（故意）：</b> 
+        虽然青少年“并非故意（not purposefully）想要伤害或接触”同学，但她快速骑车冲向同学时，<b>明知（knowing）</b>按照当前的轨迹，同学<b>必然会认为</b>自己会被撞到。这种“明知”在法律上等同于<span class="term">实质确定性（substantial certainty）</span>。因此，她具备了使同学产生“即刻身体接触恐惧/预见”的法定<b>故意（intent）</b>。
+      </li>
+      <li><b>原告的客观反应（预见）：</b> 
+        同学看到青少年冲过来，大喊让其停止，并因害怕被撞而引发了恐慌发作（panic attack）。这表明同学确实产生了对“即刻发生的伤害性接触”的<b>合理预见（anticipation）</b>。
+      </li>
+      <li><b>因果关系：</b> 
+        青少年的骑车行为直接导致了同学的这一预见。虽然青少年在最后一刻避开了，没有发生实际物理接触，但这并不影响袭扰罪（Assault）的成立。
+      </li>
+    </ol>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <div class="trap-alert-title">⚠️ 避坑指南：MBE 常见陷阱</div>
+      <p><b>陷阱 1：混淆“目的（Purpose）”与“明知（Knowledge）”</b><br>
+      许多考生误以为，只要被告人主观上没有“伤害对方的意图（purpose to harm）”，就不构成故意侵权。请牢记：只要被告人<b>明知</b>其行为<b>实质上必然</b>会导致该结果，即构成侵权法上的故意。</p>
+      <p><b>陷阱 2：混淆袭扰罪（Assault）与殴打罪（Battery）</b><br>
+      袭扰罪（Assault）保护的是精神免受即刻接触之恐慌的权利，<b>不需要任何实际的身体接触</b>。一旦发生实际接触，则可能构成殴打罪（Battery）。本案中青少年在最后一刻避开，无接触，因此不构成 Battery，但完美契合 Assault。</p>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">C. 正确</div>
+        <p><b>解析：</b>如上所述，青少年在骑车冲向同学时，明知对方会认为自己将被撞上。这种“明知”满足了故意侵权法中对“故意（intent）”的法定要求（即实质确定性）。因此，同学有极大概率胜诉。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">A. 错误</div>
+        <p><b>解析：</b>该选项认为“因为青少年没有与同学发生实际接触，所以不构成袭扰”。这是典型的混淆概念。<span class="term">殴打罪（battery）</span>才需要实际的身体接触，而<span class="term">袭扰罪（assault）</span>仅要求原告产生对即刻接触的<b>预见（anticipation）</b>，实际未接触完全不影响袭扰罪的成立。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. 错误</div>
+        <p><b>解析：</b>该选项认为“因为青少年并非故意（not purposefully）想要伤害或接触同学，所以不承担责任”。这忽略了故意的第二种形式——“明知（knowledge）”。被告人无需怀有恶意或主动追求伤害结果，只要实质上确定该结果会发生，即满足故意要件。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">D. 错误</div>
+        <p><b>解析：</b>该选项试图引入“极端且恶劣的行为（extreme and outrageous conduct）”这一标准。这是<span class="term">故意造成严重情绪困扰罪（IIED）</span>的特有构成要件。而本案起诉的是袭扰罪（Assault），袭扰罪并不要求被告人的行为达到“极端且恶劣”的程度，只需满足故意和导致即刻接触预见即可。</p>
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <b>💡 考试通关绝招（Takeaway）：</b><br>
+      在 MBE 侵权法职业考试中，看到“A did not intend to harm B, but knew that B would...”时，立刻联想 <b>Intent = Purpose OR Knowledge (Substantial Certainty)</b>。只要有“Knowledge”，故意即宣告成立！
+    </div>
+
+  </div>
+
+</body>
+</html>

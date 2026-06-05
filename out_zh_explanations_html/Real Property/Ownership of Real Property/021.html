@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点深度解析</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px 12px 0 0;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      margin-top: 15px;
+    }
+
+    .diagram-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .flow-node, .party-box {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.active, .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .arrow {
+      color: var(--muted-text);
+      font-weight: bold;
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 22px 0;
+    }
+
+    .option-analysis {
+      margin-top: 28px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 16px 0;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+      }
+      .container {
+        padding: 0 12px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table {
+        font-size: 15px;
+      }
+      .table-wrapper {
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- 【Card Top Header】 -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Real Property: Landlord & Tenant — Assignments vs. Licenses</div>
+    </div>
+
+    <!-- 【Correct Answer Box】 -->
+    <div class="answer-box">
+      正确答案：A. 承租人并未违反租约，因为其向朋友授予的仅为许可（license），而非转让（assignment）。
+    </div>
+
+    <!-- 【Core Legal Rule】 -->
+    <h2>核心法理：转让（Assignment）与许可（License）的本质区别</h2>
+    <div class="concept-box">
+      <div class="concept-title">1. 转让（Assignment）</div>
+      <p>在普通法中，<span class="term">转让（assignment）</span>是指承租人将其在租约项下的<b>全部或部分占有性权益（possessory interest）</b>，在剩余的全部租期内，转移给第三方的行为。转让会使新承租人与房东之间建立<span class="term">产权关系（privity of estate）</span>。</p>
+    </div>
+
+    <div class="concept-box">
+      <div class="concept-title">2. 许可（License）</div>
+      <p><span class="term">许可（license）</span>是指土地所有人或承租人授予他人的一项<b>非占有性（nonpossessory）且通常非排他性（nonexclusive）的权利</b>，允许其为了<b>特定目的（specific purpose）</b>进入并使用该物业。许可不转移任何占有权，仅属于个人特权，通常可随时撤销。因此，授予许可<b>不构成转让</b>，亦不违反租约中“禁止转让”的限制性条款。</p>
+    </div>
+
+    <!-- 【Concept Comparison Table】 -->
+    <h2>概念对比：转让、转租与许可</h2>
+    <div class="table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>法律概念</th>
+            <th>权利性质</th>
+            <th>占有权转移（Possession）</th>
+            <th>是否违反“反转让条款”？</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong class="term">转让（Assignment）</strong></td>
+            <td>占有性权益（Possessory）</td>
+            <td>转移剩余租期内的全部或部分空间占有权</td>
+            <td><b style="color: #c0392b;">是</b>（直接触发并违反该条款）</td>
+          </tr>
+          <tr>
+            <td><strong class="term">转租（Sublease）</strong></td>
+            <td>占有性权益（Possessory）</td>
+            <td>转移短于剩余租期的占有权（承租人保留复归权）</td>
+            <td><b>视条款而定</b>（通常与转让分开规制）</td>
+          </tr>
+          <tr>
+            <td><strong class="term">许可（License）</strong></td>
+            <td>非占有性权利（Nonpossessory）</td>
+            <td>不转移占有权，仅允许为特定目的使用</td>
+            <td><b style="color: #27ae60;">否</b>（不属于转让，不违反该条款）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 【Fact/Application Logic】 -->
+    <h2>案情适用与逻辑推导</h2>
+    <p>本案中，书面租约明确禁止承租人在未经房东允许的情况下<span class="term">转让（assign）</span>零售空间。然而，承租人的行为并未构成转让：</p>
+    <ul>
+      <li><b>行为实质：</b>承租人仅允许其朋友使用后房的一个衣帽间（closet）来存放个人物品（storing her belongings）。</li>
+      <li><b>权利属性：</b>这是一种为了特定目的（存放物品）而享有的<b>非占有性使用权</b>，在法律上属于典型的<span class="term">许可（license）</span>。</li>
+      <li><b>结论：</b>由于承租人并未向朋友转移任何租约项下的占有性权益，因此不存在转让行为，承租人没有违反租约。</li>
+    </ul>
+
+    <!-- 【Diagram】 -->
+    <h2>法律关系示意图</h2>
+    <div class="diagram">
+      <div class="diagram-container">
+        <div class="diagram-row">
+          <div class="party-box">房东 (Landlord)</div>
+          <span class="arrow"> ── (租约：禁止未经同意转让) ── </span>
+          <div class="party-box">承租人 (Tenant)</div>
+        </div>
+        <div style="margin: 10px 0; font-weight: bold; color: var(--accent-strong);">承租人后续行为分析：</div>
+        <div class="diagram-row">
+          <div class="flow-node">转让 (Assignment)</div>
+          <span class="arrow">➔</span>
+          <div style="text-align: left; font-size: 15px; color: var(--muted-text);">
+            转移占有权 ➔ <b style="color: #c0392b;">违约 (Violation)</b>
+          </div>
+        </div>
+        <div class="diagram-row">
+          <div class="flow-node active">许可 (License)</div>
+          <span class="arrow">➔</span>
+          <div style="text-align: left; font-size: 15px; color: var(--correct-text);">
+            仅限特定目的使用（如：后房衣帽间储物） ➔ <b style="color: #27ae60;">未违约 (No Violation)</b>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 【Trap Alert】 -->
+    <div class="trap-alert">
+      <strong>⚠️ MBE 常见陷阱提示：</strong>
+      <p><b>陷阱一：空间大小的误导（Choice B）。</b>转让可以是“部分的”（partial assignment），即仅转让承租物业中特定物理区域的剩余租期占有权。因此，不能仅凭“朋友没有使用整个零售空间”就断定其不构成转让。不构成转让的根本原因在于<b>权利的非占有性质（许可）</b>，而非空间的大小。</p>
+      <p><b>陷阱二：时间跨度的误导（Choice D）。</b>即使承租人承诺该许可可以持续“只要承租人还在承租该空间”（即贯穿整个剩余租期），这也不会将一个非占有性的许可自动转化为占有性的转让。时间跨度长短不改变权利的本质属性。</p>
+    </div>
+
+    <!-- 【Answer-Choice Breakdown】 -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">A. 正确</div>
+        <p>承租人授予朋友的权利仅为许可（license）。许可不涉及占有权（possessory interest）的转移，因此不属于转让，未违反租约中的反转让条款。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. 错误</div>
+        <p>该选项认为“因为承诺不涉及整个承租场所，所以未违约”。这在法律逻辑上是错误的。转让可以是部分的（partial assignment），即转让特定部分空间的占有权。因此，仅凭“未使用全部空间”不足以证明其没有违约。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">C. 错误</div>
+        <p>该选项认为“禁止转让的条款是对财产让与的有效限制，因此承租人违约”。虽然反转让条款确实是合法有效的限制，但本案中承租人根本没有进行“转让”行为，因此该条款未被触发，承租人并未违约。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">D. 错误</div>
+        <p>该选项认为“因为承诺的期限贯穿了整个租期，所以承租人违约”。如前所述，即使许可的期限与租约剩余期限相同，由于其缺乏“移交独占性占有权”的要素，它依然只是一个许可，不构成转让。</p>
+      </div>
+
+    </div>
+
+    <!-- 【Exam Tip】 -->
+    <div class="footer-tip">
+      <strong>💡 快速做题提分指针：</strong>
+      <p>在 MBE 考试中，区分租约（Lease/Sublease/Assignment）与许可（License）的关键在于<b>“独占性占有权”（Exclusive Possession）</b>。如果合同或协议授予了对方排除他人（甚至包括授予人本身）的独占占有权，则属于租约或转让；如果仅授予对方为了特定目的（如停车、储物、贴广告牌）使用特定空间的个人特权，则属于<b>许可（License）</b>。许可永远不会触发租约中的反转让/反转租条款。</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

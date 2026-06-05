@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点深度解析 - Real Property</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #f4f6f9;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 20px;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px 12px 0 0;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-left: -24px;
+      margin-right: -24px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 38px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+      margin-bottom: 12px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-title {
+      font-weight: 800;
+      font-size: 18px;
+      margin-bottom: 16px;
+      color: var(--primary-ink);
+    }
+
+    .flow-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.active {
+      background: var(--accent-color);
+      border-color: var(--accent-strong);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-weight: bold;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .trap-alert h4, .footer-tip h4 {
+      margin: 0 0 8px 0;
+      color: #b7791f;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .option-analysis {
+      margin-top: 24px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 16px 0;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 10px;
+      }
+      .container {
+        padding: 0 16px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+        margin-left: -16px;
+        margin-right: -16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+      .flow-container {
+        flex-direction: column;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- 【Card Top Header】 -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Real Property: Ownership of Real Property (Easements & Profits)</div>
+    </div>
+
+    <!-- 【Correct Answer Box】 -->
+    <div class="answer-box">
+      正确答案：C. 该取土权（Profit）通过默示（Implication）方式继续存在。
+    </div>
+
+    <!-- 【Core Legal Rule】 -->
+    <h2>核心法律规则</h2>
+    
+    <div class="concept-box">
+      <div class="concept-title">取土权 <span class="latin">(Profit à prendre)</span></div>
+      <p>
+        <span class="term">取土权（profit）</span>是一种非占有性土地权利，允许持有人进入他人的土地并移除特定的自然资源（如木材、沙子、砾石、矿产等）。
+      </p>
+      <p>
+        取土权的创设方式与地役权（easement）高度相似，但存在一个极其重要的区别：<strong>取土权不能通过“必要性”（necessity）创设</strong>。
+      </p>
+    </div>
+
+    <h3>1. 权利混同消灭原则 (Termination by Merger)</h3>
+    <p>
+      当同一个主体同时获得同一土地的<span class="term">所有权（fee simple title）</span>和该土地上的<span class="term">地役权/取土权（easement/profit）</span>时，该地役权或取土权会因<strong>混同（merger）</strong>而永久消灭。因为土地所有权人无需在自己的土地上保留限制性的他物权。
+    </p>
+
+    <h3>2. 基于先前使用的默示取土权 (Profit Implied from Existing Prior Use)</h3>
+    <p>
+      当土地所有权人分割并转让土地时，如果满足以下条件，法律可基于<strong>先前使用（prior use）</strong>默示创设一项取土权：
+    </p>
+    <ul>
+      <li><strong>共同所有权分割：</strong> 土地原属于同一所有人，随后分割并转让给不同主体（形成需役地与供役地）。</li>
+      <li><strong>先前使用：</strong> 在分割前，所有人使用其中一部分土地（供役地）来使另一部分土地（需役地）受益。</li>
+      <li><strong>持续且显现：</strong> 该先前使用必须是<strong>持续的（continuous）</strong>且<strong>显现或为人所知的（apparent or known）</strong>。</li>
+      <li><strong>合理必要：</strong> 该使用对需役地的使用和享受是<strong>合理必要的（reasonably necessary）</strong>（注意：不要求绝对无法替代的“绝对必要”）。</li>
+    </ul>
+
+    <!-- 【Concept Comparison Table】 -->
+    <h2>概念对比表：地役权 vs. 取土权创设方式</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>创设方式 (Methods of Creation)</th>
+          <th>地役权 (Easements)</th>
+          <th>取土权 (Profits)</th>
+          <th>核心考点说明 (Exam Note)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>明示授予或保留 (Express Grant/Reservation)</strong></td>
+          <td>✅ 支持</td>
+          <td>✅ 支持</td>
+          <td>须符合欺诈法（Statute of Frauds）书面要求。</td>
+        </tr>
+        <tr>
+          <td><strong>必要性 (Necessity)</strong></td>
+          <td>✅ 支持</td>
+          <td>❌ 不支持</td>
+          <td><strong>极高频考点！</strong>取土权不能因必要性创设，因为自然资源通常可从市场其他渠道获取。</td>
+        </tr>
+        <tr>
+          <td><strong>先前使用默示 (Existing Prior Use)</strong></td>
+          <td>✅ 支持</td>
+          <td>✅ 支持</td>
+          <td>分割时要求使用显现、持续且对需役地“合理必要”。</td>
+        </tr>
+        <tr>
+          <td><strong>时效取得 (Prescription)</strong></td>
+          <td>✅ 支持</td>
+          <td>✅ 支持</td>
+          <td>类似于时效占有（Adverse Possession）的要素。</td>
+        </tr>
+        <tr>
+          <td><strong>允诺反言 (Estoppel)</strong></td>
+          <td>✅ 支持</td>
+          <td>✅ 支持</td>
+          <td>需基于土地所有人的许可及使用人的合理、重大信赖。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 【Fact/Application Logic】 -->
+    <h2>案件事实与逻辑推导</h2>
+    <p>
+      本案的权利状态演变经历了三个关键阶段：
+    </p>
+    <ol>
+      <li>
+        <strong>阶段一：明示创设。</strong> 建设公司最初通过书面登记获得了为期20年的明示取土权（exclusive right to remove sand and gravel）。
+      </li>
+      <li>
+        <strong>阶段二：混同消灭。</strong> 3年后，建设公司买下了该整块土地。此时，建设公司同时拥有了土地所有权和取土权，<strong>原明示取土权因混同（merger）而永久消灭</strong>。
+      </li>
+      <li>
+        <strong>阶段三：分割与默示创设。</strong> 12年后，建设公司将土地分割，卖掉了含有沙石的部分（供役地），保留了建有加工厂的部分（需役地）。虽然合同未提及取土权，但满足默示取土权的全部要素：
+        <ul>
+          <li><strong>先前使用：</strong> 分割前，沙石地一直为加工厂供应原料。</li>
+          <li><strong>持续且显现：</strong> 12年来的开采及加工厂的存在，对买方而言是显而易见的。</li>
+          <li><strong>合理必要：</strong> 建设公司高度依赖该沙石供应。虽然市场上有其他沙石来源，但对加工厂的运营而言，该就近供应属于“合理必要”。</li>
+        </ul>
+      </li>
+    </ol>
+
+    <!-- 【Diagram】 -->
+    <div class="diagram">
+      <div class="diagram-title">取土权（Profit）生命周期演变图示</div>
+      <div class="flow-container">
+        <div class="flow-node">1. 明示取土权创设<br><small>(登记备案 20年期)</small></div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node active">2. 购买土地所有权<br><small>(因 Merger 混同消灭)</small></div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">3. 土地分割转让<br><small>(未提及取土权)</small></div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node active">4. 默示取土权诞生<br><small>(基于 Prior Use 默示创设)</small></div>
+      </div>
+    </div>
+
+    <!-- 【Trap Alert】 -->
+    <div class="trap-alert">
+      <h4>⚠️ MBE 经典陷阱提示</h4>
+      <p>
+        <strong>陷阱一：误认为原明示协议依然有效（误选 D）。</strong> 很多考生看到“原协议已登记（properly recorded）”，便认为该权利一直存在。必须记住：混同（Merger）导致的权利消灭是<strong>永久性</strong>的。一旦消灭，即使随后土地再次分割，原明示权利也不会自动复活，必须寻找新的创设依据（如默示）。
+      </p>
+      <p>
+        <strong>陷阱二：混淆“绝对必要”与“合理必要”。</strong> 默示取土权要求的是“合理必要（reasonably necessary）”。题干中提到“虽然有其他沙石来源（other sources available）”，这排除了“绝对必要性”，但并不妨碍满足“合理必要性”这一默示要素。
+      </p>
+    </div>
+
+    <!-- 【Answer-Choice Breakdown】 -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">C. 正确 (The profit exists by implication.)</div>
+        <p>
+          如上所述，虽然原明示取土权因所有权混同而消灭，但当建设公司随后分割并转让土地时，由于先前存在持续、显现且合理必要的开采行为，法律在分割时为建设公司默示保留了基于先前使用（prior use）的取土权。这是建设公司继续开采沙石的最佳法律依据。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">A. 错误 (Sand and gravel are necessary for the construction company to operate.)</div>
+        <p>
+          该选项试图主张“必要性取土权（profit by necessity）”。然而，在法律上，<strong>取土权不能通过必要性创设</strong>。此外，案件事实表明市场上存在其他沙石来源，因此也不满足“必要性”所要求的绝对无替代性条件。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. 错误 (The buyer is estopped from denying the existence of the profit...)</div>
+        <p>
+          主张“允诺反言创设取土权（profit by estoppel）”的前提是：土地所有人曾给予使用人<strong>许可（permission）</strong>，且使用人基于该许可产生了合理、重大的信赖和资金投入。本案中，买方自始至终明确拒绝（refused）许可建设公司继续开采，不存在信赖的基础。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">D. 错误 (The written agreement that created the profit was recorded.)</div>
+        <p>
+          原书面登记的取土权在建设公司购买整块土地所有权时，已因<strong>混同（merger）</strong>而彻底消灭。因此，建设公司无法再基于原登记协议主张权利。
+        </p>
+      </div>
+
+    </div>
+
+    <!-- 【Exam Tip】 -->
+    <div class="footer-tip">
+      <h4>💡 备考金手指 (Exam Shortcut)</h4>
+      <p>
+        在 MBE 考试中，一旦看到<strong>“先登记某项役权/取土权 ➔ 权利人买下整块地 ➔ 权利人随后分割并卖掉一部分地”</strong>的经典事实模式，请立刻启动双重条件反射：
+      </p>
+      <ol>
+        <li>原登记的明示权利已经因 <strong>Merger（混同）</strong> 彻底死掉，任何主张原登记协议有效的选项（如 D）直接排除。</li>
+        <li>新权利的产生只能依赖分割时的 <strong>Implication from prior use（先前使用默示）</strong>。</li>
+      </ol>
+    </div>
+
+  </div>
+
+</body>
+</html>

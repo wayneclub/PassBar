@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: var(--bg-color);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+
+        .concept-box {
+            background-color: #e8f4fd;
+            border: 1px solid #b6e0fe;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .term {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .english-term {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .correct-answer {
+            background-color: #eafaf1;
+            border: 1px solid #a3e4d7;
+            color: var(--success-color);
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .wrong-option {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fdf2e9;
+            border-left: 3px solid var(--warning-color);
+            font-size: 0.9rem;
+        }
+
+        .mbe-tip {
+            background-color: #fff8dc;
+            border: 2px dashed #f1c40f;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .mbe-tip-title {
+            font-weight: bold;
+            color: #d35400;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .icon {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <p>Contracts: Impracticability & Discharge</p>
+    </div>
+
+    <!-- Core Legal Concept -->
+    <div class="card">
+        <h2>核心考点：履行不切实际</h2>
+        <div class="concept-box">
+            <span class="concept-title">规则 (The Rule)</span>
+            当发生意外事件，导致合同义务的履行变得<span class="term">不切实际 (Impracticable)</span>或<span class="term">不可能 (Impossible)</span>，且该事件的发生非当事人过错，合同义务可被免除 (Discharged)。
+        </div>
+        <p>对于<strong>个人服务合同 (Personal Services Contract)</strong>，如果提供服务的人员死亡或丧失行为能力（如严重疾病），其履行义务通常会被免除。</p>
+        <p>法律依据：<em>Restatement (Second) of Contracts § 261, § 262</em></p>
+    </div>
+
+    <!-- Case Analysis -->
+    <div class="card" style="border-left-color: var(--success-color);">
+        <h2>本案分析</h2>
+        <p><strong>1. 合同性质：</strong><br>
+        这是一份为期两年的定期合同，而非<span class="english-term">At-will employment</span>（任意雇佣）。工程师有义务工作两年。</p>
+
+        <p><strong>2. 触发事件：</strong><br>
+        工程师患上了严重的疾病（罕见过敏反应），这是不可预见的，且非工程师的过错。</p>
+
+        <p><strong>3. 法律后果：</strong><br>
+        由于该职位要求必须在井下工作（Essential duty），而工程师的身体状况使其无法在井下工作。这构成了<strong>履行不切实际 (Impracticability)</strong>。</p>
+
+        <div class="correct-answer">
+            ✅ 正确答案 B：<br>
+            工程师的健康风险免除了其履行合同的义务 (Excused his nonperformance)。
+        </div>
+        <p>既然义务已被免除，就不存在违约 (Breach)，因此煤矿公司无法获得损害赔偿。</p>
+    </div>
+
+    <!-- Distractor Analysis -->
+    <div class="card" style="border-left-color: var(--warning-color);">
+        <h2>为什么其他选项是错的？</h2>
+        
+        <div class="wrong-option">
+            <strong>❌ 选项 A (At-will)：</strong><br>
+            混淆了合同类型。题目明确说是 "two-year contract"（定期合同）。如果是 At-will，任何一方确实可以随时解除，但本题是因为“生病”导致无法履行定期合同，而非行使 At-will 权利。
+        </div>
+
+        <div class="wrong-option">
+            <strong>❌ 选项 C (Mitigation)：</strong><br>
+            逻辑顺序错误。<span class="english-term">Mitigation of damages</span>（减损义务）只有在对方<strong>违约 (Breach)</strong> 后才需要考虑。既然工程师的行为已被免责（Excused），就不存在违约，也就谈不上减损或赔偿。
+        </div>
+
+        <div class="wrong-option">
+            <strong>❌ 选项 D (Reasonably Safe)：</strong><br>
+            这是一个陷阱。虽然通常“履行不能”要求是客观的（Objective，即“任何人都做不到”），但在<strong>个人服务合同</strong>中，特定履行者的死亡或丧失能力（Subjective Impossibility）足以构成免责理由。矿井对别人安全不重要，重要的是对这位工程师是致命的。
+        </div>
+    </div>
+
+    <!-- Exam Strategy -->
+    <div class="mbe-tip">
+        <div class="mbe-tip-title">
+            <span class="icon">💡</span> MBE 考试技巧
+        </div>
+        <p><strong>识别“免责”模式 (Excuse Pattern)：</strong></p>
+        <ol>
+            <li><strong>意外事件：</strong>发生了一件双方都没预料到的事（如：生病、法律变更、标的物灭失）。</li>
+            <li><strong>基本假设：</strong>合同是基于“这事儿不会发生”的假设签的。</li>
+            <li><strong>无法履行：</strong>这事儿让干活变得极度困难或不可能。</li>
+        </ol>
+        <p>如果满足这三点，通常答案是<strong>"Duty is Discharged"</strong>（义务免除）或<strong>"No Breach"</strong>（无违约）。</p>
+    </div>
+
+</div>
+
+</body>
+</html>

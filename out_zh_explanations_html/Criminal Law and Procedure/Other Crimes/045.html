@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - 财产犯罪对比</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.active {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      color: var(--muted-text);
+      font-weight: bold;
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .option-analysis {
+      margin-top: 24px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 16px 0;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 12px 20px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+      .diagram-container {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Card Top Header -->
+  <div class="header">
+    <h1>MBE 考点解析</h1>
+    <div class="sub-title">Criminal Law and Procedure: Crimes Against Property (Property Offenses)</div>
+  </div>
+
+  <!-- Correct Answer Box -->
+  <div class="answer-box">
+    正确答案：A. Embezzlement（侵占罪）
+    <div style="font-size: 16px; font-weight: normal; margin-top: 8px; color: #2c3e50;">
+      <strong>核心判旨：</strong>财务顾问在合法占有客户资金期间，违背客户返还全部账户余额的明确要求，私自截留因市场回暖而产生的 $5,000 增值资金，构成对他人合法占有财产的“非法转化”（Conversion），且具有欺诈的特定意图，依法成立普通法上的侵占罪（Embezzlement）。
+    </div>
+  </div>
+
+  <!-- Core Legal Rule -->
+  <h2>核心法律原则</h2>
+  <div class="concept-box">
+    <div class="concept-title">侵占罪（Embezzlement）的构成要件</div>
+    <p>在普通法（Common Law）中，<span class="term">侵占罪（embezzlement）</span>是指：</p>
+    <ul>
+      <li><strong>行为表现（Actus reus）：</strong>对他人所有的、但处于自己<span class="term">合法占有（lawful possession）</span>下的财产进行<span class="term">非法转化/处置（conversion）</span>。</li>
+      <li><strong>主观意图（Mens rea）：</strong>具有欺诈并永久剥夺他人财产的<span class="term">特定意图（specific intent to defraud/permanently deprive）</span>。</li>
+    </ul>
+    <p><strong>关于“非法转化/处置（Conversion）”的认定：</strong><br>
+    当持有财产的人<strong>实质性地干涉（substantially interferes）</strong>所有权人对该财产的权利（例如：私自变卖、损毁、或无理拒绝归还）时，即构成 Conversion。在司法实践中，只要证明<strong>所有权人要求归还财产，而被告拒绝或未能遵守该要求</strong>，即可认定存在 Conversion 行为。</p>
+  </div>
+
+  <!-- Concept Comparison Table -->
+  <h2>普通法四大财产犯罪对比</h2>
+  <p>在 MBE 考试中，区分以下四种财产犯罪的“占有状态”和“手段”是解题的关键：</p>
+  
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>犯罪类型 (Crime)</th>
+        <th>行为表现 (Actus reus)</th>
+        <th>主观意图 (Mens rea)</th>
+        <th>关键特征 (Key Distinction)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Embezzlement</strong><br>(侵占罪)</td>
+        <td>对<strong>合法占有</strong>的他人财产进行非法转化（Conversion）</td>
+        <td rowspan="4">具有欺诈或永久剥夺他人财产的<strong>特定意图</strong><br>(Specific intent to defraud / permanently deprive)</td>
+        <td>被告最初是通过<strong>合法途径</strong>（如信托、雇佣、代理关系）获得财产的<strong>占有权（Possession）</strong>。</td>
+      </tr>
+      <tr>
+        <td><strong>Larceny</strong><br>(盗窃罪)</td>
+        <td>非法夺取并携带走他人的财产（Unlawful taking & carrying away）</td>
+        <td>被告自始至终都是<strong>非法（Trespassory）</strong>获取财产的占有权。</td>
+      </tr>
+      <tr>
+        <td><strong>Larceny by trick</strong><br>(欺诈性盗窃)</td>
+        <td>通过故意虚构事实，骗取他人财产的<strong>占有权（Possession）</strong></td>
+        <td>欺骗的直接结果是获取了<strong>占有权（Possession）</strong>，而非所有权。</td>
+      </tr>
+      <tr>
+        <td><strong>False pretenses</strong><br>(虚假陈述罪)</td>
+        <td>通过故意虚构事实，骗取他人财产的<strong>所有权（Title）</strong></td>
+        <td>欺骗的直接结果是获取了<strong>所有权/法定产权（Title）</strong>。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Fact/Application Logic -->
+  <h2>案件事实与逻辑推导</h2>
+  <p>本案中，财务顾问的行为完全符合侵占罪的全部构成要件：</p>
+  
+  <div style="margin-left: 10px; border-left: 3px solid var(--accent-color); padding-left: 15px;">
+    <p><strong>1. 初始状态为“合法占有”：</strong><br>
+    作为财务顾问（Financial Advisor），她基于信托和代理关系，合法地占有并管理该男子的投资账户资金。此时，她拥有的是财产的 <span class="term">Possession（占有权）</span>，而非 Title（所有权）。</p>
+    
+    <p><strong>2. 存在“非法转化”行为（Conversion）：</strong><br>
+    男子明确要求“关闭账户并将<strong>剩余全部余额</strong>在两天内转回”。但在账户关闭前一天，账户因市场回暖产生了 $5,000 的增值。顾问在明知客户要求返还全部余额的情况下，私自截留了这 $5,000。这种违背所有权人明确返还要求、私自留存资金的行为，构成了对他人财产的实质性干涉，即 Conversion。</p>
+    
+    <p><strong>3. 具备“特定意图”：</strong><br>
+    顾问在客户不知情的情况下秘密保留了这 $5,000，且没有任何迹象表明她打算归还，这充分证明她具有永久剥夺他人财产的欺诈意图（Specific intent to defraud）。</p>
+  </div>
+
+  <!-- Diagram -->
+  <h2>行为逻辑示意图</h2>
+  <div class="diagram">
+    <div class="diagram-container">
+      <div class="flow-node">客户委托资金</div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-node">顾问合法占有 (Lawful Possession)</div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-node">客户要求全部返还</div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-node active">顾问私自截留 $5,000 (Conversion)</div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-node active" style="background: var(--correct-border);">构成 Embezzlement</div>
+    </div>
+  </div>
+
+  <!-- Trap Alert -->
+  <h2>陷阱防范与易混淆点</h2>
+  <div class="trap-alert">
+    <strong>⚠️ 避坑指南：不要被顾问的“谎言”误导！</strong><br>
+    本案中有一个极具迷惑性的事实：顾问曾撒谎称“账户缩水是因为股市暴跌（实际上是因为其管理疏忽）”。
+    <ul>
+      <li><strong>为什么不构成 False Pretenses 或 Larceny by Trick？</strong><br>
+      要构成欺诈性盗窃或虚假陈述罪，被告必须是<strong>通过虚假陈述这一手段，直接骗取</strong>了财产的占有权或所有权。而在本案中，顾问早在撒谎之前，就已经合法占有了该账户。她撒谎是为了掩盖自己的失职，<strong>并不是为了获取那 $5,000 的占有权或所有权</strong>。那 $5,000 是因为市场波动自然产生的，顾问是通过“事后私自截留（Conversion）”的方式将其据为己有，而非通过欺骗手段从客户手中骗得。</li>
+    </ul>
+  </div>
+
+  <!-- Answer-Choice Breakdown -->
+  <h2>正确答案与干扰项排除</h2>
+  <div class="option-analysis">
+    
+    <div class="option correct">
+      <div class="option-title">A. 正确：Embezzlement（侵占罪）</div>
+      <p>如前所述，顾问最初合法占有资金，随后违背所有权人返还财产的指示，私自截留并转化了属于客户的 $5,000 增值款，完全符合普通法侵占罪的定义。</p>
+    </div>
+
+    <div class="option wrong">
+      <div class="option-title">B. 错误：False pretenses（虚假陈述罪）</div>
+      <p>虚假陈述罪要求被告通过故意提供虚假事实，从而获得他人财产的<strong>所有权（Title）</strong>。本案中，顾问虽然对账户缩水原因撒了谎，但她并没有通过该谎言获得这 $5,000 的所有权。她是通过直接截留（Conversion）的方式占有了这笔钱。</p>
+    </div>
+
+    <div class="option wrong">
+      <div class="option-title">C. 错误：Larceny by trick（欺诈性盗窃）</div>
+      <p>欺诈性盗窃要求被告通过欺骗手段获得他人财产的<strong>占有权（Possession）</strong>。本案中，顾问对这笔资金的初始占有完全是基于合法的委托代理关系，而非通过欺骗手段获取。因此不成立此罪。</p>
+    </div>
+
+    <div class="option wrong">
+      <div class="option-title">D. 错误：Theft（统称盗窃罪）</div>
+      <p>在现代刑法典（如 Model Penal Code）或许多州的成文法中，Larceny、Embezzlement 和 False Pretenses 被合并为了统一的“Theft”罪。但本题明确限定在<strong>普通法（Common Law）</strong>管辖区。在普通法中，并没有统一的“Theft”罪名，必须区分具体的普通法罪名。因此该选项不适用。</p>
+    </div>
+
+  </div>
+
+  <!-- Exam Tip -->
+  <h2>考试秒杀秘籍</h2>
+  <div class="footer-tip">
+    <strong>💡 财产犯罪一秒定乾坤：</strong><br>
+    做 MBE 财产犯罪题时，先问自己第一个问题：<strong>“被告在实施犯罪行为的那一刻，是否已经合法占有了该财产？”</strong>
+    <ul>
+      <li>如果是 ➔ <strong>直接锁定 Embezzlement</strong>（如雇员、保管人、受托人、财务顾问私吞财产）。</li>
+      <li>如果否 ➔ 再去区分是 Trespassory taking (Larceny)，还是用谎言骗取 Possession (Larceny by trick)，亦或是用谎言骗取 Title (False pretenses)。</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

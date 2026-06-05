@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - 最佳证据规则例外</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .flow-node, .party-box {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.active, .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-weight: bold;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 22px 0;
+    }
+
+    .option-analysis {
+      margin-top: 24px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+      }
+      .container {
+        padding: 0 12px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+      .diagram-container {
+        flex-direction: column;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- 【Card Top Header】 -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Evidence: Best Evidence Rule & Unobtainable Originals</div>
+    </div>
+
+    <!-- 【Correct Answer Box】 -->
+    <div class="answer-box">
+      正确答案：D. The document was not obtainable via subpoena or other judicial process.
+      <br>
+      <span style="font-size: 16px; font-weight: normal; display: block; margin-top: 8px; color: #2c3e50;">
+        <strong>核心结论：</strong>当证明文书内容的原始文件因超出司法管辖权（如由不受法院传唤权约束的境外第三方持有）而无法通过任何司法程序获取时，最佳证据规则允许引入次等证据（如证人证言）来证明其内容。
+      </span>
+    </div>
+
+    <!-- 【Core Legal Rule】 -->
+    <h2>核心法理：最佳证据规则及其例外</h2>
+    
+    <div class="concept-box">
+      <div class="concept-title">最佳证据规则 (Best Evidence Rule / FRE 1002)</div>
+      <p>根据美国联邦证据规则（FRE），当当事人试图证明一个<span class="term">录音、写作或照片（recording, writing, or photograph）</span>的<strong>内容</strong>时，或者当证人在作证时<strong>依赖该文书的内容</strong>时，必须提供该文书的<strong>原始文件（original）</strong>或可靠的<strong>复制件（duplicate）</strong>。</p>
+    </div>
+
+    <div class="rule-block">
+      <strong>无法通过司法程序获取原始文件的例外 (FRE 1004(b))：</strong>
+      <p>如果原始文件无法通过任何可用的<span class="term">司法程序（judicial process）</span>获取，则最佳证据规则不适用，当事人可以引入<span class="term">次等证据（secondary evidence）</span>（例如口头证言或非正式抄本）来证明其内容。常见情形包括：</p>
+      <ul>
+        <li>原始文件由不受法院<span class="term">传唤权（subpoena power）</span>约束的境外第三方持有。</li>
+        <li>持有原始文件的第三方无法被定位或无法送达。</li>
+        <li>持有原始文件的第三方在收到传票后仍拒绝提交。</li>
+        <li>第三方对原始文件主张特权（privilege）。</li>
+      </ul>
+    </div>
+
+    <!-- 【Concept Comparison Table】 -->
+    <h3>证据规则对比：原始文件要求 vs. 次等证据准入</h3>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>规则维度</th>
+          <th>一般规则 (FRE 1002)</th>
+          <th>司法程序无法获取例外 (FRE 1004(b))</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>适用前提</strong></td>
+          <td>试图证明文书的“内容”（Content is at issue）</td>
+          <td>原始文件在非诉讼当事人的第三方手中，且无法通过司法程序获取</td>
+        </tr>
+          <td><strong>证据要求</strong></td>
+          <td>必须提交原始文件（Original）或可靠复制件（Duplicate）</td>
+          <td>允许提交任何形式的<strong>次等证据（Secondary Evidence）</strong>，包括口头证言</td>
+        </tr>
+        <tr>
+          <td><strong>典型场景</strong></td>
+          <td>合同纠纷中证明合同条款；欺诈案中证明虚假财务报告内容</td>
+          <td>境外银行或境外信用评级机构持有关键报告，且该机构不受美国法院传唤权管辖</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 【Fact/Application Logic】 -->
+    <h2>案件事实与适用逻辑</h2>
+    <p>在本案中，检方的指控和证据链条呈现出以下逻辑递进：</p>
+    
+    <ol>
+      <li><strong>文书内容成为争议焦点：</strong> 检方指控被告虚报外国国债价值。为了证明这一点，检方试图通过外国银行家的证言来证明一份由“境外债券评级公司”出具的<strong>文书内容</strong>（该文书记载了债券的真实价值）。因此，<span class="term">最佳证据规则（best evidence rule）</span>被触发。</li>
+      <li><strong>原始文件未提交：</strong> 该评级报告（原始文件）并未在法庭上出示。</li>
+      <li><strong>寻找例外支持准入：</strong> 银行家的口头证言属于“次等证据”。要使该口头证言具有可采性，检方（作为证据提出方）必须证明存在免除提交原始文件的法定例外。</li>
+      <li><strong>适用 FRE 1004(b)：</strong> 如果能证明该境外评级报告“无法通过传票或其他司法程序获取”（例如，该境外公司既非美国国民也非美国居民，完全超出联邦法院的司法管辖权和传唤权范围），则满足了 FRE 1004(b) 的例外条件，银行家的口头证言即可作为合法的次等证据入庭。</li>
+    </ol>
+
+    <!-- 【Diagram】 -->
+    <div class="diagram">
+      <strong>最佳证据规则例外适用流程图 (FRE 1004(b))</strong>
+      <div class="diagram-container">
+        <div class="party-box">试图证明文书内容</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">原始文件在境外第三方手中</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node highlight-node">超出法院传唤权 (No Subpoena Power)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node active">允许引入次等证据（银行家口头证言）</div>
+      </div>
+    </div>
+
+    <!-- 【Trap Alert】 -->
+    <div class="trap-alert">
+      <strong>⚠️ MBE 常见陷阱提示：</strong>
+      <ul>
+        <li><strong>专家身份陷阱：</strong> 干扰项常以“证人是该领域的专家”为由，试图合理化其对文书内容的口头描述。请记住：即使证人是顶级专家（如 Choice A），如果他要证明的是<strong>特定文书的具体内容</strong>，也必须遵守最佳证据规则，专家身份不能豁免原始文件的提交义务。</li>
+        <li><strong>提前通知陷阱：</strong> 提前通知对方（如 Choice B）在某些规则中是必要的（例如 FRE 1006 汇总证据），但它并不能免除在普通文书证明中提交原始文件的基本义务。</li>
+        <li><strong>对方可获取性陷阱：</strong> 辩方是否容易获取该文件（如 Choice C）与检方（证据提出方）是否履行了最佳证据规则的举证责任无关。举证方必须自己证明无法获取，才能开启次等证据的绿灯。</li>
+      </ul>
+    </div>
+
+    <!-- 【Answer-Choice Breakdown】 -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">D. 正确</div>
+        <p>根据 FRE 1004(b)，如果原始文件无法通过任何可用的司法程序（如传票）获取，则允许使用次等证据（如银行家的口头证言）来证明该文件的内容。由于该评级公司位于海外且不受司法程序管辖，确立这一事实将直接支持银行家证言的采信。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">A. 错误</div>
+        <p>银行家在国债估值方面的专家身份，只能为其对被告债券价值发表<strong>个人意见（opinion testimony）</strong>提供基础，但<strong>不能</strong>作为免除最佳证据规则、直接口头转述“第三方评级报告内容”的合法理由。只要涉及证明特定文书的内容，就必须提供原始文件或证明其无法获取。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. 错误</div>
+        <p>检方是否在庭前通知被告其将引入该文件内容，与最佳证据规则的例外适用无关。提前通知并不能治愈“未提交原始文件且无合理解释”的程序瑕疵。</p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">C. 错误</div>
+        <p>“被告在庭前很容易获得该文件”这一事实，并不能免除检方（证据提出方）在试图证明该文件内容时提交原始文件或确立例外的法律义务。举证责任和规则例外的成立条件均在提出证据的一方（检方）。</p>
+      </div>
+
+    </div>
+
+    <!-- 【Exam Tip】 -->
+    <div class="footer-tip">
+      <strong>💡 考试秒杀秘诀：</strong>
+      在 MBE 证据法考试中，一旦看到证人要“证明某份未到庭的报告/信件/合同写了什么”，立刻在脑海中检索<strong>最佳证据规则（Best Evidence Rule）</strong>。如果选项中出现“原始文件无法通过司法程序/传票获取（unobtainable by judicial process/subpoena）”，这几乎总是触发 FRE 1004 例外、允许口头证言入庭的<strong>标准正确答案模板</strong>。
+    </div>
+
+  </div>
+
+</body>
+</html>

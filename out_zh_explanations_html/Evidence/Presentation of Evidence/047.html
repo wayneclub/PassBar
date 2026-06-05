@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - Evidence</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .diagram-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+      text-align: center;
+      min-width: 160px;
+    }
+
+    .flow-node.active {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-weight: bold;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .trap-alert .title {
+      font-weight: 800;
+      color: #b25e00;
+      margin-bottom: 6px;
+      font-size: 19px;
+    }
+
+    .case-box {
+      background: var(--highlight-bg);
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 20px 0;
+    }
+
+    .option-analysis {
+      margin-top: 24px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 12px 20px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+      }
+      .diagram-row {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- 【Card Top Header】 -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Evidence: Presentation of Evidence (Impeachment)</div>
+    </div>
+
+    <!-- 【Correct Answer Box】 -->
+    <div class="answer-box">
+      正确答案：D. Yes, as a prior inconsistent statement.
+      <div style="font-weight: normal; font-size: 17px; margin-top: 8px; color: var(--primary-ink);">
+        核心裁决：当证人先前的陈述与其庭审证言不一致时，在满足赋予其解释或否认的机会等程序要求后，可通过外部证据（Extrinsic Evidence）引入该陈述，用于弹劾（Impeachment）目的。
+      </div>
+    </div>
+
+    <!-- 【Core Legal Rule】 -->
+    <h2>核心法理：先前不一致陈述的弹劾与实质性使用</h2>
+    <div class="concept-box">
+      <div class="concept-title">先前不一致陈述（Prior Inconsistent Statement - FRE 613）</div>
+      <p>
+        当证人在法庭上的证言与其在过去（庭审前）作出的某项陈述不一致时，该陈述即为<span class="term">先前不一致陈述（prior inconsistent statement）</span>。在联邦证据法（FRE）下，此类陈述的证据效力取决于其使用目的：
+      </p>
+      <ul>
+        <li>
+          <strong>仅用于弹劾目的（Impeachment Purposes）：</strong> 旨在削弱证人的可信度（credibility）。只要满足程序性要求，任何先前不一致陈述均可采纳，且<strong>不属于传闻证据限制的范围</strong>（因为其并非用于证明陈述内容的真实性）。
+        </li>
+        <li>
+          <strong>用于实质性目的（Substantive Purposes）：</strong> 旨在证明陈述内容的真实性（truth of the matter asserted）。只有当该陈述符合传闻证据的排除（Exclusion）或例外（Exception）时，才能作为实质性证据使用。
+        </li>
+      </ul>
+    </div>
+
+    <!-- 【Concept Comparison Table】 -->
+    <h3>先前不一致陈述：弹劾 vs 实质性证据</h3>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>维度</th>
+          <th>仅用于弹劾目的 (Impeachment Only)</th>
+          <th>可用于实质性目的 (Substantive Use)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>定义与目的</strong></td>
+          <td>证明证人“前后不一”，从而质疑其可信度。</td>
+          <td>证明该陈述所断言的事实是真实的。</td>
+        </tr>
+        <tr>
+          <td><strong>宣誓要求 (Oath)</strong></td>
+          <td><strong>不要求</strong>在先前的陈述中进行宣誓或在法律程序中作出。</td>
+          <td><strong>必须</strong>是在宣誓下、在法律程序（如前次庭审、听证会、宣誓作证等）中作出的陈述（FRE 801(d)(1)(A)）。</td>
+        </tr>
+        <tr>
+          <td><strong>外部证据采纳条件 (Extrinsic Evidence)</strong></td>
+          <td>
+            1. 证人必须首先获得<strong>解释或否认</strong>该陈述的机会；并且<br>
+            2. 对方当事人必须获得<strong>盘问</strong>该证人的机会（或司法公正另有要求）。
+          </td>
+          <td>必须满足上述弹劾条件，且同时满足传闻排除/例外规则。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 【Fact/Application Logic】 -->
+    <h2>案件事实与适用逻辑分析</h2>
+    <div class="case-box">
+      <p>本案的逻辑推导步骤如下：</p>
+      <ol>
+        <li>
+          <strong>识别不一致性（Inconsistency）：</strong> 
+          女证人在法庭上指控男被告实施了盗窃；而她此前对室友说“是我一个人干的，男被告喝醉了没法帮忙”。这两者存在直接冲突，构成<span class="term">先前不一致陈述（prior inconsistent statement）</span>。
+        </li>
+        <li>
+          <strong>外部证据的引入（Extrinsic Evidence）：</strong> 
+          辩方律师在交叉盘问中直接询问女证人是否说过此话，女证人予以<strong>否认</strong>。随后，辩方传唤其室友出庭作证（这属于外部证据）。
+        </li>
+        <li>
+          <strong>程序要件的满足（Procedural Requirements）：</strong> 
+          女证人在交叉盘问中已被给予了“解释或否认”的机会，且检方（对方当事人）可以在后续重盘问中对她进行询问。因此，通过室友引入该外部证据完全符合 <span class="term">FRE 613(b)</span> 的程序要求。
+        </li>
+        <li>
+          <strong>证据目的的界定（Limited Admissibility）：</strong> 
+          因为该陈述是女证人在私下对室友说的，<strong>并非在宣誓下（under penalty of perjury）于法律程序中作出</strong>，所以它<strong>不能</strong>作为实质性证据来证明“确实是女证人一人作案”。但是，它完全可以被采纳用于<strong>弹劾目的</strong>，以证明女证人的法庭证言不可信。
+        </li>
+      </ol>
+    </div>
+
+    <!-- 【Diagram】 -->
+    <h2>证据采纳路径图示</h2>
+    <div class="diagram">
+      <div class="diagram-container">
+        <div class="diagram-row">
+          <div class="flow-node active">证人先前的矛盾陈述</div>
+          <div class="flow-arrow">➔</div>
+          <div class="flow-node">是否在宣誓下于法律程序中作出？</div>
+        </div>
+        <div class="diagram-row" style="margin-top: 10px;">
+          <div style="display: flex; flex-direction: column; align-items: center; margin-right: 40px;">
+            <span style="color: #27ae60; font-weight: bold;">[是]</span>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node" style="background: #eafaf1; border-color: #27ae60; color: #27ae60;">双重目的 (Dual Purposes)<br>可用于弹劾 + 实质性证据</div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <span style="color: #c0392b; font-weight: bold;">[否 (本案情况)]</span>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node" style="background: #fdf2e9; border-color: #d35400; color: #d35400;">仅限弹劾目的 (Impeachment)<br>需给予解释/否认机会</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 【Trap Alert】 -->
+    <div class="trap-alert">
+      <div class="title">⚠️ 易错陷阱：不利于刑事利益的陈述（Statement Against Penal Interest）</div>
+      <p>
+        许多考生会倾向于选择“作为不利于刑事利益的陈述（Statement Against Penal Interest）而采纳”。这是一个经典的 MBE 陷阱！
+      </p>
+      <p>
+        根据 <span class="term">FRE 804(b)(3)</span>，不利于刑事利益的陈述属于传闻证据的例外，但其适用的<strong>绝对前提条件</strong>是：<strong>陈述者必须无法出庭作证（Declarant must be UNAVAILABLE）</strong>。在本案中，女证人正在法庭上接受盘问，她显然是“可出庭的（Available）”，因此该传闻例外根本不适用。
+      </p>
+    </div>
+
+    <!-- 【Answer-Choice Breakdown】 -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">D. 正确</div>
+        <p>
+          该室友的证言属于外部证据，用于证明女证人曾作出过与法庭证言不一致的陈述。在辩方已在交叉盘问中给予女证人解释或否认机会的前提下，该不一致陈述可作为弹劾证据采纳。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">A. 错误</div>
+        <p>
+          该陈述并非“不可采纳的传闻”。当先前不一致陈述仅用于弹劾（证明证人不可信）而非证明其内容的真实性时，它不属于传闻证据（Not offered for the truth of the matter asserted），因此不受传闻规则的限制。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. 错误</div>
+        <p>
+          联邦证据法并不要求用于弹劾的先前不一致陈述必须有“清晰的佐证（clearly corroborated）”。佐证要求通常适用于某些特定的实质性传闻例外（如无法出庭的证人作出的不利于刑事利益的陈述，且该陈述旨在使被告免罪时，才需要协同证据支持）。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">C. 错误</div>
+        <p>
+          如前所述，<span class="term">不利于利益的陈述（statement against interest）</span>要求陈述者<strong>无法出庭（unavailable）</strong>。本案中女证人就在法庭上，不满足该例外的前提条件。
+        </p>
+      </div>
+
+    </div>
+
+    <!-- 【Exam Tip】 -->
+    <div class="footer-tip">
+      <strong>💡 快速解题捷径 (Exam Shortcut)：</strong>
+      在 MBE 考试中，一旦看到“证人 A 在庭上说 X，但以前私下说 Y”，立刻定位考点为 <strong>Prior Inconsistent Statement (FRE 613)</strong>。
+      接着看程序：如果 A 已经在台上被问及此事（有了 explain/deny 的机会），那么引入第三方证人来证实 Y <strong>100% 允许用于弹劾（Impeachment）</strong>。除非 Y 是在宣誓下的法律程序中说的，否则<strong>不能用于实质性证据（Substantive）</strong>。
+    </div>
+
+  </div>
+
+</body>
+</html>

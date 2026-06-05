@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f6f7;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        .concept-tag {
+            display: inline-block;
+            background: #e0e0e0;
+            color: #555;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+        .rule-box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .rule-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            display: block;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin: 15px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+        }
+        .answer-analysis {
+            margin-top: 20px;
+        }
+        .correct-answer {
+            color: var(--correct-color);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .correct-answer::before {
+            content: "✔";
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        .wrong-option {
+            color: var(--wrong-color);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        .footer-tip {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            border: 1px solid #ffeeba;
+        }
+        .latin {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts: Installment Contracts</div>
+    </div>
+
+    <div class="content">
+        
+        <!-- 核心考点卡片 -->
+        <div class="card">
+            <h3>核心考点：分期履行合同</h3>
+            <div><span class="concept-tag">UCC § 2-612</span> <span class="concept-tag">Installment Contracts</span></div>
+            <p>本题的关键在于识别合同类型。这是一个分期履行合同（货物分批交付），而不是单次交付合同。</p>
+        </div>
+
+        <!-- 规则对比 -->
+        <div class="rule-box">
+            <span class="rule-title">规则对比 (Rule Comparison)</span>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>单次交付 (Single Delivery)</th>
+                        <th>分期履行 (Installment Contract)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>完全履行规则 (Perfect Tender Rule)</b></td>
+                        <td><b>实质性减损规则 (Substantial Impairment Rule)</b></td>
+                    </tr>
+                    <tr>
+                        <td>只要有一点不符，买方即可拒收。</td>
+                        <td>买方<b>不能</b>轻易拒收，除非瑕疵严重影响价值且无法补救。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="rule-box">
+            <span class="rule-title">案情关键点分析</span>
+            <p>题目中有一个非常关键的句子，是解题的“题眼”：</p>
+            <p style="background:#fff; padding:10px; border-left:3px solid var(--accent-color); font-style:italic;">
+                "The late delivery and the 200-pound shortage will <b>not significantly disrupt</b> the bakery's operations."
+            </p>
+            <p>这意味着：此次违约<b>没有</b>造成“实质性减损” (Substantial Impairment)。</p>
+        </div>
+
+        <!-- 答案解析 -->
+        <div class="answer-analysis">
+            <h3>为什么选 B？</h3>
+            <div class="correct-answer">选项 B 是正确的。</div>
+            <p>根据 <b>UCC § 2-612</b>：</p>
+            <ol>
+                <li><b>必须接受 (Must Accept):</b> 因为这次的短缺和迟延没有造成该批次货物的“实质性减损”，且卖方承诺补救 (Cure)，买方<b>没有权利拒收</b> (Reject) 这批面粉。</li>
+                <li><b>损害赔偿 (Damages):</b> 虽然必须接受，但这仍然是一个违约行为 (Breach)。根据 <b>UCC § 2-717</b>，买方有权从应付的合同价款中扣除因违约造成的损失。</li>
+            </ol>
+            <p>因此，面包店必须收下这800磅，但可以少付钱（扣除损失）。</p>
+
+            <hr style="border:0; border-top:1px solid #eee; margin:15px 0;">
+
+            <h3>为什么其他选项错误？</h3>
+            
+            <div class="wrong-option">❌ 选项 A & C (解除合同/拒收)</div>
+            <p><b>错误原因：</b> 只有当违约行为“实质性地减损了<b>整个合同</b>的价值”时，买方才能解除整个合同。题目明确说了“不会严重影响运营”，所以不能解除合同，甚至连拒收这一批次都不行。</p>
+
+            <div class="wrong-option">❌ 选项 D (拒收但给机会)</div>
+            <p><b>错误原因：</b> 面包店<b>无权拒收</b> (Reject) 这800磅面粉。在分期履行合同中，门槛很高，只要瑕疵不严重且能补救，买方就必须“含泪收下”并寻求赔偿。</p>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="footer-tip">
+            <strong>💡 MBE 考试技巧：</strong><br>
+            看到货物买卖合同，第一步先判断是<b>单次交付</b>还是<b>分期交付</b>。
+            <ul>
+                <li>如果是<b>单次</b>：用 Perfect Tender Rule（买方权利大，有一点瑕疵就能拒）。</li>
+                <li>如果是<b>分期</b>：用 Substantial Impairment Rule（买方权利小，必须忍受轻微瑕疵）。</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

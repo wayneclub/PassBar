@@ -71,6 +71,7 @@ create table if not exists public.question_items (
   api_match_score numeric,
   api_url text,
   api_status int,
+  topic             text,    -- fine-grained topic extracted from source explanation image
   micro_concept     text,
   trap_type         text,
   trap_type_is_new  boolean,
@@ -386,7 +387,7 @@ create or replace view public.question_chapter_counts as
 select
   s.subject,
   ch.id as chapter_id,
-  ch.chapter as topic,
+  ch.chapter as chapter_name,
   count(q.id)::int as count
 from public.chapters ch
 join public.subjects s on s.id = ch.subject_id
@@ -470,7 +471,7 @@ select
   q."index",
   s.subject,
   ch.id as chapter_id,
-  ch.chapter as topic,
+  ch.chapter as chapter_name,
   coalesce(tr.source_question_stem, q.source_question, q.question) as question_text,
   tr.fetched_question_stem,
   -- zh_question_stem: pure Chinese question (from enriched json zh-question)
@@ -494,6 +495,7 @@ select
   zh.explanation_html,
   coalesce(zh.zh_explain_imgs, '{}') as zh_explain_imgs,
   -- new metadata columns
+  q.topic as topic,
   q.micro_concept,
   q.trap_type,
   q.trap_type_is_new,
@@ -842,6 +844,9 @@ alter table public.question_items add column if not exists micro_concept text;
 alter table public.question_items add column if not exists trap_type text;
 alter table public.question_items add column if not exists skill_tested text;
 alter table public.question_items add column if not exists difficulty text check (difficulty is null or difficulty in ('easy','medium','hard'));
+
+-- question_items: topic from source explanation image footer
+alter table public.question_items add column if not exists topic text;
 
 -- question_items: extended AI meta (trap_type_is_new, keyword_meta, highlight_meta)
 alter table public.question_items add column if not exists trap_type_is_new boolean;

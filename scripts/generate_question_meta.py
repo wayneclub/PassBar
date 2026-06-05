@@ -359,14 +359,31 @@ def call_openai_json(prompt: str) -> dict[str, Any]:
         data=payload,
         headers={"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"},
     )
-    try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            data = json.loads(resp.read())
-        text = data["output"][0]["content"][0]["text"]
-        return json.loads(text)
-    except urllib.error.HTTPError as e:
-        body = e.read().decode(errors="replace")
-        raise RuntimeError(f"OpenAI HTTP {e.code}: {body[:300]}")
+    last_error: Exception | None = None
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                data = json.loads(resp.read())
+            text = data["output"][0]["content"][0]["text"]
+            return json.loads(text)
+        except urllib.error.HTTPError as e:
+            body = e.read().decode(errors="replace")
+            last_error = RuntimeError(f"OpenAI HTTP {e.code}: {body[:300]}")
+            if e.code == 429:
+                wait = 30 * attempt
+                print(f"    OpenAI rate limited, waiting {wait}s...")
+                time.sleep(wait)
+            elif e.code >= 500:
+                wait = 10 * attempt
+                print(f"    OpenAI {e.code}, retrying in {wait}s (attempt {attempt}/{MAX_RETRIES})...")
+                time.sleep(wait)
+            else:
+                raise RuntimeError(f"OpenAI HTTP {e.code}: {body[:300]}")
+        except Exception as exc:
+            last_error = exc
+            print(f"    OpenAI error: {exc}, retrying in 10s (attempt {attempt}/{MAX_RETRIES})...")
+            time.sleep(10)
+    raise RuntimeError(f"OpenAI failed after {MAX_RETRIES} attempts. Last: {last_error}")
 
 
 def call_meta_json(prompt: str) -> dict[str, Any]:

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --correct-bg: #e8f8f5;
+            --correct-border: #2ecc71;
+            --wrong-bg: #fdf2f2;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px; /* 适配手机逻辑宽度 */
+            width: 100%;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .concept-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .analysis-section {
+            margin-bottom: 25px;
+        }
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .english-term {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+        .correct-answer {
+            background-color: var(--correct-bg);
+            border: 1px solid var(--correct-border);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .wrong-option {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: var(--wrong-bg);
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+        .wrong-title {
+            font-weight: bold;
+            color: #c0392b;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .exam-tip {
+            background: #eaf2f8;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border: 1px dashed var(--accent-color);
+        }
+        .exam-tip strong {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>MBE 考点解析</h2>
+        <div class="sub-title">Contracts: Conditions Precedent</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="concept-box">
+            <span class="concept-title">核心考点：生效的先决条件</span>
+            <span class="english-term">Condition Precedent to Effectiveness</span><br>
+            当合同双方约定，合同仅在特定事件发生后才生效时，该事件即为先决条件。如果该条件未满足，合同义务便不会产生。
+        </div>
+
+        <!-- 正确答案解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么选 C 是正确的？</div>
+            <div class="correct-answer">
+                <p><strong>法律依据：</strong>根据合同法原则，如果一方的履约义务取决于某个<strong>先决条件 (Condition Precedent)</strong> 的发生，那么在该条件发生或被豁免之前，履约义务尚未到期。</p>
+                
+                <p><strong>本案逻辑推理：</strong></p>
+                <ol>
+                    <li><strong>约定：</strong>双方口头约定，只有买方在 1月2日 前书面通知卖方已安排转售，合同才生效 ("effective only if...")。</li>
+                    <li><strong>事实：</strong>买方直到 1月25日 才发出通知。</li>
+                    <li><strong>结果：</strong>1月2日 的截止日期已过，先决条件未满足 (Failure of Condition)。</li>
+                    <li><strong>结论：</strong>因为条件未满足，卖方出售发动机的义务从未产生，因此卖方拒绝履行不构成违约。</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- 难点辨析：口头证据规则 -->
+        <div class="analysis-section">
+            <div class="analysis-title">难点辨析：口头证据规则 (PER)</div>
+            <p>很多考生会疑惑：<strong>书面合同已经签了，之前的口头约定还有效吗？</strong></p>
+            <p>通常情况下，<strong>口头证据规则 (Parol Evidence Rule)</strong> 禁止引入与书面合同矛盾的口头证据。但是，这里有一个重要的<strong>例外</strong>：</p>
+            <p>如果口头证据是为了证明<strong>合同生效的先决条件 (Condition Precedent to Effectiveness)</strong>，即证明合同从未真正生效，那么该证据是<strong>可采纳的 (Admissible)</strong>。</p>
+        </div>
+
+        <!-- 错误选项解析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">为什么其他选项是错误的？</div>
+            
+            <div class="wrong-option">
+                <span class="wrong-title">选项 A：商业目的落空 (Commercial Frustration)</span>
+                虽然发动机价格上涨了75%，但这属于正常的市场风险。目的落空通常要求发生不可预见的、彻底摧毁合同基础目的的事件（如战争、法律变更）。单纯的价格波动不足以构成抗辩。
+            </div>
+
+            <div class="wrong-option">
+                <span class="wrong-title">选项 B：缺少重要条款 (Material Terms)</span>
+                本案涉及货物买卖，适用 <strong>UCC (Uniform Commercial Code)</strong>。UCC 非常宽松，只要有<strong>数量 (Quantity)</strong> 条款即可，价格、交货时间等均可由法律补缺 (Gap Fillers)。因此合同不会因为缺少条款而无效。
+            </div>
+
+            <div class="wrong-option">
+                <span class="wrong-title">选项 D：共同错误 (Mutual Mistake)</span>
+                关于交货日期的文书错误 (Scrivener's Error) 确实是共同错误，但这通常导致的救济是<strong>合同修正 (Reformation)</strong>，即法院将日期改为双方原本意图的日期，而不是让一方废除合同 (Voidable)。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="exam-tip">
+            <strong>💡 MBE 考试技巧：</strong><br>
+            当题目中出现 "Effective only if..." (仅当...时生效) 或 "Unless..., no deal" (除非...否则交易取消) 的字眼时，立即联想 <strong>Condition Precedent</strong>。
+            <br><br>
+            如果该条件设定了截止日期 (Deadline)，而当事人错过了该日期，通常意味着合同义务未被触发。
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

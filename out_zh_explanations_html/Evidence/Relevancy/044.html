@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - 证据法</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flow-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.active {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-weight: bold;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 22px 0;
+    }
+
+    .trap-alert .trap-title {
+      font-weight: 800;
+      color: #b25900;
+      margin-bottom: 6px;
+      font-size: 19px;
+    }
+
+    .option-analysis {
+      margin-top: 30px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+      }
+      .container {
+        padding: 0 12px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .comparison-table {
+        font-size: 15px;
+      }
+      .comparison-table-wrapper {
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Evidence: Opinion Testimony (FRE 703 - Bases of Expert Opinion)</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：D
+      <br>
+      <span style="font-size: 17px; font-weight: 500; color: var(--text-color); display: block; margin-top: 8px;">
+        核心裁决：若专家证人形成意见所依赖的底层事实或数据本身属于不可采证据（如传闻），则该信息仅在“其协助陪审团评估专家意见的证明价值实质性超过其偏见性影响”时，方可向陪审团披露。
+      </span>
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法理：专家意见的底层依据 (FRE 703)</h2>
+    <div class="concept-box">
+      <div class="concept-title">联邦证据规则第 703 条 (FRE 703)</div>
+      <p>根据 <span class="term">联邦证据规则第 703 条（FRE 703）</span>，专家证人可以基于以下三种类型的事实或数据（facts or data）形成其专业意见：</p>
+      <ol>
+        <li><strong>专家亲自观察到的事实</strong>（如接诊医生亲自检查病人）；</li>
+        <li><strong>在庭审过程中获知的事实</strong>（如在法庭上旁听其他证人陈述或通过假设性提问获知的事实）；</li>
+        <li><strong>在庭审前获知的事实</strong>：即使该事实或数据本身在案件中<strong>不可采</strong>，只要它们属于该领域专家在形成此类意见时<strong>合理赖以信赖（reasonably rely）</strong>的类型，专家仍可据此形成意见。</li>
+      </ol>
+    </div>
+
+    <h3>不可采底层数据的“披露”限制（反向平衡测试）</h3>
+    <p>
+      专家可以依赖不可采的底层数据形成意见，但这<strong>并不意味着</strong>这些底层数据会自动变得可采，也不意味着陪审团有权直接听取这些数据。
+    </p>
+    <p>
+      如果底层数据本身不可采（例如本案中属于传闻的私人信件），为了防止当事人通过专家之口将不可采的证据“走私”给陪审团，法官必须适用一个极其严格的<span class="term">反向平衡测试（Reverse Balancing Test）</span>：
+    </p>
+    <div class="rule-block">
+      <strong>披露标准：</strong> 只有当该底层数据的<strong>证明价值（仅限于协助陪审团评估专家意见）实质性超过（substantially outweighs）其偏见性影响</strong>时，法官才允许向陪审团披露该内容。
+    </div>
+    <p>
+      <em>注：即使允许披露，该证据也仅具有“非实质性证据（non-substantive evidence）”的限定用途，即仅用于评估专家的可信度，而不能用于证明案件事实本身（Truth of the matter asserted）。</em>
+    </p>
+
+    <!-- Concept Comparison Table -->
+    <h2>概念对比：FRE 403 与 FRE 703 平衡测试之异同</h2>
+    <div class="comparison-table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>对比维度</th>
+            <th>FRE 403 标准平衡测试 (Standard Balancing Test)</th>
+            <th>FRE 703 反向平衡测试 (Reverse Balancing Test)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>适用对象</strong></td>
+            <td>一般可采证据（Relevant Evidence）</td>
+            <td>专家意见所依赖的<strong>不可采底层数据</strong>（Inadmissible Underlying Data）</td>
+          </tr>
+          <tr>
+            <td><strong>默认倾向</strong></td>
+            <td><strong>倾向于准许采纳</strong>（除非偏见实质性超过证明价值）</td>
+            <td><strong>倾向于禁止披露</strong>（除非证明价值实质性超过偏见）</td>
+          </tr>
+          <tr>
+            <td><strong>天平倾斜方向</strong></td>
+            <td><code>证明价值</code> vs. <code>实质性超过的偏见</code> (Probative vs. Substantially Outweighed by Prejudice)</td>
+            <td><code>实质性超过的偏见的证明价值</code> vs. <code>偏见</code> (Probative Substantially Outweighs Prejudice)</td>
+          </tr>
+          <tr>
+            <td><strong>证据用途</strong></td>
+            <td>实质性证据（Substantive Evidence）</td>
+            <td>仅用于协助评估专家意见（Limited to evaluating the expert's opinion）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Fact/Application Logic -->
+    <h2>案件事实与适用逻辑</h2>
+    <p>在本案中，原告的医学专家在形成关于死因的意见时，部分依赖了法医写给保险公司的一封<strong>私人且非例行（private and nonroutine）</strong>的信件：</p>
+    
+    <div class="flow-node" style="display: inline-block; margin-bottom: 10px;">步骤 1：审查底层数据的可采性</div>
+    <p style="margin-top: 0;">
+      该信件属于法医在庭审外作出的陈述，原告试图向陪审团披露其内容以证明死因，这属于典型的<span class="term">传闻证据（hearsay）</span>。由于该信件是“私人且非例行”的，因此无法适用“业务记录例外（business records exception）”或“公共记录例外（public records exception）”。该信件本身<strong>不可采</strong>。
+    </p>
+
+    <div class="flow-node" style="display: inline-block; margin-bottom: 10px;">步骤 2：审查专家是否可以合理依赖</div>
+    <p style="margin-top: 0;">
+      虽然信件本身不可采，但医学领域的专家在确定死因时，合理信赖法医关于尸检和伤势的记录是符合行业惯例的。因此，原告专家<strong>可以</strong>基于该信件形成其专家意见。
+    </p>
+
+    <div class="flow-node" style="display: inline-block; margin-bottom: 10px;">步骤 3：决定是否向陪审团披露</div>
+    <p style="margin-top: 0;">
+      因为该底层信件本身不可采，原告若想向陪审团披露其内容，必须满足 FRE 703 的反向平衡测试，即：<strong>其证明价值（协助评估专家意见）实质性超过其偏见性影响</strong>。因此，陪审团有条件地可以听取该证据。
+    </p>
+
+    <!-- Diagram -->
+    <h2>逻辑决策图</h2>
+    <div class="diagram">
+      <div class="diagram-container">
+        <div class="flow-row">
+          <div class="flow-node">专家拟依赖的底层数据</div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row">
+          <div class="flow-node">该数据本身是否可采？</div>
+        </div>
+        <div class="flow-row">
+          <div class="flow-node" style="background: #e6f4ea; border-color: #57b85d; color: #1e7e34;">【是】直接可采并可向陪审团披露</div>
+          <div class="flow-arrow">/</div>
+          <div class="flow-node" style="background: #fdf2e2; border-color: #f5b041; color: #b9770e;">【否】进入 FRE 703 审查</div>
+        </div>
+        <div class="flow-arrow">↓ (否)</div>
+        <div class="flow-row">
+          <div class="flow-node">同领域专家是否会合理信赖此类数据？</div>
+        </div>
+        <div class="flow-row">
+          <div class="flow-node" style="background: #fce8e6; border-color: #e57373; color: #c62828;">【否】专家不得依赖该数据形成意见</div>
+          <div class="flow-arrow">/</div>
+          <div class="flow-node" style="background: #e8f4f8; border-color: #3498db; color: #2980d9;">【是】专家可依赖，但底层数据默认不公开</div>
+        </div>
+        <div class="flow-arrow">↓ (是)</div>
+        <div class="flow-row">
+          <div class="flow-node active">反向平衡测试 (Reverse 403)</div>
+        </div>
+        <div class="flow-row">
+          <div class="flow-node" style="background: #e8f4f8; border-color: #3498db; color: #2980d9; font-weight: 800;">
+            证明价值（协助评估意见） ＞＞ 偏见性影响？
+          </div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row">
+          <div class="flow-node" style="background: #dff0d8; border-color: #27ae60; color: #1f8f4d;">满足条件：允许向陪审团披露（仅限评估意见用途）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <div class="trap-title">⚠️ MBE 常见陷阱提示</div>
+      <ul>
+        <li><strong>自动可采陷阱：</strong> 绝不要认为“只要专家依赖了，底层证据就自动变得可采”。底层证据的传闻属性不会因为专家的使用而自动消融。</li>
+        <li><strong>绝对排除陷阱：</strong> 也不要认为“因为底层证据是传闻，所以陪审团绝对不能听取”。如果通过了 FRE 703 的反向平衡测试，陪审团依然可以听取，只是用途受到限制。</li>
+      </ul>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <div class="option-analysis">
+      <h2>正确答案与干扰项排除</h2>
+      
+      <div class="option correct">
+        <div class="option-title">D. 正确</div>
+        <p>
+          该选项准确地表述了 <span class="term">联邦证据规则第 703 条（FRE 703）</span> 的反向平衡测试标准。因为法医的信件属于不可采的传闻，只有在法官认定其协助评估专家意见的证明价值实质性超过其偏见性影响时，原告才被允许向陪审团披露该信件的内容。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">A. 错误</div>
+        <p>
+          该选项认为“专家缺乏对尸检的亲自观察”导致其不能使用该证据。然而，FRE 703 明确允许专家基于其<strong>未亲自观察</strong>但属于行业合理赖以信赖的数据（如法医的专业报告或记录）来形成意见。缺乏亲自观察并不妨碍专家使用该信息。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. 错误</div>
+        <p>
+          该选项主张“因为信件内容是传闻，所以陪审团绝对不能听取”。这忽略了 FRE 703 提供的例外通道。虽然该信件确实是传闻（且不适用业务/公共记录例外），但如果满足反向平衡测试，它仍可以被披露给陪审团用于限定目的。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">C. 错误</div>
+        <p>
+          该选项认为“专家意见所依赖的所有事实都会自动采纳为证据”。这是 MBE 中极具诱惑力的错误选项。专家依赖的事实并<strong>不会自动获得可采性</strong>。如果底层事实本身不可采，它必须通过严格的反向平衡测试才能向陪审团披露，且披露后也仅具有限制性用途，而非作为实质性证据采纳。
+        </p>
+      </div>
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <strong>💡 快速解题捷径 (Decision Rule)：</strong>
+      <br>
+      在 MBE 考试中，一旦看到“专家证人依赖了某种不可采的底层数据（如传闻报告），问该底层数据能否向陪审团披露”：
+      <br>
+      直接寻找含有 <strong>“probative value ... substantially outweighs ... prejudicial effect”</strong>（证明价值实质性超过偏见影响）这一特定反向平衡测试表述的选项。这是 FRE 703 考点的唯一标准通关密码。
+    </div>
+
+  </div>
+
+</body>
+</html>

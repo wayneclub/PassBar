@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - 政府线人特权</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 24px 0;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 17px;
+      min-width: 600px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    .diagram-title {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--primary-color);
+      margin-bottom: 16px;
+    }
+
+    .flow-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #05606a;
+      font-size: 16px;
+    }
+
+    .flow-node.active {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-weight: bold;
+      color: var(--muted-text);
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .rule-block-title, .trap-alert-title, .footer-tip-title {
+      font-weight: 800;
+      font-size: 19px;
+      color: #b7791f;
+      margin-bottom: 8px;
+    }
+
+    .option-analysis {
+      margin-top: 24px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      border-left: 5px solid transparent;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left-color: var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left-color: var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-title {
+      font-weight: 800;
+      font-size: 19px;
+      margin-bottom: 6px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+      .container {
+        padding: 0 12px 20px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 17px;
+      }
+      body, p, li {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 19px;
+      }
+      .flow-container {
+        flex-direction: column;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- 【Card Top Header】 -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Evidence: Government-Informant Privilege (政府线人特权)</div>
+    </div>
+
+    <!-- 【Correct Answer Box】 -->
+    <div class="answer-box">
+      正确答案：仅线人的身份（Identity）享有特权，而其陈述的内容（Contents）不享有特权。
+    </div>
+
+    <!-- 【Core Legal Rule】 -->
+    <h2>核心法律原理</h2>
+    <div class="concept-box">
+      <div class="concept-title">政府线人特权 (Government-Informant Privilege)</div>
+      <p>
+        <span class="term">政府线人特权（government-informant privilege）</span>允许政府在诉讼中<b>拒绝披露</b>向执法部门提供犯罪线索的公民的<span class="term">身份（identity）</span>。
+      </p>
+      <ul>
+        <li><b>立法目的：</b>通过保护线人的匿名性，鼓励公众积极向警方提供犯罪线索，维护公共安全。</li>
+        <li><b>特权范围：</b>
+          <ul>
+            <li><b>身份（Identity）：</b>原则上<b>享有特权</b>，受绝对保护。</li>
+            <li><b>陈述内容（Contents of Communication）：</b>原则上<b>不享有特权</b>。只要披露陈述内容不会直接或间接暴露线人的身份，被告就有权要求披露该陈述。</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 【Concept Comparison Table】 -->
+    <h2>特权的例外与线人身份的界定</h2>
+    <p>政府线人特权并非绝对。如果被告能够证明线人的身份对案件的公正审判或辩护至关重要，法院必须强制披露。这取决于线人在案中所扮演的角色：</p>
+    
+    <div class="table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>线人角色类型</th>
+            <th>定义与案情特征</th>
+            <th>身份是否必须披露？</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>仅提供线索者<br><span class="latin">(Mere Tipster)</span></b></td>
+            <td>仅向警方提供犯罪嫌疑的线索，未直接参与犯罪交易，也不是犯罪现场的目击证人。警方随后通过独立调查（如卧底购买、搜查令）获取证据。</td>
+            <td><b>否（享有特权）</b>。<br>线人身份对被告的实体辩护（Defense）不具有实质性关键作用。</td>
+          </tr>
+          <tr>
+            <td><b>活跃参与者 / 目击证人<br><span class="latin">(Active Participant / Eyewitness)</span></b></td>
+            <td>直接参与了犯罪行为（例如直接与被告进行毒品交易），或作为关键目击证人。其证言对定罪或抗辩有直接决定性影响。</td>
+            <td><b>是（特权消灭）</b>。<br>根据 <span class="latin">Roviaro v. United States</span>，此时披露身份对公正审判（Fair Determination）至关重要。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 【Fact/Application Logic】 -->
+    <h2>本案事实适用与逻辑推导</h2>
+    <div class="case-box">
+      <p>在本案中，被告要求披露（1）线人的身份，以及（2）线人向警方陈述的具体内容。我们进行双轨分析：</p>
+      <ol>
+        <li>
+          <b>关于线人身份（Identity）：</b>
+          <br>该线人仅向警方举报“被告可能在家里贩毒”，随后警方通过卧底警员多次购买毒品并执行搜查令，独立获取了核心证据。线人并未参与后续的交易，属于典型的<b>“仅提供线索者（Mere Tipster）”</b>。被告未能证明该线人身份对建立其无罪辩护有任何实质性帮助，因此<b>线人身份享有特权，无需披露</b>。
+        </li>
+        <li>
+          <b>关于陈述内容（Contents of Communication）：</b>
+          <br>线人对警方的陈述为“我相信有人在某地址贩毒”。该陈述的内容本身<b>并不包含任何能够识别线人身份的个人特征</b>。因此，披露该陈述内容不会破坏线人的匿名性。<b>陈述内容不享有特权，应当向被告披露</b>。
+        </li>
+      </ol>
+    </div>
+
+    <!-- 【Diagram】 -->
+    <div class="diagram">
+      <div class="diagram-title">政府线人特权审查决策树 (Decision Tree)</div>
+      <div class="flow-container">
+        <div class="flow-node">收到披露申请</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">区分申请对象</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node active">申请：线人身份 (Identity)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">判断：是否为 Mere Tipster？</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node active">是 ➔ 享有特权 (不予披露)</div>
+      </div>
+      <div class="flow-container" style="margin-top: 15px;">
+        <div style="width: 110px;"></div>
+        <div class="flow-arrow" style="visibility: hidden;">➔</div>
+        <div class="flow-node" style="background: #fff0f6; border-color: #f783ac; color: #c2255c;">申请：陈述内容 (Contents)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node">判断：披露是否会暴露身份？</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-node" style="background: #fff0f6; border-color: #f783ac; color: #c2255c;">否 ➔ 不享有特权 (必须披露)</div>
+      </div>
+    </div>
+
+    <!-- 【Trap Alert】 -->
+    <div class="trap-alert">
+      <div class="trap-alert-title">⚠️ MBE 常见陷阱提示</div>
+      <ul>
+        <li>
+          <b>陷阱 1：混淆“身份”与“陈述内容”的保护边界。</b>
+          <br>考生常误以为“只要是线人说的话，就全部享有特权”。实际上，特权保护的内核是<b>“匿名性（Anonymity）”</b>。如果陈述内容本身不暴露线人是谁，该内容就必须向被告开示，以保障被告的知情权和程序正义。
+        </li>
+        <li>
+          <b>陷阱 2：误认为线人特权是绝对的。</b>
+          <br>如果线人参与了毒品交易（例如作为卧底的中间人），被告主张“陷害抗辩（Entrapment）”，此时线人身份对辩护至关重要，政府必须披露，否则必须撤诉。
+        </li>
+      </ul>
+    </div>
+
+    <!-- 【Answer-Choice Breakdown】 -->
+    <h2>正确答案与干扰项排除</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-title">C. 正确</div>
+        <p>
+          如上所述，线人仅提供线索，其身份享有特权（Privileged）；而其陈述内容在不暴露身份的前提下不享有特权（Not Privileged）。因此，法院应裁定只有线人的身份享有特权。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">A. 错误</div>
+        <p>
+          该选项错误地将“陈述内容”也归为享有特权。只要陈述内容不泄露线人身份，就不受特权保护。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">B. 错误</div>
+        <p>
+          该选项完全颠倒了特权的保护对象。享有保护的是身份，而非内容。
+        </p>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-title">D. 错误</div>
+        <p>
+          该选项错误地主张两者都不享有特权。因为本案中线人只是“Mere Tipster”，其身份依然受到特权的完整保护。
+        </p>
+      </div>
+
+    </div>
+
+    <!-- 【Exam Tip】 -->
+    <div class="footer-tip">
+      <div class="footer-tip-title">💡 快速解题秒杀公式</div>
+      <p>
+        <b>线人特权两步走：</b>
+        <br>① 问<b>“内容”</b> ➔ 只要不暴露名字，一律<b>不保护</b>（必须披露）。
+        <br>② 问<b>“身份”</b> ➔ 纯举报（Mere Tipster）<b>保护</b>；参与交易/现场目击（Active/Eyewitness）<b>不保护</b>。
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

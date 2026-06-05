@@ -252,15 +252,31 @@ async function uploadImage(filePath, storagePath) {
   return { publicUrl: data.publicUrl, contentType };
 }
 
-async function mapLimit(items, limit, mapper) {
+function renderProgress(done, total, label = '') {
+  const cols = process.stdout.columns || 80;
+  const pct = total === 0 ? 100 : Math.floor((done / total) * 100);
+  const suffix = ` ${done}/${total} ${pct}%${label ? '  ' + label : ''}`;
+  const barWidth = Math.max(10, cols - suffix.length - 3);
+  const filled = Math.round((pct / 100) * barWidth);
+  const bar = '█'.repeat(filled) + '░'.repeat(barWidth - filled);
+  process.stdout.write(`\r[${bar}]${suffix}`);
+  if (done === total) process.stdout.write('\n');
+}
+
+async function mapLimit(items, limit, mapper, progressLabel = '') {
   const results = new Array(items.length);
   let nextIndex = 0;
+  let done = 0;
+  const total = items.length;
+  if (total > 0 && uploadImages) renderProgress(0, total, progressLabel);
   const workerCount = Math.max(1, Math.min(limit, items.length));
   await Promise.all(Array.from({ length: workerCount }, async () => {
     while (nextIndex < items.length) {
       const currentIndex = nextIndex;
       nextIndex += 1;
       results[currentIndex] = await mapper(items[currentIndex], currentIndex);
+      done += 1;
+      if (uploadImages) renderProgress(done, total, progressLabel);
     }
   }));
   return results;
@@ -395,6 +411,7 @@ for (const file of files) {
       source_correct_answer: answer,
       source_explanation_html: isErrorHtml(item.explanation) ? null : item.explanation,
       source_explanation_image_file: item.source_img ?? null,
+      topic:            typeof item.topic === 'string' && item.topic.trim() ? item.topic.trim() : null,
       micro_concept:    analysisMeta.micro_concept,
       trap_type:        analysisMeta.trap_type,
       trap_type_is_new: analysisMeta.trap_type_is_new,
@@ -437,21 +454,48 @@ for (const file of files) {
         raw: { source_img: item.source_img ?? null },
       };
 
-      if (uploadImages && item.source_img) {
+      if (uploadImages && (item.source_img || (item.explain_imgs?.length > 0))) {
         const capturedQuestionId = questionId;
         const capturedItem = item;
         imageTasks.push(async () => {
-          const localPath = path.resolve(path.dirname(file), capturedItem.source_img);
-          const ext = path.extname(localPath).toLowerCase();
-          const storagePath = `${subjectId(meta)}/${slugify(meta.chapter)}/${capturedQuestionId}/source${ext}`;
-          const uploaded = await uploadImage(localPath, storagePath);
-          return {
-            ...enExp,
-            storage_bucket: uploaded ? bucketName : null,
-            storage_path: uploaded ? storagePath : null,
-            public_url: uploaded?.publicUrl ?? null,
-            mime_type: uploaded?.contentType ?? enExp.mime_type,
-          };
+          let result = { ...enExp };
+
+          // Upload source_img (main explanation screenshot)
+          if (capturedItem.source_img) {
+            const localPath = path.resolve(path.dirname(file), capturedItem.source_img);
+            const ext = path.extname(localPath).toLowerCase();
+            const storagePath = `${subjectId(meta)}/${slugify(meta.chapter)}/${capturedQuestionId}/source${ext}`;
+            const uploaded = await uploadImage(localPath, storagePath);
+            result = {
+              ...result,
+              storage_bucket: uploaded ? bucketName : null,
+              storage_path: uploaded ? storagePath : null,
+              public_url: uploaded?.publicUrl ?? null,
+              mime_type: uploaded?.contentType ?? enExp.mime_type,
+            };
+          }
+
+          // Upload explain_imgs and rewrite src in HTML
+          if (capturedItem.explain_imgs?.length > 0 && capturedItem.explanation) {
+            let html = result.explanation_html;
+            for (const relPath of capturedItem.explain_imgs) {
+              const basename = path.basename(relPath);
+              const localPath = path.resolve(path.dirname(file), relPath);
+              const ext = path.extname(localPath).toLowerCase();
+              const storagePath = `${subjectId(meta)}/${slugify(meta.chapter)}/${capturedQuestionId}/explain_imgs/${basename}`;
+              const uploaded = await uploadImage(localPath, storagePath);
+              if (uploaded?.publicUrl) {
+                // Replace both "imgs/basename" and bare "basename" src refs in the HTML
+                const escapedBase = basename.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                html = html
+                  .replace(new RegExp(`src="imgs/${escapedBase}"`, 'g'), `src="${uploaded.publicUrl}"`)
+                  .replace(new RegExp(`src="${escapedBase}"`, 'g'), `src="${uploaded.publicUrl}"`);
+              }
+            }
+            result = { ...result, explanation_html: html };
+          }
+
+          return result;
         });
       } else {
         explanations.push(enExp);
@@ -477,7 +521,8 @@ for (const file of files) {
   }
 
   if (imageTasks.length > 0) {
-    const uploaded = await mapLimit(imageTasks, uploadConcurrency, (task) => task());
+    if (imageTasks.length > 0) console.log(`  Uploading ${imageTasks.length} image task(s)…`);
+    const uploaded = await mapLimit(imageTasks, uploadConcurrency, (task) => task(), 'uploading images');
     explanations.push(...uploaded);
   }
 

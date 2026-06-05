@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 10px;
+        color: #333;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: #2c3e50;
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .header .sub-title {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .rule-box {
+        background-color: #e8f4f8;
+        border-left: 5px solid #3498db;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .rule-title {
+        font-weight: bold;
+        color: #2980b9;
+        margin-bottom: 5px;
+        display: block;
+    }
+    .term {
+        font-weight: bold;
+        color: #e74c3c;
+    }
+    .english {
+        font-size: 0.85em;
+        color: #7f8c8d;
+        font-style: italic;
+        margin-left: 4px;
+    }
+    .step-card {
+        background-color: #fff;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: flex-start;
+    }
+    .step-icon {
+        background-color: #27ae60;
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 24px;
+        font-size: 14px;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+    .step-text {
+        font-size: 14px;
+    }
+    .table-container {
+        margin: 20px 0;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #ddd;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+    }
+    th {
+        background-color: #f8f9fa;
+        padding: 10px;
+        text-align: left;
+        border-bottom: 2px solid #ddd;
+    }
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    .conclusion {
+        background-color: #fdf2f2;
+        border: 1px solid #fadbd8;
+        color: #c0392b;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+    .tip-box {
+        margin-top: 25px;
+        padding-top: 15px;
+        border-top: 2px dashed #ddd;
+    }
+    .tip-title {
+        font-weight: bold;
+        color: #d35400;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+    .tip-title::before {
+        content: "💡";
+        margin-right: 8px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts / Sales (UCC Art. 2)</div>
+    </div>
+
+    <div class="content">
+        <p>本题考察的是合同法中关于<b>特定物灭失</b>的法律后果。正确答案是 <b>A (Both claims will fail)</b>。</p>
+
+        <!-- 核心法则 -->
+        <div class="rule-box">
+            <span class="rule-title">核心法则：UCC § 2-613</span>
+            当合同涉及<b>特定物</b><span class="english">(Identified Goods)</span>时，如果在损失风险<span class="english">(Risk of Loss)</span>转移给买方之前，该货物在双方均无过错的情况下发生<b>完全灭失</b><span class="english">(Total Destruction)</span>，则合同<b>自动解除</b><span class="english">(Avoided)</span>。
+        </div>
+
+        <h3>📝 案情逻辑分析</h3>
+        
+        <div class="step-card">
+            <div class="step-icon">1</div>
+            <div class="step-text">
+                <b>特定物 (Identified Goods)：</b><br>
+                合同标的是一辆特定的“古董车”<span class="english">(Antique Car)</span>，且在合同订立时已经确定。这属于 UCC § 2-613 适用的特定物范畴。
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-icon">2</div>
+            <div class="step-text">
+                <b>无过错灭失 (Casualty without Fault)：</b><br>
+                车辆因火灾被毁，且题目明确指出“双方均无过错”<span class="english">(without fault of either party)</span>。
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-icon">3</div>
+            <div class="step-text">
+                <b>时间点 (Timing)：</b><br>
+                灭失发生在“损失风险转移给买方之前”<span class="english">(before the risk of loss had passed)</span>。根据 UCC，未交付前风险通常在卖方。
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-icon">4</div>
+            <div class="step-text">
+                <b>法律后果 (Consequence)：</b><br>
+                满足上述条件后，合同被<b>解除/撤销</b><span class="english">(Avoided)</span>。这意味着双方的履行义务都被免除<span class="english">(Excused)</span>。
+            </div>
+        </div>
+
+        <h3>⚖️ 为什么其他选项错误？</h3>
+        <p>由于合同已经解除（Avoided）：</p>
+        <ul>
+            <li><b>卖方</b>无需交付车辆，因此不构成违约，买方无权索赔（即使车价涨了）。</li>
+            <li><b>买方</b>无需支付价款，因此卖方无权索赔合同价金。</li>
+        </ul>
+        <p>这就是为什么买方不能主张 $30,000 的价值（或 $10,000 的利润损失），卖方也不能主张 $20,000 的车款。</p>
+
+        <!-- 表格对比 -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2" style="text-align:center; color:#2c3e50;">UCC § 2-613 灭失程度对比</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>完全灭失</b><br><span class="english">Total Destruction</span></td>
+                        <td>合同解除，双方免责。<br>（本题情况）</td>
+                    </tr>
+                    <tr>
+                        <td><b>部分灭失</b><br><span class="english">Partial Destruction</span></td>
+                        <td>买方有选择权：<br>1. 解除合同；或<br>2. 接受货物（价格需根据受损情况折让），但不得再向卖方索赔。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="conclusion">
+            结论：双方均无权向对方索赔。<br>
+            Both claims will fail.
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <div class="tip-title">MBE 考试技巧</div>
+            <p style="font-size: 14px;">
+                在做此类题目时，请寻找以下关键词组合：
+                <br><b>"Specific/Identified Goods"</b>（特定物）
+                <br><b>+ "Destruction/Fire"</b>（灭失）
+                <br><b>+ "No Fault"</b>（无过错）
+                <br><br>
+                一旦看到这个组合，首先考虑 <b>Impossibility/Impracticability</b>（履行不能）或 <b>UCC § 2-613</b>。通常结果是双方“各回各家”，互不亏欠。
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

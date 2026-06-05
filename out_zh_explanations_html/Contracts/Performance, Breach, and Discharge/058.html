@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        strong, b {
+            display: inline !important; 
+            white-space: normal !important; 
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+    </style>
+
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-color: #27ae60;
+            --wrong-color: #c0392b;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .rule-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rule-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rule-title::before {
+            content: "⚖️";
+            margin-right: 8px;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+        .option-analysis {
+            margin-top: 15px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .option.correct {
+            background-color: rgba(39, 174, 96, 0.1);
+            border: 1px solid var(--correct-color);
+        }
+
+        .option.wrong {
+            background-color: rgba(192, 57, 43, 0.05);
+            border: 1px solid #eee;
+            color: #666;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .badge-correct {
+            background: var(--correct-color);
+            color: white;
+        }
+
+        .badge-wrong {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .tip-box {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+
+        .tip-title {
+            color: #f1c40f;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        code {
+            font-family: "Courier New", monospace;
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Contracts / UCC Article 2</div>
+    </div>
+
+    <div class="content">
+        <!-- 核心考点 -->
+        <div class="rule-box">
+            <div class="rule-title">核心法律规则：UCC § 2-311</div>
+            <p>在货物买卖合同中，如果合同未规定具体的货物规格（如糖果种类），买方有义务进行选择。</p>
+            <p>如果买方未能及时选择，卖方<b>只有在</b>该延迟对卖方的履约造成<b>重大影响 (Material Effect)</b> 时，才能将此视为违约并取消合同。</p>
+        </div>
+
+        <!-- 案情分析 -->
+        <div class="analysis-section">
+            <div class="analysis-title">📊 案情逻辑链分析</div>
+            <p>1. <b>合同性质：</b>货物买卖 (Sale of Goods)，适用 <span class="highlight">UCC</span>。</p>
+            <p>2. <b>义务：</b>买方需在 3月1日 前选定糖果种类。</p>
+            <p>3. <b>违约事实：</b>买方迟延 1天（3月2日才选）。</p>
+            <p>4. <b>关键事实：</b>题目明确指出卖方库存充足，且未进行其他交易。这意味着延迟<b>没有</b>对卖方造成实质性损害。</p>
+            <p>5. <b>结论：</b>卖方无权取消合同，卖方的拒绝履行构成了违约。</p>
+        </div>
+
+        <!-- 选项解析 -->
+        <div class="analysis-title">✅ 正确答案解析</div>
+        <div class="option-analysis">
+            <div class="option correct">
+                <span class="badge badge-correct">选项 C</span>
+                <b>正确。</b>因为延迟一天做出选择对卖方没有产生重大影响。
+                <br><br>
+                <small>根据 UCC § 2-311(3)，一方未配合（如未选择规格）并不自动导致合同终止。只有当这种失败 "materially affects"（重大影响）另一方的履约时，受影响方才能将其视为违约。本案中，延迟仅一天且无经济损失，因此卖方取消合同是不合理的。</small>
+            </div>
+        </div>
+
+        <div class="analysis-title" style="margin-top: 20px;">❌ 错误陷阱排除</div>
+        <div class="option-analysis">
+            <div class="option wrong">
+                <span class="badge badge-wrong">选项 A</span>
+                <b>错误。</b>UCC 允许合同存在未决条款 (Open Terms)。只要双方有订立合同的意图且有合理的计算赔偿依据，即使未选定具体规格，合同依然成立。
+            </div>
+            <div class="option wrong">
+                <span class="badge badge-wrong">选项 B</span>
+                <b>错误。</b>除非合同明确规定“时间是关键要素” (Time is of the essence)，否则轻微的延迟通常不被视为未能满足“明示条件” (Express Condition)，而只是轻微违约，不足以免除卖方的履约义务。
+            </div>
+            <div class="option wrong">
+                <span class="badge badge-wrong">选项 D</span>
+                <b>错误。</b>虽然 UCC 允许卖方在买方违约时自己做出合理的选择 (make a reasonable selection)，但这只是卖方的<b>权利</b>而非<b>义务</b>。更重要的是，卖方不能在没有“重大影响”的情况下直接取消合同。
+            </div>
+        </div>
+
+        <!-- 考试技巧 -->
+        <div class="tip-box">
+            <div class="tip-title">💡 MBE 拿分技巧</div>
+            <p>在处理 <b>UCC</b> 下的“合作与选择” (Cooperation and Options) 问题时，请寻找关键词 <b>"Materially Affects" (重大影响)</b>。</p>
+            <p>UCC 旨在促进商业交易的达成，不喜欢因为技术性的小失误（如晚了一天通知规格）而撕毁合同。如果题目特意强调“卖方库存充足，无其他损失”，这通常是在暗示你：<b>没有重大影响，合同应当继续。</b></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -16,7 +16,7 @@ type QuestionRow = {
   index: number;
   subject: string;
   chapter_id: string;
-  topic: string;
+  chapter_name: string;
   question_text: string;
   fetched_question_stem: string | null;
   zh_question_stem: string | null;
@@ -33,13 +33,14 @@ type QuestionRow = {
   source_explanation_image_url: string | null;
   en_explanation_html: string | null;  // gemini-generated English interactive HTML
   explanation_html: string | null;      // zh explanation html
+  topic: string | null;                 // fine-grained topic from source image
   raw: unknown;
 };
 
 type ChapterSummaryRow = {
   subject: string;
   chapter_id: string;
-  topic: string;
+  chapter_name: string;
   count: number;
 };
 
@@ -55,7 +56,7 @@ type ExplanationOcrRow = {
   words: ExplanationOcr['words'];
 };
 
-const questionSelectFields = 'id, index, subject, chapter_id, topic, question_text, fetched_question_stem, zh_question_stem, options, bilingual_options, zh_options, correct_answer, correct_answer_letter, api_answer_key, api_match_ok, explain_imgs, source_explanation_image_file, source_explanation_image_url, en_explanation_html, explanation_html, raw';
+const questionSelectFields = 'id, index, subject, chapter_id, chapter_name, topic, question_text, fetched_question_stem, zh_question_stem, options, bilingual_options, zh_options, correct_answer, correct_answer_letter, api_answer_key, api_match_ok, explain_imgs, source_explanation_image_file, source_explanation_image_url, en_explanation_html, explanation_html, raw';
 
 const VALID_HIGHLIGHT_KINDS = new Set([
   'key_sentence',
@@ -182,7 +183,7 @@ function toQuestion(row: QuestionRow, ocrByQuestion = new Map<string, Explanatio
     id: row.id,
     index: row.index,
     subject: row.subject,
-    topic: row.topic,
+    chapterName: row.chapter_name,
     chapterId: row.chapter_id,
     questionText: row.question_text,
     bilingualQuestionText: row.fetched_question_stem ?? undefined,
@@ -202,6 +203,7 @@ function toQuestion(row: QuestionRow, ocrByQuestion = new Map<string, Explanatio
     enExplanationHtml: row.en_explanation_html ?? undefined,
     explanationHtml: row.explanation_html ?? undefined,
     explanationOcr: ocrByQuestion.get(row.id) ?? [],
+    topic: typeof row.topic === 'string' && row.topic.trim() ? row.topic.trim() : undefined,
     questionHighlightMeta: parseQuestionHighlightMeta(row.raw),
     questionKeywordMeta: parseQuestionKeywordMeta(row.raw),
     choiceKeywordMeta: parseChoiceKeywordMeta(row.raw),
@@ -277,9 +279,9 @@ export async function getSubjects(): Promise<Subject[]> {
 
   const { data, error } = await supabase
     .from('question_chapter_counts')
-    .select('subject, chapter_id, topic, count')
+    .select('subject, chapter_id, chapter_name, count')
     .order('subject', { ascending: true })
-    .order('topic', { ascending: true });
+    .order('chapter_name', { ascending: true });
 
   if (error || !data) {
     console.warn('[PassBar] Falling back to local question metadata:', error?.message);
@@ -298,7 +300,7 @@ export async function getSubjects(): Promise<Subject[]> {
     existing.count += row.count;
     existing.chapters.push({
       id: row.chapter_id,
-      name: row.topic,
+      name: row.chapter_name,
       count: row.count,
     });
     grouped.set(row.subject, existing);

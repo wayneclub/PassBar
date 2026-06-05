@@ -134,10 +134,12 @@ The highest priority is visual and textual fidelity to the source explanation im
 ### 1. Faithful Restoration Rules
 * Preserve the original explanation's English text exactly as it appears, except for obvious OCR spacing mistakes.
 * Preserve bold, italics, underline/dotted underline, color emphasis, bullets, numbered lists, tables, timelines, flowcharts, callouts, and date highlights.
-* Rebuild diagrams/tables/flowcharts as native HTML/CSS boxes and lines. Do not embed the uploaded image itself.
+* **Tables**: Rebuild as `<table>` with explicit borders. Every table must have `border: 1px solid #cccccc; border-collapse: collapse;` on the table element, and `border: 1px solid #cccccc; padding: 8px 12px;` on every `<th>` and `<td>`. Header cells (`<th>`) use `background: #f5f5f5; font-weight: bold;`. Do not use borderless or invisible-border tables.
+* **Text emphasis from source**: Reproduce underlines as `text-decoration: underline`, bold as `<strong>`, and any dotted/dashed underlines as `border-bottom: 1px dashed #555`. Do not drop these from the source image.
+* **Diagrams/flowcharts**: Rebuild as native HTML/CSS. Do not embed the uploaded image itself.
 * Do not invent a new "learning card" design if the source image already has a design. Match the source image.
 * Do not add a toolbar, navigation bar, dark-mode toggle, search box, tabs, quiz controls, title labels like "Explanation", or any app chrome.
-* Remove copyright notices, watermarks, source-site branding, and bottom copyright footer text. Keep subject/chapter/topic metadata only if it is part of the educational explanation layout and not a copyright/branding notice.
+* **REMOVE entirely**: the bottom metadata footer (Subject / Chapter / Topic labels and their values), copyright notices, watermarks, and source-site branding. These must not appear anywhere in the output HTML.
 
 ### 2. CSS Architecture: No Tailwind, No Frameworks
 * Do NOT use Tailwind CSS, Tailwind CDN, Bootstrap, external CSS frameworks, icon libraries, web components, React/Vue, or external JavaScript.
@@ -148,11 +150,26 @@ The highest priority is visual and textual fidelity to the source explanation im
 * Do not rely on generated utility classes such as `md:*`, `hover:*`, `min-w-[840px]`, etc. Write explicit CSS rules instead.
 
 ### 3. Layout and Responsive Behavior
-* The content must render correctly at full iframe width.
-* For wide diagrams/tables, wrap them in a `.pbx-scroll-x` container with `overflow-x: auto`.
-* If a diagram requires a fixed minimum width to preserve the original layout, set that width explicitly in vanilla CSS, e.g. `.pbx-flow-inner { min-width: 840px; }`.
-* Do not crush or vertically collapse horizontal timelines/flowcharts on desktop. On small screens, allow horizontal scrolling instead of reflowing the diagram into an unreadable stack.
-* Text must wrap naturally and never overflow its card. Use ordinary CSS properties, not viewport-width font scaling.
+* The content must render correctly at full iframe width on both desktop and mobile (320px–1400px).
+* **Base font**: `body { font-size: 1rem; line-height: 1.7; }`. Use `rem` for all font sizes and `em` for padding/margin — never `px` for typography, never `vw` units for font-size. This ensures the layout respects the user's browser font size preferences.
+* **Mobile breakpoint** (`@media (max-width: 640px)`): set `body { font-size: 0.95rem; padding: 0.75rem; }` and reduce heading sizes proportionally using `rem`.
+
+* **Tables**:
+  - Always wrap every `<table>` in `<div class="pbx-scroll-x" style="overflow-x:auto; -webkit-overflow-scrolling:touch; margin: 16px 0;">`.
+  - Set `table { min-width: 480px; width: 100%; border-collapse: collapse; }` so the table scrolls horizontally on mobile rather than collapsing.
+  - On mobile (`max-width: 640px`): reduce `th, td` font-size to `0.825rem` and padding to `0.5em 0.625em`.
+  - Never hide table columns or reformat a table into a stacked list — preserve the original tabular structure and let it scroll.
+
+* **Flowcharts / decision trees / timelines**:
+  - Wrap the diagram content in `<div class="pbx-flow-inner">` inside `.pbx-scroll-x`.
+  - Set a `min-width` on `.pbx-flow-inner` that matches the natural width of the diagram (e.g. `min-width: 560px`).
+  - Do not vertically collapse horizontal flowcharts. On small screens, allow horizontal scrolling.
+
+* **General layout**:
+  - `.pbx-explanation { padding: 1.25rem 1.5rem; }` on desktop; `padding: 0.875rem 1rem` on mobile. Use `rem`/`em` — not `px`.
+  - All cards, concept boxes, and callouts: `box-sizing: border-box; width: 100%; padding: 1em 1.25em`.
+  - Long legal terms and URLs must break with `word-break: break-word; overflow-wrap: break-word`.
+  - Images (if any) must have `max-width: 100%; height: auto`.
 
 ### 4. Interactivity: Prefer CSS, Use Minimal Vanilla JS Only When Needed
 * Preserve source-image interactivity only when it helps explain the existing graphic, such as hover-linked dates, terms, timeline nodes, or mnemonic highlights.
@@ -176,7 +193,40 @@ The highest priority is visual and textual fidelity to the source explanation im
 * Tooltips for legal terms may include concise Simplified Chinese explanations, but do not alter the visible original English explanation text.
 * Support keyboard focus for interactive terms using `tabindex="0"` and `:focus-within` where practical.
 
-### 5. Output Contract
+### 5. Educational Objective and References Styling (MANDATORY)
+If the source image contains an "Educational objective:" section, render it with this exact style:
+```html
+<div class="pbx-edu-objective">
+  <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+  <p>...objective text...</p>
+</div>
+```
+CSS for `.pbx-edu-objective`: `background: #f0f7ff; border-left: 4px solid #3498db; border-radius: 6px; padding: 14px 18px; margin: 24px 0;`
+CSS for `.pbx-edu-objective-title`: `font-size: 13px; font-weight: 700; color: #2980b9; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;`
+
+If the source image contains a "References" section with case citations or statute links, render it with this exact style:
+```html
+<div class="pbx-references">
+  <div class="pbx-references-title">📚 References</div>
+  <ul class="pbx-ref-list">
+    <li>citation text (plain text, no external links)</li>
+  </ul>
+</div>
+```
+CSS for `.pbx-references`: `background: #fafafa; border: 1px solid #e0e0e0; border-radius: 6px; padding: 14px 18px; margin: 20px 0;`
+CSS for `.pbx-references-title`: `font-size: 13px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;`
+CSS for `.pbx-ref-list`: `margin: 0; padding-left: 18px; font-size: 14px; color: #555; line-height: 1.7;`
+* Render all case/statute citations as plain text (no `<a>` links, no external URLs).
+
+### 6. Topic Extraction (MANDATORY)
+* Look at the bottom footer area of the source image. It typically shows three metadata labels in columns: Subject / Chapter / Topic (e.g. "Criminal Law and Procedure | Constitutional Protections | Right to counsel").
+* Extract the **Topic** value (the third column, e.g. "Right to counsel", "Double jeopardy", "Search and seizure").
+* Do NOT render this footer in the HTML output.
+* Instead, output the topic as a single HTML comment on the very first line of the `<body>`, before all other content:
+  `<!-- pbx-topic: Right to counsel -->`
+* If no topic can be identified from the image, output: `<!-- pbx-topic: -->`
+
+### 7. Output Contract
 * Return one complete HTML document only: `<!doctype html><html>...`.
 * Include all CSS and any minimal JS inline in that same document.
 * Do not use external assets, external scripts, external stylesheets, CDN links, or placeholders.
@@ -191,12 +241,54 @@ def build_english_explanation_prompt(en_options: dict[str, str], correct_answer:
         f"{key}. {value}"
         for key, value in sorted(en_options.items())
     )
+    wrong_answers = [k for k in sorted(en_options.keys()) if k != correct_answer]
     return (
         GEMINI_EXPLANATION_PROMPT
         + "\n\nAnswer Choice Context for PassBar data-choice anchors:\n"
         + f"Correct Answer: {correct_answer or '(unknown)'}\n"
+        + f"Wrong Answers: {', '.join(wrong_answers) or '(unknown)'}\n"
         + f"{context or '(No answer choices available)'}\n"
-        + "\nWhen the uploaded source explanation discusses a choice, use this context to add the correct data-choice and data-choice-role attributes without changing the visible explanation text.\n"
+        + """
+### Answer Choice Color-Coding Rules
+Use these exact hex colors (do NOT use CSS variables — they may not be defined in this document):
+- Correct color: `#1f8f4d` (green)
+- Wrong color: `#9b1c1c` (red)
+- Mixed color: `#b07d00` (dark amber, when token contains both correct and wrong letters)
+- Correct border: `#27ae60`
+- Wrong border: `#c0392b`
+
+Detect which of the three patterns applies and handle accordingly. Do NOT use background colors — use only left-border and text color to keep the styling clean and non-distracting.
+
+**Pattern A — Paragraph that begins with "(Choice X)" or "(Choices X & Y)"** (the entire paragraph is dedicated to explaining that choice):
+- Keep the paragraph as-is. Add `data-choice="{letter}" data-choice-role="correct|distractor"` to the `<p>` or wrapping element.
+- Add a subtle left border: correct `border-left:3px solid #27ae60; padding-left:10px;`, wrong `border-left:3px solid #c0392b; padding-left:10px;`
+- Wrap only the leading "(Choice X)" label in a `<strong>` with matching color: correct `color:#1f8f4d`, wrong `color:#9b1c1c`.
+- Example: `<p style="border-left:3px solid #c0392b;padding-left:10px;" data-choice="B" data-choice-role="distractor"><strong style="color:#9b1c1c">(Choice B)</strong> The rest of text...</p>`
+
+**Pattern B — Inline choice mention mid-sentence** (e.g. "(Choice C)", "(Choices A and C)", "(Choices B & D)" appear inside a larger paragraph):
+- Do NOT add any border or background to the paragraph.
+- Wrap only the token itself in a colored `<span>`. Determine the color by checking all letters in the token against the Correct Answer provided above:
+  - Token contains **only wrong letters** → `<span style="color:#9b1c1c;font-weight:600;" data-choice="{letters}" data-choice-role="distractor">(Choices ...)</span>`
+  - Token contains **only the correct letter** → `<span style="color:#1f8f4d;font-weight:600;" data-choice="{letter}" data-choice-role="correct">(Choice {letter})</span>`
+  - Token contains **a mix of correct and wrong letters** → `<span style="color:#b07d00;font-weight:600;" data-choice="{letters}">(Choices ...)</span>`
+- For multi-letter tokens like "(Choices A and C)" or "(Choices B & D)", use space-separated letters in `data-choice`, e.g. `data-choice="A C"` or `data-choice="B D"`.
+- Recognized token patterns (match case-insensitively):
+  - `(Choice X)` — single letter
+  - `(Choices X and Y)` — two letters joined by "and"
+  - `(Choices X & Y)` — two letters joined by "&"
+  - `(Choices X, Y, and Z)` — three letters
+  - Extract all capital letters A–D from the token to determine which choices are referenced.
+
+**Pattern C — Dedicated visual card/block per choice** (source has a visually separate card or list item entirely for one choice):
+- Add correct `border-left:3px solid #27ae60; padding-left:10px;` or wrong `border-left:3px solid #c0392b; padding-left:10px;` to that block.
+- Do NOT add background colors.
+- Add `data-choice` and `data-choice-role` attributes.
+
+**Rules:**
+- Never invent a per-choice section if one does not exist in the source.
+- Never add background colors to any choice block.
+- Apply these styles only to elements that already discuss a specific choice.
+"""
     )
 
 GEMINI_PROMPT_TEMPLATE = """\
@@ -344,9 +436,28 @@ Please strictly follow the CSS visual requirements below. Embed refined styles d
    - When marking a legal term with `.term`, wrap the complete bilingual term in one span whenever English appears with Chinese. Correct: `<span class="term">要约（offer）</span>` or `<span class="term">确定要约规则（firm offer rule）</span>`. Incorrect: `<span class="term">要约</span>（offer）`. Do not mark only the Chinese half when the English term is present.
 
 4. Responsive rules:
-   - At `max-width: 640px`, set `body` padding to `12px`, `.header` padding to `26px 16px`, `body/p/li` font size to `16px`, and make wide tables/diagrams horizontally scroll with `overflow-x: auto`.
-   - Text must never overflow its container. Long legal terms must wrap naturally. Do not use negative letter spacing or viewport-width-based body font scaling.
-   - Do not create nested cards inside cards. Repeated answer-choice cards and standalone section boxes are allowed.
+   The HTML must render correctly at any viewport from 320px to 1400px wide. The following rules are MANDATORY — not optional suggestions.
+
+   **Tables (`.comparison-table` and any other `<table>`):**
+   - Always wrap every `<table>` in `<div style="overflow-x:auto; -webkit-overflow-scrolling:touch; margin:16px 0;">`.
+   - Set `table { min-width: 480px; width: 100%; border-collapse: collapse; }` so tables scroll horizontally on mobile instead of collapsing.
+   - At `max-width: 640px`: reduce `th, td` font-size to `14px` and padding to `8px 10px`.
+   - Never hide columns, stack rows, or reformat a table into a list. Preserve the original tabular structure and let it scroll.
+
+   **Diagrams / flowcharts / timelines (`.diagram`):**
+   - Wrap diagram content in an inner div with a fixed `min-width` that preserves the layout (e.g. `style="min-width:520px"`), nested inside `<div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">`.
+   - Never collapse a horizontal flowchart into a vertical stack on mobile. Allow horizontal scrolling instead.
+   - `.flow-node` and `.party-box` must never have their text truncated or clipped. Use `white-space: normal; word-break: break-word`.
+
+   **General:**
+   - Use `rem` for all font-sizes and `em` for padding/margin so the layout scales with user font preferences. Never use `px` for font-size or typographic spacing.
+   - Base: `body { font-size: 1rem; line-height: 1.75; padding: 1.25rem; }` (1rem = browser default, typically 16px but respects user settings).
+   - Headings: `h2 { font-size: 1.5rem; margin: 1.5em 0 0.75em; }`, `h3 { font-size: 1.25rem; margin: 1.25em 0 0.6em; }`.
+   - At `max-width: 640px`: `body { font-size: 0.95rem; padding: 0.75rem; }`, `.header { padding: 1.5em 1rem; }`.
+   - All cards and boxes: `box-sizing: border-box; width: 100%; max-width: 100%; padding: 1em 1.25em`.
+   - Long legal terms and English phrases must wrap: `word-break: break-word; overflow-wrap: break-word`.
+   - Do not use `vw` units for font-size or negative letter-spacing.
+   - Do not create nested cards inside cards.
 
 5. Core sections for the multi-dimensional deep analysis card (all sections must be included; do not delete or merge):
    - 【Card Top Header】: Use class `.header`, fixed navy `var(--primary-color)`, title text exactly “MBE 考点解析”, and subtitle as `[Subject]: [Chapter or Issue]`.
@@ -354,7 +465,35 @@ Please strictly follow the CSS visual requirements below. Embed refined styles d
    - 【Core Legal Rule <h2> + .concept-box】: Explain the governing doctrine in Chinese, preserving essential English terms. Before the rule explanation, include a concise `.term-grid` titled “先抓法律术语” with 3-6 high-value bilingual terms from the English question, choices, and uploaded official English explanation image(s). Each term card must use this style: `中文术语（English term） — 一句话说明它在本题中的作用`. Do not list generic terms that do not matter to the answer.
    - 【Concept Comparison Table (.comparison-table)】: Compare the tested rule with a commonly confused rule when useful.
    - 【Fact/Application Logic <h2> + .analysis-step】: Apply rule elements to the facts in progressive steps. Start this section with a `.keyword-strip` titled “题干得分关键字”, containing 3-5 bilingual clue chips such as `timing / 时间点`, `procedural posture / 程序姿态`, `relief requested / 请求救济`, `jurisdiction / 管辖`, etc. Then explain the application in 3-5 short steps, using `<span class="key-clue">...</span>` for the decisive words from the question.
-   - 【Diagram (.diagram)】: Include a simple flow/timeline/relationship diagram only when it clarifies the analysis. Use the standardized `.flow-node`/`.party-box` styles above.
+   - 【Diagram (.diagram)】: Include a diagram only when it genuinely clarifies the analysis. When a diagram is included, it MUST be interactive — use vanilla JS and CSS to add meaningful interactivity. Choose the most appropriate interactive pattern from the list below based on the content type, and implement it fully:
+
+     **Flowchart / Decision tree** (e.g. legal test with Yes/No branches):
+     - Each `.flow-node` is clickable. Clicking a node highlights the path taken in this specific fact pattern (the "correct path") using a `.active` class.
+     - Nodes on the correct path glow with `background: var(--accent-color); color:#fff; box-shadow: 0 0 0 3px rgba(52,152,219,0.35)`.
+     - Add a "重置" reset button to restore all nodes to default.
+     - On page load, auto-animate the correct path step-by-step (200ms delay between nodes) so the student sees the logical flow immediately.
+
+     **Timeline** (e.g. sequence of legal events):
+     - Each event node is clickable and reveals a detail tooltip/popup below it with the legal significance of that moment.
+     - Highlight the "pivotal event" (the one that controls the answer) in accent color on load.
+     - Allow clicking other events to compare and contrast (tooltip shows "此时 X 已/未发生").
+
+     **Comparison table** (e.g. two doctrines side-by-side):
+     - Each row is hoverable — hovering highlights the row and shows a small badge explaining which rule applies to the facts of this question.
+     - Add a "本题适用" tag that animates in (fadeIn) next to the applicable row on load.
+
+     **Element checklist** (e.g. legal test with multiple required elements):
+     - Render as an animated checklist. On load, each element checks off one by one (300ms apart) with a ✓ animation.
+     - Elements satisfied by the facts get a green check; elements NOT satisfied get a red ✗.
+     - Each element is clickable to expand a one-line explanation of why it is/isn't met in this case.
+
+     **General rules for all interactive diagrams:**
+     - All interactivity must work inside an iframe without any external dependencies.
+     - Use only vanilla JS (no jQuery, no libraries). Keep the script under 60 lines.
+     - CSS transitions must be smooth (`transition: all 0.2s ease`).
+     - Mobile touch must work — use both `click` and `touchend` events.
+     - The diagram must still be readable if JS is disabled (progressive enhancement).
+     - Do NOT make the diagram full-screen or modal — it must sit inline in the page flow.
    - 【Trap Alert (.trap-alert or .rule-block)】: Explain the MBE trap in warm yellow.
    - 【Answer-Choice Breakdown (.option-analysis / .option)】: The section title must be “正确答案与干扰项排除”. This section must be concise, exam-useful, and structured like a tutor explaining elimination logic. Correct card green; wrong cards red only inside `.option.wrong`. Do NOT restate the full answer-choice text. Do NOT write only “正确/错误”. Use the required format below.
      Required format:

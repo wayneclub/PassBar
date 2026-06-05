@@ -378,3 +378,177 @@ passbar/src/
 - 分頁用 Supabase `.range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1)`，PAGE_SIZE = 15
 - 篩選面板用 inline 展開，不用 Sheet 抽屜
 - Tooltip 用 `absolute` 定位在 `relative` 父容器內，不用 `fixed`（避免 overflow 偏移）
+
+---
+
+## Design System: CSS 規範（globals.css / tailwind.config.ts）
+
+### globals.css
+
+#### CSS 變數（`:root`）
+
+| 變數 | 值 | 說明 |
+|------|----|------|
+| `--radius` | `0.3rem` | 圓角基準，shadcn 元件以此計算 lg/md/sm |
+| `--background` ~ `--ring` | hsl 三元組 | 全部透過 CSS variable，**不 hardcode hsl 值** |
+| `--sidebar-*` | 同上 | sidebar 專用色票 |
+
+#### font-size 設定（text size feature）
+
+```css
+/* ✅ 正確：使用 rem，尊重瀏覽器預設 16px 設定 */
+html[data-passbar-text-size="medium"] { font-size: 1.125rem; } /* 18px */
+html[data-passbar-text-size="large"]  { font-size: 1.25rem;  } /* 20px */
+
+/* ❌ 錯誤：不要硬寫 px，會忽略使用者的瀏覽器字體偏好設定 */
+html[data-passbar-text-size="medium"] { font-size: 18px; }
+```
+
+#### Scrollbar 樣式
+
+```css
+/* ✅ rem，隨 html font-size 縮放 */
+width: 0.75rem;
+border: 0.1875rem solid ...;
+
+/* ❌ px，不會跟著文字大小縮放 */
+width: 12px;
+```
+
+#### `@layer utilities`（文字大小覆寫）
+
+`passbar-main` 內的 `.text-xs`、`.text-sm` 覆寫以 rem 為單位。
+硬寫尺寸（`.text-[9px]`、`.text-[10px]`…）只在無法用 Tailwind class 時才用，且一定要加進覆寫規則。
+
+---
+
+### tailwind.config.ts
+
+#### 斷點（screens）
+
+使用 Tailwind 預設，**不自訂**（預設已是 rem 換算）：
+
+```
+sm  → 40rem   md  → 48rem   lg  → 64rem   xl  → 80rem   2xl → 96rem
+```
+
+若未來需要自訂，一律寫 **rem**：
+
+```ts
+screens: {
+  'xs': '23.4375rem', // 375px — 手機最小目標
+  'sm': '40rem',
+}
+```
+
+#### borderRadius
+
+`--radius: 0.3rem` 為全域圓角基準。調整時只改此 CSS 變數，不在 config 或元件內硬寫。
+
+#### 禁止事項
+
+- `tailwind.config.ts` 不寫硬寫 px 的 spacing 或 screens 值
+- 不新增 `@layer components` 大型 utility class（保持 utility-first）
+- 不在 CSS 中做響應式布局（用 Tailwind 斷點前綴，不用 `@media` in CSS）
+
+---
+
+## Design System: Responsive Design
+
+### 斷點系統（Tailwind 預設）
+
+| 前綴 | 最小寬度 | 對應裝置 |
+|------|---------|---------|
+| _(無)_ | 0 | 手機直向（≥320px） |
+| `sm:` | 40rem (640px) | 手機橫向 / 小平板 |
+| `md:` | 48rem (768px) | 平板直向 |
+| `lg:` | 64rem (1024px) | 平板橫向 / 小筆電 |
+| `xl:` | 80rem (1280px) | 桌機 |
+
+### 必用原則
+
+1. **Mobile-first**：預設寫手機版，再用斷點覆寫更大螢幕
+2. **禁止硬寫 px 作為間距**：一律用 Tailwind spacing（rem 單位）；唯一例外是 canvas/SVG 計算
+3. **禁止固定寬度 sidebar/panel** 不加響應式：`w-[300px]` 只能在 `lg:` 以上使用，小螢幕改全寬
+
+### 間距比例（rem 對照）
+
+| Tailwind | rem | 用途建議 |
+|----------|-----|---------|
+| `gap-1` / `p-1` | 0.25rem | icon 內間距 |
+| `gap-2` / `p-2` | 0.5rem | 緊湊元素間距 |
+| `gap-3` / `p-3` | 0.75rem | 小 card 內距 |
+| `gap-4` / `p-4` | 1rem | 一般 card 內距、grid gap |
+| `gap-5` / `p-5` | 1.25rem | 寬鬆 card 內距 |
+| `gap-6` / `p-6` | 1.5rem | section 內距 |
+| `gap-8` / `p-8` | 2rem | 大版塊 desktop padding |
+| `gap-10` | 2.5rem | 區塊間距（desktop） |
+| `gap-12` | 3rem | 最大間距（page-level） |
+
+### Grid 響應式模式
+
+```tsx
+// 統計卡片（預設 1 欄，逐步展開）
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+// 內容 + sidebar（手機全寬，桌機分欄）
+<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  <main className="lg:col-span-2">...</main>
+  <aside>...</aside>
+</div>
+
+// 表單欄位
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+```
+
+### Flex 響應式模式
+
+```tsx
+// 垂直堆疊 → 水平排列
+<div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+
+// 篩選列（手機全寬按鈕，桌機靠右）
+<div className="flex flex-col sm:flex-row gap-2">
+  <input className="w-full sm:w-64" />
+  <Button className="w-full sm:w-auto">...</Button>
+</div>
+```
+
+### 表格響應式
+
+所有 `<table>` 一律包在 `overflow-x-auto` 容器內；次要欄位用斷點隱藏：
+
+```tsx
+<div className="rounded-lg border overflow-x-auto">
+  <table className="w-full text-sm">
+    <thead>
+      <tr>
+        <th>主要欄位</th>
+        <th className="hidden md:table-cell">次要欄位</th>
+        <th className="hidden lg:table-cell">更多欄位</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+```
+
+### 字體大小響應式
+
+```tsx
+// 頁面標題
+<h1 className="text-3xl sm:text-4xl font-bold text-primary">
+
+// 統計大數字
+<span className="text-2xl sm:text-3xl font-bold">
+```
+
+### 已知問題清單（待修）
+
+| 檔案 | 問題 | 優先度 |
+|------|------|--------|
+| `app/admin/page.tsx:231` | `grid-cols-2` 未從 1 欄開始，手機過擠 | 中 |
+| `app/admin/page.tsx:284,349` | `300px`/`360px` 固定 sidebar 寬度無響應式 | 中 |
+| `app/admin/users/page.tsx:202` | table 缺 `overflow-x-auto` 包裝 | 高 |
+| `app/(main)/dashboard/page.tsx:650` | heatmap `paddingLeft: 44` 硬寫 px | 低 |
+| `app/(main)/review/page.tsx:370` | 搜尋框 `w-64` 固定，手機應全寬 | 低 |
+| `app/test/page.tsx:876` | `mb-36` 底部間距用 px 概念，應改 rem | 低 |

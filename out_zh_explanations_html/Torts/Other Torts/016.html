@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - 诽谤罪的宪法限制与归责标准</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --bg-color: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.72;
+      letter-spacing: 0;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 24px 32px;
+      background: var(--card-bg);
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 34px 24px 32px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin: 34px 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 28px 0 16px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.72;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .answer-box {
+      background: var(--correct-bg);
+      border-left: 6px solid var(--correct-border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 22px 0 30px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--correct-text);
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 18px;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36,52,71,0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 17px;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    /* Diagram Styles */
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+
+    .diagram-title {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--primary-ink);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .flow-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .flow-node {
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-weight: 700;
+      color: #05606a;
+      text-align: center;
+      min-width: 180px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-strong);
+      color: #ffffff;
+    }
+
+    .flow-arrow {
+      font-size: 20px;
+      color: var(--muted-text);
+      text-align: center;
+      margin: 4px 0;
+    }
+
+    /* Option Analysis Styles */
+    .option-analysis {
+      margin-top: 24px;
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 5px solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option-label {
+      font-weight: 800;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .option-desc {
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .trap-alert {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .footer-tip {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin-top: 30px;
+    }
+
+    code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    /* Responsive Rules */
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+      }
+      .container {
+        padding: 0 12px 24px;
+      }
+      .header {
+        padding: 26px 16px;
+      }
+      .header h1 {
+        font-size: 26px;
+      }
+      .sub-title {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 18px;
+      }
+      p, li {
+        font-size: 16px;
+      }
+      .answer-box {
+        font-size: 18px;
+      }
+      .comparison-table {
+        font-size: 15px;
+      }
+      .comparison-table th, .comparison-table td {
+        padding: 8px;
+      }
+      .flow-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .flow-node {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Card Top Header -->
+    <div class="header">
+      <h1>MBE 考点解析</h1>
+      <div class="sub-title">Torts — Other Torts: Defamation & Constitutional Limitations</div>
+    </div>
+
+    <!-- Correct Answer Box -->
+    <div class="answer-box">
+      正确答案：C. Yes, because the man acted negligently when he spoke to the reporter about the neighbor.
+      <br>
+      <span style="font-size: 16px; font-weight: normal; display: block; margin-top: 8px; color: #2c3e50;">
+        解析要点：当诽谤案件的原告为“普通私人”（private person），且涉案言论涉及“公共关切”（matter of public concern）时，宪法第一修正案要求原告必须证明被告在发表言论时至少存在“过失”（negligence）的主观过错。
+      </span>
+    </div>
+
+    <!-- Core Legal Rule -->
+    <h2>核心法理 (Core Legal Rule)</h2>
+    <div class="concept-box">
+      <div class="concept-title">诽谤罪的宪法归责标准 (Constitutional Fault Standards)</div>
+      <p>
+        在普通法（common law）上，诽谤罪曾适用严格责任（strict liability）。然而，为了保护宪法第一修正案赋予的言论自由，美国最高法院通过一系列判例（如 <i>New York Times v. Sullivan</i> 和 <i>Gertz v. Robert Welch, Inc.</i>）对诽谤罪确立了宪法层面的主观过错要求。
+      </p>
+      <p>
+        确定被告的归责标准，必须依据<b>原告的身份</b>以及<b>言论是否涉及公共关切</b>：
+      </p>
+      <ul>
+        <li>
+          若原告为 <span class="term">公职人员（public official）</span> 或 <span class="term">公众人物（public figure）</span>：原告必须证明被告具有 <span class="term">实际恶意（actual malice）</span>，即明知言论虚假（knowledge of falsity），或对言论的真伪抱有鲁莽的无视（reckless disregard for its falsity）。
+        </li>
+        <li>
+          若原告为 <span class="term">普通私人（private person）</span> 且言论涉及 <span class="term">公共关切（matter of public concern）</span>：原告必须证明被告在确认言论真伪时<b>至少存在过失（at least negligent）</b>。
+        </li>
+        <li>
+          若原告为 <span class="term">普通私人（private person）</span> 且言论仅涉及 <span class="term">私人事务（matter of private concern）</span>：宪法不作强制限制，多数州在普通法上仍要求证明至少存在过失。
+        </li>
+      </ul>
+    </div>
+
+    <!-- Concept Comparison Table -->
+    <h2>归责标准对比表 (Comparison of Fault Standards)</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>原告类型 (Plaintiff Type)</th>
+          <th>言论性质 (Subject Matter)</th>
+          <th>宪法要求的最低过错 (Constitutional Minimum Fault)</th>
+          <th>证明难度与救济限制</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>公职人员 / 公众人物</b><br><span style="font-size: 14px; color: var(--muted-text);">(如市长、明星、社会活动家)</span></td>
+          <td>任何言论</td>
+          <td><span class="term">实际恶意（Actual Malice）</span><br><span style="font-size: 14px; color: var(--muted-text);">(明知虚假或鲁莽无视)</span></td>
+          <td>极难证明。若证明成功，可主张惩罚性赔偿。</td>
+        </tr>
+        <tr>
+          <td><b>普通私人</b><br><span style="font-size: 14px; color: var(--muted-text);">(如本案中的邻居)</span></td>
+          <td><span class="term">公共关切（Public Concern）</span><br><span style="font-size: 14px; color: var(--muted-text);">(如环境保护、公共安全)</span></td>
+          <td><span class="term">过失（Negligence）</span><br><span style="font-size: 14px; color: var(--muted-text);">(未尽到合理核实义务)</span></td>
+          <td>中等难度。若仅证明过失，只能获得实际损害赔偿（actual damages）。</td>
+        </tr>
+        <tr>
+          <td><b>普通私人</b></td>
+          <td><b>私人事务（Private Concern）</b></td>
+          <td>无宪法限制<br><span style="font-size: 14px; color: var(--muted-text);">(多数州普通法要求过失)</span></td>
+          <td>较易证明。通常无需证明实际损害即可获得推定赔偿（presumed damages）。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Diagram -->
+    <div class="diagram">
+      <div class="diagram-title">诽谤罪主观过错判定流程图</div>
+      <div class="flow-container">
+        <div class="flow-node">第一步：确定原告身份</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row">
+          <div class="flow-node">公职人员 / 公众人物</div>
+          <div class="flow-node highlight-node">普通私人 (本案邻居)</div>
+        </div>
+        <div class="flow-arrow">↓ (针对普通私人)</div>
+        <div class="flow-node">第二步：言论是否涉及公共关切？</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row">
+          <div class="flow-node highlight-node">是：湖泊污染 (公共关切)</div>
+          <div class="flow-node">否：纯私人事务</div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node highlight-node" style="background: #27ae60; border-color: #27ae60;">第三步：适用过失标准 (Negligence)</div>
+      </div>
+    </div>
+
+    <!-- Fact/Application Logic -->
+    <h2>案情适用与逻辑推导 (Fact Application)</h2>
+    <ol>
+      <li>
+        <b>原告身份识别：</b>本案原告是该男子的邻居，属于典型的<b>普通私人（private person）</b>。
+      </li>
+      <li>
+        <b>言论性质识别：</b>男子向记者控诉邻居“向湖中倾倒化粪池污水，污染湖泊并破坏生态系统”。湖泊污染和生态保护属于典型的<b>公共关切（matter of public concern）</b>。
+      </li>
+      <li>
+        <b>确定法律标准：</b>结合上述两点，根据宪法第一修正案，邻居若想胜诉，必须证明该男子在发表言论时<b>至少存在过失（negligence）</b>。
+      </li>
+      <li>
+        <b>过失事实认定：</b>男子在“没有任何实质证据”（without any tangible proof）的情况下，仅凭夜间看到邻居拉水管，就向媒体断言邻居在排污。实际上邻居只是在抽水灌溉。一个理性人在向媒体做出如此严重的指控前，应当进行合理的核实。男子的行为显然未尽到合理注意义务，构成了<b>过失（negligence）</b>。因此，邻居很可能胜诉。
+      </li>
+    </ol>
+
+    <!-- Trap Alert -->
+    <div class="trap-alert">
+      <strong>⚠️ MBE 常见陷阱提示：</strong>
+      <p>
+        许多考生一看到“言论涉及公共关切（matter of public concern）”，就会条件反射地选择“原告必须证明实际恶意（actual malice）”。
+      </p>
+      <p>
+        <b>请牢记：</b>“实际恶意”标准是针对<b>原告的身份</b>（公职人员/公众人物）而设定的，而不是针对言论的主题。如果原告是普通私人，即使言论涉及公共关切，宪法也只要求证明<b>过失（negligence）</b>，而非实际恶意。
+      </p>
+    </div>
+
+    <!-- Answer-Choice Breakdown -->
+    <h2>正确答案与干扰项排除 (Option Analysis)</h2>
+    <div class="option-analysis">
+      
+      <div class="option correct">
+        <div class="option-label">C. 正确</div>
+        <div class="option-desc">
+          如上所述，邻居是普通私人，涉案言论涉及公共关切（湖泊污染）。因此，宪法要求的归责标准是<b>过失（negligence）</b>。男子在毫无实据的情况下向记者发表毁灭性指控，未尽到合理核实义务，存在明显的过失。因此，邻居能够证明过失并很可能胜诉。
+        </div>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-label">A. 错误</div>
+        <div class="option-desc">
+          该选项认为“因为湖泊污染是公共关切，所以邻居不能胜诉”。这是对宪法限制的误解。言论涉及公共关切并不会免除被告的诽谤责任，它只是将归责标准从普通法的严格责任提高到了<b>过失标准</b>。由于男子确实存在过失，邻居依然可以胜诉。
+        </div>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-label">B. 错误</div>
+        <div class="option-desc">
+          该选项认为“因为男子不具有实际恶意（actual malice），所以邻居不能胜诉”。然而，只有当原告是公职人员或公众人物时，才必须证明实际恶意。本案原告是普通私人，只需证明过失即可，无需证明实际恶意。
+        </div>
+      </div>
+
+      <div class="option wrong">
+        <div class="option-label">D. 错误</div>
+        <div class="option-desc">
+          该选项认为“只要记者发表了该诽谤言论，邻居就能胜诉”。这忽略了宪法对主观过错的要求。在涉及公共关切的案件中，仅有“发表”（publication）这一客观行为是不够的，原告必须证明被告在发表时具有“过失”这一主观过错。如果男子完全没有过失（例如他有充分且合理的证据相信指控属实），即使记者发表了，男子也无需承担责任。
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Exam Tip -->
+    <div class="footer-tip">
+      <strong>💡 快速解题提分秘籍：</strong>
+      <p>
+        在 MBE 诽谤题中，看到原告起诉，立刻在草稿纸上写下两个标签：
+        <br>
+        <code>[原告身份] + [言论主题]</code>
+        <br>
+        如果是 <code>[Private Person] + [Public Concern]</code>，直接在选项中寻找含有 <b>"negligence" / "negligent"</b> 的正确叙述，快速排除含有 "actual malice" 的干扰项！
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>
