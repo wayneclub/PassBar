@@ -457,13 +457,33 @@ def list_subjects_and_chapters() -> None:
                 print(f"  --subject \"{subject_dir.name}\" --chapter \"{chapter_dir.name}\"")
 
 
+def collect_enriched_files(subject: str | None, chapter: str | None) -> list[Path]:
+    """Resolve which enriched files to process based on subject/chapter filters.
+
+    - subject + chapter  → single file
+    - subject only       → all chapters under that subject
+    - neither            → all chapters in OUT_DIR (recursive)
+    """
+    if subject and chapter:
+        return [find_enriched_file(subject, chapter)]
+
+    search_root = OUT_DIR / subject if subject else OUT_DIR
+    if not search_root.is_dir():
+        raise FileNotFoundError(f"Directory not found: {search_root}")
+
+    files = sorted(search_root.rglob("*_enriched.json"))
+    if not files:
+        raise FileNotFoundError(f"No *_enriched.json found under {search_root}")
+    return files
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate selected PassBar enriched question outputs")
-    file_group = parser.add_mutually_exclusive_group(required=True)
+    file_group = parser.add_mutually_exclusive_group(required=False)
     file_group.add_argument("--enriched-file", type=Path, help="Path to *_enriched.json")
-    file_group.add_argument("--subject", help="Subject name (e.g. 'Evidence')")
     file_group.add_argument("--list", action="store_true", help="List all available subject/chapter pairs and exit")
-    parser.add_argument("--chapter", help="Chapter name (required when --subject is used)")
+    parser.add_argument("--subject", help="Subject name (e.g. 'Evidence'); omit to process all subjects")
+    parser.add_argument("--chapter", help="Chapter name; requires --subject; omit to process all chapters")
     parser.add_argument("--mode", nargs="+", default=["zh-html", "meta"], help="One or more: zh-html en-html meta all")
     parser.add_argument("--provider", choices=("gemini", "gpt"), default="gemini", help="Provider for HTML generation")
     parser.add_argument("--model", default="", help="Override HTML generation model")
@@ -477,25 +497,34 @@ def main() -> None:
         list_subjects_and_chapters()
         return
 
-    if args.subject:
-        if not args.chapter:
-            parser.error("--chapter is required when --subject is used")
-        enriched_file = find_enriched_file(args.subject, args.chapter)
-        print(f"Auto-located: {enriched_file}")
-    else:
-        enriched_file = args.enriched_file
+    if args.chapter and not args.subject:
+        parser.error("--chapter requires --subject")
 
     modes = expand_modes(args.mode)
     zh_gen.set_ai_provider(args.provider, args.model or None)
     meta_gen.set_meta_provider(args.provider, args.model or None)
-    process_file(
-        enriched_file=enriched_file,
-        modes=modes,
-        limit=args.limit,
-        index=args.index,
-        force=args.force,
-        dry_run=args.dry_run,
-    )
+
+    if args.enriched_file:
+        enriched_files = [args.enriched_file]
+    else:
+        enriched_files = collect_enriched_files(args.subject, args.chapter)
+
+    total = len(enriched_files)
+    for file_num, enriched_file in enumerate(enriched_files, 1):
+        if total > 1:
+            print(f"\n{'='*60}")
+            print(f"[{file_num}/{total}] {enriched_file.relative_to(OUT_DIR)}")
+            print(f"{'='*60}")
+        else:
+            print(f"Auto-located: {enriched_file}")
+        process_file(
+            enriched_file=enriched_file,
+            modes=modes,
+            limit=args.limit,
+            index=args.index,
+            force=args.force,
+            dry_run=args.dry_run,
+        )
 
 
 if __name__ == "__main__":
