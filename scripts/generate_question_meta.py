@@ -78,6 +78,8 @@ def set_meta_provider(provider: str, model: str | None = None) -> None:
         _META_MODEL = model or os.environ.get("CODEX_CLI_MODEL", "")
     elif provider == "antigravity-cli":
         _META_MODEL = model or os.environ.get("ANTIGRAVITY_CLI_MODEL", "")
+    elif provider == "claude-cli":
+        _META_MODEL = model or os.environ.get("CLAUDE_CLI_MODEL", "claude-sonnet-4-6")
     else:
         _META_MODEL = model or GEMINI_MODEL
 
@@ -546,7 +548,7 @@ def call_meta_json(prompt: str) -> dict[str, Any]:
     """Unified entry — delegates to Gemini or OpenAI based on _META_PROVIDER."""
     if _META_PROVIDER == "gpt":
         return call_openai_json(prompt)
-    if _META_PROVIDER in {"codex-cli", "antigravity-cli"}:
+    if _META_PROVIDER in {"codex-cli", "antigravity-cli", "claude-cli"}:
         return call_cli_json(prompt)
     return call_gemini_json(prompt)
 
@@ -1022,7 +1024,7 @@ def main() -> None:
     parser.add_argument("--refill", action="store_true", help="Regenerate meta even if complete meta exists")
     parser.add_argument(
         "--provider",
-        choices=("gemini", "gpt", "codex-cli", "antigravity-cli"),
+        choices=("gemini", "gpt", "codex-cli", "antigravity-cli", "claude-cli"),
         default="gemini",
         help="AI provider (default: gemini)",
     )

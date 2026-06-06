@@ -269,14 +269,17 @@ export default function BrowsePage() {
 
             return (
               <div key={subject.id} className="space-y-3">
-                <div className="flex items-center gap-2">
+                <div
+                  className="flex items-center gap-2 -mx-2 px-2 py-1 rounded-lg cursor-pointer hover:bg-primary/5 transition-colors duration-150"
+                  onClick={() => toggleSubject(subject.id)}
+                >
                   <Checkbox
                     id={`sub-${subject.id}`}
                     checked={isSelected}
                     onCheckedChange={() => toggleSubject(subject.id)}
-                    className={cn('h-5 w-5', isPartial && 'opacity-50')}
+                    className={cn('h-5 w-5 pointer-events-none', isPartial && 'opacity-50')}
                   />
-                  <Label htmlFor={`sub-${subject.id}`} className="flex min-w-0 cursor-pointer flex-wrap items-baseline gap-x-2 gap-y-0.5 text-base font-bold text-slate-700">
+                  <Label htmlFor={`sub-${subject.id}`} className="flex min-w-0 cursor-pointer flex-wrap items-baseline gap-x-2 gap-y-0.5 text-base font-bold text-slate-700 pointer-events-none">
                     <span>{subject.name}</span>
                     {subjectLabel && <span className="text-sm font-medium text-slate-400">{subjectLabel}</span>}
                     <Badge variant="secondary" className="h-5 rounded-full border-none bg-primary/10 px-2 text-xs font-bold text-primary">
@@ -284,7 +287,7 @@ export default function BrowsePage() {
                     </Badge>
                   </Label>
                 </div>
-                <div className="ml-6 space-y-2">
+                <div className="ml-6 space-y-1">
                   {subject.chapters.map((chapter) => {
                     const chapterLabel = getMbeChineseLabel(chapter.name, language);
                     const progress = progressByChapter.get(chapter.id);
@@ -292,14 +295,18 @@ export default function BrowsePage() {
                       ? Math.round((progress.viewed_count / chapter.count) * 100)
                       : 0;
                     return (
-                      <div key={chapter.id} className="flex items-center gap-2">
+                      <div
+                        key={chapter.id}
+                        className="flex items-center gap-2 -mx-2 px-2 py-1.5 rounded-lg cursor-pointer hover:bg-primary/5 transition-colors duration-150"
+                        onClick={() => toggleChapter(chapter.id)}
+                      >
                         <Checkbox
                           id={`ch-${chapter.id}`}
                           checked={selectedChapters.has(chapter.id)}
                           onCheckedChange={() => toggleChapter(chapter.id)}
-                          className="h-5 w-5"
+                          className="h-5 w-5 pointer-events-none"
                         />
-                        <Label htmlFor={`ch-${chapter.id}`} className="flex min-w-0 cursor-pointer flex-wrap items-baseline gap-x-2 gap-y-0.5 text-sm font-medium text-slate-500">
+                        <Label htmlFor={`ch-${chapter.id}`} className="flex min-w-0 cursor-pointer flex-wrap items-baseline gap-x-2 gap-y-0.5 text-sm font-medium text-slate-500 pointer-events-none">
                           <span>{chapter.name}</span>
                           {chapterLabel && <span className="text-xs font-medium text-slate-400">{chapterLabel}</span>}
                           <Badge variant="outline" className="h-5 rounded-full border-primary/20 bg-primary/5 px-2 text-xs font-bold text-primary">

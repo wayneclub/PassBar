@@ -107,6 +107,9 @@ def set_ai_provider(provider: str, model: str | None = None, html_model: str | N
     elif provider == "antigravity-cli":
         AI_MODEL = model or os.environ.get("ANTIGRAVITY_CLI_MODEL", "")
         AI_HTML_MODEL = html_model or os.environ.get("ANTIGRAVITY_CLI_HTML_MODEL", AI_MODEL)
+    elif provider == "claude-cli":
+        AI_MODEL = model or os.environ.get("CLAUDE_CLI_MODEL", "claude-sonnet-4-6")
+        AI_HTML_MODEL = html_model or os.environ.get("CLAUDE_CLI_HTML_MODEL", "claude-sonnet-4-6")
     else:
         AI_MODEL = model or GEMINI_MODEL
         AI_HTML_MODEL = html_model or GEMINI_REST_HTML_MODEL
@@ -174,7 +177,7 @@ The highest priority is visual and textual fidelity to the source explanation im
 * Preserve bold, italics, underline/dotted underline, color emphasis, bullets, numbered lists, tables, timelines, flowcharts, callouts, and date highlights.
 * **Tables**: Rebuild as `<table>` with explicit borders. Every table must have `border: 1px solid #cccccc; border-collapse: collapse;` on the table element, and `border: 1px solid #cccccc; padding: 8px 12px;` on every `<th>` and `<td>`. Header cells (`<th>`) use `background: #f5f5f5; font-weight: bold;`. Do not use borderless or invisible-border tables.
 * **Text emphasis from source**: Reproduce underlines as `text-decoration: underline`, bold as `<strong>`, and any dotted/dashed underlines as `border-bottom: 1px dashed #555`. Do not drop these from the source image.
-* **Diagrams/flowcharts**: Rebuild as native HTML/CSS. Do not embed the uploaded image itself.
+* **Diagrams/flowcharts**: Rebuild any flowcharts or diagrams present in the main source explanation screenshot as native HTML/CSS. Do not embed the main source explanation screenshot itself. (Exception: If separate illustration images are explicitly attached and listed at the end of the prompt under the section "Explanation Illustration Images (MANDATORY)", you MUST embed them using the provided `<img>` tags instead of trying to rebuild them).
 * Do not invent a new "learning card" design if the source image already has a design. Match the source image.
 * Do not add a toolbar, navigation bar, dark-mode toggle, search box, tabs, quiz controls, title labels like "Explanation", or any app chrome.
 * **REMOVE entirely**: the bottom metadata footer (Subject / Chapter / Topic labels and their values), copyright notices, watermarks, and source-site branding. These must not appear anywhere in the output HTML.
@@ -267,7 +270,7 @@ CSS for `.pbx-ref-list`: `margin: 0; padding-left: 18px; font-size: 14px; color:
 ### 7. Output Contract
 * Return one complete HTML document only: `<!doctype html><html>...`.
 * Include all CSS and any minimal JS inline in that same document.
-* Do not use external assets, external scripts, external stylesheets, CDN links, or placeholders.
+* Do not use external assets, external scripts, external stylesheets, CDN links, or placeholders (except for the local relative image paths in `imgs/` explicitly provided under "Explanation Illustration Images (MANDATORY)" at the end of this prompt, if any).
 * Do not include Markdown fences, explanations, comments about your process, or omitted-code markers.
 * The file must work directly in a browser and inside an iframe.
 
@@ -1018,7 +1021,9 @@ def call_gemini_rest(
                     time.sleep(10)
                 else:
                     raise  # 4xx 非 429 直接拋出
-            except NonTextGeminiResponseError:
+            except NonTextGeminiResponseError as e:
+                if "RECITATION" in str(e):
+                    raise RuntimeError(f"Gemini refused (RECITATION): prompt likely contains copyrighted text. Skipping.") from e
                 raise
             except Exception as exc:
                 last_error = exc
@@ -1178,11 +1183,12 @@ def call_ai_rest(
 ) -> str:
     if AI_PROVIDER == "gpt":
         return call_openai_responses(prompt_text, image_paths)
-    if AI_PROVIDER in {"codex-cli", "antigravity-cli"}:
-        # CLI providers cannot process local image files.
-        # Fall back to Gemini API automatically when images are present.
+    if AI_PROVIDER in {"codex-cli", "antigravity-cli", "claude-cli"}:
+        # antigravity-cli cannot process local image files; fall back to Gemini.
+        # codex-cli supports --image flags natively.
+        # claude-cli embeds image paths in the prompt so Claude Code's Read tool views them.
         has_images = bool(cli_ai._normalize_images(image_paths))
-        if has_images:
+        if has_images and AI_PROVIDER == "antigravity-cli":
             fallback_model = (GEMINI_REST_HTML_MODEL if use_html_model else GEMINI_MODEL) or None
             print(f"[fallback→gemini/{fallback_model}: images not supported by {AI_PROVIDER}]", end=" ", flush=True)
             return call_gemini_rest(prompt_text, image_paths, model=fallback_model)
@@ -1205,6 +1211,7 @@ def ai_label() -> str:
         "gemini": "Gemini",
         "codex-cli": "Codex CLI",
         "antigravity-cli": "Antigravity CLI",
+        "claude-cli": "Claude CLI",
     }
     return labels.get(AI_PROVIDER, AI_PROVIDER)
 
@@ -1739,7 +1746,7 @@ def process_json_file(
 def main():
     parser = argparse.ArgumentParser(
         description="Generate Chinese explanations for MBE questions")
-    parser.add_argument("--provider", choices=("gemini", "gpt", "codex-cli", "antigravity-cli"), default="gemini",
+    parser.add_argument("--provider", choices=("gemini", "gpt", "codex-cli", "antigravity-cli", "claude-cli"), default="gemini",
                         help="AI provider for missing generated fields (default: gemini)")
     parser.add_argument("--model", default="",
                         help="Override provider model (default depends on provider)")
@@ -1776,7 +1783,7 @@ def main():
             print("ERROR: No GEMINI_API_KEY_1 ~ GEMINI_API_KEY_N found in environment or .env file.")
             print("  Add GEMINI_API_KEY_1=your_key_here to passbar/.env.local")
             sys.exit(1)
-        if AI_PROVIDER in {"codex-cli", "antigravity-cli"}:
+        if AI_PROVIDER in {"codex-cli", "antigravity-cli", "claude-cli"}:
             try:
                 cli_ai.check_provider_ready(AI_PROVIDER)
             except RuntimeError as exc:

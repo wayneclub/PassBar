@@ -270,16 +270,43 @@ def collect_image_paths(enriched_file: Path, item: dict[str, Any]) -> list[str]:
     return list(dict.fromkeys(image_paths))
 
 
+def is_complex_illustration(path: Path) -> bool:
+    """Classify if an image is a complex illustration/photo or a simple diagram/table.
+    We resize to 128x128 and count unique colors. If there are fewer than 3000 unique colors,
+    it is classified as a simple diagram/table (HTML rebuild preferred).
+    """
+    try:
+        from PIL import Image
+        with Image.open(path) as img:
+            img_rgb = img.convert("RGB")
+            img_small = img_rgb.resize((128, 128))
+            colors = img_small.getcolors(maxcolors=128 * 128)
+            uniq_count = len(colors) if colors else 128 * 128
+            return uniq_count >= 3000
+    except Exception as exc:
+        print(f"    [img-classifier] failed to analyze {path.name}: {exc}")
+        return True  # Fallback to True (treat as complex) on error
+
+
 def collect_explain_img_paths(enriched_file: Path, item: dict[str, Any]) -> list[str]:
     """Return absolute paths for explain_imgs stored in the enriched item."""
     paths: list[str] = []
+    cleaned_rels: list[str] = []
     for rel in item.get("explain_imgs") or []:
         rel = str(rel).strip()
         if not rel:
             continue
         path = enriched_file.parent / rel
         if path.exists():
-            paths.append(str(path))
+            if is_complex_illustration(path):
+                paths.append(str(path))
+                cleaned_rels.append(rel)
+            else:
+                print(f"  [img-classifier] {path.name} classified as simple diagram/table; forcing HTML rebuild (excluding from explain_imgs)")
+    
+    if "explain_imgs" in item:
+        item["explain_imgs"] = cleaned_rels
+
     return paths
 
 
@@ -351,6 +378,9 @@ def downloaded_explain_img_refs(enriched_file: Path, castudy_q: dict[str, Any]) 
             print(f"    [imgs] downloading {basename}...")
             if not _download_img(url, local):
                 continue
+        if local.exists() and not is_complex_illustration(local):
+            print(f"    [imgs] {basename} classified as simple diagram/table; forcing HTML rebuild (skipping img embed)")
+            continue
         rel_paths.append(f"imgs/{basename}")
 
     seen: set[str] = set()
@@ -505,6 +535,16 @@ def generate_en_html(
 
     raw = zh_gen.call_ai_rest(prompt, all_image_paths, use_html_model=True)
     html = zh_gen.extract_html_from_response(raw)
+
+    # Validate that all required illustration diagrams/images are actually present in the generated HTML
+    if explain_img_paths:
+        for p in explain_img_paths:
+            ref = f"imgs/{os.path.basename(p)}"
+            if ref not in html:
+                raise RuntimeError(
+                    f"Generated HTML is missing required illustration image reference: '{ref}'"
+                )
+
     topic = extract_topic_from_html(html)
     return html, topic
 
@@ -619,7 +659,7 @@ def process_file(
                         lambda: generate_en_html(item, image_paths, explain_img_paths or None)
                     )
                     validate_generated_html(html, "en-html")
-                except RuntimeError as exc:
+                except Exception as exc:
                     print(f"ERROR: {exc}")
                     traceback.print_exc()
                     write_error_csv(usage_csv, enriched_file, item, "en-html")
@@ -671,7 +711,7 @@ def process_file(
                         lambda: generate_zh_html(item, document_meta, image_paths)
                     )
                     validate_generated_html(html, "zh-html")
-                except RuntimeError as exc:
+                except Exception as exc:
                     print(f"ERROR: {exc}")
                     traceback.print_exc()
                     write_error_csv(usage_csv, enriched_file, item, "zh-html")
@@ -811,7 +851,7 @@ def main() -> None:
     parser.add_argument("--mode", nargs="+", default=["zh-html", "meta"], help="One or more: zh-html en-html meta all")
     parser.add_argument(
         "--provider",
-        choices=("gemini", "gpt", "codex-cli", "antigravity-cli"),
+        choices=("gemini", "gpt", "codex-cli", "antigravity-cli", "claude-cli"),
         default="gemini",
         help="Provider for generated outputs",
     )
@@ -858,10 +898,10 @@ def main() -> None:
     modes = expand_modes(args.mode)
     zh_gen.set_ai_provider(args.provider, args.model or None, html_model=args.html_model or None)
     meta_gen.set_meta_provider(args.provider, args.model or None)
-    if not args.dry_run and args.provider in {"codex-cli", "antigravity-cli"}:
+    if not args.dry_run and args.provider in {"codex-cli", "antigravity-cli", "claude-cli"}:
         try:
             cli_ai.check_provider_ready(args.provider)
-        except RuntimeError as exc:
+        except Exception as exc:
             parser.error(str(exc))
     usage_csv = Path(args.usage_csv) if args.usage_csv else None
 
