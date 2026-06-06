@@ -18,32 +18,10 @@ import { Subject, TestMode, TestSession } from '@/lib/types';
 import { emptyQuestionStatusCounts, getAllUserProgress, getQuestionStatusCounts, QuestionStatusCounts, filterQuestionIdsByStatus } from '@/lib/question-progress';
 import { createPracticeSessionRecord } from '@/lib/practice-sessions';
 import { saveTestQuestionSnapshot } from '@/lib/offline-cache';
-import { Info, HelpCircle, Zap, BookOpen, Clock, Shuffle, ListOrdered } from 'lucide-react';
+import { HelpCircle, Zap, BookOpen, Clock, Shuffle, ListOrdered, X } from 'lucide-react';
+import { SettingCard, PillToggle, HintIcon } from '@/components/SettingCard';
 import { cn } from '@/lib/utils';
 
-function HintIcon({ children }: { children: React.ReactNode }) {
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <span
-          className="inline-flex cursor-help items-center text-primary"
-          onClick={(event) => event.stopPropagation()}
-          onPointerDown={(event) => event.stopPropagation()}
-        >
-          <Info className="h-3.5 w-3.5" />
-        </span>
-      </TooltipTrigger>
-      <TooltipContent
-        side="right"
-        align="start"
-        sideOffset={10}
-        className="max-w-[calc(100vw-2rem)] border-slate-200 bg-white p-0 text-slate-600 shadow-xl"
-      >
-        {children}
-      </TooltipContent>
-    </Tooltip>
-  );
-}
 
 export default function CreateTestPage() {
   const router = useRouter();
@@ -62,6 +40,7 @@ export default function CreateTestPage() {
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [statusCounts, setStatusCounts] = useState<QuestionStatusCounts>(emptyQuestionStatusCounts);
   const [questionOrder, setQuestionOrder] = useState<'random' | 'sequential'>('random');
+  const [perQuestionTimer, setPerQuestionTimer] = useState(false);
   const [isStarting, setIsStarting] = useState(false);
   const [tourOpen, setTourOpen] = useState(false);
   // Cache of question IDs for currently-selected chapters (avoids re-fetch on filter changes)
@@ -256,10 +235,11 @@ export default function CreateTestPage() {
       subjects: subjectNames,
       chapters: chapterIds,
       questionCount: selectedIds.length,
-      questionIds: selectedIds, 
+      questionIds: selectedIds,
       userAnswers: {},
       status: 'In-Progress',
-      timeSpent: 0
+      timeSpent: 0,
+      ...(perQuestionTimer && { perQuestionSeconds: 108 }),
     };
 
     const sessions = JSON.parse(localStorage.getItem('passbar_sessions') || localStorage.getItem('uprep_sessions') || '[]');
@@ -299,80 +279,65 @@ export default function CreateTestPage() {
         </div>
       </div>
 
-      <Accordion type="multiple" defaultValue={['test-mode', 'question-order', 'question-mode', 'subjects', 'no-questions']} className="space-y-4">
-        <AccordionItem value="test-mode" data-tour="test-mode" className="rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
-          <AccordionTrigger className="py-4 hover:no-underline">
-            <div className="flex items-center gap-2 text-base font-bold text-slate-700">
-              {t('create.testMode')}
-              <HintIcon>
-                <div className="w-[min(28rem,calc(100vw-2rem))] p-1">
-                  <p className="px-4 py-3 text-sm leading-relaxed text-slate-500">{t('create.testModeHint')}</p>
-                  <div className="grid grid-cols-[5rem_1fr] gap-4 border-t border-slate-200 px-4 py-3">
-                    <div className="font-bold text-slate-700">{t('create.tutor')}</div>
-                    <div>{t('create.tutorModeHint')}</div>
-                  </div>
-                  <div className="grid grid-cols-[5rem_1fr] gap-4 border-t border-slate-200 px-4 py-3">
-                    <div className="font-bold text-slate-700">{t('create.timed')}</div>
-                    <div>{t('create.timedModeHint')}</div>
-                  </div>
-                </div>
-              </HintIcon>
-            </div>
-          </AccordionTrigger>
-          <AccordionContent className="border-t pb-6 pt-4">
-            <div className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 p-1">
-              {([
-                { mode: 'Tutor', icon: BookOpen },
-                { mode: 'Timed', icon: Clock },
-              ] as const).map(({ mode, icon: Icon }) => (
-                <button
-                  key={mode}
-                  type="button"
-                  onClick={() => setTestMode(mode)}
-                  className={cn(
-                    "flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold transition-all duration-150",
-                    testMode === mode
-                      ? "bg-primary text-primary-foreground shadow-sm"
-                      : "text-slate-500 hover:text-slate-700"
-                  )}
-                >
-                  <Icon className="h-4 w-4" />
-                  {t(`create.${mode.toLowerCase()}` as 'create.tutor' | 'create.timed')}
-                </button>
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
+      {/* ── 練習模式 / 題目順序 / 每題計時 ── 合併一列 ───────────────── */}
+      <div data-tour="test-mode" className="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
-        {/* ── 題目順序 ─────────────────────────────────────────────────── */}
-        <AccordionItem value="question-order" className="rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
-          <AccordionTrigger className="py-4 hover:no-underline">
-            <span className="text-base font-bold text-slate-700">{t('create.questionOrder')}</span>
-          </AccordionTrigger>
-          <AccordionContent className="border-t pb-6 pt-4">
-            <div className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 p-1">
-              {([
-                { value: 'random',     icon: Shuffle,      labelKey: 'create.orderRandom' },
-                { value: 'sequential', icon: ListOrdered,  labelKey: 'create.orderSequential' },
-              ] as const).map(({ value, icon: Icon, labelKey }) => (
-                <button
-                  key={value}
-                  type="button"
-                  onClick={() => setQuestionOrder(value)}
-                  className={cn(
-                    "flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold transition-all duration-150",
-                    questionOrder === value
-                      ? "bg-primary text-primary-foreground shadow-sm"
-                      : "text-slate-500 hover:text-slate-700"
-                  )}
-                >
-                  <Icon className="h-4 w-4" />
-                  {t(labelKey)}
-                </button>
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
+        <SettingCard
+          label={t('create.testMode')}
+          hint={
+            <>
+              <p>{t('create.testModeHint')}</p>
+              <div className="mt-3 space-y-2">
+                <div className="grid grid-cols-[5rem_1fr] gap-3 border-t border-slate-100 pt-2">
+                  <span className="font-semibold text-slate-700">{t('create.tutor')}</span>
+                  <span>{t('create.tutorModeHint')}</span>
+                </div>
+                <div className="grid grid-cols-[5rem_1fr] gap-3 border-t border-slate-100 pt-2">
+                  <span className="font-semibold text-slate-700">{t('create.timed')}</span>
+                  <span>{t('create.timedModeHint')}</span>
+                </div>
+              </div>
+            </>
+          }
+        >
+          <PillToggle
+            value={testMode}
+            onChange={setTestMode}
+            options={[
+              { value: 'Tutor' as const, icon: BookOpen, label: t('create.tutor') },
+              { value: 'Timed' as const, icon: Clock,    label: t('create.timed') },
+            ]}
+          />
+        </SettingCard>
+
+        <SettingCard label={t('create.questionOrder')}>
+          <PillToggle
+            value={questionOrder}
+            onChange={setQuestionOrder}
+            options={[
+              { value: 'random'     as const, icon: Shuffle,     label: t('create.orderRandom') },
+              { value: 'sequential' as const, icon: ListOrdered, label: t('create.orderSequential') },
+            ]}
+          />
+        </SettingCard>
+
+        <SettingCard
+          label={t('create.perQuestionTimer')}
+          hint={t('create.perQuestionTimerHint')}
+        >
+          <PillToggle
+            value={perQuestionTimer}
+            onChange={setPerQuestionTimer}
+            options={[
+              { value: false, label: t('create.timerOff') },
+              { value: true,  label: t('create.timerOn')  },
+            ]}
+          />
+        </SettingCard>
+
+      </div>
+
+      <Accordion type="multiple" defaultValue={['question-mode', 'subjects', 'no-questions']} className="space-y-4">
 
         <AccordionItem value="question-mode" data-tour="question-mode" className="rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
           <AccordionTrigger className="py-4 hover:no-underline">
@@ -448,20 +413,17 @@ export default function CreateTestPage() {
         <AccordionItem value="subjects" data-tour="subjects" className="rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
           <AccordionTrigger className="py-4 hover:no-underline">
             <div className="flex items-center justify-between w-full pr-4">
-              <div className="flex items-center gap-2 text-base font-bold text-slate-700">
-                {t('create.subjectsAndChapters')}
-              </div>
-              <div className="flex items-center gap-4 text-sm font-semibold text-primary">
-                <span 
-                  className="cursor-pointer hover:underline" 
-                  onClick={(e) => { 
-                    e.stopPropagation(); 
-                    setSelectedChapters(new Set()); 
-                  }}
+              <span className="text-base font-bold text-slate-700">{t('create.subjectsAndChapters')}</span>
+              {selectedChapters.size > 0 && (
+                <button
+                  type="button"
+                  aria-label={t('create.collapseAll')}
+                  onClick={(e) => { e.stopPropagation(); setSelectedChapters(new Set()); }}
+                  className="ml-2 flex items-center justify-center rounded-full p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors"
                 >
-                  {t('create.collapseAll')}
-                </span>
-              </div>
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              )}
             </div>
           </AccordionTrigger>
           <AccordionContent className="border-t pb-10 pt-5">

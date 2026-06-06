@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { TestHeader } from '@/components/TestHeader';
@@ -38,7 +38,7 @@ import { requestGeminiFeedback } from '@/lib/gemini-feedback';
 import { defaultStudySettings, getStudySettings, saveStudySettings, type ContentMode, type DisplayOptions, type TextSize } from '@/lib/study-settings';
 import { saveUserStudySettings } from '@/lib/user-settings';
 import { useI18n } from '@/lib/i18n';
-import { Check, Clock3, ListChecks, X } from 'lucide-react';
+import { Check, ChevronUp, Clock3, Lightbulb, ListChecks, X } from 'lucide-react';
 import { ReportQuestionDialog } from '@/components/ReportQuestionDialog';
 
 type AnswerMeta = {
@@ -109,6 +109,49 @@ function TestSessionContent() {
   const [ending, setEnding] = useState(false);
   const [shortcutHelpOpen, setShortcutHelpOpen] = useState(false);
   const [activeExplanationChoiceKey, setActiveExplanationChoiceKey] = useState<string | null>(null);
+
+  // Per-question countdown (108s practice aid)
+  const [perQuestionTimeLeft, setPerQuestionTimeLeft] = useState<number | null>(null);
+
+  // Reset per-question timer when question changes or session loads
+  useEffect(() => {
+    if (session?.perQuestionSeconds && session.mode !== 'TopicStudy' && session.mode !== 'SimExam') {
+      setPerQuestionTimeLeft(session.perQuestionSeconds);
+    } else {
+      setPerQuestionTimeLeft(null);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentIndex, session?.id, session?.perQuestionSeconds]);
+
+  // Count down per-question timer
+  useEffect(() => {
+    if (perQuestionTimeLeft === null || isPaused || isReviewMode) return;
+    if (perQuestionTimeLeft <= 0) return;
+    const tid = setTimeout(() => setPerQuestionTimeLeft((p) => (p !== null ? Math.max(0, p - 1) : null)), 1000);
+    return () => clearTimeout(tid);
+  }, [perQuestionTimeLeft, isPaused, isReviewMode]);
+
+  // Mobile FAB: show on scroll, direction determines which button
+  // 'down' → scrolled down → show ↑ (back to top)
+  // 'up'   → scrolled up   → show 💡 (jump to explanation)
+  const [fabScrollDir, setFabScrollDir] = useState<'down' | 'up' | null>(null);
+  const fabScrollLastY = useRef(0);
+  const fabHideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  /** Find the single unified mobile scroller that ResizablePanels creates */
+  function getMobileScroller(): HTMLElement | null {
+    // Walk up from the explanation panel to find the first truly scrollable ancestor
+    let el: HTMLElement | null = document.getElementById('test-explanation-panel');
+    while (el && el !== document.documentElement) {
+      el = el.parentElement;
+      if (!el) break;
+      const ov = getComputedStyle(el).overflowY;
+      if ((ov === 'auto' || ov === 'scroll') && el.scrollHeight > el.clientHeight + 5) {
+        return el;
+      }
+    }
+    return null;
+  }
 
   useEffect(() => {
     const settings = getStudySettings();
@@ -820,6 +863,36 @@ function TestSessionContent() {
     showSubmitBtn,
   ]);
 
+  // Attach scroll listener to the mobile unified scroller after render
+  useEffect(() => {
+    if (!showExplanation) { setFabScrollDir(null); return; }
+
+    // Use capture to intercept scroll from the ResizablePanels mobile unified scroller
+    const handleScroll = (e: Event) => {
+      const target = e.target as HTMLElement;
+      if (!target || typeof target.scrollTop !== 'number') return;
+      // Only react on mobile (viewport < 1024px)
+      if (window.innerWidth >= 1024) return;
+      const currentY = target.scrollTop;
+      const delta = currentY - fabScrollLastY.current;
+      fabScrollLastY.current = currentY;
+
+      if (Math.abs(delta) < 2) return; // ignore tiny jitter
+
+      setFabScrollDir(delta > 0 ? 'down' : 'up');
+
+      // Auto-hide after 2 s of no scroll
+      if (fabHideTimer.current) clearTimeout(fabHideTimer.current);
+      fabHideTimer.current = setTimeout(() => setFabScrollDir(null), 2000);
+    };
+
+    document.addEventListener('scroll', handleScroll, { capture: true, passive: true });
+    return () => {
+      document.removeEventListener('scroll', handleScroll, { capture: true });
+      if (fabHideTimer.current) clearTimeout(fabHideTimer.current);
+    };
+  }, [showExplanation]);
+
   if (!session || !currentQuestion) return null;
 
   return (
@@ -865,6 +938,7 @@ function TestSessionContent() {
         subject={currentQuestion?.subject}
         topic={currentQuestion?.chapterName}
         timeLimitSeconds={session.timeLimitSeconds}
+        perQuestionTimeLeft={perQuestionTimeLeft}
         onTimeUp={session.mode === 'SimExam' && !isReviewMode ? handleTimeUp : undefined}
         shortcutHelpOpen={shortcutHelpOpen}
         onShortcutHelpOpenChange={setShortcutHelpOpen}
@@ -872,7 +946,7 @@ function TestSessionContent() {
 
       {/* Bottom padding: mobile footer = nav row (56px) + optional submit row (~60px) */}
       <main className={cn(
-        "mt-14 flex-1 overflow-hidden",
+        "mt-12 sm:mt-14 flex-1 overflow-hidden",
         showSubmitBtn ? "mb-36 sm:mb-20" : "mb-20 sm:mb-20"
       )}>
         <ResizablePanels
@@ -882,30 +956,39 @@ function TestSessionContent() {
           className="h-full w-full"
           resetKey={panelResetKey}
           left={
-            <div className="h-full overflow-y-auto overflow-x-hidden">
+            <div className="h-full overflow-y-auto overflow-x-hidden" id="test-question-panel">
             <div className={cn(
-              "space-y-8 py-8",
-              showExplanation ? "px-6 lg:px-8" : "mx-auto w-full max-w-5xl px-6 lg:px-8"
+              "space-y-6 sm:space-y-8 py-4 sm:py-8",
+              showExplanation ? "px-4 sm:px-6 lg:px-8" : "mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8"
             )}>
-              {/* ── Subject / Chapter / Topic pills ─────────────────────── */}
+              {/* ── Pill-style Breadcrumb: Subject › Chapter › Topic ────── */}
               {(currentQuestion?.subject || currentQuestion?.chapterName || currentQuestion?.topic) && (
-                <div className="flex flex-wrap items-center gap-2 -mt-2 mb-1">
-                  {currentQuestion.subject && (
-                    <span className="inline-flex items-center rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary leading-none">
-                      {currentQuestion.subject}
-                    </span>
-                  )}
-                  {currentQuestion.chapterName && (
-                    <span className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600 leading-none">
-                      {currentQuestion.chapterName}
-                    </span>
-                  )}
-                  {currentQuestion.topic && (
-                    <span className="inline-flex items-center rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-medium text-sky-600 leading-none">
-                      {currentQuestion.topic}
-                    </span>
-                  )}
-                </div>
+                <nav aria-label="breadcrumb" className="-mt-1">
+                  <ol className="flex flex-wrap items-center gap-1.5">
+                    {[
+                      currentQuestion.subject
+                        ? { label: currentQuestion.subject, pill: 'border border-primary/30 bg-primary/8 text-primary font-semibold' }
+                        : null,
+                      currentQuestion.chapterName
+                        ? { label: currentQuestion.chapterName, pill: 'border border-slate-200 bg-slate-50 text-slate-600 font-medium' }
+                        : null,
+                      currentQuestion.topic
+                        ? { label: currentQuestion.topic, pill: 'border border-sky-200 bg-sky-50 text-sky-600 font-medium' }
+                        : null,
+                    ]
+                      .filter(Boolean)
+                      .map((item, i) => (
+                        <li key={i} className="flex items-center gap-1.5 min-w-0">
+                          {i > 0 && (
+                            <span className="shrink-0 text-slate-300 select-none text-xs leading-none">›</span>
+                          )}
+                          <span className={`truncate rounded-full px-2.5 py-1 text-xs leading-none ${item!.pill}`}>
+                            {item!.label}
+                          </span>
+                        </li>
+                      ))}
+                  </ol>
+                </nav>
               )}
 
               {/* ── Question text ── EN / ZH / both stacked ─────────────── */}
@@ -913,7 +996,7 @@ function TestSessionContent() {
                 {(display.enQA || (!display.enQA && !display.zhQA)) && (
                   <RichText
                     text={enQuestionText}
-                    highlights={questionTextHighlights}
+                    highlights={showExplanation ? questionTextHighlights : []}
                     language={language}
                     className={cn('text-left font-normal text-slate-900', questionTextClass)}
                   />
@@ -945,10 +1028,11 @@ function TestSessionContent() {
                     const isRevealed = Boolean(session.mode === 'TopicStudy' || (submitted && (session.mode === 'Tutor' || isReviewMode)));
 
                     let percentageText = null;
+                    const isTestOrExamMode = session.mode !== 'TopicStudy';
                     const realChoicePercent = currentAnswerMeta?.choicePercents[label as 'A' | 'B' | 'C' | 'D'];
-                    if (isRevealed && realChoicePercent != null) {
+                    if (isRevealed && isTestOrExamMode && realChoicePercent != null) {
                       percentageText = `(${realChoicePercent}%)`;
-                    } else if (isRevealed && isCorrect && currentAnswerMeta?.correctPercent != null) {
+                    } else if (isRevealed && isTestOrExamMode && isCorrect && currentAnswerMeta?.correctPercent != null) {
                       percentageText = `(${currentAnswerMeta.correctPercent}%)`;
                     }
 
@@ -1039,7 +1123,7 @@ function TestSessionContent() {
                                 <ChoiceText
                                   className="block"
                                   text={enOptions[idx]?.replace(/^\s*[A-D]\.\s*/i, '') ?? option.replace(/^\s*[A-D]\.\s*/i, '')}
-                                  keywords={currentQuestion?.choiceKeywordMeta?.choices?.[label as 'A' | 'B' | 'C' | 'D']}
+                                  keywords={showExplanation ? currentQuestion?.choiceKeywordMeta?.choices?.[label as 'A' | 'B' | 'C' | 'D'] : undefined}
                                   language={language}
                                   state={
                                     isRevealed
@@ -1128,12 +1212,36 @@ function TestSessionContent() {
                   </div>
                 ) : null}
 
+                {/* ── Micro-concept / Trap type / Skill tested ── */}
+                {(showExplanation || submitted) && (currentQuestion.microConcept || currentQuestion.trapType || currentQuestion.skillTested) && (
+                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-px rounded-xl border border-slate-200 bg-slate-200 overflow-hidden text-sm">
+                    {currentQuestion.microConcept && (
+                      <div className="flex flex-col gap-1 bg-white px-4 py-3">
+                        <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">{t('test.microConcept')}</span>
+                        <span className="font-semibold text-slate-800 leading-snug">{currentQuestion.microConcept}</span>
+                      </div>
+                    )}
+                    {currentQuestion.trapType && (
+                      <div className="flex flex-col gap-1 bg-white px-4 py-3">
+                        <span className="text-xs font-semibold uppercase tracking-wider text-red-400">{t('test.trapType')}</span>
+                        <span className="font-semibold text-red-700 leading-snug">{currentQuestion.trapType}</span>
+                      </div>
+                    )}
+                    {currentQuestion.skillTested && (
+                      <div className="flex flex-col gap-1 bg-white px-4 py-3">
+                        <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">{t('test.skillTested')}</span>
+                        <span className="font-semibold text-sky-700 leading-snug">{currentQuestion.skillTested}</span>
+                      </div>
+                    )}
+                  </div>
+                )}
+
               </div>
             </div>
             </div>
           }
           right={showExplanation ? (
-            <div className="h-full overflow-y-auto overflow-x-hidden bg-white">
+            <div className="h-full overflow-y-auto overflow-x-hidden bg-white" id="test-explanation-panel">
               <div className="px-4 py-4 lg:px-6">
                 <ExplanationView
                     question={currentQuestion}
@@ -1150,6 +1258,47 @@ function TestSessionContent() {
           ) : <div />}
         />
       </main>
+
+      {/* ── Mobile FAB: appears on scroll, direction-aware ── */}
+      {showExplanation && fabScrollDir !== null && (
+        <div className="fixed bottom-24 right-4 z-40 lg:hidden animate-in fade-in zoom-in-90 duration-150">
+          {fabScrollDir === 'down' ? (
+            // Scrolled down → back to top
+            <button
+              onClick={() => {
+                getMobileScroller()?.scrollTo({ top: 0, behavior: 'smooth' });
+                setFabScrollDir(null);
+              }}
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-secondary text-primary border border-white/10 shadow-md active:scale-95 transition-transform"
+              aria-label="Back to question"
+            >
+              <ChevronUp className="h-5 w-5" />
+            </button>
+          ) : (
+            // Scrolled up → jump to explanation panel
+            <button
+              onClick={() => {
+                const panel = document.getElementById('test-explanation-panel');
+                const scroller = getMobileScroller();
+                if (panel && scroller) {
+                  const scrollerRect = scroller.getBoundingClientRect();
+                  const panelRect = panel.getBoundingClientRect();
+                  const headerH = 48;
+                  scroller.scrollTo({
+                    top: scroller.scrollTop + (panelRect.top - scrollerRect.top) - headerH,
+                    behavior: 'smooth',
+                  });
+                }
+                setFabScrollDir(null);
+              }}
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md active:scale-95 transition-transform"
+              aria-label="Jump to explanation"
+            >
+              <Lightbulb className="h-5 w-5" />
+            </button>
+          )}
+        </div>
+      )}
 
       <TestFooter
         canGoBack={currentIndex > 0}

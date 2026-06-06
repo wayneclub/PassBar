@@ -85,6 +85,9 @@ export interface Question {
   explanationHtml?: string;         // zh explanation html
   explanationOcr?: ExplanationOcr[];
   topic?: string;                       // fine-grained topic from source image (e.g. "Right to counsel")
+  microConcept?: string;               // fine-grained concept tested
+  trapType?: string;                   // distractor/trap category
+  skillTested?: string;                // cognitive skill being tested
   questionHighlightMeta?: QuestionHighlightMeta;
   questionKeywordMeta?: QuestionKeywordMeta;
   choiceKeywordMeta?: ChoiceKeywordMeta;
@@ -123,6 +126,7 @@ export interface TestSession {
   status: 'In-Progress' | 'Completed' | 'Suspended';
   timeSpent: number; // in seconds
   timeLimitSeconds?: number; // countdown limit (SimExam: 10800)
+  perQuestionSeconds?: number; // per-question countdown (108s practice aid)
 }
 
 export interface PerformanceStats {

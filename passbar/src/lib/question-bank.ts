@@ -35,6 +35,9 @@ type QuestionRow = {
   en_explanation_html: string | null;  // gemini-generated English interactive HTML
   explanation_html: string | null;      // zh explanation html
   topic: string | null;                 // fine-grained topic from source image
+  micro_concept: string | null;
+  trap_type: string | null;
+  skill_tested: string | null;
   keyword_meta: unknown;
   highlight_meta: unknown;
   raw: unknown;
@@ -59,7 +62,7 @@ type ExplanationOcrRow = {
   words: ExplanationOcr['words'];
 };
 
-const questionSelectFields = 'id, index, subject, chapter_id, chapter_name, topic, question_text, fetched_question_stem, zh_question_stem, options, bilingual_options, zh_options, correct_answer, correct_answer_letter, api_answer_key, api_match_ok, explain_imgs, zh_explain_imgs, source_explanation_image_file, source_explanation_image_url, en_explanation_html, explanation_html, keyword_meta, highlight_meta, raw';
+const questionSelectFields = 'id, index, subject, chapter_id, chapter_name, topic, micro_concept, trap_type, skill_tested, question_text, fetched_question_stem, zh_question_stem, options, bilingual_options, zh_options, correct_answer, correct_answer_letter, api_answer_key, api_match_ok, explain_imgs, zh_explain_imgs, source_explanation_image_file, source_explanation_image_url, en_explanation_html, explanation_html, keyword_meta, highlight_meta, raw';
 
 const VALID_HIGHLIGHT_KINDS = new Set([
   'key_sentence',
@@ -222,6 +225,9 @@ function toQuestion(row: QuestionRow, ocrByQuestion = new Map<string, Explanatio
     explanationHtml: row.explanation_html ?? undefined,
     explanationOcr: ocrByQuestion.get(row.id) ?? [],
     topic: typeof row.topic === 'string' && row.topic.trim() ? row.topic.trim() : undefined,
+    microConcept: typeof row.micro_concept === 'string' && row.micro_concept.trim() ? row.micro_concept.trim() : undefined,
+    trapType: typeof row.trap_type === 'string' && row.trap_type.trim() ? row.trap_type.trim() : undefined,
+    skillTested: typeof row.skill_tested === 'string' && row.skill_tested.trim() ? row.skill_tested.trim() : undefined,
     questionHighlightMeta: parseQuestionHighlightMeta(row.highlight_meta ?? row.raw),
     questionKeywordMeta: parseQuestionKeywordMeta(row.keyword_meta ?? row.raw),
     choiceKeywordMeta: parseChoiceKeywordMeta(row.keyword_meta ?? row.raw),

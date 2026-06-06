@@ -166,6 +166,10 @@ type TranslationKey =
   | 'create.totalQuestions'
   | 'create.practicedQuestions'
   | 'create.unpracticedQuestions'
+  | 'create.perQuestionTimer'
+  | 'create.perQuestionTimerHint'
+  | 'create.timerOff'
+  | 'create.timerOn'
   | 'test.submit'
   | 'test.explanation'
   | 'test.submitToViewExplanation'
@@ -180,6 +184,9 @@ type TranslationKey =
   | 'test.correctAnswer'
   | 'test.answeredCorrectly'
   | 'test.timeSpent'
+  | 'test.microConcept'
+  | 'test.trapType'
+  | 'test.skillTested'
   | 'test.markQuestion'
   | 'test.unmarkQuestion'
   | 'test.questions'
@@ -772,6 +779,10 @@ const en: Dictionary = {
   'create.totalQuestions': 'Total questions',
   'create.practicedQuestions': 'Practiced',
   'create.unpracticedQuestions': 'Unpracticed',
+  'create.perQuestionTimer': 'Per-Question Timer',
+  'create.perQuestionTimerHint': 'Each question has a 108-second countdown (1.8 min MBE standard). Timer resets every question.',
+  'create.timerOff': 'Off',
+  'create.timerOn': '108s',
   'test.submit': 'Submit',
   'test.explanation': 'Explanation',
   'test.submitToViewExplanation': 'Submit your answer to view the explanation.',
@@ -785,6 +796,9 @@ const en: Dictionary = {
   'test.incorrect': 'Incorrect',
   'test.correctAnswer': 'Correct answer',
   'test.answeredCorrectly': 'Answered correctly',
+  'test.microConcept': 'Micro-Concept',
+  'test.trapType': 'Trap Type',
+  'test.skillTested': 'Skill Tested',
   'test.timeSpent': 'Time Spent',
   'test.markQuestion': 'Mark question',
   'test.unmarkQuestion': 'Unmark question',
@@ -940,7 +954,7 @@ const en: Dictionary = {
   'review.deletingSession': 'Deleting...',
   'browse.title': 'Topic Study',
   'browse.description': 'Read questions, answers, and explanations — no scoring, no pressure.',
-  'browse.selectSubject': 'Select Subject & Chapters',
+  'browse.selectSubject': 'Subjects & Chapters',
   'browse.continueLabel': 'Continue from last time',
   'browse.continueAt': 'Resume at question {index}',
   'browse.startBrowse': 'Start Reading',
@@ -1470,6 +1484,10 @@ const zhHans: Dictionary = {
   'create.totalQuestions': '总题数',
   'create.practicedQuestions': '已练习',
   'create.unpracticedQuestions': '未练习',
+  'create.perQuestionTimer': '每題計時',
+  'create.perQuestionTimerHint': '每題設有 108 秒倒數（MBE 標準 1.8 分鐘），切換題目自動重置。',
+  'create.timerOff': '关闭',
+  'create.timerOn': '108秒',
   'test.submit': '提交',
   'test.explanation': '解析',
   'test.submitToViewExplanation': '提交答案后查看解析。',
@@ -1483,6 +1501,9 @@ const zhHans: Dictionary = {
   'test.incorrect': '错误',
   'test.correctAnswer': '正确答案',
   'test.answeredCorrectly': '答对比例',
+  'test.microConcept': '考点',
+  'test.trapType': '陷阱类型',
+  'test.skillTested': '测试技能',
   'test.timeSpent': '作答时间',
   'test.markQuestion': '标记题目',
   'test.unmarkQuestion': '取消标记',
@@ -1638,7 +1659,7 @@ const zhHans: Dictionary = {
   'review.deletingSession': '删除中...',
   'browse.title': '主题学习',
   'browse.description': '直接阅读题目、答案与解析，无需作答，无压力学习。',
-  'browse.selectSubject': '选择科目与章节',
+  'browse.selectSubject': '科目与章节',
   'browse.continueLabel': '接续上次',
   'browse.continueAt': '从第 {index} 题继续',
   'browse.startBrowse': '开始阅读',
@@ -2167,6 +2188,10 @@ const zhHant: Dictionary = {
   'create.totalQuestions': '總題數',
   'create.practicedQuestions': '已練習',
   'create.unpracticedQuestions': '未練習',
+  'create.perQuestionTimer': '每題計時',
+  'create.perQuestionTimerHint': '每題設有 108 秒倒數（MBE 標準 1.8 分鐘），切換題目自動重置。',
+  'create.timerOff': '關閉',
+  'create.timerOn': '108秒',
   'test.submit': '提交',
   'test.explanation': '解析',
   'test.submitToViewExplanation': '提交答案後查看解析。',
@@ -2180,6 +2205,9 @@ const zhHant: Dictionary = {
   'test.incorrect': '錯誤',
   'test.correctAnswer': '正確答案',
   'test.answeredCorrectly': '答對比例',
+  'test.microConcept': '考點',
+  'test.trapType': '陷阱類型',
+  'test.skillTested': '測試技能',
   'test.timeSpent': '作答時間',
   'test.markQuestion': '標記題目',
   'test.unmarkQuestion': '取消標記',
@@ -2335,7 +2363,7 @@ const zhHant: Dictionary = {
   'review.deletingSession': '刪除中...',
   'browse.title': '主題學習',
   'browse.description': '直接閱讀題目、答案與解析，無需作答，無壓力學習。',
-  'browse.selectSubject': '選擇科目與章節',
+  'browse.selectSubject': '科目與章節',
   'browse.continueLabel': '接續上次',
   'browse.continueAt': '從第 {index} 題繼續',
   'browse.startBrowse': '開始閱讀',

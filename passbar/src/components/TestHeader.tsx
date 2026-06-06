@@ -41,6 +41,8 @@ interface TestHeaderProps {
   topic?: string;
   /** Countdown limit in seconds (SimExam mode) */
   timeLimitSeconds?: number;
+  /** Per-question countdown seconds remaining (108s practice aid) */
+  perQuestionTimeLeft?: number | null;
   /** Called when countdown reaches zero */
   onTimeUp?: () => void;
   shortcutHelpOpen?: boolean;
@@ -67,6 +69,7 @@ export function TestHeader({
   subject,
   topic,
   timeLimitSeconds,
+  perQuestionTimeLeft,
   onTimeUp,
   shortcutHelpOpen,
   onShortcutHelpOpenChange,
@@ -135,52 +138,57 @@ export function TestHeader({
     : localTime;
   const isUrgent = isCountdown && timeLimitSeconds !== undefined && (timeLimitSeconds - localTime) < 600;
 
+  // Per-question timer display states
+  const hasPerQ = perQuestionTimeLeft !== null && perQuestionTimeLeft !== undefined;
+  const perQUrgent = hasPerQ && (perQuestionTimeLeft as number) <= 10;
+  const perQWarning = hasPerQ && !perQUrgent && (perQuestionTimeLeft as number) <= 30;
+
   return (
-    <header className="h-14 bg-secondary text-white grid grid-cols-[auto_1fr_auto] items-center px-4 fixed top-0 w-full z-50">
+    <header className="h-12 sm:h-14 bg-secondary text-white grid grid-cols-[auto_1fr_auto] items-center px-3 sm:px-4 fixed top-0 w-full z-50">
       {/* Left: icons */}
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-0.5 sm:gap-1">
         <Button
           variant="ghost"
           size="icon"
           aria-pressed={currentMarked}
           aria-label={currentMarked ? t('test.unmarkQuestion') : t('test.markQuestion')}
           className={cn(
-            'hover:bg-white/10 hover:text-white',
+            'h-8 w-8 sm:h-9 sm:w-9 hover:bg-white/10 hover:text-white',
             currentMarked ? 'bg-primary/15 text-primary' : 'text-primary',
           )}
           onClick={onToggleMark}
         >
-          <Bookmark className={cn('w-5 h-5', currentMarked && 'fill-current')} />
+          <Bookmark className={cn('w-4 h-4 sm:w-5 sm:h-5', currentMarked && 'fill-current')} />
         </Button>
         <Button
           variant="ghost"
           size="icon"
           onClick={onFeedback}
           aria-label={t('test.feedback')}
-          className="text-primary hover:bg-white/10 hover:text-white"
+          className="h-8 w-8 sm:h-9 sm:w-9 text-primary hover:bg-white/10 hover:text-white"
         >
-          <Flag className="w-5 h-5" />
+          <Flag className="w-4 h-4 sm:w-5 sm:h-5" />
         </Button>
       </div>
 
       <Popover open={questionMenuOpen} onOpenChange={setQuestionMenuOpen}>
         <PopoverTrigger asChild>
-          <button className="flex min-w-0 flex-1 flex-col items-center gap-0.5 rounded px-4 py-1.5 text-white transition-colors hover:bg-white/10">
-            <span className="flex items-center gap-1.5">
-              <span className="text-lg font-semibold tabular-nums">{questionIndex + 1}/{totalQuestions}</span>
-              <ChevronDown className={cn('h-4 w-4 text-primary transition-transform', questionMenuOpen && 'rotate-180')} />
+          <button className="flex min-w-0 flex-1 flex-col items-center gap-0.5 rounded px-2 sm:px-4 py-1.5 text-white transition-colors hover:bg-white/10">
+            <span className="flex items-center gap-1">
+              <span className="text-base sm:text-lg font-semibold tabular-nums">{questionIndex + 1}/{totalQuestions}</span>
+              <ChevronDown className={cn('h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary transition-transform', questionMenuOpen && 'rotate-180')} />
             </span>
             {/* Subject · Chapter — removed from top bar, now shown as pills below question number */}
           </button>
         </PopoverTrigger>
-        <PopoverContent className="w-[360px] border-slate-200 bg-white p-4 text-slate-900" sideOffset={10}>
+        <PopoverContent className="w-[min(360px,calc(100vw-1rem))] border-slate-200 bg-white p-4 text-slate-900" sideOffset={10} align="center" avoidCollisions collisionPadding={8}>
           <div className="mb-3 flex items-center justify-between">
             <div className="text-sm font-semibold text-slate-800">{t('test.questions')}</div>
             <div className="text-xs text-slate-500">
               {t(isBrowse ? 'test.viewedCount' : 'test.answeredCount', { answered: answeredIndexes.size, total: totalQuestions })}
             </div>
           </div>
-          <div className="grid max-h-[340px] grid-cols-6 gap-2 overflow-y-auto pr-1">
+          <div className="grid max-h-[340px] grid-cols-5 sm:grid-cols-6 gap-1.5 sm:gap-2 overflow-y-auto pr-1">
             {Array.from({ length: totalQuestions }, (_, index) => {
               const isCurrent = index === questionIndex;
               const isAnswered = answeredIndexes.has(index);
@@ -218,8 +226,9 @@ export function TestHeader({
       </Popover>
 
       {/* Right Icons */}
-      <div className="flex items-center justify-end gap-4">
-        <div className="flex items-center gap-1">
+      <div className="flex items-center justify-end gap-2 sm:gap-4">
+        <div className="flex items-center gap-0.5 sm:gap-1">
+          {/* Help — hidden on mobile (keyboard shortcuts not relevant on touch) */}
           <Popover open={isShortcutHelpOpen} onOpenChange={setShortcutHelpOpen}>
             <PopoverTrigger asChild>
               <Button
@@ -227,14 +236,14 @@ export function TestHeader({
                 size="icon"
                 aria-label={t('test.keyboardShortcuts')}
                 className={cn(
-                  'h-9 w-9 text-primary hover:bg-white/10 hover:text-white',
+                  'hidden sm:flex h-9 w-9 text-primary hover:bg-white/10 hover:text-white',
                   isShortcutHelpOpen && 'bg-primary/15 text-white',
                 )}
               >
                 <HelpCircle className="w-5 h-5" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent align="end" className="w-80 border-slate-200 bg-white p-4 text-slate-900" sideOffset={10}>
+            <PopoverContent align="end" className="w-[min(320px,calc(100vw-1rem))] border-slate-200 bg-white p-4 text-slate-900" sideOffset={10} avoidCollisions collisionPadding={8}>
               <div className="mb-3">
                 <div className="text-sm font-semibold text-slate-900">{t('test.keyboardShortcuts')}</div>
                 <div className="mt-1 text-xs leading-5 text-slate-500">{t('test.keyboardShortcutsDescription')}</div>
@@ -258,14 +267,14 @@ export function TestHeader({
                 size="icon"
                 aria-label={t('nav.settings')}
                 className={cn(
-                  'h-9 w-9 text-primary hover:bg-white/10 hover:text-white',
+                  'h-8 w-8 sm:h-9 sm:w-9 text-primary hover:bg-white/10 hover:text-white',
                   settingsOpen && 'bg-primary/15 text-white',
                 )}
               >
                 <Settings className="w-5 h-5" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent align="end" className="w-72 border-slate-200 bg-white p-0 text-slate-900 overflow-hidden" sideOffset={10}>
+            <PopoverContent align="end" className="w-[min(288px,calc(100vw-1rem))] border-slate-200 bg-white p-0 text-slate-900 overflow-hidden" sideOffset={10} avoidCollisions collisionPadding={8}>
               {/* Header */}
               <div className="bg-slate-50 border-b border-slate-100 px-4 py-3">
                 <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">{t('nav.settings')}</p>
@@ -367,13 +376,26 @@ export function TestHeader({
           </Popover>
         </div>
         
-        <div className={cn(
-          "text-lg font-mono tracking-wider tabular-nums",
-          isUrgent && "text-red-400 animate-pulse"
-        )}>
-          {isCountdown && <span className="mr-1 text-xs font-sans opacity-70">{t('test.timeRemaining')}</span>}
-          {formatTime(displaySeconds)}
-        </div>
+        {/* Timer: per-question countdown OR normal elapsed/total countdown */}
+        {hasPerQ ? (
+          <div className={cn(
+            "rounded-full px-3 py-1 font-mono tabular-nums text-sm sm:text-base font-semibold transition-colors duration-300",
+            perQUrgent
+              ? "bg-red-500/20 text-red-300 animate-pulse"
+              : perQWarning
+                ? "bg-amber-500/20 text-amber-300"
+                : "bg-white/10 text-white"
+          )}>
+            {formatTime(perQuestionTimeLeft as number)}
+          </div>
+        ) : (
+          <div className={cn(
+            "text-sm sm:text-lg font-mono tracking-wider tabular-nums",
+            isUrgent && "text-red-400 animate-pulse"
+          )}>
+            {formatTime(displaySeconds)}
+          </div>
+        )}
       </div>
     </header>
   );

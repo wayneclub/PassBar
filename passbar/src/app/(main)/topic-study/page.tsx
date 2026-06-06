@@ -15,9 +15,12 @@ import { Subject, TestSession } from '@/lib/types';
 import { getBrowseProgressByUser, BrowseProgressRow } from '@/lib/topic-study-progress';
 import { getBrowseMarkedChapterIds, getBrowseChapterStateCounts } from '@/lib/topic-study-question-states';
 import { saveTestQuestionSnapshot } from '@/lib/offline-cache';
-import { BookOpen, ListOrdered, Shuffle, ArrowRight, Footprints } from 'lucide-react';
+import { BookOpen, ListOrdered, Shuffle, ArrowRight, Footprints, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { PillToggle, SettingCard } from '@/components/SettingCard';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 export default function BrowsePage() {
   const router = useRouter();
@@ -166,6 +169,7 @@ export default function BrowsePage() {
   };
 
   return (
+    <TooltipProvider delayDuration={120}>
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <header className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
@@ -180,86 +184,84 @@ export default function BrowsePage() {
         </Link>
       </header>
 
-      {/* Reading order */}
-      <div className="rounded-lg border border-slate-200 bg-white px-5 py-4 shadow-sm">
-        <div className="mb-3 text-base font-bold text-slate-700">{t('browse.questionOrder')}</div>
-        <div className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 p-1">
-          {([
-            { value: 'sequential', icon: ListOrdered, labelKey: 'browse.orderSequential' },
-            { value: 'random', icon: Shuffle, labelKey: 'browse.orderRandom' },
-          ] as const).map(({ value, icon: Icon, labelKey }) => (
-            <button
-              key={value}
-              type="button"
-              onClick={() => setQuestionOrder(value)}
-              className={cn(
-                'flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold transition-all duration-150',
-                questionOrder === value
-                  ? 'bg-primary text-primary-foreground shadow-sm'
-                  : 'text-slate-500 hover:text-slate-700'
+      {/* 題目順序 */}
+      <SettingCard label={t('browse.questionOrder')}>
+        <PillToggle
+          value={questionOrder}
+          onChange={setQuestionOrder}
+          options={[
+            { value: 'sequential' as const, icon: ListOrdered, label: t('browse.orderSequential') },
+            { value: 'random'     as const, icon: Shuffle,     label: t('browse.orderRandom') },
+          ]}
+        />
+      </SettingCard>
+
+      <Accordion type="multiple" defaultValue={['learn-status', 'subjects']} className="space-y-4">
+
+        {/* 學習狀態 */}
+        <AccordionItem value="learn-status" className="rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
+          <AccordionTrigger className="py-4 hover:no-underline">
+            <span className="text-base font-bold text-slate-700">{t('browse.learningStatus')}</span>
+          </AccordionTrigger>
+          <AccordionContent className="border-t pb-6 pt-4">
+            <div className="flex flex-wrap gap-x-8 gap-y-4">
+              {([
+                { value: 'all'       as const, label: t('browse.filterAll'),       count: totalQuestions, activeClass: 'bg-slate-700 text-white' },
+                { value: 'unlearned' as const, label: t('browse.filterUnlearned'), count: unlearnedCount, activeClass: 'bg-primary text-primary-foreground' },
+                { value: 'learned'   as const, label: t('browse.filterLearned'),   count: learnedCount,   activeClass: 'bg-green-500 text-white' },
+                { value: 'marked'    as const, label: t('browse.filterMarked'),    count: markedCount,    activeClass: 'bg-amber-500 text-white' },
+              ]).map(({ value, label, count, activeClass }) => {
+                const active = learnFilter === value;
+                return (
+                  <div key={value} className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setLearnFilter(value)}
+                      className={cn(
+                        'h-4 w-4 rounded shrink-0 border-2 flex items-center justify-center transition-colors',
+                        active ? 'border-primary bg-primary' : 'border-slate-300 bg-white'
+                      )}
+                    >
+                      {active && <Check className="h-2.5 w-2.5 text-primary-foreground" strokeWidth={3} />}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setLearnFilter(value)}
+                      className="flex cursor-pointer items-center gap-1.5 text-sm font-medium text-slate-600"
+                    >
+                      {label}
+                      <Badge className={cn(
+                        'rounded-full border-none px-2 py-0.5 text-xs font-bold transition-colors',
+                        count > 0 ? activeClass : 'bg-slate-200 text-slate-400',
+                      )}>
+                        {count}
+                      </Badge>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+
+        {/* 科目與章節 */}
+        <AccordionItem value="subjects" className="rounded-lg border border-slate-200 bg-white px-5 shadow-sm">
+          <AccordionTrigger className="py-4 hover:no-underline">
+            <div className="flex items-center justify-between w-full pr-4">
+              <span className="text-base font-bold text-slate-700">{t('browse.selectSubject')}</span>
+              {selectedChapters.size > 0 && (
+                <button
+                  type="button"
+                  aria-label={t('create.collapseAll')}
+                  onClick={(e) => { e.stopPropagation(); setSelectedChapters(new Set()); }}
+                  className="flex items-center justify-center rounded-full p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
               )}
-            >
-              <Icon className="h-4 w-4" />
-              {t(labelKey)}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Learning status */}
-      <div className="rounded-lg border border-slate-200 bg-white px-5 py-4 shadow-sm">
-        <div className="mb-3 text-base font-bold text-slate-700">{t('browse.learningStatus')}</div>
-        <div className="flex flex-wrap gap-x-8 gap-y-4 rounded-md bg-slate-50 p-4">
-          {([
-            { value: 'all' as const, label: t('browse.filterAll'), count: totalQuestions, activeClass: 'bg-slate-700 text-white' },
-            { value: 'unlearned' as const, label: t('browse.filterUnlearned'), count: unlearnedCount, activeClass: 'bg-primary text-primary-foreground' },
-            { value: 'learned' as const, label: t('browse.filterLearned'), count: learnedCount, activeClass: 'bg-green-500 text-white' },
-            { value: 'marked' as const, label: t('browse.filterMarked'), count: markedCount, activeClass: 'bg-amber-500 text-white' },
-          ]).map(({ value, label, count, activeClass }) => {
-            const active = learnFilter === value;
-            return (
-              <div key={value} className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setLearnFilter(value)}
-                  className={cn(
-                    'h-4 w-4 rounded shrink-0 border-2 flex items-center justify-center transition-colors',
-                    active ? 'border-primary bg-primary' : 'border-slate-300 bg-white'
-                  )}
-                >
-                  {active && <Check className="h-2.5 w-2.5 text-primary-foreground" strokeWidth={3} />}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setLearnFilter(value)}
-                  className="flex cursor-pointer items-center gap-1.5 text-sm font-medium text-slate-600"
-                >
-                  {label}
-                  <Badge className={cn(
-                    'rounded-full border-none px-2 py-0.5 text-xs font-bold transition-colors',
-                    count > 0 ? activeClass : 'bg-slate-200 text-slate-400',
-                  )}>
-                    {count}
-                  </Badge>
-                </button>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Subject & Chapter selection */}
-      <div className="rounded-lg border border-slate-200 bg-white px-5 py-5 shadow-sm">
-        <div className="mb-4 flex items-center justify-between">
-          <div className="text-base font-bold text-slate-700">{t('browse.selectSubject')}</div>
-          <button
-            type="button"
-            className="text-sm font-semibold text-primary hover:underline"
-            onClick={() => setSelectedChapters(new Set())}
-          >
-            {t('create.collapseAll')}
-          </button>
-        </div>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent className="border-t pb-10 pt-5">
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
           {filteredSubjects.map((subject) => {
@@ -326,7 +328,9 @@ export default function BrowsePage() {
             );
           })}
         </div>
-      </div>
+        </AccordionContent>
+        </AccordionItem>
+      </Accordion>
 
       {/* Action bar */}
       <div className="flex flex-col sm:flex-row items-center gap-3 rounded-lg border border-slate-200 bg-white px-5 py-4 shadow-sm">
@@ -359,5 +363,6 @@ export default function BrowsePage() {
         </div>
       </div>
     </div>
+    </TooltipProvider>
   );
 }

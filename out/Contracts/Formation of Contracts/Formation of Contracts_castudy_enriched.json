@@ -17055,7 +17055,206 @@
         "C": "是，因为球队承担了替补守门员可能从伤病中恢复的风险。",
         "D": "是，因为球队在试图作出拒绝之前，已经有效地承诺了该守门员的要约。"
       },
-      "zh-explanation": "<!DOCTYPE html>\r\n<html lang=\"zh-CN\">\r\n<head>\r\n<meta charset=\"UTF-8\">\r\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n\r\n    <style>\r\n        strong, b {\r\n            display: inline !important; \r\n            white-space: normal !important; \r\n            word-break: normal !important;\n            overflow-wrap: break-word !important;\r\n        }\r\n    </style>\r\n\r\n<style>\r\n    :root {\r\n        --primary-color: #2c3e50;\r\n        --accent-color: #3498db;\r\n        --highlight-bg: #e8f4f8;\r\n        --correct-color: #27ae60;\r\n        --wrong-color: #c0392b;\r\n        --text-color: #333;\r\n        --bg-color: #f4f4f4;\r\n    }\r\n    body {\r\n        font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\r\n        line-height: 1.6;\r\n        color: var(--text-color);\r\n        background-color: var(--bg-color);\r\n        margin: 0;\r\n        padding: 10px;\r\n        display: flex;\r\n        justify-content: center;\r\n    }\r\n    .container {\r\n        max-width: 480px;\r\n        background: #fff;\r\n        border-radius: 12px;\r\n        box-shadow: 0 4px 15px rgba(0,0,0,0.1);\r\n        overflow: hidden;\r\n    }\r\n    .header {\r\n        background: var(--primary-color);\r\n        color: #fff;\r\n        padding: 20px;\r\n        text-align: center;\r\n    }\r\n    .header h1 {\r\n        margin: 0;\r\n        font-size: 1.2rem;\r\n        font-weight: 600;\r\n    }\r\n    .header .sub-title {\r\n        font-size: 0.9rem;\r\n        opacity: 0.9;\r\n        margin-top: 5px;\r\n    }\r\n    .content {\r\n        padding: 20px;\r\n    }\r\n    .rule-box {\r\n        background: var(--highlight-bg);\r\n        border-left: 4px solid var(--accent-color);\r\n        padding: 15px;\r\n        margin-bottom: 20px;\r\n        border-radius: 4px;\r\n    }\r\n    .rule-title {\r\n        font-weight: bold;\r\n        color: var(--primary-color);\r\n        margin-bottom: 8px;\r\n        display: block;\r\n    }\r\n    .timeline {\r\n        position: relative;\r\n        margin: 25px 0;\r\n        padding-left: 20px;\r\n        border-left: 2px solid #ddd;\r\n    }\r\n    .event {\r\n        position: relative;\r\n        margin-bottom: 20px;\r\n        padding-left: 15px;\r\n    }\r\n    .event::before {\r\n        content: '';\r\n        position: absolute;\r\n        left: -26px;\r\n        top: 5px;\r\n        width: 10px;\r\n        height: 10px;\r\n        border-radius: 50%;\r\n        background: #bbb;\r\n        border: 2px solid #fff;\r\n    }\r\n    .event.key-moment::before {\r\n        background: var(--correct-color);\r\n        transform: scale(1.2);\r\n    }\r\n    .event-date {\r\n        font-size: 0.85rem;\r\n        color: #666;\r\n        font-weight: bold;\r\n    }\r\n    .event-desc {\r\n        font-size: 0.95rem;\r\n    }\r\n    .analysis-section {\r\n        margin-top: 20px;\r\n    }\r\n    .tag {\r\n        display: inline-block;\r\n        padding: 2px 6px;\r\n        border-radius: 4px;\r\n        font-size: 0.8rem;\r\n        font-weight: bold;\r\n        margin-right: 5px;\r\n    }\r\n    .tag-correct { background: #d4edda; color: #155724; }\r\n    .tag-wrong { background: #f8d7da; color: #721c24; }\r\n    \r\n    .exam-tip {\r\n        background: #fff3cd;\r\n        border: 1px solid #ffeeba;\r\n        color: #856404;\r\n        padding: 15px;\r\n        border-radius: 8px;\r\n        margin-top: 25px;\r\n        font-size: 0.9rem;\r\n    }\r\n    .latin {\r\n        font-style: italic;\r\n    }\r\n    .footer {\r\n        text-align: center;\r\n        font-size: 0.8rem;\r\n        color: #999;\r\n        margin-top: 30px;\r\n        padding-bottom: 10px;\r\n    }\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"container\">\r\n    <div class=\"header\">\r\n        <h1>MBE 考点解析</h1>\r\n        <div class=\"sub-title\">Contracts: Mailbox Rule</div>\r\n    </div>\r\n\r\n    <div class=\"content\">\r\n        <!-- 核心考点 -->\r\n        <div class=\"rule-box\">\r\n            <span class=\"rule-title\">⚖️ 核心考点：邮箱规则 (Mailbox Rule)</span>\r\n            <p>本题考察的是<b>邮箱规则</b>在“先承诺后拒绝”这一特定顺序下的应用。</p>\r\n            <p>根据《合同法重述（第二版）》§ 63 (Restatement (Second) of Contracts)，<b>承诺 (Acceptance)</b> 通常在<b>发出 (Dispatch)</b> 时生效，而不是收到时生效。</p>\r\n        </div>\r\n\r\n        <!-- 案情时间轴 -->\r\n        <h3>📅 案情时间轴分析</h3>\r\n        <div class=\"timeline\">\r\n            <div class=\"event\">\r\n                <div class=\"event-date\">9月18日</div>\r\n                <div class=\"event-desc\">守门员发出要约 (Offer)。</div>\r\n            </div>\r\n            <div class=\"event key-moment\">\r\n                <div class=\"event-date\">9月21日</div>\r\n                <div class=\"event-desc\">总经理<b>发出承诺信 (Acceptance Mailed)</b>。<br>\r\n                <span style=\"color:var(--correct-color); font-weight:bold;\">👉 合同在此刻成立！</span></div>\r\n            </div>\r\n            <div class=\"event\">\r\n                <div class=\"event-date\">9月22日</div>\r\n                <div class=\"event-desc\">总经理发出拒绝信 (Rejection Mailed)。</div>\r\n            </div>\r\n            <div class=\"event\">\r\n                <div class=\"event-date\">9月25日</div>\r\n                <div class=\"event-desc\">守门员收到拒绝信。</div>\r\n            </div>\r\n            <div class=\"event\">\r\n                <div class=\"event-date\">9月26日</div>\r\n                <div class=\"event-desc\">守门员收到承诺信。</div>\r\n            </div>\r\n        </div>\r\n\r\n        <!-- 深度解析 -->\r\n        <div class=\"analysis-section\">\r\n            <h3>🔍 法律推理</h3>\r\n            <p>本题的关键在于总经理<b>先寄出了承诺信</b>。</p>\r\n            <p>根据普通法规则：</p>\r\n            <ol>\r\n                <li><b>承诺发出即生效：</b> 当总经理在9月21日将承诺信投入邮箱时，合同已经成立 (Contract Formed)。</li>\r\n                <li><b>后续行为无效：</b> 既然合同已经成立，9月22日发出的拒绝信实际上是无效的（或者只能被视为一种违约或解除合同的提议，但这不影响合同最初的成立）。</li>\r\n                <li><b>收到顺序无关紧要：</b> 尽管守门员先收到了拒绝信，但这不能改变合同在9月21日已经成立的法律事实。</li>\r\n            </ol>\r\n\r\n            <p><b>正确答案 D</b> 准确指出了这一点：球队在试图拒绝之前，已经有效地承诺了要约。</p>\r\n        </div>\r\n\r\n        <!-- 易错项辨析 -->\r\n        <div class=\"analysis-section\">\r\n            <h3>❌ 为什么其他选项是错的？</h3>\r\n            \r\n            <div style=\"margin-bottom: 10px;\">\r\n                <span class=\"tag tag-wrong\">选项 A</span> <b>错误</b>\r\n                <p style=\"margin-top:5px; font-size:0.9rem;\">\r\n                    选项A认为“先收到拒绝”导致合同不成立。这混淆了两种情况。只有在<b>“先发出拒绝，后发出承诺”</b>的情况下，才看哪封信先到达。本题是“先承诺”，故承诺直接生效。\r\n                    <br><i>注：唯一的例外是如果要约人信赖了先收到的拒绝信并因此受损 (Estoppel)，但这是抗辩理由，不改变合同成立的事实。</i>\r\n                </p>\r\n            </div>\r\n\r\n            <div style=\"margin-bottom: 10px;\">\r\n                <span class=\"tag tag-wrong\">选项 B</span> <b>错误</b>\r\n                <p style=\"margin-top:5px; font-size:0.9rem;\">\r\n                    “意思表示一致” (Meeting of the minds) 是通过客观行为判断的。总经理发出承诺信的客观行为已经构成了合意。\r\n                </p>\r\n            </div>\r\n        </div>\r\n\r\n        <!-- 考试技巧 -->\r\n        <div class=\"exam-tip\">\r\n            <strong>🎓 MBE 提分秘籍：</strong><br>\r\n            遇到“承诺”与“拒绝”并存的题目，画出时间轴，紧盯<b>发出 (Sent)</b> 的顺序：\r\n            <ul style=\"padding-left: 20px; margin-top: 10px;\">\r\n                <li><b>先承诺 ➡️ 后拒绝：</b> 合同在承诺<b>发出时</b>成立。（本题情况）</li>\r\n                <li><b>先拒绝 ➡️ 后承诺：</b> 邮箱规则失效！看<b>哪封信先被收到</b>。</li>\r\n            </ul>\r\n        </div>\r\n\r\n        <div class=\"footer\">\r\n            MBE Contracts Review | UWorld Source Analysis\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n</body>\r\n</html>"
+      "zh-explanation": "<!DOCTYPE html>\r\n<html lang=\"zh-CN\">\r\n<head>\r\n<meta charset=\"UTF-8\">\r\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n\r\n    <style>\r\n        strong, b {\r\n            display: inline !important; \r\n            white-space: normal !important; \r\n            word-break: normal !important;\n            overflow-wrap: break-word !important;\r\n        }\r\n    </style>\r\n\r\n<style>\r\n    :root {\r\n        --primary-color: #2c3e50;\r\n        --accent-color: #3498db;\r\n        --highlight-bg: #e8f4f8;\r\n        --correct-color: #27ae60;\r\n        --wrong-color: #c0392b;\r\n        --text-color: #333;\r\n        --bg-color: #f4f4f4;\r\n    }\r\n    body {\r\n        font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\r\n        line-height: 1.6;\r\n        color: var(--text-color);\r\n        background-color: var(--bg-color);\r\n        margin: 0;\r\n        padding: 10px;\r\n        display: flex;\r\n        justify-content: center;\r\n    }\r\n    .container {\r\n        max-width: 480px;\r\n        background: #fff;\r\n        border-radius: 12px;\r\n        box-shadow: 0 4px 15px rgba(0,0,0,0.1);\r\n        overflow: hidden;\r\n    }\r\n    .header {\r\n        background: var(--primary-color);\r\n        color: #fff;\r\n        padding: 20px;\r\n        text-align: center;\r\n    }\r\n    .header h1 {\r\n        margin: 0;\r\n        font-size: 1.2rem;\r\n        font-weight: 600;\r\n    }\r\n    .header .sub-title {\r\n        font-size: 0.9rem;\r\n        opacity: 0.9;\r\n        margin-top: 5px;\r\n    }\r\n    .content {\r\n        padding: 20px;\r\n    }\r\n    .rule-box {\r\n        background: var(--highlight-bg);\r\n        border-left: 4px solid var(--accent-color);\r\n        padding: 15px;\r\n        margin-bottom: 20px;\r\n        border-radius: 4px;\r\n    }\r\n    .rule-title {\r\n        font-weight: bold;\r\n        color: var(--primary-color);\r\n        margin-bottom: 8px;\r\n        display: block;\r\n    }\r\n    .timeline {\r\n        position: relative;\r\n        margin: 25px 0;\r\n        padding-left: 20px;\r\n        border-left: 2px solid #ddd;\r\n    }\r\n    .event {\r\n        position: relative;\r\n        margin-bottom: 20px;\r\n        padding-left: 15px;\r\n    }\r\n    .event::before {\r\n        content: '';\r\n        position: absolute;\r\n        left: -26px;\r\n        top: 5px;\r\n        width: 10px;\r\n        height: 10px;\r\n        border-radius: 50%;\r\n        background: #bbb;\r\n        border: 2px solid #fff;\r\n    }\r\n    .event.key-moment::before {\r\n        background: var(--correct-color);\r\n        transform: scale(1.2);\r\n    }\r\n    .event-date {\r\n        font-size: 0.85rem;\r\n        color: #666;\r\n        font-weight: bold;\r\n    }\r\n    .event-desc {\r\n        font-size: 0.95rem;\r\n    }\r\n    .analysis-section {\r\n        margin-top: 20px;\r\n    }\r\n    .tag {\r\n        display: inline-block;\r\n        padding: 2px 6px;\r\n        border-radius: 4px;\r\n        font-size: 0.8rem;\r\n        font-weight: bold;\r\n        margin-right: 5px;\r\n    }\r\n    .tag-correct { background: #d4edda; color: #155724; }\r\n    .tag-wrong { background: #f8d7da; color: #721c24; }\r\n    \r\n    .exam-tip {\r\n        background: #fff3cd;\r\n        border: 1px solid #ffeeba;\r\n        color: #856404;\r\n        padding: 15px;\r\n        border-radius: 8px;\r\n        margin-top: 25px;\r\n        font-size: 0.9rem;\r\n    }\r\n    .latin {\r\n        font-style: italic;\r\n    }\r\n    .footer {\r\n        text-align: center;\r\n        font-size: 0.8rem;\r\n        color: #999;\r\n        margin-top: 30px;\r\n        padding-bottom: 10px;\r\n    }\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"container\">\r\n    <div class=\"header\">\r\n        <h1>MBE 考点解析</h1>\r\n        <div class=\"sub-title\">Contracts: Mailbox Rule</div>\r\n    </div>\r\n\r\n    <div class=\"content\">\r\n        <!-- 核心考点 -->\r\n        <div class=\"rule-box\">\r\n            <span class=\"rule-title\">⚖️ 核心考点：邮箱规则 (Mailbox Rule)</span>\r\n            <p>本题考察的是<b>邮箱规则</b>在“先承诺后拒绝”这一特定顺序下的应用。</p>\r\n            <p>根据《合同法重述（第二版）》§ 63 (Restatement (Second) of Contracts)，<b>承诺 (Acceptance)</b> 通常在<b>发出 (Dispatch)</b> 时生效，而不是收到时生效。</p>\r\n        </div>\r\n\r\n        <!-- 案情时间轴 -->\r\n        <h3>📅 案情时间轴分析</h3>\r\n        <div class=\"timeline\">\r\n            <div class=\"event\">\r\n                <div class=\"event-date\">9月18日</div>\r\n                <div class=\"event-desc\">守门员发出要约 (Offer)。</div>\r\n            </div>\r\n            <div class=\"event key-moment\">\r\n                <div class=\"event-date\">9月21日</div>\r\n                <div class=\"event-desc\">总经理<b>发出承诺信 (Acceptance Mailed)</b>。<br>\r\n                <span style=\"color:var(--correct-color); font-weight:bold;\">👉 合同在此刻成立！</span></div>\r\n            </div>\r\n            <div class=\"event\">\r\n                <div class=\"event-date\">9月22日</div>\r\n                <div class=\"event-desc\">总经理发出拒绝信 (Rejection Mailed)。</div>\r\n            </div>\r\n            <div class=\"event\">\r\n                <div class=\"event-date\">9月25日</div>\r\n                <div class=\"event-desc\">守门员收到拒绝信。</div>\r\n            </div>\r\n            <div class=\"event\">\r\n                <div class=\"event-date\">9月26日</div>\r\n                <div class=\"event-desc\">守门员收到承诺信。</div>\r\n            </div>\r\n        </div>\r\n\r\n        <!-- 深度解析 -->\r\n        <div class=\"analysis-section\">\r\n            <h3>🔍 法律推理</h3>\r\n            <p>本题的关键在于总经理<b>先寄出了承诺信</b>。</p>\r\n            <p>根据普通法规则：</p>\r\n            <ol>\r\n                <li><b>承诺发出即生效：</b> 当总经理在9月21日将承诺信投入邮箱时，合同已经成立 (Contract Formed)。</li>\r\n                <li><b>后续行为无效：</b> 既然合同已经成立，9月22日发出的拒绝信实际上是无效的（或者只能被视为一种违约或解除合同的提议，但这不影响合同最初的成立）。</li>\r\n                <li><b>收到顺序无关紧要：</b> 尽管守门员先收到了拒绝信，但这不能改变合同在9月21日已经成立的法律事实。</li>\r\n            </ol>\r\n\r\n            <p><b>正确答案 D</b> 准确指出了这一点：球队在试图拒绝之前，已经有效地承诺了要约。</p>\r\n        </div>\r\n\r\n        <!-- 易错项辨析 -->\r\n        <div class=\"analysis-section\">\r\n            <h3>❌ 为什么其他选项是错的？</h3>\r\n            \r\n            <div style=\"margin-bottom: 10px;\">\r\n                <span class=\"tag tag-wrong\">选项 A</span> <b>错误</b>\r\n                <p style=\"margin-top:5px; font-size:0.9rem;\">\r\n                    选项A认为“先收到拒绝”导致合同不成立。这混淆了两种情况。只有在<b>“先发出拒绝，后发出承诺”</b>的情况下，才看哪封信先到达。本题是“先承诺”，故承诺直接生效。\r\n                    <br><i>注：唯一的例外是如果要约人信赖了先收到的拒绝信并因此受损 (Estoppel)，但这是抗辩理由，不改变合同成立的事实。</i>\r\n                </p>\r\n            </div>\r\n\r\n            <div style=\"margin-bottom: 10px;\">\r\n                <span class=\"tag tag-wrong\">选项 B</span> <b>错误</b>\r\n                <p style=\"margin-top:5px; font-size:0.9rem;\">\r\n                    “意思表示一致” (Meeting of the minds) 是通过客观行为判断的。总经理发出承诺信的客观行为已经构成了合意。\r\n                </p>\r\n            </div>\r\n        </div>\r\n\r\n        <!-- 考试技巧 -->\r\n        <div class=\"exam-tip\">\r\n            <strong>🎓 MBE 提分秘籍：</strong><br>\r\n            遇到“承诺”与“拒绝”并存的题目，画出时间轴，紧盯<b>发出 (Sent)</b> 的顺序：\r\n            <ul style=\"padding-left: 20px; margin-top: 10px;\">\r\n                <li><b>先承诺 ➡️ 后拒绝：</b> 合同在承诺<b>发出时</b>成立。（本题情况）</li>\r\n                <li><b>先拒绝 ➡️ 后承诺：</b> 邮箱规则失效！看<b>哪封信先被收到</b>。</li>\r\n            </ul>\r\n        </div>\r\n\r\n        <div class=\"footer\">\r\n            MBE Contracts Review | UWorld Source Analysis\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n</body>\r\n</html>",
+      "meta": {
+        "question_analysis": {
+          "micro_concept": "Mailbox rule acceptance sent first",
+          "trap_type": "Contract Formation Timing",
+          "trap_type_is_new": false,
+          "skill_tested": "Determining contract formation under mailbox rule",
+          "question_keyword_meta": {
+            "keywords": [
+              {
+                "id": "k1",
+                "text": "offering to play",
+                "label": {
+                  "en": "offer",
+                  "zh": "要约"
+                },
+                "kind": "legal_term",
+                "reason": {
+                  "en": "Initiates the contract formation process.",
+                  "zh": "启动合同成立程序。"
+                },
+                "importance": "medium"
+              },
+              {
+                "id": "k2",
+                "text": "mailed the goalie a letter accepting",
+                "label": {
+                  "en": "acceptance by mail",
+                  "zh": "邮寄承诺"
+                },
+                "kind": "legal_term",
+                "reason": {
+                  "en": "Triggers the mailbox rule, making acceptance effective upon dispatch.",
+                  "zh": "触发邮寄规则，使承诺自寄出时起生效。"
+                },
+                "importance": "high"
+              },
+              {
+                "id": "k3",
+                "text": "sent the goalie a second letter rejecting",
+                "label": {
+                  "en": "subsequent rejection",
+                  "zh": "后续拒绝"
+                },
+                "kind": "legal_term",
+                "reason": {
+                  "en": "An attempted rejection sent after an acceptance is dispatched.",
+                  "zh": "在承诺寄出后尝试发送的拒绝。"
+                },
+                "importance": "high"
+              },
+              {
+                "id": "k4",
+                "text": "received the general manager's rejection",
+                "label": {
+                  "en": "receipt of rejection",
+                  "zh": "收到拒绝信"
+                },
+                "kind": "time_marker",
+                "reason": {
+                  "en": "A rejection is generally only effective upon receipt.",
+                  "zh": "拒绝通常仅在收到时生效。"
+                },
+                "importance": "medium"
+              },
+              {
+                "id": "k5",
+                "text": "received the general manager's acceptance",
+                "label": {
+                  "en": "receipt of acceptance",
+                  "zh": "收到承诺信"
+                },
+                "kind": "time_marker",
+                "reason": {
+                  "en": "Order of receipt is irrelevant since the contract was formed upon dispatch of the acceptance.",
+                  "zh": "收到的顺序无关紧要，因为合同在承诺寄出时已经成立。"
+                },
+                "importance": "medium"
+              }
+            ]
+          },
+          "choice_keyword_meta": {
+            "choices": {
+              "A": [
+                {
+                  "id": "k1",
+                  "text": "received the general manager's rejection before the acceptance",
+                  "label": {
+                    "en": "receipt order distractor",
+                    "zh": "收到顺序干扰项"
+                  },
+                  "kind": "trap_phrase",
+                  "reason": {
+                    "en": "Incorrectly focuses on the sequence of receipt rather than dispatch.",
+                    "zh": "错误地关注收到的顺序而非寄出的顺序。"
+                  },
+                  "importance": "high"
+                }
+              ],
+              "B": [
+                {
+                  "id": "k1",
+                  "text": "no meeting of the minds",
+                  "label": {
+                    "en": "lack of mutual assent",
+                    "zh": "缺少合意"
+                  },
+                  "kind": "trap_phrase",
+                  "reason": {
+                    "en": "Wrongly claims there was no agreement despite matching offer and acceptance.",
+                    "zh": "错误地声称尽管要约与承诺相符，但双方未达成协议。"
+                  },
+                  "importance": "medium"
+                }
+              ],
+              "C": [
+                {
+                  "id": "k1",
+                  "text": "assumed the risk",
+                  "label": {
+                    "en": "assumption of risk",
+                    "zh": "风险承担"
+                  },
+                  "kind": "trap_phrase",
+                  "reason": {
+                    "en": "Incorrectly imports excuse defense concepts into a contract formation analysis.",
+                    "zh": "错误地将合同免责抗辩概念引入合同成立分析中。"
+                  },
+                  "importance": "medium"
+                }
+              ],
+              "D": [
+                {
+                  "id": "k1",
+                  "text": "effectively accepted the goalie's offer prior to the attempted rejection",
+                  "label": {
+                    "en": "effective acceptance before rejection",
+                    "zh": "在尝试拒绝前已有效承诺"
+                  },
+                  "kind": "legal_term",
+                  "reason": {
+                    "en": "Correctly states that a contract was formed upon dispatch of the acceptance.",
+                    "zh": "正确地说明合同在承诺寄出时即成立。"
+                  },
+                  "importance": "high"
+                }
+              ]
+            }
+          },
+          "question_highlight_meta": {
+            "highlights": [
+              {
+                "id": "h1",
+                "text": "immediately mailed the goalie a letter accepting the offer",
+                "kind": "key_sentence",
+                "label": {
+                  "en": "dispatch of acceptance",
+                  "zh": "寄出承诺"
+                },
+                "reason": {
+                  "en": "Under the mailbox rule, mailing the acceptance forms a contract immediately.",
+                  "zh": "根据邮寄规则，寄出承诺立即成立合同。"
+                },
+                "importance": "high"
+              },
+              {
+                "id": "h2",
+                "text": "sent the goalie a second letter rejecting the goalie's offer",
+                "kind": "fact_trigger",
+                "label": {
+                  "en": "subsequent rejection",
+                  "zh": "后续拒绝"
+                },
+                "reason": {
+                  "en": "This subsequent mailing cannot undo the contract already formed.",
+                  "zh": "此后的邮寄行为无法撤销已成立的合同。"
+                },
+                "importance": "high"
+              },
+              {
+                "id": "h3",
+                "text": "received the general manager's rejection on September 25 and received the general manager's acceptance the following day",
+                "kind": "fact_trigger",
+                "label": {
+                  "en": "reception timeline",
+                  "zh": "收到时间线"
+                },
+                "reason": {
+                  "en": "The sequence of receipt is irrelevant under these facts.",
+                  "zh": "在此事实下，收到的先后顺序无关紧要。"
+                },
+                "importance": "high"
+              }
+            ]
+          },
+          "generated_by": "generate_question_meta.py",
+          "generated_model": "antigravity-cli",
+          "generated_at": "2026-06-06T13:11:38.812401+00:00"
+        }
+      }
     },
     {
       "index": 80,
@@ -17071,7 +17270,7 @@
       },
       "answer": "A",
       "source_img": "source_imgs/q0080.png",
-      "explanation": "<!-- ERROR: rate limited -->",
+      "explanation": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Explanation View</title>\n  <style>\n    /* Base Reset & Typography */\n    body {\n      font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\n      font-size: 1rem;\n      line-height: 1.7;\n      color: #333333;\n      background-color: #ffffff;\n      margin: 0;\n      padding: 0;\n    }\n\n    /* Scoped Container */\n    .pbx-explanation {\n      padding: 1.25rem 1.5rem;\n      max-width: 920px;\n      margin: 0 auto;\n      box-sizing: border-box;\n    }\n\n    /* Flowchart Styles */\n    .pbx-flow-header {\n      text-align: center;\n      margin-bottom: 1.5rem;\n    }\n\n    .pbx-flow-header h2 {\n      font-size: 1.35rem;\n      font-weight: 700;\n      color: #111111;\n      margin: 0 0 0.25rem 0;\n    }\n\n    .pbx-flow-header h3 {\n      font-size: 1.05rem;\n      font-weight: 600;\n      color: #555555;\n      margin: 0;\n    }\n\n    .pbx-scroll-x {\n      overflow-x: auto;\n      -webkit-overflow-scrolling: touch;\n      margin: 1.5rem 0;\n      border: 1px solid #eef2f5;\n      border-radius: 8px;\n      background-color: #fafbfc;\n      padding: 1rem;\n    }\n\n    .pbx-scroll-x::-webkit-scrollbar {\n      height: 6px;\n    }\n\n    .pbx-scroll-x::-webkit-scrollbar-track {\n      background: #f1f1f1;\n      border-radius: 3px;\n    }\n\n    .pbx-scroll-x::-webkit-scrollbar-thumb {\n      background: #ccc;\n      border-radius: 3px;\n    }\n\n    .pbx-scroll-x::-webkit-scrollbar-thumb:hover {\n      background: #aaa;\n    }\n\n    .pbx-flow-inner {\n      position: relative;\n      width: 840px;\n      height: 370px;\n      margin: 0 auto;\n    }\n\n    /* Flowchart Boxes */\n    .pbx-flow-box {\n      position: absolute;\n      background: #ffffff;\n      border: 1px solid #b0b0b0;\n      border-radius: 6px;\n      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);\n      padding: 8px 12px;\n      text-align: center;\n      font-size: 12px;\n      color: #222222;\n      line-height: 1.35;\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      align-items: center;\n      box-sizing: border-box;\n      transition: all 0.2s ease;\n    }\n\n    .pbx-flow-box:hover {\n      border-color: #3498db;\n      box-shadow: 0 4px 8px rgba(52, 152, 219, 0.12);\n      transform: translateY(-1px);\n    }\n\n    .pbx-flow-box em {\n      font-style: italic;\n    }\n\n    .pbx-flow-box strong {\n      font-weight: 700;\n    }\n\n    .pbx-subtext {\n      font-size: 11px;\n      color: #666666;\n      margin-top: 2px;\n    }\n\n    /* Footnotes */\n    .pbx-flow-footnotes {\n      margin-top: 1rem;\n      font-size: 11px;\n      color: #666666;\n      line-height: 1.4;\n    }\n\n    .pbx-flow-footnotes p {\n      margin: 2px 0;\n    }\n\n    /* Main Text Content */\n    .pbx-content p {\n      margin-bottom: 1.25rem;\n      word-break: break-word;\n      overflow-wrap: break-word;\n    }\n\n    .pbx-content strong {\n      font-weight: 700;\n    }\n\n    .pbx-content em {\n      font-style: italic;\n    }\n\n    /* Educational Objective */\n    .pbx-edu-objective {\n      background: #f0f7ff;\n      border-left: 4px solid #3498db;\n      border-radius: 6px;\n      padding: 14px 18px;\n      margin: 24px 0;\n    }\n\n    .pbx-edu-objective-title {\n      font-size: 13px;\n      font-weight: 700;\n      color: #2980b9;\n      text-transform: uppercase;\n      letter-spacing: 0.05em;\n      margin-bottom: 8px;\n    }\n\n    .pbx-edu-objective p {\n      margin: 0;\n      font-size: 15px;\n      color: #2c3e50;\n    }\n\n    /* References */\n    .pbx-references {\n      background: #fafafa;\n      border: 1px solid #e0e0e0;\n      border-radius: 6px;\n      padding: 14px 18px;\n      margin: 20px 0;\n    }\n\n    .pbx-references-title {\n      font-size: 13px;\n      font-weight: 700;\n      color: #555;\n      text-transform: uppercase;\n      letter-spacing: 0.05em;\n      margin-bottom: 8px;\n    }\n\n    .pbx-ref-list {\n      margin: 0;\n      padding-left: 18px;\n      font-size: 14px;\n      color: #555;\n      line-height: 1.7;\n    }\n\n    .pbx-ref-list li {\n      margin-bottom: 6px;\n    }\n\n    .pbx-ref-list li:last-child {\n      margin-bottom: 0;\n    }\n\n    /* Responsive Adjustments */\n    @media (max-width: 640px) {\n      body {\n        font-size: 0.95rem;\n        padding: 0.75rem;\n      }\n      .pbx-explanation {\n        padding: 0.875rem 0.5rem;\n      }\n      .pbx-flow-header h2 {\n        font-size: 1.2rem;\n      }\n      .pbx-flow-header h3 {\n        font-size: 0.95rem;\n      }\n    }\n  </style>\n</head>\n<body>\n\n  <div class=\"pbx-explanation\">\n    \n    <!-- Flowchart Section -->\n    <div class=\"pbx-flow-header\">\n      <h2>Seller's response to buyer's offer</h2>\n      <h3>(UCC 2-206)</h3>\n    </div>\n\n    <div class=\"pbx-scroll-x\">\n      <div class=\"pbx-flow-inner\">\n        <!-- SVG Connectors -->\n        <svg width=\"840\" height=\"370\" style=\"position: absolute; left: 0; top: 0; pointer-events: none; shape-rendering: geometricPrecision;\">\n          <defs>\n            <marker id=\"arrow\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n              <path d=\"M 0 1.5 L 10 5 L 0 8.5 z\" fill=\"#555\" />\n            </marker>\n          </defs>\n          \n          <!-- Top Box to Box 1, 2, 3 -->\n          <path d=\"M 420 60 L 420 80 M 100 80 L 540 80\" stroke=\"#555\" stroke-width=\"1.5\" fill=\"none\" />\n          <path d=\"M 100 80 L 100 100\" stroke=\"#555\" stroke-width=\"1.5\" fill=\"none\" marker-end=\"url(#arrow)\" />\n          <path d=\"M 310 80 L 310 100\" stroke=\"#555\" stroke-width=\"1.5\" fill=\"none\" marker-end=\"url(#arrow)\" />\n          <path d=\"M 540 80 L 540 100\" stroke=\"#555\" stroke-width=\"1.5\" fill=\"none\" marker-end=\"url(#arrow)\" />\n\n          <!-- Box 1 to Box Bottom 1 -->\n          <path d=\"M 100 160 L 100 315 L 150 315\" stroke=\"#555\" stroke-width=\"1.5\" fill=\"none\" marker-end=\"url(#arrow)\" />\n\n          <!-- Box 2 to Box Bottom 1 -->\n          <path d=\"M 310 160 L 310 315 L 300 315\" stroke=\"#555\" stroke-width=\"1.5\" fill=\"none\" marker-end=\"url(#arrow)\" />\n\n          <!-- Box 3 to Box 3a, 3b -->\n          <path d=\"M 540 150 L 540 170 M 470 170 L 680 170\" stroke=\"#555\" stroke-width=\"1.5\" fill=\"none\" />\n          <path d=\"M 470 170 L 470 190\" stroke=\"#555\" stroke-width=\"1.5\" fill=\"none\" marker-end=\"url(#arrow)\" />\n          <path d=\"M 680 170 L 680 190\" stroke=\"#555\" stroke-width=\"1.5\" fill=\"none\" marker-end=\"url(#arrow)\" />\n\n          <!-- Box 3a to Box Bottom 2 -->\n          <path d=\"M 470 250 L 470 290\" stroke=\"#555\" stroke-width=\"1.5\" fill=\"none\" marker-end=\"url(#arrow)\" />\n\n          <!-- Box 3b to Box Bottom 3 -->\n          <path d=\"M 680 250 L 680 290\" stroke=\"#555\" stroke-width=\"1.5\" fill=\"none\" marker-end=\"url(#arrow)\" />\n        </svg>\n\n        <!-- HTML Boxes -->\n        <!-- Row 1 -->\n        <div class=\"pbx-flow-box\" style=\"width: 300px; height: 50px; left: 270px; top: 10px;\">\n          Buyer orders goods for prompt shipment<br><strong>(offer)</strong>\n        </div>\n\n        <!-- Row 2 -->\n        <div class=\"pbx-flow-box\" style=\"width: 160px; height: 60px; left: 20px; top: 100px;\">\n          Seller <em>promises</em><br>to ship goods*<br><span class=\"pbx-subtext\">(acceptance)</span>\n        </div>\n        <div class=\"pbx-flow-box\" style=\"width: 200px; height: 60px; left: 210px; top: 100px;\">\n          Seller ships<br><em>conforming</em> goods*<br><span class=\"pbx-subtext\">(acceptance + performance)</span>\n        </div>\n        <div class=\"pbx-flow-box\" style=\"width: 200px; height: 50px; left: 440px; top: 100px;\">\n          Seller ships<br><strong>nonconforming</strong> goods\n        </div>\n\n        <!-- Row 3 -->\n        <div class=\"pbx-flow-box\" style=\"width: 180px; height: 60px; left: 380px; top: 190px;\">\n          With notice<br>of accommodation<br><span class=\"pbx-subtext\">(rejection + counteroffer)</span>\n        </div>\n        <div class=\"pbx-flow-box\" style=\"width: 180px; height: 60px; left: 590px; top: 190px;\">\n          No notice<br>of accommodation*<br><span class=\"pbx-subtext\">(acceptance + breach)</span>\n        </div>\n\n        <!-- Row 4 -->\n        <div class=\"pbx-flow-box\" style=\"width: 150px; height: 50px; left: 150px; top: 290px;\">\n          Buyer must<br><strong>pay for goods</strong>\n        </div>\n        <div class=\"pbx-flow-box\" style=\"width: 180px; height: 50px; left: 380px; top: 290px;\">\n          Buyer may accept<br>or reject goods\n        </div>\n        <div class=\"pbx-flow-box\" style=\"width: 220px; height: 50px; left: 590px; top: 290px;\">\n          Buyer may accept or<br>reject goods + sue for breach\n        </div>\n      </div>\n      \n      <div class=\"pbx-flow-footnotes\">\n        <p>*Contract formed</p>\n        <p>UCC = Uniform Commercial Code</p>\n      </div>\n    </div>\n\n    <!-- Explanation Text Content -->\n    <div class=\"pbx-content\">\n      <p>Article 2 of the Uniform Commercial Code (<strong>UCC</strong>) governs contracts for the <strong>sale of goods</strong> (eg, computers). Under the UCC, a seller can accept a buyer's offer to purchase goods for prompt or immediate shipment by promising to ship, or shipping, the goods. Once the offer is accepted, the shipped <strong>goods must conform perfectly</strong> to the contract. <strong>Nonconformance</strong> is a <strong>breach</strong> that allows the buyer to <strong>accept or reject</strong> the goods in whole or in part. The buyer can also <strong>recover any damages</strong> suffered as a result of the breach.</p>\n      \n      <p>Here, the buyer mailed an order to the seller requesting prompt shipment of a specified computer model. This was an offer that the seller could accept by promising to ship, or shipping, the computer. The seller promised to ship the computer. However, the seller breached the resulting contract by shipping a different, nonconforming computer model. As a result, the buyer can either accept or reject the different computer model and, in either event, recover any damages for breach of contract <span style=\"color:#9b1c1c;font-weight:600;\" data-choice=\"B\" data-choice-role=\"distractor\">(Choice B)</span>.</p>\n      \n      <p style=\"border-left:3px solid #c0392b; padding-left:10px;\" data-choice=\"C D\" data-choice-role=\"distractor\">\n        <strong style=\"color:#9b1c1c\">(Choices C & D)</strong> The seller's shipment of the nonconforming computer was <em>not</em> an acceptance. That is because the seller had already accepted the buyer's offer by promising to ship the specified computer model. As a result, the notice of accommodation is irrelevant.\n      </p>\n    </div>\n\n    <!-- Educational Objective -->\n    <div class=\"pbx-edu-objective\">\n      <div class=\"pbx-edu-objective-title\">📌 Educational Objective</div>\n      <p>The UCC allows a buyer to accept or reject nonconforming goods in whole or in part and, in either event, recover damages for breach.</p>\n    </div>\n\n    <!-- References -->\n    <div class=\"pbx-references\">\n      <div class=\"pbx-references-title\">📚 References</div>\n      <ul class=\"pbx-ref-list\">\n        <li>U.C.C. § 2-206 (Am. Law Inst. & Unif. Law Comm'n 2020) (offer and acceptance).</li>\n        <li>U.C.C. § 2-601 (Am. Law Inst. & Unif. Law Comm'n 2020) (buyer's rights on improper delivery).</li>\n        <li>U.C.C. § 2-711 (Am. Law Inst. & Unif. Law Comm'n 2020) (buyer's remedies for breach).</li>\n      </ul>\n    </div>\n\n  </div>\n\n</body>\n</html>",
       "zh-question": "在6月5日，以下哪项是关于双方当事人法律权利和义务的正确陈述？",
       "zh-choices": {
         "A": "买方可以接受或拒绝该不同型号的电脑，并且无论接受或拒绝，均可就违约行为索赔（如有）损害赔偿。",
@@ -17079,7 +17278,192 @@
         "C": "卖方的通融通知已及时邮寄，其发运不同型号电脑的行为构成了一项反要约。",
         "D": "卖方立即发运不符规定货物的行为构成了对买方要约的接受，从而就该不同型号的电脑订立了销售合同。"
       },
-      "zh-explanation": "<!DOCTYPE html>\r\n<html lang=\"zh-CN\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    \r\n    <style>\r\n        strong, b {\r\n            display: inline !important; \r\n            white-space: normal !important; \r\n            word-break: normal !important;\n            overflow-wrap: break-word !important;\r\n        }\r\n    </style>\r\n\r\n<style>\r\n        :root {\r\n            --primary-color: #2c3e50;\r\n            --accent-color: #3498db;\r\n            --highlight-bg: #e8f4f8;\r\n            --text-color: #333;\r\n            --bg-color: #f4f4f4;\r\n            --card-bg: #ffffff;\r\n            --border-radius: 8px;\r\n        }\r\n        body {\r\n            font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\r\n            background-color: var(--bg-color);\r\n            color: var(--text-color);\r\n            line-height: 1.6;\r\n            margin: 0;\r\n            padding: 10px;\r\n            display: flex;\r\n            justify-content: center;\r\n        }\r\n        .container {\r\n            max-width: 480px; /* 适配手机屏幕逻辑宽度 */\r\n            width: 100%;\r\n            background-color: var(--card-bg);\r\n            border-radius: var(--border-radius);\r\n            box-shadow: 0 2px 10px rgba(0,0,0,0.1);\r\n            overflow: hidden;\r\n        }\r\n        .header {\r\n            background-color: var(--primary-color);\r\n            color: white;\r\n            padding: 20px;\r\n            text-align: center;\r\n        }\r\n        .header h1 {\r\n            margin: 0;\r\n            font-size: 1.2rem;\r\n            font-weight: 600;\r\n        }\r\n        .header .subtitle {\r\n            font-size: 0.9rem;\r\n            opacity: 0.9;\r\n            margin-top: 5px;\r\n        }\r\n        .content {\r\n            padding: 20px;\r\n        }\r\n        .rule-box {\r\n            background-color: var(--highlight-bg);\r\n            border-left: 4px solid var(--accent-color);\r\n            padding: 15px;\r\n            margin-bottom: 20px;\r\n            border-radius: 0 var(--border-radius) var(--border-radius) 0;\r\n        }\r\n        .rule-title {\r\n            font-weight: bold;\r\n            color: var(--primary-color);\r\n            margin-bottom: 5px;\r\n            display: block;\r\n        }\r\n        .timeline {\r\n            position: relative;\r\n            margin: 20px 0;\r\n            padding-left: 20px;\r\n            border-left: 2px solid #ddd;\r\n        }\r\n        .timeline-item {\r\n            position: relative;\r\n            margin-bottom: 15px;\r\n        }\r\n        .timeline-item::before {\r\n            content: '';\r\n            position: absolute;\r\n            left: -26px;\r\n            top: 5px;\r\n            width: 10px;\r\n            height: 10px;\r\n            background-color: var(--accent-color);\r\n            border-radius: 50%;\r\n        }\r\n        .date {\r\n            font-size: 0.85rem;\r\n            color: #666;\r\n            font-weight: bold;\r\n        }\r\n        .event {\r\n            font-size: 0.95rem;\r\n        }\r\n        .analysis-section {\r\n            margin-top: 20px;\r\n        }\r\n        .analysis-title {\r\n            font-weight: bold;\r\n            font-size: 1.1rem;\r\n            border-bottom: 2px solid var(--accent-color);\r\n            padding-bottom: 5px;\r\n            margin-bottom: 10px;\r\n            color: var(--primary-color);\r\n        }\r\n        .key-term {\r\n            background-color: #eee;\r\n            padding: 2px 4px;\r\n            border-radius: 4px;\r\n            font-family: monospace;\r\n            font-size: 0.9em;\r\n            color: #c0392b;\r\n        }\r\n        .correct-answer {\r\n            color: #27ae60;\r\n            font-weight: bold;\r\n        }\r\n        .wrong-answer {\r\n            color: #c0392b;\r\n            font-weight: bold;\r\n        }\r\n        .footer {\r\n            background-color: #eee;\r\n            padding: 15px;\r\n            text-align: center;\r\n            font-size: 0.8rem;\r\n            color: #666;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"container\">\r\n    <div class=\"header\">\r\n        <h1>MBE 考点解析</h1>\r\n        <div class=\"subtitle\">Contracts: UCC Offer & Acceptance<br>合同法：UCC 要约与承诺</div>\r\n    </div>\r\n\r\n    <div class=\"content\">\r\n        \r\n        <!-- 核心考点 -->\r\n        <div class=\"rule-box\">\r\n            <span class=\"rule-title\">💡 核心考点 (Key Concept)</span>\r\n            本题考察《统一商法典》(UCC) 第 2-206 条关于<strong>承诺 (Acceptance)</strong> 的方式，以及<strong>通融 (Accommodation)</strong> 规则的适用前提。\r\n        </div>\r\n\r\n        <!-- 时间线分析 -->\r\n        <div class=\"analysis-section\">\r\n            <div class=\"analysis-title\">📅 案情时间线分析</div>\r\n            <div class=\"timeline\">\r\n                <div class=\"timeline-item\">\r\n                    <div class=\"date\">6月1日 (Offer)</div>\r\n                    <div class=\"event\">买方发出要约，要求立即发货。</div>\r\n                </div>\r\n                <div class=\"timeline-item\">\r\n                    <div class=\"date\">6月2日 (Acceptance)</div>\r\n                    <div class=\"event\"><strong>关键点：</strong>卖方寄信承诺发货。<br><span style=\"color:var(--accent-color); font-size:0.9em;\">此时合同已经成立 (Contract Formed)。</span></div>\r\n                </div>\r\n                <div class=\"timeline-item\">\r\n                    <div class=\"date\">6月3日 (Breach)</div>\r\n                    <div class=\"event\">卖方发现缺货，发送了不同型号的电脑（不符货物），并附带通融通知。</div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <!-- 深度解析 -->\r\n        <div class=\"analysis-section\">\r\n            <div class=\"analysis-title\">⚖️ 法律推理 (Legal Reasoning)</div>\r\n            \r\n            <p><strong>1. 合同何时成立？</strong><br>\r\n            根据 UCC § 2-206(1)(b)，对于要求立即发货的要约，卖方可以通过两种方式承诺：\r\n            <ul>\r\n                <li>承诺发货 (Promise to ship)</li>\r\n                <li>实际发货 (Prompt shipment)</li>\r\n            </ul>\r\n            在本案中，卖方在6月2日寄出了接受订单的信函。根据<strong>投邮生效原则 (Mailbox Rule)</strong>，合同在这一刻已经成立。双方已受合同约束。</p>\r\n\r\n            <p><strong>2. 为什么“通融”规则不适用？</strong><br>\r\n            UCC 规定，如果卖方直接发运不符货物作为对要约的回应，这通常构成“承诺+违约”。但如果卖方同时附带了<strong>通融通知 (Notice of Accommodation)</strong>，则该发货被视为<strong>反要约 (Counteroffer)</strong>，而不是承诺。<br>\r\n            <span style=\"color:#c0392b;\">但是！</span>通融规则仅适用于“发货行为本身是唯一的承诺方式”的情况。如果卖方已经通过“承诺发货”接受了要约（如本案6月2日的信），合同已经锁死。后续的发货只是履行合同的行为。</p>\r\n\r\n            <p><strong>3. 法律后果</strong><br>\r\n            由于合同已于6月2日成立，卖方在6月3日发运错误型号的电脑属于<strong>违约 (Breach of Contract)</strong>。通融通知在法律上无效，不能将违约转化为反要约。</p>\r\n        </div>\r\n\r\n        <!-- 选项辨析 -->\r\n        <div class=\"analysis-section\">\r\n            <div class=\"analysis-title\">✅ 为什么选 A？</div>\r\n            <p>根据<strong>完美履行规则 (Perfect Tender Rule, UCC § 2-601)</strong>，当货物不符合同规定时，买方有三个选择：</p>\r\n            <ol>\r\n                <li>拒绝所有货物 (Reject the whole)</li>\r\n                <li>接受所有货物 (Accept the whole)</li>\r\n                <li>接受部分商业单位并拒绝其余部分</li>\r\n            </ol>\r\n            <p>无论买方选择接受还是拒绝，卖方发运错误货物都已构成违约，因此买方有权要求<strong>损害赔偿 (Damages)</strong>。选项 A 准确描述了这一权利。</p>\r\n\r\n            <div style=\"margin-top: 15px; border-top: 1px dashed #ccc; padding-top: 10px;\">\r\n                <span class=\"wrong-answer\">❌ 选项 C 错误原因：</span><br>\r\n                它错误地认为发货构成了反要约。实际上，因为卖方之前已经承诺（Promise），合同已成立，发货是违约履行，而非新的要约。\r\n            </div>\r\n        </div>\r\n\r\n        <!-- 考试技巧 -->\r\n        <div class=\"rule-box\" style=\"background-color: #fff8e1; border-left-color: #f1c40f;\">\r\n            <span class=\"rule-title\">🎓 考试技巧 (Exam Tip)</span>\r\n            看到“发运不符货物 (Nonconforming goods)”和“通融 (Accommodation)”时，<strong>必须</strong>先检查卖方是否已经通过<strong>承诺发货 (Promise to ship)</strong> 接受了要约。<br>\r\n            <ul>\r\n                <li>如果<strong>先承诺</strong>，后发货 ➡️ 违约 (Breach)。</li>\r\n                <li>如果<strong>直接发货</strong>且附带通知 ➡️ 反要约 (Counteroffer)。</li>\r\n            </ul>\r\n        </div>\r\n\r\n    </div>\r\n\r\n    \r\n</div>\r\n\r\n</body>\r\n</html>"
+      "zh-explanation": "<!DOCTYPE html>\r\n<html lang=\"zh-CN\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    \r\n    <style>\r\n        strong, b {\r\n            display: inline !important; \r\n            white-space: normal !important; \r\n            word-break: normal !important;\n            overflow-wrap: break-word !important;\r\n        }\r\n    </style>\r\n\r\n<style>\r\n        :root {\r\n            --primary-color: #2c3e50;\r\n            --accent-color: #3498db;\r\n            --highlight-bg: #e8f4f8;\r\n            --text-color: #333;\r\n            --bg-color: #f4f4f4;\r\n            --card-bg: #ffffff;\r\n            --border-radius: 8px;\r\n        }\r\n        body {\r\n            font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\r\n            background-color: var(--bg-color);\r\n            color: var(--text-color);\r\n            line-height: 1.6;\r\n            margin: 0;\r\n            padding: 10px;\r\n            display: flex;\r\n            justify-content: center;\r\n        }\r\n        .container {\r\n            max-width: 480px; /* 适配手机屏幕逻辑宽度 */\r\n            width: 100%;\r\n            background-color: var(--card-bg);\r\n            border-radius: var(--border-radius);\r\n            box-shadow: 0 2px 10px rgba(0,0,0,0.1);\r\n            overflow: hidden;\r\n        }\r\n        .header {\r\n            background-color: var(--primary-color);\r\n            color: white;\r\n            padding: 20px;\r\n            text-align: center;\r\n        }\r\n        .header h1 {\r\n            margin: 0;\r\n            font-size: 1.2rem;\r\n            font-weight: 600;\r\n        }\r\n        .header .subtitle {\r\n            font-size: 0.9rem;\r\n            opacity: 0.9;\r\n            margin-top: 5px;\r\n        }\r\n        .content {\r\n            padding: 20px;\r\n        }\r\n        .rule-box {\r\n            background-color: var(--highlight-bg);\r\n            border-left: 4px solid var(--accent-color);\r\n            padding: 15px;\r\n            margin-bottom: 20px;\r\n            border-radius: 0 var(--border-radius) var(--border-radius) 0;\r\n        }\r\n        .rule-title {\r\n            font-weight: bold;\r\n            color: var(--primary-color);\r\n            margin-bottom: 5px;\r\n            display: block;\r\n        }\r\n        .timeline {\r\n            position: relative;\r\n            margin: 20px 0;\r\n            padding-left: 20px;\r\n            border-left: 2px solid #ddd;\r\n        }\r\n        .timeline-item {\r\n            position: relative;\r\n            margin-bottom: 15px;\r\n        }\r\n        .timeline-item::before {\r\n            content: '';\r\n            position: absolute;\r\n            left: -26px;\r\n            top: 5px;\r\n            width: 10px;\r\n            height: 10px;\r\n            background-color: var(--accent-color);\r\n            border-radius: 50%;\r\n        }\r\n        .date {\r\n            font-size: 0.85rem;\r\n            color: #666;\r\n            font-weight: bold;\r\n        }\r\n        .event {\r\n            font-size: 0.95rem;\r\n        }\r\n        .analysis-section {\r\n            margin-top: 20px;\r\n        }\r\n        .analysis-title {\r\n            font-weight: bold;\r\n            font-size: 1.1rem;\r\n            border-bottom: 2px solid var(--accent-color);\r\n            padding-bottom: 5px;\r\n            margin-bottom: 10px;\r\n            color: var(--primary-color);\r\n        }\r\n        .key-term {\r\n            background-color: #eee;\r\n            padding: 2px 4px;\r\n            border-radius: 4px;\r\n            font-family: monospace;\r\n            font-size: 0.9em;\r\n            color: #c0392b;\r\n        }\r\n        .correct-answer {\r\n            color: #27ae60;\r\n            font-weight: bold;\r\n        }\r\n        .wrong-answer {\r\n            color: #c0392b;\r\n            font-weight: bold;\r\n        }\r\n        .footer {\r\n            background-color: #eee;\r\n            padding: 15px;\r\n            text-align: center;\r\n            font-size: 0.8rem;\r\n            color: #666;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"container\">\r\n    <div class=\"header\">\r\n        <h1>MBE 考点解析</h1>\r\n        <div class=\"subtitle\">Contracts: UCC Offer & Acceptance<br>合同法：UCC 要约与承诺</div>\r\n    </div>\r\n\r\n    <div class=\"content\">\r\n        \r\n        <!-- 核心考点 -->\r\n        <div class=\"rule-box\">\r\n            <span class=\"rule-title\">💡 核心考点 (Key Concept)</span>\r\n            本题考察《统一商法典》(UCC) 第 2-206 条关于<strong>承诺 (Acceptance)</strong> 的方式，以及<strong>通融 (Accommodation)</strong> 规则的适用前提。\r\n        </div>\r\n\r\n        <!-- 时间线分析 -->\r\n        <div class=\"analysis-section\">\r\n            <div class=\"analysis-title\">📅 案情时间线分析</div>\r\n            <div class=\"timeline\">\r\n                <div class=\"timeline-item\">\r\n                    <div class=\"date\">6月1日 (Offer)</div>\r\n                    <div class=\"event\">买方发出要约，要求立即发货。</div>\r\n                </div>\r\n                <div class=\"timeline-item\">\r\n                    <div class=\"date\">6月2日 (Acceptance)</div>\r\n                    <div class=\"event\"><strong>关键点：</strong>卖方寄信承诺发货。<br><span style=\"color:var(--accent-color); font-size:0.9em;\">此时合同已经成立 (Contract Formed)。</span></div>\r\n                </div>\r\n                <div class=\"timeline-item\">\r\n                    <div class=\"date\">6月3日 (Breach)</div>\r\n                    <div class=\"event\">卖方发现缺货，发送了不同型号的电脑（不符货物），并附带通融通知。</div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <!-- 深度解析 -->\r\n        <div class=\"analysis-section\">\r\n            <div class=\"analysis-title\">⚖️ 法律推理 (Legal Reasoning)</div>\r\n            \r\n            <p><strong>1. 合同何时成立？</strong><br>\r\n            根据 UCC § 2-206(1)(b)，对于要求立即发货的要约，卖方可以通过两种方式承诺：\r\n            <ul>\r\n                <li>承诺发货 (Promise to ship)</li>\r\n                <li>实际发货 (Prompt shipment)</li>\r\n            </ul>\r\n            在本案中，卖方在6月2日寄出了接受订单的信函。根据<strong>投邮生效原则 (Mailbox Rule)</strong>，合同在这一刻已经成立。双方已受合同约束。</p>\r\n\r\n            <p><strong>2. 为什么“通融”规则不适用？</strong><br>\r\n            UCC 规定，如果卖方直接发运不符货物作为对要约的回应，这通常构成“承诺+违约”。但如果卖方同时附带了<strong>通融通知 (Notice of Accommodation)</strong>，则该发货被视为<strong>反要约 (Counteroffer)</strong>，而不是承诺。<br>\r\n            <span style=\"color:#c0392b;\">但是！</span>通融规则仅适用于“发货行为本身是唯一的承诺方式”的情况。如果卖方已经通过“承诺发货”接受了要约（如本案6月2日的信），合同已经锁死。后续的发货只是履行合同的行为。</p>\r\n\r\n            <p><strong>3. 法律后果</strong><br>\r\n            由于合同已于6月2日成立，卖方在6月3日发运错误型号的电脑属于<strong>违约 (Breach of Contract)</strong>。通融通知在法律上无效，不能将违约转化为反要约。</p>\r\n        </div>\r\n\r\n        <!-- 选项辨析 -->\r\n        <div class=\"analysis-section\">\r\n            <div class=\"analysis-title\">✅ 为什么选 A？</div>\r\n            <p>根据<strong>完美履行规则 (Perfect Tender Rule, UCC § 2-601)</strong>，当货物不符合同规定时，买方有三个选择：</p>\r\n            <ol>\r\n                <li>拒绝所有货物 (Reject the whole)</li>\r\n                <li>接受所有货物 (Accept the whole)</li>\r\n                <li>接受部分商业单位并拒绝其余部分</li>\r\n            </ol>\r\n            <p>无论买方选择接受还是拒绝，卖方发运错误货物都已构成违约，因此买方有权要求<strong>损害赔偿 (Damages)</strong>。选项 A 准确描述了这一权利。</p>\r\n\r\n            <div style=\"margin-top: 15px; border-top: 1px dashed #ccc; padding-top: 10px;\">\r\n                <span class=\"wrong-answer\">❌ 选项 C 错误原因：</span><br>\r\n                它错误地认为发货构成了反要约。实际上，因为卖方之前已经承诺（Promise），合同已成立，发货是违约履行，而非新的要约。\r\n            </div>\r\n        </div>\r\n\r\n        <!-- 考试技巧 -->\r\n        <div class=\"rule-box\" style=\"background-color: #fff8e1; border-left-color: #f1c40f;\">\r\n            <span class=\"rule-title\">🎓 考试技巧 (Exam Tip)</span>\r\n            看到“发运不符货物 (Nonconforming goods)”和“通融 (Accommodation)”时，<strong>必须</strong>先检查卖方是否已经通过<strong>承诺发货 (Promise to ship)</strong> 接受了要约。<br>\r\n            <ul>\r\n                <li>如果<strong>先承诺</strong>，后发货 ➡️ 违约 (Breach)。</li>\r\n                <li>如果<strong>直接发货</strong>且附带通知 ➡️ 反要约 (Counteroffer)。</li>\r\n            </ul>\r\n        </div>\r\n\r\n    </div>\r\n\r\n    \r\n</div>\r\n\r\n</body>\r\n</html>",
+      "meta": {
+        "question_analysis": {
+          "micro_concept": "Acceptance by promise to ship",
+          "trap_type": "Contract Formation Timing",
+          "trap_type_is_new": false,
+          "skill_tested": "Determining contract formation and remedies",
+          "question_keyword_meta": {
+            "keywords": [
+              {
+                "id": "k1",
+                "text": "prompt shipment",
+                "label": {
+                  "en": "offer inviting acceptance by promise or performance",
+                  "zh": "可通过承诺或履行接受的要约"
+                },
+                "kind": "legal_term",
+                "reason": {
+                  "en": "Defines how the buyer's offer can be accepted under the UCC.",
+                  "zh": "确定了买方要约在UCC下可被接受的方式。"
+                },
+                "importance": "high"
+              },
+              {
+                "id": "k2",
+                "text": "accepting the order",
+                "label": {
+                  "en": "contract formation by promise",
+                  "zh": "承诺成立合同"
+                },
+                "kind": "legal_term",
+                "reason": {
+                  "en": "Establishes that a binding contract was formed before shipment occurred.",
+                  "zh": "确立了在货物交付前合同已经依法成立。"
+                },
+                "importance": "high"
+              },
+              {
+                "id": "k3",
+                "text": "different computer model",
+                "label": {
+                  "en": "nonconforming goods",
+                  "zh": "不符货物"
+                },
+                "kind": "fact_trigger",
+                "reason": {
+                  "en": "Triggers the rule that delivering nonconforming goods constitutes a breach of contract.",
+                  "zh": "触发合同成立后交付不符货物属于违约的规则。"
+                },
+                "importance": "high"
+              },
+              {
+                "id": "k4",
+                "text": "notice of accommodation",
+                "label": {
+                  "en": "accommodation exception to shipment acceptance",
+                  "zh": "融通货物例外规则"
+                },
+                "kind": "legal_term",
+                "reason": {
+                  "en": "Irrelevant here because the contract had already been formed by the promise to ship.",
+                  "zh": "在此处无关紧要，因为合同已在此前通过承诺发货成立。"
+                },
+                "importance": "medium"
+              }
+            ]
+          },
+          "choice_keyword_meta": {
+            "choices": {
+              "A": [
+                {
+                  "id": "k1",
+                  "text": "recover damages, if any, for breach of contract",
+                  "label": {
+                    "en": "remedy for nonconforming delivery",
+                    "zh": "交付不符货物的救济"
+                  },
+                  "kind": "remedy_or_relief",
+                  "reason": {
+                    "en": "Correctly states the buyer's right to damages under UCC 2-601 and 2-711.",
+                    "zh": "正确表述了买方在UCC 2-601和2-711下的损害赔偿请求权。"
+                  },
+                  "importance": "high"
+                }
+              ],
+              "B": [
+                {
+                  "id": "k1",
+                  "text": "waive any remedy for breach of contract",
+                  "label": {
+                    "en": "waiver of breach damages",
+                    "zh": "放弃违约救济"
+                  },
+                  "kind": "trap_phrase",
+                  "reason": {
+                    "en": "Incorrectly states that rejecting nonconforming goods waives damages.",
+                    "zh": "错误地认为拒收不符货物即表示放弃违约赔偿请求权。"
+                  },
+                  "importance": "medium"
+                }
+              ],
+              "C": [
+                {
+                  "id": "k1",
+                  "text": "constituted a counteroffer",
+                  "label": {
+                    "en": "counteroffer classification error",
+                    "zh": "反要约定性错误"
+                  },
+                  "kind": "trap_phrase",
+                  "reason": {
+                    "en": "Incorrectly treats the delivery of nonconforming goods as a counteroffer instead of a breach.",
+                    "zh": "错误地将交付不符货物定性为反要约而非违约。"
+                  },
+                  "importance": "high"
+                }
+              ],
+              "D": [
+                {
+                  "id": "k1",
+                  "text": "constituted an acceptance",
+                  "label": {
+                    "en": "acceptance classification error",
+                    "zh": "承诺定性错误"
+                  },
+                  "kind": "trap_phrase",
+                  "reason": {
+                    "en": "Incorrectly suggests the shipment formed a new contract for the nonconforming computer model.",
+                    "zh": "错误地暗示交付行为对不符机型成立了新合同。"
+                  },
+                  "importance": "high"
+                }
+              ]
+            }
+          },
+          "question_highlight_meta": {
+            "highlights": [
+              {
+                "id": "h1",
+                "text": "letter accepting the order",
+                "kind": "key_sentence",
+                "label": {
+                  "en": "acceptance by promise",
+                  "zh": "承诺接受要约"
+                },
+                "reason": {
+                  "en": "This mailing formed the contract, preventing later actions from being counteroffers.",
+                  "zh": "该信件的寄出使合同成立，从而使后续行为无法构成反要约。"
+                },
+                "importance": "high"
+              },
+              {
+                "id": "h2",
+                "text": "shipped a different computer model to the buyer, and mailed a separate notice of accommodation",
+                "kind": "rule_trigger",
+                "label": {
+                  "en": "nonconforming shipment with accommodation",
+                  "zh": "附带融通通知的非相符货物运输"
+                },
+                "reason": {
+                  "en": "Highlights the distraction of the UCC accommodation rule which is inapplicable here.",
+                  "zh": "突出了此处不适用的UCC融通规则这一干扰项。"
+                },
+                "importance": "high"
+              },
+              {
+                "id": "h3",
+                "text": "but not the notice of accommodation",
+                "kind": "fact_trigger",
+                "label": {
+                  "en": "non-receipt of accommodation notice",
+                  "zh": "未收到融通通知"
+                },
+                "reason": {
+                  "en": "Even if accommodation applied, notice was not received, but it is ultimately moot because contract was already formed.",
+                  "zh": "即使融通规则适用，通知也未被收到，但由于合同已成立，该事实最终无实际意义。"
+                },
+                "importance": "medium"
+              }
+            ]
+          },
+          "generated_by": "generate_question_meta.py",
+          "generated_model": "antigravity-cli",
+          "generated_at": "2026-06-06T13:13:07.778314+00:00"
+        }
+      }
     },
     {
       "index": 81,
@@ -17095,7 +17479,7 @@
       },
       "answer": "B",
       "source_img": "source_imgs/q0081.png",
-      "explanation": "<!-- ERROR: rate limited -->",
+      "explanation": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Consideration for Settlement Agreements</title>\n  <style>\n    /* Scoped styles under .pbx-explanation */\n    .pbx-explanation {\n      font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\n      color: #333333;\n      line-height: 1.7;\n      font-size: 1rem;\n      padding: 1.25rem 1.5rem;\n      max-width: 900px;\n      margin: 0 auto;\n      box-sizing: border-box;\n    }\n\n    /* Flowchart / Decision Tree Styles */\n    .pbx-scroll-x {\n      overflow-x: auto;\n      -webkit-overflow-scrolling: touch;\n      margin: 24px 0;\n      padding-bottom: 12px;\n    }\n\n    .pbx-flow-inner {\n      min-width: 750px;\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      padding: 10px;\n      box-sizing: border-box;\n    }\n\n    .pbx-tree-title {\n      font-size: 1.25rem;\n      font-weight: 700;\n      color: #111111;\n      margin-bottom: 24px;\n      text-align: center;\n    }\n\n    .pbx-tree {\n      width: 100%;\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n    }\n\n    .pbx-tree-root {\n      display: flex;\n      justify-content: center;\n      width: 100%;\n    }\n\n    .pbx-question-box {\n      background: #ffffff;\n      border: 1px solid #cccccc;\n      border-radius: 6px;\n      padding: 10px 16px;\n      box-shadow: 0 2px 5px rgba(0,0,0,0.06);\n      font-size: 0.875rem;\n      color: #2c3e50;\n      text-align: center;\n      max-width: 340px;\n    }\n\n    .pbx-question-box em {\n      font-style: italic;\n      font-weight: 600;\n    }\n\n    /* Main Connectors */\n    .pbx-tree-connector-top {\n      position: relative;\n      width: 100%;\n      height: 40px;\n    }\n\n    .pbx-line-vertical {\n      width: 1px;\n      height: 20px;\n      background: #888888;\n      margin: 0 auto;\n    }\n\n    .pbx-line-horizontal {\n      position: absolute;\n      top: 20px;\n      left: 16.6%;\n      right: 16.6%;\n      height: 1px;\n      background: #888888;\n    }\n\n    .pbx-line-vertical-left {\n      position: absolute;\n      top: 20px;\n      left: 16.6%;\n      width: 1px;\n      height: 20px;\n      background: #888888;\n    }\n\n    .pbx-line-vertical-middle {\n      position: absolute;\n      top: 20px;\n      left: 50%;\n      width: 1px;\n      height: 20px;\n      background: #888888;\n    }\n\n    .pbx-line-vertical-right {\n      position: absolute;\n      top: 20px;\n      right: 16.6%;\n      width: 1px;\n      height: 20px;\n      background: #888888;\n    }\n\n    /* Columns */\n    .pbx-tree-columns {\n      display: flex;\n      width: 100%;\n      justify-content: space-between;\n    }\n\n    .pbx-tree-column {\n      width: 33.3%;\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      position: relative;\n    }\n\n    .pbx-branch-label {\n      font-size: 0.8125rem;\n      font-weight: 500;\n      color: #555555;\n      margin-bottom: 4px;\n      text-align: center;\n    }\n\n    .pbx-arrow {\n      font-size: 1rem;\n      color: #888888;\n      margin-bottom: 8px;\n      line-height: 1;\n    }\n\n    .pbx-result-box {\n      font-size: 0.875rem;\n      text-align: center;\n      color: #222222;\n      margin-top: 4px;\n      line-height: 1.3;\n    }\n\n    /* Sub-connectors */\n    .pbx-sub-connector {\n      position: relative;\n      width: 100%;\n      height: 30px;\n    }\n\n    .pbx-sub-line-vertical {\n      width: 1px;\n      height: 15px;\n      background: #888888;\n      margin: 0 auto;\n    }\n\n    .pbx-sub-line-horizontal {\n      position: absolute;\n      top: 15px;\n      left: 25%;\n      right: 25%;\n      height: 1px;\n      background: #888888;\n    }\n\n    .pbx-sub-line-vertical-left {\n      position: absolute;\n      top: 15px;\n      left: 25%;\n      width: 1px;\n      height: 15px;\n      background: #888888;\n    }\n\n    .pbx-sub-line-vertical-right {\n      position: absolute;\n      top: 15px;\n      right: 25%;\n      width: 1px;\n      height: 15px;\n      background: #888888;\n    }\n\n    .pbx-sub-columns {\n      display: flex;\n      width: 100%;\n      justify-content: space-around;\n    }\n\n    .pbx-sub-column {\n      width: 50%;\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n    }\n\n    /* Typography & Lists */\n    .pbx-explanation p {\n      margin: 16px 0;\n    }\n\n    .pbx-explanation ul {\n      margin: 12px 0;\n      padding-left: 24px;\n    }\n\n    .pbx-explanation li {\n      margin-bottom: 8px;\n    }\n\n    /* Educational Objective Styling */\n    .pbx-edu-objective {\n      background: #f0f7ff;\n      border-left: 4px solid #3498db;\n      border-radius: 6px;\n      padding: 14px 18px;\n      margin: 24px 0;\n    }\n\n    .pbx-edu-objective-title {\n      font-size: 13px;\n      font-weight: 700;\n      color: #2980b9;\n      text-transform: uppercase;\n      letter-spacing: 0.05em;\n      margin-bottom: 8px;\n    }\n\n    .pbx-edu-objective p {\n      margin: 0;\n      font-size: 0.95rem;\n    }\n\n    /* References Styling */\n    .pbx-references {\n      background: #fafafa;\n      border: 1px solid #e0e0e0;\n      border-radius: 6px;\n      padding: 14px 18px;\n      margin: 20px 0;\n    }\n\n    .pbx-references-title {\n      font-size: 13px;\n      font-weight: 700;\n      color: #555555;\n      text-transform: uppercase;\n      letter-spacing: 0.05em;\n      margin-bottom: 8px;\n    }\n\n    .pbx-ref-list {\n      margin: 0;\n      padding-left: 18px;\n      font-size: 14px;\n      color: #555555;\n      line-height: 1.7;\n    }\n\n    /* Responsive adjustments */\n    @media (max-width: 640px) {\n      .pbx-explanation {\n        font-size: 0.95rem;\n        padding: 0.75rem;\n      }\n      .pbx-tree-title {\n        font-size: 1.1rem;\n      }\n    }\n  </style>\n</head>\n<body>\n  <div class=\"pbx-explanation\">\n    \n    <!-- Flowchart Section -->\n    <div class=\"pbx-scroll-x\">\n      <div class=\"pbx-flow-inner\">\n        <div class=\"pbx-tree-title\">Consideration for settlement agreements</div>\n        <div class=\"pbx-tree\">\n          \n          <!-- Root Node -->\n          <div class=\"pbx-tree-root\">\n            <div class=\"pbx-question-box\">Is surrendered claim/defense <em>valid</em>?</div>\n          </div>\n\n          <!-- Top-level Branches Connector -->\n          <div class=\"pbx-tree-connector-top\">\n            <div class=\"pbx-line-vertical\"></div>\n            <div class=\"pbx-line-horizontal\"></div>\n            <div class=\"pbx-line-vertical-left\"></div>\n            <div class=\"pbx-line-vertical-middle\"></div>\n            <div class=\"pbx-line-vertical-right\"></div>\n          </div>\n\n          <!-- Three Columns -->\n          <div class=\"pbx-tree-columns\">\n            \n            <!-- Column 1: Yes -->\n            <div class=\"pbx-tree-column\">\n              <div class=\"pbx-branch-label\">Yes</div>\n              <div class=\"pbx-arrow\">↓</div>\n              <div class=\"pbx-result-box\"><strong>Consideration<br>exists</strong></div>\n            </div>\n\n            <!-- Column 2: Uncertain -->\n            <div class=\"pbx-tree-column\">\n              <div class=\"pbx-branch-label\">Uncertain</div>\n              <div class=\"pbx-arrow\">↓</div>\n              <div class=\"pbx-question-box\">Is claim/defense subject to<br><em>good-faith dispute</em>?</div>\n\n              <!-- Sub-branches for Column 2 -->\n              <div class=\"pbx-sub-connector\">\n                <div class=\"pbx-sub-line-vertical\"></div>\n                <div class=\"pbx-sub-line-horizontal\"></div>\n                <div class=\"pbx-sub-line-vertical-left\"></div>\n                <div class=\"pbx-sub-line-vertical-right\"></div>\n              </div>\n              <div class=\"pbx-sub-columns\">\n                <div class=\"pbx-sub-column\">\n                  <div class=\"pbx-branch-label\">Yes</div>\n                  <div class=\"pbx-arrow\">↓</div>\n                  <div class=\"pbx-result-box\"><strong>Consideration<br>exists</strong></div>\n                </div>\n                <div class=\"pbx-sub-column\">\n                  <div class=\"pbx-branch-label\">No</div>\n                  <div class=\"pbx-arrow\">↓</div>\n                  <div class=\"pbx-result-box\"><strong>No consideration</strong></div>\n                </div>\n              </div>\n            </div>\n\n            <!-- Column 3: No -->\n            <div class=\"pbx-tree-column\">\n              <div class=\"pbx-branch-label\">No</div>\n              <div class=\"pbx-arrow\">↓</div>\n              <div class=\"pbx-question-box\">Does surrendering party<br><em>believe</em> claim/defense is valid?</div>\n\n              <!-- Sub-branches for Column 3 -->\n              <div class=\"pbx-sub-connector\">\n                <div class=\"pbx-sub-line-vertical\"></div>\n                <div class=\"pbx-sub-line-horizontal\"></div>\n                <div class=\"pbx-sub-line-vertical-left\"></div>\n                <div class=\"pbx-sub-line-vertical-right\"></div>\n              </div>\n              <div class=\"pbx-sub-columns\">\n                <div class=\"pbx-sub-column\">\n                  <div class=\"pbx-branch-label\">No</div>\n                  <div class=\"pbx-arrow\">↓</div>\n                  <div class=\"pbx-result-box\"><strong>No consideration</strong></div>\n                </div>\n                <div class=\"pbx-sub-column\">\n                  <div class=\"pbx-branch-label\">Yes</div>\n                  <div class=\"pbx-arrow\">↓</div>\n                  <div class=\"pbx-result-box\"><strong>Consideration<br>exists</strong></div>\n                </div>\n              </div>\n            </div>\n\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <!-- Explanation Text -->\n    <p>A contract is generally formed when a mutual agreement is supported by valuable consideration—ie, a bargained-for exchange of promises or performance. A <strong>promise to surrender</strong> a <strong>claim or defense</strong> can serve as <strong>consideration for a settlement agreement</strong> so long as:</p>\n    \n    <ul>\n      <li>the claim or defense is <strong>valid or subject to</strong> a <strong>good-faith dispute</strong> <em>or</em></li>\n      <li>the <strong>surrendering party honestly believes</strong> that the claim or defense <strong>may be valid</strong>.</li>\n    </ul>\n\n    <p>If the surrendering party knows that the claim or defense is invalid, an agreement to surrender it lacks consideration and is therefore unenforceable.</p>\n\n    <p>Here, the nephew agreed to settle his suit contesting the testator's will in exchange for $5,000. But the nephew did <em>not</em> honestly believe that his claim was valid (ie, he did not bring the will contest in good faith) since he knew that the testator was of sound mind his whole life and had no contrary evidence. Therefore, the nephew's settlement agreement with the executor is unenforceable for lack of bargained-for consideration, and the nephew is not entitled to recover <span style=\"color:#9b1c1c;font-weight:600;\" data-choice=\"C\" data-choice-role=\"distractor\">(Choice C)</span>.</p>\n\n    <!-- Choice Paragraph (Pattern A) -->\n    <p style=\"border-left:3px solid #c0392b; padding-left:10px;\" data-choice=\"A D\" data-choice-role=\"distractor\">\n      <strong style=\"color:#9b1c1c\">(Choices A & D)</strong> The law <em>does</em> encourage the settlement of legal claims—but not those brought in bad faith. Had the nephew brought the will contest in good faith, there would have been no issue with settling out of court.\n    </p>\n\n    <!-- Educational Objective -->\n    <div class=\"pbx-edu-objective\">\n      <div class=\"pbx-edu-objective-title\">📌 Educational Objective</div>\n      <p>A promise to surrender a claim or defense constitutes consideration for a settlement agreement so long as (1) the claim or defense is valid or subject to a good-faith dispute or (2) the surrendering party believes that the claim or defense may be valid.</p>\n    </div>\n\n    <!-- References -->\n    <div class=\"pbx-references\">\n      <div class=\"pbx-references-title\">📚 References</div>\n      <ul class=\"pbx-ref-list\">\n        <li>Restatement (Second) of Contracts § 74 (Am. Law Inst. 1981) (settlement of claims).</li>\n      </ul>\n    </div>\n\n  </div>\n</body>\n</html>",
       "zh-question": "一位立遗嘱人去世，其侄子是他的唯一继承人。遗嘱将他的全部遗产赠与慈善机构。他的侄子，尽管完全清楚立遗嘱人一生心智健全，并且没有任何相反的证据，但仍以立遗嘱人签署遗嘱时无行为能力为由，提起诉讼对遗嘱提出异议。立遗嘱人的遗嘱执行人向侄子提供5000美元以和解此案，侄子同意了。\n\n如果遗嘱执行人随后否认该协议，并且在侄子对遗嘱执行人提起的违约诉讼中，前述事实得到证实或承认，根据主流观点，侄子是否有权获得赔偿？",
       "zh-choices": {
         "A": "否，因为剥夺法院对遗嘱争议案件的管辖权的协议违反公共政策。",
@@ -17103,7 +17487,192 @@
         "C": "是，因为该协议是经过讨价还价的交换。",
         "D": "是，因为法律鼓励和解有争议的请求。"
       },
-      "zh-explanation": "<!DOCTYPE html>\r\n<html lang=\"zh-CN\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>MBE 考点解析</title>\r\n    \r\n    <style>\r\n        strong, b {\r\n            display: inline !important; \r\n            white-space: normal !important; \r\n            word-break: normal !important;\n            overflow-wrap: break-word !important;\r\n        }\r\n    </style>\r\n\r\n<style>\r\n        body {\r\n            font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif;\r\n            background-color: #f0f2f5;\r\n            color: #333;\r\n            line-height: 1.6;\r\n            margin: 0;\r\n            padding: 10px;\r\n        }\r\n        .container {\r\n            max-width: 480px;\r\n            margin: 0 auto;\r\n            background-color: #ffffff;\r\n            border-radius: 12px;\r\n            box-shadow: 0 4px 12px rgba(0,0,0,0.1);\r\n            overflow: hidden;\r\n        }\r\n        .header {\r\n            background: linear-gradient(135deg, #2c3e50, #4ca1af);\r\n            color: white;\r\n            padding: 20px;\r\n            text-align: center;\r\n        }\r\n        .header h1 {\r\n            margin: 0;\r\n            font-size: 20px;\r\n            font-weight: 700;\r\n        }\r\n        .header p {\r\n            margin: 5px 0 0;\r\n            font-size: 14px;\r\n            opacity: 0.9;\r\n        }\r\n        .content {\r\n            padding: 20px;\r\n        }\r\n        .rule-box {\r\n            background-color: #e8f4f8;\r\n            border-left: 5px solid #3498db;\r\n            padding: 15px;\r\n            margin-bottom: 20px;\r\n            border-radius: 4px;\r\n        }\r\n        .rule-title {\r\n            font-weight: bold;\r\n            color: #2980b9;\r\n            margin-bottom: 5px;\r\n            display: block;\r\n        }\r\n        .analysis-section {\r\n            margin-bottom: 20px;\r\n        }\r\n        .analysis-title {\r\n            font-size: 18px;\r\n            font-weight: 600;\r\n            border-bottom: 2px solid #eee;\r\n            padding-bottom: 8px;\r\n            margin-bottom: 12px;\r\n            color: #34495e;\r\n        }\r\n        .fact-check {\r\n            display: flex;\r\n            align-items: center;\r\n            margin-bottom: 10px;\r\n            background: #fff5f5;\r\n            padding: 10px;\r\n            border-radius: 8px;\r\n            border: 1px solid #feb2b2;\r\n        }\r\n        .fact-icon {\r\n            font-size: 24px;\r\n            margin-right: 10px;\r\n            color: #c0392b;\r\n        }\r\n        .option-analysis {\r\n            background-color: #f9f9f9;\r\n            padding: 15px;\r\n            border-radius: 8px;\r\n            margin-top: 10px;\r\n        }\r\n        .correct-tag {\r\n            background-color: #27ae60;\r\n            color: white;\r\n            padding: 2px 8px;\r\n            border-radius: 4px;\r\n            font-size: 12px;\r\n            font-weight: bold;\r\n            vertical-align: middle;\r\n            margin-left: 5px;\r\n        }\r\n        .key-term {\r\n            font-weight: bold;\r\n            color: #d35400;\r\n        }\r\n        .diagram {\r\n            display: flex;\r\n            flex-direction: column;\r\n            align-items: center;\r\n            margin: 20px 0;\r\n            padding: 15px;\r\n            background: #fafafa;\r\n            border: 1px dashed #ccc;\r\n            border-radius: 8px;\r\n        }\r\n        .diagram-step {\r\n            background: #fff;\r\n            border: 2px solid #3498db;\r\n            padding: 10px;\r\n            border-radius: 8px;\r\n            text-align: center;\r\n            width: 80%;\r\n            font-size: 14px;\r\n            margin-bottom: 10px;\r\n        }\r\n        .arrow {\r\n            font-size: 20px;\r\n            color: #7f8c8d;\r\n            margin-bottom: 10px;\r\n        }\r\n        .result-box {\r\n            background: #e74c3c;\r\n            color: white;\r\n            padding: 10px;\r\n            border-radius: 8px;\r\n            width: 80%;\r\n            text-align: center;\r\n            font-weight: bold;\r\n        }\r\n        .footer {\r\n            background-color: #f8f9fa;\r\n            padding: 15px;\r\n            text-align: center;\r\n            font-size: 12px;\r\n            color: #7f8c8d;\r\n            border-top: 1px solid #eee;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"container\">\r\n    <div class=\"header\">\r\n        <h1>MBE 考点解析</h1>\r\n        <p>Contracts: Consideration & Settlement</p>\r\n    </div>\r\n\r\n    <div class=\"content\">\r\n        <!-- 核心考点 -->\r\n        <div class=\"rule-box\">\r\n            <span class=\"rule-title\">⚖️ 核心法律规则 (The Rule)</span>\r\n            在合同法中，<b>放弃起诉的权利</b> (Forbearance to sue) 可以构成有效的<b>对价</b> (Consideration)，但必须满足以下条件之一：\r\n            <ol style=\"margin-top: 8px; padding-left: 20px;\">\r\n                <li>该法律请求在客观上是<b>有效的</b> (Valid)；或者</li>\r\n                <li>原告<b>主观上真诚地相信</b> (Good faith belief) 该请求可能是有效的。</li>\r\n            </ol>\r\n            <small>参考：<i>Restatement (Second) of Contracts § 74</i></small>\r\n        </div>\r\n\r\n        <!-- 案情分析图解 -->\r\n        <div class=\"analysis-section\">\r\n            <div class=\"analysis-title\">案情逻辑分析</div>\r\n            \r\n            <div class=\"fact-check\">\r\n                <div class=\"fact-icon\">❌</div>\r\n                <div>\r\n                    <strong>关键事实：</strong><br>\r\n                    侄子明知 (Knowing full well) 立遗嘱人神智健全，且没有任何相反证据。\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"diagram\">\r\n                <div class=\"diagram-step\">侄子承诺放弃起诉<br>(Promise to surrender claim)</div>\r\n                <div class=\"arrow\">↓</div>\r\n                <div class=\"diagram-step\">\r\n                    <strong>检验标准：</strong><br>\r\n                    他是善意 (Good Faith) 的吗？<br>\r\n                    或者请求是有效 (Valid) 的吗？\r\n                </div>\r\n                <div class=\"arrow\">↓</div>\r\n                <div class=\"result-box\">\r\n                    都不是！<br>\r\n                    因此：没有对价 (No Consideration)\r\n                </div>\r\n            </div>\r\n            \r\n            <p>由于侄子明知自己的主张是虚假的（Sham claim），他的“放弃起诉”实际上没有放弃任何合法的权利，因此不构成法律认可的“受损” (Detriment)。</p>\r\n        </div>\r\n\r\n        <!-- 选项解析 -->\r\n        <div class=\"analysis-section\">\r\n            <div class=\"analysis-title\">为什么选 B？</div>\r\n            <div class=\"option-analysis\" style=\"border-left: 4px solid #27ae60;\">\r\n                <p><b>选项 B：否，因为侄子并非善意地提起遗嘱争议之诉。</b> <span class=\"correct-tag\">正确答案</span></p>\r\n                <p>这是本题的直接法律依据。如果索赔方知道索赔是无效的（即恶意，Bad Faith），那么放弃该索赔就不能作为支持和解协议的对价。没有对价，和解协议（合同）就不可执行。</p>\r\n            </div>\r\n\r\n            <div class=\"analysis-title\" style=\"margin-top:20px;\">陷阱选项排除</div>\r\n            <div class=\"option-analysis\">\r\n                <p><b>选项 C (陷阱)：是，因为该协议是经过讨价还价的交换。</b></p>\r\n                <p>虽然表面上看有“讨价还价” (Bargained-for exchange) 的形式（放弃诉讼换取$5,000），但如果交换的东西（虚假诉讼）在法律眼中一文不值，那么这种交换就缺乏实质对价。<b>恶意诉讼的放弃 = 零对价。</b></p>\r\n            </div>\r\n            \r\n            <div class=\"option-analysis\" style=\"margin-top:10px;\">\r\n                <p><b>选项 D (政策)：是，因为法律鼓励和解有争议的请求。</b></p>\r\n                <p>法律确实鼓励和解，但前提是针对<b>“善意争议”</b> (Good-faith dispute)。法律绝不鼓励通过威胁提起毫无根据的诉讼来勒索和解金。</p>\r\n            </div>\r\n        </div>\r\n\r\n        <!-- 考试技巧 -->\r\n        <div class=\"rule-box\" style=\"background-color: #fff3cd; border-left-color: #f1c40f;\">\r\n            <span class=\"rule-title\">💡 MBE 考试技巧</span>\r\n            在涉及“和解协议” (Settlement Agreement) 的题目中，一定要检查原告的<b>主观心态</b>：\r\n            <ul>\r\n                <li>如果原告<b>诚实地认为</b>自己有理（哪怕后来证明他错了），和解协议<b>有效</b>。</li>\r\n                <li>如果题目明确说原告<b>“明知” (Knew)</b> 自己没理，和解协议<b>无效</b>。</li>\r\n            </ul>\r\n        </div>\r\n\r\n    </div>\r\n\r\n    \r\n</div>\r\n\r\n</body>\r\n</html>"
+      "zh-explanation": "<!DOCTYPE html>\r\n<html lang=\"zh-CN\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>MBE 考点解析</title>\r\n    \r\n    <style>\r\n        strong, b {\r\n            display: inline !important; \r\n            white-space: normal !important; \r\n            word-break: normal !important;\n            overflow-wrap: break-word !important;\r\n        }\r\n    </style>\r\n\r\n<style>\r\n        body {\r\n            font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif;\r\n            background-color: #f0f2f5;\r\n            color: #333;\r\n            line-height: 1.6;\r\n            margin: 0;\r\n            padding: 10px;\r\n        }\r\n        .container {\r\n            max-width: 480px;\r\n            margin: 0 auto;\r\n            background-color: #ffffff;\r\n            border-radius: 12px;\r\n            box-shadow: 0 4px 12px rgba(0,0,0,0.1);\r\n            overflow: hidden;\r\n        }\r\n        .header {\r\n            background: linear-gradient(135deg, #2c3e50, #4ca1af);\r\n            color: white;\r\n            padding: 20px;\r\n            text-align: center;\r\n        }\r\n        .header h1 {\r\n            margin: 0;\r\n            font-size: 20px;\r\n            font-weight: 700;\r\n        }\r\n        .header p {\r\n            margin: 5px 0 0;\r\n            font-size: 14px;\r\n            opacity: 0.9;\r\n        }\r\n        .content {\r\n            padding: 20px;\r\n        }\r\n        .rule-box {\r\n            background-color: #e8f4f8;\r\n            border-left: 5px solid #3498db;\r\n            padding: 15px;\r\n            margin-bottom: 20px;\r\n            border-radius: 4px;\r\n        }\r\n        .rule-title {\r\n            font-weight: bold;\r\n            color: #2980b9;\r\n            margin-bottom: 5px;\r\n            display: block;\r\n        }\r\n        .analysis-section {\r\n            margin-bottom: 20px;\r\n        }\r\n        .analysis-title {\r\n            font-size: 18px;\r\n            font-weight: 600;\r\n            border-bottom: 2px solid #eee;\r\n            padding-bottom: 8px;\r\n            margin-bottom: 12px;\r\n            color: #34495e;\r\n        }\r\n        .fact-check {\r\n            display: flex;\r\n            align-items: center;\r\n            margin-bottom: 10px;\r\n            background: #fff5f5;\r\n            padding: 10px;\r\n            border-radius: 8px;\r\n            border: 1px solid #feb2b2;\r\n        }\r\n        .fact-icon {\r\n            font-size: 24px;\r\n            margin-right: 10px;\r\n            color: #c0392b;\r\n        }\r\n        .option-analysis {\r\n            background-color: #f9f9f9;\r\n            padding: 15px;\r\n            border-radius: 8px;\r\n            margin-top: 10px;\r\n        }\r\n        .correct-tag {\r\n            background-color: #27ae60;\r\n            color: white;\r\n            padding: 2px 8px;\r\n            border-radius: 4px;\r\n            font-size: 12px;\r\n            font-weight: bold;\r\n            vertical-align: middle;\r\n            margin-left: 5px;\r\n        }\r\n        .key-term {\r\n            font-weight: bold;\r\n            color: #d35400;\r\n        }\r\n        .diagram {\r\n            display: flex;\r\n            flex-direction: column;\r\n            align-items: center;\r\n            margin: 20px 0;\r\n            padding: 15px;\r\n            background: #fafafa;\r\n            border: 1px dashed #ccc;\r\n            border-radius: 8px;\r\n        }\r\n        .diagram-step {\r\n            background: #fff;\r\n            border: 2px solid #3498db;\r\n            padding: 10px;\r\n            border-radius: 8px;\r\n            text-align: center;\r\n            width: 80%;\r\n            font-size: 14px;\r\n            margin-bottom: 10px;\r\n        }\r\n        .arrow {\r\n            font-size: 20px;\r\n            color: #7f8c8d;\r\n            margin-bottom: 10px;\r\n        }\r\n        .result-box {\r\n            background: #e74c3c;\r\n            color: white;\r\n            padding: 10px;\r\n            border-radius: 8px;\r\n            width: 80%;\r\n            text-align: center;\r\n            font-weight: bold;\r\n        }\r\n        .footer {\r\n            background-color: #f8f9fa;\r\n            padding: 15px;\r\n            text-align: center;\r\n            font-size: 12px;\r\n            color: #7f8c8d;\r\n            border-top: 1px solid #eee;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"container\">\r\n    <div class=\"header\">\r\n        <h1>MBE 考点解析</h1>\r\n        <p>Contracts: Consideration & Settlement</p>\r\n    </div>\r\n\r\n    <div class=\"content\">\r\n        <!-- 核心考点 -->\r\n        <div class=\"rule-box\">\r\n            <span class=\"rule-title\">⚖️ 核心法律规则 (The Rule)</span>\r\n            在合同法中，<b>放弃起诉的权利</b> (Forbearance to sue) 可以构成有效的<b>对价</b> (Consideration)，但必须满足以下条件之一：\r\n            <ol style=\"margin-top: 8px; padding-left: 20px;\">\r\n                <li>该法律请求在客观上是<b>有效的</b> (Valid)；或者</li>\r\n                <li>原告<b>主观上真诚地相信</b> (Good faith belief) 该请求可能是有效的。</li>\r\n            </ol>\r\n            <small>参考：<i>Restatement (Second) of Contracts § 74</i></small>\r\n        </div>\r\n\r\n        <!-- 案情分析图解 -->\r\n        <div class=\"analysis-section\">\r\n            <div class=\"analysis-title\">案情逻辑分析</div>\r\n            \r\n            <div class=\"fact-check\">\r\n                <div class=\"fact-icon\">❌</div>\r\n                <div>\r\n                    <strong>关键事实：</strong><br>\r\n                    侄子明知 (Knowing full well) 立遗嘱人神智健全，且没有任何相反证据。\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"diagram\">\r\n                <div class=\"diagram-step\">侄子承诺放弃起诉<br>(Promise to surrender claim)</div>\r\n                <div class=\"arrow\">↓</div>\r\n                <div class=\"diagram-step\">\r\n                    <strong>检验标准：</strong><br>\r\n                    他是善意 (Good Faith) 的吗？<br>\r\n                    或者请求是有效 (Valid) 的吗？\r\n                </div>\r\n                <div class=\"arrow\">↓</div>\r\n                <div class=\"result-box\">\r\n                    都不是！<br>\r\n                    因此：没有对价 (No Consideration)\r\n                </div>\r\n            </div>\r\n            \r\n            <p>由于侄子明知自己的主张是虚假的（Sham claim），他的“放弃起诉”实际上没有放弃任何合法的权利，因此不构成法律认可的“受损” (Detriment)。</p>\r\n        </div>\r\n\r\n        <!-- 选项解析 -->\r\n        <div class=\"analysis-section\">\r\n            <div class=\"analysis-title\">为什么选 B？</div>\r\n            <div class=\"option-analysis\" style=\"border-left: 4px solid #27ae60;\">\r\n                <p><b>选项 B：否，因为侄子并非善意地提起遗嘱争议之诉。</b> <span class=\"correct-tag\">正确答案</span></p>\r\n                <p>这是本题的直接法律依据。如果索赔方知道索赔是无效的（即恶意，Bad Faith），那么放弃该索赔就不能作为支持和解协议的对价。没有对价，和解协议（合同）就不可执行。</p>\r\n            </div>\r\n\r\n            <div class=\"analysis-title\" style=\"margin-top:20px;\">陷阱选项排除</div>\r\n            <div class=\"option-analysis\">\r\n                <p><b>选项 C (陷阱)：是，因为该协议是经过讨价还价的交换。</b></p>\r\n                <p>虽然表面上看有“讨价还价” (Bargained-for exchange) 的形式（放弃诉讼换取$5,000），但如果交换的东西（虚假诉讼）在法律眼中一文不值，那么这种交换就缺乏实质对价。<b>恶意诉讼的放弃 = 零对价。</b></p>\r\n            </div>\r\n            \r\n            <div class=\"option-analysis\" style=\"margin-top:10px;\">\r\n                <p><b>选项 D (政策)：是，因为法律鼓励和解有争议的请求。</b></p>\r\n                <p>法律确实鼓励和解，但前提是针对<b>“善意争议”</b> (Good-faith dispute)。法律绝不鼓励通过威胁提起毫无根据的诉讼来勒索和解金。</p>\r\n            </div>\r\n        </div>\r\n\r\n        <!-- 考试技巧 -->\r\n        <div class=\"rule-box\" style=\"background-color: #fff3cd; border-left-color: #f1c40f;\">\r\n            <span class=\"rule-title\">💡 MBE 考试技巧</span>\r\n            在涉及“和解协议” (Settlement Agreement) 的题目中，一定要检查原告的<b>主观心态</b>：\r\n            <ul>\r\n                <li>如果原告<b>诚实地认为</b>自己有理（哪怕后来证明他错了），和解协议<b>有效</b>。</li>\r\n                <li>如果题目明确说原告<b>“明知” (Knew)</b> 自己没理，和解协议<b>无效</b>。</li>\r\n            </ul>\r\n        </div>\r\n\r\n    </div>\r\n\r\n    \r\n</div>\r\n\r\n</body>\r\n</html>",
+      "meta": {
+        "question_analysis": {
+          "micro_concept": "Consideration for settlement agreements",
+          "trap_type": "Element Missing",
+          "trap_type_is_new": false,
+          "skill_tested": "Determine enforceability of settlement agreement",
+          "question_keyword_meta": {
+            "keywords": [
+              {
+                "id": "k1",
+                "text": "knowing full well",
+                "label": {
+                  "en": "subjective bad faith",
+                  "zh": "主观恶意"
+                },
+                "kind": "fact_trigger",
+                "reason": {
+                  "en": "Signals that the nephew knew the claim was groundless.",
+                  "zh": "表明侄子主观上明知诉讼毫无根据。"
+                },
+                "importance": "high"
+              },
+              {
+                "id": "k2",
+                "text": "contesting the testator's will",
+                "label": {
+                  "en": "will contest",
+                  "zh": "遗嘱效力异议"
+                },
+                "kind": "procedural_posture",
+                "reason": {
+                  "en": "The legal action being surrendered in exchange for settlement payment.",
+                  "zh": "作为和解给付对价而被放弃的诉讼行为。"
+                },
+                "importance": "medium"
+              },
+              {
+                "id": "k3",
+                "text": "settle the suit",
+                "label": {
+                  "en": "settlement agreement",
+                  "zh": "和解协议"
+                },
+                "kind": "legal_term",
+                "reason": {
+                  "en": "The contract whose formation and enforceability is being analyzed.",
+                  "zh": "正在分析其成立及可执行性的合同。"
+                },
+                "importance": "high"
+              },
+              {
+                "id": "k4",
+                "text": "repudiates the agreement",
+                "label": {
+                  "en": "anticipatory repudiation",
+                  "zh": "预期违约"
+                },
+                "kind": "procedural_posture",
+                "reason": {
+                  "en": "The event that prompts the breach of contract lawsuit.",
+                  "zh": "引发违约诉讼的拒绝履行行为。"
+                },
+                "importance": "medium"
+              }
+            ]
+          },
+          "choice_keyword_meta": {
+            "choices": {
+              "A": [
+                {
+                  "id": "k1",
+                  "text": "oust the court of its jurisdiction",
+                  "label": {
+                    "en": "jurisdictional ouster",
+                    "zh": "排除法院管辖权"
+                  },
+                  "kind": "trap_phrase",
+                  "reason": {
+                    "en": "Incorrectly states public policy discourages private settlement of claims.",
+                    "zh": "错误地声称公共政策反对私下解决索赔。"
+                  },
+                  "importance": "medium"
+                }
+              ],
+              "B": [
+                {
+                  "id": "k1",
+                  "text": "did not bring the will contest in good faith",
+                  "label": {
+                    "en": "lack of good faith",
+                    "zh": "缺少诚信"
+                  },
+                  "kind": "legal_term",
+                  "reason": {
+                    "en": "Correctly identifies that a bad-faith claim cannot serve as consideration.",
+                    "zh": "正确指出恶意主张无法作为有效对价。"
+                  },
+                  "importance": "high"
+                }
+              ],
+              "C": [
+                {
+                  "id": "k1",
+                  "text": "bargained-for exchange",
+                  "label": {
+                    "en": "consideration requirement",
+                    "zh": "对价交易要求"
+                  },
+                  "kind": "trap_phrase",
+                  "reason": {
+                    "en": "Incorrectly asserts that the existence of an exchange validates bad-faith settlements.",
+                    "zh": "错误地断定只要存在交易即可使恶意和解协议有效。"
+                  },
+                  "importance": "medium"
+                }
+              ],
+              "D": [
+                {
+                  "id": "k1",
+                  "text": "encourages the settlement of disputed claims",
+                  "label": {
+                    "en": "public policy favoring settlement",
+                    "zh": "鼓励和解的公共政策"
+                  },
+                  "kind": "trap_phrase",
+                  "reason": {
+                    "en": "Uses a valid policy principle that does not apply to bad-faith claims.",
+                    "zh": "利用了有效政策原则，但该原则不适用于恶意诉讼。"
+                  },
+                  "importance": "medium"
+                }
+              ]
+            }
+          },
+          "question_highlight_meta": {
+            "highlights": [
+              {
+                "id": "h1",
+                "text": "knowing full well that the testator was of sound mind all of his life, and having no evidence to the contrary",
+                "kind": "fact_trigger",
+                "label": {
+                  "en": "knowledge of claim invalidity",
+                  "zh": "明知主张无效"
+                },
+                "reason": {
+                  "en": "Establishes the nephew's bad faith, invalidating the claim as consideration.",
+                  "zh": "确立了侄子的恶意，使放弃该主张无法作为对价。"
+                },
+                "importance": "high"
+              },
+              {
+                "id": "h2",
+                "text": "offered the nephew $5,000 to settle the suit",
+                "kind": "rule_trigger",
+                "label": {
+                  "en": "settlement agreement formation",
+                  "zh": "和解协议的订立"
+                },
+                "reason": {
+                  "en": "Triggers the contract formation analysis and the requirement of consideration.",
+                  "zh": "触发合同成立分析以及对价要件。"
+                },
+                "importance": "medium"
+              },
+              {
+                "id": "h3",
+                "text": "is the nephew entitled to recover under the prevailing view",
+                "kind": "issue",
+                "label": {
+                  "en": "enforceability of the contract",
+                  "zh": "合同的可执行性"
+                },
+                "reason": {
+                  "en": "Asks whether the bad-faith settlement is legally binding.",
+                  "zh": "询问恶意和解协议是否具有法律约束力。"
+                },
+                "importance": "high"
+              }
+            ]
+          },
+          "generated_by": "generate_question_meta.py",
+          "generated_model": "antigravity-cli",
+          "generated_at": "2026-06-06T13:14:23.637298+00:00"
+        }
+      }
     }
   ]
 }
