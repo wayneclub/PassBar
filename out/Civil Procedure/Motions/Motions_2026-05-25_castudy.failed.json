@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "sourceResult": "/Users/wayneclub/PassBar/out/Civil Procedure/Motions/Motions_2026-05-25_castudy.json",
+    "generatedAt": "2026-05-25T03:53:31",
+    "failedCount": 5
+  },
+  "failed": [
+    {
+      "index": 8,
+      "qid": "",
+      "question": "An employee sued her employer for violation of the Americans with Disabilities Act. At trial there was a dispute over whether the employee's supervisor told her in a conversation that she was being dismissed because of her Tourette's syndrome. The jury found for the employee and awarded her damages. Six months after the entry of the judgment in this case, the employer learned that the employee, without her supervisor's knowledge, had recorded the conversation in question. Obtaining a copy of the recording, the employer learned that the employee had lied about the content of the conversation.\nWhich of the following motions with respect to this judgment can the employer now make to the district court?",
+      "reason": "stem-mismatch",
+      "match_score": 0.0166,
+      "error": "",
+      "url": "https://castudy.com/api/mcq-search?q=An%20employee%20sued%20her%20employer%20for%20violation%20of%20the%20Americans%20with%20Disabilities%20Act.%20At%20trial%20there%20was%20a%20dispute%20over%20whether%20the%20employee%27s%20supervisor%20told%20her%20in%20a%20conversation%20that%20she%20was%20being%20dismissed%20because%20of%20her%20Tourette%27s%20syndrome.%20The%20jury%20found%20for%20the%20employee%20and%20awarded%20her%20damages.%20Six%20months%20after%20the%20entry%20of%20the%20judgment%20in%20this%20case%2C%20the%20employer%20learned%20that%20the%20employee%2C%20without%20her%20supervisor%27s%20knowledge%2C%20had%20recorded%20the%20conversation%20in%20question.%20Obtaining%20a%20copy%20of%20the%20recording%2C%20the%20employer%20learned%20that%20the%20employee%20had%20lied%20about%20the%20content%20of%20the%20conversation.%20Which%20of%20the%20following%20motions%20with%20respect%20to%20this%20judgment%20can%20the%20employer%20now%20make%20to%20the%20district%20court%3F&type=MBE"
+    },
+    {
+      "index": 20,
+      "qid": "",
+      "question": "A group of consumers sued a company in federal court for violating federal antitrust laws. Immediately after presenting evidence in its defense, the company moved for judgment as a matter of law. The judge denied the motion. The jury returned a verdict in favor of the consumers. The court expressed surprise at the verdict, noting the scarcity of evidence in favor of the consumers, but nevertheless entered a judgment consistent with the verdict. Twenty days later, the company renewed its motion for judgment as a matter of law, challenging the sufficiency of the evidence. The motion was denied. The company then filed a notice of appeal, challenging the sufficiency of the evidence supporting the jury's verdict.\nIs the appellate court likely to review the company's challenge?",
+      "reason": "stem-mismatch",
+      "match_score": 0.6403,
+      "error": "",
+      "url": "https://castudy.com/api/mcq-search?q=A%20group%20of%20consumers%20sued%20a%20company%20in%20federal%20court%20for%20violating%20federal%20antitrust%20laws.%20Immediately%20after%20presenting%20evidence%20in%20its%20defense%2C%20the%20company%20moved%20for%20judgment%20as%20a%20matter%20of%20law.%20The%20judge%20denied%20the%20motion.%20The%20jury%20returned%20a%20verdict%20in%20favor%20of%20the%20consumers.%20The%20court%20expressed%20surprise%20at%20the%20verdict%2C%20noting%20the%20scarcity%20of%20evidence%20in%20favor%20of%20the%20consumers%2C%20but%20nevertheless%20entered%20a%20judgment%20consistent%20with%20the%20verdict.%20Twenty%20days%20later%2C%20the%20company%20renewed%20its%20motion%20for%20judgment%20as%20a%20matter%20of%20law%2C%20challenging%20the%20sufficiency%20of%20the%20evidence.%20The%20motion%20was%20denied.%20The%20company%20then%20filed%20a%20notice%20of%20appeal%2C%20challenging%20the%20sufficiency%20of%20the%20evidence%20supporting%20the%20jury%27s%20verdict.%20Is%20the%20appellate%20court%20likely%20to%20review%20the%20company%27s%20challenge%3F&type=MBE"
+    },
+    {
+      "index": 21,
+      "qid": "",
+      "question": "A man brought a federal diversity action against his insurance company, alleging that the company had breached its duty under his insurance policy by refusing to pay for his medical expenses resulting from a mountain-biking accident.\nAt the jury trial, the man presented evidence that he had paid all premiums on the insurance policy and that the policy covered personal-injury-related medical expenses arising from accidents. After he rested his case, the company presented evidence that a provision of the policy excluded payment for injury-related expenses resulting from an insured's \"unduly risky\" behavior. The company also presented a witness who testified that the accident had occurred in an area where posted signs warned bikers not to enter. The man did not cross-examine the witness.\nAfter resting its case, the company moved for judgment as a matter of law.\nShould the court grant the motion?",
+      "reason": "request-failed",
+      "match_score": 0.0,
+      "error": "stem-mismatch",
+      "url": "https://castudy.com/api/mcq-search?q=A%20man%20brought%20a%20federal%20diversity%20action%20against%20his%20insurance%20company%2C%20alleging%20that%20the%20company%20had%20breached%20its%20duty%20under%20his%20insurance%20policy%20by%20refusing%20to%20pay%20for%20his%20medical%20expenses%20resulting%20from%20a%20mountain-biking%20accident.%20At%20the%20jury%20trial%2C%20the%20man%20presented%20evidence%20that%20he%20had%20paid%20all%20premiums%20on%20the%20insurance%20policy%20and%20that%20the%20policy%20covered%20personal-injury-related%20medical%20expenses%20arising%20from%20accidents.%20After%20he%20rested%20his%20case%2C%20the%20company%20presented%20evidence%20that%20a%20provision%20of%20the%20policy%20excluded%20payment%20for%20injury-related%20expenses%20resulting%20from%20an%20insured%27s%20%22unduly%20risky%22%20behavior.%20The%20company%20also%20presented%20a%20witness%20who%20testified%20that%20the%20accident%20had%20occurred%20in%20an%20area%20where%20posted%20signs%20warned%20bikers%20not%20to%20enter.%20The%20man%20did%20not%20cross-examine%20the%20witness.%20After%20resting%20its%20case%2C%20the%20company%20moved%20for%20judgment%20as%20a%20matter%20of%20law.%20Should%20the%20court%20grant%20the%20motion%3F&type=MBE"
+    },
+    {
+      "index": 24,
+      "qid": "",
+      "question": "A consumer brought a federal diversity action against a manufacturer, alleging strict products liability. After the parties presented their evidence at trial, the judge instructed the jury to return a special verdict providing written answers to specific questions about each factual issue but refraining from finding in favor of a party.\nThe jury returned its special verdict, specifically finding that the manufacturer's product was defectively designed and caused the consumer foreseeable harm. Before the judge entered a judgment consistent with the jury's findings, the manufacturer moved for judgment as a matter of law, arguing that the evidence was insufficient to support the jury's determinations.\nShould the judge consider the manufacturer's motion?",
+      "reason": "stem-mismatch",
+      "match_score": 0.0344,
+      "error": "",
+      "url": "https://castudy.com/api/mcq-search?q=A%20consumer%20brought%20a%20federal%20diversity%20action%20against%20a%20manufacturer%2C%20alleging%20strict%20products%20liability.%20After%20the%20parties%20presented%20their%20evidence%20at%20trial%2C%20the%20judge%20instructed%20the%20jury%20to%20return%20a%20special%20verdict%20providing%20written%20answers%20to%20specific%20questions%20about%20each%20factual%20issue%20but%20refraining%20from%20finding%20in%20favor%20of%20a%20party.%20The%20jury%20returned%20its%20special%20verdict%2C%20specifically%20finding%20that%20the%20manufacturer%27s%20product%20was%20defectively%20designed%20and%20caused%20the%20consumer%20foreseeable%20harm.%20Before%20the%20judge%20entered%20a%20judgment%20consistent%20with%20the%20jury%27s%20findings%2C%20the%20manufacturer%20moved%20for%20judgment%20as%20a%20matter%20of%20law%2C%20arguing%20that%20the%20evidence%20was%20insufficient%20to%20support%20the%20jury%27s%20determinations.%20Should%20the%20judge%20consider%20the%20manufacturer%27s%20motion%3F&type=MBE"
+    },
+    {
+      "index": 26,
+      "qid": "",
+      "question": "After being fired, a woman sued her former employer in federal court, alleging that her supervisor had discriminated against her on the basis of her sex. The woman's complaint included a lengthy description of what the supervisor had said and done over the years, quoting his telephone calls and emails to her and her own emails to the supervisor's manager asking for help.\nThe employer moved for summary judgment, alleging that the woman was a pathological liar who had filed the action and included fictitious documents in revenge for having been fired. Because the woman's attorney was at a lengthy out-of-state trial when the summary judgment motion was filed, he failed to respond to it. The court therefore granted the motion in a one-line order and entered final judgment. The woman has appealed.\nIs the appellate court likely to uphold the trial court's ruling?",
+      "reason": "request-failed",
+      "match_score": 0.0,
+      "error": "stem-mismatch",
+      "url": "https://castudy.com/api/mcq-search?q=After%20being%20fired%2C%20a%20woman%20sued%20her%20former%20employer%20in%20federal%20court%2C%20alleging%20that%20her%20supervisor%20had%20discriminated%20against%20her%20on%20the%20basis%20of%20her%20sex.%20The%20woman%27s%20complaint%20included%20a%20lengthy%20description%20of%20what%20the%20supervisor%20had%20said%20and%20done%20over%20the%20years%2C%20quoting%20his%20telephone%20calls%20and%20emails%20to%20her%20and%20her%20own%20emails%20to%20the%20supervisor%27s%20manager%20asking%20for%20help.%20The%20employer%20moved%20for%20summary%20judgment%2C%20alleging%20that%20the%20woman%20was%20a%20pathological%20liar%20who%20had%20filed%20the%20action%20and%20included%20fictitious%20documents%20in%20revenge%20for%20having%20been%20fired.%20Because%20the%20woman%27s%20attorney%20was%20at%20a%20lengthy%20out-of-state%20trial%20when%20the%20summary%20judgment%20motion%20was%20filed%2C%20he%20failed%20to%20respond%20to%20it.%20The%20court%20therefore%20granted%20the%20motion%20in%20a%20one-line%20order%20and%20entered%20final%20judgment.%20The%20woman%20has%20appealed.%20Is%20the%20appellate%20court%20likely%20to%20uphold%20the%20trial%20court%27s%20ruling%3F&type=MBE"
+    }
+  ]
+}

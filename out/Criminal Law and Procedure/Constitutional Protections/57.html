@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBE 考点解析</title>
+
+    <style>
+        strong, b {
+            display: inline !important;
+            white-space: normal !important;
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --highlight-bg: #e8f4f8;
+            --correct-bg: #d4edda;
+            --correct-text: #155724;
+            --wrong-bg: #f8d7da;
+            --wrong-text: #721c24;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* 适配手机宽度 */
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .highlight-box {
+            background-color: var(--highlight-bg);
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .correct-answer {
+            background-color: var(--correct-bg);
+            color: var(--correct-text);
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+        }
+
+        .rule-tag {
+            display: inline-block;
+            background-color: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-family: monospace;
+            color: #555;
+            margin-right: 5px;
+        }
+
+        .latin {
+            font-style: italic;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 30px;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class=\"container\">
+
+    <!-- 头部 -->
+    <div class="header">
+        <h1>MBE 考点解析</h1>
+        <div class="sub-title">Criminal Procedure: Miranda Rights</div>
+    </div>
+
+    <!-- 正确答案 -->
+    <div class="correct-answer">
+        ✅ 正确答案：选项 B
+    </div>
+
+    <!-- 核心考点解析 -->
+    <div class="card">
+        <div class="card-title">核心考点：羁押讯问 (Custodial Interrogation)</div>
+        <p>本题考察的核心是 <b>Miranda 警告</b> 的触发条件。根据 <i>Miranda v. Arizona</i>，警方只有在对嫌疑人进行“羁押讯问”时，才必须宣读 Miranda 权利。</p>
+        <div class="highlight-box">
+            <b>公式：</b><br>
+            羁押 (Custody) + 讯问 (Interrogation) = 需要 Miranda
+        </div>
+        <p>如果缺少其中任何一个要素，警方未宣读 Miranda 权利并不影响供词的可采性 (Admissibility)。</p>
+    </div>
+
+    <!-- 为什么选B -->
+    <div class="card">
+        <div class="card-title">深度解析：为什么选 B？</div>
+        <p>Although the officer's question ("Are these marijuanas yours?") clearly constituted an <b>interrogation</b> since it was designed to elicit an incriminating response, the critical missing element here is <b>custody</b>.</p>
+
+        <p><b>法律依据 (Berkemer v. McCarty, 1984)：</b></p>
+        <ul>
+            <li>最高法院裁定，普通的<b>交通截停 (Traffic Stop)</b> 通常不构成 Miranda 意义上的“羁押”。</li>
+            <li>虽然驾驶员的行动自由受到限制（不能直接开走），但这种拘留通常是<b>短暂的 (Temporary)</b> 和<b>公开的 (Public)</b>。</li>
+            <li>因此，这种环境不像警察局审讯室那样具有“强迫性气氛” (Coercive Atmosphere)。</li>
+        </ul>
+        <p>在本案中，驾驶员虽然被叫下车，但并未被戴上手铐，也未被告知被捕。因此，他当时并未处于“羁押”状态，警官无需给予 Miranda 警告，供词有效。</p>
+    </div>
+
+    <!-- 陷阱选项分析 -->
+    <div class="card" style="border-left-color: #e74c3c;">
+        <div class="card-title" style="color: #c0392b;">为什么其他选项是错的？</div>
+
+        <p><b>❌ 选项 A (Consent to Search)：混淆概念</b><br>
+        同意搜查涉及的是<b>第四修正案</b>（搜查与扣押），而本题讨论的是供词的可采性（<b>第五修正案</b>）。同意搜查并不意味着放弃了反对自证其罪的权利，两者是独立的法律问题。</p>
+
+        <p><b>❌ 选项 C (Ordered out of car)：法律误解</b><br>
+        根据 <i>Pennsylvania v. Mimms</i>，出于警官安全考虑，在合法交通截停中命令驾驶员下车是允许的，这一行为本身<b>并不</b>将普通的交通截停转化为“羁押”。</p>
+
+        <p><b>❌ 选项 D (Intent to elicit)：只对了一半</b><br>
+        这个选项正确地指出了警官的行为构成了“讯问”。但是，MBE 题目中常见的陷阱是：仅仅有讯问是不够的，必须同时满足“羁押”这一条件。因为没有羁押，所以即便有讯问意图，也不需要 Miranda。</p>
+    </div>
+
+    <!-- 考试技巧 -->
+    <div class="card" style="background-color: #fff3cd; border-left-color: #ffc107;">
+        <div class="card-title" style="color: #856404;">💡 MBE 实战技巧</div>
+        <p>在处理涉及 Miranda 的题目时，请按以下步骤思考：</p>
+        <ol>
+            <li><b>看环境：</b>是在警察局审讯室，还是路边？（路边通常 = 非羁押）。</li>
+            <li><b>看束缚：</b>嫌疑人是否被戴上手铐？是否被告知 "You are under arrest"？（如果没有，通常 = 非羁押）。</li>
+            <li><b>看顺序：</b>是先问话后逮捕，还是先逮捕后问话？</li>
+        </ol>
+        <p><b>记住：</b>普通的交通违章截停（Terry Stop）不是 Custody。</p>
+    </div>
+
+    <div class="footer">
+        © MBE 备考助手 | 仅供学习参考
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -32,35 +32,50 @@ import urllib.request
 from datetime import datetime
 from pathlib import Path
 
+import cli_ai
+
 
 # ── 設定 ──────────────────────────────────────────────────────────────────────
 
 GEMINI_MODEL = "gemini-3.5-flash"
 OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "gpt-5.4-mini")
+OPENAI_MAX_OUTPUT_TOKENS = int(os.environ.get("OPENAI_MAX_OUTPUT_TOKENS", "65536"))
+OPENAI_IMAGE_DETAIL = os.environ.get("OPENAI_IMAGE_DETAIL", "high")
 AI_PROVIDER = "gemini"
 AI_MODEL = GEMINI_MODEL
+AI_HTML_MODEL = GEMINI_MODEL      # model for en-html/zh-html (may be provider-specific alias)
+GEMINI_REST_HTML_MODEL = GEMINI_MODEL  # model for Gemini REST API fallback (must be a real API name)
+LAST_AI_USAGE: dict | None = None
 
 # 多組 API Key 輪替（round-robin）
 # 從環境變數讀取，支援 .env 檔案（見 scripts/.env.example）
 def _load_env_file() -> None:
-    """讀取 scripts/.env 或專案根目錄 .env，補充尚未設定的環境變數。"""
+    """讀取專案設定檔，補充尚未設定的環境變數。
+
+    單一來源：passbar/.env.local（Next.js + scripts 共用）。
+    fallback：scripts/.env（僅向下相容，新設定請加在 passbar/.env.local）。
+    """
+    script_dir = os.path.dirname(os.path.abspath(__file__))
     candidates = [
-        os.path.join(os.path.dirname(__file__), ".env"),
-        os.path.join(os.path.dirname(__file__), "..", ".env"),
+        os.path.join(script_dir, "..", "passbar", ".env.local"),
+        os.path.join(script_dir, ".env"),
     ]
+    seen: set[str] = set()
     for env_path in candidates:
-        if os.path.exists(env_path):
-            with open(env_path, encoding="utf-8") as f:
-                for line in f:
-                    line = line.strip()
-                    if not line or line.startswith("#") or "=" not in line:
-                        continue
-                    key, _, value = line.partition("=")
-                    key = key.strip()
-                    value = value.strip().strip('"').strip("'")
-                    if key and key not in os.environ:
-                        os.environ[key] = value
-            break
+        real = os.path.realpath(env_path)
+        if real in seen or not os.path.exists(env_path):
+            continue
+        seen.add(real)
+        with open(env_path, encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                key, _, value = line.partition("=")
+                key = key.strip()
+                value = value.strip().strip('"').strip("'")
+                if key and key not in os.environ:
+                    os.environ[key] = value
 
 _load_env_file()
 
@@ -73,14 +88,37 @@ _GEMINI_API_KEYS: list[str] = [
 _key_index = 0  # 全域輪替指標
 
 
-def set_ai_provider(provider: str, model: str | None = None) -> None:
-    """設定本次執行使用的 AI provider/model。"""
-    global AI_PROVIDER, AI_MODEL
+def set_ai_provider(provider: str, model: str | None = None, html_model: str | None = None) -> None:
+    """設定本次執行使用的 AI provider/model。
+
+    html_model: 若有設定，用於 en-html/zh-html 生成；否則 fallback 到 model。
+    GEMINI_REST_HTML_MODEL 永遠用 Gemini REST API 可接受的 model name（CLI provider fallback 時使用）。
+    """
+    global AI_PROVIDER, AI_MODEL, AI_HTML_MODEL, GEMINI_REST_HTML_MODEL
     AI_PROVIDER = provider
+    # GEMINI_REST_HTML_MODEL: always a real Gemini API model name (used when CLI falls back to Gemini)
+    GEMINI_REST_HTML_MODEL = os.environ.get("GEMINI_HTML_MODEL", GEMINI_MODEL)
     if provider == "gpt":
         AI_MODEL = model or OPENAI_MODEL
+        AI_HTML_MODEL = html_model or AI_MODEL
+    elif provider == "codex-cli":
+        AI_MODEL = model or os.environ.get("CODEX_CLI_MODEL", "")
+        AI_HTML_MODEL = html_model or os.environ.get("CODEX_CLI_HTML_MODEL", AI_MODEL)
+    elif provider == "antigravity-cli":
+        AI_MODEL = model or os.environ.get("ANTIGRAVITY_CLI_MODEL", "")
+        AI_HTML_MODEL = html_model or os.environ.get("ANTIGRAVITY_CLI_HTML_MODEL", AI_MODEL)
     else:
         AI_MODEL = model or GEMINI_MODEL
+        AI_HTML_MODEL = html_model or GEMINI_REST_HTML_MODEL
+
+
+def clear_last_ai_usage() -> None:
+    global LAST_AI_USAGE
+    LAST_AI_USAGE = None
+
+
+def get_last_ai_usage() -> dict | None:
+    return dict(LAST_AI_USAGE) if LAST_AI_USAGE else None
 
 
 def next_api_key() -> str:
@@ -563,6 +601,10 @@ class RateLimitedError(Exception):
     """所有 API Key 均被 rate limited，呼叫方應跳過此題。"""
 
 
+class NonTextGeminiResponseError(Exception):
+    """Gemini returned a billable response but no text payload to consume."""
+
+
 def has_chinese(text: str) -> bool:
     return any("一" <= c <= "鿿" for c in text)
 
@@ -814,14 +856,86 @@ def html_to_prompt_text(html: str) -> str:
 
 
 def extract_html_from_response(text: str) -> str:
-    """從 AI 回覆中取出 HTML（可能包在 ```html ``` 中）。"""
+    """從 AI 回覆中取出 HTML。
+
+    處理三種情況：
+    1. 包在 ```html ... ``` 中（含 thinking-model 前置文字）
+    2. 裸 <!DOCTYPE html ...（可能前面有 thinking 前置文字）
+    3. 都沒有：原文回傳（讓 validate 報錯）
+    """
+    # 先找 ```html fence（優先，最明確）
     m = re.search(r"```html\s*([\s\S]*?)\s*```", text, re.IGNORECASE)
     if m:
         return strip_copyright_footers(m.group(1).strip())
+    # 找 <!DOCTYPE html，忽略前置思考文字
     m = re.search(r"(<!DOCTYPE\s+html[\s\S]*)", text, re.IGNORECASE)
     if m:
-        return strip_copyright_footers(m.group(1).strip())
+        html = m.group(1).strip()
+        # 如果後面還有 ``` 收尾（thinking model 可能加），截掉
+        html = re.sub(r"\s*```\s*$", "", html).strip()
+        return strip_copyright_footers(html)
     return strip_copyright_footers(text.strip())
+
+
+def _set_last_ai_usage(
+    provider: str,
+    model: str,
+    input_tokens: object,
+    output_tokens: object,
+    total_tokens: object,
+    max_output_tokens: object = "",
+    image_detail: object = "",
+) -> None:
+    global LAST_AI_USAGE
+    LAST_AI_USAGE = {
+        "provider": provider,
+        "model": model,
+        "input_tokens": input_tokens,
+        "output_tokens": output_tokens,
+        "total_tokens": total_tokens,
+        "max_output_tokens": max_output_tokens,
+        "image_detail": image_detail,
+    }
+
+
+def _print_gemini_usage(data: dict, model: str) -> None:
+    usage = data.get("usageMetadata")
+    if not isinstance(usage, dict):
+        return
+    prompt_tokens = usage.get("promptTokenCount", "?")
+    output_tokens = usage.get("candidatesTokenCount")
+    total_tokens = usage.get("totalTokenCount", "?")
+    if output_tokens is None and isinstance(prompt_tokens, int) and isinstance(total_tokens, int):
+        output_tokens = max(0, total_tokens - prompt_tokens)
+    if output_tokens is None:
+        output_tokens = "?"
+    _set_last_ai_usage("gemini", model, prompt_tokens, output_tokens, total_tokens, 65536, "")
+    print(
+        f"    Gemini usage: input={prompt_tokens} output={output_tokens} total={total_tokens}",
+        flush=True,
+    )
+
+
+def _extract_gemini_text(data: dict) -> str:
+    candidates = data.get("candidates")
+    if not isinstance(candidates, list) or not candidates:
+        raise NonTextGeminiResponseError(f"Gemini response has no candidates: {str(data)[:500]}")
+
+    candidate = candidates[0]
+    content = candidate.get("content") if isinstance(candidate, dict) else None
+    parts = content.get("parts") if isinstance(content, dict) else None
+    if isinstance(parts, list):
+        text = "".join(str(part.get("text") or "") for part in parts if isinstance(part, dict))
+        if text.strip():
+            return text
+
+    finish_reason = candidate.get("finishReason") if isinstance(candidate, dict) else None
+    safety = candidate.get("safetyRatings") if isinstance(candidate, dict) else None
+    raise NonTextGeminiResponseError(
+        "Gemini response had usage but no text "
+        f"(finishReason={finish_reason or 'unknown'}, safetyRatings={safety or 'none'}). "
+        "Not retrying across API keys because the call was already charged and the prompt likely needs adjustment."
+    )
 
 
 # ── Gemini API ────────────────────────────────────────────────────────────────
@@ -829,8 +943,10 @@ def extract_html_from_response(text: str) -> str:
 def call_gemini_rest(
     prompt_text: str,
     image_paths: list[str] | str | None = None,
+    model: str | None = None,
 ) -> str:
-    """呼叫 Gemini REST API（gemini-3.5-flash），支援文字 + 多張圖片。
+    """呼叫 Gemini REST API，支援文字 + 多張圖片。
+    model: 指定模型名稱；預設用 AI_MODEL。
     每次呼叫輪替使用下一組 API Key。
     """
 
@@ -873,9 +989,10 @@ def call_gemini_rest(
 
         for _ in range(n_keys):
             api_key = next_api_key()
+            model_name = model or AI_MODEL
             url = (
                 f"https://generativelanguage.googleapis.com/v1beta/models/"
-                f"{GEMINI_MODEL}:generateContent?key={api_key}"
+                f"{model_name}:generateContent?key={api_key}"
             )
             try:
                 req = urllib.request.Request(
@@ -885,7 +1002,9 @@ def call_gemini_rest(
                 )
                 with urllib.request.urlopen(req, timeout=180) as resp:
                     data = json.loads(resp.read())
-                return data["candidates"][0]["content"]["parts"][0]["text"]
+                text = _extract_gemini_text(data)
+                _print_gemini_usage(data, model_name)
+                return text
             except urllib.error.HTTPError as e:
                 body = e.read().decode(errors="replace")
                 last_error = Exception(
@@ -899,6 +1018,8 @@ def call_gemini_rest(
                     time.sleep(10)
                 else:
                     raise  # 4xx 非 429 直接拋出
+            except NonTextGeminiResponseError:
+                raise
             except Exception as exc:
                 last_error = exc
                 all_rate_limited = False
@@ -945,6 +1066,43 @@ def _extract_openai_text(data: dict) -> str:
     raise RuntimeError(f"OpenAI response did not include text output: {str(data)[:500]}")
 
 
+def _print_openai_usage(data: dict, model: str) -> None:
+    usage = data.get("usage")
+    if not isinstance(usage, dict):
+        return
+    input_tokens = usage.get("input_tokens", "?")
+    output_tokens = usage.get("output_tokens", "?")
+    total_tokens = usage.get("total_tokens", "?")
+    _set_last_ai_usage(
+        "gpt",
+        model,
+        input_tokens,
+        output_tokens,
+        total_tokens,
+        OPENAI_MAX_OUTPUT_TOKENS,
+        OPENAI_IMAGE_DETAIL,
+    )
+    print(
+        f"    OpenAI usage: input={input_tokens} output={output_tokens} total={total_tokens}",
+        flush=True,
+    )
+
+
+def _raise_if_openai_incomplete(data: dict) -> None:
+    status = data.get("status")
+    details = data.get("incomplete_details")
+    if status == "incomplete":
+        reason = ""
+        if isinstance(details, dict):
+            reason = str(details.get("reason") or "")
+        if reason == "max_output_tokens":
+            raise RuntimeError(
+                "OpenAI response was truncated by OPENAI_MAX_OUTPUT_TOKENS. "
+                "Increase OPENAI_MAX_OUTPUT_TOKENS and rerun this item."
+            )
+        raise RuntimeError(f"OpenAI response was incomplete: {details or status}")
+
+
 def call_openai_responses(
     prompt_text: str,
     image_paths: list[str] | str | None = None,
@@ -967,14 +1125,15 @@ def call_openai_responses(
             content.append({
                 "type": "input_image",
                 "image_url": f"data:{_mime_type_for_image(img_path)};base64,{encoded}",
-                "detail": "high",
+                "detail": OPENAI_IMAGE_DETAIL,
             })
     content.append({"type": "input_text", "text": prompt_text})
 
     payload = json.dumps({
         "model": AI_MODEL,
         "input": [{"role": "user", "content": content}],
-        "max_output_tokens": 65536,
+        "max_output_tokens": OPENAI_MAX_OUTPUT_TOKENS,
+        "store": False,
     }).encode()
 
     last_error: Exception | None = None
@@ -989,7 +1148,10 @@ def call_openai_responses(
                 },
             )
             with urllib.request.urlopen(req, timeout=180) as resp:
-                return _extract_openai_text(json.loads(resp.read()))
+                data = json.loads(resp.read())
+                _print_openai_usage(data, AI_MODEL)
+                _raise_if_openai_incomplete(data)
+                return _extract_openai_text(data)
         except urllib.error.HTTPError as e:
             body = e.read().decode(errors="replace")
             last_error = Exception(f"HTTP {e.code}: {body[:500]}")
@@ -1011,14 +1173,40 @@ def call_openai_responses(
 def call_ai_rest(
     prompt_text: str,
     image_paths: list[str] | str | None = None,
+    expected: str = "one complete HTML document",
+    use_html_model: bool = False,
 ) -> str:
     if AI_PROVIDER == "gpt":
         return call_openai_responses(prompt_text, image_paths)
+    if AI_PROVIDER in {"codex-cli", "antigravity-cli"}:
+        # CLI providers cannot process local image files.
+        # Fall back to Gemini API automatically when images are present.
+        has_images = bool(cli_ai._normalize_images(image_paths))
+        if has_images:
+            fallback_model = (GEMINI_REST_HTML_MODEL if use_html_model else GEMINI_MODEL) or None
+            print(f"[fallback→gemini/{fallback_model}: images not supported by {AI_PROVIDER}]", end=" ", flush=True)
+            return call_gemini_rest(prompt_text, image_paths, model=fallback_model)
+        model = (AI_HTML_MODEL if use_html_model else AI_MODEL) or None
+        raw = cli_ai.call_cli_ai(
+            AI_PROVIDER,
+            prompt_text,
+            image_paths,
+            model,
+            expected=expected,
+        )
+        _set_last_ai_usage(AI_PROVIDER, model or "(default)", "", "", "", "", "")
+        return raw
     return call_gemini_rest(prompt_text, image_paths)
 
 
 def ai_label() -> str:
-    return "GPT" if AI_PROVIDER == "gpt" else "Gemini"
+    labels = {
+        "gpt": "GPT",
+        "gemini": "Gemini",
+        "codex-cli": "Codex CLI",
+        "antigravity-cli": "Antigravity CLI",
+    }
+    return labels.get(AI_PROVIDER, AI_PROVIDER)
 
 
 # ── 核心處理邏輯 ──────────────────────────────────────────────────────────────
@@ -1036,7 +1224,7 @@ def call_ai_translate(
         question=en_question,
         choices=format_choices_for_prompt(en_options),
     )
-    raw = call_ai_rest(prompt)
+    raw = call_ai_rest(prompt, expected="one JSON object")
     # 嘗試解析 JSON（模型可能包在 ```json ``` 中）
     m = re.search(r"```json\s*([\s\S]*?)\s*```", raw, re.IGNORECASE)
     json_text = m.group(1) if m else raw.strip()
@@ -1551,10 +1739,10 @@ def process_json_file(
 def main():
     parser = argparse.ArgumentParser(
         description="Generate Chinese explanations for MBE questions")
-    parser.add_argument("--provider", choices=("gemini", "gpt"), default="gemini",
+    parser.add_argument("--provider", choices=("gemini", "gpt", "codex-cli", "antigravity-cli"), default="gemini",
                         help="AI provider for missing generated fields (default: gemini)")
     parser.add_argument("--model", default="",
-                        help="Override provider model (default: gemini-3.5-flash or OPENAI_MODEL/gpt-5.4-mini)")
+                        help="Override provider model (default depends on provider)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Print plan without calling AI APIs")
     parser.add_argument("--force", action="store_true",
@@ -1582,12 +1770,18 @@ def main():
     if not args.dry_run and not no_ai:
         if AI_PROVIDER == "gpt" and not os.environ.get("OPENAI_API_KEY"):
             print("ERROR: No OPENAI_API_KEY found in environment or .env file.")
-            print("  Create scripts/.env and add: OPENAI_API_KEY=your_key_here")
+            print("  Add OPENAI_API_KEY=your_key_here to passbar/.env.local")
             sys.exit(1)
         if AI_PROVIDER == "gemini" and not _GEMINI_API_KEYS:
             print("ERROR: No GEMINI_API_KEY_1 ~ GEMINI_API_KEY_N found in environment or .env file.")
-            print("  Create scripts/.env and add: GEMINI_API_KEY_1=your_key_here")
+            print("  Add GEMINI_API_KEY_1=your_key_here to passbar/.env.local")
             sys.exit(1)
+        if AI_PROVIDER in {"codex-cli", "antigravity-cli"}:
+            try:
+                cli_ai.check_provider_ready(AI_PROVIDER)
+            except RuntimeError as exc:
+                print(f"ERROR: {exc}")
+                sys.exit(1)
 
     out_dir = os.path.abspath(args.out_dir)
     if not os.path.isdir(out_dir):

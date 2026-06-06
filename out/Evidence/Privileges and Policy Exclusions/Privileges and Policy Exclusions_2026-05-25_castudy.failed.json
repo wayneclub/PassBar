@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "sourceResult": "/Users/wayneclub/PassBar/out/Evidence/Privileges and Policy Exclusions/Privileges and Policy Exclusions_2026-05-25_castudy.json",
+    "generatedAt": "2026-05-25T03:18:39",
+    "failedCount": 4
+  },
+  "failed": [
+    {
+      "index": 4,
+      "qid": "",
+      "question": "A man was charged with embezzling a large sum of money from a company account and consulted with an attorney. After the attorney agreed to take the case, her legal assistant called the man to discuss a fee arrangement and asked the man to make a large payment to place into escrow, which he did. The attorney then retained a forensic accountant to review financial statements released by the prosecution during discovery. In doing so, the forensic accountant met with the man and privately discussed the statements in the attorney's office.\nThe prosecution subpoenaed both the legal assistant and the forensic accountant to testify at trial. Each has refused to answer any questions concerning their respective conversations with the man, citing the attorney-client privilege.\nTo whom does this privilege apply?",
+      "reason": "stem-mismatch",
+      "match_score": 0.1258,
+      "error": "",
+      "url": "https://castudy.com/api/mcq-search?q=A%20man%20was%20charged%20with%20embezzling%20a%20large%20sum%20of%20money%20from%20a%20company%20account%20and%20consulted%20with%20an%20attorney.%20After%20the%20attorney%20agreed%20to%20take%20the%20case%2C%20her%20legal%20assistant%20called%20the%20man%20to%20discuss%20a%20fee%20arrangement%20and%20asked%20the%20man%20to%20make%20a%20large%20payment%20to%20place%20into%20escrow%2C%20which%20he%20did.%20The%20attorney%20then%20retained%20a%20forensic%20accountant%20to%20review%20financial%20statements%20released%20by%20the%20prosecution%20during%20discovery.%20In%20doing%20so%2C%20the%20forensic%20accountant%20met%20with%20the%20man%20and%20privately%20discussed%20the%20statements%20in%20the%20attorney%27s%20office.%20The%20prosecution%20subpoenaed%20both%20the%20legal%20assistant%20and%20the%20forensic%20accountant%20to%20testify%20at%20trial.%20Each%20has%20refused%20to%20answer%20any%20questions%20concerning%20their%20respective%20conversations%20with%20the%20man%2C%20citing%20the%20attorney-client%20privilege.%20To%20whom%20does%20this%20privilege%20apply%3F&type=MBE"
+    },
+    {
+      "index": 17,
+      "qid": "",
+      "question": "Police received a tip from an informant that a man that lived on his street might be dealing drugs out of his home. An investigation was initiated in response to the informant's tip. During the investigation, an undercover officer purchased cocaine from the man at his home on multiple occasions. Police ultimately obtained a valid warrant to search the man's home and, while executing the warrant, found a large quantity of cocaine. The man was subsequently charged with knowingly possessing cocaine with the intent to distribute.\nPrior to trial, the man requested disclosure of the identity of the informant and the contents of the informant's statement to police. The prosecutor refused to disclose the informant's identity and the substance of the informant's statement to police, claiming that both are privileged.\nHow should the court rule on the prosecutor's privilege claims?",
+      "reason": "stem-mismatch",
+      "match_score": 0.0243,
+      "error": "",
+      "url": "https://castudy.com/api/mcq-search?q=Police%20received%20a%20tip%20from%20an%20informant%20that%20a%20man%20that%20lived%20on%20his%20street%20might%20be%20dealing%20drugs%20out%20of%20his%20home.%20An%20investigation%20was%20initiated%20in%20response%20to%20the%20informant%27s%20tip.%20During%20the%20investigation%2C%20an%20undercover%20officer%20purchased%20cocaine%20from%20the%20man%20at%20his%20home%20on%20multiple%20occasions.%20Police%20ultimately%20obtained%20a%20valid%20warrant%20to%20search%20the%20man%27s%20home%20and%2C%20while%20executing%20the%20warrant%2C%20found%20a%20large%20quantity%20of%20cocaine.%20The%20man%20was%20subsequently%20charged%20with%20knowingly%20possessing%20cocaine%20with%20the%20intent%20to%20distribute.%20Prior%20to%20trial%2C%20the%20man%20requested%20disclosure%20of%20the%20identity%20of%20the%20informant%20and%20the%20contents%20of%20the%20informant%27s%20statement%20to%20police.%20The%20prosecutor%20refused%20to%20disclose%20the%20informant%27s%20identity%20and%20the%20substance%20of%20the%20informant%27s%20statement%20to%20police%2C%20claiming%20that%20both%20are%20privileged.%20How%20should%20the%20court%20rule%20on%20the%20prosecutor%27s%20privilege%20claims%3F&type=MBE"
+    },
+    {
+      "index": 37,
+      "qid": "",
+      "question": "A defendant has been charged with sexual exploitation of children after several images depicting the defendant's young daughter engaged in sexual conduct were found on a flash drive in his garage. The defendant has pleaded not guilty, claiming that the flash drive belonged to someone else.\nAt the jury trial in federal district court, the prosecutor seeks to call the defendant's wife, the child's stepmother, to testify that the defendant privately told her that he was likely \"going away for a long time for what he did\" and that \"it would be best for protective services to remove their child from the home immediately.\" The wife has agreed to testify but the defendant has objected, citing spousal privilege.\nIs the wife's proposed testimony admissible?",
+      "reason": "request-failed",
+      "match_score": 0.0,
+      "error": "stem-mismatch",
+      "url": "https://castudy.com/api/mcq-search?q=A%20defendant%20has%20been%20charged%20with%20sexual%20exploitation%20of%20children%20after%20several%20images%20depicting%20the%20defendant%27s%20young%20daughter%20engaged%20in%20sexual%20conduct%20were%20found%20on%20a%20flash%20drive%20in%20his%20garage.%20The%20defendant%20has%20pleaded%20not%20guilty%2C%20claiming%20that%20the%20flash%20drive%20belonged%20to%20someone%20else.%20At%20the%20jury%20trial%20in%20federal%20district%20court%2C%20the%20prosecutor%20seeks%20to%20call%20the%20defendant%27s%20wife%2C%20the%20child%27s%20stepmother%2C%20to%20testify%20that%20the%20defendant%20privately%20told%20her%20that%20he%20was%20likely%20%22going%20away%20for%20a%20long%20time%20for%20what%20he%20did%22%20and%20that%20%22it%20would%20be%20best%20for%20protective%20services%20to%20remove%20their%20child%20from%20the%20home%20immediately.%22%20The%20wife%20has%20agreed%20to%20testify%20but%20the%20defendant%20has%20objected%2C%20citing%20spousal%20privilege.%20Is%20the%20wife%27s%20proposed%20testimony%20admissible%3F&type=MBE"
+    },
+    {
+      "index": 39,
+      "qid": "",
+      "question": "After a night of drinking at a bar, a man and his friend got into an argument over a sports team. The man became so upset that he punched the friend, breaking the friend's nose. The man was arrested for battery. The friend subsequently filed a civil action against the man for battery. In an attempt to dispose of both the criminal charge and the civil suit, the man offered to settle the civil suit with the friend for $10,000 if the friend would refuse to testify against the man in his criminal trial for battery. The friend declined and later informed the prosecutor of the man's offer. The prosecutor then filed an additional charge of obstruction of justice against the man.\nIs the man's offer admissible at his trial for obstruction of justice?",
+      "reason": "stem-mismatch",
+      "match_score": 0.2459,
+      "error": "",
+      "url": "https://castudy.com/api/mcq-search?q=After%20a%20night%20of%20drinking%20at%20a%20bar%2C%20a%20man%20and%20his%20friend%20got%20into%20an%20argument%20over%20a%20sports%20team.%20The%20man%20became%20so%20upset%20that%20he%20punched%20the%20friend%2C%20breaking%20the%20friend%27s%20nose.%20The%20man%20was%20arrested%20for%20battery.%20The%20friend%20subsequently%20filed%20a%20civil%20action%20against%20the%20man%20for%20battery.%20In%20an%20attempt%20to%20dispose%20of%20both%20the%20criminal%20charge%20and%20the%20civil%20suit%2C%20the%20man%20offered%20to%20settle%20the%20civil%20suit%20with%20the%20friend%20for%20%2410%2C000%20if%20the%20friend%20would%20refuse%20to%20testify%20against%20the%20man%20in%20his%20criminal%20trial%20for%20battery.%20The%20friend%20declined%20and%20later%20informed%20the%20prosecutor%20of%20the%20man%27s%20offer.%20The%20prosecutor%20then%20filed%20an%20additional%20charge%20of%20obstruction%20of%20justice%20against%20the%20man.%20Is%20the%20man%27s%20offer%20admissible%20at%20his%20trial%20for%20obstruction%20of%20justice%3F&type=MBE"
+    }
+  ]
+}

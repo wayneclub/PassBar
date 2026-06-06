@@ -20,13 +20,14 @@ import argparse
 import json
 import os
 import re
-import sys
 import time
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+import cli_ai
 
 
 def _load_env_file() -> None:
@@ -64,16 +65,30 @@ MAX_RETRIES = 3
 # Runtime provider state (changed via set_meta_provider)
 _META_PROVIDER: str = "gemini"
 _META_MODEL: str = GEMINI_MODEL
+LAST_META_USAGE: dict[str, Any] | None = None
 
 
 def set_meta_provider(provider: str, model: str | None = None) -> None:
-    """Switch meta generation to 'gemini' or 'gpt'."""
+    """Switch meta generation to 'gemini', 'gpt', or a supported local CLI."""
     global _META_PROVIDER, _META_MODEL
     _META_PROVIDER = provider
     if provider == "gpt":
         _META_MODEL = model or OPENAI_MODEL
+    elif provider == "codex-cli":
+        _META_MODEL = model or os.environ.get("CODEX_CLI_MODEL", "")
+    elif provider == "antigravity-cli":
+        _META_MODEL = model or os.environ.get("ANTIGRAVITY_CLI_MODEL", "")
     else:
         _META_MODEL = model or GEMINI_MODEL
+
+
+def clear_last_meta_usage() -> None:
+    global LAST_META_USAGE
+    LAST_META_USAGE = None
+
+
+def get_last_meta_usage() -> dict[str, Any] | None:
+    return dict(LAST_META_USAGE) if LAST_META_USAGE else None
 
 TRAP_TYPES = [
     "Rule Exception Overlooked",
@@ -107,11 +122,6 @@ GEMINI_API_KEYS: list[str] = [
 if not GEMINI_API_KEYS and os.environ.get("GEMINI_API_KEY"):
     GEMINI_API_KEYS = [os.environ["GEMINI_API_KEY"]]
 
-if not GEMINI_API_KEYS:
-    print("ERROR: No GEMINI_API_KEY_1 ~ GEMINI_API_KEY_N or GEMINI_API_KEY found.")
-    print("  Create scripts/.env and add: GEMINI_API_KEY_1=your_key_here")
-    sys.exit(1)
-
 key_index = 0
 
 
@@ -119,20 +129,98 @@ class RateLimitedError(Exception):
     pass
 
 
+class NonTextGeminiResponseError(Exception):
+    """Gemini returned a billable response but no text payload to consume."""
+
+
+def set_last_meta_usage(
+    provider: str,
+    model: str,
+    input_tokens: object,
+    output_tokens: object,
+    total_tokens: object,
+    max_output_tokens: object = "",
+) -> None:
+    global LAST_META_USAGE
+    LAST_META_USAGE = {
+        "provider": provider,
+        "model": model,
+        "input_tokens": input_tokens,
+        "output_tokens": output_tokens,
+        "total_tokens": total_tokens,
+        "max_output_tokens": max_output_tokens,
+        "image_detail": "",
+    }
+
+
+def print_gemini_usage(data: dict[str, Any], model: str) -> None:
+    usage = data.get("usageMetadata")
+    if not isinstance(usage, dict):
+        return
+    prompt_tokens = usage.get("promptTokenCount", "?")
+    output_tokens = usage.get("candidatesTokenCount")
+    total_tokens = usage.get("totalTokenCount", "?")
+    if output_tokens is None and isinstance(prompt_tokens, int) and isinstance(total_tokens, int):
+        output_tokens = max(0, total_tokens - prompt_tokens)
+    if output_tokens is None:
+        output_tokens = "?"
+    set_last_meta_usage("gemini", model, prompt_tokens, output_tokens, total_tokens, 12000)
+    print(
+        f"    Gemini meta usage: input={prompt_tokens} output={output_tokens} total={total_tokens}",
+        flush=True,
+    )
+
+
+def extract_gemini_text(data: dict[str, Any]) -> str:
+    candidates = data.get("candidates")
+    if not isinstance(candidates, list) or not candidates:
+        raise NonTextGeminiResponseError(f"Gemini response has no candidates: {str(data)[:500]}")
+
+    candidate = candidates[0]
+    content = candidate.get("content") if isinstance(candidate, dict) else None
+    parts = content.get("parts") if isinstance(content, dict) else None
+    if isinstance(parts, list):
+        text = "".join(str(part.get("text") or "") for part in parts if isinstance(part, dict))
+        if text.strip():
+            return text
+
+    finish_reason = candidate.get("finishReason") if isinstance(candidate, dict) else None
+    safety = candidate.get("safetyRatings") if isinstance(candidate, dict) else None
+    raise NonTextGeminiResponseError(
+        "Gemini response had usage but no text "
+        f"(finishReason={finish_reason or 'unknown'}, safetyRatings={safety or 'none'}). "
+        "Not retrying across API keys because the call was already charged and the prompt likely needs adjustment."
+    )
+
+
 def next_api_key() -> str:
     global key_index
+    if not GEMINI_API_KEYS:
+        raise RuntimeError(
+            "No GEMINI_API_KEY_1 ~ GEMINI_API_KEY_N or GEMINI_API_KEY found. "
+            "Add GEMINI_API_KEY_1=your_key_here to passbar/.env.local, or use --provider gpt/codex-cli."
+        )
     key = GEMINI_API_KEYS[key_index % len(GEMINI_API_KEYS)]
     key_index += 1
     return key
 
 
+_LOCALIZED_TEXT_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {
+        "en":      {"type": "STRING"},
+        "zh":      {"type": "STRING"},
+    },
+    "required": ["en", "zh"],
+}
+
 _KEYWORD_ITEM_SCHEMA = {
     "type": "OBJECT",
     "properties": {
         "text":       {"type": "STRING"},
-        "label":      {"type": "STRING"},
+        "label":      _LOCALIZED_TEXT_SCHEMA,
         "kind":       {"type": "STRING"},
-        "reason":     {"type": "STRING"},
+        "reason":     _LOCALIZED_TEXT_SCHEMA,
         "importance": {"type": "STRING"},
     },
     "required": ["text", "label", "kind", "reason", "importance"],
@@ -144,11 +232,48 @@ _HIGHLIGHT_ITEM_SCHEMA = {
         "id":         {"type": "STRING"},
         "text":       {"type": "STRING"},
         "kind":       {"type": "STRING"},
-        "label":      {"type": "STRING"},
-        "reason":     {"type": "STRING"},
+        "label":      _LOCALIZED_TEXT_SCHEMA,
+        "reason":     _LOCALIZED_TEXT_SCHEMA,
         "importance": {"type": "STRING"},
     },
     "required": ["id", "text", "kind", "label", "reason", "importance"],
+}
+
+_OPENAI_LOCALIZED_TEXT_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "en": {"type": "string"},
+        "zh": {"type": "string"},
+    },
+    "required": ["en", "zh"],
+    "additionalProperties": False,
+}
+
+_OPENAI_KEYWORD_ITEM_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "text":       {"type": "string"},
+        "label":      _OPENAI_LOCALIZED_TEXT_SCHEMA,
+        "kind":       {"type": "string"},
+        "reason":     _OPENAI_LOCALIZED_TEXT_SCHEMA,
+        "importance": {"type": "string"},
+    },
+    "required": ["text", "label", "kind", "reason", "importance"],
+    "additionalProperties": False,
+}
+
+_OPENAI_HIGHLIGHT_ITEM_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "id":         {"type": "string"},
+        "text":       {"type": "string"},
+        "kind":       {"type": "string"},
+        "label":      _OPENAI_LOCALIZED_TEXT_SCHEMA,
+        "reason":     _OPENAI_LOCALIZED_TEXT_SCHEMA,
+        "importance": {"type": "string"},
+    },
+    "required": ["id", "text", "kind", "label", "reason", "importance"],
+    "additionalProperties": False,
 }
 
 RESPONSE_SCHEMA = {
@@ -226,7 +351,8 @@ def call_gemini_json(prompt: str) -> dict[str, Any]:
                 )
                 with urllib.request.urlopen(req, timeout=60) as resp:
                     data = json.loads(resp.read())
-                raw_text = data["candidates"][0]["content"]["parts"][0]["text"]
+                raw_text = extract_gemini_text(data)
+                print_gemini_usage(data, _META_MODEL)
                 cleaned = re.sub(r"^```json\s*", "", raw_text.strip(), flags=re.IGNORECASE)
                 cleaned = re.sub(r"\s*```$", "", cleaned)
                 try:
@@ -248,6 +374,8 @@ def call_gemini_json(prompt: str) -> dict[str, Any]:
                     time.sleep(10)
                 else:
                     raise
+            except NonTextGeminiResponseError:
+                raise
             except Exception as exc:
                 last_error = exc
                 all_rate_limited = False
@@ -268,6 +396,7 @@ def call_openai_json(prompt: str) -> dict[str, Any]:
     payload = json.dumps({
         "model": _META_MODEL,
         "input": [{"role": "user", "content": prompt}],
+        "store": False,
         "text": {
             "format": {
                 "type": "json_schema",
@@ -285,18 +414,7 @@ def call_openai_json(prompt: str) -> dict[str, Any]:
                             "properties": {
                                 "keywords": {
                                     "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "text":       {"type": "string"},
-                                            "label":      {"type": "string"},
-                                            "kind":       {"type": "string"},
-                                            "reason":     {"type": "string"},
-                                            "importance": {"type": "string"},
-                                        },
-                                        "required": ["text", "label", "kind", "reason", "importance"],
-                                        "additionalProperties": False,
-                                    },
+                                    "items": _OPENAI_KEYWORD_ITEM_SCHEMA,
                                 },
                             },
                             "required": ["keywords"],
@@ -308,10 +426,10 @@ def call_openai_json(prompt: str) -> dict[str, Any]:
                                 "choices": {
                                     "type": "object",
                                     "properties": {
-                                        "A": {"type": "array", "items": {"type": "object", "properties": {"text": {"type": "string"}, "label": {"type": "string"}, "kind": {"type": "string"}, "reason": {"type": "string"}, "importance": {"type": "string"}}, "required": ["text", "label", "kind", "reason", "importance"], "additionalProperties": False}},
-                                        "B": {"type": "array", "items": {"type": "object", "properties": {"text": {"type": "string"}, "label": {"type": "string"}, "kind": {"type": "string"}, "reason": {"type": "string"}, "importance": {"type": "string"}}, "required": ["text", "label", "kind", "reason", "importance"], "additionalProperties": False}},
-                                        "C": {"type": "array", "items": {"type": "object", "properties": {"text": {"type": "string"}, "label": {"type": "string"}, "kind": {"type": "string"}, "reason": {"type": "string"}, "importance": {"type": "string"}}, "required": ["text", "label", "kind", "reason", "importance"], "additionalProperties": False}},
-                                        "D": {"type": "array", "items": {"type": "object", "properties": {"text": {"type": "string"}, "label": {"type": "string"}, "kind": {"type": "string"}, "reason": {"type": "string"}, "importance": {"type": "string"}}, "required": ["text", "label", "kind", "reason", "importance"], "additionalProperties": False}},
+                                        "A": {"type": "array", "items": _OPENAI_KEYWORD_ITEM_SCHEMA},
+                                        "B": {"type": "array", "items": _OPENAI_KEYWORD_ITEM_SCHEMA},
+                                        "C": {"type": "array", "items": _OPENAI_KEYWORD_ITEM_SCHEMA},
+                                        "D": {"type": "array", "items": _OPENAI_KEYWORD_ITEM_SCHEMA},
                                     },
                                     "required": ["A", "B", "C", "D"],
                                     "additionalProperties": False,
@@ -325,19 +443,7 @@ def call_openai_json(prompt: str) -> dict[str, Any]:
                             "properties": {
                                 "highlights": {
                                     "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id":         {"type": "string"},
-                                            "text":       {"type": "string"},
-                                            "kind":       {"type": "string"},
-                                            "label":      {"type": "string"},
-                                            "reason":     {"type": "string"},
-                                            "importance": {"type": "string"},
-                                        },
-                                        "required": ["id", "text", "kind", "label", "reason", "importance"],
-                                        "additionalProperties": False,
-                                    },
+                                    "items": _OPENAI_HIGHLIGHT_ITEM_SCHEMA,
                                 },
                             },
                             "required": ["highlights"],
@@ -364,6 +470,32 @@ def call_openai_json(prompt: str) -> dict[str, Any]:
         try:
             with urllib.request.urlopen(req, timeout=60) as resp:
                 data = json.loads(resp.read())
+            usage = data.get("usage")
+            if isinstance(usage, dict):
+                set_last_meta_usage(
+                    "gpt",
+                    _META_MODEL,
+                    usage.get("input_tokens", "?"),
+                    usage.get("output_tokens", "?"),
+                    usage.get("total_tokens", "?"),
+                    "",
+                )
+                print(
+                    "    OpenAI meta usage: "
+                    f"input={usage.get('input_tokens', '?')} "
+                    f"output={usage.get('output_tokens', '?')} "
+                    f"total={usage.get('total_tokens', '?')}",
+                    flush=True,
+                )
+            if data.get("status") == "incomplete":
+                details = data.get("incomplete_details")
+                reason = details.get("reason") if isinstance(details, dict) else ""
+                if reason == "max_output_tokens":
+                    raise RuntimeError(
+                        "OpenAI meta response was truncated by max_output_tokens. "
+                        "Increase the OpenAI output limit and rerun this item."
+                    )
+                raise RuntimeError(f"OpenAI meta response was incomplete: {details or data.get('status')}")
             text = data["output"][0]["content"][0]["text"]
             return json.loads(text)
         except urllib.error.HTTPError as e:
@@ -386,10 +518,36 @@ def call_openai_json(prompt: str) -> dict[str, Any]:
     raise RuntimeError(f"OpenAI failed after {MAX_RETRIES} attempts. Last: {last_error}")
 
 
+def _extract_json_from_text(text: str) -> dict[str, Any]:
+    cleaned = re.sub(r"^```json\s*", "", text.strip(), flags=re.IGNORECASE)
+    cleaned = re.sub(r"\s*```$", "", cleaned)
+    try:
+        return json.loads(cleaned)
+    except json.JSONDecodeError:
+        match = re.search(r"\{[\s\S]*\}", cleaned)
+        if match:
+            return json.loads(match.group(0))
+        raise
+
+
+def call_cli_json(prompt: str) -> dict[str, Any]:
+    raw = cli_ai.call_cli_ai(
+        _META_PROVIDER,
+        prompt,
+        None,
+        _META_MODEL or None,
+        expected="one JSON object matching the requested schema",
+    )
+    set_last_meta_usage(_META_PROVIDER, _META_MODEL or "(default)", "", "", "", "")
+    return _extract_json_from_text(raw)
+
+
 def call_meta_json(prompt: str) -> dict[str, Any]:
     """Unified entry — delegates to Gemini or OpenAI based on _META_PROVIDER."""
     if _META_PROVIDER == "gpt":
         return call_openai_json(prompt)
+    if _META_PROVIDER in {"codex-cli", "antigravity-cli"}:
+        return call_cli_json(prompt)
     return call_gemini_json(prompt)
 
 
@@ -409,9 +567,15 @@ matches this schema:
     "keywords": [
       {
         "text": "exact keyword from the English question stem",
-        "label": "English / 中文",
+        "label": {
+          "en": "final judgment rule",
+          "zh": "最终判决规则"
+        },
         "kind": "legal_term",
-        "reason": "short Chinese reason",
+        "reason": {
+          "en": "Signals whether the order can be appealed immediately.",
+          "zh": "判断该裁定是否可立即上诉的关键。"
+        },
         "importance": "high"
       }
     ]
@@ -421,9 +585,15 @@ matches this schema:
       "A": [
         {
           "text": "exact keyword from choice A",
-          "label": "English / 中文",
+          "label": {
+            "en": "appealability distractor",
+            "zh": "上诉可能性陷阱"
+          },
           "kind": "trap_phrase",
-          "reason": "short Chinese reason",
+          "reason": {
+            "en": "Misstates when the appellate court can review the order.",
+            "zh": "误述上诉法院可审查裁定的时点。"
+          },
           "importance": "medium"
         }
       ]
@@ -435,8 +605,14 @@ matches this schema:
         "id": "h1",
         "text": "exact substring from the English question stem",
         "kind": "key_sentence",
-        "label": "English / 中文",
-        "reason": "short Chinese reason",
+        "label": {
+          "en": "notice of appeal timing",
+          "zh": "上诉通知时点"
+        },
+        "reason": {
+          "en": "Controls whether the appellate deadline was met.",
+          "zh": "决定是否符合上诉期限。"
+        },
         "importance": "high"
       }
     ]
@@ -463,8 +639,14 @@ Strict formatting rules:
   - "time_marker": dates, deadlines, elapsed time, sequence signals
   - "trap_phrase": choice language that reveals a distractor trap
   - "remedy_or_relief": requested relief, damages, injunction, appeal, suppression etc.
-- Keyword "label" should be bilingual when useful, e.g. "Final judgment / 最終判決".
-- Keyword "reason" must be concise Traditional Chinese explaining why this keyword matters.
+- Keyword "label" must be an object with exactly these keys: "en" and "zh".
+- Keyword "label.en" must be a concise English legal gloss that explains or normalizes
+  the meaning of "text"; do not merely copy "text" unless the exact phrase is already
+  the best legal term.
+- Keyword "label.zh" must be a concise Simplified Chinese legal label.
+- Keyword "reason" must be an object with exactly these keys: "en" and "zh".
+- Keyword "reason.en" must briefly explain in English why this keyword matters.
+- Keyword "reason.zh" must briefly explain in Simplified Chinese why this keyword matters.
 - Keyword "importance" must be "high", "medium", or "low".
 - "question_highlight_meta.highlights": 2-5 items total.
 - Every highlight "text" MUST be an exact substring copied from the English question stem.
@@ -476,8 +658,13 @@ Strict formatting rules:
   - "issue": the legal issue being tested
   - "rule_trigger": words that trigger a specific doctrine/rule
   - "fact_trigger": facts that change the outcome
-- "label" should be bilingual when useful, e.g. "Final judgment / 最終判決".
-- "reason" must be concise Traditional Chinese explaining why this text matters for solving.
+- Highlight "label" must be an object with exactly these keys: "en" and "zh".
+- Highlight "label.en" must be a concise English legal gloss that explains or normalizes
+  the highlighted text; do not merely copy "text" unless it is already the best label.
+- Highlight "label.zh" must be a concise Simplified Chinese legal label.
+- Highlight "reason" must be an object with exactly these keys: "en" and "zh".
+- Highlight "reason.en" must briefly explain in English why this text matters for solving.
+- Highlight "reason.zh" must briefly explain in Simplified Chinese why this text matters for solving.
 - "importance" must be "high", "medium", or "low".
 
 Allowed trap_type values:
@@ -525,6 +712,26 @@ def canonical_taxonomy_value(value: Any, allowed: list[str], fallback: str | Non
     if normalized in lookup:
         return lookup[normalized]
     return fallback
+
+
+def normalize_localized_text(value: Any, source_text: str = "", fallback_en: str = "") -> dict[str, str]:
+    if isinstance(value, dict):
+        en = str(value.get("en") or fallback_en or source_text or "").strip()
+        zh = str(value.get("zh") or "").strip()
+        return {"en": en, "zh": zh}
+
+    cleaned = str(value or "").strip()
+    if not cleaned:
+        return {"en": fallback_en or source_text, "zh": ""}
+
+    if "/" in cleaned:
+        left, _, right = cleaned.partition("/")
+        en = left.strip()
+        if re.fullmatch(r"(?i)english", en):
+            en = fallback_en or source_text
+        return {"en": en or fallback_en or source_text, "zh": right.strip()}
+
+    return {"en": fallback_en or source_text, "zh": cleaned}
 
 
 def parse_bool(value: Any) -> bool:
@@ -626,9 +833,9 @@ def normalize_analysis_meta(value: Any) -> dict[str, Any]:
         return {
             "id": str(item.get("id") or f"k{index}"),
             "text": text,
-            "label": str(item.get("label") or "").strip(),
+            "label": normalize_localized_text(item.get("label"), text, text),
             "kind": kind if kind in valid_keyword_kinds else "legal_term",
-            "reason": str(item.get("reason") or "").strip(),
+            "reason": normalize_localized_text(item.get("reason")),
             "importance": importance if importance in valid_importance else "medium",
         }
 
@@ -679,8 +886,8 @@ def normalize_analysis_meta(value: Any) -> dict[str, Any]:
             "id": str(highlight.get("id") or f"h{index}"),
             "text": text,
             "kind": kind if kind in valid_kinds else "keyword",
-            "label": str(highlight.get("label") or "").strip(),
-            "reason": str(highlight.get("reason") or "").strip(),
+            "label": normalize_localized_text(highlight.get("label"), text, text),
+            "reason": normalize_localized_text(highlight.get("reason")),
             "importance": importance if importance in valid_importance else "medium",
         })
 
@@ -751,7 +958,7 @@ def save_analysis_meta(item: dict[str, Any], generated: dict[str, Any]) -> dict[
         "question_analysis": {
             **analysis_meta,
             "generated_by": "generate_question_meta.py",
-            "generated_model": GEMINI_MODEL,
+            "generated_model": _META_MODEL or _META_PROVIDER,
             "generated_at": datetime.now(timezone.utc).isoformat(),
         },
     }
@@ -813,7 +1020,12 @@ def main() -> None:
     parser.add_argument("--limit", type=int, help="Max questions to process")
     parser.add_argument("--dry-run", action="store_true", help="Print plan, no API calls or writes")
     parser.add_argument("--refill", action="store_true", help="Regenerate meta even if complete meta exists")
-    parser.add_argument("--provider", choices=("gemini", "gpt"), default="gemini", help="AI provider (default: gemini)")
+    parser.add_argument(
+        "--provider",
+        choices=("gemini", "gpt", "codex-cli", "antigravity-cli"),
+        default="gemini",
+        help="AI provider (default: gemini)",
+    )
     parser.add_argument("--model", default="", help="Override model name")
     args = parser.parse_args()
 

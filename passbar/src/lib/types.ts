@@ -15,12 +15,17 @@ export interface Subject {
 
 export type QuestionHighlightKind = 'key_sentence' | 'keyword' | 'issue' | 'rule_trigger' | 'fact_trigger';
 
+export type LocalizedText = string | {
+  en?: string;
+  zh?: string;
+};
+
 export interface QuestionHighlight {
   id?: string;
   text: string;
   kind: QuestionHighlightKind;
-  label?: string;
-  reason?: string;
+  label?: LocalizedText;
+  reason?: LocalizedText;
   importance?: 'high' | 'medium' | 'low';
   occurrence?: number;
 }
@@ -42,9 +47,9 @@ export type QuestionKeywordKind =
 export interface QuestionKeyword {
   id?: string;
   text: string;
-  label?: string;
+  label?: LocalizedText;
   kind: QuestionKeywordKind;
-  reason?: string;
+  reason?: LocalizedText;
   importance?: 'high' | 'medium' | 'low';
 }
 

@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "sourceResult": "/Users/wayneclub/PassBar/out/Criminal Law and Procedure/Other Crimes/Other Crimes_2026-05-25_castudy.json",
+    "generatedAt": "2026-05-25T03:46:09",
+    "failedCount": 7
+  },
+  "failed": [
+    {
+      "index": 7,
+      "qid": "",
+      "question": "A man intended to rob a local convenience store that was rumored to contain a large safe. One night, the man walked into the convenience store, pointed a gun at the store owner, and demanded to know where the safe was kept. Frightened, the store owner pointed to a storage room located at the back of the store and approximately 20 feet from where the man and the store owner were standing. The man then moved the store owner to the storage room and forced him to open the safe. The man fled after taking the money in the safe, and the store owner immediately called the police. The man was later arrested and charged with robbery and kidnapping.\nCan the man be properly convicted of kidnapping?",
+      "reason": "stem-mismatch",
+      "match_score": 0.0256,
+      "error": "",
+      "url": "https://castudy.com/api/mcq-search?q=A%20man%20intended%20to%20rob%20a%20local%20convenience%20store%20that%20was%20rumored%20to%20contain%20a%20large%20safe.%20One%20night%2C%20the%20man%20walked%20into%20the%20convenience%20store%2C%20pointed%20a%20gun%20at%20the%20store%20owner%2C%20and%20demanded%20to%20know%20where%20the%20safe%20was%20kept.%20Frightened%2C%20the%20store%20owner%20pointed%20to%20a%20storage%20room%20located%20at%20the%20back%20of%20the%20store%20and%20approximately%2020%20feet%20from%20where%20the%20man%20and%20the%20store%20owner%20were%20standing.%20The%20man%20then%20moved%20the%20store%20owner%20to%20the%20storage%20room%20and%20forced%20him%20to%20open%20the%20safe.%20The%20man%20fled%20after%20taking%20the%20money%20in%20the%20safe%2C%20and%20the%20store%20owner%20immediately%20called%20the%20police.%20The%20man%20was%20later%20arrested%20and%20charged%20with%20robbery%20and%20kidnapping.%20Can%20the%20man%20be%20properly%20convicted%20of%20kidnapping%3F&type=MBE"
+    },
+    {
+      "index": 9,
+      "qid": "",
+      "question": "A man loaned $200 to a friend, and the friend promised to repay the loan within a week. The friend's brother was present when the loan was made but otherwise was not involved in the loan arrangement. Two weeks later, the man encountered the friend's brother on the street. Because the man honestly, but unreasonably, believed that the friend's brother had promised to repay the loan if the friend did not, the man confronted the friend's brother and demanded immediate repayment of the loan. When the friend's brother refused, the man pulled out a gun and repeated his demand. The friend's brother took $200 from his wallet and handed it to the man.\nIs the man guilty of robbery?",
+      "reason": "request-failed",
+      "match_score": 0.0,
+      "error": "stem-mismatch",
+      "url": "https://castudy.com/api/mcq-search?q=A%20man%20loaned%20%24200%20to%20a%20friend%2C%20and%20the%20friend%20promised%20to%20repay%20the%20loan%20within%20a%20week.%20The%20friend%27s%20brother%20was%20present%20when%20the%20loan%20was%20made%20but%20otherwise%20was%20not%20involved%20in%20the%20loan%20arrangement.%20Two%20weeks%20later%2C%20the%20man%20encountered%20the%20friend%27s%20brother%20on%20the%20street.%20Because%20the%20man%20honestly%2C%20but%20unreasonably%2C%20believed%20that%20the%20friend%27s%20brother%20had%20promised%20to%20repay%20the%20loan%20if%20the%20friend%20did%20not%2C%20the%20man%20confronted%20the%20friend%27s%20brother%20and%20demanded%20immediate%20repayment%20of%20the%20loan.%20When%20the%20friend%27s%20brother%20refused%2C%20the%20man%20pulled%20out%20a%20gun%20and%20repeated%20his%20demand.%20The%20friend%27s%20brother%20took%20%24200%20from%20his%20wallet%20and%20handed%20it%20to%20the%20man.%20Is%20the%20man%20guilty%20of%20robbery%3F&type=MBE"
+    },
+    {
+      "index": 14,
+      "qid": "",
+      "question": "A woman stole a coat from a coat rack in a restaurant. Several days later, the woman wore the coat on the subway. The subway doors closed on her coat sleeve and nearly tore the sleeve off. The woman took off the coat and threw it into a trash bin at the next subway station. A passerby spotted the coat and retrieved it from the bin. Upon closer examination, the passerby noticed that the sleeve on the coat was torn badly at the seam. Realizing that she could repair and salvage the coat, she took it home and repaired it. Subsequently, when the passerby was wearing the coat in public, the original owner of the coat recognized it and accused the passerby of stealing her coat.\nIs the passerby guilty of larceny?",
+      "reason": "request-failed",
+      "match_score": 0.0,
+      "error": "stem-mismatch",
+      "url": "https://castudy.com/api/mcq-search?q=A%20woman%20stole%20a%20coat%20from%20a%20coat%20rack%20in%20a%20restaurant.%20Several%20days%20later%2C%20the%20woman%20wore%20the%20coat%20on%20the%20subway.%20The%20subway%20doors%20closed%20on%20her%20coat%20sleeve%20and%20nearly%20tore%20the%20sleeve%20off.%20The%20woman%20took%20off%20the%20coat%20and%20threw%20it%20into%20a%20trash%20bin%20at%20the%20next%20subway%20station.%20A%20passerby%20spotted%20the%20coat%20and%20retrieved%20it%20from%20the%20bin.%20Upon%20closer%20examination%2C%20the%20passerby%20noticed%20that%20the%20sleeve%20on%20the%20coat%20was%20torn%20badly%20at%20the%20seam.%20Realizing%20that%20she%20could%20repair%20and%20salvage%20the%20coat%2C%20she%20took%20it%20home%20and%20repaired%20it.%20Subsequently%2C%20when%20the%20passerby%20was%20wearing%20the%20coat%20in%20public%2C%20the%20original%20owner%20of%20the%20coat%20recognized%20it%20and%20accused%20the%20passerby%20of%20stealing%20her%20coat.%20Is%20the%20passerby%20guilty%20of%20larceny%3F&type=MBE"
+    },
+    {
+      "index": 35,
+      "qid": "",
+      "question": "An individual lost his job and was unable to find another. Lacking the means to support his family, he was approached by a drug dealer about selling illegal drugs. The individual, having not previously engaged in criminal activity, was reluctant to do so. While they were talking, the drug dealer dropped a small bag containing cocaine into the individual's jacket pocket without his knowledge. A short time later, the individual was arrested by police based on a tip they received from the drug dealer. He was then charged with possession of cocaine. The individual did not know that the substance in the bag was cocaine.\nWhich of the following is the individual's best defense to this charge?",
+      "reason": "request-failed",
+      "match_score": 0.0,
+      "error": "stem-mismatch",
+      "url": "https://castudy.com/api/mcq-search?q=An%20individual%20lost%20his%20job%20and%20was%20unable%20to%20find%20another.%20Lacking%20the%20means%20to%20support%20his%20family%2C%20he%20was%20approached%20by%20a%20drug%20dealer%20about%20selling%20illegal%20drugs.%20The%20individual%2C%20having%20not%20previously%20engaged%20in%20criminal%20activity%2C%20was%20reluctant%20to%20do%20so.%20While%20they%20were%20talking%2C%20the%20drug%20dealer%20dropped%20a%20small%20bag%20containing%20cocaine%20into%20the%20individual%27s%20jacket%20pocket%20without%20his%20knowledge.%20A%20short%20time%20later%2C%20the%20individual%20was%20arrested%20by%20police%20based%20on%20a%20tip%20they%20received%20from%20the%20drug%20dealer.%20He%20was%20then%20charged%20with%20possession%20of%20cocaine.%20The%20individual%20did%20not%20know%20that%20the%20substance%20in%20the%20bag%20was%20cocaine.%20Which%20of%20the%20following%20is%20the%20individual%27s%20best%20defense%20to%20this%20charge%3F&type=MBE"
+    },
+    {
+      "index": 37,
+      "qid": "",
+      "question": "One evening, an individual learned that the county government planned to bulldoze a meadow of wildflowers located in a public park at 6:00 a.m. the next day in order to create a parking lot. Distraught by this information, the individual went to the park, located the county's bulldozer, and temporarily disabled it by removing its spark plugs. The individual was arrested and charged with larceny of the bulldozer.\nWhich of the following is the individual's best defense to this charge?",
+      "reason": "request-failed",
+      "match_score": 0.0,
+      "error": "stem-mismatch",
+      "url": "https://castudy.com/api/mcq-search?q=One%20evening%2C%20an%20individual%20learned%20that%20the%20county%20government%20planned%20to%20bulldoze%20a%20meadow%20of%20wildflowers%20located%20in%20a%20public%20park%20at%206%3A00%20a.m.%20the%20next%20day%20in%20order%20to%20create%20a%20parking%20lot.%20Distraught%20by%20this%20information%2C%20the%20individual%20went%20to%20the%20park%2C%20located%20the%20county%27s%20bulldozer%2C%20and%20temporarily%20disabled%20it%20by%20removing%20its%20spark%20plugs.%20The%20individual%20was%20arrested%20and%20charged%20with%20larceny%20of%20the%20bulldozer.%20Which%20of%20the%20following%20is%20the%20individual%27s%20best%20defense%20to%20this%20charge%3F&type=MBE"
+    },
+    {
+      "index": 44,
+      "qid": "",
+      "question": "While browsing in a clothing store, an actress decided to take a purse without paying for it. She placed the purse under her coat and took a couple of steps toward the exit. She then realized that a sensor tag on the purse would set off an alarm. She placed the purse near the counter from which she had removed it.\nWhich crime, if any, has the actress committed?",
+      "reason": "request-failed",
+      "match_score": 0.0,
+      "error": "stem-mismatch",
+      "url": "https://castudy.com/api/mcq-search?q=While%20browsing%20in%20a%20clothing%20store%2C%20an%20actress%20decided%20to%20take%20a%20purse%20without%20paying%20for%20it.%20She%20placed%20the%20purse%20under%20her%20coat%20and%20took%20a%20couple%20of%20steps%20toward%20the%20exit.%20She%20then%20realized%20that%20a%20sensor%20tag%20on%20the%20purse%20would%20set%20off%20an%20alarm.%20She%20placed%20the%20purse%20near%20the%20counter%20from%20which%20she%20had%20removed%20it.%20Which%20crime%2C%20if%20any%2C%20has%20the%20actress%20committed%3F&type=MBE"
+    },
+    {
+      "index": 45,
+      "qid": "",
+      "question": "A man owned an investment portfolio that, for the past several years, had consistently outperformed the stock market average. When the overall stock market precipitously declined in a single day, the man immediately contacted his financial advisor to ask about the status of his investment portfolio. The advisor lied to the man and told him that due to the decline in the stock market, the value of his account was $250,000, an amount significantly less than what the man had anticipated. However, the decreased value was not attributable to the decline in the stock market but rather the advisor's negligence in managing the portfolio. The man demanded that his account be closed and that the remaining balance in the account be transferred to him within the next two days. The advisor agreed and, accordingly, closed the man's account and transferred the remaining balance two days later. Unbeknownst to the man, there had been a temporary recovery in the investment portfolio that had resulted in a $5,000 increase in the man's account balance the day before his account was closed. The advisor retained the $5,000.\nIn a jurisdiction that follows the common law with regard to property crimes, which crime has the advisor committed?",
+      "reason": "request-failed",
+      "match_score": 0.0,
+      "error": "stem-mismatch",
+      "url": "https://castudy.com/api/mcq-search?q=A%20man%20owned%20an%20investment%20portfolio%20that%2C%20for%20the%20past%20several%20years%2C%20had%20consistently%20outperformed%20the%20stock%20market%20average.%20When%20the%20overall%20stock%20market%20precipitously%20declined%20in%20a%20single%20day%2C%20the%20man%20immediately%20contacted%20his%20financial%20advisor%20to%20ask%20about%20the%20status%20of%20his%20investment%20portfolio.%20The%20advisor%20lied%20to%20the%20man%20and%20told%20him%20that%20due%20to%20the%20decline%20in%20the%20stock%20market%2C%20the%20value%20of%20his%20account%20was%20%24250%2C000%2C%20an%20amount%20significantly%20less%20than%20what%20the%20man%20had%20anticipated.%20However%2C%20the%20decreased%20value%20was%20not%20attributable%20to%20the%20decline%20in%20the%20stock%20market%20but%20rather%20the%20advisor%27s%20negligence%20in%20managing%20the%20portfolio.%20The%20man%20demanded%20that%20his%20account%20be%20closed%20and%20that%20the%20remaining%20balance%20in%20the%20account%20be%20transferred%20to%20him%20within%20the%20next%20two%20days.%20The%20advisor%20agreed%20and%2C%20accordingly%2C%20closed%20the%20man%27s%20account%20and%20transferred%20the%20remaining%20balance%20two%20days%20later.%20Unbeknownst%20to%20the%20man%2C%20there%20had%20been%20a%20temporary%20recovery%20in%20the%20investment%20portfolio%20that%20had%20resulted%20in%20a%20%245%2C000%20increase%20in%20the%20man%27s%20account%20balance%20the%20day%20before%20his%20account%20was%20closed.%20The%20advisor%20retained%20the%20%245%2C000.%20In%20a%20jurisdiction%20that%20follows%20the%20common%20law%20with%20regard%20to%20property%20crimes%2C%20which%20crime%20has%20the%20advisor%20committed%3F&type=MBE"
+    }
+  ]
+}

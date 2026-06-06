@@ -914,6 +914,7 @@ function TestSessionContent() {
                   <RichText
                     text={enQuestionText}
                     highlights={questionTextHighlights}
+                    language={language}
                     className={cn('text-left font-normal text-slate-900', questionTextClass)}
                   />
                 )}
@@ -1039,6 +1040,7 @@ function TestSessionContent() {
                                   className="block"
                                   text={enOptions[idx]?.replace(/^\s*[A-D]\.\s*/i, '') ?? option.replace(/^\s*[A-D]\.\s*/i, '')}
                                   keywords={currentQuestion?.choiceKeywordMeta?.choices?.[label as 'A' | 'B' | 'C' | 'D']}
+                                  language={language}
                                   state={
                                     isRevealed
                                       ? isCorrect

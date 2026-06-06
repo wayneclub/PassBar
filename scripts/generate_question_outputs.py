@@ -17,19 +17,54 @@ It reads and writes the enriched JSON file directly.
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import os
 import re
+import shutil
+import sys
 import time
+import traceback
 from pathlib import Path
 from typing import Any
 
 import generate_question_meta as meta_gen
 import generate_zh_explanations as zh_gen
+import cli_ai
 
 
 VALID_MODES = {"zh-html", "en-html", "meta", "all", "sync-explain-imgs"}
 DEFAULT_ALL_MODES = ["zh-html", "meta", "en-html"]
+RUN_ID = time.strftime("%Y%m%d-%H%M%S")
+_BACKED_UP_FILES: set[Path] = set()
+USAGE_CSV_COLUMNS = [
+    "timestamp",
+    "run_id",
+    "started_at",
+    "finished_at",
+    "duration_seconds",
+    "enriched_file",
+    "subject",
+    "chapter",
+    "index",
+    "question_label",
+    "mode",
+    "generated_field",
+    "provider",
+    "model",
+    "input_tokens",
+    "output_tokens",
+    "total_tokens",
+    "configured_max_output_tokens",
+    "recommended_max_output_tokens_20pct",
+    "output_token_headroom",
+    "output_token_utilization",
+    "image_detail",
+    "output_chars",
+    "output_bytes",
+    "status",        # "ok" | "error"
+    "generated_summary",
+]
 
 
 def expand_modes(values: list[str]) -> list[str]:
@@ -60,9 +95,153 @@ def parse_enriched_document(raw: Any) -> tuple[list[dict[str, Any]], dict[str, A
 
 
 def write_enriched(path: Path, document: Any) -> None:
+    backup_path = path.with_suffix(path.suffix + f".{RUN_ID}.bak")
     tmp_path = path.with_suffix(path.suffix + ".tmp")
-    tmp_path.write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    rendered = json.dumps(document, ensure_ascii=False, indent=2) + "\n"
+    tmp_path.write_text(rendered, encoding="utf-8")
+    json.loads(tmp_path.read_text(encoding="utf-8"))
+    resolved = path.resolve()
+    if resolved not in _BACKED_UP_FILES and path.exists():
+        shutil.copy2(path, backup_path)
+        _BACKED_UP_FILES.add(resolved)
+        print(f"  backup: {backup_path.name}")
     os.replace(tmp_path, path)
+
+
+def compact_summary(value: Any, max_len: int = 180) -> str:
+    text = re.sub(r"\s+", " ", str(value or "")).strip()
+    return text[:max_len]
+
+
+def int_or_none(value: Any) -> int | None:
+    try:
+        if value in ("", None, "?"):
+            return None
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def round_up(value: int, step: int = 1000) -> int:
+    return ((value + step - 1) // step) * step
+
+
+def timed_call(fn):
+    started_at = time.strftime("%Y-%m-%d %H:%M:%S")
+    t0 = time.perf_counter()
+    result = fn()
+    duration_seconds = time.perf_counter() - t0
+    finished_at = time.strftime("%Y-%m-%d %H:%M:%S")
+    return result, started_at, finished_at, duration_seconds
+
+
+def write_usage_csv(
+    csv_path: Path | None,
+    enriched_file: Path,
+    item: dict[str, Any],
+    mode: str,
+    generated_field: str,
+    usage: dict[str, Any] | None,
+    started_at: str,
+    finished_at: str,
+    duration_seconds: float,
+    output_chars: int,
+    output_bytes: int,
+    generated_summary: str,
+) -> None:
+    if not csv_path:
+        return
+    csv_path.parent.mkdir(parents=True, exist_ok=True)
+    exists = csv_path.exists()
+    output_tokens = int_or_none((usage or {}).get("output_tokens"))
+    configured_max = int_or_none((usage or {}).get("max_output_tokens"))
+    recommended_max = round_up(max(1000, int(output_tokens * 1.2))) if output_tokens is not None else ""
+    headroom = configured_max - output_tokens if configured_max is not None and output_tokens is not None else ""
+    utilization = (
+        f"{output_tokens / configured_max:.4f}"
+        if configured_max and output_tokens is not None
+        else ""
+    )
+    row = {
+        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "run_id": RUN_ID,
+        "started_at": started_at,
+        "finished_at": finished_at,
+        "duration_seconds": f"{duration_seconds:.3f}",
+        "enriched_file": str(enriched_file),
+        "subject": item.get("subject", ""),
+        "chapter": item.get("chapter", ""),
+        "index": item.get("index", ""),
+        "question_label": question_label(item),
+        "mode": mode,
+        "generated_field": generated_field,
+        "provider": (usage or {}).get("provider", ""),
+        "model": (usage or {}).get("model", ""),
+        "input_tokens": (usage or {}).get("input_tokens", ""),
+        "output_tokens": (usage or {}).get("output_tokens", ""),
+        "total_tokens": (usage or {}).get("total_tokens", ""),
+        "configured_max_output_tokens": (usage or {}).get("max_output_tokens", ""),
+        "recommended_max_output_tokens_20pct": recommended_max,
+        "output_token_headroom": headroom,
+        "output_token_utilization": utilization,
+        "image_detail": (usage or {}).get("image_detail", ""),
+        "output_chars": output_chars,
+        "output_bytes": output_bytes,
+        "status": "ok",
+        "generated_summary": compact_summary(generated_summary),
+    }
+    with csv_path.open("a", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=USAGE_CSV_COLUMNS)
+        if not exists:
+            writer.writeheader()
+        writer.writerow(row)
+
+
+def write_error_csv(
+    csv_path: Path | None,
+    enriched_file: Path,
+    item: dict[str, Any],
+    mode: str,
+) -> None:
+    """Record a failed generation attempt in the usage CSV (status only; details are in the log file)."""
+    if not csv_path:
+        return
+    csv_path.parent.mkdir(parents=True, exist_ok=True)
+    exists = csv_path.exists()
+    now = time.strftime("%Y-%m-%d %H:%M:%S")
+    row = {
+        "timestamp": now,
+        "run_id": RUN_ID,
+        "started_at": now,
+        "finished_at": now,
+        "duration_seconds": "",
+        "enriched_file": str(enriched_file),
+        "subject": item.get("subject", ""),
+        "chapter": item.get("chapter", ""),
+        "index": item.get("index", ""),
+        "question_label": question_label(item),
+        "mode": mode,
+        "generated_field": "",
+        "provider": zh_gen.AI_PROVIDER,
+        "model": zh_gen.AI_HTML_MODEL if mode in {"en-html", "zh-html"} else zh_gen.AI_MODEL,
+        "input_tokens": "",
+        "output_tokens": "",
+        "total_tokens": "",
+        "configured_max_output_tokens": "",
+        "recommended_max_output_tokens_20pct": "",
+        "output_token_headroom": "",
+        "output_token_utilization": "",
+        "image_detail": "",
+        "output_chars": "",
+        "output_bytes": "",
+        "status": "error",
+        "generated_summary": "",
+    }
+    with csv_path.open("a", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=USAGE_CSV_COLUMNS)
+        if not exists:
+            writer.writeheader()
+        writer.writerow(row)
 
 
 def question_label(item: dict[str, Any]) -> str:
@@ -132,6 +311,76 @@ def _download_img(url: str, dest: Path, timeout: int = 20) -> bool:
         return False
 
 
+def load_castudy_by_index(enriched_file: Path) -> dict[int, dict[str, Any]]:
+    """Load the sibling *_castudy.json, keyed by question index."""
+    castudy_candidates = sorted(
+        [p for p in enriched_file.parent.glob("*_castudy.json") if "failed" not in p.name],
+        key=lambda p: p.stat().st_mtime,
+        reverse=True,
+    )
+    if not castudy_candidates:
+        return {}
+
+    castudy_file = castudy_candidates[0]
+    castudy_raw = json.loads(castudy_file.read_text(encoding="utf-8"))
+    castudy_qs: list[dict[str, Any]] = (
+        castudy_raw if isinstance(castudy_raw, list) else castudy_raw.get("questions", [])
+    )
+    return {
+        int(q.get("index") or 0): q
+        for q in castudy_qs
+        if q.get("index")
+    }
+
+
+def downloaded_explain_img_refs(enriched_file: Path, castudy_q: dict[str, Any]) -> list[str]:
+    """Download official explanation images and return local imgs/... refs."""
+    import urllib.parse
+
+    imgs_dir = enriched_file.parent / "imgs"
+    imgs_dir.mkdir(exist_ok=True)
+
+    rel_paths: list[str] = []
+    for url in _deep_collect_explain_imgs(castudy_q):
+        basename = os.path.basename(urllib.parse.urlparse(url).path)
+        bl = basename.lower()
+        if not bl or bl == "ai.png" or bl.endswith("ai.png"):
+            continue
+        local = imgs_dir / basename
+        if not local.exists():
+            print(f"    [imgs] downloading {basename}...")
+            if not _download_img(url, local):
+                continue
+        rel_paths.append(f"imgs/{basename}")
+
+    seen: set[str] = set()
+    return [p for p in rel_paths if not (p in seen or seen.add(p))]  # type: ignore[func-returns-value]
+
+
+def sync_item_explain_imgs(
+    enriched_file: Path,
+    item: dict[str, Any],
+    castudy_by_index: dict[int, dict[str, Any]],
+) -> bool:
+    """Refresh one item's explain_imgs from castudy before en-html generation."""
+    idx = int(item.get("index") or 0)
+    castudy_q = castudy_by_index.get(idx)
+    if not castudy_q:
+        return False
+
+    next_refs = downloaded_explain_img_refs(enriched_file, castudy_q)
+    current_refs = [
+        str(ref)
+        for ref in (item.get("explain_imgs") or [])
+        if ref and not os.path.basename(str(ref)).lower().endswith("ai.png")
+    ]
+    if current_refs == next_refs:
+        return False
+
+    item["explain_imgs"] = next_refs
+    return True
+
+
 def sync_explain_imgs(enriched_file: Path, force: bool = False) -> int:
     """Scan the sibling castudy.json and populate explain_imgs in the enriched file.
 
@@ -139,29 +388,10 @@ def sync_explain_imgs(enriched_file: Path, force: bool = False) -> int:
     missing images to imgs/, then writes relative local paths into the enriched item.
     Never stores URLs — only local paths are persisted. Returns number of questions updated.
     """
-    import urllib.parse
-
-    # Find the latest castudy.json sibling (non-failed)
-    castudy_candidates = sorted(
-        [p for p in enriched_file.parent.glob("*_castudy.json") if "failed" not in p.name],
-        key=lambda p: p.stat().st_mtime,
-        reverse=True,
-    )
-    if not castudy_candidates:
+    castudy_by_index = load_castudy_by_index(enriched_file)
+    if not castudy_by_index:
         print("  [sync-explain-imgs] No *_castudy.json found; skipping.")
         return 0
-
-    castudy_file = castudy_candidates[0]
-    castudy_raw = json.loads(castudy_file.read_text(encoding="utf-8"))
-    castudy_qs: list[dict[str, Any]] = (
-        castudy_raw if isinstance(castudy_raw, list) else castudy_raw.get("questions", [])
-    )
-    castudy_by_index: dict[int, dict[str, Any]] = {
-        int(q.get("index") or 0): q for q in castudy_qs if q.get("index")
-    }
-
-    imgs_dir = enriched_file.parent / "imgs"
-    imgs_dir.mkdir(exist_ok=True)
 
     document = json.loads(enriched_file.read_text(encoding="utf-8"))
     items, _ = parse_enriched_document(document)
@@ -176,27 +406,8 @@ def sync_explain_imgs(enriched_file: Path, force: bool = False) -> int:
         if not force and item.get("explain_imgs") is not None:
             continue
 
-        urls = _deep_collect_explain_imgs(castudy_q)
-        rel_paths: list[str] = []
-        for url in urls:
-            basename = os.path.basename(urllib.parse.urlparse(url).path)
-            # Skip ai.png or any AI-generated image (filename ends with "ai.png")
-            bl = basename.lower()
-            if not bl or bl == "ai.png" or bl.endswith("ai.png"):
-                continue
-            local = imgs_dir / basename
-            if not local.exists():
-                print(f"    [imgs] downloading {basename}...")
-                if not _download_img(url, local):
-                    continue  # skip if download failed
-            rel_paths.append(f"imgs/{basename}")
-
-        # Deduplicate preserving order
-        seen: set[str] = set()
-        deduped = [p for p in rel_paths if not (p in seen or seen.add(p))]  # type: ignore[func-returns-value]
-
-        item["explain_imgs"] = deduped
-        updated += 1
+        if sync_item_explain_imgs(enriched_file, item, castudy_by_index):
+            updated += 1
 
     if updated:
         write_enriched(enriched_file, document)
@@ -206,6 +417,26 @@ def sync_explain_imgs(enriched_file: Path, force: bool = False) -> int:
 def has_good_html(value: Any) -> bool:
     text = str(value or "").strip()
     return bool(text and not text.startswith("<!-- ERROR:"))
+
+
+
+def validate_generated_html(html: str, label: str) -> None:
+    text = str(html or "").strip()
+    lowered = text.lower()
+    if len(text) < 1000:
+        raise RuntimeError(f"{label} output is suspiciously short ({len(text)} chars); refusing to write it.")
+    if not lowered.startswith("<!doctype html"):
+        preview = repr(text[:300])
+        raise RuntimeError(
+            f"{label} output does not start with <!doctype html>; refusing to write it.\n"
+            f"  Output starts with: {preview}"
+        )
+    if "</html>" not in lowered:
+        preview = repr(text[-300:])
+        raise RuntimeError(
+            f"{label} output is missing </html>; refusing to write it.\n"
+            f"  Output ends with: {preview}"
+        )
 
 
 def has_good_meta(item: dict[str, Any]) -> bool:
@@ -272,7 +503,7 @@ def generate_en_html(
     else:
         all_image_paths = image_paths
 
-    raw = zh_gen.call_ai_rest(prompt, all_image_paths)
+    raw = zh_gen.call_ai_rest(prompt, all_image_paths, use_html_model=True)
     html = zh_gen.extract_html_from_response(raw)
     topic = extract_topic_from_html(html)
     return html, topic
@@ -295,7 +526,7 @@ def generate_zh_html(
         correct_answer_text=choices.get(correct, ""),
         english_explanation=english_explanation or "(No supplemental OCR/plain text available; use the uploaded official explanation image.)",
     )
-    raw = zh_gen.call_ai_rest(prompt, image_paths)
+    raw = zh_gen.call_ai_rest(prompt, image_paths, use_html_model=True)
     return zh_gen.extract_html_from_response(raw)
 
 
@@ -323,6 +554,7 @@ def process_file(
     index: int | None,
     force: bool,
     dry_run: bool,
+    usage_csv: Path | None,
 ) -> None:
     document = json.loads(enriched_file.read_text(encoding="utf-8"))
     items, document_meta = parse_enriched_document(document)
@@ -335,6 +567,7 @@ def process_file(
     print(f"Loaded {len(items)} question(s) from {enriched_file}")
     print(f"Selected {len(selected)} question(s)")
     print(f"Modes: {' '.join(modes)}")
+    castudy_by_index = load_castudy_by_index(enriched_file) if "en-html" in modes else {}
 
     if "sync-explain-imgs" in modes:
         print("\n[sync-explain-imgs] Scanning castudy.json for explain_imgs...")
@@ -374,8 +607,39 @@ def process_file(
                 if dry_run:
                     print("  en-html: would generate")
                     continue
+                if castudy_by_index and sync_item_explain_imgs(enriched_file, item, castudy_by_index):
+                    explain_img_paths = collect_explain_img_paths(enriched_file, item)
+                    print(f"  explain_imgs: synced {len(explain_img_paths)} file(s)")
+                    write_enriched(enriched_file, document)
+                    changed = True
                 print("  en-html: generating...", end=" ", flush=True)
-                html, topic = generate_en_html(item, image_paths, explain_img_paths or None)
+                zh_gen.clear_last_ai_usage()
+                try:
+                    (html, topic), started_at, finished_at, duration_seconds = timed_call(
+                        lambda: generate_en_html(item, image_paths, explain_img_paths or None)
+                    )
+                    validate_generated_html(html, "en-html")
+                except RuntimeError as exc:
+                    print(f"ERROR: {exc}")
+                    traceback.print_exc()
+                    write_error_csv(usage_csv, enriched_file, item, "en-html")
+                    time.sleep(zh_gen.RATE_LIMIT_DELAY)
+                    continue
+                usage = zh_gen.get_last_ai_usage()
+                write_usage_csv(
+                    usage_csv,
+                    enriched_file,
+                    item,
+                    "en-html",
+                    "explanation",
+                    usage,
+                    started_at,
+                    finished_at,
+                    duration_seconds,
+                    len(html),
+                    len(html.encode("utf-8")),
+                    topic or "English explanation HTML",
+                )
                 item["explanation"] = html
                 if topic and not item.get("topic"):
                     # Insert topic right after "chapter" key
@@ -390,6 +654,7 @@ def process_file(
                 else:
                     print("✓")
                 changed = True
+                write_enriched(enriched_file, document)
                 time.sleep(zh_gen.RATE_LIMIT_DELAY)
 
             elif mode == "zh-html":
@@ -400,10 +665,38 @@ def process_file(
                     print("  zh-html: would generate")
                     continue
                 print("  zh-html: generating...", end=" ", flush=True)
-                item["zh-explanation"] = generate_zh_html(item, document_meta, image_paths)
+                zh_gen.clear_last_ai_usage()
+                try:
+                    html, started_at, finished_at, duration_seconds = timed_call(
+                        lambda: generate_zh_html(item, document_meta, image_paths)
+                    )
+                    validate_generated_html(html, "zh-html")
+                except RuntimeError as exc:
+                    print(f"ERROR: {exc}")
+                    traceback.print_exc()
+                    write_error_csv(usage_csv, enriched_file, item, "zh-html")
+                    time.sleep(zh_gen.RATE_LIMIT_DELAY)
+                    continue
+                usage = zh_gen.get_last_ai_usage()
+                write_usage_csv(
+                    usage_csv,
+                    enriched_file,
+                    item,
+                    "zh-html",
+                    "zh-explanation",
+                    usage,
+                    started_at,
+                    finished_at,
+                    duration_seconds,
+                    len(html),
+                    len(html.encode("utf-8")),
+                    "Chinese explanation HTML",
+                )
+                item["zh-explanation"] = html
                 write_zh_html_preview(enriched_file, item)
                 print("✓")
                 changed = True
+                write_enriched(enriched_file, document)
                 time.sleep(zh_gen.RATE_LIMIT_DELAY)
 
             elif mode == "meta":
@@ -414,13 +707,36 @@ def process_file(
                     print("  meta: would generate")
                     continue
                 print("  meta: generating...", end=" ", flush=True)
-                analysis = generate_meta(item, document_meta)
+                meta_gen.clear_last_meta_usage()
+                try:
+                    analysis, started_at, finished_at, duration_seconds = timed_call(
+                        lambda: generate_meta(item, document_meta)
+                    )
+                except Exception as exc:
+                    print(f"ERROR: {exc}")
+                    traceback.print_exc()
+                    write_error_csv(usage_csv, enriched_file, item, "meta")
+                    time.sleep(meta_gen.RATE_LIMIT_DELAY)
+                    continue
+                usage = meta_gen.get_last_meta_usage()
                 print(f"✓ {analysis.get('micro_concept')}")
                 changed = True
+                write_enriched(enriched_file, document)
+                write_usage_csv(
+                    usage_csv,
+                    enriched_file,
+                    item,
+                    "meta",
+                    "meta",
+                    usage,
+                    started_at,
+                    finished_at,
+                    duration_seconds,
+                    len(json.dumps(analysis, ensure_ascii=False)),
+                    len(json.dumps(analysis, ensure_ascii=False).encode("utf-8")),
+                    analysis.get("micro_concept") or "question analysis meta",
+                )
                 time.sleep(meta_gen.RATE_LIMIT_DELAY)
-
-        if changed and not dry_run:
-            write_enriched(enriched_file, document)
 
     if changed and not dry_run:
         print(f"\nSaved: {enriched_file}")
@@ -477,20 +793,37 @@ def collect_enriched_files(subject: str | None, chapter: str | None) -> list[Pat
     return files
 
 
+def validate_run_scope(args: argparse.Namespace, parser: argparse.ArgumentParser) -> None:
+    if args.all_files:
+        return
+    if args.yes:
+        return
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate selected PassBar enriched question outputs")
     file_group = parser.add_mutually_exclusive_group(required=False)
     file_group.add_argument("--enriched-file", type=Path, help="Path to *_enriched.json")
     file_group.add_argument("--list", action="store_true", help="List all available subject/chapter pairs and exit")
+    file_group.add_argument("--all-files", action="store_true", help="Process every *_enriched.json under out/ (explicit opt-in)")
     parser.add_argument("--subject", help="Subject name (e.g. 'Evidence'); omit to process all subjects")
     parser.add_argument("--chapter", help="Chapter name; requires --subject; omit to process all chapters")
     parser.add_argument("--mode", nargs="+", default=["zh-html", "meta"], help="One or more: zh-html en-html meta all")
-    parser.add_argument("--provider", choices=("gemini", "gpt"), default="gemini", help="Provider for HTML generation")
-    parser.add_argument("--model", default="", help="Override HTML generation model")
+    parser.add_argument(
+        "--provider",
+        choices=("gemini", "gpt", "codex-cli", "antigravity-cli"),
+        default="gemini",
+        help="Provider for generated outputs",
+    )
+    parser.add_argument("--model", default="", help="Override model for all modes (translation, meta, HTML)")
+    parser.add_argument("--html-model", default="", help="Override model for en-html/zh-html only (high-output model); falls back to ANTIGRAVITY_CLI_HTML_MODEL env var")
     parser.add_argument("--limit", type=int, default=0, help="Only process first N selected questions")
     parser.add_argument("--index", type=int, help="Only process a specific question index")
     parser.add_argument("--force", action="store_true", help="Regenerate even when cached output exists")
+    parser.add_argument("--yes", action="store_true", help="Confirm a broad --force rewrite")
     parser.add_argument("--dry-run", action="store_true", help="Print actions without API calls or writes")
+    parser.add_argument("--usage-csv", default="logs/ai_generation_usage.csv", help="Append per-call token usage rows to this CSV")
+    parser.add_argument("--log-file", default="", help="Tee stdout+stderr to this file (default: logs/generate_outputs_<RUN_ID>.log)")
     args = parser.parse_args()
 
     if args.list:
@@ -499,10 +832,38 @@ def main() -> None:
 
     if args.chapter and not args.subject:
         parser.error("--chapter requires --subject")
+    validate_run_scope(args, parser)
+
+    log_path = Path(args.log_file) if args.log_file else Path(f"logs/generate_outputs_{RUN_ID}.log")
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    _log_fh = open(log_path, "w", encoding="utf-8", buffering=1)  # line-buffered
+
+    class _Tee:
+        def __init__(self, stream, fh):
+            self._s, self._f = stream, fh
+        def write(self, data):
+            self._s.write(data)
+            self._f.write(data)
+        def flush(self):
+            self._s.flush()
+            self._f.flush()
+        def fileno(self):
+            return self._s.fileno()
+
+    sys.stdout = _Tee(sys.stdout, _log_fh)  # type: ignore[assignment]
+    sys.stderr = _Tee(sys.stderr, _log_fh)  # type: ignore[assignment]
+    print(f"Log: {log_path.resolve()}")
+    print(f"Run ID: {RUN_ID}")
 
     modes = expand_modes(args.mode)
-    zh_gen.set_ai_provider(args.provider, args.model or None)
+    zh_gen.set_ai_provider(args.provider, args.model or None, html_model=args.html_model or None)
     meta_gen.set_meta_provider(args.provider, args.model or None)
+    if not args.dry_run and args.provider in {"codex-cli", "antigravity-cli"}:
+        try:
+            cli_ai.check_provider_ready(args.provider)
+        except RuntimeError as exc:
+            parser.error(str(exc))
+    usage_csv = Path(args.usage_csv) if args.usage_csv else None
 
     if args.enriched_file:
         enriched_files = [args.enriched_file]
@@ -524,6 +885,7 @@ def main() -> None:
             index=args.index,
             force=args.force,
             dry_run=args.dry_run,
+            usage_csv=usage_csv,
         )
 
 

@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "sourceResult": "/Users/wayneclub/PassBar/out/Evidence/Hearsay/Hearsay_2026-05-25_castudy.json",
+    "generatedAt": "2026-05-25T03:21:14",
+    "failedCount": 3
+  },
+  "failed": [
+    {
+      "index": 32,
+      "qid": "",
+      "question": "A defendant has been charged with murder. The defendant has pleaded not guilty, claiming that on the night of the murder, he was visiting a friend in a neighboring town. During the investigation, a detective interviewed the friend. The friend informed the detective that he and his wife hosted a dinner party at their home on the night of the murder. The friend stated that the dinner party was attended by the defendant and the friend's sister. The friend further stated that the defendant became intoxicated at the dinner party, so the friend took the keys to the defendant's vehicle to prevent the defendant from leaving. Soon after the interview with the detective, the friend died.\nPrior to trial, the defendant properly notified the prosecution of his intent to introduce the transcript of the friend's unsworn interview with the detective at trial.\nIs the transcript of the friend's unsworn interview with the detective admissible?",
+      "reason": "stem-mismatch",
+      "match_score": 0.0175,
+      "error": "",
+      "url": "https://castudy.com/api/mcq-search?q=A%20defendant%20has%20been%20charged%20with%20murder.%20The%20defendant%20has%20pleaded%20not%20guilty%2C%20claiming%20that%20on%20the%20night%20of%20the%20murder%2C%20he%20was%20visiting%20a%20friend%20in%20a%20neighboring%20town.%20During%20the%20investigation%2C%20a%20detective%20interviewed%20the%20friend.%20The%20friend%20informed%20the%20detective%20that%20he%20and%20his%20wife%20hosted%20a%20dinner%20party%20at%20their%20home%20on%20the%20night%20of%20the%20murder.%20The%20friend%20stated%20that%20the%20dinner%20party%20was%20attended%20by%20the%20defendant%20and%20the%20friend%27s%20sister.%20The%20friend%20further%20stated%20that%20the%20defendant%20became%20intoxicated%20at%20the%20dinner%20party%2C%20so%20the%20friend%20took%20the%20keys%20to%20the%20defendant%27s%20vehicle%20to%20prevent%20the%20defendant%20from%20leaving.%20Soon%20after%20the%20interview%20with%20the%20detective%2C%20the%20friend%20died.%20Prior%20to%20trial%2C%20the%20defendant%20properly%20notified%20the%20prosecution%20of%20his%20intent%20to%20introduce%20the%20transcript%20of%20the%20friend%27s%20unsworn%20interview%20with%20the%20detective%20at%20trial.%20Is%20the%20transcript%20of%20the%20friend%27s%20unsworn%20interview%20with%20the%20detective%20admissible%3F&type=MBE"
+    },
+    {
+      "index": 39,
+      "qid": "",
+      "question": "A defendant is on trial for the robbery of an armored bank truck. A man and his wife witnessed the robber flee from the armored truck. The man testified that the robber removed his mask and exposed his face as he fled. The man further testified that he recognized the defendant as the robber. The defendant now seeks to introduce the grand jury testimony of the man's wife, who has refused to testify at trial despite a court order requiring her to do so.\nDuring her grand jury testimony, the wife affirmatively stated that the robber never removed his mask or exposed his face. Despite evidence to the contrary, the prosecution did not press the wife on this matter, as it had more than enough evidence linking the defendant to the robbery to secure an indictment.\nIf the court does not admit the wife's grand jury testimony, what is the most likely explanation?",
+      "reason": "request-failed",
+      "match_score": 0.0,
+      "error": "stem-mismatch",
+      "url": "https://castudy.com/api/mcq-search?q=A%20defendant%20is%20on%20trial%20for%20the%20robbery%20of%20an%20armored%20bank%20truck.%20A%20man%20and%20his%20wife%20witnessed%20the%20robber%20flee%20from%20the%20armored%20truck.%20The%20man%20testified%20that%20the%20robber%20removed%20his%20mask%20and%20exposed%20his%20face%20as%20he%20fled.%20The%20man%20further%20testified%20that%20he%20recognized%20the%20defendant%20as%20the%20robber.%20The%20defendant%20now%20seeks%20to%20introduce%20the%20grand%20jury%20testimony%20of%20the%20man%27s%20wife%2C%20who%20has%20refused%20to%20testify%20at%20trial%20despite%20a%20court%20order%20requiring%20her%20to%20do%20so.%20During%20her%20grand%20jury%20testimony%2C%20the%20wife%20affirmatively%20stated%20that%20the%20robber%20never%20removed%20his%20mask%20or%20exposed%20his%20face.%20Despite%20evidence%20to%20the%20contrary%2C%20the%20prosecution%20did%20not%20press%20the%20wife%20on%20this%20matter%2C%20as%20it%20had%20more%20than%20enough%20evidence%20linking%20the%20defendant%20to%20the%20robbery%20to%20secure%20an%20indictment.%20If%20the%20court%20does%20not%20admit%20the%20wife%27s%20grand%20jury%20testimony%2C%20what%20is%20the%20most%20likely%20explanation%3F&type=MBE"
+    },
+    {
+      "index": 68,
+      "qid": "",
+      "question": "A defendant is on trial in federal court for bank robbery. Before the police had any suspects, a police officer interviewed an eyewitness at the police station and showed her a \"mug book\" containing dozens of photographs. The eyewitness identified the defendant's photograph as that of the robber.\nAt trial, the eyewitness surprises the prosecutor by testifying that she is unable to identify the defendant as the robber. The prosecutor calls the officer to testify that the eyewitness identified the defendant from the photograph in the police station. The eyewitness remains present in the courthouse and can be recalled.\nIs the officer's testimony admissible?",
+      "reason": "stem-mismatch",
+      "match_score": 0.0435,
+      "error": "",
+      "url": "https://castudy.com/api/mcq-search?q=A%20defendant%20is%20on%20trial%20in%20federal%20court%20for%20bank%20robbery.%20Before%20the%20police%20had%20any%20suspects%2C%20a%20police%20officer%20interviewed%20an%20eyewitness%20at%20the%20police%20station%20and%20showed%20her%20a%20%22mug%20book%22%20containing%20dozens%20of%20photographs.%20The%20eyewitness%20identified%20the%20defendant%27s%20photograph%20as%20that%20of%20the%20robber.%20At%20trial%2C%20the%20eyewitness%20surprises%20the%20prosecutor%20by%20testifying%20that%20she%20is%20unable%20to%20identify%20the%20defendant%20as%20the%20robber.%20The%20prosecutor%20calls%20the%20officer%20to%20testify%20that%20the%20eyewitness%20identified%20the%20defendant%20from%20the%20photograph%20in%20the%20police%20station.%20The%20eyewitness%20remains%20present%20in%20the%20courthouse%20and%20can%20be%20recalled.%20Is%20the%20officer%27s%20testimony%20admissible%3F&type=MBE"
+    }
+  ]
+}

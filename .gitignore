@@ -36,9 +36,11 @@ __pycache__/
 .vercel/
 
 # Large exported question artifacts
-out/
+out/**/**/imgs/
+out/**/**/zh_html/
+out/**/**/source_imgs
 out.zip
 questions/
 questions/**/*.zip
 questions/**/*.png
-out_zh_explanations_html/
+out_explanations_html/

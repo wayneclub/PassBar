@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "sourceResult": "/Users/wayneclub/PassBar/out/Contracts/Third-Party Rights/Third-Party Rights_2026-05-25_castudy.json",
+    "generatedAt": "2026-05-25T03:30:19",
+    "failedCount": 2
+  },
+  "failed": [
+    {
+      "index": 10,
+      "qid": "",
+      "question": "A political candidate for a statewide office contracted with a songwriter to compose a theme song for his campaign for $10,000. The contract provided that, rather than paying the songwriter, the candidate was to pay the money to the songwriter's daughter. The contract also prohibited the assignment of any rights or duties arising under the contract without the permission of the other party. Subsequently, the daughter, upon learning of the contract from her father, decided to donate this money to a charity and transferred her rights under the contract to the charity. She did not secure the permission of the political candidate before making this transfer. The songwriter composed the song, which the candidate used in his campaign, but the candidate did not pay anyone for the song. The charity filed suit against the candidate for breach of contract. The charity has taken no other action and has incurred no expenses related to the contract.\nWill the charity prevail in its action against the candidate?",
+      "reason": "request-failed",
+      "match_score": 0.0,
+      "error": "stem-mismatch",
+      "url": "https://castudy.com/api/mcq-search?q=A%20political%20candidate%20for%20a%20statewide%20office%20contracted%20with%20a%20songwriter%20to%20compose%20a%20theme%20song%20for%20his%20campaign%20for%20%2410%2C000.%20The%20contract%20provided%20that%2C%20rather%20than%20paying%20the%20songwriter%2C%20the%20candidate%20was%20to%20pay%20the%20money%20to%20the%20songwriter%27s%20daughter.%20The%20contract%20also%20prohibited%20the%20assignment%20of%20any%20rights%20or%20duties%20arising%20under%20the%20contract%20without%20the%20permission%20of%20the%20other%20party.%20Subsequently%2C%20the%20daughter%2C%20upon%20learning%20of%20the%20contract%20from%20her%20father%2C%20decided%20to%20donate%20this%20money%20to%20a%20charity%20and%20transferred%20her%20rights%20under%20the%20contract%20to%20the%20charity.%20She%20did%20not%20secure%20the%20permission%20of%20the%20political%20candidate%20before%20making%20this%20transfer.%20The%20songwriter%20composed%20the%20song%2C%20which%20the%20candidate%20used%20in%20his%20campaign%2C%20but%20the%20candidate%20did%20not%20pay%20anyone%20for%20the%20song.%20The%20charity%20filed%20suit%20against%20the%20candidate%20for%20breach%20of%20contract.%20The%20charity%20has%20taken%20no%20other%20action%20and%20has%20incurred%20no%20expenses%20related%20to%20the%20contract.%20Will%20the%20charity%20prevail%20in%20its%20action%20against%20the%20candidate%3F&type=MBE"
+    },
+    {
+      "index": 12,
+      "qid": "",
+      "question": "An orchard contracted with a cannery to provide the cannery with peaches. The contract was silent regarding delegation, and the orchard, acting in good faith, delegated its duties under the contract to a third party. After asking for, and receiving, assurances from the third party that the peaches would conform to contract specifications, the cannery accepted the delegation. The third party delivered the peaches, which the cannery rejected because the peaches did not conform to the contract specifications. The cannery sued both the orchard and the third party. The orchard moved to dismiss the claims against it.\nShould the court dismiss the suit against the orchard?",
+      "reason": "stem-mismatch",
+      "match_score": 0.0373,
+      "error": "",
+      "url": "https://castudy.com/api/mcq-search?q=An%20orchard%20contracted%20with%20a%20cannery%20to%20provide%20the%20cannery%20with%20peaches.%20The%20contract%20was%20silent%20regarding%20delegation%2C%20and%20the%20orchard%2C%20acting%20in%20good%20faith%2C%20delegated%20its%20duties%20under%20the%20contract%20to%20a%20third%20party.%20After%20asking%20for%2C%20and%20receiving%2C%20assurances%20from%20the%20third%20party%20that%20the%20peaches%20would%20conform%20to%20contract%20specifications%2C%20the%20cannery%20accepted%20the%20delegation.%20The%20third%20party%20delivered%20the%20peaches%2C%20which%20the%20cannery%20rejected%20because%20the%20peaches%20did%20not%20conform%20to%20the%20contract%20specifications.%20The%20cannery%20sued%20both%20the%20orchard%20and%20the%20third%20party.%20The%20orchard%20moved%20to%20dismiss%20the%20claims%20against%20it.%20Should%20the%20court%20dismiss%20the%20suit%20against%20the%20orchard%3F&type=MBE"
+    }
+  ]
+}

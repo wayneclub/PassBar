@@ -3,6 +3,7 @@ import { supabase } from './supabase';
 import {
   ChoiceKeywordMeta,
   ExplanationOcr,
+  LocalizedText,
   Question,
   QuestionHighlight,
   QuestionHighlightMeta,
@@ -34,6 +35,8 @@ type QuestionRow = {
   en_explanation_html: string | null;  // gemini-generated English interactive HTML
   explanation_html: string | null;      // zh explanation html
   topic: string | null;                 // fine-grained topic from source image
+  keyword_meta: unknown;
+  highlight_meta: unknown;
   raw: unknown;
 };
 
@@ -56,7 +59,7 @@ type ExplanationOcrRow = {
   words: ExplanationOcr['words'];
 };
 
-const questionSelectFields = 'id, index, subject, chapter_id, chapter_name, topic, question_text, fetched_question_stem, zh_question_stem, options, bilingual_options, zh_options, correct_answer, correct_answer_letter, api_answer_key, api_match_ok, explain_imgs, source_explanation_image_file, source_explanation_image_url, en_explanation_html, explanation_html, raw';
+const questionSelectFields = 'id, index, subject, chapter_id, chapter_name, topic, question_text, fetched_question_stem, zh_question_stem, options, bilingual_options, zh_options, correct_answer, correct_answer_letter, api_answer_key, api_match_ok, explain_imgs, zh_explain_imgs, source_explanation_image_file, source_explanation_image_url, en_explanation_html, explanation_html, keyword_meta, highlight_meta, raw';
 
 const VALID_HIGHLIGHT_KINDS = new Set([
   'key_sentence',
@@ -87,6 +90,21 @@ function getQuestionAnalysisMeta(raw: unknown): Record<string, unknown> | undefi
     : rawRecord;
 }
 
+function parseLocalizedText(raw: unknown): LocalizedText | undefined {
+  if (typeof raw === 'string') {
+    const text = raw.trim();
+    return text || undefined;
+  }
+  if (!raw || typeof raw !== 'object') return undefined;
+  const source = raw as Record<string, unknown>;
+  const parsed: Exclude<LocalizedText, string> = {};
+  const en = source.en;
+  const zh = source.zh;
+  if (typeof en === 'string' && en.trim()) parsed.en = en.trim();
+  if (typeof zh === 'string' && zh.trim()) parsed.zh = zh.trim();
+  return Object.keys(parsed).length ? parsed : undefined;
+}
+
 function parseQuestionHighlightMeta(raw: unknown): QuestionHighlightMeta | undefined {
   const meta = getQuestionAnalysisMeta(raw);
   if (!meta) return undefined;
@@ -109,8 +127,8 @@ function parseQuestionHighlightMeta(raw: unknown): QuestionHighlightMeta | undef
         id: typeof source.id === 'string' ? source.id : undefined,
         text,
         kind,
-        label: typeof source.label === 'string' ? source.label : undefined,
-        reason: typeof source.reason === 'string' ? source.reason : undefined,
+        label: parseLocalizedText(source.label),
+        reason: parseLocalizedText(source.reason),
         importance: source.importance === 'high' || source.importance === 'medium' || source.importance === 'low'
           ? source.importance
           : undefined,
@@ -139,9 +157,9 @@ function parseKeyword(item: unknown): QuestionKeyword | null {
   return {
     id: typeof source.id === 'string' ? source.id : undefined,
     text,
-    label: typeof source.label === 'string' ? source.label : undefined,
+    label: parseLocalizedText(source.label),
     kind,
-    reason: typeof source.reason === 'string' ? source.reason : undefined,
+    reason: parseLocalizedText(source.reason),
     importance: source.importance === 'high' || source.importance === 'medium' || source.importance === 'low'
       ? source.importance
       : undefined,
@@ -204,9 +222,9 @@ function toQuestion(row: QuestionRow, ocrByQuestion = new Map<string, Explanatio
     explanationHtml: row.explanation_html ?? undefined,
     explanationOcr: ocrByQuestion.get(row.id) ?? [],
     topic: typeof row.topic === 'string' && row.topic.trim() ? row.topic.trim() : undefined,
-    questionHighlightMeta: parseQuestionHighlightMeta(row.raw),
-    questionKeywordMeta: parseQuestionKeywordMeta(row.raw),
-    choiceKeywordMeta: parseChoiceKeywordMeta(row.raw),
+    questionHighlightMeta: parseQuestionHighlightMeta(row.highlight_meta ?? row.raw),
+    questionKeywordMeta: parseQuestionKeywordMeta(row.keyword_meta ?? row.raw),
+    choiceKeywordMeta: parseChoiceKeywordMeta(row.keyword_meta ?? row.raw),
   };
 }
 

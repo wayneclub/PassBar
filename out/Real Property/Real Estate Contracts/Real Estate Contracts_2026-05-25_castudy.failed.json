@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "sourceResult": "/Users/wayneclub/PassBar/out/Real Property/Real Estate Contracts/Real Estate Contracts_2026-05-25_castudy.json",
+    "generatedAt": "2026-05-25T04:16:35",
+    "failedCount": 1
+  },
+  "failed": [
+    {
+      "index": 2,
+      "qid": "",
+      "question": "A buyer and a seller entered into a written contract for the sale of land. The contract satisfied the requirements of the statute of frauds. Because the buyer needed time to obtain financing, the buyer and the seller did not agree upon a closing date, and the written contract did not contain a stated closing date. Ten days after signing the contract, the buyer and the seller orally agreed to rescind the contract. The next day, the seller sold the land to a third party.\nTwo days after that sale, the original buyer told the seller that she had changed her mind and wanted to complete their contract. When the seller told her that he had sold the land to a third party, she sued him for breach of the written contract.\nFor whom will the court find?",
+      "reason": "request-failed",
+      "match_score": 0.0,
+      "error": "stem-mismatch",
+      "url": "https://castudy.com/api/mcq-search?q=A%20buyer%20and%20a%20seller%20entered%20into%20a%20written%20contract%20for%20the%20sale%20of%20land.%20The%20contract%20satisfied%20the%20requirements%20of%20the%20statute%20of%20frauds.%20Because%20the%20buyer%20needed%20time%20to%20obtain%20financing%2C%20the%20buyer%20and%20the%20seller%20did%20not%20agree%20upon%20a%20closing%20date%2C%20and%20the%20written%20contract%20did%20not%20contain%20a%20stated%20closing%20date.%20Ten%20days%20after%20signing%20the%20contract%2C%20the%20buyer%20and%20the%20seller%20orally%20agreed%20to%20rescind%20the%20contract.%20The%20next%20day%2C%20the%20seller%20sold%20the%20land%20to%20a%20third%20party.%20Two%20days%20after%20that%20sale%2C%20the%20original%20buyer%20told%20the%20seller%20that%20she%20had%20changed%20her%20mind%20and%20wanted%20to%20complete%20their%20contract.%20When%20the%20seller%20told%20her%20that%20he%20had%20sold%20the%20land%20to%20a%20third%20party%2C%20she%20sued%20him%20for%20breach%20of%20the%20written%20contract.%20For%20whom%20will%20the%20court%20find%3F&type=MBE"
+    }
+  ]
+}

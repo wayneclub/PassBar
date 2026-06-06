@@ -1,7 +1,7 @@
 'use client';
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { QuestionHighlight, QuestionKeyword } from '@/lib/types';
+import { LocalizedText, QuestionHighlight, QuestionKeyword } from '@/lib/types';
 
 const ALLOWED_INLINE_TAGS = /^\/?(b|strong|i|em|u|span)$/i;
 
@@ -52,7 +52,7 @@ function choiceKeywordClass(kind: QuestionKeyword['kind'], state: ChoiceState): 
   // trap_phrase: only reveal after answer shown, with red wavy underline
   if (kind === 'trap_phrase') {
     if (state === 'neutral') return 'font-medium'; // subtle before reveal
-    return 'underline decoration-wavy decoration-red-400 font-medium text-red-700';
+    return 'underline decoration-red-400 decoration-2 font-medium text-red-700';
   }
   // On the correct choice: green text + underline
   if (state === 'correct') {
@@ -91,8 +91,33 @@ function tooltipLabelColor(kind: string): string {
 
 type TooltipPos = { top: number; left: number } | null;
 
-function TooltipContent({ label, reason, kind, pos }: { label?: string; reason?: string; kind?: string; pos: TooltipPos }) {
-  if (!pos || (!label && !reason)) return null;
+function localizedValue(value: LocalizedText | undefined, language = 'en'): string | undefined {
+  if (!value) return undefined;
+  if (typeof value === 'string') return value;
+  const preferredKeys = language === 'en' ? ['en', 'zh'] : ['zh', 'en'];
+  for (const key of preferredKeys) {
+    const text = value[key as keyof typeof value];
+    if (text) return text;
+  }
+  return undefined;
+}
+
+function TooltipContent({
+  label,
+  reason,
+  kind,
+  pos,
+  language,
+}: {
+  label?: LocalizedText;
+  reason?: LocalizedText;
+  kind?: string;
+  pos: TooltipPos;
+  language?: string;
+}) {
+  const displayLabel = localizedValue(label, language);
+  const displayReason = localizedValue(reason, language);
+  if (!pos || (!displayLabel && !displayReason)) return null;
   return (
     <span
       className={cn(
@@ -102,11 +127,11 @@ function TooltipContent({ label, reason, kind, pos }: { label?: string; reason?:
       )}
       style={{ top: pos.top, left: pos.left }}
     >
-      {label && (
-        <span className={cn('block text-xs font-semibold leading-snug', kind ? tooltipLabelColor(kind) : 'text-slate-800')}>{label}</span>
+      {displayLabel && (
+        <span className={cn('block text-xs font-semibold leading-snug', kind ? tooltipLabelColor(kind) : 'text-slate-800')}>{displayLabel}</span>
       )}
-      {reason && (
-        <span className="block text-xs text-slate-500 mt-1 leading-snug">{reason}</span>
+      {displayReason && (
+        <span className="block text-xs text-slate-500 mt-1 leading-snug">{displayReason}</span>
       )}
     </span>
   );
@@ -186,7 +211,7 @@ function getHighlightRanges(line: string, highlights: QuestionHighlight[]): Matc
   return ranges.sort((a, b) => a.start - b.start);
 }
 
-function HighlightMark({ range, text }: { range: MatchRange; text: string }) {
+function HighlightMark({ range, text, language }: { range: MatchRange; text: string; language?: string }) {
   const { wrapperRef, pos, show, hide } = useTooltipPos();
   const hl = range.highlight;
   return (
@@ -197,12 +222,12 @@ function HighlightMark({ range, text }: { range: MatchRange; text: string }) {
       >
         {text}
       </mark>
-      <TooltipContent label={hl.label} reason={hl.reason} kind={hl.kind} pos={pos} />
+      <TooltipContent label={hl.label} reason={hl.reason} kind={hl.kind} pos={pos} language={language} />
     </span>
   );
 }
 
-function renderHighlightedLine(line: string, highlights: QuestionHighlight[]) {
+function renderHighlightedLine(line: string, highlights: QuestionHighlight[], language?: string) {
   const plainLine = stripInlineHtml(line);
   const ranges = getHighlightRanges(plainLine, highlights);
   if (ranges.length === 0) return plainLine;
@@ -219,6 +244,7 @@ function renderHighlightedLine(line: string, highlights: QuestionHighlight[]) {
         key={`${range.start}-${range.end}-${index}`}
         range={range}
         text={plainLine.slice(range.start, range.end)}
+        language={language}
       />
     );
     cursor = range.end;
@@ -258,19 +284,19 @@ function getKeywordRanges(text: string, keywords: QuestionKeyword[]): KeywordRan
   return ranges.sort((a, b) => a.start - b.start);
 }
 
-function ChoiceKeywordMark({ kw, text, state }: { kw: QuestionKeyword; text: string; state: ChoiceState }) {
+function ChoiceKeywordMark({ kw, text, state, language }: { kw: QuestionKeyword; text: string; state: ChoiceState; language?: string }) {
   const { wrapperRef, pos, show, hide } = useTooltipPos();
   return (
     <span ref={wrapperRef} className="relative inline" onMouseMove={show} onMouseLeave={hide}>
       <span className={cn(choiceKeywordClass(kw.kind, state), 'cursor-default')}>
         {text}
       </span>
-      <TooltipContent label={kw.label} reason={kw.reason} kind={kw.kind} pos={pos} />
+      <TooltipContent label={kw.label} reason={kw.reason} kind={kw.kind} pos={pos} language={language} />
     </span>
   );
 }
 
-function renderChoiceText(text: string, keywords: QuestionKeyword[], state: ChoiceState) {
+function renderChoiceText(text: string, keywords: QuestionKeyword[], state: ChoiceState, language?: string) {
   const ranges = getKeywordRanges(text, keywords);
   if (ranges.length === 0) return text;
 
@@ -285,6 +311,7 @@ function renderChoiceText(text: string, keywords: QuestionKeyword[], state: Choi
         kw={range.keyword}
         text={text.slice(range.start, range.end)}
         state={state}
+        language={language}
       />
     );
     cursor = range.end;
@@ -303,10 +330,12 @@ function RichTextComponent({
   text,
   className,
   highlights,
+  language,
 }: {
   text: string;
   className?: string;
   highlights?: QuestionHighlight[];
+  language?: string;
 }) {
   const cleaned = text.replace(/^Q\d+\s*\n+/, '');
   const paragraphs = cleaned.split(/<br\s*\/?>\s*<br\s*\/?>/i);
@@ -321,7 +350,7 @@ function RichTextComponent({
               <React.Fragment key={li}>
                 {li > 0 && <br />}
                 {highlights?.length ? (
-                  <span>{renderHighlightedLine(line, highlights)}</span>
+                  <span>{renderHighlightedLine(line, highlights, language)}</span>
                 ) : (
                   <span dangerouslySetInnerHTML={{ __html: sanitizeInlineHtml(line) }} />
                 )}
@@ -346,14 +375,16 @@ function ChoiceTextComponent({
   keywords,
   state = 'neutral',
   className,
+  language,
 }: {
   text: string;
   keywords?: QuestionKeyword[];
   state?: ChoiceState;
   className?: string;
+  language?: string;
 }) {
   if (!keywords?.length) return <span className={className}>{text}</span>;
-  return <span className={className}>{renderChoiceText(text, keywords, state)}</span>;
+  return <span className={className}>{renderChoiceText(text, keywords, state, language)}</span>;
 }
 
 export const RichText = React.memo(RichTextComponent);

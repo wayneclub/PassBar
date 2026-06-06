@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 """
-Export zh-explanation HTML from all *_castudy_enriched.json files.
+Export explanation HTML from all *_castudy_enriched.json files.
 
 Creates a debuggable folder tree, preserving subject/chapter names, and writes
 one HTML file per question plus an index.html with links.
 
 Usage:
-  python3 scripts/export_zh_explanation_html.py
-  python3 scripts/export_zh_explanation_html.py --clean
-  python3 scripts/export_zh_explanation_html.py --subject "Criminal Law"
-  python3 scripts/export_zh_explanation_html.py --output-dir /tmp/zh-html
+  python3 scripts/export_explanation_html.py
+  python3 scripts/export_explanation_html.py --lang en
+  python3 scripts/export_explanation_html.py --lang zh
+  python3 scripts/export_explanation_html.py --clean
+  python3 scripts/export_explanation_html.py --subject "Criminal Law"
+  python3 scripts/export_explanation_html.py --output-dir /tmp/explanations-html
 """
 
 from __future__ import annotations
@@ -27,7 +29,23 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = ROOT / "out"
-DEFAULT_OUTPUT_DIR = ROOT / "out_zh_explanations_html"
+
+OUT_EXPLANATIONS_DIR = ROOT / "out_explanations_html"
+
+LANG_CONFIG = {
+    "zh": {
+        "field": "zh-explanation",
+        "default_output_dir": OUT_EXPLANATIONS_DIR / "zh",
+        "html_lang": "zh-CN",
+        "index_title": "PassBar zh-explanation HTML export",
+    },
+    "en": {
+        "field": "explanation",
+        "default_output_dir": OUT_EXPLANATIONS_DIR / "en",
+        "html_lang": "en",
+        "index_title": "PassBar en-explanation HTML export",
+    },
+}
 
 
 def safe_name(value: str) -> str:
@@ -55,11 +73,11 @@ def is_error_html(value: str) -> bool:
     return not text or text.startswith("<!-- ERROR:")
 
 
-def ensure_html_document(fragment: str, title: str) -> str:
+def ensure_html_document(fragment: str, title: str, html_lang: str) -> str:
     if re.search(r"<html[\s>]", fragment, flags=re.IGNORECASE):
         return fragment
     return f"""<!doctype html>
-<html lang="zh-CN">
+<html lang="{html_lang}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,7 +94,13 @@ def relative_link(from_file: Path, to_file: Path) -> str:
     return os.path.relpath(to_file, from_file.parent).replace(os.sep, "/")
 
 
-def export_file(enriched_path: Path, output_dir: Path, out_dir: Path) -> dict[str, Any]:
+def export_file(
+    enriched_path: Path,
+    output_dir: Path,
+    out_dir: Path,
+    field: str,
+    html_lang: str,
+) -> dict[str, Any]:
     data = load_json(enriched_path)
     questions = get_questions(data)
     rel_parts = enriched_path.relative_to(out_dir).parts
@@ -90,16 +114,20 @@ def export_file(enriched_path: Path, output_dir: Path, out_dir: Path) -> dict[st
     skipped = 0
 
     for offset, question in enumerate(questions, start=1):
-        raw_html = question.get("zh-explanation") or ""
+        raw_html = question.get(field) or ""
         if is_error_html(raw_html):
             skipped += 1
             continue
 
         index = question.get("index") or offset
         title = f"{subject} / {chapter} / Q{index}"
-        file_name = f"{int(index):03d}.html" if isinstance(index, int) or str(index).isdigit() else f"{safe_name(str(index))}.html"
+        file_name = (
+            f"{int(index):03d}.html"
+            if isinstance(index, int) or str(index).isdigit()
+            else f"{safe_name(str(index))}.html"
+        )
         target = chapter_dir / file_name
-        target.write_text(ensure_html_document(raw_html, title), encoding="utf-8")
+        target.write_text(ensure_html_document(raw_html, title, html_lang), encoding="utf-8")
 
         exported.append({
             "index": index,
@@ -117,7 +145,7 @@ def export_file(enriched_path: Path, output_dir: Path, out_dir: Path) -> dict[st
     }
 
 
-def write_index(results: list[dict[str, Any]], output_dir: Path) -> None:
+def write_index(results: list[dict[str, Any]], output_dir: Path, index_title: str) -> None:
     index_path = output_dir / "index.html"
     rows: list[str] = []
     total = 0
@@ -148,7 +176,7 @@ def write_index(results: list[dict[str, Any]], output_dir: Path) -> None:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PassBar zh-explanation HTML export</title>
+  <title>{html.escape(index_title)}</title>
   <style>
     body {{
       margin: 0;
@@ -204,7 +232,7 @@ def write_index(results: list[dict[str, Any]], output_dir: Path) -> None:
 </head>
 <body>
   <main>
-    <h1>PassBar zh-explanation HTML export</h1>
+    <h1>{html.escape(index_title)}</h1>
     <p class="meta">{total} HTML files exported</p>
     {''.join(rows)}
   </main>
@@ -214,24 +242,19 @@ def write_index(results: list[dict[str, Any]], output_dir: Path) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Export zh-explanation HTML files for debugging")
+    parser = argparse.ArgumentParser(description="Export explanation HTML files for debugging")
+    parser.add_argument("--lang", default="both", choices=["zh", "en", "both"], help="Language to export: zh, en, or both (default: both)")
     parser.add_argument("--out-dir", default=str(OUT_DIR), help="Input out directory")
-    parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR), help="Directory to write HTML files")
+    parser.add_argument("--output-dir", default="", help="Base directory to write HTML files (default: out_explanations_html/)")
     parser.add_argument("--subject", default="", help="Filter by subject/path text")
     parser.add_argument("--chapter", default="", help="Filter by chapter/path text")
     parser.add_argument("--clean", action="store_true", help="Delete output directory before exporting")
     args = parser.parse_args()
 
     out_dir = Path(args.out_dir).resolve()
-    output_dir = Path(args.output_dir).resolve()
-
     if not out_dir.is_dir():
         print(f"ERROR: out dir not found: {out_dir}")
         sys.exit(1)
-
-    if args.clean and output_dir.exists():
-        shutil.rmtree(output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
 
     files = sorted(out_dir.glob("*/*/*_castudy_enriched.json"))
     if args.subject:
@@ -239,16 +262,32 @@ def main() -> None:
     if args.chapter:
         files = [p for p in files if args.chapter.lower() in str(p).lower()]
 
-    results = [export_file(path, output_dir, out_dir) for path in files]
-    write_index(results, output_dir)
+    langs = ["zh", "en"] if args.lang == "both" else [args.lang]
 
-    exported = sum(len(result["exported"]) for result in results)
-    skipped = sum(result["skipped"] for result in results)
+    for lang in langs:
+        cfg = LANG_CONFIG[lang]
+        output_dir = (
+            Path(args.output_dir).resolve() / lang
+            if args.output_dir
+            else cfg["default_output_dir"]
+        )
 
-    print(f"Exported {exported} zh-explanation HTML file(s)")
-    print(f"Skipped  {skipped} empty/error zh-explanation(s)")
-    print(f"Output   {output_dir}")
-    print(f"Index    {output_dir / 'index.html'}")
+        if args.clean and output_dir.exists():
+            shutil.rmtree(output_dir)
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        results = [
+            export_file(path, output_dir, out_dir, cfg["field"], cfg["html_lang"])
+            for path in files
+        ]
+        write_index(results, output_dir, cfg["index_title"])
+
+        exported = sum(len(result["exported"]) for result in results)
+        skipped = sum(result["skipped"] for result in results)
+
+        print(f"[{lang}] Exported {exported} explanation HTML file(s), skipped {skipped}")
+        print(f"      Output  {output_dir}")
+        print(f"      Index   {output_dir / 'index.html'}")
 
 
 if __name__ == "__main__":

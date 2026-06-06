@@ -88,12 +88,21 @@ CREATE TABLE public.question_items (
   api_match_score        numeric,
   api_qid                text,
   api_answer_key         text,
+  topic                  text,
   micro_concept          text,
   trap_type              text,
+  trap_type_is_new       boolean,
   skill_tested           text,
+  keyword_meta           jsonb,
+  highlight_meta         jsonb,
   raw                    jsonb,
   created_at             timestamptz NOT NULL DEFAULT now()
 );
+
+ALTER TABLE public.question_items ADD COLUMN IF NOT EXISTS topic text;
+ALTER TABLE public.question_items ADD COLUMN IF NOT EXISTS trap_type_is_new boolean;
+ALTER TABLE public.question_items ADD COLUMN IF NOT EXISTS keyword_meta jsonb;
+ALTER TABLE public.question_items ADD COLUMN IF NOT EXISTS highlight_meta jsonb;
 
 ALTER TABLE public.question_items ENABLE ROW LEVEL SECURITY;
 
@@ -288,7 +297,7 @@ SELECT
   q."index",
   s.subject,
   ch.id AS chapter_id,
-  ch.chapter AS topic,
+  ch.chapter AS chapter_name,
   COALESCE(tr.source_question_stem, q.source_question, q.question) AS question_text,
   tr.fetched_question_stem,
   ztr.zh_question_stem,
@@ -308,9 +317,13 @@ SELECT
   er.en_explanation_html,
   zh.explanation_html,
   COALESCE(zh.zh_explain_imgs, '{}') AS zh_explain_imgs,
+  q.topic,
   q.micro_concept,
   q.trap_type,
+  q.trap_type_is_new,
   q.skill_tested,
+  q.keyword_meta,
+  q.highlight_meta,
   q.raw
 FROM public.question_items q
 JOIN public.chapters ch ON ch.id = q.chapter_id
