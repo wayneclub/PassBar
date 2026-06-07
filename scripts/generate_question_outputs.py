@@ -272,17 +272,28 @@ def collect_image_paths(enriched_file: Path, item: dict[str, Any]) -> list[str]:
 
 def is_complex_illustration(path: Path) -> bool:
     """Classify if an image is a complex illustration/photo or a simple diagram/table.
-    We resize to 128x128 and count unique colors. If there are fewer than 3000 unique colors,
-    it is classified as a simple diagram/table (HTML rebuild preferred).
+    We resize to 128x128 and count unique colors and compute standard deviation.
+    A complex illustration typically has >= 4000 unique colors AND standard deviation >= 45.0.
     """
     try:
         from PIL import Image
+        import math
         with Image.open(path) as img:
             img_rgb = img.convert("RGB")
             img_small = img_rgb.resize((128, 128))
             colors = img_small.getcolors(maxcolors=128 * 128)
             uniq_count = len(colors) if colors else 128 * 128
-            return uniq_count >= 3000
+            
+            if uniq_count < 4000:
+                return False
+                
+            img_gray = img_small.convert("L")
+            pixels = list(img_gray.getdata())
+            mean_val = sum(pixels) / len(pixels)
+            variance = sum((x - mean_val) ** 2 for x in pixels) / len(pixels)
+            std_dev = math.sqrt(variance)
+            
+            return std_dev >= 45.0
     except Exception as exc:
         print(f"    [img-classifier] failed to analyze {path.name}: {exc}")
         return True  # Fallback to True (treat as complex) on error

@@ -29,67 +29,67 @@ const KIND_CONFIG: Record<string, KindConfig> = {
   key_sentence: {
     label: { en: 'Key Rule', zh: '核心規則' },
     chipClass: 'bg-primary/10 text-primary border-primary/20',
-    highlightClass: 'rounded bg-primary/10 px-0.5 box-decoration-clone shadow-[inset_0_-2px_0_hsl(var(--primary)/0.5)] font-medium text-slate-900',
+    highlightClass: 'border-b-2 border-[#eab308] bg-[#fef08a]/35 px-1 py-0.5 font-medium text-slate-900 box-decoration-clone rounded-t',
     choiceClass: 'font-semibold text-primary',
   },
   issue: {
     label: { en: 'Legal Issue', zh: '爭議焦點' },
     chipClass: 'bg-amber-50 text-amber-700 border-amber-200',
-    highlightClass: 'rounded bg-amber-100 px-0.5 font-semibold text-slate-900 box-decoration-clone',
+    highlightClass: 'bg-[#fef08a] text-[#1e293b] rounded px-1 py-0.5 font-medium box-decoration-clone',
     choiceClass: 'font-semibold text-amber-700',
   },
   rule_trigger: {
     label: { en: 'Rule Trigger', zh: '規則觸發' },
     chipClass: 'bg-amber-50 text-amber-700 border-amber-200',
-    highlightClass: 'rounded bg-amber-100 px-0.5 font-semibold text-slate-900 box-decoration-clone',
+    highlightClass: 'bg-[#fef08a] text-[#1e293b] rounded px-1 py-0.5 font-medium box-decoration-clone',
     choiceClass: 'font-semibold text-amber-700',
   },
   fact_trigger: {
     label: { en: 'Fact Trigger', zh: '事實要素' },
     chipClass: 'bg-sky-50 text-sky-700 border-sky-200',
-    highlightClass: 'rounded bg-sky-100 px-0.5 font-medium text-slate-900 box-decoration-clone',
+    highlightClass: 'bg-[#dbeafe] text-[#1e3a8a] rounded px-1 py-0.5 font-medium box-decoration-clone',
     choiceClass: 'font-medium text-sky-700',
   },
   keyword: {
     label: { en: 'Key Term', zh: '關鍵詞' },
     chipClass: 'bg-primary/10 text-primary border-primary/20',
-    highlightClass: 'rounded bg-primary/8 px-0.5 font-semibold text-slate-900 box-decoration-clone',
+    highlightClass: 'bg-[#fef08a] text-[#1e293b] rounded px-1 py-0.5 font-medium box-decoration-clone',
     choiceClass: 'font-semibold text-primary',
   },
   legal_term: {
     label: { en: 'Legal Term', zh: '法律術語' },
     chipClass: 'bg-primary/10 text-primary border-primary/20',
-    highlightClass: 'rounded bg-primary/8 px-0.5 font-semibold text-slate-900 box-decoration-clone',
+    highlightClass: 'bg-[#fef08a] text-[#1e293b] rounded px-1 py-0.5 font-medium box-decoration-clone',
     choiceClass: 'font-semibold text-primary',
   },
   procedural_posture: {
     label: { en: 'Procedural Posture', zh: '程序態勢' },
     chipClass: 'bg-amber-50 text-amber-700 border-amber-200',
-    highlightClass: 'rounded bg-amber-50 px-0.5 font-medium text-amber-900 box-decoration-clone',
+    highlightClass: 'bg-[#dbeafe] text-[#1e3a8a] rounded px-1 py-0.5 font-medium box-decoration-clone',
     choiceClass: 'font-medium text-amber-700',
   },
   trap_phrase: {
     label: { en: 'Trap Phrase', zh: '陷阱選項' },
     chipClass: 'bg-red-50 text-red-600 border-red-200',
-    highlightClass: 'rounded bg-red-50 px-0.5 font-medium text-red-800 box-decoration-clone',
+    highlightClass: 'bg-red-100 text-red-800 rounded px-1 py-0.5 font-medium box-decoration-clone',
     choiceClass: 'font-medium text-red-700 underline decoration-red-400 decoration-2',
   },
   remedy_or_relief: {
     label: { en: 'Remedy / Relief', zh: '救濟方式' },
     chipClass: 'bg-violet-50 text-violet-700 border-violet-200',
-    highlightClass: 'rounded bg-violet-50 px-0.5 font-medium text-violet-900 box-decoration-clone',
+    highlightClass: 'bg-violet-50 px-1 py-0.5 rounded font-medium text-violet-900 box-decoration-clone',
     choiceClass: 'font-medium text-violet-700',
   },
   party_role: {
     label: { en: 'Party Role', zh: '當事人角色' },
     chipClass: 'bg-slate-100 text-slate-700 border-slate-200',
-    highlightClass: 'rounded bg-slate-100 px-0.5 font-medium text-slate-900 box-decoration-clone',
+    highlightClass: 'bg-slate-100 px-1 py-0.5 rounded font-medium text-slate-900 box-decoration-clone',
     choiceClass: 'font-medium text-slate-700',
   },
   time_marker: {
     label: { en: 'Time Marker', zh: '時間標記' },
     chipClass: 'bg-slate-100 text-slate-600 border-slate-200',
-    highlightClass: 'rounded bg-slate-100 px-0.5 font-medium text-slate-800 box-decoration-clone',
+    highlightClass: 'bg-slate-100 px-1 py-0.5 rounded font-medium text-slate-800 box-decoration-clone',
     choiceClass: 'font-medium text-slate-600',
   },
 };
@@ -300,25 +300,119 @@ function getHighlightRanges(line: string, highlights: QuestionHighlight[]): Matc
   }
 
   return ranges.sort((a, b) => a.start - b.start);
-}
+}const getKindEmoji = (kind: string) => {
+  switch (kind) {
+    case 'key_sentence': return '🔑';
+    case 'issue': return '⚖️';
+    case 'rule_trigger': return '⚖️';
+    case 'fact_trigger': return '📌';
+    case 'trap_phrase': return '⚠️';
+    default: return '📌';
+  }
+};
 
-function HighlightMark({ range, text, language }: { range: MatchRange; text: string; language?: string }) {
-  const { wrapperRef, pos, show, hide } = useTooltipPos();
+function HighlightMark({
+  range,
+  text,
+  language,
+  toggleNoteState,
+  isCollapsed,
+}: {
+  range: MatchRange;
+  text: string;
+  language?: string;
+  toggleNoteState: (id: string) => void;
+  isCollapsed: boolean;
+}) {
   const hl = range.highlight;
+  const hlId = hl.id || `hl-${hl.text}`;
+
+  const displayLabel = localizedValue(hl.label, language);
+  const displayReason = localizedValue(hl.reason, language);
+  const hasNote = displayLabel || displayReason;
+
+  const dotColor = hl.importance === 'high'
+    ? 'bg-red-500'
+    : hl.importance === 'medium'
+      ? 'bg-amber-500'
+      : 'bg-slate-400';
+
+  const dotCount = hl.importance === 'high' ? 3 : hl.importance === 'medium' ? 2 : 1;
+  const isZh = language !== 'en';
+
+  const isFact = hl.kind === 'fact_trigger';
+
+  const cardClass = isFact
+    ? "border-sky-300 bg-sky-50/40 hover:bg-sky-50/60 text-slate-700"
+    : "border-amber-300 bg-amber-50/40 hover:bg-amber-50/60 text-slate-700";
+
+  const headerClass = isFact
+    ? "text-blue-800"
+    : "text-amber-800";
+
+  const emoji = getKindEmoji(hl.kind);
+
   return (
-    <span ref={wrapperRef} className="relative inline" onMouseMove={show} onMouseLeave={hide}>
+    <span className="relative inline">
       <mark
-        className={cn(highlightClass(hl.kind, hl.importance), 'cursor-default')}
+        className={cn(highlightClass(hl.kind, hl.importance), 'cursor-pointer hover:opacity-80 transition-opacity duration-200')}
         data-highlight-kind={hl.kind}
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleNoteState(hlId);
+          const numMatch = hl.id?.match(/\d+/);
+          const index = numMatch ? parseInt(numMatch[0]) : null;
+          if (index !== null) {
+            document.querySelectorAll('iframe').forEach(iframe => {
+              iframe.contentWindow?.postMessage({ type: 'passbar-toggle-note', index }, '*');
+            });
+          }
+        }}
       >
         {text}
       </mark>
-      <TooltipContent label={hl.label} reason={hl.reason} kind={hl.kind} importance={hl.importance} pos={pos} language={language} />
+      {hasNote && !isCollapsed && (
+        <span
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleNoteState(hlId);
+          }}
+          className={cn(
+            "block border-l-2 rounded-r-lg p-2.5 my-2.5 ml-4 text-xs font-sans font-normal transition-all duration-200 cursor-pointer select-none",
+            cardClass
+          )}
+          title={isZh ? "點擊收起此批註" : "Click to collapse note"}
+        >
+          <span className={cn("flex items-center justify-between mb-1.5 font-bold", headerClass)}>
+            <span className="flex items-center gap-1">
+              <span className="flex items-center gap-0.5 mr-1">
+                {Array.from({ length: dotCount }).map((_, i) => (
+                  <span key={i} className={cn("w-2 h-2 rounded-full shrink-0", dotColor)} />
+                ))}
+              </span>
+              <span>{emoji} {displayLabel}</span>
+            </span>
+            <span className="text-[11px] text-slate-400 hover:text-slate-600 font-normal select-none">
+              ✕
+            </span>
+          </span>
+          {displayReason && (
+            <span className="block leading-relaxed mt-1 text-slate-600 font-normal">
+              └─ {displayReason}
+            </span>
+          )}
+        </span>
+      )}
     </span>
   );
 }
-
-function renderHighlightedLine(line: string, highlights: QuestionHighlight[], language?: string) {
+function renderHighlightedLine(
+  line: string,
+  highlights: QuestionHighlight[],
+  language?: string,
+  toggleNoteState?: (id: string) => void,
+  collapsedNotes?: Record<string, boolean>
+) {
   const plainLine = stripInlineHtml(line);
   const ranges = getHighlightRanges(plainLine, highlights);
   if (ranges.length === 0) return plainLine;
@@ -330,12 +424,18 @@ function renderHighlightedLine(line: string, highlights: QuestionHighlight[], la
     if (range.start > cursor) {
       nodes.push(plainLine.slice(cursor, range.start));
     }
+    const hl = range.highlight;
+    const hlId = hl.id || `hl-${hl.text}`;
+    const isCollapsed = collapsedNotes?.[hlId] ?? false;
+
     nodes.push(
       <HighlightMark
         key={`${range.start}-${range.end}-${index}`}
         range={range}
         text={plainLine.slice(range.start, range.end)}
         language={language}
+        toggleNoteState={toggleNoteState || (() => {})}
+        isCollapsed={isCollapsed}
       />
     );
     cursor = range.end;
@@ -428,6 +528,11 @@ function RichTextComponent({
   highlights?: QuestionHighlight[];
   language?: string;
 }) {
+  const [collapsedNotes, setCollapsedNotes] = useState<Record<string, boolean>>({});
+  const toggleNoteState = useCallback((id: string) => {
+    setCollapsedNotes((prev) => ({ ...prev, [id]: !prev[id] }));
+  }, []);
+
   const cleaned = text.replace(/^Q\d+\s*\n+/, '');
   const paragraphs = cleaned.split(/<br\s*\/?>\s*<br\s*\/?>/i);
 
@@ -436,18 +541,17 @@ function RichTextComponent({
       {paragraphs.map((para, pi) => {
         const lines = para.split(/<br\s*\/?>/i);
         return (
-          <p key={pi}>
+          <div key={pi} className="space-y-3">
             {lines.map((line, li) => (
-              <React.Fragment key={li}>
-                {li > 0 && <br />}
+              <div key={li} className="leading-relaxed">
                 {highlights?.length ? (
-                  <span>{renderHighlightedLine(line, highlights, language)}</span>
+                  <span>{renderHighlightedLine(line, highlights, language, toggleNoteState, collapsedNotes)}</span>
                 ) : (
                   <span dangerouslySetInnerHTML={{ __html: sanitizeInlineHtml(line) }} />
                 )}
-              </React.Fragment>
+              </div>
             ))}
-          </p>
+          </div>
         );
       })}
     </div>

@@ -1184,14 +1184,8 @@ def call_ai_rest(
     if AI_PROVIDER == "gpt":
         return call_openai_responses(prompt_text, image_paths)
     if AI_PROVIDER in {"codex-cli", "antigravity-cli", "claude-cli"}:
-        # antigravity-cli cannot process local image files; fall back to Gemini.
         # codex-cli supports --image flags natively.
-        # claude-cli embeds image paths in the prompt so Claude Code's Read tool views them.
-        has_images = bool(cli_ai._normalize_images(image_paths))
-        if has_images and AI_PROVIDER == "antigravity-cli":
-            fallback_model = (GEMINI_REST_HTML_MODEL if use_html_model else GEMINI_MODEL) or None
-            print(f"[fallback→gemini/{fallback_model}: images not supported by {AI_PROVIDER}]", end=" ", flush=True)
-            return call_gemini_rest(prompt_text, image_paths, model=fallback_model)
+        # antigravity-cli and claude-cli embed image paths in the prompt so their tools can view them.
         model = (AI_HTML_MODEL if use_html_model else AI_MODEL) or None
         raw = cli_ai.call_cli_ai(
             AI_PROVIDER,

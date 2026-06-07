@@ -144,13 +144,19 @@ def call_antigravity_cli(prompt: str, image_paths: list[str] | str | None = None
     if not agy_bin:
         raise RuntimeError("Antigravity CLI not found. Install `agy` or set ANTIGRAVITY_CLI_BIN.")
 
-    # antigravity-cli (--print mode) cannot access local files outside its workspace.
-    # Passing image paths causes the model to attempt file reads that silently fail,
-    # resulting in empty output. Image context must be embedded in the prompt itself.
+    images = _normalize_images(image_paths)
+    full_prompt = prompt
+    if images:
+        # Ask Antigravity to read each image file before responding.
+        image_list = "\n".join(f"  {p}" for p in images)
+        full_prompt = (
+            full_prompt.rstrip()
+            + f"\n\n[Attached image files — read each one before responding:]\n{image_list}"
+        )
+
     with tempfile.TemporaryDirectory(prefix="passbar-agy-") as tmp:
         prompt_path = Path(tmp) / "prompt.txt"
         output_path = Path(tmp) / "output.txt"
-        full_prompt = prompt
         prompt_path.write_text(full_prompt, encoding="utf-8")
 
         template = os.environ.get("ANTIGRAVITY_CLI_COMMAND")

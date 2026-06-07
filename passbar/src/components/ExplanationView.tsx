@@ -471,6 +471,22 @@ function buildIframeResizeScript(channelId: string) {
   outline-color: rgba(239, 68, 68, 0.72) !important;
   box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.08) !important;
 }
+.teacher-note-box {
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+.teacher-note-box.collapsed {
+  display: none !important;
+}
+[onclick^="toggleNote"], .highlight-yellow, .highlight-blue, .teacher-note-box {
+  cursor: pointer !important;
+}
+[onclick^="toggleNote"]:hover, .highlight-yellow:hover, .highlight-blue:hover {
+  opacity: 0.85 !important;
+  filter: brightness(0.95);
+}
+.teacher-note-box:hover {
+  filter: brightness(0.98);
+}
 </style>
 <script>
 (function(){
@@ -537,11 +553,22 @@ function buildIframeResizeScript(channelId: string) {
     schedule();
   }
 
+  window.toggleNote = function(index) {
+    var notes = document.querySelectorAll('#note-zh-' + index + ', #note-en-' + index + ', .note-box-' + index);
+    notes.forEach(function(note) {
+      note.classList.toggle('collapsed');
+    });
+    schedule();
+  };
+
   window.addEventListener('load', schedule);
   document.addEventListener('DOMContentLoaded', schedule);
   window.addEventListener('message', function(event) {
-    if (event.data && event.data.type === 'passbar-choice-hover') {
+    if (!event.data) return;
+    if (event.data.type === 'passbar-choice-hover') {
       setActiveChoice(event.data.choice || '');
+    } else if (event.data.type === 'passbar-toggle-note') {
+      window.toggleNote(event.data.index);
     }
   });
   new MutationObserver(schedule).observe(document.documentElement, {childList:true, subtree:true, attributes:true, characterData:true});
@@ -551,7 +578,7 @@ function buildIframeResizeScript(channelId: string) {
   }
   [50,150,350,700,1200,2000].forEach(function(t){ setTimeout(schedule, t); });
 })();
-<\/script>`;
+</script>`;
 }
 
 function injectIframeResizeScript(html: string, channelId: string) {

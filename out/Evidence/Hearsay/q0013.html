@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .pbx-explanation ul {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      padding-left: 1.5rem;
+    }
+
+    .pbx-explanation li {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+
+    .pbx-explanation strong {
+      font-weight: 700;
+    }
+
+    /* Interactive tooltips for key terms */
+    .pbx-term {
+      color: #3498db;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .pbx-term:hover {
+      color: #2980b9;
+    }
+
+    .pbx-term .pbx-tooltip {
+      visibility: hidden;
+      width: 260px;
+      background-color: #333333;
+      color: #ffffff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      font-size: 0.85rem;
+      line-height: 1.4;
+      font-weight: normal;
+      pointer-events: none;
+      box-sizing: border-box;
+    }
+
+    .pbx-term .pbx-tooltip strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #3498db;
+    }
+
+    .pbx-term .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333333 transparent transparent transparent;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-references-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* Scrollable wrapper for responsive content */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 16px 0;
+      width: 100%;
+    }
+
+    /* Table styling */
+    .pbx-table {
+      min-width: 480px;
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #cccccc;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .pbx-table th, .pbx-table td {
+      border: 1px solid #cccccc;
+      padding: 8px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .pbx-table th {
+      background: #f5f5f5;
+      font-weight: bold;
+    }
+
+    .pbx-row-header {
+      background: #ffffff !important;
+      font-weight: bold;
+      width: 30%;
+    }
+
+    .pbx-nested-sublist {
+      list-style-type: circle;
+      padding-left: 1.25rem !important;
+      margin-top: 0.35rem !important;
+      margin-bottom: 0 !important;
+    }
+    
+    .pbx-nested-or {
+      list-style-type: none !important;
+      margin-left: -1.25rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0.25rem;
+      font-style: italic;
+      color: #333333;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+      }
+
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+
+      .pbx-table th, .pbx-table td {
+        font-size: 0.825rem;
+        padding: 0.5em 0.625em;
+      }
+
+      .pbx-term .pbx-tooltip {
+        width: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: What Is Not Hearsay -->
+<div class="pbx-explanation">
+  <div class="pbx-scroll-x">
+    <table class="pbx-table">
+      <thead>
+        <tr>
+          <th colspan="2" style="background: #f5f5f5; text-align: center; border: 1px solid #cccccc; padding: 8px 12px;">
+            <div style="font-size: 1.05rem; font-weight: 700; color: #111111;">Nonhearsay statements by declarant-witness</div>
+            <div style="font-size: 0.9rem; font-weight: 400; color: #555555; margin-top: 4px;">(FRE 801(d)(1))</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="pbx-row-header">Prior statement of identification</th>
+          <td>
+            <ul style="margin: 0; padding-left: 1.25rem;">
+              <li>Identifies person as someone declarant perceived earlier</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th class="pbx-row-header">Prior <em>inconsistent</em> statement</th>
+          <td>
+            <ul style="margin: 0; padding-left: 1.25rem;">
+              <li>Inconsistent with declarant's current testimony <em>and</em></li>
+              <li>made under penalty of perjury at former proceeding</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th class="pbx-row-header">Prior <em>consistent</em> statement</th>
+          <td>
+            <ul style="margin: 0; padding-left: 1.25rem;">
+              <li>Consistent with declarant's current testimony <em>and</em> offered to either:
+                <ul class="pbx-nested-sublist">
+                  <li>rebut charge of fabrication/improper influence if made before motive arose</li>
+                  <li class="pbx-nested-or">or</li>
+                  <li>rehabilitate declarant's credibility when attacked on other grounds</li>
+                </ul>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="border: 1px solid #cccccc; padding: 8px 12px; font-size: 0.9rem; color: #333333;">
+            <strong>FRE</strong> = Federal Rule of Evidence.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><span class="pbx-term" tabindex="0">Hearsay<span class="pbx-tooltip"><strong>Hearsay / 传闻证据</strong>An out-of-court statement offered to prove the truth of the matter asserted, which is generally inadmissible unless an exception or exclusion applies.</span></span> refers to out-of-court statements (here, the man's statement to police) offered to prove the truth of the matter asserted therein (that he had never been inside the store). Such statements are inadmissible unless specifically <span class="pbx-term" style="color: #2980b9;" tabindex="0">excluded or excepted<span class="pbx-tooltip"><strong>Excluded or Excepted / 排除或例外</strong>Excluded statements (non-hearsay under FRE 801(d)) and excepted statements (hearsay exceptions under FRE 803/804) are admissible despite the general rule against hearsay.</span></span> from the rule against hearsay. One <span class="pbx-term" tabindex="0">hearsay exclusion<span class="pbx-tooltip"><strong>Hearsay Exclusion / 传闻证据排除</strong>Under the Federal Rules of Evidence (FRE 801(d)), certain statements are defined as non-hearsay (exempt from the hearsay rule) rather than being admitted under an exception.</span></span> applies when the declarant is on the witness stand and an out-of-court statement that is <strong>consistent</strong> with the declarant-witness's <strong>current testimony</strong> is offered to:</p>
+  
+  <ul>
+    <li><strong>rebut</strong> a charge of <strong>fabrication or improper influence</strong>, if the out-of-court statement was made before a motive for the alleged fabrication or improper influence arose or</li>
+    <li><strong>rehabilitate</strong> the declarant-witness's <strong>credibility</strong> when attacked on other grounds.</li>
+  </ul>
+
+  <p style="border-left: 3px solid #27ae60; padding-left: 10px;" data-choice="B" data-choice-role="correct">
+    Here, the man's prior statement to police <em>is</em> consistent with his current testimony, but it was not offered to rehabilitate the man's credibility. Nor was it offered to rebut a charge of fabrication or improper influence.* And even if it had, the statement was made <em>after</em> the man had a motive to fabricate (i.e., after his arrest) <span style="color:#9b1c1c;font-weight:600;" data-choice="C" data-choice-role="distractor">(Choice C)</span>. Therefore, it does not meet the criteria for admission as a prior consistent statement. And since no other hearsay exclusion or exception applies, the man's intended testimony is <em>not</em> admissible.
+  </p>
+
+  <p data-choice="B" data-choice-role="correct">
+    *Additionally, the hearsay exclusion for <span class="pbx-term" style="color: #2980b9; font-style: italic;" tabindex="0">statements by a party-opponent<span class="pbx-tooltip"><strong>Statement by an Opposing Party / 对手当事人陈述</strong>Under FRE 801(d)(2), a statement offered against an opposing party that was made by that party is non-hearsay.</span></span> does not apply. Although the man <em>is</em> a party to the case (the defendant), his statement is not being offered against him by his opponent (the prosecution).
+  </p>
+
+  <p style="border-left: 3px solid #c0392b; padding-left: 10px;" data-choice="A" data-choice-role="distractor">
+    <strong style="color: #9b1c1c;">(Choice A)</strong> The man may have a substantial motive to fabricate his testimony because he has been accused of a crime. That motive does not provide a basis to exclude otherwise admissible testimony but may be used by the prosecution to <span class="pbx-term" style="color: #2980b9;" tabindex="0">impeach<span class="pbx-tooltip"><strong>Impeach / 弹劾证人</strong>To challenge the credibility of a witness by presenting evidence of inconsistency, bias, or character for untruthfulness.</span></span> the man by attacking his credibility as a witness.
+  </p>
+
+  <p style="border-left: 3px solid #c0392b; padding-left: 10px;" data-choice="D" data-choice-role="distractor">
+    <strong style="color: #9b1c1c;">(Choice D)</strong> The man's intended testimony cannot be admitted to prove that he had never been inside the store because it is hearsay not within any exception.
+  </p>
+
+  <div class="pbx-edu-objective">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>A declarant-witness's prior consistent statement is excluded from the rule against hearsay if (1) it is offered to rebut a charge of fabrication/improper influence and was made before a motive to fabricate arose or (2) it is offered to rehabilitate the witness's credibility.</p>
+  </div>
+
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li>Fed. R. Evid. 801(d)(1)(B) (declarant-witness's prior consistent statement)</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

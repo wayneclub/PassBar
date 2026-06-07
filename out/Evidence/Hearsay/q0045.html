@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <meta name="description" content="Explanation of out-of-court statements admissibility, including hearsay, nonhearsay, exclusions, and exceptions.">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* Interactive tooltips for key terms */
+    .pbx-term {
+      color: #3498db;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .pbx-term:hover {
+      color: #2980b9;
+    }
+
+    .pbx-term .pbx-tooltip {
+      visibility: hidden;
+      width: 280px;
+      background-color: #333333;
+      color: #ffffff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 100;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      font-size: 0.85rem;
+      line-height: 1.4;
+      font-weight: normal;
+      pointer-events: none;
+      box-sizing: border-box;
+    }
+
+    .pbx-term .pbx-tooltip strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #3498db;
+    }
+
+    .pbx-term .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333333 transparent transparent transparent;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Diagram Styles */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 24px 0;
+      width: 100%;
+    }
+
+    .pbx-flow-inner {
+      min-width: 30em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1em 0;
+      box-sizing: border-box;
+    }
+
+    .pbx-diagram-wrapper {
+      position: relative;
+      width: 28em;
+      height: 28em;
+      margin: 0 auto;
+    }
+
+    .pbx-outer-circle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 28em;
+      height: 28em;
+      border-radius: 50%;
+      background-color: #dbebd4;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .pbx-outer-text {
+      position: absolute;
+      top: 1.8em;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .pbx-middle-circle {
+      position: absolute;
+      bottom: 1.2em;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 21em;
+      height: 21em;
+      border-radius: 50%;
+      background-color: #f2dcdb;
+    }
+
+    .pbx-middle-text {
+      position: absolute;
+      top: 1.4em;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .pbx-inner-container {
+      position: absolute;
+      bottom: 2.3em;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.6em;
+      z-index: 10;
+    }
+
+    .pbx-inner-circle {
+      width: 8.8em;
+      height: 8.8em;
+      border-radius: 50%;
+      background-color: #dbebd4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6em;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .pbx-circle-header {
+      font-weight: 700;
+      color: #2d3748;
+      line-height: 1.2;
+      margin-bottom: 0.25em;
+    }
+
+    .pbx-outer-header, .pbx-middle-header {
+      font-size: 0.95rem;
+    }
+
+    .pbx-inner-header {
+      font-size: 0.8rem;
+    }
+
+    .pbx-circle-subtext {
+      font-weight: 400;
+      color: #4a5568;
+      line-height: 1.3;
+    }
+
+    .pbx-outer-subtext, .pbx-middle-subtext {
+      font-size: 0.8rem;
+    }
+
+    .pbx-inner-subtext {
+      font-size: 0.68rem;
+    }
+
+    /* Legend Styles */
+    .pbx-legend-container {
+      display: flex;
+      justify-content: center;
+      gap: 1.5em;
+      margin-top: 1.2em;
+      font-size: 0.875rem;
+      color: #444;
+      align-items: center;
+    }
+
+    .pbx-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    .pbx-legend-color {
+      width: 1.25em;
+      height: 1.25em;
+      border-radius: 2px;
+    }
+
+    .pbx-legend-color.admissible {
+      background-color: #dbebd4;
+    }
+
+    .pbx-legend-color.inadmissible {
+      background-color: #f2dcdb;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-edu-objective p {
+      margin: 0;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-references-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+      }
+
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+
+      .pbx-term .pbx-tooltip {
+        width: 240px;
+        left: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: What Is Hearsay -->
+<div class="pbx-explanation">
+  <h1 style="text-align: center; font-size: 1.35rem; font-weight: bold; margin-bottom: 24px; color: #111;">Admissibility of out-of-court statements</h1>
+  
+  <div class="pbx-scroll-x">
+    <div class="pbx-flow-inner">
+      <div class="pbx-diagram-wrapper">
+        <div class="pbx-outer-circle"></div>
+        <div class="pbx-outer-text">
+          <div class="pbx-circle-header pbx-outer-header">Nonhearsay</div>
+          <div class="pbx-circle-subtext pbx-outer-subtext">Offered for purpose other than<br>asserted truth</div>
+        </div>
+        
+        <div class="pbx-middle-circle">
+          <div class="pbx-middle-text">
+            <div class="pbx-circle-header pbx-middle-header">Hearsay</div>
+            <div class="pbx-circle-subtext pbx-middle-subtext">Offered for truth of<br>matter asserted therein</div>
+          </div>
+          
+          <div class="pbx-inner-container">
+            <div class="pbx-inner-circle">
+              <div class="pbx-circle-header pbx-inner-header">Hearsay<br>exclusions</div>
+              <div class="pbx-circle-subtext pbx-inner-subtext">Prior statement<br>by witness or<br>opposing party</div>
+            </div>
+            
+            <div class="pbx-inner-circle">
+              <div class="pbx-circle-header pbx-inner-header">Hearsay<br>exceptions</div>
+              <div class="pbx-circle-subtext pbx-inner-subtext">Dying declaration,<br>excited utterance,<br>records, etc.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="pbx-legend-container">
+        <div class="pbx-legend-item">
+          <div class="pbx-legend-color admissible"></div>
+          <div>= Admissible</div>
+        </div>
+        <div class="pbx-legend-item">
+          <div class="pbx-legend-color inadmissible"></div>
+          <div>= Inadmissible</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p>An <span class="pbx-term" tabindex="0" id="term-out-of-court"><strong>out-of-court statement</strong><span class="pbx-tooltip"><strong>Out-of-Court Statement / 庭外陈述</strong>A statement made outside of the current trial or hearing. / 在法庭审理或听证会之外所作的陈述。</span></span> is only <span class="pbx-term" tabindex="0" id="term-hearsay"><strong>hearsay</strong><span class="pbx-tooltip"><strong>Hearsay / 传闻证据</strong>An out-of-court statement offered to prove the truth of the matter asserted. / 提供庭外陈述以证明其所主张之事实的真实性。</span></span> if it is <span class="pbx-term" tabindex="0" id="term-offered-truth"><strong>offered for the truth</strong><span class="pbx-tooltip"><strong>Offered for the Truth / 用于证明真实性</strong>Offered to prove that the content of the statement is true. / 用于证明该陈述的内容为真。</span></span> of the matter asserted therein. Therefore, an out-of-court statement offered for some <strong>other relevant purpose</strong> is <strong>not barred</strong> by the hearsay rule. However, upon a timely request by the opposing party, the <strong>court <em>must</em>:</strong></p>
+
+  <ul style="margin-top: 8px; margin-bottom: 16px; padding-left: 20px; list-style-type: disc;">
+    <li style="margin-bottom: 6px;"><strong>limit the admissibility</strong> of that statement to its nonhearsay purpose <em>and</em></li>
+    <li style="margin-bottom: 6px;"><strong>instruct the jury</strong> accordingly—eg, "the evidence may be considered not for the truth of the assertions contained in them but only regarding the issue of notice."</li>
+  </ul>
+
+  <p data-choice="B" data-choice-role="correct">Here, the consumer has offered three letters (out-of-court statements) in which customers complained of serious burns under circumstances like those in this negligent failure to warn case. Since the purpose of these letters is to show that the manufacturer had notice of the purported injuries—not to prove that it actually caused them (truth of the matter asserted)—the letters are <em>not</em> hearsay. Therefore, the manufacturer's hearsay objection should be overruled <span style="color:#9b1c1c;font-weight:600;" data-choice="D" data-choice-role="distractor">(Choice D)</span>. But the court must give the <span class="pbx-term" tabindex="0" id="term-limiting-instruction">limiting instruction<span class="pbx-tooltip"><strong>Limiting Instruction / 限制性指示</strong>An instruction given by the judge to the jury to consider evidence only for a specific, restricted purpose. / 法官向陪审团发出的指示，要求仅出于特定的、受限的目的来考虑证据。</span></span> requested by the manufacturer <span style="color:#9b1c1c;font-weight:600;" data-choice="A" data-choice-role="distractor">(Choice A)</span>.</p>
+
+  <p style="border-left: 3px solid #c0392b; padding-left: 10px; margin: 16px 0;" data-choice="C" data-choice-role="distractor">
+    <strong style="color: #9b1c1c;">(Choice C)</strong> If the letters are admissible for a nonhearsay purpose, there is no rule limiting <em>how</em> they may be admitted—eg, through testimony, as exhibits.
+  </p>
+
+  <div class="pbx-edu-objective">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>The hearsay rule does not apply to out-of-court statements offered for some relevant purpose other than proving the truth of the matter asserted therein. But the court, upon timely request, must limit the statement to its nonhearsay use and instruct the jury accordingly.</p>
+  </div>
+
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li>Fed. R. Evid. 801(c) (definition of hearsay).</li>
+      <li>Fed. R. Evid. 105 (limiting use of evidence to its admissible purposes).</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

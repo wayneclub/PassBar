@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Flowchart/Diagram styles */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 20px 0;
+    }
+
+    .pbx-flow-inner {
+      min-width: 650px;
+      margin: 0 auto;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .pbx-flow-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .pbx-flow-center {
+      text-align: center;
+    }
+
+    .pbx-hearsay-card {
+      background: #ffffff;
+      border: 1.5px solid #d1d5db;
+      border-radius: 6px;
+      padding: 12px 24px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.08);
+      display: inline-block;
+    }
+
+    .pbx-hearsay-card .pbx-node-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #111827;
+    }
+
+    .pbx-hearsay-card .pbx-node-desc {
+      font-size: 0.9rem;
+      color: #374151;
+      line-height: 1.4;
+    }
+
+    .pbx-flow-arrow-down {
+      position: relative;
+      width: 1.5px;
+      height: 25px;
+      background: #888888;
+      margin: 5px auto;
+    }
+
+    .pbx-flow-arrow-down::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 6px solid #888888;
+    }
+
+    .pbx-flow-text {
+      font-size: 0.95rem;
+      color: #111827;
+    }
+
+    .pbx-horizontal-bar {
+      position: relative;
+      width: 52%;
+      margin: 0 auto;
+      height: 15px;
+      border-top: 1.5px solid #888888;
+      border-left: 1.5px solid #888888;
+      border-right: 1.5px solid #888888;
+      box-sizing: border-box;
+    }
+
+    .pbx-horizontal-bar::before {
+      content: '';
+      position: absolute;
+      left: -4.75px;
+      bottom: -5px;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 6px solid #888888;
+    }
+
+    .pbx-horizontal-bar::after {
+      content: '';
+      position: absolute;
+      right: -4.75px;
+      bottom: -5px;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 6px solid #888888;
+    }
+
+    .pbx-flow-columns {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      gap: 4%;
+      margin-top: 5px;
+    }
+
+    .pbx-flow-col {
+      width: 48%;
+      background-color: #f6f8fa;
+      border: 1.5px solid #d1d5db;
+      border-radius: 8px;
+      padding: 16px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pbx-col-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #111827;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .pbx-nested-card {
+      background-color: #ffffff;
+      border: 1.5px solid #e1e4e8;
+      border-radius: 6px;
+      padding: 12px;
+      margin-top: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      text-align: left;
+    }
+
+    .pbx-nested-card-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #24292e;
+      margin-bottom: 6px;
+    }
+
+    .pbx-nested-card ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.85rem;
+      color: #24292e;
+    }
+
+    .pbx-nested-card li {
+      margin-bottom: 4px;
+      line-height: 1.4;
+      list-style-type: disc;
+    }
+
+    .pbx-horizontal-bar-bottom {
+      position: relative;
+      width: 52%;
+      margin: 0 auto;
+      height: 20px;
+      border-bottom: 1.5px solid #888888;
+      border-left: 1.5px solid #888888;
+      border-right: 1.5px solid #888888;
+      box-sizing: border-box;
+    }
+
+    .pbx-horizontal-bar-bottom::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -15px;
+      transform: translateX(-50%);
+      width: 1.5px;
+      height: 15px;
+      background: #888888;
+    }
+
+    .pbx-horizontal-bar-bottom::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -20px;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 6px solid #888888;
+    }
+
+    .pbx-flow-merge-container {
+      margin-top: 5px;
+    }
+
+    /* Explanation Text list styling */
+    .pbx-explanation-bullets {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      padding-left: 1.5rem;
+    }
+
+    .pbx-explanation-bullets li {
+      margin-bottom: 0.625rem;
+      list-style-type: disc;
+      line-height: 1.7;
+    }
+
+    /* Term & Tooltip styles */
+    .pbx-term {
+      color: #007eff;
+      text-decoration: underline;
+      cursor: help;
+      position: relative;
+      display: inline-block;
+    }
+
+    .pbx-term:focus {
+      outline: 2px solid #3498db;
+      outline-offset: 2px;
+    }
+
+    .pbx-tooltip {
+      visibility: hidden;
+      width: 260px;
+      background-color: #333333;
+      color: #ffffff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 100;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s, visibility 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      font-size: 0.85rem;
+      line-height: 1.4;
+      pointer-events: none;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      font-weight: normal;
+    }
+
+    .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 6px;
+      border-style: solid;
+      border-color: #333333 transparent transparent transparent;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .pbx-zh {
+      display: block;
+      margin-top: 4px;
+      color: #cccccc;
+      font-size: 0.8rem;
+      border-top: 1px solid #555555;
+      padding-top: 4px;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 0.875rem 1.125rem;
+      margin: 1.5rem 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 0.875rem 1.125rem;
+      margin: 1.25rem 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-references-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #555555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 1.125rem;
+      font-size: 0.875rem;
+      color: #555555;
+      line-height: 1.7;
+    }
+
+    .pbx-ref-list li {
+      list-style-type: disc;
+    }
+
+    /* Table styles (just in case they are tested) */
+    table {
+      min-width: 480px;
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #cccccc;
+      margin: 16px 0;
+    }
+
+    th, td {
+      border: 1px solid #cccccc;
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    th {
+      background: #f5f5f5;
+      font-weight: bold;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+      }
+
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+      
+      table th, table td {
+        font-size: 0.825rem;
+        padding: 0.5em 0.625em;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: Declarant's Availability Immaterial -->
+<div class="pbx-explanation">
+
+  <!-- Flowchart Diagram -->
+  <div class="pbx-scroll-x">
+    <div class="pbx-flow-inner">
+      
+      <!-- Hearsay Box -->
+      <div class="pbx-flow-row pbx-flow-center">
+        <div class="pbx-hearsay-card">
+          <div class="pbx-node-title">Hearsay</div>
+          <div class="pbx-node-desc">Out-of-court statement offered for<br>truth of matter asserted therein</div>
+        </div>
+      </div>
+
+      <!-- Arrow Down -->
+      <div class="pbx-flow-row">
+        <div class="pbx-flow-arrow-down"></div>
+      </div>
+
+      <!-- Text Label -->
+      <div class="pbx-flow-row pbx-flow-center" style="margin: 4px 0;">
+        <div class="pbx-flow-text"><strong>Inadmissible unless</strong></div>
+      </div>
+
+      <!-- Branch Lines -->
+      <div class="pbx-flow-row">
+        <div class="pbx-flow-branch-container" style="width: 100%; position: relative;">
+          <div style="height: 15px; margin: 0 auto; background: #888888; width: 1.5px;"></div>
+          <div class="pbx-horizontal-bar"></div>
+        </div>
+      </div>
+
+      <!-- Two Columns -->
+      <div class="pbx-flow-columns">
+        
+        <!-- Left Column: Excluded -->
+        <div class="pbx-flow-col">
+          <div class="pbx-col-title">Excluded (ie, nonhearsay)</div>
+          
+          <div class="pbx-nested-card">
+            <div class="pbx-nested-card-title">Declarant-witness</div>
+            <ul>
+              <li>Prior inconsistent statement</li>
+              <li>Prior consistent statement for rehabilitation</li>
+              <li>Prior identification</li>
+            </ul>
+          </div>
+          
+          <div class="pbx-nested-card">
+            <div class="pbx-nested-card-title">Party-opponent</div>
+            <ul>
+              <li>Made or adopted by party</li>
+              <li>Made by agent, employee, coconspirator, or authorized person</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Column: Excepted -->
+        <div class="pbx-flow-col">
+          <div class="pbx-col-title">Excepted</div>
+          
+          <div class="pbx-nested-card">
+            <div class="pbx-nested-card-title">Unavailable declarant</div>
+            <ul>
+              <li>Former testimony</li>
+              <li>Dying declaration</li>
+              <li>Statement against interest</li>
+              <li>Personal/family history</li>
+              <li>Against party that wrongly caused declarant's absence</li>
+            </ul>
+          </div>
+          
+          <div class="pbx-nested-card">
+            <div class="pbx-nested-card-title">Other inherently reliable statements</div>
+            <ul>
+              <li>Present sense impression</li>
+              <li>Then-existing state of mind</li>
+              <li>Etc.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Merge Lines -->
+      <div class="pbx-flow-row">
+        <div class="pbx-flow-merge-container" style="width: 100%; position: relative;">
+          <div class="pbx-horizontal-bar-bottom"></div>
+          <div style="height: 25px;"></div>
+        </div>
+      </div>
+
+      <!-- Admissible Box -->
+      <div class="pbx-flow-row pbx-flow-center">
+        <div class="pbx-flow-text"><strong>Admissible</strong></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Paragraph 1 (Hearsay, Exclusion/Exception, Business Records) -->
+  <p data-choice="A" data-choice-role="correct">
+    <strong>Hearsay</strong> is an out-of-court statement (eg, the memoranda) offered to prove the truth of the matter asserted therein (eg, that the motel was often confused with the hotel). Such statements are inadmissible unless <span class="pbx-term" tabindex="0">excluded<span class="pbx-tooltip"><strong>Hearsay Exclusion</strong><br>Statements that are defined as nonhearsay under the Federal Rules of Evidence (e.g., prior statements of a declarant-witness, party-opponent admissions).<span class="pbx-zh">传闻排除（非传闻）</span></span></span> or <span class="pbx-term" tabindex="0">excepted<span class="pbx-tooltip"><strong>Hearsay Exception</strong><br>Hearsay statements that are admissible under exceptions (e.g., excited utterances, business records, dying declarations).<span class="pbx-zh">传闻例外</span></span></span> from the rule against hearsay. One <strong>exception</strong> raised here applies to <strong>records of regularly conducted business activity</strong>—ie, business records that are:
+  </p>
+
+  <ul class="pbx-explanation-bullets" data-choice="D" data-choice-role="distractor">
+    <li>made <strong>at or near the time</strong> of the recorded event (or act, condition, opinion, diagnosis)</li>
+    <li>made by or based on information from someone with <strong>personal knowledge</strong> of that event <em>and</em></li>
+    <li>made and kept as a <strong>regular practice</strong> in the course of regularly conducted business activities.</li>
+  </ul>
+
+  <!-- Paragraph 2 (Business records litigation exception and Choice D) -->
+  <p data-choice="D" data-choice-role="distractor">
+    But records made in preparation for litigation do not fall under this exception. And since the hotel created the memoranda to later establish a likelihood of name confusion at trial, this exception is inapplicable <span style="color:#9b1c1c;font-weight:600;" data-choice="D" data-choice-role="distractor">(Choice D)</span>.
+  </p>
+
+  <!-- Paragraph 3 (Past Recollection Recorded) -->
+  <p data-choice="C" data-choice-role="distractor">
+    Another hearsay exception raised here applies to <strong>past recollection recorded</strong> (ie, <span class="pbx-term" tabindex="0">recorded recollection<span class="pbx-tooltip"><strong>Recorded Recollection (FRE 803(5))</strong><br>An exception for a record about a matter the witness once knew but now cannot recall well enough to testify fully and accurately.<span class="pbx-zh">过去回忆记录</span></span></span>). Under this exception, a record may be <strong>read into evidence</strong> if:
+  </p>
+
+  <ul class="pbx-explanation-bullets" data-choice="C" data-choice-role="distractor">
+    <li>a witness <strong>once knew</strong> the recorded information <strong>but cannot recall</strong> it at trial</li>
+    <li>the witness <strong>made or adopted</strong> the record <strong>when the matter was fresh</strong> in his/her mind <em>and</em></li>
+    <li>the record <strong>accurately</strong> reflects the witness's personal knowledge at the time it was made.</li>
+  </ul>
+
+  <!-- Paragraph 4 (Choice C and Choice A conclusion) -->
+  <p>
+    <span data-choice="C" data-choice-role="distractor">Here, there are no facts to support the above requirements, so this exception is also inapplicable <span style="color:#9b1c1c;font-weight:600;" data-choice="C" data-choice-role="distractor">(Choice C)</span>.</span>
+    <span data-choice="A" data-choice-role="correct">And since the memoranda are not otherwise excluded or excepted from hearsay, they are inadmissible.</span>
+  </p>
+
+  <!-- Paragraph 5 (Choice B, Pattern A) -->
+  <p style="border-left:3px solid #c0392b; padding-left:0.625em;" data-choice="B" data-choice-role="distractor">
+    <strong style="color:#9b1c1c">(Choice B)</strong> Relevant evidence should be excluded if its probative value is substantially outweighed by certain dangers—including unfair prejudice and confusing the issues. Here, the memoranda are highly probative because they concern the central issue in the case (name confusion) and pose no danger of unfair prejudice or confusion. But the memoranda remain inadmissible as hearsay not within any exception or exclusion.
+  </p>
+
+  <!-- Educational Objective -->
+  <div class="pbx-edu-objective">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>Records made in anticipation of litigation fall outside the business records exception to the hearsay rule. And a record may not be admitted under the recorded recollection exception unless a witness who once knew the recorded information cannot recall it at trial.</p>
+  </div>
+
+  <!-- References -->
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li>Fed. R. Evid. 803(5) (hearsay exception – recorded recollection).</li>
+      <li>Fed. R. Evid. 803(6) (hearsay exception – business records).</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

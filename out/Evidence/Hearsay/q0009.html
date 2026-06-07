@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    .pbx-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      text-align: center;
+      color: #1a202c;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Diagram Container styling */
+    .pbx-diagram-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2rem 0;
+      padding: 1.5rem;
+      border-radius: 12px;
+      background: #fcfdfd;
+      border: 1px solid #edf2f7;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* Interactive tooltips for key terms */
+    .pbx-term {
+      color: #3498db;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .pbx-term:hover {
+      color: #2980b9;
+    }
+
+    .pbx-term .pbx-tooltip {
+      visibility: hidden;
+      width: 260px;
+      background-color: #333333;
+      color: #ffffff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      font-size: 0.85rem;
+      line-height: 1.4;
+      font-weight: normal;
+      pointer-events: none;
+      box-sizing: border-box;
+    }
+
+    .pbx-term .pbx-tooltip strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #3498db;
+    }
+
+    .pbx-term .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333333 transparent transparent transparent;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-references-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* Scrollable wrapper for responsive content */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 16px 0;
+      width: 100%;
+    }
+
+    .pbx-flow-inner {
+      min-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+      }
+
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+
+      .pbx-title {
+        font-size: 1.2rem;
+      }
+
+      .pbx-term .pbx-tooltip {
+        width: 220px;
+        left: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: Declarant's Availability Immaterial -->
+<div class="pbx-explanation">
+  <div class="pbx-title">Admissibility of out-of-court statements</div>
+
+  <div class="pbx-diagram-container">
+    <div class="pbx-scroll-x">
+      <div class="pbx-flow-inner">
+        <svg viewBox="0 0 600 550" width="100%" height="auto" style="max-width: 500px; display: block; margin: 0 auto;">
+          <!-- Outer circle: Nonhearsay -->
+          <circle cx="300" cy="275" r="260" fill="#e2f0d8" />
+          
+          <!-- Inner circle: Hearsay -->
+          <circle cx="300" cy="320" r="200" fill="#f7d5d7" />
+          
+          <!-- Left small circle: Hearsay exclusions -->
+          <circle cx="210" cy="380" r="85" fill="#e2f0d8" />
+          
+          <!-- Right small circle: Hearsay exceptions -->
+          <circle cx="390" cy="380" r="85" fill="#e2f0d8" />
+          
+          <!-- Outer circle text -->
+          <foreignObject x="100" y="35" width="400" height="90">
+            <div style="text-align: center; font-family: 'Inter', -apple-system, sans-serif; font-size: 0.95rem; color: #1e3d2f; line-height: 1.35;">
+              <strong style="display: block; font-weight: 700; font-size: 1.05rem; color: #153023; margin-bottom: 2px;">Nonhearsay</strong>
+              Offered for purpose other<br>than asserted truth
+            </div>
+          </foreignObject>
+          
+          <!-- Inner circle text -->
+          <foreignObject x="150" y="145" width="300" height="90">
+            <div style="text-align: center; font-family: 'Inter', -apple-system, sans-serif; font-size: 0.95rem; color: #5c1d24; line-height: 1.35;">
+              <strong style="display: block; font-weight: 700; font-size: 1.05rem; color: #441015; margin-bottom: 2px;">Hearsay</strong>
+              Offered for truth of<br>matter asserted therein
+            </div>
+          </foreignObject>
+          
+          <!-- Left small circle text -->
+          <foreignObject x="130" y="315" width="160" height="130">
+            <div style="display: flex; flex-direction: column; justify-content: center; height: 130px; text-align: center; font-family: 'Inter', -apple-system, sans-serif; font-size: 0.825rem; color: #1e3d2f; line-height: 1.3;">
+              <strong style="font-weight: 700; font-size: 0.9rem; color: #153023; margin-bottom: 3px;">Hearsay<br>exclusions</strong>
+              <span>Prior statement<br>by witness or<br>opposing party</span>
+            </div>
+          </foreignObject>
+          
+          <!-- Right small circle text -->
+          <foreignObject x="310" y="315" width="160" height="130">
+            <div style="display: flex; flex-direction: column; justify-content: center; height: 130px; text-align: center; font-family: 'Inter', -apple-system, sans-serif; font-size: 0.825rem; color: #1e3d2f; line-height: 1.3;">
+              <strong style="font-weight: 700; font-size: 0.9rem; color: #153023; margin-bottom: 3px;">Hearsay<br>exceptions</strong>
+              <span>Dying declaration,<br>excited utterance,<br>records, etc.</span>
+            </div>
+          </foreignObject>
+        </svg>
+      </div>
+    </div>
+    
+    <!-- Legend -->
+    <div style="display: flex; justify-content: center; gap: 24px; margin-top: 12px; font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #555;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="display: inline-block; width: 14px; height: 14px; background-color: #e2f0d8; border-radius: 3px;"></span>
+        <span>= Admissible</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="display: inline-block; width: 14px; height: 14px; background-color: #f7d5d7; border-radius: 3px;"></span>
+        <span>= Inadmissible</span>
+      </div>
+    </div>
+  </div>
+
+  <p>Under the rule against hearsay, testimony regarding an out-of-court statement is generally inadmissible to prove the truth of the matter asserted in that statement. But such testimony is admissible if the statement falls under an <span class="pbx-term" tabindex="0">exception<span class="pbx-tooltip"><strong>Hearsay Exception / 传闻例外</strong>An exception that allows an out-of-court statement to be admitted for its truth despite the general rule against hearsay.</span></span> to the hearsay rule. One <strong>hearsay exception</strong> applies to statements concerning the declarant's <span class="pbx-term" tabindex="0">then-existing state of mind<span class="pbx-tooltip"><strong>Then-Existing State of Mind / 当时存在的心境</strong>A hearsay exception for statements showing the declarant's mental, emotional, or physical condition at the time the statement was made.</span></span> (eg, motive, intent, plan) or emotional/physical condition (eg, mental feeling, pain, bodily health).</p>
+
+  <p>Here, the witness seeks to testify that the defendant told him, "I'm going to return this car as soon as I work things out with my wife." This out-of-court statement is hearsay since it is offered to prove the truth of the matter asserted—ie, that the defendant intended to return the car once he dealt with his marital issues. But since the statement concerns the defendant's <em>intent</em>, it is admissible under the then-existing state of mind exception to the rule against hearsay <span style="color:#1f8f4d;font-weight:600;" data-choice="D" data-choice-role="correct">(Choice D)</span>.</p>
+
+  <p style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="A" data-choice-role="distractor"><strong style="color:#9b1c1c">(Choice A)</strong> Statements by a party-opponent are <span class="pbx-term" tabindex="0">excluded<span class="pbx-tooltip"><strong>Excluded Statement / 排除的陈述</strong>Statements defined as nonhearsay under FRE 801(d) (e.g., party-opponent admissions and prior statement of witness).</span></span> from the hearsay rule (ie, nonhearsay) if the statement is offered <em>against</em> that party. And though this does not apply to self-serving statements that <em>favor</em> the party-opponent, those statements may still be admissible if they fall under a hearsay exception (as seen here).</p>
+
+  <p style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="C" data-choice-role="distractor"><strong style="color:#9b1c1c">(Choice C)</strong> A witness's out-of-court statement is nonhearsay if it is (1) consistent with the witness's present testimony and (2) used to support the witness's credibility <em>after</em> it has been attacked. The defendant's statement does not fall under this hearsay exclusion because there is no indication that his credibility has been attacked.</p>
+
+  <div class="pbx-edu-objective">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>Statements regarding a declarant's then-existing state of mind (eg, motive, intent, plan) or emotional/physical condition (eg, mental feeling, pain, bodily health) are excepted from the rule against hearsay.</p>
+  </div>
+
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li>Fed. R. Evid. 803(3) (hearsay exception for a declarant's then-existing state of mind).</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

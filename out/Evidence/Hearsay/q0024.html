@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* Table styling */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 16px 0;
+    }
+
+    .pbx-explanation table {
+      width: 100%;
+      min-width: 480px;
+      border: 1px solid #cccccc;
+      border-collapse: collapse;
+    }
+
+    .pbx-explanation th, 
+    .pbx-explanation td {
+      border: 1px solid #cccccc;
+      padding: 8px 12px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      vertical-align: top;
+    }
+
+    .pbx-explanation th {
+      background: #f5f5f5;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .pbx-table-header-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #111111;
+    }
+
+    .pbx-table-header-subtitle {
+      font-size: 0.95rem;
+      font-weight: normal;
+      color: #555555;
+    }
+
+    .pbx-table-list {
+      margin: 8px 0 0 0;
+      padding-left: 20px;
+      list-style-type: disc;
+    }
+
+    .pbx-table-list li {
+      margin-bottom: 6px;
+    }
+
+    .pbx-table-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .pbx-bullet-list {
+      margin: 0 0 1.25rem 0;
+      padding-left: 1.5rem;
+      list-style-type: disc;
+    }
+
+    .pbx-bullet-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Interactive tooltips for key terms */
+    .pbx-term {
+      color: #3498db;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .pbx-term:hover {
+      color: #2980b9;
+    }
+
+    .pbx-term .pbx-tooltip {
+      visibility: hidden;
+      width: 280px;
+      background-color: #333333;
+      color: #ffffff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      font-size: 0.85rem;
+      line-height: 1.4;
+      font-weight: normal;
+      pointer-events: none;
+      box-sizing: border-box;
+      word-break: normal;
+      white-space: normal;
+    }
+
+    .pbx-term .pbx-tooltip strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #3498db;
+    }
+
+    .pbx-term .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333333 transparent transparent transparent;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-edu-objective p {
+      margin: 0;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-references-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+      }
+
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+
+      .pbx-explanation th, 
+      .pbx-explanation td {
+        font-size: 0.825rem;
+        padding: 0.5em 0.625em;
+      }
+
+      .pbx-term .pbx-tooltip {
+        width: 220px;
+        left: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: What Is Not Hearsay -->
+<div class="pbx-explanation">
+  <div class="pbx-scroll-x">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">
+            <div class="pbx-table-header-title">Nonhearsay statements</div>
+            <div class="pbx-table-header-subtitle">(FRE 801(d))</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight: bold; text-align: center; vertical-align: middle; width: 25%;">
+            Statement by<br>declarant-witness
+          </td>
+          <td>
+            Out-of-court statement admissible if witness subject to cross-examination &amp; prior statement:
+            <ul class="pbx-table-list">
+              <li>is inconsistent with current testimony &amp; was made under penalty of perjury</li>
+              <li>is consistent with current testimony &amp; offered to (1) rebut charge of fabrication/improper influence or (2) rehabilitate witness <em>or</em></li>
+              <li>identifies person witness perceived earlier</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; text-align: center; vertical-align: middle; width: 25%;">
+            Statement by<br>party-opponent
+          </td>
+          <td>
+            Out-of-court statement admissible if offered against opposing party &amp; statement was:
+            <ul class="pbx-table-list">
+              <li>made or adopted by party</li>
+              <li>made by person authorized by party</li>
+              <li>made by party's agent/employee on matter within scope of relationship <em>or</em></li>
+              <li>made by party's coconspirator during &amp; in furtherance of conspiracy</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="font-size: 0.9em; padding: 8px 12px;">
+            <strong>FRE</strong> = Federal Rule of Evidence.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The rule against hearsay generally bars the admission of out-of-court statements offered for the truth of the matter asserted therein. But certain statements are <em>excluded</em> from this rule and considered <strong><span class="pbx-term" tabindex="0">nonhearsay<span class="pbx-tooltip"><strong>Nonhearsay / 非传闻</strong>Statements excluded from the definition of hearsay (e.g., prior statements by a testifying witness subject to cross-examination, or admissions by an opposing party) under FRE 801(d). / 根据联邦证据规则 801(d) 排除在传闻定义之外的陈述（如：出庭并接受交叉询问的证人的先前陈述，或对方当事人的陈述）。</span></span></strong>. This includes statements that:</p>
+  
+  <ul class="pbx-bullet-list">
+    <li>are made by a <strong>declarant who testifies</strong> and is <strong>subject to <span class="pbx-term" tabindex="0">cross-examination<span class="pbx-tooltip"><strong>Cross-Examination / 交叉询问</strong>The examination of a witness who has already testified in order to check or discredit the witness's testimony, knowledge, or credibility. / 在法庭上对已被另一方询问过的证人进行询问，以核实或反驳其证词、知识或可信度。</span></span></strong> <em>and</em></li>
+    <li><strong>identify a person</strong> as someone the declarant perceived earlier.</li>
+  </ul>
+
+  <p>To be admissible, these prior statements of identification must be based on the declarant-witness's <strong><span class="pbx-term" tabindex="0">personal knowledge<span class="pbx-tooltip"><strong>Personal Knowledge / 亲自感知/亲身知识</strong>A lay witness may testify only to matters about which they have personal knowledge—meaning there is sufficient evidence to support a finding that the witness had firsthand observation or experience (FRE 602). / 非专家证人只能对其有亲身感知的事务进行作证，即有足够证据证明该证人曾亲自观察或经历过该情况（联邦证据规则 602）。</span></span></strong>. This requirement is met if a <strong>reasonable juror could find</strong> that the witness was speaking about his/her <strong>firsthand observation or experience</strong>—a standard that is significantly easier to satisfy than "more likely than not" <span style="color:#9b1c1c;font-weight:600;" data-choice="A" data-choice-role="distractor">(Choice A)</span>.</p>
+
+  <p data-choice="D" data-choice-role="correct">Here, the victim's proposed testimony seeks to identify the defendant as someone the victim had previously perceived and identified as his attacker. Since the victim can be cross-examined about his statement, it is nonhearsay. Additionally, the victim's prior statement of identification was based on personal knowledge because evidence of defensive wounds is sufficient to persuade a reasonable juror that the victim saw his attacker firsthand. Therefore, the victim's testimony concerning this statement is admissible.</p>
+
+  <p style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="B" data-choice-role="distractor">
+    <strong style="color:#9b1c1c">(Choice B)</strong> In <em>United States v. Owens</em>, the Supreme Court admitted an out-of-court statement identifying a declarant-witness's attacker even though the declarant could not remember the attack at trial. The Court reasoned that the <span class="pbx-term" tabindex="0">confrontation clause<span class="pbx-tooltip"><strong>Confrontation Clause / 对质条款</strong>A provision in the Sixth Amendment of the U.S. Constitution guaranteeing a criminal defendant the right to confront (cross-examine) the witnesses testifying against them. / 美国宪法第六修正案中的条款，保证刑事被告人有权与针对他们的证人进行对质（交叉询问）。</span></span> only guarantees a defendant an <em>opportunity</em> for effective <span class="pbx-term" tabindex="0">cross-examination<span class="pbx-tooltip"><strong>Cross-Examination / 交叉询问</strong>The examination of a witness who has already testified in order to check or discredit the witness's testimony, knowledge, or credibility. / 在法庭上对已被另一方询问过的证人进行询问，以核实或反驳其证词、知识或可信度。</span></span>. This guarantee is met when the defendant can challenge the witness's credibility (eg, bias, lack of memory).
+  </p>
+
+  <p style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="C" data-choice-role="distractor">
+    <strong style="color:#9b1c1c">(Choice C)</strong> The fact the victim made the out-of-court statement identifying the defendant as his attacker is insufficient on its own to admit that statement.
+  </p>
+
+  <div class="pbx-edu-objective">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>An out-of-court statement that identifies a person as someone the declarant perceived earlier is nonhearsay if the declarant testifies at trial and is subject to cross-examination about the prior identification.</p>
+  </div>
+
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li>Fed. R. Evid. 801(d)(1)(C) (prior statement of identification).</li>
+      <li>Fed. R. Evid. 602 (lay witness personal knowledge).</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

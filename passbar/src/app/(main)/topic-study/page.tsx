@@ -250,14 +250,22 @@ export default function BrowsePage() {
             <div className="flex items-center justify-between w-full pr-4">
               <span className="text-base font-bold text-slate-700">{t('browse.selectSubject')}</span>
               {selectedChapters.size > 0 && (
-                <button
-                  type="button"
+                <span
+                  role="button"
                   aria-label={t('create.collapseAll')}
                   onClick={(e) => { e.stopPropagation(); setSelectedChapters(new Set()); }}
-                  className="flex items-center justify-center rounded-full p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors"
+                  className="flex items-center justify-center rounded-full p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors cursor-pointer"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setSelectedChapters(new Set());
+                    }
+                  }}
+                  tabIndex={0}
                 >
                   <X className="h-3.5 w-3.5" />
-                </button>
+                </span>
               )}
             </div>
           </AccordionTrigger>

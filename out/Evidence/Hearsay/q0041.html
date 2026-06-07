@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* Interactive tooltips for key terms */
+    .pbx-term {
+      color: #3498db;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .pbx-term:hover {
+      color: #2980b9;
+    }
+
+    .pbx-term .pbx-tooltip {
+      visibility: hidden;
+      width: 260px;
+      background-color: #333333;
+      color: #ffffff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      font-size: 0.85rem;
+      line-height: 1.4;
+      font-weight: normal;
+      pointer-events: none;
+      box-sizing: border-box;
+    }
+
+    .pbx-term .pbx-tooltip strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #3498db;
+    }
+
+    .pbx-term .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333333 transparent transparent transparent;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-edu-objective p {
+      margin: 0;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-references-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* Tables styling */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 16px 0;
+      width: 100%;
+    }
+
+    .pbx-explanation table {
+      min-width: 480px;
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #cccccc;
+      margin-bottom: 1.5rem;
+    }
+
+    .pbx-explanation th {
+      border: 1px solid #cccccc;
+      padding: 8px 12px;
+      background: #f5f5f5;
+      font-weight: bold;
+    }
+
+    .pbx-explanation td {
+      border: 1px solid #cccccc;
+      padding: 8px 12px;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+      }
+
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+      
+      .pbx-explanation th, 
+      .pbx-explanation td {
+        font-size: 0.825rem;
+        padding: 0.5em 0.625em;
+      }
+
+      .pbx-term .pbx-tooltip {
+        width: 220px;
+        left: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: Declarant Unavailable as a Witness -->
+<div class="pbx-explanation">
+  <div class="pbx-scroll-x">
+    <table>
+      <thead>
+        <tr>
+          <th style="background: #f5f5f5; padding: 12px; text-align: center; border: 1px solid #cccccc;">
+            <div style="font-size: 1.15rem; font-weight: bold; margin-bottom: 4px; color: #1a1a1a;">Statement against interest</div>
+            <div style="font-size: 0.95rem; font-weight: normal; color: #555;">(FRE 804(b)(3))</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border: 1px solid #cccccc; padding: 16px; font-size: 0.95rem; color: #2c3e50;">
+            Hearsay statement that reasonable person in unavailable declarant's position would only make if true because it:
+            <ul style="margin: 8px 0 0 0; padding-left: 20px;">
+              <li style="margin-bottom: 6px; list-style-type: disc;">is contrary to declarant's proprietary or pecuniary interest</li>
+              <li style="margin-bottom: 6px; list-style-type: disc;">tends to invalidate declarant's claim against someone else <em>or</em></li>
+              <li style="margin-bottom: 0; list-style-type: disc;">exposes declarant to civil or criminal liability</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #cccccc; padding: 8px 12px; font-size: 0.85rem; color: #555555; background: #ffffff;">
+            <strong>FRE</strong> = Federal Rule of Evidence.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The <strong>rule against hearsay</strong> generally bars the admission of an out-of-court statement offered to prove the truth of the matter asserted therein. But there is an <strong>exception</strong> for a <strong>statement against interest</strong>—ie, a statement that a reasonable person in the declarant's position would only have made if he/she believed it to be true because it:</p>
+
+  <ul style="margin: 0 0 1.25rem 0; padding-left: 20px;">
+    <li style="margin-bottom: 6px; list-style-type: disc;">is contrary to the declarant's proprietary or pecuniary interest</li>
+    <li style="margin-bottom: 6px; list-style-type: disc;">tends to invalidate the declarant's claim against someone else <em>or</em></li>
+    <li style="margin-bottom: 0; list-style-type: disc;"><strong>exposes the declarant</strong> to civil or <strong>criminal liability</strong>.</li>
+  </ul>
+
+  <p>For this exception to apply, however, the declarant must be <span class="pbx-term" tabindex="0">unavailable<span class="pbx-tooltip"><strong>Declarant Unavailable / 证人无法出庭</strong>A requirement under FRE 804 (e.g., due to death, privilege, illness, or refusal to testify) for certain hearsay exceptions to apply.</span></span> as a witness (eg, deceased).</p>
+
+  <p data-choice="C" data-choice-role="correct">Here, the friend's out-of-court statement ("I was paid to set the fire") is <span class="pbx-term" tabindex="0">hearsay<span class="pbx-tooltip"><strong>Hearsay / 传闻证据</strong>An out-of-court statement offered in evidence to prove the truth of the matter asserted.</span></span> since it is being offered for its truth. But a reasonable person in the friend's position would only have said this if it were true since the statement exposed the friend to criminal liability for <span class="pbx-term" tabindex="0">arson<span class="pbx-tooltip"><strong>Arson / 纵火罪</strong>The criminal act of deliberately setting fire to property.</span></span>. And since the friend is unavailable to testify (deceased), the wife's testimony as to the friend's statement is admissible under the statement against interest hearsay exception.</p>
+
+  <p style="border-left: 3px solid #c0392b; padding-left: 10px;" data-choice="A" data-choice-role="distractor"><strong style="color: #9b1c1c;">(Choice A)</strong> <span class="pbx-term" tabindex="0">Spousal communications<span class="pbx-tooltip"><strong>Spousal Communications / 夫妻通信特免权</strong>Protects confidential communications made during a marriage. It survives death but is destroyed by the presence of a third party.</span></span> are generally privileged if they are made during a valid marriage and reasonably <em>intended</em> to be confidential. This marital privilege survives the communicating spouse's death. But here, confidentiality was not intended since the friend's statement to his wife was made in the nurse's presence.</p>
+
+  <p style="border-left: 3px solid #c0392b; padding-left: 10px;" data-choice="B D" data-choice-role="distractor"><strong style="color: #9b1c1c;">(Choices B & D)</strong> An out-of-court statement made by an opposing party's <span class="pbx-term" tabindex="0">coconspirator<span class="pbx-tooltip"><strong>Coconspirator Statement / 共谋者陈述</strong>An out-of-court statement by a coconspirator during and in furtherance of a conspiracy is excluded from the hearsay rule.</span></span> <em>during</em> and in furtherance of the conspiracy is admissible nonhearsay (ie, is excluded from the hearsay rule) when offered against that party. This exclusion does not apply to the friend's statement, which was made <em>after</em> the conspiracy had ended. But the statement is still admissible as a statement against interest.</p>
+
+  <div class="pbx-edu-objective">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>A statement against interest is a hearsay exception for statements that are so contrary to the declarant's proprietary, pecuniary, or penal interest that a reasonable person in the declarant's position would only have said it if he/she believed it to be true. But this exception only applies if the declarant is unavailable as a witness.</p>
+  </div>
+
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li>Fed. R. Evid. 804(b)(3) (hearsay exception – statement against interest).</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
