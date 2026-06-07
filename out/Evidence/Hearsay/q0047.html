@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <meta name="description" content="Explanation of the business records hearsay exception and the exception covering the absence of entries in business records under Federal Rules of Evidence.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+      max-width: 800px;
+      margin: 0 auto;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Interactive tooltips for key terms */
+    .pbx-term {
+      color: #1c64f2;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .pbx-term:hover {
+      color: #1a56db;
+    }
+
+    .pbx-term .pbx-tooltip {
+      visibility: hidden;
+      width: 280px;
+      background-color: #1f2937;
+      color: #ffffff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 100;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      font-size: 0.85rem;
+      line-height: 1.4;
+      font-weight: normal;
+      pointer-events: none;
+      box-sizing: border-box;
+    }
+
+    .pbx-term .pbx-tooltip strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #60a5fa;
+    }
+
+    .pbx-term .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #1f2937 transparent transparent transparent;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Scrollable wrapper for tables */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 24px 0;
+      width: 100%;
+    }
+
+    /* Table Styles */
+    .pbx-explanation table {
+      min-width: 480px;
+      width: 100%;
+      border: 1px solid #cccccc;
+      border-collapse: collapse;
+      margin: 0;
+    }
+
+    .pbx-explanation th, .pbx-explanation td {
+      border: 1px solid #cccccc;
+      padding: 8px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .pbx-explanation th {
+      background: #f5f5f5;
+      font-weight: bold;
+    }
+
+    /* Choice explanation block styles */
+    .pbx-choice-correct {
+      border-left: 3px solid #27ae60;
+      padding-left: 10px;
+    }
+
+    .pbx-choice-distractor {
+      border-left: 3px solid #c0392b;
+      padding-left: 10px;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-edu-objective p {
+      margin: 0;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-references-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+      }
+
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+
+      .pbx-explanation th, .pbx-explanation td {
+        font-size: 0.825rem;
+        padding: 0.5em 0.625em;
+      }
+
+      .pbx-term .pbx-tooltip {
+        width: 240px;
+        left: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: Declarant's Availability Immaterial -->
+<div class="pbx-explanation">
+
+  <!-- Table Section -->
+  <div class="pbx-scroll-x">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2" style="text-align: center; font-size: 1.1rem; padding: 10px; font-weight: bold; background: #f5f5f5;">Business records hearsay exception</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 25%; text-align: center; vertical-align: middle; font-weight: bold; padding: 12px;">
+            Existing record
+            <div style="font-weight: normal; font-size: 0.9rem; margin-top: 4px; color: #555;">(FRE 803(6))</div>
+          </td>
+          <td style="width: 75%; padding: 12px; vertical-align: top;">
+            <div style="margin-bottom: 6px;">Admissible as substantive evidence if:</div>
+            <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
+              <li style="margin-bottom: 6px;">made at or near time of recorded event (or act, opinion, condition, diagnosis)</li>
+              <li style="margin-bottom: 6px;">made by or based on information from someone with personal knowledge <em>and</em></li>
+              <li style="margin-bottom: 0;">made &amp; kept as regular practice in course of regularly conducted business activities</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 25%; text-align: center; vertical-align: middle; font-weight: bold; padding: 12px;">
+            Absence of record
+            <div style="font-weight: normal; font-size: 0.9rem; margin-top: 4px; color: #555;">(FRE 803(7))</div>
+          </td>
+          <td style="width: 75%; padding: 12px; vertical-align: top;">
+            <div style="margin-bottom: 6px;">Admissible as substantive evidence if:</div>
+            <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
+              <li style="margin-bottom: 6px;">evidence is offered to prove matter did not occur or exist</li>
+              <li style="margin-bottom: 6px;">record was regularly kept for that kind of matter <em>and</em></li>
+              <li style="margin-bottom: 0;">opponent does not establish a lack of trustworthiness</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="padding: 10px 12px; font-size: 0.9rem; color: #333;">
+            <strong>FRE</strong> = Federal Rule of Evidence.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Main text explanation -->
+  <p>An <span class="pbx-term" tabindex="0" id="term-out-of-court-statement">out-of-court statement<span class="pbx-tooltip"><strong>Out-of-Court Statement / 庭外陈述</strong>A statement made outside of the current trial or hearing. / 在当前审判或听证会之外作出的陈述。</span></span> (eg, hospital record) offered to prove the truth of the matter asserted therein is generally inadmissible under the <span class="pbx-term" tabindex="0" id="term-rule-against-hearsay">rule against hearsay<span class="pbx-tooltip"><strong>Rule Against Hearsay / 传闻证据规则</strong>The rule that prohibits out-of-court statements from being admitted into evidence to prove the truth of the matter asserted. / 禁止将庭外陈述作为证据采信以证明其所主张之事实真实性的规则。</span></span>. However, evidence that a <strong>matter is <em>not</em> included</strong> in a <strong>business record</strong> is <strong>excepted from the hearsay rule</strong> and may be offered as <span class="pbx-term" tabindex="0" id="term-substantive-evidence">substantive evidence<span class="pbx-tooltip"><strong>Substantive Evidence / 实质性证据</strong>Evidence offered to prove a fact in issue, as opposed to evidence used solely to impeach a witness. / 用于证明争议事实的证据，而非仅用于弹劾证人的证据。</span></span> if:</p>
+
+  <ul style="margin: 0 0 1.25rem 0; padding-left: 20px; list-style-type: disc;">
+    <li style="margin-bottom: 6px;">the evidence is offered to <strong>prove that a matter did not occur</strong> or exist</li>
+    <li style="margin-bottom: 6px;">a <strong>record was regularly kept</strong> for a matter of that kind <em>and</em></li>
+    <li style="margin-bottom: 0;">the opponent does <strong>not</strong> establish a <strong>lack of trustworthiness</strong> for the source of that information.</li>
+  </ul>
+
+  <!-- Choice D / A explanation paragraph -->
+  <p data-choice="D" data-choice-role="correct">Here, the authenticated hospital record is hearsay, but it falls within the hearsay exception covering the absence of entries in business records. That is because the missing entry in that record is being used to prove that the administration of medication&mdash;a matter that would regularly be recorded by the hospital&mdash;did not occur. And since there is no indication that the record is untrustworthy, it is admissible <span style="color:#9b1c1c;font-weight:600;" data-choice="A" data-choice-role="distractor"><strong>(Choice A)</strong></span>.</p>
+
+  <!-- Choice B explanation paragraph -->
+  <p class="pbx-choice-distractor" data-choice="B" data-choice-role="distractor">
+    <strong style="color: #9b1c1c;">(Choice B)</strong> The <span class="pbx-term" tabindex="0" id="term-best-evidence-rule">best evidence rule<span class="pbx-tooltip"><strong>Best Evidence Rule / 最佳证据规则</strong>Requires the production of the original document (or a reliable duplicate) to prove its contents. / 要求提供原始文件（或可靠副本）以证明其内容。</span></span> requires that an original (or reliable duplicate) of a writing, recording, or photograph be produced to prove its contents. But this rule does not mandate the use of live testimony over a document.
+  </p>
+
+  <!-- Choice C explanation paragraph -->
+  <p class="pbx-choice-distractor" data-choice="C" data-choice-role="distractor">
+    <strong style="color: #9b1c1c;">(Choice C)</strong> The <span class="pbx-term" tabindex="0" id="term-statement-against-interest">statement against interest<span class="pbx-tooltip"><strong>Statement Against Interest / 违背利益的陈述</strong>An exception to hearsay for statements by an unavailable declarant that are contrary to their proprietary, pecuniary, or penal interest. / 对无法出庭的陈述者作出的违背其财产、金钱或刑事利益的陈述的传闻证据例外。</span></span> hearsay exception applies to a statement that goes against the declarant's pecuniary, proprietary, or penal interest AND is made by a declarant who is <em>unavailable</em> as a witness. Since there is no indication that the nurse is unavailable, this exception does not apply here.
+  </p>
+
+  <!-- Educational Objective -->
+  <div class="pbx-edu-objective">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>The hearsay exception for the absence of entries in business records applies when (1) evidence is offered to prove that a matter did not occur or exist, (2) a record was regularly kept for a matter of that kind, and (3) the opponent does not establish a lack of trustworthiness.</p>
+  </div>
+
+  <!-- References -->
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li>Fed. R. Evid. 803(6) (business records hearsay exception).</li>
+      <li>Fed. R. Evid. 803(7) (absence of business records hearsay exception).</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

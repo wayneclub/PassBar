@@ -272,11 +272,20 @@ type MatchRange = {
   highlight: QuestionHighlight;
 };
 
-function getHighlightRanges(line: string, highlights: QuestionHighlight[]): MatchRange[] {
+function getHighlightRanges(
+  line: string,
+  highlights: QuestionHighlight[],
+  renderedHighlightIds?: Set<string>
+): MatchRange[] {
   const lowerLine = line.toLowerCase();
   const ranges: MatchRange[] = [];
   const ordered = [...highlights]
-    .filter((highlight) => highlight.text.trim())
+    .filter((highlight) => {
+      if (!highlight.text.trim()) return false;
+      const hlId = highlight.id || `hl-${highlight.text}`;
+      if (renderedHighlightIds?.has(hlId)) return false;
+      return true;
+    })
     .sort((a, b) => b.text.length - a.text.length);
 
   for (const highlight of ordered) {
@@ -295,7 +304,9 @@ function getHighlightRanges(line: string, highlights: QuestionHighlight[]): Matc
       if (ranges.some((range) => start < range.end && end > range.start)) continue;
 
       ranges.push({ start, end, highlight });
-      if (highlight.occurrence) break;
+      const hlId = highlight.id || `hl-${highlight.text}`;
+      renderedHighlightIds?.add(hlId);
+      break;
     }
   }
 
@@ -317,44 +328,99 @@ function HighlightMark({
   language,
   toggleNoteState,
   isCollapsed,
+  punctuation = '',
 }: {
   range: MatchRange;
   text: string;
   language?: string;
   toggleNoteState: (id: string) => void;
   isCollapsed: boolean;
+  punctuation?: string;
 }) {
   const hl = range.highlight;
   const hlId = hl.id || `hl-${hl.text}`;
+
+  const markRef = useRef<HTMLElement>(null);
+  const noteRef = useRef<HTMLSpanElement>(null);
+  const shiftRef = useRef(0);
+  const [renderShift, setRenderShift] = useState(0);
+  const [parentWidth, setParentWidth] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const calculateOffset = useCallback(() => {
+    if (markRef.current && noteRef.current) {
+      const markRect = markRef.current.getBoundingClientRect();
+      const noteRect = noteRef.current.getBoundingClientRect();
+      const parentContainer = markRef.current.closest('.leading-relaxed');
+      if (parentContainer) {
+        const parentRect = parentContainer.getBoundingClientRect();
+        setParentWidth(parentRect.width);
+        
+        const mobile = parentRect.width < 500 || (typeof window !== 'undefined' && window.innerWidth < 640);
+        setIsMobile(mobile);
+        
+        // Calculate natural left of the note box relative to the parent container,
+        // subtracting the current shift to get the unpositioned starting point.
+        const naturalLeft = noteRect.left - parentRect.left - shiftRef.current;
+        const noteBoxWidth = noteRect.width;
+        
+        const safeMargin = 8;
+        let targetLeft = 0;
+        if (mobile) {
+          targetLeft = safeMargin;
+        } else {
+          const relativeLeft = markRect.left - parentRect.left;
+          const markWidth = markRect.width;
+          const idealLeft = relativeLeft + (markWidth / 2) - (noteBoxWidth / 2);
+          targetLeft = Math.max(safeMargin, Math.min(idealLeft, parentRect.width - noteBoxWidth - safeMargin));
+        }
+        
+        const newShift = targetLeft - naturalLeft;
+        if (Math.abs(newShift - shiftRef.current) > 0.5) {
+          shiftRef.current = newShift;
+          setRenderShift(newShift);
+        }
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isCollapsed) {
+      calculateOffset();
+      const timer = setTimeout(calculateOffset, 100);
+      window.addEventListener('resize', calculateOffset);
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener('resize', calculateOffset);
+      };
+    }
+  }, [isCollapsed, calculateOffset]);
 
   const displayLabel = localizedValue(hl.label, language);
   const displayReason = localizedValue(hl.reason, language);
   const hasNote = displayLabel || displayReason;
 
   const dotColor = hl.importance === 'high'
-    ? 'bg-red-500'
+    ? 'bg-red-400/80'
     : hl.importance === 'medium'
-      ? 'bg-amber-500'
-      : 'bg-slate-400';
+      ? 'bg-amber-400/80'
+      : 'bg-slate-300';
 
   const dotCount = hl.importance === 'high' ? 3 : hl.importance === 'medium' ? 2 : 1;
   const isZh = language !== 'en';
 
   const isFact = hl.kind === 'fact_trigger';
-
   const cardClass = isFact
     ? "border-sky-300 bg-sky-50/40 hover:bg-sky-50/60 text-slate-700"
     : "border-amber-300 bg-amber-50/40 hover:bg-amber-50/60 text-slate-700";
 
-  const headerClass = isFact
-    ? "text-blue-800"
-    : "text-amber-800";
-
+  const headerClass = isFact ? "text-blue-800" : "text-amber-800";
   const emoji = getKindEmoji(hl.kind);
 
   return (
     <span className="relative inline">
       <mark
+        ref={markRef}
         className={cn(highlightClass(hl.kind, hl.importance), 'cursor-pointer hover:opacity-80 transition-opacity duration-200')}
         data-highlight-kind={hl.kind}
         onClick={(e) => {
@@ -371,25 +437,28 @@ function HighlightMark({
       >
         {text}
       </mark>
+      {punctuation && <span>{punctuation}</span>}
       {hasNote && !isCollapsed && (
         <span
+          ref={noteRef}
           onClick={(e) => {
             e.stopPropagation();
             toggleNoteState(hlId);
           }}
           className={cn(
-            "block border-l-2 rounded-r-lg p-2.5 my-2.5 ml-4 text-xs font-sans font-normal transition-all duration-200 cursor-pointer select-none",
+            "block w-fit border-l-2 rounded-r-lg py-2 px-5 my-1.5 text-xs font-sans font-normal transition-all duration-200 cursor-pointer select-none",
             cardClass
           )}
+          style={{
+            position: 'relative',
+            left: `${renderShift}px`,
+            width: isMobile && parentWidth ? `${parentWidth - 16}px` : 'auto',
+            maxWidth: parentWidth ? `${parentWidth - 16}px` : '95%',
+          }}
           title={isZh ? "點擊收起此批註" : "Click to collapse note"}
         >
-          <span className={cn("flex items-center justify-between mb-1.5 font-bold", headerClass)}>
+          <span className={cn("flex items-center justify-between mb-1 font-bold", headerClass)}>
             <span className="flex items-center gap-1">
-              <span className="flex items-center gap-0.5 mr-1">
-                {Array.from({ length: dotCount }).map((_, i) => (
-                  <span key={i} className={cn("w-2 h-2 rounded-full shrink-0", dotColor)} />
-                ))}
-              </span>
               <span>{emoji} {displayLabel}</span>
             </span>
             <span className="text-[11px] text-slate-400 hover:text-slate-600 font-normal select-none">
@@ -397,24 +466,42 @@ function HighlightMark({
             </span>
           </span>
           {displayReason && (
-            <span className="block leading-relaxed mt-1 text-slate-600 font-normal">
-              └─ {displayReason}
-            </span>
+            <div className="mt-0.5">
+              <span className="block leading-relaxed text-slate-600 font-normal">
+                └─ {displayReason}
+              </span>
+              <span className="block text-right text-[10px] text-slate-400 font-medium select-none mt-1">
+                {isZh ? '重要度' : 'Importance'}: {
+                  hl.importance === 'high'
+                    ? (isZh ? '高' : 'High')
+                    : hl.importance === 'medium'
+                      ? (isZh ? '中' : 'Medium')
+                      : (isZh ? '低' : 'Low')
+                }
+                <span className="inline-flex items-center gap-0.5 ml-1 align-middle">
+                  {Array.from({ length: dotCount }).map((_, i) => (
+                    <span key={i} className={cn("w-1.5 h-1.5 rounded-full shrink-0", dotColor)} />
+                  ))}
+                </span>
+              </span>
+            </div>
           )}
         </span>
       )}
     </span>
   );
 }
+
 function renderHighlightedLine(
   line: string,
   highlights: QuestionHighlight[],
   language?: string,
   toggleNoteState?: (id: string) => void,
-  collapsedNotes?: Record<string, boolean>
+  collapsedNotes?: Record<string, boolean>,
+  renderedHighlightIds?: Set<string>
 ) {
   const plainLine = stripInlineHtml(line);
-  const ranges = getHighlightRanges(plainLine, highlights);
+  const ranges = getHighlightRanges(plainLine, highlights, renderedHighlightIds);
   if (ranges.length === 0) return plainLine;
 
   const nodes: React.ReactNode[] = [];
@@ -428,6 +515,11 @@ function renderHighlightedLine(
     const hlId = hl.id || `hl-${hl.text}`;
     const isCollapsed = collapsedNotes?.[hlId] ?? false;
 
+    const remainingText = plainLine.slice(range.end);
+    const puncMatch = remainingText.match(/^([.,;:!?)"'\s]+)/);
+    const trailingPunc = puncMatch && /[.,;:!?)"']/.test(puncMatch[1]) ? puncMatch[1] : '';
+    const extraLength = trailingPunc.length;
+
     nodes.push(
       <HighlightMark
         key={`${range.start}-${range.end}-${index}`}
@@ -436,9 +528,10 @@ function renderHighlightedLine(
         language={language}
         toggleNoteState={toggleNoteState || (() => {})}
         isCollapsed={isCollapsed}
+        punctuation={trailingPunc}
       />
     );
-    cursor = range.end;
+    cursor = range.end + extraLength;
   });
 
   if (cursor < plainLine.length) {
@@ -475,19 +568,173 @@ function getKeywordRanges(text: string, keywords: QuestionKeyword[]): KeywordRan
   return ranges.sort((a, b) => a.start - b.start);
 }
 
-function ChoiceKeywordMark({ kw, text, state, language }: { kw: QuestionKeyword; text: string; state: ChoiceState; language?: string }) {
-  const { wrapperRef, pos, show, hide } = useTooltipPos();
+function ChoiceKeywordMark({
+  kw,
+  text,
+  state,
+  language,
+  toggleNoteState,
+  isCollapsed,
+}: {
+  kw: QuestionKeyword;
+  text: string;
+  state: ChoiceState;
+  language?: string;
+  toggleNoteState: (id: string) => void;
+  isCollapsed: boolean;
+}) {
+  const markRef = useRef<HTMLElement>(null);
+  const noteRef = useRef<HTMLSpanElement>(null);
+  const shiftRef = useRef(0);
+  const [renderShift, setRenderShift] = useState(0);
+  const [parentWidth, setParentWidth] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const calculateOffset = useCallback(() => {
+    if (markRef.current && noteRef.current) {
+      const markRect = markRef.current.getBoundingClientRect();
+      const noteRect = noteRef.current.getBoundingClientRect();
+      const parentContainer = markRef.current.closest('.leading-relaxed') || markRef.current.closest('.flex-1');
+      if (parentContainer) {
+        const parentRect = parentContainer.getBoundingClientRect();
+        setParentWidth(parentRect.width);
+        
+        const mobile = parentRect.width < 500 || (typeof window !== 'undefined' && window.innerWidth < 640);
+        setIsMobile(mobile);
+        
+        // Calculate natural left of the note box relative to the parent container,
+        // subtracting the current shift to get the unpositioned starting point.
+        const naturalLeft = noteRect.left - parentRect.left - shiftRef.current;
+        const noteBoxWidth = noteRect.width;
+        
+        const safeMargin = 8;
+        let targetLeft = 0;
+        if (mobile) {
+          targetLeft = safeMargin;
+        } else {
+          const relativeLeft = markRect.left - parentRect.left;
+          const markWidth = markRect.width;
+          const idealLeft = relativeLeft + (markWidth / 2) - (noteBoxWidth / 2);
+          targetLeft = Math.max(safeMargin, Math.min(idealLeft, parentRect.width - noteBoxWidth - safeMargin));
+        }
+        
+        const newShift = targetLeft - naturalLeft;
+        if (Math.abs(newShift - shiftRef.current) > 0.5) {
+          shiftRef.current = newShift;
+          setRenderShift(newShift);
+        }
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isCollapsed) {
+      calculateOffset();
+      const timer = setTimeout(calculateOffset, 100);
+      window.addEventListener('resize', calculateOffset);
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener('resize', calculateOffset);
+      };
+    }
+  }, [isCollapsed, calculateOffset]);
+
+  const displayLabel = localizedValue(kw.label, language);
+  const displayReason = localizedValue(kw.reason, language);
+  const hasNote = displayLabel || displayReason;
+
+  const dotColor = kw.importance === 'high'
+    ? 'bg-red-400/80'
+    : kw.importance === 'medium'
+      ? 'bg-amber-400/80'
+      : 'bg-slate-300';
+
+  const dotCount = kw.importance === 'high' ? 3 : kw.importance === 'medium' ? 2 : 1;
+  const isZh = language !== 'en';
+
+  const isFact = kw.kind === 'fact_trigger';
+  const cardClass = isFact
+    ? "border-sky-300 bg-sky-50/40 hover:bg-sky-50/60 text-slate-700"
+    : "border-amber-300 bg-amber-50/40 hover:bg-amber-50/60 text-slate-700";
+
+  const headerClass = isFact ? "text-blue-800" : "text-amber-800";
+  const emoji = getKindEmoji(kw.kind);
+  const kwId = kw.id || `kw-${kw.text}`;
+
   return (
-    <span ref={wrapperRef} className="relative inline" onMouseMove={show} onMouseLeave={hide}>
-      <span className={cn(choiceKeywordClass(kw.kind, state), 'cursor-default')}>
+    <span className="relative inline">
+      <span
+        ref={markRef as any}
+        className={cn(choiceKeywordClass(kw.kind, state), 'cursor-pointer hover:opacity-80 transition-opacity duration-200')}
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleNoteState(kwId);
+        }}
+      >
         {text}
       </span>
-      <TooltipContent label={kw.label} reason={kw.reason} kind={kw.kind} importance={kw.importance} pos={pos} language={language} />
+      {hasNote && !isCollapsed && (
+        <span
+          ref={noteRef}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleNoteState(kwId);
+          }}
+          className={cn(
+            "block w-fit border-l-2 rounded-r-lg py-2 px-5 my-1.5 text-xs font-sans font-normal transition-all duration-200 cursor-pointer select-none",
+            cardClass
+          )}
+          style={{
+            position: 'relative',
+            left: `${renderShift}px`,
+            width: isMobile && parentWidth ? `${parentWidth - 16}px` : 'auto',
+            maxWidth: parentWidth ? `${parentWidth - 16}px` : '95%',
+          }}
+          title={isZh ? "點擊收起此批註" : "Click to collapse note"}
+        >
+          <span className={cn("flex items-center justify-between mb-1 font-bold", headerClass)}>
+            <span className="flex items-center gap-1">
+              <span>{emoji} {displayLabel}</span>
+            </span>
+            <span className="text-[11px] text-slate-400 hover:text-slate-600 font-normal select-none">
+              ✕
+            </span>
+          </span>
+          {displayReason && (
+            <div className="mt-0.5">
+              <span className="block leading-relaxed text-slate-600 font-normal">
+                └─ {displayReason}
+              </span>
+              <span className="block text-right text-[10px] text-slate-400 font-medium select-none mt-1">
+                {isZh ? '重要度' : 'Importance'}: {
+                  kw.importance === 'high'
+                    ? (isZh ? '高' : 'High')
+                    : kw.importance === 'medium'
+                      ? (isZh ? '中' : 'Medium')
+                      : (isZh ? '低' : 'Low')
+                }
+                <span className="inline-flex items-center gap-0.5 ml-1 align-middle">
+                  {Array.from({ length: dotCount }).map((_, i) => (
+                    <span key={i} className={cn("w-1.5 h-1.5 rounded-full shrink-0", dotColor)} />
+                  ))}
+                </span>
+              </span>
+            </div>
+          )}
+        </span>
+      )}
     </span>
   );
 }
 
-function renderChoiceText(text: string, keywords: QuestionKeyword[], state: ChoiceState, language?: string) {
+function renderChoiceText(
+  text: string,
+  keywords: QuestionKeyword[],
+  state: ChoiceState,
+  language?: string,
+  toggleNoteState?: (id: string) => void,
+  collapsedNotes?: Record<string, boolean>
+) {
   const ranges = getKeywordRanges(text, keywords);
   if (ranges.length === 0) return text;
 
@@ -496,13 +743,20 @@ function renderChoiceText(text: string, keywords: QuestionKeyword[], state: Choi
 
   ranges.forEach((range, index) => {
     if (range.start > cursor) nodes.push(text.slice(cursor, range.start));
+    
+    const kw = range.keyword;
+    const kwId = kw.id || `kw-${kw.text}`;
+    const isCollapsed = collapsedNotes?.[kwId] ?? false;
+
     nodes.push(
       <ChoiceKeywordMark
         key={`${range.start}-${index}`}
-        kw={range.keyword}
+        kw={kw}
         text={text.slice(range.start, range.end)}
         state={state}
         language={language}
+        toggleNoteState={toggleNoteState || (() => {})}
+        isCollapsed={isCollapsed}
       />
     );
     cursor = range.end;
@@ -535,6 +789,7 @@ function RichTextComponent({
 
   const cleaned = text.replace(/^Q\d+\s*\n+/, '');
   const paragraphs = cleaned.split(/<br\s*\/?>\s*<br\s*\/?>/i);
+  const renderedHighlightIds = new Set<string>();
 
   return (
     <div className={cn('space-y-5', className)}>
@@ -545,7 +800,7 @@ function RichTextComponent({
             {lines.map((line, li) => (
               <div key={li} className="leading-relaxed">
                 {highlights?.length ? (
-                  <span>{renderHighlightedLine(line, highlights, language, toggleNoteState, collapsedNotes)}</span>
+                  <span>{renderHighlightedLine(line, highlights, language, toggleNoteState, collapsedNotes, renderedHighlightIds)}</span>
                 ) : (
                   <span dangerouslySetInnerHTML={{ __html: sanitizeInlineHtml(line) }} />
                 )}
@@ -578,8 +833,13 @@ function ChoiceTextComponent({
   className?: string;
   language?: string;
 }) {
+  const [collapsedNotes, setCollapsedNotes] = useState<Record<string, boolean>>({});
+  const toggleNoteState = useCallback((id: string) => {
+    setCollapsedNotes((prev) => ({ ...prev, [id]: !prev[id] }));
+  }, []);
+
   if (!keywords?.length) return <span className={className}>{text}</span>;
-  return <span className={className}>{renderChoiceText(text, keywords, state, language)}</span>;
+  return <span className={className}>{renderChoiceText(text, keywords, state, language, toggleNoteState, collapsedNotes)}</span>;
 }
 
 export const RichText = React.memo(RichTextComponent);

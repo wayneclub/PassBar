@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Venn Diagram styles */
+    .pbx-diagram-container {
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pbx-diagram-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #111111;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .pbx-venn-container {
+      position: relative;
+      width: 540px;
+      height: 340px;
+      margin: 0 auto;
+    }
+
+    .pbx-venn-circle {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      top: 10px;
+    }
+
+    .pbx-venn-left {
+      left: 0;
+      background-color: rgba(224, 242, 254, 0.75);
+      border: 2px solid #bae6fd;
+    }
+
+    .pbx-venn-right {
+      right: 0;
+      background-color: rgba(254, 226, 226, 0.75);
+      border: 2px solid #fecaca;
+    }
+
+    .pbx-venn-content {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .pbx-content-left {
+      left: 20px;
+      width: 180px;
+    }
+
+    .pbx-content-right {
+      right: 20px;
+      width: 180px;
+    }
+
+    .pbx-content-center {
+      left: 210px;
+      width: 120px;
+    }
+
+    .pbx-venn-title {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .pbx-venn-text {
+      font-size: 0.8125rem;
+      color: #475569;
+      line-height: 1.4;
+    }
+
+    /* Interactive popups/tooltips */
+    .pbx-term {
+      position: relative;
+      color: #2980b9;
+      border-bottom: 1px dashed #2980b9;
+      cursor: help;
+      font-weight: inherit;
+    }
+
+    .pbx-tooltip {
+      visibility: hidden;
+      width: 260px;
+      background-color: #333333;
+      color: #ffffff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 8px 12px;
+      position: absolute;
+      z-index: 100;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+      pointer-events: none;
+      font-weight: normal;
+    }
+
+    .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333333 transparent transparent transparent;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Choice highlighting block */
+    .pbx-choice-block {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      line-height: 1.7;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 0.875em 1.125em;
+      margin: 1.5em 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5em;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 0.875em 1.125em;
+      margin: 1.25em 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-references-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5em;
+    }
+
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 1.125em;
+      font-size: 0.875rem;
+      color: #555;
+      line-height: 1.7;
+      list-style-type: disc;
+    }
+
+    /* Scroll container for responsive tables / flowcharts */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 1rem 0;
+      width: 100%;
+    }
+
+    .pbx-flow-inner {
+      box-sizing: border-box;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+      }
+
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+
+      .pbx-diagram-title {
+        font-size: 1.1rem;
+      }
+
+      .pbx-ref-list {
+        font-size: 0.8125rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: Impeachment -->
+<div class="pbx-explanation">
+  <div class="pbx-scroll-x">
+    <div class="pbx-flow-inner" style="min-width: 560px;">
+      <div class="pbx-diagram-container">
+        <div class="pbx-diagram-title">Use of witness's prior inconsistent statement</div>
+        <div class="pbx-venn-container">
+          <div class="pbx-venn-circle pbx-venn-left"></div>
+          <div class="pbx-venn-circle pbx-venn-right"></div>
+          
+          <div class="pbx-venn-content pbx-content-left">
+            <div class="pbx-venn-title">Impeachment<br>purposes</div>
+            <div class="pbx-venn-text">When statement is inconsistent with current testimony</div>
+          </div>
+          
+          <div class="pbx-venn-content pbx-content-center">
+            <div class="pbx-venn-title">Dual<br>purposes</div>
+          </div>
+          
+          <div class="pbx-venn-content pbx-content-right">
+            <div class="pbx-venn-title">Substantive<br>purposes</div>
+            <div class="pbx-venn-text">When statement is excepted or excluded from hearsay</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p data-choice="C" data-choice-role="correct">A <strong>prior inconsistent statement</strong> is a statement that was made by a witness in the past that is inconsistent with the witness's current testimony. These statements may be used to <strong>impeach</strong> that witness. Here, the defendant testified that he knew nothing about the business fraud, but he previously admitted to the neighbor that he had known about the fraud. Therefore, the neighbor's testimony regarding the defendant's prior inconsistent statement is admissible to impeach him.</p>
+
+  <p data-choice="C" data-choice-role="correct">A prior inconsistent statement is also admissible as <strong>substantive evidence</strong>—ie, to prove the truth of the matter asserted therein—if the statement is <span class="pbx-term" tabindex="0">excepted or excluded<span class="pbx-tooltip">Excepted (hearsay exceptions) or excluded (non-hearsay). (传闻证据的例外或排除)</span></span> from the rule against hearsay. <strong>Statements made by</strong> and offered against an <strong>opposing party</strong> are <strong>excluded from</strong> the <strong>hearsay rule</strong> (ie, are nonhearsay). And since the defendant's prior statement is being offered against him, it is nonhearsay and admissible as substantive evidence that the defendant committed perjury in the civil case <span style="color:#9b1c1c;font-weight:600;" data-choice="A D" data-choice-role="distractor"><strong>(Choices A & D)</strong></span>.</p>
+
+  <p class="pbx-choice-block" style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="B" data-choice-role="distractor"><strong style="color:#9b1c1c">(Choice B)</strong> The neighbor's testimony relates to business fraud <em>and</em> the commission of perjury. But even if it did not relate to perjury, the prior statement could still be admitted for impeachment purposes or as substantive evidence of the defendant's guilt.</p>
+
+  <div class="pbx-edu-objective">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>A prior inconsistent statement may be used to impeach a witness's trial testimony. And an opposing party's out-of-court statement is nonhearsay when offered against that party and can therefore be admitted as substantive evidence.</p>
+  </div>
+
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li>Fed. R. Evid. 613 (prior inconsistent statements).</li>
+      <li>Fed. R. Evid. 801(d)(2)(A) (statement by party-opponent).</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

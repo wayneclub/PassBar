@@ -350,7 +350,7 @@ function PrescriptionTab({
         <CardContent className="p-0">
           <div className="flex flex-col md:flex-row gap-0">
             {/* Left panel */}
-            <div className="flex flex-col items-center justify-center gap-2 p-5 bg-primary/5 rounded-l-lg md:w-48 shrink-0 border-r border-primary/10">
+            <div className="flex flex-col items-center justify-center gap-2 p-5 bg-primary/5 rounded-t-lg md:rounded-l-lg md:rounded-tr-none md:w-48 shrink-0 border-b md:border-b-0 md:border-r border-primary/10">
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                 <Brain className="h-6 w-6 text-primary" />
               </div>
@@ -446,8 +446,8 @@ function PrescriptionTab({
               return (
                 <Card key={i} className="hover:shadow-md transition">
                   <CardContent className="p-4">
-                    <div className="flex items-start gap-3">
-                      <div className="flex flex-col items-start gap-1 shrink-0">
+                    <div className="flex flex-col sm:flex-row sm:items-start gap-3">
+                      <div className="flex sm:flex-col items-center sm:items-start justify-between sm:justify-start gap-2 w-full sm:w-auto shrink-0 border-b sm:border-b-0 pb-2 sm:pb-0">
                         <Badge className={cn('text-xs border', cfg.className)}>{cfg.label}</Badge>
                         <span className="text-xs text-muted-foreground">{t('performance.estimatedMinutes', { minutes: task.estimatedMinutes })}</span>
                       </div>
@@ -457,14 +457,16 @@ function PrescriptionTab({
                         </p>
                         <p className="text-sm text-slate-600 mt-1">{task.description}</p>
                       </div>
-                      <Button asChild size="sm" className="shrink-0 gap-1">
-                        <Link href={task.href}>
-                          <Play className="h-3 w-3" />
-                          {task.actionType === 'execute'
-                            ? t('performance.executeRx', { count: task.questionCount })
-                            : t('performance.reviewChanged', { count: task.questionCount })}
-                        </Link>
-                      </Button>
+                      <div className="w-full sm:w-auto shrink-0 pt-2 sm:pt-0 flex justify-end">
+                        <Button asChild size="sm" className="w-full sm:w-auto gap-1">
+                          <Link href={task.href}>
+                            <Play className="h-3 w-3" />
+                            {task.actionType === 'execute'
+                              ? t('performance.executeRx', { count: task.questionCount })
+                              : t('performance.reviewChanged', { count: task.questionCount })}
+                          </Link>
+                        </Button>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -575,9 +577,9 @@ function ConceptMapTab({
     accuracy >= 70 ? 'bg-green-500' : accuracy >= 40 ? 'bg-amber-500' : 'bg-red-500';
 
   return (
-    <div className="space-y-4 animate-in fade-in duration-500">
+    <div className="space-y-4 animate-in fade-in duration-500 w-full min-w-0">
       {/* Subject filter pills */}
-      <div className="flex gap-2 overflow-x-auto pb-1">
+      <div className="flex gap-2 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {subjects.map((subj) => (
           <button
             key={subj}
@@ -594,15 +596,15 @@ function ConceptMapTab({
         ))}
       </div>
 
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-2 gap-4 w-full min-w-0">
         {/* Left: Phase list */}
-        <Card className="hover:shadow-md transition">
+        <Card className="hover:shadow-md transition w-full min-w-0">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-semibold text-primary uppercase tracking-wide">
               {t('performance.phaseView')}
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 max-h-[500px] overflow-y-auto pr-2">
+          <CardContent className="p-3 sm:p-6 pt-0 sm:pt-0 pr-2 sm:pr-2 space-y-2 max-h-[500px] overflow-y-auto">
             {filteredConcepts.map((c, i) => {
               const accuracy = pct(c.correct, c.attempts);
               const isSelected = selectedPhase?.concept === c.concept;
@@ -610,15 +612,15 @@ function ConceptMapTab({
                 <button
                   key={i}
                   className={cn(
-                    'w-full text-left p-3 rounded-lg border transition',
+                    'w-full text-left p-3 rounded-lg border transition min-w-0',
                     isSelected
                       ? 'border-primary bg-primary/5'
                       : 'border-border bg-white hover:border-primary/40',
                   )}
                   onClick={() => setSelectedPhase(c)}
                 >
-                  <div className="flex items-start justify-between gap-2 mb-1">
-                    <div>
+                  <div className="flex items-start justify-between gap-2 mb-1 min-w-0">
+                    <div className="min-w-0 flex-1">
                       <span className="text-xs font-bold text-primary uppercase">PHASE {i + 1}</span>
                       <p className="text-sm font-semibold text-slate-800 truncate">{c.concept}</p>
                     </div>
@@ -653,12 +655,12 @@ function ConceptMapTab({
 
         {/* Right: BLL Focus Info */}
         {selectedPhase && (
-          <Card className="hover:shadow-md transition border-primary/20">
+          <Card className="hover:shadow-md transition border-primary/20 w-full min-w-0">
             <CardContent className="p-5 space-y-4">
               <p className="text-xs font-bold text-primary uppercase tracking-widest">
                 {t('performance.bllFocusInfo')}
               </p>
-              <h3 className="text-xl font-bold text-slate-900">{selectedPhase.concept}</h3>
+              <h3 className="text-xl font-bold text-slate-900 break-words">{selectedPhase.concept}</h3>
               <p className="text-sm text-slate-600">
                 {selectedPhase.attempts === 0
                   ? t('performance.conceptNotPracticed')
@@ -671,7 +673,7 @@ function ConceptMapTab({
               </p>
               <div className="rounded-lg bg-slate-50 border p-4">
                 <p className="text-xs font-semibold text-slate-500 uppercase mb-2">{t('performance.blackLetterLaw')}</p>
-                <p className="text-sm text-slate-700 italic">
+                <p className="text-sm text-slate-700 italic break-words">
                   {selectedPhase.topic} — {selectedPhase.concept}
                 </p>
               </div>
@@ -833,7 +835,7 @@ function ErrorTrapTab({
       {/* Trap Dissection */}
       <Card className="hover:shadow-md transition">
         <CardHeader className="pb-3">
-          <div className="flex items-start justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <CardTitle className="text-base flex items-center gap-2">
               <Target className="h-4 w-4 text-amber-500" />
               {t('performance.trapDissection')}
@@ -993,9 +995,9 @@ function ProgressTab({
               ) : (
                 sliders.map((sl, i) => (
                   <div key={sl.subject}>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-semibold text-slate-700">{sl.subject}</span>
-                      <div className="flex items-center gap-2">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-1 mb-2">
+                      <span className="text-sm font-semibold text-slate-700 break-words">{sl.subject}</span>
+                      <div className="flex items-center gap-2 shrink-0">
                         <span className="text-xs text-muted-foreground">{t('performance.estimatedBoostTo')}</span>
                         <span className="text-sm font-bold text-primary">{sl.sliderValue}%</span>
                       </div>
@@ -1050,7 +1052,7 @@ function ProgressTab({
           {t('performance.fatigueChart')}
         </h2>
         <Card className="hover:shadow-md transition">
-          <CardContent className="p-5">
+          <CardContent className="p-3 sm:p-5">
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
                 <BarChart data={fatigueData} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
@@ -1081,7 +1083,7 @@ function ProgressTab({
               {t('performance.recentTrend')}
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-3 sm:p-5">
             <div className="h-48">
               <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
                 <LineChart data={trendData}>
@@ -1257,7 +1259,7 @@ export default function PerformancePage() {
   return (
     <div
       className={cn(
-        'space-y-6 transition-all duration-700',
+        'space-y-6 transition-all duration-700 w-full max-w-full overflow-x-hidden',
         visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
       )}
     >
@@ -1282,14 +1284,14 @@ export default function PerformancePage() {
       </header>
 
       {/* 4-tab horizontal nav (URL-driven) */}
-      <div className="border-b border-slate-200">
-        <nav className="flex gap-1 overflow-x-auto pb-0">
+      <div className="border-b border-slate-200 -mx-4 px-4 sm:mx-0 sm:px-0">
+        <nav className="flex gap-1 overflow-x-auto pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] -mb-px">
           {tabDefs.map((tab) => (
             <Link
               key={tab.value}
               href={`/performance?tab=${tab.value}`}
               className={cn(
-                'flex items-center gap-2 px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-all duration-150 -mb-px',
+                'flex items-center gap-2 px-4 py-3 text-sm font-semibold whitespace-nowrap border-b-2 transition-all duration-150',
                 activeTab === tab.value
                   ? 'border-primary text-primary'
                   : 'border-transparent text-muted-foreground hover:text-slate-800 hover:border-slate-300',

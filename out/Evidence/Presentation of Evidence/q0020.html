@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-references-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* Tables styling */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 16px 0;
+    }
+
+    .pbx-explanation table {
+      min-width: 480px;
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #cccccc;
+      margin-bottom: 1.5rem;
+    }
+
+    .pbx-explanation th {
+      border: 1px solid #cccccc;
+      padding: 8px 12px;
+      background: #f5f5f5;
+      font-weight: bold;
+    }
+
+    .pbx-explanation td {
+      border: 1px solid #cccccc;
+      padding: 8px 12px;
+    }
+
+    /* Term and Tooltip styling */
+    .pbx-term {
+      color: #3498db;
+      text-decoration: underline;
+      cursor: pointer;
+      position: relative;
+      font-weight: 500;
+      display: inline-block;
+    }
+
+    .pbx-term:hover, .pbx-term:focus {
+      color: #1d4ed8;
+    }
+
+    .pbx-tooltip {
+      visibility: hidden;
+      width: 280px;
+      background-color: #2d3748;
+      color: #fff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 100;
+      bottom: 125%; /* Position above the text */
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s, visibility 0.2s;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+      font-size: 0.85rem;
+      line-height: 1.4;
+      pointer-events: none;
+    }
+
+    .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #2d3748 transparent transparent transparent;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+      }
+
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+      
+      .pbx-explanation th, 
+      .pbx-explanation td {
+        font-size: 0.825rem;
+        padding: 0.5em 0.625em;
+      }
+
+      .pbx-tooltip {
+        width: 220px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: Introduction of evidence -->
+<div class="pbx-explanation">
+  <div class="pbx-scroll-x">
+    <table style="border: 1.5px solid #111111; max-width: 580px; margin: 0 auto 1.5rem auto;">
+      <thead>
+        <tr>
+          <th style="border: 1.5px solid #111111; padding: 10px 12px; text-align: center; background: #ffffff;">
+            <div style="font-size: 1.05rem; font-weight: bold; margin-bottom: 2px; color: #000000; text-transform: none; letter-spacing: normal;">Hearings on preliminary questions</div>
+            <div style="font-size: 0.9rem; font-weight: normal; color: #000000;">(FRE 104)</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border: 1.5px solid #111111; padding: 14px 16px; background: #ffffff;">
+            <div style="font-size: 0.95rem; color: #111111; margin-bottom: 6px;">Preliminary question must be heard outside jury's presence if:</div>
+            <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
+              <li style="font-size: 0.95rem; color: #111111; margin-bottom: 4px; line-height: 1.5;">hearing is on admissibility of confession</li>
+              <li style="font-size: 0.95rem; color: #111111; margin-bottom: 4px; line-height: 1.5;">criminal defendant-witness so requests <em>or</em></li>
+              <li style="font-size: 0.95rem; color: #111111; margin-bottom: 0; line-height: 1.5;">justice so requires</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1.5px solid #111111; padding: 8px 12px; font-size: 0.9rem; background: #ffffff; color: #111111;">
+            <strong>FRE</strong> = Federal Rule of Evidence
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Under Federal Rule of Evidence 104, the court must decide <strong>preliminary questions of fact</strong> about whether <strong>evidence is admissible</strong>, a <span class="pbx-term" tabindex="0">privilege<span class="pbx-tooltip"><strong>Privilege (特权)</strong><br>A legal right that allows a person to refuse to disclose or prevent others from disclosing confidential communications (e.g., attorney-client privilege).<br><small style="color: #cbd5e0; margin-top: 4px; display: block;">允许个人拒绝披露或阻止他人披露机密交流信息的法律权利（例如：律师与客户保密特权）。</small></span></span> exists, or a witness is qualified. In making this decision, the court is only bound by evidentiary rules regarding <span class="pbx-term" tabindex="0">privilege<span class="pbx-tooltip"><strong>Privilege (特权)</strong><br>A legal right that allows a person to refuse to disclose or prevent others from disclosing confidential communications (e.g., attorney-client privilege).<br><small style="color: #cbd5e0; margin-top: 4px; display: block;">允许个人拒绝披露或阻止他人披露机密交流信息的法律权利（例如：律师与客户保密特权）。</small></span></span>. Both parties can present evidence at the <strong>hearing</strong>, but it must occur <strong>outside the presence of the jury</strong> if:</p>
+
+  <ul style="margin-top: 0; margin-bottom: 1.25rem; padding-left: 20px; list-style-type: disc;">
+    <li style="margin-bottom: 6px;">it involves the admissibility of a confession</li>
+    <li style="margin-bottom: 6px;">a defendant in a criminal case is a witness and so requests <em>or</em></li>
+    <li style="margin-bottom: 0;"><strong>justice so requires</strong>—eg, when the disputed evidence would prejudice a party if heard by the jury.</li>
+  </ul>
+
+  <p data-choice="A" data-choice-role="correct">Here, the woman's lawyer asked for a hearing to determine whether the victim's statement is admissible as a <span class="pbx-term" tabindex="0">dying declaration<span class="pbx-tooltip"><strong>Dying Declaration (临终遗言)</strong><br>A statement made by a declarant who is unavailable, believing their death is imminent, concerning the cause or circumstances of their impending death.<br><small style="color: #cbd5e0; margin-top: 4px; display: block;">申报人在面临死亡迫在眉睫时，就其死亡原因或环境所做的陈述。必须确信自己即将死亡且人已无法出庭。</small></span></span>. One preliminary issue of fact for this hearsay exception is whether the victim believed his death was imminent. Therefore, the court may hear evidence from both sides to determine whether the witness may ultimately testify to this statement at trial. And since the statement implicates the defendant in murder and would prejudice her if the jury heard it, justice requires that the hearing be held outside the jury's presence <span style="color:#9b1c1c;font-weight:600;" data-choice="B C" data-choice-role="distractor">(Choices B & C)</span>.</p>
+
+  <p style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="D" data-choice-role="distractor">
+    <strong style="color:#9b1c1c">(Choice D)</strong> Preliminary questions of fact that relate to the <em>admissibility</em> of evidence (as seen here) are subject to the preponderance-of-the-evidence standard of proof. Conversely, those relating to the <em>relevance</em> of proffered evidence are subject to the <em>prima-facie</em> standard, which asks if a reasonable jury could find the fact. Therefore, whether the jury could reasonably find the victim believed his death was imminent is the wrong standard.
+  </p>
+
+  <div class="pbx-edu-objective">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>The court must decide preliminary questions of fact about whether evidence is admissible, a privilege exists, or a witness is qualified. But the hearing must be conducted outside the jury's presence if (1) it involves the admissibility of a confession, (2) a defendant in a criminal case is a witness and so requests, or (3) justice so requires.</p>
+  </div>
+
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li>Fed. R. Evid. 104 (preliminary questions).</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

@@ -94,6 +94,7 @@ function TestSessionContent() {
   const [contentMode, setContentMode] = useState<ContentMode>('english');
   const [display, setDisplay] = useState<DisplayOptions>(defaultStudySettings.display);
   const [textSize, setTextSize] = useState<TextSize>('medium');
+  const [showNotes, setShowNotes] = useState<boolean>(true);
   const [panelResetKey, setPanelResetKey] = useState(0);
   const [questionStartedAt, setQuestionStartedAt] = useState(() => Date.now());
   const [isPaused, setIsPaused] = useState(false);
@@ -158,12 +159,14 @@ function TestSessionContent() {
     setContentMode(settings.contentMode);
     setDisplay(settings.display);
     setTextSize(settings.textSize);
+    setShowNotes(settings.showNotes);
 
     const handleSettingsChange = (event: Event) => {
-      const next = (event as CustomEvent<{ contentMode: ContentMode; display: DisplayOptions; textSize: TextSize }>).detail;
+      const next = (event as CustomEvent<{ contentMode: ContentMode; display: DisplayOptions; textSize: TextSize; showNotes?: boolean }>).detail;
       if (next?.contentMode) setContentMode(next.contentMode);
       if (next?.display) setDisplay(next.display);
       if (next?.textSize) setTextSize(next.textSize);
+      if (next?.showNotes !== undefined) setShowNotes(next.showNotes);
     };
 
     window.addEventListener('passbar-study-settings-changed', handleSettingsChange);
@@ -926,6 +929,13 @@ function TestSessionContent() {
           saveStudySettings(updated);
           if (user?.id) saveUserStudySettings(user.id, updated);
         }}
+        showNotes={showNotes}
+        onShowNotesChange={(show) => {
+          setShowNotes(show);
+          const updated = { ...getStudySettings(), showNotes: show };
+          saveStudySettings(updated);
+          if (user?.id) saveUserStudySettings(user.id, updated);
+        }}
         onReset={() => {
           setPanelResetKey((k) => k + 1);
           const current = getStudySettings();
@@ -996,7 +1006,7 @@ function TestSessionContent() {
                 {(display.enQA || (!display.enQA && !display.zhQA)) && (
                   <RichText
                     text={enQuestionText}
-                    highlights={showExplanation ? questionTextHighlights : []}
+                    highlights={showExplanation && showNotes ? questionTextHighlights : []}
                     language={language}
                     className={cn('text-left font-normal text-slate-900', questionTextClass)}
                   />
@@ -1123,7 +1133,7 @@ function TestSessionContent() {
                                 <ChoiceText
                                   className="block"
                                   text={enOptions[idx]?.replace(/^\s*[A-D]\.\s*/i, '') ?? option.replace(/^\s*[A-D]\.\s*/i, '')}
-                                  keywords={showExplanation ? currentQuestion?.choiceKeywordMeta?.choices?.[label as 'A' | 'B' | 'C' | 'D'] : undefined}
+                                  keywords={showExplanation && showNotes ? currentQuestion?.choiceKeywordMeta?.choices?.[label as 'A' | 'B' | 'C' | 'D'] : undefined}
                                   language={language}
                                   state={
                                     isRevealed

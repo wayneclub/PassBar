@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <meta name="description" content="Explanation of the then-existing state of mind hearsay exception under Federal Rule of Evidence 803(3).">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+      max-width: 800px;
+      margin: 0 auto;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Interactive tooltips for key terms */
+    .pbx-term {
+      color: #1c64f2;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .pbx-term:hover {
+      color: #1a56db;
+    }
+
+    .pbx-term .pbx-tooltip {
+      visibility: hidden;
+      width: 280px;
+      background-color: #1f2937;
+      color: #ffffff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 100;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      font-size: 0.85rem;
+      line-height: 1.4;
+      font-weight: normal;
+      pointer-events: none;
+      box-sizing: border-box;
+    }
+
+    .pbx-term .pbx-tooltip strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #60a5fa;
+    }
+
+    .pbx-term .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #1f2937 transparent transparent transparent;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Scrollable wrapper for tables */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 24px 0;
+      width: 100%;
+    }
+
+    /* Table Styles */
+    .pbx-explanation table {
+      min-width: 480px;
+      width: 100%;
+      border: 1px solid #cccccc;
+      border-collapse: collapse;
+      margin: 0;
+    }
+
+    .pbx-explanation th, .pbx-explanation td {
+      border: 1px solid #cccccc;
+      padding: 8px 12px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .pbx-explanation th {
+      background: #f5f5f5;
+      font-weight: bold;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-edu-objective p {
+      margin: 0;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-references-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+      }
+
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+
+      .pbx-explanation th, .pbx-explanation td {
+        font-size: 0.825rem;
+        padding: 0.5em 0.625em;
+      }
+
+      .pbx-term .pbx-tooltip {
+        width: 240px;
+        left: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: Declarant's Availability Immaterial -->
+<div class="pbx-explanation">
+
+  <!-- Table Section -->
+  <div class="pbx-scroll-x">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="3" style="text-align: center; font-size: 1.1rem; padding: 10px; font-weight: bold; background: #f5f5f5;">
+            Then-existing state of mind hearsay exception
+            <div style="font-weight: normal; font-size: 0.9rem; margin-top: 4px; color: #555;">(FRE 803(3))</div>
+          </th>
+        </tr>
+        <tr>
+          <th>Type of statement</th>
+          <th>Examples</th>
+          <th>Admissibility</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>State of mind</td>
+          <td>Motive, intent, plan</td>
+          <td rowspan="2" style="vertical-align: middle;">Admissible as substantive evidence</td>
+        </tr>
+        <tr>
+          <td>Emotional or physical condition</td>
+          <td>Fear, pain, bodily health</td>
+        </tr>
+        <tr>
+          <td>Memory or belief</td>
+          <td>Reflection on prior event or belief about matter</td>
+          <td>Inadmissible unless related to declarant's will</td>
+        </tr>
+        <tr>
+          <td colspan="3" style="text-align: left; padding: 10px 12px; font-size: 0.9rem; color: #333;">
+            <strong>FRE</strong> = Federal Rule of Evidence.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Main text explanation -->
+  <p>
+    <span class="pbx-term" tabindex="0" id="term-hearsay">Hearsay<span class="pbx-tooltip"><strong>Hearsay / 传闻证据</strong>A statement, other than one made by the declarant while testifying at the trial or hearing, offered in evidence to prove the truth of the matter asserted. / 在当前审判或听证会之外作出的陈述，并作为证据提交以证明其所主张之事实真实性。</span></span> is an <span class="pbx-term" tabindex="0" id="term-out-of-court">out-of-court statement<span class="pbx-tooltip"><strong>Out-of-Court Statement / 庭外陈述</strong>A statement made outside of the current trial or hearing. / 在当前审判或听证会之外作出的陈述。</span></span> offered to prove the truth of the matter asserted therein and is generally inadmissible. But statements of the declarant's <span class="pbx-term" tabindex="0" id="term-state-of-mind"><strong>then-existing state of mind</strong><span class="pbx-tooltip"><strong>Then-Existing State of Mind / 当时的心理状态</strong>A hearsay exception for statements showing the declarant's mental, emotional, or physical condition at the time of the statement. / 针对显示陈述者作出陈述时的精神、情绪或身体状况陈述的传闻证据例外。</span></span>—eg, <strong>statements of motive, intent, or plan</strong>—are <strong>excepted from hearsay</strong>. And since they are excepted, these statements can be used as <span class="pbx-term" tabindex="0" id="term-substantive-evidence">substantive evidence<span class="pbx-tooltip"><strong>Substantive Evidence / 实质性证据</strong>Evidence offered to prove a fact in issue, as opposed to evidence used solely to impeach a witness. / 用于证明争议事实的证据，而非仅用于弹劾证人的证据。</span></span> to prove that the declarant later acted in conformity with that state of mind.
+  </p>
+
+  <p style="border-left:3px solid #27ae60;padding-left:10px;" data-choice="C" data-choice-role="correct">
+    Here, the defendant's out-of-court statement is hearsay since it is being offered for its truth—ie, that she was going to spend three days in State B. But since this is a statement about her <em>plans</em>, it falls within the hearsay exception for then-existing state of mind. Therefore, the friend's testimony as to this statement is admissible as proof that the defendant was in State B on the day of the robbery <span style="color:#9b1c1c;font-weight:600;" data-choice="A" data-choice-role="distractor">(Choice A)</span>.
+  </p>
+
+  <p style="border-left:3px solid #c0392b;padding-left:10px;" data-choice="B" data-choice-role="distractor">
+    <strong style="color:#9b1c1c">(Choice B)</strong> There is no rule prohibiting the use of the defendant's own statement to establish an <span class="pbx-term" tabindex="0" id="term-alibi">alibi<span class="pbx-tooltip"><strong>Alibi / 不在场证明</strong>A defense asserting that the defendant was elsewhere when the alleged crime was committed. / 声称指控犯罪发生时被告人在其他地方的辩护。</span></span>—ie, a defense that places the defendant elsewhere when the charged offense was committed.
+  </p>
+
+  <p style="border-left:3px solid #c0392b;padding-left:10px;" data-choice="D" data-choice-role="distractor">
+    <strong style="color:#9b1c1c">(Choice D)</strong> The <span class="pbx-term" tabindex="0" id="term-present-sense">present sense impression<span class="pbx-tooltip"><strong>Present Sense Impression / 即时感官印象</strong>A hearsay exception for statements describing or explaining an event or condition made while or immediately after the declarant perceived it. / 针对陈述者在感知某事件或状况时或紧随其后作出的描述或解释该事件或状况的陈述的传闻证据例外。</span></span> exception applies to hearsay statements that (1) describe an event or condition and (2) are made while or immediately after the declarant perceived it. This exception is inapplicable here because the defendant was describing her plans—not a perceived event or condition.
+  </p>
+
+  <!-- Educational Objective -->
+  <div class="pbx-edu-objective">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>Statements concerning the declarant's then-existing state of mind (eg, statements of motive, intent, or plan) are excepted from the rule against hearsay.</p>
+  </div>
+
+  <!-- References -->
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li>Fed. R. Evid. 803(3) (then-existing state of mind exception).</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

@@ -36,6 +36,7 @@
       cursor: pointer;
       font-weight: 500;
       position: relative;
+      display: inline-block;
     }
 
     .pbx-term:hover {
@@ -49,7 +50,7 @@
       color: #ffffff;
       text-align: left;
       border-radius: 6px;
-      padding: 10px 12px;
+      padding: 0.625em 0.75em;
       position: absolute;
       z-index: 10;
       bottom: 125%;
@@ -69,7 +70,7 @@
 
     .pbx-term .pbx-tooltip strong {
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 0.25em;
       color: #3498db;
     }
 
@@ -85,6 +86,7 @@
     }
 
     .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus .pbx-tooltip,
     .pbx-term:focus-within .pbx-tooltip {
       visibility: visible;
       opacity: 1;
@@ -95,19 +97,19 @@
       background: #f0f7ff;
       border-left: 4px solid #3498db;
       border-radius: 6px;
-      padding: 14px 18px;
-      margin: 24px 0;
+      padding: 0.875em 1.125em;
+      margin: 1.5em 0;
       box-sizing: border-box;
       width: 100%;
     }
 
     .pbx-edu-objective-title {
-      font-size: 13px;
+      font-size: 0.8125rem;
       font-weight: 700;
       color: #2980b9;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 8px;
+      margin-bottom: 0.5em;
     }
 
     .pbx-edu-objective p {
@@ -119,25 +121,25 @@
       background: #fafafa;
       border: 1px solid #e0e0e0;
       border-radius: 6px;
-      padding: 14px 18px;
-      margin: 20px 0;
+      padding: 0.875em 1.125em;
+      margin: 1.25em 0;
       box-sizing: border-box;
       width: 100%;
     }
 
     .pbx-references-title {
-      font-size: 13px;
+      font-size: 0.8125rem;
       font-weight: 700;
       color: #555;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 8px;
+      margin-bottom: 0.5em;
     }
 
     .pbx-ref-list {
       margin: 0;
-      padding-left: 18px;
-      font-size: 14px;
+      padding-left: 1.125em;
+      font-size: 0.875rem;
       color: #555;
       line-height: 1.7;
     }
@@ -168,7 +170,7 @@
 
       .pbx-term .pbx-tooltip {
         width: 220px;
-        left: 50%;
+        bottom: 130%;
       }
 
       .pbx-explain-img img {
@@ -184,11 +186,13 @@
     <img src="imgs/q870571.jpg" alt="Explanation diagram" style="max-width:100%;height:auto;display:block;margin:0 auto;">
   </figure>
 
-  <p data-choice="A" data-choice-role="correct">The <strong>rule against hearsay</strong> bars the admission of an <strong>out-of-court statement</strong> offered to <strong>prove the truth</strong> of the matter asserted therein. When such a statement (eg, the neighbor's threat) is <strong>contained within another</strong> (eg, the husband's description of the encounter), neither statement is admissible unless <em>both</em> are <span class="pbx-term" tabindex="0">excluded or excepted<span class="pbx-tooltip"><strong>Excluded or Excepted / 排除或例外</strong>Exclusions define statements as nonhearsay (FRE 801(d)); exceptions allow hearsay statements to be admitted due to reliability (FRE 803/804). / 排除（非传闻）与例外（符合特定可靠性条件的传闻证据）。</span></span> from the rule against hearsay.</p>
+  <div data-choice="A" data-choice-role="correct">
+    <p>The <strong>rule against hearsay</strong> bars the admission of an <strong>out-of-court statement</strong> offered to <strong>prove the truth</strong> of the matter asserted therein. When such a statement (eg, the neighbor's threat) is <strong>contained within another</strong> (eg, the husband's description of the encounter), neither statement is admissible unless <em>both</em> are <span class="pbx-term" tabindex="0">excluded or excepted<span class="pbx-tooltip"><strong>Excluded or Excepted / 排除或例外</strong>Exclusions define statements as nonhearsay (FRE 801(d)); exceptions allow hearsay statements to be admitted due to reliability (FRE 803/804). / 排除（非传闻）与例外（符合特定可靠性条件的传闻证据）。</span></span> from the rule against hearsay.</p>
 
-  <p data-choice="A" data-choice-role="correct">One <span class="pbx-term" tabindex="0">hearsay exclusion<span class="pbx-tooltip"><strong>Hearsay Exclusion / 传闻排除</strong>An out-of-court statement that is defined as nonhearsay by FRE 801(d) (eg, an opposing party's statement). / 联邦证据规则 801(d) 规定的非传闻情形（如当事人对手的陈述）。</span></span> applies to <strong>statements by a party-opponent</strong> that are offered against that party. Since the neighbor is a party to this lawsuit and his statement is being offered against him, that statement is excluded from hearsay (ie, constitutes nonhearsay). But since the husband's statement describing his chance meeting with the neighbor does not fall within any hearsay exclusion or <span class="pbx-term" tabindex="0">exception<span class="pbx-tooltip"><strong>Hearsay Exception / 传闻例外</strong>An out-of-court statement that, though hearsay, is admissible under FRE 803 or 804 (eg, excited utterance, state of mind). / 即使是传闻也因符合特定可信条件（如兴奋宣泄、当时心境等）而可以被采信。</span></span>,* the woman's testimony about both statements is inadmissible <span style="color:#9b1c1c;font-weight:600;" data-choice="C" data-choice-role="distractor">(Choice C)</span>.</p>
+    <p>One <span class="pbx-term" tabindex="0">hearsay exclusion<span class="pbx-tooltip"><strong>Hearsay Exclusion / 传闻排除</strong>An out-of-court statement that is defined as nonhearsay by FRE 801(d) (eg, an opposing party's statement). / 联邦证据规则 801(d) 规定的非传闻情形（如当事人对手的陈述）。</span></span> applies to <strong>statements by a party-opponent</strong> that are offered against that party. Since the neighbor is a party to this lawsuit and his statement is being offered against him, that statement is excluded from hearsay (ie, constitutes nonhearsay). But since the husband's statement describing his chance meeting with the neighbor does not fall within any hearsay exclusion or <span class="pbx-term" tabindex="0">exception<span class="pbx-tooltip"><strong>Hearsay Exception / 传闻例外</strong>An out-of-court statement that, though hearsay, is admissible under FRE 803 or 804 (eg, excited utterance, state of mind). / 即使是传闻也因符合特定可信条件（如兴奋宣泄、当时心境等）而可以被采信。</span></span>,* the woman's testimony about both statements is inadmissible <span style="color:#9b1c1c;font-weight:600;" data-choice="C" data-choice-role="distractor">(Choice C)</span>.</p>
 
-  <p style="font-size: 0.9em; color: #555; margin-top: -10px; padding-left: 10px;">*The hearsay exception for statements offered against a party that wrongfully caused the declarant's unavailability does not apply here because the neighbor did not shoot the husband with the intent to prevent him from testifying.</p>
+    <p style="font-size: 0.875rem; color: #555; margin-top: -0.5em; padding-left: 0.625em; font-style: italic;">*The hearsay exception for statements offered against a party that wrongfully caused the declarant's unavailability does not apply here because the neighbor did not shoot the husband with the intent to prevent him from testifying.</p>
+  </div>
 
   <p style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="B" data-choice-role="distractor">
     <strong style="color:#9b1c1c">(Choice B)</strong> Evidence of a prior bad act cannot be used to prove a person's propensity to behave in a certain manner. But here, the neighbor's statement was offered to prove that he killed the husband—not that the neighbor was prone to violence. Therefore, this rule is inapplicable.

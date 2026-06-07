@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-references-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .pbx-ref-list li {
+      margin-bottom: 6px;
+    }
+
+    .pbx-ref-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Tables styling */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 16px 0;
+    }
+
+    .pbx-explanation table {
+      min-width: 480px;
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #cccccc;
+      margin-bottom: 1.5rem;
+    }
+
+    .pbx-explanation th {
+      border: 1px solid #cccccc;
+      padding: 8px 12px;
+      background: #f5f5f5;
+      font-weight: bold;
+    }
+
+    .pbx-explanation td {
+      border: 1px solid #cccccc;
+      padding: 8px 12px;
+    }
+
+    .pbx-table-method {
+      font-weight: 700;
+      text-align: center;
+      background: #ffffff;
+      vertical-align: middle;
+      width: 25%;
+    }
+
+    .pbx-table-list {
+      margin: 0;
+      padding-left: 20px;
+      list-style-type: disc;
+    }
+
+    .pbx-table-list li {
+      margin-bottom: 6px;
+    }
+
+    .pbx-table-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .pbx-bullet-list {
+      margin: 0 0 1.25rem 0;
+      padding-left: 20px;
+      list-style-type: disc;
+    }
+
+    .pbx-bullet-list li {
+      margin-bottom: 6px;
+    }
+
+    .pbx-bullet-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Term/Tooltip styling */
+    .pbx-term {
+      color: #3498db;
+      cursor: help;
+      position: relative;
+      font-weight: 500;
+      text-decoration: underline dotted #3498db;
+    }
+
+    .pbx-term .pbx-tooltip {
+      visibility: hidden;
+      width: 280px;
+      background-color: #2c3e50;
+      color: #fff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      font-size: 0.85rem;
+      font-weight: normal;
+      line-height: 1.45;
+      pointer-events: none;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .pbx-term .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #2c3e50 transparent transparent transparent;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+      }
+
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+      
+      .pbx-explanation th, 
+      .pbx-explanation td {
+        font-size: 0.825rem;
+        padding: 0.5em 0.625em;
+      }
+
+      .pbx-term .pbx-tooltip {
+        width: 240px;
+        left: auto;
+        right: 0;
+        transform: none;
+      }
+
+      .pbx-term .pbx-tooltip::after {
+        left: auto;
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: Impeachment -->
+<div class="pbx-explanation">
+  <div class="pbx-scroll-x">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="3" style="text-align: center;">Impeaching witness v. hearsay declarant</th>
+        </tr>
+        <tr>
+          <th style="width: 25%; text-align: center;">Method</th>
+          <th style="width: 37.5%; text-align: center;">Witness</th>
+          <th style="width: 37.5%; text-align: center;">Declarant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="pbx-table-method">Character for truthfulness</td>
+          <td colspan="2">
+            <ul class="pbx-table-list">
+              <li>Specific instance of conduct involving bad act or criminal conviction of felony/crime of dishonesty</li>
+              <li>Reputation or opinion testimony on truthfulness</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="pbx-table-method">Self-interest/bias</td>
+          <td colspan="2">
+            <ul class="pbx-table-list">
+              <li>Motive to lie or partiality to party</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="pbx-table-method">Specific contradiction</td>
+          <td colspan="2">
+            <ul class="pbx-table-list">
+              <li>Evidence directly contradicting testimony on material issue</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="pbx-table-method">Inconsistent statement</td>
+          <td>
+            <ul class="pbx-table-list">
+              <li>Prior statement admissible <em>if</em> witness can explain/deny &amp; be questioned by opposing party (or if justice requires)</li>
+            </ul>
+          </td>
+          <td>
+            <ul class="pbx-table-list">
+              <li>Admissible <em>regardless</em> of when statement occurred &amp; whether declarant can explain/deny</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>When a hearsay statement is admitted under (1) any <span class="pbx-term">hearsay exception<span class="pbx-tooltip">传闻证据例外 (Hearsay Exception): 指即便属于传闻证据，但因其具有其他信誉保障（如激昂陈述、业务记录等），法律依然允许将其作为实质证据采纳。</span></span> or (2) the <span class="pbx-term">hearsay exclusion<span class="pbx-tooltip">传闻证据排除 (Hearsay Exclusion): 指法律明确规定不属于传闻范围的陈述，例如对方当事人的陈述、员工或同谋者的陈述，可以直接作为实质证据。</span></span> for statements made by an opposing party's agent, employee, or coconspirator, the <strong>declarant's credibility</strong> may be <strong>attacked</strong> (and then supported) as though the declarant had testified as a witness. The <em>same</em> methods for impeaching a witness can therefore be used against the declarant. But unlike a <em>witness's</em> inconsistent statement, a <em>declarant's</em> <strong>inconsistent statement</strong> can be used for impeachment <strong>even if</strong>:</p>
+
+  <ul class="pbx-bullet-list">
+    <li>the inconsistent statement <strong>occurred after</strong> the hearsay statement <em>or</em></li>
+    <li data-choice="C D" data-choice-role="distractor">the declarant had <strong>no opportunity to explain or deny</strong> the inconsistent statement <strong><span style="color:#9b1c1c;font-weight:600;" data-choice="C D" data-choice-role="distractor">(Choices C &amp; D)</span></strong>.</li>
+  </ul>
+
+  <p>
+    <span data-choice="A" data-choice-role="correct">Here, the bystander's hearsay statement was admitted at trial (likely as an <span class="pbx-term">excited utterance<span class="pbx-tooltip">激昂陈述 (Excited Utterance): 传闻证据的例外。指说话人在受到令人震惊的事件或状况刺激、仍处于兴奋状态下，针对该事件所作的即时陈述。通常被认为是可信的。</span></span>). As a result, the student can attack the bystander's credibility by offering testimony from another witness about the bystander's inconsistent statement that the car jerked and threw the student out of his seat.</span>
+    <span data-choice="B" data-choice-role="distractor">But this statement cannot be used as substantive evidence—eg, to prove the amusement company's negligence—because there is no indication that the statement falls within an exclusion or exception to the hearsay rule <strong><span style="color:#9b1c1c;font-weight:600;" data-choice="B" data-choice-role="distractor">(Choice B)</span></strong>.</span>
+  </p>
+
+  <div class="pbx-edu-objective">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>When a hearsay statement is admitted under any hearsay exception—or the hearsay exclusion for statements made by an opposing party's agent, employee, or coconspirator—the declarant's credibility may be attacked as though the declarant had testified (eg, by introducing the declarant's inconsistent statement).</p>
+  </div>
+
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li>Fed. R. Evid. 806 (attacking a declarant's credibility).</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

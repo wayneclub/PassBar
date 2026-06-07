@@ -363,11 +363,11 @@ export default function ReviewHistoryPage() {
             ))}
           </div>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="relative">
+        <div className="flex items-center gap-2 w-full md:w-auto">
+          <div className="relative flex-1 md:flex-initial">
             <Search className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <Input
-              className="h-10 pl-10 w-64 text-sm"
+              className="h-10 pl-10 w-full md:w-64 text-sm"
               placeholder={t('review.searchPlaceholder')}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -376,10 +376,10 @@ export default function ReviewHistoryPage() {
 
           <Button
             variant="outline"
-            className="h-10 gap-2 px-4 relative"
+            className="h-10 gap-2 px-3 sm:px-4 relative shrink-0"
             onClick={() => setFilterOpen((v) => !v)}
           >
-            <SlidersHorizontal className="w-4 h-4" />
+            <SlidersHorizontal className="w-4 h-4 text-slate-500" />
             {t('review.filterMode')}
             {activeFilterCount > 0 && (
               <span className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
@@ -491,13 +491,13 @@ export default function ReviewHistoryPage() {
           {filteredSessions.map((session) => (
             <Card key={session.id} className="overflow-hidden hover:shadow-md transition-shadow group border-l-4 border-l-primary">
               <CardContent className="p-0">
-                <div className="flex flex-col md:flex-row items-center">
-                  <div className="p-6 md:w-40 border-b md:border-b-0 md:border-r flex flex-col items-center justify-center bg-primary/5 shrink-0">
-                    <div className="text-3xl font-black text-primary">{session.percent}%</div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground mt-1">{t('review.accuracy')}</div>
+                <div className="flex flex-row items-stretch">
+                  <div className="p-3 md:p-6 w-20 md:w-40 border-r flex flex-col items-center justify-center bg-primary/5 shrink-0">
+                    <div className="text-xl md:text-3xl font-black text-primary">{session.percent}%</div>
+                    <div className="text-[10px] md:text-xs font-bold uppercase tracking-wider text-muted-foreground mt-0.5 md:mt-1">{t('review.accuracy')}</div>
                   </div>
 
-                  <div className="px-6 py-5 flex-1 flex flex-col gap-3">
+                  <div className="p-4 md:px-6 md:py-5 flex-1 flex flex-col gap-3 min-w-0">
                     {/* Row 1: subjects + chapters */}
                     <div className="space-y-2">
                       <div className="flex flex-wrap gap-1.5">

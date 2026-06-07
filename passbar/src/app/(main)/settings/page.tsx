@@ -36,6 +36,7 @@ export default function SettingsPage() {
   const [contentMode, setContentMode] = useState<ContentMode>('english');
   const [display, setDisplay] = useState<DisplayOptions>(defaultStudySettings.display);
   const [textSize, setTextSize] = useState<TextSize>('medium');
+  const [showNotes, setShowNotes] = useState<boolean>(true);
   const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle');
   const saveTimerRef = useRef<number | null>(null);
   const [clearDialogOpen, setClearDialogOpen] = useState(false);
@@ -49,6 +50,7 @@ export default function SettingsPage() {
     setContentMode(settings.contentMode);
     setDisplay(settings.display);
     setTextSize(settings.textSize);
+    setShowNotes(settings.showNotes);
 
     const handleSettingsChange = (event: Event) => {
       const next = (event as CustomEvent<StudySettings>).detail;
@@ -57,6 +59,7 @@ export default function SettingsPage() {
       setContentMode(next.contentMode);
       setDisplay(next.display);
       setTextSize(next.textSize);
+      setShowNotes(next.showNotes);
     };
 
     window.addEventListener('passbar-study-settings-changed', handleSettingsChange);
@@ -72,6 +75,7 @@ export default function SettingsPage() {
     setContentMode(nextSettings.contentMode);
     setDisplay(nextSettings.display);
     setTextSize(nextSettings.textSize);
+    setShowNotes(nextSettings.showNotes);
     setSaveStatus('saving');
 
     if (saveTimerRef.current) window.clearTimeout(saveTimerRef.current);
@@ -87,7 +91,7 @@ export default function SettingsPage() {
     }, 500);
   };
 
-  const currentSettings: StudySettings = { interfaceLanguage, contentMode, display, textSize };
+  const currentSettings: StudySettings = { interfaceLanguage, contentMode, display, textSize, showNotes };
 
   function isLastQA(flagKey: keyof DisplayOptions) {
     if (flagKey !== 'enQA' && flagKey !== 'zhQA') return false;
@@ -253,6 +257,45 @@ export default function SettingsPage() {
                         >
                           {item.preview}
                         </div>
+                      </div>
+                    </div>
+                  </Label>
+                );
+              })}
+            </div>
+          </RadioGroup>
+        </CardContent>
+      </Card>
+
+      <Card className="shadow-sm">
+        <CardHeader>
+          <CardTitle>{t('settings.studyModeTitle')}</CardTitle>
+          <CardDescription>{t('settings.studyNotes')}</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <RadioGroup
+            value={showNotes ? 'notes' : 'exam'}
+            onValueChange={(value) => commitSettings({ ...currentSettings, showNotes: value === 'notes' })}
+          >
+            <div className="grid gap-3 md:grid-cols-2">
+              {[
+                { value: 'notes', label: t('settings.studyNotesOn') },
+                { value: 'exam', label: t('settings.studyNotesOff') },
+              ].map((item) => {
+                const selected = (item.value === 'notes') === showNotes;
+                return (
+                  <Label
+                    key={item.value}
+                    htmlFor={`notes-${item.value}`}
+                    className={cn(
+                      'cursor-pointer rounded-md border p-4 transition-colors',
+                      selected ? 'border-primary bg-primary/5' : 'border-slate-200 bg-white hover:bg-slate-50',
+                    )}
+                  >
+                    <div className="flex items-start gap-3">
+                      <RadioGroupItem id={`notes-${item.value}`} value={item.value} className="mt-1" />
+                      <div>
+                        <div className="text-sm font-semibold text-slate-900">{item.label}</div>
                       </div>
                     </div>
                   </Label>

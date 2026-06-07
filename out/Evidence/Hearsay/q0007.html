@@ -24,7 +24,7 @@
 
     .pbx-explanation p {
       margin-top: 0;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.25em;
     }
 
     /* Educational Objective style */
@@ -32,19 +32,19 @@
       background: #f0f7ff;
       border-left: 4px solid #3498db;
       border-radius: 6px;
-      padding: 14px 18px;
-      margin: 24px 0;
+      padding: 0.875em 1.125em;
+      margin: 1.5em 0;
       box-sizing: border-box;
       width: 100%;
     }
 
     .pbx-edu-objective-title {
-      font-size: 13px;
+      font-size: 0.8125rem;
       font-weight: 700;
       color: #2980b9;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 8px;
+      margin-bottom: 0.5em;
     }
 
     /* References style */
@@ -52,25 +52,25 @@
       background: #fafafa;
       border: 1px solid #e0e0e0;
       border-radius: 6px;
-      padding: 14px 18px;
-      margin: 20px 0;
+      padding: 0.875em 1.125em;
+      margin: 1.25em 0;
       box-sizing: border-box;
       width: 100%;
     }
 
     .pbx-references-title {
-      font-size: 13px;
+      font-size: 0.8125rem;
       font-weight: 700;
       color: #555;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 8px;
+      margin-bottom: 0.5em;
     }
 
     .pbx-ref-list {
       margin: 0;
-      padding-left: 18px;
-      font-size: 14px;
+      padding-left: 1.125em;
+      font-size: 0.875rem;
       color: #555;
       line-height: 1.7;
     }
@@ -79,7 +79,7 @@
     .pbx-scroll-x {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-      margin: 16px 0;
+      margin: 1em 0;
     }
 
     .pbx-explanation table {
@@ -87,19 +87,19 @@
       width: 100%;
       border-collapse: collapse;
       border: 1px solid #cccccc;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.5em;
     }
 
     .pbx-explanation th {
       border: 1px solid #cccccc;
-      padding: 10px 12px;
+      padding: 0.5em 0.75em;
       background: #f5f5f5;
       font-weight: bold;
     }
 
     .pbx-explanation td {
       border: 1px solid #cccccc;
-      padding: 12px 16px;
+      padding: 0.5em 0.75em;
       vertical-align: top;
     }
 
@@ -115,17 +115,17 @@
       font-size: 0.85rem;
       color: #555555;
       background: #ffffff;
-      padding: 8px 12px;
+      padding: 0.5em 0.75em;
     }
 
     .pbx-table-list {
-      margin: 8px 0 0 0;
-      padding-left: 20px;
+      margin: 0.5em 0 0 0;
+      padding-left: 1.25em;
       list-style-type: disc;
     }
 
     .pbx-table-list li {
-      margin-bottom: 6px;
+      margin-bottom: 0.375em;
     }
 
     .pbx-table-list li:last-child {
@@ -135,6 +135,7 @@
     .pbx-link {
       color: #3498db;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .pbx-link:hover {
@@ -184,7 +185,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-choice="D" data-choice-role="correct">
           <td class="pbx-table-side-header">
             Absence of public records<br>
             <span style="font-weight: normal; font-size: 0.9em;">(FRE 803(10))</span>
@@ -192,7 +193,7 @@
           <td>
             Evidence that diligent search failed to locate public record or statement admissible if:
             <ul class="pbx-table-list">
-              <li>introduced through testimony or self-authenticating evidence certified under FRE 902 AND</li>
+              <li>introduced through testimony or <span class="pbx-link">self-authenticating evidence</span> certified under FRE 902 AND</li>
               <li>in criminal cases, prosecutor gives written notice of intent to offer certification 14 days before trial &amp; defendant does not object in writing within 7 days of receiving notice</li>
             </ul>
           </td>
@@ -206,7 +207,7 @@
     </table>
   </div>
 
-  <p data-choice="D" data-choice-role="correct">The <strong>rule against hearsay</strong> bars the admission of out-of-court statements (eg, a writing) offered to prove the truth of the matter asserted therein. One <strong>exception</strong> to this rule applies to the <strong>absence of public records</strong>, where evidence that a <strong>diligent search</strong> failed to locate a <strong>public record</strong> is admissible to prove that (1) a record <strong>does not exist</strong> OR (2) a matter regularly kept in public records <strong>did not occur</strong>. This evidence can be introduced through witness testimony or <a href="#" class="pbx-link">self-authenticating evidence</a> certified under Federal Rule of Evidence (FRE) 902.</p>
+  <p data-choice="D" data-choice-role="correct">The <strong>rule against hearsay</strong> bars the admission of out-of-court statements (eg, a writing) offered to prove the truth of the matter asserted therein. One <strong>exception</strong> to this rule applies to the <strong>absence of public records</strong>, where evidence that a <strong>diligent search</strong> failed to locate a <strong>public record</strong> is admissible to prove that (1) a record <strong>does not exist</strong> OR (2) a matter regularly kept in public records <strong>did not occur</strong>. This evidence can be introduced through witness testimony or <span class="pbx-link">self-authenticating evidence</span> certified under Federal Rule of Evidence (FRE) 902.</p>
 
   <p data-choice="D" data-choice-role="correct">Here, the witness seeks to testify that he diligently searched the jail records and found no record of the defendant being incarcerated at the time of the fire. Since incarceration is regularly recorded in public records, this witness testimony falls within the hearsay exception for the absence of public records <span style="color:#9b1c1c;font-weight:600;" data-choice="A" data-choice-role="distractor">(Choice A)</span>. As a result, it can be used to prove that the defendant's incarceration did not occur.</p>
 

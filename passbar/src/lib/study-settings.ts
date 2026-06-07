@@ -24,6 +24,7 @@ export type StudySettings = {
   textSize: TextSize;
   interfaceLanguage: InterfaceLanguage;
   display: DisplayOptions;
+  showNotes: boolean;
 };
 
 export const defaultDisplayOptions: DisplayOptions = {
@@ -38,6 +39,7 @@ export const defaultStudySettings: StudySettings = {
   textSize: 'medium',
   interfaceLanguage: 'en',
   display: defaultDisplayOptions,
+  showNotes: true,
 };
 
 const storageKey = 'passbar_study_settings';
@@ -63,6 +65,7 @@ export function normalizeStudySettings(settings: Partial<StudySettings> | null |
       ? settings.interfaceLanguage
       : 'en',
     display,
+    showNotes: settings?.showNotes ?? true,
   };
 }
 

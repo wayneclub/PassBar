@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Term/Tooltip styling */
+    .pbx-term {
+      color: #3498db;
+      cursor: help;
+      position: relative;
+      font-weight: 500;
+      text-decoration: underline dotted #3498db;
+    }
+
+    .pbx-term .pbx-tooltip {
+      visibility: hidden;
+      width: 280px;
+      background-color: #2c3e50;
+      color: #fff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      font-size: 0.85rem;
+      font-weight: normal;
+      line-height: 1.45;
+      pointer-events: none;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .pbx-term .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #2c3e50 transparent transparent transparent;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-edu-objective p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #333333;
+      line-height: 1.6;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-references-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .pbx-ref-list li {
+      margin-bottom: 6px;
+    }
+
+    .pbx-ref-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .pbx-explain-img {
+      margin: 1.25em 0;
+      text-align: center;
+    }
+
+    .pbx-explain-img img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    }
+
+    .pbx-list {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      padding-left: 20px;
+    }
+
+    .pbx-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+      }
+
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+
+      .pbx-term .pbx-tooltip {
+        width: 240px;
+        left: auto;
+        right: 0;
+        transform: none;
+      }
+
+      .pbx-term .pbx-tooltip::after {
+        left: auto;
+        right: 20px;
+      }
+
+      .pbx-explain-img img {
+        border-radius: 3px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: Opinion testimony -->
+<div class="pbx-explanation">
+  <!-- Explanation Diagram -->
+  <figure class="pbx-explain-img">
+    <img src="imgs/q870791.jpg" alt="Explanation diagram" style="max-width:100%;height:auto;display:block;margin:0 auto;">
+  </figure>
+
+  <p class="pbx-paragraph">
+    Witness testimony is generally admissible once the witness has given an <span class="pbx-term" tabindex="0">oath or affirmation<span class="pbx-tooltip">宣誓或确认 (Oath or Affirmation): 证人在作证前必须作出的郑重承诺，声明其将如实陈述。可以使用宗教宣誓 (oath) 或世俗确认 (affirmation)。</span></span> to testify <strong>truthfully</strong> AND the proponent has established a <span class="pbx-term" tabindex="0">proper foundation<span class="pbx-tooltip">适当的证据基础 (Proper Foundation): 引入证据前必须确立的前提条件（如证明证人有亲身感知），以证明该证据是可采信的。</span></span> for that testimony. A foundation for <strong><span class="pbx-term" tabindex="0">lay witness<span class="pbx-tooltip">普通证人 (Lay Witness): 非专家证人。其证言只能基于其亲身感知，且必须有助于理解其证言或确定争议事实。</span></span></strong> (ie, nonexpert) testimony is properly laid by showing that the testimony is:
+  </p>
+
+  <ul class="pbx-list">
+    <li>based on the witness's <strong><span class="pbx-term" tabindex="0">personal knowledge<span class="pbx-tooltip">亲身感知/直接知识 (Personal Knowledge): 证人必须通过自己的感官（看、听、闻等）亲自感知到所陈述的事实。</span></span></strong> – a matter that the witness <strong>perceived firsthand</strong> <em>and</em></li>
+    <li><strong>relevant</strong> to the case – tends to make a <strong><span class="pbx-term" tabindex="0">material fact<span class="pbx-tooltip">实质性事实 (Material Fact): 案件中对诉讼结果有重大影响的事实，即与诉讼争议焦点直接相关的事实。</span></span> more or less probable</strong> than it would be without the evidence.</li>
+  </ul>
+
+  <p class="pbx-paragraph" data-choice="B" data-choice-role="correct">
+    Here, the son's testimony is based on personal knowledge since he was disfigured by the same bullet that killed his father. And that testimony is relevant because it tends to make a material fact—that the defendant was the killer—more probable than it would be without that testimony. As a result, this testimony should be admitted unless the opponent raises a valid objection. Two objections could be made here:
+  </p>
+
+  <ul class="pbx-list">
+    <li><strong><span class="pbx-term" tabindex="0">incompetency<span class="pbx-tooltip">无作证能力 (Incompetency): 证人因缺乏感知、记忆、表达能力或不理解如实作证义务，而在法律上被认为不符合出庭作证的资格。</span></span></strong> – the witness is unable to testify truthfully and accurately (eg, due to age or mental capacity) <em>and</em></li>
+    <li><strong><span class="pbx-term" tabindex="0">unfair prejudice<span class="pbx-tooltip">不当偏见 (Unfair Prejudice): 证据可能激起陪审团的同情、厌恶、偏见或以非理性方式做决定的倾向，其危害如果实质性超过其证明价值，可能被排除。</span></span></strong> – the <strong><span class="pbx-term" tabindex="0">probative value<span class="pbx-tooltip">证明价值 (Probative Value): 证据对于证明案件事实的逻辑说服力和证明力大小。</span></span></strong> (ie, degree of relevance) of the evidence is substantially outweighed by the risk of unfair prejudice or <span style="color:#3498db;">other concerns</span>.</li>
+  </ul>
+
+  <p class="pbx-paragraph">
+    It is <em>presumed</em> that a witness of any age is competent to testify so long as that testimony is (1) based on the witness's personal knowledge and (2) supported by an oath or affirmation to testify truthfully <span style="color:#9b1c1c;font-weight:600;" data-choice="A" data-choice-role="distractor">(Choice A)</span>. And though the son's disfigured face may prejudice the defendant, the son's testimony regarding the killer's identity goes to the heart of this case. Therefore, its high probative value outweighs the risk of unfair prejudice <span style="color:#9b1c1c;font-weight:600;" data-choice="C D" data-choice-role="distractor">(Choices C & D)</span>.
+  </p>
+
+  <div class="pbx-edu-objective">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>Lay witness testimony is generally admissible if (1) the witness has given an oath or affirmation to testify truthfully and (2) the proponent has laid a proper foundation—personal knowledge and relevance—for that testimony.</p>
+  </div>
+
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li>Fed. R. Evid. 602 (personal knowledge requirement).</li>
+      <li>Fed. R. Evid. 401, 403 (admission and exclusion of relevant evidence).</li>
+      <li>Fed. R. Evid. 601 (competency to testify).</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

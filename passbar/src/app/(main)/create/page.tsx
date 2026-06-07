@@ -264,18 +264,18 @@ export default function CreateTestPage() {
         </div>
       </header>
 
-      <div className="grid grid-cols-3 gap-3">
-        <div className="rounded-lg border border-slate-200 bg-white px-6 py-5 shadow-sm">
-          <div className="text-sm font-medium text-slate-500">{t('create.totalQuestions')}</div>
-          <div className="mt-1.5 text-3xl font-bold text-slate-800">{totalQuestionCount.toLocaleString()}</div>
+      <div className="grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="rounded-lg border border-slate-200 bg-white px-3 py-3 sm:px-6 sm:py-5 shadow-sm min-w-0">
+          <div className="text-xs sm:text-sm font-medium text-slate-500 truncate">{t('create.totalQuestions')}</div>
+          <div className="mt-1 text-lg sm:text-3xl font-bold text-slate-800 truncate">{totalQuestionCount.toLocaleString()}</div>
         </div>
-        <div className="rounded-lg border border-slate-200 bg-white px-6 py-5 shadow-sm">
-          <div className="text-sm font-medium text-slate-500">{t('create.practicedQuestions')}</div>
-          <div className="mt-1.5 text-3xl font-bold text-primary">{practicedQuestionCount.toLocaleString()}</div>
+        <div className="rounded-lg border border-slate-200 bg-white px-3 py-3 sm:px-6 sm:py-5 shadow-sm min-w-0">
+          <div className="text-xs sm:text-sm font-medium text-slate-500 truncate">{t('create.practicedQuestions')}</div>
+          <div className="mt-1 text-lg sm:text-3xl font-bold text-primary truncate">{practicedQuestionCount.toLocaleString()}</div>
         </div>
-        <div className="rounded-lg border border-slate-200 bg-white px-6 py-5 shadow-sm">
-          <div className="text-sm font-medium text-slate-500">{t('create.unpracticedQuestions')}</div>
-          <div className="mt-1.5 text-3xl font-bold text-slate-800">{unpracticedQuestionCount.toLocaleString()}</div>
+        <div className="rounded-lg border border-slate-200 bg-white px-3 py-3 sm:px-6 sm:py-5 shadow-sm min-w-0">
+          <div className="text-xs sm:text-sm font-medium text-slate-500 truncate">{t('create.unpracticedQuestions')}</div>
+          <div className="mt-1 text-lg sm:text-3xl font-bold text-slate-800 truncate">{unpracticedQuestionCount.toLocaleString()}</div>
         </div>
       </div>
 

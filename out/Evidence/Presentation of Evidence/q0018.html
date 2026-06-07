@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    .pbx-explanation strong {
+      color: #111111;
+    }
+
+    /* Title styling */
+    .pbx-title-container {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .pbx-title {
+      margin: 0;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #111111;
+    }
+    .pbx-subtitle {
+      font-size: 1.05rem;
+      color: #4a5568;
+      margin-top: 0.25rem;
+      font-weight: 500;
+    }
+
+    /* Diagram wrapper & responsive behavior */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 24px 0;
+    }
+    .pbx-flow-inner {
+      position: relative;
+      width: 700px;
+      height: 360px;
+      margin: 0 auto;
+    }
+
+    .pbx-flow-card-abs {
+      position: absolute;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: 600;
+      color: #1e293b;
+      font-size: 0.925rem;
+      line-height: 1.35;
+      box-sizing: border-box;
+      transition: all 0.2s ease;
+    }
+
+    .pbx-flow-card-abs:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.08);
+      border-color: #94a3b8;
+    }
+
+    .pbx-flow-text-abs {
+      position: absolute;
+      width: 220px;
+      font-weight: 700;
+      color: #334155;
+      font-size: 0.875rem;
+      text-align: center;
+      line-height: 1.4;
+      transform: translateX(-50%);
+    }
+
+    /* Term/Tooltip styling */
+    .pbx-term {
+      color: #2980b9;
+      cursor: help;
+      position: relative;
+      font-weight: 600;
+      text-decoration: underline dotted #2980b9;
+    }
+    .pbx-term:focus {
+      outline: 2px solid #3498db;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+    .pbx-term .pbx-tooltip {
+      visibility: hidden;
+      width: 280px;
+      background-color: #2c3e50;
+      color: #fff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      font-size: 0.85rem;
+      font-weight: normal;
+      line-height: 1.45;
+      pointer-events: none;
+    }
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+    .pbx-term .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #2c3e50 transparent transparent transparent;
+    }
+
+    .pbx-explanation ul {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      padding-left: 1.5rem;
+    }
+    .pbx-explanation li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .pbx-edu-objective-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .pbx-edu-objective p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #333333;
+      line-height: 1.6;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .pbx-references-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+    .pbx-ref-list li {
+      margin-bottom: 6px;
+    }
+    .pbx-ref-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+      }
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+      .pbx-title {
+        font-size: 1.2rem;
+      }
+      .pbx-term .pbx-tooltip {
+        width: 240px;
+        left: auto;
+        right: 0;
+        transform: none;
+      }
+      .pbx-term .pbx-tooltip::after {
+        left: auto;
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: Impeachment -->
+<div class="pbx-explanation">
+  <div class="pbx-title-container">
+    <h1 class="pbx-title">Impeaching witness's character for truthfulness</h1>
+    <div class="pbx-subtitle">(FRE 608 &amp; 609)</div>
+  </div>
+
+  <div class="pbx-scroll-x">
+    <div class="pbx-flow-inner">
+      <!-- Background SVG Lines -->
+      <svg width="700" height="360" style="position: absolute; top: 0; left: 0; pointer-events: none;">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#4a5568" />
+          </marker>
+        </defs>
+        <!-- Parent to Reputation & Specific Instance -->
+        <path d="M 350,55 L 350,80 M 120,80 L 480,80 M 120,80 L 120,105 M 480,80 L 480,105" stroke="#4a5568" stroke-width="1.5" fill="none" />
+        
+        <!-- Reputation to Extrinsic -->
+        <path d="M 120,150 L 120,300" stroke="#4a5568" stroke-width="1.5" fill="none" marker-end="url(#arrow)" />
+        
+        <!-- Specific Instance to Conviction & Other Bad Act -->
+        <path d="M 480,150 L 480,175 M 370,175 L 590,175 M 370,175 L 370,200 M 590,175 L 590,200" stroke="#4a5568" stroke-width="1.5" fill="none" />
+        
+        <!-- Conviction to Intrinsic/Extrinsic -->
+        <path d="M 370,245 L 370,300" stroke="#4a5568" stroke-width="1.5" fill="none" marker-end="url(#arrow)" />
+        
+        <!-- Other Bad Act to Intrinsic -->
+        <path d="M 590,245 L 590,300" stroke="#4a5568" stroke-width="1.5" fill="none" marker-end="url(#arrow)" />
+      </svg>
+
+      <!-- Level 1 Nodes -->
+      <div class="pbx-flow-card-abs" style="left: 250px; top: 10px; width: 200px; height: 45px;">
+        Method of impeachment
+      </div>
+
+      <!-- Level 2 Nodes -->
+      <div class="pbx-flow-card-abs" style="left: 25px; top: 105px; width: 190px; height: 45px;">
+        Reputation or opinion testimony
+      </div>
+      <div class="pbx-flow-card-abs" style="left: 370px; top: 105px; width: 220px; height: 45px;">
+        Specific instance of conduct
+      </div>
+
+      <!-- Level 3 Nodes -->
+      <div class="pbx-flow-card-abs" style="left: 265px; top: 200px; width: 210px; height: 45px;">
+        Conviction for felony<br>or crime of dishonesty
+      </div>
+      <div class="pbx-flow-card-abs" style="left: 520px; top: 200px; width: 140px; height: 45px;">
+        Other bad act
+      </div>
+
+      <!-- Level 4 Nodes -->
+      <div class="pbx-flow-text-abs" style="left: 120px; top: 305px;">
+        Introduced<br>extrinsically
+      </div>
+      <div class="pbx-flow-text-abs" style="left: 370px; top: 305px; width: 200px;">
+        Introduced<br>intrinsically or extrinsically
+      </div>
+      <div class="pbx-flow-text-abs" style="left: 590px; top: 305px;">
+        Introduced<br>intrinsically
+      </div>
+    </div>
+    <div style="max-width: 700px; margin: 8px auto 0 auto; font-size: 0.8rem; color: #718096; text-align: left; padding-left: 25px;">
+      <strong>FRE</strong> = Federal Rules of Evidence
+    </div>
+  </div>
+
+  <p>A <span class="pbx-term" tabindex="0"><strong>witness's character for truthfulness</strong><span class="pbx-tooltip"><strong>Character for Truthfulness (诚实品质):</strong> A witness's general trait for honesty or dishonesty, which is key to determining their credibility.</span></span> (<em>ie</em>, credibility) may be <span class="pbx-term" tabindex="0"><strong>impeached</strong><span class="pbx-tooltip"><strong>Impeachment (弹劾/质疑可信度):</strong> The process of challenging the credibility of a witness at trial to show they are not worthy of belief.</span></span> through any of the following methods:</p>
+
+  <ul>
+    <li><span class="pbx-term" tabindex="0"><strong>Reputation testimony</strong><span class="pbx-tooltip"><strong>Reputation Testimony (名誉证言):</strong> Testimony by a witness about what is generally said about another person's character in the community or among associates.</span></span> – testimony by someone sufficiently familiar with the witness's reputation among associates or in the community</li>
+    <li><span class="pbx-term" tabindex="0"><strong>Opinion testimony</strong><span class="pbx-tooltip"><strong>Opinion Testimony (意见证言):</strong> Testimony expressing the witness's personal belief or assessment regarding another person's character.</span></span> – testimony sharing an opinion on the witness's character that is based on personal knowledge and familiarity with the witness</li>
+    <li><strong>Specific instances of conduct</strong> (SICs) that are probative of the witness's character for truthfulness</li>
+  </ul>
+
+  <p><strong>SICs</strong> can always be introduced <span class="pbx-term" tabindex="0"><strong>intrinsically</strong><span class="pbx-tooltip"><strong>Intrinsic Evidence (内部证据):</strong> Evidence elicited directly from the witness being cross-examined, without introducing outside evidence or calling other witnesses.</span></span> (<em>ie</em>, by questioning the witness being impeached about the SIC). But they can only be introduced <span class="pbx-term" tabindex="0"><strong>extrinsically</strong><span class="pbx-tooltip"><strong>Extrinsic Evidence (外部证据):</strong> Evidence from other sources (such as other witnesses or documents) introduced to impeach or prove a fact, rather than just the testifying witness's testimony.</span></span> (<em>ie</em>, from other sources) if the SIC relates to a <strong>criminal conviction</strong> for a felony or crime of dishonesty.</p>
+
+  <p data-choice="C" data-choice-role="correct">Here, the plaintiff's counsel seeks to impeach the defendant's witness by cross-examining the witness about falsifying an affidavit to escape paying sales tax. This SIC bears on the witness's credibility, and it is being introduced through the witness's own testimony (<em>ie</em>, intrinsically). Therefore, the question is proper.</p>
+
+  <p style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="A" data-choice-role="distractor">
+    <strong style="color:#9b1c1c;">(Choice A)</strong> Character <em>can</em> be proved by SICs when character is an <span class="pbx-term" tabindex="0">essential element<span class="pbx-tooltip"><strong>Essential Element (必要要素):</strong> A character trait that is a core part of a claim, charge, or defense (e.g., character in a defamation or child custody case).</span></span> of a charge, claim, or defense OR on cross-examination when the SIC is probative of the witness's character for truthfulness.
+  </p>
+
+  <p style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="B" data-choice-role="distractor">
+    <strong style="color:#9b1c1c;">(Choice B)</strong> <em>Any</em> witness can be impeached, including those who are impeaching another witness.
+  </p>
+
+  <p style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="D" data-choice-role="distractor">
+    <strong style="color:#9b1c1c;">(Choice D)</strong> Reputation or opinion testimony can be challenged by questioning the witness's standard of judgment—<em>eg</em>, "You claim she has an untruthful reputation, but did you know she was voted Citizen of the Year?" But here, the question goes to the defense witness's own conduct—not the reputation of the plaintiff's witness.
+  </p>
+
+  <div class="pbx-edu-objective" data-choice="C" data-choice-role="correct">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>A witness may be impeached by a specific instance of conduct that is probative of the witness's character for truthfulness. But this conduct must be introduced with intrinsic evidence unless it is a conviction for a felony or crime of dishonesty.</p>
+  </div>
+
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li>Fed. R. Evid. 608 (witness's character for truthfulness).</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

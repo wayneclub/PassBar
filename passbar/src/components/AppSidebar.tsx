@@ -234,7 +234,7 @@ export function AppSidebar() {
             </div>
             <p className="text-[10px] uppercase tracking-widest text-slate-500">{role === 'student' ? t('role.student') : role}</p>
           </div>
-          <NotificationBell variant="dark" size="sm" />
+          <NotificationBell variant="dark" size="sm" align="start" side="right" />
         </div>
         <Button
           className="w-full justify-start gap-2 border-white/10 bg-transparent text-slate-300 hover:bg-white/10 hover:text-white"

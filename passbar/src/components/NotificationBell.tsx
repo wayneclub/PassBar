@@ -47,7 +47,17 @@ const CATEGORY_LABELS: Record<string, string> = {
   other: '其他',
 };
 
-export function NotificationBell({ variant = 'light', size = 'md' }: { variant?: 'light' | 'dark'; size?: 'sm' | 'md' }) {
+export function NotificationBell({
+  variant = 'light',
+  size = 'md',
+  align = 'end',
+  side = 'bottom',
+}: {
+  variant?: 'light' | 'dark';
+  size?: 'sm' | 'md';
+  align?: 'start' | 'end' | 'center';
+  side?: 'top' | 'right' | 'bottom' | 'left';
+}) {
   const { user, profile } = useAuth();
   const { t } = useI18n();
   const [notifications, setNotifications] = useState<Notification[]>([]);
@@ -148,7 +158,7 @@ export function NotificationBell({ variant = 'light', size = 'md' }: { variant?:
           className={`relative flex items-center justify-center transition-colors ${btnSize} ${iconClass}`}
           aria-label={t('admin.notifications')}
         >
-          <Bell className={bellSize} />
+          <Bell className={`${bellSize} ${open ? 'text-amber-500 fill-amber-500' : ''}`} />
           {count > 0 && (
             <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
               {count > 9 ? '9+' : count}
@@ -157,7 +167,7 @@ export function NotificationBell({ variant = 'light', size = 'md' }: { variant?:
         </button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end" className="w-80 p-0" sideOffset={8}>
+      <DropdownMenuContent align={align} side={side} collisionPadding={16} className="w-[calc(100vw-32px)] md:w-80 p-0" sideOffset={8}>
         {/* Header */}
         <div className="flex items-center justify-between border-b px-4 py-3">
           <span className="text-sm font-semibold text-foreground">{t('admin.notifications')}</span>
@@ -171,8 +181,8 @@ export function NotificationBell({ variant = 'light', size = 'md' }: { variant?:
         {/* Notifications */}
         <div className="max-h-80 overflow-y-auto">
           {notifications.length === 0 ? (
-            <div className="flex flex-col items-center gap-2 py-10 text-center">
-              <Bell className="h-8 w-8 text-muted-foreground/40" />
+            <div className="flex items-center justify-center gap-2 py-4 px-4 text-center">
+              <Bell className="h-4 w-4 text-muted-foreground/60" />
               <p className="text-sm text-muted-foreground">{t('admin.noNotifications')}</p>
             </div>
           ) : (

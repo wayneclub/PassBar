@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    .pbx-title {
+      text-align: center;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Scrollable wrapper for diagram */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 24px 0;
+      width: 100%;
+    }
+
+    .pbx-flow-inner {
+      min-width: 880px;
+      box-sizing: border-box;
+      padding: 10px 4px;
+    }
+
+    /* Flowchart styles */
+    .pbx-flowchart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .pbx-flowchart-top-row {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .pbx-flow-card {
+      background-color: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #334155;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+      box-sizing: border-box;
+      width: fit-content;
+      max-width: 100%;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pbx-flow-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+    }
+
+    .pbx-list-card {
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0.75rem;
+    }
+
+    .pbx-list-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+    }
+
+    .pbx-subtext {
+      font-size: 0.8rem;
+      color: #64748b;
+      font-weight: normal;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .pbx-flow-connector {
+      position: relative;
+    }
+
+    .pbx-flow-arrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 24px;
+      margin: 6px 0;
+    }
+
+    .pbx-admissible-text {
+      text-align: center;
+      font-size: 0.85rem;
+      line-height: 1.3;
+      color: #334155;
+    }
+
+    .pbx-admissible-text strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .pbx-admit-subtext {
+      color: #64748b;
+      font-size: 0.8rem;
+    }
+
+    /* Term tooltips */
+    .pbx-term {
+      color: #2980b9;
+      text-decoration: none;
+      border-bottom: 1px dashed #2980b9;
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+    }
+
+    .pbx-term:focus {
+      outline: 2px solid #3498db;
+      outline-offset: 2px;
+    }
+
+    .pbx-term .pbx-tooltip {
+      visibility: hidden;
+      width: 280px;
+      background-color: #2c3e50;
+      color: #fff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      font-size: 0.85rem;
+      font-weight: normal;
+      line-height: 1.45;
+      pointer-events: none;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .pbx-term .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #2c3e50 transparent transparent transparent;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(-50%) translateY(-4px);
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-edu-objective p {
+      margin: 0;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+      }
+
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+
+      .pbx-term .pbx-tooltip {
+        width: 240px;
+        left: auto;
+        right: 0;
+        transform: none;
+      }
+
+      .pbx-term .pbx-tooltip::after {
+        left: auto;
+        right: 20px;
+      }
+      
+      .pbx-term:hover .pbx-tooltip,
+      .pbx-term:focus .pbx-tooltip,
+      .pbx-term:focus-within .pbx-tooltip {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: Impeachment -->
+<div class="pbx-explanation">
+  <h1 class="pbx-title">Impeachment evidence</h1>
+
+  <!-- Native HTML Flowchart -->
+  <div class="pbx-scroll-x">
+    <div class="pbx-flow-inner">
+      <div class="pbx-flowchart">
+        <!-- Row 1: Root Node -->
+        <div class="pbx-flowchart-top-row">
+          <div class="pbx-flow-card">What is being attacked?</div>
+        </div>
+        
+        <!-- Connector 1 -->
+        <div class="pbx-flow-connector" style="width: 100%; margin: 6px 0;">
+          <svg viewBox="0 0 100 20" preserveAspectRatio="none" style="width: 100%; height: 20px; display: block;">
+            <line x1="50" y1="0" x2="50" y2="10" stroke="#cbd5e1" stroke-width="2" />
+            <line x1="17.5" y1="10" x2="67.5" y2="10" stroke="#cbd5e1" stroke-width="2" />
+            <line x1="17.5" y1="10" x2="17.5" y2="20" stroke="#cbd5e1" stroke-width="2" />
+            <line x1="67.5" y1="10" x2="67.5" y2="20" stroke="#cbd5e1" stroke-width="2" />
+          </svg>
+        </div>
+        
+        <!-- Row 2: Level 2 Columns -->
+        <div class="pbx-flow-row" style="display: flex; justify-content: space-between; width: 100%;">
+          <!-- Left Column (35%) -->
+          <div style="width: 35%; display: flex; flex-direction: column; align-items: center;">
+            <div class="pbx-flow-card">
+              Credibility of <em>testimony</em><br>
+              <span class="pbx-subtext">(reliability)</span>
+            </div>
+            
+            <div class="pbx-flow-arrow">
+              <svg width="12" height="24" viewBox="0 0 12 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 0V22M6 22L1 17M6 22L11 17" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            
+            <div class="pbx-flow-card pbx-list-card" style="text-align: left; width: 100%;">
+              <ul style="margin: 0; padding-left: 1.2rem; list-style-type: disc; font-size: 0.825rem; line-height: 1.4; color: #334155;">
+                <li style="margin-bottom: 4px;">Self-interest/bias</li>
+                <li style="margin-bottom: 4px;">Prior inconsistent statement</li>
+                <li style="margin-bottom: 4px;">Specific contradiction on material issue <em>or</em></li>
+                <li style="margin-bottom: 0;">Sensory defect</li>
+              </ul>
+            </div>
+            
+            <div class="pbx-flow-arrow">
+              <svg width="12" height="24" viewBox="0 0 12 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 0V22M6 22L1 17M6 22L11 17" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            
+            <div class="pbx-admissible-text">
+              <strong>Admissible</strong>
+              <span class="pbx-admit-subtext">(intrinsically or extrinsically)</span>
+            </div>
+          </div>
+          
+          <!-- Right Column (65%) -->
+          <div style="width: 65%; display: flex; flex-direction: column; align-items: center;">
+            <div class="pbx-flow-card">
+              Credibility of <em>witness</em><br>
+              <span class="pbx-subtext">(trustworthiness)</span>
+            </div>
+            
+            <!-- Connector 2 -->
+            <div class="pbx-flow-connector" style="width: 100%; margin: 6px 0;">
+              <svg viewBox="0 0 100 20" preserveAspectRatio="none" style="width: 100%; height: 20px; display: block;">
+                <line x1="50" y1="0" x2="50" y2="10" stroke="#cbd5e1" stroke-width="2" />
+                <line x1="20" y1="10" x2="70" y2="10" stroke="#cbd5e1" stroke-width="2" />
+                <line x1="20" y1="10" x2="20" y2="20" stroke="#cbd5e1" stroke-width="2" />
+                <line x1="70" y1="10" x2="70" y2="20" stroke="#cbd5e1" stroke-width="2" />
+              </svg>
+            </div>
+            
+            <!-- Level 3 Columns -->
+            <div style="display: flex; width: 100%; justify-content: space-between;">
+              <!-- Left Subcolumn (40%) -->
+              <div style="width: 40%; display: flex; flex-direction: column; align-items: center;">
+                <div class="pbx-flow-card">
+                  Reputation or<br>opinion testimony
+                </div>
+                
+                <div class="pbx-flow-arrow">
+                  <svg width="12" height="24" viewBox="0 0 12 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 0V22M6 22L1 17M6 22L11 17" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                
+                <div class="pbx-admissible-text">
+                  <strong>Admissible</strong>
+                  <span class="pbx-admit-subtext">(extrinsically)</span>
+                </div>
+              </div>
+              
+              <!-- Right Subcolumn (60%) -->
+              <div style="width: 60%; display: flex; flex-direction: column; align-items: center;">
+                <div class="pbx-flow-card">
+                  Specific instance<br>or conduct
+                </div>
+                
+                <!-- Connector 3 -->
+                <div class="pbx-flow-connector" style="width: 100%; margin: 6px 0;">
+                  <svg viewBox="0 0 100 20" preserveAspectRatio="none" style="width: 100%; height: 20px; display: block;">
+                    <line x1="50" y1="0" x2="50" y2="10" stroke="#cbd5e1" stroke-width="2" />
+                    <line x1="25" y1="10" x2="75" y2="10" stroke="#cbd5e1" stroke-width="2" />
+                    <line x1="25" y1="10" x2="25" y2="20" stroke="#cbd5e1" stroke-width="2" />
+                    <line x1="75" y1="10" x2="75" y2="20" stroke="#cbd5e1" stroke-width="2" />
+                  </svg>
+                </div>
+                
+                <!-- Level 4 Columns -->
+                <div style="display: flex; width: 100%; justify-content: space-between;">
+                  <!-- Left Sub-subcolumn (50%) -->
+                  <div style="width: 50%; display: flex; flex-direction: column; align-items: center; padding-right: 4px; box-sizing: border-box;">
+                    <div class="pbx-flow-card">
+                      Conviction for felony or<br>crime of dishonesty
+                    </div>
+                    
+                    <div class="pbx-flow-arrow">
+                      <svg width="12" height="24" viewBox="0 0 12 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 0V22M6 22L1 17M6 22L11 17" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    
+                    <div class="pbx-admissible-text">
+                      <strong>Admissible</strong>
+                      <span class="pbx-admit-subtext">(intrinsically or extrinsically)</span>
+                    </div>
+                  </div>
+                  
+                  <!-- Right Sub-subcolumn (50%) -->
+                  <div style="width: 50%; display: flex; flex-direction: column; align-items: center; padding-left: 4px; box-sizing: border-box;">
+                    <div class="pbx-flow-card">
+                      Other bad acts
+                    </div>
+                    
+                    <div class="pbx-flow-arrow">
+                      <svg width="12" height="24" viewBox="0 0 12 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 0V22M6 22L1 17M6 22L11 17" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    
+                    <div class="pbx-admissible-text">
+                      <strong>Admissible</strong>
+                      <span class="pbx-admit-subtext">(intrinsically)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p>A party may <span class="pbx-term" tabindex="0">attack the credibility<span class="pbx-tooltip">攻击可信度（对证人进行弹劾）</span></span> of a <span class="pbx-term" tabindex="0">witness's testimony<span class="pbx-tooltip">证人证言</span></span> by introducing evidence that the witness is <span class="pbx-term" tabindex="0">biased<span class="pbx-tooltip">偏见/存有偏向</span></span> and therefore had a motive to lie while testifying. This can be done by introducing a <span class="pbx-term" tabindex="0">specific instance of conduct<span class="pbx-tooltip">具体行为实例 (SIC)</span></span> (SIC) that illustrates the witness's bias through:</p>
+
+  <ul style="margin: 0 0 1.25rem 0; padding-left: 1.5rem; list-style-type: disc;">
+    <li style="margin-bottom: 0.5rem;"><strong><span class="pbx-term" tabindex="0">intrinsic evidence<span class="pbx-tooltip">内部证据（通过对该证人自身的盘问获得）</span></span></strong> – by questioning the witness about the conduct <em>or</em></li>
+    <li style="margin-bottom: 0;"><strong><span class="pbx-term" tabindex="0">extrinsic evidence<span class="pbx-tooltip">外部证据（通过其他证人或证物获得）</span></span></strong> – from any source other than the witness's own testimony.</li>
+  </ul>
+
+  <p style="border-left:3px solid #27ae60; padding-left:10px;" data-choice="C" data-choice-role="correct">Here, the plaintiff cross-examined the witness about his monetary donations to show his bias in favor of the nonprofit (intrinsic evidence). The witness denied the donations, so the plaintiff now seeks to introduce donation records from the nonprofit (extrinsic evidence). Since extrinsic evidence can <em>also</em> be used to show a witness's bias, the donation records are admissible.</p>
+
+  <p style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="A" data-choice-role="distractor"><strong style="color:#9b1c1c">(Choice A)</strong> Extrinsic evidence of a SIC is admissible to <span class="pbx-term" tabindex="0">impeach a witness<span class="pbx-tooltip">弹劾证人（质疑证人可信度）</span></span> <em>unless</em> the SIC is a bad act that is <span class="pbx-term" tabindex="0">probative of<span class="pbx-tooltip">证明...的/对...有证明力的</span></span> the witness's character for truthfulness (not seen here). In that case, only intrinsic evidence of the bad act is admissible and, if the witness denies the bad act, the examining party is stuck with that answer and cannot rebut it.</p>
+
+  <p style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="B" data-choice-role="distractor"><strong style="color:#9b1c1c">(Choice B)</strong> <span class="pbx-term" tabindex="0">Hearsay<span class="pbx-tooltip">传闻证据</span></span> refers to out-of-court statements (eg, donation records) offered for the truth of the matter asserted therein (eg, that donations were made). Such statements are inadmissible unless they are <span class="pbx-term" tabindex="0">excluded or excepted<span class="pbx-tooltip">排除或例外</span></span> from the rule against hearsay. And here, the nonprofit's donation records would likely fall within the exception for <span class="pbx-term" tabindex="0">business records<span class="pbx-tooltip">业务记录（传闻证据的例外）</span></span>.</p>
+
+  <p style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="D" data-choice-role="distractor"><strong style="color:#9b1c1c">(Choice D)</strong> Although the donation records are being used to impeach the witness's testimony, they are not being used to attack the witness's character for truthfulness. That is because donations to the nonprofit do not suggest that the witness has a general <span class="pbx-term" tabindex="0">propensity for dishonesty<span class="pbx-tooltip">不诚实的倾向</span></span>.</p>
+
+  <div class="pbx-edu-objective">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>The credibility of a witness's testimony can be attacked with evidence (eg, a specific instance of conduct) that shows the witness's bias introduced (1) intrinsically through the witness's own testimony or (2) extrinsically through any other source.</p>
+  </div>
+</div>
+</body>
+</html>

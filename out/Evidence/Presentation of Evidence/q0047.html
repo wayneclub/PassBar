@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pbx-explanation * {
+      box-sizing: border-box;
+    }
+
+    .pbx-title {
+      text-align: center;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 0;
+      margin-bottom: 2rem;
+      line-height: 1.4;
+    }
+
+    /* Scroll wrapper */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 1.5rem 0;
+      width: 100%;
+    }
+
+    .pbx-flow-inner {
+      min-width: 520px;
+      display: flex;
+      justify-content: center;
+      padding: 0.5rem 0;
+    }
+
+    /* Venn Diagram Styling */
+    .pbx-venn-container {
+      position: relative;
+      width: 32rem;
+      height: 19rem;
+      margin: 0 auto;
+    }
+
+    .pbx-venn-circle {
+      width: 17rem;
+      height: 17rem;
+      border-radius: 50%;
+      position: absolute;
+      top: 1rem;
+    }
+
+    .pbx-venn-left {
+      background-color: rgba(202, 228, 242, 0.8);
+      left: 2rem;
+    }
+
+    .pbx-venn-right {
+      background-color: rgba(242, 209, 209, 0.8);
+      right: 2rem;
+    }
+
+    .pbx-venn-label {
+      position: absolute;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .pbx-label-left {
+      left: 3rem;
+      top: 5.5rem;
+      width: 9rem;
+    }
+
+    .pbx-label-center {
+      left: 13rem;
+      top: 7.5rem;
+      width: 6rem;
+    }
+
+    .pbx-label-right {
+      right: 3rem;
+      top: 5.5rem;
+      width: 9rem;
+    }
+
+    .pbx-venn-label strong {
+      color: #1e293b;
+      font-size: 1.05rem;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+
+    .pbx-venn-label span {
+      color: #475569;
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+      line-height: 1.4;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      color: #334155;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .pbx-explanation p:last-child {
+      margin-bottom: 0;
+    }
+
+    .pbx-body-list {
+      margin: 0.75rem 0 1.25rem 0;
+      padding-left: 1.25rem;
+      list-style-type: disc;
+    }
+
+    .pbx-body-list li {
+      margin-bottom: 0.5rem;
+      color: #334155;
+      line-height: 1.7;
+    }
+
+    .pbx-footnote {
+      font-size: 0.9rem;
+      color: #64748b;
+      font-style: italic;
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    /* Term/Tooltip styling */
+    .pbx-term {
+      color: #2980b9;
+      cursor: help;
+      position: relative;
+      font-weight: 500;
+      text-decoration: underline dotted #2980b9;
+    }
+
+    .pbx-term .pbx-tooltip {
+      visibility: hidden;
+      width: 17.5rem; /* 280px / 16 */
+      background-color: #2c3e50;
+      color: #ffffff;
+      text-align: left;
+      border-radius: 0.375em;
+      padding: 0.625em 0.75em;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      box-shadow: 0 0.25em 0.9375em rgba(0,0,0,0.15);
+      font-size: 0.85rem;
+      font-weight: normal;
+      line-height: 1.45;
+      pointer-events: none;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .pbx-term .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -0.3125em; /* -5px / 16 */
+      border-width: 0.3125em;
+      border-style: solid;
+      border-color: #2c3e50 transparent transparent transparent;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-edu-objective p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #34495e;
+      line-height: 1.6;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-references-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+      color: #555555;
+      line-height: 1.7;
+      list-style-type: disc;
+    }
+
+    .pbx-ref-list li {
+      margin-bottom: 0.375em;
+    }
+
+    .pbx-ref-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+      }
+
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+
+      .pbx-term .pbx-tooltip {
+        width: 15rem; /* 240px / 16 */
+        left: auto;
+        right: 0;
+        transform: none;
+      }
+
+      .pbx-term .pbx-tooltip::after {
+        left: auto;
+        right: 1.25em; /* 20px / 16 */
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: Impeachment -->
+<div class="pbx-explanation">
+
+  <h1 class="pbx-title">Use of witness's prior inconsistent statement</h1>
+
+  <!-- Venn Diagram Section -->
+  <div class="pbx-scroll-x">
+    <div class="pbx-flow-inner">
+      <div class="pbx-venn-container">
+        <div class="pbx-venn-circle pbx-venn-left"></div>
+        <div class="pbx-venn-circle pbx-venn-right"></div>
+        <div class="pbx-venn-label pbx-label-left">
+          <strong>Impeachment<br>purposes</strong>
+          <span>When statement is inconsistent with current testimony</span>
+        </div>
+        <div class="pbx-venn-label pbx-label-center">
+          <strong>Dual<br>purposes</strong>
+        </div>
+        <div class="pbx-venn-label pbx-label-right">
+          <strong>Substantive<br>purposes</strong>
+          <span>When statement is excepted or excluded from hearsay</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p>A <span class="pbx-term" tabindex="0">prior inconsistent statement<span class="pbx-tooltip"><strong>Prior inconsistent statement (先前矛盾陈述):</strong> 证人此前做出的与当庭证言不一致的陈述，主要用于弹劾证人可信度。</span></span> is a statement that was made by a witness in the past that is inconsistent with the witness's current testimony. The prior statement may be <strong>used to <span class="pbx-term" style="color: inherit; text-decoration: inherit;" tabindex="0">impeach<span class="pbx-tooltip" style="font-weight: normal; text-decoration: none;"><strong>Impeachment (弹劾/质疑):</strong> 在交叉询问中引入证据以削弱或攻击证人可信度的行为。</span></span></strong> (i.e., discredit) the witness by:</p>
+
+  <ul class="pbx-body-list">
+    <li>examining the witness about the statement (i.e., <span class="pbx-term" tabindex="0">intrinsic evidence<span class="pbx-tooltip"><strong>Intrinsic evidence (内部证据):</strong> 在交叉询问中通过询问证人本身所揭示的证据，不需要引入外部证人或文件。</span></span>) or</li>
+    <li>introducing the statement through <span class="pbx-term" tabindex="0">extrinsic evidence<span class="pbx-tooltip"><strong>Extrinsic evidence (外部证据):</strong> 在交叉询问之外，通过引入其他证人证言或书面文件来证明某一事实的证据。</span></span> if (1) the witness <em>first</em> has an <strong>opportunity to explain or deny</strong>, and the opposing party can <strong>question the witness</strong> about, the statement or (2) justice so requires.</li>
+  </ul>
+
+  <p>But a prior inconsistent statement may not be used as <span class="pbx-term" tabindex="0">substantive evidence<span class="pbx-tooltip"><strong>Substantive evidence (实质性证据):</strong> 用以证明案件争议事实本身真实性的证据，而非仅用于弹劾证人的可信度。</span></span>—i.e., to prove the truth of the matter asserted—unless the statement is <span class="pbx-term" tabindex="0">excluded<span class="pbx-tooltip"><strong>Hearsay exclusion (传闻排除):</strong> 联邦证据规则中明确规定不属于传闻的陈述，例如表态证人的先前陈述或对方当事人的陈述。</span></span> or <span class="pbx-term" tabindex="0">excepted<span class="pbx-tooltip"><strong>Hearsay exception (传闻例外):</strong> 虽属传闻但在法律规定下可予采信的例外情形。</span></span> from the rule against <span class="pbx-term" tabindex="0">hearsay<span class="pbx-tooltip"><strong>Hearsay (传闻证据):</strong> 证人在法庭审理之外做出的，被引入用以证明其所断言事项真实性的陈述，通常不可采。</span></span>.</p>
+
+  <p data-choice="D" data-choice-role="correct">Here, the woman testified that she saw the man burglarize the warehouse. The man's attorney then called the woman's cellmate to testify that the woman had previously said that she broke into the warehouse alone. And because the woman was given the opportunity explain or deny—and the prosecution can question her about—her prior inconsistent statement, the cellmate's testimony is admissible for <span class="pbx-term" tabindex="0">impeachment purposes<span class="pbx-tooltip"><strong>Impeachment (弹劾目的):</strong> 仅用于质疑证人诚实度或可信度，不能用于证明陈述内容的真实性。</span></span>. But the woman's prior statement cannot be used substantively because it is neither excluded* nor excepted from the hearsay rule.</p>
+
+  <p class="pbx-footnote">*The hearsay exclusion for statements by a declarant-witness does not apply because the woman's prior inconsistent statement was neither made under penalty of perjury at a legal proceeding nor identified a person as someone the declarant perceived earlier.</p>
+
+  <p style="border-left: 3px solid #c0392b; padding-left: 10px;" data-choice="A" data-choice-role="distractor"><strong style="color: #9b1c1c;">(Choice A)</strong> A prior inconsistent statement is <em>not</em> <span class="pbx-term" tabindex="0">hearsay<span class="pbx-tooltip"><strong>Hearsay (传闻证据):</strong> 证人在法庭审理之外做出的，被引入用以证明其所断言事项真实性的陈述。</span></span> when it is offered for impeachment and not for the truth of the matter asserted.</p>
+
+  <p style="border-left: 3px solid #c0392b; padding-left: 10px;" data-choice="B" data-choice-role="distractor"><strong style="color: #9b1c1c;">(Choice B)</strong> Prior inconsistent statements need not be clearly corroborated (i.e., supported by other evidence) to be admissible.</p>
+
+  <p style="border-left: 3px solid #c0392b; padding-left: 10px;" data-choice="C" data-choice-role="distractor"><strong style="color: #9b1c1c;">(Choice C)</strong> A <span class="pbx-term" tabindex="0">statement against penal interest<span class="pbx-tooltip"><strong>Statement against penal interest (不利于刑事利益的陈述):</strong> 传闻证据的例外之一。指陈述人做出的一旦公开会使其面临刑事指控的陈述，仅在陈述人“无法出庭”时适用。</span></span> is a hearsay exception for out-of-court statements that tend to expose the declarant to criminal liability. But since this exception only applies when the declarant (e.g., the woman) is <em>unavailable</em> as a witness, it does not apply here.</p>
+
+  <div class="pbx-edu-objective">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>Extrinsic evidence of a prior inconsistent statement is admissible for impeachment if (1) the witness first has a chance to explain or deny, and the opposing party can question the witness about, that statement or (2) justice so requires. And a prior statement is admissible for substantive purposes if it falls within a hearsay exclusion or exception.</p>
+  </div>
+
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li style="list-style-type: none; position: relative; padding-left: 0;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle; color: #3498db;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span style="vertical-align: middle;">Fed. R. Evid. 613 (witness's prior inconsistent statement).</span>
+      </li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

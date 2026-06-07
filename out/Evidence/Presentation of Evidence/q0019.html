@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pbx-explanation * {
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      color: #2c3e50;
+    }
+
+    .pbx-explanation strong {
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    /* Diagram wrapper & responsive behavior */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 24px 0;
+      width: 100%;
+    }
+
+    .pbx-flow-inner {
+      min-width: 560px;
+      padding: 0.5rem;
+      box-sizing: border-box;
+    }
+
+    /* Flowchart styles */
+    .pbx-flow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+      background-color: #ffffff;
+      border: 1px solid #eaeaea;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .pbx-flow-header-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      text-align: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .pbx-flow-header-subtitle {
+      font-size: 0.95rem;
+      color: #4a5568;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .pbx-flow-tree {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pbx-flow-root {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .pbx-flow-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      text-align: center;
+      color: #1e293b;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+      font-size: 0.925rem;
+      line-height: 1.35;
+      box-sizing: border-box;
+      transition: all 0.2s ease;
+    }
+
+    .pbx-flow-box:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.08);
+      border-color: #94a3b8;
+    }
+
+    .pbx-flow-root .pbx-flow-box {
+      max-width: 290px;
+    }
+
+    .pbx-flow-connector-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .pbx-flow-line-vertical-top {
+      width: 1.5px;
+      height: 20px;
+      background-color: #4a5568;
+    }
+
+    .pbx-flow-line-horizontal-row {
+      display: flex;
+      width: 100%;
+      height: 1.5px;
+    }
+
+    .pbx-flow-line-horizontal-row .pbx-spacer-left,
+    .pbx-flow-line-horizontal-row .pbx-spacer-right {
+      width: 25%;
+    }
+
+    .pbx-flow-line-horizontal-row .pbx-line-mid {
+      width: 50%;
+      background-color: #4a5568;
+    }
+
+    .pbx-flow-line-vertical-row {
+      display: flex;
+      width: 100%;
+      height: 25px;
+      position: relative;
+    }
+
+    .pbx-flow-line-vertical-row .pbx-left-arrow-col {
+      width: 25%;
+      position: relative;
+    }
+
+    .pbx-flow-line-vertical-row .pbx-left-arrow-col .pbx-line {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 1.5px;
+      height: 25px;
+      background-color: #4a5568;
+    }
+
+    .pbx-flow-line-vertical-row .pbx-left-arrow-col .pbx-arrowhead {
+      position: absolute;
+      right: -3px;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 6px solid #4a5568;
+    }
+
+    .pbx-flow-line-vertical-row .pbx-mid-spacer {
+      width: 50%;
+    }
+
+    .pbx-flow-line-vertical-row .pbx-right-arrow-col {
+      width: 25%;
+      position: relative;
+    }
+
+    .pbx-flow-line-vertical-row .pbx-right-arrow-col .pbx-line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1.5px;
+      height: 25px;
+      background-color: #4a5568;
+    }
+
+    .pbx-flow-line-vertical-row .pbx-right-arrow-col .pbx-arrowhead {
+      position: absolute;
+      left: -3px;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 6px solid #4a5568;
+    }
+
+    .pbx-flow-children {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .pbx-flow-child-col {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pbx-flow-child-col .pbx-flow-box {
+      max-width: 210px;
+    }
+
+    .pbx-flow-sub-arrow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 30px;
+      position: relative;
+      width: 100%;
+      margin-top: 5px;
+    }
+
+    .pbx-flow-sub-arrow-line {
+      width: 1.5px;
+      height: 30px;
+      background-color: #4a5568;
+      position: relative;
+    }
+
+    .pbx-flow-sub-arrow-head {
+      position: absolute;
+      left: -3px;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 6px solid #4a5568;
+    }
+
+    .pbx-flow-outcome {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: #334155;
+      text-align: center;
+    }
+
+    .pbx-flow-outcome strong {
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .pbx-flow-footer {
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+      margin-top: 2rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed #eaeaea;
+      font-size: 0.8rem;
+      color: #718096;
+    }
+
+    .pbx-flow-footer strong {
+      color: #4a5568;
+    }
+
+    /* Term/Tooltip styling */
+    .pbx-term {
+      color: #2980b9;
+      cursor: help;
+      position: relative;
+      font-weight: 600;
+      text-decoration: underline dotted #2980b9;
+    }
+
+    .pbx-term:focus {
+      outline: 2px solid #3498db;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .pbx-term .pbx-tooltip {
+      visibility: hidden;
+      width: 280px;
+      background-color: #2c3e50;
+      color: #fff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      font-size: 0.85rem;
+      font-weight: normal;
+      line-height: 1.45;
+      pointer-events: none;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .pbx-term .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #2c3e50 transparent transparent transparent;
+    }
+
+    /* Styled term-link (with tooltips) */
+    .pbx-term-link {
+      color: #3498db;
+      cursor: help;
+      position: relative;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .pbx-term-link:hover {
+      color: #2980b9;
+      text-decoration: underline;
+    }
+
+    .pbx-term-link .pbx-tooltip {
+      visibility: hidden;
+      width: 280px;
+      background-color: #2c3e50;
+      color: #fff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      font-size: 0.85rem;
+      font-weight: normal;
+      line-height: 1.45;
+      pointer-events: none;
+    }
+
+    .pbx-term-link:hover .pbx-tooltip,
+    .pbx-term-link:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .pbx-term-link .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #2c3e50 transparent transparent transparent;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-edu-objective p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #333333;
+      line-height: 1.6;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-references-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #555555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.875rem;
+      color: #555555;
+      line-height: 1.7;
+    }
+
+    .pbx-ref-list li {
+      margin-bottom: 6px;
+    }
+
+    .pbx-ref-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+      }
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+      .pbx-term .pbx-tooltip,
+      .pbx-term-link .pbx-tooltip {
+        width: 240px;
+        left: auto;
+        right: 0;
+        transform: none;
+      }
+      .pbx-term .pbx-tooltip::after,
+      .pbx-term-link .pbx-tooltip::after {
+        left: auto;
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: Impeachment -->
+<div class="pbx-explanation">
+  <!-- Flowchart Scroll Wrapper -->
+  <div class="pbx-scroll-x">
+    <div class="pbx-flow-inner">
+      <div class="pbx-flow-container">
+        <div class="pbx-flow-header-title">Witness's religious beliefs</div>
+        <div class="pbx-flow-header-subtitle">(FRE 610)</div>
+        
+        <div class="pbx-flow-tree">
+          <!-- Root Node -->
+          <div class="pbx-flow-root">
+            <div class="pbx-flow-box">
+              Why is evidence of witness's religious beliefs/opinions being offered?
+            </div>
+          </div>
+          
+          <!-- Connector Lines -->
+          <div class="pbx-flow-connector-wrapper">
+            <div class="pbx-flow-line-vertical-top"></div>
+            <div class="pbx-flow-line-horizontal-row">
+              <div class="pbx-spacer-left"></div>
+              <div class="pbx-line-mid"></div>
+              <div class="pbx-spacer-right"></div>
+            </div>
+            <div class="pbx-flow-line-vertical-row">
+              <div class="pbx-left-arrow-col">
+                <div class="pbx-line"></div>
+                <div class="pbx-arrowhead"></div>
+              </div>
+              <div class="pbx-mid-spacer"></div>
+              <div class="pbx-right-arrow-col">
+                <div class="pbx-line"></div>
+                <div class="pbx-arrowhead"></div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Child Nodes and Outcomes -->
+          <div class="pbx-flow-children">
+            <!-- Left Column -->
+            <div class="pbx-flow-child-col">
+              <div class="pbx-flow-box">
+                To attack witness's character for truthfulness
+              </div>
+              
+              <div class="pbx-flow-sub-arrow-container">
+                <div class="pbx-flow-sub-arrow-line"></div>
+                <div class="pbx-flow-sub-arrow-head"></div>
+              </div>
+              
+              <div class="pbx-flow-outcome">
+                Evidence <strong>inadmissible</strong>
+              </div>
+            </div>
+            
+            <!-- Right Column -->
+            <div class="pbx-flow-child-col">
+              <div class="pbx-flow-box">
+                To show witness's bias or self-interest
+              </div>
+              
+              <div class="pbx-flow-sub-arrow-container">
+                <div class="pbx-flow-sub-arrow-line"></div>
+                <div class="pbx-flow-sub-arrow-head"></div>
+              </div>
+              
+              <div class="pbx-flow-outcome">
+                Evidence <strong>admissible</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Flowchart footer -->
+        <div class="pbx-flow-footer">
+          <strong>FRE</strong> = Federal Rule of Evidence
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p data-choice="D" data-choice-role="correct">
+    Evidence of a <span class="pbx-term" tabindex="0"><strong>witness's religious beliefs</strong><span class="pbx-tooltip"><strong>Religious Beliefs (宗教信仰):</strong> Evidence of a witness's religious beliefs or opinions is not admissible to attack or support their credibility, but is admissible for other purposes such as showing bias.</span></span> is <strong>inadmissible</strong> to attack the witness's <span class="pbx-term" tabindex="0"><strong>character for truthfulness</strong><span class="pbx-tooltip"><strong>Character for Truthfulness (诚实品质):</strong> A witness's general character trait for honesty or dishonesty, which is key to determining their credibility.</span></span>, but it is <strong>admissible</strong> to prove a witness's <span class="pbx-term" tabindex="0"><strong>bias or self-interest</strong><span class="pbx-tooltip"><strong>Bias (偏见):</strong> A witness's interest, motive, or prejudice for or against a party that might influence their testimony.</span></span> <span style="color:#9b1c1c;font-weight:600;" data-choice="A" data-choice-role="distractor">(Choice A)</span>. Evidence of bias or self-interest attacks a witness's credibility by showing the witness's motive to lie, partiality to a party, or stake in the outcome of the case. Therefore, this impeachment evidence is always relevant.
+  </p>
+
+  <p data-choice="D" data-choice-role="correct">
+    Here, the government seeks to discredit the eyewitness's unfavorable testimony about the military convoy on cross-examination. The government's question—whether the witness belongs to a religious group that refuses to file federal tax returns because the revenues are used to build weapons of war—goes to the witness's possible anti-military <span class="pbx-term" tabindex="0">bias<span class="pbx-tooltip"><strong>Bias (偏见):</strong> A witness's interest, motive, or prejudice for or against a party that might influence their testimony.</span></span>. Since evidence of bias is always relevant, it can be used to <span class="pbx-term" tabindex="0">impeach<span class="pbx-tooltip"><strong>Impeachment (弹劾/质疑可信度):</strong> The process of challenging the credibility of a witness at trial to show they are not worthy of belief.</span></span> the witness.
+  </p>
+
+  <p style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="B" data-choice-role="distractor">
+    <strong style="color:#9b1c1c">(Choice B)</strong> A witness's <span class="pbx-term-link" tabindex="0">character for truthfulness<span class="pbx-tooltip"><strong>Character for Truthfulness (诚实品质):</strong> A witness's general character trait for honesty or dishonesty, which is key to determining their credibility.</span></span> <em>may</em> be impeached with evidence of a prior criminal act that did not result in a conviction. But here, the government is not asserting that the witness willfully failed to file a tax return (a misdemeanor)—only that he belongs to a religious group that does. And his <em>character</em> may not be impeached with such evidence, but it is admissible to show his <em>bias</em>.
+  </p>
+
+  <p style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="C" data-choice-role="distractor">
+    <strong style="color:#9b1c1c">(Choice C)</strong> Evidence of a witness's willingness to break the law—eg, a conviction for a felony or crime of dishonesty—<em>can</em> be used to show the witness's willingness to give false testimony. However, the eyewitness's <em>affiliation</em> with a group that is willing to break the law is not admissible for that purpose.
+  </p>
+
+  <div class="pbx-edu-objective" data-choice="D" data-choice-role="correct">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>Evidence of a witness's religious beliefs is admissible to show the witness's bias or self-interest, but not to attack the witness's character for truthfulness.</p>
+  </div>
+
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li>Fed. R. Evid. 610 (religious beliefs or opinions).</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

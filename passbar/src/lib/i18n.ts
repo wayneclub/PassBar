@@ -67,6 +67,10 @@ type TranslationKey =
   | 'settings.displayEnExplanationDesc'
   | 'settings.textSize'
   | 'settings.textSizeDescription'
+  | 'settings.studyModeTitle'
+  | 'settings.studyNotes'
+  | 'settings.studyNotesOn'
+  | 'settings.studyNotesOff'
   | 'settings.small'
   | 'settings.medium'
   | 'settings.large'
@@ -674,6 +678,10 @@ const en: Dictionary = {
   'settings.displayEnExplanationDesc': 'Show the English interactive HTML explanation.',
   'settings.textSize': 'Text Size',
   'settings.textSizeDescription': 'Adjust reading size for questions, answer choices, and explanations.',
+  'settings.studyModeTitle': 'Mode Settings',
+  'settings.studyNotes': 'Study Notes / Annotations',
+  'settings.studyNotesOn': 'Study & Note Mode',
+  'settings.studyNotesOff': 'Pure Exam Mode',
   'settings.small': 'Small',
   'settings.medium': 'Standard',
   'settings.large': 'Large',
@@ -1379,6 +1387,10 @@ const zhHans: Dictionary = {
   'settings.displayEnExplanationDesc': '显示英文互动 HTML 解析。',
   'settings.textSize': '文字大小',
   'settings.textSizeDescription': '调整题干、选项与解析的阅读字号。',
+  'settings.studyModeTitle': '模式设置',
+  'settings.studyNotes': '讲义批注',
+  'settings.studyNotesOn': '考点提示模式',
+  'settings.studyNotesOff': '纯测验模式',
   'settings.small': '小',
   'settings.medium': '标准',
   'settings.large': '大',
@@ -2083,6 +2095,10 @@ const zhHant: Dictionary = {
   'settings.displayEnExplanationDesc': '顯示英文互動 HTML 解析。',
   'settings.textSize': '文字大小',
   'settings.textSizeDescription': '調整題幹、選項與解析的閱讀字號。',
+  'settings.studyModeTitle': '模式設定',
+  'settings.studyNotes': '講義批註',
+  'settings.studyNotesOn': '考點提示模式',
+  'settings.studyNotesOff': '純測驗模式',
   'settings.small': '小',
   'settings.medium': '標準',
   'settings.large': '大',

@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explanation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .pbx-explanation {
+      padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pbx-explanation p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Diagram Section styling */
+    .pbx-diagram-title {
+      text-align: center;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #111827;
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Scroll container for diagrams/tables */
+    .pbx-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 1.5rem 0;
+      width: 100%;
+    }
+
+    .pbx-flow-inner {
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-venn-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 1rem 0;
+    }
+
+    .pbx-venn-diagram {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      aspect-ratio: 5 / 3;
+    }
+
+    .pbx-venn-circle {
+      position: absolute;
+      width: 60%;
+      height: 100%;
+      border-radius: 50%;
+      box-sizing: border-box;
+    }
+
+    .pbx-circle-left {
+      left: 0;
+      background: #d4e8f7;
+      z-index: 1;
+    }
+
+    .pbx-circle-right {
+      right: 0;
+      background: #fcd5dd;
+      z-index: 2;
+      mix-blend-mode: multiply;
+    }
+
+    .pbx-venn-text {
+      position: absolute;
+      top: 10%;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      z-index: 10;
+      box-sizing: border-box;
+      padding: 0 0.625em;
+    }
+
+    .pbx-venn-left {
+      left: 3%;
+      width: 34%;
+    }
+
+    .pbx-venn-center {
+      left: 41%;
+      width: 18%;
+    }
+
+    .pbx-venn-right {
+      left: 63%;
+      width: 34%;
+    }
+
+    .pbx-venn-title {
+      font-weight: 700;
+      color: #111827;
+      line-height: 1.2;
+    }
+
+    .pbx-venn-left .pbx-venn-title, .pbx-venn-right .pbx-venn-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.375rem;
+    }
+
+    .pbx-venn-center .pbx-venn-title {
+      font-size: 0.95rem;
+    }
+
+    .pbx-venn-desc {
+      font-size: 0.8rem;
+      color: #374151;
+      line-height: 1.35;
+    }
+
+    /* Educational Objective style */
+    .pbx-edu-objective {
+      background: #f0f7ff;
+      border-left: 4px solid #3498db;
+      border-radius: 6px;
+      padding: 0.875em 1.125em;
+      margin: 1.5em 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-edu-objective-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5em;
+    }
+
+    .pbx-edu-objective p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* References style */
+    .pbx-references {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 0.875em 1.125em;
+      margin: 1.25em 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pbx-references-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5em;
+    }
+
+    .pbx-ref-list {
+      margin: 0;
+      padding-left: 1.125em;
+      font-size: 0.875rem;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .pbx-ref-list li {
+      margin-bottom: 0.375em;
+    }
+
+    .pbx-ref-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Term/Tooltip styling */
+    .pbx-term {
+      color: #3498db;
+      cursor: help;
+      position: relative;
+      font-weight: 500;
+      text-decoration: underline dotted #3498db;
+    }
+
+    .pbx-term .pbx-tooltip {
+      visibility: hidden;
+      width: 17.5em;
+      background-color: #2c3e50;
+      color: #fff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 0.625em 0.75em;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      font-size: 0.85rem;
+      font-weight: normal;
+      line-height: 1.45;
+      pointer-events: none;
+    }
+
+    .pbx-term:hover .pbx-tooltip,
+    .pbx-term:focus-within .pbx-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .pbx-term .pbx-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #2c3e50 transparent transparent transparent;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+      }
+
+      .pbx-explanation {
+        padding: 0.875rem 1rem;
+      }
+
+      .pbx-diagram-title {
+        font-size: 1.15rem;
+        margin-bottom: 1rem;
+      }
+
+      .pbx-venn-left .pbx-venn-title, .pbx-venn-right .pbx-venn-title {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .pbx-venn-center .pbx-venn-title {
+        font-size: 0.8rem;
+      }
+
+      .pbx-venn-desc {
+        font-size: 0.675rem;
+        line-height: 1.25;
+      }
+
+      .pbx-venn-text {
+        padding: 0 0.25em;
+      }
+
+      .pbx-term .pbx-tooltip {
+        width: 15em;
+        left: auto;
+        right: 0;
+        transform: none;
+      }
+
+      .pbx-term .pbx-tooltip::after {
+        left: auto;
+        right: 20px;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .pbx-venn-left .pbx-venn-title, .pbx-venn-right .pbx-venn-title {
+        font-size: 0.8rem;
+      }
+
+      .pbx-venn-center .pbx-venn-title {
+        font-size: 0.7rem;
+      }
+
+      .pbx-venn-desc {
+        font-size: 0.575rem;
+        line-height: 1.2;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- pbx-topic: Impeachment -->
+<div class="pbx-explanation">
+  <h2 class="pbx-diagram-title">Impeachment v. Substantive use</h2>
+  
+  <div class="pbx-scroll-x">
+    <div class="pbx-flow-inner" style="min-width: 460px; margin: 0 auto;">
+      <div class="pbx-venn-wrapper">
+        <div class="pbx-venn-diagram" data-choice="D" data-choice-role="correct">
+          <!-- Visual circles background -->
+          <div class="pbx-venn-circle pbx-circle-left"></div>
+          <div class="pbx-venn-circle pbx-circle-right"></div>
+          
+          <!-- Opaque Text overlays -->
+          <div class="pbx-venn-text pbx-venn-left">
+            <div class="pbx-venn-title">Impeachment</div>
+            <div class="pbx-venn-desc">Question establishes bias, self-interest, etc.</div>
+          </div>
+          
+          <div class="pbx-venn-text pbx-venn-center">
+            <div class="pbx-venn-title">Dual<br>purpose</div>
+          </div>
+          
+          <div class="pbx-venn-text pbx-venn-right">
+            <div class="pbx-venn-title">Substantive use</div>
+            <div class="pbx-venn-desc">Question goes toward material fact or issue</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="pbx-paragraph">Under Federal Rule of Evidence 607, a witness can be <strong><span class="pbx-term" tabindex="0">impeached<span class="pbx-tooltip">弹劾 (Impeach): 挑战或削弱证人证言的可信度 (credibility)。</span></span> by any party</strong>—including the party that called the witness. One method of impeachment is establishing that the witness is <strong><span class="pbx-term" tabindex="0">biased<span class="pbx-tooltip">偏见 (Bias): 证人因亲属关系、雇佣关系、敌意或个人利益而对某一方当事人产生倾向性，可作为弹劾的根据。</span></span> against a party</strong> and therefore had a <strong><span class="pbx-term" tabindex="0">motive to lie<span class="pbx-tooltip">说谎动机 (Motive to lie): 证人在作证时因为特定利益、过节或背景而产生说谎的动机，属偏见弹劾的一部分。</span></span></strong> while testifying. For example, evidence that the supervisor learned that the plaintiff had reported her to the police before the firing shows that the supervisor may have reason to lie about why the plaintiff was fired. Therefore, the plaintiff's question is permissible for impeachment purposes <span style="color:#9b1c1c;font-weight:600;" data-choice="A" data-choice-role="distractor">(Choice A)</span>.</p>
+
+  <p class="pbx-paragraph">But a question that impeaches a witness may <em>also</em> be used to <strong>elicit <span class="pbx-term" tabindex="0">substantive evidence<span class="pbx-tooltip">实质性证据 (Substantive evidence): 用于证明案件中实体事实或争议焦点的证据，而不仅仅是用来弹劾证人。</span></span></strong> if the question goes toward a material fact or issue—ie, a fact or issue that is of consequence in determining the outcome of the case. Here, the plaintiff sued for wrongful discharge, so the reason he was fired is a material fact. Since the plaintiff's question tends to establish an <span class="pbx-term" tabindex="0">improper motive<span class="pbx-tooltip">不当动机 (Improper motive): 指解雇或惩罚原告时的报复、歧视等非法动机，直接关系到实体争议。</span></span> for discharging him, it is also permissible for this substantive purpose <span style="color:#9b1c1c;font-weight:600;" data-choice="C" data-choice-role="distractor">(Choice C)</span>.</p>
+
+  <p class="pbx-paragraph" style="border-left:3px solid #c0392b; padding-left:10px;" data-choice="B" data-choice-role="distractor"><strong style="color:#9b1c1c">(Choice B)</strong> A party <em>may</em> impeach a witness by inquiring into specific instances of conduct that bear on the witness's <span class="pbx-term" tabindex="0">character for truthfulness<span class="pbx-tooltip">诚实品格 (Character for truthfulness): 证人在诚实守信方面的个人品行特征，通常用于弹劾或支持其可信度。</span></span>. But here, the plaintiff's question addressed the supervisor's <em>response</em> to learning that the plaintiff reported her to the police—not whether the supervisor <em>actually</em> pilfered the office coffee fund. Therefore, the question does not go to the supervisor's character for truthfulness.</p>
+
+  <div class="pbx-edu-objective" data-choice="D" data-choice-role="correct">
+    <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+    <p>A witness may be impeached by showing that the witness is biased against a party and therefore had a motive to lie while testifying. A question that impeaches a witness may also be used to elicit substantive evidence if the question concerns a material fact or issue.</p>
+  </div>
+
+  <div class="pbx-references">
+    <div class="pbx-references-title">📚 References</div>
+    <ul class="pbx-ref-list">
+      <li>Fed. R. Evid. 607 (who may impeach a witness).</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
