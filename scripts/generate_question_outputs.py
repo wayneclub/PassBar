@@ -640,7 +640,7 @@ def process_file(
                 continue
             if mode == "en-html":
                 if not force and has_good_html(item.get("explanation")):
-                    print("  en-html: cached")
+                    print("  en-html: cached (use --force to replace)")
                     continue
                 if dry_run:
                     print("  en-html: would generate")
@@ -697,12 +697,12 @@ def process_file(
 
             elif mode == "zh-html":
                 if not force and has_good_html(item.get("zh-explanation")):
-                    print("  zh-html: cached")
+                    print("  zh-html: cached (use --force to replace)")
                     continue
                 if dry_run:
-                    print("  zh-html: would generate")
+                    print("  zh-html: would force regenerate" if force else "  zh-html: would generate")
                     continue
-                print("  zh-html: generating...", end=" ", flush=True)
+                print("  zh-html: forcing regeneration..." if force else "  zh-html: generating...", end=" ", flush=True)
                 zh_gen.clear_last_ai_usage()
                 try:
                     html, started_at, finished_at, duration_seconds = timed_call(
@@ -739,7 +739,7 @@ def process_file(
 
             elif mode == "meta":
                 if not force and has_good_meta(item):
-                    print("  meta: cached")
+                    print("  meta: cached (use --force to replace)")
                     continue
                 if dry_run:
                     print("  meta: would generate")
@@ -894,6 +894,28 @@ def main() -> None:
     print(f"Run ID: {RUN_ID}")
 
     modes = expand_modes(args.mode)
+    scope_parts: list[str] = []
+    if args.enriched_file:
+        scope_parts.append(f"file={args.enriched_file}")
+    else:
+        if args.subject:
+            scope_parts.append(f"subject={args.subject!r}")
+        if args.chapter:
+            scope_parts.append(f"chapter={args.chapter!r}")
+        if not args.subject and not args.chapter:
+            scope_parts.append("all enriched files under out/")
+    if args.index is not None:
+        scope_parts.append(f"index={args.index}")
+    if args.limit > 0:
+        scope_parts.append(f"limit={args.limit}")
+    print(f"Provider: {args.provider}")
+    print(f"Modes: {' '.join(modes)}")
+    print(f"Scope: {', '.join(scope_parts) if scope_parts else 'default'}")
+    print(f"Force regenerate: {'ON' if args.force else 'OFF'}")
+    if args.force:
+        print("  → will call API and replace existing zh-html / en-html / meta outputs")
+    else:
+        print("  → will skip questions that already have valid outputs (shows 'cached')")
     zh_gen.set_ai_provider(args.provider, args.model or None, html_model=args.html_model or None)
     meta_gen.set_meta_provider(args.provider, args.model or None)
     if not args.dry_run and args.provider == "cursor-api":

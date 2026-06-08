@@ -69,6 +69,14 @@ def build_english_explanation_prompt(en_options: dict[str, str], correct_answer:
 GEMINI_MODEL = "gemini-3.5-flash"
 OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "gpt-5.4-mini")
 OPENAI_MAX_OUTPUT_TOKENS = int(os.environ.get("OPENAI_MAX_OUTPUT_TOKENS", "65536"))
+# en-html / zh-html: observed P95 output ~4.6k, max ~7.6k (see logs/ai_generation_usage.csv)
+HTML_MAX_OUTPUT_TOKENS = int(os.environ.get("HTML_MAX_OUTPUT_TOKENS", "10000"))
+OPENAI_HTML_MAX_OUTPUT_TOKENS = int(
+    os.environ.get("OPENAI_HTML_MAX_OUTPUT_TOKENS", str(HTML_MAX_OUTPUT_TOKENS))
+)
+GEMINI_DEFAULT_MAX_OUTPUT_TOKENS = int(
+    os.environ.get("GEMINI_DEFAULT_MAX_OUTPUT_TOKENS", "65536")
+)
 OPENAI_IMAGE_DETAIL = os.environ.get("OPENAI_IMAGE_DETAIL", "high")
 AI_PROVIDER = "gemini"
 AI_MODEL = GEMINI_MODEL
@@ -505,7 +513,7 @@ def _set_last_ai_usage(
     }
 
 
-def _print_gemini_usage(data: dict, model: str) -> None:
+def _print_gemini_usage(data: dict, model: str, configured_max_output: int) -> None:
     usage = data.get("usageMetadata")
     if not isinstance(usage, dict):
         return
@@ -516,7 +524,15 @@ def _print_gemini_usage(data: dict, model: str) -> None:
         output_tokens = max(0, total_tokens - prompt_tokens)
     if output_tokens is None:
         output_tokens = "?"
-    _set_last_ai_usage("gemini", model, prompt_tokens, output_tokens, total_tokens, 65536, "")
+    _set_last_ai_usage(
+        "gemini",
+        model,
+        prompt_tokens,
+        output_tokens,
+        total_tokens,
+        configured_max_output,
+        "",
+    )
     print(
         f"    Gemini usage: input={prompt_tokens} output={output_tokens} total={total_tokens}",
         flush=True,
@@ -551,6 +567,7 @@ def call_gemini_rest(
     prompt_text: str,
     image_paths: list[str] | str | None = None,
     model: str | None = None,
+    max_output_tokens: int | None = None,
 ) -> str:
     """呼叫 Gemini REST API，支援文字 + 多張圖片。
     model: 指定模型名稱；預設用 AI_MODEL。
@@ -577,11 +594,12 @@ def call_gemini_rest(
 
     parts.append({"text": prompt_text})
 
+    configured_max_output = max_output_tokens or GEMINI_DEFAULT_MAX_OUTPUT_TOKENS
     payload = json.dumps({
         "contents": [{"parts": parts}],
         "generationConfig": {
             "temperature": 0.3,
-            "maxOutputTokens": 65536,
+            "maxOutputTokens": configured_max_output,
         },
     }).encode()
 
@@ -610,7 +628,7 @@ def call_gemini_rest(
                 with urllib.request.urlopen(req, timeout=180) as resp:
                     data = json.loads(resp.read())
                 text = _extract_gemini_text(data)
-                _print_gemini_usage(data, model_name)
+                _print_gemini_usage(data, model_name, configured_max_output)
                 return text
             except urllib.error.HTTPError as e:
                 body = e.read().decode(errors="replace")
@@ -675,7 +693,7 @@ def _extract_openai_text(data: dict) -> str:
     raise RuntimeError(f"OpenAI response did not include text output: {str(data)[:500]}")
 
 
-def _print_openai_usage(data: dict, model: str) -> None:
+def _print_openai_usage(data: dict, model: str, configured_max_output: int) -> None:
     usage = data.get("usage")
     if not isinstance(usage, dict):
         return
@@ -688,7 +706,7 @@ def _print_openai_usage(data: dict, model: str) -> None:
         input_tokens,
         output_tokens,
         total_tokens,
-        OPENAI_MAX_OUTPUT_TOKENS,
+        configured_max_output,
         OPENAI_IMAGE_DETAIL,
     )
     print(
@@ -706,8 +724,8 @@ def _raise_if_openai_incomplete(data: dict) -> None:
             reason = str(details.get("reason") or "")
         if reason == "max_output_tokens":
             raise RuntimeError(
-                "OpenAI response was truncated by OPENAI_MAX_OUTPUT_TOKENS. "
-                "Increase OPENAI_MAX_OUTPUT_TOKENS and rerun this item."
+                "OpenAI response was truncated by max_output_tokens. "
+                "Increase OPENAI_MAX_OUTPUT_TOKENS or OPENAI_HTML_MAX_OUTPUT_TOKENS and rerun this item."
             )
         raise RuntimeError(f"OpenAI response was incomplete: {details or status}")
 
@@ -715,6 +733,7 @@ def _raise_if_openai_incomplete(data: dict) -> None:
 def call_openai_responses(
     prompt_text: str,
     image_paths: list[str] | str | None = None,
+    max_output_tokens: int | None = None,
 ) -> str:
     """呼叫 OpenAI Responses API，支援文字 + 多張圖片。"""
     api_key = os.environ.get("OPENAI_API_KEY")
@@ -738,10 +757,11 @@ def call_openai_responses(
             })
     content.append({"type": "input_text", "text": prompt_text})
 
+    configured_max_output = max_output_tokens or OPENAI_MAX_OUTPUT_TOKENS
     payload = json.dumps({
         "model": AI_MODEL,
         "input": [{"role": "user", "content": content}],
-        "max_output_tokens": OPENAI_MAX_OUTPUT_TOKENS,
+        "max_output_tokens": configured_max_output,
         "store": False,
     }).encode()
 
@@ -758,7 +778,7 @@ def call_openai_responses(
             )
             with urllib.request.urlopen(req, timeout=180) as resp:
                 data = json.loads(resp.read())
-                _print_openai_usage(data, AI_MODEL)
+                _print_openai_usage(data, AI_MODEL, configured_max_output)
                 _raise_if_openai_incomplete(data)
                 return _extract_openai_text(data)
         except urllib.error.HTTPError as e:
@@ -786,7 +806,8 @@ def call_ai_rest(
     use_html_model: bool = False,
 ) -> str:
     if AI_PROVIDER == "gpt":
-        return call_openai_responses(prompt_text, image_paths)
+        max_out = OPENAI_HTML_MAX_OUTPUT_TOKENS if use_html_model else OPENAI_MAX_OUTPUT_TOKENS
+        return call_openai_responses(prompt_text, image_paths, max_output_tokens=max_out)
     if AI_PROVIDER == "cursor-api":
         model = (AI_HTML_MODEL if use_html_model else AI_MODEL) or None
         raw = cursor_api.call_cursor_api(
@@ -810,7 +831,9 @@ def call_ai_rest(
         )
         _set_last_ai_usage(AI_PROVIDER, model or "(default)", "", "", "", "", "")
         return raw
-    return call_gemini_rest(prompt_text, image_paths)
+    model = (AI_HTML_MODEL if use_html_model else AI_MODEL) or None
+    max_out = HTML_MAX_OUTPUT_TOKENS if use_html_model else GEMINI_DEFAULT_MAX_OUTPUT_TOKENS
+    return call_gemini_rest(prompt_text, image_paths, model=model, max_output_tokens=max_out)
 
 
 def ai_label() -> str:
@@ -919,7 +942,11 @@ def process_question(
             return ""
         print(f"  {ai_label()}(explanation) → Q{index:04d}…", end=" ", flush=True)
         try:
-            raw = call_ai_rest(build_english_explanation_prompt(en_options, correct_answer), img_paths)
+            raw = call_ai_rest(
+                build_english_explanation_prompt(en_options, correct_answer),
+                img_paths,
+                use_html_model=True,
+            )
             html = extract_html_from_response(raw)
             print("✓")
             time.sleep(RATE_LIMIT_DELAY)
@@ -975,7 +1002,7 @@ def process_question(
                         f"  {ai_label()}(zh-html) → Q{index:04d}: {en_question[:55]}…", end=" ", flush=True)
                     try:
                         raw_response = call_ai_rest(
-                            prompt, collect_img_paths(api_data))
+                            prompt, collect_img_paths(api_data), use_html_model=True)
                         zh_explanation = extract_html_from_response(raw_response)
                         print("✓")
                         source_tag = f"api+{AI_PROVIDER}_html"
@@ -1074,7 +1101,7 @@ def process_question(
                     print(
                         f"  {ai_label()}(zh-html) → Q{index:04d}: {en_question[:60]}…", end=" ", flush=True)
                     try:
-                        raw_response = call_ai_rest(prompt, img_paths)
+                        raw_response = call_ai_rest(prompt, img_paths, use_html_model=True)
                         zh_explanation = extract_html_from_response(raw_response)
                         print("✓")
                         source_tag = AI_PROVIDER
