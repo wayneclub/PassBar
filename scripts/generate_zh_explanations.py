@@ -33,6 +33,35 @@ from datetime import datetime
 from pathlib import Path
 
 import cli_ai
+import cursor_api
+from ai_prompts import format_prompt, load_prompt
+
+# Backward-compatible aliases for scripts that import these constants.
+# zh_explanation prompt: 7 sections (no answer-box) + modular Diagram (Type A–D).
+# Distractor styling: .distractor-box / .wrong-tag / .trap-word — see scripts/prompts/zh_explanation.txt
+GEMINI_TRANSLATE_TEMPLATE = load_prompt("zh_translate")
+GEMINI_EXPLANATION_PROMPT = load_prompt("en_explanation_restore")
+GEMINI_PROMPT_TEMPLATE = load_prompt("zh_explanation")
+
+
+def build_english_explanation_prompt(en_options: dict[str, str], correct_answer: str) -> str:
+    context = "\n".join(
+        f"{key}. {value}"
+        for key, value in sorted(en_options.items())
+    )
+    wrong_answers = [k for k in sorted(en_options.keys()) if k != correct_answer]
+    return (
+        load_prompt("en_explanation_restore")
+        + "\n\n"
+        + format_prompt(
+            "en_explanation_choice_context",
+            correct_answer=correct_answer or "(unknown)",
+            wrong_answers=", ".join(wrong_answers) or "(unknown)",
+            choices=context or "(No answer choices available)",
+        )
+        + "\n"
+        + load_prompt("en_explanation_choice_color_rules")
+    )
 
 
 # ── 設定 ──────────────────────────────────────────────────────────────────────
@@ -110,6 +139,17 @@ def set_ai_provider(provider: str, model: str | None = None, html_model: str | N
     elif provider == "claude-cli":
         AI_MODEL = model or os.environ.get("CLAUDE_CLI_MODEL", "claude-sonnet-4-6")
         AI_HTML_MODEL = html_model or os.environ.get("CLAUDE_CLI_HTML_MODEL", "claude-sonnet-4-6")
+    elif provider == "cursor-cli":
+        AI_MODEL = model or os.environ.get("CURSOR_CLI_MODEL", "composer-2.5")
+        AI_HTML_MODEL = html_model or os.environ.get("CURSOR_CLI_HTML_MODEL", AI_MODEL)
+    elif provider == "cursor-api":
+        default_model = os.environ.get("CURSOR_API_MODEL", os.environ.get("CURSOR_CLI_MODEL", "composer-2.5"))
+        default_html = os.environ.get(
+            "CURSOR_API_HTML_MODEL",
+            os.environ.get("CURSOR_CLI_HTML_MODEL", "gpt-5.4-mini"),
+        )
+        AI_MODEL = model or default_model
+        AI_HTML_MODEL = html_model or default_html
     else:
         AI_MODEL = model or GEMINI_MODEL
         AI_HTML_MODEL = html_model or GEMINI_REST_HTML_MODEL
@@ -136,466 +176,11 @@ def next_api_key() -> str:
     return key
 
 
-GEMINI_TRANSLATE_TEMPLATE = """\
-你是专业的美国法律（MBE）翻译专家。请将以下英文题目和选项翻译成简体中文，保留必要的英文法律术语。
-
-只返回 JSON，格式如下（不要有任何其他文字或代码块标记）：
-{{
-  "zh_question": "中文题目",
-  "zh_choices": {{
-    "A": "中文选项A",
-    "B": "中文选项B",
-    "C": "中文选项C",
-    "D": "中文选项D"
-  }}
-}}
-
-Subject: {subject} — {chapter}
-
-Question:
-{question}
-
-Answer Choices:
-{choices}
-"""
 OUT_DIR = os.environ.get("OUT_DIR", os.path.join(
     os.path.dirname(__file__), "..", "out"))
 RATE_LIMIT_DELAY = 5   # 每次 API 呼叫後等待秒數
 MAX_RETRIES = 3        # API 失敗重試次數
 
-
-# ── Gemini Prompt ─────────────────────────────────────────────────────────────
-
-GEMINI_EXPLANATION_PROMPT = """\
-You are an expert front-end developer and legal/academic instructional designer.
-Your task is to convert the uploaded source explanation image into a faithful, single-file HTML document for embedding in PassBar's ExplanationView iframe.
-
-The highest priority is visual and textual fidelity to the source explanation image. Do not redesign the explanation, do not rewrite the legal analysis, and do not add new sections that are not present in the image. Recreate the image's actual content, typography hierarchy, spacing, cards, tables, flowcharts, emphasis, and ordering as closely as possible using HTML and scoped CSS.
-
-### 1. Faithful Restoration Rules
-* Preserve the original explanation's English text exactly as it appears, except for obvious OCR spacing mistakes.
-* Preserve bold, italics, underline/dotted underline, color emphasis, bullets, numbered lists, tables, timelines, flowcharts, callouts, and date highlights.
-* **Tables**: Rebuild as `<table>` with explicit borders. Every table must have `border: 1px solid #cccccc; border-collapse: collapse;` on the table element, and `border: 1px solid #cccccc; padding: 8px 12px;` on every `<th>` and `<td>`. Header cells (`<th>`) use `background: #f5f5f5; font-weight: bold;`. Do not use borderless or invisible-border tables.
-* **Text emphasis from source**: Reproduce underlines as `text-decoration: underline`, bold as `<strong>`, and any dotted/dashed underlines as `border-bottom: 1px dashed #555`. Do not drop these from the source image.
-* **Diagrams/flowcharts**: Rebuild any flowcharts or diagrams present in the main source explanation screenshot as native HTML/CSS. Do not embed the main source explanation screenshot itself. (Exception: If separate illustration images are explicitly attached and listed at the end of the prompt under the section "Explanation Illustration Images (MANDATORY)", you MUST embed them using the provided `<img>` tags instead of trying to rebuild them).
-* Do not invent a new "learning card" design if the source image already has a design. Match the source image.
-* Do not add a toolbar, navigation bar, dark-mode toggle, search box, tabs, quiz controls, title labels like "Explanation", or any app chrome.
-* **REMOVE entirely**: the bottom metadata footer (Subject / Chapter / Topic labels and their values), copyright notices, watermarks, and source-site branding. These must not appear anywhere in the output HTML.
-
-### 2. CSS Architecture: No Tailwind, No Frameworks
-* Do NOT use Tailwind CSS, Tailwind CDN, Bootstrap, external CSS frameworks, icon libraries, web components, React/Vue, or external JavaScript.
-* Use one inline `<style>` block only. All CSS must be vanilla CSS scoped under a root wrapper class such as `.pbx-explanation`.
-* Every custom class should be prefixed with `pbx-` to avoid collisions.
-* Do not style global `html`, global `body`, or global `*` except for a minimal body margin/font/background needed for the standalone HTML. Prefer `.pbx-explanation ...` selectors.
-* Do not set `height: 100vh`, `min-height: 100vh`, `position: fixed`, or full-screen viewport layouts. The document must naturally grow to its content height inside an iframe.
-* Do not rely on generated utility classes such as `md:*`, `hover:*`, `min-w-[840px]`, etc. Write explicit CSS rules instead.
-
-### 3. Layout and Responsive Behavior
-* The content must render correctly at full iframe width on both desktop and mobile (320px–1400px).
-* **Base font**: `body { font-size: 1rem; line-height: 1.7; }`. Use `rem` for all font sizes and `em` for padding/margin — never `px` for typography, never `vw` units for font-size. This ensures the layout respects the user's browser font size preferences.
-* **Mobile breakpoint** (`@media (max-width: 640px)`): set `body { font-size: 0.95rem; padding: 0.75rem; }` and reduce heading sizes proportionally using `rem`.
-
-* **Tables**:
-  - Always wrap every `<table>` in `<div class="pbx-scroll-x" style="overflow-x:auto; -webkit-overflow-scrolling:touch; margin: 16px 0;">`.
-  - Set `table { min-width: 480px; width: 100%; border-collapse: collapse; }` so the table scrolls horizontally on mobile rather than collapsing.
-  - On mobile (`max-width: 640px`): reduce `th, td` font-size to `0.825rem` and padding to `0.5em 0.625em`.
-  - Never hide table columns or reformat a table into a stacked list — preserve the original tabular structure and let it scroll.
-
-* **Flowcharts / decision trees / timelines**:
-  - Wrap the diagram content in `<div class="pbx-flow-inner">` inside `.pbx-scroll-x`.
-  - Set a `min-width` on `.pbx-flow-inner` that matches the natural width of the diagram (e.g. `min-width: 560px`).
-  - Do not vertically collapse horizontal flowcharts. On small screens, allow horizontal scrolling.
-
-* **General layout**:
-  - `.pbx-explanation { padding: 1.25rem 1.5rem; }` on desktop; `padding: 0.875rem 1rem` on mobile. Use `rem`/`em` — not `px`.
-  - All cards, concept boxes, and callouts: `box-sizing: border-box; width: 100%; padding: 1em 1.25em`.
-  - Long legal terms and URLs must break with `word-break: break-word; overflow-wrap: break-word`.
-  - Images (if any) must have `max-width: 100%; height: auto`.
-
-### 4. Interactivity: Prefer CSS, Use Minimal Vanilla JS Only When Needed
-* Preserve source-image interactivity only when it helps explain the existing graphic, such as hover-linked dates, terms, timeline nodes, or mnemonic highlights.
-* Choice-linked highlighting contract for PassBar:
-  - If any explanation paragraph, card, list item, table row, timeline node, tooltip, or callout explains a particular answer choice, add `data-choice="A"`, `data-choice="B"`, `data-choice="C"`, or `data-choice="D"` to that exact element.
-  - If it explains the correct choice, also add `data-choice-role="correct"`.
-  - If it explains a distractor/wrong choice, also add `data-choice-role="distractor"`.
-  - Put the attribute on the smallest useful block, not the whole page. Example: `<li data-choice="C" data-choice-role="distractor">...</li>`.
-  - If one block discusses multiple choices, use a space-separated value, e.g. `data-choice="A D"`.
-  - Do not write custom JavaScript for this; PassBar will highlight these anchors from the parent app.
-  - If the source explanation contains an answer-choice explanation section, preserve its visual/textual style but add anchors using this required structure:
-    `<div data-choice="B" data-choice-role="correct">...</div>` for the correct answer block and
-    `<li data-choice="A" data-choice-role="distractor">...</li>` for each wrong-answer line.
-  - The final HTML should contain one correct `data-choice` anchor and, when the source discusses distractors, one distractor anchor for each wrong choice. Use the provided Answer Choice Context below to identify the correct letter.
-* Use CSS-only hover/focus when possible:
-  - `.pbx-term:hover .pbx-tooltip`
-  - `.pbx-date:hover`
-  - `.pbx-hotspot:hover`
-* If JavaScript is necessary, use a short inline vanilla JS script only. No dependencies, no network calls, no storage, no timers.
-* Interactive popups/tooltips must stay inside the explanation card, must not be clipped, and must work inside an iframe.
-* Tooltips for legal terms may include concise Simplified Chinese explanations, but do not alter the visible original English explanation text.
-* Support keyboard focus for interactive terms using `tabindex="0"` and `:focus-within` where practical.
-
-### 5. Educational Objective and References Styling (MANDATORY)
-If the source image contains an "Educational objective:" section, render it with this exact style:
-```html
-<div class="pbx-edu-objective">
-  <div class="pbx-edu-objective-title">📌 Educational Objective</div>
-  <p>...objective text...</p>
-</div>
-```
-CSS for `.pbx-edu-objective`: `background: #f0f7ff; border-left: 4px solid #3498db; border-radius: 6px; padding: 14px 18px; margin: 24px 0;`
-CSS for `.pbx-edu-objective-title`: `font-size: 13px; font-weight: 700; color: #2980b9; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;`
-
-If the source image contains a "References" section with case citations or statute links, render it with this exact style:
-```html
-<div class="pbx-references">
-  <div class="pbx-references-title">📚 References</div>
-  <ul class="pbx-ref-list">
-    <li>citation text (plain text, no external links)</li>
-  </ul>
-</div>
-```
-CSS for `.pbx-references`: `background: #fafafa; border: 1px solid #e0e0e0; border-radius: 6px; padding: 14px 18px; margin: 20px 0;`
-CSS for `.pbx-references-title`: `font-size: 13px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;`
-CSS for `.pbx-ref-list`: `margin: 0; padding-left: 18px; font-size: 14px; color: #555; line-height: 1.7;`
-* Render all case/statute citations as plain text (no `<a>` links, no external URLs).
-
-### 6. Topic Extraction (MANDATORY)
-* Look at the bottom footer area of the source image. It typically shows three metadata labels in columns: Subject / Chapter / Topic (e.g. "Criminal Law and Procedure | Constitutional Protections | Right to counsel").
-* Extract the **Topic** value (the third column, e.g. "Right to counsel", "Double jeopardy", "Search and seizure").
-* Do NOT render this footer in the HTML output.
-* Instead, output the topic as a single HTML comment on the very first line of the `<body>`, before all other content:
-  `<!-- pbx-topic: Right to counsel -->`
-* If no topic can be identified from the image, output: `<!-- pbx-topic: -->`
-
-### 7. Output Contract
-* Return one complete HTML document only: `<!doctype html><html>...`.
-* Include all CSS and any minimal JS inline in that same document.
-* Do not use external assets, external scripts, external stylesheets, CDN links, or placeholders (except for the local relative image paths in `imgs/` explicitly provided under "Explanation Illustration Images (MANDATORY)" at the end of this prompt, if any).
-* Do not include Markdown fences, explanations, comments about your process, or omitted-code markers.
-* The file must work directly in a browser and inside an iframe.
-
-Now analyze the uploaded image and produce the faithful single-file HTML restoration:
-"""
-
-def build_english_explanation_prompt(en_options: dict[str, str], correct_answer: str) -> str:
-    context = "\n".join(
-        f"{key}. {value}"
-        for key, value in sorted(en_options.items())
-    )
-    wrong_answers = [k for k in sorted(en_options.keys()) if k != correct_answer]
-    return (
-        GEMINI_EXPLANATION_PROMPT
-        + "\n\nAnswer Choice Context for PassBar data-choice anchors:\n"
-        + f"Correct Answer: {correct_answer or '(unknown)'}\n"
-        + f"Wrong Answers: {', '.join(wrong_answers) or '(unknown)'}\n"
-        + f"{context or '(No answer choices available)'}\n"
-        + """
-### Answer Choice Color-Coding Rules
-Use these exact hex colors (do NOT use CSS variables — they may not be defined in this document):
-- Correct color: `#1f8f4d` (green)
-- Wrong color: `#9b1c1c` (red)
-- Mixed color: `#b07d00` (dark amber, when token contains both correct and wrong letters)
-- Correct border: `#27ae60`
-- Wrong border: `#c0392b`
-
-Detect which of the three patterns applies and handle accordingly. Do NOT use background colors — use only left-border and text color to keep the styling clean and non-distracting.
-
-**Pattern A — Paragraph that begins with "(Choice X)" or "(Choices X & Y)"** (the entire paragraph is dedicated to explaining that choice):
-- Keep the paragraph as-is. Add `data-choice="{letter}" data-choice-role="correct|distractor"` to the `<p>` or wrapping element.
-- Add a subtle left border: correct `border-left:3px solid #27ae60; padding-left:10px;`, wrong `border-left:3px solid #c0392b; padding-left:10px;`
-- Wrap only the leading "(Choice X)" label in a `<strong>` with matching color: correct `color:#1f8f4d`, wrong `color:#9b1c1c`.
-- Example: `<p style="border-left:3px solid #c0392b;padding-left:10px;" data-choice="B" data-choice-role="distractor"><strong style="color:#9b1c1c">(Choice B)</strong> The rest of text...</p>`
-
-**Pattern B — Inline choice mention mid-sentence** (e.g. "(Choice C)", "(Choices A and C)", "(Choices B & D)" appear inside a larger paragraph):
-- Do NOT add any border or background to the paragraph.
-- Wrap only the token itself in a colored `<span>`. Determine the color by checking all letters in the token against the Correct Answer provided above:
-  - Token contains **only wrong letters** → `<span style="color:#9b1c1c;font-weight:600;" data-choice="{letters}" data-choice-role="distractor">(Choices ...)</span>`
-  - Token contains **only the correct letter** → `<span style="color:#1f8f4d;font-weight:600;" data-choice="{letter}" data-choice-role="correct">(Choice {letter})</span>`
-  - Token contains **a mix of correct and wrong letters** → `<span style="color:#b07d00;font-weight:600;" data-choice="{letters}">(Choices ...)</span>`
-- For multi-letter tokens like "(Choices A and C)" or "(Choices B & D)", use space-separated letters in `data-choice`, e.g. `data-choice="A C"` or `data-choice="B D"`.
-- Recognized token patterns (match case-insensitively):
-  - `(Choice X)` — single letter
-  - `(Choices X and Y)` — two letters joined by "and"
-  - `(Choices X & Y)` — two letters joined by "&"
-  - `(Choices X, Y, and Z)` — three letters
-  - Extract all capital letters A–D from the token to determine which choices are referenced.
-
-**Pattern C — Dedicated visual card/block per choice** (source has a visually separate card or list item entirely for one choice):
-- Add correct `border-left:3px solid #27ae60; padding-left:10px;` or wrong `border-left:3px solid #c0392b; padding-left:10px;` to that block.
-- Do NOT add background colors.
-- Add `data-choice` and `data-choice-role` attributes.
-
-**Rules:**
-- Never invent a per-choice section if one does not exist in the source.
-- Never add background colors to any choice block.
-- Apply these styles only to elements that already discuss a specific choice.
-"""
-    )
-
-GEMINI_PROMPT_TEMPLATE = """\
-【Role and Task】
-You are a subject-matter expert proficient in U.S. law, especially the MBE exam, and also an excellent frontend UI/UX designer.
-Your task is to take the “original English legal analysis materials” I provide, including the English question, answer choices, official explanation, and image descriptions, and perform deep refinement and translation to generate a visually polished, rigorously formatted, single HTML file: a “multi-dimensional deep subject-analysis card” with absolutely no distracting original English question text or answer-choice buttons.
-
-【HTML Visual and Layout Requirements】
-Please strictly follow the CSS visual requirements below. Embed refined styles directly inside the HTML, and ensure an excellent responsive experience on both mobile and desktop:
-
-1. Mandatory unified visual design system (must be used exactly):
-   The final HTML must look like the approved blue-gray reference style, not the rejected red/maroon style.
-   Do not change the page theme by subject. Criminal Law/Procedure pages must still use the same blue-gray header.
-   Red/maroon colors are forbidden for the page header, section headings, core issue boxes, diagrams, tables, and primary emphasis. Use red only inside wrong-answer cards or tiny error labels.
-
-   Required CSS variables in `:root`:
-   - `--primary-color`: #2c3e50;
-   - `--primary-ink`: #243447;
-   - `--accent-color`: #3498db;
-   - `--accent-strong`: #2980d9;
-   - `--highlight-bg`: #e8f4f8;
-   - `--correct-bg`: #dff0d8;
-   - `--correct-border`: #27ae60;
-   - `--correct-text`: #1f8f4d;
-   - `--wrong-bg`: #f8d7da;
-   - `--wrong-border`: #f5c6cb;
-   - `--wrong-text`: #721c24;
-   - `--warning-bg`: #fff8e1;
-   - `--warning-border`: #ffb300;
-   - `--text-color`: #333333;
-   - `--muted-text`: #666666;
-   - `--border-color`: #dddddd;
-   - `--card-bg`: #ffffff;
-   - `--bg-color`: #ffffff;
-
-2. Mandatory CSS scaffold:
-   The HTML must include CSS equivalent to the following contract. You may add selectors, but do not override these values with another theme:
-
-   CRITICAL LAYOUT RULES (do not violate):
-   - Do NOT use Tailwind CSS, Tailwind CDN, Bootstrap, external CSS frameworks, external JavaScript, icon libraries, or web fonts.
-   - Use only vanilla HTML and one inline `<style>` block. Optional inline vanilla JS is allowed only for small CSS-like interactions such as hover/focus tooltips.
-   - DO NOT use `display: flex` or `justify-content: center` on `body`; the document is embedded in an iframe and must naturally grow to content height.
-   - DO NOT set `height: 100vh`, `min-height: 100vh`, `position: fixed`, or app-like full-screen layouts.
-   - DO NOT use `margin: 0 auto` on `.container` for the main layout. The page must look correct at full iframe width, not as a narrow centered landing page.
-   - DO NOT set a fixed `max-width` less than 100% on `.container`. Instead, use horizontal padding on `.container` for breathing room.
-   - Wide tables/diagrams must be wrapped in a horizontal-scroll container and keep their natural minimum width rather than collapsing.
-
-   ```css
-   * {{ box-sizing: border-box; }}
-   body {{
-     margin: 0;
-     padding: 0;
-     background: var(--bg-color);
-     color: var(--text-color);
-     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-     font-size: 18px;
-     line-height: 1.72;
-     letter-spacing: 0;
-     display: block;
-   }}
-   .container {{
-     width: 100%;
-     padding: 0 24px 32px;
-     background: var(--card-bg);
-   }}
-   .header {{
-     background: var(--primary-color);
-     color: #ffffff;
-     border-radius: 12px 12px 0 0;
-     padding: 34px 24px 32px;
-     text-align: center;
-     margin-bottom: 26px;
-   }}
-   .header h1 {{
-     margin: 0 0 12px;
-     font-size: 32px;
-     line-height: 1.15;
-     font-weight: 800;
-     letter-spacing: 0;
-   }}
-   .sub-title {{
-     margin: 0;
-     font-size: 20px;
-     line-height: 1.35;
-     font-weight: 700;
-     color: rgba(255,255,255,0.92);
-   }}
-   h2, h3 {{
-     color: var(--primary-ink);
-     font-weight: 800;
-     line-height: 1.3;
-     letter-spacing: 0;
-   }}
-   h2 {{
-     font-size: 26px;
-     border-bottom: 3px solid var(--accent-color);
-     padding-bottom: 10px;
-     margin: 34px 0 20px;
-   }}
-   h3 {{
-     font-size: 22px;
-     margin: 28px 0 16px;
-   }}
-   p, li {{
-     font-size: 18px;
-     line-height: 1.72;
-   }}
-   strong, b {{
-     display: inline !important;
-     white-space: normal !important;
-     word-break: normal !important;
-     overflow-wrap: break-word !important;
-     font-weight: 800;
-   }}
-   ```
-
-3. Required component styles:
-   - `.answer-box`: green success card like the approved reference. Use `background: var(--correct-bg)`, `border-left: 6px solid var(--correct-border)`, `border-radius: 6px`, `padding: 20px 24px`, `margin: 22px 0 30px`, `font-size: 20px`, `font-weight: 700`.
-   - `.concept-box`: light blue card. Use `background: var(--highlight-bg)`, `border-left: 6px solid var(--accent-color)`, `border-radius: 8px`, `padding: 22px 24px`, `margin: 24px 0`.
-   - `.concept-box .concept-title`: blue title, `font-size: 24px`, `font-weight: 800`, `color: var(--accent-strong)`.
-   - `.latin`: italic, `font-size: 18px`, `color: #555555`, `font-weight: 500`.
-   - `.comparison-table`: full width, `border-collapse: collapse`, `margin: 24px 0`, `font-size: 17px`.
-   - `.comparison-table th`: `background: #f8f9fa`, `color: var(--primary-color)`, `font-weight: 800`, `padding: 14px`, `border: 1px solid var(--border-color)`, `text-align: left`.
-   - `.comparison-table td`: `padding: 14px`, `border: 1px solid var(--border-color)`, `vertical-align: top`.
-   - `.diagram`: white or very light gray panel, not a colored poster. Use `background: #ffffff`, `border: 1px dashed #cccccc`, `border-radius: 8px`, `padding: 22px`, `margin: 28px 0`, `text-align: center`.
-   - `.flow-node` / `.party-box`: light cyan chips with teal text, `background: #e8fcff`, `border: 1px solid #22b8cf`, `border-radius: 6px`, `padding: 10px 14px`, `font-weight: 700`, `color: #05606a`.
-   - `.flow-node.active` or `.flow-node.highlight-node`: blue chip, `background: var(--accent-color)`, `border-color: var(--accent-color)`, `color: #ffffff`.
-   - `.rule-block`, `.trap-alert`, `.footer-tip`: warm yellow only, never red. Use `background: var(--warning-bg)`, `border-left: 5px solid var(--warning-border)`, `border-radius: 6px`, `padding: 18px 20px`.
-   - `.case-box`: light blue card, `background: var(--highlight-bg)`, `border-radius: 8px`, `padding: 20px 22px`, `margin: 20px 0`.
-   - `.option.correct`: green card with `background: var(--correct-bg)`, `border-left: 5px solid var(--correct-border)`.
-   - `.option.wrong`: red may appear only here, with `background: var(--wrong-bg)`, `border-left: 5px solid var(--wrong-border)`, `color: var(--wrong-text)`.
-   - Any answer-choice explanation block MUST include a PassBar anchor attribute: `data-choice="A"` / `data-choice="B"` / `data-choice="C"` / `data-choice="D"`. Correct-answer blocks must also include `data-choice-role="correct"`; wrong-answer/distractor blocks must include `data-choice-role="distractor"`.
-   - `.option .option-title`: short blue/green/red heading, `font-size: 22px`, `font-weight: 800`, `margin: 0 0 12px`.
-   - `.key-clue`: inline key fact marker, `font-weight: 800`, `background: rgba(52,152,219,0.12)`, `border-bottom: 2px solid rgba(52,152,219,0.45)`, `padding: 0 2px`.
-   - `.term-grid`: compact legal-term grid, `display: grid`, `grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))`, `gap: 12px`, `margin: 18px 0`.
-   - `.term-card`: concise term card, `background: #f8fbff`, `border: 1px solid #d7e9f8`, `border-radius: 8px`, `padding: 12px 14px`.
-   - `.term-card strong`: term heading, `color: var(--primary-ink)`.
-   - `.keyword-strip`: compact key-clue strip, `display: flex`, `flex-wrap: wrap`, `gap: 8px`, `margin: 12px 0 18px`.
-   - `.keyword-chip`: small clue chip, `background: rgba(52,152,219,0.12)`, `border: 1px solid rgba(52,152,219,0.35)`, `border-radius: 999px`, `padding: 4px 10px`, `font-weight: 700`.
-   - `.elimination-list`: compact list for wrong choices, `margin: 12px 0 0`, `padding-left: 0`, `list-style: none`.
-   - `.elimination-list li`: compact lines, `margin: 8px 0`, `line-height: 1.55`.
-   - `.method-box`: systematic solving-method card, `background: var(--highlight-bg)`, `border-left: 5px solid var(--accent-color)`, `border-radius: 8px`, `padding: 18px 20px`, `margin: 22px 0`.
-   - `code`: `background: rgba(0,0,0,0.05)`, `padding: 2px 4px`, `border-radius: 4px`, `font-size: 0.92em`.
-   - `.term`: quiet textbook-style emphasis, not a pill/badge. Do not set an explicit `color`; it must inherit the surrounding text color. Use `background: transparent`, `border-bottom: 1px solid rgba(36,52,71,0.26)`, `padding: 0 1px 1px`, `border-radius: 0`, `font-size: 1em`, `font-weight: 800`, `white-space: normal`. It must read as part of the sentence, blend naturally inside green/red/yellow cards, and should never look like a separate button, label, or badge.
-   - When marking a legal term with `.term`, wrap the complete bilingual term in one span whenever English appears with Chinese. Correct: `<span class="term">要约（offer）</span>` or `<span class="term">确定要约规则（firm offer rule）</span>`. Incorrect: `<span class="term">要约</span>（offer）`. Do not mark only the Chinese half when the English term is present.
-
-4. Responsive rules:
-   The HTML must render correctly at any viewport from 320px to 1400px wide. The following rules are MANDATORY — not optional suggestions.
-
-   **Tables (`.comparison-table` and any other `<table>`):**
-   - Always wrap every `<table>` in `<div style="overflow-x:auto; -webkit-overflow-scrolling:touch; margin:16px 0;">`.
-   - Set `table { min-width: 480px; width: 100%; border-collapse: collapse; }` so tables scroll horizontally on mobile instead of collapsing.
-   - At `max-width: 640px`: reduce `th, td` font-size to `14px` and padding to `8px 10px`.
-   - Never hide columns, stack rows, or reformat a table into a list. Preserve the original tabular structure and let it scroll.
-
-   **Diagrams / flowcharts / timelines (`.diagram`):**
-   - Wrap diagram content in an inner div with a fixed `min-width` that preserves the layout (e.g. `style="min-width:520px"`), nested inside `<div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">`.
-   - Never collapse a horizontal flowchart into a vertical stack on mobile. Allow horizontal scrolling instead.
-   - `.flow-node` and `.party-box` must never have their text truncated or clipped. Use `white-space: normal; word-break: break-word`.
-
-   **General:**
-   - Use `rem` for all font-sizes and `em` for padding/margin so the layout scales with user font preferences. Never use `px` for font-size or typographic spacing.
-   - Base: `body { font-size: 1rem; line-height: 1.75; padding: 1.25rem; }` (1rem = browser default, typically 16px but respects user settings).
-   - Headings: `h2 { font-size: 1.5rem; margin: 1.5em 0 0.75em; }`, `h3 { font-size: 1.25rem; margin: 1.25em 0 0.6em; }`.
-   - At `max-width: 640px`: `body { font-size: 0.95rem; padding: 0.75rem; }`, `.header { padding: 1.5em 1rem; }`.
-   - All cards and boxes: `box-sizing: border-box; width: 100%; max-width: 100%; padding: 1em 1.25em`.
-   - Long legal terms and English phrases must wrap: `word-break: break-word; overflow-wrap: break-word`.
-   - Do not use `vw` units for font-size or negative letter-spacing.
-   - Do not create nested cards inside cards.
-
-5. Core sections for the multi-dimensional deep analysis card (all sections must be included; do not delete or merge):
-   - 【Card Top Header】: Use class `.header`, fixed navy `var(--primary-color)`, title text exactly “MBE 考点解析”, and subtitle as `[Subject]: [Chapter or Issue]`.
-   - 【Correct Answer Box (.answer-box)】: Put the correct answer and one-sentence holding near the top, immediately after the header.
-   - 【Core Legal Rule <h2> + .concept-box】: Explain the governing doctrine in Chinese, preserving essential English terms. Before the rule explanation, include a concise `.term-grid` titled “先抓法律术语” with 3-6 high-value bilingual terms from the English question, choices, and uploaded official English explanation image(s). Each term card must use this style: `中文术语（English term） — 一句话说明它在本题中的作用`. Do not list generic terms that do not matter to the answer.
-   - 【Concept Comparison Table (.comparison-table)】: Compare the tested rule with a commonly confused rule when useful.
-   - 【Fact/Application Logic <h2> + .analysis-step】: Apply rule elements to the facts in progressive steps. Start this section with a `.keyword-strip` titled “题干得分关键字”, containing 3-5 bilingual clue chips such as `timing / 时间点`, `procedural posture / 程序姿态`, `relief requested / 请求救济`, `jurisdiction / 管辖`, etc. Then explain the application in 3-5 short steps, using `<span class="key-clue">...</span>` for the decisive words from the question.
-   - 【Diagram (.diagram)】: Include a diagram only when it genuinely clarifies the analysis. When a diagram is included, it MUST be interactive — use vanilla JS and CSS to add meaningful interactivity. Choose the most appropriate interactive pattern from the list below based on the content type, and implement it fully:
-
-     **Flowchart / Decision tree** (e.g. legal test with Yes/No branches):
-     - Each `.flow-node` is clickable. Clicking a node highlights the path taken in this specific fact pattern (the "correct path") using a `.active` class.
-     - Nodes on the correct path glow with `background: var(--accent-color); color:#fff; box-shadow: 0 0 0 3px rgba(52,152,219,0.35)`.
-     - Add a "重置" reset button to restore all nodes to default.
-     - On page load, auto-animate the correct path step-by-step (200ms delay between nodes) so the student sees the logical flow immediately.
-
-     **Timeline** (e.g. sequence of legal events):
-     - Each event node is clickable and reveals a detail tooltip/popup below it with the legal significance of that moment.
-     - Highlight the "pivotal event" (the one that controls the answer) in accent color on load.
-     - Allow clicking other events to compare and contrast (tooltip shows "此时 X 已/未发生").
-
-     **Comparison table** (e.g. two doctrines side-by-side):
-     - Each row is hoverable — hovering highlights the row and shows a small badge explaining which rule applies to the facts of this question.
-     - Add a "本题适用" tag that animates in (fadeIn) next to the applicable row on load.
-
-     **Element checklist** (e.g. legal test with multiple required elements):
-     - Render as an animated checklist. On load, each element checks off one by one (300ms apart) with a ✓ animation.
-     - Elements satisfied by the facts get a green check; elements NOT satisfied get a red ✗.
-     - Each element is clickable to expand a one-line explanation of why it is/isn't met in this case.
-
-     **General rules for all interactive diagrams:**
-     - All interactivity must work inside an iframe without any external dependencies.
-     - Use only vanilla JS (no jQuery, no libraries). Keep the script under 60 lines.
-     - CSS transitions must be smooth (`transition: all 0.2s ease`).
-     - Mobile touch must work — use both `click` and `touchend` events.
-     - The diagram must still be readable if JS is disabled (progressive enhancement).
-     - Do NOT make the diagram full-screen or modal — it must sit inline in the page flow.
-   - 【Trap Alert (.trap-alert or .rule-block)】: Explain the MBE trap in warm yellow.
-   - 【Answer-Choice Breakdown (.option-analysis / .option)】: The section title must be “正确答案与干扰项排除”. This section must be concise, exam-useful, and structured like a tutor explaining elimination logic. Correct card green; wrong cards red only inside `.option.wrong`. Do NOT restate the full answer-choice text. Do NOT write only “正确/错误”. Use the required format below.
-     Required format:
-     1. Start with a short subheading: `为什么选 [letter]？`
-     2. Wrap the correct explanation block in an element with `data-choice="[letter]" data-choice-role="correct"`.
-     3. In 2 short sentences, explain why the correct option wins. Must cite one exact trigger fact from the English question and one rule concept read from the uploaded official English explanation image(s). Use `<span class="key-clue">...</span>` for the trigger fact, and keep the English legal term in parentheses.
-     4. Then include a compact “为什么排除其他选项：” block using `.elimination-list`. Each wrong choice must have one line only, in this style: `✕ A (No): 错在把 ___ 当成 ___；关键字 ___ 排除它。`
-        Each wrong-choice `<li>` MUST include `data-choice="A"` etc. and `data-choice-role="distractor"`.
-     5. For every wrong choice, identify the precise wrong assumption, missing element, wrong legal consequence, or trap in that choice. Avoid generic lines like “不符合规则”, “法律结论错误”, “本题不适用”, or repeating the same rule in long form.
-     6. End this section with a `.method-box` titled `这题建议用什么方法？`, explaining the best solving method: elimination, timeline, element checklist, party-role mapping, jurisdiction-first, remedy-first, exception spotting, or issue-trigger matching. Also explain in 1-2 sentences the exam writer's design logic: what tempting rule/trap they expected the student to fall for.
-     Length control: the correct-answer explanation should be 60-110 Chinese characters; each wrong-choice line should be 28-60 Chinese characters; the method box should be 70-130 Chinese characters. Be sharp, not verbose.
-     Mandatory interaction skeleton (adapt the text, but preserve the attributes exactly):
-     ```html
-     <section class="option-analysis">
-       <h2>正确答案与干扰项排除</h2>
-       <div class="option correct" data-choice="B" data-choice-role="correct">
-         <h3 class="option-title">为什么选 B？</h3>
-         <p>...</p>
-       </div>
-       <p><strong>为什么排除其他选项：</strong></p>
-       <ul class="elimination-list">
-         <li data-choice="A" data-choice-role="distractor">✕ A (...): ...</li>
-         <li data-choice="C" data-choice-role="distractor">✕ C (...): ...</li>
-         <li data-choice="D" data-choice-role="distractor">✕ D (...): ...</li>
-       </ul>
-     </section>
-     ```
-     Replace `B` with the actual correct answer letter and include all three wrong choices. Before finalizing, self-check that the final HTML contains at least four `data-choice="..."` attributes: one correct block and three distractor lines. If it does not, fix the HTML before answering.
-   - 【Exam Tip (.footer-tip)】: End with a concise exam shortcut or decision rule.
-
-【Special Restrictions and Quality Assurance】
-- ⚠️ Absolutely do not include the original English question text or English answer-choice buttons, such as A/B/C/D buttons, from the source materials in the HTML!
-- ⚠️ You MUST read and use all three English inputs: the original English question, the English answer choices, and the uploaded official English explanation image(s) attached to this prompt. The Chinese analysis must be derived from these materials, not from guessing based only on the correct answer.
-- ⚠️ Every major legal term and decisive keyword should appear in bilingual form at least once, e.g. `重新审判动议（motion for a new trial）`, `判决登录（entry of judgment）`, `自动暂缓执行（automatic stay）`. Use Chinese first, English in parentheses.
-- ⚠️ In “正确答案与干扰项排除”, do not copy or paraphrase the complete original answer choices. Avoid verbose lines like “正确选项：买方可以立即提起违约诉讼（对应原题 A 选项）” or “错误选项：买方必须给珠宝商补救的机会（对应原题 B 选项）”. Also avoid bare labels like “A. 正确” / “B. 错误” without real reasoning. The section must read like: “为什么选 B？” → key clue from the question → concise elimination of A/C/D → recommended solving method and trap logic.
-- ⚠️ Do NOT generate any footer, watermark, branding, or copyright notice of any kind — no "MBE 备考助手", no "© MBE", no "仅供学习参考", no "PassBar", and no similar text anywhere in the HTML. The page must contain zero branding elements.
-- OUTPUT LANGUAGE: Every sentence of analysis, explanation, and UI label must be written in Simplified Chinese (简体中文). Traditional Chinese characters (繁體字) are strictly forbidden. English is permitted only for: legal terms of art, case names, statutes (e.g. U.S.C. §), Latin maxims, MBE exam keywords, and key concepts that must stay in English for exam accuracy. All other text must be 简体中文.
-- Do not simplify, cut down, or abbreviate any legal analysis! All nine sections listed above must be fully presented.
-- Return only a complete, ready-to-use, single HTML document that does not require any external JS/CSS files.
-
----
-【Original Legal Analysis Material Input Area】
-
-Subject: {subject} — {chapter}
-
-Question:
-{question}
-
-Answer Choices:
-{choices}
-
-Correct Answer: {correct_answer_letter}. {correct_answer_text}
-
-Official English Explanation Source:
-The official English explanation is provided as uploaded image(s), usually from `source_img` / `sourceExplanationImageFile`. Read those image(s) carefully and extract the rule, legal terms, factual triggers, and option logic from them. If supplemental OCR/plain text is available below, use it only as a helper and trust the uploaded image when there is a conflict.
-
-Supplemental OCR/plain text, if available:
-{english_explanation}
-
-(Please use the analysis materials to generate a complete Simplified Chinese HTML analysis card.)
-"""
 
 
 # ── 工具函式 ──────────────────────────────────────────────────────────────────
@@ -856,6 +441,25 @@ def html_to_prompt_text(html: str) -> str:
         .replace("&#39;", "'")
     )
     return re.sub(r"[ \t\r\f\v]+", " ", text).strip()[:6000]
+
+
+_TOPIC_COMMENT_RE = re.compile(r"<!--\s*pbx-topic:\s*(.*?)\s*-->", re.IGNORECASE)
+
+
+def resolve_zh_html_topic(
+    item: dict,
+    document_meta: dict | None = None,
+    explanation_html: str = "",
+) -> str:
+    """Resolve English topic for zh-html header subtitle."""
+    topic = str(item.get("topic") or "").strip()
+    if topic:
+        return topic
+    html = explanation_html or str(item.get("explanation") or "")
+    m = _TOPIC_COMMENT_RE.search(html)
+    if m and m.group(1).strip():
+        return m.group(1).strip()
+    return str(item.get("chapter") or (document_meta or {}).get("chapter") or "").strip()
 
 
 def extract_html_from_response(text: str) -> str:
@@ -1183,9 +787,19 @@ def call_ai_rest(
 ) -> str:
     if AI_PROVIDER == "gpt":
         return call_openai_responses(prompt_text, image_paths)
-    if AI_PROVIDER in {"codex-cli", "antigravity-cli", "claude-cli"}:
+    if AI_PROVIDER == "cursor-api":
+        model = (AI_HTML_MODEL if use_html_model else AI_MODEL) or None
+        raw = cursor_api.call_cursor_api(
+            prompt_text,
+            image_paths,
+            model,
+            expected=expected,
+        )
+        _set_last_ai_usage("cursor-api", model or "(default)", "", "", "", "", "")
+        return raw
+    if AI_PROVIDER in {"codex-cli", "antigravity-cli", "claude-cli", "cursor-cli"}:
         # codex-cli supports --image flags natively.
-        # antigravity-cli and claude-cli embed image paths in the prompt so their tools can view them.
+        # antigravity-cli, claude-cli, and cursor-cli embed image paths in the prompt so their tools can view them.
         model = (AI_HTML_MODEL if use_html_model else AI_MODEL) or None
         raw = cli_ai.call_cli_ai(
             AI_PROVIDER,
@@ -1206,6 +820,8 @@ def ai_label() -> str:
         "codex-cli": "Codex CLI",
         "antigravity-cli": "Antigravity CLI",
         "claude-cli": "Claude CLI",
+        "cursor-cli": "Cursor CLI",
+        "cursor-api": "Cursor API",
     }
     return labels.get(AI_PROVIDER, AI_PROVIDER)
 
@@ -1346,6 +962,9 @@ def process_question(
                     prompt = GEMINI_PROMPT_TEMPLATE.format(
                         subject=subject,
                         chapter=chapter,
+                        topic=resolve_zh_html_topic(
+                            existing_record, explanation_html=en_explanation_html or en_explanation
+                        ),
                         question=en_question,
                         choices=format_choices_for_prompt(en_options),
                         correct_answer_letter=correct_answer,
@@ -1443,6 +1062,9 @@ def process_question(
                     prompt = GEMINI_PROMPT_TEMPLATE.format(
                         subject=subject,
                         chapter=chapter,
+                        topic=resolve_zh_html_topic(
+                            existing_record, explanation_html=en_explanation_html or en_explanation
+                        ),
                         question=en_question,
                         choices=format_choices_for_prompt(en_options),
                         correct_answer_letter=correct_answer,
@@ -1740,7 +1362,7 @@ def process_json_file(
 def main():
     parser = argparse.ArgumentParser(
         description="Generate Chinese explanations for MBE questions")
-    parser.add_argument("--provider", choices=("gemini", "gpt", "codex-cli", "antigravity-cli", "claude-cli"), default="gemini",
+    parser.add_argument("--provider", choices=("gemini", "gpt", "codex-cli", "antigravity-cli", "claude-cli", "cursor-cli", "cursor-api"), default="gemini",
                         help="AI provider for missing generated fields (default: gemini)")
     parser.add_argument("--model", default="",
                         help="Override provider model (default depends on provider)")
@@ -1777,7 +1399,12 @@ def main():
             print("ERROR: No GEMINI_API_KEY_1 ~ GEMINI_API_KEY_N found in environment or .env file.")
             print("  Add GEMINI_API_KEY_1=your_key_here to passbar/.env.local")
             sys.exit(1)
-        if AI_PROVIDER in {"codex-cli", "antigravity-cli", "claude-cli"}:
+        if AI_PROVIDER == "cursor-api":
+            try:
+                cursor_api.check_cursor_api_ready()
+            except Exception as exc:
+                parser.error(str(exc))
+        if AI_PROVIDER in {"codex-cli", "antigravity-cli", "claude-cli", "cursor-cli"}:
             try:
                 cli_ai.check_provider_ready(AI_PROVIDER)
             except RuntimeError as exc:
@@ -1828,4 +1455,5 @@ def main():
 
 
 if __name__ == "__main__":
+    cursor_api.maybe_reexec_with_venv()
     main()

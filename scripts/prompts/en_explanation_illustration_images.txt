@@ -1,0 +1,21 @@
+
+
+### Explanation Illustration Images (MANDATORY)
+The following official UWorld diagram(s) are attached alongside the source image.
+They are too complex to recreate in HTML/CSS — you MUST embed each one as a responsive
+`<img>` tag at the appropriate location in the explanation
+(after the rule or section it illustrates).
+
+**CRITICAL — use this EXACT src path (including the `imgs/` prefix):**
+{img_refs}
+Embed each image using EXACTLY this pattern:
+```html
+{img_tags}
+```
+CSS to add to the `<style>` block:
+```css
+.pbx-explain-img {{ margin: 1.25em 0; text-align: center; }}
+.pbx-explain-img img {{ max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.12); }}
+@media (max-width: 640px) {{ .pbx-explain-img img {{ border-radius: 3px; }} }}
+```
+Do NOT omit the `imgs/` prefix. Do NOT invent a different path.

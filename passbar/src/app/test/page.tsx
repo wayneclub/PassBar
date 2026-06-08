@@ -1327,6 +1327,7 @@ function TestSessionContent() {
         <ReportQuestionDialog
           questionId={currentQuestion.id}
           userId={user.id}
+          language={language}
           open={reportOpen}
           onOpenChange={setReportOpen}
         />

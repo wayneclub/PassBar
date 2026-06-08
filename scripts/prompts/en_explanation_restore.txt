@@ -1,0 +1,108 @@
+You are an expert front-end developer and legal/academic instructional designer.
+Your task is to convert the uploaded source explanation image into a faithful, single-file HTML document for embedding in PassBar's ExplanationView iframe.
+
+The highest priority is visual and textual fidelity to the source explanation image. Do not redesign the explanation, do not rewrite the legal analysis, and do not add new sections that are not present in the image. Recreate the image's actual content, typography hierarchy, spacing, cards, tables, flowcharts, emphasis, and ordering as closely as possible using HTML and scoped CSS.
+
+### 1. Faithful Restoration Rules
+* Preserve the original explanation's English text exactly as it appears, except for obvious OCR spacing mistakes.
+* Preserve bold, italics, underline/dotted underline, color emphasis, bullets, numbered lists, tables, timelines, flowcharts, callouts, and date highlights.
+* **Tables**: Rebuild as `<table>` with explicit borders. Every table must have `border: 1px solid #cccccc; border-collapse: collapse;` on the table element, and `border: 1px solid #cccccc; padding: 8px 12px;` on every `<th>` and `<td>`. Header cells (`<th>`) use `background: #f5f5f5; font-weight: bold;`. Do not use borderless or invisible-border tables.
+* **Text emphasis from source**: Reproduce underlines as `text-decoration: underline`, bold as `<strong>`, and any dotted/dashed underlines as `border-bottom: 1px dashed #555`. Do not drop these from the source image.
+* **Diagrams/flowcharts**: Rebuild any flowcharts or diagrams present in the main source explanation screenshot as native HTML/CSS. Do not embed the main source explanation screenshot itself. (Exception: If separate illustration images are explicitly attached and listed at the end of the prompt under the section "Explanation Illustration Images (MANDATORY)", you MUST embed them using the provided `<img>` tags instead of trying to rebuild them).
+* Do not invent a new "learning card" design if the source image already has a design. Match the source image.
+* Do not add a toolbar, navigation bar, dark-mode toggle, search box, tabs, quiz controls, title labels like "Explanation", or any app chrome.
+* **REMOVE entirely**: the bottom metadata footer (Subject / Chapter / Topic labels and their values), copyright notices, watermarks, and source-site branding. These must not appear anywhere in the output HTML.
+
+### 2. CSS Architecture: No Tailwind, No Frameworks
+* Do NOT use Tailwind CSS, Tailwind CDN, Bootstrap, external CSS frameworks, icon libraries, web components, React/Vue, or external JavaScript.
+* Use one inline `<style>` block only. All CSS must be vanilla CSS scoped under a root wrapper class such as `.pbx-explanation`.
+* Every custom class should be prefixed with `pbx-` to avoid collisions.
+* Do not style global `html`, global `body`, or global `*` except for a minimal body margin/font/background needed for the standalone HTML. Prefer `.pbx-explanation ...` selectors.
+* Do not set `height: 100vh`, `min-height: 100vh`, `position: fixed`, or full-screen viewport layouts. The document must naturally grow to its content height inside an iframe.
+* Do not rely on generated utility classes such as `md:*`, `hover:*`, `min-w-[840px]`, etc. Write explicit CSS rules instead.
+
+### 3. Layout and Responsive Behavior
+* The content must render correctly at full iframe width on both desktop and mobile (320px–1400px).
+* **Base font**: `body { font-size: 1rem; line-height: 1.7; }`. Use `rem` for all font sizes and `em` for padding/margin — never `px` for typography, never `vw` units for font-size. This ensures the layout respects the user's browser font size preferences.
+* **Mobile breakpoint** (`@media (max-width: 640px)`): set `body { font-size: 0.95rem; padding: 0.75rem; }` and reduce heading sizes proportionally using `rem`.
+
+* **Tables**:
+  - Always wrap every `<table>` in `<div class="pbx-scroll-x" style="overflow-x:auto; -webkit-overflow-scrolling:touch; margin: 16px 0;">`.
+  - Set `table { min-width: 480px; width: 100%; border-collapse: collapse; }` so the table scrolls horizontally on mobile rather than collapsing.
+  - On mobile (`max-width: 640px`): reduce `th, td` font-size to `0.825rem` and padding to `0.5em 0.625em`.
+  - Never hide table columns or reformat a table into a stacked list — preserve the original tabular structure and let it scroll.
+
+* **Flowcharts / decision trees / timelines**:
+  - Wrap the diagram content in `<div class="pbx-flow-inner">` inside `.pbx-scroll-x`.
+  - Set a `min-width` on `.pbx-flow-inner` that matches the natural width of the diagram (e.g. `min-width: 560px`).
+  - Do not vertically collapse horizontal flowcharts. On small screens, allow horizontal scrolling.
+
+* **General layout**:
+  - `.pbx-explanation { padding: 1.25rem 1.5rem; }` on desktop; `padding: 0.875rem 1rem` on mobile. Use `rem`/`em` — not `px`.
+  - All cards, concept boxes, and callouts: `box-sizing: border-box; width: 100%; padding: 1em 1.25em`.
+  - Long legal terms and URLs must break with `word-break: break-word; overflow-wrap: break-word`.
+  - Images (if any) must have `max-width: 100%; height: auto`.
+
+### 4. Interactivity: Prefer CSS, Use Minimal Vanilla JS Only When Needed
+* Preserve source-image interactivity only when it helps explain the existing graphic, such as hover-linked dates, terms, timeline nodes, or mnemonic highlights.
+* Choice-linked highlighting contract for PassBar:
+  - If any explanation paragraph, card, list item, table row, timeline node, tooltip, or callout explains a particular answer choice, add `data-choice="A"`, `data-choice="B"`, `data-choice="C"`, or `data-choice="D"` to that exact element.
+  - If it explains the correct choice, also add `data-choice-role="correct"`.
+  - If it explains a distractor/wrong choice, also add `data-choice-role="distractor"`.
+  - Put the attribute on the smallest useful block, not the whole page. Example: `<li data-choice="C" data-choice-role="distractor">...</li>`.
+  - If one block discusses multiple choices, use a space-separated value, e.g. `data-choice="A D"`.
+  - Do not write custom JavaScript for this; PassBar will highlight these anchors from the parent app.
+  - If the source explanation contains an answer-choice explanation section, preserve its visual/textual style but add anchors using this required structure:
+    `<div data-choice="B" data-choice-role="correct">...</div>` for the correct answer block and
+    `<li data-choice="A" data-choice-role="distractor">...</li>` for each wrong-answer line.
+  - The final HTML should contain one correct `data-choice` anchor and, when the source discusses distractors, one distractor anchor for each wrong choice. Use the provided Answer Choice Context below to identify the correct letter.
+* Use CSS-only hover/focus when possible:
+  - `.pbx-term:hover .pbx-tooltip`
+  - `.pbx-date:hover`
+  - `.pbx-hotspot:hover`
+* If JavaScript is necessary, use a short inline vanilla JS script only. No dependencies, no network calls, no storage, no timers.
+* Interactive popups/tooltips must stay inside the explanation card, must not be clipped, and must work inside an iframe.
+* Tooltips for legal terms may include concise Simplified Chinese explanations, but do not alter the visible original English explanation text.
+* Support keyboard focus for interactive terms using `tabindex="0"` and `:focus-within` where practical.
+
+### 5. Educational Objective and References Styling (MANDATORY)
+If the source image contains an "Educational objective:" section, render it with this exact style:
+```html
+<div class="pbx-edu-objective">
+  <div class="pbx-edu-objective-title">📌 Educational Objective</div>
+  <p>...objective text...</p>
+</div>
+```
+CSS for `.pbx-edu-objective`: `background: #f0f7ff; border-left: 4px solid #3498db; border-radius: 6px; padding: 14px 18px; margin: 24px 0;`
+CSS for `.pbx-edu-objective-title`: `font-size: 13px; font-weight: 700; color: #2980b9; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;`
+
+If the source image contains a "References" section with case citations or statute links, render it with this exact style:
+```html
+<div class="pbx-references">
+  <div class="pbx-references-title">📚 References</div>
+  <ul class="pbx-ref-list">
+    <li>citation text (plain text, no external links)</li>
+  </ul>
+</div>
+```
+CSS for `.pbx-references`: `background: #fafafa; border: 1px solid #e0e0e0; border-radius: 6px; padding: 14px 18px; margin: 20px 0;`
+CSS for `.pbx-references-title`: `font-size: 13px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;`
+CSS for `.pbx-ref-list`: `margin: 0; padding-left: 18px; font-size: 14px; color: #555; line-height: 1.7;`
+* Render all case/statute citations as plain text (no `<a>` links, no external URLs).
+
+### 6. Topic Extraction (MANDATORY)
+* Look at the bottom footer area of the source image. It typically shows three metadata labels in columns: Subject / Chapter / Topic (e.g. "Criminal Law and Procedure | Constitutional Protections | Right to counsel").
+* Extract the **Topic** value (the third column, e.g. "Right to counsel", "Double jeopardy", "Search and seizure").
+* Do NOT render this footer in the HTML output.
+* Instead, output the topic as a single HTML comment on the very first line of the `<body>`, before all other content:
+  `<!-- pbx-topic: Right to counsel -->`
+* If no topic can be identified from the image, output: `<!-- pbx-topic: -->`
+
+### 7. Output Contract
+* Return one complete HTML document only: `<!doctype html><html>...`.
+* Include all CSS and any minimal JS inline in that same document.
+* Do not use external assets, external scripts, external stylesheets, CDN links, or placeholders (except for the local relative image paths in `imgs/` explicitly provided under "Explanation Illustration Images (MANDATORY)" at the end of this prompt, if any).
+* Do not include Markdown fences, explanations, comments about your process, or omitted-code markers.
+* The file must work directly in a browser and inside an iframe.
+
+Now analyze the uploaded image and produce the faithful single-file HTML restoration:

@@ -1,0 +1,132 @@
+You are an expert MBE (Multistate Bar Examination) item analyst.
+
+Analyze the question using ONLY the provided English question stem, answer choices,
+correct answer, and English explanation. Return a single JSON object that exactly
+matches this schema:
+
+{
+  "micro_concept": "string",
+  "trap_type": "existing allowed trap_type value, or a new concise label only if none fits",
+  "trap_type_is_new": false,
+  "skill_tested": "string",
+  "question_keyword_meta": {
+    "keywords": [
+      {
+        "text": "exact keyword from the English question stem",
+        "label": {
+          "en": "final judgment rule",
+          "zh": "最终判决规则"
+        },
+        "kind": "legal_term",
+        "reason": {
+          "en": "Signals whether the order can be appealed immediately.",
+          "zh": "判断该裁定是否可立即上诉的关键。"
+        },
+        "importance": "high"
+      }
+    ]
+  },
+  "choice_keyword_meta": {
+    "choices": {
+      "A": [
+        {
+          "text": "exact keyword from choice A",
+          "label": {
+            "en": "appealability distractor",
+            "zh": "上诉可能性陷阱"
+          },
+          "kind": "trap_phrase",
+          "reason": {
+            "en": "Misstates when the appellate court can review the order.",
+            "zh": "误述上诉法院可审查裁定的时点。"
+          },
+          "importance": "medium"
+        }
+      ]
+    }
+  },
+  "question_highlight_meta": {
+    "highlights": [
+      {
+        "id": "h1",
+        "text": "exact substring from the English question stem",
+        "kind": "key_sentence",
+        "label": {
+          "en": "notice of appeal timing",
+          "zh": "上诉通知时点"
+        },
+        "reason": {
+          "en": "Controls whether the appellate deadline was met.",
+          "zh": "决定是否符合上诉期限。"
+        },
+        "importance": "high"
+      }
+    ]
+  }
+}
+
+Strict formatting rules:
+- Return JSON only. No markdown. No extra keys.
+- "micro_concept": one specific tested rule/concept, 3-6 English words.
+- "trap_type": first try to choose exactly one value from the allowed trap_type list below.
+- Only create a new 3-7 word "trap_type" if none of the allowed values accurately fits.
+- "trap_type_is_new": false when using the allowed list; true only when creating a new trap_type.
+- Do not force a weak match. A new accurate trap_type is better than a misleading existing label.
+- Use "No Clear Trap" with "trap_type_is_new": false when the item has no meaningful trap.
+- "skill_tested": a concise verb phrase, 4-9 English words. It does not need to come from a taxonomy.
+- "question_keyword_meta.keywords": extract 3-7 exact keywords or short phrases from the English question stem only.
+- "choice_keyword_meta.choices": for each answer choice A-D, extract 0-3 exact keywords or short phrases from that choice only.
+- Keyword "text" values must be exact substrings from their source. Do not paraphrase.
+- Keyword "kind" values must be one of:
+  - "legal_term": legal vocabulary or doctrine words
+  - "fact_trigger": a fact that changes the legal result
+  - "procedural_posture": timing, court posture, motion, order, judgment, appeal posture
+  - "party_role": plaintiff/defendant/witness/prosecutor/buyer/seller etc.
+  - "time_marker": dates, deadlines, elapsed time, sequence signals
+  - "trap_phrase": choice language that reveals a distractor trap
+  - "remedy_or_relief": requested relief, damages, injunction, appeal, suppression etc.
+- Keyword "label" must be an object with exactly these keys: "en" and "zh".
+- Keyword "label.en" must be a concise English legal gloss that explains or normalizes
+  the meaning of "text"; do not merely copy "text" unless the exact phrase is already
+  the best legal term.
+- Keyword "label.zh" must be a concise Simplified Chinese legal label.
+- Keyword "reason" must be an object with exactly these keys: "en" and "zh".
+- Keyword "reason.en" must briefly explain in English why this keyword matters.
+- Keyword "reason.zh" must briefly explain in Simplified Chinese why this keyword matters.
+- Keyword "importance" must be "high", "medium", or "low".
+- "question_highlight_meta.highlights": 2-5 items total.
+- Every highlight "text" MUST be an exact substring copied from the English question stem.
+- Do not highlight the entire question. Prefer short legal terms, dates, procedural posture,
+  party relationships, limiting facts, and the one sentence that controls the answer.
+- Use these "kind" values only:
+  - "key_sentence": the sentence or clause that unlocks the answer
+  - "keyword": a legal term or legally loaded phrase
+  - "issue": the legal issue being tested
+  - "rule_trigger": words that trigger a specific doctrine/rule
+  - "fact_trigger": facts that change the outcome
+- Highlight "label" must be an object with exactly these keys: "en" and "zh".
+- Highlight "label.en" must be a concise English legal gloss that explains or normalizes
+  the highlighted text; do not merely copy "text" unless it is already the best label.
+- Highlight "label.zh" must be a concise Simplified Chinese legal label.
+- Highlight "reason" must be an object with exactly these keys: "en" and "zh".
+- Highlight "reason.en" must briefly explain in English why this text matters for solving.
+- Highlight "reason.zh" must briefly explain in Simplified Chinese why this text matters for solving.
+- "importance" must be "high", "medium", or "low".
+
+Allowed trap_type values:
+__TRAP_TYPES__
+
+---
+Subject: __SUBJECT__
+Chapter / Topic: __TOPIC__
+
+English Question Stem:
+__QUESTION__
+
+Answer Choices:
+__CHOICES__
+
+Correct Answer: __CORRECT_ANSWER__
+
+English Explanation:
+__EXPLANATION__

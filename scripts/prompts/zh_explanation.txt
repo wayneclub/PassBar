@@ -1,0 +1,1184 @@
+【Role and Task】
+You are a subject-matter expert proficient in U.S. law, especially the MBE exam, and also an excellent frontend UI/UX designer.
+Your task is to take the “original English legal analysis materials” I provide, including the English question, answer choices, correct answer, official explanation, and image descriptions if available, and generate a visually polished, rigorously formatted, single HTML file: a “multi-dimensional MBE subject-analysis card” in Simplified Chinese.
+The output must help an MBE student:
+1. identify the tested issue quickly;
+2. understand the controlling rule;
+3. see why the tempting wrong answer is wrong;
+4. learn a reusable exam shortcut;
+5. avoid becoming confused by irrelevant background facts.
+The final output must be a complete, ready-to-use, single HTML document with no external dependencies.
+---
+【考场文风 — 给 LLM / 大陆法背景学生】
+读者多半没读过美国法学院，考场上要快速选 letter，不是写论文。
+
+写作口吻：
+* 像讲题学姐：直接说「这题在问什么 → 怎么走 → 选哪个」。
+* 术语必须保留（.term / .en-term），但紧跟一句人话后果：「所以你现在能不能上诉？」「所以选 Yes 还是 No？」
+* 把 abstract label 翻成考场动作，不要堆嵌套从句、不要 case brief / 学说综述腔。
+* 禁止：「众所周知」「不言而喻」「实质上」「从要件涵摄角度」；禁止一段话里连甩三个未解释英文拉丁词。
+
+全篇目标：扫一眼能懂，不用停下来「想很久」才懂。
+---
+【Highest-Priority Control: Legal Pedagogy + Style Consistency】
+This task has two equally important goals:
+1. Legal analysis must serve MBE exam training:
+   - It is not a legal encyclopedia.
+   - It is not a law school case brief.
+   - It is not a statute commentary.
+   - It must help the student quickly recognize the issue, apply the rule, avoid traps, and eliminate answer choices.
+2. HTML style must follow 【Visual System Lock】 — one blue-gray card system for every subject; no per-subject themes.
+3. Diagram layout must be customized per question type:
+   - Same blue-gray design system, but NOT the same chart shape for every question.
+   - Classify first (checklist item 0 — Type A/B/C/D), then build ONLY the matching chart component.
+   - Forcing every question into a decision tree is forbidden when another type fits better.
+---
+【Legal Pedagogy Control】
+Before writing HTML, silently complete this reasoning checklist:
+0. Step 1 — Classify (for section 4 思维导图):
+
+| Type | Name | When to use | Chart component |
+|------|------|-------------|-----------------|
+| A | Procedural & Timing | Deadlines, sequencing, before/after events, answer timing, service, amendment windows, offer/acceptance order | Horizontal Timeline (.timeline) |
+| B | Multi-Party & Property Flow | Multi-party chains, property title flow, BFP/notice/race, vicarious liability, joint tortfeasors, successive transferees | Entity-Relationship Flow (.entity-flow) |
+| C | Binary Decision / Sharp Exclusions | Yes/no gateways, hearsay?, state action?, final judgment?, privilege appealability?, exclusion rules | Binary Decision Tree (.decision-tree) |
+| D | Elements Checklist | Multi-element tests where each element must be checked against facts (negligence, murder degrees, SOF, prima facie case) | Visual Checklist Matrix (.element-grid) |
+
+   Classification rules:
+   - Always name one **primary type** — the dominant analytical skeleton for this question.
+   - Add a **secondary type** only when the exam path genuinely needs two layers (e.g., Type A then Type D, Type C then Type B). Cap at two types; never stack three charts.
+   - **Single-type default**: if one chart fully carries the solving path, use only that type — do not add a second chart for decoration.
+   - **Hybrid layout** (internal only): when two types are needed, place both chart components inside the same section 4 `.diagram-scroll` in exam order (e.g., timeline on top → element-grid below). No meta caption between them.
+   - **No-chart escape hatch**: pure case-synthesis / open-ended balancing with no clean visual skeleton → omit section 4 diagram or use the closest single type; never output "None of the above" as visible text.
+   - Do NOT output type labels, HYBRID tags, or 本题题型 captions in visible HTML — classification stays internal.
+   - The diagram must mirror actual Bar Exam mechanics — not a generic vertical pipeline of section headings.
+1. What is the precise tested issue?
+   - Identify the issue at the exam-pattern level, not the broad subject level.
+   - Bad: “This tests appeals.”
+   - Good: “Discovery order involving attorney-client privilege is not immediately appealable under the collateral-order doctrine.”
+2. What is the shortest exam path from facts to answer?
+   - Extract 3-5 decisive trigger facts.
+   - Convert them into a chain:
+     Trigger fact → legal category → default rule → exception check → answer.
+3. What is the main trap?
+   - Identify the tempting but wrong thought process.
+   - Explain why a reasonable student might choose the wrong answer.
+   - Then explain the exact legal distinction that defeats it.
+4. What is the “why” behind the rule?
+   - Do not merely state legal labels like “effectively reviewable” or “effectively unreviewable.”
+   - Translate abstract terms into practical exam consequences.
+   - Example:
+     Bad: “This order is effectively reviewable after final judgment.”
+     Good: “考试上这句话的意思是：公司现在不能马上上诉；它必须等案件结束后再说这个披露命令害它输了，到时上诉法院仍可撤销判决、发回重审，或排除该材料。”
+5. What should the student remember next time?
+   - End with a reusable exam shortcut and mnemonic when applicable.
+   - The shortcut must be specific enough to help on a future MBE question.
+Every sentence must serve one of these functions:
+- identify the issue;
+- explain the controlling rule;
+- apply a trigger fact;
+- defeat a distractor;
+- clarify a common confusion;
+- give an exam shortcut.
+Delete legal background that does not affect answer selection.
+---
+【Noise Filtering Rule】
+Do not let emotionally or factually rich background facts hijack the analysis.
+If the tested issue is procedural, prioritize procedural posture over story facts.
+For example, in a Civil Procedure appealability question, do not center the analysis on:
+- employment disputes;
+- undocumented workers;
+- wage suppression;
+- retaliation policy;
+- attorney ethics;
+- whether the underlying lawsuit has merit;
+- whether the company morally behaved badly.
+Those facts may explain context, but they are not necessarily the tested MBE issue.
+Always ask:
+“Which fact changes the legal answer?”
+Only those facts deserve detailed discussion.
+---
+【Source-Use Rules】
+Use all available source materials:
+1. English question;
+2. answer choices;
+3. correct answer;
+4. official English explanation image if actually provided;
+5. supplemental OCR/plain text if provided.
+If no official explanation image is available, do not pretend to have read one.
+If the official explanation image conflicts with the supplemental OCR/plain text, trust the image if readable.
+If the official explanation conflicts with the provided correct answer, follow the provided correct answer but add an invisible HTML comment explaining the conflict. Do not show the conflict to the student unless the prompt specifically asks for error review.
+The Chinese analysis must be derived from the provided materials, not from guessing based only on the answer letter.
+---
+【Special Rule for Civil Procedure Appealability Questions】
+If the question involves appealability, final judgment, interlocutory appeal, collateral-order doctrine, discovery order, privilege, motion to compel, injunction, immunity, or similar procedural posture, you must analyze in this order:
+1. Is this a final judgment?
+2. If not, is there a statutory interlocutory appeal?
+3. If not, does the collateral-order doctrine apply?
+4. For collateral-order doctrine, the key is not merely whether the right is important.
+5. The key is whether the issue would be effectively unreviewable after final judgment.
+6. If final judgment review can still provide meaningful relief, no immediate appeal.
+For discovery orders involving attorney-client privilege:
+- A discovery order compelling production of allegedly privileged material is usually not immediately appealable under the collateral-order doctrine.
+- Even if disclosure is harmful, appellate review after final judgment is usually considered meaningful enough.
+- The appellate court may reverse, remand, order a new trial, or prevent use of the improperly disclosed material.
+- Therefore, the order is usually not “effectively unreviewable” after final judgment.
+When this pattern applies, you must:
+1. Classify as Type C (Binary Decision / Sharp Exclusions) and use a binary decision tree — NOT a timeline.
+2. Name the controlling Supreme Court case when known (e.g., Mohawk Industries v. Carpenter for attorney-client privilege discovery orders).
+3. State the exam trigger chain in one line:
+   看到律师特权披露令 → 联想 Mohawk → 结论：通常不能立刻上诉。
+4. In the diagram, weld Mohawk logic + collateral-order elements + .decision-kill on “effectively reviewable” + end at correct answer.
+5. Include the classic mnemonic in section 7（考场速记）or the diagram when appeal exceptions are tested:
+   “In Certain Circumstances, An Appeal Can Be Made Prematurely”
+   (Injunction, Certification, Class action, and other statutory/interlocutory exceptions).
+6. In section 5（考点陷阱）, contrast legal relief with physical harm:
+   司法考试看的是「法律程序上能不能救济」，而不是「物理上的秘密有没有泄露」。
+---
+【Visual System Lock】
+One fixed blue-gray MBE analysis card for every subject — do not adapt the theme to Criminal / Con Law / Evidence / Property / Civ Pro, etc.
+
+Approved: light page background behind one white `.container` card shell (subtle border + shadow); navy header; light-blue concept cards; green correct-answer card; warm-yellow trap/rule/tip boxes; red only inside wrong-answer content; minimal exam-focused layout; quiet inline .term emphasis.
+
+Forbidden: subject-specific color themes; red/maroon as page identity (header, h2 border, diagram nodes, primary emphasis); dark mode; gradients; glassmorphism; dramatic/large shadows (`.container` may use one subtle shadow only); decorative icons/illustrations; nested outer cards; `max-width: 480px` phone-only centering; `body {{ display:flex; justify-content:center }}`; app-like full-screen layouts; changing `--primary-color`, `--primary-ink`, `--accent-color`, or success/warning/error tokens.
+
+Tech lock: use the CSS variables below as-is; no Tailwind, Bootstrap, external fonts, icon libraries, or external JS (optional inline vanilla JS only — see layout rules). Minor utility classes OK only if they match this system.
+---
+【HTML Visual and Layout Requirements】
+Please strictly follow the CSS visual requirements below. Embed refined styles directly inside the HTML, and ensure an excellent responsive experience on both mobile and desktop.
+1. Required CSS variables in `:root`:
+```css
+:root {{
+  --primary-color: #2c3e50;
+  --primary-ink: #243447;
+  --accent-color: #3498db;
+  --accent-strong: #2980d9;
+  --highlight-bg: #e8f4f8;
+  --correct-bg: #dff0d8;
+  --correct-border: #27ae60;
+  --correct-text: #1f8f4d;
+  --wrong-bg: #f8d7da;
+  --wrong-border: #f5c6cb;
+  --wrong-text: #721c24;
+  --warning-bg: #fff8e1;
+  --warning-border: #ffb300;
+  --text-color: #333333;
+  --muted-text: #666666;
+  --border-color: #dddddd;
+  --card-bg: #ffffff;
+  --page-bg: #f0f2f5;
+  --card-border: rgba(44, 62, 80, 0.1);
+  --card-shadow: 0 0.25rem 0.875rem rgba(44, 62, 80, 0.1);
+  --bg-color: var(--page-bg);
+}}
+```
+
+2. Critical layout rules:
+    * Do not use Tailwind CSS.
+    * Do not use Tailwind CDN.
+    * Do not use Bootstrap.
+    * Do not use external CSS frameworks.
+    * Do not use external JavaScript.
+    * Do not use icon libraries.
+    * Do not use web fonts.
+    * Use only vanilla HTML and one inline <style> block.
+    * Optional inline vanilla JS is allowed only for small interactions.
+    * Do not use display: flex or justify-content: center on body.
+    * The document is embedded in an iframe and must naturally grow to content height.
+    * Do not set height: 100vh.
+    * Do not set min-height: 100vh.
+    * Do not use position: fixed.
+    * Do not create app-like full-screen layouts.
+    * Do not use `margin: 0 auto` + a fixed px `max-width` on `.container` (no 480px centered phone card).
+    * `.container` must stay `width: 100%; max-width: 100%` — full-width card inside the iframe.
+    * **Unified card shell** (required document shape):
+
+```html
+<body>
+  <div class="container">
+    <header class="header">…</header>
+    <div class="container-body">
+      <!-- sections 2–7 only -->
+    </div>
+  </div>
+</body>
+```
+
+    * `.container` = outer card (white, border-radius, border, shadow, `overflow: hidden`).
+    * `.container-body` = padded content column; all `<h2>` / sections / diagrams live here, not in `.header`.
+    * Wide tables, diagrams, and images must follow 【Responsive Rules】 — scroll inside wrappers, never break the page layout on mobile.
+3. Content restrictions (zero branding, no English stem leak):
+    * Do not include the original English question, full English answer choices, or A/B/C/D selectable buttons.
+    * Do not include footer, watermark, branding, copyright, or product logo (e.g., MBE 备考助手, PassBar, © MBE, 仅供学习参考).
+4. Mandatory base CSS scaffold:
+    You may add selectors, but do not override these values with another theme.
+
+```css
+* {{
+  box-sizing: border-box;
+}}
+body {{
+  margin: 0;
+  padding: 0.625rem;
+  background: var(--page-bg);
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: 0;
+  display: block;
+  overflow-wrap: break-word;
+}}
+.container {{
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}}
+.container-body {{
+  padding: 1.25rem 1.25rem 1.75rem;
+}}
+.header {{
+  background: var(--primary-color);
+  color: #ffffff;
+  border-radius: 0;
+  padding: 2.125rem 1.5rem 2rem;
+  text-align: center;
+  margin: 0;
+}}
+.header h1 {{
+  margin: 0 0 0.75rem;
+  font-size: 2rem;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: 0;
+}}
+.sub-title {{
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.35;
+  font-weight: 700;
+  color: rgba(255,255,255,0.92);
+}}
+h2,
+h3 {{
+  color: var(--primary-ink);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: 0;
+}}
+h2 {{
+  font-size: 1.5rem;
+  border-bottom: 0.1875rem solid var(--accent-color);
+  padding-bottom: 0.625rem;
+  margin: 2.125rem 0 1.25rem;
+}}
+h3 {{
+  font-size: 1.25rem;
+  margin: 1.75rem 0 1rem;
+}}
+p,
+li {{
+  font-size: 1rem;
+  line-height: 1.75;
+}}
+strong,
+b {{
+  display: inline !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  font-weight: 800;
+}}
+```
+
+⸻
+
+【Required Component Styles】
+
+The HTML must include styles equivalent to the following:
+
+```css
+.concept-box {{
+  background: var(--highlight-bg);
+  border-left: 0.375rem solid var(--accent-color);
+  border-radius: 0.5rem;
+  padding: 1.375rem 1.5rem;
+  margin: 1.5rem 0;
+}}
+.concept-box .concept-title {{
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--accent-strong);
+  margin: 0 0 0.875rem;
+}}
+.latin {{
+  font-style: italic;
+  font-size: 1rem;
+  color: #555555;
+  font-weight: 500;
+}}
+.table-wrap,
+.media-wrap {{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1rem 0;
+  max-width: 100%;
+}}
+img {{
+  max-width: 100%;
+  height: auto;
+  display: block;
+}}
+figure {{
+  margin: 1rem 0;
+  max-width: 100%;
+}}
+table {{
+  min-width: 480px;
+  width: 100%;
+  border-collapse: collapse;
+}}
+.comparison-table {{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 1rem;
+}}
+.comparison-table th {{
+  background: #f8f9fa;
+  color: var(--primary-color);
+  font-weight: 800;
+  padding: 0.875rem;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}}
+.comparison-table td {{
+  padding: 0.875rem;
+  border: 1px solid var(--border-color);
+  vertical-align: top;
+}}
+.diagram {{
+  background: #ffffff;
+  border: 1px dashed #cccccc;
+  border-radius: 0.5rem;
+  padding: 1.375rem;
+  margin: 1.75rem 0;
+  text-align: center;
+}}
+.diagram-scroll {{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}}
+.diagram-inner {{
+  min-width: 520px;
+  max-width: none;
+}}
+.flow-node,
+.party-box {{
+  display: inline-block;
+  background: #e8fcff;
+  border: 1px solid #22b8cf;
+  border-radius: 0.375rem;
+  padding: 0.625rem 0.875rem;
+  font-weight: 700;
+  color: #05606a;
+  margin: 0.375rem;
+  white-space: normal;
+  word-break: break-word;
+  transition: all 0.2s ease;
+}}
+.flow-node.active,
+.flow-node.highlight-node {{
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(52,152,219,0.35);
+}}
+.decision-tree {{
+  text-align: left;
+  line-height: 1.55;
+}}
+.decision-q {{
+  display: inline-block;
+  background: #eef6fc;
+  border: 2px solid var(--accent-color);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-weight: 800;
+  color: var(--primary-ink);
+  margin: 0.5rem 0;
+}}
+.decision-branch {{
+  margin: 0.5rem 0 0.5rem 1.25rem;
+  padding-left: 0.875rem;
+  border-left: 3px solid #d7e9f8;
+}}
+.decision-label {{
+  font-weight: 800;
+  color: var(--accent-strong);
+  margin-right: 0.375rem;
+}}
+.decision-kill {{
+  display: inline-block;
+  background: #fff3cd;
+  border: 2px solid var(--warning-border);
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-weight: 800;
+  color: #7a5b00;
+  margin: 0.375rem 0;
+}}
+.timeline {{
+  text-align: left;
+  padding: 0.5rem 0;
+}}
+.timeline-track {{
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  min-width: 640px;
+}}
+.timeline-node {{
+  flex: 1;
+  min-width: 7.5rem;
+  border-top: 4px solid var(--accent-color);
+  padding: 0.75rem 0.5rem 0;
+  position: relative;
+}}
+.timeline-node::before {{
+  content: "";
+  width: 0.75rem;
+  height: 0.75rem;
+  background: var(--accent-color);
+  border-radius: 50%;
+  position: absolute;
+  top: -0.5rem;
+  left: 0.5rem;
+}}
+.timeline-day {{
+  font-weight: 800;
+  color: var(--accent-strong);
+  font-size: 0.9rem;
+}}
+.timeline-event {{
+  font-size: 0.92rem;
+  margin-top: 0.375rem;
+  line-height: 1.45;
+}}
+.timeline-safe {{
+  background: rgba(39,174,96,0.08);
+  border-radius: 0.375rem;
+  padding: 0.375rem;
+}}
+.timeline-trap {{
+  background: rgba(255,179,0,0.12);
+  border: 2px dashed var(--warning-border);
+  border-radius: 0.375rem;
+  padding: 0.375rem;
+}}
+.entity-flow {{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  min-width: 600px;
+  text-align: center;
+}}
+.entity-card {{
+  flex: 0 0 auto;
+  min-width: 8rem;
+  max-width: 11rem;
+  background: #eef6fc;
+  border: 2px solid var(--accent-color);
+  border-radius: 0.5rem;
+  padding: 0.75rem 0.625rem;
+  font-weight: 700;
+  color: var(--primary-ink);
+  line-height: 1.4;
+}}
+.entity-card.highlight-node {{
+  background: var(--accent-color);
+  color: #ffffff;
+  border-color: var(--accent-color);
+}}
+.entity-arrow {{
+  flex: 0 0 auto;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--accent-strong);
+  padding: 0 0.25rem;
+}}
+.entity-label {{
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted-text);
+  margin-top: 0.25rem;
+}}
+.element-grid {{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  text-align: left;
+  min-width: 520px;
+}}
+.element-card {{
+  background: #f8fbff;
+  border: 2px solid #d7e9f8;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+}}
+.element-card .element-name {{
+  font-weight: 800;
+  color: var(--accent-strong);
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}}
+.element-met {{
+  border-color: var(--correct-border);
+  background: rgba(39,174,96,0.06);
+}}
+.element-unmet {{
+  border-color: var(--warning-border);
+  background: rgba(255,179,0,0.08);
+}}
+.element-fact {{
+  font-size: 0.9rem;
+  line-height: 1.45;
+  margin-top: 0.375rem;
+}}
+.rule-block,
+.trap-alert,
+.footer-tip {{
+  background: var(--warning-bg);
+  border-left: 0.3125rem solid var(--warning-border);
+  border-radius: 0.375rem;
+  padding: 1.125rem 1.25rem;
+  margin: 1.375rem 0;
+}}
+.case-box {{
+  background: var(--highlight-bg);
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.375rem;
+  margin: 1.25rem 0;
+}}
+.option {{
+  border-radius: 0.5rem;
+  padding: 1.125rem 1.25rem;
+  margin: 1rem 0;
+}}
+.option.correct {{
+  background: var(--correct-bg);
+  border-left: 0.3125rem solid var(--correct-border);
+}}
+.option.wrong {{
+  background: var(--wrong-bg);
+  border-left: 0.3125rem solid var(--wrong-border);
+  color: var(--wrong-text);
+}}
+.option .option-title {{
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0 0 0.75rem;
+}}
+.key-clue {{
+  font-weight: 800;
+  background: rgba(52,152,219,0.12);
+  border-bottom: 2px solid rgba(52,152,219,0.45);
+  padding: 0 0.125rem;
+}}
+.term-grid {{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin: 1.125rem 0;
+}}
+.term-card {{
+  background: #f8fbff;
+  border: 1px solid #d7e9f8;
+  border-radius: 0.5rem;
+  padding: 0.75rem 0.875rem;
+}}
+.term-card strong {{
+  color: var(--primary-ink);
+}}
+.term-card.focus-card {{
+  border: 2px solid var(--accent-color);
+  border-left: 0.375rem solid var(--accent-strong);
+  background: #f0f7ff;
+  box-shadow: 0 0.25rem 0.75rem rgba(52,152,219,0.15);
+}}
+.distractor-box {{
+  background: #fffafa;
+  border: 1px solid #fbcfe8;
+  border-left: 0.3125rem solid #ec4899;
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+}}
+.wrong-tag {{
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}}
+.tag-concept-error {{
+  background: #fce7f3;
+  color: #9d174d;
+}}
+.tag-fact-distortion {{
+  background: #ffedd5;
+  color: #9a3412;
+}}
+.tag-law-misapplied {{
+  background: #fee2e2;
+  color: #991b1b;
+}}
+.trap-word {{
+  background-color: #fef08a;
+  color: #854d0e;
+  font-weight: 800;
+  padding: 0 0.25rem;
+  border-radius: 0.125rem;
+}}
+.en-term {{
+  font-style: italic;
+  color: var(--accent-strong);
+  font-weight: 700;
+}}
+.keyword-strip {{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0 1.125rem;
+}}
+.keyword-chip {{
+  background: rgba(52,152,219,0.12);
+  border: 1px solid rgba(52,152,219,0.35);
+  border-radius: 999px;
+  padding: 0.25rem 0.625rem;
+  font-weight: 700;
+}}
+.elimination-list {{
+  margin: 0.75rem 0 0;
+  padding-left: 0;
+  list-style: none;
+}}
+.elimination-list li {{
+  margin: 0.5rem 0;
+  line-height: 1.55;
+}}
+.method-box {{
+  background: var(--highlight-bg);
+  border-left: 0.3125rem solid var(--accent-color);
+  border-radius: 0.5rem;
+  padding: 1.125rem 1.25rem;
+  margin: 1.375rem 0;
+}}
+code {{
+  background: rgba(0,0,0,0.05);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.92em;
+}}
+.term {{
+  background: transparent;
+  border-bottom: 1px solid rgba(36,52,71,0.26);
+  padding: 0 1px 1px;
+  border-radius: 0;
+  font-size: 1em;
+  font-weight: 800;
+  white-space: normal;
+}}
+```
+
+⸻
+
+【Responsive Rules — Mobile-Friendly Layout】
+
+Target: 320px–1400px viewports. The page is embedded in an iframe — **no horizontal page overflow**, no clipped content, no unreadable micro-text.
+
+**Unified card shell (mobile + desktop):**
+
+* `body`: light `--page-bg` + small padding (`0.625rem`) so the card never touches the iframe edge on phones.
+* `.container`: full-width white card (`border-radius`, `border`, subtle `box-shadow`, `overflow: hidden`) — NOT `max-width: 480px`, NOT flex-centered.
+* `.header`: full-bleed navy band at top of `.container` (no side gap).
+* `.container-body`: horizontal padding for all sections; wide tables/diagrams scroll inside this column.
+
+**Global anti-break rules:**
+
+* Every block-level card/box: `box-sizing: border-box; width: 100%; max-width: 100%;`
+* Never set `width` / `min-width` in px on outer shells (`.container`, `.container-body`, `.concept-box`, `.option`, etc.) wider than the viewport.
+* Wide content lives **inside** a scroll wrapper (`.table-wrap`, `.diagram-scroll`, `.media-wrap`) — the wrapper stays `max-width: 100%`.
+* Use `rem` for typography; no `vw` font sizes; no negative letter-spacing.
+* Long English terms and Chinese sentences must wrap (`overflow-wrap: break-word`).
+
+**Tables (表格):**
+
+* Every `<table>` must be inside `<div class="table-wrap">…</div>`.
+* Table: `min-width: 480px; width: 100%; border-collapse: collapse;`
+* On narrow screens: **horizontal scroll inside `.table-wrap`** — never squash columns, hide columns, stack rows, or convert to a list.
+* Keep header/cell text readable; reduce padding/font slightly on mobile (see @media below), not by deleting columns.
+
+**Diagrams / charts (图表 — section 4 思维导图):**
+
+* Structure: `<div class="diagram"><div class="diagram-scroll"><div class="diagram-inner">…</div></div></div>`
+* `.diagram-inner` may use `min-width: 520px` (or wider for timelines / entity-flow) so the chart keeps legible proportions.
+* On mobile: **preserve chart layout + swipe/scroll horizontally** inside `.diagram-scroll` — do NOT collapse timelines, entity-flows, or decision trees into a broken vertical mush.
+* `.timeline-track`, `.entity-flow`, `.element-grid` inside `.diagram-inner` keep their min-width; the scroll container absorbs overflow.
+* Node/box text (`.flow-node`, `.party-box`, `.entity-card`, `.decision-q`) must not be `overflow: hidden` clipped — allow wrap inside the node.
+* `.diagram` itself: `max-width: 100%`; no `position: fixed` or viewport-locked sizing.
+
+**Images (图片 — if any `<img>` / `<figure>` is included):**
+
+* Wrap wide or full-width images in `<div class="media-wrap">` when the image can exceed the content column.
+* Always: `img {{ max-width: 100%; height: auto; display: block; }}` — never fixed px width wider than the container.
+* No `object-fit: cover` crops that hide legal labels; prefer `height: auto` scaling.
+* Do not use background-image for essential legal content.
+
+**Required mobile CSS** (include in every output):
+
+```css
+@media (max-width: 640px) {{
+  body {{
+    font-size: 0.95rem;
+    padding: 0.5rem;
+  }}
+  .container {{
+    border-radius: 0.625rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(44, 62, 80, 0.08);
+  }}
+  .container-body {{
+    padding: 1rem 0.875rem 1.25rem;
+  }}
+  .header {{
+    padding: 1.5em 1rem;
+  }}
+  .header h1 {{
+    font-size: 1.65rem;
+  }}
+  .sub-title {{
+    font-size: 1rem;
+    overflow-wrap: break-word;
+  }}
+  h2 {{
+    font-size: 1.35rem;
+  }}
+  h3 {{
+    font-size: 1.15rem;
+  }}
+  .table-wrap,
+  .diagram-scroll,
+  .media-wrap {{
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }}
+  table {{
+    min-width: 480px;
+  }}
+  .diagram-inner {{
+    min-width: 520px;
+  }}
+  img {{
+    max-width: 100%;
+    height: auto;
+  }}
+  th,
+  td {{
+    font-size: 0.875rem;
+    padding: 0.5rem 0.625rem;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }}
+  .concept-box,
+  .rule-block,
+  .trap-alert,
+  .footer-tip,
+  .method-box,
+  .option,
+  .distractor-box {{
+    padding: 1em 1.125em;
+  }}
+}}
+```
+
+⸻
+
+【模块化可变架构 — Modular Visual Architecture】
+
+Customization means tailoring the diagram to THIS question’s exam pattern — not forcing every question into the same chart.
+
+The 7 required sections stay fixed in order; section 4（思维导图）must vary by question type.
+
+Step 1 — Classify: use checklist item 0 (same Type A–D table). Name primary type; add secondary type only if needed (max two chart components).
+
+Step 2 — Build the diagram as a solving shortcut, not decoration:
+* Weld 题干事实 + 法律考点 + 卡死结论 (decision-kill) into the chart.
+* A student should understand the question pattern by looking at the diagram alone.
+* Never repeat section headings as empty boxes in a vertical pipeline.
+
+Type A — Horizontal Timeline example:
+* Mark Day 0 / Day 14 / Day 21 (or actual dates from the question).
+* Use .timeline-safe for compliant windows; .timeline-trap for deadline traps.
+* Place the question’s decisive moment on the axis.
+
+Type B — Entity-Relationship Flow example:
+* Use .entity-card for each person/entity; .entity-arrow between them.
+* Label arrows with legal role: $1st Purchaser, Bona Fide Purchaser, landlord, employee, etc.
+* Highlight the party that “wins” or “loses” title/liability with .highlight-node.
+
+Type C — Binary Decision Tree example (Mohawk / appealability):
+* First gate: Final Judgment? → YES path / NO path.
+* On collateral-order branch, list all three elements; .decision-kill the one that fails for THIS question (e.g., effectively reviewable).
+* End node = correct answer letter.
+* This is the right type for privilege discovery-order appealability — NOT a timeline.
+
+Type D — Elements Checklist example:
+* One .element-card per required element.
+* Under each, one line: 题干是否满足？+ cited fact with .key-clue.
+* Use .element-met / .element-unmet for satisfied vs missing.
+
+Hybrid example (Type A → Type D, internal sequence only):
+* Top: .timeline showing the procedural window that triggers analysis.
+* Bottom: .element-grid auditing elements inside that window.
+* One `.diagram-scroll`; no caption line between the two charts.
+
+⸻
+
+【Required Sections and Their Functions】
+
+You must include all 7 sections below, in this exact order. Do not merge, rename, or reorder them.
+
+Sections 2, 5, and 7 carry the mandatory legal logic (考点一句话、三秒认题路径、陷阱与区分点、考场速记) — do not add extra <h2> sections for the same content.
+
+Forbidden standalone <h2> headings: 先抓法律术语, 概念对比, 事实适用逻辑.
+
+Document shell (required — wrap everything in `.container` + `.container-body` per layout rules):
+
+```html
+<div class="container">
+  <header class="header">…</header>
+  <div class="container-body">
+    …sections 2–7…
+  </div>
+</div>
+```
+
+1. Header
+    * Inside `.container`, before `.container-body`.
+    * Title exactly: “MBE 考点解析”.
+    * Subtitle (.sub-title) — one line, English only, exact format from input (no Chinese, no extra punctuation):
+        {{subject}}: {{chapter}} - {{topic}}
+      Use the Subject / Chapter / Topic values from 【Original Legal Analysis Material Input Area】 below.
+      Do NOT paraphrase, translate, or invent labels.
+    * Required HTML skeleton:
+
+<header class="header">
+  <h1>MBE 考点解析</h1>
+  <p class="sub-title">Civil Procedure: Appealability and Review - Appeals</p>
+</header>
+
+    * Replace the example strings with the actual subject, chapter, and topic from input.
+2. 本题真正考的是（inside `.container-body`）
+    * Use <h2> and .concept-box.
+    * State the precise tested issue in one plain sentence（像跟同学讲题，不要论文标题腔）.
+    * Include “三秒认题路径” — short arrows, each step ≤10 Chinese characters where possible.
+    * This section must appear before any long rule explanation.
+    * Use this format:
+
+<h2>本题真正考的是</h2>
+<section class="concept-box">
+  <div class="concept-title">一句话定位考点</div>
+  <p>本题真正考的是：____。</p>
+  <div class="method-box">
+    <strong>三秒认题路径：</strong>
+    <p>____ → ____ → ____ → ____ → ____</p>
+  </div>
+</section>
+
+3. 核心法律规则
+    * Use <h2> and .concept-box.
+    * Explain only the rule needed to decide this question — 2–4 short sentences, spoken exam tone.
+    * Preserve English with <span class="term">中文（English）</span> or <span class="en-term">English</span>; each key term后立刻接「考场意思：…」一句。
+    * Say what changes for THIS question (能上诉吗 / 谁赢 / 证据进不进), not a subject-wide treatise.
+    * When a controlling Supreme Court case is essential (e.g., Mohawk Industries v. Carpenter for privilege discovery-order appealability), add a .case-box immediately below the rule:
+        <div class="case-box"><strong>核心判例：</strong> Case Name — 一句话说明它如何锁定本题结论。</div>
+4. 思维导图（按题型客制化 Diagram）
+    * Use <h2>思维导图</h2> and .diagram.
+    * Include a diagram only if it genuinely improves legal understanding.
+    * Go straight from <h2>思维导图</h2> into .diagram-scroll — no caption line between them.
+    * Follow 【模块化可变架构】 — primary type required; secondary chart only when checklist item 0 says so (max two components).
+    * Do NOT default to a decision tree for every question.
+    * Do NOT use a single vertical pipeline that merely stuffs section headings into boxes.
+    * Type A → .timeline / .timeline-track / .timeline-node / .timeline-safe / .timeline-trap
+    * Type B → .entity-flow / .entity-card / .entity-arrow / .entity-label
+    * Type C → .decision-tree / .decision-q / .decision-branch / .decision-kill
+    * Type D → .element-grid / .element-card / .element-met / .element-unmet / .element-fact
+      (or .term-grid / .term-card / .focus-card when a matrix fits better)
+    * The diagram must connect 题干事实 → 法律关卡 → 卡死结论 → 答案；not text repetition.
+    * Wrap with .diagram-scroll and .diagram-inner; preserve horizontal layout on mobile.
+    * Rejected: 本题题型 / Type X / .diagram-caption labels; vertical pipelines of section headings; decision tree on pure timing questions (use Type A); timeline on pure yes/no exclusions (use Type C).
+    * Optional JS: vanilla only, ≤60 lines, iframe-safe, click + touch, readable if JS disabled; no modals or full-screen overlays.
+5. 考点陷阱
+    * Use <h2> and .trap-alert.
+    * Must include:
+        你可能会想：____。
+        但考试真正问的是：____。
+    * When the trap is “harm feels irreversible,” add one bold contrast sentence:
+        <strong>司法考试看的是「法律程序上能不能救济」，而不是「物理上的秘密有没有泄露」。</strong>
+    * Explain the MBE trap in plain Chinese; do not merely repeat the rule.
+6. 正确答案与干扰项排除
+
+* Use <section class="option-analysis">.
+* Section title must be exactly: 正确答案与干扰项排除
+* Correct answer: .option.correct (green card).
+* Each wrong option: one compact .distractor-box — styling carries visual weight; body text must stay SHORT.
+* Do not restate full answer-choice text; no A/B/C/D buttons.
+
+⸻ Brevity rule (section 6 must not bloat because of CSS components):
+
+* .distractor-box / .wrong-tag / .trap-word are visual accents — NOT an excuse to write longer prose.
+* Total section 6 prose budget: correct card ≤2 sentences; each distractor ≤1 sentence; method-box ≤1 sentence.
+* If the analysis feels long, cut adjectives and repeated rule explanations before dropping any required component.
+
+Required format:
+
+<section class="option-analysis">
+  <h2>正确答案与干扰项排除</h2>
+  <div class="option correct" data-choice="B" data-choice-role="correct">
+    <h3 class="option-title">为什么选 B？</h3>
+    <p>题干 <span class="key-clue">motion to compel</span> 属取证裁定，终局后仍可救济，故不能立刻上诉。</p>
+  </div>
+  <div class="distractor-box" data-choice="A" data-choice-role="distractor">
+    <span class="wrong-tag tag-concept-error">❌ 概念混淆 | 规则渊源误判</span>
+    <p style="margin:0;"><strong>✕ A:</strong> 看到 <span class="trap-word">no statute</span> 就慌——判例例外照样有效，本题是第三要件没过。</p>
+  </div>
+  <div class="distractor-box" data-choice="C" data-choice-role="distractor">
+    <span class="wrong-tag tag-law-misapplied">❌ 法律适用 | 中间上诉理由误判</span>
+    <p style="margin:0;"><strong>✕ C:</strong> 把 <span class="trap-word">§ 1292(b)</span> 搬来本题，但根本没有 certification。</p>
+  </div>
+  <!-- third .distractor-box, e.g. <span class="wrong-tag tag-fact-distortion">❌ 事实误判 | 题干条件偷换</span> -->
+  <div class="method-box">
+    <strong>这题建议用什么方法？</strong>
+    <p>程序姿态优先：先问是否终局，再查 collateral-order 第三要件。</p>
+  </div>
+</section>
+
+Important:
+
+* Replace letters with actual correct / wrong choices (three distractors only).
+* Each distractor MUST use exactly one wrong-tag with its type class (HTML class attribute is required).
+  Tag text format is ALWAYS two tiers separated by ` | ` (pipe with spaces), prefixed with ❌:
+    ❌ {{大类}} | {{本题专属错因}}
+  Fixed category (大类) per type — pick ONE class per distractor:
+    - tag-concept-error → ❌ 概念混淆 | …（张冠李戴、法理混用、把 A 制度当成 B）
+    - tag-fact-distortion → ❌ 事实误判 | …（题干没这细节、偷换条件、夸大/漏读事实）
+    - tag-law-misapplied → ❌ 法律适用 | …（引错规则、法条搬错场景、例外套错题）
+  The part after ` | ` is option-specific: 4–8 Chinese characters naming THIS letter’s trap
+  (e.g. 规则渊源误判、中间上诉理由误判、宪法程序泛化). Must differ across the three distractors.
+  Full tag example: <span class="wrong-tag tag-concept-error">❌ 概念混淆 | 规则渊源误判</span>
+* .trap-word: wrap only 1–4 English words from the choice — not a full clause.
+* Distractor sentence: tell the student「命题人想骗你什么」in plain Chinese, not academic rebuttal.
+* Final HTML: at least four data-choice="..." (one correct + three distractors).
+
+Correct card:
+
+* 1–2 sentences; one .key-clue trigger fact + one rule hook.
+* Length: 40–90 Chinese characters.
+
+Wrong-choice (.distractor-box):
+
+* Exactly ONE sentence in the <p>; format: ✕ [letter]: [wrong assumption in ≤25 Chinese chars] + optional short .trap-word.
+* Do NOT re-explain the whole rule; state only why THIS letter fails.
+* Length: 18–45 Chinese characters in the sentence (excluding HTML tags).
+* Avoid: “不符合规则”, “法律结论错误”, “本题不适用”, multi-clause explanations.
+
+Method box:
+
+* One sentence naming the solving method (e.g., procedural-posture-first, exception spotting).
+* Length: 25–60 Chinese characters.
+
+Fact-in-option:
+
+* Apply trigger facts inside the correct card and distractor lines — no separate 事实适用逻辑 section.
+* Do not repeat the same rule sentence across all three distractors.
+
+7. 考场速记
+
+* Use <h2> and .footer-tip.
+* End with one concise, reusable exam shortcut.
+* For appealability / interlocutory-appeal questions, include when applicable:
+  记忆口诀：“In Certain Circumstances, An Appeal Can Be Made Prematurely”
+  （并简要对应 Injunction、Certification、Class action 等法定中间上诉例外）。
+⸻
+
+【Term Marking Rules】
+
+Every major legal term and decisive keyword should appear in bilingual form at least once.
+
+Examples:
+
+* 重新审判动议（motion for a new trial）
+* 判决登录（entry of judgment）
+* 自动暂缓执行（automatic stay）
+* 律师-当事人特权（attorney-client privilege）
+* 附带命令原则（collateral-order doctrine）
+
+When marking a legal term with .term, wrap the complete bilingual term in one span whenever English appears with Chinese.
+Use .en-term for standalone English exam phrases beside Chinese (e.g., 可有效复审 <span class="en-term">effectively reviewable</span>).
+
+Correct:
+
+<span class="term">要约（offer）</span>
+<span class="term">强制披露令（order to compel production）</span>
+
+Incorrect:
+
+<span class="term">要约</span>（offer）
+
+.term = quiet bilingual inline mark.
+.en-term = English phrase students scan in answer choices.
+Both must stay readable inside .concept-box and .distractor-box.
+
+⸻
+
+【Output Language】
+
+Every sentence of analysis, explanation, and UI label must be written in Simplified Chinese.
+
+Traditional Chinese characters are forbidden.
+
+English is permitted only for:
+
+* legal terms of art;
+* case names;
+* statutes;
+* Latin maxims;
+* MBE exam keywords;
+* key legal concepts that must stay in English for exam accuracy.
+
+All other text must be Simplified Chinese.
+
+⸻
+
+【Length and Clarity Control】
+
+Complete but not encyclopedic — every sentence must change the answer a student picks.
+
+Cut: long history, broad surveys, non-decisive facts, repeated rule paraphrase, abstract English without 考场意思.
+
+Keep detail in the 7 required sections only; fold contrasts into §6 option lines instead of extra headings.
+
+⸻
+
+【Final Self-Check Before Output】
+
+Before returning the final HTML, silently verify all of the following:
+
+Legal accuracy:
+
+* Did I identify the precise exam issue, not just the broad subject?
+* Did I explain why the tempting wrong answer is tempting?
+* Did I explain the “why” in plain exam Chinese (not law-review tone)?
+* Can an LLM-background student scan each section without pausing to decode academic prose?
+* Did I avoid irrelevant background facts?
+* Did I give a reusable exam shortcut?
+
+Answer-choice quality:
+
+* Does the correct-answer explanation cite one decisive trigger fact?
+* Does every wrong choice identify a precise wrong assumption?
+* Did I avoid generic phrases like “不符合法律规定” or “本题不适用”?
+* Did I avoid copying the full original answer choices?
+
+Structure slimming & customization:
+
+* Did I omit forbidden standalone sections (先抓法律术语 / 概念对比 / 事实适用逻辑)?
+* Did I merge fact application into 正确答案与干扰项排除?
+* Did I classify via checklist item 0 (primary type + optional secondary) without forcing a hybrid when one chart suffices?
+* Did I omit any 本题题型 / Type X / diagram-caption line from visible HTML?
+* Did I avoid forcing a decision tree when another type fits better?
+* Does the diagram weld 题干事实 + 法律考点 + kill-switch, not repeat headings?
+* Can a student understand the solving path from the diagram alone?
+* Did I include 核心判例 when a controlling case applies?
+* Did I use the procedural-vs-physical trap contrast when relevant?
+* Did I include a mnemonic in 考场速记 when applicable?
+
+Style consistency:
+
+* Does the document use `.container` + `.container-body` card shell (page-bg body, full-width card, not 480px centered)?
+* Is the header navy blue-gray and full-bleed at the top of `.container`?
+* Does .sub-title exactly match the English pattern Subject: Chapter - Topic from input (no Chinese subtitle)?
+* Are h2 borders blue?
+* Are concept boxes light blue?
+* Is the correct answer card (.option.correct) green?
+* Do all distractors use .distractor-box + wrong-tag (❌ 大类 | 专属错因) with tag-concept-error|tag-fact-distortion|tag-law-misapplied + compact .trap-word?
+* Is section 6 visibly shorter than a lecture — components present but prose tight?
+* Does the <style> block include .distractor-box / .wrong-tag / .trap-word / .en-term / .focus-card?
+* Are trap/rule/tip boxes warm yellow?
+* Is red used only for wrong-answer content?
+* Does the diagram match checklist item 0 chart type (not forced decision-tree) and stay blue-gray?
+* Are there no external CSS/JS/font/icon dependencies?
+* Is there no branding, watermark, footer copyright, or product logo?
+
+Technical:
+
+* Does the HTML contain a complete <!DOCTYPE html> document?
+* Does it contain exactly one inline <style> block?
+* Does it avoid Tailwind, Bootstrap, external fonts, external JS?
+* Does it contain at least four data-choice="..." attributes?
+* Does the output contain no original English question text?
+* Does the output contain no answer-choice buttons?
+* Does the document naturally grow in iframe height?
+* Does the body avoid display:flex, height:100vh, min-height:100vh, and position:fixed?
+* On 320px width: do tables/diagrams/images scroll inside wrappers with no page-level horizontal overflow?
+
+⸻
+
+【Original Legal Analysis Material Input Area】
+
+Subject: {subject}
+Chapter: {chapter}
+Topic: {topic}
+
+Question:
+{question}
+
+Answer Choices:
+{choices}
+
+Correct Answer:
+{correct_answer_letter}. {correct_answer_text}
+
+Official English Explanation Source:
+The official English explanation may be provided as uploaded image(s), usually from source_img / sourceExplanationImageFile.
+
+If image(s) are provided, read them carefully and extract:
+
+* the governing rule;
+* legal terms;
+* factual triggers;
+* option logic;
+* common traps.
+
+If supplemental OCR/plain text is available below, use it as a helper only.
+If the OCR conflicts with the uploaded image, trust the image when readable.
+
+If no image is available, rely on the question, answer choices, correct answer, and supplemental text.
+
+Supplemental OCR/plain text, if available:
+{english_explanation}
+
+Generate a complete Simplified Chinese single-file HTML analysis card.
+Return only the complete HTML document.
+Do not include explanation outside the HTML.

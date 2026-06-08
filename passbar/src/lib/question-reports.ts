@@ -1,13 +1,14 @@
 import { supabase } from './supabase';
 
-export type ReportCategory = 'wrong_answer' | 'typo' | 'unclear' | 'outdated' | 'other';
+export type ReportCategory = 'wrong_answer' | 'typo' | 'unclear' | 'outdated' | 'explanation_incorrect' | 'other';
 
 export const REPORT_CATEGORIES: { value: ReportCategory; label: string }[] = [
-  { value: 'wrong_answer', label: '答案有誤' },
-  { value: 'typo',         label: '題目有誤字' },
-  { value: 'unclear',      label: '說明不清楚' },
-  { value: 'outdated',     label: '內容已過時' },
-  { value: 'other',        label: '其他' },
+  { value: 'wrong_answer',         label: '答案有誤' },
+  { value: 'typo',                 label: '題目有誤字' },
+  { value: 'unclear',              label: '說明不清楚' },
+  { value: 'outdated',             label: '內容已過時' },
+  { value: 'explanation_incorrect', label: '解析有誤' },
+  { value: 'other',                label: '其他' },
 ];
 
 export type QuestionReport = {
@@ -15,6 +16,8 @@ export type QuestionReport = {
   question_id: string;
   user_id: string | null;
   category: ReportCategory;
+  categories: ReportCategory[] | null;
+  language: string | null;
   message: string | null;
   resolved: boolean;
   resolved_at: string | null;
@@ -25,14 +28,17 @@ export type QuestionReport = {
 export async function submitQuestionReport(input: {
   questionId: string;
   userId: string;
-  category: ReportCategory;
+  categories: ReportCategory[];
+  language: string;
   message?: string;
 }): Promise<boolean> {
   if (!supabase) return false;
   const { error } = await supabase.from('question_reports').insert({
     question_id: input.questionId,
     user_id: input.userId,
-    category: input.category,
+    category: input.categories[0],
+    categories: input.categories,
+    language: input.language,
     message: input.message?.trim() || null,
   });
   if (error && !error.message.includes('201')) { console.warn('submitQuestionReport:', error.message); return false; }

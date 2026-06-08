@@ -4,11 +4,15 @@
 from __future__ import annotations
 
 import os
+import re
 import shlex
 import shutil
 import subprocess
 import tempfile
 from pathlib import Path
+from urllib.parse import unquote, urlparse
+
+from ai_prompts import format_prompt, load_prompt
 
 
 DEFAULT_TIMEOUT_SECONDS = int(os.environ.get("PASSBAR_CLI_AI_TIMEOUT", "900"))
@@ -31,6 +35,14 @@ def check_provider_ready(provider: str) -> None:
             raise RuntimeError("Claude CLI not found. Install Claude Code or set CLAUDE_CLI_BIN.")
         return
 
+    if provider == "cursor-cli":
+        if not _resolve_cursor_cli_bin():
+            raise RuntimeError(
+                "Cursor CLI not found. Install via: curl https://cursor.com/install -fsS | bash "
+                "or set CURSOR_CLI_BIN."
+            )
+        return
+
 
 def _normalize_images(image_paths: list[str] | str | None) -> list[str]:
     if isinstance(image_paths, str):
@@ -39,16 +51,66 @@ def _normalize_images(image_paths: list[str] | str | None) -> list[str]:
 
 
 def _append_output_contract(prompt: str, expected: str) -> str:
-    return (
-        prompt.rstrip()
-        + "\n\n---\n"
-        + "STRICT OUTPUT CONTRACT — read carefully before responding:\n"
-        + f"- Your entire response must be {expected} and nothing else.\n"
-        + "- Do NOT read, open, or inspect any files in the workspace before generating your response.\n"
-        + "- Do NOT edit files, run shell commands, or perform any agentic actions.\n"
-        + "- Do NOT add any preamble, explanation, reasoning, or markdown fences around the output.\n"
-        + "- Do NOT summarise what you are about to do — just output the result directly.\n"
-        + "- If you cannot comply, output a single line starting with ERROR: explaining why.\n"
+    return prompt.rstrip() + format_prompt("cli_output_contract", expected=expected)
+
+
+_ANTIGRAVITY_FILE_HTML_RE = re.compile(
+    r"(?:\]\(|^|\s)(file://[^\s\)\]\"'<>]+\.html)",
+    re.IGNORECASE,
+)
+
+
+def _looks_like_html_document(text: str) -> bool:
+    lowered = text.strip().lower()
+    if lowered.startswith("<!doctype html"):
+        return True
+    return lowered.startswith("<html") and "</html>" in lowered
+
+
+def _recover_antigravity_written_html(output: str) -> str | None:
+    """Gemini via `agy --print` often writes HTML to disk and returns a short summary.
+
+    Recover the document from any file://…html link in the CLI stdout.
+    """
+    seen: set[str] = set()
+    for match in _ANTIGRAVITY_FILE_HTML_RE.finditer(output):
+        raw_url = match.group(1).rstrip(".,;)")
+        if raw_url in seen:
+            continue
+        seen.add(raw_url)
+        path = Path(unquote(urlparse(raw_url).path))
+        if not path.is_file():
+            continue
+        text = path.read_text(encoding="utf-8").strip()
+        if _looks_like_html_document(text):
+            return text
+    return None
+
+
+def _finalize_antigravity_output(output: str) -> str:
+    if _looks_like_html_document(output):
+        return output
+    recovered = _recover_antigravity_written_html(output)
+    if recovered:
+        return recovered
+    return output
+
+
+def _append_antigravity_cli_contract(prompt: str, expected: str, has_images: bool) -> str:
+    """Output contract for Antigravity CLI.
+
+    Unlike the generic CLI contract, this permits reading attached image files
+    while still requiring inline output (no workspace file writes).
+    """
+    read_rule = (
+        load_prompt("cli_claude_read_rule")
+        if has_images
+        else load_prompt("cli_claude_no_read_rule")
+    )
+    return prompt.rstrip() + format_prompt(
+        "cli_claude_output_contract",
+        expected=expected,
+        read_rule=read_rule,
     )
 
 
@@ -60,21 +122,14 @@ def _append_claude_cli_contract(prompt: str, expected: str, has_images: bool) ->
     other agentic actions such as writing files or running shell commands.
     """
     read_rule = (
-        "- You MAY read the image files listed in the prompt above — that is the only file operation permitted.\n"
+        load_prompt("cli_claude_read_rule")
         if has_images
-        else "- Do NOT read, open, or inspect any files in the workspace.\n"
+        else load_prompt("cli_claude_no_read_rule")
     )
-    return (
-        prompt.rstrip()
-        + "\n\n---\n"
-        + "STRICT OUTPUT CONTRACT — read carefully before responding:\n"
-        + f"- Your entire response must be {expected} and nothing else.\n"
-        + read_rule
-        + "- Do NOT write, edit, or create any files.\n"
-        + "- Do NOT run shell commands or perform any other agentic actions.\n"
-        + "- Do NOT add any preamble, explanation, reasoning, or markdown fences around the output.\n"
-        + "- Do NOT summarise what you did — just output the result directly.\n"
-        + "- If you cannot comply, output a single line starting with ERROR: explaining why.\n"
+    return prompt.rstrip() + format_prompt(
+        "cli_claude_output_contract",
+        expected=expected,
+        read_rule=read_rule,
     )
 
 
@@ -198,7 +253,7 @@ def call_antigravity_cli(prompt: str, image_paths: list[str] | str | None = None
         if output_path.exists():
             text = output_path.read_text(encoding="utf-8").strip()
             if text:
-                return text
+                return _finalize_antigravity_output(text)
         output = result.stdout.strip()
         if not output:
             stderr_snippet = result.stderr.strip()[:600] if result.stderr else ""
@@ -206,7 +261,98 @@ def call_antigravity_cli(prompt: str, image_paths: list[str] | str | None = None
                 "Antigravity CLI returned empty output (exit 0)."
                 + (f"\n  stderr: {stderr_snippet}" if stderr_snippet else "")
             )
-        return output
+        return _finalize_antigravity_output(output)
+
+
+def _resolve_cursor_cli_bin() -> str | None:
+    return (
+        os.environ.get("CURSOR_CLI_BIN")
+        or shutil.which("agent")
+        or shutil.which("cursor-agent")
+    )
+
+
+def call_cursor_cli(prompt: str, image_paths: list[str] | str | None = None, model: str | None = None) -> str:
+    """Run Cursor Agent CLI non-interactively and return the response text.
+
+    Images are passed by embedding their absolute paths in the prompt; the agent
+    reads them via its Read tool (see Cursor headless CLI docs).
+
+    Set CURSOR_CLI_BIN to override the `agent` binary path.
+    Authenticate with `agent login` or CURSOR_API_KEY for headless runs.
+    """
+    agent_bin = _resolve_cursor_cli_bin()
+    if not agent_bin:
+        raise RuntimeError(
+            "Cursor CLI not found. Install via: curl https://cursor.com/install -fsS | bash "
+            "or set CURSOR_CLI_BIN."
+        )
+
+    images = _normalize_images(image_paths)
+
+    full_prompt = prompt
+    if images:
+        image_list = "\n".join(f"  {p}" for p in images)
+        full_prompt = (
+            full_prompt.rstrip()
+            + f"\n\n[Attached image files — read each one before responding:]\n{image_list}"
+        )
+
+    cmd = [
+        agent_bin,
+        "-p",
+        "--mode",
+        "ask",
+        "--output-format",
+        "text",
+        "--trust",
+        "--workspace",
+        os.getcwd(),
+    ]
+    if model:
+        cmd.extend(["--model", model])
+    cmd.append(full_prompt)
+
+    proc = subprocess.Popen(
+        cmd,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    try:
+        stdout, stderr = proc.communicate(timeout=DEFAULT_TIMEOUT_SECONDS)
+    except KeyboardInterrupt:
+        proc.terminate()
+        try:
+            proc.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            proc.kill()
+        raise
+    except subprocess.TimeoutExpired:
+        proc.kill()
+        proc.communicate()
+        raise RuntimeError(f"Cursor CLI timed out after {DEFAULT_TIMEOUT_SECONDS}s")
+
+    if proc.returncode != 0:
+        detail = (stderr or stdout).strip()
+        if "Authentication required" in detail:
+            raise RuntimeError(
+                "Cursor CLI authentication required for headless/script mode. "
+                "Set CURSOR_API_KEY (Cursor Dashboard → Integrations) in your environment, "
+                "or add it to passbar/.env.local / scripts/.env."
+            )
+        raise RuntimeError(
+            "Cursor CLI failed "
+            f"(exit {proc.returncode}): {detail[:1200]}"
+        )
+    output = stdout.strip()
+    if not output:
+        stderr_snippet = stderr.strip()[:600] if stderr else ""
+        raise RuntimeError(
+            "Cursor CLI returned empty output (exit 0)."
+            + (f"\n  stderr: {stderr_snippet}" if stderr_snippet else "")
+        )
+    return output
 
 
 def call_claude_cli(prompt: str, image_paths: list[str] | str | None = None, model: str | None = None) -> str:
@@ -278,10 +424,6 @@ def call_claude_cli(prompt: str, image_paths: list[str] | str | None = None, mod
     return output
 
 
-def _is_gemini_model(model: str | None) -> bool:
-    return bool(model and model.lower().startswith("gemini"))
-
-
 def call_cli_ai(
     provider: str,
     prompt: str,
@@ -289,17 +431,16 @@ def call_cli_ai(
     model: str | None = None,
     expected: str = "the requested content",
 ) -> str:
-    # Gemini models via antigravity-cli don't need agentic restrictions and
-    # the extra contract text causes them to generate more verbose output that
-    # can exceed their effective --print output limit.
-    skip_contract = provider == "antigravity-cli" and _is_gemini_model(model)
-    final_prompt = prompt if skip_contract else _append_output_contract(prompt, expected)
     if provider == "codex-cli":
-        return call_codex_cli(final_prompt, image_paths, model)
+        return call_codex_cli(_append_output_contract(prompt, expected), image_paths, model)
     if provider == "antigravity-cli":
-        return call_antigravity_cli(final_prompt, image_paths, model)
-    if provider == "claude-cli":
         images = _normalize_images(image_paths)
-        claude_prompt = _append_claude_cli_contract(prompt, expected, has_images=bool(images))
-        return call_claude_cli(claude_prompt, image_paths, model)
+        final_prompt = _append_antigravity_cli_contract(prompt, expected, bool(images))
+        return call_antigravity_cli(final_prompt, image_paths, model)
+    if provider in {"claude-cli", "cursor-cli"}:
+        images = _normalize_images(image_paths)
+        cli_prompt = _append_claude_cli_contract(prompt, expected, has_images=bool(images))
+        if provider == "claude-cli":
+            return call_claude_cli(cli_prompt, image_paths, model)
+        return call_cursor_cli(cli_prompt, image_paths, model)
     raise ValueError(f"Unsupported CLI provider: {provider}")

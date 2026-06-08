@@ -1,0 +1,39 @@
+### Answer Choice Color-Coding Rules
+Use these exact hex colors (do NOT use CSS variables — they may not be defined in this document):
+- Correct color: `#1f8f4d` (green)
+- Wrong color: `#9b1c1c` (red)
+- Mixed color: `#b07d00` (dark amber, when token contains both correct and wrong letters)
+- Correct border: `#27ae60`
+- Wrong border: `#c0392b`
+
+Detect which of the three patterns applies and handle accordingly. Do NOT use background colors — use only left-border and text color to keep the styling clean and non-distracting.
+
+**Pattern A — Paragraph that begins with "(Choice X)" or "(Choices X & Y)"** (the entire paragraph is dedicated to explaining that choice):
+- Keep the paragraph as-is. Add `data-choice="{letter}" data-choice-role="correct|distractor"` to the `<p>` or wrapping element.
+- Add a subtle left border: correct `border-left:3px solid #27ae60; padding-left:10px;`, wrong `border-left:3px solid #c0392b; padding-left:10px;`
+- Wrap only the leading "(Choice X)" label in a `<strong>` with matching color: correct `color:#1f8f4d`, wrong `color:#9b1c1c`.
+- Example: `<p style="border-left:3px solid #c0392b;padding-left:10px;" data-choice="B" data-choice-role="distractor"><strong style="color:#9b1c1c">(Choice B)</strong> The rest of text...</p>`
+
+**Pattern B — Inline choice mention mid-sentence** (e.g. "(Choice C)", "(Choices A and C)", "(Choices B & D)" appear inside a larger paragraph):
+- Do NOT add any border or background to the paragraph.
+- Wrap only the token itself in a colored `<span>`. Determine the color by checking all letters in the token against the Correct Answer provided above:
+  - Token contains **only wrong letters** → `<span style="color:#9b1c1c;font-weight:600;" data-choice="{letters}" data-choice-role="distractor">(Choices ...)</span>`
+  - Token contains **only the correct letter** → `<span style="color:#1f8f4d;font-weight:600;" data-choice="{letter}" data-choice-role="correct">(Choice {letter})</span>`
+  - Token contains **a mix of correct and wrong letters** → `<span style="color:#b07d00;font-weight:600;" data-choice="{letters}">(Choices ...)</span>`
+- For multi-letter tokens like "(Choices A and C)" or "(Choices B & D)", use space-separated letters in `data-choice`, e.g. `data-choice="A C"` or `data-choice="B D"`.
+- Recognized token patterns (match case-insensitively):
+  - `(Choice X)` — single letter
+  - `(Choices X and Y)` — two letters joined by "and"
+  - `(Choices X & Y)` — two letters joined by "&"
+  - `(Choices X, Y, and Z)` — three letters
+  - Extract all capital letters A–D from the token to determine which choices are referenced.
+
+**Pattern C — Dedicated visual card/block per choice** (source has a visually separate card or list item entirely for one choice):
+- Add correct `border-left:3px solid #27ae60; padding-left:10px;` or wrong `border-left:3px solid #c0392b; padding-left:10px;` to that block.
+- Do NOT add background colors.
+- Add `data-choice` and `data-choice-role` attributes.
+
+**Rules:**
+- Never invent a per-choice section if one does not exist in the source.
+- Never add background colors to any choice block.
+- Apply these styles only to elements that already discuss a specific choice.

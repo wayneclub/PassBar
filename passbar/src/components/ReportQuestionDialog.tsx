@@ -15,6 +15,8 @@ import { cn } from '@/lib/utils';
 interface ReportQuestionDialogProps {
   questionId: string;
   userId: string;
+  /** Current interface/explanation language, recorded with the report */
+  language: string;
   /** If provided, the dialog is controlled externally (no internal trigger button shown) */
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -22,7 +24,7 @@ interface ReportQuestionDialogProps {
   triggerClassName?: string;
 }
 
-export function ReportQuestionDialog({ questionId, userId, open: openProp, onOpenChange, triggerClassName }: ReportQuestionDialogProps) {
+export function ReportQuestionDialog({ questionId, userId, language, open: openProp, onOpenChange, triggerClassName }: ReportQuestionDialogProps) {
   const [internalOpen, setInternalOpen] = useState(false);
   const isControlled = openProp !== undefined;
   const open = isControlled ? openProp : internalOpen;
@@ -30,16 +32,21 @@ export function ReportQuestionDialog({ questionId, userId, open: openProp, onOpe
     if (isControlled) onOpenChange?.(v);
     else setInternalOpen(v);
   };
-  const [category, setCategory] = useState<ReportCategory>('wrong_answer');
+  const [categories, setCategories] = useState<ReportCategory[]>([]);
   const [message, setMessage] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
 
+  const toggleCategory = (value: ReportCategory) => {
+    setCategories((prev) => (prev.includes(value) ? prev.filter((c) => c !== value) : [...prev, value]));
+  };
+
   const handleSubmit = async () => {
+    if (categories.length === 0) return;
     setSubmitting(true);
-    const ok = await submitQuestionReport({ questionId, userId, category, message });
+    const ok = await submitQuestionReport({ questionId, userId, categories, language, message });
     setSubmitting(false);
-    if (ok) { setDone(true); setTimeout(() => { setOpen(false); setDone(false); setMessage(''); setCategory('wrong_answer'); }, 1500); }
+    if (ok) { setDone(true); setTimeout(() => { setOpen(false); setDone(false); setMessage(''); setCategories([]); }, 1500); }
   };
 
   return (
@@ -76,10 +83,11 @@ export function ReportQuestionDialog({ questionId, userId, open: openProp, onOpe
                   <button
                     key={cat.value}
                     type="button"
-                    onClick={() => setCategory(cat.value)}
+                    onClick={() => toggleCategory(cat.value)}
+                    aria-pressed={categories.includes(cat.value)}
                     className={cn(
                       'rounded-lg border px-3 py-2 text-left text-xs font-medium transition-colors',
-                      category === cat.value
+                      categories.includes(cat.value)
                         ? 'border-primary bg-primary/10 text-primary'
                         : 'border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50',
                     )}
@@ -99,7 +107,7 @@ export function ReportQuestionDialog({ questionId, userId, open: openProp, onOpe
 
               <div className="flex justify-end gap-2">
                 <Button variant="outline" size="sm" onClick={() => setOpen(false)} disabled={submitting}>取消</Button>
-                <Button size="sm" onClick={handleSubmit} disabled={submitting}>
+                <Button size="sm" onClick={handleSubmit} disabled={submitting || categories.length === 0}>
                   {submitting ? '送出中…' : '送出回報'}
                 </Button>
               </div>

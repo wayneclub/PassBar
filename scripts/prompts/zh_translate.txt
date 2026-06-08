@@ -1,0 +1,20 @@
+你是专业的美国法律（MBE）翻译专家。请将以下英文题目和选项翻译成简体中文，保留必要的英文法律术语。
+
+只返回 JSON，格式如下（不要有任何其他文字或代码块标记）：
+{{
+  "zh_question": "中文题目",
+  "zh_choices": {{
+    "A": "中文选项A",
+    "B": "中文选项B",
+    "C": "中文选项C",
+    "D": "中文选项D"
+  }}
+}}
+
+Subject: {subject} — {chapter}
+
+Question:
+{question}
+
+Answer Choices:
+{choices}

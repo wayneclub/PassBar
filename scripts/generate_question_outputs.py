@@ -31,6 +31,8 @@ from typing import Any
 import generate_question_meta as meta_gen
 import generate_zh_explanations as zh_gen
 import cli_ai
+import cursor_api
+from ai_prompts import format_prompt
 
 
 VALID_MODES = {"zh-html", "en-html", "meta", "all", "sync-explain-imgs"}
@@ -519,26 +521,10 @@ def generate_en_html(
             f"</figure>\n"
             for r in rel_refs
         )
-        prompt += (
-            "\n\n### Explanation Illustration Images (MANDATORY)\n"
-            "The following official UWorld diagram(s) are attached alongside the source image.\n"
-            "They are too complex to recreate in HTML/CSS — you MUST embed each one as a responsive "
-            "`<img>` tag at the appropriate location in the explanation "
-            "(after the rule or section it illustrates).\n\n"
-            "**CRITICAL — use this EXACT src path (including the `imgs/` prefix):**\n"
-            + "".join(f"  - `{r}`\n" for r in rel_refs)
-            + "\nEmbed each image using EXACTLY this pattern:\n"
-            "```html\n"
-            + img_tags
-            + "```\n"
-            "CSS to add to the `<style>` block:\n"
-            "```css\n"
-            ".pbx-explain-img { margin: 1.25em 0; text-align: center; }\n"
-            ".pbx-explain-img img { max-width: 100%; height: auto; border-radius: 6px; "
-            "box-shadow: 0 1px 4px rgba(0,0,0,0.12); }\n"
-            "@media (max-width: 640px) { .pbx-explain-img img { border-radius: 3px; } }\n"
-            "```\n"
-            "Do NOT omit the `imgs/` prefix. Do NOT invent a different path."
+        prompt += format_prompt(
+            "en_explanation_illustration_images",
+            img_refs="".join(f"  - `{r}`\n" for r in rel_refs),
+            img_tags=img_tags,
         )
         all_image_paths = image_paths + [p for p in explain_img_paths if p not in image_paths]
     else:
@@ -571,6 +557,7 @@ def generate_zh_html(
     prompt = zh_gen.GEMINI_PROMPT_TEMPLATE.format(
         subject=item.get("subject") or document_meta.get("subject", ""),
         chapter=item.get("chapter") or document_meta.get("chapter", ""),
+        topic=zh_gen.resolve_zh_html_topic(item, document_meta, english_explanation),
         question=str(item.get("question") or ""),
         choices=zh_gen.format_choices_for_prompt(choices),
         correct_answer_letter=correct,
@@ -862,7 +849,7 @@ def main() -> None:
     parser.add_argument("--mode", nargs="+", default=["zh-html", "meta"], help="One or more: zh-html en-html meta all")
     parser.add_argument(
         "--provider",
-        choices=("gemini", "gpt", "codex-cli", "antigravity-cli", "claude-cli"),
+        choices=("gemini", "gpt", "codex-cli", "antigravity-cli", "claude-cli", "cursor-cli", "cursor-api"),
         default="gemini",
         help="Provider for generated outputs",
     )
@@ -909,7 +896,12 @@ def main() -> None:
     modes = expand_modes(args.mode)
     zh_gen.set_ai_provider(args.provider, args.model or None, html_model=args.html_model or None)
     meta_gen.set_meta_provider(args.provider, args.model or None)
-    if not args.dry_run and args.provider in {"codex-cli", "antigravity-cli", "claude-cli"}:
+    if not args.dry_run and args.provider == "cursor-api":
+        try:
+            cursor_api.check_cursor_api_ready()
+        except Exception as exc:
+            parser.error(str(exc))
+    if not args.dry_run and args.provider in {"codex-cli", "antigravity-cli", "claude-cli", "cursor-cli"}:
         try:
             cli_ai.check_provider_ready(args.provider)
         except Exception as exc:
@@ -941,4 +933,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    cursor_api.maybe_reexec_with_venv()
     main()

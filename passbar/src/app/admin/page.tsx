@@ -69,6 +69,11 @@ function categoryLabel(cat: string) {
   return REPORT_CATEGORIES.find(c => c.value === cat)?.label ?? cat;
 }
 
+function reportCategoryLabels(r: { category: string; categories: string[] | null }) {
+  const cats = r.categories && r.categories.length > 0 ? r.categories : [r.category];
+  return cats.map(categoryLabel).join('、');
+}
+
 /* ─── Sub-components ─── */
 function StatCard({ icon: Icon, label, value, sub, accent, href }: {
   icon: React.ElementType; label: string; value: number | string;
@@ -437,8 +442,13 @@ export default function AdminDashboardPage() {
                               <span className="font-medium text-slate-800">QID #{r.question_id.slice(-6)}</span>
                               <span className={cn('rounded-full px-2 py-0.5 text-xs font-medium',
                                 r.resolved ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700')}>
-                                {categoryLabel(r.category)}
+                                {reportCategoryLabels(r)}
                               </span>
+                              {r.language && (
+                                <span className="rounded-full px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-500">
+                                  {r.language}
+                                </span>
+                              )}
                             </div>
                             {r.message && (
                               <p className="mt-1 text-xs text-slate-600 line-clamp-2">{r.message}</p>
