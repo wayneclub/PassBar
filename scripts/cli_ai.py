@@ -6,6 +6,7 @@ from __future__ import annotations
 import os
 import re
 import shlex
+import time
 import shutil
 import subprocess
 import tempfile
@@ -225,26 +226,47 @@ def call_antigravity_cli(prompt: str, image_paths: list[str] | str | None = None
             cmd = shlex.split(rendered)
             if cmd and cmd[0] == "agy":
                 cmd[0] = agy_bin
+            result = subprocess.run(
+                cmd,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                timeout=DEFAULT_TIMEOUT_SECONDS,
+                check=False,
+            )
         else:
-            cmd = [
-                agy_bin,
-                "--print",
-                full_prompt,
-                "--print-timeout",
-                os.environ.get("ANTIGRAVITY_PRINT_TIMEOUT", "15m"),
-                "--dangerously-skip-permissions",
-            ]
-            if model:
-                cmd.extend(["--model", model])
+            # Use shell redirect (< prompt_file) to feed the prompt to agy.
+            # agy's --print /dev/stdin doesn't work reliably with subprocess
+            # stdin pipes (stdout stays empty on exit 0); shell file-redirect
+            # is the only reliable way to pass long prompts without hitting
+            # ARG_MAX limits on large HTML-generation prompts.
+            timeout_val = os.environ.get("ANTIGRAVITY_PRINT_TIMEOUT", "15m")
+            model_flag = f" --model {shlex.quote(model)}" if model else ""
+            shell_cmd = (
+                f"{shlex.quote(agy_bin)} --print /dev/stdin"
+                f" --print-timeout {shlex.quote(timeout_val)}"
+                f" --dangerously-skip-permissions{model_flag}"
+                f" < {shlex.quote(str(prompt_path))}"
+            )
+            max_retries = int(os.environ.get("ANTIGRAVITY_EMPTY_RETRIES", "3"))
+            retry_delay = float(os.environ.get("ANTIGRAVITY_RETRY_DELAY", "5"))
+            result = None
+            for attempt in range(1, max_retries + 1):
+                result = subprocess.run(
+                    shell_cmd,
+                    shell=True,
+                    text=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    timeout=DEFAULT_TIMEOUT_SECONDS,
+                    check=False,
+                )
+                if result.returncode != 0 or result.stdout.strip():
+                    break
+                if attempt < max_retries:
+                    print(f"    [agy] empty output on attempt {attempt}/{max_retries}, retrying in {retry_delay}s...", flush=True)
+                    time.sleep(retry_delay)
 
-        result = subprocess.run(
-            cmd,
-            text=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            timeout=DEFAULT_TIMEOUT_SECONDS,
-            check=False,
-        )
         if result.returncode != 0:
             raise RuntimeError(
                 "Antigravity CLI failed "

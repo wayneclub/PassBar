@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 考点解析 - Constitutional Law</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --primary-ink: #243447;
+      --accent-color: #3498db;
+      --accent-strong: #2980d9;
+      --highlight-bg: #e8f4f8;
+      --correct-bg: #dff0d8;
+      --correct-border: #27ae60;
+      --correct-text: #1f8f4d;
+      --wrong-bg: #f8d7da;
+      --wrong-border: #f5c6cb;
+      --wrong-text: #721c24;
+      --warning-bg: #fff8e1;
+      --warning-border: #ffb300;
+      --text-color: #333333;
+      --muted-text: #666666;
+      --border-color: #dddddd;
+      --card-bg: #ffffff;
+      --page-bg: #f0f2f5;
+      --card-border: rgba(44, 62, 80, 0.1);
+      --card-shadow: 0 0.25rem 0.875rem rgba(44, 62, 80, 0.1);
+      --bg-color: var(--page-bg);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0.625rem;
+      background: var(--page-bg);
+      color: var(--text-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 1rem;
+      line-height: 1.75;
+      letter-spacing: 0;
+      display: block;
+      overflow-wrap: break-word;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 0.75rem;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+    }
+
+    .container-body {
+      padding: 1.25rem 1.25rem 1.75rem;
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-radius: 0;
+      padding: 2.125rem 1.5rem 2rem;
+      text-align: center;
+      margin: 0;
+    }
+
+    .header h1 {
+      margin: 0 0 0.75rem;
+      font-size: 2rem;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub-title {
+      margin: 0;
+      font-size: 1.25rem;
+      line-height: 1.35;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    h2, h3 {
+      color: var(--primary-ink);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      border-bottom: 0.1875rem solid var(--accent-color);
+      padding-bottom: 0.625rem;
+      margin: 2.125rem 0 1.25rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin: 1.75rem 0 1rem;
+    }
+
+    p, li {
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    strong, b {
+      display: inline !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      font-weight: 800;
+    }
+
+    .concept-box {
+      background: var(--highlight-bg);
+      border-left: 0.375rem solid var(--accent-color);
+      border-radius: 0.5rem;
+      padding: 1.375rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .concept-box .concept-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin: 0 0 0.875rem;
+    }
+
+    .latin {
+      font-style: italic;
+      font-size: 1rem;
+      color: #555555;
+      font-weight: 500;
+    }
+
+    .table-wrap, .media-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 1rem 0;
+      max-width: 100%;
+    }
+
+    table {
+      min-width: 480px;
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 1rem;
+    }
+
+    .comparison-table th {
+      background: #f8f9fa;
+      color: var(--primary-color);
+      font-weight: 800;
+      padding: 0.875rem;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 0.875rem;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .diagram {
+      background: #ffffff;
+      border: 1px dashed #cccccc;
+      border-radius: 0.5rem;
+      padding: 1.375rem;
+      margin: 1.75rem 0;
+      text-align: center;
+    }
+
+    .diagram-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      max-width: 100%;
+    }
+
+    .diagram-inner {
+      min-width: 520px;
+      max-width: none;
+    }
+
+    .flow-node, .party-box {
+      display: inline-block;
+      background: #e8fcff;
+      border: 1px solid #22b8cf;
+      border-radius: 0.375rem;
+      padding: 0.625rem 0.875rem;
+      font-weight: 700;
+      color: #05606a;
+      margin: 0.375rem;
+      white-space: normal;
+      word-break: break-word;
+      transition: all 0.2s ease;
+    }
+
+    .flow-node.active, .flow-node.highlight-node {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.35);
+    }
+
+    .decision-tree {
+      text-align: left;
+      line-height: 1.55;
+    }
+
+    .decision-q {
+      display: inline-block;
+      background: #eef6fc;
+      border: 2px solid var(--accent-color);
+      border-radius: 0.5rem;
+      padding: 0.75rem 1rem;
+      font-weight: 800;
+      color: var(--primary-ink);
+      margin: 0.5rem 0;
+    }
+
+    .decision-branch {
+      margin: 0.5rem 0 0.5rem 1.25rem;
+      padding-left: 0.875rem;
+      border-left: 3px solid #d7e9f8;
+    }
+
+    .decision-label {
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-right: 0.375rem;
+    }
+
+    .decision-kill {
+      display: inline-block;
+      background: #fff3cd;
+      border: 2px solid var(--warning-border);
+      border-radius: 0.375rem;
+      padding: 0.5rem 0.75rem;
+      font-weight: 800;
+      color: #7a5b00;
+      margin: 0.375rem 0;
+    }
+
+    .timeline {
+      text-align: left;
+      padding: 0.5rem 0;
+    }
+
+    .timeline-track {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      min-width: 640px;
+    }
+
+    .timeline-node {
+      flex: 1;
+      min-width: 7.5rem;
+      border-top: 4px solid var(--accent-color);
+      padding: 0.75rem 0.5rem 0;
+      position: relative;
+    }
+
+    .timeline-node::before {
+      content: "";
+      width: 0.75rem;
+      height: 0.75rem;
+      background: var(--accent-color);
+      border-radius: 50%;
+      position: absolute;
+      top: -0.5rem;
+      left: 0.5rem;
+    }
+
+    .timeline-day {
+      font-weight: 800;
+      color: var(--accent-strong);
+      font-size: 0.9rem;
+    }
+
+    .timeline-event {
+      font-size: 0.92rem;
+      margin-top: 0.375rem;
+      line-height: 1.45;
+    }
+
+    .timeline-safe {
+      background: rgba(39, 174, 96, 0.08);
+      border-radius: 0.375rem;
+      padding: 0.375rem;
+    }
+
+    .timeline-trap {
+      background: rgba(255, 179, 0, 0.12);
+      border: 2px dashed var(--warning-border);
+      border-radius: 0.375rem;
+      padding: 0.375rem;
+    }
+
+    .entity-flow {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.5rem;
+      flex-wrap: nowrap;
+      min-width: 600px;
+      text-align: center;
+    }
+
+    .entity-card {
+      flex: 0 0 auto;
+      min-width: 8rem;
+      max-width: 11rem;
+      background: #eef6fc;
+      border: 2px solid var(--accent-color);
+      border-radius: 0.5rem;
+      padding: 0.75rem 0.625rem;
+      font-weight: 700;
+      color: var(--primary-ink);
+      line-height: 1.4;
+    }
+
+    .entity-card.highlight-node {
+      background: var(--accent-color);
+      color: #ffffff;
+      border-color: var(--accent-color);
+    }
+
+    .entity-arrow {
+      flex: 0 0 auto;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent-strong);
+      padding: 0 0.25rem;
+    }
+
+    .entity-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted-text);
+      margin-top: 0.25rem;
+    }
+
+    .element-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
+      text-align: left;
+      min-width: 520px;
+    }
+
+    .element-card {
+      background: #f8fbff;
+      border: 2px solid #d7e9f8;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+    }
+
+    .element-card .element-name {
+      font-weight: 800;
+      color: var(--accent-strong);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .element-met {
+      border-color: var(--correct-border);
+      background: rgba(39, 174, 96, 0.06);
+    }
+
+    .element-unmet {
+      border-color: var(--warning-border);
+      background: rgba(255, 179, 0, 0.08);
+    }
+
+    .element-fact {
+      font-size: 0.9rem;
+      line-height: 1.45;
+      margin-top: 0.375rem;
+    }
+
+    .rule-block, .trap-alert, .footer-tip {
+      background: var(--warning-bg);
+      border-left: 0.3125rem solid var(--warning-border);
+      border-radius: 0.375rem;
+      padding: 1.125rem 1.25rem;
+      margin: 1.375rem 0;
+    }
+
+    .case-box {
+      background: var(--highlight-bg);
+      border-radius: 0.5rem;
+      padding: 1.25rem 1.375rem;
+      margin: 1.25rem 0;
+    }
+
+    .option {
+      border-radius: 0.5rem;
+      padding: 1.125rem 1.25rem;
+      margin: 1rem 0;
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-left: 0.3125rem solid var(--correct-border);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-left: 0.3125rem solid var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option .option-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin: 0 0 0.75rem;
+    }
+
+    .key-clue {
+      font-weight: 800;
+      background: rgba(52, 152, 219, 0.12);
+      border-bottom: 2px solid rgba(52, 152, 219, 0.45);
+      padding: 0 0.125rem;
+    }
+
+    .term-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
+      margin: 1.125rem 0;
+    }
+
+    .term-card {
+      background: #f8fbff;
+      border: 1px solid #d7e9f8;
+      border-radius: 0.5rem;
+      padding: 0.75rem 0.875rem;
+    }
+
+    .term-card strong {
+      color: var(--primary-ink);
+    }
+
+    .term-card.focus-card {
+      border: 2px solid var(--accent-color);
+      border-left: 0.375rem solid var(--accent-strong);
+      background: #f0f7ff;
+      box-shadow: 0 0.25rem 0.75rem rgba(52, 152, 219, 0.15);
+    }
+
+    .distractor-box {
+      background: #fffafa;
+      border: 1px solid #fbcfe8;
+      border-left: 0.3125rem solid #ec4899;
+      border-radius: 0.5rem;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+    }
+
+    .wrong-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.125rem 0.375rem;
+      border-radius: 0.25rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .tag-concept-error {
+      background: #fce7f3;
+      color: #9d174d;
+    }
+
+    .tag-fact-distortion {
+      background: #ffedd5;
+      color: #9a3412;
+    }
+
+    .tag-law-misapplied {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .trap-word {
+      background-color: #fef08a;
+      color: #854d0e;
+      font-weight: 800;
+      padding: 0 0.25rem;
+      border-radius: 0.125rem;
+    }
+
+    .en-term {
+      font-style: italic;
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .keyword-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.75rem 0 1.125rem;
+    }
+
+    .keyword-chip {
+      background: rgba(52, 152, 219, 0.12);
+      border: 1px solid rgba(52, 152, 219, 0.35);
+      border-radius: 999px;
+      padding: 0.25rem 0.625rem;
+      font-weight: 700;
+    }
+
+    .elimination-list {
+      margin: 0.75rem 0 0;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .elimination-list li {
+      margin: 0.5rem 0;
+      line-height: 1.55;
+    }
+
+    .method-box {
+      background: var(--highlight-bg);
+      border-left: 0.3125rem solid var(--accent-color);
+      border-radius: 0.5rem;
+      padding: 1.125rem 1.25rem;
+      margin: 1.375rem 0;
+    }
+
+    code {
+      background: rgba(0, 0, 0, 0.05);
+      padding: 0.125rem 0.25rem;
+      border-radius: 0.25rem;
+      font-size: 0.92em;
+    }
+
+    .term {
+      background: transparent;
+      border-bottom: 1px solid rgba(36, 52, 71, 0.26);
+      padding: 0 1px 1px;
+      border-radius: 0;
+      font-size: 1em;
+      font-weight: 800;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.95rem;
+        padding: 0.5rem;
+      }
+      .container {
+        border-radius: 0.625rem;
+        box-shadow: 0 0.125rem 0.5rem rgba(44, 62, 80, 0.08);
+      }
+      .container-body {
+        padding: 1rem 0.875rem 1.25rem;
+      }
+      .header {
+        padding: 1.5em 1rem;
+      }
+      .header h1 {
+        font-size: 1.65rem;
+      }
+      .sub-title {
+        font-size: 1rem;
+        overflow-wrap: break-word;
+      }
+      h2 {
+        font-size: 1.35rem;
+      }
+      h3 {
+        font-size: 1.15rem;
+      }
+      .table-wrap, .diagram-scroll, .media-wrap {
+        max-width: 100%;
+        -webkit-overflow-scrolling: touch;
+      }
+      table {
+        min-width: 480px;
+      }
+      .diagram-inner {
+        min-width: 520px;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      th, td {
+        font-size: 0.875rem;
+        padding: 0.5rem 0.625rem;
+        white-space: normal;
+        overflow-wrap: break-word;
+      }
+      .concept-box, .rule-block, .trap-alert, .footer-tip, .method-box, .option, .distractor-box {
+        padding: 1em 1.125em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>MBE 考点解析</h1>
+      <p class="sub-title">Constitutional Law: Federal-State Relations - State immunity</p>
+    </header>
+    <div class="container-body">
+      
+      <h2>本题真正考的是</h2>
+      <section class="concept-box">
+        <div class="concept-title">一句话定位考点</div>
+        <p>本题真正考的是：<span class="term">联邦免税权（Federal Immunity）</span>仅直接豁免联邦实体本身的纳税义务，不适用于与联邦交易的<span class="term">独立承包商（Independent Contractor）</span>，即使税款最终由联邦政府报销（即经济负担转嫁）。</p>
+        <div class="method-box">
+          <strong>三秒认题路径：</strong>
+          <p>古董商买古董转卖联邦 → 州对古董商课税 → 古董商是纳税主体（非联邦） → 联邦合同报销仅属经济转嫁 → 州税合宪，不予禁令（选 A）</p>
+        </div>
+      </section>
+
+      <h2>核心法律规则</h2>
+      <section class="concept-box">
+        <p>根据宪法第六条的 <span class="term">最高条款（Supremacy Clause）</span>，各州在未经国会明示同意前，禁止直接对联邦政府及其机构或派出工具进行课税（即 <span class="term">联邦免税权 Federal Immunity</span>）。</p>
+        <p>但是，此免税特权<strong>并不保护</strong>与联邦做生意的关联方或独立承包商。即便税款成本最终由联邦承担，承包商也必须缴纳普通的、不具歧视性的州销售税，除非：</p>
+        <ul>
+          <li>国会已明文授予该关联方免税地位；或者</li>
+          <li>该州税对联邦政府或其关联方构成了差别歧视；或者</li>
+          <li>该税收实质性干扰了联邦公务的正常履行。</li>
+        </ul>
+        <div class="case-box">
+          <strong>核心判例：</strong> <em>United States v. New Mexico (1982)</em> —— 确立了除非国会明文豁免，否则各州可对与联邦政府订立合同的独立承包商征收销售税和使用税，即使税收负担最终转嫁至联邦。
+        </div>
+      </section>
+
+      <h2>思维导图</h2>
+      <div class="diagram">
+        <div class="diagram-scroll">
+          <div class="diagram-inner">
+            <div class="entity-flow">
+              <div class="entity-card">
+                <strong>州税务部门</strong>
+                <span class="entity-label">State Tax Authority</span>
+              </div>
+              <div class="entity-arrow">
+                ➔
+                <span class="entity-label">课征销售税<br><span class="term">法律纳税义务 (Legal Incidence)</span></span>
+              </div>
+              <div class="entity-card highlight-node">
+                <strong>古董商 (独立承包商)</strong>
+                <span class="entity-label" style="color: rgba(255,255,255,0.9);">Independent Contractor</span>
+                <span class="entity-label" style="color: #fef08a; font-weight: bold;">⚠️ 法律纳税主体</span>
+              </div>
+              <div class="entity-arrow">
+                ➔
+                <span class="entity-label">转嫁税收与成本<br><span class="en-term" style="color: #ffffff;">Economic Burden</span></span>
+              </div>
+              <div class="entity-card">
+                <strong>国家公园管理局</strong>
+                <span class="entity-label">Federal NPS</span>
+                <span class="entity-label" style="color: #27ae60; font-weight: bold;">合同买单人 (非直接纳税人)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2>考点陷阱</h2>
+      <section class="trap-alert">
+        <p>你可能会想：联邦国家公园管理局在合同中承诺全额报销古董商所付的税款，这说明钱其实是联邦政府出的，那这税岂不是变相征在了联邦头上？</p>
+        <p>但考试真正问的是：<strong>法律上的直接纳税义务人（Legal Incidence）究竟是谁？</strong> 司法考试只看法律由谁向州缴税，不看幕后谁在合同中为这笔税款买单。由于购买者是独立的古董商（承包商），税也是他付的，因此属于合宪的间接税。</p>
+        <p><strong>司法考试看的是「法律纳税主体是谁」，而不是「税款最终由谁报销」。</strong></p>
+      </section>
+
+      <section class="option-analysis">
+        <h2>正确答案与干扰项排除</h2>
+        <div class="option correct" data-choice="A" data-choice-role="correct">
+          <h3 class="option-title">为什么选 A？</h3>
+          <p>古董商属于独立承包商，购买古董时的 <span class="key-clue">purchaser</span> 且法定纳税人是他本人而非联邦政府，故州税合宪，不应签发禁令。</p>
+        </div>
+        <div class="distractor-box" data-choice="B" data-choice-role="distractor">
+          <span class="wrong-tag tag-concept-error">❌ 概念混淆 | 专属管辖误判</span>
+          <p style="margin:0;"><strong>✕ B:</strong> 误认为涉及联邦宪法和政府免税权的案件属于联邦法院的 <span class="trap-word">exclusive jurisdiction</span>，实际上州法院同样有权管辖。</p>
+        </div>
+        <div class="distractor-box" data-choice="C" data-choice-role="distractor">
+          <span class="wrong-tag tag-law-misapplied">❌ 法律适用 | 经济负担与法律义务混淆</span>
+          <p style="margin:0;"><strong>✕ C:</strong> 误以为联邦在合同中报销税款的 <span class="trap-word">contractually obligated</span> 义务能将该税转化为针对联邦的直接税。</p>
+        </div>
+        <div class="distractor-box" data-choice="D" data-choice-role="distractor">
+          <span class="wrong-tag tag-fact-distortion">❌ 事实误判 | 联邦预占权滥用</span>
+          <p style="margin:0;"><strong>✕ D:</strong> 错误援引 <span class="trap-word">preempts</span>（预占），联邦收购总统旧居文物的计划并未与州征收普通销售税产生任何冲突。</p>
+        </div>
+        <div class="method-box">
+          <strong>这题建议用什么方法？</strong>
+          <p>主体区分法：看到联邦合同工（contractor）被征州税，直接确认他是法律纳税人，瞬间排除主张免税的 Yes 选项。</p>
+        </div>
+      </section>
+
+      <h2>考场速记</h2>
+      <section class="footer-tip">
+        <p><strong>联邦免税权（Federal Tax Immunity）判定口诀：</strong></p>
+        <p>“直接税联邦，绝对不可以；间接税关联，三无就合法。”</p>
+        <p>核心提要：如果州直接向联邦实体或财产征税，绝对违宪。如果州向联邦的关联方（如承包商/雇员）征税，只要满足以下“三无”条件即为合宪：</p>
+        <ul>
+          <li><strong>无立法特权</strong>：国会未通过明文立法给予其免税地位。</li>
+          <li><strong>无任何歧视</strong>：属于普适性税种，未针对联邦或其关联方差别对待。</li>
+          <li><strong>无实质干涉</strong>：未严重阻碍或使关联方无法履行联邦职能（合同报销税款绝不构成干涉）。</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</body>
+</html>

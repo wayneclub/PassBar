@@ -108,6 +108,10 @@ def write_enriched(path: Path, document: Any) -> None:
         _BACKED_UP_FILES.add(resolved)
         print(f"  backup: {backup_path.name}")
     os.replace(tmp_path, path)
+    # Delete the backup now that the new file is confirmed written.
+    if backup_path.exists():
+        backup_path.unlink()
+        print(f"  backup deleted: {backup_path.name}")
 
 
 def compact_summary(value: Any, max_len: int = 180) -> str:
@@ -585,11 +589,25 @@ def write_zh_html_preview(enriched_file: Path, item: dict[str, Any]) -> None:
     (preview_dir / f"q{index:04d}.html").write_text(str(html), encoding="utf-8")
 
 
+def parse_index_range(value: str) -> set[int]:
+    """Parse index range string like '3', '3-10', '3,5,7', '3-10,15,20-25' into a set of ints."""
+    result: set[int] = set()
+    for part in value.split(","):
+        part = part.strip()
+        if "-" in part:
+            lo, hi = part.split("-", 1)
+            result.update(range(int(lo.strip()), int(hi.strip()) + 1))
+        elif part:
+            result.add(int(part))
+    return result
+
+
 def process_file(
     enriched_file: Path,
     modes: list[str],
     limit: int,
     index: int | None,
+    index_range: set[int] | None,
     force: bool,
     dry_run: bool,
     usage_csv: Path | None,
@@ -597,7 +615,9 @@ def process_file(
     document = json.loads(enriched_file.read_text(encoding="utf-8"))
     items, document_meta = parse_enriched_document(document)
     selected = items
-    if index is not None:
+    if index_range is not None:
+        selected = [item for item in selected if int(item.get("index") or -1) in index_range]
+    elif index is not None:
         selected = [item for item in selected if int(item.get("index") or -1) == index]
     if limit > 0:
         selected = selected[:limit]
@@ -619,7 +639,9 @@ def process_file(
         document = json.loads(enriched_file.read_text(encoding="utf-8"))
         items, document_meta = parse_enriched_document(document)
         selected = items
-        if index is not None:
+        if index_range is not None:
+            selected = [item for item in selected if int(item.get("index") or -1) in index_range]
+        elif index is not None:
             selected = [item for item in selected if int(item.get("index") or -1) == index]
         if limit > 0:
             selected = selected[:limit]
@@ -811,23 +833,46 @@ def list_subjects_and_chapters() -> None:
                 print(f"  --subject \"{subject_dir.name}\" --chapter \"{chapter_dir.name}\"")
 
 
-def collect_enriched_files(subject: str | None, chapter: str | None) -> list[Path]:
+def collect_enriched_files(
+    subjects: list[str] | None,
+    chapters: list[str] | None,
+) -> list[Path]:
     """Resolve which enriched files to process based on subject/chapter filters.
 
-    - subject + chapter  → single file
-    - subject only       → all chapters under that subject
-    - neither            → all chapters in OUT_DIR (recursive)
+    - subjects + chapters  → cross-product (each subject × each chapter)
+    - subjects only        → all chapters under each subject
+    - chapters only        → search all subjects for those chapter names
+    - neither              → all chapters in OUT_DIR (recursive)
     """
-    if subject and chapter:
-        return [find_enriched_file(subject, chapter)]
+    seen: set[Path] = set()
+    files: list[Path] = []
 
-    search_root = OUT_DIR / subject if subject else OUT_DIR
-    if not search_root.is_dir():
-        raise FileNotFoundError(f"Directory not found: {search_root}")
+    def _add(p: Path) -> None:
+        if p not in seen:
+            seen.add(p)
+            files.append(p)
 
-    files = sorted(search_root.rglob("*_enriched.json"))
+    if subjects and chapters:
+        for s in subjects:
+            for c in chapters:
+                _add(find_enriched_file(s, c))
+    elif subjects and not chapters:
+        for s in subjects:
+            search_root = OUT_DIR / s
+            if not search_root.is_dir():
+                raise FileNotFoundError(f"Subject directory not found: {search_root}")
+            for p in sorted(search_root.rglob("*_enriched.json")):
+                _add(p)
+    elif chapters and not subjects:
+        for p in sorted(OUT_DIR.rglob("*_enriched.json")):
+            if p.parent.name in chapters:
+                _add(p)
+    else:
+        for p in sorted(OUT_DIR.rglob("*_enriched.json")):
+            _add(p)
+
     if not files:
-        raise FileNotFoundError(f"No *_enriched.json found under {search_root}")
+        raise FileNotFoundError("No *_enriched.json found for the given subject/chapter filters.")
     return files
 
 
@@ -844,8 +889,8 @@ def main() -> None:
     file_group.add_argument("--enriched-file", type=Path, help="Path to *_enriched.json")
     file_group.add_argument("--list", action="store_true", help="List all available subject/chapter pairs and exit")
     file_group.add_argument("--all-files", action="store_true", help="Process every *_enriched.json under out/ (explicit opt-in)")
-    parser.add_argument("--subject", help="Subject name (e.g. 'Evidence'); omit to process all subjects")
-    parser.add_argument("--chapter", help="Chapter name; requires --subject; omit to process all chapters")
+    parser.add_argument("--subject", nargs="+", help="One or more subject names (e.g. 'Evidence' 'Torts'); omit to process all")
+    parser.add_argument("--chapter", nargs="+", help="One or more chapter names; omit to process all chapters")
     parser.add_argument("--mode", nargs="+", default=["zh-html", "meta"], help="One or more: zh-html en-html meta all")
     parser.add_argument(
         "--provider",
@@ -856,7 +901,8 @@ def main() -> None:
     parser.add_argument("--model", default="", help="Override model for all modes (translation, meta, HTML)")
     parser.add_argument("--html-model", default="", help="Override model for en-html/zh-html only (high-output model); falls back to ANTIGRAVITY_CLI_HTML_MODEL env var")
     parser.add_argument("--limit", type=int, default=0, help="Only process first N selected questions")
-    parser.add_argument("--index", type=int, help="Only process a specific question index")
+    parser.add_argument("--index", type=int, help="Only process a specific question index (single; use --index-range for ranges)")
+    parser.add_argument("--index-range", help="Index range/list to process, e.g. '5-20', '3,7,9', '1-10,15,20-25'")
     parser.add_argument("--force", action="store_true", help="Regenerate even when cached output exists")
     parser.add_argument("--yes", action="store_true", help="Confirm a broad --force rewrite")
     parser.add_argument("--dry-run", action="store_true", help="Print actions without API calls or writes")
@@ -868,8 +914,8 @@ def main() -> None:
         list_subjects_and_chapters()
         return
 
-    if args.chapter and not args.subject:
-        parser.error("--chapter requires --subject")
+    if args.index is not None and args.index_range:
+        parser.error("--index and --index-range are mutually exclusive")
     validate_run_scope(args, parser)
 
     log_path = Path(args.log_file) if args.log_file else Path(f"logs/generate_outputs_{RUN_ID}.log")
@@ -894,18 +940,22 @@ def main() -> None:
     print(f"Run ID: {RUN_ID}")
 
     modes = expand_modes(args.mode)
+    index_range: set[int] | None = parse_index_range(args.index_range) if args.index_range else None
+
     scope_parts: list[str] = []
     if args.enriched_file:
         scope_parts.append(f"file={args.enriched_file}")
     else:
         if args.subject:
-            scope_parts.append(f"subject={args.subject!r}")
+            scope_parts.append(f"subject={args.subject}")
         if args.chapter:
-            scope_parts.append(f"chapter={args.chapter!r}")
+            scope_parts.append(f"chapter={args.chapter}")
         if not args.subject and not args.chapter:
             scope_parts.append("all enriched files under out/")
     if args.index is not None:
         scope_parts.append(f"index={args.index}")
+    if index_range is not None:
+        scope_parts.append(f"index-range={sorted(index_range)}")
     if args.limit > 0:
         scope_parts.append(f"limit={args.limit}")
     print(f"Provider: {args.provider}")
@@ -948,6 +998,7 @@ def main() -> None:
             modes=modes,
             limit=args.limit,
             index=args.index,
+            index_range=index_range,
             force=args.force,
             dry_run=args.dry_run,
             usage_csv=usage_csv,
