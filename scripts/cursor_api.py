@@ -21,13 +21,19 @@ try:
         LocalAgentOptions,
         ModelParameterValue,
         ModelSelection,
+        NetworkError,
         SDKImage,
         UserMessage,
+        close_default_client,
     )
 except ImportError as exc:
     _CURSOR_SDK_IMPORT_ERROR = exc
     ModelParameterValue = Any  # type: ignore[misc, assignment]
     ModelSelection = Any  # type: ignore[misc, assignment]
+    NetworkError = Exception  # type: ignore[misc, assignment]
+
+    def close_default_client() -> None:  # type: ignore[misc]
+        return None
 
 _MAX_IMAGE_BYTES = int(os.environ.get("CURSOR_API_MAX_IMAGE_BYTES", "350000"))
 _MAX_IMAGE_DIM = int(os.environ.get("CURSOR_API_MAX_IMAGE_DIM", "1600"))
@@ -382,7 +388,19 @@ def _call_once(
 
         result = Agent.prompt(message, _agent_options(model, api_key))
     except CursorAgentError as exc:
-        raise RuntimeError(f"Cursor API startup failed: {exc.message}") from exc
+        detail = str(getattr(exc, "message", "") or exc)
+        if isinstance(exc, NetworkError) or "Connection refused" in detail or "Bridge request failed" in detail:
+            # The long-lived cursor-sdk-bridge subprocess died. The SDK caches
+            # a singleton client/bridge for the process lifetime with no
+            # health-check, so every subsequent call would keep failing the
+            # same way. Reset the singleton so the next attempt relaunches
+            # a fresh bridge subprocess.
+            print("    [cursor-api] bridge connection lost; resetting client for relaunch…", flush=True)
+            try:
+                close_default_client()
+            except Exception:
+                pass
+        raise RuntimeError(f"Cursor API startup failed: {detail}") from exc
     finally:
         for temp_path in temp_paths:
             try:
