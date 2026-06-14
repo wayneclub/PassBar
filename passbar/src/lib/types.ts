@@ -77,13 +77,8 @@ export interface Question {
   correctAnswerLetter?: string;
   apiAnswerKey?: string;
   apiMatchOk: boolean;
-  explainImgs: string[];
-  zhExplainImgs?: string[];
-  sourceExplanationImageFile?: string;
-  sourceExplanationImageUrl?: string;
   enExplanationHtml?: string;       // gemini-generated English interactive HTML
   explanationHtml?: string;         // zh explanation html
-  explanationOcr?: ExplanationOcr[];
   topic?: string;                       // fine-grained topic from source image (e.g. "Right to counsel")
   microConcept?: string;               // fine-grained concept tested
   trapType?: string;                   // distractor/trap category
@@ -91,23 +86,6 @@ export interface Question {
   questionHighlightMeta?: QuestionHighlightMeta;
   questionKeywordMeta?: QuestionKeywordMeta;
   choiceKeywordMeta?: ChoiceKeywordMeta;
-}
-
-export interface ExplanationOcrWord {
-  text: string;
-  confidence?: number | null;
-  bbox: {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-  };
-}
-
-export interface ExplanationOcr {
-  publicUrl: string;
-  text: string | null;
-  words: ExplanationOcrWord[];
 }
 
 export type TestMode = 'Tutor' | 'Timed' | 'TopicStudy' | 'SimExam';

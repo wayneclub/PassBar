@@ -15,7 +15,6 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "import:questions": "node scripts/import_questions_to_supabase.mjs",
-    "ocr:explanations": "node scripts/ocr_explanation_images.mjs",
     "gemini:check-question": "node scripts/check_gemini_question_analysis.mjs"
   },
   "dependencies": {
@@ -52,7 +51,6 @@
     "eslint-config-next": "^16.2.4",
     "firebase": "^12.12.0",
     "genkit": "^1.32.0",
-    "image-size": "^2.0.2",
     "lucide-react": "^1.8.0",
     "next": "^16.2.4",
     "patch-package": "^8.0.1",
@@ -64,7 +62,6 @@
     "recharts": "^3.8.1",
     "tailwind-merge": "^3.5.0",
     "tailwindcss-animate": "^1.0.7",
-    "tesseract.js": "^7.0.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {

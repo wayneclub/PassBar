@@ -61,6 +61,7 @@ export function AppSidebar() {
   const { isMobile, setOpenMobile } = useSidebar();
   const { t } = useI18n();
   const navigationItems: NavigationItem[] = [
+    { name: t('nav.dashboard'), href: '/dashboard', icon: LayoutDashboard, items: [] },
     {
       name: t('nav.qbank'),
       icon: LayoutGrid,

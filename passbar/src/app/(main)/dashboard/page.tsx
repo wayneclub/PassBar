@@ -2,14 +2,22 @@
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
+  ArrowLeft,
   ArrowRight,
   BookOpen,
   Calendar,
   CalendarDays,
+  CheckCircle2,
   Clock,
+  Flag,
   Flame,
-  PlusCircle,
+  Loader2,
+  Play,
+  RotateCcw,
+  Settings,
+  SlidersHorizontal,
   Target,
   TrendingUp,
   Trophy,
@@ -18,9 +26,26 @@ import { useAuth } from '@/components/AuthProvider';
 import { useI18n } from '@/lib/i18n';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
+import { Slider } from '@/components/ui/slider';
+import { Switch } from '@/components/ui/switch';
 import { supabase } from '@/lib/supabase';
 import { cn } from '@/lib/utils';
+import { getSubjects } from '@/lib/question-bank';
+import type { Subject } from '@/lib/types';
+import { getQuestionStatusCounts, emptyQuestionStatusCounts, type QuestionStatusCounts } from '@/lib/question-progress';
+import {
+  calculateDailyQuota,
+  calculateSubjectQuotas,
+  generateTodayMissionSession,
+  getDueReviewChapters,
+  splitQuotaForReview,
+  type ChapterAttemptStats,
+} from '@/lib/smart-planner';
+import { saveUserStudySettings } from '@/lib/user-settings';
+import { saveStudySettings, defaultStudySettings, normalizeStudySettings, defaultDashboardWidgets, type DashboardWidgetKey, type DashboardWidgetVisibility } from '@/lib/study-settings';
+import { SmartStudyCalendar } from '@/components/SmartStudyCalendar';
 
 type SubjectCountRow = {
   subject: string;
@@ -34,6 +59,8 @@ type QuestionProgressRow = {
   last_answered_at: string | null;
   question_items?: {
     chapters?: {
+      id?: string | null;
+      chapter?: string | null;
       subject?: string | null;
     } | null;
   } | null;
@@ -63,6 +90,8 @@ type DashboardData = {
   incorrectCount: number;              // total incorrect answers
   weeklyStudyTimeSeconds: number;      // study time in last 7 days
   bestStreak: number;                  // longest-ever streak
+  avgSecondsPerQuestion: number;       // average time spent per answered question
+  chapterStats: ChapterAttemptStats[]; // per-chapter attempt aggregates for spaced review
 };
 
 const emptyDashboardData: DashboardData = {
@@ -81,6 +110,8 @@ const emptyDashboardData: DashboardData = {
   incorrectCount: 0,
   weeklyStudyTimeSeconds: 0,
   bestStreak: 0,
+  avgSecondsPerQuestion: 0,
+  chapterStats: [],
 };
 
 const chartColors = [
@@ -179,6 +210,8 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
       incorrectCount: 0,
       weeklyStudyTimeSeconds: 0,
       bestStreak: 0,
+      avgSecondsPerQuestion: 0,
+      chapterStats: [],
     };
   }
 
@@ -191,7 +224,7 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
       .select('subject, count'),
     supabase
       .from('user_question_progress')
-      .select('status, is_correct, time_spent_seconds, last_answered_at, question_items(chapters(subject))')
+      .select('status, is_correct, time_spent_seconds, last_answered_at, question_items(chapters(id, chapter, subject))')
       .eq('user_id', userId),
     supabase
       .from('practice_answers')
@@ -313,6 +346,35 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
   const incorrectCount = answers.filter((a) => !a.is_correct).length;
   const bestStreak = calculateBestStreak(answeredDates);
 
+  // ── Average time per answered question ──────────────────────────────────
+  const timedAnswers = answers.filter((a) => (a.time_spent_seconds ?? 0) > 0);
+  const avgSecondsPerQuestion = timedAnswers.length > 0
+    ? timedAnswers.reduce((sum, a) => sum + (a.time_spent_seconds ?? 0), 0) / timedAnswers.length
+    : 0;
+
+  // ── Per-chapter attempt aggregates (for spaced-repetition review queue) ──
+  const chapterStatsMap = new Map<string, ChapterAttemptStats>();
+  answers.forEach((answer) => {
+    const chapter = answer.question_items?.chapters;
+    if (!chapter?.id || !answer.last_answered_at) return;
+
+    const existing = chapterStatsMap.get(chapter.id) ?? {
+      chapterId: chapter.id,
+      chapterName: chapter.chapter ?? chapter.id,
+      subject: chapter.subject ?? 'Uncategorized',
+      attempts: 0,
+      correct: 0,
+      lastAttemptAt: answer.last_answered_at,
+    };
+
+    existing.attempts += 1;
+    if (answer.is_correct) existing.correct += 1;
+    if (answer.last_answered_at > existing.lastAttemptAt) existing.lastAttemptAt = answer.last_answered_at;
+
+    chapterStatsMap.set(chapter.id, existing);
+  });
+  const chapterStats = Array.from(chapterStatsMap.values());
+
   return {
     error: null,
     totalQuestions,
@@ -328,6 +390,8 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
     incorrectCount,
     weeklyStudyTimeSeconds,
     bestStreak,
+    avgSecondsPerQuestion,
+    chapterStats,
   };
 }
 
@@ -815,16 +879,16 @@ const US_BAR_STATES: { code: string; name: string }[] = [
   { code: 'VI', name: 'U.S. Virgin Islands' },
 ];
 
-function ExamDateDialog({
-  open,
-  currentDate,
-  onClose,
-  onSave,
+// ─── Shared exam-date picker (bar type + date input + mini calendar) ───────
+
+function ExamDatePickerFields({
+  value,
+  examState,
+  onChange,
 }: {
-  open: boolean;
-  currentDate: string | null;
-  onClose: () => void;
-  onSave: (date: string, state: string) => void;
+  value: string | null; // ISO yyyy-mm-dd
+  examState?: string | null;
+  onChange: (iso: string, state: string) => void;
 }) {
   const { t } = useI18n();
   const [tab, setTab] = useState<BarTab>('ca');
@@ -833,6 +897,7 @@ function ExamDateDialog({
   const [dateInput, setDateInput] = useState('');
   const [showCal, setShowCal] = useState(false);
   const calRef = useRef<HTMLDivElement>(null);
+  const initialized = useRef(false);
 
   // Suggested next exam date for CA/NY tabs
   const suggestedDate = useMemo((): Date | null => {
@@ -841,21 +906,30 @@ function ExamDateDialog({
     return null;
   }, [tab]);
 
-  // On open, pre-fill from currentDate or auto-suggest CA tab
+  // Initialize once from incoming value/examState
   useEffect(() => {
-    if (!open) return;
-    if (currentDate) {
-      setDateInput(isoToDisplay(currentDate));
-      setTab('custom');
+    if (initialized.current) return;
+    initialized.current = true;
+    if (value) {
+      setDateInput(isoToDisplay(value));
+      if (examState === 'ca' || examState === 'ny') {
+        setTab(examState);
+      } else if (examState && examState !== 'custom') {
+        setTab('other');
+        setOtherState(examState);
+      } else {
+        setTab('custom');
+      }
     } else {
       setTab('ca');
       setDateInput(formatDateDisplay(nextBarExamDate('ca')));
     }
-    setShowCal(false);
-  }, [open, currentDate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // When tab changes to ca/ny, auto-fill suggested date
   useEffect(() => {
+    if (!initialized.current) return;
     if (tab === 'ca' || tab === 'ny') {
       setDateInput(formatDateDisplay(nextBarExamDate(tab)));
     }
@@ -889,6 +963,18 @@ function ExamDateDialog({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dateInput]);
 
+  // Propagate valid changes to the parent
+  useEffect(() => {
+    if (!initialized.current || !isValid) return;
+    const savedState =
+      tab === 'ca' ? 'ca' :
+      tab === 'ny' ? 'ny' :
+      tab === 'other' ? otherState :
+      'custom';
+    onChange(displayToIso(dateInput), savedState);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dateInput, tab, otherState, isValid]);
+
   const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
   const firstDow = new Date(calYear, calMonth, 1).getDay(); // 0=Sun
   const calDays: (number | null)[] = [
@@ -918,223 +1004,438 @@ function ExamDateDialog({
     setTab('custom');
   }
 
-  if (!open) return null;
+  return (
+    <div className="space-y-5">
+      {/* Quick-select: CA / NY buttons + other states dropdown */}
+      <div>
+        <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2">
+          {t('dashboard.examBarType')}
+        </p>
+        {/* Joined button group: CA | NY | Other */}
+        <div className="flex w-full rounded-lg border border-slate-200 overflow-hidden divide-x divide-slate-200">
+          <button
+            type="button"
+            onClick={() => setTab('ca')}
+            className={cn(
+              'flex-1 py-2.5 text-sm font-semibold transition-all duration-150',
+              tab === 'ca'
+                ? 'bg-slate-700 text-white'
+                : 'bg-white text-slate-600 hover:bg-slate-50',
+            )}
+          >
+            CA
+          </button>
+          <button
+            type="button"
+            onClick={() => setTab('ny')}
+            className={cn(
+              'flex-1 py-2.5 text-sm font-semibold transition-all duration-150',
+              tab === 'ny'
+                ? 'bg-slate-700 text-white'
+                : 'bg-white text-slate-600 hover:bg-slate-50',
+            )}
+          >
+            NY
+          </button>
+          <select
+            value={tab === 'other' ? otherState : ''}
+            onChange={(e) => {
+              if (e.target.value) {
+                setTab('other');
+                setOtherState(e.target.value);
+                setDateInput('');
+              }
+            }}
+            className={cn(
+              'flex-1 py-2.5 px-2 text-sm font-semibold transition-all duration-150 cursor-pointer appearance-none text-center',
+              tab === 'other'
+                ? 'bg-slate-700 text-white'
+                : 'bg-white text-slate-600 hover:bg-slate-50',
+            )}
+          >
+            <option value="" disabled>{tab === 'other' && otherState ? otherState : 'Other ▾'}</option>
+            {US_BAR_STATES.map((s) => (
+              <option key={s.code} value={s.code}>{s.name}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {/* Suggested date hint for CA / NY */}
+      {suggestedDate && (
+        <div className="flex items-center gap-2 rounded-lg bg-slate-50 border border-slate-200 px-3 py-2.5">
+          <CalendarDays className="w-4 h-4 text-slate-500 shrink-0" />
+          <div className="flex-1 min-w-0">
+            <p className="text-xs text-slate-700 font-medium">
+              {t('dashboard.examBarNextSession', { date: formatDateDisplay(suggestedDate) })}
+            </p>
+            <p className="text-[10px] text-slate-400 mt-0.5">
+              {tab === 'ny' ? 'New York Bar — Last Tue & Wed of Feb / Jul' : 'California Bar — Last Tue & Wed of Feb / Jul'}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Date input + calendar toggle */}
+      <div>
+        <label className="block text-xs font-medium text-muted-foreground mb-1.5">{t('dashboard.examDateInput')}</label>
+        {/* Joined input + calendar button group */}
+        <div className={cn(
+          'flex items-stretch w-full rounded-lg border overflow-hidden transition-all',
+          isValid || dateInput === '' ? 'border-slate-200' : 'border-red-300',
+        )}>
+          <input
+            type="text"
+            placeholder="YYYY/MM/DD"
+            maxLength={10}
+            value={dateInput}
+            onChange={(e) => handleDateInputChange(e.target.value)}
+            className="flex-1 px-3 py-2.5 text-sm font-mono focus:outline-none bg-white"
+          />
+          <button
+            type="button"
+            onClick={() => setShowCal((v) => !v)}
+            className={cn(
+              'px-3 border-l border-slate-200 transition-all shrink-0',
+              showCal
+                ? 'bg-slate-700 text-white border-slate-700'
+                : 'bg-white text-slate-400 hover:bg-slate-50 hover:text-slate-700',
+            )}
+          >
+            <Calendar className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Mini calendar */}
+        {showCal && (
+          <div
+            ref={calRef}
+            className="mt-2 rounded-xl border border-slate-200 shadow-lg bg-white p-3 animate-in fade-in zoom-in-95 duration-150"
+          >
+            {/* Month nav */}
+            <div className="flex items-center justify-between mb-2">
+              <button
+                type="button"
+                className="p-1 rounded hover:bg-slate-100 text-slate-600 transition-colors"
+                onClick={() => {
+                  if (calMonth === 0) { setCalMonth(11); setCalYear((y) => y - 1); }
+                  else setCalMonth((m) => m - 1);
+                }}
+              >
+                ‹
+              </button>
+              <span className="text-sm font-semibold text-slate-800">
+                {monthNames[calMonth]} {calYear}
+              </span>
+              <button
+                type="button"
+                className="p-1 rounded hover:bg-slate-100 text-slate-600 transition-colors"
+                onClick={() => {
+                  if (calMonth === 11) { setCalMonth(0); setCalYear((y) => y + 1); }
+                  else setCalMonth((m) => m + 1);
+                }}
+              >
+                ›
+              </button>
+            </div>
+
+            {/* Day-of-week headers */}
+            <div className="grid grid-cols-7 mb-1">
+              {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map((d) => (
+                <div key={d} className="text-center text-[10px] text-muted-foreground font-medium py-0.5">{d}</div>
+              ))}
+            </div>
+
+            {/* Days grid */}
+            <div className="grid grid-cols-7 gap-0.5">
+              {calDays.map((day, idx) => {
+                if (day === null) return <div key={`empty-${idx}`} />;
+                const thisDate = new Date(calYear, calMonth, day);
+                const isToday = thisDate.toDateString() === today.toDateString();
+                const isSelected = parsedDate && thisDate.toDateString() === parsedDate.toDateString();
+                return (
+                  <button
+                    type="button"
+                    key={day}
+                    onClick={() => selectCalDay(day)}
+                    className={cn(
+                      'h-7 w-7 mx-auto rounded-full text-xs transition-all',
+                      isSelected && 'bg-slate-700 text-white font-bold',
+                      !isSelected && isToday && 'border border-slate-500 text-slate-700 font-semibold',
+                      !isSelected && !isToday && 'text-slate-700 hover:bg-slate-100',
+                    )}
+                  >
+                    {day}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─── Subject Weight Planner Dialog ──────────────────────────────────────────
+
+type WeightSubject = { name: string; total: number; remaining: number };
+
+function confidenceLevelKey(value: number): 'plan.confidenceStrong' | 'plan.confidenceMedium' | 'plan.confidenceWeak' {
+  if (value >= 70) return 'plan.confidenceStrong';
+  if (value >= 40) return 'plan.confidenceMedium';
+  return 'plan.confidenceWeak';
+}
+
+function SubjectWeightPanel({
+  onCancel,
+  subjects,
+  confidence,
+  defaultConfidence,
+  examDate,
+  examState,
+  studyDays,
+  triageWeeks,
+  dailyStudyHours,
+  totalQuestions,
+  practicedQuestions,
+  saving,
+  onSave,
+}: {
+  onCancel: () => void;
+  subjects: WeightSubject[];
+  confidence: Record<string, number>;
+  defaultConfidence: Record<string, number>;
+  examDate: string | null;
+  examState?: string | null;
+  studyDays: number[];
+  triageWeeks: number;
+  dailyStudyHours: number;
+  totalQuestions: number;
+  practicedQuestions: number;
+  saving: boolean;
+  onSave: (next: { confidence: Record<string, number>; studyDays: number[]; examDate: string | null; examState: string | null; dailyStudyHours: number }) => void;
+}) {
+  const { t } = useI18n();
+  const dayKeys = ['plan.day.sun', 'plan.day.mon', 'plan.day.tue', 'plan.day.wed', 'plan.day.thu', 'plan.day.fri', 'plan.day.sat'] as const;
+
+  const [tempConfidence, setTempConfidence] = useState<Record<string, number>>(confidence);
+  const [tempStudyDays, setTempStudyDays] = useState<number[]>(studyDays);
+  const [tempExamDate, setTempExamDate] = useState<string | null>(examDate);
+  const [tempExamState, setTempExamState] = useState<string | null>(examState ?? null);
+  const [tempDailyStudyHours, setTempDailyStudyHours] = useState<number>(dailyStudyHours);
+
+  const quotaPreview = useMemo(
+    () => calculateDailyQuota(totalQuestions, practicedQuestions, tempExamDate, tempStudyDays, triageWeeks, tempDailyStudyHours),
+    [totalQuestions, practicedQuestions, tempExamDate, tempStudyDays, triageWeeks, tempDailyStudyHours],
+  );
+
+  const subjectQuotas = useMemo(
+    () => calculateSubjectQuotas(subjects.map((s) => ({ name: s.name, remaining: s.remaining })), quotaPreview.quota, tempConfidence),
+    [subjects, quotaPreview.quota, tempConfidence],
+  );
+
+  const toggleStudyDay = (day: number) => {
+    setTempStudyDays((current) => (
+      current.includes(day) ? current.filter((d) => d !== day) : [...current, day].sort()
+    ));
+  };
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm animate-in fade-in duration-200"
-      onClick={onClose}
-    >
-      <div
-        className="bg-white rounded-2xl shadow-2xl w-96 animate-in zoom-in-95 duration-200 overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Header */}
-        <div className="bg-slate-50 border-b px-6 py-4">
-          <h2 className="text-base font-bold text-slate-800">State Bar Exam</h2>
-          <p className="text-xs text-muted-foreground mt-0.5">{t('dashboard.setExamDate')}</p>
-        </div>
-
-        <div className="p-6 space-y-5">
-          {/* Quick-select: CA / NY buttons + other states dropdown */}
+    <div className="space-y-6 animate-in fade-in slide-in-from-top-2 duration-200">
+      <div className="grid gap-6 md:grid-cols-2">
+        {/* Left column: exam date, remaining questions, study days */}
+        <div className="space-y-4">
           <div>
-            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2">
-              {t('dashboard.examBarType')}
-            </p>
-            {/* Joined button group: CA | NY | Other */}
-            <div className="flex w-full rounded-lg border border-slate-200 overflow-hidden divide-x divide-slate-200">
-              <button
-                onClick={() => setTab('ca')}
-                className={cn(
-                  'flex-1 py-2.5 text-sm font-semibold transition-all duration-150',
-                  tab === 'ca'
-                    ? 'bg-slate-700 text-white'
-                    : 'bg-white text-slate-600 hover:bg-slate-50',
-                )}
-              >
-                CA
-              </button>
-              <button
-                onClick={() => setTab('ny')}
-                className={cn(
-                  'flex-1 py-2.5 text-sm font-semibold transition-all duration-150',
-                  tab === 'ny'
-                    ? 'bg-slate-700 text-white'
-                    : 'bg-white text-slate-600 hover:bg-slate-50',
-                )}
-              >
-                NY
-              </button>
-              <select
-                value={tab === 'other' ? otherState : ''}
-                onChange={(e) => {
-                  if (e.target.value) {
-                    setTab('other');
-                    setOtherState(e.target.value);
-                    setDateInput('');
-                  }
+            <Label className="text-xs text-muted-foreground">{t('plan.examDateLabel')}</Label>
+            <div className="mt-1.5">
+              <ExamDatePickerFields
+                value={tempExamDate}
+                examState={tempExamState}
+                onChange={(iso, state) => {
+                  setTempExamDate(iso);
+                  setTempExamState(state);
                 }}
-                className={cn(
-                  'flex-1 py-2.5 px-2 text-sm font-semibold transition-all duration-150 cursor-pointer appearance-none text-center',
-                  tab === 'other'
-                    ? 'bg-slate-700 text-white'
-                    : 'bg-white text-slate-600 hover:bg-slate-50',
-                )}
-              >
-                <option value="" disabled>{tab === 'other' && otherState ? otherState : 'Other ▾'}</option>
-                {US_BAR_STATES.map((s) => (
-                  <option key={s.code} value={s.code}>{s.name}</option>
-                ))}
-              </select>
+              />
             </div>
           </div>
 
-          {/* Suggested date hint for CA / NY */}
-          {suggestedDate && (
-            <div className="flex items-center gap-2 rounded-lg bg-slate-50 border border-slate-200 px-3 py-2.5">
-              <CalendarDays className="w-4 h-4 text-slate-500 shrink-0" />
-              <div className="flex-1 min-w-0">
-                <p className="text-xs text-slate-700 font-medium">
-                  {t('dashboard.examBarNextSession', { date: formatDateDisplay(suggestedDate) })}
-                </p>
-                <p className="text-[10px] text-slate-400 mt-0.5">
-                  {tab === 'ny' ? 'New York Bar — Last Tue & Wed of Feb / Jul' : 'California Bar — Last Tue & Wed of Feb / Jul'}
-                </p>
-              </div>
-            </div>
-          )}
-
-          {/* Date input + calendar toggle */}
           <div>
-            <label className="block text-xs font-medium text-muted-foreground mb-1.5">{t('dashboard.examDateInput')}</label>
-            {/* Joined input + calendar button group */}
-            <div className={cn(
-              'flex items-stretch w-full rounded-lg border overflow-hidden transition-all',
-              isValid || dateInput === '' ? 'border-slate-200' : 'border-red-300',
-            )}>
+            <Label className="text-xs text-muted-foreground">{t('plan.remainingQuestionsInput')}</Label>
+            <div className="mt-1.5 flex gap-2">
               <input
-                type="text"
-                placeholder="YYYY/MM/DD"
-                maxLength={10}
-                value={dateInput}
-                onChange={(e) => handleDateInputChange(e.target.value)}
-                className="flex-1 px-3 py-2.5 text-sm font-mono focus:outline-none bg-white"
+                type="number"
+                value={quotaPreview.remainingQuestions}
+                readOnly
+                className="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-500 focus:outline-none"
               />
-              <button
-                onClick={() => setShowCal((v) => !v)}
-                className={cn(
-                  'px-3 border-l border-slate-200 transition-all shrink-0',
-                  showCal
-                    ? 'bg-slate-700 text-white border-slate-700'
-                    : 'bg-white text-slate-400 hover:bg-slate-50 hover:text-slate-700',
-                )}
+              <Button
+                type="button"
+                variant="outline"
+                className="shrink-0"
+                onClick={() => setTempConfidence(defaultConfidence)}
               >
-                <Calendar className="w-4 h-4" />
-              </button>
+                {t('plan.reset')}
+              </Button>
             </div>
+          </div>
 
-            {/* Mini calendar */}
-            {showCal && (
-              <div
-                ref={calRef}
-                className="mt-2 rounded-xl border border-slate-200 shadow-lg bg-white p-3 animate-in fade-in zoom-in-95 duration-150"
-              >
-                {/* Month nav */}
-                <div className="flex items-center justify-between mb-2">
-                  <button
-                    className="p-1 rounded hover:bg-slate-100 text-slate-600 transition-colors"
-                    onClick={() => {
-                      if (calMonth === 0) { setCalMonth(11); setCalYear((y) => y - 1); }
-                      else setCalMonth((m) => m - 1);
-                    }}
-                  >
-                    ‹
-                  </button>
-                  <span className="text-sm font-semibold text-slate-800">
-                    {monthNames[calMonth]} {calYear}
-                  </span>
-                  <button
-                    className="p-1 rounded hover:bg-slate-100 text-slate-600 transition-colors"
-                    onClick={() => {
-                      if (calMonth === 11) { setCalMonth(0); setCalYear((y) => y + 1); }
-                      else setCalMonth((m) => m + 1);
-                    }}
-                  >
-                    ›
-                  </button>
-                </div>
+          <div>
+            <Label className="text-xs text-muted-foreground">{t('plan.studyDaysLabel')}</Label>
+            <div className="mt-1.5 flex flex-wrap gap-2">
+              {dayKeys.map((dayKey, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => toggleStudyDay(idx)}
+                  className={cn(
+                    'rounded-full border px-3 py-1 text-xs font-medium transition-colors',
+                    tempStudyDays.includes(idx)
+                      ? 'border-primary bg-primary text-primary-foreground'
+                      : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50 hover:bg-primary/5',
+                  )}
+                >
+                  {t(dayKey)}
+                </button>
+              ))}
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground">
+              💡 {t('plan.studyDaysSummary', { days: tempStudyDays.length, restDays: 7 - tempStudyDays.length })}
+            </p>
+          </div>
 
-                {/* Day-of-week headers */}
-                <div className="grid grid-cols-7 mb-1">
-                  {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map((d) => (
-                    <div key={d} className="text-center text-[10px] text-muted-foreground font-medium py-0.5">{d}</div>
-                  ))}
-                </div>
-
-                {/* Days grid */}
-                <div className="grid grid-cols-7 gap-0.5">
-                  {calDays.map((day, idx) => {
-                    if (day === null) return <div key={`empty-${idx}`} />;
-                    const thisDate = new Date(calYear, calMonth, day);
-                    const isToday = thisDate.toDateString() === today.toDateString();
-                    const isSelected = parsedDate && thisDate.toDateString() === parsedDate.toDateString();
-                    return (
-                      <button
-                        key={day}
-                        onClick={() => selectCalDay(day)}
-                        className={cn(
-                          'h-7 w-7 mx-auto rounded-full text-xs transition-all',
-                          isSelected && 'bg-slate-700 text-white font-bold',
-                          !isSelected && isToday && 'border border-slate-500 text-slate-700 font-semibold',
-                          !isSelected && !isToday && 'text-slate-700 hover:bg-slate-100',
-                        )}
-                      >
-                        {day}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
+          <div>
+            <Label className="text-xs text-muted-foreground">{t('plan.dailyStudyHoursLabel')}</Label>
+            <div className="mt-1.5 flex items-center gap-2">
+              <input
+                type="number"
+                min={0.5}
+                max={12}
+                step={0.5}
+                value={tempDailyStudyHours}
+                onChange={(e) => setTempDailyStudyHours(Math.max(0.5, Number(e.target.value) || 0.5))}
+                className="w-24 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/30"
+              />
+              <span className="text-sm text-muted-foreground">{t('plan.hoursUnit')}</span>
+            </div>
+            {quotaPreview.timeEstimate && (
+              <p className="mt-2 text-xs text-muted-foreground">
+                💡 {t('plan.timeBasedQuotaHint', {
+                  min: quotaPreview.timeEstimate.min,
+                  max: quotaPreview.timeEstimate.max,
+                })}
+              </p>
             )}
           </div>
+        </div>
 
-          {/* Action buttons */}
-          <div className="flex gap-2 pt-1">
-            <Button variant="outline" className="flex-1" onClick={onClose}>
-              {t('dashboard.examDateCancel')}
-            </Button>
-            <Button
-              className="flex-1"
-              disabled={!isValid}
-              onClick={() => {
-                if (isValid) {
-                  const savedState =
-                    tab === 'ca' ? 'ca' :
-                    tab === 'ny' ? 'ny' :
-                    tab === 'other' ? otherState :
-                    'custom';
-                  onSave(displayToIso(dateInput), savedState);
-                  onClose();
-                }
-              }}
-            >
-              {t('dashboard.examDateSave')}
-            </Button>
+        {/* Right column: subject confidence sliders */}
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 space-y-4">
+          <div>
+            <p className="text-sm font-bold text-slate-800 flex items-center gap-2">
+              <SlidersHorizontal className="h-4 w-4 text-primary" />
+              {t('plan.confidenceTitle')}
+            </p>
+            <p className="text-xs text-muted-foreground mt-1">{t('plan.confidenceDescription')}</p>
+          </div>
+          <div className="space-y-4">
+            {subjects.map((subject) => {
+              const value = tempConfidence[subject.name] ?? 50;
+              return (
+                <div key={subject.name}>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="font-medium text-slate-800">{subject.name}</span>
+                    <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                      <span className="font-semibold text-primary">{t('plan.confidenceLevel', { value })}</span>
+                      <span className="rounded-md border border-slate-200 bg-white px-1.5 py-0.5 text-[10px] text-slate-500">
+                        {t(confidenceLevelKey(value))}
+                      </span>
+                    </span>
+                  </div>
+                  <Slider
+                    className="mt-2"
+                    value={[value]}
+                    min={0}
+                    max={100}
+                    step={5}
+                    onValueChange={([next]) => setTempConfidence((current) => ({ ...current, [subject.name]: next }))}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
+      </div>
+
+      {/* Smart allocation results */}
+      <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 space-y-3">
+        <p className="text-sm font-bold text-slate-800 flex items-center gap-2">
+          📊 {t('plan.allocationResultTitle')}
+        </p>
+        <p className="text-sm text-slate-700">
+          {t('plan.allocationResultDescription', {
+            days: quotaPreview.availableDays,
+            studyDays: tempStudyDays.length,
+            quota: quotaPreview.quota,
+          })}
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {subjects.filter((s) => s.remaining > 0).map((subject) => (
+            <div key={subject.name} className="rounded-lg border border-slate-200 bg-white p-3">
+              <p className="text-xs text-muted-foreground truncate">{subject.name}</p>
+              <p className="text-lg font-bold text-slate-900">
+                {subjectQuotas[subject.name] ?? 0} {t('plan.questionsUnit')}
+              </p>
+            </div>
+          ))}
+        </div>
+        <div className="rounded-lg bg-primary text-primary-foreground p-4 text-center">
+          <p className="text-xs font-semibold uppercase tracking-wider opacity-80">{t('plan.todayQuotaLabel')}</p>
+          <p className="text-2xl font-bold mt-1">{quotaPreview.quota} {t('plan.questionsUnit')}</p>
+          {quotaPreview.timeCapped && (
+            <p className="text-xs opacity-80 mt-1">{t('plan.timeCapHint')}</p>
+          )}
+        </div>
+      </div>
+
+      {/* Actions */}
+      <div className="flex gap-2 pt-1">
+        <Button type="button" variant="outline" className="flex-1 h-11 px-5 text-sm" onClick={onCancel}>
+          {t('plan.cancel')}
+        </Button>
+        <Button
+          type="button"
+          className="flex-1 h-11 px-5 text-sm font-semibold"
+          disabled={saving}
+          onClick={() => onSave({ confidence: tempConfidence, studyDays: tempStudyDays, examDate: tempExamDate, examState: tempExamState, dailyStudyHours: tempDailyStudyHours })}
+        >
+          {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {t('plan.save')}
+        </Button>
       </div>
     </div>
   );
 }
 
 export default function DashboardPage() {
+  const router = useRouter();
   const { user, profile, refreshProfile } = useAuth();
   const { t } = useI18n();
   const [dashboardData, setDashboardData] = useState<DashboardData>(emptyDashboardData);
   const [examDate, setExamDate] = useState<string | null>(null);
   const [examState, setExamState] = useState<string | null>(null);
-  const [showExamDialog, setShowExamDialog] = useState(false);
   const [visible, setVisible] = useState(false);
+
+  // ── Today's Mission (Smart Plan) ─────────────────────────────────────────
+  const [missionSubjects, setMissionSubjects] = useState<Subject[]>([]);
+  const [missionStatusCounts, setMissionStatusCounts] = useState<QuestionStatusCounts>(emptyQuestionStatusCounts);
+  const [generatingMission, setGeneratingMission] = useState(false);
+  const [showWeightDialog, setShowWeightDialog] = useState(false);
+  const [savingWeights, setSavingWeights] = useState(false);
+
+  // ── Widget visibility ────────────────────────────────────────────────────
+  const [widgetVisibility, setWidgetVisibility] = useState<DashboardWidgetVisibility>(defaultDashboardWidgets);
+  const [showWidgetPanel, setShowWidgetPanel] = useState(false);
 
   useEffect(() => {
     setVisible(false);
@@ -1145,6 +1446,26 @@ export default function DashboardPage() {
   useEffect(() => {
     if (profile?.exam_date) setExamDate(profile.exam_date);
   }, [profile?.exam_date]);
+
+  useEffect(() => {
+    if (profile?.study_settings?.dashboardWidgets) {
+      setWidgetVisibility({ ...defaultDashboardWidgets, ...profile.study_settings.dashboardWidgets });
+    }
+  }, [profile?.study_settings?.dashboardWidgets]);
+
+  const toggleWidget = async (key: DashboardWidgetKey) => {
+    const next = { ...widgetVisibility, [key]: !widgetVisibility[key] };
+    setWidgetVisibility(next);
+    const updatedSettings = normalizeStudySettings({
+      ...(profile?.study_settings ?? defaultStudySettings),
+      dashboardWidgets: next,
+    });
+    saveStudySettings(updatedSettings);
+    if (user?.id) {
+      await saveUserStudySettings(user.id, updatedSettings);
+      await refreshProfile();
+    }
+  };
 
   // Load exam state from localStorage (keyed per user)
   useEffect(() => {
@@ -1195,6 +1516,116 @@ export default function DashboardPage() {
     }
   };
 
+  // ── Today's Mission (Smart Plan) ─────────────────────────────────────────
+  useEffect(() => {
+    getSubjects().then(setMissionSubjects);
+  }, []);
+
+  const missionTotalQuestions = useMemo(
+    () => missionSubjects.reduce((sum, s) => sum + s.count, 0),
+    [missionSubjects],
+  );
+
+  useEffect(() => {
+    if (!user?.id || missionTotalQuestions === 0) return;
+    getQuestionStatusCounts(user.id, missionTotalQuestions).then(setMissionStatusCounts);
+  }, [user?.id, missionTotalQuestions]);
+
+  const missionPracticedQuestions = missionStatusCounts.Correct + missionStatusCounts.Incorrect;
+  const studyDays = profile?.study_settings?.studyPlan?.studyDaysPerWeek ?? [1, 2, 3, 4, 5];
+  const triageWeeks = profile?.study_settings?.studyPlan?.triageWeeks ?? 2;
+  const dailyStudyHours = profile?.study_settings?.studyPlan?.dailyStudyHours ?? 3;
+
+  const quotaInfo = useMemo(
+    () => calculateDailyQuota(missionTotalQuestions, missionPracticedQuestions, examDate, studyDays, triageWeeks, dailyStudyHours),
+    [missionTotalQuestions, missionPracticedQuestions, examDate, studyDays, triageWeeks, dailyStudyHours],
+  );
+
+  const subjectsWithRemaining = useMemo(
+    () => missionSubjects.map((subject) => {
+      const performance = dashboardData.subjectPerformance.find((p) => p.name === subject.name);
+      const answered = performance?.total ?? 0;
+      return {
+        name: subject.name,
+        total: subject.count,
+        remaining: Math.max(0, subject.count - answered),
+      };
+    }),
+    [missionSubjects, dashboardData.subjectPerformance],
+  );
+
+  const defaultConfidence = useMemo(() => {
+    const result: Record<string, number> = {};
+    subjectsWithRemaining.forEach((subject) => {
+      const performance = dashboardData.subjectPerformance.find((p) => p.name === subject.name);
+      result[subject.name] = performance && performance.total > 0 ? performance.score : 50;
+    });
+    return result;
+  }, [subjectsWithRemaining, dashboardData.subjectPerformance]);
+
+  const savedConfidence = profile?.study_settings?.studyPlan?.subjectConfidence;
+
+  const subjectConfidence = useMemo(
+    () => ({ ...defaultConfidence, ...(savedConfidence ?? {}) }),
+    [defaultConfidence, savedConfidence],
+  );
+
+  const dueReviewChapters = useMemo(
+    () => getDueReviewChapters(dashboardData.chapterStats),
+    [dashboardData.chapterStats],
+  );
+
+  const reviewSplit = useMemo(
+    () => splitQuotaForReview(quotaInfo.quota, dueReviewChapters.length),
+    [quotaInfo.quota, dueReviewChapters.length],
+  );
+
+  const subjectQuotas = useMemo(
+    () => calculateSubjectQuotas(subjectsWithRemaining, reviewSplit.newQuota, subjectConfidence),
+    [subjectsWithRemaining, reviewSplit.newQuota, subjectConfidence],
+  );
+
+  const handleStartMission = async () => {
+    if (!user) return;
+    setGeneratingMission(true);
+    const result = await generateTodayMissionSession(
+      user.id,
+      quotaInfo.quota,
+      quotaInfo.triageMode,
+      subjectQuotas,
+      dueReviewChapters.map((c) => c.chapterId),
+      reviewSplit.reviewQuota,
+    );
+    if (result) {
+      router.push(`/test?id=${encodeURIComponent(result.session.id)}`);
+    } else {
+      setGeneratingMission(false);
+      alert(t('plan.noQuestionsAlert'));
+    }
+  };
+
+  const handleSaveWeights = async (next: { confidence: Record<string, number>; studyDays: number[]; examDate: string | null; examState: string | null; dailyStudyHours: number }) => {
+    if (!user || !profile) return;
+    setSavingWeights(true);
+    const updatedSettings = {
+      ...(profile.study_settings ?? defaultStudySettings),
+      studyPlan: {
+        studyDaysPerWeek: next.studyDays,
+        triageWeeks,
+        subjectConfidence: next.confidence,
+        dailyStudyHours: next.dailyStudyHours,
+      },
+    };
+    saveStudySettings(updatedSettings);
+    await saveUserStudySettings(user.id, updatedSettings);
+    if (next.examDate && (next.examDate !== examDate || next.examState !== examState)) {
+      await handleSaveExamDate(next.examDate, next.examState ?? 'custom');
+    }
+    await refreshProfile();
+    setSavingWeights(false);
+    setShowWeightDialog(false);
+  };
+
   const strongestSubject = useMemo(
     () => dashboardData.subjectPerformance
       .filter((subject) => subject.total > 0)
@@ -1206,6 +1637,15 @@ export default function DashboardPage() {
     () => dashboardData.subjectPerformance
       .filter((subject) => subject.total > 0)
       .sort((a, b) => a.score - b.score)[0],
+    [dashboardData.subjectPerformance],
+  );
+
+  const weakFocusSubjects = useMemo(
+    () => dashboardData.subjectPerformance
+      .filter((subject) => subject.total > 0)
+      .sort((a, b) => a.score - b.score)
+      .slice(0, 2)
+      .map((subject) => subject.name),
     [dashboardData.subjectPerformance],
   );
 
@@ -1352,22 +1792,31 @@ export default function DashboardPage() {
   }, [totalInsightPages]);
 
   const userFirstName = displayNameFromProfile(profile?.full_name, profile?.email ?? user?.email);
+  const dayKeys = ['plan.day.sun', 'plan.day.mon', 'plan.day.tue', 'plan.day.wed', 'plan.day.thu', 'plan.day.fri', 'plan.day.sat'] as const;
   const remainingQuestions = Math.max(dashboardData.totalQuestions - dashboardData.solvedQuestions, 0);
   const nextMilestone = dashboardData.solvedQuestions === 0
     ? Math.min(25, dashboardData.totalQuestions || 25)
     : Math.max(10, 50 - (dashboardData.solvedQuestions % 50));
 
+  const SAFE_PASS_THRESHOLD = 75;
+  const completionRate = dashboardData.totalQuestions > 0
+    ? (dashboardData.solvedQuestions / dashboardData.totalQuestions) * 100
+    : 0;
+  const streakBadgeMilestones: Array<{ days: number; key: 'dashboard.badge.discipline' | 'dashboard.badge.consistency' | 'dashboard.badge.master' }> = [
+    { days: 7, key: 'dashboard.badge.discipline' },
+    { days: 30, key: 'dashboard.badge.consistency' },
+    { days: 100, key: 'dashboard.badge.master' },
+  ];
+  const nextStreakBadge = streakBadgeMilestones.find((m) => dashboardData.streakDays < m.days);
+  const estimatedRemainingHours = Math.round(
+    (remainingQuestions * (dashboardData.avgSecondsPerQuestion || 90)) / 3600,
+  );
+
   const masteryDisplay = useCountUp(Math.round(dashboardData.loading ? 0 : dashboardData.mastery));
+  const todayDisplay = startOfLocalDay(new Date()).toISOString().slice(0, 10);
 
   return (
     <>
-      <ExamDateDialog
-        open={showExamDialog}
-        currentDate={examDate}
-        onClose={() => setShowExamDialog(false)}
-        onSave={handleSaveExamDate}
-      />
-
       <div
         className={cn(
           'space-y-8 transition-all duration-700',
@@ -1377,31 +1826,264 @@ export default function DashboardPage() {
         <header className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           {/* Left: title + badge */}
           <div className="space-y-2.5 min-w-0">
-            <h1 className="text-2xl sm:text-3xl font-bold text-primary leading-tight">
-              {t('dashboard.welcome', { name: userFirstName })}
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight">
+              {t('dashboard.welcomePrefix')}{' '}
+              <span className="bg-gradient-to-r from-primary/50 to-primary bg-clip-text text-transparent">
+                {userFirstName}
+              </span>
             </h1>
-            <ExamCountdownBadge
-              examDate={examDate}
-              examState={examState}
-              onSetDate={() => setShowExamDialog(true)}
-            />
+            <div className="flex flex-wrap items-center gap-2">
+              <ExamCountdownBadge
+                examDate={examDate}
+                examState={examState}
+                onSetDate={() => setShowWeightDialog(true)}
+              />
+              {examDate && (
+                <span className="text-xs text-muted-foreground">
+                  {t('plan.planningRange', { start: todayDisplay, end: examDate })}
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Right: action buttons — aligned to bottom of left column */}
           <div className="flex flex-row gap-2.5 shrink-0">
-            <Button asChild variant="outline" className="flex-1 sm:flex-none h-11 px-5 text-sm">
-              <Link href="/review">
-                {t('dashboard.viewHistory')}
-              </Link>
+            <Button
+              variant="outline"
+              className="flex-1 sm:flex-none h-11 px-5 text-sm shadow-sm gap-2"
+              onClick={() => setShowWeightDialog(true)}
+            >
+              <SlidersHorizontal className="h-4 w-4" />
+              {t('dashboard.customWeights')}
             </Button>
-            <Button asChild className="flex-1 sm:flex-none h-11 px-5 text-sm font-semibold">
+            <Button
+              variant="outline"
+              className="flex-1 sm:flex-none h-11 px-5 text-sm shadow-sm gap-2"
+              onClick={() => setShowWidgetPanel((v) => !v)}
+            >
+              <Settings className="h-4 w-4" />
+              {t('dashboard.customizeWidgets')}
+            </Button>
+            <Button asChild className="flex-1 sm:flex-none h-11 px-5 text-sm font-semibold shadow-md shadow-primary/20">
               <Link href="/create" className="flex items-center justify-center gap-2">
-                <PlusCircle className="w-4 h-4 shrink-0" />
+                <Play className="w-4 h-4 fill-current shrink-0" />
                 {t('dashboard.startNewSession')}
               </Link>
             </Button>
           </div>
         </header>
+
+        {/* Widget visibility panel */}
+        {showWidgetPanel && (
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 space-y-3 animate-in fade-in slide-in-from-top-2 duration-150">
+            <p className="text-sm font-bold text-slate-800">{t('dashboard.customizeWidgets')}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {(Object.keys(widgetVisibility) as DashboardWidgetKey[]).map((key) => (
+                <label key={key} className="flex items-center justify-between gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2">
+                  <span className="text-sm text-slate-700">{t(`dashboard.widgets.${key}` as Parameters<typeof t>[0])}</span>
+                  <Switch checked={widgetVisibility[key]} onCheckedChange={() => toggleWidget(key)} />
+                </label>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Today's Mission (Smart Plan) */}
+        {widgetVisibility.todaysMission && (
+        <Card className="border-primary/20 bg-primary/5 shadow-sm transition-all duration-500 hover:shadow-md">
+          <CardHeader className="pb-2">
+            <div className="flex items-center justify-between gap-2">
+              <CardTitle className="text-base font-semibold flex items-center gap-2">
+                {showWeightDialog ? (
+                  <SlidersHorizontal className="h-4 w-4 text-primary" />
+                ) : (
+                  <Flag className="h-4 w-4 text-primary" />
+                )}
+                {showWeightDialog ? t('plan.weightPlannerTitle') : t('plan.todaysMission')}
+              </CardTitle>
+              {showWeightDialog ? (
+                <Button variant="ghost" size="sm" className="h-8 px-2 text-muted-foreground" onClick={() => setShowWeightDialog(false)}>
+                  <ArrowLeft className="h-3.5 w-3.5" />
+                </Button>
+              ) : examDate ? (
+                <Button variant="ghost" size="sm" className="h-8 px-2 text-muted-foreground" onClick={() => setShowWeightDialog(true)}>
+                  <Settings className="h-3.5 w-3.5" />
+                </Button>
+              ) : null}
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {showWeightDialog ? (
+              <SubjectWeightPanel
+                onCancel={() => setShowWeightDialog(false)}
+                subjects={subjectsWithRemaining}
+                confidence={subjectConfidence}
+                defaultConfidence={defaultConfidence}
+                examDate={examDate}
+                examState={examState}
+                studyDays={studyDays}
+                triageWeeks={triageWeeks}
+                dailyStudyHours={dailyStudyHours}
+                totalQuestions={missionTotalQuestions}
+                practicedQuestions={missionPracticedQuestions}
+                saving={savingWeights}
+                onSave={handleSaveWeights}
+              />
+            ) : !examDate ? (
+              <div className="flex flex-col items-center text-center gap-2 py-4">
+                <p className="text-sm text-slate-700">{t('plan.examDateHint')}</p>
+                <Button variant="outline" size="sm" className="h-11 px-5 text-sm" onClick={() => setShowWeightDialog(true)}>
+                  {t('dashboard.setExamDate')}
+                </Button>
+              </div>
+            ) : (
+              <>
+                {quotaInfo.quota > 0 ? (
+                  <div className="flex flex-col items-center text-center gap-3">
+                    <p className="text-sm text-slate-700 max-w-md">
+                      {t('plan.missionDescriptionPrefix', { date: examDate })}
+                    </p>
+                    <div className="flex items-end justify-center gap-1.5">
+                      <span className="text-5xl font-bold text-primary leading-none tabular-nums">{quotaInfo.quota}</span>
+                      <span className="text-base font-semibold text-muted-foreground mb-1.5">{t('plan.missionDescriptionSuffix')}</span>
+                    </div>
+                    {reviewSplit.reviewQuota > 0 && (
+                      <p className="text-sm text-muted-foreground max-w-md">
+                        {t('plan.missionSplitHint', { review: reviewSplit.reviewQuota, new: reviewSplit.newQuota })}
+                      </p>
+                    )}
+                    {weakFocusSubjects.length > 0 && (
+                      <p className="text-sm text-muted-foreground max-w-md">
+                        {t('plan.weakFocusHint', { subjects: weakFocusSubjects.join('、') })}
+                      </p>
+                    )}
+                    <Button
+                      size="lg"
+                      className="h-11 px-5 text-sm font-semibold shadow-md shadow-primary/20"
+                      onClick={handleStartMission}
+                      disabled={generatingMission}
+                    >
+                      {generatingMission && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                      {generatingMission ? t('plan.preparingMission') : t('plan.startMission', { count: quotaInfo.quota })}
+                    </Button>
+                    {quotaInfo.triageMode && (
+                      <p className="text-xs font-semibold uppercase tracking-wider text-amber-600 flex items-center justify-center gap-1">
+                        <CheckCircle2 className="h-3.5 w-3.5" /> {t('plan.sprintMode')}
+                      </p>
+                    )}
+                  </div>
+                ) : (
+                  <div className="text-green-700 text-center py-2">
+                    <CheckCircle2 className="mx-auto h-8 w-8 mb-2 opacity-80" />
+                    <p className="text-sm font-semibold">{t('plan.allDoneTitle')}</p>
+                    <p className="text-sm text-muted-foreground mt-1">{t('plan.allDoneDescription')}</p>
+                  </div>
+                )}
+
+                {/* Schedule overview */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-3 border-t border-primary/10">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-xs text-muted-foreground">{t('plan.remainingQuestions')}</span>
+                    <span className="text-2xl font-bold">{quotaInfo.remainingQuestions}</span>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-xs text-muted-foreground">{t('plan.availableStudyDays')}</span>
+                    <span className="text-2xl font-bold">{t('plan.daysUnit', { count: quotaInfo.availableDays })}</span>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-xs text-muted-foreground">{t('plan.weeklySprintDays')}</span>
+                    <span className="text-2xl font-bold">{t('plan.daysUnit', { count: studyDays.length })}</span>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-xs text-muted-foreground">{t('plan.estimatedTotalTime')}</span>
+                    <span className="text-2xl font-bold">
+                      {formatDuration(quotaInfo.remainingQuestions * (dashboardData.avgSecondsPerQuestion || 90))}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Weekly routine */}
+                <div className="flex justify-between pt-1">
+                  {dayKeys.map((dayKey, i) => {
+                    const isStudyDay = studyDays.includes(i);
+                    const isToday = new Date().getDay() === i;
+                    return (
+                      <div key={i} className="flex flex-col items-center gap-1.5">
+                        <span className={cn('text-xs', isToday ? 'font-bold text-primary' : 'text-muted-foreground')}>
+                          {t(dayKey)}
+                        </span>
+                        <div className={cn(
+                          'h-7 w-7 rounded-full flex items-center justify-center',
+                          isStudyDay
+                            ? isToday ? 'bg-primary text-primary-foreground shadow-sm' : 'bg-primary/10 text-primary'
+                            : 'bg-slate-50 text-slate-300',
+                        )}>
+                          {isStudyDay && <CheckCircle2 className="h-3.5 w-3.5" />}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            )}
+          </CardContent>
+        </Card>
+        )}
+
+        {/* Spaced Review (Ebbinghaus forgetting curve) */}
+        {widgetVisibility.spacedReview && (
+        <Card className="hover:shadow-md transition-shadow">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base font-semibold flex items-center gap-2">
+              <RotateCcw className="h-4 w-4 text-primary" />
+              {t('dashboard.spacedReview.title')}
+            </CardTitle>
+            <p className="text-sm text-muted-foreground mt-0.5">{t('dashboard.spacedReview.description')}</p>
+          </CardHeader>
+          <CardContent>
+            {dueReviewChapters.length === 0 ? (
+              <p className="text-sm text-muted-foreground py-2">{t('dashboard.spacedReview.empty')}</p>
+            ) : (
+              <ul className="space-y-2">
+                {dueReviewChapters.slice(0, 5).map((chapter) => (
+                  <li
+                    key={chapter.chapterId}
+                    className="flex items-center justify-between gap-3 rounded-lg border border-slate-100 px-3 py-2"
+                  >
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-slate-800 truncate">
+                        {chapter.subject} · {chapter.chapterName}
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        {t('dashboard.spacedReview.itemMeta', { days: chapter.daysSinceLastAttempt, pct: chapter.accuracy })}
+                      </p>
+                    </div>
+                    <span className="shrink-0 rounded-md border bg-amber-100 text-amber-700 border-amber-200 px-2 py-0.5 text-xs font-medium">
+                      {t('dashboard.spacedReview.dueBadge')}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </CardContent>
+        </Card>
+        )}
+
+        {/* Smart Study Calendar */}
+        {widgetVisibility.smartCalendar && (
+          <SmartStudyCalendar
+            examDate={examDate}
+            studyDays={studyDays}
+            dailyQuota={quotaInfo.quota}
+            remainingQuestions={quotaInfo.remainingQuestions}
+            triageWeeks={triageWeeks}
+            subjectQuotas={subjectQuotas}
+            subjectsWithRemaining={subjectsWithRemaining}
+            dailyCounts={dashboardData.dailyCounts}
+            onStartToday={handleStartMission}
+            startingMission={generatingMission}
+          />
+        )}
 
         {dashboardData.error ? (
           <Card className="border-red-100 bg-red-50 text-red-800">
@@ -1412,6 +2094,7 @@ export default function DashboardPage() {
         ) : null}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {widgetVisibility.kpiMastery && (
           <Card
             className="bg-white/50 border-primary/10 shadow-sm transition-all duration-500 hover:shadow-md"
             style={{ transitionDelay: '0ms' }}
@@ -1429,9 +2112,14 @@ export default function DashboardPage() {
                 </div>
               </div>
               <Progress value={dashboardData.loading ? 0 : dashboardData.mastery} className="h-1.5 mt-4 transition-all duration-700" />
+              <p className="text-xs text-muted-foreground mt-2">
+                {t('dashboard.targetAccuracy', { target: SAFE_PASS_THRESHOLD })}
+              </p>
             </CardContent>
           </Card>
+          )}
 
+          {widgetVisibility.kpiSolved && (
           <Card
             className="bg-white/50 border-secondary/10 shadow-sm transition-all duration-500 hover:shadow-md"
             style={{ transitionDelay: '60ms' }}
@@ -1457,9 +2145,14 @@ export default function DashboardPage() {
                 <span className="text-green-500 font-semibold">+{dashboardData.solvedToday}</span> {t('dashboard.today')}
                 <span className="ml-2">{t('dashboard.practiceAttempts', { count: dashboardData.practiceAttempts.toLocaleString() })}</span>
               </p>
+              <p className="text-xs text-muted-foreground mt-1">
+                {t('dashboard.completionRate', { rate: completionRate.toFixed(1) })}
+              </p>
             </CardContent>
           </Card>
+          )}
 
+          {widgetVisibility.kpiStreak && (
           <Card
             className="bg-white/50 border-primary/20 shadow-sm transition-all duration-500 hover:shadow-md"
             style={{ transitionDelay: '120ms' }}
@@ -1488,9 +2181,19 @@ export default function DashboardPage() {
                   />
                 ))}
               </div>
+              {nextStreakBadge && (
+                <p className="text-xs text-muted-foreground mt-2">
+                  {t('dashboard.streakBadgeHint', {
+                    days: nextStreakBadge.days - dashboardData.streakDays,
+                    badge: t(nextStreakBadge.key),
+                  })}
+                </p>
+              )}
             </CardContent>
           </Card>
+          )}
 
+          {widgetVisibility.kpiTime && (
           <Card
             className="bg-white/50 border-secondary/10 shadow-sm transition-all duration-500 hover:shadow-md"
             style={{ transitionDelay: '180ms' }}
@@ -1505,20 +2208,27 @@ export default function DashboardPage() {
                   <Clock className="w-5 h-5 text-secondary" />
                 </div>
               </div>
-              <p className="text-xs text-muted-foreground mt-4">{t('dashboard.remaining', { count: remainingQuestions.toLocaleString() })}</p>
+              <p className="text-xs text-muted-foreground mt-4">
+                {t('dashboard.estimatedRemainingTime', { count: remainingQuestions.toLocaleString(), hours: estimatedRemainingHours })}
+              </p>
+              <p className="text-xs text-muted-foreground mt-1">{t('dashboard.breakReminder')}</p>
             </CardContent>
           </Card>
+          )}
 
         </div>
 
         {/* Activity Heatmap */}
-        <ActivityHeatmap
-          dailyCounts={dashboardData.dailyCounts}
-          loading={dashboardData.loading}
-          t={t}
-        />
+        {widgetVisibility.activityHeatmap && (
+          <ActivityHeatmap
+            dailyCounts={dashboardData.dailyCounts}
+            loading={dashboardData.loading}
+            t={t}
+          />
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {widgetVisibility.subjectPerformance && (
           <Card className="lg:col-span-2 shadow-md transition-all duration-700 hover:shadow-lg" style={{ transitionDelay: '300ms' }}>
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-semibold">{t('dashboard.subjectPerformance')}</CardTitle>
@@ -1579,8 +2289,11 @@ export default function DashboardPage() {
               )}
             </CardContent>
           </Card>
+          )}
 
+          {(widgetVisibility.recentInsights || widgetVisibility.nextMilestone) && (
           <div className="space-y-6">
+            {widgetVisibility.recentInsights && (
             <Card className="shadow-md transition-all duration-700 hover:shadow-lg" style={{ transitionDelay: '360ms' }}>
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
@@ -1631,7 +2344,7 @@ export default function DashboardPage() {
                               </div>
                             );
                             return card.href ? (
-                              <Link key={card.id} href={card.href}>{inner}</Link>
+                              <Link key={card.id} href={card.href} className="block">{inner}</Link>
                             ) : (
                               <div key={card.id}>{inner}</div>
                             );
@@ -1643,7 +2356,9 @@ export default function DashboardPage() {
                 )}
               </CardContent>
             </Card>
+            )}
 
+            {widgetVisibility.nextMilestone && (
             <Card className="shadow-md border-primary/20 bg-primary/5 transition-all duration-700 hover:shadow-lg" style={{ transitionDelay: '420ms' }}>
               <CardHeader className="pb-2">
                 <CardTitle className="text-base font-semibold text-primary">{t('dashboard.nextMilestone')}</CardTitle>
@@ -1660,7 +2375,9 @@ export default function DashboardPage() {
                 </Button>
               </CardContent>
             </Card>
+            )}
           </div>
+          )}
         </div>
       </div>
     </>

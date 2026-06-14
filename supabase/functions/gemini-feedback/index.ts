@@ -32,7 +32,6 @@ type FeedbackRequest = {
   correctChoice?: string | null;
   isCorrect?: boolean;
   explanationText?: string | null;
-  explanationImageUrls?: string[];
   topic?: string | null;
 };
 
@@ -159,7 +158,7 @@ function buildQuestionAnalysisPrompt(input: FeedbackRequest) {
 
 ${languageInstruction}
 
-Use only these inputs: the English question, answer choices, correct answer, selected answer, source English explanation/OCR, and any attached source explanation images. Treat attached images as authoritative source explanation material.
+Use only these inputs: the English question, answer choices, correct answer, selected answer, and source English HTML explanation text.
 
 Question topic: ${input.topic ?? 'Unknown'}
 Question:
@@ -171,7 +170,7 @@ ${options}
 Student selected: ${selected}
 Correct answer: ${correct}
 
-Source English explanation or OCR excerpt:
+Source English explanation excerpt:
 ${trimText(input.explanationText ?? '', 3200)}
 
 ${structureInstruction}
@@ -237,42 +236,7 @@ Rules:
 - Do not mention being an AI`;
 }
 
-type GeminiPart = { text: string } | { inlineData: { mimeType: string; data: string } };
-
-async function imageUrlToPart(url: string): Promise<GeminiPart | null> {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) return null;
-    const contentType = response.headers.get('content-type') ?? 'image/png';
-    if (!contentType.startsWith('image/')) return null;
-    const bytes = new Uint8Array(await response.arrayBuffer());
-    if (bytes.byteLength > 7_000_000) return null;
-    let binary = '';
-    const chunkSize = 0x8000;
-    for (let index = 0; index < bytes.length; index += chunkSize) {
-      binary += String.fromCharCode(...bytes.subarray(index, index + chunkSize));
-    }
-    return {
-      inlineData: {
-        mimeType: contentType,
-        data: btoa(binary),
-      },
-    };
-  } catch {
-    return null;
-  }
-}
-
-async function buildGeminiParts(input: FeedbackRequest, prompt: string): Promise<GeminiPart[]> {
-  const parts: GeminiPart[] = [{ text: prompt }];
-  if (input.action !== 'question-analysis') return parts;
-
-  const imageParts = await Promise.all(
-    (input.explanationImageUrls ?? []).slice(0, 2).map((url) => imageUrlToPart(url)),
-  );
-  imageParts.filter((part): part is GeminiPart => Boolean(part)).forEach((part) => parts.push(part));
-  return parts;
-}
+type GeminiPart = { text: string };
 
 async function callGemini(model: string, parts: GeminiPart[], key: string) {
   const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(key)}`, {
@@ -331,12 +295,11 @@ Deno.serve(async (request) => {
     : input.action === 'performance-diagnosis'
       ? buildPerformanceDiagnosisPrompt(input)
       : buildPrompt(input);
-  const parts = await buildGeminiParts(input, prompt);
   const errors: string[] = [];
 
   for (const model of modelsToTry()) {
     try {
-      const feedback = await callGemini(model, parts, key);
+      const feedback = await callGemini(model, [{ text: prompt }], key);
       return json({ action: input.action ?? 'feedback', feedback, model });
     } catch (error) {
       errors.push(`${model}: ${error instanceof Error ? error.message : String(error)}`);

@@ -19,12 +19,53 @@ export type DisplayOptions = {
   zhExplanation: boolean;
 };
 
+export type StudyPlanSettings = {
+  studyDaysPerWeek: number[];
+  triageWeeks: number;
+  /** Per-subject confidence level (0-100). Lower confidence → more questions allocated. */
+  subjectConfidence?: Record<string, number>;
+  /** Hours available for study on a study day. Used to cap the daily quota. */
+  dailyStudyHours?: number;
+};
+
+/** Dashboard widget visibility toggles — keys correspond to dashboard cards/sections. */
+export type DashboardWidgetKey =
+  | 'todaysMission'
+  | 'spacedReview'
+  | 'smartCalendar'
+  | 'kpiMastery'
+  | 'kpiSolved'
+  | 'kpiStreak'
+  | 'kpiTime'
+  | 'activityHeatmap'
+  | 'subjectPerformance'
+  | 'recentInsights'
+  | 'nextMilestone';
+
+export type DashboardWidgetVisibility = Record<DashboardWidgetKey, boolean>;
+
+export const defaultDashboardWidgets: DashboardWidgetVisibility = {
+  todaysMission: true,
+  spacedReview: true,
+  smartCalendar: true,
+  kpiMastery: true,
+  kpiSolved: true,
+  kpiStreak: true,
+  kpiTime: true,
+  activityHeatmap: true,
+  subjectPerformance: true,
+  recentInsights: true,
+  nextMilestone: true,
+};
+
 export type StudySettings = {
   contentMode: ContentMode;
   textSize: TextSize;
   interfaceLanguage: InterfaceLanguage;
   display: DisplayOptions;
   showNotes: boolean;
+  studyPlan?: StudyPlanSettings;
+  dashboardWidgets: DashboardWidgetVisibility;
 };
 
 export const defaultDisplayOptions: DisplayOptions = {
@@ -40,6 +81,12 @@ export const defaultStudySettings: StudySettings = {
   interfaceLanguage: 'en',
   display: defaultDisplayOptions,
   showNotes: true,
+  studyPlan: {
+    studyDaysPerWeek: [1, 2, 3, 4, 5],
+    triageWeeks: 2,
+    dailyStudyHours: 3,
+  },
+  dashboardWidgets: defaultDashboardWidgets,
 };
 
 const storageKey = 'passbar_study_settings';
@@ -58,6 +105,26 @@ export function normalizeStudySettings(settings: Partial<StudySettings> | null |
     zhExplanation: raw?.zhExplanation ?? (settings?.contentMode === 'bilingual'),
   };
   const contentMode: ContentMode = (display.zhQA || display.zhExplanation) ? 'bilingual' : 'english';
+  const studyPlan = settings?.studyPlan ? {
+    studyDaysPerWeek: Array.isArray(settings.studyPlan.studyDaysPerWeek)
+      ? settings.studyPlan.studyDaysPerWeek
+      : [1, 2, 3, 4, 5],
+    triageWeeks: typeof settings.studyPlan.triageWeeks === 'number'
+      ? settings.studyPlan.triageWeeks
+      : 2,
+    subjectConfidence: settings.studyPlan.subjectConfidence && typeof settings.studyPlan.subjectConfidence === 'object'
+      ? settings.studyPlan.subjectConfidence
+      : undefined,
+    dailyStudyHours: typeof settings.studyPlan.dailyStudyHours === 'number' && settings.studyPlan.dailyStudyHours > 0
+      ? settings.studyPlan.dailyStudyHours
+      : 3,
+  } : undefined;
+
+  const dashboardWidgets: DashboardWidgetVisibility = {
+    ...defaultDashboardWidgets,
+    ...(settings?.dashboardWidgets ?? {}),
+  };
+
   return {
     contentMode,
     textSize: settings?.textSize === 'large' ? 'large' : 'medium',
@@ -66,6 +133,8 @@ export function normalizeStudySettings(settings: Partial<StudySettings> | null |
       : 'en',
     display,
     showNotes: settings?.showNotes ?? true,
+    studyPlan,
+    dashboardWidgets,
   };
 }
 

@@ -2,7 +2,6 @@ import { MBE_SUBJECTS, MOCK_QUESTIONS } from './mock-data';
 import { supabase } from './supabase';
 import {
   ChoiceKeywordMeta,
-  ExplanationOcr,
   LocalizedText,
   Question,
   QuestionHighlight,
@@ -28,10 +27,6 @@ type QuestionRow = {
   correct_answer_letter: string;
   api_answer_key: string | null;
   api_match_ok: boolean | null;
-  explain_imgs: string[] | null;
-  zh_explain_imgs: string[] | null;
-  source_explanation_image_file: string | null;
-  source_explanation_image_url: string | null;
   en_explanation_html: string | null;  // gemini-generated English interactive HTML
   explanation_html: string | null;      // zh explanation html
   topic: string | null;                 // fine-grained topic from source image
@@ -50,19 +45,7 @@ type ChapterSummaryRow = {
   count: number;
 };
 
-type ExplanationImageRow = {
-  question_id: string;
-  public_url: string | null;
-};
-
-type ExplanationOcrRow = {
-  question_id: string;
-  public_url: string;
-  text: string | null;
-  words: ExplanationOcr['words'];
-};
-
-const questionSelectFields = 'id, index, subject, chapter_id, chapter_name, topic, micro_concept, trap_type, skill_tested, question_text, fetched_question_stem, zh_question_stem, options, bilingual_options, zh_options, correct_answer, correct_answer_letter, api_answer_key, api_match_ok, explain_imgs, zh_explain_imgs, source_explanation_image_file, source_explanation_image_url, en_explanation_html, explanation_html, keyword_meta, highlight_meta, raw';
+const questionSelectFields = 'id, index, subject, chapter_id, chapter_name, topic, micro_concept, trap_type, skill_tested, question_text, fetched_question_stem, zh_question_stem, options, bilingual_options, zh_options, correct_answer, correct_answer_letter, api_answer_key, api_match_ok, en_explanation_html, explanation_html, keyword_meta, highlight_meta, raw';
 
 const VALID_HIGHLIGHT_KINDS = new Set([
   'key_sentence',
@@ -197,9 +180,7 @@ function parseChoiceKeywordMeta(raw: unknown): ChoiceKeywordMeta | undefined {
   return Object.keys(parsed).length ? { choices: parsed } : undefined;
 }
 
-function toQuestion(row: QuestionRow, ocrByQuestion = new Map<string, ExplanationOcr[]>()) : Question {
-  // Prefer gemini-generated English HTML over raw source image when available
-  const hasEnHtml = row.en_explanation_html && !row.en_explanation_html.startsWith('<!-- ERROR:');
+function toQuestion(row: QuestionRow) : Question {
   return {
     id: row.id,
     index: row.index,
@@ -216,14 +197,8 @@ function toQuestion(row: QuestionRow, ocrByQuestion = new Map<string, Explanatio
     correctAnswerLetter: row.correct_answer_letter,
     apiAnswerKey: row.api_answer_key ?? undefined,
     apiMatchOk: row.api_match_ok ?? true,
-    // If en_explanation_html exists, no need to load source images
-    explainImgs: hasEnHtml ? [] : (row.explain_imgs ?? []),
-    zhExplainImgs: row.zh_explain_imgs ?? [],
-    sourceExplanationImageFile: hasEnHtml ? undefined : (row.source_explanation_image_file ?? undefined),
-    sourceExplanationImageUrl: hasEnHtml ? undefined : (row.source_explanation_image_url ?? undefined),
     enExplanationHtml: row.en_explanation_html ?? undefined,
     explanationHtml: row.explanation_html ?? undefined,
-    explanationOcr: ocrByQuestion.get(row.id) ?? [],
     topic: typeof row.topic === 'string' && row.topic.trim() ? row.topic.trim() : undefined,
     microConcept: typeof row.micro_concept === 'string' && row.micro_concept.trim() ? row.micro_concept.trim() : undefined,
     trapType: typeof row.trap_type === 'string' && row.trap_type.trim() ? row.trap_type.trim() : undefined,
@@ -237,65 +212,6 @@ function toQuestion(row: QuestionRow, ocrByQuestion = new Map<string, Explanatio
 function getMockChapterId(questionId: string) {
   const parts = questionId.split('-');
   return `${parts[0]}-${parts[1]}`;
-}
-
-async function attachChineseExplanationImages(rows: QuestionRow[]): Promise<QuestionRow[]> {
-  if (!supabase || rows.length === 0) return rows;
-
-  const { data, error } = await supabase
-    .from('question_explanations')
-    .select('question_id, public_url')
-    .in('question_id', rows.map((row) => row.id))
-    .eq('language', 'zh')
-    .not('public_url', 'is', null)
-    .order('sort_order', { ascending: true });
-
-  if (error || !data) {
-    if (error) console.warn('[PassBar] Failed to load Chinese explanation images:', error.message);
-    return rows;
-  }
-
-  const imagesByQuestion = new Map<string, string[]>();
-  (data as ExplanationImageRow[]).forEach((row) => {
-    if (!row.public_url) return;
-    const existing = imagesByQuestion.get(row.question_id) ?? [];
-    existing.push(row.public_url);
-    imagesByQuestion.set(row.question_id, existing);
-  });
-
-  return rows.map((row) => ({
-    ...row,
-    zh_explain_imgs: imagesByQuestion.get(row.id) ?? row.zh_explain_imgs ?? [],
-  }));
-}
-
-async function getExplanationOcr(rows: QuestionRow[]): Promise<Map<string, ExplanationOcr[]>> {
-  const empty = new Map<string, ExplanationOcr[]>();
-  if (!supabase || rows.length === 0) return empty;
-
-  const { data, error } = await supabase
-    .from('question_explanation_ocr')
-    .select('question_id, public_url, text, words')
-    .in('question_id', rows.map((row) => row.id));
-
-  if (error || !data) {
-    if (error && !error.message.includes('question_explanation_ocr')) {
-      console.warn('[PassBar] Failed to load explanation OCR:', error.message);
-    }
-    return empty;
-  }
-
-  const byQuestion = new Map<string, ExplanationOcr[]>();
-  (data as ExplanationOcrRow[]).forEach((row) => {
-    const existing = byQuestion.get(row.question_id) ?? [];
-    existing.push({
-      publicUrl: row.public_url,
-      text: row.text,
-      words: Array.isArray(row.words) ? row.words : [],
-    });
-    byQuestion.set(row.question_id, existing);
-  });
-  return byQuestion;
 }
 
 export async function getSubjects(): Promise<Subject[]> {
@@ -417,9 +333,7 @@ export async function getQuestionsByChapterIds(chapterIds: string[], limit: numb
       .slice(0, limit);
   }
 
-  const hydratedRows = await attachChineseExplanationImages(data as QuestionRow[]);
-  const ocrByQuestion = await getExplanationOcr(hydratedRows);
-  return hydratedRows.map((row) => toQuestion(row, ocrByQuestion));
+  return (data as QuestionRow[]).map(toQuestion);
 }
 
 export async function getQuestionsByIds(questionIds: string[]): Promise<Question[]> {
@@ -441,9 +355,7 @@ export async function getQuestionsByIds(questionIds: string[]): Promise<Question
       .filter((question): question is Question => Boolean(question));
   }
 
-  const hydratedRows = await attachChineseExplanationImages(data as QuestionRow[]);
-  const ocrByQuestion = await getExplanationOcr(hydratedRows);
-  const byId = new Map(hydratedRows.map((row) => [row.id, toQuestion(row, ocrByQuestion)]));
+  const byId = new Map((data as QuestionRow[]).map((row) => [row.id, toQuestion(row)]));
   return questionIds
     .map((questionId) => byId.get(questionId))
     .filter((question): question is Question => Boolean(question));

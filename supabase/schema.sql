@@ -7,6 +7,10 @@ create extension if not exists pgcrypto;
 
 drop view if exists public.questions;
 drop view if exists public.question_chapter_counts;
+drop table if exists public.browse_question_states;
+drop table if exists public.browse_progress;
+drop table if exists public.browse_marks;
+drop function if exists public.is_admin();
 
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
@@ -26,6 +30,23 @@ alter table public.profiles add column if not exists status text not null defaul
 alter table public.profiles add column if not exists last_seen_at timestamptz;
 alter table public.profiles add column if not exists study_settings jsonb not null default '{"contentMode":"english","textSize":"medium","interfaceLanguage":"en"}'::jsonb;
 alter table public.profiles add column if not exists exam_date date;
+
+create schema if not exists private;
+grant usage on schema private to anon, authenticated, service_role;
+
+create or replace function private.is_admin()
+returns boolean
+language sql
+stable
+security definer set search_path = public
+as $$
+  select exists (
+    select 1 from public.profiles
+    where id = auth.uid() and role = 'admin'
+  );
+$$;
+
+grant execute on function private.is_admin() to anon, authenticated, service_role;
 
 create table if not exists public.subjects (
   id text primary key,
@@ -59,12 +80,10 @@ create table if not exists public.question_items (
   "index" int not null,
   question text not null,
   correct_answer text not null check (correct_answer ~ '^[A-D]$'),
-  explanation_image_file text,
   source_question text,
   source_choices jsonb,
   source_correct_answer text check (source_correct_answer is null or source_correct_answer ~ '^[A-D]$'),
   source_explanation_html text,
-  source_explanation_image_file text,
   api_qid text,
   api_answer_key text check (api_answer_key is null or api_answer_key ~ '^[A-D]$'),
   api_match_ok boolean,
@@ -88,7 +107,6 @@ alter table public.question_items add column if not exists source_question text;
 alter table public.question_items add column if not exists source_choices jsonb;
 alter table public.question_items add column if not exists source_correct_answer text;
 alter table public.question_items add column if not exists source_explanation_html text;
-alter table public.question_items add column if not exists source_explanation_image_file text;
 alter table public.question_items add column if not exists api_qid text;
 alter table public.question_items add column if not exists api_answer_key text;
 alter table public.question_items add column if not exists api_match_ok boolean;
@@ -151,10 +169,6 @@ create table if not exists public.question_explanations (
   source text not null default 'uworld' check (source in ('uworld', 'castudy', 'gemini', 'enriched')),
   explanation_text text,
   explanation_html text,
-  explanation_image_file text,
-  storage_bucket text,
-  storage_path text,
-  public_url text,
   mime_type text,
   sort_order int default 0,
   raw jsonb,
@@ -169,35 +183,6 @@ alter table public.question_explanations
 alter table public.question_explanations
   add constraint question_explanations_source_check
   check (source in ('uworld', 'castudy', 'gemini', 'enriched'));
-
-create table if not exists public.question_explanation_ocr (
-  id bigserial primary key,
-  question_id text not null references public.question_items(id) on delete cascade,
-  explanation_id bigint references public.question_explanations(id) on delete cascade,
-  storage_bucket text,
-  storage_path text,
-  public_url text not null,
-  language text not null default 'eng',
-  engine text not null default 'tesseract.js',
-  image_width int,
-  image_height int,
-  text text,
-  words jsonb not null default '[]'::jsonb,
-  raw jsonb,
-  created_at timestamptz default now(),
-  updated_at timestamptz default now(),
-  unique (public_url, language)
-);
-
-alter table public.question_explanation_ocr add column if not exists explanation_id bigint;
-alter table public.question_explanation_ocr add column if not exists storage_bucket text;
-alter table public.question_explanation_ocr add column if not exists storage_path text;
-alter table public.question_explanation_ocr add column if not exists image_width int;
-alter table public.question_explanation_ocr add column if not exists image_height int;
-alter table public.question_explanation_ocr add column if not exists text text;
-alter table public.question_explanation_ocr add column if not exists words jsonb not null default '[]'::jsonb;
-alter table public.question_explanation_ocr add column if not exists raw jsonb;
-alter table public.question_explanation_ocr add column if not exists updated_at timestamptz default now();
 
 create table if not exists public.question_ai_explanations (
   id bigserial primary key,
@@ -295,8 +280,12 @@ create table if not exists public.practice_sessions (
   started_at timestamptz default now(),
   completed_at timestamptz,
   total_time_seconds int default 0,
+  answered_count int not null default 0,
+  correct_count int not null default 0,
+  user_agent text,
   raw jsonb
 );
+alter table public.practice_sessions add column if not exists user_agent text;
 
 create table if not exists public.practice_answers (
   id uuid primary key default gen_random_uuid(),
@@ -312,6 +301,49 @@ create table if not exists public.practice_answers (
   raw jsonb,
   unique (session_id, question_id)
 );
+
+create or replace function private.refresh_practice_session_answer_summary(p_session_id uuid)
+returns void
+language sql
+security definer
+set search_path = public
+as $$
+  update public.practice_sessions s
+  set
+    answered_count = coalesce(stats.answered_count, 0),
+    correct_count = coalesce(stats.correct_count, 0)
+  from (
+    select
+      p_session_id as session_id,
+      count(*)::int as answered_count,
+      count(*) filter (where is_correct)::int as correct_count
+    from public.practice_answers
+    where session_id = p_session_id
+  ) stats
+  where s.id = stats.session_id;
+$$;
+
+create or replace function private.refresh_practice_session_answer_summary_trigger()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  target_session_id uuid;
+begin
+  target_session_id := coalesce(new.session_id, old.session_id);
+  if target_session_id is not null then
+    perform private.refresh_practice_session_answer_summary(target_session_id);
+  end if;
+  return coalesce(new, old);
+end;
+$$;
+
+drop trigger if exists refresh_practice_session_answer_summary_after_answer_change on public.practice_answers;
+create trigger refresh_practice_session_answer_summary_after_answer_change
+after insert or update or delete on public.practice_answers
+for each row execute function private.refresh_practice_session_answer_summary_trigger();
 
 create table if not exists public.user_question_progress (
   user_id uuid not null references public.profiles(id) on delete cascade,
@@ -355,6 +387,64 @@ create table if not exists public.auth_events (
   created_at timestamptz default now()
 );
 
+create table if not exists public.question_reports (
+  id uuid primary key default gen_random_uuid(),
+  question_id text not null references public.question_items(id) on delete cascade,
+  user_id uuid references public.profiles(id) on delete set null,
+  category text not null default 'other',
+  categories text[],
+  language text,
+  message text,
+  resolved boolean not null default false,
+  resolved_at timestamptz,
+  created_at timestamptz not null default now()
+);
+alter table public.question_reports add column if not exists categories text[];
+alter table public.question_reports add column if not exists language text;
+
+create table if not exists public.feedback (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references public.profiles(id) on delete set null,
+  category text,
+  subject text,
+  qid text,
+  ref_subject text,
+  ref_chapter text,
+  email text,
+  message text not null,
+  resolved boolean not null default false,
+  resolved_at timestamptz,
+  created_at timestamptz not null default now()
+);
+alter table public.feedback add column if not exists subject text;
+alter table public.feedback add column if not exists qid text;
+alter table public.feedback add column if not exists ref_subject text;
+alter table public.feedback add column if not exists ref_chapter text;
+alter table public.feedback add column if not exists email text;
+alter table public.feedback add column if not exists resolved boolean not null default false;
+alter table public.feedback add column if not exists resolved_at timestamptz;
+
+create table if not exists public.topic_study_progress (
+  user_id uuid not null references auth.users(id) on delete cascade,
+  chapter_id text not null,
+  viewed_count int not null default 0,
+  last_question_id text,
+  last_question_index int not null default 0,
+  updated_at timestamptz not null default now(),
+  primary key (user_id, chapter_id)
+);
+
+create table if not exists public.topic_study_question_states (
+  user_id uuid not null references auth.users(id) on delete cascade,
+  question_id text not null,
+  chapter_id text,
+  is_learned boolean not null default false,
+  is_marked boolean not null default false,
+  first_seen_at timestamptz not null default now(),
+  last_seen_at timestamptz not null default now(),
+  primary key (user_id, question_id)
+);
+
 create index if not exists chapters_subject_id_idx on public.chapters (subject_id);
 create index if not exists question_items_chapter_id_idx on public.question_items (chapter_id);
 create index if not exists question_items_api_qid_idx on public.question_items (api_qid);
@@ -364,8 +454,6 @@ create index if not exists question_choices_question_id_idx on public.question_c
 create index if not exists question_choices_language_idx on public.question_choices (language);
 create index if not exists question_explanations_question_id_idx on public.question_explanations (question_id);
 create index if not exists question_explanations_language_idx on public.question_explanations (language);
-create index if not exists question_explanation_ocr_question_id_idx on public.question_explanation_ocr (question_id);
-create index if not exists question_explanation_ocr_public_url_idx on public.question_explanation_ocr (public_url);
 create index if not exists question_ai_explanations_question_id_idx on public.question_ai_explanations (question_id);
 create index if not exists question_ai_explanations_lookup_idx on public.question_ai_explanations (question_id, selected_choice, correct_choice, interface_language, prompt_version);
 create index if not exists profiles_email_idx on public.profiles (email);
@@ -382,6 +470,14 @@ create index if not exists user_question_progress_is_marked_idx on public.user_q
 create index if not exists auth_events_user_id_idx on public.auth_events (user_id);
 create index if not exists auth_events_event_type_idx on public.auth_events (event_type);
 create index if not exists auth_events_created_at_idx on public.auth_events (created_at desc);
+create index if not exists question_reports_question_id_idx on public.question_reports (question_id);
+create index if not exists question_reports_user_id_idx on public.question_reports (user_id);
+create index if not exists question_reports_resolved_idx on public.question_reports (resolved);
+create index if not exists feedback_user_id_idx on public.feedback (user_id);
+create index if not exists feedback_resolved_idx on public.feedback (resolved);
+create index if not exists topic_study_progress_user_id_idx on public.topic_study_progress (user_id);
+create index if not exists topic_study_question_states_user_id_idx on public.topic_study_question_states (user_id);
+create index if not exists topic_study_question_states_chapter_id_idx on public.topic_study_question_states (chapter_id);
 
 create or replace view public.question_chapter_counts as
 select
@@ -393,6 +489,7 @@ from public.chapters ch
 join public.subjects s on s.id = ch.subject_id
 left join public.question_items q on q.chapter_id = ch.id
 group by s.subject, ch.id, ch.chapter;
+alter view public.question_chapter_counts set (security_invoker = true);
 
 -- Compatibility view for the current frontend. New code should prefer
 -- subjects / chapters / question_items / question_choices / question_explanations.
@@ -427,9 +524,6 @@ text_rows as (
 en_explanation_rows as (
   select
     question_id,
-    array_agg(public_url order by sort_order) filter (where public_url is not null) as explain_imgs,
-    min(explanation_image_file) as source_explanation_image_file,
-    min(public_url) as source_explanation_image_url,
     -- enriched-JSON English interactive HTML (source='enriched', language='en')
     max(explanation_html) filter (where source = 'enriched') as en_explanation_html
   from public.question_explanations
@@ -445,8 +539,7 @@ zh_explanation_rows as (
     coalesce(
       max(explanation_html) filter (where source = 'enriched'),
       max(explanation_html) filter (where source = 'castudy')
-    ) as explanation_html,
-    array_agg(public_url order by sort_order) filter (where public_url is not null) as zh_explain_imgs
+    ) as explanation_html
   from public.question_explanations
   where language = 'zh'
   group by question_id
@@ -487,13 +580,9 @@ select
   q.api_match_score,
   q.api_qid,
   q.api_answer_key,
-  coalesce(er.explain_imgs, '{}') as explain_imgs,
-  er.source_explanation_image_file,
-  er.source_explanation_image_url,
   -- en_explanation_html: gemini-generated English interactive HTML
   er.en_explanation_html,
   zh.explanation_html,
-  coalesce(zh.zh_explain_imgs, '{}') as zh_explain_imgs,
   -- new metadata columns
   q.topic as topic,
   q.micro_concept,
@@ -513,6 +602,7 @@ left join zh_text_rows ztr on ztr.question_id = q.id
 left join zh_choice_rows zcr on zcr.question_id = q.id
 left join en_explanation_rows er on er.question_id = q.id
 left join zh_explanation_rows zh on zh.question_id = q.id;
+alter view public.questions set (security_invoker = true);
 
 alter table public.subjects enable row level security;
 alter table public.chapters enable row level security;
@@ -520,13 +610,16 @@ alter table public.question_items enable row level security;
 alter table public.question_texts enable row level security;
 alter table public.question_choices enable row level security;
 alter table public.question_explanations enable row level security;
-alter table public.question_explanation_ocr enable row level security;
 alter table public.question_ai_explanations enable row level security;
 alter table public.profiles enable row level security;
 alter table public.practice_sessions enable row level security;
 alter table public.practice_answers enable row level security;
 alter table public.user_question_progress enable row level security;
 alter table public.auth_events enable row level security;
+alter table public.question_reports enable row level security;
+alter table public.feedback enable row level security;
+alter table public.topic_study_progress enable row level security;
+alter table public.topic_study_question_states enable row level security;
 
 create or replace function public.handle_new_user()
 returns trigger
@@ -552,6 +645,8 @@ begin
   return new;
 end;
 $$;
+
+revoke all on function public.handle_new_user() from public, anon, authenticated;
 
 drop trigger if exists on_auth_user_created on auth.users;
 create trigger on_auth_user_created
@@ -583,7 +678,8 @@ create or replace function public.record_auth_event(
 )
 returns void
 language plpgsql
-security definer set search_path = public
+security invoker
+set search_path = public
 as $$
 declare
   current_user_id uuid := auth.uid();
@@ -637,6 +733,7 @@ begin
 end;
 $$;
 
+revoke all on function public.record_auth_event(text, text, text, timestamptz, text, text, jsonb) from public, anon, authenticated;
 grant execute on function public.record_auth_event(text, text, text, timestamptz, text, text, jsonb) to authenticated;
 
 create or replace function public.get_question_answer_stats(p_question_id text)
@@ -647,7 +744,8 @@ returns table (
 )
 language sql
 stable
-security definer set search_path = public
+security invoker
+set search_path = public
 as $$
   select
     count(*) as total_answers,
@@ -660,6 +758,7 @@ as $$
   where question_id = p_question_id;
 $$;
 
+revoke all on function public.get_question_answer_stats(text) from public, anon, authenticated;
 grant execute on function public.get_question_answer_stats(text) to authenticated;
 
 create or replace function public.get_question_choice_stats(p_question_id text)
@@ -670,7 +769,8 @@ returns table (
 )
 language sql
 stable
-security definer set search_path = public
+security invoker
+set search_path = public
 as $$
   with choices(choice) as (
     values ('A'), ('B'), ('C'), ('D')
@@ -699,6 +799,7 @@ as $$
   order by choices.choice;
 $$;
 
+revoke all on function public.get_question_choice_stats(text) from public, anon, authenticated;
 grant execute on function public.get_question_choice_stats(text) to authenticated;
 
 drop policy if exists "Allow public read access to subjects" on public.subjects;
@@ -712,8 +813,8 @@ on public.chapters for select using (true);
 drop policy if exists "Admins can update question metadata" on public.question_items;
 create policy "Admins can update question metadata"
 on public.question_items for update
-using (public.is_admin())
-with check (public.is_admin());
+using (private.is_admin())
+with check (private.is_admin());
 
 drop policy if exists "Allow public read access to question items" on public.question_items;
 create policy "Allow public read access to question items"
@@ -730,10 +831,6 @@ on public.question_choices for select using (true);
 drop policy if exists "Allow public read access to question explanations" on public.question_explanations;
 create policy "Allow public read access to question explanations"
 on public.question_explanations for select using (true);
-
-drop policy if exists "Allow public read access to question explanation OCR" on public.question_explanation_ocr;
-create policy "Allow public read access to question explanation OCR"
-on public.question_explanation_ocr for select using (true);
 
 drop policy if exists "Allow public read access to question AI explanations" on public.question_ai_explanations;
 create policy "Allow public read access to question AI explanations"
@@ -761,6 +858,8 @@ on public.profiles for insert
 with check (auth.uid() = id);
 
 drop policy if exists "Users can update their profile" on public.profiles;
+drop policy if exists "Users can update own profile" on public.profiles;
+drop policy if exists "users_update_own_last_seen" on public.profiles;
 create policy "Users can update their profile"
 on public.profiles for update
 using (auth.uid() = id)
@@ -839,6 +938,48 @@ create policy "Users can delete their question progress"
 on public.user_question_progress for delete
 using (auth.uid() = user_id);
 
+drop policy if exists "users_insert_own_reports" on public.question_reports;
+create policy "users_insert_own_reports"
+on public.question_reports for insert to authenticated
+with check (auth.uid() = user_id);
+
+drop policy if exists "admins_select_reports" on public.question_reports;
+create policy "admins_select_reports"
+on public.question_reports for select to authenticated
+using (private.is_admin());
+
+drop policy if exists "admins_update_reports" on public.question_reports;
+create policy "admins_update_reports"
+on public.question_reports for update to authenticated
+using (private.is_admin());
+
+drop policy if exists "users_insert_own_feedback" on public.feedback;
+create policy "users_insert_own_feedback"
+on public.feedback for insert to authenticated
+with check (auth.uid() = user_id);
+
+drop policy if exists "admins_select_feedback" on public.feedback;
+create policy "admins_select_feedback"
+on public.feedback for select to authenticated
+using (private.is_admin());
+
+drop policy if exists "admins_update_feedback" on public.feedback;
+create policy "admins_update_feedback"
+on public.feedback for update to authenticated
+using (private.is_admin());
+
+drop policy if exists "Users can manage their own browse progress" on public.topic_study_progress;
+create policy "Users can manage their own browse progress"
+on public.topic_study_progress for all
+using (auth.uid() = user_id)
+with check (auth.uid() = user_id);
+
+drop policy if exists "Users can manage their own topic study question states" on public.topic_study_question_states;
+create policy "Users can manage their own topic study question states"
+on public.topic_study_question_states for all
+using (auth.uid() = user_id)
+with check (auth.uid() = user_id);
+
 -- question_items enrichment for AI coaching
 alter table public.question_items add column if not exists micro_concept text;
 alter table public.question_items add column if not exists trap_type text;
@@ -879,32 +1020,17 @@ on public.user_concept_mastery for all
 using (auth.uid() = user_id)
 with check (auth.uid() = user_id);
 
--- Admin helper: returns true if the calling user has role = 'admin'
-create or replace function public.is_admin()
-returns boolean
-language sql
-stable
-security definer set search_path = public
-as $$
-  select exists (
-    select 1 from public.profiles
-    where id = auth.uid() and role = 'admin'
-  );
-$$;
-
-grant execute on function public.is_admin() to authenticated;
-
 -- Admin RLS: admins can read all profiles and update status/role
 drop policy if exists "Admins can read all profiles" on public.profiles;
 create policy "Admins can read all profiles"
 on public.profiles for select
-using (auth.uid() = id or public.is_admin());
+using (auth.uid() = id or private.is_admin());
 
 drop policy if exists "Admins can update any profile" on public.profiles;
 create policy "Admins can update any profile"
 on public.profiles for update
-using (public.is_admin())
-with check (public.is_admin());
+using (private.is_admin())
+with check (private.is_admin());
 
 -- Seed: set me@wayneclub.com as admin + approved
 update public.profiles

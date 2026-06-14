@@ -10,6 +10,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Switch } from '@/components/ui/switch';
 import { useAuth } from '@/components/AuthProvider';
 import { toast } from '@/hooks/use-toast';
 import { useI18n } from '@/lib/i18n';
@@ -91,7 +92,7 @@ export default function SettingsPage() {
     }, 500);
   };
 
-  const currentSettings: StudySettings = { interfaceLanguage, contentMode, display, textSize, showNotes };
+  const currentSettings: StudySettings = { ...getStudySettings(), interfaceLanguage, contentMode, display, textSize, showNotes };
 
   function isLastQA(flagKey: keyof DisplayOptions) {
     if (flagKey !== 'enQA' && flagKey !== 'zhQA') return false;
@@ -99,15 +100,9 @@ export default function SettingsPage() {
     return display[flagKey] && !display[other];
   }
 
-  function isLastExp(flagKey: keyof DisplayOptions) {
-    if (flagKey !== 'enExplanation' && flagKey !== 'zhExplanation') return false;
-    const other: keyof DisplayOptions = flagKey === 'enExplanation' ? 'zhExplanation' : 'enExplanation';
-    return display[flagKey] && !display[other];
-  }
-
   function DisplayCheckbox({ flagKey, label }: { flagKey: keyof DisplayOptions; label: string }) {
     const checked = display[flagKey];
-    const locked = checked && (isLastQA(flagKey) || isLastExp(flagKey));
+    const locked = checked && isLastQA(flagKey);
     return (
       <button
         type="button"
@@ -157,9 +152,9 @@ export default function SettingsPage() {
             onValueChange={(value) => {
               const lang = value as InterfaceLanguage;
               const isChinese = lang === 'zh-Hans' || lang === 'zh-Hant';
-              const nextDisplay = isChinese
-                ? { ...currentSettings.display, zhQA: true, zhExplanation: true }
-                : { ...currentSettings.display, enQA: true, enExplanation: true };
+              const nextDisplay: DisplayOptions = isChinese
+                ? { enQA: true, zhQA: true, enExplanation: false, zhExplanation: true }
+                : { enQA: true, zhQA: false, enExplanation: true, zhExplanation: false };
               commitSettings({ ...currentSettings, interfaceLanguage: lang, display: nextDisplay });
             }}
           >
@@ -194,7 +189,7 @@ export default function SettingsPage() {
           <CardTitle>{t('settings.questionDisplay')}</CardTitle>
           <CardDescription>{t('settings.questionDisplayDescription')}</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             {/* EN column */}
             <div className="space-y-2">
@@ -215,6 +210,19 @@ export default function SettingsPage() {
               <DisplayCheckbox flagKey="zhQA"          label={t('settings.displayQA')} />
               <DisplayCheckbox flagKey="zhExplanation" label={t('settings.displayExplanation')} />
             </div>
+          </div>
+
+          <div className="flex items-center justify-between gap-4 rounded-md border border-slate-200 bg-white p-4">
+            <div>
+              <div className="text-sm font-semibold text-slate-900">{t('settings.studyNotes')}</div>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                {showNotes ? t('settings.studyNotesOn') : t('settings.studyNotesOff')}
+              </p>
+            </div>
+            <Switch
+              checked={showNotes}
+              onCheckedChange={(checked) => commitSettings({ ...currentSettings, showNotes: checked })}
+            />
           </div>
         </CardContent>
       </Card>
@@ -257,45 +265,6 @@ export default function SettingsPage() {
                         >
                           {item.preview}
                         </div>
-                      </div>
-                    </div>
-                  </Label>
-                );
-              })}
-            </div>
-          </RadioGroup>
-        </CardContent>
-      </Card>
-
-      <Card className="shadow-sm">
-        <CardHeader>
-          <CardTitle>{t('settings.studyModeTitle')}</CardTitle>
-          <CardDescription>{t('settings.studyNotes')}</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <RadioGroup
-            value={showNotes ? 'notes' : 'exam'}
-            onValueChange={(value) => commitSettings({ ...currentSettings, showNotes: value === 'notes' })}
-          >
-            <div className="grid gap-3 md:grid-cols-2">
-              {[
-                { value: 'notes', label: t('settings.studyNotesOn') },
-                { value: 'exam', label: t('settings.studyNotesOff') },
-              ].map((item) => {
-                const selected = (item.value === 'notes') === showNotes;
-                return (
-                  <Label
-                    key={item.value}
-                    htmlFor={`notes-${item.value}`}
-                    className={cn(
-                      'cursor-pointer rounded-md border p-4 transition-colors',
-                      selected ? 'border-primary bg-primary/5' : 'border-slate-200 bg-white hover:bg-slate-50',
-                    )}
-                  >
-                    <div className="flex items-start gap-3">
-                      <RadioGroupItem id={`notes-${item.value}`} value={item.value} className="mt-1" />
-                      <div>
-                        <div className="text-sm font-semibold text-slate-900">{item.label}</div>
                       </div>
                     </div>
                   </Label>

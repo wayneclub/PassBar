@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
-import { access, readdir, readFile } from 'node:fs/promises';
+import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 dotenv.config({ path: '.env.local', override: false });
@@ -8,11 +8,7 @@ dotenv.config({ path: '.env', override: false });
 
 const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const bucketName = process.env.SUPABASE_QUESTION_ASSETS_BUCKET ?? 'question-assets';
 const dryRun = process.env.DRY_RUN === 'true';
-const uploadImages =
-  process.env.UPLOAD_IMAGES === 'true' || process.argv.includes('--upload-images');
-const uploadConcurrency = Number.parseInt(process.env.SUPABASE_UPLOAD_CONCURRENCY ?? '8', 10);
 
 // --subject / --chapter filtering (supports multi-word values without quotes)
 function getArg(flag) {
@@ -47,13 +43,6 @@ const outDir = process.env.QUESTIONS_OUT_DIR
 const supabase = dryRun ? null : createClient(supabaseUrl, serviceRoleKey);
 
 const choiceOrder = ['A', 'B', 'C', 'D'];
-const mimeTypes = new Map([
-  ['.png', 'image/png'],
-  ['.jpg', 'image/jpeg'],
-  ['.jpeg', 'image/jpeg'],
-  ['.webp', 'image/webp'],
-]);
-
 function slugify(value) {
   return String(value ?? '')
     .toLowerCase()
@@ -114,15 +103,6 @@ function questionAnalysisMeta(item) {
       ? { question_highlight_meta: meta.question_highlight_meta }
       : null,
   };
-}
-
-async function fileExists(filePath) {
-  try {
-    await access(filePath);
-    return true;
-  } catch {
-    return false;
-  }
 }
 
 async function listEnrichedFiles(dir) {
@@ -202,86 +182,6 @@ async function selectCanonicalFiles(files) {
   return [...bestByChapter.values()].map((c) => c.file).sort();
 }
 
-async function ensureBucket() {
-  if (dryRun || !uploadImages) return;
-  const { data: buckets, error: listError } = await supabase.storage.listBuckets();
-  if (listError) throw listError;
-  if (buckets.some((b) => b.name === bucketName)) return;
-  const { error } = await supabase.storage.createBucket(bucketName, {
-    public: true,
-    fileSizeLimit: 10 * 1024 * 1024,
-    allowedMimeTypes: Array.from(new Set(mimeTypes.values())),
-  });
-  if (error) throw error;
-}
-
-async function uploadImage(filePath, storagePath) {
-  const ext = path.extname(filePath).toLowerCase();
-  const contentType = mimeTypes.get(ext) ?? 'application/octet-stream';
-  const exists = await fileExists(filePath);
-  if (!exists) {
-    console.warn(`  ⚠ Missing image file: ${filePath}`);
-    return null;
-  }
-
-  if (dryRun) return { publicUrl: `dry-run://${storagePath}`, contentType };
-
-  const body = await readFile(filePath);
-  const maxAttempts = 5;
-  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    try {
-      const { error } = await supabase.storage.from(bucketName).upload(storagePath, body, {
-        contentType,
-        upsert: true,
-      });
-      if (error) throw error;
-      break;
-    } catch (err) {
-      const status = err?.status ?? err?.statusCode;
-      if (attempt === maxAttempts) {
-        console.warn(`  ⚠ Storage upload failed after ${maxAttempts} attempts (${status}): ${storagePath}`);
-        return null;
-      }
-      const delay = Math.min(1000 * 2 ** (attempt - 1), 16000);
-      console.warn(`  ⚠ Storage ${status} on attempt ${attempt}/${maxAttempts}, retrying in ${delay}ms…`);
-      await new Promise((r) => setTimeout(r, delay));
-    }
-  }
-
-  const { data } = supabase.storage.from(bucketName).getPublicUrl(storagePath);
-  return { publicUrl: data.publicUrl, contentType };
-}
-
-function renderProgress(done, total, label = '') {
-  const cols = process.stdout.columns || 80;
-  const pct = total === 0 ? 100 : Math.floor((done / total) * 100);
-  const suffix = ` ${done}/${total} ${pct}%${label ? '  ' + label : ''}`;
-  const barWidth = Math.max(10, cols - suffix.length - 3);
-  const filled = Math.round((pct / 100) * barWidth);
-  const bar = '█'.repeat(filled) + '░'.repeat(barWidth - filled);
-  process.stdout.write(`\r[${bar}]${suffix}`);
-  if (done === total) process.stdout.write('\n');
-}
-
-async function mapLimit(items, limit, mapper, progressLabel = '') {
-  const results = new Array(items.length);
-  let nextIndex = 0;
-  let done = 0;
-  const total = items.length;
-  if (total > 0 && uploadImages) renderProgress(0, total, progressLabel);
-  const workerCount = Math.max(1, Math.min(limit, items.length));
-  await Promise.all(Array.from({ length: workerCount }, async () => {
-    while (nextIndex < items.length) {
-      const currentIndex = nextIndex;
-      nextIndex += 1;
-      results[currentIndex] = await mapper(items[currentIndex], currentIndex);
-      done += 1;
-      if (uploadImages) renderProgress(done, total, progressLabel);
-    }
-  }));
-  return results;
-}
-
 async function fetchQuestionIdsByIndex(chapId, items) {
   if (dryRun) {
     return new Map(items.map((item) => [
@@ -304,8 +204,6 @@ async function upsert(table, rows, onConflict) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-
-await ensureBucket();
 
 let allFiles = await listEnrichedFiles(outDir);
 if (allFiles.length === 0) {
@@ -335,8 +233,7 @@ if (allFiles.length !== files.length) {
   console.log(`Using ${files.length} canonical enriched files (skipped ${allFiles.length - files.length} duplicate chapter files).`);
 }
 console.log(`Importing from ${files.length} enriched file(s) in ${outDir}`);
-if (uploadImages) console.log(`Image upload: ENABLED (bucket: ${bucketName})`);
-else             console.log('Image upload: disabled (pass --upload-images to enable)');
+console.log('Image upload: disabled (HTML explanations are canonical)');
 console.log('─'.repeat(60));
 
 let totalQuestions = 0;
@@ -385,7 +282,6 @@ for (const file of files) {
   const texts = [];
   const choices = [];
   const explanations = [];
-  const imageTasks = [];
   const allQuestionIds = [];
 
   for (const item of items) {
@@ -405,12 +301,10 @@ for (const file of files) {
       index: item.index,
       question: item.question,
       correct_answer: answer,
-      explanation_image_file: item.source_img ?? null,
       source_question: item.question,
       source_choices: item.choices ?? null,
       source_correct_answer: answer,
       source_explanation_html: isErrorHtml(item.explanation) ? null : item.explanation,
-      source_explanation_image_file: item.source_img ?? null,
       topic:            typeof item.topic === 'string' && item.topic.trim() ? item.topic.trim() : null,
       micro_concept:    analysisMeta.micro_concept,
       trap_type:        analysisMeta.trap_type,
@@ -445,61 +339,12 @@ for (const file of files) {
         source: 'enriched',
         explanation_text: null,
         explanation_html: item.explanation,
-        explanation_image_file: item.source_img ?? null,
-        storage_bucket: null,
-        storage_path: null,
-        public_url: null,
         mime_type: 'text/html',
         sort_order: 0,
-        raw: { source_img: item.source_img ?? null },
+        raw: null,
       };
 
-      if (uploadImages && (item.source_img || (item.explain_imgs?.length > 0))) {
-        const capturedQuestionId = questionId;
-        const capturedItem = item;
-        imageTasks.push(async () => {
-          let result = { ...enExp };
-
-          // Upload source_img (main explanation screenshot)
-          if (capturedItem.source_img) {
-            const localPath = path.resolve(path.dirname(file), capturedItem.source_img);
-            const ext = path.extname(localPath).toLowerCase();
-            const storagePath = `${subjectId(meta)}/${slugify(meta.chapter)}/${capturedQuestionId}/source${ext}`;
-            const uploaded = await uploadImage(localPath, storagePath);
-            result = {
-              ...result,
-              storage_bucket: uploaded ? bucketName : null,
-              storage_path: uploaded ? storagePath : null,
-              public_url: uploaded?.publicUrl ?? null,
-              mime_type: uploaded?.contentType ?? enExp.mime_type,
-            };
-          }
-
-          // Upload explain_imgs and rewrite src in HTML
-          if (capturedItem.explain_imgs?.length > 0 && capturedItem.explanation) {
-            let html = result.explanation_html;
-            for (const relPath of capturedItem.explain_imgs) {
-              const basename = path.basename(relPath);
-              const localPath = path.resolve(path.dirname(file), relPath);
-              const ext = path.extname(localPath).toLowerCase();
-              const storagePath = `${subjectId(meta)}/${slugify(meta.chapter)}/${capturedQuestionId}/explain_imgs/${basename}`;
-              const uploaded = await uploadImage(localPath, storagePath);
-              if (uploaded?.publicUrl) {
-                // Replace both "imgs/basename" and bare "basename" src refs in the HTML
-                const escapedBase = basename.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                html = html
-                  .replace(new RegExp(`src="imgs/${escapedBase}"`, 'g'), `src="${uploaded.publicUrl}"`)
-                  .replace(new RegExp(`src="${escapedBase}"`, 'g'), `src="${uploaded.publicUrl}"`);
-              }
-            }
-            result = { ...result, explanation_html: html };
-          }
-
-          return result;
-        });
-      } else {
-        explanations.push(enExp);
-      }
+      explanations.push(enExp);
     }
 
     if (!isErrorHtml(item['zh-explanation'])) {
@@ -509,21 +354,11 @@ for (const file of files) {
         source: 'enriched',
         explanation_text: null,
         explanation_html: item['zh-explanation'],
-        explanation_image_file: null,
-        storage_bucket: null,
-        storage_path: null,
-        public_url: null,
         mime_type: 'text/html',
         sort_order: 0,
         raw: null,
       });
     }
-  }
-
-  if (imageTasks.length > 0) {
-    if (imageTasks.length > 0) console.log(`  Uploading ${imageTasks.length} image task(s)…`);
-    const uploaded = await mapLimit(imageTasks, uploadConcurrency, (task) => task(), 'uploading images');
-    explanations.push(...uploaded);
   }
 
   try {

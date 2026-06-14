@@ -12,8 +12,25 @@ type FeedbackAttempt = {
   timeSpentSeconds?: number | null;
 };
 
+type PerformanceStats = {
+  totalAttempts: number;
+  correctAttempts: number;
+  avgTimeSeconds: number;
+  weakConcepts: Array<{
+    concept: string;
+    subject: string;
+    topic: string;
+    attempts: number;
+    correct: number;
+    avgTime: number;
+  }>;
+  errorTypeBreakdown: Record<string, number>;
+  recentTrend: number[];
+  streakDays: number;
+};
+
 type FeedbackRequest = {
-  action?: 'status' | 'feedback' | 'question-analysis';
+  action?: 'status' | 'feedback' | 'question-analysis' | 'performance-diagnosis';
   mode?: string;
   totalQuestions?: number;
   attempts?: FeedbackAttempt[];
@@ -25,8 +42,8 @@ type FeedbackRequest = {
   correctChoice?: string | null;
   isCorrect?: boolean;
   explanationText?: string | null;
-  explanationImageUrls?: string[];
   topic?: string | null;
+  performanceStats?: PerformanceStats;
 };
 
 const fallbackModels = ['gemini-3.5-flash'];
@@ -88,6 +105,53 @@ Return the feedback in this structure:
 Do not mention that you are an AI model. Keep it practical and study-focused.`;
 }
 
+function buildPerformanceDiagnosisPrompt(input: FeedbackRequest) {
+  const languageInstruction = input.interfaceLanguage === 'zh-Hant'
+    ? 'Respond in Traditional Chinese.'
+    : input.interfaceLanguage === 'zh-Hans'
+      ? 'Respond in Simplified Chinese.'
+      : 'Respond in English.';
+
+  const stats = input.performanceStats ?? {
+    totalAttempts: 0,
+    correctAttempts: 0,
+    avgTimeSeconds: 0,
+    weakConcepts: [],
+    errorTypeBreakdown: {},
+    recentTrend: [],
+    streakDays: 0,
+  };
+  const accuracy = stats.totalAttempts > 0 ? Math.round((stats.correctAttempts / stats.totalAttempts) * 100) : 0;
+
+  return `You are PassBar's MBE study coach. Analyze the user's overall practice performance and produce a structured diagnosis.
+
+${languageInstruction}
+
+Performance summary:
+- Total questions answered: ${stats.totalAttempts}
+- Correct: ${stats.correctAttempts} (${accuracy}% overall accuracy)
+- Average time per question: ${stats.avgTimeSeconds} seconds
+- Current study streak: ${stats.streakDays} days
+- Recent accuracy trend (oldest to newest, in %): ${stats.recentTrend.join(', ') || 'not enough data'}
+- Error type breakdown: ${Object.entries(stats.errorTypeBreakdown).map(([k, v]) => `${k}: ${v}`).join(', ') || 'none'}
+
+Weakest concepts (lowest accuracy first):
+${stats.weakConcepts.map((c) => `- ${c.subject} / ${c.topic} / ${c.concept}: ${c.correct}/${c.attempts} correct, avg ${c.avgTime}s`).join('\n') || 'none identified yet'}
+
+Respond with ONLY a single JSON object (no markdown fences, no extra text) matching exactly this shape:
+{
+  "diagnosis": string,            // 2-3 sentence overall diagnosis of the user's current performance
+  "topPriorities": [              // up to 3 concepts the user should focus on next, ordered by priority
+    { "concept": string, "subject": string, "reason": string, "suggestedMinutes": number }
+  ],
+  "studyPlan": [                  // 3-5 concrete steps for the next study session
+    { "step": number, "action": string, "duration": string }
+  ],
+  "encouragement": string,        // a short, specific encouraging remark
+  "readinessScore": number        // 0-100 estimate of exam readiness based on the data above
+}`;
+}
+
 function buildQuestionAnalysisPrompt(input: FeedbackRequest) {
   const languageInstruction = input.interfaceLanguage === 'zh-Hant'
     ? 'Respond in Traditional Chinese.'
@@ -137,7 +201,7 @@ function buildQuestionAnalysisPrompt(input: FeedbackRequest) {
 
 ${languageInstruction}
 
-Use only these inputs: the English question, answer choices, correct answer, selected answer, source English explanation/OCR, and any attached source explanation images. Treat attached images as authoritative source explanation material.
+Use only these inputs: the English question, answer choices, correct answer, selected answer, and source English HTML explanation text.
 
 Question topic: ${input.topic ?? 'Unknown'}
 Question:
@@ -149,7 +213,7 @@ ${options}
 Student selected: ${selectedChoice}
 Correct answer: ${correctChoice}
 
-Source English explanation or OCR excerpt:
+Source English explanation excerpt:
 ${trimText(input.explanationText ?? '', 3200)}
 
 ${structureInstruction}
@@ -157,37 +221,7 @@ ${structureInstruction}
 Use Markdown. Keep it focused on this question. Do not mention that you are an AI model.`;
 }
 
-type GeminiPart = { text: string } | { inlineData: { mimeType: string; data: string } };
-
-async function imageUrlToPart(url: string): Promise<GeminiPart | null> {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) return null;
-    const contentType = response.headers.get('content-type') ?? 'image/png';
-    if (!contentType.startsWith('image/')) return null;
-    const bytes = Buffer.from(await response.arrayBuffer());
-    if (bytes.byteLength > 7_000_000) return null;
-    return {
-      inlineData: {
-        mimeType: contentType,
-        data: bytes.toString('base64'),
-      },
-    };
-  } catch {
-    return null;
-  }
-}
-
-async function buildGeminiParts(input: FeedbackRequest, prompt: string): Promise<GeminiPart[]> {
-  const parts: GeminiPart[] = [{ text: prompt }];
-  if (input.action !== 'question-analysis') return parts;
-
-  const imageParts = await Promise.all(
-    (input.explanationImageUrls ?? []).slice(0, 2).map((url) => imageUrlToPart(url)),
-  );
-  imageParts.filter((part): part is GeminiPart => Boolean(part)).forEach((part) => parts.push(part));
-  return parts;
-}
+type GeminiPart = { text: string };
 
 async function callGemini(model: string, parts: GeminiPart[], key: string) {
   const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(key)}`, {
@@ -242,13 +276,14 @@ export async function POST(request: NextRequest) {
 
   const prompt = input.action === 'question-analysis'
     ? buildQuestionAnalysisPrompt(input)
-    : buildPrompt(input);
-  const parts = await buildGeminiParts(input, prompt);
+    : input.action === 'performance-diagnosis'
+      ? buildPerformanceDiagnosisPrompt(input)
+      : buildPrompt(input);
   const errors: string[] = [];
 
   for (const model of modelsToTry()) {
     try {
-      const feedback = await callGemini(model, parts, key);
+      const feedback = await callGemini(model, [{ text: prompt }], key);
       return NextResponse.json({ action: input.action ?? 'feedback', feedback, model });
     } catch (error) {
       errors.push(`${model}: ${error instanceof Error ? error.message : String(error)}`);

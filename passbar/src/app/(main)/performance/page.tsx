@@ -50,6 +50,35 @@ type AnswerRow = {
   confidence: string | null;
   changed_answer: boolean | null;
   error_type: string | null;
+  selected_choice: string | null;
+  correct_answer: string | null;
+};
+
+type KeywordItem = {
+  id: string;
+  text: string;
+  label?: { en?: string; zh?: string };
+  kind: string;
+  reason?: { en?: string; zh?: string };
+  importance?: string;
+};
+
+type KeywordMeta = {
+  question_keyword_meta?: { keywords: KeywordItem[] };
+  choice_keyword_meta?: { choices: Partial<Record<'A' | 'B' | 'C' | 'D', KeywordItem[]>> };
+};
+
+type HighlightItem = {
+  id: string;
+  text: string;
+  kind: string;
+  label?: { en?: string; zh?: string };
+  reason?: { en?: string; zh?: string };
+  importance?: string;
+};
+
+type HighlightMeta = {
+  question_highlight_meta?: { highlights: HighlightItem[] };
 };
 
 type QuestionMetaRow = {
@@ -57,9 +86,13 @@ type QuestionMetaRow = {
   subject: string;
   chapter_id: string;
   chapter_name: string;
+  topic: string | null;
   micro_concept: string | null;
   trap_type: string | null;
+  trap_type_is_new: boolean | null;
   skill_tested: string | null;
+  keyword_meta: KeywordMeta | null;
+  highlight_meta: HighlightMeta | null;
 };
 
 type ConceptMasteryRow = {
@@ -137,6 +170,93 @@ function computeRecentTrend(answers: AnswerRow[]): number[] {
     .sort((a, b) => a[0].localeCompare(b[0]))
     .slice(-10);
   return sorted.map(([, v]) => Math.round((v.correct / v.total) * 100));
+}
+
+// Approximate MBE-equivalent scaled-score passing lines by jurisdiction.
+// Falls back to the UBE national median (133, used by NY and most UBE states)
+// when the user hasn't set a jurisdiction or picked one we don't have a cut score for.
+const PASSING_SCORES: Record<string, { score: number; label: string }> = {
+  ny: { score: 133, label: 'NY' },
+  ca: { score: 135, label: 'CA' },
+};
+const DEFAULT_PASSING = { score: 133, label: 'UBE' };
+
+function getPassingStandard(examState: string | null): { score: number; label: string } {
+  if (!examState) return DEFAULT_PASSING;
+  return PASSING_SCORES[examState] ?? { ...DEFAULT_PASSING, label: examState.toUpperCase() };
+}
+
+function pickLang(text: { en?: string; zh?: string } | undefined, language: string): string {
+  if (!text) return '';
+  const key = language === 'en' ? 'en' : 'zh';
+  return text[key] ?? text.en ?? text.zh ?? '';
+}
+
+function pickHighImportance<T extends { importance?: string; kind?: string }>(
+  items: T[] | undefined,
+  preferredKinds: string[] = [],
+): T | null {
+  if (!items || items.length === 0) return null;
+  const byPreferredKind = preferredKinds.length > 0
+    ? items.find((item) => preferredKinds.includes(item.kind ?? '') && item.importance === 'high')
+    : null;
+  if (byPreferredKind) return byPreferredKind;
+  const preferred = preferredKinds.length > 0
+    ? items.find((item) => preferredKinds.includes(item.kind ?? ''))
+    : null;
+  if (preferred) return preferred;
+  return items.find((item) => item.importance === 'high') ?? items[0];
+}
+
+type FatigueBucket = { group: string; focus: number; expectedErrors: number; avgTime: number; sampleSize: number };
+
+const FATIGUE_SESSION_GAP_MS = 20 * 60 * 1000;
+const FATIGUE_MIN_SESSION_SIZE = 8;
+
+function computeFatigueData(answers: AnswerRow[]): { buckets: FatigueBucket[]; sessionCount: number } {
+  const timed = answers
+    .filter((a) => a.answered_at)
+    .slice()
+    .sort((a, b) => (a.answered_at ?? '').localeCompare(b.answered_at ?? ''));
+  if (timed.length === 0) return { buckets: [], sessionCount: 0 };
+
+  const sessions: AnswerRow[][] = [];
+  let current: AnswerRow[] = [];
+  let lastTime: number | null = null;
+  timed.forEach((a) => {
+    const time = new Date(a.answered_at!).getTime();
+    if (lastTime !== null && time - lastTime > FATIGUE_SESSION_GAP_MS) {
+      if (current.length > 0) sessions.push(current);
+      current = [];
+    }
+    current.push(a);
+    lastTime = time;
+  });
+  if (current.length > 0) sessions.push(current);
+
+  const longSessions = sessions.filter((s) => s.length >= FATIGUE_MIN_SESSION_SIZE);
+  if (longSessions.length === 0) return { buckets: [], sessionCount: 0 };
+
+  const totals = [0, 1, 2, 3].map(() => ({ correct: 0, total: 0, time: 0 }));
+  longSessions.forEach((session) => {
+    session.forEach((a, i) => {
+      const bucketIdx = Math.min(3, Math.floor((i / session.length) * 4));
+      totals[bucketIdx].total++;
+      if (a.is_correct) totals[bucketIdx].correct++;
+      totals[bucketIdx].time += a.time_spent_seconds ?? 0;
+    });
+  });
+
+  const groups = ['performance.fatigueQ1', 'performance.fatigueQ2', 'performance.fatigueQ3', 'performance.fatigueQ4'];
+  const buckets = totals.map((b, i) => ({
+    group: groups[i],
+    focus: b.total > 0 ? Math.round((b.correct / b.total) * 100) : 0,
+    expectedErrors: b.total > 0 ? Math.round(((b.total - b.correct) / b.total) * 100) : 0,
+    avgTime: b.total > 0 ? Math.round(b.time / b.total) : 0,
+    sampleSize: b.total,
+  }));
+
+  return { buckets, sessionCount: longSessions.length };
 }
 
 function computeErrorTypeBreakdown(answers: AnswerRow[]): Record<string, number> {
@@ -696,9 +816,11 @@ function ConceptMapTab({
 function ErrorTrapTab({
   data,
   t,
+  language,
 }: {
   data: PageData;
   t: ReturnType<typeof useI18n>['t'];
+  language: string;
 }) {
   const totalErrors = useMemo(
     () => Object.values(data.errorTypeBreakdown).reduce((s, v) => s + v, 0),
@@ -737,15 +859,50 @@ function ErrorTrapTab({
   );
   const changedPct = Math.round((changedCount / Math.max(1, data.totalAttempts)) * 100);
 
-  // Most recent wrong answer for trap dissection
-  const mostRecentWrong = useMemo(() => {
-    return data.answers
+  const wrongAnswers = useMemo(
+    () => data.answers
       .filter((a) => !a.is_correct)
-      .sort((a, b) => (b.answered_at ?? '').localeCompare(a.answered_at ?? ''))
-      .slice(0, 1)[0] ?? null;
-  }, [data.answers]);
+      .sort((a, b) => (b.answered_at ?? '').localeCompare(a.answered_at ?? '')),
+    [data.answers],
+  );
+
+  // Most recurring trap_type among wrong answers, used to pick a representative
+  // question for the Trap Dissection card (falls back to the most recent wrong answer).
+  const recurringTrap = useMemo(() => {
+    const counts = new Map<string, number>();
+    wrongAnswers.forEach((a) => {
+      const trap = data.metadata.get(a.question_id)?.trap_type;
+      if (trap) counts.set(trap, (counts.get(trap) ?? 0) + 1);
+    });
+    const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+    const top = sorted[0];
+    return top && top[1] > 1 ? { trap: top[0], count: top[1] } : null;
+  }, [wrongAnswers, data.metadata]);
+
+  const mostRecentWrong = useMemo(() => {
+    if (recurringTrap) {
+      const match = wrongAnswers.find((a) => data.metadata.get(a.question_id)?.trap_type === recurringTrap.trap);
+      if (match) return match;
+    }
+    return wrongAnswers[0] ?? null;
+  }, [wrongAnswers, recurringTrap, data.metadata]);
 
   const wrongMeta = mostRecentWrong ? data.metadata.get(mostRecentWrong.question_id) : null;
+
+  // Richer keyword/highlight metadata for the dissected question, when available
+  const selectedChoice = mostRecentWrong?.selected_choice?.toUpperCase() as 'A' | 'B' | 'C' | 'D' | undefined;
+  const correctChoice = mostRecentWrong?.correct_answer?.toUpperCase() as 'A' | 'B' | 'C' | 'D' | undefined;
+  const wrongChoiceKeyword = pickHighImportance(
+    selectedChoice ? wrongMeta?.keyword_meta?.choice_keyword_meta?.choices?.[selectedChoice] : undefined,
+    ['trap_phrase'],
+  );
+  const correctChoiceKeyword = pickHighImportance(
+    correctChoice ? wrongMeta?.keyword_meta?.choice_keyword_meta?.choices?.[correctChoice] : undefined,
+    ['legal_term'],
+  );
+  const keyHighlights = (wrongMeta?.highlight_meta?.question_highlight_meta?.highlights ?? [])
+    .filter((h) => h.importance === 'high')
+    .slice(0, 2);
 
   if (totalErrors === 0 && changedCount === 0) {
     return (
@@ -852,10 +1009,15 @@ function ErrorTrapTab({
             <p className="text-sm text-muted-foreground text-center py-4">{t('performance.noDataYet')}</p>
           ) : (
             <>
+              {recurringTrap && (
+                <Badge className="bg-amber-100 text-amber-700 border-amber-300">
+                  {t('performance.recurringTrapLabel', { trap: recurringTrap.trap, count: recurringTrap.count })}
+                </Badge>
+              )}
               <div className="rounded-lg border bg-amber-50 border-amber-100 p-4">
                 <p className="text-xs font-bold text-amber-700 mb-2">{t('performance.trapScenarioTitle')}</p>
                 <p className="text-sm text-slate-700">
-                  {t('performance.inConceptPrefix')} <strong>{wrongMeta.subject}</strong> · <strong>{wrongMeta.chapter_name}</strong>:
+                  {t('performance.inConceptPrefix')} <strong>{wrongMeta.subject}</strong> · <strong>{wrongMeta.topic ?? wrongMeta.chapter_name}</strong>:
                   {wrongMeta.trap_type
                     ? t('performance.trapTypeEncountered', { trap: wrongMeta.trap_type })
                     : t('performance.trapUnknownDescription')}
@@ -865,26 +1027,48 @@ function ErrorTrapTab({
                 <div className="rounded-lg border border-red-200 bg-red-50 p-4">
                   <p className="text-xs font-bold text-red-600 mb-2">{t('performance.wrongChoiceTrap')}</p>
                   <p className="text-sm text-red-800 font-medium mb-2">
-                    {wrongMeta.trap_type ?? t('performance.distractorOption')}
+                    {pickLang(wrongChoiceKeyword?.label, language) || wrongMeta.trap_type || t('performance.distractorOption')}
                   </p>
                   <p className="text-xs text-red-600 flex items-start gap-1">
-                    <span className="font-bold">{t('performance.trapLocation')}</span>
-                    {wrongMeta.trap_type
-                      ? t('performance.trapNeedsRuleMemory', { trap: wrongMeta.trap_type })
-                      : t('performance.trapNeedsBasicMemory')}
+                    <span className="font-bold shrink-0">{t('performance.trapLocation')}</span>
+                    <span>
+                      {pickLang(wrongChoiceKeyword?.reason, language)
+                        || (wrongMeta.trap_type
+                          ? t('performance.trapNeedsRuleMemory', { trap: wrongMeta.trap_type })
+                          : t('performance.trapNeedsBasicMemory'))}
+                    </span>
                   </p>
                 </div>
                 <div className="rounded-lg border border-green-200 bg-green-50 p-4">
                   <p className="text-xs font-bold text-green-600 mb-2">{t('performance.correctAnswerShouldBe')}</p>
                   <p className="text-sm text-green-800 font-medium mb-2">
-                    {wrongMeta.micro_concept ?? wrongMeta.chapter_name}
+                    {pickLang(correctChoiceKeyword?.label, language) || wrongMeta.micro_concept || wrongMeta.chapter_name}
                   </p>
                   <p className="text-xs text-green-600 flex items-start gap-1">
-                    <span className="font-bold">{t('performance.keyConcept')}</span>
-                    {wrongMeta.skill_tested ?? t('performance.masterCorePrinciple', { topic: wrongMeta.chapter_name })}
+                    <span className="font-bold shrink-0">{t('performance.keyConcept')}</span>
+                    <span>
+                      {pickLang(correctChoiceKeyword?.reason, language)
+                        || wrongMeta.skill_tested
+                        || t('performance.masterCorePrinciple', { topic: wrongMeta.chapter_name })}
+                    </span>
                   </p>
                 </div>
               </div>
+              {keyHighlights.length > 0 && (
+                <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                  <p className="text-xs font-bold text-slate-600 mb-2">{t('performance.keySentencesTitle')}</p>
+                  <ul className="space-y-2">
+                    {keyHighlights.map((h) => (
+                      <li key={h.id} className="text-sm text-slate-700">
+                        <span className="italic">"{h.text}"</span>
+                        {pickLang(h.reason, language) && (
+                          <span className="block text-xs text-slate-500 mt-0.5">{pickLang(h.reason, language)}</span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </>
           )}
         </CardContent>
@@ -904,9 +1088,11 @@ type SubjectSliderState = {
 function ProgressTab({
   data,
   t,
+  passingStandard,
 }: {
   data: PageData;
   t: ReturnType<typeof useI18n>['t'];
+  passingStandard: { score: number; label: string };
 }) {
   // Build subject accuracy map
   const subjectAccuracy = useMemo(() => {
@@ -958,19 +1144,12 @@ function ProgressTab({
     return Math.min(200, Math.round(simPct * 200));
   }, [sliders, data, subjectAccuracy]);
 
-  const NY_PASSING = 133;
-  const distToNY = Math.max(0, NY_PASSING - simulatedScore);
+  const PASSING_SCORE = passingStandard.score;
+  const distToPassing = Math.max(0, PASSING_SCORE - simulatedScore);
 
-  // Fatigue chart data (4 groups of 100Q simulation)
-  const fatigueData = useMemo(() => {
-    const overallAcc = pct(data.correctAttempts, data.totalAttempts);
-    return [
-      { group: 'Q1-30', focus: Math.min(100, overallAcc + 8), expectedErrors: Math.max(0, 100 - overallAcc - 8) },
-      { group: 'Q31-60', focus: Math.min(100, overallAcc + 2), expectedErrors: Math.max(0, 100 - overallAcc - 2) },
-      { group: 'Q61-80', focus: Math.max(0, overallAcc - 6), expectedErrors: Math.min(100, 100 - overallAcc + 6) },
-      { group: 'Q81-100', focus: Math.max(0, overallAcc - 12), expectedErrors: Math.min(100, 100 - overallAcc + 12) },
-    ];
-  }, [data]);
+  // Fatigue chart data: derived from real practice sessions (8+ questions, <20min gaps)
+  const fatigue = useMemo(() => computeFatigueData(data.answers), [data.answers]);
+  const fatigueData = fatigue.buckets.map((b) => ({ ...b, group: t(b.group) }));
 
   const trendData = data.recentTrend.map((acc, i) => ({ session: `S${i + 1}`, accuracy: acc }));
 
@@ -1032,14 +1211,14 @@ function ProgressTab({
               </p>
               <div className="text-6xl font-bold text-primary">{simulatedScore}</div>
               <div className="w-full">
-                <Progress value={Math.min(100, (simulatedScore / NY_PASSING) * 100)} className="h-3" />
+                <Progress value={Math.min(100, (simulatedScore / PASSING_SCORE) * 100)} className="h-3" />
                 <p className="text-xs text-center text-muted-foreground mt-2">
-                  {distToNY > 0
-                    ? t('performance.distanceToNY', { score: NY_PASSING, diff: distToNY })
-                    : t('performance.nyPassingReached')}
+                  {distToPassing > 0
+                    ? t('performance.distanceToNY', { state: passingStandard.label, score: PASSING_SCORE, diff: distToPassing })
+                    : t('performance.nyPassingReached', { state: passingStandard.label })}
                 </p>
               </div>
-              <ReadinessGauge score={Math.min(100, Math.round((simulatedScore / NY_PASSING) * 100))} />
+              <ReadinessGauge score={Math.min(100, Math.round((simulatedScore / PASSING_SCORE) * 100))} />
             </CardContent>
           </Card>
         </div>
@@ -1047,29 +1226,43 @@ function ProgressTab({
 
       {/* Section B: Fatigue Chart */}
       <div>
-        <h2 className="text-base font-bold text-slate-800 flex items-center gap-2 mb-4">
+        <h2 className="text-base font-bold text-slate-800 flex items-center gap-2 mb-1">
           <Activity className="h-4 w-4 text-primary" />
           {t('performance.fatigueChart')}
         </h2>
+        <p className="text-xs text-muted-foreground mb-4">
+          {t('performance.fatigueChartDescription')}
+        </p>
         <Card className="hover:shadow-md transition">
           <CardContent className="p-3 sm:p-5">
-            <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
-                <BarChart data={fatigueData} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
-                  <XAxis dataKey="group" tick={{ fontSize: 12 }} />
-                  <YAxis unit="%" domain={[0, 100]} tick={{ fontSize: 12 }} />
-                  <Tooltip formatter={(v) => [`${v ?? ''}%`, '']} />
-                  <Legend />
-                  <Bar dataKey="focus" name={t('performance.focusLevel')} fill="#22c55e" radius={[2, 2, 0, 0]} />
-                  <Bar dataKey="expectedErrors" name={t('performance.expectedErrorRate')} fill="#ef4444" radius={[2, 2, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-            <div className="mt-3 p-3 rounded-lg bg-amber-50 border border-amber-100 text-sm text-amber-800">
-              {fatigueData[3].focus < fatigueData[0].focus - 10
-                ? t('performance.fatigueWarning')
-                : t('performance.fatigueStable')}
-            </div>
+            {fatigueData.length === 0 ? (
+              <p className="text-sm text-muted-foreground text-center py-10">
+                {t('performance.fatigueInsufficientData')}
+              </p>
+            ) : (
+              <>
+                <div className="h-64">
+                  <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
+                    <BarChart data={fatigueData} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
+                      <XAxis dataKey="group" tick={{ fontSize: 12 }} />
+                      <YAxis unit="%" domain={[0, 100]} tick={{ fontSize: 12 }} />
+                      <Tooltip formatter={(v) => [`${v ?? ''}%`, '']} />
+                      <Legend />
+                      <Bar dataKey="focus" name={t('performance.focusLevel')} fill="#22c55e" radius={[2, 2, 0, 0]} />
+                      <Bar dataKey="expectedErrors" name={t('performance.expectedErrorRate')} fill="#ef4444" radius={[2, 2, 0, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className="mt-3 p-3 rounded-lg bg-amber-50 border border-amber-100 text-sm text-amber-800">
+                  {fatigueData[3].focus < fatigueData[0].focus - 10
+                    ? t('performance.fatigueWarning')
+                    : t('performance.fatigueStable')}
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  {t('performance.fatigueSessionNote', { count: fatigue.sessionCount })}
+                </p>
+              </>
+            )}
           </CardContent>
         </Card>
       </div>
@@ -1125,12 +1318,23 @@ export default function PerformancePage() {
   const [pageData, setPageData] = useState<PageData | null>(null);
   const [loading, setLoading] = useState(true);
   const [visible, setVisible] = useState(false);
+  const [examState, setExamState] = useState<string | null>(null);
   const mounted = useRef(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 50);
     return () => clearTimeout(timer);
   }, []);
+
+  // Read the user's chosen exam jurisdiction (set on the dashboard) so the
+  // scaled-score simulator targets the right passing line instead of NY's.
+  useEffect(() => {
+    if (!user?.id) return;
+    const saved = localStorage.getItem(`passbar_exam_state_${user.id}`);
+    if (saved) setExamState(saved);
+  }, [user?.id]);
+
+  const passingStandard = useMemo(() => getPassingStandard(examState), [examState]);
 
   useEffect(() => {
     if (mounted.current) return;
@@ -1152,7 +1356,7 @@ export default function PerformancePage() {
       const [answersResult, masteryResult] = await Promise.all([
         supabase
           .from('practice_answers')
-          .select('question_id, is_correct, answered_at, time_spent_seconds, confidence, changed_answer, error_type')
+          .select('question_id, is_correct, answered_at, time_spent_seconds, confidence, changed_answer, error_type, selected_choice, correct_answer')
           .eq('user_id', user.id)
           .order('answered_at', { ascending: true })
           .limit(5000),
@@ -1170,7 +1374,7 @@ export default function PerformancePage() {
       for (const ids of chunk(questionIds, 400)) {
         const { data: rows, error: rowsError } = await supabase
           .from('questions')
-          .select('id, subject, chapter_id, chapter_name, micro_concept, trap_type, skill_tested')
+          .select('id, subject, chapter_id, chapter_name, topic, micro_concept, trap_type, trap_type_is_new, skill_tested, keyword_meta, highlight_meta')
           .in('id', ids);
         if (rowsError) console.warn('[PassBar] questions fetch error:', rowsError.message);
         if (rows) metaRows.push(...(rows as QuestionMetaRow[]));
@@ -1307,8 +1511,8 @@ export default function PerformancePage() {
       <div className="min-h-[400px]">
         {activeTab === 'prescription' && <PrescriptionTab data={pageData} t={t} language={language} />}
         {activeTab === 'conceptMap'   && <ConceptMapTab   data={pageData} t={t} />}
-        {activeTab === 'errorTrap'    && <ErrorTrapTab    data={pageData} t={t} />}
-        {activeTab === 'progress'     && <ProgressTab     data={pageData} t={t} />}
+        {activeTab === 'errorTrap'    && <ErrorTrapTab    data={pageData} t={t} language={language} />}
+        {activeTab === 'progress'     && <ProgressTab     data={pageData} t={t} passingStandard={passingStandard} />}
       </div>
     </div>
   );

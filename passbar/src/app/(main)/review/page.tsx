@@ -12,12 +12,10 @@ import { Input } from '@/components/ui/input';
 import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
 import { useI18n } from '@/lib/i18n';
-import { getQuestionsByIds } from '@/lib/question-bank';
 import { supabase } from '@/lib/supabase';
-import { cn } from '@/lib/utils';
-import type { Question } from '@/lib/types';
 import { deletePracticeSessionRecord } from '@/lib/practice-sessions';
 import { deletePendingAnswerSyncItemsForSession, deleteTestQuestionSnapshot } from '@/lib/offline-cache';
+import { cn } from '@/lib/utils';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -40,20 +38,8 @@ type PracticeSessionRow = {
   started_at: string | null;
   completed_at: string | null;
   total_time_seconds: number | null;
-  raw: {
-    subjects?: string[];
-    chapters?: string[];
-    questionIds?: string[];
-    userAnswers?: Record<string, string>;
-    createdAt?: number;
-  } | null;
-};
-
-type PracticeAnswerRow = {
-  session_id: string;
-  question_id: string;
-  selected_choice: string | null;
-  is_correct: boolean | null;
+  answered_count: number | null;
+  correct_count: number | null;
 };
 
 type ReviewSession = {
@@ -91,15 +77,6 @@ function getSessionDuration(session: PracticeSessionRow) {
   if (session.total_time_seconds && session.total_time_seconds > 0) return session.total_time_seconds;
   if (!session.started_at || !session.completed_at) return 0;
   return Math.max(0, Math.round((new Date(session.completed_at).getTime() - new Date(session.started_at).getTime()) / 1000));
-}
-
-function getAnswerChoiceKey(question: Question, answer: string) {
-  const candidates = [question.options, question.bilingualOptions ?? []];
-  for (const options of candidates) {
-    const index = options.findIndex((o) => o === answer);
-    if (index !== -1) return String.fromCharCode(65 + index);
-  }
-  return answer.match(/^\s*([A-D])\./i)?.[1]?.toUpperCase() ?? null;
 }
 
 const MODES = ['Tutor', 'Timed', 'SimExam'] as const;
@@ -159,20 +136,21 @@ export default function ReviewHistoryPage() {
 
   // Lightweight fetch to populate filter options (subject/chapter lists) once on mount.
   useEffect(() => {
+    if (!filterOpen || allSubjectsGlobal.length > 0 || allChaptersGlobal.length > 0) return;
     if (!user?.id || !supabase) return;
     supabase
       .from('practice_sessions')
-      .select('subject_ids, chapter_ids, raw')
+      .select('subject_ids, chapter_ids')
       .eq('user_id', user.id)
       .neq('mode', 'TopicStudy')
       .then(({ data }) => {
-        const rows = (data ?? []) as Pick<PracticeSessionRow, 'subject_ids' | 'chapter_ids' | 'raw'>[];
+        const rows = (data ?? []) as Pick<PracticeSessionRow, 'subject_ids' | 'chapter_ids'>[];
         const subjectSet = new Set<string>();
         const chapterSet = new Set<string>();
         const nameMap = new Map<string, string>();
         rows.forEach((r) => {
-          const subjects: string[] = r.raw?.subjects?.length ? r.raw.subjects : (r.subject_ids ?? []);
-          const chapters: string[] = r.raw?.chapters?.length ? r.raw.chapters : (r.chapter_ids ?? []);
+          const subjects = r.subject_ids ?? [];
+          const chapters = r.chapter_ids ?? [];
           subjects.forEach((s) => subjectSet.add(s));
           chapters.forEach((ch) => {
             chapterSet.add(ch);
@@ -183,7 +161,7 @@ export default function ReviewHistoryPage() {
         setAllChaptersGlobal([...chapterSet].sort());
         setChapterNameMapGlobal(nameMap);
       });
-  }, [user?.id, historyVersion]);
+  }, [allChaptersGlobal.length, allSubjectsGlobal.length, filterOpen, user?.id, historyVersion]);
 
   useEffect(() => {
     const loadHistory = async () => {
@@ -192,7 +170,7 @@ export default function ReviewHistoryPage() {
 
       let query = supabase
         .from('practice_sessions')
-        .select('id, mode, status, subject_ids, chapter_ids, question_count, started_at, completed_at, total_time_seconds, raw', { count: 'exact' })
+        .select('id, mode, status, subject_ids, chapter_ids, question_count, started_at, completed_at, total_time_seconds, answered_count, correct_count', { count: 'exact' })
         .eq('user_id', user.id)
         .neq('mode', 'TopicStudy')
         .order('started_at', { ascending: false })
@@ -210,37 +188,14 @@ export default function ReviewHistoryPage() {
 
       setTotalCount(count ?? 0);
       const rows = (sessionRows ?? []) as PracticeSessionRow[];
-      const ids = rows.map((r) => r.id);
-      const answerRows = ids.length > 0
-        ? await supabase.from('practice_answers').select('session_id, question_id, selected_choice, is_correct').in('session_id', ids)
-        : { data: [] as PracticeAnswerRow[], error: null };
-
-      const answersBySession = new Map<string, PracticeAnswerRow[]>();
-      ((answerRows.data ?? []) as PracticeAnswerRow[]).forEach((a) => {
-        (answersBySession.get(a.session_id) ?? answersBySession.set(a.session_id, []).get(a.session_id)!).push(a);
-      });
-
-      const rawQIds = Array.from(new Set(rows.flatMap((r) => Object.keys(r.raw?.userAnswers ?? {}))));
-      const rawQRows = rawQIds.length > 0 ? await getQuestionsByIds(rawQIds) : [];
-      const rawQById = new Map(rawQRows.map((q) => [q.id, q]));
 
       const next = rows.map((row) => {
-        const answers = answersBySession.get(row.id) ?? [];
-        const rawAnswers = row.raw?.userAnswers ?? {};
-        const rawEntries = Object.entries(rawAnswers);
-        const answered = answers.length > 0 ? answers.length : rawEntries.length;
-        const correct = answers.length > 0
-          ? answers.filter((a) => a.is_correct).length
-          : rawEntries.filter(([qId, ans]) => {
-            const q = rawQById.get(qId);
-            const sel = q ? getAnswerChoiceKey(q, ans) : null;
-            const ok = (q?.apiAnswerKey ?? q?.correctAnswerLetter)?.toUpperCase() ?? null;
-            return Boolean(sel && ok && sel === ok);
-          }).length;
+        const answered = row.answered_count ?? 0;
+        const correct = row.correct_count ?? 0;
         const percent = answered > 0 ? Math.round((correct / answered) * 100) : 0;
-        const subjects = row.raw?.subjects?.length ? row.raw.subjects : (row.subject_ids ?? []);
-        const chapters = row.raw?.chapters?.length ? row.raw.chapters : (row.chapter_ids ?? []);
-        const createdAt = row.raw?.createdAt ? new Date(row.raw.createdAt) : new Date(row.started_at ?? Date.now());
+        const subjects = row.subject_ids ?? [];
+        const chapters = row.chapter_ids ?? [];
+        const createdAt = new Date(row.started_at ?? Date.now());
 
         return {
           id: row.id,

@@ -77,12 +77,12 @@ export function HelpDialog({ open, onOpenChange }: HelpDialogProps) {
   const { user, profile } = useAuth();
   const { toast } = useToast();
   const { t } = useI18n();
-  const feedbackCategories = [
-    t('help.feedbackCategoryContent'),
-    t('help.feedbackCategoryBug'),
-    t('help.feedbackCategoryFeature'),
-    t('help.feedbackCategoryAccount'),
-    t('help.feedbackCategoryOther'),
+  const feedbackCategories: { value: string; label: string }[] = [
+    { value: 'content', label: t('help.feedbackCategoryContent') },
+    { value: 'bug',     label: t('help.feedbackCategoryBug') },
+    { value: 'feature', label: t('help.feedbackCategoryFeature') },
+    { value: 'account', label: t('help.feedbackCategoryAccount') },
+    { value: 'other',   label: t('help.feedbackCategoryOther') },
   ];
   const steps = [
     { num: '01', title: t('help.step1Title'), desc: t('help.dialogStep1Desc') },
@@ -95,7 +95,7 @@ export function HelpDialog({ open, onOpenChange }: HelpDialogProps) {
     { q: t('help.faq.source.q'), a: t('help.faq.source.a') },
     { q: t('help.faq.closePage.q'), a: t('help.faq.closePage.a') },
   ];
-  const [category, setCategory] = useState(feedbackCategories[0]);
+  const [category, setCategory] = useState(feedbackCategories[0].value);
   const [qid, setQid] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -200,7 +200,7 @@ export function HelpDialog({ open, onOpenChange }: HelpDialogProps) {
                     </SelectTrigger>
                     <SelectContent>
                       {feedbackCategories.map((c) => (
-                        <SelectItem key={c} value={c}>{c}</SelectItem>
+                        <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>

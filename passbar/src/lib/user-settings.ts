@@ -56,3 +56,19 @@ export async function saveUserStudySettings(userId: string, settings: StudySetti
 
   return true;
 }
+
+export async function updateUserExamDate(userId: string, examDate: string | null) {
+  if (!supabase) return false;
+
+  const { error } = await supabase
+    .from('profiles')
+    .update({ exam_date: examDate, updated_at: new Date().toISOString() })
+    .eq('id', userId);
+
+  if (error) {
+    console.warn('[PassBar] Failed to update exam date:', error.message);
+    return false;
+  }
+
+  return true;
+}

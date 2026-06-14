@@ -363,7 +363,7 @@ export default function CreateTestPage() {
             </div>
           </AccordionTrigger>
           <AccordionContent className="border-t pb-6 pt-4">
-            <div className="flex flex-wrap gap-x-8 gap-y-4 rounded-md bg-slate-50 p-4">
+            <div className="flex flex-wrap gap-x-8 gap-y-4">
               {/* All — clears all filters so every question is eligible */}
               {(() => {
                 const isAll = !Object.values(statusFilters).some(Boolean);
