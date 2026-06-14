@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
+  Activity,
   AlertTriangle,
   ArrowLeft,
   ArrowRight,
@@ -15,11 +16,14 @@ import {
   ChevronUp,
   Circle,
   Clock,
+  Cpu,
   Database,
   Flag,
   Flame,
   Gauge,
   GripVertical,
+  Hourglass,
+  Layers,
   Loader2,
   Lock,
   Play,
@@ -30,6 +34,7 @@ import {
   Target,
   TrendingUp,
   Trophy,
+  Zap,
 } from 'lucide-react';
 import {
   DndContext,
@@ -448,21 +453,26 @@ function useCountUp(target: number, duration = 800) {
   const prevTarget = useRef(0);
 
   useEffect(() => {
-    if (target === prevTarget.current) return;
-    prevTarget.current = target;
-    if (target === 0) { setValue(0); return; }
+    const safeTarget = Number.isNaN(target) || target === null || target === undefined ? 0 : target;
+    if (Object.is(safeTarget, prevTarget.current)) return;
+    prevTarget.current = safeTarget;
+    if (safeTarget === 0) { setValue(0); return; }
 
     const start = Date.now();
     const from = value;
-    const diff = target - from;
+    const diff = safeTarget - from;
+    let frameId: number;
     const tick = () => {
       const elapsed = Date.now() - start;
       const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       setValue(from + diff * eased);
-      if (progress < 1) requestAnimationFrame(tick);
+      if (progress < 1) {
+        frameId = requestAnimationFrame(tick);
+      }
     };
-    requestAnimationFrame(tick);
+    frameId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frameId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [target, duration]);
 
@@ -1269,21 +1279,27 @@ const SUBJECT_METRIC_VIEWS: { key: SubjectMetricView; icon: typeof Gauge; labelK
 function ConfidenceGauge({ value, color, delay }: { value: number; color: string; delay: number }) {
   const radius = 40;
   const circumference = Math.PI * radius;
-  const clamped = Math.max(0, Math.min(100, value));
-  const offset = circumference * (1 - clamped / 100);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setMounted(true), delay);
+    return () => clearTimeout(t);
+  }, [delay]);
+  
+  const animatedValue = mounted ? Math.max(0, Math.min(100, value)) : 0;
+  const offset = circumference * (1 - animatedValue / 100);
+  
   return (
     <svg viewBox="0 0 100 52" className="h-9 w-20 shrink-0" aria-hidden="true">
       <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="hsl(var(--muted))" strokeWidth="8" strokeLinecap="round" />
       <path
         d="M 10 50 A 40 40 0 0 1 90 50"
         fill="none"
-        className={cn('transition-all duration-700', color)}
+        className={cn('transition-all duration-[1200ms] ease-out', color)}
         stroke="currentColor"
         strokeWidth="8"
         strokeLinecap="round"
         strokeDasharray={circumference}
         strokeDashoffset={offset}
-        style={{ transitionDelay: `${delay}ms` }}
       />
     </svg>
   );
@@ -1293,49 +1309,62 @@ function ConfidenceGauge({ value, color, delay }: { value: number; color: string
 function AccuracyRing({ ratio, color, label, delay }: { ratio: number; color: string; label: string; delay: number }) {
   const radius = 26;
   const circumference = 2 * Math.PI * radius;
-  const clamped = Math.max(0, Math.min(1, ratio));
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setMounted(true), delay);
+    return () => clearTimeout(t);
+  }, [delay]);
+
+  const clamped = mounted ? Math.max(0, Math.min(1, ratio)) : 0;
   const dash = circumference * clamped;
+  
+  // Extract number from label if possible for counting animation
+  const match = label.match(/(\d+)%/);
+  const targetNum = match ? parseInt(match[1], 10) : null;
+  const displayNum = useCountUp(mounted && targetNum !== null ? targetNum : 0, 1200);
+
   return (
     <div className="relative h-14 w-14 shrink-0">
       <svg viewBox="0 0 64 64" className="h-14 w-14 -rotate-90" aria-hidden="true">
         <circle cx="32" cy="32" r={radius} fill="none" stroke="hsl(var(--muted))" strokeWidth="5" />
         <circle
           cx="32" cy="32" r={radius} fill="none"
-          className={cn('transition-all duration-700', color)}
+          className={cn('transition-all duration-[1200ms] ease-out', color)}
           stroke="currentColor"
           strokeWidth="5"
           strokeLinecap="round"
           strokeDasharray={`${dash} ${circumference - dash}`}
-          style={{ transitionDelay: `${delay}ms` }}
         />
       </svg>
       <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-slate-700 tabular-nums">
-        {label}
+        {targetNum !== null ? `${displayNum}%` : label}
       </div>
     </div>
   );
 }
 
 /**
- * Five-segment bar for the discrete mastery/stability level. Filled
- * segments use a single semantic color; unfilled segments use a light tint
- * of the same color so the row doesn't turn into a color palette. When
- * `empty` (no answers yet), all segments fall back to neutral gray so a
- * "0% mastered" subject isn't visually confused with "never attempted".
+ * Five-segment bar for the discrete mastery/stability level.
  */
 function StabilitySegments({ value, empty, delay }: { value: number; empty?: boolean; delay: number }) {
   const segments = 5;
-  const filled = Math.round((Math.max(0, Math.min(100, value)) / 100) * segments);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setMounted(true), delay);
+    return () => clearTimeout(t);
+  }, [delay]);
+
+  const filled = mounted ? Math.round((Math.max(0, Math.min(100, value)) / 100) * segments) : 0;
   return (
     <div className="flex h-2 w-full gap-1">
       {Array.from({ length: segments }).map((_, i) => (
         <div
           key={i}
           className={cn(
-            'flex-1 rounded-full transition-all duration-700',
+            'flex-1 rounded-full transition-all duration-[800ms]',
             empty ? 'bg-slate-100' : i < filled ? 'bg-emerald-400' : 'bg-emerald-100',
           )}
-          style={{ transitionDelay: `${delay + i * 40}ms` }}
+          style={{ transitionDelay: mounted ? `${i * 80}ms` : '0ms' }}
         />
       ))}
     </div>
@@ -1343,16 +1372,21 @@ function StabilitySegments({ value, empty, delay }: { value: number; empty?: boo
 }
 
 /**
- * Color-zoned risk scale with non-linear zones (50% / 25% / 25%) so a
- * subject tips into the amber/red zone quickly once guess risk rises, and a
- * triangle marker that sits above the track instead of covering it. When
- * `empty`, the zones collapse to a flat gray track with no marker, since we
- * shouldn't imply the subject sits in any risk zone yet.
+ * Color-zoned risk scale with non-linear zones.
  */
 function RiskScale({ value, empty, delay }: { value: number; empty?: boolean; delay: number }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setMounted(true), delay);
+    return () => clearTimeout(t);
+  }, [delay]);
+
   if (empty) {
     return <div className="h-2 w-full rounded-full bg-slate-100" />;
   }
+  
+  const animatedValue = mounted ? Math.max(0, Math.min(100, value)) : 0;
+  
   return (
     <div className="relative pt-1.5">
       <div className="flex h-2 w-full overflow-hidden rounded-full">
@@ -1361,25 +1395,30 @@ function RiskScale({ value, empty, delay }: { value: number; empty?: boolean; de
         <div className="h-full bg-red-200" style={{ width: '25%' }} />
       </div>
       <div
-        className="absolute top-0 h-0 w-0 border-x-[4px] border-x-transparent border-t-[5px] border-t-slate-600 transition-all duration-700"
-        style={{ left: `${Math.max(0, Math.min(100, value))}%`, transform: 'translateX(-4px)', transitionDelay: `${delay}ms` }}
+        className="absolute top-0 h-0 w-0 border-x-[4px] border-x-transparent border-t-[5px] border-t-slate-600 transition-all duration-[1200ms] ease-out"
+        style={{ left: `${animatedValue}%`, transform: 'translateX(-4px)' }}
       />
     </div>
   );
 }
 
 /**
- * Interval bullet chart for average answer time: three zones (too fast /
- * sweet spot / too slow) so the bar's color reflects pacing quality, not
- * just raw speed. When `empty`, the zone backgrounds collapse to a flat gray
- * track since there's no average time to compare against the zones yet.
+ * Interval bullet chart for average answer time.
  */
 function TimeIntervalBar({ avgSeconds, fastLimit, slowLimit, empty, delay }: { avgSeconds: number; fastLimit: number; slowLimit: number; empty?: boolean; delay: number }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setMounted(true), delay);
+    return () => clearTimeout(t);
+  }, [delay]);
+
   if (empty) {
     return <div className="h-2 w-full rounded-full bg-slate-100" />;
   }
   const scaleMax = slowLimit * 1.5;
-  const value = avgSeconds > 0 ? Math.min(100, (avgSeconds / scaleMax) * 100) : 0;
+  const targetValue = avgSeconds > 0 ? Math.min(100, (avgSeconds / scaleMax) * 100) : 0;
+  const animatedValue = mounted ? targetValue : 0;
+  
   const zoneColor = avgSeconds <= 0
     ? 'bg-slate-200'
     : avgSeconds < fastLimit
@@ -1395,24 +1434,30 @@ function TimeIntervalBar({ avgSeconds, fastLimit, slowLimit, empty, delay }: { a
         <div className="h-full bg-amber-100" style={{ width: `${((scaleMax - slowLimit) / scaleMax) * 100}%` }} />
       </div>
       <div
-        className={cn('absolute inset-y-0 left-0 rounded-full transition-all duration-700', zoneColor)}
-        style={{ width: `${Math.max(value, avgSeconds > 0 ? 2 : 0)}%`, transitionDelay: `${delay}ms` }}
+        className={cn('absolute inset-y-0 left-0 rounded-full transition-all duration-[1200ms] ease-out', zoneColor)}
+        style={{ width: `${Math.max(animatedValue, avgSeconds > 0 ? 2 : 0)}%` }}
       />
     </div>
   );
 }
 
 /**
- * "Confidence threshold" progress bar for sample size: a simple fill toward
- * the statistical-reliability target, flipping to a checkmark badge once met
- * instead of overshooting a bullet-chart target line.
+ * "Confidence threshold" progress bar for sample size.
  */
 function SampleSizeProgress({ total, target, delay }: { total: number; target: number; delay: number }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setMounted(true), delay);
+    return () => clearTimeout(t);
+  }, [delay]);
+
   const done = total >= target;
   const ratio = Math.min(100, (total / target) * 100);
+  const animatedRatio = mounted ? ratio : 0;
+  
   return (
     <div className="flex w-full items-center gap-1.5">
-      {done && <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-500" />}
+      {done && <CheckCircle2 className={cn("h-3.5 w-3.5 shrink-0 text-emerald-500 transition-all duration-500 delay-[500ms]", mounted ? "opacity-100 scale-100" : "opacity-0 scale-50")} />}
       {total === 0 && <Lock className="h-3.5 w-3.5 shrink-0 text-slate-300" />}
       <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100">
         <div
@@ -1559,7 +1604,7 @@ function SubjectWeightPanel({
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-top-2 duration-200">
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 xl:grid-cols-2">
         {/* Left column: exam date, remaining questions, study days */}
         <div className="space-y-4">
           <div>
@@ -2333,74 +2378,50 @@ export default function DashboardPage() {
     <>
       <div
         className={cn(
-          'space-y-8 transition-all duration-700',
+          'space-y-8 transition-all duration-700 -mt-2 md:-mt-4',
           visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
         )}
       >
-        <header className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-          {/* Left: title + badge */}
-          <div className="space-y-2.5 min-w-0">
-            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight">
-              {t('dashboard.welcomePrefix')}{' '}
-              <span className="bg-gradient-to-r from-primary/50 to-primary bg-clip-text text-transparent">
-                {userFirstName}
-              </span>
-            </h1>
-            <div className="flex flex-wrap items-center gap-2">
-              <ExamCountdownBadge
-                examDate={examDate}
-                examState={examState}
-                onSetDate={() => setShowWeightDialog(true)}
-              />
-              {examDate && (
-                <span className="text-xs text-muted-foreground">
-                  {t('plan.planningRange', { start: todayDisplay, end: examDate })}
-                </span>
-              )}
-            </div>
-          </div>
-
-          {/* Right: utility row + action buttons */}
-          <div className="flex flex-col items-end gap-8 shrink-0">
-            {/* Utility row — Screen Options / Help style */}
-            <div className="flex gap-2 -mt-5 md:-mt-8">
-              <Button
-                variant="outline"
-                size="sm"
-                className="h-7 px-2.5 text-xs font-medium text-slate-600 border-slate-300 bg-white hover:bg-slate-50"
-                onClick={() => setTourOpen(true)}
-              >
-                {t('dashboard.launchTutorial')}
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                className="h-7 px-2.5 text-xs font-medium text-slate-600 border-slate-300 bg-white hover:bg-slate-50 gap-1"
-                onClick={() => setShowWidgetPanel((v) => !v)}
-              >
-                {t('dashboard.customizeWidgets')}
-                {showWidgetPanel ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
-              </Button>
-            </div>
-
-          <div className="flex flex-row flex-wrap gap-2.5 shrink-0">
+        <div className="flex flex-col gap-3 md:gap-4">
+          <div className="flex justify-end gap-2">
             <Button
               variant="outline"
-              className="flex-1 sm:flex-none h-11 px-5 text-sm shadow-sm gap-2"
-              onClick={() => setShowWeightDialog(true)}
+              size="sm"
+              className="h-7 px-2.5 text-xs font-medium text-slate-600 border-slate-300 bg-white hover:bg-slate-50"
+              onClick={() => setTourOpen(true)}
             >
-              <SlidersHorizontal className="h-4 w-4" />
-              {t('dashboard.customWeights')}
+              {t('dashboard.launchTutorial')}
             </Button>
-            <Button asChild className="flex-1 sm:flex-none h-11 px-5 text-sm font-semibold shadow-md shadow-primary/20">
-              <Link href="/create" className="flex items-center justify-center gap-2">
-                <Play className="w-4 h-4 fill-current shrink-0" />
-                {t('dashboard.startNewSession')}
-              </Link>
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-7 px-2.5 text-xs font-medium text-slate-600 border-slate-300 bg-white hover:bg-slate-50 gap-1"
+              onClick={() => setShowWidgetPanel((v) => !v)}
+            >
+              {t('dashboard.customizeWidgets')}
+              {showWidgetPanel ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
             </Button>
           </div>
-          </div>
-        </header>
+
+          <header className="flex flex-col xl:flex-row xl:items-center justify-between gap-5 xl:gap-4">
+            {/* Left: title + badge */}
+            <div className="space-y-2.5 min-w-0">
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight">
+                {t('dashboard.welcomePrefix')}{' '}
+                <span className="bg-gradient-to-r from-primary/50 to-primary bg-clip-text text-transparent">
+                  {userFirstName}
+                </span>
+              </h1>
+              <div className="flex flex-wrap items-center gap-2">
+                <ExamCountdownBadge
+                  examDate={examDate}
+                  examState={examState}
+                  onSetDate={() => setShowWeightDialog(true)}
+                />
+              </div>
+            </div>
+          </header>
+        </div>
 
         {/* Widget visibility panel */}
         {showWidgetPanel && (
@@ -2419,7 +2440,7 @@ export default function DashboardPage() {
 
         {/* Today's Mission (Smart Plan) */}
         {widgetVisibility.todaysMission && (
-        <Card data-tour="dashboard-mission" className="border-primary/20 bg-primary/5 shadow-sm transition-all duration-500 hover:shadow-md">
+        <Card data-tour="dashboard-mission" className="hover:shadow-md transition-shadow mb-6">
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between gap-2">
               <CardTitle className="text-base font-semibold flex items-center gap-2">
@@ -2441,7 +2462,7 @@ export default function DashboardPage() {
               ) : null}
             </div>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="p-6 pt-2">
             {showWeightDialog ? (
               <SubjectWeightPanel
                 onCancel={() => setShowWeightDialog(false)}
@@ -2472,66 +2493,120 @@ export default function DashboardPage() {
             ) : (
               <>
                 {quotaInfo.quota > 0 ? (
-                  <div className="flex flex-col items-center text-center gap-3">
-                    <p className="text-sm text-slate-700 max-w-md">
-                      {t('plan.missionDescriptionPrefix', { date: examDate })}
-                    </p>
-                    <div className="flex items-end justify-center gap-1.5">
-                      <span className="text-5xl font-bold text-primary leading-none tabular-nums">{quotaInfo.quota}</span>
-                      <span className="text-base font-semibold text-muted-foreground mb-1.5">{t('plan.missionDescriptionSuffix')}</span>
+                  <div className="flex flex-col xl:flex-row items-stretch gap-8 xl:gap-12 pb-8 border-b border-slate-100">
+                    
+                    {/* Left: Goals & Progress */}
+                    <div className="flex-1 w-full flex flex-col justify-center space-y-6">
+                      <div>
+
+                        <div className="flex items-baseline gap-3">
+                          <span className="text-7xl font-black text-slate-800 tracking-tight"><AnimatedNumber value={quotaInfo.quota} /></span>
+                          <span className="text-2xl font-bold text-slate-500">今日目標題</span>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-3 pt-2">
+                        <div className="flex items-center justify-between text-sm font-bold">
+                          <div className="flex items-center gap-1.5 text-emerald-600">
+                            <BookOpen className="w-4 h-4" /> 新題：<AnimatedNumber value={reviewSplit.newQuota} />題
+                          </div>
+                          <div className="flex items-center gap-1.5 text-orange-500">
+                            <RotateCcw className="w-4 h-4" /> 複習：<AnimatedNumber value={reviewSplit.reviewQuota} />題
+                          </div>
+                        </div>
+                        <div className="h-2.5 w-full flex rounded-full overflow-hidden bg-slate-100">
+                          <div className="bg-emerald-500 h-full transition-all duration-1000" style={{ width: `${(reviewSplit.newQuota / Math.max(1, quotaInfo.quota)) * 100}%` }}></div>
+                          <div className="bg-orange-400 h-full transition-all duration-1000" style={{ width: `${(reviewSplit.reviewQuota / Math.max(1, quotaInfo.quota)) * 100}%` }}></div>
+                        </div>
+                      </div>
                     </div>
-                    {reviewSplit.reviewQuota > 0 && (
-                      <p className="text-sm text-muted-foreground max-w-md">
-                        {t('plan.missionSplitHint', { review: reviewSplit.reviewQuota, new: reviewSplit.newQuota })}
-                      </p>
-                    )}
-                    {weakFocusSubjects.length > 0 && (
-                      <p className="text-sm text-muted-foreground max-w-md">
-                        {t('plan.weakFocusHint', { subjects: weakFocusSubjects.join('、') })}
-                      </p>
-                    )}
-                    <Button
-                      size="lg"
-                      className="h-11 px-5 text-sm font-semibold shadow-md shadow-primary/20"
-                      onClick={handleStartMission}
-                      disabled={generatingMission}
-                    >
-                      {generatingMission && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                      {generatingMission ? t('plan.preparingMission') : t('plan.startMission', { count: quotaInfo.quota })}
-                    </Button>
-                    {quotaInfo.triageMode && (
-                      <p className="text-xs font-semibold uppercase tracking-wider text-amber-600 flex items-center justify-center gap-1">
-                        <CheckCircle2 className="h-3.5 w-3.5" /> {t('plan.sprintMode')}
-                      </p>
-                    )}
+
+                    {/* Right: AI Recommendations */}
+                    <div className="flex-1 w-full bg-[#fcfbfa] rounded-2xl p-6 border border-[#f0eee9] flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center gap-2 font-bold text-slate-800 mb-4">
+                          <Cpu className="w-5 h-5 text-[#c29d4c]" /> AI 智能加權推薦科目：
+                        </div>
+                        <div className="flex flex-wrap gap-2.5 mb-6">
+                          {weakFocusSubjects.length > 0 ? (
+                            weakFocusSubjects.map((subj, i) => (
+                              <span key={subj} className="px-3.5 py-1.5 bg-white border border-[#f0eee9] rounded-lg text-sm font-bold flex items-center gap-2 shadow-sm" style={{ color: i % 2 === 0 ? '#b91c1c' : '#b45309' }}>
+                                <span className={`w-2 h-2 rounded-full ${i % 2 === 0 ? 'bg-red-500' : 'bg-orange-500'}`}></span> {subj}
+                              </span>
+                            ))
+                          ) : (
+                            <span className="text-sm text-slate-500 font-medium">各科發展均衡，按計畫進行即可。</span>
+                          )}
+                        </div>
+                      </div>
+                      <Button
+                        className="w-full h-14 bg-[#c29d4c] hover:bg-[#b08d44] text-white font-bold text-lg rounded-xl shadow-md transition-all active:scale-[0.98]"
+                        onClick={handleStartMission}
+                        disabled={generatingMission}
+                      >
+                        {generatingMission ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : null}
+                        立即開始今日挑戰 ({quotaInfo.quota} 題) <ArrowRight className="ml-2 w-5 h-5" />
+                      </Button>
+                    </div>
                   </div>
                 ) : (
-                  <div className="text-green-700 text-center py-2">
-                    <CheckCircle2 className="mx-auto h-8 w-8 mb-2 opacity-80" />
-                    <p className="text-sm font-semibold">{t('plan.allDoneTitle')}</p>
+                  <div className="text-green-700 text-center py-8 border-b border-slate-100">
+                    <CheckCircle2 className="mx-auto h-12 w-12 mb-3 opacity-80" />
+                    <p className="text-lg font-semibold">{t('plan.allDoneTitle')}</p>
                     <p className="text-sm text-muted-foreground mt-1">{t('plan.allDoneDescription')}</p>
                   </div>
                 )}
 
-                {/* Schedule overview */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-3 border-t border-primary/10">
-                  <div className="flex flex-col gap-1">
-                    <span className="text-xs text-muted-foreground">{t('plan.remainingQuestions')}</span>
-                    <span className="text-2xl font-bold">{quotaInfo.remainingQuestions}</span>
+                {/* Bottom 4 Summary Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 pt-6">
+                  {/* Card 1: 剩餘總題數 */}
+                  <div className="bg-[#faf8f2] border border-[#f0eee9] rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-[100px]">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#8c6d23] opacity-80 mb-2">
+                      <Layers className="w-4 h-4" /> 剩餘總題數
+                    </div>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-3xl font-black text-slate-800"><AnimatedNumber value={quotaInfo.remainingQuestions} /></span>
+                      <span className="text-sm font-bold text-slate-400">題</span>
+                    </div>
                   </div>
-                  <div className="flex flex-col gap-1">
-                    <span className="text-xs text-muted-foreground">{t('plan.availableStudyDays')}</span>
-                    <span className="text-2xl font-bold">{t('plan.daysUnit', { count: quotaInfo.availableDays })}</span>
+                  
+                  {/* Card 2: 可用學習天 */}
+                  <div className="bg-[#faf8f2] border border-[#f0eee9] rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-[100px]">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#8c6d23] opacity-80 mb-2">
+                      <CalendarDays className="w-4 h-4" /> 可用學習天
+                    </div>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-3xl font-black text-slate-800"><AnimatedNumber value={quotaInfo.availableDays} /></span>
+                      <span className="text-sm font-bold text-slate-400">天</span>
+                    </div>
                   </div>
-                  <div className="flex flex-col gap-1">
-                    <span className="text-xs text-muted-foreground">{t('plan.weeklySprintDays')}</span>
-                    <span className="text-2xl font-bold">{t('plan.daysUnit', { count: studyDays.length })}</span>
+                  
+                  {/* Card 3: 每周衝刺 */}
+                  <div className="bg-[#faf8f2] border border-[#f0eee9] rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-[100px]">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#8c6d23] opacity-80 mb-2">
+                      <Activity className="w-4 h-4" /> 每周衝刺
+                    </div>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-3xl font-black text-slate-800"><AnimatedNumber value={studyDays.length} /></span>
+                      <span className="text-sm font-bold text-slate-400">天</span>
+                    </div>
                   </div>
-                  <div className="flex flex-col gap-1">
-                    <span className="text-xs text-muted-foreground">{t('plan.estimatedTotalTime')}</span>
-                    <span className="text-2xl font-bold">
-                      {formatDuration(quotaInfo.remainingQuestions * (dashboardData.avgSecondsPerQuestion || 90))}
-                    </span>
+
+                  {/* Card 4: 預估花費時間 */}
+                  <div className="bg-[#faf8f2] border border-[#f0eee9] rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-[100px]">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#8c6d23] opacity-80 mb-2">
+                      <Clock className="w-4 h-4" /> 預估花費時間
+                    </div>
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-3xl font-black text-[#c29d4c]">
+                        <AnimatedNumber value={Math.floor(quotaInfo.remainingQuestions * (dashboardData.avgSecondsPerQuestion || 90) / 3600)} />
+                      </span>
+                      <span className="text-sm font-bold text-[#c29d4c] opacity-80">h</span>
+                      <span className="text-3xl font-black text-[#c29d4c] ml-1">
+                        <AnimatedNumber value={Math.round((quotaInfo.remainingQuestions * (dashboardData.avgSecondsPerQuestion || 90) % 3600) / 60)} />
+                      </span>
+                      <span className="text-sm font-bold text-[#c29d4c] opacity-80">m</span>
+                    </div>
                   </div>
                 </div>
 
@@ -2612,7 +2687,7 @@ export default function DashboardPage() {
           </Card>
         ) : null}
 
-        <div data-tour="dashboard-stats" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div data-tour="dashboard-stats" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
           {widgetVisibility.kpiMastery && (
           <Card
             className="bg-white/50 border-primary/10 shadow-sm transition-all duration-500 hover:shadow-md"
@@ -2740,9 +2815,9 @@ export default function DashboardPage() {
 
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
           {widgetVisibility.subjectPerformance && (
-          <Card className="lg:col-span-2 shadow-md transition-all duration-700 hover:shadow-lg" style={{ transitionDelay: '300ms' }}>
+          <Card className="xl:col-span-2 shadow-md transition-all duration-700 hover:shadow-lg" style={{ transitionDelay: '300ms' }}>
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-semibold">{t('dashboard.subjectPerformance')}</CardTitle>
               <p className="text-sm text-muted-foreground mt-0.5">{t('dashboard.subjectPerformanceDescription')}</p>
@@ -3012,10 +3087,12 @@ export default function DashboardPage() {
                   title={t('dashboard.recommendedTasks')}
                   className="bg-[#faf6f0] border-[#ebd9b8]"
                   titleClassName="text-amber-800"
+                  selectedIndex={['new', 'review', 'incorrect'].indexOf(selectedTaskType)}
                   onIndexChange={(index) => {
                     const types = ['new', 'review', 'incorrect'] as const;
                     setSelectedTaskType(types[index]);
                   }}
+
                   items={[
                     <div 
                       key="new"

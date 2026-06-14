@@ -1,13 +1,16 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { BookOpen, CalendarDays, ChevronLeft, ChevronRight, CheckCircle2, LayoutGrid, Loader2, PartyPopper, Rocket, RotateCcw } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { AlertTriangle, ArrowRight, BookOpen, CalendarDays, ChevronLeft, ChevronRight, CheckCircle2, Coffee, LayoutGrid, Loader2, PartyPopper, Rocket, RotateCcw, Search, LineChart, CheckSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import { useI18n } from '@/lib/i18n';
 import { useAuth } from '@/components/AuthProvider';
+import { getMbeChineseLabel } from '@/lib/mbe-labels';
 import { getFocusSubjectForDate, type ChapterReviewInfo } from '@/lib/smart-planner';
 import type { StudySubjectMode } from '@/lib/study-settings';
 import type { Subject } from '@/lib/types';
@@ -24,6 +27,15 @@ function addDays(date: Date, days: number): Date {
   const d = new Date(date);
   d.setDate(d.getDate() + days);
   return d;
+}
+
+/** ISO-8601 week number (1–53) for a given date. */
+function getISOWeekNumber(date: Date): number {
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const dayNum = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  return Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
 }
 
 const LOCALE_MAP: Record<string, string> = {
@@ -134,6 +146,7 @@ export function SmartStudyCalendar({
 }: Props) {
   const { t, language } = useI18n();
   const { user } = useAuth();
+  const router = useRouter();
   const today = useMemo(() => startOfLocalDay(new Date()), []);
   const todayKey = useMemo(() => toKey(today), [today]);
 
@@ -373,12 +386,22 @@ export function SmartStudyCalendar({
   const selectedProgress = progressForDate(selectedDate);
   const selectedExamDayNum = examDayNumber(selectedKey);
 
-  const weekRangeLabel = `${new Intl.DateTimeFormat(locale, { month: 'short', day: 'numeric' }).format(weekDays[0])} – ${new Intl.DateTimeFormat(locale, { month: 'short', day: 'numeric' }).format(weekDays[6])}`;
+  const weekRangeFullLabel = `${new Intl.DateTimeFormat(locale, { year: 'numeric' }).format(weekDays[0])} ${new Intl.DateTimeFormat(locale, { month: 'long', day: 'numeric' }).format(weekDays[0])} - ${new Intl.DateTimeFormat(locale, { month: 'long', day: 'numeric' }).format(weekDays[6])}`;
+  const isoWeek = getISOWeekNumber(weekDays[0]);
   const isNextWeekDisabled = weekDays[0] > examDay2Obj;
 
   const shiftWeek = (delta: number) => {
     setWeekAnchor((d) => addDays(d, delta * 7));
     setSelectedDate((d) => addDays(d, delta * 7));
+  };
+
+  const focusDisplayName = (name: string) => {
+    const zhLabel = getMbeChineseLabel(name, language);
+    return zhLabel ? `${name} (${zhLabel})` : name;
+  };
+
+  const goToFocusSubject = (subjectName: string) => {
+    router.push(`/create?subject=${encodeURIComponent(subjectName)}`);
   };
 
   // ── Month view data ────────────────────────────────────────────────────
@@ -404,7 +427,7 @@ export function SmartStudyCalendar({
   };
 
   return (
-    <Card className="border-primary/20 bg-primary/5 shadow-sm transition-all duration-500 hover:shadow-md overflow-hidden">
+    <Card className="border-slate-200 bg-white shadow-sm transition-all duration-500 hover:shadow-md overflow-hidden">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between gap-2">
           <CardTitle className="text-base font-semibold flex items-center gap-2">
@@ -431,125 +454,100 @@ export function SmartStudyCalendar({
           </Button>
         </div>
         <p className="text-sm text-muted-foreground mt-0.5">
-          {t('calendar.description', { quota: dailyQuota, newQuota: dailyNewQuota, reviewQuota: dailyReviewQuota })}
+          {t('calendar.description')}
         </p>
-        <p className="mt-1 text-xs text-muted-foreground">
-          {t('plan.studyDaysSummary', { days: studyDays.length, restDays: 7 - studyDays.length })}
-        </p>
+        <div className="flex flex-wrap items-center gap-2 mt-2">
+          <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary">
+            🎯 {t('calendar.dailyGoalBadge', { quota: dailyQuota })}
+          </span>
+          <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-600">
+            📝 {t('calendar.newQuestionsBadge', { count: dailyNewQuota })}
+          </span>
+          <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-600">
+            🔄 {t('calendar.reviewQuestionsBadge', { count: dailyReviewQuota })}
+          </span>
+          <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-600">
+            ☕ {t('plan.studyDaysSummary', { days: studyDays.length, restDays: 7 - studyDays.length })}
+          </span>
+        </div>
       </CardHeader>
       {viewMode === 'day' ? (
         <CardContent className="space-y-4">
-          <div className="flex items-center justify-between">
-            <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => shiftWeek(-1)} aria-label="Previous week">
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            <span className="text-xs font-semibold text-slate-600">{weekRangeLabel}</span>
-            <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => shiftWeek(1)} disabled={isNextWeekDisabled} aria-label="Next week">
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
-
-          <div className="grid grid-cols-7 gap-1.5 text-center">
-            {weekDays.map((d) => {
-              const key = toKey(d);
-              const dow = d.getDay();
-              const isStudy = studyDays.includes(dow);
-              const isToday = key === todayKey;
-              const isSelected = key === selectedKey;
-              const completed = isCompleted(d);
-              const progress = progressForDate(d);
-              const isExamDay = examDayNumber(key) > 0;
-              return (
-                <button
-                  key={key}
-                  type="button"
-                  onClick={() => setSelectedDate(d)}
-                  className="flex flex-col items-center gap-1"
-                >
-                  <span className="text-[10px] font-medium text-muted-foreground">{t(DAY_KEYS[dow])}</span>
-                  <div
-                    className={cn(
-                      'relative flex h-8 w-8 items-center justify-center rounded-full text-xs font-semibold transition-colors',
-                      isToday ? 'bg-primary text-primary-foreground' : 'text-slate-700',
-                      !isToday && completed && 'bg-green-100 text-green-700',
-                      isExamDay && 'bg-amber-100 text-amber-700',
-                      !isToday && isSelected && !completed && 'ring-2 ring-primary/50',
-                      isToday && isSelected && 'ring-2 ring-primary ring-offset-1',
-                    )}
-                  >
-                    {isExamDay ? <PartyPopper className="h-4 w-4" /> : completed && !isToday ? <CheckCircle2 className="h-4 w-4" /> : d.getDate()}
-                  </div>
-                  {isStudy && !completed && !isExamDay && (
-                    progress.completed > 0
-                      ? <span className="text-[10px] font-semibold text-primary">{progress.completed}/{progress.total}</span>
-                      : <CheckCircle2 className={cn('h-3.5 w-3.5', isToday ? 'text-primary' : 'text-primary/60')} />
-                  )}
-                </button>
-              );
-            })}
-          </div>
-
-          <div
-            role="button"
-            tabIndex={0}
-            onClick={() => openGuide(selectedDate)}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter' || event.key === ' ') openGuide(selectedDate);
-            }}
-            className="w-full rounded-xl border border-slate-200 bg-white p-4 text-left transition-colors hover:border-primary/40 hover:bg-primary/5"
-          >
-            <p className="text-sm font-bold text-slate-800">
-              {new Intl.DateTimeFormat(locale, { month: 'long', day: 'numeric', weekday: 'long' }).format(selectedDate)}
-              {isSelectedToday && <span className="ml-1 text-xs font-medium text-primary">({t('calendar.today')})</span>}
-            </p>
-            {selectedExamDayNum > 0 ? (
-              <div className="flex flex-col items-center text-center gap-1.5 mt-2 py-2">
-                <PartyPopper className="h-9 w-9 text-amber-500" />
-                <p className="text-sm font-bold text-amber-600">{t('calendar.examDayNum', { day: selectedExamDayNum })}</p>
-                <p className="text-sm text-muted-foreground">{t('calendar.examDayMessage')}</p>
+          <div className="rounded-xl border border-[#E8E2D9] bg-[#FCFAF5] p-3 sm:p-4 space-y-3">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-1 sm:gap-2 min-w-0">
+                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 shrink-0" onClick={() => shiftWeek(-1)} aria-label="Previous week">
+                  <ChevronLeft className="h-4 w-4" />
+                </Button>
+                <span className="flex items-center gap-1.5 truncate text-sm font-bold text-slate-800">
+                  <CalendarDays className="h-4 w-4 shrink-0 text-primary" />
+                  <span className="truncate">{weekRangeFullLabel}</span>
+                </span>
+                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 shrink-0" onClick={() => shiftWeek(1)} disabled={isNextWeekDisabled} aria-label="Next week">
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
               </div>
-            ) : !isSelectedStudyDay ? (
-              <p className="text-sm text-muted-foreground mt-2">{t('calendar.restDay')}</p>
-            ) : (
-              <div className="flex flex-col gap-2 mt-3">
-                <p className={cn(
-                  'text-xs font-semibold',
-                  selectedCompleted ? 'text-green-700' : 'text-muted-foreground',
-                )}>
-                  {selectedCompleted
-                    ? t('calendar.completed')
-                    : t('calendar.taskProgress', { completed: selectedProgress.completed, total: selectedProgress.total })}
-                </p>
-                <DayMissionSummary plan={selectedPlan} />
-                {selectedFocus.name && (
-                  <span className={cn('inline-flex items-center gap-1 self-start rounded-md border px-1.5 py-0.5 text-xs font-semibold', selectedFocus.color)}>
-                    <span aria-hidden>🔍</span>
-                    {selectedFocus.mixed ? t('calendar.focusMixed', { subject: selectedFocus.name }) : t('calendar.focusSingle', { subject: selectedFocus.name })}
-                  </span>
-                )}
-                {isSelectedToday && !selectedCompleted && (
-                  <Button
-                    size="sm"
-                    className="h-8 px-3 text-xs gap-1.5 self-start mt-1"
+              <span className="shrink-0 text-xs font-medium text-muted-foreground">{t('calendar.weekNumber', { week: isoWeek })}</span>
+            </div>
+
+            <div className="grid grid-cols-7 gap-1.5 text-center">
+              {weekDays.map((d) => {
+                const key = toKey(d);
+                const dow = d.getDay();
+                const isStudy = studyDays.includes(dow);
+                const isToday = key === todayKey;
+                const isSelected = key === selectedKey;
+                const completed = isCompleted(d);
+                const progress = progressForDate(d);
+                const isExamDay = examDayNumber(key) > 0;
+                const isPast = d < today;
+                return (
+                  <button
+                    key={key}
                     type="button"
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      onStartToday();
-                    }}
-                    disabled={startingMission}
+                    onClick={() => setSelectedDate(d)}
+                    className="flex flex-col items-center gap-1 rounded-lg p-1 hover:bg-slate-50 transition-colors"
                   >
-                    {startingMission ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Rocket className="h-3.5 w-3.5" />}
-                    {t('calendar.startNow')}
-                  </Button>
-                )}
-              </div>
-            )}
+                    <span className="text-[10px] font-medium text-muted-foreground">{t(DAY_KEYS[dow])}</span>
+                    <div
+                      className={cn(
+                        'relative flex h-8 w-8 items-center justify-center rounded-full text-xs font-semibold transition-colors',
+                        isToday ? 'bg-primary text-primary-foreground' : 'text-slate-700',
+                        !isToday && completed && 'bg-green-100 text-green-700',
+                        isExamDay && 'bg-amber-100 text-amber-700',
+                        !isToday && isSelected && !completed && 'ring-2 ring-primary/50',
+                        isToday && isSelected && 'ring-2 ring-primary ring-offset-1',
+                      )}
+                    >
+                      {isExamDay ? <PartyPopper className="h-4 w-4" /> : completed && !isToday ? <CheckCircle2 className="h-4 w-4" /> : d.getDate()}
+                    </div>
+                    <div className="flex h-3.5 items-center justify-center">
+                      {isExamDay ? null : isStudy ? (
+                        !completed && (
+                          progress.completed > 0
+                            ? <span className="text-[10px] font-semibold text-primary">{progress.completed}/{progress.total}</span>
+                            : isPast
+                              ? <span className="h-1.5 w-1.5 rounded-full bg-slate-300" aria-hidden />
+                              : <CheckCircle2 className={cn('h-3.5 w-3.5', isToday ? 'text-primary' : 'text-primary/60')} />
+                        )
+                      ) : (
+                        <Coffee className="h-3.5 w-3.5 text-muted-foreground/40" />
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
+
+          <hr className="border-slate-100" />
+
+          <DayAgendaContent date={selectedDate} />
         </CardContent>
       ) : (
       <CardContent className="space-y-4">
-        <div className="rounded-xl border border-slate-200 bg-white overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100">
+        <div className="rounded-xl border border-[#E8E2D9] bg-[#FCFAF5] overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100/50">
             <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => shiftMonth(-1)} disabled={isAtCurrentMonth} aria-label="Previous month">
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -563,11 +561,7 @@ export function SmartStudyCalendar({
               <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
-          {isAtCurrentMonth && daysRemaining !== null && (
-            <div className="px-4 pt-2">
-              <span className="text-xs text-muted-foreground">{t('calendar.daysRemaining', { count: daysRemaining })}</span>
-            </div>
-          )}
+
 
           <div className="grid grid-cols-7 text-center text-xs font-medium text-muted-foreground border-b border-slate-100 mt-2">
             {DAY_KEYS.map((dayKey) => (
@@ -607,12 +601,12 @@ export function SmartStudyCalendar({
                     key={cell.key}
                     onClick={() => {
                       setSelectedDate(cell.date);
-                      if (!isExamDay && !isAfterExam && isStudyDay) openGuide(cell.date);
+                      if (!isExamDay && !isAfterExam && isStudyDay && window.innerWidth < 640) openGuide(cell.date);
                     }}
                     onKeyDown={(event) => {
                       if (event.key !== 'Enter' && event.key !== ' ') return;
                       setSelectedDate(cell.date);
-                      if (!isExamDay && !isAfterExam && isStudyDay) openGuide(cell.date);
+                      if (!isExamDay && !isAfterExam && isStudyDay && window.innerWidth < 640) openGuide(cell.date);
                     }}
                     className={cn(
                       'min-h-12 border-b border-r border-slate-100 p-1.5 flex flex-col gap-1.5 text-left transition-colors sm:min-h-[7rem] sm:p-2',
@@ -645,16 +639,8 @@ export function SmartStudyCalendar({
                     )}
 
                     {!isExamDay && !isAfterExam && isStudyDay && !completed && (isToday || isFuture) && (
-                      <div className="mt-auto hidden flex-col gap-1.5 sm:flex">
+                      <div className="mt-auto flex flex-col gap-1.5">
                         <CompactMissionSummary plan={mission} />
-                        {focus.name && (
-                          <span className={cn('inline-flex items-center gap-1 self-start rounded-md border px-1.5 py-0.5 text-[10px] font-semibold', focus.color)}>
-                            {isToday && <span aria-hidden>🔍</span>}
-                            {isToday
-                              ? (focus.mixed ? t('calendar.focusMixed', { subject: focus.name }) : t('calendar.focusSingle', { subject: focus.name }))
-                              : (focus.mixed ? t('calendar.mixedShort') : focus.name)}
-                          </span>
-                        )}
                         {isToday && (
                           <Button
                             size="sm"
@@ -679,289 +665,291 @@ export function SmartStudyCalendar({
             )}
           </div>
 
-          <div className="divide-y divide-slate-100 sm:hidden">
-            {mobileAgendaDays.map((cell) => {
-              const mission = planForDate(cell.date);
-              const completed = isCompleted(cell.date);
-              const progress = progressForDate(cell.date);
-              const examDayNum = examDayNumber(cell.key);
-              const firstNew = mission.newItems[0];
-              const firstReview = mission.reviewItems[0];
-
-              return (
-                <button
-                  key={`agenda-${cell.key}`}
-                  type="button"
-                  onClick={() => examDayNum === 0 && openGuide(cell.date)}
-                  className="flex w-full items-start gap-3 px-3 py-3 text-left transition-colors hover:bg-primary/5 disabled:cursor-default"
-                  disabled={examDayNum > 0}
-                >
-                  <div className={cn(
-                    'flex h-10 w-10 shrink-0 flex-col items-center justify-center rounded-md border text-xs font-semibold',
-                    cell.key === todayKey ? 'border-primary bg-primary text-primary-foreground' : 'border-slate-200 bg-white text-slate-700',
-                  )}>
-                    <span>{t(DAY_KEYS[cell.date.getDay()])}</span>
-                    <span>{cell.date.getDate()}</span>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    {examDayNum > 0 ? (
-                      <p className="text-sm font-semibold text-amber-600">{t('calendar.examDayNum', { day: examDayNum })}</p>
-                    ) : completed ? (
-                      <p className="flex items-center gap-1.5 text-sm font-semibold text-green-700">
-                        <CheckCircle2 className="h-4 w-4" />
-                        {t('calendar.completed')}
-                      </p>
-                    ) : (
-                      <>
-                        <p className="truncate text-sm font-semibold text-slate-800">
-                          {firstNew ? `${firstNew.subject} · ${firstNew.chapter}` : t('calendar.noNewStudy')}
-                        </p>
-                        <p className="mt-1 truncate text-xs text-slate-500">
-                          {firstReview
-                            ? `${t('calendar.reviewStudy')}：${firstReview.subject} · ${firstReview.chapter}`
-                            : t('calendar.noReviewDue')}
-                        </p>
-                        {progress.completed > 0 && (
-                          <p className="mt-1 text-xs font-semibold text-primary">
-                            {t('calendar.taskProgress', { completed: progress.completed, total: progress.total })}
-                          </p>
-                        )}
-                      </>
-                    )}
-                  </div>
-                  {examDayNum === 0 && <ChevronRight className="mt-2 h-4 w-4 shrink-0 text-slate-400" />}
-                </button>
-              );
-            })}
-          </div>
         </div>
-
-        {/* Dynamic adjustment note */}
-        <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4">
-          <CalendarDays className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-          <div>
-            <p className="text-sm font-semibold text-slate-800">{t('calendar.infoTitle')}</p>
-            <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-              {t('calendar.infoDescription', { date: examDate ?? '' })}
-            </p>
-          </div>
+        
+        <div className="hidden sm:block mt-6">
+          {selectedDate && <DayAgendaContent date={selectedDate} />}
         </div>
       </CardContent>
       )}
       <Dialog open={Boolean(guideDate)} onOpenChange={(open) => !open && setGuideDate(null)}>
-        <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
-          {guideDate && <StudyGuideContent date={guideDate} plan={planForDate(guideDate)} />}
+        <DialogContent className="max-w-[95vw] sm:max-w-2xl max-h-[85vh] overflow-y-auto p-0 border-none bg-transparent shadow-none">
+          <DialogTitle className="sr-only">任務明細</DialogTitle>
+          {guideDate && <EnhancedTaskDetails date={guideDate} plan={planForDate(guideDate)} inModal />}
         </DialogContent>
       </Dialog>
     </Card>
   );
 
-  function DayMissionSummary({ plan }: { plan: ReturnType<typeof planForDate> }) {
-    const MissionSection = ({
-      kind,
-      items,
-    }: {
-      kind: PlannedTask['kind'];
-      items: PlannedTask[];
-    }) => {
-      const isReview = kind === 'review';
-      const Icon = isReview ? RotateCcw : BookOpen;
-      const totalQuestions = items.reduce((sum, item) => sum + item.target, 0);
+  function DayAgendaContent({ date }: { date: Date }) {
+    const isAgendaToday = toKey(date) === todayKey;
+    const isAgendaStudyDay = studyDays.includes(date.getDay());
+    const agendaCompleted = isCompleted(date);
+    const agendaFocus = focusForDate(date);
+    const agendaPlan = planForDate(date);
+    const agendaProgress = progressForDate(date);
+    const agendaExamDayNum = examDayNumber(toKey(date));
 
-      return (
-        <section className="min-w-0 px-3 py-3 sm:px-4">
-          <div className="mb-2 flex items-center justify-between gap-3">
-            <div className="flex min-w-0 items-center gap-2">
-              <span className={cn(
-                'flex h-7 w-7 shrink-0 items-center justify-center rounded-md',
-                isReview ? 'bg-amber-100 text-amber-700' : 'bg-primary/10 text-primary',
-              )}>
-                <Icon className="h-4 w-4" />
-              </span>
-              <div className="min-w-0">
-                <p className="text-xs font-semibold text-slate-800">
-                  {isReview ? t('calendar.reviewStudy') : t('calendar.newStudy')}
-                </p>
-                <p className="text-[11px] text-slate-500">
-                  {items.length > 0
-                    ? `${items.length} · ${totalQuestions} ${t('plan.questionsUnit')}`
-                    : (isReview ? t('calendar.noReviewDue') : t('calendar.noNewStudy'))}
-                </p>
-              </div>
+    return (
+      <div className="space-y-4">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <div className="w-1 h-5 rounded-full bg-amber-500" />
+            <div className="text-base font-bold text-slate-800">
+              {new Intl.DateTimeFormat(locale, { month: 'long', day: 'numeric', weekday: 'long' }).format(date)}
+              {isAgendaToday && <span className="ml-1 text-xs font-medium text-primary">({t('calendar.today')})</span>}
             </div>
           </div>
+          {agendaExamDayNum === 0 && isAgendaStudyDay && (
+            <span className={cn(
+              'shrink-0 rounded-md px-2.5 py-1 text-xs font-semibold',
+              agendaCompleted ? 'bg-green-100 text-green-700' : 'bg-[#FDF6E3] text-[#B58529]',
+            )}>
+              {agendaCompleted
+                ? t('calendar.completed')
+                : `已完成 ${agendaProgress.completed}/${agendaProgress.total} 個章節任務`}
+            </span>
+          )}
+        </div>
+        
+        <hr className="border-slate-100" />
 
+        {agendaExamDayNum > 0 ? (
+          <div className="flex flex-col items-center gap-1.5 rounded-xl border border-slate-200 bg-white p-4 py-6 text-center">
+            <PartyPopper className="h-9 w-9 text-amber-500" />
+            <p className="text-sm font-bold text-amber-600">{t('calendar.examDayNum', { day: agendaExamDayNum })}</p>
+            <p className="text-sm text-muted-foreground">{t('calendar.examDayMessage')}</p>
+          </div>
+        ) : !isAgendaStudyDay ? (
+          <p className="rounded-xl border border-slate-200 bg-white p-4 text-sm text-muted-foreground">{t('calendar.restDay')}</p>
+        ) : (
+          <>
+            <div className="hidden sm:block mt-4">
+              <EnhancedTaskDetails date={date} plan={agendaPlan} showHeader={false} />
+            </div>
+
+            {agendaFocus.name && (
+              <>
+                <hr className="border-slate-100 my-2" />
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <p className="min-w-0 truncate text-sm text-slate-500 flex items-center gap-2">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                    </span>
+                    今日核心攻克：{focusDisplayName(agendaFocus.name)}
+                  </p>
+                  <Button
+                    size="sm"
+                    className="group shrink-0 gap-1.5 bg-[#CBA344] hover:bg-[#B38F39] text-white"
+                    type="button"
+                    onClick={() => goToFocusSubject(agendaFocus.name as string)}
+                  >
+                    <Search className="h-4 w-4" />
+                    進入單科專攻：{agendaFocus.name}
+                  </Button>
+                </div>
+              </>
+            )}
+
+            {isAgendaToday && !agendaCompleted && (
+              <Button
+                size="sm"
+                className="h-9 gap-1.5 px-4 text-xs mt-2"
+                type="button"
+                onClick={onStartToday}
+                disabled={startingMission}
+              >
+                {startingMission ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Rocket className="h-3.5 w-3.5" />}
+                {t('calendar.startNow')}
+              </Button>
+            )}
+          </>
+        )}
+      </div>
+    );
+  }
+
+  function Stat({ label, value }: { label: string; value: React.ReactNode }) {
+    return (
+      <div>
+        <p className="text-[10px] text-muted-foreground">{label}</p>
+        <p className="mt-0.5 text-xs font-semibold text-slate-700">{value}</p>
+      </div>
+    );
+  }
+
+  function EnhancedTaskDetails({ date, plan, inModal = false, showHeader = true }: { date: Date; plan: ReturnType<typeof planForDate>; inModal?: boolean; showHeader?: boolean }) {
+    const totalChapters = plan.newItems.length + plan.reviewItems.length;
+    
+    if (totalChapters === 0) return null;
+
+    const dateLabel = new Intl.DateTimeFormat(locale, { month: 'short', day: 'numeric' }).format(date);
+
+    return (
+      <div className={cn("bg-white", inModal ? "rounded-2xl border border-slate-200 p-4 sm:p-5 pt-6 sm:pt-6" : "")}>
+        {showHeader && (
+          <div className={cn("flex items-center justify-between mb-4 gap-2", inModal ? "pr-8 sm:pr-8" : "")}>
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="w-1.5 h-6 bg-[#B58529] rounded-full shrink-0" />
+              <h3 className="text-lg font-bold text-slate-800 truncate">{dateLabel} 任務明細</h3>
+            </div>
+            <div className="bg-[#FDF6E3] text-[#B58529] px-3 py-1 rounded-full text-xs sm:text-sm font-bold shrink-0">
+              共 {totalChapters} 個單元
+            </div>
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 items-stretch mt-2">
+          <TaskColumn kind="new" items={plan.newItems} />
+          <TaskColumn kind="review" items={plan.reviewItems} />
+        </div>
+      </div>
+    );
+  }
+
+  function TaskColumn({ kind, items }: { kind: PlannedTask['kind']; items: PlannedTask[] }) {
+    const isReview = kind === 'review';
+    const Icon = isReview ? RotateCcw : BookOpen;
+    const totalQuestions = items.reduce((sum, item) => sum + item.target, 0);
+
+    return (
+      <div className="flex flex-col space-y-3 h-full">
+        <div className="flex items-center justify-between gap-2 px-1 shrink-0">
+          <span className="flex items-center gap-1.5 text-sm font-bold text-slate-700">
+            <Icon className={cn('h-4 w-4', isReview ? 'text-slate-500' : 'text-slate-500')} />
+            {isReview ? t('calendar.reviewStudy') : t('calendar.newStudy')}
+          </span>
           {items.length > 0 && (
-            <div className="divide-y divide-slate-200/80">
-              {items.map((item) => (
-                <div
-                  key={`${item.kind}-${item.chapterId}`}
-                  className="flex items-start justify-between gap-3 py-2 first:pt-1 last:pb-0"
-                >
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold leading-snug text-slate-800">{item.subject}</p>
-                    <p className="mt-0.5 text-xs leading-relaxed text-slate-500">{item.chapter}</p>
-                    {isReview && item.days !== undefined && item.accuracy !== undefined && (
-                      <p className="mt-1 text-[11px] text-amber-700">
-                        {t('calendar.reviewMeta', {
-                          days: item.days,
-                          accuracy: item.accuracy,
-                          seconds: Math.round(item.averageSeconds ?? 0),
-                          mastery: item.masteryRate ?? 0,
-                        })}
-                      </p>
-                    )}
+            <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-500">
+              {t('calendar.chapterTaskCount', { chapters: items.length, questions: totalQuestions })}
+            </span>
+          )}
+        </div>
+        <div className="space-y-3 flex-1 flex flex-col">
+          {items.length === 0 ? (
+            <p className="text-sm text-muted-foreground px-1">{isReview ? t('calendar.noReviewDue') : t('calendar.noNewStudy')}</p>
+          ) : items.map((item, index) => {
+            return (
+            <div key={`${item.kind}-${item.chapterId}`} className={cn(
+              "rounded-xl border p-4 flex items-start gap-3 shadow-sm transition-all duration-200 text-left group cursor-pointer",
+              isReview ? "bg-[#fcfbfa] hover:bg-[#faf8f2] border-[#e8e2d9] border-dashed" : "bg-[#fcfbfa] hover:bg-[#faf8f2] border-[#f0eee9]",
+              index === items.length - 1 ? "flex-1" : ""
+            )}>
+              <div className={cn("w-1.5 h-1.5 rounded-full shrink-0 mt-[6px]", isReview ? "bg-[#ea580c]" : "bg-[#c29d4c]")} />
+              <div className="flex-1 space-y-3 min-w-0">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="min-w-0 space-y-1.5 pt-0.5">
+                    <p className="truncate text-[15px] font-bold leading-none transition-colors text-[#1e1c19] group-hover:text-[#c29d4c]">
+                      {item.subject}
+                    </p>
+                    <p className="truncate text-[13px] leading-none text-[#7c7871]">{item.chapter}</p>
                   </div>
                   <span className={cn(
-                    'shrink-0 rounded-md px-2 py-1 text-xs font-semibold tabular-nums',
-                    isReview ? 'bg-amber-100 text-amber-800' : 'bg-primary/10 text-primary',
+                    "shrink-0 rounded-md px-2.5 py-1 text-xs font-bold tabular-nums transition-colors",
+                    isReview ? "bg-[#c29d4c] text-white" : "bg-[#f0eee9] text-[#5e5b54] group-hover:bg-[#fdf6e3] group-hover:text-[#c29d4c]"
                   )}>
                     {item.target} {t('plan.questionsUnit')}
                   </span>
                 </div>
-              ))}
+              {isReview && (
+                (item.masteryRate ?? 0) > 0 ? (
+                  <div className="grid grid-cols-3 gap-2 rounded-lg bg-[#f0eee9]/40 px-2 py-1.5 text-center mt-3">
+                    <Stat label={t('calendar.accuracyLabel')} value={`${item.accuracy ?? 0}%`} />
+                    <Stat label={t('calendar.avgTimeLabel')} value={t('calendar.secondsShort', { seconds: Math.round(item.averageSeconds ?? 0) })} />
+                    <Stat label={t('calendar.masteryLevelLabel')} value={`${item.masteryRate}%`} />
+                  </div>
+                ) : (
+                  <div className="space-y-1.5 rounded-lg bg-[#f0eee9]/40 px-2 py-1.5 mt-3">
+                    <div className="grid grid-cols-3 gap-2 text-center">
+                      <Stat label={t('calendar.accuracyLabel')} value="—" />
+                      <Stat label={t('calendar.avgTimeLabel')} value="—" />
+                      <Stat
+                        label={t('calendar.masteryLevelLabel')}
+                        value={(
+                          <span className="inline-flex items-center gap-0.5 text-amber-600">
+                            <AlertTriangle className="h-3 w-3" />
+                            {t('calendar.pendingPractice')}
+                          </span>
+                        )}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between border-t border-slate-200 pt-1.5 text-[11px]">
+                      <span className="flex items-center gap-1 text-muted-foreground">
+                        <span className="h-1.5 w-1.5 rounded-full bg-slate-300" aria-hidden />
+                        {t('calendar.noHistoryData')}
+                      </span>
+                      <Link href="/topic-study" className="font-semibold text-primary hover:underline">
+                        {t('calendar.unlockPractice')} →
+                      </Link>
+                    </div>
+                  </div>
+                )
+              )}
+              </div>
             </div>
-          )}
-        </section>
-      );
-    };
-
-    return (
-      <div className="grid overflow-hidden border-y border-slate-200 bg-slate-50/60 md:grid-cols-2 md:divide-x md:divide-slate-200">
-        <MissionSection kind="new" items={plan.newItems} />
-        <div className="border-t border-slate-200 md:border-t-0">
-          <MissionSection kind="review" items={plan.reviewItems} />
+            );
+          })}
         </div>
       </div>
     );
+  }
+
+  function getShortSubjectName(name: string) {
+    if (name.includes('Criminal')) return 'Crim Law';
+    if (name.includes('Constitutional')) return 'Con Law';
+    if (name.includes('Civil Procedure')) return 'Civ Pro';
+    if (name.includes('Real Property')) return 'Real Prop';
+    if (name.includes('Contracts')) return 'Contracts';
+    if (name.includes('Evidence')) return 'Evidence';
+    if (name.includes('Torts')) return 'Torts';
+    return name;
+  }
+
+  function getSubjectColorStyles(name: string) {
+    const shortName = getShortSubjectName(name);
+    switch (shortName) {
+      case 'Crim Law': return { stripe: 'border-l-blue-500 bg-blue-50 text-blue-700', dot: 'bg-blue-500' };
+      case 'Con Law': return { stripe: 'border-l-amber-500 bg-amber-50 text-amber-700', dot: 'bg-amber-500' };
+      case 'Civ Pro': return { stripe: 'border-l-emerald-500 bg-emerald-50 text-emerald-700', dot: 'bg-emerald-500' };
+      case 'Real Prop': return { stripe: 'border-l-cyan-500 bg-cyan-50 text-cyan-700', dot: 'bg-cyan-500' };
+      case 'Contracts': return { stripe: 'border-l-violet-500 bg-violet-50 text-violet-700', dot: 'bg-violet-500' };
+      case 'Evidence': return { stripe: 'border-l-rose-500 bg-rose-50 text-rose-700', dot: 'bg-rose-500' };
+      case 'Torts': return { stripe: 'border-l-orange-500 bg-orange-50 text-orange-700', dot: 'bg-orange-500' };
+      default: return { stripe: 'border-l-slate-400 bg-slate-50 text-slate-700', dot: 'bg-slate-500' };
+    }
   }
 
   function CompactMissionSummary({ plan }: { plan: ReturnType<typeof planForDate> }) {
     const firstNew = plan.newItems[0];
     const firstReview = plan.reviewItems[0];
     return (
-      <div className="space-y-1">
-        {firstNew && (
-          <div>
-            <p className="text-[10px] font-semibold text-primary">{t('calendar.newStudy')}</p>
-            <p className="line-clamp-2 text-[11px] font-bold text-slate-700">{firstNew.subject}</p>
-            <p className="line-clamp-2 text-[10px] text-slate-500">{firstNew.chapter}</p>
-          </div>
-        )}
-        <div>
-          <p className="text-[10px] font-semibold text-amber-700">{t('calendar.reviewStudy')}</p>
-          <p className="line-clamp-2 text-[10px] text-slate-500">
-            {firstReview ? `${firstReview.subject} · ${firstReview.chapter}` : t('calendar.noReviewDue')}
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  function StudyGuideContent({ date, plan }: { date: Date; plan: ReturnType<typeof planForDate> }) {
-    const dateLabel = new Intl.DateTimeFormat(locale, { month: 'long', day: 'numeric', weekday: 'long' }).format(date);
-    const dateKey = toKey(date);
-
-    const TaskRow = ({ task, review = false }: { task: PlannedTask; review?: boolean }) => {
-      const actual = actualTaskCount(dateKey, task);
-      const completed = isTaskCompleted(dateKey, task);
-      const key = taskKey(dateKey, task);
-      const hasManualOverride = Object.prototype.hasOwnProperty.call(taskOverrides, key);
-      const canManuallyUpdate = date >= today || actual > 0 || hasManualOverride;
-
-      return (
-        <div className={cn('rounded-md p-3', review ? 'bg-white' : 'bg-slate-50')}>
-          <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0">
-              <p className="text-sm font-semibold text-slate-800">{task.subject}</p>
-              <p className="text-sm text-slate-600">{task.chapter}</p>
-              <p className={cn('mt-1 text-xs', completed ? 'font-semibold text-green-700' : 'text-slate-500')}>
-                {completed
-                  ? t('calendar.chapterCompleted')
-                  : t('calendar.chapterProgress', { actual: Math.min(actual, task.target), target: task.target })}
-              </p>
-              {review && task.days !== undefined && task.accuracy !== undefined && (
-                <p className="mt-1 text-xs text-slate-500">
-                  {t('calendar.reviewMeta', {
-                    days: task.days,
-                    accuracy: task.accuracy,
-                    seconds: Math.round(task.averageSeconds ?? 0),
-                    mastery: task.masteryRate ?? 0,
-                  })}
-                </p>
-              )}
+      <div className="space-y-0.5 mt-auto w-full flex flex-col items-start sm:items-stretch">
+        <div className="hidden sm:flex flex-col space-y-0.5 w-full">
+          {firstNew && (
+            <div className={cn("text-[10px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 border-l-2 -mx-1.5 sm:-mx-2 truncate", getSubjectColorStyles(firstNew.subject).stripe)}>
+              <span className="font-normal opacity-80 mr-1">新</span>
+              {getShortSubjectName(firstNew.subject)}
             </div>
-            {canManuallyUpdate && (
-              <Button
-                type="button"
-                size="sm"
-                variant={completed ? 'outline' : 'default'}
-                className="h-8 shrink-0 px-3 text-xs"
-                onClick={() => toggleTaskCompletion(dateKey, task)}
-              >
-                {completed ? t('calendar.undoComplete') : t('calendar.markComplete')}
-              </Button>
-            )}
-          </div>
-        </div>
-      );
-    };
-
-    return (
-      <>
-        <DialogHeader>
-          <DialogTitle>{t('calendar.guideTitle', { date: dateLabel })}</DialogTitle>
-        </DialogHeader>
-        <div className="space-y-5">
-          <p className="text-sm text-muted-foreground">
-            {t('calendar.guideSubtitle', {
-              total: plan.quota.total,
-              newQuota: plan.quota.newQuota,
-              reviewQuota: plan.quota.reviewQuota,
-            })}
-          </p>
-
-          <section className="rounded-lg border border-slate-200 p-4">
-            <h3 className="flex items-center gap-2 text-sm font-bold text-slate-800">
-              <BookOpen className="h-4 w-4 text-primary" />
-              {t('calendar.guideNewTitle')}
-            </h3>
-            <div className="mt-3 space-y-2">
-              {plan.newItems.map((item) => <TaskRow key={taskKey(dateKey, item)} task={item} />)}
+          )}
+          {firstReview && (
+            <div className={cn("text-[10px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 border-l-2 -mx-1.5 sm:-mx-2 truncate", getSubjectColorStyles(firstReview.subject).stripe)}>
+              <span className="font-normal opacity-80 mr-1">複</span>
+              {getShortSubjectName(firstReview.subject)}
             </div>
-          </section>
-
-          <section className="rounded-lg border border-amber-200 bg-amber-50/40 p-4">
-            <h3 className="flex items-center gap-2 text-sm font-bold text-slate-800">
-              <RotateCcw className="h-4 w-4 text-amber-600" />
-              {t('calendar.guideReviewTitle')}
-            </h3>
-            <div className="mt-3 space-y-2">
-              {plan.reviewItems.length > 0 ? plan.reviewItems.map((item) => (
-                <TaskRow key={taskKey(dateKey, item)} task={item} review />
-              )) : (
-                <p className="text-sm text-slate-600">{t('calendar.noReviewDue')}</p>
-              )}
-            </div>
-          </section>
-
-          <section className="rounded-lg border border-slate-200 p-4">
-            <h3 className="text-sm font-bold text-slate-800">{t('calendar.guideStepsTitle')}</h3>
-            <ol className="mt-3 space-y-2 text-sm text-slate-600">
-              <li>{t('calendar.guideStepPreview')}</li>
-              <li>{t('calendar.guideStepPractice')}</li>
-              <li>{t('calendar.guideStepReview')}</li>
-            </ol>
-          </section>
-
-          {toKey(date) === todayKey && (
-            <Button className="w-full gap-2" onClick={onStartToday} disabled={startingMission}>
-              {startingMission ? <Loader2 className="h-4 w-4 animate-spin" /> : <Rocket className="h-4 w-4" />}
-              {t('calendar.startNow')}
-            </Button>
           )}
         </div>
-      </>
+        
+        {/* Mobile Dots Mode */}
+        <div className="sm:hidden flex flex-wrap gap-1 w-full pt-1 pl-1">
+          {firstNew && (
+            <div className={cn("w-2 h-2 rounded-full shrink-0", getSubjectColorStyles(firstNew.subject).dot)} />
+          )}
+          {firstReview && (
+            <div className={cn("w-2 h-2 rounded-full shrink-0", getSubjectColorStyles(firstReview.subject).dot)} />
+          )}
+        </div>
+      </div>
     );
   }
 }

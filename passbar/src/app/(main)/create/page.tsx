@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
@@ -25,6 +25,7 @@ import { cn } from '@/lib/utils';
 
 export default function CreateTestPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { user } = useAuth();
   const { t, language } = useI18n();
   const [testMode, setTestMode] = useState<'Tutor' | 'Timed'>('Tutor');
@@ -58,6 +59,14 @@ export default function CreateTestPage() {
   useEffect(() => {
     if (user?.id) getAllUserProgress(user.id).then(setUserProgress);
   }, [user?.id]);
+
+  useEffect(() => {
+    const subjectParam = searchParams.get('subject');
+    if (!subjectParam || subjects.length === 0) return;
+    const subject = subjects.find((s) => s.name === subjectParam);
+    if (!subject) return;
+    setSelectedChapters(new Set(subject.chapters.map((c) => c.id)));
+  }, [subjects, searchParams]);
 
   const totalQuestionCount = useMemo(() => (
     subjects.reduce((sum, subject) => sum + subject.count, 0)
@@ -285,19 +294,19 @@ export default function CreateTestPage() {
         <SettingCard
           label={t('create.testMode')}
           hint={
-            <>
-              <p>{t('create.testModeHint')}</p>
-              <div className="mt-3 space-y-2">
-                <div className="grid grid-cols-[5rem_1fr] gap-3 border-t border-slate-100 pt-2">
-                  <span className="font-semibold text-slate-700">{t('create.tutor')}</span>
-                  <span>{t('create.tutorModeHint')}</span>
+            <div className="flex flex-col gap-3">
+              <p className="text-[13px] text-slate-700">{t('create.testModeHint')}</p>
+              <div className="space-y-2">
+                <div className="grid grid-cols-[3.5rem_1fr] gap-3 border-t border-[#ebd9b8]/50 pt-2.5">
+                  <span className="font-medium text-amber-900">{t('create.tutor')}</span>
+                  <span className="text-slate-700 leading-relaxed text-[13px]">{t('create.tutorModeHint')}</span>
                 </div>
-                <div className="grid grid-cols-[5rem_1fr] gap-3 border-t border-slate-100 pt-2">
-                  <span className="font-semibold text-slate-700">{t('create.timed')}</span>
-                  <span>{t('create.timedModeHint')}</span>
+                <div className="grid grid-cols-[3.5rem_1fr] gap-3 border-t border-[#ebd9b8]/50 pt-2.5">
+                  <span className="font-medium text-amber-900">{t('create.timed')}</span>
+                  <span className="text-slate-700 leading-relaxed text-[13px]">{t('create.timedModeHint')}</span>
                 </div>
               </div>
-            </>
+            </div>
           }
         >
           <PillToggle
@@ -344,20 +353,22 @@ export default function CreateTestPage() {
             <div className="flex items-center gap-2 text-base font-bold text-slate-700">
               {t('create.questionMode')}
               <HintIcon>
-                <div className="w-[min(40rem,calc(100vw-2rem))] p-1">
-                  <p className="px-4 py-3 text-sm leading-relaxed text-slate-500">{t('create.questionModeHint')}</p>
-                  {[
-                    ['create.unused', 'create.unusedHint'],
-                    ['create.incorrect', 'create.incorrectHint'],
-                    ['create.marked', 'create.markedHint'],
-                    ['create.omitted', 'create.omittedHint'],
-                    ['create.correct', 'create.correctHint'],
-                  ].map(([labelKey, hintKey]) => (
-                    <div key={labelKey} className="grid grid-cols-[7rem_1fr] gap-4 border-t border-slate-200 px-4 py-3">
-                      <div className="font-bold text-slate-700">{t(labelKey as Parameters<typeof t>[0])}</div>
-                      <div>{t(hintKey as Parameters<typeof t>[0])}</div>
-                    </div>
-                  ))}
+                <div className="max-w-[40rem] flex flex-col gap-3 p-1">
+                  <p className="text-[13px] text-slate-700">{t('create.questionModeHint')}</p>
+                  <div className="space-y-2">
+                    {[
+                      ['create.unused', 'create.unusedHint'],
+                      ['create.incorrect', 'create.incorrectHint'],
+                      ['create.marked', 'create.markedHint'],
+                      ['create.omitted', 'create.omittedHint'],
+                      ['create.correct', 'create.correctHint'],
+                    ].map(([labelKey, hintKey]) => (
+                      <div key={labelKey} className="grid grid-cols-[5.5rem_1fr] gap-3 border-t border-[#ebd9b8]/50 pt-2.5">
+                        <span className="font-medium text-amber-900">{t(labelKey as Parameters<typeof t>[0])}</span>
+                        <span className="text-slate-700 leading-relaxed text-[13px]">{t(hintKey as Parameters<typeof t>[0])}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </HintIcon>
             </div>

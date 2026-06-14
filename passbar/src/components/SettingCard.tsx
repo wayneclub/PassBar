@@ -27,7 +27,7 @@ export function HintIcon({ children }: HintIconProps) {
         side="right"
         align="start"
         sideOffset={10}
-        className="max-w-[calc(100vw-2rem)] border-slate-200 bg-white p-0 text-slate-600 shadow-xl"
+        className="max-w-[calc(100vw-2rem)] border border-[#ebd9b8]/40 bg-gradient-to-br from-white to-[#faf6f0]/90 p-0 text-slate-700 shadow-[0_12px_40px_-12px_rgba(180,117,14,0.15)] backdrop-blur-xl rounded-xl ring-1 ring-black/5 overflow-hidden"
       >
         {children}
       </TooltipContent>
@@ -46,12 +46,12 @@ interface SettingCardProps {
 
 export function SettingCard({ label, hint, children, className }: SettingCardProps) {
   return (
-    <div className={cn("rounded-lg border border-slate-200 bg-white px-5 py-4 shadow-sm flex flex-col gap-3", className)}>
+    <div className={cn("rounded-xl border border-slate-200/60 bg-white px-5 py-4 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col gap-3", className)}>
       <div className="flex items-center gap-2 text-sm font-bold text-slate-700">
         {label}
         {hint && (
           <HintIcon>
-            <div className="w-[min(28rem,calc(100vw-2rem))] px-4 py-3 text-sm leading-relaxed text-slate-500">
+            <div className="max-w-[28rem] px-3 py-2 text-[13px] leading-relaxed text-slate-700">
               {hint}
             </div>
           </HintIcon>

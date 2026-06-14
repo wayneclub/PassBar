@@ -49,6 +49,9 @@
   * {
     @apply border-border;
   }
+  html[data-passbar-text-size="small"] {
+    font-size: 1rem; /* 16px at browser default 16px */
+  }
   html[data-passbar-text-size="medium"] {
     font-size: 1.125rem; /* 18px at browser default 16px */
   }

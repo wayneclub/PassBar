@@ -237,15 +237,6 @@ export function AppSidebar() {
           </Link>
           <NotificationBell variant="dark" size="sm" align="start" side="right" />
         </div>
-        <Button
-          className="w-full justify-start gap-2 border-white/10 bg-transparent text-slate-300 hover:bg-white/10 hover:text-white"
-          variant="outline"
-          size="sm"
-          onClick={signOut}
-        >
-          <LogOut className="h-4 w-4" />
-          {t('auth.signOut')}
-        </Button>
       </SidebarFooter>
     </Sidebar>
   );

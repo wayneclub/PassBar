@@ -20,7 +20,7 @@ export function isPushSupported(): boolean {
 export function isIosStandaloneRequired(): boolean {
   if (typeof window === 'undefined') return false;
   const ua = window.navigator.userAgent;
-  const isIos = /iPad|iPhone|iPod/.test(ua) || (ua.includes('Macintosh') && 'ontouchend' in document);
+  const isIos = /iPad|iPhone|iPod/.test(ua) || (ua.includes('Macintosh') && navigator.maxTouchPoints > 1);
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches
     || (window.navigator as Navigator & { standalone?: boolean }).standalone === true;
   return isIos && !isStandalone;
@@ -39,7 +39,8 @@ function urlBase64ToUint8Array(base64String: string): Uint8Array {
 
 async function getRegistration(): Promise<ServiceWorkerRegistration | null> {
   if (!('serviceWorker' in navigator)) return null;
-  return navigator.serviceWorker.register(`${basePath}/sw.js`, { scope: `${basePath}/` });
+  await navigator.serviceWorker.register(`${basePath}/sw.js`, { scope: `${basePath}/` });
+  return navigator.serviceWorker.ready;
 }
 
 /** Requests notification permission and subscribes the current device to push, saving it for `userId`. */
@@ -74,7 +75,7 @@ export async function enablePushNotifications(userId: string): Promise<{ ok: boo
   );
 
   if (error) {
-    console.warn('[PassBar] Failed to save push subscription:', error.message);
+    console.warn('[PassBar] Failed to save push subscription:', JSON.stringify(error, null, 2));
     return { ok: false, error: 'save-failed' };
   }
 

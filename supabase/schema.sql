@@ -1103,3 +1103,4 @@ create policy "Users can view own badges"
 create policy "Users can insert own badges"
   on public.user_badges for insert
   with check ( auth.uid() = user_id );
+

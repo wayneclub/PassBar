@@ -32,7 +32,7 @@ export function MobileAppHeader() {
     .toUpperCase() || 'PB';
 
   return (
-    <header className="sticky top-0 z-40 grid min-h-16 grid-cols-[3rem_1fr_auto] items-center gap-3 border-b border-slate-200 bg-white px-4 py-2 shadow-sm md:hidden">
+    <header className="sticky top-0 z-40 grid min-h-16 grid-cols-[3rem_1fr_auto] items-center gap-3 border-b border-slate-200 bg-white px-4 py-2 shadow-sm lg:hidden">
       <Button
         type="button"
         aria-label={t('nav.openNavigation')}

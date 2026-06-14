@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from 'react';
-import { Bell, BookOpen, CheckCircle2, Cloud, Languages, Loader2, RotateCcw, Trash2 } from 'lucide-react';
+import { Bell, BookOpen, Check, CheckCircle2, Cloud, Copy, Languages, Loader2, RotateCcw, Trash2, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { HintIcon } from '@/components/SettingCard';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import {
   Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle,
 } from '@/components/ui/dialog';
@@ -55,6 +57,7 @@ export default function SettingsPage() {
   const [clearScope, setClearScope] = useState<'practice' | 'browse' | 'all'>('all');
   const [pushSupported, setPushSupported] = useState(true);
   const [iosInstallNeeded, setIosInstallNeeded] = useState(false);
+  const [bravePathCopied, setBravePathCopied] = useState(false);
 
   useEffect(() => {
     const settings = getStudySettings();
@@ -199,6 +202,7 @@ export default function SettingsPage() {
   }
 
   return (
+    <TooltipProvider delayDuration={120}>
     <div className="mx-auto max-w-4xl space-y-6 pb-20 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div>
         <h1 className="text-3xl font-bold text-primary">{t('settings.title')}</h1>
@@ -206,9 +210,13 @@ export default function SettingsPage() {
       </div>
 
       <Card className="shadow-sm">
-        <CardHeader>
-          <CardTitle>{t('settings.interfaceLanguage')}</CardTitle>
-          <CardDescription>{t('settings.interfaceLanguageDescription')}</CardDescription>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base font-semibold flex items-center gap-2">
+            {t('settings.interfaceLanguage')}
+            <HintIcon>
+              <p className="max-w-[18rem] px-3 py-2 text-[13px] leading-relaxed text-slate-700">{t('settings.interfaceLanguageDescription')}</p>
+            </HintIcon>
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <RadioGroup
@@ -249,9 +257,13 @@ export default function SettingsPage() {
       </Card>
 
       <Card className="shadow-sm">
-        <CardHeader>
-          <CardTitle>{t('settings.questionDisplay')}</CardTitle>
-          <CardDescription>{t('settings.questionDisplayDescription')}</CardDescription>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base font-semibold flex items-center gap-2">
+            {t('settings.questionDisplay')}
+            <HintIcon>
+              <p className="max-w-[18rem] px-3 py-2 text-[13px] leading-relaxed text-slate-700">{t('settings.questionDisplayDescription')}</p>
+            </HintIcon>
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
@@ -292,17 +304,22 @@ export default function SettingsPage() {
       </Card>
 
       <Card className="shadow-sm">
-        <CardHeader>
-          <CardTitle>{t('settings.textSize')}</CardTitle>
-          <CardDescription>{t('settings.textSizeDescription')}</CardDescription>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base font-semibold flex items-center gap-2">
+            {t('settings.textSize')}
+            <HintIcon>
+              <p className="max-w-[18rem] px-3 py-2 text-[13px] leading-relaxed text-slate-700">{t('settings.textSizeDescription')}</p>
+            </HintIcon>
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <RadioGroup
             value={textSize}
             onValueChange={(value) => commitSettings({ ...currentSettings, textSize: value as TextSize })}
           >
-            <div className="grid gap-3 md:grid-cols-2">
+            <div className="grid gap-3 md:grid-cols-3">
               {[
+                { value: 'small', label: t('settings.small'), preview: t('settings.compactReading') },
                 { value: 'medium', label: t('settings.medium'), preview: t('settings.comfortableReading') },
                 { value: 'large', label: t('settings.large'), preview: t('settings.largerReading') },
               ].map((item) => {
@@ -323,6 +340,7 @@ export default function SettingsPage() {
                         <div
                           className={cn(
                             'mt-2 leading-normal text-slate-600',
+                            item.value === 'small' && 'text-base',
                             item.value === 'medium' && 'text-lg',
                             item.value === 'large' && 'text-xl',
                           )}
@@ -340,20 +358,50 @@ export default function SettingsPage() {
       </Card>
 
       <Card className="shadow-sm">
-        <CardHeader>
-          <CardTitle>{t('settings.notifications')}</CardTitle>
-          <CardDescription>{t('settings.notificationsDescription')}</CardDescription>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base font-semibold flex items-center gap-2">
+            {t('settings.notifications')}
+            <HintIcon>
+              <p className="max-w-[18rem] px-3 py-2 text-[13px] leading-relaxed text-slate-700">{t('settings.notificationsDescription')}</p>
+            </HintIcon>
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           {!pushSupported && (
-            <p className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
-              {t('settings.notificationsUnsupported')}
-            </p>
+            <div className="flex items-start gap-2.5 rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
+              <Info className="h-5 w-5 shrink-0 mt-0.5 text-amber-600" />
+              <p>{t('settings.notificationsUnsupported')}</p>
+            </div>
           )}
           {pushSupported && iosInstallNeeded && (
-            <p className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
-              {t('settings.notificationsIosInstallHint')}
-            </p>
+            <div className="flex items-start gap-2.5 rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
+              <Info className="h-5 w-5 shrink-0 mt-0.5 text-amber-600" />
+              <p>{t('settings.notificationsIosInstallHint')}</p>
+            </div>
+          )}
+          {pushSupported && !iosInstallNeeded && typeof window !== 'undefined' && (window.navigator as any).brave && (
+            <div className="flex items-start gap-2.5 rounded-md border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-700">
+              <Info className="h-5 w-5 shrink-0 mt-0.5 text-blue-600" />
+              <div>
+                <p className="font-semibold mb-0.5">Brave 瀏覽器用戶注意：</p>
+                <p>
+                  請務必前往設定{' '}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigator.clipboard.writeText('brave://settings/privacy');
+                      setBravePathCopied(true);
+                      window.setTimeout(() => setBravePathCopied(false), 2000);
+                    }}
+                    className="inline-flex items-center gap-1 bg-blue-100 px-1 rounded text-xs font-mono hover:bg-blue-200"
+                  >
+                    brave://settings/privacy
+                    {bravePathCopied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
+                  </button>
+                  {' '}（點擊複製網址並貼到網址列前往）並開啟「<strong>使用 Google 服務傳送推播訊息</strong>」，否則啟用通知時將會失敗。
+                </p>
+              </div>
+            </div>
           )}
 
           <div className="flex items-center justify-between gap-4 rounded-md border border-slate-200 bg-white p-4">
@@ -380,15 +428,15 @@ export default function SettingsPage() {
             />
           </div>
 
-          <div className="flex items-center justify-between gap-4 rounded-md border border-slate-200 bg-white p-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-md border border-slate-200 bg-white p-4">
             <div>
               <div className="text-sm font-semibold text-slate-900">{t('settings.notificationsDailyReminder')}</div>
               <p className="text-xs text-muted-foreground mt-0.5">{t('settings.notificationsDailyReminderHint')}</p>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center justify-between gap-3 sm:justify-end">
               {notifications.dailyReminder && (
                 <div className="flex items-center gap-2">
-                  <Label htmlFor="daily-reminder-time" className="text-xs text-muted-foreground">
+                  <Label htmlFor="daily-reminder-time" className="text-xs text-muted-foreground whitespace-nowrap">
                     {t('settings.notificationsDailyReminderTime')}
                   </Label>
                   <Input
@@ -396,7 +444,7 @@ export default function SettingsPage() {
                     type="time"
                     value={notifications.dailyReminderTime}
                     onChange={(e) => commitSettings({ ...currentSettings, notifications: { ...notifications, dailyReminderTime: e.target.value } })}
-                    className="h-9 w-28"
+                    className="h-9 w-[8.5rem] shrink-0"
                   />
                 </div>
               )}
@@ -434,9 +482,13 @@ export default function SettingsPage() {
       </Card>
 
       <Card className="border-slate-200 shadow-sm">
-        <CardHeader>
-          <CardTitle>{t('nav.resetOptions')}</CardTitle>
-          <CardDescription>{t('settings.autoSaveHint')}</CardDescription>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base font-semibold flex items-center gap-2">
+            {t('nav.resetOptions')}
+            <HintIcon>
+              <p className="max-w-[18rem] px-3 py-2 text-[13px] leading-relaxed text-slate-700">{t('settings.autoSaveHint')}</p>
+            </HintIcon>
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <Button
@@ -453,9 +505,14 @@ export default function SettingsPage() {
 
       {/* Clear Progress Card */}
       <Card className="border-red-100 shadow-sm">
-        <CardHeader>
-          <CardTitle className="text-red-600">{t('settings.clearProgress')}</CardTitle>
-          <CardDescription>{t('settings.clearProgressDescription')}</CardDescription>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base font-semibold flex items-center gap-2 text-red-600">
+            <Trash2 className="h-4 w-4 text-red-600" />
+            {t('settings.clearProgress')}
+            <HintIcon>
+              <p className="max-w-[18rem] px-3 py-2 text-[13px] leading-relaxed text-slate-700">{t('settings.clearProgressDescription')}</p>
+            </HintIcon>
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           {([
@@ -552,5 +609,6 @@ export default function SettingsPage() {
         </div>
       </div>
     </div>
+    </TooltipProvider>
   );
 }

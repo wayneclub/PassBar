@@ -13,6 +13,7 @@ export interface CardCarouselProps {
   footer?: React.ReactNode;
   style?: React.CSSProperties;
   autoPlayInterval?: number;
+  selectedIndex?: number;
   onIndexChange?: (index: number) => void;
 }
 
@@ -27,12 +28,16 @@ export function CardCarousel({
   footer,
   style,
   autoPlayInterval,
+  selectedIndex,
   onIndexChange,
 }: CardCarouselProps) {
-  const [index, setIndex] = React.useState(0);
+  const [internalIndex, setInternalIndex] = React.useState(0);
+  const index = selectedIndex !== undefined ? selectedIndex : internalIndex;
 
   const handleIndexChange = (newIndex: number) => {
-    setIndex(newIndex);
+    if (selectedIndex === undefined) {
+      setInternalIndex(newIndex);
+    }
     onIndexChange?.(newIndex);
   };
 
@@ -44,16 +49,12 @@ export function CardCarousel({
   const totalPages = pages.length;
 
   React.useEffect(() => {
-    if (!autoPlayInterval || totalPages <= 1) return;
+    if (!autoPlayInterval || totalPages <= 1 || selectedIndex !== undefined) return;
     const timer = setInterval(() => {
-      setIndex((i) => (i + 1) % totalPages);
+      setInternalIndex((i) => (i + 1) % totalPages);
     }, autoPlayInterval);
     return () => clearInterval(timer);
-  }, [totalPages, autoPlayInterval]);
-
-  React.useEffect(() => {
-    onIndexChange?.(index);
-  }, [index, onIndexChange]);
+  }, [totalPages, autoPlayInterval, selectedIndex]);
 
   return (
     <Card className={cn("shadow-md transition-all duration-700 hover:shadow-lg", className)} style={style}>

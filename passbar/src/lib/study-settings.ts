@@ -2,7 +2,7 @@
 
 /** Legacy top-level mode kept for backward compat */
 export type ContentMode = 'english' | 'bilingual';
-export type TextSize = 'medium' | 'large';
+export type TextSize = 'small' | 'medium' | 'large';
 export type InterfaceLanguage = 'en' | 'zh-Hans' | 'zh-Hant';
 export type StudyPaceMode = 'leisure' | 'balanced' | 'intensive';
 export type StudySubjectMode = 'singleThenMixed' | 'mixed';
@@ -193,7 +193,7 @@ export function normalizeStudySettings(settings: Partial<StudySettings> | null |
 
   return {
     contentMode,
-    textSize: settings?.textSize === 'large' ? 'large' : 'medium',
+    textSize: settings?.textSize === 'large' || settings?.textSize === 'small' ? settings.textSize : 'medium',
     interfaceLanguage: settings?.interfaceLanguage === 'zh-Hans' || settings?.interfaceLanguage === 'zh-Hant'
       ? settings.interfaceLanguage
       : 'en',

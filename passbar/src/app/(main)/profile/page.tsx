@@ -21,7 +21,8 @@ import {
   Zap,
   Loader2,
   Pencil,
-  Lock
+  Lock,
+  LogOut
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -41,7 +42,7 @@ const IconMap: Record<string, React.ElementType> = {
 };
 
 export default function ProfilePage() {
-  const { user, profile, refreshProfile } = useAuth();
+  const { user, profile, refreshProfile, signOut } = useAuth();
   const { t } = useI18n();
   const [loading, setLoading] = useState(true);
   const [badges, setBadges] = useState<{ badge: AchievementBadge; unlocked: boolean; progress?: { current: number; total: number } }[]>([]);
@@ -179,9 +180,18 @@ export default function ProfilePage() {
 
   return (
     <div className="space-y-8 pb-12 animate-in fade-in duration-500">
-      <header>
-        <h1 className="text-4xl font-bold text-primary">{t('settings.profile' as any)}</h1>
-        <p className="text-muted-foreground mt-2">{t('profile.subtitle')}</p>
+      <header className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 className="text-4xl font-bold text-primary">{t('settings.profile' as any)}</h1>
+          <p className="text-muted-foreground mt-2">{t('profile.subtitle')}</p>
+        </div>
+        <button
+          onClick={signOut}
+          className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-red-600 bg-white border border-red-200 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors shadow-sm"
+        >
+          <LogOut className="w-4 h-4" />
+          {t('auth.signOut' as any)}
+        </button>
       </header>
 
       {/* Hero Section */}
@@ -249,7 +259,7 @@ export default function ProfilePage() {
           <h2 className="text-2xl font-bold tracking-tight">{t('profile.achievementBadges')}</h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {badges.map(({ badge, unlocked, progress }, index) => {
             const Icon = IconMap[badge.iconName] || Star;
             return (

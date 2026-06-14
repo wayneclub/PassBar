@@ -136,9 +136,9 @@ export default function SimExamPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
         {/* Main CTA card */}
-        <Card className="lg:col-span-2 hover:shadow-md transition-shadow border-primary/20 bg-primary/5">
+        <Card className="xl:col-span-2 hover:shadow-md transition-shadow border-primary/20 bg-primary/5">
           <CardHeader className="pb-3">
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
