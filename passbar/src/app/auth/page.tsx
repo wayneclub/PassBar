@@ -2,6 +2,7 @@
 
 import React, { Suspense, useEffect, useMemo, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import { AlertCircle } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
@@ -69,7 +70,7 @@ function AuthContent() {
   const cookieNotice = (
     <p className="text-xs leading-5 text-slate-400">
       By continuing, you agree to our use of cookies to keep you signed in, remember your preferences, and analyse usage.{' '}
-      <a href="/privacy" className="underline underline-offset-2 hover:text-slate-300">Privacy Policy</a>.
+      <Link href="/privacy" className="underline underline-offset-2 hover:text-slate-300">Privacy Policy</Link>.
     </p>
   );
 
