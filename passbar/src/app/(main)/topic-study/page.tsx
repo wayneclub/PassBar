@@ -10,7 +10,7 @@ import { Check } from 'lucide-react';
 import { useAuth } from '@/components/AuthProvider';
 import { useI18n } from '@/lib/i18n';
 import { getMbeChineseLabel } from '@/lib/mbe-labels';
-import { getAllQuestionIdsByChapter, getQuestionsByChapterIds, getSubjects } from '@/lib/question-bank';
+import { getQuestionsByChapterIds, getSubjects } from '@/lib/question-bank';
 import { Subject, TestSession } from '@/lib/types';
 import { getBrowseProgressByUser, BrowseProgressRow } from '@/lib/topic-study-progress';
 import { getBrowseMarkedChapterIds, getBrowseChapterStateCounts } from '@/lib/topic-study-question-states';
@@ -35,21 +35,17 @@ export default function BrowsePage() {
   const [learnedQuestionCount, setLearnedQuestionCount] = useState(0);
   const [markedQuestionCount, setMarkedQuestionCount] = useState(0);
   const [isStarting, setIsStarting] = useState(false);
-  const [allChapterQIds, setAllChapterQIds] = useState<Record<string, string[]>>({});
   const [browseProgress, setBrowseProgress] = useState<BrowseProgressRow[]>([]);
 
   useEffect(() => {
     getSubjects().then(setSubjects);
-    getAllQuestionIdsByChapter().then(setAllChapterQIds);
   }, []);
 
   useEffect(() => {
     if (!user?.id) return;
     getBrowseProgressByUser(user.id).then(setBrowseProgress);
     // Load browse-mode marks (independent from test-mode marks)
-    if (Object.keys(allChapterQIds).length > 0) {
-      getBrowseMarkedChapterIds(user.id, allChapterQIds).then(setMarkedChapterIds);
-    }
+    getBrowseMarkedChapterIds(user.id).then(setMarkedChapterIds);
     getBrowseChapterStateCounts(user.id).then((counts) => {
       let learned = 0;
       let marked = 0;
@@ -57,7 +53,7 @@ export default function BrowsePage() {
       setLearnedQuestionCount(learned);
       setMarkedQuestionCount(marked);
     });
-  }, [user?.id, allChapterQIds]);
+  }, [user?.id]);
 
   const progressByChapter = useMemo(() => {
     const map = new Map<string, BrowseProgressRow>();
@@ -91,9 +87,15 @@ export default function BrowsePage() {
     [subjects]
   );
 
+  const chapterCountMap = useMemo(() => {
+    const map = new Map<string, number>();
+    subjects.forEach((subject) => subject.chapters.forEach((ch) => map.set(ch.id, ch.count)));
+    return map;
+  }, [subjects]);
+
   const selectedCount = useMemo(
-    () => Array.from(selectedChapters).reduce((s, id) => s + (allChapterQIds[id]?.length ?? 0), 0),
-    [selectedChapters, allChapterQIds]
+    () => Array.from(selectedChapters).reduce((s, id) => s + (chapterCountMap.get(id) ?? 0), 0),
+    [selectedChapters, chapterCountMap]
   );
 
   const toggleChapter = (chapterId: string) => {

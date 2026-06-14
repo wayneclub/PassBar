@@ -85,7 +85,7 @@ const DEMO_SUBJECTS = [
   },
 ];
 
-type DemoTestMode = 'Tutor' | 'Timed' | 'TopicStudy';
+type DemoTestMode = 'Tutor' | 'Timed';
 
 function InteractiveStepGuide() {
   const { toast } = useToast();
@@ -144,9 +144,8 @@ function InteractiveStepGuide() {
     .reduce((sum, c) => sum + c.count, 0);
 
   const testModes: { key: DemoTestMode; label: string; desc: string }[] = [
-    { key: 'Tutor',  label: 'Tutor',  desc: t('help.demoTutorDesc') },
-    { key: 'Timed',  label: 'Timed',  desc: t('help.demoTimedDesc') },
-    { key: 'TopicStudy', label: 'TopicStudy', desc: t('help.demoBrowseDesc') },
+    { key: 'Tutor', label: t('create.tutor'), desc: t('help.demoTutorDesc') },
+    { key: 'Timed', label: t('create.timed'), desc: t('help.demoTimedDesc') },
   ];
 
   const steps = [
@@ -299,7 +298,7 @@ function InteractiveStepGuide() {
                 </div>
                 <Button size="sm" className="shrink-0"
                   disabled={selectedChapters.size === 0}
-                  onClick={() => toast({ title: t('help.createdMockTestToast', { mode: testMode, count: questionCount }) })}>
+                  onClick={() => toast({ title: t('help.createdMockTestToast', { mode: testModes.find((m) => m.key === testMode)?.label ?? testMode, count: questionCount }) })}>
                   {t('help.createMockTest')}
                 </Button>
               </div>

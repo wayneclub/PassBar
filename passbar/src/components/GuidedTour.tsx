@@ -54,8 +54,8 @@ export function GuidedTour({
   const updateTargetRect = () => {
     if (!activeStep) return;
 
-    const target = document.querySelector<HTMLElement>(activeStep.selector);
-    if (!target) {
+    const targets = Array.from(document.querySelectorAll<HTMLElement>(activeStep.selector));
+    if (targets.length === 0) {
       setTargetRect({
         top: Math.max(window.innerHeight * 0.2, 96),
         left: Math.max(window.innerWidth * 0.08, 24),
@@ -65,14 +65,18 @@ export function GuidedTour({
       return;
     }
 
-    target.scrollIntoView({ block: 'center', inline: 'nearest', behavior: 'smooth' });
+    targets[0].scrollIntoView({ block: 'center', inline: 'nearest', behavior: 'smooth' });
     window.setTimeout(() => {
-      const rect = target.getBoundingClientRect();
+      const rects = targets.map((target) => target.getBoundingClientRect());
+      const top = Math.min(...rects.map((rect) => rect.top));
+      const left = Math.min(...rects.map((rect) => rect.left));
+      const right = Math.max(...rects.map((rect) => rect.right));
+      const bottom = Math.max(...rects.map((rect) => rect.bottom));
       setTargetRect({
-        top: rect.top,
-        left: rect.left,
-        width: rect.width,
-        height: rect.height,
+        top,
+        left,
+        width: right - left,
+        height: bottom - top,
       });
     }, 120);
   };

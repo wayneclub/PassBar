@@ -1,8 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { LogOut, Menu, Pencil, Settings } from 'lucide-react';
-import { EditDisplayNameDialog } from '@/components/EditDisplayNameDialog';
+import { LogOut, Menu, User } from 'lucide-react';
 import { NotificationBell } from '@/components/NotificationBell';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -72,14 +71,7 @@ export function MobileAppHeader() {
                 </AvatarFallback>
               </Avatar>
               <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-1.5">
-                  <p className="truncate text-sm font-semibold text-slate-900">{displayName}</p>
-                  <EditDisplayNameDialog>
-                    <button type="button" className="shrink-0 rounded p-0.5 text-slate-400 hover:text-slate-700 transition-colors">
-                      <Pencil className="h-3 w-3" />
-                    </button>
-                  </EditDisplayNameDialog>
-                </div>
+                <p className="truncate text-sm font-semibold text-slate-900">{displayName}</p>
                 <p className="text-xs font-normal uppercase tracking-wider text-slate-500">
                   {role === 'student' ? t('role.student') : role}
                 </p>
@@ -88,9 +80,9 @@ export function MobileAppHeader() {
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <Link href="/settings">
-              <Settings className="h-4 w-4" />
-              {t('nav.settings')}
+            <Link href="/profile">
+              <User className="h-4 w-4" />
+              {t('settings.profile')}
             </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />

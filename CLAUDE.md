@@ -20,6 +20,40 @@ shadcn `CardTitle` 預設 `text-2xl`，**一律覆寫**：
 
 > **不使用 `CardDescription`** — shadcn 內建 `space-y-1.5` 容易讓標題區擠在一起，改用 `<p>` 直接放在 `CardHeader` 內。
 
+#### Card title 是否加 icon？
+
+| 情境 | 要不要 icon | 範例 |
+|------|------------|------|
+| 同一頁有多張並列的功能/分析卡（dashboard widgets、performance 分析卡），icon 幫助快速辨識卡片用途 | ✅ 加 | `<Flag />`、`<AlertTriangle />` |
+| 設定頁（settings）每張卡只對應一組設定，標題文字已足夠清楚 | ❌ 不加 | 文字大小、介面語言、通知 |
+| 警示/危險操作卡（紅色語意，如清空紀錄） | ✅ 加（語意色 icon） | `<Trash2 className="text-red-600" />` |
+
+icon 規格固定：`h-4 w-4` + `gap-2`，顏色用語意色（一般 `text-primary`，警告/錯誤 `text-red-500` / `text-red-600`）。
+
+#### Card 標題骨架
+
+```tsx
+// 有 icon + 副標題（功能/分析卡，如 dashboard widgets、performance 分析卡）
+<CardHeader className="pb-2">
+  <CardTitle className="text-base font-semibold flex items-center gap-2">
+    <IconComponent className="h-4 w-4 text-primary" />
+    {t('page.cardTitle')}
+  </CardTitle>
+  <p className="text-sm text-muted-foreground mt-0.5">{t('page.cardSubtitle')}</p>
+</CardHeader>
+
+// 無 icon、有副標題（設定卡，如 settings 頁每張卡）
+<CardHeader className="pb-2">
+  <CardTitle className="text-base font-semibold">{t('settings.cardTitle')}</CardTitle>
+  <p className="text-sm text-muted-foreground mt-0.5">{t('settings.cardDescription')}</p>
+</CardHeader>
+
+// 無 icon、無副標題（單一用途、標題已足夠清楚）
+<CardHeader className="pb-2">
+  <CardTitle className="text-base font-semibold">{t('settings.cardTitle')}</CardTitle>
+</CardHeader>
+```
+
 ### Body / Label text
 
 | Level | Usage | Class |
@@ -33,9 +67,10 @@ shadcn `CardTitle` 預設 `text-2xl`，**一律覆寫**：
 
 ### CardHeader padding
 
+統一使用 `pb-2`（不論是否有 icon 或副標題）：
+
 ```tsx
-<CardHeader className="pb-3">   // 有副標題
-<CardHeader className="pb-2">   // 無副標題
+<CardHeader className="pb-2">
 ```
 
 ---
@@ -272,8 +307,8 @@ Sidebar (bg-secondary, no right border)
 
 ```tsx
 // Section header (collapsible trigger / direct link)
-"h-auto text-slate-300 hover:text-white hover:bg-white/5 py-4 px-4"
-// icon: w-4 h-4
+"h-auto gap-3 text-slate-300 hover:text-white hover:bg-white/5 py-4 px-4"
+// icon: w-4 h-4 shrink-0
 // label: "font-semibold text-xs uppercase tracking-wider"
 
 // Sub-item (indented)
@@ -297,6 +332,8 @@ Sidebar (bg-secondary, no right border)
 - Section 之間無額外間距（`gap-0`）
 - Admin 區塊前有 divider：`<div className="mx-4 mb-1 border-t border-white/10" />`
 - Mobile 時點選導航項目自動關閉 sidebar：`if (isMobile) setOpenMobile(false)`
+- 所有 section header（不論用 `SidebarMenuButton` 或 `<Link>`）icon 與文字間距一律 `gap-3`。`SidebarMenuButton` 預設 `gap-2`（來自 `sidebarMenuButtonVariants`），**必須**在 className 加 `gap-3` 覆寫，避免與 `<Link>` 寫法的項目間距不一致
+- Section header icon 一律 `w-4 h-4 shrink-0`，不額外加顏色 class（顏色由父層 `text-slate-300` / `text-amber-400` 繼承）
 
 ---
 
@@ -552,3 +589,4 @@ screens: {
 | `app/(main)/dashboard/page.tsx:650` | heatmap `paddingLeft: 44` 硬寫 px | 低 |
 | `app/(main)/review/page.tsx:370` | 搜尋框 `w-64` 固定，手機應全寬 | 低 |
 | `app/test/page.tsx:876` | `mb-36` 底部間距用 px 概念，應改 rem | 低 |
+| `app/(main)/settings/page.tsx` | 多張 Card 仍用 shadcn 預設 `CardTitle`（`text-2xl`）+ `CardDescription`，未套用「Card headings」標準（`text-base font-semibold` + `<p>`） | 中 |

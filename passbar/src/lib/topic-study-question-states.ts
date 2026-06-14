@@ -56,25 +56,21 @@ export async function getBrowseMarkedQuestionIds(
 }
 
 /** Get chapter IDs that have at least one marked question */
-export async function getBrowseMarkedChapterIds(
-  userId: string,
-  allChapterQIds: Record<string, string[]>,
-): Promise<Set<string>> {
+export async function getBrowseMarkedChapterIds(userId: string): Promise<Set<string>> {
   if (!supabase) return new Set();
   const { data, error } = await supabase
     .from('topic_study_question_states')
-    .select('question_id')
+    .select('chapter_id')
     .eq('user_id', userId)
     .eq('is_marked', true);
   if (error) {
     console.warn('[PassBar] Failed to load browse marked chapter ids:', error.message);
     return new Set();
   }
-  const markedSet = new Set(((data ?? []) as { question_id: string }[]).map((r) => r.question_id));
   const result = new Set<string>();
-  for (const [chapterId, qIds] of Object.entries(allChapterQIds)) {
-    if (qIds.some((qId) => markedSet.has(qId))) result.add(chapterId);
-  }
+  ((data ?? []) as { chapter_id: string | null }[]).forEach((r) => {
+    if (r.chapter_id) result.add(r.chapter_id);
+  });
   return result;
 }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from 'react';
-import { BookOpen, CheckCircle2, Cloud, Languages, Loader2, RotateCcw, Trash2 } from 'lucide-react';
+import { Bell, BookOpen, CheckCircle2, Cloud, Languages, Loader2, RotateCcw, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -16,12 +16,19 @@ import { toast } from '@/hooks/use-toast';
 import { useI18n } from '@/lib/i18n';
 import { clearUserProgress } from '@/lib/question-progress';
 import {
+  disablePushNotifications,
+  enablePushNotifications,
+  isIosStandaloneRequired,
+  isPushSupported,
+} from '@/lib/push-notifications';
+import {
   defaultStudySettings,
   getStudySettings,
   saveStudySettings,
   type ContentMode,
   type DisplayOptions,
   type InterfaceLanguage,
+  type NotificationSettings,
   type StudySettings,
   type TextSize,
 } from '@/lib/study-settings';
@@ -38,12 +45,16 @@ export default function SettingsPage() {
   const [display, setDisplay] = useState<DisplayOptions>(defaultStudySettings.display);
   const [textSize, setTextSize] = useState<TextSize>('medium');
   const [showNotes, setShowNotes] = useState<boolean>(true);
+  const [notifications, setNotifications] = useState<NotificationSettings>(defaultStudySettings.notifications);
+  const [notificationsBusy, setNotificationsBusy] = useState(false);
   const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle');
   const saveTimerRef = useRef<number | null>(null);
   const [clearDialogOpen, setClearDialogOpen] = useState(false);
   const [clearConfirmText, setClearConfirmText] = useState('');
   const [clearing, setClearing] = useState(false);
   const [clearScope, setClearScope] = useState<'practice' | 'browse' | 'all'>('all');
+  const [pushSupported, setPushSupported] = useState(true);
+  const [iosInstallNeeded, setIosInstallNeeded] = useState(false);
 
   useEffect(() => {
     const settings = getStudySettings();
@@ -52,6 +63,7 @@ export default function SettingsPage() {
     setDisplay(settings.display);
     setTextSize(settings.textSize);
     setShowNotes(settings.showNotes);
+    setNotifications(settings.notifications);
 
     const handleSettingsChange = (event: Event) => {
       const next = (event as CustomEvent<StudySettings>).detail;
@@ -61,7 +73,11 @@ export default function SettingsPage() {
       setDisplay(next.display);
       setTextSize(next.textSize);
       setShowNotes(next.showNotes);
+      setNotifications(next.notifications);
     };
+
+    setPushSupported(isPushSupported());
+    setIosInstallNeeded(isIosStandaloneRequired());
 
     window.addEventListener('passbar-study-settings-changed', handleSettingsChange);
     return () => {
@@ -77,6 +93,7 @@ export default function SettingsPage() {
     setDisplay(nextSettings.display);
     setTextSize(nextSettings.textSize);
     setShowNotes(nextSettings.showNotes);
+    setNotifications(nextSettings.notifications);
     setSaveStatus('saving');
 
     if (saveTimerRef.current) window.clearTimeout(saveTimerRef.current);
@@ -92,7 +109,54 @@ export default function SettingsPage() {
     }, 500);
   };
 
-  const currentSettings: StudySettings = { ...getStudySettings(), interfaceLanguage, contentMode, display, textSize, showNotes };
+  const currentSettings: StudySettings = { ...getStudySettings(), interfaceLanguage, contentMode, display, textSize, showNotes, notifications };
+
+  async function handleNotificationToggle(flagKey: keyof NotificationSettings, checked: boolean) {
+    const nextNotifications: NotificationSettings = { ...notifications, [flagKey]: checked };
+
+    if (flagKey === 'enabled') {
+      setNotificationsBusy(true);
+      try {
+        if (checked) {
+          const result = await enablePushNotifications(user?.id ?? '');
+          if (!result.ok) {
+            const messageKey = result.error === 'permission-denied'
+              ? 'settings.notificationsPermissionDenied'
+              : 'settings.notificationsEnableFailed';
+            toast({ title: t(messageKey), variant: 'destructive' });
+            setNotificationsBusy(false);
+            return;
+          }
+        } else {
+          await disablePushNotifications();
+        }
+      } finally {
+        setNotificationsBusy(false);
+      }
+    }
+
+    commitSettings({ ...currentSettings, notifications: nextNotifications });
+  }
+
+  async function handleEnableAllNotifications() {
+    setNotificationsBusy(true);
+    try {
+      const result = await enablePushNotifications(user?.id ?? '');
+      if (!result.ok) {
+        const messageKey = result.error === 'permission-denied'
+          ? 'settings.notificationsPermissionDenied'
+          : 'settings.notificationsEnableFailed';
+        toast({ title: t(messageKey), variant: 'destructive' });
+        return;
+      }
+      commitSettings({
+        ...currentSettings,
+        notifications: { ...notifications, enabled: true, smartReview: true, dailyReminder: true, examCountdown: true },
+      });
+    } finally {
+      setNotificationsBusy(false);
+    }
+  }
 
   function isLastQA(flagKey: keyof DisplayOptions) {
     if (flagKey !== 'enQA' && flagKey !== 'zhQA') return false;
@@ -275,6 +339,100 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
+      <Card className="shadow-sm">
+        <CardHeader>
+          <CardTitle>{t('settings.notifications')}</CardTitle>
+          <CardDescription>{t('settings.notificationsDescription')}</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {!pushSupported && (
+            <p className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
+              {t('settings.notificationsUnsupported')}
+            </p>
+          )}
+          {pushSupported && iosInstallNeeded && (
+            <p className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
+              {t('settings.notificationsIosInstallHint')}
+            </p>
+          )}
+
+          <div className="flex items-center justify-between gap-4 rounded-md border border-slate-200 bg-white p-4">
+            <div>
+              <div className="text-sm font-semibold text-slate-900">{t('settings.notificationsEnable')}</div>
+              <p className="text-xs text-muted-foreground mt-0.5">{t('settings.notificationsEnableHint')}</p>
+            </div>
+            <Switch
+              checked={notifications.enabled}
+              disabled={!pushSupported || iosInstallNeeded || notificationsBusy}
+              onCheckedChange={(checked) => handleNotificationToggle('enabled', checked)}
+            />
+          </div>
+
+          <div className="flex items-center justify-between gap-4 rounded-md border border-slate-200 bg-white p-4">
+            <div>
+              <div className="text-sm font-semibold text-slate-900">{t('settings.notificationsSmartReview')}</div>
+              <p className="text-xs text-muted-foreground mt-0.5">{t('settings.notificationsSmartReviewHint')}</p>
+            </div>
+            <Switch
+              checked={notifications.smartReview}
+              disabled={!pushSupported || iosInstallNeeded || notificationsBusy}
+              onCheckedChange={(checked) => handleNotificationToggle('smartReview', checked)}
+            />
+          </div>
+
+          <div className="flex items-center justify-between gap-4 rounded-md border border-slate-200 bg-white p-4">
+            <div>
+              <div className="text-sm font-semibold text-slate-900">{t('settings.notificationsDailyReminder')}</div>
+              <p className="text-xs text-muted-foreground mt-0.5">{t('settings.notificationsDailyReminderHint')}</p>
+            </div>
+            <div className="flex items-center gap-3">
+              {notifications.dailyReminder && (
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="daily-reminder-time" className="text-xs text-muted-foreground">
+                    {t('settings.notificationsDailyReminderTime')}
+                  </Label>
+                  <Input
+                    id="daily-reminder-time"
+                    type="time"
+                    value={notifications.dailyReminderTime}
+                    onChange={(e) => commitSettings({ ...currentSettings, notifications: { ...notifications, dailyReminderTime: e.target.value } })}
+                    className="h-9 w-28"
+                  />
+                </div>
+              )}
+              <Switch
+                checked={notifications.dailyReminder}
+                disabled={!pushSupported || iosInstallNeeded || notificationsBusy}
+                onCheckedChange={(checked) => handleNotificationToggle('dailyReminder', checked)}
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between gap-4 rounded-md border border-slate-200 bg-white p-4">
+            <div>
+              <div className="text-sm font-semibold text-slate-900">{t('settings.notificationsExamCountdown')}</div>
+              <p className="text-xs text-muted-foreground mt-0.5">{t('settings.notificationsExamCountdownHint')}</p>
+            </div>
+            <Switch
+              checked={notifications.examCountdown}
+              disabled={!pushSupported || iosInstallNeeded || notificationsBusy}
+              onCheckedChange={(checked) => handleNotificationToggle('examCountdown', checked)}
+            />
+          </div>
+
+          <Button
+            type="button"
+            variant="outline"
+            className="gap-2 border-slate-300 bg-white text-slate-800 hover:bg-slate-50"
+            disabled={!pushSupported || iosInstallNeeded || notificationsBusy}
+            onClick={handleEnableAllNotifications}
+          >
+            {notificationsBusy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Bell className="h-4 w-4" />}
+            {t('settings.notificationsEnableAll')}
+          </Button>
+        </CardContent>
+      </Card>
+
       <Card className="border-slate-200 shadow-sm">
         <CardHeader>
           <CardTitle>{t('nav.resetOptions')}</CardTitle>
@@ -296,10 +454,7 @@ export default function SettingsPage() {
       {/* Clear Progress Card */}
       <Card className="border-red-100 shadow-sm">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-red-600">
-            <Trash2 className="h-4 w-4" />
-            {t('settings.clearProgress')}
-          </CardTitle>
+          <CardTitle className="text-red-600">{t('settings.clearProgress')}</CardTitle>
           <CardDescription>{t('settings.clearProgressDescription')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-3">

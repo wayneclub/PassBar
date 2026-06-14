@@ -1032,6 +1032,24 @@ on public.profiles for update
 using (private.is_admin())
 with check (private.is_admin());
 
+-- Web Push subscriptions (for iOS/Android/desktop PWA notifications)
+create table if not exists public.push_subscriptions (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references public.profiles(id) on delete cascade,
+  endpoint text not null unique,
+  p256dh text not null,
+  auth text not null,
+  user_agent text,
+  created_at timestamptz default now()
+);
+create index if not exists push_subscriptions_user_id_idx on public.push_subscriptions (user_id);
+alter table public.push_subscriptions enable row level security;
+drop policy if exists "Users can manage their push subscriptions" on public.push_subscriptions;
+create policy "Users can manage their push subscriptions"
+on public.push_subscriptions for all
+using (auth.uid() = user_id)
+with check (auth.uid() = user_id);
+
 -- Seed: set me@wayneclub.com as admin + approved
 update public.profiles
 set role = 'admin', status = 'approved'
@@ -1066,3 +1084,22 @@ on conflict (id) do update set
   role = 'admin',
   status = 'approved',
   updated_at = now();
+
+create table if not exists public.user_badges (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users(id) on delete cascade not null,
+  badge_key text not null,
+  unlocked_at timestamptz default now() not null,
+  unique(user_id, badge_key)
+);
+
+-- RLS for user_badges
+alter table public.user_badges enable row level security;
+
+create policy "Users can view own badges"
+  on public.user_badges for select
+  using ( auth.uid() = user_id );
+
+create policy "Users can insert own badges"
+  on public.user_badges for insert
+  with check ( auth.uid() = user_id );

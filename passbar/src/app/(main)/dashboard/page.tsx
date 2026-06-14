@@ -4,17 +4,26 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
+  AlertTriangle,
   ArrowLeft,
   ArrowRight,
   BookOpen,
   Calendar,
   CalendarDays,
   CheckCircle2,
+  ChevronDown,
+  ChevronUp,
+  Circle,
   Clock,
+  Database,
   Flag,
   Flame,
+  Gauge,
+  GripVertical,
   Loader2,
+  Lock,
   Play,
+  Repeat2,
   RotateCcw,
   Settings,
   SlidersHorizontal,
@@ -22,11 +31,30 @@ import {
   TrendingUp,
   Trophy,
 } from 'lucide-react';
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+  useSortable,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import { useAuth } from '@/components/AuthProvider';
 import { useI18n } from '@/lib/i18n';
+import { GuidedTour, GuidedTourStep } from '@/components/GuidedTour';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
+import { Separator } from '@/components/ui/separator';
 import { Progress } from '@/components/ui/progress';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
@@ -35,16 +63,23 @@ import { cn } from '@/lib/utils';
 import { getSubjects } from '@/lib/question-bank';
 import type { Subject } from '@/lib/types';
 import { getQuestionStatusCounts, emptyQuestionStatusCounts, type QuestionStatusCounts } from '@/lib/question-progress';
+import { CardCarousel } from '@/components/ui/card-carousel';
 import {
+  assessQuestionMastery,
   calculateDailyQuota,
-  calculateSubjectQuotas,
+  calculatePlannedSubjectQuotas,
+  calculateSuggestedSubjectConfidence,
+  computeChapterStats,
   generateTodayMissionSession,
+  generateIncorrectSession,
   getDueReviewChapters,
+  getPlannedChapterIdsForDate,
   splitQuotaForReview,
   type ChapterAttemptStats,
+  type PracticeAnswerChapterRow,
 } from '@/lib/smart-planner';
 import { saveUserStudySettings } from '@/lib/user-settings';
-import { saveStudySettings, defaultStudySettings, normalizeStudySettings, defaultDashboardWidgets, type DashboardWidgetKey, type DashboardWidgetVisibility } from '@/lib/study-settings';
+import { saveStudySettings, defaultStudySettings, normalizeStudySettings, defaultDashboardWidgets, type DashboardWidgetKey, type DashboardWidgetVisibility, type StudyPaceMode, type StudySubjectMode } from '@/lib/study-settings';
 import { SmartStudyCalendar } from '@/components/SmartStudyCalendar';
 
 type SubjectCountRow = {
@@ -53,6 +88,7 @@ type SubjectCountRow = {
 };
 
 type QuestionProgressRow = {
+  question_id: string;
   status: 'correct' | 'incorrect' | 'omitted';
   is_correct: boolean | null;
   time_spent_seconds: number | null;
@@ -65,6 +101,8 @@ type QuestionProgressRow = {
     } | null;
   } | null;
 };
+
+// type PracticeAnswerChapterRow is imported from smart-planner
 
 type SubjectPerformance = {
   name: string;
@@ -86,6 +124,7 @@ type DashboardData = {
   timeTodaySeconds: number;
   subjectPerformance: SubjectPerformance[];
   dailyCounts: Record<string, number>; // "YYYY-MM-DD" → count
+  dailyChapterCounts: Record<string, Record<string, number>>; // date → chapter_id → answered count
   recentAccuracy: number | null;       // last-7-day accuracy (null = no recent data)
   incorrectCount: number;              // total incorrect answers
   weeklyStudyTimeSeconds: number;      // study time in last 7 days
@@ -105,6 +144,7 @@ const emptyDashboardData: DashboardData = {
   streakDays: 0,
   timeTodaySeconds: 0,
   dailyCounts: {},
+  dailyChapterCounts: {},
   subjectPerformance: [],
   recentAccuracy: null,
   incorrectCount: 0,
@@ -206,6 +246,7 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
       timeTodaySeconds: 0,
       subjectPerformance: [],
       dailyCounts: {},
+      dailyChapterCounts: {},
       recentAccuracy: null,
       incorrectCount: 0,
       weeklyStudyTimeSeconds: 0,
@@ -218,17 +259,21 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
   const todayStartIso = startOfLocalDay(new Date()).toISOString();
   const weekAgoIso = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
 
-  const [subjectCountsResult, answersResult, attemptsResult, todaySessionsResult, weeklySessionsResult] = await Promise.all([
+  const [subjectCountsResult, answersResult, attemptsResult, chapterAnswersResult, todaySessionsResult, weeklySessionsResult] = await Promise.all([
     supabase
       .from('question_chapter_counts')
       .select('subject, count'),
     supabase
       .from('user_question_progress')
-      .select('status, is_correct, time_spent_seconds, last_answered_at, question_items(chapters(id, chapter, subject))')
+      .select('question_id, status, is_correct, time_spent_seconds, last_answered_at, question_items(chapters(id, chapter, subject))')
       .eq('user_id', userId),
     supabase
       .from('practice_answers')
       .select('id', { count: 'exact', head: true })
+      .eq('user_id', userId),
+    supabase
+      .from('practice_answers')
+      .select('question_id, is_correct, time_spent_seconds, confidence, answered_at, question_items(chapters(id, chapter, subject))')
       .eq('user_id', userId),
     // Today's practice sessions — source of truth for time spent
     supabase
@@ -275,6 +320,28 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
   answeredDates.forEach((dateStr) => {
     const key = startOfLocalDay(new Date(dateStr)).toISOString().slice(0, 10);
     dailyCounts[key] = (dailyCounts[key] ?? 0) + 1;
+  });
+
+  // Build per-day chapter counts from the complete answer history. This lets
+  // the study calendar recognize partial completion chapter by chapter.
+  const dailyChapterCounts: Record<string, Record<string, number>> = {};
+  const chapterAnswerRows = chapterAnswersResult.error
+    ? progressRows.map((row) => ({
+      question_id: row.question_id,
+      is_correct: row.is_correct,
+      time_spent_seconds: row.time_spent_seconds,
+      confidence: null,
+      answered_at: row.last_answered_at,
+      question_items: row.question_items,
+    }))
+    : (chapterAnswersResult.data ?? []) as PracticeAnswerChapterRow[];
+
+  chapterAnswerRows.forEach((answer) => {
+    const chapterId = answer.question_items?.chapters?.id;
+    if (!answer.answered_at || !chapterId) return;
+    const dateKey = startOfLocalDay(new Date(answer.answered_at)).toISOString().slice(0, 10);
+    dailyChapterCounts[dateKey] ??= {};
+    dailyChapterCounts[dateKey][chapterId] = (dailyChapterCounts[dateKey][chapterId] ?? 0) + 1;
   });
 
   const subjectStats = new Map<string, { correct: number; total: number }>();
@@ -353,27 +420,7 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
     : 0;
 
   // ── Per-chapter attempt aggregates (for spaced-repetition review queue) ──
-  const chapterStatsMap = new Map<string, ChapterAttemptStats>();
-  answers.forEach((answer) => {
-    const chapter = answer.question_items?.chapters;
-    if (!chapter?.id || !answer.last_answered_at) return;
-
-    const existing = chapterStatsMap.get(chapter.id) ?? {
-      chapterId: chapter.id,
-      chapterName: chapter.chapter ?? chapter.id,
-      subject: chapter.subject ?? 'Uncategorized',
-      attempts: 0,
-      correct: 0,
-      lastAttemptAt: answer.last_answered_at,
-    };
-
-    existing.attempts += 1;
-    if (answer.is_correct) existing.correct += 1;
-    if (answer.last_answered_at > existing.lastAttemptAt) existing.lastAttemptAt = answer.last_answered_at;
-
-    chapterStatsMap.set(chapter.id, existing);
-  });
-  const chapterStats = Array.from(chapterStatsMap.values());
+  const chapterStats = computeChapterStats(chapterAnswerRows);
 
   return {
     error: null,
@@ -386,6 +433,7 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
     timeTodaySeconds,
     subjectPerformance,
     dailyCounts,
+    dailyChapterCounts,
     recentAccuracy,
     incorrectCount,
     weeklyStudyTimeSeconds,
@@ -1180,11 +1228,236 @@ function ExamDatePickerFields({
 // ─── Subject Weight Planner Dialog ──────────────────────────────────────────
 
 type WeightSubject = { name: string; total: number; remaining: number };
+type WeightSubjectStats = WeightSubject & {
+  correct: number;
+  incorrect: number;
+  answered: number;
+  averageSeconds?: number;
+  riskyQuestionRatio?: number;
+  masteredQuestionRatio?: number;
+};
 
 function confidenceLevelKey(value: number): 'plan.confidenceStrong' | 'plan.confidenceMedium' | 'plan.confidenceWeak' {
   if (value >= 70) return 'plan.confidenceStrong';
   if (value >= 40) return 'plan.confidenceMedium';
   return 'plan.confidenceWeak';
+}
+
+type SubjectMetricView = 'confidence' | 'accuracy' | 'stability' | 'guessRisk' | 'avgTime' | 'sampleSize';
+
+/** Sample size needed before subject-confidence stats are considered reliable. */
+const SAMPLE_SIZE_TARGET = 30;
+/** Below this, an answer is likely a guess/skim rather than considered reasoning. */
+const TIME_FAST_LIMIT_SECONDS = 60;
+/** Above this, the answer time suggests the concept isn't yet fluent. */
+const TIME_SLOW_LIMIT_SECONDS = 120;
+
+const SUBJECT_METRIC_VIEWS: { key: SubjectMetricView; icon: typeof Gauge; labelKey: string }[] = [
+  { key: 'confidence', icon: Gauge, labelKey: 'dashboard.subjectMetrics.confidence' },
+  { key: 'accuracy', icon: Target, labelKey: 'dashboard.subjectMetrics.accuracy' },
+  { key: 'stability', icon: Repeat2, labelKey: 'dashboard.subjectMetrics.stability' },
+  { key: 'guessRisk', icon: AlertTriangle, labelKey: 'dashboard.subjectMetrics.guessRisk' },
+  { key: 'avgTime', icon: Clock, labelKey: 'dashboard.subjectMetrics.avgTime' },
+  { key: 'sampleSize', icon: Database, labelKey: 'dashboard.subjectMetrics.sampleSize' },
+];
+
+/**
+ * Donut-style gauge for the 0-100 composite confidence score. Uses a
+ * monochrome violet ramp (depth of knowledge) rather than red/amber/green so
+ * it doesn't visually collide with accuracy or risk indicators.
+ */
+function ConfidenceGauge({ value, color, delay }: { value: number; color: string; delay: number }) {
+  const radius = 40;
+  const circumference = Math.PI * radius;
+  const clamped = Math.max(0, Math.min(100, value));
+  const offset = circumference * (1 - clamped / 100);
+  return (
+    <svg viewBox="0 0 100 52" className="h-9 w-20 shrink-0" aria-hidden="true">
+      <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="hsl(var(--muted))" strokeWidth="8" strokeLinecap="round" />
+      <path
+        d="M 10 50 A 40 40 0 0 1 90 50"
+        fill="none"
+        className={cn('transition-all duration-700', color)}
+        stroke="currentColor"
+        strokeWidth="8"
+        strokeLinecap="round"
+        strokeDasharray={circumference}
+        strokeDashoffset={offset}
+        style={{ transitionDelay: `${delay}ms` }}
+      />
+    </svg>
+  );
+}
+
+/** Circular progress ring with the accuracy percentage in the center. */
+function AccuracyRing({ ratio, color, label, delay }: { ratio: number; color: string; label: string; delay: number }) {
+  const radius = 26;
+  const circumference = 2 * Math.PI * radius;
+  const clamped = Math.max(0, Math.min(1, ratio));
+  const dash = circumference * clamped;
+  return (
+    <div className="relative h-14 w-14 shrink-0">
+      <svg viewBox="0 0 64 64" className="h-14 w-14 -rotate-90" aria-hidden="true">
+        <circle cx="32" cy="32" r={radius} fill="none" stroke="hsl(var(--muted))" strokeWidth="5" />
+        <circle
+          cx="32" cy="32" r={radius} fill="none"
+          className={cn('transition-all duration-700', color)}
+          stroke="currentColor"
+          strokeWidth="5"
+          strokeLinecap="round"
+          strokeDasharray={`${dash} ${circumference - dash}`}
+          style={{ transitionDelay: `${delay}ms` }}
+        />
+      </svg>
+      <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-slate-700 tabular-nums">
+        {label}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Five-segment bar for the discrete mastery/stability level. Filled
+ * segments use a single semantic color; unfilled segments use a light tint
+ * of the same color so the row doesn't turn into a color palette. When
+ * `empty` (no answers yet), all segments fall back to neutral gray so a
+ * "0% mastered" subject isn't visually confused with "never attempted".
+ */
+function StabilitySegments({ value, empty, delay }: { value: number; empty?: boolean; delay: number }) {
+  const segments = 5;
+  const filled = Math.round((Math.max(0, Math.min(100, value)) / 100) * segments);
+  return (
+    <div className="flex h-2 w-full gap-1">
+      {Array.from({ length: segments }).map((_, i) => (
+        <div
+          key={i}
+          className={cn(
+            'flex-1 rounded-full transition-all duration-700',
+            empty ? 'bg-slate-100' : i < filled ? 'bg-emerald-400' : 'bg-emerald-100',
+          )}
+          style={{ transitionDelay: `${delay + i * 40}ms` }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/**
+ * Color-zoned risk scale with non-linear zones (50% / 25% / 25%) so a
+ * subject tips into the amber/red zone quickly once guess risk rises, and a
+ * triangle marker that sits above the track instead of covering it. When
+ * `empty`, the zones collapse to a flat gray track with no marker, since we
+ * shouldn't imply the subject sits in any risk zone yet.
+ */
+function RiskScale({ value, empty, delay }: { value: number; empty?: boolean; delay: number }) {
+  if (empty) {
+    return <div className="h-2 w-full rounded-full bg-slate-100" />;
+  }
+  return (
+    <div className="relative pt-1.5">
+      <div className="flex h-2 w-full overflow-hidden rounded-full">
+        <div className="h-full bg-green-200" style={{ width: '50%' }} />
+        <div className="h-full bg-amber-200" style={{ width: '25%' }} />
+        <div className="h-full bg-red-200" style={{ width: '25%' }} />
+      </div>
+      <div
+        className="absolute top-0 h-0 w-0 border-x-[4px] border-x-transparent border-t-[5px] border-t-slate-600 transition-all duration-700"
+        style={{ left: `${Math.max(0, Math.min(100, value))}%`, transform: 'translateX(-4px)', transitionDelay: `${delay}ms` }}
+      />
+    </div>
+  );
+}
+
+/**
+ * Interval bullet chart for average answer time: three zones (too fast /
+ * sweet spot / too slow) so the bar's color reflects pacing quality, not
+ * just raw speed. When `empty`, the zone backgrounds collapse to a flat gray
+ * track since there's no average time to compare against the zones yet.
+ */
+function TimeIntervalBar({ avgSeconds, fastLimit, slowLimit, empty, delay }: { avgSeconds: number; fastLimit: number; slowLimit: number; empty?: boolean; delay: number }) {
+  if (empty) {
+    return <div className="h-2 w-full rounded-full bg-slate-100" />;
+  }
+  const scaleMax = slowLimit * 1.5;
+  const value = avgSeconds > 0 ? Math.min(100, (avgSeconds / scaleMax) * 100) : 0;
+  const zoneColor = avgSeconds <= 0
+    ? 'bg-slate-200'
+    : avgSeconds < fastLimit
+      ? 'bg-rose-400'
+      : avgSeconds <= slowLimit
+        ? 'bg-emerald-400'
+        : 'bg-amber-400';
+  return (
+    <div className="relative h-2 w-full overflow-hidden rounded-full">
+      <div className="flex h-full w-full">
+        <div className="h-full bg-rose-100" style={{ width: `${(fastLimit / scaleMax) * 100}%` }} />
+        <div className="h-full bg-emerald-100" style={{ width: `${((slowLimit - fastLimit) / scaleMax) * 100}%` }} />
+        <div className="h-full bg-amber-100" style={{ width: `${((scaleMax - slowLimit) / scaleMax) * 100}%` }} />
+      </div>
+      <div
+        className={cn('absolute inset-y-0 left-0 rounded-full transition-all duration-700', zoneColor)}
+        style={{ width: `${Math.max(value, avgSeconds > 0 ? 2 : 0)}%`, transitionDelay: `${delay}ms` }}
+      />
+    </div>
+  );
+}
+
+/**
+ * "Confidence threshold" progress bar for sample size: a simple fill toward
+ * the statistical-reliability target, flipping to a checkmark badge once met
+ * instead of overshooting a bullet-chart target line.
+ */
+function SampleSizeProgress({ total, target, delay }: { total: number; target: number; delay: number }) {
+  const done = total >= target;
+  const ratio = Math.min(100, (total / target) * 100);
+  return (
+    <div className="flex w-full items-center gap-1.5">
+      {done && <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-500" />}
+      {total === 0 && <Lock className="h-3.5 w-3.5 shrink-0 text-slate-300" />}
+      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100">
+        <div
+          className={cn('h-full rounded-full transition-all duration-700', done ? 'bg-emerald-400' : 'bg-slate-400')}
+          style={{ width: `${Math.max(ratio, total > 0 ? 2 : 0)}%`, transitionDelay: `${delay}ms` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function SortableSubjectItem({ id, name }: { id: string; name: string }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      className={cn(
+        'flex items-center gap-3 rounded-md border bg-white px-3 py-2 text-sm text-slate-700',
+        isDragging && 'opacity-50 ring-2 ring-primary ring-offset-2 z-10 relative'
+      )}
+    >
+      <div
+        {...attributes}
+        {...listeners}
+        className="cursor-grab hover:text-primary hover:bg-slate-50 p-1 rounded active:cursor-grabbing text-slate-400 touch-none"
+      >
+        <GripVertical className="h-4 w-4" />
+      </div>
+      <span className="font-medium">{name}</span>
+    </div>
+  );
 }
 
 function SubjectWeightPanel({
@@ -1197,13 +1470,17 @@ function SubjectWeightPanel({
   studyDays,
   triageWeeks,
   dailyStudyHours,
+  paceMode,
+  subjectMode,
+  subjectOrder,
+  passThreshold,
   totalQuestions,
   practicedQuestions,
   saving,
   onSave,
 }: {
   onCancel: () => void;
-  subjects: WeightSubject[];
+  subjects: WeightSubjectStats[];
   confidence: Record<string, number>;
   defaultConfidence: Record<string, number>;
   examDate: string | null;
@@ -1211,10 +1488,14 @@ function SubjectWeightPanel({
   studyDays: number[];
   triageWeeks: number;
   dailyStudyHours: number;
+  paceMode: StudyPaceMode;
+  subjectMode: StudySubjectMode;
+  subjectOrder?: string[];
+  passThreshold: number;
   totalQuestions: number;
   practicedQuestions: number;
   saving: boolean;
-  onSave: (next: { confidence: Record<string, number>; studyDays: number[]; examDate: string | null; examState: string | null; dailyStudyHours: number }) => void;
+  onSave: (next: { confidence: Record<string, number>; studyDays: number[]; examDate: string | null; examState: string | null; dailyStudyHours: number; paceMode: StudyPaceMode; subjectMode: StudySubjectMode; subjectOrder?: string[]; passThreshold: number }) => void;
 }) {
   const { t } = useI18n();
   const dayKeys = ['plan.day.sun', 'plan.day.mon', 'plan.day.tue', 'plan.day.wed', 'plan.day.thu', 'plan.day.fri', 'plan.day.sat'] as const;
@@ -1224,15 +1505,50 @@ function SubjectWeightPanel({
   const [tempExamDate, setTempExamDate] = useState<string | null>(examDate);
   const [tempExamState, setTempExamState] = useState<string | null>(examState ?? null);
   const [tempDailyStudyHours, setTempDailyStudyHours] = useState<number>(dailyStudyHours);
+  const [tempPaceMode, setTempPaceMode] = useState<StudyPaceMode>(paceMode);
+  const [tempSubjectMode, setTempSubjectMode] = useState<StudySubjectMode>(subjectMode);
+  const [tempSubjectOrder, setTempSubjectOrder] = useState<string[]>(
+    subjectOrder?.length ? subjectOrder : subjects.map(s => s.name)
+  );
+  const [tempPassThreshold, setTempPassThreshold] = useState<number>(passThreshold);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  );
+
+  const handleDragEnd = (event: any) => {
+    const { active, over } = event;
+    if (over && active.id !== over.id) {
+      setTempSubjectOrder((items) => {
+        const oldIndex = items.indexOf(active.id);
+        const newIndex = items.indexOf(over.id);
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  };
+
+  const suggestedConfidence = useMemo(
+    () => calculateSuggestedSubjectConfidence(subjects.map((subject) => ({
+      name: subject.name,
+      correct: subject.correct,
+      incorrect: subject.incorrect,
+      total: subject.answered,
+      averageSeconds: subject.averageSeconds,
+      riskyQuestionRatio: subject.riskyQuestionRatio,
+      masteredQuestionRatio: subject.masteredQuestionRatio,
+    }))),
+    [subjects],
+  );
 
   const quotaPreview = useMemo(
-    () => calculateDailyQuota(totalQuestions, practicedQuestions, tempExamDate, tempStudyDays, triageWeeks, tempDailyStudyHours),
-    [totalQuestions, practicedQuestions, tempExamDate, tempStudyDays, triageWeeks, tempDailyStudyHours],
+    () => calculateDailyQuota(totalQuestions, practicedQuestions, tempExamDate, tempStudyDays, triageWeeks, tempDailyStudyHours, 0, tempPaceMode),
+    [totalQuestions, practicedQuestions, tempExamDate, tempStudyDays, triageWeeks, tempDailyStudyHours, tempPaceMode],
   );
 
   const subjectQuotas = useMemo(
-    () => calculateSubjectQuotas(subjects.map((s) => ({ name: s.name, remaining: s.remaining })), quotaPreview.quota, tempConfidence),
-    [subjects, quotaPreview.quota, tempConfidence],
+    () => calculatePlannedSubjectQuotas(subjects.map((s) => ({ name: s.name, remaining: s.remaining })), quotaPreview.newQuota, tempConfidence, tempSubjectMode, quotaPreview.triageMode, tempStudyDays, new Date(), tempSubjectOrder),
+    [subjects, quotaPreview.newQuota, tempConfidence, tempSubjectMode, quotaPreview.triageMode, tempStudyDays, tempSubjectOrder],
   );
 
   const toggleStudyDay = (day: number) => {
@@ -1323,8 +1639,84 @@ function SubjectWeightPanel({
                 💡 {t('plan.timeBasedQuotaHint', {
                   min: quotaPreview.timeEstimate.min,
                   max: quotaPreview.timeEstimate.max,
+                  mode: t(`plan.pace.${tempPaceMode}`),
                 })}
               </p>
+            )}
+          </div>
+
+          <div>
+            <Label className="text-xs text-muted-foreground">{t('plan.passThresholdLabel')}</Label>
+            <div className="mt-1.5 flex items-center gap-2">
+              <input
+                type="number"
+                min={1}
+                max={100}
+                step={1}
+                value={tempPassThreshold}
+                onChange={(e) => setTempPassThreshold(Math.min(100, Math.max(1, Number(e.target.value) || 1)))}
+                className="w-24 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/30"
+              />
+              <span className="text-sm text-muted-foreground">%</span>
+            </div>
+          </div>
+
+          <div>
+            <Label className="text-xs text-muted-foreground">{t('plan.paceModeLabel')}</Label>
+            <div className="mt-1.5 grid grid-cols-3 gap-2">
+              {(['leisure', 'balanced', 'intensive'] as StudyPaceMode[]).map((mode) => (
+                <button
+                  key={mode}
+                  type="button"
+                  onClick={() => setTempPaceMode(mode)}
+                  className={cn(
+                    'rounded-md border px-2 py-2 text-xs font-medium transition-colors',
+                    tempPaceMode === mode
+                      ? 'border-primary bg-primary text-primary-foreground'
+                      : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50 hover:bg-primary/5',
+                  )}
+                >
+                  {t(`plan.pace.${mode}`)}
+                </button>
+              ))}
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground">{t(`plan.pace.${tempPaceMode}.hint`)}</p>
+          </div>
+
+          <div>
+            <Label className="text-xs text-muted-foreground">{t('plan.subjectModeLabel')}</Label>
+            <div className="mt-1.5 grid grid-cols-2 gap-2">
+              {(['singleThenMixed', 'mixed'] as StudySubjectMode[]).map((mode) => (
+                <button
+                  key={mode}
+                  type="button"
+                  onClick={() => setTempSubjectMode(mode)}
+                  className={cn(
+                    'rounded-md border px-2 py-2 text-xs font-medium transition-colors',
+                    tempSubjectMode === mode
+                      ? 'border-primary bg-primary text-primary-foreground'
+                      : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50 hover:bg-primary/5',
+                  )}
+                >
+                  {t(`plan.subjectMode.${mode}`)}
+                </button>
+              ))}
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground">{t(`plan.subjectMode.${tempSubjectMode}.hint`)}</p>
+            {tempSubjectMode === 'singleThenMixed' && (
+              <div className="mt-4 border-t border-slate-100 pt-4 animate-in fade-in slide-in-from-top-1 duration-200">
+                <Label className="text-xs text-muted-foreground mb-1.5 block">{t('plan.subjectOrderLabel')}</Label>
+                <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+                  <SortableContext items={tempSubjectOrder} strategy={verticalListSortingStrategy}>
+                    <div className="flex flex-col gap-1.5">
+                      {tempSubjectOrder.map(name => (
+                        <SortableSubjectItem key={name} id={name} name={name} />
+                      ))}
+                    </div>
+                  </SortableContext>
+                </DndContext>
+                <p className="mt-2 text-xs text-muted-foreground">{t('plan.subjectOrderHint')}</p>
+              </div>
             )}
           </div>
         </div>
@@ -1341,6 +1733,7 @@ function SubjectWeightPanel({
           <div className="space-y-4">
             {subjects.map((subject) => {
               const value = tempConfidence[subject.name] ?? 50;
+              const suggested = suggestedConfidence[subject.name] ?? 50;
               return (
                 <div key={subject.name}>
                   <div className="flex items-center justify-between text-sm">
@@ -1352,6 +1745,13 @@ function SubjectWeightPanel({
                       </span>
                     </span>
                   </div>
+                  <p className="mt-1 text-[11px] text-muted-foreground">
+                    {t('plan.confidenceSuggested', {
+                      value: suggested,
+                      correct: subject.correct,
+                      incorrect: subject.incorrect,
+                    })}
+                  </p>
                   <Slider
                     className="mt-2"
                     value={[value]}
@@ -1377,6 +1777,10 @@ function SubjectWeightPanel({
             days: quotaPreview.availableDays,
             studyDays: tempStudyDays.length,
             quota: quotaPreview.quota,
+            newQuota: quotaPreview.newQuota,
+            reviewQuota: quotaPreview.reviewQuota,
+            learningDays: quotaPreview.learningDays,
+            reviewDays: quotaPreview.reviewDays,
           })}
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -1392,6 +1796,9 @@ function SubjectWeightPanel({
         <div className="rounded-lg bg-primary text-primary-foreground p-4 text-center">
           <p className="text-xs font-semibold uppercase tracking-wider opacity-80">{t('plan.todayQuotaLabel')}</p>
           <p className="text-2xl font-bold mt-1">{quotaPreview.quota} {t('plan.questionsUnit')}</p>
+          <p className="text-xs opacity-80 mt-1">
+            {t('plan.todayQuotaSplit', { newQuota: quotaPreview.newQuota, reviewQuota: quotaPreview.reviewQuota })}
+          </p>
           {quotaPreview.timeCapped && (
             <p className="text-xs opacity-80 mt-1">{t('plan.timeCapHint')}</p>
           )}
@@ -1407,7 +1814,7 @@ function SubjectWeightPanel({
           type="button"
           className="flex-1 h-11 px-5 text-sm font-semibold"
           disabled={saving}
-          onClick={() => onSave({ confidence: tempConfidence, studyDays: tempStudyDays, examDate: tempExamDate, examState: tempExamState, dailyStudyHours: tempDailyStudyHours })}
+          onClick={() => onSave({ confidence: tempConfidence, studyDays: tempStudyDays, examDate: tempExamDate, examState: tempExamState, dailyStudyHours: tempDailyStudyHours, paceMode: tempPaceMode, subjectMode: tempSubjectMode, subjectOrder: tempSubjectOrder, passThreshold: tempPassThreshold })}
         >
           {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           {t('plan.save')}
@@ -1425,9 +1832,11 @@ export default function DashboardPage() {
   const [examDate, setExamDate] = useState<string | null>(null);
   const [examState, setExamState] = useState<string | null>(null);
   const [visible, setVisible] = useState(false);
+  const [subjectMetricView, setSubjectMetricView] = useState<SubjectMetricView>('confidence');
 
   // ── Today's Mission (Smart Plan) ─────────────────────────────────────────
   const [missionSubjects, setMissionSubjects] = useState<Subject[]>([]);
+  const [selectedTaskType, setSelectedTaskType] = useState<'new' | 'review' | 'incorrect'>('new');
   const [missionStatusCounts, setMissionStatusCounts] = useState<QuestionStatusCounts>(emptyQuestionStatusCounts);
   const [generatingMission, setGeneratingMission] = useState(false);
   const [showWeightDialog, setShowWeightDialog] = useState(false);
@@ -1436,6 +1845,74 @@ export default function DashboardPage() {
   // ── Widget visibility ────────────────────────────────────────────────────
   const [widgetVisibility, setWidgetVisibility] = useState<DashboardWidgetVisibility>(defaultDashboardWidgets);
   const [showWidgetPanel, setShowWidgetPanel] = useState(false);
+
+  // ── Onboarding tour ───────────────────────────────────────────────────────
+  const [tourOpen, setTourOpen] = useState(false);
+  const tourSteps = useMemo<GuidedTourStep[]>(() => [
+    {
+      selector: '[data-tour="dashboard-mission"]',
+      title: t('tour.dashboardMissionTitle'),
+      description: t('tour.dashboardMissionDescription'),
+    },
+    {
+      selector: '[data-tour="dashboard-review"]',
+      title: t('tour.dashboardReviewTitle'),
+      description: t('tour.dashboardReviewDescription'),
+    },
+    {
+      selector: '[data-tour="dashboard-calendar"]',
+      title: t('tour.dashboardCalendarTitle'),
+      description: t('tour.dashboardCalendarDescription'),
+    },
+    {
+      selector: '[data-tour="dashboard-stats"]',
+      title: t('tour.dashboardStatsTitle'),
+      description: t('tour.dashboardStatsDescription'),
+    },
+    {
+      selector: '[data-tour="concept-items"]',
+      title: t('tour.conceptItemsTitle'),
+      description: t('tour.conceptItemsDescription'),
+    },
+    {
+      selector: '[data-tour="create-test"]',
+      title: t('tour.createTestTitle'),
+      description: t('tour.createTestDescription'),
+    },
+    {
+      selector: '[data-tour="practice-review-items"]',
+      title: t('tour.practiceReviewItemsTitle'),
+      description: t('tour.practiceReviewItemsDescription'),
+    },
+    {
+      selector: '[data-tour="settings"]',
+      title: t('tour.settingsTitle'),
+      description: t('tour.settingsDescription'),
+    },
+    {
+      selector: '[data-tour="profile"]',
+      title: t('tour.profileTitle'),
+      description: t('tour.profileDescription'),
+    },
+  ], [t]);
+
+  // Auto-open the tour the first time a user reaches the dashboard
+  useEffect(() => {
+    if (!profile) return;
+    if (profile.study_settings?.hasSeenDashboardTour) return;
+    setTourOpen(true);
+  }, [profile]);
+
+  const closeTour = (open: boolean) => {
+    setTourOpen(open);
+    if (open || !user?.id) return;
+    const updatedSettings = normalizeStudySettings({
+      ...(profile?.study_settings ?? defaultStudySettings),
+      hasSeenDashboardTour: true,
+    });
+    saveStudySettings(updatedSettings);
+    void saveUserStudySettings(user.id, updatedSettings).then(() => refreshProfile());
+  };
 
   useEffect(() => {
     setVisible(false);
@@ -1535,33 +2012,60 @@ export default function DashboardPage() {
   const studyDays = profile?.study_settings?.studyPlan?.studyDaysPerWeek ?? [1, 2, 3, 4, 5];
   const triageWeeks = profile?.study_settings?.studyPlan?.triageWeeks ?? 2;
   const dailyStudyHours = profile?.study_settings?.studyPlan?.dailyStudyHours ?? 3;
-
-  const quotaInfo = useMemo(
-    () => calculateDailyQuota(missionTotalQuestions, missionPracticedQuestions, examDate, studyDays, triageWeeks, dailyStudyHours),
-    [missionTotalQuestions, missionPracticedQuestions, examDate, studyDays, triageWeeks, dailyStudyHours],
-  );
+  const paceMode = profile?.study_settings?.studyPlan?.paceMode ?? 'balanced';
+  const subjectMode = profile?.study_settings?.studyPlan?.subjectMode ?? 'singleThenMixed';
 
   const subjectsWithRemaining = useMemo(
     () => missionSubjects.map((subject) => {
       const performance = dashboardData.subjectPerformance.find((p) => p.name === subject.name);
       const answered = performance?.total ?? 0;
+      const chapterStats = dashboardData.chapterStats.filter((chapter) => chapter.subject === subject.name);
+      const timedAttempts = chapterStats.reduce((sum, chapter) => sum + (chapter.timedAttempts ?? 0), 0);
+      const totalTimeSeconds = chapterStats.reduce((sum, chapter) => sum + (chapter.totalTimeSeconds ?? 0), 0);
+      const assessedQuestions = chapterStats.reduce((sum, chapter) => sum + (chapter.questionCount ?? 0), 0);
+      const riskyQuestions = chapterStats.reduce((sum, chapter) => sum + (chapter.riskyQuestionCount ?? 0), 0);
+      const masteredQuestions = chapterStats.reduce((sum, chapter) => sum + (chapter.masteredQuestionCount ?? 0), 0);
       return {
         name: subject.name,
         total: subject.count,
         remaining: Math.max(0, subject.count - answered),
+        correct: performance?.correct ?? 0,
+        incorrect: Math.max(0, answered - (performance?.correct ?? 0)),
+        answered,
+        averageSeconds: timedAttempts > 0 ? totalTimeSeconds / timedAttempts : 0,
+        riskyQuestionRatio: assessedQuestions > 0 ? riskyQuestions / assessedQuestions : 0,
+        masteredQuestionRatio: assessedQuestions > 0 ? masteredQuestions / assessedQuestions : 0,
       };
     }),
-    [missionSubjects, dashboardData.subjectPerformance],
+    [missionSubjects, dashboardData.subjectPerformance, dashboardData.chapterStats],
+  );
+
+  const subjectMetricsByName = useMemo(
+    () => new Map(subjectsWithRemaining.map((subject) => [subject.name, subject])),
+    [subjectsWithRemaining],
+  );
+
+  const dueReviewChapters = useMemo(
+    () => getDueReviewChapters(dashboardData.chapterStats),
+    [dashboardData.chapterStats],
+  );
+
+  const quotaInfo = useMemo(
+    () => calculateDailyQuota(missionTotalQuestions, missionPracticedQuestions, examDate, studyDays, triageWeeks, dailyStudyHours, dueReviewChapters.length, paceMode),
+    [missionTotalQuestions, missionPracticedQuestions, examDate, studyDays, triageWeeks, dailyStudyHours, dueReviewChapters.length, paceMode],
   );
 
   const defaultConfidence = useMemo(() => {
-    const result: Record<string, number> = {};
-    subjectsWithRemaining.forEach((subject) => {
-      const performance = dashboardData.subjectPerformance.find((p) => p.name === subject.name);
-      result[subject.name] = performance && performance.total > 0 ? performance.score : 50;
-    });
-    return result;
-  }, [subjectsWithRemaining, dashboardData.subjectPerformance]);
+    return calculateSuggestedSubjectConfidence(subjectsWithRemaining.map((subject) => ({
+      name: subject.name,
+      correct: subject.correct,
+      incorrect: subject.incorrect,
+      total: subject.answered,
+      averageSeconds: subject.averageSeconds,
+      riskyQuestionRatio: subject.riskyQuestionRatio,
+      masteredQuestionRatio: subject.masteredQuestionRatio,
+    })));
+  }, [subjectsWithRemaining]);
 
   const savedConfidence = profile?.study_settings?.studyPlan?.subjectConfidence;
 
@@ -1570,31 +2074,57 @@ export default function DashboardPage() {
     [defaultConfidence, savedConfidence],
   );
 
-  const dueReviewChapters = useMemo(
-    () => getDueReviewChapters(dashboardData.chapterStats),
-    [dashboardData.chapterStats],
-  );
-
   const reviewSplit = useMemo(
-    () => splitQuotaForReview(quotaInfo.quota, dueReviewChapters.length),
-    [quotaInfo.quota, dueReviewChapters.length],
+    () => splitQuotaForReview(quotaInfo.quota, dueReviewChapters.length, quotaInfo.reviewQuota),
+    [quotaInfo.quota, quotaInfo.reviewQuota, dueReviewChapters.length],
   );
 
   const subjectQuotas = useMemo(
-    () => calculateSubjectQuotas(subjectsWithRemaining, reviewSplit.newQuota, subjectConfidence),
-    [subjectsWithRemaining, reviewSplit.newQuota, subjectConfidence],
+    () => calculatePlannedSubjectQuotas(subjectsWithRemaining, reviewSplit.newQuota, subjectConfidence, subjectMode, quotaInfo.triageMode, studyDays),
+    [subjectsWithRemaining, reviewSplit.newQuota, subjectConfidence, subjectMode, quotaInfo.triageMode, studyDays],
   );
 
-  const handleStartMission = async () => {
+  const plannedNewChapterIds = useMemo(
+    () => getPlannedChapterIdsForDate(missionSubjects, subjectQuotas, subjectMode, quotaInfo.triageMode, studyDays),
+    [missionSubjects, subjectQuotas, subjectMode, quotaInfo.triageMode, studyDays],
+  );
+
+  const handleStartMission = async (taskType: 'new' | 'review' | 'incorrect') => {
     if (!user) return;
     setGeneratingMission(true);
+    
+    if (taskType === 'incorrect') {
+      const result = await generateIncorrectSession(user.id, Math.max(20, reviewSplit.reviewQuota));
+      if (result) {
+        router.push(`/test?id=${encodeURIComponent(result.session.id)}`);
+      } else {
+        setGeneratingMission(false);
+        alert(t('plan.noQuestionsAlert'));
+      }
+      return;
+    }
+
+    let targetQuota = quotaInfo.quota;
+    let reviewQuota = reviewSplit.reviewQuota;
+    let reviewChapterIds = dueReviewChapters.map((c) => c.chapterId);
+
+    if (taskType === 'new') {
+      targetQuota = reviewSplit.newQuota;
+      reviewQuota = 0;
+      reviewChapterIds = [];
+    } else if (taskType === 'review') {
+      targetQuota = reviewSplit.reviewQuota;
+      reviewQuota = reviewSplit.reviewQuota;
+    }
+
     const result = await generateTodayMissionSession(
       user.id,
-      quotaInfo.quota,
+      targetQuota,
       quotaInfo.triageMode,
       subjectQuotas,
-      dueReviewChapters.map((c) => c.chapterId),
-      reviewSplit.reviewQuota,
+      reviewChapterIds,
+      reviewQuota,
+      plannedNewChapterIds,
     );
     if (result) {
       router.push(`/test?id=${encodeURIComponent(result.session.id)}`);
@@ -1604,16 +2134,21 @@ export default function DashboardPage() {
     }
   };
 
-  const handleSaveWeights = async (next: { confidence: Record<string, number>; studyDays: number[]; examDate: string | null; examState: string | null; dailyStudyHours: number }) => {
+  const handleSaveWeights = async (next: { confidence: Record<string, number>; studyDays: number[]; examDate: string | null; examState: string | null; dailyStudyHours: number; paceMode: StudyPaceMode; subjectMode: StudySubjectMode; subjectOrder?: string[]; passThreshold: number }) => {
     if (!user || !profile) return;
     setSavingWeights(true);
     const updatedSettings = {
       ...(profile.study_settings ?? defaultStudySettings),
       studyPlan: {
+        ...(profile.study_settings?.studyPlan ?? {}),
         studyDaysPerWeek: next.studyDays,
         triageWeeks,
         subjectConfidence: next.confidence,
         dailyStudyHours: next.dailyStudyHours,
+        paceMode: next.paceMode,
+        subjectMode: next.subjectMode,
+        subjectOrder: next.subjectOrder,
+        passThreshold: next.passThreshold,
       },
     };
     saveStudySettings(updatedSettings);
@@ -1649,7 +2184,7 @@ export default function DashboardPage() {
     [dashboardData.subjectPerformance],
   );
 
-  const [insightIndex, setInsightIndex] = useState(0);
+
 
   // Each slide is a compact metric card; 2 are grouped per carousel page
   type InsightCard = { id: string; icon: React.ReactNode; label: string; value: React.ReactNode; sub: React.ReactNode; color: string; href?: string };
@@ -1772,39 +2307,18 @@ export default function DashboardPage() {
     return cards;
   }, [strongestSubject, weakestSubject, dashboardData, t]);
 
-  // Group cards into pages of 2
-  const insightPages = useMemo(() => {
-    const pages: InsightCard[][] = [];
-    for (let i = 0; i < insightCards.length; i += 2) {
-      pages.push(insightCards.slice(i, i + 2));
-    }
-    return pages;
-  }, [insightCards]);
 
-  // insightIndex is now the PAGE index
-  const totalInsightPages = insightPages.length;
-
-  // Auto-advance carousel every 10 seconds
-  useEffect(() => {
-    if (totalInsightPages <= 1) return;
-    const timer = setInterval(() => setInsightIndex((i) => (i + 1) % totalInsightPages), 10000);
-    return () => clearInterval(timer);
-  }, [totalInsightPages]);
 
   const userFirstName = displayNameFromProfile(profile?.full_name, profile?.email ?? user?.email);
-  const dayKeys = ['plan.day.sun', 'plan.day.mon', 'plan.day.tue', 'plan.day.wed', 'plan.day.thu', 'plan.day.fri', 'plan.day.sat'] as const;
   const remainingQuestions = Math.max(dashboardData.totalQuestions - dashboardData.solvedQuestions, 0);
-  const nextMilestone = dashboardData.solvedQuestions === 0
-    ? Math.min(25, dashboardData.totalQuestions || 25)
-    : Math.max(10, 50 - (dashboardData.solvedQuestions % 50));
 
-  const SAFE_PASS_THRESHOLD = 75;
+  const SAFE_PASS_THRESHOLD = profile?.study_settings?.studyPlan?.passThreshold ?? 75;
   const completionRate = dashboardData.totalQuestions > 0
     ? (dashboardData.solvedQuestions / dashboardData.totalQuestions) * 100
     : 0;
-  const streakBadgeMilestones: Array<{ days: number; key: 'dashboard.badge.discipline' | 'dashboard.badge.consistency' | 'dashboard.badge.master' }> = [
-    { days: 7, key: 'dashboard.badge.discipline' },
-    { days: 30, key: 'dashboard.badge.consistency' },
+  const streakBadgeMilestones: Array<{ days: number; key: any }> = [
+    { days: 7, key: 'badge.discipline.title' },
+    { days: 30, key: 'badge.consistency.title' },
     { days: 100, key: 'dashboard.badge.master' },
   ];
   const nextStreakBadge = streakBadgeMilestones.find((m) => dashboardData.streakDays < m.days);
@@ -1823,7 +2337,7 @@ export default function DashboardPage() {
           visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
         )}
       >
-        <header className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <header className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
           {/* Left: title + badge */}
           <div className="space-y-2.5 min-w-0">
             <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight">
@@ -1846,8 +2360,30 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Right: action buttons — aligned to bottom of left column */}
-          <div className="flex flex-row gap-2.5 shrink-0">
+          {/* Right: utility row + action buttons */}
+          <div className="flex flex-col items-end gap-8 shrink-0">
+            {/* Utility row — Screen Options / Help style */}
+            <div className="flex gap-2 -mt-5 md:-mt-8">
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-7 px-2.5 text-xs font-medium text-slate-600 border-slate-300 bg-white hover:bg-slate-50"
+                onClick={() => setTourOpen(true)}
+              >
+                {t('dashboard.launchTutorial')}
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-7 px-2.5 text-xs font-medium text-slate-600 border-slate-300 bg-white hover:bg-slate-50 gap-1"
+                onClick={() => setShowWidgetPanel((v) => !v)}
+              >
+                {t('dashboard.customizeWidgets')}
+                {showWidgetPanel ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
+              </Button>
+            </div>
+
+          <div className="flex flex-row flex-wrap gap-2.5 shrink-0">
             <Button
               variant="outline"
               className="flex-1 sm:flex-none h-11 px-5 text-sm shadow-sm gap-2"
@@ -1856,20 +2392,13 @@ export default function DashboardPage() {
               <SlidersHorizontal className="h-4 w-4" />
               {t('dashboard.customWeights')}
             </Button>
-            <Button
-              variant="outline"
-              className="flex-1 sm:flex-none h-11 px-5 text-sm shadow-sm gap-2"
-              onClick={() => setShowWidgetPanel((v) => !v)}
-            >
-              <Settings className="h-4 w-4" />
-              {t('dashboard.customizeWidgets')}
-            </Button>
             <Button asChild className="flex-1 sm:flex-none h-11 px-5 text-sm font-semibold shadow-md shadow-primary/20">
               <Link href="/create" className="flex items-center justify-center gap-2">
                 <Play className="w-4 h-4 fill-current shrink-0" />
                 {t('dashboard.startNewSession')}
               </Link>
             </Button>
+          </div>
           </div>
         </header>
 
@@ -1890,7 +2419,7 @@ export default function DashboardPage() {
 
         {/* Today's Mission (Smart Plan) */}
         {widgetVisibility.todaysMission && (
-        <Card className="border-primary/20 bg-primary/5 shadow-sm transition-all duration-500 hover:shadow-md">
+        <Card data-tour="dashboard-mission" className="border-primary/20 bg-primary/5 shadow-sm transition-all duration-500 hover:shadow-md">
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between gap-2">
               <CardTitle className="text-base font-semibold flex items-center gap-2">
@@ -1924,6 +2453,10 @@ export default function DashboardPage() {
                 studyDays={studyDays}
                 triageWeeks={triageWeeks}
                 dailyStudyHours={dailyStudyHours}
+                paceMode={paceMode}
+                subjectMode={subjectMode}
+                subjectOrder={profile?.study_settings?.studyPlan?.subjectOrder}
+                passThreshold={SAFE_PASS_THRESHOLD}
                 totalQuestions={missionTotalQuestions}
                 practicedQuestions={missionPracticedQuestions}
                 saving={savingWeights}
@@ -2002,28 +2535,6 @@ export default function DashboardPage() {
                   </div>
                 </div>
 
-                {/* Weekly routine */}
-                <div className="flex justify-between pt-1">
-                  {dayKeys.map((dayKey, i) => {
-                    const isStudyDay = studyDays.includes(i);
-                    const isToday = new Date().getDay() === i;
-                    return (
-                      <div key={i} className="flex flex-col items-center gap-1.5">
-                        <span className={cn('text-xs', isToday ? 'font-bold text-primary' : 'text-muted-foreground')}>
-                          {t(dayKey)}
-                        </span>
-                        <div className={cn(
-                          'h-7 w-7 rounded-full flex items-center justify-center',
-                          isStudyDay
-                            ? isToday ? 'bg-primary text-primary-foreground shadow-sm' : 'bg-primary/10 text-primary'
-                            : 'bg-slate-50 text-slate-300',
-                        )}>
-                          {isStudyDay && <CheckCircle2 className="h-3.5 w-3.5" />}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
               </>
             )}
           </CardContent>
@@ -2032,7 +2543,7 @@ export default function DashboardPage() {
 
         {/* Spaced Review (Ebbinghaus forgetting curve) */}
         {widgetVisibility.spacedReview && (
-        <Card className="hover:shadow-md transition-shadow">
+        <Card data-tour="dashboard-review" className="hover:shadow-md transition-shadow">
           <CardHeader className="pb-2">
             <CardTitle className="text-base font-semibold flex items-center gap-2">
               <RotateCcw className="h-4 w-4 text-primary" />
@@ -2071,18 +2582,26 @@ export default function DashboardPage() {
 
         {/* Smart Study Calendar */}
         {widgetVisibility.smartCalendar && (
+          <div data-tour="dashboard-calendar">
           <SmartStudyCalendar
             examDate={examDate}
             studyDays={studyDays}
             dailyQuota={quotaInfo.quota}
+            dailyNewQuota={reviewSplit.newQuota}
+            dailyReviewQuota={reviewSplit.reviewQuota}
             remainingQuestions={quotaInfo.remainingQuestions}
             triageWeeks={triageWeeks}
+            subjectMode={subjectMode}
             subjectQuotas={subjectQuotas}
+            subjects={missionSubjects}
             subjectsWithRemaining={subjectsWithRemaining}
-            dailyCounts={dashboardData.dailyCounts}
+            subjectConfidence={subjectConfidence}
+            dueReviewChapters={dueReviewChapters}
+            dailyChapterCounts={dashboardData.dailyChapterCounts}
             onStartToday={handleStartMission}
             startingMission={generatingMission}
           />
+          </div>
         )}
 
         {dashboardData.error ? (
@@ -2093,7 +2612,7 @@ export default function DashboardPage() {
           </Card>
         ) : null}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div data-tour="dashboard-stats" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {widgetVisibility.kpiMastery && (
           <Card
             className="bg-white/50 border-primary/10 shadow-sm transition-all duration-500 hover:shadow-md"
@@ -2183,12 +2702,15 @@ export default function DashboardPage() {
               </div>
               {nextStreakBadge && (
                 <p className="text-xs text-muted-foreground mt-2">
-                  {t('dashboard.streakBadgeHint', {
+                  {t('badge.discipline.hint', {
                     days: nextStreakBadge.days - dashboardData.streakDays,
                     badge: t(nextStreakBadge.key),
                   })}
                 </p>
               )}
+              <Link href="/profile" className="inline-block mt-3 text-xs font-semibold text-primary hover:underline">
+                View all achievements ➔
+              </Link>
             </CardContent>
           </Card>
           )}
@@ -2218,65 +2740,190 @@ export default function DashboardPage() {
 
         </div>
 
-        {/* Activity Heatmap */}
-        {widgetVisibility.activityHeatmap && (
-          <ActivityHeatmap
-            dailyCounts={dashboardData.dailyCounts}
-            loading={dashboardData.loading}
-            t={t}
-          />
-        )}
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {widgetVisibility.subjectPerformance && (
           <Card className="lg:col-span-2 shadow-md transition-all duration-700 hover:shadow-lg" style={{ transitionDelay: '300ms' }}>
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-semibold">{t('dashboard.subjectPerformance')}</CardTitle>
               <p className="text-sm text-muted-foreground mt-0.5">{t('dashboard.subjectPerformanceDescription')}</p>
+              <div className="flex items-center gap-1.5 mt-2">
+                {SUBJECT_METRIC_VIEWS.map((view) => {
+                  const ViewIcon = view.icon;
+                  const active = subjectMetricView === view.key;
+                  return (
+                    <div key={view.key} className="relative group">
+                      <button
+                        type="button"
+                        onClick={() => setSubjectMetricView(view.key)}
+                        aria-label={t(view.labelKey)}
+                        aria-pressed={active}
+                        className={cn(
+                          'flex h-7 w-7 items-center justify-center rounded-full border transition-colors',
+                          active
+                            ? 'border-primary bg-primary text-primary-foreground'
+                            : 'border-slate-200 bg-white text-slate-500 hover:border-primary/50 hover:bg-primary/5',
+                        )}
+                      >
+                        <ViewIcon className="h-3.5 w-3.5" />
+                      </button>
+                      <div className="pointer-events-none absolute left-1/2 top-full z-10 mt-1.5 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-800 px-2 py-1 text-xs text-white opacity-0 shadow-md transition-opacity duration-150 group-hover:opacity-100">
+                        {t(view.labelKey)}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </CardHeader>
             <CardContent>
               {dashboardData.subjectPerformance.length > 0 ? (
-                <div className="space-y-3">
+                <div className="divide-y divide-slate-100">
                   {dashboardData.subjectPerformance
                     .slice()
-                    .sort((a, b) => b.score - a.score)
+                    .sort((a, b) => (subjectConfidence[b.name] ?? 50) - (subjectConfidence[a.name] ?? 50))
                     .map((entry, index) => {
                       const hasAnswers = entry.total > 0;
-                      const scoreColor =
-                        !hasAnswers ? 'bg-slate-200' :
-                        entry.score >= 70 ? 'bg-green-500' :
-                        entry.score >= 50 ? 'bg-amber-500' : 'bg-red-400';
-                      const scoreText =
-                        !hasAnswers ? 'text-slate-400' :
-                        entry.score >= 70 ? 'text-green-600' :
-                        entry.score >= 50 ? 'text-amber-600' : 'text-red-500';
+                      const metrics = subjectMetricsByName.get(entry.name);
+                      const stabilityRatio = metrics?.masteredQuestionRatio ?? 0;
+                      const riskRatio = metrics?.riskyQuestionRatio ?? 0;
+                      const avgSeconds = metrics?.averageSeconds ?? 0;
+                      const confidence = subjectConfidence[entry.name] ?? 50;
+
+                      let value: number | null;
+                      let display: string;
+                      let textColor: string;
+                      let chartColor: string;
+                      let level: string | null = null;
+
+                      switch (subjectMetricView) {
+                        case 'accuracy':
+                          value = hasAnswers ? entry.score : null;
+                          display = hasAnswers ? `${entry.score}%` : t('dashboard.subjectMetrics.noData');
+                          textColor = hasAnswers ? 'text-sky-600' : 'text-slate-400';
+                          chartColor = 'text-sky-400';
+                          break;
+                        case 'stability':
+                          value = hasAnswers ? Math.round(stabilityRatio * 100) : null;
+                          display = hasAnswers ? `${Math.round(stabilityRatio * 100)}%` : t('dashboard.subjectMetrics.noData');
+                          textColor = 'text-emerald-600';
+                          chartColor = 'bg-emerald-400';
+                          break;
+                        case 'guessRisk':
+                          value = hasAnswers ? Math.round(riskRatio * 100) : null;
+                          display = hasAnswers ? `${Math.round(riskRatio * 100)}%` : t('dashboard.subjectMetrics.noData');
+                          textColor = value === null ? 'text-slate-500' : value < 50 ? 'text-emerald-600' : value < 75 ? 'text-amber-600' : 'text-red-600';
+                          chartColor = 'bg-rose-400';
+                          break;
+                        case 'avgTime':
+                          value = avgSeconds;
+                          display = avgSeconds > 0
+                            ? t('dashboard.subjectMetrics.seconds', { value: Math.round(avgSeconds) })
+                            : t('dashboard.subjectMetrics.noData');
+                          textColor = avgSeconds <= 0
+                            ? 'text-slate-500'
+                            : avgSeconds < TIME_FAST_LIMIT_SECONDS
+                              ? 'text-rose-600'
+                              : avgSeconds <= TIME_SLOW_LIMIT_SECONDS
+                                ? 'text-emerald-600'
+                                : 'text-amber-600';
+                          chartColor = 'bg-emerald-400';
+                          break;
+                        case 'sampleSize':
+                          value = entry.total;
+                          display = entry.total >= SAMPLE_SIZE_TARGET
+                            ? t('dashboard.subjectMetrics.sampleSizeReady')
+                            : t('dashboard.subjectMetrics.sampleSizeProgress', { count: entry.total, target: SAMPLE_SIZE_TARGET });
+                          textColor = entry.total >= SAMPLE_SIZE_TARGET
+                            ? 'text-emerald-600'
+                            : entry.total === 0
+                              ? 'text-slate-400'
+                              : 'text-slate-600';
+                          chartColor = 'bg-slate-400';
+                          break;
+                        default:
+                          if (!hasAnswers) {
+                            value = 0;
+                            display = t('dashboard.subjectMetrics.noData');
+                            textColor = 'text-slate-400';
+                            chartColor = 'text-violet-300';
+                            level = null;
+                          } else {
+                            value = confidence;
+                            display = `${confidence}%`;
+                            textColor = confidence >= 70 ? 'text-violet-700' : confidence >= 40 ? 'text-violet-500' : 'text-violet-400';
+                            chartColor = confidence >= 70 ? 'text-violet-600' : confidence >= 40 ? 'text-violet-400' : 'text-violet-300';
+                            level = t(confidenceLevelKey(confidence));
+                          }
+                          break;
+                      }
+
+                      const evidenceText = hasAnswers
+                        ? t('dashboard.subjectConfidenceEvidence', {
+                          correct: entry.correct,
+                          total: entry.total,
+                          accuracy: entry.score,
+                        })
+                        : t('dashboard.subjectConfidenceNoEvidence');
+                      const isInsufficient = hasAnswers && entry.total < SAMPLE_SIZE_TARGET;
+
                       return (
-                        <div key={entry.name} className="group">
-                          <div className="flex items-center justify-between mb-1 gap-2">
-                            <div className="flex items-center gap-2 min-w-0">
-                              <span
-                                className="h-2.5 w-2.5 rounded-full shrink-0"
-                                style={{ backgroundColor: entry.fill || chartColors[index % chartColors.length] }}
-                              />
-                              <span className="text-sm font-medium text-slate-700 truncate">{entry.name}</span>
-                            </div>
-                            <div className="flex items-center gap-3 shrink-0">
-                              <span className="text-xs text-muted-foreground">
-                                {hasAnswers ? `${entry.correct}/${entry.total}` : t('dashboard.noPerformance').slice(0, 5) + '…'}
-                              </span>
-                              <span className={cn('text-sm font-bold w-10 text-right tabular-nums', scoreText)}>
-                                {hasAnswers ? `${entry.score}%` : '—'}
-                              </span>
+                        <div key={entry.name} className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0">
+                          <div className="flex items-center gap-2 min-w-0 flex-1">
+                            <span
+                              className="h-2.5 w-2.5 rounded-full shrink-0"
+                              style={{ backgroundColor: entry.fill || chartColors[index % chartColors.length] }}
+                            />
+                            <div className="min-w-0">
+                              <p className="text-sm font-medium text-slate-700 truncate">{entry.name}</p>
+                              {hasAnswers ? (
+                                <p className="text-xs text-muted-foreground truncate flex items-center gap-1">
+                                  {evidenceText}
+                                  {isInsufficient && (
+                                    <span title={t('dashboard.subjectMetrics.estimating')}>{t('dashboard.subjectMetrics.estimating')}</span>
+                                  )}
+                                </p>
+                              ) : (
+                                <p className="text-xs truncate">
+                                  <Link href="/create" className="text-primary hover:underline">
+                                    {t('dashboard.subjectConfidenceStartPractice')}
+                                  </Link>
+                                </p>
+                              )}
                             </div>
                           </div>
-                          <div className="h-2 w-full rounded-full bg-slate-100 overflow-hidden">
-                            <div
-                              className={cn('h-full rounded-full transition-all duration-700', scoreColor)}
-                              style={{
-                                width: hasAnswers ? `${Math.max(entry.score, 2)}%` : '0%',
-                                transitionDelay: `${index * 60}ms`,
-                              }}
-                            />
+                          <div className="flex w-20 sm:w-28 items-center justify-center shrink-0">
+                            {subjectMetricView === 'confidence' && (
+                              <ConfidenceGauge value={hasAnswers ? confidence : 0} color={chartColor} delay={index * 60} />
+                            )}
+                            {subjectMetricView === 'accuracy' && (
+                              <AccuracyRing
+                                ratio={hasAnswers ? entry.score / 100 : 0}
+                                color={chartColor}
+                                label={hasAnswers ? `${entry.score}%` : t('dashboard.subjectMetrics.noData')}
+                                delay={index * 60}
+                              />
+                            )}
+                            {subjectMetricView === 'stability' && (
+                              <StabilitySegments value={value ?? 0} empty={!hasAnswers} delay={index * 60} />
+                            )}
+                            {subjectMetricView === 'guessRisk' && (
+                              <RiskScale value={value ?? 0} empty={!hasAnswers} delay={index * 60} />
+                            )}
+                            {subjectMetricView === 'avgTime' && (
+                              <TimeIntervalBar
+                                avgSeconds={avgSeconds}
+                                fastLimit={TIME_FAST_LIMIT_SECONDS}
+                                slowLimit={TIME_SLOW_LIMIT_SECONDS}
+                                empty={!hasAnswers}
+                                delay={index * 60}
+                              />
+                            )}
+                            {subjectMetricView === 'sampleSize' && (
+                              <SampleSizeProgress total={entry.total} target={SAMPLE_SIZE_TARGET} delay={index * 60} />
+                            )}
+                          </div>
+                          <div className="w-12 shrink-0 text-right">
+                            <div className={cn('text-sm font-bold tabular-nums', textColor)}>{display}</div>
+                            {level && <div className="text-xs font-medium text-muted-foreground">{level}</div>}
                           </div>
                         </div>
                       );
@@ -2294,92 +2941,229 @@ export default function DashboardPage() {
           {(widgetVisibility.recentInsights || widgetVisibility.nextMilestone) && (
           <div className="space-y-6">
             {widgetVisibility.recentInsights && (
-            <Card className="shadow-md transition-all duration-700 hover:shadow-lg" style={{ transitionDelay: '360ms' }}>
-              <CardHeader className="pb-3">
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-base font-semibold">{t('dashboard.recentInsights')}</CardTitle>
-                  {totalInsightPages > 1 && (
-                    <div className="flex items-center gap-1">
-                      {Array.from({ length: totalInsightPages }).map((_, i) => (
-                        <button
-                          key={i}
-                          type="button"
-                          onClick={() => setInsightIndex(i)}
-                          className={cn(
-                            'rounded-full transition-all duration-300',
-                            i === insightIndex ? 'w-4 h-1.5 bg-primary' : 'w-1.5 h-1.5 bg-slate-300 hover:bg-slate-400',
-                          )}
-                        />
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </CardHeader>
-              <CardContent>
-                {insightPages.length === 0 ? (
-                  <div className="flex items-start gap-3 p-3 rounded-xl bg-primary/5 border border-primary/20">
-                    <BookOpen className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                    <div>
-                      <p className="text-sm font-semibold text-secondary">{t('dashboard.noAnswers')}</p>
-                      <p className="text-xs text-muted-foreground">{t('dashboard.noAnswersDescription')}</p>
+            <CardCarousel
+              title={t('dashboard.recentInsights')}
+              items={insightCards.map(card => {
+                const inner = (
+                  <div className={cn('flex items-start gap-3 p-3 rounded-xl border', card.color, card.href && 'hover:opacity-80 transition-opacity')}>
+                    <div className={cn('mt-0.5 shrink-0', card.color.split(' ')[2])}>{card.icon}</div>
+                    <div className="flex-1 min-w-0">
+                      <p className={cn('text-[10px] font-bold uppercase tracking-wider mb-1', card.color.split(' ')[2])}>{card.label}</p>
+                      <div>{card.value}</div>
+                      <p className="text-[11px] text-slate-500 mt-1 leading-snug truncate">{card.sub}</p>
                     </div>
                   </div>
+                );
+                return card.href ? (
+                  <Link key={card.id} href={card.href} className="block">{inner}</Link>
                 ) : (
-                  <div className="relative overflow-hidden">
-                    <div
-                      className="flex transition-transform duration-500 ease-in-out"
-                      style={{ transform: `translateX(-${insightIndex * 100}%)` }}
-                    >
-                      {insightPages.map((page, pi) => (
-                        <div key={pi} className="w-full shrink-0 space-y-2">
-                          {page.map((card) => {
-                            const inner = (
-                              <div className={cn('flex items-start gap-3 p-3 rounded-xl border', card.color, card.href && 'hover:opacity-80 transition-opacity')}>
-                                <div className={cn('mt-0.5 shrink-0', card.color.split(' ')[2])}>{card.icon}</div>
-                                <div className="flex-1 min-w-0">
-                                  <p className={cn('text-[10px] font-bold uppercase tracking-wider mb-1', card.color.split(' ')[2])}>{card.label}</p>
-                                  <div>{card.value}</div>
-                                  <p className="text-[11px] text-slate-500 mt-1 leading-snug truncate">{card.sub}</p>
-                                </div>
-                              </div>
-                            );
-                            return card.href ? (
-                              <Link key={card.id} href={card.href} className="block">{inner}</Link>
-                            ) : (
-                              <div key={card.id}>{inner}</div>
-                            );
-                          })}
-                        </div>
-                      ))}
-                    </div>
+                  <div key={card.id}>{inner}</div>
+                );
+              })}
+              itemsPerPage={2}
+              autoPlayInterval={10000}
+              style={{ transitionDelay: '360ms' }}
+              emptyState={
+                <div className="flex items-start gap-3 p-3 rounded-xl bg-primary/5 border border-primary/20">
+                  <BookOpen className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                  <div>
+                    <p className="text-sm font-semibold text-secondary">{t('dashboard.noAnswers')}</p>
+                    <p className="text-xs text-muted-foreground">{t('dashboard.noAnswersDescription')}</p>
                   </div>
-                )}
-              </CardContent>
-            </Card>
+                </div>
+              }
+            />
             )}
 
-            {widgetVisibility.nextMilestone && (
-            <Card className="shadow-md border-primary/20 bg-primary/5 transition-all duration-700 hover:shadow-lg" style={{ transitionDelay: '420ms' }}>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base font-semibold text-primary">{t('dashboard.nextMilestone')}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {t('dashboard.milestoneText', { count: nextMilestone.toLocaleString() })}
-                </p>
-                <Button className="w-full group" asChild>
-                  <Link href="/create">
-                    {t('dashboard.startLearning')}
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-            )}
+            {widgetVisibility.nextMilestone && (() => {
+              const isNewCompleted = reviewSplit.newQuota > 0 && dashboardData.solvedToday >= reviewSplit.newQuota;
+              const isReviewCompleted = dashboardData.solvedQuestions > 0 && dueReviewChapters.length === 0;
+              const isIncorrectCompleted = dashboardData.solvedQuestions > 0 && dashboardData.incorrectCount === 0;
+              const allTasksCompleted = isNewCompleted && isReviewCompleted && isIncorrectCompleted;
+
+              const newPracticeDetails = plannedNewChapterIds.map(id => {
+                for (const s of missionSubjects) {
+                  const ch = s.chapters.find(c => c.id === id);
+                  if (ch) return `${s.name}: ${ch.name}`;
+                }
+                return '';
+              }).filter(Boolean);
+
+              const handleStartSelected = () => {
+                handleStartMission(selectedTaskType);
+              };
+
+              // Ensure valid selection if default is completed
+              useEffect(() => {
+                if (selectedTaskType === 'new' && isNewCompleted) {
+                  if (!isReviewCompleted) setSelectedTaskType('review');
+                  else if (!isIncorrectCompleted) setSelectedTaskType('incorrect');
+                } else if (selectedTaskType === 'review' && isReviewCompleted) {
+                  if (!isNewCompleted) setSelectedTaskType('new');
+                  else if (!isIncorrectCompleted) setSelectedTaskType('incorrect');
+                } else if (selectedTaskType === 'incorrect' && isIncorrectCompleted) {
+                  if (!isNewCompleted) setSelectedTaskType('new');
+                  else if (!isReviewCompleted) setSelectedTaskType('review');
+                }
+              }, [isNewCompleted, isReviewCompleted, isIncorrectCompleted, selectedTaskType]);
+
+              return (
+                <CardCarousel
+                  title={t('dashboard.recommendedTasks')}
+                  className="bg-[#faf6f0] border-[#ebd9b8]"
+                  titleClassName="text-amber-800"
+                  onIndexChange={(index) => {
+                    const types = ['new', 'review', 'incorrect'] as const;
+                    setSelectedTaskType(types[index]);
+                  }}
+                  items={[
+                    <div 
+                      key="new"
+                      className={`flex-1 h-full flex items-start space-x-3 p-4 rounded-lg border shadow-sm transition-colors ${isNewCompleted ? 'bg-white border-green-200' : 'bg-white border-amber-200 ring-1 ring-amber-100'}`}
+                    >
+                      {isNewCompleted ? (
+                        <CheckCircle2 className="mt-1 w-5 h-5 text-green-500 shrink-0" />
+                      ) : (
+                        <Circle className="mt-1 w-5 h-5 text-amber-300 shrink-0" />
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <p className={`text-sm font-semibold leading-none mb-1 ${isNewCompleted ? 'text-green-800' : 'text-slate-800'}`}>{t('dashboard.taskNewPractice')}</p>
+                        <p className="text-xs text-muted-foreground">{t('dashboard.taskNewPracticeDesc', { count: reviewSplit.newQuota })}</p>
+                        {newPracticeDetails.length > 0 && (
+                          <div className="mt-2 space-y-2">
+                            {Object.entries(
+                              newPracticeDetails.slice(0, 3).reduce((acc, detail) => {
+                                const parts = detail.split(': ');
+                                const subj = parts[0];
+                                const chap = parts.slice(1).join(': ');
+                                if (!acc[subj]) acc[subj] = [];
+                                if (chap) acc[subj].push(chap);
+                                return acc;
+                              }, {} as Record<string, string[]>)
+                            ).map(([subj, chaps], idx) => (
+                              <div key={idx} className="flex flex-wrap items-center gap-1.5">
+                                <span className="px-2 py-0.5 text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-full whitespace-nowrap">
+                                  {subj}
+                                </span>
+                                {chaps.map((chap, cIdx) => (
+                                  <span key={cIdx} className="px-2 py-0.5 text-[10px] font-medium text-slate-700 bg-slate-50 border border-slate-200 rounded-full">
+                                    {chap}
+                                  </span>
+                                ))}
+                              </div>
+                            ))}
+                            {newPracticeDetails.length > 3 && (
+                              <div className="text-xs text-muted-foreground pl-1">
+                                ... {newPracticeDetails.length - 3} more
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </div>,
+                    <div 
+                      key="review"
+                      className={`flex-1 h-full flex items-start space-x-3 p-4 rounded-lg border shadow-sm transition-colors ${isReviewCompleted ? 'bg-white border-green-200' : 'bg-white border-amber-200 ring-1 ring-amber-100'}`}
+                    >
+                      {isReviewCompleted ? (
+                        <CheckCircle2 className="mt-1 w-5 h-5 text-green-500 shrink-0" />
+                      ) : (
+                        <Circle className="mt-1 w-5 h-5 text-amber-300 shrink-0" />
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <p className={`text-sm font-semibold leading-none mb-1 ${isReviewCompleted ? 'text-green-800' : 'text-slate-800'}`}>{t('dashboard.taskReview')}</p>
+                        <p className="text-xs text-muted-foreground">{t('dashboard.taskReviewDesc', { count: dueReviewChapters.length })}</p>
+                        {dueReviewChapters.length > 0 && (
+                          <div className="mt-2 space-y-2">
+                            {Object.entries(
+                              dueReviewChapters.slice(0, 3).reduce((acc, chapter) => {
+                                if (!acc[chapter.subject]) acc[chapter.subject] = [];
+                                acc[chapter.subject].push(chapter.chapterName);
+                                return acc;
+                              }, {} as Record<string, string[]>)
+                            ).map(([subj, chaps], idx) => (
+                              <div key={idx} className="flex flex-wrap items-center gap-1.5">
+                                <span className="px-2 py-0.5 text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-full whitespace-nowrap">
+                                  {subj}
+                                </span>
+                                {chaps.map((chap, cIdx) => (
+                                  <span key={cIdx} className="px-2 py-0.5 text-[10px] font-medium text-slate-700 bg-slate-50 border border-slate-200 rounded-full">
+                                    {chap}
+                                  </span>
+                                ))}
+                              </div>
+                            ))}
+                            {dueReviewChapters.length > 3 && (
+                              <div className="text-xs text-muted-foreground pl-1">
+                                ... {dueReviewChapters.length - 3} more
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </div>,
+                    <div 
+                      key="incorrect"
+                      className={`flex-1 h-full flex items-start space-x-3 p-4 rounded-lg border shadow-sm transition-colors ${isIncorrectCompleted ? 'bg-white border-green-200' : 'bg-white border-amber-200 ring-1 ring-amber-100'}`}
+                    >
+                      {isIncorrectCompleted ? (
+                        <CheckCircle2 className="mt-1 w-5 h-5 text-green-500 shrink-0" />
+                      ) : (
+                        <Circle className="mt-1 w-5 h-5 text-amber-300 shrink-0" />
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <p className={`text-sm font-semibold leading-none mb-1 ${isIncorrectCompleted ? 'text-green-800' : 'text-slate-800'}`}>{t('dashboard.taskIncorrect')}</p>
+                        <p className="text-xs text-muted-foreground">{t('dashboard.taskIncorrectDesc', { count: dashboardData.incorrectCount })}</p>
+                      </div>
+                    </div>
+                  ]}
+                  itemsPerPage={1}
+                  autoPlayInterval={10000}
+                  style={{ transitionDelay: '420ms' }}
+                  footer={
+                    <Button 
+                      className="w-full mt-4 bg-amber-600 hover:bg-amber-700 text-white" 
+                      size="lg"
+                      onClick={handleStartSelected} 
+                      disabled={generatingMission || (selectedTaskType === 'new' && isNewCompleted) || (selectedTaskType === 'review' && isReviewCompleted) || (selectedTaskType === 'incorrect' && isIncorrectCompleted)}
+                    >
+                      {t('dashboard.startLearning')}
+                    </Button>
+                  }
+                  emptyState={
+                    <div className="flex flex-col items-center justify-center p-4 text-center">
+                      <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-3">
+                        <CheckCircle2 className="w-6 h-6 text-green-600" />
+                      </div>
+                      <p className="text-sm font-medium text-green-700">{t('dashboard.allTasksCompleted')}</p>
+                    </div>
+                  }
+                />
+              );
+            })()}
           </div>
           )}
         </div>
+
+        {/* Activity Heatmap — kept at the end of the dashboard */}
+        {widgetVisibility.activityHeatmap && (
+          <ActivityHeatmap
+            dailyCounts={dashboardData.dailyCounts}
+            loading={dashboardData.loading}
+            t={t}
+          />
+        )}
       </div>
+
+      <GuidedTour
+        open={tourOpen}
+        steps={tourSteps}
+        onOpenChange={closeTour}
+        stepLabel={(current, total) => t('tour.stepOf', { current, total })}
+        backLabel={t('tour.back')}
+        nextLabel={t('tour.next')}
+        doneLabel={t('tour.done')}
+      />
     </>
   );
 }

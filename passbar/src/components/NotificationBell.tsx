@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Bell, UserCheck, Clock, ChevronRight, Flag } from 'lucide-react';
+import { Bell, UserCheck, Clock, ChevronRight, Flag, RotateCcw } from 'lucide-react';
 import Link from 'next/link';
 import {
   DropdownMenu,
@@ -14,6 +14,7 @@ import { supabase } from '@/lib/supabase';
 import { useI18n } from '@/lib/i18n';
 import type { AdminUser } from '@/app/admin/users/page';
 import type { QuestionReport } from '@/lib/question-reports';
+import { fetchDueReviewChaptersForUser, type ChapterReviewInfo } from '@/lib/smart-planner';
 
 type PendingUserNotification = {
   id: string;
@@ -29,7 +30,15 @@ type ReportNotification = {
   createdAt: string;
 };
 
-type Notification = PendingUserNotification | ReportNotification;
+type SmartReviewNotification = {
+  id: string;
+  type: 'smart_review';
+  count: number;
+  chapters: ChapterReviewInfo[];
+  createdAt: string;
+};
+
+type Notification = PendingUserNotification | ReportNotification | SmartReviewNotification;
 
 function timeAgo(value: string | null, t: ReturnType<typeof useI18n>['t']) {
   if (!value) return '';
@@ -70,35 +79,54 @@ export function NotificationBell({
   const isAdmin = profile?.role === 'admin';
 
   const load = useCallback(async () => {
-    if (!isAdmin) return;
-    const db = getAdminDb();
-    if (!db) return;
+    if (!user?.id) return;
+    
+    let pendingUsers: Notification[] = [];
+    let reports: Notification[] = [];
+    let smartReviews: Notification[] = [];
 
-    const [profilesRes, reportsRes] = await Promise.all([
-      db.from('profiles').select('id, email, full_name, avatar_url, role, status, last_seen_at, created_at').eq('status', 'pending'),
-      db.from('question_reports').select('id, question_id, category, message, resolved, created_at, user_id').eq('resolved', false).order('created_at', { ascending: false }).limit(50),
-    ]);
+    // User study notifications
+    const dueChapters = await fetchDueReviewChaptersForUser(user.id);
+    if (dueChapters.length > 0) {
+      smartReviews = [{
+        id: 'smart-review-reminder',
+        type: 'smart_review',
+        count: dueChapters.length,
+        chapters: dueChapters,
+        createdAt: new Date().toISOString(),
+      }];
+    }
 
-    const pendingUsers: Notification[] = ((profilesRes.data ?? []) as AdminUser[]).map((u) => ({
-      id: u.id,
-      type: 'pending_user' as const,
-      user: u,
-      createdAt: u.created_at ?? new Date().toISOString(),
-    }));
+    if (isAdmin) {
+      const db = getAdminDb();
+      if (db) {
+        const [profilesRes, reportsRes] = await Promise.all([
+          db.from('profiles').select('id, email, full_name, avatar_url, role, status, last_seen_at, created_at').eq('status', 'pending'),
+          db.from('question_reports').select('id, question_id, category, message, resolved, created_at, user_id').eq('resolved', false).order('created_at', { ascending: false }).limit(50),
+        ]);
 
-    const reports: Notification[] = ((reportsRes.data ?? []) as QuestionReport[]).map((r) => ({
-      id: r.id,
-      type: 'question_report' as const,
-      report: r,
-      createdAt: r.created_at,
-    }));
+        pendingUsers = ((profilesRes.data ?? []) as AdminUser[]).map((u) => ({
+          id: u.id,
+          type: 'pending_user' as const,
+          user: u,
+          createdAt: u.created_at ?? new Date().toISOString(),
+        }));
 
-    // Sort by createdAt descending, pending users first
-    const all = [...pendingUsers, ...reports].sort((a, b) =>
+        reports = ((reportsRes.data ?? []) as QuestionReport[]).map((r) => ({
+          id: r.id,
+          type: 'question_report' as const,
+          report: r,
+          createdAt: r.created_at,
+        }));
+      }
+    }
+
+    // Sort by createdAt descending
+    const all = [...smartReviews, ...pendingUsers, ...reports].sort((a, b) =>
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
     setNotifications(all);
-  }, [isAdmin]);
+  }, [isAdmin, user?.id]);
 
   // Initial load
   useEffect(() => {
@@ -144,7 +172,9 @@ export function NotificationBell({
     };
   }, [isAdmin, load]);
 
-  if (!isAdmin) return null;
+  // Instead of hiding the bell completely for non-admins, we only hide if no notifications
+  // and they are not admin. That way the UI stays clean.
+  if (!isAdmin && notifications.length === 0) return null;
 
   const count = notifications.length;
   const iconClass = variant === 'dark' ? 'text-slate-300 hover:text-white' : 'text-slate-500 hover:text-slate-900';
@@ -213,6 +243,39 @@ export function NotificationBell({
                 );
               }
 
+              if (n.type === 'smart_review') {
+                return (
+                  <Link
+                    key={`review-${n.id}`}
+                    href="/dashboard"
+                    onClick={() => setOpen(false)}
+                    className="flex items-start gap-3 px-4 py-3.5 transition-colors hover:bg-muted/50 border-b last:border-0"
+                  >
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-100">
+                      <RotateCcw className="h-4 w-4 text-blue-600" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium text-foreground leading-snug">
+                        {t('nav.smartReviewReminder', { count: n.count })}
+                      </p>
+                      <p className="mt-0.5 text-xs text-muted-foreground truncate">
+                        {n.chapters.length > 1
+                          ? t('nav.smartReviewChapterMultiple', {
+                            chapter: n.chapters[0].chapterName,
+                            count: n.chapters.length - 1,
+                          })
+                          : t('nav.smartReviewChapterSingle', { chapter: n.chapters[0]?.chapterName ?? '' })}
+                      </p>
+                      <div className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
+                        <Clock className="h-3 w-3" />
+                        {timeAgo(n.createdAt, t)}
+                      </div>
+                    </div>
+                    <ChevronRight className="mt-1 h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+                  </Link>
+                );
+              }
+
               // question_report
               const categoryLabel = CATEGORY_LABELS[n.report.category] ?? n.report.category;
               return (
@@ -245,7 +308,7 @@ export function NotificationBell({
         </div>
 
         {/* Footer */}
-        {notifications.length > 0 && (
+        {isAdmin && notifications.length > 0 && (
           <div className="border-t px-4 py-2.5 flex items-center justify-between">
             <Link
               href="/admin/users?filter=pending"
