@@ -367,16 +367,16 @@ export default function SettingsPage() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          {!pushSupported && (
-            <div className="flex items-start gap-2.5 rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
-              <Info className="h-5 w-5 shrink-0 mt-0.5 text-amber-600" />
-              <p>{t('settings.notificationsUnsupported')}</p>
-            </div>
-          )}
-          {pushSupported && iosInstallNeeded && (
+          {iosInstallNeeded && (
             <div className="flex items-start gap-2.5 rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
               <Info className="h-5 w-5 shrink-0 mt-0.5 text-amber-600" />
               <p>{t('settings.notificationsIosInstallHint')}</p>
+            </div>
+          )}
+          {!iosInstallNeeded && !pushSupported && (
+            <div className="flex items-start gap-2.5 rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
+              <Info className="h-5 w-5 shrink-0 mt-0.5 text-amber-600" />
+              <p>{t('settings.notificationsUnsupported')}</p>
             </div>
           )}
           {pushSupported && !iosInstallNeeded && typeof window !== 'undefined' && (window.navigator as any).brave && (

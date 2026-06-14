@@ -2545,7 +2545,7 @@ export default function DashboardPage() {
                         disabled={generatingMission}
                       >
                         {generatingMission ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : null}
-                        立即開始今日挑戰 ({quotaInfo.quota} 題) <ArrowRight className="ml-2 w-5 h-5" />
+                        開始練習 ({quotaInfo.quota} 題) <ArrowRight className="ml-2 w-5 h-5" />
                       </Button>
                     </div>
                   </div>
