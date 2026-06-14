@@ -2383,7 +2383,7 @@ export default function DashboardPage() {
         )}
       >
         <div className="flex flex-col gap-3 md:gap-4">
-          <div className="flex justify-end gap-2">
+          <div className="hidden md:flex justify-end gap-2">
             <Button
               variant="outline"
               size="sm"

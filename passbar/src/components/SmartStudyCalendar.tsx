@@ -618,7 +618,7 @@ export function SmartStudyCalendar({
                     <div className="flex items-center justify-between">
                       <span className={cn('text-xs font-medium', isToday ? 'text-primary font-bold' : 'text-slate-500')}>
                         {cell.date.getDate()}
-                        {isToday && <span className="ml-1">({t('calendar.today')})</span>}
+                        {isToday && <span className="ml-1 hidden sm:inline">({t('calendar.today')})</span>}
                       </span>
                       {completed && (
                         <span className="inline-flex items-center gap-0.5 rounded-md border border-green-200 bg-green-100 p-1 text-[10px] font-semibold text-green-700 sm:px-1.5 sm:py-0.5">

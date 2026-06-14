@@ -520,7 +520,7 @@ export default function SettingsPage() {
             { scope: 'browse' as const, label: t('settings.clearBrowse'), desc: t('settings.clearBrowseDescription') },
             { scope: 'all' as const, label: t('settings.clearAll'), desc: t('settings.clearAllDescription') },
           ]).map(({ scope, label, desc }) => (
-            <div key={scope} className="flex items-start justify-between gap-4 rounded-lg border border-red-100 bg-red-50/40 px-4 py-3">
+            <div key={scope} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 rounded-lg border border-red-100 bg-red-50/40 px-4 py-3 sm:py-4">
               <div>
                 <div className="text-sm font-semibold text-slate-700">{label}</div>
                 <div className="text-xs text-slate-500 mt-0.5">{desc}</div>
@@ -529,7 +529,7 @@ export default function SettingsPage() {
                 type="button"
                 variant="outline"
                 size="sm"
-                className="shrink-0 gap-1.5 border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300"
+                className="shrink-0 gap-1.5 border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 w-full sm:w-auto justify-center"
                 onClick={() => { setClearScope(scope); setClearConfirmText(''); setClearDialogOpen(true); }}
               >
                 <Trash2 className="h-3.5 w-3.5" />
