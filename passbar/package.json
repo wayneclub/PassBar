@@ -10,7 +10,7 @@
     "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
     "genkit:watch": "genkit start -- tsx --watch src/ai/dev.ts",
     "build": "NODE_ENV=production next build",
-    "build:github": "GITHUB_PAGES=true NEXT_PUBLIC_BASE_PATH=/PassBar NODE_ENV=production next build",
+    "build:github": "node scripts/build-github.mjs",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
