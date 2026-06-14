@@ -17,6 +17,11 @@ export default function PrivacyPage() {
       </header>
 
       <div className="mx-auto max-w-3xl px-6 py-12">
+        <div className="mb-8">
+          <Link href="/auth" className="text-sm text-slate-500 hover:text-slate-800">
+            ← Back to sign in
+          </Link>
+        </div>
         <h1 className="text-3xl font-bold text-slate-900">Privacy Policy</h1>
         <p className="mt-1 text-sm text-slate-400">Last updated: June 2026</p>
 
@@ -64,11 +69,6 @@ export default function PrivacyPage() {
           </section>
         </div>
 
-        <div className="mt-12 border-t border-slate-200 pt-6">
-          <Link href="/auth" className="text-sm text-slate-500 hover:text-slate-800">
-            ← Back to sign in
-          </Link>
-        </div>
       </div>
     </main>
   );
