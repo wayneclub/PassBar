@@ -20,6 +20,7 @@ import {
   Flag,
   Footprints,
   BarChart2,
+  CheckSquare,
   type LucideIcon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -61,6 +62,7 @@ export function AppSidebar() {
   const { t } = useI18n();
   const navigationItems: NavigationItem[] = [
     { name: t('nav.dashboard'), href: '/dashboard', icon: LayoutDashboard, items: [] },
+    { name: t('nav.tasks'), href: '/tasks', icon: CheckSquare, items: [] },
     {
       name: t('nav.conceptAbsorption'),
       icon: Brain,
