@@ -244,10 +244,15 @@ export function NotificationBell({
               }
 
               if (n.type === 'smart_review') {
+                const chapterIds = n.chapters.map((c) => c.chapterId).join(',');
+                const SHOW = 3;
+                const chapterLabel = n.chapters.length <= SHOW
+                  ? n.chapters.map((c) => c.chapterName).join('、')
+                  : `${n.chapters.slice(0, SHOW).map((c) => c.chapterName).join('、')}...`;
                 return (
                   <Link
                     key={`review-${n.id}`}
-                    href="/dashboard"
+                    href={`/create?chapters=${encodeURIComponent(chapterIds)}`}
                     onClick={() => setOpen(false)}
                     className="flex items-start gap-3 px-4 py-3.5 transition-colors hover:bg-muted/50 border-b last:border-0"
                   >
@@ -258,13 +263,8 @@ export function NotificationBell({
                       <p className="text-sm font-medium text-foreground leading-snug">
                         {t('nav.smartReviewReminder', { count: n.count })}
                       </p>
-                      <p className="mt-0.5 text-xs text-muted-foreground truncate">
-                        {n.chapters.length > 1
-                          ? t('nav.smartReviewChapterMultiple', {
-                            chapter: n.chapters[0].chapterName,
-                            count: n.chapters.length - 1,
-                          })
-                          : t('nav.smartReviewChapterSingle', { chapter: n.chapters[0]?.chapterName ?? '' })}
+                      <p className="mt-0.5 text-xs text-muted-foreground">
+                        {chapterLabel}
                       </p>
                       <div className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
                         <Clock className="h-3 w-3" />

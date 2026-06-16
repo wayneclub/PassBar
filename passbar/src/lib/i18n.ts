@@ -1487,6 +1487,11 @@ const en: Dictionary = {
   'dashboard.spacedReview.empty': 'No chapters are due for review right now. Keep up the great work!',
   'dashboard.spacedReview.itemMeta': 'Practiced {days} day(s) ago · {pct}% accuracy',
   'dashboard.spacedReview.dueBadge': 'Review Due',
+  'todo.title': 'Daily Tasks',
+  'todo.addPlaceholder': 'Add a task...',
+  'todo.empty': 'No tasks yet. Tasks will be added automatically when chapters are due for review.',
+  'todo.clearDone': 'Clear completed',
+  'todo.reviewLabel': 'Review',
 };
 
 const zhHans: Dictionary = {
@@ -2466,6 +2471,11 @@ const zhHans: Dictionary = {
   'dashboard.spacedReview.empty': '目前没有章节需要复习，继续保持！',
   'dashboard.spacedReview.itemMeta': '{days} 天前练习 · 正确率 {pct}%',
   'dashboard.spacedReview.dueBadge': '建议复习',
+  'todo.title': '每日任务',
+  'todo.addPlaceholder': '新增任务...',
+  'todo.empty': '暂无任务。当有章节需要复习时，系统会自动添加。',
+  'todo.clearDone': '清除已完成',
+  'todo.reviewLabel': '复习',
 };
 
 const zhHant: Dictionary = {
@@ -3444,6 +3454,11 @@ const zhHant: Dictionary = {
   'dashboard.spacedReview.empty': '目前沒有章節需要複習，繼續保持！',
   'dashboard.spacedReview.itemMeta': '{days} 天前練習 · 正確率 {pct}%',
   'dashboard.spacedReview.dueBadge': '建議複習',
+  'todo.title': '每日任務',
+  'todo.addPlaceholder': '新增任務...',
+  'todo.empty': '暫無任務。當有章節需要複習時，系統會自動新增。',
+  'todo.clearDone': '清除已完成',
+  'todo.reviewLabel': '複習',
 };
 
 const dictionaries: Record<InterfaceLanguage, Dictionary> = {

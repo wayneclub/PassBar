@@ -69,6 +69,7 @@ import { getSubjects } from '@/lib/question-bank';
 import type { Subject } from '@/lib/types';
 import { getQuestionStatusCounts, emptyQuestionStatusCounts, type QuestionStatusCounts } from '@/lib/question-progress';
 import { CardCarousel } from '@/components/ui/card-carousel';
+import { TodoWidget } from '@/components/TodoWidget';
 import {
   assessQuestionMastery,
   calculateDailyQuota,
@@ -3221,6 +3222,9 @@ export default function DashboardPage() {
           </div>
           )}
         </div>
+
+        {/* Daily Todo */}
+        <TodoWidget dueChapters={dueReviewChapters} />
 
         {/* Activity Heatmap — kept at the end of the dashboard */}
         {widgetVisibility.activityHeatmap && (

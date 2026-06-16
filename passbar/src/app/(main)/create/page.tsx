@@ -61,11 +61,16 @@ export default function CreateTestPage() {
   }, [user?.id]);
 
   useEffect(() => {
+    if (subjects.length === 0) return;
     const subjectParam = searchParams.get('subject');
-    if (!subjectParam || subjects.length === 0) return;
-    const subject = subjects.find((s) => s.name === subjectParam);
-    if (!subject) return;
-    setSelectedChapters(new Set(subject.chapters.map((c) => c.id)));
+    const chaptersParam = searchParams.get('chapters');
+    if (chaptersParam) {
+      const ids = chaptersParam.split(',').filter(Boolean);
+      setSelectedChapters(new Set(ids));
+    } else if (subjectParam) {
+      const subject = subjects.find((s) => s.name === subjectParam);
+      if (subject) setSelectedChapters(new Set(subject.chapters.map((c) => c.id)));
+    }
   }, [subjects, searchParams]);
 
   const totalQuestionCount = useMemo(() => (
