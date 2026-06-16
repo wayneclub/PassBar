@@ -287,6 +287,9 @@ type TranslationKey =
   | 'explanation.eliminateChoice'
   | 'explanation.restoreChoice'
   | 'dashboard.welcome'
+  | 'dashboard.maintenanceTitle'
+  | 'dashboard.maintenanceDescription'
+  | 'dashboard.refreshPage'
   | 'dashboard.loading'
   | 'dashboard.answered'
   | 'dashboard.ready'
@@ -1088,6 +1091,9 @@ const en: Dictionary = {
   'explanation.eliminateChoice': 'Eliminate choice {choice}',
   'explanation.restoreChoice': 'Restore choice {choice}',
   'dashboard.welcome': 'Welcome back, {name}',
+  'dashboard.maintenanceTitle': 'System Under Maintenance',
+  'dashboard.maintenanceDescription': 'We are currently experiencing database connection issues or performing scheduled maintenance. Please try again later.',
+  'dashboard.refreshPage': 'Refresh Page',
   'dashboard.welcomePrefix': 'Welcome back,',
   'dashboard.loading': 'Loading your PassBar progress...',
   'dashboard.answered': "You've answered {solved} of {total} imported questions.",
@@ -2203,6 +2209,9 @@ const zhHans: Dictionary = {
   'explanation.eliminateChoice': '刪去选项 {choice}',
   'explanation.restoreChoice': '恢复选项 {choice}',
   'dashboard.welcome': '欢迎回来，{name}',
+  'dashboard.maintenanceTitle': '系统维护中',
+  'dashboard.maintenanceDescription': '我们目前遇到数据库连接问题或正在进行例行维护，请稍后再试。',
+  'dashboard.refreshPage': '刷新页面',
   'dashboard.welcomePrefix': '欢迎回来，',
   'dashboard.loading': '正在加载你的学习进度...',
   'dashboard.answered': '你已完成 {solved} / {total} 道导入题目。',
@@ -3317,6 +3326,9 @@ const zhHant: Dictionary = {
   'explanation.eliminateChoice': '刪去選項 {choice}',
   'explanation.restoreChoice': '恢復選項 {choice}',
   'dashboard.welcome': '歡迎回來，{name}',
+  'dashboard.maintenanceTitle': '系統維護中',
+  'dashboard.maintenanceDescription': '我們目前遇到資料庫連線問題或正在進行例行維護，請稍後再試。',
+  'dashboard.refreshPage': '重新整理頁面',
   'dashboard.welcomePrefix': '歡迎回來，',
   'dashboard.loading': '正在載入你的學習進度...',
   'dashboard.answered': '你已完成 {solved} / {total} 道匯入題目。',

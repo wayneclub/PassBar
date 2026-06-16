@@ -2409,13 +2409,13 @@ export default function DashboardPage() {
     return (
       <div className="flex min-h-[70vh] flex-col items-center justify-center p-6 text-center animate-in fade-in duration-500">
         <Database className="mx-auto h-16 w-16 text-slate-300 mb-6" />
-        <h2 className="text-2xl font-bold text-slate-800 mb-2">System Under Maintenance</h2>
+        <h2 className="text-2xl font-bold text-slate-800 mb-2">{t('dashboard.maintenanceTitle')}</h2>
         <p className="text-slate-500 max-w-md mx-auto mb-6">
-          We are currently experiencing database connection issues or performing scheduled maintenance. Please try again later.
+          {t('dashboard.maintenanceDescription')}
         </p>
         <Button onClick={() => window.location.reload()} variant="outline">
           <RotateCcw className="mr-2 h-4 w-4" />
-          Refresh Page
+          {t('dashboard.refreshPage')}
         </Button>
       </div>
     );
