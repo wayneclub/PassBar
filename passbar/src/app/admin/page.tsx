@@ -299,7 +299,7 @@ export default function AdminDashboardPage() {
                   <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded bg-slate-200" />{t('admin.dailyAnswers')}</span>
                 </div>
               </div>
-              <ResponsiveContainer width="100%" height={240}>
+              <ResponsiveContainer width="100%" height={240} minWidth={1} minHeight={1}>
                 <ComposedChart data={trend} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                   <XAxis dataKey="date" tick={{ fontSize: 11, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
@@ -318,7 +318,7 @@ export default function AdminDashboardPage() {
               <p className="mt-0.5 text-xs text-muted-foreground">{t('admin.completionDescription')}</p>
               {completion.length > 0 ? (
                 <>
-                  <ResponsiveContainer width="100%" height={160}>
+                  <ResponsiveContainer width="100%" height={160} minWidth={1} minHeight={1}>
                     <PieChart>
                       <Pie data={completion} cx="50%" cy="50%" innerRadius={45} outerRadius={68}
                         dataKey="value" paddingAngle={3}>
