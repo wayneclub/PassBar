@@ -189,16 +189,29 @@ async function main() {
     auth: { autoRefreshToken: false, persistSession: false },
   });
 
-  const { data, error } = await admin
+  const { data: subData, error } = await admin
     .from('push_subscriptions')
-    .select('id, endpoint, p256dh, auth, user_id, profiles(id, study_settings, exam_date)');
+    .select('id, endpoint, p256dh, auth, user_id');
 
   if (error) {
     console.error('Failed to load push subscriptions:', error.message);
     process.exit(1);
   }
 
-  const subscriptions = data ?? [];
+  const subList = subData ?? [];
+  const userIds = [...new Set(subList.map((s) => s.user_id).filter(Boolean))];
+
+  const { data: profileData } = await admin
+    .from('profiles')
+    .select('id, study_settings, exam_date')
+    .in('id', userIds.length > 0 ? userIds : ['']);
+
+  const profileMap = new Map((profileData ?? []).map((p) => [p.id, p]));
+
+  const subscriptions = subList.map((s) => ({
+    ...s,
+    profiles: profileMap.get(s.user_id) ?? null,
+  }));
   const currentUtcHour = new Date().getUTCHours();
 
   let sent = 0;
