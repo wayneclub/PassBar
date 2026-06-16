@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { AlertTriangle, ArrowRight, BookOpen, CalendarDays, ChevronLeft, ChevronRight, CheckCircle2, Coffee, LayoutGrid, Loader2, PartyPopper, Rocket, RotateCcw, Search, LineChart, CheckSquare } from 'lucide-react';
+import { AlertTriangle, ArrowRight, BookOpen, CalendarDays, ChevronDown, ChevronLeft, ChevronRight, CheckCircle2, Coffee, LayoutGrid, PartyPopper, RotateCcw, Search, LineChart, CheckSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -116,6 +116,7 @@ type Props = {
   remainingQuestions: number;
   triageWeeks: number;
   subjectMode: StudySubjectMode;
+  subjectOrder?: string[];
   subjectQuotas: Record<string, number>;
   subjects: Subject[];
   subjectsWithRemaining: { name: string; remaining: number }[];
@@ -135,14 +136,13 @@ export function SmartStudyCalendar({
   remainingQuestions,
   triageWeeks,
   subjectMode,
+  subjectOrder,
   subjectQuotas,
   subjects,
   subjectsWithRemaining,
   subjectConfidence,
   dueReviewChapters,
   dailyChapterCounts,
-  onStartToday,
-  startingMission,
 }: Props) {
   const { t, language } = useI18n();
   const { user } = useAuth();
@@ -156,6 +156,7 @@ export function SmartStudyCalendar({
   const [selectedDate, setSelectedDate] = useState<Date>(today);
   const [guideDate, setGuideDate] = useState<Date | null>(null);
   const [viewMonth, setViewMonth] = useState<{ year: number; month: number }>({ year: today.getFullYear(), month: today.getMonth() });
+  const [reviewDetailsExpanded, setReviewDetailsExpanded] = useState(true);
 
   const storageKey = user?.id ? `passbar_calendar_task_overrides_${user.id}` : null;
 
@@ -255,7 +256,7 @@ export function SmartStudyCalendar({
       return { name: focusSubjects[idx], color: SUBJECT_BADGE_COLORS[idx % SUBJECT_BADGE_COLORS.length], mixed: true };
     }
 
-    const focus = getFocusSubjectForDate(subjectsWithRemaining, subjectConfidence, studyDays, date) ?? focusSubjects[0];
+    const focus = getFocusSubjectForDate(subjectsWithRemaining, subjectConfidence, studyDays, date, subjectOrder) ?? focusSubjects[0];
     const idx = Math.max(0, focusSubjects.indexOf(focus));
     return { name: focus, color: SUBJECT_BADGE_COLORS[idx % SUBJECT_BADGE_COLORS.length], mixed: false };
   };
@@ -641,21 +642,6 @@ export function SmartStudyCalendar({
                     {!isExamDay && !isAfterExam && isStudyDay && !completed && (isToday || isFuture) && (
                       <div className="mt-auto flex flex-col gap-1.5">
                         <CompactMissionSummary plan={mission} />
-                        {isToday && (
-                          <Button
-                            size="sm"
-                            className="h-7 px-2 text-[11px] gap-1"
-                            type="button"
-                            onClick={(event) => {
-                              event.stopPropagation();
-                              onStartToday();
-                            }}
-                            disabled={startingMission}
-                          >
-                            {startingMission ? <Loader2 className="h-3 w-3 animate-spin" /> : <Rocket className="h-3 w-3" />}
-                            {t('calendar.startNow')}
-                          </Button>
-                        )}
                       </div>
                     )}
 
@@ -707,7 +693,7 @@ export function SmartStudyCalendar({
             )}>
               {agendaCompleted
                 ? t('calendar.completed')
-                : `已完成 ${agendaProgress.completed}/${agendaProgress.total} 個章節任務`}
+                : t('plan.chapterTaskProgress', { completed: agendaProgress.completed, total: agendaProgress.total })}
             </span>
           )}
         </div>
@@ -724,7 +710,7 @@ export function SmartStudyCalendar({
           <p className="rounded-xl border border-slate-200 bg-white p-4 text-sm text-muted-foreground">{t('calendar.restDay')}</p>
         ) : (
           <>
-            <div className="hidden sm:block mt-4">
+            <div className="mt-4">
               <EnhancedTaskDetails date={date} plan={agendaPlan} showHeader={false} />
             </div>
 
@@ -737,32 +723,19 @@ export function SmartStudyCalendar({
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
                     </span>
-                    今日核心攻克：{focusDisplayName(agendaFocus.name)}
+                    {t('plan.focusTodayLabel', { subject: focusDisplayName(agendaFocus.name) })}
                   </p>
                   <Button
                     size="sm"
-                    className="group shrink-0 gap-1.5 bg-[#CBA344] hover:bg-[#B38F39] text-white"
+                    className="group w-full sm:w-auto shrink-0 gap-1.5 bg-[#CBA344] hover:bg-[#B38F39] text-white overflow-hidden"
                     type="button"
                     onClick={() => goToFocusSubject(agendaFocus.name as string)}
                   >
-                    <Search className="h-4 w-4" />
-                    進入單科專攻：{agendaFocus.name}
+                    <Search className="h-4 w-4 shrink-0" />
+                    <span className="truncate">{t('plan.goFocusSubject', { subject: agendaFocus.name })}</span>
                   </Button>
                 </div>
               </>
-            )}
-
-            {isAgendaToday && !agendaCompleted && (
-              <Button
-                size="sm"
-                className="h-9 gap-1.5 px-4 text-xs mt-2"
-                type="button"
-                onClick={onStartToday}
-                disabled={startingMission}
-              >
-                {startingMission ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Rocket className="h-3.5 w-3.5" />}
-                {t('calendar.startNow')}
-              </Button>
             )}
           </>
         )}
@@ -792,10 +765,10 @@ export function SmartStudyCalendar({
           <div className={cn("flex items-center justify-between mb-4 gap-2", inModal ? "pr-8 sm:pr-8" : "")}>
             <div className="flex items-center gap-2 min-w-0">
               <div className="w-1.5 h-6 bg-[#B58529] rounded-full shrink-0" />
-              <h3 className="text-lg font-bold text-slate-800 truncate">{dateLabel} 任務明細</h3>
+              <h3 className="text-lg font-bold text-slate-800 truncate">{t('calendar.taskDetailTitle', { date: dateLabel })}</h3>
             </div>
             <div className="bg-[#FDF6E3] text-[#B58529] px-3 py-1 rounded-full text-xs sm:text-sm font-bold shrink-0">
-              共 {totalChapters} 個單元
+              {t('calendar.unitCount', { count: totalChapters })}
             </div>
           </div>
         )}
@@ -815,7 +788,24 @@ export function SmartStudyCalendar({
 
     return (
       <div className="flex flex-col space-y-3 h-full">
-        <div className="flex items-center justify-between gap-2 px-1 shrink-0">
+        <div
+          className={cn(
+            "flex min-h-8 items-center justify-between gap-2 px-1 py-1 shrink-0",
+            isReview && items.length > 0 && "cursor-pointer rounded-md py-1 transition-colors hover:bg-slate-50",
+          )}
+          role={isReview && items.length > 0 ? 'button' : undefined}
+          tabIndex={isReview && items.length > 0 ? 0 : undefined}
+          onClick={() => {
+            if (isReview && items.length > 0) setReviewDetailsExpanded((expanded) => !expanded);
+          }}
+          onKeyDown={(event) => {
+            if (!isReview || items.length === 0) return;
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            event.preventDefault();
+            setReviewDetailsExpanded((expanded) => !expanded);
+          }}
+          aria-expanded={isReview && items.length > 0 ? reviewDetailsExpanded : undefined}
+        >
           <span className="flex items-center gap-1.5 text-sm font-bold text-slate-700">
             <Icon className={cn('h-4 w-4', isReview ? 'text-slate-500' : 'text-slate-500')} />
             {isReview ? t('calendar.reviewStudy') : t('calendar.newStudy')}
@@ -825,6 +815,14 @@ export function SmartStudyCalendar({
               {t('calendar.chapterTaskCount', { chapters: items.length, questions: totalQuestions })}
             </span>
           )}
+          {isReview && items.length > 0 && (
+            <ChevronDown
+              className={cn(
+                "h-4 w-4 shrink-0 text-slate-400 transition-transform",
+                reviewDetailsExpanded ? "rotate-180" : "rotate-0",
+              )}
+            />
+          )}
         </div>
         <div className="space-y-3 flex-1 flex flex-col">
           {items.length === 0 ? (
@@ -832,18 +830,20 @@ export function SmartStudyCalendar({
           ) : items.map((item, index) => {
             return (
             <div key={`${item.kind}-${item.chapterId}`} className={cn(
-              "rounded-xl border p-4 flex items-start gap-3 shadow-sm transition-all duration-200 text-left group cursor-pointer",
+              "rounded-xl border px-4 flex items-start gap-3 shadow-sm transition-all duration-200 text-left group cursor-pointer",
               isReview ? "bg-[#fcfbfa] hover:bg-[#faf8f2] border-[#e8e2d9] border-dashed" : "bg-[#fcfbfa] hover:bg-[#faf8f2] border-[#f0eee9]",
-              index === items.length - 1 ? "flex-1" : ""
+              reviewDetailsExpanded ? "py-4" : "py-3",
             )}>
               <div className={cn("w-1.5 h-1.5 rounded-full shrink-0 mt-[6px]", isReview ? "bg-[#ea580c]" : "bg-[#c29d4c]")} />
               <div className="flex-1 space-y-3 min-w-0">
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0 space-y-1.5 pt-0.5">
                     <p className="truncate text-[15px] font-bold leading-none transition-colors text-[#1e1c19] group-hover:text-[#c29d4c]">
-                      {item.subject}
+                      {item.subject}{getMbeChineseLabel(item.subject, language) ? `（${getMbeChineseLabel(item.subject, language)}）` : ''}
                     </p>
-                    <p className="truncate text-[13px] leading-none text-[#7c7871]">{item.chapter}</p>
+                    <p className="truncate text-[13px] leading-none text-[#7c7871]">
+                      {item.chapter}{getMbeChineseLabel(item.chapter, language) ? `（${getMbeChineseLabel(item.chapter, language)}）` : ''}
+                    </p>
                   </div>
                   <span className={cn(
                     "shrink-0 rounded-md px-2.5 py-1 text-xs font-bold tabular-nums transition-colors",
@@ -852,7 +852,7 @@ export function SmartStudyCalendar({
                     {item.target} {t('plan.questionsUnit')}
                   </span>
                 </div>
-              {isReview && (
+              {isReview && reviewDetailsExpanded && (
                 (item.masteryRate ?? 0) > 0 ? (
                   <div className="grid grid-cols-3 gap-2 rounded-lg bg-[#f0eee9]/40 px-2 py-1.5 text-center mt-3">
                     <Stat label={t('calendar.accuracyLabel')} value={`${item.accuracy ?? 0}%`} />
@@ -928,13 +928,13 @@ export function SmartStudyCalendar({
         <div className="hidden sm:flex flex-col space-y-0.5 w-full">
           {firstNew && (
             <div className={cn("text-[10px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 border-l-2 -mx-1.5 sm:-mx-2 truncate", getSubjectColorStyles(firstNew.subject).stripe)}>
-              <span className="font-normal opacity-80 mr-1">新</span>
+              <span className="font-normal opacity-80 mr-1">{t('calendar.newPrefix')}</span>
               {getShortSubjectName(firstNew.subject)}
             </div>
           )}
           {firstReview && (
             <div className={cn("text-[10px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 border-l-2 -mx-1.5 sm:-mx-2 truncate", getSubjectColorStyles(firstReview.subject).stripe)}>
-              <span className="font-normal opacity-80 mr-1">複</span>
+              <span className="font-normal opacity-80 mr-1">{t('calendar.reviewPrefix')}</span>
               {getShortSubjectName(firstReview.subject)}
             </div>
           )}

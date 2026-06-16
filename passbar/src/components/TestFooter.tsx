@@ -137,15 +137,17 @@ export function TestFooter({
               <StopCircle className="h-5 w-5 text-primary" />
               {t('test.end')}
             </button>
-            <button
-              onClick={onSuspend}
-              className="flex flex-col items-center gap-0.5 text-xs text-slate-400 hover:text-white transition-colors"
-            >
-              {isPaused
-                ? <PlayCircle className="h-5 w-5 text-primary" />
-                : <PauseCircle className="h-5 w-5 text-primary" />}
-              {isPaused ? t('test.resume') : t('test.suspend')}
-            </button>
+            {!isReviewMode && (
+              <button
+                onClick={onSuspend}
+                className="flex flex-col items-center gap-0.5 text-xs text-slate-400 hover:text-white transition-colors"
+              >
+                {isPaused
+                  ? <PlayCircle className="h-5 w-5 text-primary" />
+                  : <PauseCircle className="h-5 w-5 text-primary" />}
+                {isPaused ? t('test.resume') : t('test.suspend')}
+              </button>
+            )}
           </div>
 
           {/* Next */}

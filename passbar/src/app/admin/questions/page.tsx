@@ -11,56 +11,14 @@ import { getFeedback, resolveFeedback, type Feedback, type FeedbackCategory } fr
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { useI18n } from '@/lib/i18n';
 import { Suspense } from 'react';
-
-// ─── Constants ────────────────────────────────────────────────────────────────
-
-const QUESTION_CATEGORY_LABELS: Record<ReportCategory, string> = {
-  wrong_answer:          '答案有誤',
-  typo:                  '題目誤字',
-  unclear:               '說明不清',
-  outdated:              '內容過時',
-  explanation_incorrect: '解析有誤',
-  other:                 '其他',
-};
-
-const QUESTION_CATEGORY_COLORS: Record<ReportCategory, string> = {
-  wrong_answer:          'bg-red-100 text-red-700 border-red-200',
-  typo:                  'bg-orange-100 text-orange-700 border-orange-200',
-  unclear:               'bg-amber-100 text-amber-700 border-amber-200',
-  outdated:              'bg-blue-100 text-blue-700 border-blue-200',
-  explanation_incorrect: 'bg-purple-100 text-purple-700 border-purple-200',
-  other:                 'bg-slate-100 text-slate-600 border-slate-200',
-};
-
-const FEEDBACK_CATEGORY_LABELS: Record<FeedbackCategory, string> = {
-  content: '題目勘誤與錯字',
-  bug:     '程式 Bug 反饋',
-  feature: '功能改良建議',
-  account: '帳號與付款問題',
-  other:   '其他',
-};
-
-const FEEDBACK_CATEGORY_COLORS: Record<FeedbackCategory, string> = {
-  content: 'bg-orange-100 text-orange-700 border-orange-200',
-  bug:     'bg-red-100 text-red-700 border-red-200',
-  feature: 'bg-blue-100 text-blue-700 border-blue-200',
-  account: 'bg-purple-100 text-purple-700 border-purple-200',
-  other:   'bg-slate-100 text-slate-600 border-slate-200',
-};
-
-function timeAgo(value: string) {
-  const diff = Date.now() - new Date(value).getTime();
-  if (diff < 3_600_000) return `${Math.floor(diff / 60_000)} 分鐘前`;
-  if (diff < 86_400_000) return `${Math.floor(diff / 3_600_000)} 小時前`;
-  return `${Math.floor(diff / 86_400_000)} 天前`;
-}
 
 // ─── Unified feedback item ─────────────────────────────────────────────────────
 
 type UnifiedItem = {
   id: string;
-  categories: { label: string; color: string }[];
+  categories: { labelKey: string; color: string }[];
   message: string | null;
   subject: string | null;
   questionSnippet?: { subject: string; chapter_name: string; question_text: string } | null;
@@ -72,24 +30,55 @@ type UnifiedItem = {
   onResolve: () => Promise<boolean>;
 };
 
-function reporterLabel(profile: { full_name: string | null; email: string | null } | null | undefined, fallbackEmail?: string | null) {
-  return profile?.full_name ?? profile?.email ?? fallbackEmail ?? '匿名使用者';
+const QUESTION_CATEGORY_LABEL_KEYS: Record<ReportCategory, string> = {
+  wrong_answer:          'admin.catWrongAnswer',
+  typo:                  'admin.catTypo',
+  unclear:               'admin.catUnclear',
+  outdated:              'admin.catOutdated',
+  explanation_incorrect: 'admin.catExplanationIncorrect',
+  other:                 'admin.catOther',
+};
+
+const QUESTION_CATEGORY_COLORS: Record<ReportCategory, string> = {
+  wrong_answer:          'bg-red-100 text-red-700 border-red-200',
+  typo:                  'bg-orange-100 text-orange-700 border-orange-200',
+  unclear:               'bg-amber-100 text-amber-700 border-amber-200',
+  outdated:              'bg-blue-100 text-blue-700 border-blue-200',
+  explanation_incorrect: 'bg-purple-100 text-purple-700 border-purple-200',
+  other:                 'bg-slate-100 text-slate-600 border-slate-200',
+};
+
+const FEEDBACK_CATEGORY_LABEL_KEYS: Record<FeedbackCategory, string> = {
+  content: 'admin.catContent',
+  bug:     'admin.catBug',
+  feature: 'admin.catFeature',
+  account: 'admin.catAccount',
+  other:   'admin.catOther',
+};
+
+const FEEDBACK_CATEGORY_COLORS: Record<FeedbackCategory, string> = {
+  content: 'bg-orange-100 text-orange-700 border-orange-200',
+  bug:     'bg-red-100 text-red-700 border-red-200',
+  feature: 'bg-blue-100 text-blue-700 border-blue-200',
+  account: 'bg-purple-100 text-purple-700 border-purple-200',
+  other:   'bg-slate-100 text-slate-600 border-slate-200',
+};
+
+function reporterName(profile: { full_name: string | null; email: string | null } | null | undefined, fallbackEmail?: string | null) {
+  return profile?.full_name ?? profile?.email ?? fallbackEmail ?? null;
 }
 
-function questionReportToItem(
-  report: QuestionReport,
-  questionsMap: Record<string, { question_text: string; subject: string; chapter_name: string }>,
-): UnifiedItem {
+function questionReportToItem(report: QuestionReport, questionsMap: Record<string, { question_text: string; subject: string; chapter_name: string }>): UnifiedItem {
   const categories = report.categories && report.categories.length > 0 ? report.categories : [report.category];
   return {
     id: report.id,
-    categories: categories.map((c) => ({ label: QUESTION_CATEGORY_LABELS[c], color: QUESTION_CATEGORY_COLORS[c] })),
+    categories: categories.map((c) => ({ labelKey: QUESTION_CATEGORY_LABEL_KEYS[c], color: QUESTION_CATEGORY_COLORS[c] })),
     message: report.message,
     subject: null,
     questionSnippet: questionsMap[report.question_id] ?? null,
-    refInfo: `題目 ID：${report.question_id}`,
+    refInfo: report.question_id,
     language: report.language,
-    reporterLabel: reporterLabel(report.profiles),
+    reporterLabel: reporterName(report.profiles) ?? '',
     resolved: report.resolved,
     created_at: report.created_at,
     onResolve: () => resolveQuestionReport(report.id),
@@ -97,19 +86,19 @@ function questionReportToItem(
 }
 
 function feedbackToItem(feedback: Feedback): UnifiedItem {
-  const category = (feedback.category as FeedbackCategory) in FEEDBACK_CATEGORY_LABELS
+  const category = (feedback.category as FeedbackCategory) in FEEDBACK_CATEGORY_LABEL_KEYS
     ? (feedback.category as FeedbackCategory)
     : 'other';
-  const refParts = [feedback.ref_subject, feedback.ref_chapter, feedback.qid ? `題目 ID：${feedback.qid}` : null].filter(Boolean);
+  const refParts = [feedback.ref_subject, feedback.ref_chapter].filter(Boolean);
   return {
     id: feedback.id,
-    categories: [{ label: FEEDBACK_CATEGORY_LABELS[category], color: FEEDBACK_CATEGORY_COLORS[category] }],
+    categories: [{ labelKey: FEEDBACK_CATEGORY_LABEL_KEYS[category], color: FEEDBACK_CATEGORY_COLORS[category] }],
     message: feedback.message,
     subject: feedback.subject,
     questionSnippet: null,
-    refInfo: refParts.length > 0 ? refParts.join(' · ') : null,
+    refInfo: feedback.qid ?? null,
     language: null,
-    reporterLabel: reporterLabel(feedback.profiles, feedback.email),
+    reporterLabel: reporterName(feedback.profiles, feedback.email) ?? '',
     resolved: feedback.resolved,
     created_at: feedback.created_at,
     onResolve: () => resolveFeedback(feedback.id),
@@ -127,6 +116,7 @@ function FeedbackListTab({
   description: string;
   load: (filterResolved: 'unresolved' | 'resolved' | 'all') => Promise<UnifiedItem[]>;
 }) {
+  const { t } = useI18n();
   const [items, setItems] = useState<UnifiedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [resolving, setResolving] = useState<Record<string, boolean>>({});
@@ -146,13 +136,26 @@ function FeedbackListTab({
     const ok = await item.onResolve();
     if (ok) {
       setItems((prev) => prev.map((i) =>
-        i.id === item.id ? { ...i, resolved: true } : i
+        i.id === item.id ? { ...i, resolved: true } : i,
       ));
     }
     setResolving((prev) => ({ ...prev, [item.id]: false }));
   };
 
+  function timeAgo(value: string) {
+    const diff = Date.now() - new Date(value).getTime();
+    if (diff < 3_600_000) return t('admin.timeAgoMin', { n: Math.floor(diff / 60_000) });
+    if (diff < 86_400_000) return t('admin.timeAgoHour', { n: Math.floor(diff / 3_600_000) });
+    return t('admin.timeAgoDay', { n: Math.floor(diff / 86_400_000) });
+  }
+
   const unresolvedCount = items.filter((i) => !i.resolved).length;
+
+  const FILTER_LABELS: Record<'unresolved' | 'all' | 'resolved', string> = {
+    unresolved: t('admin.feedbackUnresolved'),
+    all:        t('admin.feedbackAll'),
+    resolved:   t('admin.feedbackResolved'),
+  };
 
   return (
     <div className="space-y-5">
@@ -164,7 +167,7 @@ function FeedbackListTab({
         </div>
         {unresolvedCount > 0 && (
           <span className="rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-700">
-            {unresolvedCount} 件待處理
+            {t('admin.feedbackPendingCount', { count: unresolvedCount })}
           </span>
         )}
       </div>
@@ -183,7 +186,7 @@ function FeedbackListTab({
                 : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50',
             )}
           >
-            {{ unresolved: '未處理', all: '全部', resolved: '已處理' }[v]}
+            {FILTER_LABELS[v]}
           </button>
         ))}
       </div>
@@ -191,12 +194,12 @@ function FeedbackListTab({
       {/* List */}
       {loading ? (
         <div className="flex items-center justify-center py-20 text-muted-foreground gap-2">
-          <Loader2 className="h-5 w-5 animate-spin" /> 載入中…
+          <Loader2 className="h-5 w-5 animate-spin" /> {t('admin.feedbackLoading')}
         </div>
       ) : items.length === 0 ? (
         <div className="flex flex-col items-center gap-3 py-20 text-center">
           <CheckCircle2 className="h-10 w-10 text-green-400" />
-          <p className="text-sm text-muted-foreground">目前沒有待處理的反饋</p>
+          <p className="text-sm text-muted-foreground">{t('admin.feedbackEmpty')}</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -213,9 +216,9 @@ function FeedbackListTab({
                   {/* Category + time */}
                   <div className="flex items-center gap-2 flex-wrap">
                     {item.categories.map((cat) => (
-                      <Badge key={cat.label} className={cn('text-xs border font-medium', cat.color)}>
+                      <Badge key={cat.labelKey} className={cn('text-xs border font-medium', cat.color)}>
                         <Flag className="h-3 w-3 mr-1" />
-                        {cat.label}
+                        {t(cat.labelKey as Parameters<typeof t>[0])}
                       </Badge>
                     ))}
                     {item.language && (
@@ -226,7 +229,7 @@ function FeedbackListTab({
                     {item.resolved && (
                       <Badge className="text-xs border bg-green-100 text-green-700 border-green-200">
                         <CheckCircle2 className="h-3 w-3 mr-1" />
-                        已處理
+                        {t('admin.feedbackResolvedBadge')}
                       </Badge>
                     )}
                     <span className="flex items-center gap-1 text-xs text-muted-foreground">
@@ -261,11 +264,13 @@ function FeedbackListTab({
                   {/* Reporter + ref info */}
                   <div className="flex items-center gap-1 text-xs text-muted-foreground flex-wrap">
                     <User className="h-3 w-3" />
-                    {item.reporterLabel}
+                    {item.reporterLabel || t('admin.feedbackAnonymous')}
                     {item.refInfo && (
                       <>
                         <span className="text-slate-300 mx-1">·</span>
-                        <span className="font-mono text-[10px] text-slate-400">{item.refInfo}</span>
+                        <span className="font-mono text-[10px] text-slate-400">
+                          {t('admin.feedbackQuestionId', { id: item.refInfo })}
+                        </span>
                       </>
                     )}
                   </div>
@@ -282,7 +287,7 @@ function FeedbackListTab({
                   >
                     {resolving[item.id]
                       ? <Loader2 className="h-3 w-3 animate-spin" />
-                      : <><Check className="h-3 w-3 mr-1" />標為已處理</>
+                      : <><Check className="h-3 w-3 mr-1" />{t('admin.feedbackMarkResolved')}</>
                     }
                   </Button>
                 )}
@@ -354,6 +359,7 @@ function useTabLoaders() {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 function AdminFeedbackContent() {
+  const { t } = useI18n();
   const searchParams = useSearchParams();
   const router = useRouter();
   const tab = (['question', 'bug', 'suggestion'] as const).includes(searchParams.get('tab') as 'question' | 'bug' | 'suggestion')
@@ -362,74 +368,59 @@ function AdminFeedbackContent() {
 
   const { loadQuestionFeedback, loadBugFeedback, loadSuggestionFeedback } = useTabLoaders();
 
-  const setTab = (t: string) => {
-    router.push(`/admin/questions?tab=${t}`);
+  const setTab = (tabKey: string) => {
+    router.push(`/admin/questions?tab=${tabKey}`);
   };
+
+  const TABS = [
+    { key: 'question', icon: <Flag className="h-3.5 w-3.5" />, label: t('admin.feedbackTabQuestion') },
+    { key: 'bug',      icon: <Bug className="h-3.5 w-3.5" />,  label: t('admin.feedbackTabBug') },
+    { key: 'suggestion', icon: <Lightbulb className="h-3.5 w-3.5" />, label: t('admin.feedbackTabSuggestion') },
+  ];
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-primary">使用者反饋</h1>
+        <h1 className="text-3xl font-bold text-primary">{t('admin.feedbackTitle')}</h1>
       </div>
 
       {/* Tab bar */}
       <div className="flex gap-1 border-b border-slate-200">
-        <button
-          onClick={() => setTab('question')}
-          className={cn(
-            'px-4 py-2.5 text-sm font-medium border-b-2 -mb-px transition-colors flex items-center gap-1.5',
-            tab === 'question'
-              ? 'border-primary text-primary'
-              : 'border-transparent text-slate-500 hover:text-slate-700',
-          )}
-        >
-          <Flag className="h-3.5 w-3.5" />
-          題目
-        </button>
-        <button
-          onClick={() => setTab('bug')}
-          className={cn(
-            'px-4 py-2.5 text-sm font-medium border-b-2 -mb-px transition-colors flex items-center gap-1.5',
-            tab === 'bug'
-              ? 'border-primary text-primary'
-              : 'border-transparent text-slate-500 hover:text-slate-700',
-          )}
-        >
-          <Bug className="h-3.5 w-3.5" />
-          Bug
-        </button>
-        <button
-          onClick={() => setTab('suggestion')}
-          className={cn(
-            'px-4 py-2.5 text-sm font-medium border-b-2 -mb-px transition-colors flex items-center gap-1.5',
-            tab === 'suggestion'
-              ? 'border-primary text-primary'
-              : 'border-transparent text-slate-500 hover:text-slate-700',
-          )}
-        >
-          <Lightbulb className="h-3.5 w-3.5" />
-          建議
-        </button>
+        {TABS.map(({ key, icon, label }) => (
+          <button
+            key={key}
+            onClick={() => setTab(key)}
+            className={cn(
+              'px-4 py-2.5 text-sm font-medium border-b-2 -mb-px transition-colors flex items-center gap-1.5',
+              tab === key
+                ? 'border-primary text-primary'
+                : 'border-transparent text-slate-500 hover:text-slate-700',
+            )}
+          >
+            {icon}
+            {label}
+          </button>
+        ))}
       </div>
 
       {tab === 'question' && (
         <FeedbackListTab
-          title="題目反饋"
-          description="使用者回報的題目勘誤、誤字與內容問題"
+          title={t('admin.feedbackQuestionTitle')}
+          description={t('admin.feedbackQuestionDesc')}
           load={loadQuestionFeedback}
         />
       )}
       {tab === 'bug' && (
         <FeedbackListTab
-          title="Bug 回饋"
-          description="使用者回報的系統錯誤與技術問題"
+          title={t('admin.feedbackBugTitle')}
+          description={t('admin.feedbackBugDesc')}
           load={loadBugFeedback}
         />
       )}
       {tab === 'suggestion' && (
         <FeedbackListTab
-          title="功能建議"
-          description="使用者提出的功能改良建議與其他意見"
+          title={t('admin.feedbackSuggestionTitle')}
+          description={t('admin.feedbackSuggestionDesc')}
           load={loadSuggestionFeedback}
         />
       )}

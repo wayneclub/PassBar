@@ -3,7 +3,7 @@ import { getAllUserProgress } from './question-progress';
 import { createPracticeSessionRecord } from './practice-sessions';
 import { supabase } from './supabase';
 import { TestSession } from './types';
-import type { StudyPaceMode, StudySubjectMode } from './study-settings';
+import { defaultStudySettings, normalizeStudySettings, type StudyPaceMode, type StudySubjectMode } from './study-settings';
 
 function startOfLocalDay(date: Date) {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -222,6 +222,8 @@ export type ChapterAttemptStats = {
   attempts: number;
   correct: number;
   lastAttemptAt: string;
+  totalAttempts: number;
+  lastAccuracy: number | null;
   totalTimeSeconds?: number;
   timedAttempts?: number;
   questionCount?: number;
@@ -395,6 +397,8 @@ export function computeChapterStats(chapterAnswerRows: PracticeAnswerChapterRow[
       attempts: 0,
       correct: 0,
       lastAttemptAt: answer.answered_at,
+      totalAttempts: 0,
+      lastAccuracy: null,
       totalTimeSeconds: 0,
       timedAttempts: 0,
       questionIds: new Set<string>(),
@@ -428,6 +432,8 @@ export function computeChapterStats(chapterAnswerRows: PracticeAnswerChapterRow[
       attempts: stat.attempts,
       correct: stat.correct,
       lastAttemptAt: stat.lastAttemptAt,
+      totalAttempts: stat.attempts,
+      lastAccuracy: stat.attempts > 0 ? Math.round((stat.correct / stat.attempts) * 100) : null,
       totalTimeSeconds: stat.totalTimeSeconds,
       timedAttempts: stat.timedAttempts,
       questionCount: stat.questionIds.size,
@@ -1009,18 +1015,23 @@ export async function fetchTodayMissionForUser(userId: string): Promise<{
 
   const [subjects, profileRes] = await Promise.all([
     getSubjects(),
-    supabase.from('profiles').select('study_settings').eq('id', userId).single(),
+    // Select both exam_date (top-level) and study_settings so we can fall back
+    // to profile.exam_date when the plan doesn't have its own examDate field.
+    supabase.from('profiles').select('exam_date, study_settings').eq('id', userId).single(),
   ]);
 
-  const settings = (profileRes.data as { study_settings?: Record<string, unknown> } | null)?.study_settings ?? {};
-  const plan = (settings.studyPlan ?? {}) as Record<string, unknown>;
-  const subjectMode: StudySubjectMode = (plan.subjectMode as StudySubjectMode) ?? 'singleThenMixed';
-  const studyDaysPerWeek: number[] = (plan.studyDaysPerWeek as number[]) ?? [1, 2, 3, 4, 5];
-  const paceMode: StudyPaceMode = (plan.paceMode as StudyPaceMode) ?? 'balanced';
-  const dailyStudyHours = (plan.dailyStudyHours as number) ?? 2;
-  const triageWeeks = (plan.triageWeeks as number) ?? 4;
-  const examDate = (plan.examDate as string | null) ?? null;
-  const savedConfidence = (plan.subjectConfidence as Record<string, number> | undefined);
+  const profileData = profileRes.data as { exam_date?: string | null; study_settings?: Record<string, unknown> } | null;
+  const settings = normalizeStudySettings((profileData?.study_settings ?? defaultStudySettings) as Parameters<typeof normalizeStudySettings>[0]);
+  const plan = settings.studyPlan ?? defaultStudySettings.studyPlan!;
+  const subjectMode: StudySubjectMode = plan.subjectMode ?? 'singleThenMixed';
+  const studyDaysPerWeek = plan.studyDaysPerWeek;
+  const paceMode: StudyPaceMode = plan.paceMode ?? 'balanced';
+  const dailyStudyHours = plan.dailyStudyHours ?? defaultStudySettings.studyPlan!.dailyStudyHours ?? 3;
+  const triageWeeks = plan.triageWeeks;
+  // exam_date lives on the top-level profile row; studyPlan.examDate is a legacy fallback
+  const examDate = profileData?.exam_date ?? (plan.examDate as string | null) ?? null;
+  const savedConfidence = plan.subjectConfidence;
+  const subjectOrder = plan.subjectOrder;
 
   const missionTotal = subjects.reduce((s, sub) => s + sub.count, 0);
 
@@ -1045,10 +1056,10 @@ export async function fetchTodayMissionForUser(userId: string): Promise<{
   const reviewSplit = splitQuotaForReview(quotaInfo.quota, reviewChapters.length, quotaInfo.reviewQuota);
   const subjectQuotas = calculatePlannedSubjectQuotas(
     subjectsWithRemaining, reviewSplit.newQuota, subjectConfidence,
-    subjectMode, quotaInfo.triageMode, studyDaysPerWeek,
+    subjectMode, quotaInfo.triageMode, studyDaysPerWeek, new Date(), subjectOrder,
   );
 
-  const plannedIds = getPlannedChapterIdsForDate(
+  let plannedIds = getPlannedChapterIdsForDate(
     subjects, subjectQuotas, subjectMode, quotaInfo.triageMode, studyDaysPerWeek,
   );
 

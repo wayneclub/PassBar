@@ -18,7 +18,7 @@ import {
   saveQuestionAnswerProgress,
   setQuestionMarked,
 } from '@/lib/question-progress';
-import { deletePracticeSessionRecord, getPracticeSessionRecord, savePracticeAnswer, updatePracticeSessionRecord } from '@/lib/practice-sessions';
+import { deletePracticeAnswersForSession, deletePracticeSessionRecord, getPracticeSessionRecord, savePracticeAnswer, updatePracticeSessionRecord } from '@/lib/practice-sessions';
 import { getBrowseProgressByUser, upsertBrowseProgress } from '@/lib/topic-study-progress';
 import { getBrowseMarkedQuestionIds, getBrowseQuestionStates, upsertBrowseQuestionState } from '@/lib/topic-study-question-states';
 import {
@@ -35,9 +35,10 @@ import { ResizablePanels } from '@/components/ResizablePanels';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { requestGeminiFeedback } from '@/lib/gemini-feedback';
-import { defaultStudySettings, getStudySettings, saveStudySettings, type ContentMode, type DisplayOptions, type TextSize } from '@/lib/study-settings';
+import { defaultStudySettings, getStudySettings, saveStudySettings, type ContentMode, type DisplayOptions, type StudySettings, type TextSize } from '@/lib/study-settings';
 import { saveUserStudySettings } from '@/lib/user-settings';
 import { useI18n } from '@/lib/i18n';
+import { toTraditionalChineseIfNeeded, toTraditionalChineseListIfNeeded } from '@/lib/chinese-conversion';
 import { Check, ChevronUp, Clock3, Lightbulb, ListChecks, X } from 'lucide-react';
 import { ReportQuestionDialog } from '@/components/ReportQuestionDialog';
 
@@ -78,6 +79,17 @@ function getCachedSessionQuestions(questionIds: string[], cachedQuestions: Quest
   return ordered.length === questionIds.length ? ordered : null;
 }
 
+function cloneSessionSnapshot(session: TestSession): TestSession {
+  return {
+    ...session,
+    subjects: [...session.subjects],
+    chapters: [...session.chapters],
+    questionIds: [...session.questionIds],
+    userAnswers: { ...session.userAnswers },
+    userAnswerChoices: session.userAnswerChoices ? { ...session.userAnswerChoices } : undefined,
+  };
+}
+
 function TestSessionContent() {
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
@@ -95,6 +107,7 @@ function TestSessionContent() {
   const [display, setDisplay] = useState<DisplayOptions>(defaultStudySettings.display);
   const [textSize, setTextSize] = useState<TextSize>('medium');
   const [showNotes, setShowNotes] = useState<boolean>(true);
+  const [autoSaveProgress, setAutoSaveProgress] = useState<boolean>(defaultStudySettings.autoSaveProgress);
   const [panelResetKey, setPanelResetKey] = useState(0);
   const [questionStartedAt, setQuestionStartedAt] = useState(() => Date.now());
   const [isPaused, setIsPaused] = useState(false);
@@ -110,6 +123,7 @@ function TestSessionContent() {
   const [ending, setEnding] = useState(false);
   const [shortcutHelpOpen, setShortcutHelpOpen] = useState(false);
   const [activeExplanationChoiceKey, setActiveExplanationChoiceKey] = useState<string | null>(null);
+  const initialSessionRef = useRef<TestSession | null>(null);
 
   // Per-question countdown (108s practice aid)
   const [perQuestionTimeLeft, setPerQuestionTimeLeft] = useState<number | null>(null);
@@ -160,13 +174,15 @@ function TestSessionContent() {
     setDisplay(settings.display);
     setTextSize(settings.textSize);
     setShowNotes(settings.showNotes);
+    setAutoSaveProgress(settings.autoSaveProgress);
 
     const handleSettingsChange = (event: Event) => {
-      const next = (event as CustomEvent<{ contentMode: ContentMode; display: DisplayOptions; textSize: TextSize; showNotes?: boolean }>).detail;
+      const next = (event as CustomEvent<StudySettings>).detail;
       if (next?.contentMode) setContentMode(next.contentMode);
       if (next?.display) setDisplay(next.display);
       if (next?.textSize) setTextSize(next.textSize);
       if (next?.showNotes !== undefined) setShowNotes(next.showNotes);
+      if (next?.autoSaveProgress !== undefined) setAutoSaveProgress(next.autoSaveProgress);
     };
 
     window.addEventListener('passbar-study-settings-changed', handleSettingsChange);
@@ -241,6 +257,9 @@ function TestSessionContent() {
       }
 
       setSession(hydratedSession);
+      if (!isReviewMode) {
+        initialSessionRef.current = cloneSessionSnapshot(hydratedSession);
+      }
       setQuestions(sessionQuestions);
       setQuestionStartedAt(Date.now());
       if (user?.id) {
@@ -299,11 +318,13 @@ function TestSessionContent() {
 
   const currentQuestion = questions[currentIndex];
   const enQuestionText = currentQuestion?.questionText ?? '';
-  const zhQuestionText = currentQuestion?.zhQuestionText || currentQuestion?.bilingualQuestionText || '';
+  const sourceZhQuestionText = currentQuestion?.zhQuestionText || currentQuestion?.bilingualQuestionText || '';
+  const zhQuestionText = toTraditionalChineseIfNeeded(sourceZhQuestionText, language);
   const enOptions = currentQuestion?.options ?? [];
-  const zhOptionsArr = currentQuestion?.zhOptions?.length
+  const sourceZhOptionsArr = currentQuestion?.zhOptions?.length
     ? currentQuestion.zhOptions
     : (currentQuestion?.bilingualOptions ?? []);
+  const zhOptionsArr = toTraditionalChineseListIfNeeded(sourceZhOptionsArr, language);
 
   // Primary display text (for stats/review refs) — prefer zh if only zh is on
   const displayQuestionText = display.zhQA && !display.enQA
@@ -313,28 +334,47 @@ function TestSessionContent() {
   const displayOptions = display.zhQA && !display.enQA
     ? (zhOptionsArr.length ? zhOptionsArr : enOptions)
     : enOptions;
+  const answerOptions = display.zhQA && !display.enQA
+    ? (sourceZhOptionsArr.length ? sourceZhOptionsArr : enOptions)
+    : enOptions;
+  const displayQuestion = useMemo(() => {
+    if (!currentQuestion) return currentQuestion;
+    if (language !== 'zh-Hant' || !currentQuestion.explanationHtml) return currentQuestion;
+    return {
+      ...currentQuestion,
+      explanationHtml: toTraditionalChineseIfNeeded(currentQuestion.explanationHtml, language),
+    };
+  }, [currentQuestion, language]);
   const correctAnswerKey = currentQuestion?.apiAnswerKey ?? currentQuestion?.correctAnswerLetter;
   const correctAnswer = displayOptions.find((option, index) => {
     const key = String.fromCharCode(65 + index);
     return key === correctAnswerKey || option === currentQuestion?.correctAnswer;
   }) ?? currentQuestion?.correctAnswer;
   const questionTextClass = {
+    small: 'text-[17px] leading-8',
     medium: 'text-[19px] leading-9',
     large: 'text-[22px] leading-10',
   }[textSize];
   const optionTextClass = {
+    small: 'text-[16px] leading-7',
     medium: 'text-[18px] leading-8',
     large: 'text-[20px] leading-9',
   }[textSize];
   const getAnswerChoiceKey = useCallback((question: Question, answer: string) => {
-    const candidates = [question.options, question.bilingualOptions ?? []];
+    const candidates = [
+      question.options,
+      question.zhOptions ?? [],
+      toTraditionalChineseListIfNeeded(question.zhOptions ?? [], language),
+      question.bilingualOptions ?? [],
+      toTraditionalChineseListIfNeeded(question.bilingualOptions ?? [], language),
+    ];
     for (const options of candidates) {
       const index = options.findIndex((option) => option === answer);
       if (index !== -1) return String.fromCharCode(65 + index);
     }
     const prefixedKey = answer.match(/^\s*([A-D])\./i)?.[1]?.toUpperCase();
     return prefixedKey ?? null;
-  }, []);
+  }, [language]);
   const selectedChoiceKey = currentQuestion && selectedAnswer ? getAnswerChoiceKey(currentQuestion, selectedAnswer) : null;
   const normalizedCorrectAnswerKey = correctAnswerKey?.toUpperCase() ?? null;
   const isSubmittedCorrect = Boolean(submitted && selectedChoiceKey && normalizedCorrectAnswerKey && selectedChoiceKey === normalizedCorrectAnswerKey);
@@ -356,8 +396,15 @@ function TestSessionContent() {
     return [...phraseHighlights, ...keywordHighlights];
   }, [currentQuestion]);
 
-  const persistAnswerProgress = useCallback(async (question: Question, answer: string, nextSession?: TestSession, elapsedSeconds?: number) => {
+  const persistAnswerProgress = useCallback(async (
+    question: Question,
+    answer: string,
+    nextSession?: TestSession,
+    elapsedSeconds?: number,
+    options?: { force?: boolean },
+  ) => {
     if (!user?.id) return;
+    if (!autoSaveProgress && !options?.force) return;
     const selectedChoice = getAnswerChoiceKey(question, answer);
     const correctChoice = (question.apiAnswerKey ?? question.correctAnswerLetter)?.toUpperCase();
     if (!selectedChoice || !correctChoice) return;
@@ -396,12 +443,12 @@ function TestSessionContent() {
         });
       }
     }
-  }, [getAnswerChoiceKey, user?.id]);
+  }, [autoSaveProgress, getAnswerChoiceKey, user?.id]);
 
-  const persistSessionAnswers = useCallback(async (nextSession: TestSession) => {
+  const persistSessionAnswers = useCallback(async (nextSession: TestSession, options?: { force?: boolean }) => {
     await Promise.all(Object.entries(nextSession.userAnswers).map(([questionId, answer]) => {
       const question = questions.find((item) => item.id === questionId);
-      return question ? persistAnswerProgress(question, answer, nextSession) : Promise.resolve();
+      return question ? persistAnswerProgress(question, answer, nextSession, undefined, options) : Promise.resolve();
     }));
   }, [persistAnswerProgress, questions]);
 
@@ -427,14 +474,15 @@ function TestSessionContent() {
     setSession((prev) => prev ? { ...prev, timeSpent: newTime } : prev);
   }, []);
 
-  const persistSession = useCallback((updatedSession: TestSession) => {
+  const persistSession = useCallback((updatedSession: TestSession, options?: { force?: boolean }) => {
+    if (!autoSaveProgress && !options?.force) return;
     const sessions: TestSession[] = JSON.parse(localStorage.getItem('passbar_sessions') || localStorage.getItem('uprep_sessions') || '[]');
     const index = sessions.findIndex((item) => item.id === id);
     if (index !== -1) {
       sessions[index] = updatedSession;
       localStorage.setItem('passbar_sessions', JSON.stringify(sessions));
     }
-  }, [id]);
+  }, [autoSaveProgress, id]);
 
   const sessionWithCurrentProgress = useCallback(() => {
     if (!session) return null;
@@ -509,16 +557,54 @@ function TestSessionContent() {
 
     setPendingEndSession(nextSession);
     setEndConfirmOpen(true);
-    setSession(nextSession);
-    persistSession(nextSession);
 
-    if (!isReviewMode && user?.id) {
-      void updatePracticeSessionRecord({
-        session: nextSession,
-        userId: user.id,
-        status: nextSession.status === 'Suspended' ? 'suspended' : 'in_progress',
-      });
+    if (autoSaveProgress) {
+      setSession(nextSession);
+      persistSession(nextSession);
+      if (user?.id) {
+        void persistSessionAnswers(nextSession);
+        void updatePracticeSessionRecord({
+          session: nextSession,
+          userId: user.id,
+          status: nextSession.status === 'Completed'
+            ? 'completed'
+            : nextSession.status === 'Suspended'
+              ? 'suspended'
+              : 'in_progress',
+        });
+      }
     }
+  };
+
+  const handleDiscardAndExit = async () => {
+    if (autoSaveProgress) {
+      setEndConfirmOpen(false);
+      setPendingEndSession(null);
+      router.push('/review');
+      return;
+    }
+
+    const snapshot = initialSessionRef.current;
+    if (snapshot) {
+      setSession(cloneSessionSnapshot(snapshot));
+      persistSession(snapshot, { force: true });
+      if (user?.id) {
+        await deletePracticeAnswersForSession({ sessionId: snapshot.id, userId: user.id });
+        await persistSessionAnswers(snapshot, { force: true });
+        await updatePracticeSessionRecord({
+          session: snapshot,
+          userId: user.id,
+          status: snapshot.status === 'Completed'
+            ? 'completed'
+            : snapshot.status === 'Suspended'
+              ? 'suspended'
+              : 'in_progress',
+        });
+      }
+    }
+    setEndConfirmOpen(false);
+    setPendingEndSession(null);
+    router.push('/review');
   };
 
   const handleSaveAndExit = async () => {
@@ -535,13 +621,14 @@ function TestSessionContent() {
       router.push('/review');
       return;
     }
-    nextSession.status = 'In-Progress';
+    nextSession.status = 'Suspended';
     setSession(nextSession);
-    persistSession(nextSession);
+    persistSession(nextSession, { force: true });
+    await persistSessionAnswers(nextSession, { force: true });
     await updatePracticeSessionRecord({
       session: nextSession,
       userId: user.id,
-      status: 'in_progress',
+      status: 'suspended',
     });
     setEndConfirmOpen(false);
     setPendingEndSession(null);
@@ -620,8 +707,8 @@ function TestSessionContent() {
 
       nextSession.status = isComplete ? 'Completed' : 'Suspended';
       setSession(nextSession);
-      persistSession(nextSession);
-      await persistSessionAnswers(nextSession);
+      persistSession(nextSession, { force: true });
+      await persistSessionAnswers(nextSession, { force: true });
 
       // Only mark questions as omitted if the user navigated away from them (index < currentIndex).
       // The current question was never "skipped" — the user is still on it.
@@ -667,8 +754,8 @@ function TestSessionContent() {
     const nextSession = sessionWithCurrentProgress() ?? session;
     nextSession.status = 'Completed';
     setSession(nextSession);
-    persistSession(nextSession);
-    await persistSessionAnswers(nextSession);
+    persistSession(nextSession, { force: true });
+    await persistSessionAnswers(nextSession, { force: true });
     const answeredIds = new Set(Object.keys(nextSession.userAnswers));
     const reachedIds = nextSession.questionIds.slice(0, currentIndex);
     const omittedIds = reachedIds.filter((qId) => !answeredIds.has(qId));
@@ -844,7 +931,7 @@ function TestSessionContent() {
 
       if (choiceKey) {
         const optionIndex = choiceKey.charCodeAt(0) - 97;
-        const nextAnswer = displayOptions[optionIndex];
+        const nextAnswer = answerOptions[optionIndex];
         if (nextAnswer) {
           event.preventDefault();
           handleSelectAnswer(nextAnswer);
@@ -857,7 +944,7 @@ function TestSessionContent() {
   }, [
     currentIndex,
     currentQuestion,
-    displayOptions,
+    answerOptions,
     endConfirmOpen,
     isReviewMode,
     reportOpen,
@@ -1024,7 +1111,7 @@ function TestSessionContent() {
                   value={selectedChoiceKey || ''}
                   onValueChange={(choiceKey) => {
                     const optionIndex = choiceKey.toUpperCase().charCodeAt(0) - 65;
-                    const nextAnswer = displayOptions[optionIndex];
+                    const nextAnswer = answerOptions[optionIndex];
                     if (nextAnswer) handleSelectAnswer(nextAnswer);
                   }}
                   disabled={isReviewMode || session.mode === 'TopicStudy' || (submitted && session.mode === 'Tutor')}
@@ -1254,7 +1341,7 @@ function TestSessionContent() {
             <div className="h-full overflow-y-auto overflow-x-hidden bg-white" id="test-explanation-panel">
               <div className="px-4 py-4 lg:px-6">
                 <ExplanationView
-                    question={currentQuestion}
+                  question={displayQuestion ?? currentQuestion}
                     userAnswer={selectedAnswer!}
                     selectedChoiceKey={selectedChoiceKey}
                     correctChoiceKey={normalizedCorrectAnswerKey}
@@ -1319,7 +1406,7 @@ function TestSessionContent() {
         onEnd={handleEndRequest}
         onSubmit={handleSubmit}
         showSubmit={showSubmitBtn}
-        isPaused={isPaused || isReviewMode}
+        isPaused={isPaused}
         isReviewMode={isReviewMode}
       />
 
@@ -1342,13 +1429,13 @@ function TestSessionContent() {
           <DialogHeader>
             <DialogTitle>{t('test.confirmEndTitle')}</DialogTitle>
             <DialogDescription>
-              {t('test.confirmEndDescription', {
+              {t(autoSaveProgress ? 'test.confirmEndDescription' : 'test.confirmEndDescriptionManualSave', {
                 answered: Object.keys((pendingEndSession ?? session).userAnswers).length,
                 total: questions.length,
               })}
             </DialogDescription>
           </DialogHeader>
-          <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+          <div className="flex flex-col-reverse gap-3 sm:flex-row sm:flex-wrap sm:justify-end">
             <Button
               variant="outline"
               onClick={() => {
@@ -1359,6 +1446,15 @@ function TestSessionContent() {
             >
               {t('test.cancelEnd')}
             </Button>
+            {!autoSaveProgress && (
+              <Button
+                variant="outline"
+                onClick={handleDiscardAndExit}
+                disabled={ending}
+              >
+                {t('test.leaveWithoutSaving')}
+              </Button>
+            )}
             <Button
               variant="outline"
               onClick={() => void handleSaveAndExit()}

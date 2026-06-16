@@ -22,6 +22,10 @@ export type DisplayOptions = {
 };
 
 export type StudyPlanSettings = {
+  /** Bar exam jurisdiction/type for display and planner defaults (for example: ca, ny, custom). */
+  examState?: string | null;
+  /** Legacy fallback; canonical exam date lives on profiles.exam_date. */
+  examDate?: string | null;
   studyDaysPerWeek: number[];
   triageWeeks: number;
   /** Per-subject confidence level (0-100). Lower confidence → more questions allocated. */
@@ -88,6 +92,7 @@ export type StudySettings = {
   interfaceLanguage: InterfaceLanguage;
   display: DisplayOptions;
   showNotes: boolean;
+  autoSaveProgress: boolean;
   studyPlan?: StudyPlanSettings;
   dashboardWidgets: DashboardWidgetVisibility;
   notifications: NotificationSettings;
@@ -118,6 +123,7 @@ export const defaultStudySettings: StudySettings = {
   interfaceLanguage: 'en',
   display: defaultDisplayOptions,
   showNotes: true,
+  autoSaveProgress: true,
   studyPlan: {
     studyDaysPerWeek: [1, 2, 3, 4, 5],
     triageWeeks: 2,
@@ -147,7 +153,13 @@ export function normalizeStudySettings(settings: Partial<StudySettings> | null |
   };
   const contentMode: ContentMode = (display.zhQA || display.zhExplanation) ? 'bilingual' : 'english';
   const studyPlan: StudyPlanSettings | undefined = settings?.studyPlan ? {
-    studyDaysPerWeek: Array.isArray(settings.studyPlan.studyDaysPerWeek)
+    examState: typeof settings.studyPlan.examState === 'string'
+      ? settings.studyPlan.examState
+      : null,
+    examDate: typeof settings.studyPlan.examDate === 'string'
+      ? settings.studyPlan.examDate
+      : null,
+    studyDaysPerWeek: Array.isArray(settings.studyPlan.studyDaysPerWeek) && settings.studyPlan.studyDaysPerWeek.length > 0
       ? settings.studyPlan.studyDaysPerWeek
       : [1, 2, 3, 4, 5],
     triageWeeks: typeof settings.studyPlan.triageWeeks === 'number'
@@ -199,6 +211,7 @@ export function normalizeStudySettings(settings: Partial<StudySettings> | null |
       : 'en',
     display,
     showNotes: settings?.showNotes ?? true,
+    autoSaveProgress: settings?.autoSaveProgress ?? true,
     studyPlan,
     dashboardWidgets,
     notifications,

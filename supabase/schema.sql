@@ -1085,6 +1085,28 @@ on conflict (id) do update set
   status = 'approved',
   updated_at = now();
 
+-- Task / todo list (Tasks page)
+create table if not exists public.todos (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references public.profiles(id) on delete cascade,
+  title text not null,
+  status text not null default 'new' check (status in ('new', 'scheduled', 'in_progress', 'completed')),
+  type text not null default 'manual' check (type in ('manual', 'review', 'practice')),
+  due_date date,
+  chapter_id text,
+  chapter_ids text,
+  auto_generated boolean not null default false,
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
+);
+create index if not exists todos_user_id_idx on public.todos (user_id);
+alter table public.todos enable row level security;
+drop policy if exists "Users can manage their todos" on public.todos;
+create policy "Users can manage their todos"
+on public.todos for all
+using (auth.uid() = user_id)
+with check (auth.uid() = user_id);
+
 create table if not exists public.user_badges (
   id uuid primary key default gen_random_uuid(),
   user_id uuid references auth.users(id) on delete cascade not null,

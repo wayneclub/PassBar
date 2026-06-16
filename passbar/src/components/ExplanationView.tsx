@@ -128,6 +128,7 @@ function GeminiQuestionFeedback({
   }, [question, selectedChoiceKey, correctChoiceKey, language]);
 
   const textClass = {
+    small: 'text-[15px] leading-[1.7]',
     medium: 'text-[16px] leading-[1.8]',
     large: 'text-[18px] leading-[1.9]',
   }[textSize || 'medium'];

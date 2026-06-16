@@ -47,6 +47,7 @@ export default function SettingsPage() {
   const [display, setDisplay] = useState<DisplayOptions>(defaultStudySettings.display);
   const [textSize, setTextSize] = useState<TextSize>('medium');
   const [showNotes, setShowNotes] = useState<boolean>(true);
+  const [autoSaveProgress, setAutoSaveProgress] = useState<boolean>(defaultStudySettings.autoSaveProgress);
   const [notifications, setNotifications] = useState<NotificationSettings>(defaultStudySettings.notifications);
   const [notificationsBusy, setNotificationsBusy] = useState(false);
   const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle');
@@ -66,6 +67,7 @@ export default function SettingsPage() {
     setDisplay(settings.display);
     setTextSize(settings.textSize);
     setShowNotes(settings.showNotes);
+    setAutoSaveProgress(settings.autoSaveProgress);
     setNotifications(settings.notifications);
 
     const handleSettingsChange = (event: Event) => {
@@ -76,6 +78,7 @@ export default function SettingsPage() {
       setDisplay(next.display);
       setTextSize(next.textSize);
       setShowNotes(next.showNotes);
+      setAutoSaveProgress(next.autoSaveProgress);
       setNotifications(next.notifications);
     };
 
@@ -96,6 +99,7 @@ export default function SettingsPage() {
     setDisplay(nextSettings.display);
     setTextSize(nextSettings.textSize);
     setShowNotes(nextSettings.showNotes);
+    setAutoSaveProgress(nextSettings.autoSaveProgress);
     setNotifications(nextSettings.notifications);
     setSaveStatus('saving');
 
@@ -112,7 +116,7 @@ export default function SettingsPage() {
     }, 500);
   };
 
-  const currentSettings: StudySettings = { ...getStudySettings(), interfaceLanguage, contentMode, display, textSize, showNotes, notifications };
+  const currentSettings: StudySettings = { ...getStudySettings(), interfaceLanguage, contentMode, display, textSize, showNotes, autoSaveProgress, notifications };
 
   async function handleNotificationToggle(flagKey: keyof NotificationSettings, checked: boolean) {
     const nextNotifications: NotificationSettings = { ...notifications, [flagKey]: checked };
@@ -354,6 +358,29 @@ export default function SettingsPage() {
               })}
             </div>
           </RadioGroup>
+        </CardContent>
+      </Card>
+
+      <Card className="shadow-sm">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base font-semibold flex items-center gap-2">
+            {t('settings.autoSaveProgress')}
+            <HintIcon>
+              <p className="max-w-[18rem] px-3 py-2 text-[13px] leading-relaxed text-slate-700">{t('settings.autoSaveProgressDescription')}</p>
+            </HintIcon>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center justify-between gap-4 rounded-md border border-slate-200 bg-white p-4">
+            <div>
+              <div className="text-sm font-semibold text-slate-900">{t('settings.autoSaveProgress')}</div>
+              <p className="text-xs text-muted-foreground mt-0.5">{t('settings.autoSaveProgressDescription')}</p>
+            </div>
+            <Switch
+              checked={autoSaveProgress}
+              onCheckedChange={(checked) => commitSettings({ ...currentSettings, autoSaveProgress: checked })}
+            />
+          </div>
         </CardContent>
       </Card>
 

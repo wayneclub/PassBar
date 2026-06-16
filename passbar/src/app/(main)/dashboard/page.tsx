@@ -54,6 +54,7 @@ import {
 import { CSS } from '@dnd-kit/utilities';
 import { useAuth } from '@/components/AuthProvider';
 import { useI18n } from '@/lib/i18n';
+import { CHAPTER_ZH, localizeLabel, SUBJECT_ZH } from '@/lib/subject-translations';
 import { GuidedTour, GuidedTourStep } from '@/components/GuidedTour';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -175,15 +176,15 @@ function formatPercent(value: number) {
   return `${value.toFixed(1)}%`;
 }
 
-function formatDuration(totalSeconds: number): string {
-  if (totalSeconds <= 0) return '0 分';
+function formatDuration(totalSeconds: number, t: (k: string, p?: Record<string, string | number>) => string): string {
+  if (totalSeconds <= 0) return t('dashboard.durationMin', { m: 0 });
   const hours   = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const secs    = Math.floor(totalSeconds % 60);
-  if (hours > 0 && minutes > 0) return `${hours} 小時 ${minutes} 分`;
-  if (hours > 0)                return `${hours} 小時`;
-  if (minutes > 0)              return `${minutes} 分`;
-  return `${secs} 秒`;
+  if (hours > 0 && minutes > 0) return t('dashboard.durationHrMin', { h: hours, m: minutes });
+  if (hours > 0)                return t('dashboard.durationHr', { h: hours });
+  if (minutes > 0)              return t('dashboard.durationMin', { m: minutes });
+  return t('dashboard.durationSec', { s: secs });
 }
 
 function calculateStreak(answeredDates: string[]) {
@@ -450,12 +451,9 @@ async function loadDashboardData(userId: string): Promise<Omit<DashboardData, 'l
 
 function useCountUp(target: number, duration = 800) {
   const [value, setValue] = useState(0);
-  const prevTarget = useRef(0);
 
   useEffect(() => {
     const safeTarget = Number.isNaN(target) || target === null || target === undefined ? 0 : target;
-    if (Object.is(safeTarget, prevTarget.current)) return;
-    prevTarget.current = safeTarget;
     if (safeTarget === 0) { setValue(0); return; }
 
     const start = Date.now();
@@ -553,6 +551,7 @@ function ExamCountdownBadge({
   onSetDate: () => void;
   className?: string;
 }) {
+  const { t } = useI18n();
   const days = examDate ? daysUntilExam(examDate) : null;
 
   // Not set yet → subtle link
@@ -562,7 +561,7 @@ function ExamCountdownBadge({
         onClick={onSetDate}
         className={cn('text-xs text-primary hover:underline font-medium transition-colors', className)}
       >
-        ＋ 設定考試日期
+        ＋ {t('dashboard.setExamDate')}
       </button>
     );
   }
@@ -577,10 +576,10 @@ function ExamCountdownBadge({
 
   const label =
     days < 0
-      ? `${examLabel} 已結束`
+      ? t('dashboard.examCountdownEndedFull', { exam: examLabel })
       : days === 0
-        ? `🎯 今天就是 ${examLabel}！`
-        : `距離 ${examLabel} 還有 ${days} 天`;
+        ? t('dashboard.examCountdownTodayFull', { exam: examLabel })
+        : t('dashboard.examCountdownFull', { exam: examLabel, days });
 
   const pillColor =
     days < 0
@@ -858,7 +857,7 @@ function ActivityHeatmap({
         {/* Bottom row: active days (left) + legend (right) */}
         {!loading && (
           <div className="flex items-center justify-between mt-3">
-            <span className="text-xs text-muted-foreground">{totalDaysActive} 天有練習</span>
+            <span className="text-xs text-muted-foreground">{t('plan.activeDaysLabel', { count: totalDaysActive })}</span>
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <span>{t('dashboard.activityMore')}</span>
               {[0, 0.2, 0.45, 0.7, 1].map((r, i) => (
@@ -1872,7 +1871,7 @@ function SubjectWeightPanel({
 export default function DashboardPage() {
   const router = useRouter();
   const { user, profile, refreshProfile } = useAuth();
-  const { t } = useI18n();
+  const { t, language } = useI18n();
   const [dashboardData, setDashboardData] = useState<DashboardData>(emptyDashboardData);
   const [examDate, setExamDate] = useState<string | null>(null);
   const [examState, setExamState] = useState<string | null>(null);
@@ -1989,12 +1988,18 @@ export default function DashboardPage() {
     }
   };
 
-  // Load exam state from localStorage (keyed per user)
+  // Load exam state from DB settings first, falling back to legacy localStorage.
   useEffect(() => {
     if (!user?.id) return;
+    const savedInProfile = profile?.study_settings?.studyPlan?.examState;
+    if (savedInProfile) {
+      setExamState(savedInProfile);
+      localStorage.setItem(`passbar_exam_state_${user.id}`, savedInProfile);
+      return;
+    }
     const saved = localStorage.getItem(`passbar_exam_state_${user.id}`);
     if (saved) setExamState(saved);
-  }, [user?.id]);
+  }, [profile?.study_settings?.studyPlan?.examState, user?.id]);
 
   useEffect(() => {
     if (!user?.id) return;
@@ -2054,11 +2059,13 @@ export default function DashboardPage() {
   }, [user?.id, missionTotalQuestions]);
 
   const missionPracticedQuestions = missionStatusCounts.Correct + missionStatusCounts.Incorrect;
-  const studyDays = profile?.study_settings?.studyPlan?.studyDaysPerWeek ?? [1, 2, 3, 4, 5];
+  const rawStudyDays = profile?.study_settings?.studyPlan?.studyDaysPerWeek;
+  const studyDays = Array.isArray(rawStudyDays) && rawStudyDays.length > 0 ? rawStudyDays : [1, 2, 3, 4, 5];
   const triageWeeks = profile?.study_settings?.studyPlan?.triageWeeks ?? 2;
   const dailyStudyHours = profile?.study_settings?.studyPlan?.dailyStudyHours ?? 3;
   const paceMode = profile?.study_settings?.studyPlan?.paceMode ?? 'balanced';
   const subjectMode = profile?.study_settings?.studyPlan?.subjectMode ?? 'singleThenMixed';
+  const subjectOrder = profile?.study_settings?.studyPlan?.subjectOrder;
 
   const subjectsWithRemaining = useMemo(
     () => missionSubjects.map((subject) => {
@@ -2125,8 +2132,8 @@ export default function DashboardPage() {
   );
 
   const subjectQuotas = useMemo(
-    () => calculatePlannedSubjectQuotas(subjectsWithRemaining, reviewSplit.newQuota, subjectConfidence, subjectMode, quotaInfo.triageMode, studyDays),
-    [subjectsWithRemaining, reviewSplit.newQuota, subjectConfidence, subjectMode, quotaInfo.triageMode, studyDays],
+    () => calculatePlannedSubjectQuotas(subjectsWithRemaining, reviewSplit.newQuota, subjectConfidence, subjectMode, quotaInfo.triageMode, studyDays, new Date(), subjectOrder),
+    [subjectsWithRemaining, reviewSplit.newQuota, subjectConfidence, subjectMode, quotaInfo.triageMode, studyDays, subjectOrder],
   );
 
   const plannedNewChapterIds = useMemo(
@@ -2186,6 +2193,7 @@ export default function DashboardPage() {
       ...(profile.study_settings ?? defaultStudySettings),
       studyPlan: {
         ...(profile.study_settings?.studyPlan ?? {}),
+        examState: next.examState,
         studyDaysPerWeek: next.studyDays,
         triageWeeks,
         subjectConfidence: next.confidence,
@@ -2198,6 +2206,10 @@ export default function DashboardPage() {
     };
     saveStudySettings(updatedSettings);
     await saveUserStudySettings(user.id, updatedSettings);
+    if (next.examState !== examState) {
+      setExamState(next.examState);
+      localStorage.setItem(`passbar_exam_state_${user.id}`, next.examState ?? 'custom');
+    }
     if (next.examDate && (next.examDate !== examDate || next.examState !== examState)) {
       await handleSaveExamDate(next.examDate, next.examState ?? 'custom');
     }
@@ -2272,7 +2284,7 @@ export default function DashboardPage() {
           <span className="text-sm font-normal text-muted-foreground ml-1">{t('dashboard.questionsUnit')}</span>
         </span>
       ),
-      sub: <span>⏱ {formatDuration(dashboardData.timeTodaySeconds)}</span>,
+      sub: <span>⏱ {formatDuration(dashboardData.timeTodaySeconds, t)}</span>,
       color: 'bg-primary/5 border-primary/20 text-primary',
     });
 
@@ -2326,7 +2338,7 @@ export default function DashboardPage() {
       id: 'weekly-time',
       icon: <Clock className="w-4 h-4" />,
       label: t('dashboard.weeklyTimeLabel'),
-      value: <span className="text-2xl font-bold text-indigo-900 leading-none">{formatDuration(Math.round(dashboardData.weeklyStudyTimeSeconds))}</span>,
+      value: <span className="text-2xl font-bold text-indigo-900 leading-none">{formatDuration(Math.round(dashboardData.weeklyStudyTimeSeconds), t)}</span>,
       sub: <span>{t('dashboard.weeklyTimeDescription')}</span>,
       color: 'bg-indigo-50 border-indigo-100 text-indigo-500',
     });
@@ -2493,25 +2505,25 @@ export default function DashboardPage() {
             ) : (
               <>
                 {quotaInfo.quota > 0 ? (
-                  <div className="flex flex-col xl:flex-row items-stretch gap-8 xl:gap-12 pb-8 border-b border-slate-100">
+                  <div className="flex flex-col xl:flex-row items-stretch gap-6 xl:gap-8 pb-6 border-b border-slate-100">
                     
                     {/* Left: Goals & Progress */}
-                    <div className="flex-1 w-full flex flex-col justify-center space-y-6">
+                    <div className="flex-1 w-full flex flex-col justify-center space-y-4">
                       <div>
 
                         <div className="flex items-baseline gap-3">
-                          <span className="text-7xl font-black text-slate-800 tracking-tight"><AnimatedNumber value={quotaInfo.quota} /></span>
-                          <span className="text-2xl font-bold text-slate-500">今日目標題</span>
+                          <span className="text-5xl font-black text-slate-800 tracking-tight"><AnimatedNumber value={quotaInfo.quota} /></span>
+                          <span className="text-xl font-bold text-slate-500">{t('plan.dailyTargetLabel')}</span>
                         </div>
                       </div>
-                      
+
                       <div className="space-y-3 pt-2">
                         <div className="flex items-center justify-between text-sm font-bold">
                           <div className="flex items-center gap-1.5 text-emerald-600">
-                            <BookOpen className="w-4 h-4" /> 新題：<AnimatedNumber value={reviewSplit.newQuota} />題
+                            <BookOpen className="w-4 h-4" /> {t('plan.newQuotaLabel', { count: reviewSplit.newQuota })}
                           </div>
                           <div className="flex items-center gap-1.5 text-orange-500">
-                            <RotateCcw className="w-4 h-4" /> 複習：<AnimatedNumber value={reviewSplit.reviewQuota} />題
+                            <RotateCcw className="w-4 h-4" /> {t('plan.reviewQuotaLabel', { count: reviewSplit.reviewQuota })}
                           </div>
                         </div>
                         <div className="h-2.5 w-full flex rounded-full overflow-hidden bg-slate-100">
@@ -2522,12 +2534,12 @@ export default function DashboardPage() {
                     </div>
 
                     {/* Right: AI Recommendations */}
-                    <div className="flex-1 w-full bg-[#fcfbfa] rounded-2xl p-6 border border-[#f0eee9] flex flex-col justify-between">
+                    <div className="flex-1 w-full bg-[#fcfbfa] rounded-xl p-5 border border-[#f0eee9] flex flex-col justify-between">
                       <div>
                         <div className="flex items-center gap-2 font-bold text-slate-800 mb-4">
-                          <Cpu className="w-5 h-5 text-[#c29d4c]" /> AI 智能加權推薦科目：
+                          <Cpu className="w-5 h-5 text-[#c29d4c]" /> {t('plan.aiRecommendedSubjects')}
                         </div>
-                        <div className="flex flex-wrap gap-2.5 mb-6">
+                        <div className="flex flex-wrap gap-2 mb-4">
                           {weakFocusSubjects.length > 0 ? (
                             weakFocusSubjects.map((subj, i) => (
                               <span key={subj} className="px-3.5 py-1.5 bg-white border border-[#f0eee9] rounded-lg text-sm font-bold flex items-center gap-2 shadow-sm" style={{ color: i % 2 === 0 ? '#b91c1c' : '#b45309' }}>
@@ -2535,17 +2547,17 @@ export default function DashboardPage() {
                               </span>
                             ))
                           ) : (
-                            <span className="text-sm text-slate-500 font-medium">各科發展均衡，按計畫進行即可。</span>
+                            <span className="text-sm text-slate-500 font-medium">{t('plan.aiBalanced')}</span>
                           )}
                         </div>
                       </div>
                       <Button
-                        className="w-full h-14 bg-[#c29d4c] hover:bg-[#b08d44] text-white font-bold text-lg rounded-xl shadow-md transition-all active:scale-[0.98]"
-                        onClick={handleStartMission}
+                        className="w-full h-12 bg-[#c29d4c] hover:bg-[#b08d44] text-white font-bold text-base rounded-xl shadow-md transition-all active:scale-[0.98]"
+                        onClick={() => handleStartMission('new')}
                         disabled={generatingMission}
                       >
                         {generatingMission ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : null}
-                        開始練習 ({quotaInfo.quota} 題) <ArrowRight className="ml-2 w-5 h-5" />
+                        {t('plan.startPractice', { count: quotaInfo.quota })} <ArrowRight className="ml-2 w-5 h-5" />
                       </Button>
                     </div>
                   </div>
@@ -2558,51 +2570,51 @@ export default function DashboardPage() {
                 )}
 
                 {/* Bottom 4 Summary Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 pt-6">
-                  {/* Card 1: 剩餘總題數 */}
-                  <div className="bg-[#faf8f2] border border-[#f0eee9] rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-[100px]">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#8c6d23] opacity-80 mb-2">
-                      <Layers className="w-4 h-4" /> 剩餘總題數
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 pt-4">
+                  {/* Card 1: Remaining Questions */}
+                  <div className="bg-[#faf8f2] border border-[#f0eee9] rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-[88px]">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#8c6d23] opacity-80 mb-1">
+                      <Layers className="w-4 h-4" /> {t('plan.remainingQuestions')}
                     </div>
                     <div className="flex items-baseline gap-1.5">
-                      <span className="text-3xl font-black text-slate-800"><AnimatedNumber value={quotaInfo.remainingQuestions} /></span>
-                      <span className="text-sm font-bold text-slate-400">題</span>
-                    </div>
-                  </div>
-                  
-                  {/* Card 2: 可用學習天 */}
-                  <div className="bg-[#faf8f2] border border-[#f0eee9] rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-[100px]">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#8c6d23] opacity-80 mb-2">
-                      <CalendarDays className="w-4 h-4" /> 可用學習天
-                    </div>
-                    <div className="flex items-baseline gap-1.5">
-                      <span className="text-3xl font-black text-slate-800"><AnimatedNumber value={quotaInfo.availableDays} /></span>
-                      <span className="text-sm font-bold text-slate-400">天</span>
-                    </div>
-                  </div>
-                  
-                  {/* Card 3: 每周衝刺 */}
-                  <div className="bg-[#faf8f2] border border-[#f0eee9] rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-[100px]">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#8c6d23] opacity-80 mb-2">
-                      <Activity className="w-4 h-4" /> 每周衝刺
-                    </div>
-                    <div className="flex items-baseline gap-1.5">
-                      <span className="text-3xl font-black text-slate-800"><AnimatedNumber value={studyDays.length} /></span>
-                      <span className="text-sm font-bold text-slate-400">天</span>
+                      <span className="text-2xl font-black text-slate-800"><AnimatedNumber value={quotaInfo.remainingQuestions} /></span>
+                      <span className="text-sm font-bold text-slate-400">{t('plan.questionsUnitLabel')}</span>
                     </div>
                   </div>
 
-                  {/* Card 4: 預估花費時間 */}
-                  <div className="bg-[#faf8f2] border border-[#f0eee9] rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-[100px]">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#8c6d23] opacity-80 mb-2">
-                      <Clock className="w-4 h-4" /> 預估花費時間
+                  {/* Card 2: Available Study Days */}
+                  <div className="bg-[#faf8f2] border border-[#f0eee9] rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-[88px]">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#8c6d23] opacity-80 mb-1">
+                      <CalendarDays className="w-4 h-4" /> {t('plan.availableStudyDays')}
+                    </div>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-2xl font-black text-slate-800"><AnimatedNumber value={quotaInfo.availableDays} /></span>
+                      <span className="text-sm font-bold text-slate-400">{t('plan.daysUnitLabel')}</span>
+                    </div>
+                  </div>
+
+                  {/* Card 3: Weekly Sprint */}
+                  <div className="bg-[#faf8f2] border border-[#f0eee9] rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-[88px]">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#8c6d23] opacity-80 mb-1">
+                      <Activity className="w-4 h-4" /> {t('plan.weeklySprintLabel')}
+                    </div>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-2xl font-black text-slate-800"><AnimatedNumber value={studyDays.length} /></span>
+                      <span className="text-sm font-bold text-slate-400">{t('plan.daysUnitLabel')}</span>
+                    </div>
+                  </div>
+
+                  {/* Card 4: Estimated Time */}
+                  <div className="bg-[#faf8f2] border border-[#f0eee9] rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-[88px]">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#8c6d23] opacity-80 mb-1">
+                      <Clock className="w-4 h-4" /> {t('plan.estimatedTimeLabel')}
                     </div>
                     <div className="flex items-baseline gap-1">
-                      <span className="text-3xl font-black text-[#c29d4c]">
+                      <span className="text-2xl font-black text-[#c29d4c]">
                         <AnimatedNumber value={Math.floor(quotaInfo.remainingQuestions * (dashboardData.avgSecondsPerQuestion || 90) / 3600)} />
                       </span>
                       <span className="text-sm font-bold text-[#c29d4c] opacity-80">h</span>
-                      <span className="text-3xl font-black text-[#c29d4c] ml-1">
+                      <span className="text-2xl font-black text-[#c29d4c] ml-1">
                         <AnimatedNumber value={Math.round((quotaInfo.remainingQuestions * (dashboardData.avgSecondsPerQuestion || 90) % 3600) / 60)} />
                       </span>
                       <span className="text-sm font-bold text-[#c29d4c] opacity-80">m</span>
@@ -2638,7 +2650,7 @@ export default function DashboardPage() {
                   >
                     <div className="min-w-0">
                       <p className="text-sm font-medium text-slate-800 truncate">
-                        {chapter.subject} · {chapter.chapterName}
+                        {localizeLabel(chapter.subject, language, SUBJECT_ZH)} · {localizeLabel(chapter.chapterName, language, CHAPTER_ZH)}
                       </p>
                       <p className="text-xs text-muted-foreground mt-0.5">
                         {t('dashboard.spacedReview.itemMeta', { days: chapter.daysSinceLastAttempt, pct: chapter.accuracy })}
@@ -2667,13 +2679,14 @@ export default function DashboardPage() {
             remainingQuestions={quotaInfo.remainingQuestions}
             triageWeeks={triageWeeks}
             subjectMode={subjectMode}
+            subjectOrder={subjectOrder}
             subjectQuotas={subjectQuotas}
             subjects={missionSubjects}
             subjectsWithRemaining={subjectsWithRemaining}
             subjectConfidence={subjectConfidence}
             dueReviewChapters={dueReviewChapters}
             dailyChapterCounts={dashboardData.dailyChapterCounts}
-            onStartToday={handleStartMission}
+            onStartToday={() => handleStartMission(selectedTaskType)}
             startingMission={generatingMission}
           />
           </div>
@@ -2799,7 +2812,7 @@ export default function DashboardPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t('dashboard.timeToday')}</p>
-                  <h3 className="text-2xl font-bold mt-1">{dashboardData.loading ? '—' : formatDuration(dashboardData.timeTodaySeconds)}</h3>
+                  <h3 className="text-2xl font-bold mt-1">{dashboardData.loading ? '—' : formatDuration(dashboardData.timeTodaySeconds, t)}</h3>
                 </div>
                 <div className="p-2 bg-secondary/10 rounded-full">
                   <Clock className="w-5 h-5 text-secondary" />
@@ -3064,6 +3077,9 @@ export default function DashboardPage() {
                 return '';
               }).filter(Boolean);
 
+              const lSubj = (name: string) => localizeLabel(name, language, SUBJECT_ZH);
+              const lChap = (name: string) => localizeLabel(name, language, CHAPTER_ZH);
+
               const handleStartSelected = () => {
                 handleStartMission(selectedTaskType);
               };
@@ -3120,11 +3136,11 @@ export default function DashboardPage() {
                             ).map(([subj, chaps], idx) => (
                               <div key={idx} className="flex flex-wrap items-center gap-1.5">
                                 <span className="px-2 py-0.5 text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-full whitespace-nowrap">
-                                  {subj}
+                                  {lSubj(subj)}
                                 </span>
                                 {chaps.map((chap, cIdx) => (
                                   <span key={cIdx} className="px-2 py-0.5 text-[10px] font-medium text-slate-700 bg-slate-50 border border-slate-200 rounded-full">
-                                    {chap}
+                                    {lChap(chap)}
                                   </span>
                                 ))}
                               </div>
@@ -3161,11 +3177,11 @@ export default function DashboardPage() {
                             ).map(([subj, chaps], idx) => (
                               <div key={idx} className="flex flex-wrap items-center gap-1.5">
                                 <span className="px-2 py-0.5 text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-full whitespace-nowrap">
-                                  {subj}
+                                  {lSubj(subj)}
                                 </span>
                                 {chaps.map((chap, cIdx) => (
                                   <span key={cIdx} className="px-2 py-0.5 text-[10px] font-medium text-slate-700 bg-slate-50 border border-slate-200 rounded-full">
-                                    {chap}
+                                    {lChap(chap)}
                                   </span>
                                 ))}
                               </div>

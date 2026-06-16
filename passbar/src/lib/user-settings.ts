@@ -26,6 +26,8 @@ export async function saveUserStudySettings(userId: string, settings: StudySetti
     updated_at: new Date().toISOString(),
   };
 
+  console.log('[PassBar] Saving study settings:', JSON.stringify(payload.study_settings?.studyPlan?.studyDaysPerWeek));
+
   const { data, error } = await supabase
     .from('profiles')
     .update(payload)
@@ -34,11 +36,14 @@ export async function saveUserStudySettings(userId: string, settings: StudySetti
     .maybeSingle();
 
   if (error) {
-    console.warn('[PassBar] Failed to save study settings:', error.message);
+    console.warn('[PassBar] Failed to save study settings:', error.message, error.code);
     return false;
   }
 
+  console.log('[PassBar] Save result data:', data);
+
   if (!data) {
+    console.warn('[PassBar] Update returned no rows, trying upsert...');
     const { error: upsertError } = await supabase
       .from('profiles')
       .upsert({

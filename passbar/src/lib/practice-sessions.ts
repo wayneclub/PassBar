@@ -170,6 +170,26 @@ export async function deletePracticeSessionRecord(input: {
   return true;
 }
 
+export async function deletePracticeAnswersForSession(input: {
+  sessionId: string;
+  userId: string;
+}) {
+  if (!supabase || !isUuid(input.sessionId)) return false;
+
+  const { error } = await supabase
+    .from('practice_answers')
+    .delete()
+    .eq('session_id', input.sessionId)
+    .eq('user_id', input.userId);
+
+  if (error && !isNoContentSuccess(error)) {
+    console.warn('Unable to delete practice answers in Supabase:', error.message);
+    return false;
+  }
+
+  return true;
+}
+
 export async function getPracticeAnswersForSession(sessionId: string, userId: string): Promise<PracticeAnswerRecord[]> {
   if (!supabase || !isUuid(sessionId)) return [];
 

@@ -1,5 +1,10 @@
 # PassBar — Development Guidelines
 
+## Database Schema
+
+新增或修改 table **只維護 `supabase/schema.sql`**，不另外建立 migration 檔案。
+所有 `create table`、`alter table`、`create index`、RLS policy 都寫進這支檔案，方便未來整庫轉移。
+
 ## Design System: Typography
 
 ### Page-level headings
@@ -337,7 +342,14 @@ Sidebar (bg-secondary, no right border)
 
 ---
 
-## i18n 規範
+## i18n 規範（每次新增功能必做）
+
+> **⚠ 每新增一個功能或頁面，必須同步完成 i18n 三步驟，不可遺漏。**
+> 1. 在 `i18n.ts` 的 `TranslationKey` union type 加入所有新 key
+> 2. 在 `en`、`zh-TW`、`zh-CN` 三個 object 同步加入翻譯
+> 3. JSX 一律用 `{t('key')}` 取代 hardcode 字串
+>
+> 若為快速實作暫時 hardcode，必須在程式碼留下 `// TODO: i18n` 並在當次 PR 補齊。
 
 ### Key 命名格式
 

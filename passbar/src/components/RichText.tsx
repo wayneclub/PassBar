@@ -2,6 +2,7 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { LocalizedText, QuestionHighlight, QuestionKeyword } from '@/lib/types';
+import { toTraditionalChineseIfNeeded } from '@/lib/chinese-conversion';
 
 const ALLOWED_INLINE_TAGS = /^\/?(b|strong|i|em|u|span)$/i;
 
@@ -140,11 +141,11 @@ type TooltipPos = { top: number; left: number } | null;
 
 function localizedValue(value: LocalizedText | undefined, language = 'en'): string | undefined {
   if (!value) return undefined;
-  if (typeof value === 'string') return value;
+  if (typeof value === 'string') return toTraditionalChineseIfNeeded(value, language);
   const preferredKeys = language === 'en' ? ['en', 'zh'] : ['zh', 'en'];
   for (const key of preferredKeys) {
     const text = value[key as keyof typeof value];
-    if (text) return text;
+    if (text) return key === 'zh' ? toTraditionalChineseIfNeeded(text, language) : text;
   }
   return undefined;
 }

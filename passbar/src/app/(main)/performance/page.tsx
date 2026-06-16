@@ -499,7 +499,11 @@ function PrescriptionTab({
               {!diagnosis && !loading && !error && (
                 <div className="flex flex-col items-center justify-center h-full gap-2 py-6 text-center">
                   <Activity className="h-8 w-8 text-muted-foreground" />
-                  <p className="text-sm text-muted-foreground">{t('performance.noDataYet')}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {data.totalAttempts < 5
+                      ? t('performance.sampleTooSmall', { count: data.totalAttempts })
+                      : t('performance.diagnosisReady')}
+                  </p>
                 </div>
               )}
               {error && (
