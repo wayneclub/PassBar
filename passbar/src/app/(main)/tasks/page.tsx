@@ -14,7 +14,7 @@ import {
   createTodo, deleteTodo, fetchTodos, syncAutoTodos, updateTodo,
   type Todo, type TodoStatus, type TodoType,
 } from '@/lib/todos';
-import { fetchDueReviewChaptersForUser } from '@/lib/smart-planner';
+import { fetchTodayMissionForUser } from '@/lib/smart-planner';
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -393,10 +393,9 @@ export default function TasksPage() {
     if (!user?.id) return;
     setLoading(true);
     try {
-      // Sync auto-todos from due review chapters
-      const dueChapters = await fetchDueReviewChaptersForUser(user.id);
-      const fresh = dueChapters.length > 0
-        ? await syncAutoTodos(user.id, dueChapters)
+      const { newChapters, reviewChapters } = await fetchTodayMissionForUser(user.id);
+      const fresh = (newChapters.length > 0 || reviewChapters.length > 0)
+        ? await syncAutoTodos(user.id, newChapters, reviewChapters)
         : await fetchTodos(user.id);
       setTodos(fresh);
     } finally {

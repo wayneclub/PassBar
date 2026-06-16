@@ -1,7 +1,7 @@
 "use client";
 
 import { supabase } from './supabase';
-import type { ChapterReviewInfo } from './smart-planner';
+import type { ChapterReviewInfo, TodayMissionChapter } from './smart-planner';
 
 export type TodoStatus = 'new' | 'scheduled' | 'in_progress' | 'completed';
 export type TodoType = 'manual' | 'review' | 'practice';
@@ -65,11 +65,14 @@ export async function deleteTodo(id: string): Promise<boolean> {
   return !error;
 }
 
-/** Auto-add due review chapters as todos, remove stale ones, skip already-present ones. */
-export async function syncAutoTodos(userId: string, dueChapters: ChapterReviewInfo[]): Promise<Todo[]> {
+/** Sync auto todos from today's mission (new practice + review chapters). Removes stale, adds missing. */
+export async function syncAutoTodos(
+  userId: string,
+  newChapters: TodayMissionChapter[],
+  reviewChapters: ChapterReviewInfo[],
+): Promise<Todo[]> {
   if (!supabase) return [];
 
-  // Fetch existing auto todos
   const { data: existing } = await supabase
     .from('todos')
     .select('*')
@@ -77,36 +80,63 @@ export async function syncAutoTodos(userId: string, dueChapters: ChapterReviewIn
     .eq('auto_generated', true);
 
   const existingRows = (existing ?? []) as Todo[];
-  const dueIds = new Set(dueChapters.map((c) => c.chapterId));
-  const allChapterIds = dueChapters.map((c) => c.chapterId).join(',');
 
-  // Delete stale auto-todos (chapter no longer due)
-  const stale = existingRows.filter((r) => r.chapter_id && !dueIds.has(r.chapter_id));
+  // Build sets of current mission chapter IDs by type
+  const newIds = new Set(newChapters.map((c) => c.id));
+  const reviewIds = new Set(reviewChapters.map((c) => c.chapterId));
+  const allReviewChapterIds = reviewChapters.map((c) => c.chapterId).join(',');
+
+  // Remove stale auto-todos whose chapter is no longer in today's mission
+  const stale = existingRows.filter((r) => {
+    if (!r.chapter_id) return false;
+    if (r.type === 'review') return !reviewIds.has(r.chapter_id);
+    if (r.type === 'practice') return !newIds.has(r.chapter_id);
+    return false;
+  });
   if (stale.length > 0) {
     await supabase.from('todos').delete().in('id', stale.map((r) => r.id));
   }
 
-  // Add new due chapters not already in todos
   const existingChapterIds = new Set(
     existingRows.filter((r) => r.chapter_id).map((r) => r.chapter_id as string),
   );
-  const toAdd = dueChapters.filter((c) => !existingChapterIds.has(c.chapterId));
 
-  if (toAdd.length > 0) {
-    await supabase.from('todos').insert(
-      toAdd.map((c) => ({
+  const toInsert: object[] = [];
+
+  // New practice chapters
+  for (const ch of newChapters) {
+    if (!existingChapterIds.has(ch.id)) {
+      toInsert.push({
         user_id: userId,
-        title: c.chapterName,
+        title: ch.name,
         status: 'new' as TodoStatus,
-        type: 'review' as TodoType,
-        chapter_id: c.chapterId,
-        chapter_ids: allChapterIds,
+        type: 'practice' as TodoType,
+        chapter_id: ch.id,
+        chapter_ids: ch.id,
         auto_generated: true,
-      })),
-    );
+      });
+    }
   }
 
-  // Return fresh list
+  // Review chapters
+  for (const ch of reviewChapters) {
+    if (!existingChapterIds.has(ch.chapterId)) {
+      toInsert.push({
+        user_id: userId,
+        title: ch.chapterName,
+        status: 'new' as TodoStatus,
+        type: 'review' as TodoType,
+        chapter_id: ch.chapterId,
+        chapter_ids: allReviewChapterIds,
+        auto_generated: true,
+      });
+    }
+  }
+
+  if (toInsert.length > 0) {
+    await supabase.from('todos').insert(toInsert);
+  }
+
   const { data: fresh } = await supabase
     .from('todos')
     .select('*')

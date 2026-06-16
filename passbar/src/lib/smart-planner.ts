@@ -976,3 +976,89 @@ export async function generateIncorrectSession(
 
   return { session: newSession, orderedQuestions: ordered };
 }
+
+export type TodayMissionChapter = { id: string; name: string; subject: string };
+
+/**
+ * Standalone version of the dashboard daily-mission computation.
+ * Returns today's new-practice chapters + due review chapters for a given user.
+ */
+export async function fetchTodayMissionForUser(userId: string): Promise<{
+  newChapters: TodayMissionChapter[];
+  reviewChapters: ChapterReviewInfo[];
+}> {
+  if (!supabase) return { newChapters: [], reviewChapters: [] };
+
+  const { data } = await supabase
+    .from('practice_answers')
+    .select('question_id, is_correct, time_spent_seconds, confidence, answered_at, question_items(chapters(id, chapter, subject))')
+    .eq('user_id', userId);
+
+  const rows = (data ?? []) as PracticeAnswerChapterRow[];
+  const chapterStats = computeChapterStats(rows);
+  const reviewChapters = getDueReviewChapters(chapterStats);
+
+  const answeredBySubject = new Map<string, Set<string>>();
+  for (const row of rows) {
+    const subj = (row as unknown as { question_items?: { chapters?: { subject?: string } } })
+      .question_items?.chapters?.subject;
+    if (!subj || !row.question_id) continue;
+    if (!answeredBySubject.has(subj)) answeredBySubject.set(subj, new Set());
+    answeredBySubject.get(subj)!.add(row.question_id);
+  }
+
+  const [subjects, profileRes] = await Promise.all([
+    getSubjects(),
+    supabase.from('profiles').select('study_settings').eq('id', userId).single(),
+  ]);
+
+  const settings = (profileRes.data as { study_settings?: Record<string, unknown> } | null)?.study_settings ?? {};
+  const plan = (settings.studyPlan ?? {}) as Record<string, unknown>;
+  const subjectMode: StudySubjectMode = (plan.subjectMode as StudySubjectMode) ?? 'singleThenMixed';
+  const studyDaysPerWeek: number[] = (plan.studyDaysPerWeek as number[]) ?? [1, 2, 3, 4, 5];
+  const paceMode: StudyPaceMode = (plan.paceMode as StudyPaceMode) ?? 'balanced';
+  const dailyStudyHours = (plan.dailyStudyHours as number) ?? 2;
+  const triageWeeks = (plan.triageWeeks as number) ?? 4;
+  const examDate = (plan.examDate as string | null) ?? null;
+  const savedConfidence = (plan.subjectConfidence as Record<string, number> | undefined);
+
+  const missionTotal = subjects.reduce((s, sub) => s + sub.count, 0);
+
+  const subjectsWithRemaining = subjects.map((s) => {
+    const answered = answeredBySubject.get(s.name)?.size ?? 0;
+    return {
+      name: s.name, total: s.count, remaining: Math.max(0, s.count - answered),
+      correct: 0, incorrect: 0, answered,
+      averageSeconds: 0, riskyQuestionRatio: 0, masteredQuestionRatio: 0,
+    };
+  });
+
+  const missionPracticed = subjectsWithRemaining.reduce((s, sub) => s + sub.answered, 0);
+
+  const quotaInfo = calculateDailyQuota(
+    missionTotal, missionPracticed, examDate, studyDaysPerWeek,
+    triageWeeks, dailyStudyHours, reviewChapters.length, paceMode,
+  );
+
+  const defaultConfidence = calculateSuggestedSubjectConfidence(subjectsWithRemaining);
+  const subjectConfidence = { ...defaultConfidence, ...(savedConfidence ?? {}) };
+  const reviewSplit = splitQuotaForReview(quotaInfo.quota, reviewChapters.length, quotaInfo.reviewQuota);
+  const subjectQuotas = calculatePlannedSubjectQuotas(
+    subjectsWithRemaining, reviewSplit.newQuota, subjectConfidence,
+    subjectMode, quotaInfo.triageMode, studyDaysPerWeek,
+  );
+
+  const plannedIds = getPlannedChapterIdsForDate(
+    subjects, subjectQuotas, subjectMode, quotaInfo.triageMode, studyDaysPerWeek,
+  );
+
+  const newChapters: TodayMissionChapter[] = plannedIds.flatMap((id) => {
+    for (const s of subjects) {
+      const ch = s.chapters.find((c) => c.id === id);
+      if (ch) return [{ id, name: ch.name, subject: s.name }];
+    }
+    return [];
+  });
+
+  return { newChapters, reviewChapters };
+}
