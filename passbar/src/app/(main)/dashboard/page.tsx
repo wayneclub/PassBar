@@ -1943,9 +1943,10 @@ export default function DashboardPage() {
   // Auto-open the tour the first time a user reaches the dashboard
   useEffect(() => {
     if (!profile) return;
+    if (dashboardData.error) return;
     if (profile.study_settings?.hasSeenDashboardTour) return;
     setTourOpen(true);
-  }, [profile]);
+  }, [profile, dashboardData.error]);
 
   const closeTour = (open: boolean) => {
     setTourOpen(open);
@@ -2386,6 +2387,40 @@ export default function DashboardPage() {
   const masteryDisplay = useCountUp(Math.round(dashboardData.loading ? 0 : dashboardData.mastery));
   const todayDisplay = startOfLocalDay(new Date()).toISOString().slice(0, 10);
 
+  const isNewCompleted = reviewSplit.newQuota > 0 && dashboardData.solvedToday >= reviewSplit.newQuota;
+  const isReviewCompleted = dashboardData.solvedQuestions > 0 && dueReviewChapters.length === 0;
+  const isIncorrectCompleted = dashboardData.solvedQuestions > 0 && dashboardData.incorrectCount === 0;
+
+  // Ensure valid selection if default is completed
+  useEffect(() => {
+    if (selectedTaskType === 'new' && isNewCompleted) {
+      if (!isReviewCompleted) setSelectedTaskType('review');
+      else if (!isIncorrectCompleted) setSelectedTaskType('incorrect');
+    } else if (selectedTaskType === 'review' && isReviewCompleted) {
+      if (!isNewCompleted) setSelectedTaskType('new');
+      else if (!isIncorrectCompleted) setSelectedTaskType('incorrect');
+    } else if (selectedTaskType === 'incorrect' && isIncorrectCompleted) {
+      if (!isNewCompleted) setSelectedTaskType('new');
+      else if (!isReviewCompleted) setSelectedTaskType('review');
+    }
+  }, [isNewCompleted, isReviewCompleted, isIncorrectCompleted, selectedTaskType]);
+
+  if (dashboardData.error) {
+    return (
+      <div className="flex min-h-[70vh] flex-col items-center justify-center p-6 text-center animate-in fade-in duration-500">
+        <Database className="mx-auto h-16 w-16 text-slate-300 mb-6" />
+        <h2 className="text-2xl font-bold text-slate-800 mb-2">System Under Maintenance</h2>
+        <p className="text-slate-500 max-w-md mx-auto mb-6">
+          We are currently experiencing database connection issues or performing scheduled maintenance. Please try again later.
+        </p>
+        <Button onClick={() => window.location.reload()} variant="outline">
+          <RotateCcw className="mr-2 h-4 w-4" />
+          Refresh Page
+        </Button>
+      </div>
+    );
+  }
+
   return (
     <>
       <div
@@ -2692,13 +2727,7 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {dashboardData.error ? (
-          <Card className="border-red-100 bg-red-50 text-red-800">
-            <CardContent className="py-4 text-sm">
-              Dashboard data could not be loaded: {dashboardData.error}
-            </CardContent>
-          </Card>
-        ) : null}
+        {/* (Database error rendering is now handled globally above) */}
 
         <div data-tour="dashboard-stats" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
           {widgetVisibility.kpiMastery && (
@@ -3064,9 +3093,6 @@ export default function DashboardPage() {
             )}
 
             {widgetVisibility.nextMilestone && (() => {
-              const isNewCompleted = reviewSplit.newQuota > 0 && dashboardData.solvedToday >= reviewSplit.newQuota;
-              const isReviewCompleted = dashboardData.solvedQuestions > 0 && dueReviewChapters.length === 0;
-              const isIncorrectCompleted = dashboardData.solvedQuestions > 0 && dashboardData.incorrectCount === 0;
               const allTasksCompleted = isNewCompleted && isReviewCompleted && isIncorrectCompleted;
 
               const newPracticeDetails = plannedNewChapterIds.map(id => {
@@ -3083,20 +3109,6 @@ export default function DashboardPage() {
               const handleStartSelected = () => {
                 handleStartMission(selectedTaskType);
               };
-
-              // Ensure valid selection if default is completed
-              useEffect(() => {
-                if (selectedTaskType === 'new' && isNewCompleted) {
-                  if (!isReviewCompleted) setSelectedTaskType('review');
-                  else if (!isIncorrectCompleted) setSelectedTaskType('incorrect');
-                } else if (selectedTaskType === 'review' && isReviewCompleted) {
-                  if (!isNewCompleted) setSelectedTaskType('new');
-                  else if (!isIncorrectCompleted) setSelectedTaskType('incorrect');
-                } else if (selectedTaskType === 'incorrect' && isIncorrectCompleted) {
-                  if (!isNewCompleted) setSelectedTaskType('new');
-                  else if (!isReviewCompleted) setSelectedTaskType('review');
-                }
-              }, [isNewCompleted, isReviewCompleted, isIncorrectCompleted, selectedTaskType]);
 
               return (
                 <CardCarousel
