@@ -15,7 +15,9 @@ import { questionItems } from './questions';
 
 export const practiceSessions = pgTable('practice_sessions', {
   id: uuid('id').primaryKey().defaultRandom(),
-  userId: uuid('user_id').references(() => profiles.id, { onDelete: 'cascade' }),
+  userId: uuid('user_id').references(() => profiles.id, {
+    onDelete: 'cascade',
+  }),
   mode: text('mode'),
   status: text('status').notNull().default('in_progress'),
   subjectIds: text('subject_ids').array().default([]),
@@ -34,9 +36,15 @@ export const practiceAnswers = pgTable(
   'practice_answers',
   {
     id: uuid('id').primaryKey().defaultRandom(),
-    sessionId: uuid('session_id').references(() => practiceSessions.id, { onDelete: 'cascade' }),
-    userId: uuid('user_id').references(() => profiles.id, { onDelete: 'cascade' }),
-    questionId: text('question_id').notNull().references(() => questionItems.id, { onDelete: 'cascade' }),
+    sessionId: uuid('session_id').references(() => practiceSessions.id, {
+      onDelete: 'cascade',
+    }),
+    userId: uuid('user_id').references(() => profiles.id, {
+      onDelete: 'cascade',
+    }),
+    questionId: text('question_id')
+      .notNull()
+      .references(() => questionItems.id, { onDelete: 'cascade' }),
     selectedChoice: text('selected_choice').notNull(),
     correctAnswer: text('correct_answer').notNull(),
     isCorrect: boolean('is_correct').notNull(),
@@ -55,8 +63,12 @@ export const practiceAnswers = pgTable(
 export const userQuestionProgress = pgTable(
   'user_question_progress',
   {
-    userId: uuid('user_id').notNull().references(() => profiles.id, { onDelete: 'cascade' }),
-    questionId: text('question_id').notNull().references(() => questionItems.id, { onDelete: 'cascade' }),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => profiles.id, { onDelete: 'cascade' }),
+    questionId: text('question_id')
+      .notNull()
+      .references(() => questionItems.id, { onDelete: 'cascade' }),
     status: text('status').notNull(),
     selectedChoice: text('selected_choice'),
     correctAnswer: text('correct_answer'),
@@ -64,7 +76,9 @@ export const userQuestionProgress = pgTable(
     isMarked: boolean('is_marked').notNull().default(false),
     timesAnswered: integer('times_answered').notNull().default(0),
     timeSpentSeconds: integer('time_spent_seconds').notNull().default(0),
-    firstSeenAt: timestamp('first_seen_at', { withTimezone: true }).defaultNow(),
+    firstSeenAt: timestamp('first_seen_at', {
+      withTimezone: true,
+    }).defaultNow(),
     lastSeenAt: timestamp('last_seen_at', { withTimezone: true }).defaultNow(),
     lastAnsweredAt: timestamp('last_answered_at', { withTimezone: true }),
     raw: jsonb('raw'),
@@ -74,7 +88,9 @@ export const userQuestionProgress = pgTable(
 
 export const authEvents = pgTable('auth_events', {
   id: uuid('id').primaryKey().defaultRandom(),
-  userId: uuid('user_id').notNull().references(() => profiles.id, { onDelete: 'cascade' }),
+  userId: uuid('user_id')
+    .notNull()
+    .references(() => profiles.id, { onDelete: 'cascade' }),
   eventType: text('event_type').notNull(),
   provider: text('provider'),
   email: text('email'),
@@ -87,7 +103,9 @@ export const authEvents = pgTable('auth_events', {
 
 export const feedback = pgTable('feedback', {
   id: uuid('id').primaryKey().defaultRandom(),
-  userId: uuid('user_id').references(() => profiles.id, { onDelete: 'set null' }),
+  userId: uuid('user_id').references(() => profiles.id, {
+    onDelete: 'set null',
+  }),
   category: text('category'),
   subject: text('subject'),
   qid: text('qid'),
@@ -97,18 +115,24 @@ export const feedback = pgTable('feedback', {
   message: text('message').notNull(),
   resolved: boolean('resolved').notNull().default(false),
   resolvedAt: timestamp('resolved_at', { withTimezone: true }),
-  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  createdAt: timestamp('created_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
 });
 
 export const topicStudyProgress = pgTable(
   'topic_study_progress',
   {
-    userId: uuid('user_id').notNull().references(() => profiles.id, { onDelete: 'cascade' }),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => profiles.id, { onDelete: 'cascade' }),
     chapterId: text('chapter_id').notNull(),
     viewedCount: integer('viewed_count').notNull().default(0),
     lastQuestionId: text('last_question_id'),
     lastQuestionIndex: integer('last_question_index').notNull().default(0),
-    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
   },
   (table) => [primaryKey({ columns: [table.userId, table.chapterId] })],
 );
@@ -116,13 +140,19 @@ export const topicStudyProgress = pgTable(
 export const topicStudyQuestionStates = pgTable(
   'topic_study_question_states',
   {
-    userId: uuid('user_id').notNull().references(() => profiles.id, { onDelete: 'cascade' }),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => profiles.id, { onDelete: 'cascade' }),
     questionId: text('question_id').notNull(),
     chapterId: text('chapter_id'),
     isLearned: boolean('is_learned').notNull().default(false),
     isMarked: boolean('is_marked').notNull().default(false),
-    firstSeenAt: timestamp('first_seen_at', { withTimezone: true }).notNull().defaultNow(),
-    lastSeenAt: timestamp('last_seen_at', { withTimezone: true }).notNull().defaultNow(),
+    firstSeenAt: timestamp('first_seen_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    lastSeenAt: timestamp('last_seen_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
   },
   (table) => [primaryKey({ columns: [table.userId, table.questionId] })],
 );
@@ -130,7 +160,9 @@ export const topicStudyQuestionStates = pgTable(
 export const userConceptMastery = pgTable(
   'user_concept_mastery',
   {
-    userId: uuid('user_id').notNull().references(() => profiles.id, { onDelete: 'cascade' }),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => profiles.id, { onDelete: 'cascade' }),
     subject: text('subject').notNull(),
     topic: text('topic').notNull(),
     microConcept: text('micro_concept').notNull(),
@@ -140,12 +172,18 @@ export const userConceptMastery = pgTable(
     status: text('status').notNull().default('under-sampled'),
     updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow(),
   },
-  (table) => [primaryKey({ columns: [table.userId, table.subject, table.topic, table.microConcept] })],
+  (table) => [
+    primaryKey({
+      columns: [table.userId, table.subject, table.topic, table.microConcept],
+    }),
+  ],
 );
 
 export const pushSubscriptions = pgTable('push_subscriptions', {
   id: uuid('id').primaryKey().defaultRandom(),
-  userId: uuid('user_id').notNull().references(() => profiles.id, { onDelete: 'cascade' }),
+  userId: uuid('user_id')
+    .notNull()
+    .references(() => profiles.id, { onDelete: 'cascade' }),
   endpoint: text('endpoint').notNull().unique(),
   p256dh: text('p256dh').notNull(),
   auth: text('auth').notNull(),
@@ -155,7 +193,9 @@ export const pushSubscriptions = pgTable('push_subscriptions', {
 
 export const todos = pgTable('todos', {
   id: uuid('id').primaryKey().defaultRandom(),
-  userId: uuid('user_id').notNull().references(() => profiles.id, { onDelete: 'cascade' }),
+  userId: uuid('user_id')
+    .notNull()
+    .references(() => profiles.id, { onDelete: 'cascade' }),
   title: text('title').notNull(),
   status: text('status').notNull().default('new'),
   type: text('type').notNull().default('manual'),
@@ -171,9 +211,13 @@ export const userBadges = pgTable(
   'user_badges',
   {
     id: uuid('id').primaryKey().defaultRandom(),
-    userId: uuid('user_id').notNull().references(() => profiles.id, { onDelete: 'cascade' }),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => profiles.id, { onDelete: 'cascade' }),
     badgeKey: text('badge_key').notNull(),
-    unlockedAt: timestamp('unlocked_at', { withTimezone: true }).notNull().defaultNow(),
+    unlockedAt: timestamp('unlocked_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
   },
   (table) => [unique().on(table.userId, table.badgeKey)],
 );

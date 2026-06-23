@@ -3,7 +3,10 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 import type { JwtPayload } from '../auth/strategies/jwt.strategy';
 import { PlannerService } from './planner.service';
-import { GenerateIncorrectSessionDto, GenerateMissionSessionDto } from './dto/planner.dto';
+import {
+  GenerateIncorrectSessionDto,
+  GenerateMissionSessionDto,
+} from './dto/planner.dto';
 
 @Controller('attempts/planner')
 @UseGuards(JwtAuthGuard)
@@ -21,7 +24,10 @@ export class PlannerController {
   }
 
   @Post('generate-mission-session')
-  generateMissionSession(@CurrentUser() user: JwtPayload, @Body() dto: GenerateMissionSessionDto) {
+  generateMissionSession(
+    @CurrentUser() user: JwtPayload,
+    @Body() dto: GenerateMissionSessionDto,
+  ) {
     return this.plannerService.generateTodayMissionSession(
       user.sub,
       dto.targetQuota,
@@ -33,7 +39,13 @@ export class PlannerController {
   }
 
   @Post('generate-incorrect-session')
-  generateIncorrectSession(@CurrentUser() user: JwtPayload, @Body() dto: GenerateIncorrectSessionDto) {
-    return this.plannerService.generateIncorrectSession(user.sub, dto.targetQuota);
+  generateIncorrectSession(
+    @CurrentUser() user: JwtPayload,
+    @Body() dto: GenerateIncorrectSessionDto,
+  ) {
+    return this.plannerService.generateIncorrectSession(
+      user.sub,
+      dto.targetQuota,
+    );
   }
 }

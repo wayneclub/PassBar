@@ -1,4 +1,10 @@
-import { IsArray, IsInt, IsObject, IsOptional, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsInt,
+  IsObject,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class GenerateMissionSessionDto {
   @IsInt()

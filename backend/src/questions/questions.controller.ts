@@ -3,7 +3,10 @@ import { QuestionsService } from './questions.service';
 
 function parseList(value?: string): string[] {
   if (!value) return [];
-  return value.split(',').map((v) => v.trim()).filter(Boolean);
+  return value
+    .split(',')
+    .map((v) => v.trim())
+    .filter(Boolean);
 }
 
 @Controller('questions')
@@ -17,7 +20,9 @@ export class QuestionsController {
 
   @Get('ids')
   getQuestionIdsByChapterIds(@Query('chapterIds') chapterIds?: string) {
-    return this.questionsService.getQuestionIdsByChapterIds(parseList(chapterIds));
+    return this.questionsService.getQuestionIdsByChapterIds(
+      parseList(chapterIds),
+    );
   }
 
   @Get('ids-by-chapter')
@@ -31,8 +36,14 @@ export class QuestionsController {
   }
 
   @Get()
-  getQuestionsByChapterIds(@Query('chapterIds') chapterIds?: string, @Query('limit') limit?: string) {
+  getQuestionsByChapterIds(
+    @Query('chapterIds') chapterIds?: string,
+    @Query('limit') limit?: string,
+  ) {
     const parsedLimit = Number(limit) > 0 ? Number(limit) : 50;
-    return this.questionsService.getQuestionsByChapterIds(parseList(chapterIds), parsedLimit);
+    return this.questionsService.getQuestionsByChapterIds(
+      parseList(chapterIds),
+      parsedLimit,
+    );
   }
 }

@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { Roles, RolesGuard } from '../auth/guards/roles.guard';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
@@ -12,7 +21,10 @@ export class QuestionReportsController {
   constructor(private readonly reportsService: QuestionReportsService) {}
 
   @Post()
-  submit(@CurrentUser() user: JwtPayload, @Body() dto: SubmitQuestionReportDto) {
+  submit(
+    @CurrentUser() user: JwtPayload,
+    @Body() dto: SubmitQuestionReportDto,
+  ) {
     return this.reportsService.submit({ ...dto, userId: user.sub });
   }
 

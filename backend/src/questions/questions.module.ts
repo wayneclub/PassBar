@@ -7,8 +7,20 @@ import { QuestionAiAnalysisController } from './question-ai-analysis.controller'
 import { QuestionAiAnalysisService } from './question-ai-analysis.service';
 
 @Module({
-  controllers: [QuestionsController, QuestionReportsController, QuestionAiAnalysisController],
-  providers: [QuestionsService, QuestionReportsService, QuestionAiAnalysisService],
-  exports: [QuestionsService, QuestionReportsService, QuestionAiAnalysisService],
+  controllers: [
+    QuestionsController,
+    QuestionReportsController,
+    QuestionAiAnalysisController,
+  ],
+  providers: [
+    QuestionsService,
+    QuestionReportsService,
+    QuestionAiAnalysisService,
+  ],
+  exports: [
+    QuestionsService,
+    QuestionReportsService,
+    QuestionAiAnalysisService,
+  ],
 })
 export class QuestionsModule {}

@@ -23,7 +23,21 @@ import { DashboardService } from './dashboard.service';
     PlannerController,
     DashboardController,
   ],
-  providers: [PracticeSessionsService, QuestionProgressService, TopicStudyService, AchievementsService, PlannerService, DashboardService],
-  exports: [PracticeSessionsService, QuestionProgressService, TopicStudyService, AchievementsService, PlannerService, DashboardService],
+  providers: [
+    PracticeSessionsService,
+    QuestionProgressService,
+    TopicStudyService,
+    AchievementsService,
+    PlannerService,
+    DashboardService,
+  ],
+  exports: [
+    PracticeSessionsService,
+    QuestionProgressService,
+    TopicStudyService,
+    AchievementsService,
+    PlannerService,
+    DashboardService,
+  ],
 })
 export class AttemptsModule {}

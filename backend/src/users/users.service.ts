@@ -11,7 +11,10 @@ export class UsersService {
     return this.db.query.profiles.findFirst({ where: eq(profiles.id, userId) });
   }
 
-  async saveStudySettings(userId: string, studySettings: Record<string, unknown>) {
+  async saveStudySettings(
+    userId: string,
+    studySettings: Record<string, unknown>,
+  ) {
     const [updated] = await this.db
       .update(profiles)
       .set({ studySettings, updatedAt: new Date() })
@@ -37,5 +40,4 @@ export class UsersService {
       .returning({ id: profiles.id });
     return Boolean(updated);
   }
-
 }

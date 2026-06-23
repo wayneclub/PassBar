@@ -3,13 +3,21 @@ import { eq } from 'drizzle-orm';
 import { DB, type Database } from '../db/db.provider';
 import { userBadges } from '../db/schema';
 
-export type BadgeCategory = 'Consistency' | 'SpacedRepetition' | 'SubjectMastery';
+export type BadgeCategory =
+  | 'Consistency'
+  | 'SpacedRepetition'
+  | 'SubjectMastery';
 
 export interface AchievementData {
   streakDays: number;
   maxDailyStudySeconds: number;
   chapterStats: Array<{ totalAttempts: number; lastAccuracy: number | null }>;
-  subjectPerformance: Array<{ name: string; score: number; correct: number; total: number }>;
+  subjectPerformance: Array<{
+    name: string;
+    score: number;
+    correct: number;
+    total: number;
+  }>;
 }
 
 export interface Badge {
@@ -19,9 +27,21 @@ export interface Badge {
 }
 
 export const BADGES: Badge[] = [
-  { id: 'disciplined_master', category: 'Consistency', criteria: (data) => data.streakDays >= 7 },
-  { id: 'contempt_of_court', category: 'Consistency', criteria: (data) => data.streakDays >= 30 },
-  { id: 'midnight_oil', category: 'Consistency', criteria: (data) => data.maxDailyStudySeconds >= 4 * 3600 },
+  {
+    id: 'disciplined_master',
+    category: 'Consistency',
+    criteria: (data) => data.streakDays >= 7,
+  },
+  {
+    id: 'contempt_of_court',
+    category: 'Consistency',
+    criteria: (data) => data.streakDays >= 30,
+  },
+  {
+    id: 'midnight_oil',
+    category: 'Consistency',
+    criteria: (data) => data.maxDailyStudySeconds >= 4 * 3600,
+  },
   {
     id: 'hearsay_overruled',
     category: 'SpacedRepetition',
@@ -30,7 +50,13 @@ export const BADGES: Badge[] = [
   {
     id: 'res_judicata',
     category: 'SpacedRepetition',
-    criteria: (data) => data.chapterStats.some((c) => c.totalAttempts >= 2 && c.lastAccuracy !== null && c.lastAccuracy >= 85),
+    criteria: (data) =>
+      data.chapterStats.some(
+        (c) =>
+          c.totalAttempts >= 2 &&
+          c.lastAccuracy !== null &&
+          c.lastAccuracy >= 85,
+      ),
   },
   {
     id: 'reasonable_person',
@@ -44,7 +70,9 @@ export const BADGES: Badge[] = [
     id: 'lord_of_consideration',
     category: 'SubjectMastery',
     criteria: (data) => {
-      const contracts = data.subjectPerformance.find((s) => s.name === 'Contracts');
+      const contracts = data.subjectPerformance.find(
+        (s) => s.name === 'Contracts',
+      );
       return Boolean(contracts && contracts.total >= 20);
     },
   },
@@ -64,7 +92,9 @@ export class AchievementsService {
         .from(userBadges)
         .where(eq(userBadges.userId, userId));
       const existingKeys = new Set(existing.map((b) => b.badgeKey));
-      const toInsert = unlockedBadges.filter((b) => !existingKeys.has(b.id)).map((b) => ({ userId, badgeKey: b.id }));
+      const toInsert = unlockedBadges
+        .filter((b) => !existingKeys.has(b.id))
+        .map((b) => ({ userId, badgeKey: b.id }));
       if (toInsert.length > 0) {
         await this.db.insert(userBadges).values(toInsert);
       }
@@ -75,7 +105,10 @@ export class AchievementsService {
 
   async fetchUserBadges(userId: string) {
     return this.db
-      .select({ badgeKey: userBadges.badgeKey, unlockedAt: userBadges.unlockedAt })
+      .select({
+        badgeKey: userBadges.badgeKey,
+        unlockedAt: userBadges.unlockedAt,
+      })
       .from(userBadges)
       .where(eq(userBadges.userId, userId));
   }

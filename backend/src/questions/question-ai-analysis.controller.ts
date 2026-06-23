@@ -1,7 +1,10 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { QuestionAiAnalysisService } from './question-ai-analysis.service';
-import { GetCachedAnalysisDto, SaveAnalysisDto } from './dto/question-ai-analysis.dto';
+import {
+  GetCachedAnalysisDto,
+  SaveAnalysisDto,
+} from './dto/question-ai-analysis.dto';
 
 @Controller('question-ai-analysis')
 @UseGuards(JwtAuthGuard)

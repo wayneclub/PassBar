@@ -22,17 +22,29 @@ export class AuthService {
    * an email conflict means some *other* row already owns this email (e.g. a pre-cutover account
    * with a different id) — that has to surface as an error, not silently return an empty profile.
    */
-  async ensureProfile(userId: string, email: string | null, role: string, status: string) {
-    const existingUser = await this.db.query.users.findFirst({ where: eq(users.id, userId) });
+  async ensureProfile(
+    userId: string,
+    email: string | null,
+    role: string,
+    status: string,
+  ) {
+    const existingUser = await this.db.query.users.findFirst({
+      where: eq(users.id, userId),
+    });
     if (!existingUser) {
       try {
-        await this.db.insert(users).values({ id: userId, email }).onConflictDoNothing({ target: users.id });
+        await this.db
+          .insert(users)
+          .values({ id: userId, email })
+          .onConflictDoNothing({ target: users.id });
       } catch (err) {
         throw this.toEmailConflictError(err, email);
       }
     }
 
-    let profile = await this.db.query.profiles.findFirst({ where: eq(profiles.id, userId) });
+    let profile = await this.db.query.profiles.findFirst({
+      where: eq(profiles.id, userId),
+    });
     if (!profile) {
       let created;
       try {
@@ -43,16 +55,26 @@ export class AuthService {
             email,
             role,
             status,
-            studySettings: { contentMode: 'english', textSize: 'medium', interfaceLanguage: 'en' },
+            studySettings: {
+              contentMode: 'english',
+              textSize: 'medium',
+              interfaceLanguage: 'en',
+            },
           })
           .onConflictDoNothing({ target: profiles.id })
           .returning();
       } catch (err) {
         throw this.toEmailConflictError(err, email);
       }
-      profile = created ?? (await this.db.query.profiles.findFirst({ where: eq(profiles.id, userId) }));
+      profile =
+        created ??
+        (await this.db.query.profiles.findFirst({
+          where: eq(profiles.id, userId),
+        }));
       if (!profile) {
-        throw new ConflictException(`A profile already exists for email "${email}" under a different user id`);
+        throw new ConflictException(
+          `A profile already exists for email "${email}" under a different user id`,
+        );
       }
     }
 
@@ -69,20 +91,32 @@ export class AuthService {
 
   /** Postgres unique_violation (23505) on the email column means a different row already owns it. */
   private toEmailConflictError(err: unknown, email: string | null): Error {
-    if (err && typeof err === 'object' && 'code' in err && err.code === '23505') {
-      return new ConflictException(`A profile already exists for email "${email}" under a different user id`);
+    if (
+      err &&
+      typeof err === 'object' &&
+      'code' in err &&
+      err.code === '23505'
+    ) {
+      return new ConflictException(
+        `A profile already exists for email "${email}" under a different user id`,
+      );
     }
     return err as Error;
   }
 
   /** Long-lived opaque token scoped only to the calendar feed — not a full session JWT. */
   issueCalendarToken(userId: string): string {
-    return this.jwtService.sign({ sub: userId, purpose: 'calendar' }, { expiresIn: '5y' });
+    return this.jwtService.sign(
+      { sub: userId, purpose: 'calendar' },
+      { expiresIn: '5y' },
+    );
   }
 
   verifyCalendarToken(token: string): string | null {
     try {
-      const decoded = this.jwtService.verify<{ sub: string; purpose: string }>(token);
+      const decoded = this.jwtService.verify<{ sub: string; purpose: string }>(
+        token,
+      );
       return decoded.purpose === 'calendar' ? decoded.sub : null;
     } catch {
       return null;

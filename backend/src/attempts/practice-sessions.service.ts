@@ -5,12 +5,16 @@ import { practiceSessions, practiceAnswers } from '../db/schema';
 
 type TestMode = 'Tutor' | 'Timed' | 'TopicStudy' | 'SimExam';
 
-const STATUS_TO_DB: Record<string, 'in_progress' | 'completed' | 'suspended'> = {
-  'In-Progress': 'in_progress',
-  Completed: 'completed',
-  Suspended: 'suspended',
-};
-const STATUS_FROM_DB: Record<string, 'In-Progress' | 'Completed' | 'Suspended'> = {
+const STATUS_TO_DB: Record<string, 'in_progress' | 'completed' | 'suspended'> =
+  {
+    'In-Progress': 'in_progress',
+    Completed: 'completed',
+    Suspended: 'suspended',
+  };
+const STATUS_FROM_DB: Record<
+  string,
+  'In-Progress' | 'Completed' | 'Suspended'
+> = {
   in_progress: 'In-Progress',
   completed: 'Completed',
   suspended: 'Suspended',
@@ -110,23 +114,43 @@ export class PracticeSessionsService {
           createdAt: input.createdAt,
         },
       })
-      .where(and(eq(practiceSessions.id, input.sessionId), eq(practiceSessions.userId, input.userId)));
+      .where(
+        and(
+          eq(practiceSessions.id, input.sessionId),
+          eq(practiceSessions.userId, input.userId),
+        ),
+      );
   }
 
   async deleteSession(sessionId: string, userId: string) {
     await this.db
       .delete(practiceAnswers)
-      .where(and(eq(practiceAnswers.sessionId, sessionId), eq(practiceAnswers.userId, userId)));
+      .where(
+        and(
+          eq(practiceAnswers.sessionId, sessionId),
+          eq(practiceAnswers.userId, userId),
+        ),
+      );
     await this.db
       .delete(practiceSessions)
-      .where(and(eq(practiceSessions.id, sessionId), eq(practiceSessions.userId, userId)));
+      .where(
+        and(
+          eq(practiceSessions.id, sessionId),
+          eq(practiceSessions.userId, userId),
+        ),
+      );
     return true;
   }
 
   async deleteAnswersForSession(sessionId: string, userId: string) {
     await this.db
       .delete(practiceAnswers)
-      .where(and(eq(practiceAnswers.sessionId, sessionId), eq(practiceAnswers.userId, userId)));
+      .where(
+        and(
+          eq(practiceAnswers.sessionId, sessionId),
+          eq(practiceAnswers.userId, userId),
+        ),
+      );
     return true;
   }
 
@@ -141,14 +165,26 @@ export class PracticeSessionsService {
         answeredAt: practiceAnswers.answeredAt,
       })
       .from(practiceAnswers)
-      .where(and(eq(practiceAnswers.sessionId, sessionId), eq(practiceAnswers.userId, userId)))
+      .where(
+        and(
+          eq(practiceAnswers.sessionId, sessionId),
+          eq(practiceAnswers.userId, userId),
+        ),
+      )
       .orderBy(asc(practiceAnswers.answeredAt));
   }
 
-  async getSession(sessionId: string, userId: string, options?: { answeredOnly?: boolean }) {
+  async getSession(
+    sessionId: string,
+    userId: string,
+    options?: { answeredOnly?: boolean },
+  ) {
     const [session, answerRows] = await Promise.all([
       this.db.query.practiceSessions.findFirst({
-        where: and(eq(practiceSessions.id, sessionId), eq(practiceSessions.userId, userId)),
+        where: and(
+          eq(practiceSessions.id, sessionId),
+          eq(practiceSessions.userId, userId),
+        ),
       }),
       this.getAnswersForSession(sessionId, userId),
     ]);
@@ -163,18 +199,21 @@ export class PracticeSessionsService {
       createdAt?: number;
     };
 
-    const answeredQuestionIds = answerRows.map((a) => a.questionId).filter(Boolean);
+    const answeredQuestionIds = answerRows
+      .map((a) => a.questionId)
+      .filter(Boolean);
     const rawAnsweredQuestionIds = Object.keys(raw.userAnswers ?? {});
-    const questionIds = options?.answeredOnly && answeredQuestionIds.length > 0
-      ? answeredQuestionIds
-      : options?.answeredOnly && rawAnsweredQuestionIds.length > 0
-        ? rawAnsweredQuestionIds
-        : raw.questionIds ?? [];
+    const questionIds =
+      options?.answeredOnly && answeredQuestionIds.length > 0
+        ? answeredQuestionIds
+        : options?.answeredOnly && rawAnsweredQuestionIds.length > 0
+          ? rawAnsweredQuestionIds
+          : (raw.questionIds ?? []);
 
     const userAnswerChoices = Object.fromEntries(
       answerRows
         .filter((a) => a.selectedChoice)
-        .map((a) => [a.questionId, a.selectedChoice!.toUpperCase()]),
+        .map((a) => [a.questionId, a.selectedChoice.toUpperCase()]),
     );
 
     return {

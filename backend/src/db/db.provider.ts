@@ -12,7 +12,9 @@ export const dbProvider: Provider = {
   provide: DB,
   inject: [ConfigService],
   useFactory: (config: ConfigService): Database => {
-    const pool = new Pool({ connectionString: config.getOrThrow<string>('DATABASE_URL') });
+    const pool = new Pool({
+      connectionString: config.getOrThrow<string>('DATABASE_URL'),
+    });
     return drizzle(pool, { schema });
   },
 };

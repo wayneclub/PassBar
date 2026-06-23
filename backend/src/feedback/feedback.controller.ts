@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { Roles, RolesGuard } from '../auth/guards/roles.guard';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
@@ -25,7 +34,9 @@ export class FeedbackController {
     @Query('limit') limit?: string,
   ) {
     return this.feedbackService.list({
-      categories: categories ? categories.split(',') : ['content', 'bug', 'feature', 'account', 'other'],
+      categories: categories
+        ? categories.split(',')
+        : ['content', 'bug', 'feature', 'account', 'other'],
       resolved: resolved === undefined ? undefined : resolved === 'true',
       limit: limit ? Number(limit) : undefined,
     });

@@ -1,10 +1,24 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 import type { JwtPayload } from '../auth/strategies/jwt.strategy';
 import { AuthService } from '../auth/auth.service';
 import { TodosService } from './todos.service';
-import { AddChapterAsTodoDto, CreateTodoDto, UpdateTodoDto } from './dto/todo.dto';
+import {
+  AddChapterAsTodoDto,
+  CreateTodoDto,
+  UpdateTodoDto,
+} from './dto/todo.dto';
 
 @Controller('todos')
 export class TodosController {
@@ -41,7 +55,11 @@ export class TodosController {
 
   @Patch(':id')
   @UseGuards(JwtAuthGuard)
-  update(@CurrentUser() user: JwtPayload, @Param('id') id: string, @Body() dto: UpdateTodoDto) {
+  update(
+    @CurrentUser() user: JwtPayload,
+    @Param('id') id: string,
+    @Body() dto: UpdateTodoDto,
+  ) {
     return this.todosService.update(user.sub, id, dto);
   }
 
@@ -59,7 +77,10 @@ export class TodosController {
 
   @Post('add-chapter')
   @UseGuards(JwtAuthGuard)
-  addChapterAsTodo(@CurrentUser() user: JwtPayload, @Body() dto: AddChapterAsTodoDto) {
+  addChapterAsTodo(
+    @CurrentUser() user: JwtPayload,
+    @Body() dto: AddChapterAsTodoDto,
+  ) {
     return this.todosService.addChapterAsTodo(user.sub, dto);
   }
 }

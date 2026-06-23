@@ -7,7 +7,13 @@ import { questionReports, profiles } from '../db/schema';
 export class QuestionReportsService {
   constructor(@Inject(DB) private readonly db: Database) {}
 
-  async submit(input: { questionId: string; userId: string; categories: string[]; language: string; message?: string }) {
+  async submit(input: {
+    questionId: string;
+    userId: string;
+    categories: string[];
+    language: string;
+    message?: string;
+  }) {
     await this.db.insert(questionReports).values({
       questionId: input.questionId,
       userId: input.userId,
@@ -37,7 +43,11 @@ export class QuestionReportsService {
       })
       .from(questionReports)
       .leftJoin(profiles, eq(profiles.id, questionReports.userId))
-      .where(options?.resolved !== undefined ? eq(questionReports.resolved, options.resolved) : undefined)
+      .where(
+        options?.resolved !== undefined
+          ? eq(questionReports.resolved, options.resolved)
+          : undefined,
+      )
       .orderBy(desc(questionReports.createdAt))
       .limit(options?.limit ?? 50);
     return rows;

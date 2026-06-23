@@ -8,7 +8,10 @@ export class TopicStudyService {
   constructor(@Inject(DB) private readonly db: Database) {}
 
   async getProgressByUser(userId: string) {
-    return this.db.select().from(topicStudyProgress).where(eq(topicStudyProgress.userId, userId));
+    return this.db
+      .select()
+      .from(topicStudyProgress)
+      .where(eq(topicStudyProgress.userId, userId));
   }
 
   async upsertProgress(input: {
@@ -43,9 +46,16 @@ export class TopicStudyService {
     if (chapterIds?.length) {
       await this.db
         .delete(topicStudyProgress)
-        .where(and(eq(topicStudyProgress.userId, userId), inArray(topicStudyProgress.chapterId, chapterIds)));
+        .where(
+          and(
+            eq(topicStudyProgress.userId, userId),
+            inArray(topicStudyProgress.chapterId, chapterIds),
+          ),
+        );
     } else {
-      await this.db.delete(topicStudyProgress).where(eq(topicStudyProgress.userId, userId));
+      await this.db
+        .delete(topicStudyProgress)
+        .where(eq(topicStudyProgress.userId, userId));
     }
   }
 
@@ -59,14 +69,33 @@ export class TopicStudyService {
         isMarked: topicStudyQuestionStates.isMarked,
       })
       .from(topicStudyQuestionStates)
-      .where(and(eq(topicStudyQuestionStates.userId, userId), inArray(topicStudyQuestionStates.questionId, questionIds)));
+      .where(
+        and(
+          eq(topicStudyQuestionStates.userId, userId),
+          inArray(topicStudyQuestionStates.questionId, questionIds),
+        ),
+      );
 
-    return Object.fromEntries(rows.map((r) => [r.questionId, { isLearned: r.isLearned, isMarked: r.isMarked }]));
+    return Object.fromEntries(
+      rows.map((r) => [
+        r.questionId,
+        { isLearned: r.isLearned, isMarked: r.isMarked },
+      ]),
+    );
   }
 
-  async getMarkedQuestionIds(userId: string, questionIds?: string[]): Promise<string[]> {
-    const conditions = [eq(topicStudyQuestionStates.userId, userId), eq(topicStudyQuestionStates.isMarked, true)];
-    if (questionIds?.length) conditions.push(inArray(topicStudyQuestionStates.questionId, questionIds));
+  async getMarkedQuestionIds(
+    userId: string,
+    questionIds?: string[],
+  ): Promise<string[]> {
+    const conditions = [
+      eq(topicStudyQuestionStates.userId, userId),
+      eq(topicStudyQuestionStates.isMarked, true),
+    ];
+    if (questionIds?.length)
+      conditions.push(
+        inArray(topicStudyQuestionStates.questionId, questionIds),
+      );
 
     const rows = await this.db
       .select({ questionId: topicStudyQuestionStates.questionId })
@@ -79,8 +108,17 @@ export class TopicStudyService {
     const rows = await this.db
       .select({ chapterId: topicStudyQuestionStates.chapterId })
       .from(topicStudyQuestionStates)
-      .where(and(eq(topicStudyQuestionStates.userId, userId), eq(topicStudyQuestionStates.isMarked, true)));
-    return [...new Set(rows.map((r) => r.chapterId).filter((id): id is string => Boolean(id)))];
+      .where(
+        and(
+          eq(topicStudyQuestionStates.userId, userId),
+          eq(topicStudyQuestionStates.isMarked, true),
+        ),
+      );
+    return [
+      ...new Set(
+        rows.map((r) => r.chapterId).filter((id): id is string => Boolean(id)),
+      ),
+    ];
   }
 
   async upsertQuestionState(input: {
@@ -109,7 +147,10 @@ export class TopicStudyService {
         lastSeenAt: new Date(),
       })
       .onConflictDoUpdate({
-        target: [topicStudyQuestionStates.userId, topicStudyQuestionStates.questionId],
+        target: [
+          topicStudyQuestionStates.userId,
+          topicStudyQuestionStates.questionId,
+        ],
         set: {
           chapterId: input.chapterId ?? existing?.chapterId ?? null,
           isLearned: input.isLearned ?? existing?.isLearned ?? false,
@@ -123,7 +164,12 @@ export class TopicStudyService {
   async deleteQuestionStatesForChapter(userId: string, chapterId: string) {
     await this.db
       .delete(topicStudyQuestionStates)
-      .where(and(eq(topicStudyQuestionStates.userId, userId), eq(topicStudyQuestionStates.chapterId, chapterId)));
+      .where(
+        and(
+          eq(topicStudyQuestionStates.userId, userId),
+          eq(topicStudyQuestionStates.chapterId, chapterId),
+        ),
+      );
   }
 
   async getChapterStateCounts(userId: string) {
@@ -136,10 +182,16 @@ export class TopicStudyService {
       .from(topicStudyQuestionStates)
       .where(eq(topicStudyQuestionStates.userId, userId));
 
-    const result: Record<string, { learnedCount: number; markedCount: number }> = {};
+    const result: Record<
+      string,
+      { learnedCount: number; markedCount: number }
+    > = {};
     rows.forEach((r) => {
       if (!r.chapterId) return;
-      const existing = result[r.chapterId] ?? { learnedCount: 0, markedCount: 0 };
+      const existing = result[r.chapterId] ?? {
+        learnedCount: 0,
+        markedCount: 0,
+      };
       result[r.chapterId] = {
         learnedCount: existing.learnedCount + (r.isLearned ? 1 : 0),
         markedCount: existing.markedCount + (r.isMarked ? 1 : 0),
@@ -149,8 +201,12 @@ export class TopicStudyService {
   }
 
   async clearBrowseProgress(userId: string) {
-    await this.db.delete(topicStudyProgress).where(eq(topicStudyProgress.userId, userId));
-    await this.db.delete(topicStudyQuestionStates).where(eq(topicStudyQuestionStates.userId, userId));
+    await this.db
+      .delete(topicStudyProgress)
+      .where(eq(topicStudyProgress.userId, userId));
+    await this.db
+      .delete(topicStudyQuestionStates)
+      .where(eq(topicStudyQuestionStates.userId, userId));
     return true;
   }
 }

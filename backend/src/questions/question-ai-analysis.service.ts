@@ -46,8 +46,12 @@ export class QuestionAiAnalysisService {
         eq(questionAiExplanations.questionId, input.questionId),
         eq(questionAiExplanations.interfaceLanguage, input.interfaceLanguage),
         eq(questionAiExplanations.promptVersion, QUESTION_AI_PROMPT_VERSION),
-        selectedChoice ? eq(questionAiExplanations.selectedChoice, selectedChoice) : isNull(questionAiExplanations.selectedChoice),
-        correctChoice ? eq(questionAiExplanations.correctChoice, correctChoice) : isNull(questionAiExplanations.correctChoice),
+        selectedChoice
+          ? eq(questionAiExplanations.selectedChoice, selectedChoice)
+          : isNull(questionAiExplanations.selectedChoice),
+        correctChoice
+          ? eq(questionAiExplanations.correctChoice, correctChoice)
+          : isNull(questionAiExplanations.correctChoice),
       ),
     });
 
@@ -56,7 +60,13 @@ export class QuestionAiAnalysisService {
     return row.analysisMarkdown;
   }
 
-  async save(input: AnalysisInput & { isCorrect?: boolean; analysisMarkdown: string; model?: string | null }) {
+  async save(
+    input: AnalysisInput & {
+      isCorrect?: boolean;
+      analysisMarkdown: string;
+      model?: string | null;
+    },
+  ) {
     await this.db
       .insert(questionAiExplanations)
       .values({

@@ -1,5 +1,13 @@
 import { Type } from 'class-transformer';
-import { IsArray, IsInt, IsNumber, IsOptional, IsString, Min, ValidateNested } from 'class-validator';
+import {
+  IsArray,
+  IsInt,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Min,
+  ValidateNested,
+} from 'class-validator';
 
 class ChapterStatDto {
   @IsInt()

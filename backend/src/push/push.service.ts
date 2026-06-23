@@ -7,7 +7,13 @@ import { pushSubscriptions } from '../db/schema';
 export class PushService {
   constructor(@Inject(DB) private readonly db: Database) {}
 
-  async saveSubscription(input: { userId: string; endpoint: string; p256dh: string; auth: string; userAgent?: string | null }) {
+  async saveSubscription(input: {
+    userId: string;
+    endpoint: string;
+    p256dh: string;
+    auth: string;
+    userAgent?: string | null;
+  }) {
     await this.db
       .insert(pushSubscriptions)
       .values({
@@ -19,13 +25,20 @@ export class PushService {
       })
       .onConflictDoUpdate({
         target: [pushSubscriptions.endpoint],
-        set: { p256dh: input.p256dh, auth: input.auth, userAgent: input.userAgent ?? null, userId: input.userId },
+        set: {
+          p256dh: input.p256dh,
+          auth: input.auth,
+          userAgent: input.userAgent ?? null,
+          userId: input.userId,
+        },
       });
     return true;
   }
 
   async deleteSubscription(endpoint: string) {
-    await this.db.delete(pushSubscriptions).where(eq(pushSubscriptions.endpoint, endpoint));
+    await this.db
+      .delete(pushSubscriptions)
+      .where(eq(pushSubscriptions.endpoint, endpoint));
     return true;
   }
 }

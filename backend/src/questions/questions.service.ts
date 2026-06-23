@@ -11,22 +11,47 @@ export class QuestionsService {
     return this.db
       .select()
       .from(questionChapterCounts)
-      .orderBy(asc(questionChapterCounts.subject), asc(questionChapterCounts.chapterName));
+      .orderBy(
+        asc(questionChapterCounts.subject),
+        asc(questionChapterCounts.chapterName),
+      );
   }
 
-  async getSubjectsGrouped(): Promise<Array<{ id: string; name: string; count: number; chapters: Array<{ id: string; name: string; count: number }> }>> {
+  async getSubjectsGrouped(): Promise<
+    Array<{
+      id: string;
+      name: string;
+      count: number;
+      chapters: Array<{ id: string; name: string; count: number }>;
+    }>
+  > {
     const rows = await this.getSubjects();
-    const grouped = new Map<string, { id: string; name: string; count: number; chapters: Array<{ id: string; name: string; count: number }> }>();
+    const grouped = new Map<
+      string,
+      {
+        id: string;
+        name: string;
+        count: number;
+        chapters: Array<{ id: string; name: string; count: number }>;
+      }
+    >();
 
     rows.forEach((row) => {
       const existing = grouped.get(row.subject) ?? {
-        id: row.subject.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+        id: row.subject
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-|-$/g, ''),
         name: row.subject,
         count: 0,
         chapters: [],
       };
       existing.count += row.count;
-      existing.chapters.push({ id: row.chapterId, name: row.chapterName, count: row.count });
+      existing.chapters.push({
+        id: row.chapterId,
+        name: row.chapterName,
+        count: row.count,
+      });
       grouped.set(row.subject, existing);
     });
 
@@ -43,7 +68,9 @@ export class QuestionsService {
   }
 
   async getAllQuestionIdsByChapter(): Promise<Record<string, string[]>> {
-    const rows = await this.db.select({ id: questions.id, chapterId: questions.chapterId }).from(questions);
+    const rows = await this.db
+      .select({ id: questions.id, chapterId: questions.chapterId })
+      .from(questions);
     const map: Record<string, string[]> = {};
     for (const row of rows) {
       (map[row.chapterId] ??= []).push(row.id);
@@ -63,6 +90,9 @@ export class QuestionsService {
 
   async getQuestionsByIds(questionIds: string[]) {
     if (questionIds.length === 0) return [];
-    return this.db.select().from(questions).where(inArray(questions.id, questionIds));
+    return this.db
+      .select()
+      .from(questions)
+      .where(inArray(questions.id, questionIds));
   }
 }

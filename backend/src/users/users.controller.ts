@@ -18,24 +18,47 @@ export class UsersController {
 
   @Get()
   async getMe(@CurrentUser() user: JwtPayload) {
-    return this.authService.ensureProfile(user.sub, user.email, user.role, user.status);
+    return this.authService.ensureProfile(
+      user.sub,
+      user.email,
+      user.role,
+      user.status,
+    );
   }
 
   @Patch('study-settings')
-  async updateStudySettings(@CurrentUser() user: JwtPayload, @Body() dto: UpdateStudySettingsDto) {
-    const ok = await this.usersService.saveStudySettings(user.sub, dto.studySettings);
+  async updateStudySettings(
+    @CurrentUser() user: JwtPayload,
+    @Body() dto: UpdateStudySettingsDto,
+  ) {
+    const ok = await this.usersService.saveStudySettings(
+      user.sub,
+      dto.studySettings,
+    );
     return { ok };
   }
 
   @Patch('exam-date')
-  async updateExamDate(@CurrentUser() user: JwtPayload, @Body() dto: UpdateExamDateDto) {
-    const ok = await this.usersService.updateExamDate(user.sub, dto.examDate ?? null);
+  async updateExamDate(
+    @CurrentUser() user: JwtPayload,
+    @Body() dto: UpdateExamDateDto,
+  ) {
+    const ok = await this.usersService.updateExamDate(
+      user.sub,
+      dto.examDate ?? null,
+    );
     return { ok };
   }
 
   @Patch('display-name')
-  async updateDisplayName(@CurrentUser() user: JwtPayload, @Body() dto: UpdateDisplayNameDto) {
-    const ok = await this.usersService.updateDisplayName(user.sub, dto.fullName);
+  async updateDisplayName(
+    @CurrentUser() user: JwtPayload,
+    @Body() dto: UpdateDisplayNameDto,
+  ) {
+    const ok = await this.usersService.updateDisplayName(
+      user.sub,
+      dto.fullName,
+    );
     return { ok };
   }
 }

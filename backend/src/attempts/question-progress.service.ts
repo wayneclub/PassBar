@@ -1,9 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { and, eq, inArray, sql } from 'drizzle-orm';
 import { DB, type Database } from '../db/db.provider';
-import { practiceAnswers, practiceSessions, userQuestionProgress } from '../db/schema';
+import {
+  practiceAnswers,
+  practiceSessions,
+  userQuestionProgress,
+} from '../db/schema';
 
-export type QuestionStatus = 'Unused' | 'Incorrect' | 'Marked' | 'Omitted' | 'Correct';
+export type QuestionStatus =
+  | 'Unused'
+  | 'Incorrect'
+  | 'Marked'
+  | 'Omitted'
+  | 'Correct';
 export type QuestionStatusCounts = Record<QuestionStatus, number>;
 
 export const emptyQuestionStatusCounts: QuestionStatusCounts = {
@@ -26,9 +35,15 @@ export type QuestionStatusFilter = {
 export class QuestionProgressService {
   constructor(@Inject(DB) private readonly db: Database) {}
 
-  async getStatusCounts(userId: string, totalQuestions: number): Promise<QuestionStatusCounts> {
+  async getStatusCounts(
+    userId: string,
+    totalQuestions: number,
+  ): Promise<QuestionStatusCounts> {
     const rows = await this.db
-      .select({ status: userQuestionProgress.status, isMarked: userQuestionProgress.isMarked })
+      .select({
+        status: userQuestionProgress.status,
+        isMarked: userQuestionProgress.isMarked,
+      })
       .from(userQuestionProgress)
       .where(eq(userQuestionProgress.userId, userId));
 
@@ -52,7 +67,10 @@ export class QuestionProgressService {
     timeSpentSeconds?: number;
   }) {
     const existing = await this.db.query.userQuestionProgress.findFirst({
-      where: and(eq(userQuestionProgress.userId, input.userId), eq(userQuestionProgress.questionId, input.questionId)),
+      where: and(
+        eq(userQuestionProgress.userId, input.userId),
+        eq(userQuestionProgress.questionId, input.questionId),
+      ),
     });
 
     const existingTimesAnswered = existing?.timesAnswered ?? 0;
@@ -95,9 +113,17 @@ export class QuestionProgressService {
     const choiceResult = await this.db.execute(
       sql`select * from public.get_question_choice_stats(${questionId})`,
     );
-    for (const row of choiceResult.rows as Array<{ selected_choice: string; answer_percent: number }>) {
+    for (const row of choiceResult.rows as Array<{
+      selected_choice: string;
+      answer_percent: number;
+    }>) {
       const choice = String(row.selected_choice ?? '').toUpperCase();
-      if (choice === 'A' || choice === 'B' || choice === 'C' || choice === 'D') {
+      if (
+        choice === 'A' ||
+        choice === 'B' ||
+        choice === 'C' ||
+        choice === 'D'
+      ) {
         choicePercents[choice] = row.answer_percent ?? 0;
       }
     }
@@ -105,7 +131,13 @@ export class QuestionProgressService {
     const statsResult = await this.db.execute(
       sql`select * from public.get_question_answer_stats(${questionId})`,
     );
-    const row = statsResult.rows[0] as { total_answers: string | number; correct_answers: string | number; correct_percent: number | null } | undefined;
+    const row = statsResult.rows[0] as
+      | {
+          total_answers: string | number;
+          correct_answers: string | number;
+          correct_percent: number | null;
+        }
+      | undefined;
 
     return {
       totalAnswers: row ? Number(row.total_answers) : 0,
@@ -115,26 +147,55 @@ export class QuestionProgressService {
     };
   }
 
-  async getAllUserProgress(userId: string): Promise<Record<string, { status: string; isMarked: boolean }>> {
+  async getAllUserProgress(
+    userId: string,
+  ): Promise<Record<string, { status: string; isMarked: boolean }>> {
     const rows = await this.db
-      .select({ questionId: userQuestionProgress.questionId, status: userQuestionProgress.status, isMarked: userQuestionProgress.isMarked })
+      .select({
+        questionId: userQuestionProgress.questionId,
+        status: userQuestionProgress.status,
+        isMarked: userQuestionProgress.isMarked,
+      })
       .from(userQuestionProgress)
       .where(eq(userQuestionProgress.userId, userId));
 
-    return Object.fromEntries(rows.map((r) => [r.questionId, { status: r.status, isMarked: Boolean(r.isMarked) }]));
+    return Object.fromEntries(
+      rows.map((r) => [
+        r.questionId,
+        { status: r.status, isMarked: Boolean(r.isMarked) },
+      ]),
+    );
   }
 
-  async filterQuestionIdsByStatus(userId: string, questionIds: string[], filters: QuestionStatusFilter): Promise<string[]> {
+  async filterQuestionIdsByStatus(
+    userId: string,
+    questionIds: string[],
+    filters: QuestionStatusFilter,
+  ): Promise<string[]> {
     const anyEnabled = Object.values(filters).some(Boolean);
     if (!anyEnabled) return questionIds;
     if (questionIds.length === 0) return [];
 
     const rows = await this.db
-      .select({ questionId: userQuestionProgress.questionId, status: userQuestionProgress.status, isMarked: userQuestionProgress.isMarked })
+      .select({
+        questionId: userQuestionProgress.questionId,
+        status: userQuestionProgress.status,
+        isMarked: userQuestionProgress.isMarked,
+      })
       .from(userQuestionProgress)
-      .where(and(eq(userQuestionProgress.userId, userId), inArray(userQuestionProgress.questionId, questionIds)));
+      .where(
+        and(
+          eq(userQuestionProgress.userId, userId),
+          inArray(userQuestionProgress.questionId, questionIds),
+        ),
+      );
 
-    const progressMap = new Map(rows.map((r) => [r.questionId, { status: r.status, isMarked: Boolean(r.isMarked) }]));
+    const progressMap = new Map(
+      rows.map((r) => [
+        r.questionId,
+        { status: r.status, isMarked: Boolean(r.isMarked) },
+      ]),
+    );
 
     return questionIds.filter((id) => {
       const progress = progressMap.get(id);
@@ -147,7 +208,10 @@ export class QuestionProgressService {
     });
   }
 
-  async getMarkedQuestionIds(userId: string, questionIds: string[]): Promise<string[]> {
+  async getMarkedQuestionIds(
+    userId: string,
+    questionIds: string[],
+  ): Promise<string[]> {
     if (questionIds.length === 0) return [];
     const rows = await this.db
       .select({ questionId: userQuestionProgress.questionId })
@@ -162,9 +226,16 @@ export class QuestionProgressService {
     return rows.map((r) => r.questionId);
   }
 
-  async setQuestionMarked(input: { userId: string; questionId: string; isMarked: boolean }) {
+  async setQuestionMarked(input: {
+    userId: string;
+    questionId: string;
+    isMarked: boolean;
+  }) {
     const existing = await this.db.query.userQuestionProgress.findFirst({
-      where: and(eq(userQuestionProgress.userId, input.userId), eq(userQuestionProgress.questionId, input.questionId)),
+      where: and(
+        eq(userQuestionProgress.userId, input.userId),
+        eq(userQuestionProgress.questionId, input.questionId),
+      ),
     });
 
     await this.db
@@ -196,10 +267,17 @@ export class QuestionProgressService {
     const existingRows = await this.db
       .select({ questionId: userQuestionProgress.questionId })
       .from(userQuestionProgress)
-      .where(and(eq(userQuestionProgress.userId, input.userId), inArray(userQuestionProgress.questionId, input.questionIds)));
+      .where(
+        and(
+          eq(userQuestionProgress.userId, input.userId),
+          inArray(userQuestionProgress.questionId, input.questionIds),
+        ),
+      );
 
     const existingIds = new Set(existingRows.map((r) => r.questionId));
-    const newQuestionIds = input.questionIds.filter((id) => !existingIds.has(id));
+    const newQuestionIds = input.questionIds.filter(
+      (id) => !existingIds.has(id),
+    );
     if (newQuestionIds.length === 0) return;
 
     await this.db.insert(userQuestionProgress).values(
@@ -214,9 +292,15 @@ export class QuestionProgressService {
   }
 
   async clearPracticeProgress(userId: string) {
-    await this.db.delete(practiceAnswers).where(eq(practiceAnswers.userId, userId));
-    await this.db.delete(practiceSessions).where(eq(practiceSessions.userId, userId));
-    await this.db.delete(userQuestionProgress).where(eq(userQuestionProgress.userId, userId));
+    await this.db
+      .delete(practiceAnswers)
+      .where(eq(practiceAnswers.userId, userId));
+    await this.db
+      .delete(practiceSessions)
+      .where(eq(practiceSessions.userId, userId));
+    await this.db
+      .delete(userQuestionProgress)
+      .where(eq(userQuestionProgress.userId, userId));
     return true;
   }
 }

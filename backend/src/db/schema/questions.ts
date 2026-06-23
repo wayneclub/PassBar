@@ -26,7 +26,9 @@ export const chapters = pgTable(
   'chapters',
   {
     id: text('id').primaryKey(),
-    subjectId: text('subject_id').notNull().references(() => subjects.id, { onDelete: 'cascade' }),
+    subjectId: text('subject_id')
+      .notNull()
+      .references(() => subjects.id, { onDelete: 'cascade' }),
     source: text('source'),
     capturedAt: timestamp('captured_at', { withTimezone: true }),
     count: integer('count'),
@@ -47,7 +49,9 @@ export const questionItems = pgTable(
   'question_items',
   {
     id: text('id').primaryKey(),
-    chapterId: text('chapter_id').notNull().references(() => chapters.id, { onDelete: 'cascade' }),
+    chapterId: text('chapter_id')
+      .notNull()
+      .references(() => chapters.id, { onDelete: 'cascade' }),
     index: integer('index').notNull(),
     question: text('question').notNull(),
     correctAnswer: text('correct_answer').notNull(),
@@ -79,20 +83,26 @@ export const questionItems = pgTable(
 export const questionTexts = pgTable(
   'question_texts',
   {
-    questionId: text('question_id').notNull().references(() => questionItems.id, { onDelete: 'cascade' }),
+    questionId: text('question_id')
+      .notNull()
+      .references(() => questionItems.id, { onDelete: 'cascade' }),
     language: text('language').notNull(),
     source: text('source').notNull(),
     questionStem: text('question_stem').notNull(),
     raw: jsonb('raw'),
     createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
   },
-  (table) => [primaryKey({ columns: [table.questionId, table.language, table.source] })],
+  (table) => [
+    primaryKey({ columns: [table.questionId, table.language, table.source] }),
+  ],
 );
 
 export const questionChoices = pgTable(
   'question_choices',
   {
-    questionId: text('question_id').notNull().references(() => questionItems.id, { onDelete: 'cascade' }),
+    questionId: text('question_id')
+      .notNull()
+      .references(() => questionItems.id, { onDelete: 'cascade' }),
     language: text('language').notNull().default('en'),
     source: text('source').notNull().default('uworld'),
     choiceKey: text('choice_key').notNull(),
@@ -102,12 +112,18 @@ export const questionChoices = pgTable(
     raw: jsonb('raw'),
     createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
   },
-  (table) => [primaryKey({ columns: [table.questionId, table.language, table.choiceKey] })],
+  (table) => [
+    primaryKey({
+      columns: [table.questionId, table.language, table.choiceKey],
+    }),
+  ],
 );
 
 export const questionExplanations = pgTable('question_explanations', {
   id: bigserial('id', { mode: 'number' }).primaryKey(),
-  questionId: text('question_id').notNull().references(() => questionItems.id, { onDelete: 'cascade' }),
+  questionId: text('question_id')
+    .notNull()
+    .references(() => questionItems.id, { onDelete: 'cascade' }),
   language: text('language').notNull(),
   source: text('source').notNull().default('uworld'),
   explanationText: text('explanation_text'),
@@ -122,12 +138,16 @@ export const questionAiExplanations = pgTable(
   'question_ai_explanations',
   {
     id: bigserial('id', { mode: 'number' }).primaryKey(),
-    questionId: text('question_id').notNull().references(() => questionItems.id, { onDelete: 'cascade' }),
+    questionId: text('question_id')
+      .notNull()
+      .references(() => questionItems.id, { onDelete: 'cascade' }),
     selectedChoice: text('selected_choice'),
     correctChoice: text('correct_choice'),
     isCorrect: boolean('is_correct').notNull().default(false),
     interfaceLanguage: text('interface_language').notNull().default('zh-Hant'),
-    promptVersion: text('prompt_version').notNull().default('question-analysis-v2'),
+    promptVersion: text('prompt_version')
+      .notNull()
+      .default('question-analysis-v2'),
     source: text('source').notNull().default('gemini'),
     model: text('model'),
     analysisMarkdown: text('analysis_markdown').notNull(),
@@ -136,21 +156,33 @@ export const questionAiExplanations = pgTable(
     updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow(),
   },
   (table) => [
-    unique().on(table.questionId, table.selectedChoice, table.correctChoice, table.interfaceLanguage, table.promptVersion),
+    unique().on(
+      table.questionId,
+      table.selectedChoice,
+      table.correctChoice,
+      table.interfaceLanguage,
+      table.promptVersion,
+    ),
   ],
 );
 
 export const questionReports = pgTable('question_reports', {
   id: uuid('id').primaryKey().defaultRandom(),
-  questionId: text('question_id').notNull().references(() => questionItems.id, { onDelete: 'cascade' }),
-  userId: uuid('user_id').references(() => profiles.id, { onDelete: 'set null' }),
+  questionId: text('question_id')
+    .notNull()
+    .references(() => questionItems.id, { onDelete: 'cascade' }),
+  userId: uuid('user_id').references(() => profiles.id, {
+    onDelete: 'set null',
+  }),
   category: text('category').notNull().default('other'),
   categories: text('categories').array(),
   language: text('language'),
   message: text('message'),
   resolved: boolean('resolved').notNull().default(false),
   resolvedAt: timestamp('resolved_at', { withTimezone: true }),
-  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  createdAt: timestamp('created_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
 });
 
 // Read-only SQL views defined in legacy/supabase/schema.postgres.sql (public.question_chapter_counts, public.questions).

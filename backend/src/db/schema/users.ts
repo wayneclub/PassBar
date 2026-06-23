@@ -1,4 +1,11 @@
-import { date, jsonb, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import {
+  date,
+  jsonb,
+  pgTable,
+  text,
+  timestamp,
+  uuid,
+} from 'drizzle-orm/pg-core';
 
 // Auth.js core identity table.
 export const users = pgTable('users', {
@@ -11,7 +18,9 @@ export const users = pgTable('users', {
 
 // PassBar-specific profile data, one-to-one with users (id shared).
 export const profiles = pgTable('profiles', {
-  id: uuid('id').primaryKey().references(() => users.id, { onDelete: 'cascade' }),
+  id: uuid('id')
+    .primaryKey()
+    .references(() => users.id, { onDelete: 'cascade' }),
   email: text('email').unique(),
   fullName: text('full_name'),
   avatarUrl: text('avatar_url'),

@@ -17,11 +17,18 @@ export class FeedbackService {
     email?: string;
     message: string;
   }) {
-    const [created] = await this.db.insert(feedback).values(input).returning({ id: feedback.id });
+    const [created] = await this.db
+      .insert(feedback)
+      .values(input)
+      .returning({ id: feedback.id });
     return Boolean(created);
   }
 
-  async list(options: { categories: string[]; resolved?: boolean; limit?: number }) {
+  async list(options: {
+    categories: string[];
+    resolved?: boolean;
+    limit?: number;
+  }) {
     return this.db
       .select({
         id: feedback.id,
@@ -44,7 +51,9 @@ export class FeedbackService {
       .where(
         and(
           inArray(feedback.category, options.categories),
-          options.resolved !== undefined ? eq(feedback.resolved, options.resolved) : undefined,
+          options.resolved !== undefined
+            ? eq(feedback.resolved, options.resolved)
+            : undefined,
         ),
       )
       .orderBy(desc(feedback.createdAt))

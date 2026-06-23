@@ -1,4 +1,14 @@
-import { IsArray, IsBoolean, IsIn, IsInt, IsNumber, IsObject, IsOptional, IsString, Min } from 'class-validator';
+import {
+  IsArray,
+  IsBoolean,
+  IsIn,
+  IsInt,
+  IsNumber,
+  IsObject,
+  IsOptional,
+  IsString,
+  Min,
+} from 'class-validator';
 
 export class CreateSessionDto {
   @IsIn(['Tutor', 'Timed', 'TopicStudy', 'SimExam'])

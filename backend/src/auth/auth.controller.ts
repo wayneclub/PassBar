@@ -11,7 +11,12 @@ export class AuthController {
   @Get('me')
   @UseGuards(JwtAuthGuard)
   async me(@CurrentUser() user: JwtPayload) {
-    return this.authService.ensureProfile(user.sub, user.email, user.role, user.status);
+    return this.authService.ensureProfile(
+      user.sub,
+      user.email,
+      user.role,
+      user.status,
+    );
   }
 
   @Get('calendar-token')

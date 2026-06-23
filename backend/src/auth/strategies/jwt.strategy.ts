@@ -46,7 +46,9 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   }
 
   validate(payload: AuthServiceJwtPayload): JwtPayload {
-    const membership = payload.memberships?.find((m) => m.product === 'passbar');
+    const membership = payload.memberships?.find(
+      (m) => m.product === 'passbar',
+    );
     if (!membership) {
       throw new UnauthorizedException();
     }

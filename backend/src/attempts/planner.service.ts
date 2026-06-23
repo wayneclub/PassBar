@@ -1,7 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
 import { DB, type Database } from '../db/db.provider';
-import { chapters, practiceAnswers, profiles, questionItems } from '../db/schema';
+import {
+  chapters,
+  practiceAnswers,
+  profiles,
+  questionItems,
+} from '../db/schema';
 import { QuestionsService } from '../questions/questions.service';
 import { QuestionProgressService } from './question-progress.service';
 import { PracticeSessionsService } from './practice-sessions.service';
@@ -16,7 +21,11 @@ export const LEARNING_SECONDS_PER_QUESTION = 300;
 export type StudyPaceMode = 'leisure' | 'balanced' | 'intensive';
 export type StudySubjectMode = 'singleThenMixed' | 'mixed';
 
-export type TimeBasedQuotaEstimate = { estimate: number; min: number; max: number };
+export type TimeBasedQuotaEstimate = {
+  estimate: number;
+  min: number;
+  max: number;
+};
 
 export type SubjectConfidenceInput = {
   name: string;
@@ -134,11 +143,26 @@ function clamp(value: number, min: number, max: number) {
 }
 
 function isLowConfidence(value: string | null | undefined) {
-  const normalized = String(value ?? '').trim().toLowerCase();
-  return ['low', 'guess', 'guessed', 'unsure', 'uncertain', '不確定', '不确定', '猜'].some((token) => normalized.includes(token));
+  const normalized = String(value ?? '')
+    .trim()
+    .toLowerCase();
+  return [
+    'low',
+    'guess',
+    'guessed',
+    'unsure',
+    'uncertain',
+    '不確定',
+    '不确定',
+    '猜',
+  ].some((token) => normalized.includes(token));
 }
 
-function countStudyDays(start: Date, end: Date, studyDaysPerWeek: number[]): number {
+function countStudyDays(
+  start: Date,
+  end: Date,
+  studyDaysPerWeek: number[],
+): number {
   const allowedSet = new Set(studyDaysPerWeek);
   let count = 0;
   const cursor = new Date(start);
@@ -158,23 +182,43 @@ export class PlannerService {
     private readonly practiceSessionsService: PracticeSessionsService,
   ) {}
 
-  getEffectiveStudyHours(dailyStudyHours: number, paceMode: StudyPaceMode = 'balanced') {
+  getEffectiveStudyHours(
+    dailyStudyHours: number,
+    paceMode: StudyPaceMode = 'balanced',
+  ) {
     if (!dailyStudyHours || dailyStudyHours <= 0) return 0;
     return dailyStudyHours * PACE_FOCUS_RATIO[paceMode];
   }
 
-  estimateMaxQuotaFromHours(dailyStudyHours: number, paceMode: StudyPaceMode = 'balanced'): TimeBasedQuotaEstimate {
-    if (!dailyStudyHours || dailyStudyHours <= 0) return { estimate: 0, min: 0, max: 0 };
-    const totalSeconds = this.getEffectiveStudyHours(dailyStudyHours, paceMode) * 3600;
-    const estimate = Math.max(1, Math.round(totalSeconds / LEARNING_SECONDS_PER_QUESTION));
+  estimateMaxQuotaFromHours(
+    dailyStudyHours: number,
+    paceMode: StudyPaceMode = 'balanced',
+  ): TimeBasedQuotaEstimate {
+    if (!dailyStudyHours || dailyStudyHours <= 0)
+      return { estimate: 0, min: 0, max: 0 };
+    const totalSeconds =
+      this.getEffectiveStudyHours(dailyStudyHours, paceMode) * 3600;
+    const estimate = Math.max(
+      1,
+      Math.round(totalSeconds / LEARNING_SECONDS_PER_QUESTION),
+    );
     const variance = Math.max(1, Math.round(estimate * 0.15));
-    return { estimate, min: Math.max(1, estimate - variance), max: estimate + variance };
+    return {
+      estimate,
+      min: Math.max(1, estimate - variance),
+      max: estimate + variance,
+    };
   }
 
-  calculateSuggestedSubjectConfidence(subjects: SubjectConfidenceInput[]): Record<string, number> {
+  calculateSuggestedSubjectConfidence(
+    subjects: SubjectConfidenceInput[],
+  ): Record<string, number> {
     const result: Record<string, number> = {};
     subjects.forEach((subject) => {
-      const answered = Math.max(subject.total, subject.correct + subject.incorrect);
+      const answered = Math.max(
+        subject.total,
+        subject.correct + subject.incorrect,
+      );
       if (answered <= 0) {
         result[subject.name] = 50;
         return;
@@ -183,17 +227,30 @@ export class PlannerService {
       const wrongRate = subject.incorrect / answered;
       const rawConfidence = 50 + (correctRate - wrongRate) * 50;
       const sampleWeight = clamp(answered / 30, 0.15, 1);
-      const timePenalty = (subject.averageSeconds ?? 0) > SECONDS_PER_QUESTION
-        ? clamp(((subject.averageSeconds ?? 0) - SECONDS_PER_QUESTION) / SECONDS_PER_QUESTION, 0, 1) * 20
-        : 0;
+      const timePenalty =
+        (subject.averageSeconds ?? 0) > SECONDS_PER_QUESTION
+          ? clamp(
+              ((subject.averageSeconds ?? 0) - SECONDS_PER_QUESTION) /
+                SECONDS_PER_QUESTION,
+              0,
+              1,
+            ) * 20
+          : 0;
       const riskPenalty = clamp(subject.riskyQuestionRatio ?? 0, 0, 1) * 20;
       const masteryRatio = clamp(subject.masteredQuestionRatio ?? 0, 0, 1);
-      const spacedMasteryAdjustment = answered > 0 ? (masteryRatio - 0.5) * 20 : 0;
-      result[subject.name] = Math.round(clamp(
-        50 + (rawConfidence - 50) * sampleWeight - timePenalty - riskPenalty + spacedMasteryAdjustment,
-        0,
-        100,
-      ));
+      const spacedMasteryAdjustment =
+        answered > 0 ? (masteryRatio - 0.5) * 20 : 0;
+      result[subject.name] = Math.round(
+        clamp(
+          50 +
+            (rawConfidence - 50) * sampleWeight -
+            timePenalty -
+            riskPenalty +
+            spacedMasteryAdjustment,
+          0,
+          100,
+        ),
+      );
     });
     return result;
   }
@@ -209,24 +266,39 @@ export class PlannerService {
     dueReviewChapterCount: number,
     paceMode: StudyPaceMode,
   ): DailyQuotaPlan {
-    const reserveRatio = (remainingQuestions > 0 || dueReviewChapterCount > 0) && base.availableDays > 0
-      ? this.reviewReserveRatio(dueReviewChapterCount)
-      : 0;
-    const reviewDays = reserveRatio > 0 ? Math.max(1, Math.ceil(base.availableDays * reserveRatio)) : 0;
-    const learningDays = reserveRatio > 0 ? Math.max(1, base.availableDays - reviewDays) : base.availableDays;
-    const newQuota = remainingQuestions > 0 && learningDays > 0
-      ? Math.ceil(remainingQuestions / learningDays)
-      : base.quota;
-    const plannedReviewQuota = reserveRatio > 0 && dueReviewChapterCount > 0
-      ? newQuota > 0
-        ? Math.max(1, Math.round(newQuota * reserveRatio))
-        : Math.min(20, dueReviewChapterCount * 5)
-      : 0;
+    const reserveRatio =
+      (remainingQuestions > 0 || dueReviewChapterCount > 0) &&
+      base.availableDays > 0
+        ? this.reviewReserveRatio(dueReviewChapterCount)
+        : 0;
+    const reviewDays =
+      reserveRatio > 0
+        ? Math.max(1, Math.ceil(base.availableDays * reserveRatio))
+        : 0;
+    const learningDays =
+      reserveRatio > 0
+        ? Math.max(1, base.availableDays - reviewDays)
+        : base.availableDays;
+    const newQuota =
+      remainingQuestions > 0 && learningDays > 0
+        ? Math.ceil(remainingQuestions / learningDays)
+        : base.quota;
+    const plannedReviewQuota =
+      reserveRatio > 0 && dueReviewChapterCount > 0
+        ? newQuota > 0
+          ? Math.max(1, Math.round(newQuota * reserveRatio))
+          : Math.min(20, dueReviewChapterCount * 5)
+        : 0;
     const plannedTotalQuota = newQuota + plannedReviewQuota;
 
-    const timeEstimate = this.estimateMaxQuotaFromHours(dailyStudyHours ?? 0, paceMode);
+    const timeEstimate = this.estimateMaxQuotaFromHours(
+      dailyStudyHours ?? 0,
+      paceMode,
+    );
     const hasTimeCap = timeEstimate.estimate > 0;
-    const quota = hasTimeCap ? Math.min(plannedTotalQuota, timeEstimate.estimate) : plannedTotalQuota;
+    const quota = hasTimeCap
+      ? Math.min(plannedTotalQuota, timeEstimate.estimate)
+      : plannedTotalQuota;
     const maxAllowedReview = Math.max(5, Math.round(quota * 0.35));
     const reviewQuota = Math.min(plannedReviewQuota, quota, maxAllowedReview);
 
@@ -264,29 +336,68 @@ export class PlannerService {
       const examDate = startOfLocalDay(new Date(examDateIso + 'T00:00:00'));
 
       if (examDate <= today) {
-        base = { quota: remainingQuestions, triageMode: true, availableDays: 0 };
+        base = {
+          quota: remainingQuestions,
+          triageMode: true,
+          availableDays: 0,
+        };
       } else {
-        const daysUntilExam = Math.round((examDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+        const daysUntilExam = Math.round(
+          (examDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24),
+        );
         const triageDays = triageWeeks * 7;
 
         if (daysUntilExam <= triageDays) {
-          const studyDaysLeft = countStudyDays(today, examDate, studyDaysPerWeek);
+          const studyDaysLeft = countStudyDays(
+            today,
+            examDate,
+            studyDaysPerWeek,
+          );
           const availableDays = Math.max(1, studyDaysLeft);
-          base = { quota: remainingQuestions > 0 ? Math.ceil(remainingQuestions / availableDays) : 0, triageMode: true, availableDays };
+          base = {
+            quota:
+              remainingQuestions > 0
+                ? Math.ceil(remainingQuestions / availableDays)
+                : 0,
+            triageMode: true,
+            availableDays,
+          };
         } else {
           const endOfPracticePeriod = new Date(examDate);
-          endOfPracticePeriod.setDate(endOfPracticePeriod.getDate() - triageDays);
-          const studyDaysLeft = countStudyDays(today, endOfPracticePeriod, studyDaysPerWeek);
+          endOfPracticePeriod.setDate(
+            endOfPracticePeriod.getDate() - triageDays,
+          );
+          const studyDaysLeft = countStudyDays(
+            today,
+            endOfPracticePeriod,
+            studyDaysPerWeek,
+          );
           const availableDays = Math.max(1, studyDaysLeft);
-          base = { quota: remainingQuestions > 0 ? Math.ceil(remainingQuestions / availableDays) : 0, triageMode: false, availableDays };
+          base = {
+            quota:
+              remainingQuestions > 0
+                ? Math.ceil(remainingQuestions / availableDays)
+                : 0,
+            triageMode: false,
+            availableDays,
+          };
         }
       }
     }
 
-    return this.buildQuotaPlan(remainingQuestions, base, dailyStudyHours, dueReviewChapterCount, paceMode);
+    return this.buildQuotaPlan(
+      remainingQuestions,
+      base,
+      dailyStudyHours,
+      dueReviewChapterCount,
+      paceMode,
+    );
   }
 
-  assessQuestionMastery(attempts: QuestionAttemptSignal[], now = new Date()): QuestionMasteryAssessment {
+  assessQuestionMastery(
+    attempts: QuestionAttemptSignal[],
+    now = new Date(),
+  ): QuestionMasteryAssessment {
     const ordered = attempts
       .filter((attempt) => Boolean(attempt.answeredAt))
       .slice()
@@ -294,60 +405,116 @@ export class PlannerService {
 
     if (ordered.length === 0) {
       return {
-        mastered: false, due: false, intervalDays: 1, daysSinceLastAttempt: 0,
-        reliableCorrectStreak: 0, distinctReliableDays: 0, averageSeconds: 0,
-        everIncorrect: false, slowRisk: false, guessRisk: false, priority: 0,
+        mastered: false,
+        due: false,
+        intervalDays: 1,
+        daysSinceLastAttempt: 0,
+        reliableCorrectStreak: 0,
+        distinctReliableDays: 0,
+        averageSeconds: 0,
+        everIncorrect: false,
+        slowRisk: false,
+        guessRisk: false,
+        priority: 0,
       };
     }
 
-    const timed = ordered.filter((attempt) => (attempt.timeSpentSeconds ?? 0) > 0);
-    const averageSeconds = timed.length > 0
-      ? timed.reduce((sum, attempt) => sum + (attempt.timeSpentSeconds ?? 0), 0) / timed.length
-      : 0;
+    const timed = ordered.filter(
+      (attempt) => (attempt.timeSpentSeconds ?? 0) > 0,
+    );
+    const averageSeconds =
+      timed.length > 0
+        ? timed.reduce(
+            (sum, attempt) => sum + (attempt.timeSpentSeconds ?? 0),
+            0,
+          ) / timed.length
+        : 0;
     const everIncorrect = ordered.some((attempt) => !attempt.isCorrect);
     const last = ordered[ordered.length - 1];
-    const slowRisk = (last.timeSpentSeconds ?? 0) > SECONDS_PER_QUESTION || averageSeconds > SECONDS_PER_QUESTION;
-    const guessRisk = isLowConfidence(last.confidence)
-      || (last.isCorrect && (last.timeSpentSeconds ?? Number.POSITIVE_INFINITY) < POSSIBLE_GUESS_SECONDS);
+    const slowRisk =
+      (last.timeSpentSeconds ?? 0) > SECONDS_PER_QUESTION ||
+      averageSeconds > SECONDS_PER_QUESTION;
+    const guessRisk =
+      isLowConfidence(last.confidence) ||
+      (last.isCorrect &&
+        (last.timeSpentSeconds ?? Number.POSITIVE_INFINITY) <
+          POSSIBLE_GUESS_SECONDS);
 
     let reliableCorrectStreak = 0;
     const reliableDays = new Set<string>();
     for (let index = ordered.length - 1; index >= 0; index -= 1) {
       const attempt = ordered[index];
       const seconds = attempt.timeSpentSeconds ?? 0;
-      const reliable = attempt.isCorrect
-        && !isLowConfidence(attempt.confidence)
-        && (seconds <= 0 || (seconds >= POSSIBLE_GUESS_SECONDS && seconds <= SECONDS_PER_QUESTION));
+      const reliable =
+        attempt.isCorrect &&
+        !isLowConfidence(attempt.confidence) &&
+        (seconds <= 0 ||
+          (seconds >= POSSIBLE_GUESS_SECONDS &&
+            seconds <= SECONDS_PER_QUESTION));
       if (!reliable) break;
       reliableCorrectStreak += 1;
-      reliableDays.add(startOfLocalDay(new Date(attempt.answeredAt)).toISOString().slice(0, 10));
+      reliableDays.add(
+        startOfLocalDay(new Date(attempt.answeredAt))
+          .toISOString()
+          .slice(0, 10),
+      );
     }
 
     const distinctReliableDays = reliableDays.size;
     const stage = Math.min(distinctReliableDays, MASTERY_INTERVALS.length - 1);
     const intervalDays = MASTERY_INTERVALS[stage];
     const lastAttemptDay = startOfLocalDay(new Date(last.answeredAt));
-    const daysSinceLastAttempt = Math.max(0, Math.floor(
-      (startOfLocalDay(now).getTime() - lastAttemptDay.getTime()) / (1000 * 60 * 60 * 24),
-    ));
-    const mastered = reliableCorrectStreak >= 3 && distinctReliableDays >= 3 && !slowRisk && !guessRisk;
+    const daysSinceLastAttempt = Math.max(
+      0,
+      Math.floor(
+        (startOfLocalDay(now).getTime() - lastAttemptDay.getTime()) /
+          (1000 * 60 * 60 * 24),
+      ),
+    );
+    const mastered =
+      reliableCorrectStreak >= 3 &&
+      distinctReliableDays >= 3 &&
+      !slowRisk &&
+      !guessRisk;
     const due = daysSinceLastAttempt >= intervalDays;
     const priority =
-      (due ? 100 : 0)
-      + (!last.isCorrect ? 80 : 0)
-      + (everIncorrect ? 30 : 0)
-      + (guessRisk ? 35 : 0)
-      + (slowRisk ? 25 : 0)
-      + Math.max(0, 3 - distinctReliableDays) * 10
-      + Math.max(0, daysSinceLastAttempt - intervalDays);
+      (due ? 100 : 0) +
+      (!last.isCorrect ? 80 : 0) +
+      (everIncorrect ? 30 : 0) +
+      (guessRisk ? 35 : 0) +
+      (slowRisk ? 25 : 0) +
+      Math.max(0, 3 - distinctReliableDays) * 10 +
+      Math.max(0, daysSinceLastAttempt - intervalDays);
 
-    return { mastered, due, intervalDays, daysSinceLastAttempt, reliableCorrectStreak, distinctReliableDays, averageSeconds, everIncorrect, slowRisk, guessRisk, priority };
+    return {
+      mastered,
+      due,
+      intervalDays,
+      daysSinceLastAttempt,
+      reliableCorrectStreak,
+      distinctReliableDays,
+      averageSeconds,
+      everIncorrect,
+      slowRisk,
+      guessRisk,
+      priority,
+    };
   }
 
-  computeChapterStats(chapterAnswerRows: PracticeAnswerChapterRow[]): ChapterAttemptStats[] {
+  computeChapterStats(
+    chapterAnswerRows: PracticeAnswerChapterRow[],
+  ): ChapterAttemptStats[] {
     type ChapterStatsAccumulator = ChapterAttemptStats & {
       questionIds: Set<string>;
-      attemptsByQuestion: Map<string, Array<{ isCorrect: boolean; answeredAt: string; timeSpentSeconds: number | null; confidence: string | null }>>;
+      attemptsByQuestion: Map<
+        string,
+        Array<{
+          isCorrect: boolean;
+          answeredAt: string;
+          timeSpentSeconds: number | null;
+          confidence: string | null;
+        }>
+      >;
     };
     const chapterStatsMap = new Map<string, ChapterStatsAccumulator>();
     chapterAnswerRows.forEach((answer) => {
@@ -358,74 +525,144 @@ export class PlannerService {
         chapterId: chapter.id,
         chapterName: chapter.chapter ?? chapter.id,
         subject: chapter.subject ?? 'Uncategorized',
-        attempts: 0, correct: 0, lastAttemptAt: answer.answered_at, totalAttempts: 0, lastAccuracy: null,
-        totalTimeSeconds: 0, timedAttempts: 0, questionIds: new Set<string>(), attemptsByQuestion: new Map(),
+        attempts: 0,
+        correct: 0,
+        lastAttemptAt: answer.answered_at,
+        totalAttempts: 0,
+        lastAccuracy: null,
+        totalTimeSeconds: 0,
+        timedAttempts: 0,
+        questionIds: new Set<string>(),
+        attemptsByQuestion: new Map(),
       };
 
       existing.attempts += 1;
       if (answer.is_correct) existing.correct += 1;
-      existing.totalTimeSeconds = (existing.totalTimeSeconds ?? 0) + (answer.time_spent_seconds ?? 0);
-      if ((answer.time_spent_seconds ?? 0) > 0) existing.timedAttempts = (existing.timedAttempts ?? 0) + 1;
+      existing.totalTimeSeconds =
+        (existing.totalTimeSeconds ?? 0) + (answer.time_spent_seconds ?? 0);
+      if ((answer.time_spent_seconds ?? 0) > 0)
+        existing.timedAttempts = (existing.timedAttempts ?? 0) + 1;
       existing.questionIds.add(answer.question_id);
-      if (answer.answered_at > existing.lastAttemptAt) existing.lastAttemptAt = answer.answered_at;
-      const questionAttempts = existing.attemptsByQuestion.get(answer.question_id) ?? [];
+      if (answer.answered_at > existing.lastAttemptAt)
+        existing.lastAttemptAt = answer.answered_at;
+      const questionAttempts =
+        existing.attemptsByQuestion.get(answer.question_id) ?? [];
       questionAttempts.push({
-        isCorrect: Boolean(answer.is_correct), answeredAt: answer.answered_at,
-        timeSpentSeconds: answer.time_spent_seconds, confidence: answer.confidence ?? null,
+        isCorrect: Boolean(answer.is_correct),
+        answeredAt: answer.answered_at,
+        timeSpentSeconds: answer.time_spent_seconds,
+        confidence: answer.confidence ?? null,
       });
       existing.attemptsByQuestion.set(answer.question_id, questionAttempts);
       chapterStatsMap.set(chapter.id, existing);
     });
 
     return Array.from(chapterStatsMap.values()).map((stat) => {
-      const assessments = Array.from(stat.attemptsByQuestion.values()).map((attempts) => this.assessQuestionMastery(attempts));
+      const assessments = Array.from(stat.attemptsByQuestion.values()).map(
+        (attempts) => this.assessQuestionMastery(attempts),
+      );
       return {
-        chapterId: stat.chapterId, chapterName: stat.chapterName, subject: stat.subject,
-        attempts: stat.attempts, correct: stat.correct, lastAttemptAt: stat.lastAttemptAt,
-        totalAttempts: stat.attempts, lastAccuracy: stat.attempts > 0 ? Math.round((stat.correct / stat.attempts) * 100) : null,
-        totalTimeSeconds: stat.totalTimeSeconds, timedAttempts: stat.timedAttempts, questionCount: stat.questionIds.size,
+        chapterId: stat.chapterId,
+        chapterName: stat.chapterName,
+        subject: stat.subject,
+        attempts: stat.attempts,
+        correct: stat.correct,
+        lastAttemptAt: stat.lastAttemptAt,
+        totalAttempts: stat.attempts,
+        lastAccuracy:
+          stat.attempts > 0
+            ? Math.round((stat.correct / stat.attempts) * 100)
+            : null,
+        totalTimeSeconds: stat.totalTimeSeconds,
+        timedAttempts: stat.timedAttempts,
+        questionCount: stat.questionIds.size,
         dueQuestionCount: assessments.filter((a) => a.due).length,
-        riskyQuestionCount: assessments.filter((a) => a.slowRisk || a.guessRisk || (a.everIncorrect && !a.mastered)).length,
+        riskyQuestionCount: assessments.filter(
+          (a) => a.slowRisk || a.guessRisk || (a.everIncorrect && !a.mastered),
+        ).length,
         masteredQuestionCount: assessments.filter((a) => a.mastered).length,
       };
     });
   }
 
-  getDueReviewChapters(chapterStats: ChapterAttemptStats[]): ChapterReviewInfo[] {
+  getDueReviewChapters(
+    chapterStats: ChapterAttemptStats[],
+  ): ChapterReviewInfo[] {
     const today = startOfLocalDay(new Date()).getTime();
     const due: ChapterReviewInfo[] = [];
     for (const stat of chapterStats) {
       if (stat.attempts === 0 || !stat.lastAttemptAt) continue;
 
       const accuracy = Math.round((stat.correct / stat.attempts) * 100);
-      const lastAttemptDay = startOfLocalDay(new Date(stat.lastAttemptAt)).getTime();
-      const daysSinceLastAttempt = Math.round((today - lastAttemptDay) / (1000 * 60 * 60 * 24));
-      const averageSeconds = (stat.timedAttempts ?? 0) > 0 ? (stat.totalTimeSeconds ?? 0) / (stat.timedAttempts ?? 1) : 0;
-      const masteryRate = (stat.questionCount ?? 0) > 0
-        ? Math.round(((stat.masteredQuestionCount ?? 0) / (stat.questionCount ?? 1)) * 100)
-        : 0;
+      const lastAttemptDay = startOfLocalDay(
+        new Date(stat.lastAttemptAt),
+      ).getTime();
+      const daysSinceLastAttempt = Math.round(
+        (today - lastAttemptDay) / (1000 * 60 * 60 * 24),
+      );
+      const averageSeconds =
+        (stat.timedAttempts ?? 0) > 0
+          ? (stat.totalTimeSeconds ?? 0) / (stat.timedAttempts ?? 1)
+          : 0;
+      const masteryRate =
+        (stat.questionCount ?? 0) > 0
+          ? Math.round(
+              ((stat.masteredQuestionCount ?? 0) / (stat.questionCount ?? 1)) *
+                100,
+            )
+          : 0;
       const hasDetailedAssessment = stat.dueQuestionCount !== undefined;
       const idealIntervalDays =
-        (stat.riskyQuestionCount ?? 0) > 0 || averageSeconds > SECONDS_PER_QUESTION
+        (stat.riskyQuestionCount ?? 0) > 0 ||
+        averageSeconds > SECONDS_PER_QUESTION
           ? 1
-          : masteryRate >= 80 ? 30 : masteryRate >= 50 ? 7 : accuracy < 50 ? 1 : 3;
+          : masteryRate >= 80
+            ? 30
+            : masteryRate >= 50
+              ? 7
+              : accuracy < 50
+                ? 1
+                : 3;
 
-      if ((hasDetailedAssessment && (stat.dueQuestionCount ?? 0) > 0)
-        || (!hasDetailedAssessment && daysSinceLastAttempt >= idealIntervalDays)) {
-        due.push({ ...stat, accuracy, daysSinceLastAttempt, idealIntervalDays, averageSeconds, masteryRate });
+      if (
+        (hasDetailedAssessment && (stat.dueQuestionCount ?? 0) > 0) ||
+        (!hasDetailedAssessment && daysSinceLastAttempt >= idealIntervalDays)
+      ) {
+        due.push({
+          ...stat,
+          accuracy,
+          daysSinceLastAttempt,
+          idealIntervalDays,
+          averageSeconds,
+          masteryRate,
+        });
       }
     }
 
     return due.sort((a, b) => {
-      const urgencyA = (a.dueQuestionCount ?? 1) * 2 + (a.riskyQuestionCount ?? 0) + (a.daysSinceLastAttempt / a.idealIntervalDays) * (1.1 - a.masteryRate / 100);
-      const urgencyB = (b.dueQuestionCount ?? 1) * 2 + (b.riskyQuestionCount ?? 0) + (b.daysSinceLastAttempt / b.idealIntervalDays) * (1.1 - b.masteryRate / 100);
+      const urgencyA =
+        (a.dueQuestionCount ?? 1) * 2 +
+        (a.riskyQuestionCount ?? 0) +
+        (a.daysSinceLastAttempt / a.idealIntervalDays) *
+          (1.1 - a.masteryRate / 100);
+      const urgencyB =
+        (b.dueQuestionCount ?? 1) * 2 +
+        (b.riskyQuestionCount ?? 0) +
+        (b.daysSinceLastAttempt / b.idealIntervalDays) *
+          (1.1 - b.masteryRate / 100);
       return urgencyB - urgencyA;
     });
   }
 
-  splitQuotaForReview(totalQuota: number, dueChapterCount: number, plannedReviewQuota?: number) {
-    if (totalQuota <= 0 || dueChapterCount === 0) return { reviewQuota: 0, newQuota: totalQuota };
-    const desired = plannedReviewQuota ?? Math.max(3, Math.round(totalQuota * 0.3));
+  splitQuotaForReview(
+    totalQuota: number,
+    dueChapterCount: number,
+    plannedReviewQuota?: number,
+  ) {
+    if (totalQuota <= 0 || dueChapterCount === 0)
+      return { reviewQuota: 0, newQuota: totalQuota };
+    const desired =
+      plannedReviewQuota ?? Math.max(3, Math.round(totalQuota * 0.3));
     const reviewQuota = Math.min(totalQuota, desired, dueChapterCount * 5);
     return { reviewQuota, newQuota: totalQuota - reviewQuota };
   }
@@ -438,7 +675,9 @@ export class PlannerService {
     const eligible = subjects.filter((s) => s.remaining > 0);
     if (eligible.length === 0 || totalQuota <= 0) return {};
 
-    const weights = eligible.map((s) => Math.max(5, 100 - (confidence[s.name] ?? 50)));
+    const weights = eligible.map((s) =>
+      Math.max(5, 100 - (confidence[s.name] ?? 50)),
+    );
     const totalWeight = weights.reduce((sum, w) => sum + w, 0);
 
     const result: Record<string, number> = {};
@@ -504,9 +743,14 @@ export class PlannerService {
     date = new Date(),
     subjectOrder?: string[],
   ): string | null {
-    const ordered = this.weightedSubjectOrder(subjects, confidence, subjectOrder);
+    const ordered = this.weightedSubjectOrder(
+      subjects,
+      confidence,
+      subjectOrder,
+    );
     if (ordered.length === 0) return null;
-    const idx = this.getStudyDayIndexFromToday(date, studyDaysPerWeek) % ordered.length;
+    const idx =
+      this.getStudyDayIndexFromToday(date, studyDaysPerWeek) % ordered.length;
     return ordered[idx].name;
   }
 
@@ -521,16 +765,26 @@ export class PlannerService {
     subjectOrder?: string[],
   ): Record<string, number> {
     if (subjectMode === 'singleThenMixed' && !isTriageMode) {
-      const focus = this.getFocusSubjectForDate(subjects, confidence, studyDaysPerWeek, date, subjectOrder);
+      const focus = this.getFocusSubjectForDate(
+        subjects,
+        confidence,
+        studyDaysPerWeek,
+        date,
+        subjectOrder,
+      );
       if (!focus) return {};
-      const remaining = subjects.find((subject) => subject.name === focus)?.remaining ?? 0;
+      const remaining =
+        subjects.find((subject) => subject.name === focus)?.remaining ?? 0;
       return { [focus]: Math.min(totalQuota, remaining) };
     }
     return this.calculateSubjectQuotas(subjects, totalQuota, confidence);
   }
 
   getPlannedChapterIdsForDate(
-    subjects: Array<{ name: string; chapters: Array<{ id: string; count: number }> }>,
+    subjects: Array<{
+      name: string;
+      chapters: Array<{ id: string; count: number }>;
+    }>,
     subjectQuotas: Record<string, number>,
     subjectMode: StudySubjectMode,
     isTriageMode: boolean,
@@ -539,21 +793,33 @@ export class PlannerService {
   ): string[] {
     const activeSubjects = subjects
       .filter((subject) => (subjectQuotas[subject.name] ?? 0) > 0)
-      .sort((a, b) => (subjectQuotas[b.name] ?? 0) - (subjectQuotas[a.name] ?? 0));
+      .sort(
+        (a, b) => (subjectQuotas[b.name] ?? 0) - (subjectQuotas[a.name] ?? 0),
+      );
     const mixed = subjectMode === 'mixed' || isTriageMode;
-    const selectedSubjects = mixed ? activeSubjects.slice(0, 3) : activeSubjects.slice(0, 1);
-    const studyDayIndex = this.getStudyDayIndexFromToday(date, studyDaysPerWeek);
+    const selectedSubjects = mixed
+      ? activeSubjects.slice(0, 3)
+      : activeSubjects.slice(0, 1);
+    const studyDayIndex = this.getStudyDayIndexFromToday(
+      date,
+      studyDaysPerWeek,
+    );
 
     return selectedSubjects.flatMap((subject) => {
       const chs = subject.chapters.filter((chapter) => chapter.count > 0);
       if (chs.length === 0) return [];
       const start = studyDayIndex % chs.length;
       const count = mixed ? 1 : Math.min(2, chs.length);
-      return Array.from({ length: count }, (_, offset) => chs[(start + offset) % chs.length].id);
+      return Array.from(
+        { length: count },
+        (_, offset) => chs[(start + offset) % chs.length].id,
+      );
     });
   }
 
-  private async getPracticeAnswerChapterRows(userId: string): Promise<PracticeAnswerChapterRow[]> {
+  private async getPracticeAnswerChapterRows(
+    userId: string,
+  ): Promise<PracticeAnswerChapterRow[]> {
     const rows = await this.db
       .select({
         question_id: practiceAnswers.questionId,
@@ -566,7 +832,10 @@ export class PlannerService {
         chapterSubject: chapters.subject,
       })
       .from(practiceAnswers)
-      .innerJoin(questionItems, eq(questionItems.id, practiceAnswers.questionId))
+      .innerJoin(
+        questionItems,
+        eq(questionItems.id, practiceAnswers.questionId),
+      )
       .innerJoin(chapters, eq(chapters.id, questionItems.chapterId))
       .where(eq(practiceAnswers.userId, userId));
 
@@ -576,11 +845,17 @@ export class PlannerService {
       time_spent_seconds: r.time_spent_seconds,
       confidence: r.confidence,
       answered_at: r.answered_at ? r.answered_at.toISOString() : null,
-      chapter: { id: r.chapterId, chapter: r.chapterName, subject: r.chapterSubject },
+      chapter: {
+        id: r.chapterId,
+        chapter: r.chapterName,
+        subject: r.chapterSubject,
+      },
     }));
   }
 
-  async fetchDueReviewChaptersForUser(userId: string): Promise<ChapterReviewInfo[]> {
+  async fetchDueReviewChaptersForUser(
+    userId: string,
+  ): Promise<ChapterReviewInfo[]> {
     const rows = await this.getPracticeAnswerChapterRows(userId);
     const chapterStats = this.computeChapterStats(rows);
     return this.getDueReviewChapters(chapterStats);
@@ -604,12 +879,16 @@ export class PlannerService {
       this.db.query.profiles.findFirst({ where: eq(profiles.id, userId) }),
     ]);
 
-    const settings = (profile?.studySettings ?? {}) as { studyPlan?: StudyPlanSettings };
+    const settings = (profile?.studySettings ?? {}) as {
+      studyPlan?: StudyPlanSettings;
+    };
     const plan = settings.studyPlan ?? defaultStudyPlan;
     const subjectMode: StudySubjectMode = plan.subjectMode ?? 'singleThenMixed';
-    const studyDaysPerWeek = plan.studyDaysPerWeek ?? defaultStudyPlan.studyDaysPerWeek;
+    const studyDaysPerWeek =
+      plan.studyDaysPerWeek ?? defaultStudyPlan.studyDaysPerWeek;
     const paceMode: StudyPaceMode = plan.paceMode ?? 'balanced';
-    const dailyStudyHours = plan.dailyStudyHours ?? defaultStudyPlan.dailyStudyHours ?? 3;
+    const dailyStudyHours =
+      plan.dailyStudyHours ?? defaultStudyPlan.dailyStudyHours ?? 3;
     const triageWeeks = plan.triageWeeks ?? defaultStudyPlan.triageWeeks;
     const examDate = profile?.examDate ?? plan.examDate ?? null;
     const savedConfidence = plan.subjectConfidence;
@@ -620,28 +899,63 @@ export class PlannerService {
     const subjectsWithRemaining = subjects.map((s) => {
       const answered = answeredBySubject.get(s.name)?.size ?? 0;
       return {
-        name: s.name, total: s.count, remaining: Math.max(0, s.count - answered),
-        correct: 0, incorrect: 0, answered, averageSeconds: 0, riskyQuestionRatio: 0, masteredQuestionRatio: 0,
+        name: s.name,
+        total: s.count,
+        remaining: Math.max(0, s.count - answered),
+        correct: 0,
+        incorrect: 0,
+        answered,
+        averageSeconds: 0,
+        riskyQuestionRatio: 0,
+        masteredQuestionRatio: 0,
       };
     });
 
-    const missionPracticed = subjectsWithRemaining.reduce((s, sub) => s + sub.answered, 0);
-
-    const quotaInfo = this.calculateDailyQuota(
-      missionTotal, missionPracticed, examDate, studyDaysPerWeek,
-      triageWeeks, dailyStudyHours, reviewChapters.length, paceMode,
+    const missionPracticed = subjectsWithRemaining.reduce(
+      (s, sub) => s + sub.answered,
+      0,
     );
 
-    const defaultConfidence = this.calculateSuggestedSubjectConfidence(subjectsWithRemaining);
-    const subjectConfidence = { ...defaultConfidence, ...(savedConfidence ?? {}) };
-    const reviewSplit = this.splitQuotaForReview(quotaInfo.quota, reviewChapters.length, quotaInfo.reviewQuota);
+    const quotaInfo = this.calculateDailyQuota(
+      missionTotal,
+      missionPracticed,
+      examDate,
+      studyDaysPerWeek,
+      triageWeeks,
+      dailyStudyHours,
+      reviewChapters.length,
+      paceMode,
+    );
+
+    const defaultConfidence = this.calculateSuggestedSubjectConfidence(
+      subjectsWithRemaining,
+    );
+    const subjectConfidence = {
+      ...defaultConfidence,
+      ...(savedConfidence ?? {}),
+    };
+    const reviewSplit = this.splitQuotaForReview(
+      quotaInfo.quota,
+      reviewChapters.length,
+      quotaInfo.reviewQuota,
+    );
     const subjectQuotas = this.calculatePlannedSubjectQuotas(
-      subjectsWithRemaining, reviewSplit.newQuota, subjectConfidence,
-      subjectMode, quotaInfo.triageMode, studyDaysPerWeek, new Date(), subjectOrder,
+      subjectsWithRemaining,
+      reviewSplit.newQuota,
+      subjectConfidence,
+      subjectMode,
+      quotaInfo.triageMode,
+      studyDaysPerWeek,
+      new Date(),
+      subjectOrder,
     );
 
     const plannedIds = this.getPlannedChapterIdsForDate(
-      subjects, subjectQuotas, subjectMode, quotaInfo.triageMode, studyDaysPerWeek,
+      subjects,
+      subjectQuotas,
+      subjectMode,
+      quotaInfo.triageMode,
+      studyDaysPerWeek,
     );
 
     const newChapters = plannedIds.flatMap((id) => {
@@ -666,8 +980,10 @@ export class PlannerService {
     if (targetQuota <= 0) return null;
 
     const subjects = await this.questionsService.getSubjectsGrouped();
-    const allChapterQIds = await this.questionsService.getAllQuestionIdsByChapter();
-    const progressMap = await this.questionProgressService.getAllUserProgress(userId);
+    const allChapterQIds =
+      await this.questionsService.getAllQuestionIdsByChapter();
+    const progressMap =
+      await this.questionProgressService.getAllUserProgress(userId);
 
     const allIds = Object.values(allChapterQIds).flat();
     const filteredSet = new Set(
@@ -685,9 +1001,13 @@ export class PlannerService {
     }
 
     const selectedChapterIds = new Set<string>();
-    let selectedIds: string[] = [];
+    const selectedIds: string[] = [];
 
-    if (reviewChapterIds && reviewChapterIds.length > 0 && (reviewQuota ?? 0) > 0) {
+    if (
+      reviewChapterIds &&
+      reviewChapterIds.length > 0 &&
+      (reviewQuota ?? 0) > 0
+    ) {
       const rows = await this.db
         .select({
           questionId: practiceAnswers.questionId,
@@ -723,11 +1043,19 @@ export class PlannerService {
           if (history.length > 0) {
             const assessment = this.assessQuestionMastery(history);
             if (!assessment.due) continue;
-            reviewCandidates.push({ id, score: assessment.priority + (progress.isMarked ? 20 : 0) });
+            reviewCandidates.push({
+              id,
+              score: assessment.priority + (progress.isMarked ? 20 : 0),
+            });
             continue;
           }
           if (progress.status === 'incorrect' || progress.isMarked) {
-            reviewCandidates.push({ id, score: (progress.status === 'incorrect' ? 100 : 0) + (progress.isMarked ? 20 : 0) });
+            reviewCandidates.push({
+              id,
+              score:
+                (progress.status === 'incorrect' ? 100 : 0) +
+                (progress.isMarked ? 20 : 0),
+            });
           }
         }
       }
@@ -758,16 +1086,25 @@ export class PlannerService {
           });
 
         let pickedForSubject = 0;
-        const preferredForSubject = subjectChapterIds.filter((id) => preferredNewChapterIds?.includes(id));
+        const preferredForSubject = subjectChapterIds.filter((id) =>
+          preferredNewChapterIds?.includes(id),
+        );
 
         if (preferredForSubject.length > 0) {
-          const baseTarget = Math.floor(subjectQuota / preferredForSubject.length);
+          const baseTarget = Math.floor(
+            subjectQuota / preferredForSubject.length,
+          );
           const remainder = subjectQuota % preferredForSubject.length;
           preferredForSubject.forEach((chapId, index) => {
             const ids = chapterToIds.get(chapId)!;
-            const chapterTarget = Math.max(1, baseTarget + (index < remainder ? 1 : 0));
+            const chapterTarget = Math.max(
+              1,
+              baseTarget + (index < remainder ? 1 : 0),
+            );
             selectedChapterIds.add(chapId);
-            const picked = [...ids].sort(() => Math.random() - 0.5).slice(0, chapterTarget);
+            const picked = [...ids]
+              .sort(() => Math.random() - 0.5)
+              .slice(0, chapterTarget);
             selectedIds.push(...picked);
             pickedForSubject += picked.length;
           });
@@ -788,7 +1125,9 @@ export class PlannerService {
         }
       }
     } else {
-      const shuffledChapters = Array.from(chapterToIds.keys()).sort(() => Math.random() - 0.5);
+      const shuffledChapters = Array.from(chapterToIds.keys()).sort(
+        () => Math.random() - 0.5,
+      );
       for (const chapId of shuffledChapters) {
         if (selectedIds.length >= targetQuota) break;
         const ids = chapterToIds.get(chapId)!;
@@ -806,8 +1145,10 @@ export class PlannerService {
     if (targetQuota <= 0) return null;
 
     const subjects = await this.questionsService.getSubjectsGrouped();
-    const allChapterQIds = await this.questionsService.getAllQuestionIdsByChapter();
-    const progressMap = await this.questionProgressService.getAllUserProgress(userId);
+    const allChapterQIds =
+      await this.questionsService.getAllQuestionIdsByChapter();
+    const progressMap =
+      await this.questionProgressService.getAllUserProgress(userId);
 
     const allIds = Object.values(allChapterQIds).flat();
     const filteredSet = new Set(
@@ -823,7 +1164,9 @@ export class PlannerService {
 
     const selectedChapterIds = new Set<string>();
     const selectedIds: string[] = [];
-    const shuffledChapters = Array.from(chapterToIds.keys()).sort(() => Math.random() - 0.5);
+    const shuffledChapters = Array.from(chapterToIds.keys()).sort(
+      () => Math.random() - 0.5,
+    );
 
     for (const chapId of shuffledChapters) {
       if (selectedIds.length >= targetQuota) break;
@@ -837,10 +1180,17 @@ export class PlannerService {
     return this.finalizeSession(userId, selectedIds, selectedChapterIds);
   }
 
-  private async finalizeSession(userId: string, selectedIds: string[], selectedChapterIds: Set<string>) {
+  private async finalizeSession(
+    userId: string,
+    selectedIds: string[],
+    selectedChapterIds: Set<string>,
+  ) {
     if (selectedIds.length === 0) return null;
 
-    const questions = await this.questionsService.getQuestionsByChapterIds(Array.from(selectedChapterIds), 99999);
+    const questions = await this.questionsService.getQuestionsByChapterIds(
+      Array.from(selectedChapterIds),
+      99999,
+    );
     const selectedSet = new Set(selectedIds);
     const matchingQuestions = questions.filter((q) => selectedSet.has(q.id));
 
@@ -850,7 +1200,11 @@ export class PlannerService {
     const chapterIdsArr = Array.from(selectedChapterIds);
 
     const dbSessionId = await this.practiceSessionsService.createSession({
-      userId, mode: 'Tutor', subjectNames, chapterIds: chapterIdsArr, questionIds: finalIds,
+      userId,
+      mode: 'Tutor',
+      subjectNames,
+      chapterIds: chapterIdsArr,
+      questionIds: finalIds,
     });
 
     const newSession = {
