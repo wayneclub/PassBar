@@ -9,9 +9,8 @@
 5. Images land at `ghcr.io/wayneclub/passbar-frontend:latest` and `ghcr.io/wayneclub/passbar-backend:latest` (also tagged with the commit SHA).
 6. On the server:
    ```bash
-   cd ~/PassBar/infra
-   docker compose pull
-   docker compose up -d
+   cd /home/ubuntu/apps/passbar
+   ./deploy.sh
    ```
    (`./deploy.sh` wraps this plus the DB migration step — see below.)
 
@@ -30,8 +29,8 @@ One Lightsail instance, two separately-managed docker-compose stacks, joined by 
 | Stack | Repo | Manages | Network membership |
 |---|---|---|---|
 | Host stack | `~/docker-compose.yaml` (not in any app repo) | `postgres` (shared DB), `nginx-proxy-manager` (NPM), other unrelated services | `database-network` (postgres), `npm_network` (NPM) |
-| PassBar stack | this repo, `infra/docker-compose.yml` | `frontend`, `backend` | `database-network`, `npm_network` |
-| auth-service stack | `~/auth-service`, `docker-compose.prod.yml` | `auth-service` | `database-network`, `npm_network` |
+| PassBar stack | `/home/ubuntu/apps/passbar/docker-compose.yml` | `frontend`, `backend` | `database-network`, `npm_network` |
+| auth-service stack | `/home/ubuntu/apps/auth-service/docker-compose.yml` or existing auth-service compose | `auth-service` | `database-network`, `npm_network` |
 
 Nothing here runs its own Postgres or its own reverse proxy — they connect to the host's existing ones by container name over the two external networks.
 
@@ -65,17 +64,27 @@ In each of the `passbar` and `auth-service` databases (already exist in the shar
 
 **PassBar** (`frontend` + `backend`) — images come from GHCR, nothing builds on the server:
 ```bash
-cd ~/PassBar/infra
-cp .env.example .env   # first time only — fill in real secrets
-./deploy.sh            # pull + migrate + up -d
+mkdir -p /home/ubuntu/apps/passbar
+cd /home/ubuntu/apps/passbar
+
+# First time only: copy these files from this repo's infra/ folder:
+#   docker-compose.yml
+#   deploy.sh
+#   .env.example
+cp .env.example .env
+nano .env
+chmod +x deploy.sh
+docker login ghcr.io -u wayneclub
+
+./deploy.sh
 ```
 
 **auth-service** — still builds locally on the server (no CI pipeline set up for it yet, it's not on GitHub):
 ```bash
-cd ~/auth-service
+cd /home/ubuntu/apps/auth-service
 git pull --ff-only
-docker compose -f docker-compose.prod.yml build
-docker compose -f docker-compose.prod.yml up -d
+docker compose build
+docker compose up -d
 ```
 
 ## NPM proxy hosts
@@ -105,9 +114,9 @@ All three app containers use `restart: unless-stopped` — they come back after 
 Each service uses the `json-file` driver with `max-size: 10m, max-file: 3` (30MB cap per container, auto-rotated) so logs can't fill the disk. Tail with:
 
 ```bash
-docker compose -f ~/PassBar/infra/docker-compose.yml logs -f backend
-docker compose -f ~/PassBar/infra/docker-compose.yml logs -f frontend
-docker compose -f ~/auth-service/docker-compose.prod.yml logs -f auth-service
+docker compose -f /home/ubuntu/apps/passbar/docker-compose.yml logs -f backend
+docker compose -f /home/ubuntu/apps/passbar/docker-compose.yml logs -f frontend
+docker compose -f /home/ubuntu/apps/auth-service/docker-compose.yml logs -f auth-service
 ```
 
 ## DB migrations

@@ -15,4 +15,4 @@ COPY --from=build /app/drizzle ./drizzle
 COPY --from=build /app/drizzle.config.ts ./drizzle.config.ts
 
 EXPOSE 4000
-CMD ["node", "dist/main"]
+CMD ["node", "dist/src/main.js"]

@@ -22,6 +22,8 @@ services:
     restart: unless-stopped
     env_file:
       - .env
+    environment:
+      PORT: 3000
     networks:
       - npm_network
     logging:
@@ -36,6 +38,7 @@ services:
     restart: unless-stopped
     env_file:
       - .env
+    command: ["node", "dist/src/main.js"]
     networks:
       - database-network
       - npm_network
