@@ -1,0 +1,118 @@
+import { withBasePath } from './site';
+
+export type GeminiAttempt = {
+  subject?: string;
+  topic?: string;
+  questionText?: string;
+  selectedChoice?: string | null;
+  correctChoice?: string | null;
+  isCorrect?: boolean;
+  timeSpentSeconds?: number | null;
+};
+
+export type GeminiFeedbackRequest = {
+  mode?: string;
+  totalQuestions?: number;
+  attempts?: GeminiAttempt[];
+  unansweredCount?: number;
+  interfaceLanguage?: string;
+};
+
+export type GeminiStatus = 'enabled' | 'disabled' | 'unknown';
+
+type GeminiResponse = {
+  enabled?: boolean;
+  model?: string | null;
+  action?: 'status' | 'feedback' | 'question-analysis';
+  feedback?: string;
+  error?: string;
+  details?: string;
+};
+
+export type GeminiQuestionAnalysisRequest = {
+  questionText?: string;
+  options?: Array<{ key: string; text: string }>;
+  selectedChoice?: string | null;
+  correctChoice?: string | null;
+  isCorrect?: boolean;
+  explanationText?: string | null;
+  topic?: string | null;
+  interfaceLanguage?: string;
+};
+
+async function invokeNextApi(body: Record<string, unknown>) {
+  const paths = Array.from(new Set([
+    withBasePath('/api/gemini-feedback/'),
+    '/api/gemini-feedback/',
+  ]));
+
+  for (const path of paths) {
+    try {
+      const response = await fetch(path, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (!response.ok) continue;
+      return (await response.json()) as GeminiResponse;
+    } catch {
+      // Try the next path.
+    }
+  }
+
+  throw new Error('Gemini backend could not be reached.');
+}
+
+async function invokeGemini(body: Record<string, unknown>) {
+  return invokeNextApi(body);
+}
+
+export async function getGeminiStatus(): Promise<GeminiStatus> {
+  try {
+    const data = await invokeGemini({ action: 'status' });
+    return data.enabled ? 'enabled' : 'disabled';
+  } catch {
+    return 'unknown';
+  }
+}
+
+export async function requestGeminiFeedback(input: GeminiFeedbackRequest) {
+  const data = await invokeGemini({ action: 'feedback', ...input });
+  if (!data.feedback) throw new Error(data.details || data.error || 'Unable to generate Gemini feedback.');
+  return data.feedback;
+}
+
+export type PerformanceDiagnosisRequest = {
+  interfaceLanguage?: string;
+  performanceStats: {
+    totalAttempts: number;
+    correctAttempts: number;
+    avgTimeSeconds: number;
+    weakConcepts: Array<{
+      concept: string;
+      subject: string;
+      topic: string;
+      attempts: number;
+      correct: number;
+      avgTime: number;
+    }>;
+    errorTypeBreakdown: Record<string, number>;
+    recentTrend: number[];
+    streakDays: number;
+  };
+};
+
+export async function requestPerformanceDiagnosis(input: PerformanceDiagnosisRequest): Promise<string> {
+  const data = await invokeGemini({ action: 'performance-diagnosis', ...input });
+  if (!data.feedback) throw new Error(data.details || data.error || 'Unable to generate diagnosis.');
+  return data.feedback;
+}
+
+export async function requestGeminiQuestionAnalysis(input: GeminiQuestionAnalysisRequest) {
+  const data = await invokeGemini({ action: 'question-analysis', ...input });
+  if (!data.feedback) throw new Error(data.details || data.error || 'Unable to generate Gemini question analysis.');
+  if (data.action !== 'question-analysis') {
+    throw new Error('Gemini question analysis backend is stale. Check /api/gemini-feedback handles question-analysis as single-question feedback.');
+  }
+  return data.feedback;
+}

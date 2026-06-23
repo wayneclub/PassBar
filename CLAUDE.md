@@ -2,8 +2,9 @@
 
 ## Database Schema
 
-新增或修改 table **只維護 `supabase/schema.sql`**，不另外建立 migration 檔案。
-所有 `create table`、`alter table`、`create index`、RLS policy 都寫進這支檔案，方便未來整庫轉移。
+新增或修改 table 都在 `backend/src/db/schema/`（Drizzle schema，依資料領域分檔：`users.ts`、`questions.ts`、`attempts.ts`、`auth.ts`）。
+改完 schema 後跑 `npm run db:generate` 產生 migration，部署前跑 `npm run db:migrate` 套用到 Postgres。
+不再維護 `supabase/schema.sql`（Supabase 已停用，相關檔案移到 `legacy/supabase/` 僅供參考）。
 
 ## Design System: Typography
 
@@ -392,7 +393,7 @@ t('dashboard.milestoneText', { count: 25 })
 ## Project Structure
 
 ```
-passbar/src/
+frontend/src/
   app/
     (main)/            # 主應用（dashboard, review, performance, create…）
       layout.tsx       # AuthGuard + Sidebar + main padding
@@ -403,7 +404,7 @@ passbar/src/
     ui/                # shadcn primitives
   lib/
     i18n.ts            # 多語系（en / zh-TW / zh-CN）
-    supabase.ts        # DB client
+    api.ts             # backend fetch wrapper（api.get/post/...）
     types.ts           # 共用型別
     utils.ts           # cn() 等工具
     gemini-feedback.ts # AI 診斷
@@ -411,20 +412,21 @@ passbar/src/
 
 ## Tech Stack
 
-- **Framework**: Next.js 14 App Router
+- **Frontend**: Next.js 14 App Router
+- **Backend**: NestJS (`backend/`) + Drizzle ORM
 - **Styling**: Tailwind CSS + shadcn/ui
 - **Font**: Inter（`font-body` / `font-headline`）
-- **DB**: Supabase (PostgreSQL)
-- **Auth**: Supabase Auth
+- **DB**: Self-hosted PostgreSQL
+- **Auth**: `auth-service`（獨立 repo，Google OAuth + JWT，PassBar backend 只驗證 token 不發 token）
 - **AI**: Gemini API
 - **Charts**: Recharts
 
 ## Coding Conventions
 
 - `cn()` 合併 Tailwind class，禁止字串拼接
-- Supabase query 結果一律 cast：`(data ?? []) as MyRowType[]`
+- Frontend 一律透過 `lib/api.ts` 的 `api.get/post/patch/put/delete` 呼叫 backend，不直接連 DB
 - 型別明確標注，不用 `any`
-- 分頁用 Supabase `.range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1)`，PAGE_SIZE = 15
+- 分頁用 Drizzle `.limit(pageSize).offset(page * pageSize)`，PAGE_SIZE = 15
 - 篩選面板用 inline 展開，不用 Sheet 抽屜
 - Tooltip 用 `absolute` 定位在 `relative` 父容器內，不用 `fixed`（避免 overflow 偏移）
 

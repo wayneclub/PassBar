@@ -1,0 +1,9 @@
+{
+  "name": "passbar",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend",
+    "packages/*"
+  ]
+}

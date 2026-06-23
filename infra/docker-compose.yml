@@ -1,0 +1,52 @@
+# PassBar app stack: frontend + backend.
+#
+# Images are built by GitHub Actions (.github/workflows/docker-publish.yml)
+# and pushed to GHCR — this file only pulls and runs them. No local `build:`.
+#
+# Postgres and NPM (nginx-proxy-manager) are NOT managed here — they already
+# run in the host's separate stack (~/docker-compose.yaml, qbittorrent/3x-ui/etc).
+# This stack only joins their existing networks:
+#   - database-network: reach the shared `postgres` container
+#   - npm_network:       let NPM reverse-proxy reach `frontend`/`backend`
+#
+# One-time host setup (see infra/DEPLOY.md):
+#   docker network create npm_network
+#   docker login ghcr.io -u <github-username>   # to pull private GHCR images
+#   # add `npm_network` to nginx-proxy-manager's networks in ~/docker-compose.yaml
+#   # and to auth-service's docker-compose.prod.yml, then restart both.
+
+services:
+  frontend:
+    image: ghcr.io/wayneclub/passbar-frontend:latest
+    container_name: passbar-frontend
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - npm_network
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  backend:
+    image: ghcr.io/wayneclub/passbar-backend:latest
+    container_name: passbar-backend
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - database-network
+      - npm_network
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  database-network:
+    external: true
+  npm_network:
+    external: true
