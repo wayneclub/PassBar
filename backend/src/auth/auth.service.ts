@@ -89,14 +89,17 @@ export class AuthService {
     return profile;
   }
 
-  /** Postgres unique_violation (23505) on the email column means a different row already owns it. */
+  /** Postgres unique_violation (23505) on the email column means a different row already owns it. Drizzle wraps the pg error inside `cause`, so check both. */
   private toEmailConflictError(err: unknown, email: string | null): Error {
-    if (
-      err &&
-      typeof err === 'object' &&
-      'code' in err &&
-      err.code === '23505'
-    ) {
+    const code =
+      err && typeof err === 'object' && 'code' in err
+        ? (err as { code?: unknown }).code
+        : undefined;
+    const causeCode =
+      err && typeof err === 'object' && 'cause' in err
+        ? (err as { cause?: { code?: unknown } }).cause?.code
+        : undefined;
+    if (code === '23505' || causeCode === '23505') {
       return new ConflictException(
         `A profile already exists for email "${email}" under a different user id`,
       );
