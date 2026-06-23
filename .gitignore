@@ -11,6 +11,7 @@ node_modules/
 # Build outputs
 .next/
 /frontend/out/
+/out/
 build/
 coverage/
 *.tsbuildinfo
@@ -40,9 +41,8 @@ __pycache__/
 *.csv
 
 # Large exported question artifacts
-out/**/**/imgs/
-out/**/**/zh_html/
-out/**/**/source_imgs
+/screenshot/
+/screenshots/
 out.zip
 /questions/
 /questions/**/*.zip

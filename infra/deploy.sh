@@ -25,6 +25,12 @@ docker compose run --rm \
 echo "==> up -d"
 docker compose up -d
 
+echo "==> reload nginx-proxy-manager (refresh Docker upstream IPs)"
+if docker ps --format '{{.Names}}' | grep -qx 'nginx-proxy-manager'; then
+  docker network connect npm_network nginx-proxy-manager 2>/dev/null || true
+  docker exec nginx-proxy-manager nginx -s reload
+fi
+
 echo "==> prune dangling images"
 docker image prune -f
 

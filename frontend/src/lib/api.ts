@@ -9,6 +9,15 @@ export class ApiError extends Error {
   }
 }
 
+function errorMessageFrom(data: unknown, fallback: string) {
+  if (data && typeof data === 'object' && 'message' in data) {
+    const message = (data as { message?: unknown }).message;
+    if (Array.isArray(message)) return message.map(String).join(', ');
+    if (message !== undefined && message !== null) return String(message);
+  }
+  return fallback;
+}
+
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const res = await fetch(`${API_URL}${path}`, {
     ...options,
@@ -22,11 +31,18 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   if (res.status === 204) return undefined as T;
 
   const text = await res.text();
-  const data = text ? JSON.parse(text) : undefined;
+  let data: unknown;
+  if (text) {
+    try {
+      data = JSON.parse(text);
+    } catch {
+      data = undefined;
+    }
+  }
 
   if (!res.ok) {
-    const message = (data && (data.message?.toString?.() ?? data.message)) || res.statusText;
-    throw new ApiError(res.status, Array.isArray(message) ? message.join(', ') : message);
+    const fallback = res.statusText || `Request failed with status ${res.status}`;
+    throw new ApiError(res.status, errorMessageFrom(data, fallback));
   }
 
   return data as T;
