@@ -28,8 +28,10 @@ jobs:
           filters: |
             frontend:
               - 'frontend/**'
+              - '.github/workflows/docker-publish.yml'
             backend:
               - 'backend/**'
+              - '.github/workflows/docker-publish.yml'
 
   test-frontend:
     needs: changes
