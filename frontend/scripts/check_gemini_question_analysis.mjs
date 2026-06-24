@@ -1,11 +1,20 @@
-// Dev-only smoke test for /api/gemini-feedback's question-analysis action.
-// Run `npm run dev` in another terminal first, then `npm run gemini:check-question`.
+import dotenv from 'dotenv';
+import { resolve } from 'path';
 
-const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+// Load local env from root directory
+dotenv.config({ path: resolve(process.cwd(), '../.env.local') });
 
-const response = await fetch(`${baseUrl}/api/gemini-feedback/`, {
+const baseUrl = process.env.BASE_URL || 'http://localhost:4000/api';
+const cronSecret = process.env.CRON_SECRET;
+
+const headers = { 'Content-Type': 'application/json' };
+if (cronSecret) {
+  headers['Authorization'] = `Bearer ${cronSecret}`;
+}
+
+const response = await fetch(`${baseUrl}/gemini-feedback/`, {
   method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
+  headers,
   body: JSON.stringify({
     action: 'question-analysis',
     interfaceLanguage: 'zh-Hant',

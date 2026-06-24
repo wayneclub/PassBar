@@ -136,7 +136,10 @@ export default function ProfilePage() {
 
   const unlockedTitles = [t('profile.defaultTitle'), ...badges.filter(b => b.unlocked).map(b => t(b.badge.titleKey as any))];
 
-  const feedUrl = typeof window !== 'undefined' && calendarToken ? `${window.location.origin}/api/calendar/feed?token=${calendarToken}` : '';
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL
+    ? (process.env.NEXT_PUBLIC_API_URL.endsWith('/api') ? process.env.NEXT_PUBLIC_API_URL : `${process.env.NEXT_PUBLIC_API_URL}/api`)
+    : (typeof window !== 'undefined' ? `${window.location.origin}/api` : '');
+  const feedUrl = calendarToken ? `${apiBaseUrl}/calendar/feed?token=${calendarToken}` : '';
 
   const handleCopy = () => {
     if (!feedUrl) return;

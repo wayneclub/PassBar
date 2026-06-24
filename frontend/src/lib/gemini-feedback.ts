@@ -1,4 +1,15 @@
+import { api } from './api';
 import { withBasePath } from './site';
+
+// ... (other types kept as they are)
+
+async function invokeNextApi(body: Record<string, unknown>) {
+  try {
+    return await api.post<GeminiResponse>('/gemini-feedback', body);
+  } catch (err) {
+    throw new Error('Gemini backend could not be reached.');
+  }
+}
 
 export type GeminiAttempt = {
   subject?: string;
@@ -40,28 +51,6 @@ export type GeminiQuestionAnalysisRequest = {
   interfaceLanguage?: string;
 };
 
-async function invokeNextApi(body: Record<string, unknown>) {
-  const paths = Array.from(new Set([
-    withBasePath('/api/gemini-feedback/'),
-    '/api/gemini-feedback/',
-  ]));
-
-  for (const path of paths) {
-    try {
-      const response = await fetch(path, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-      if (!response.ok) continue;
-      return (await response.json()) as GeminiResponse;
-    } catch {
-      // Try the next path.
-    }
-  }
-
-  throw new Error('Gemini backend could not be reached.');
-}
 
 async function invokeGemini(body: Record<string, unknown>) {
   return invokeNextApi(body);
