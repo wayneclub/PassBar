@@ -35,7 +35,9 @@ describe('AdminService', () => {
     };
     const fetchMock = jest
       .spyOn(global, 'fetch')
-      .mockResolvedValue(new Response(JSON.stringify(payload), { status: 200 }));
+      .mockResolvedValue(
+        new Response(JSON.stringify(payload), { status: 200 }),
+      );
 
     await expect(
       service.getLoginHistory('user+filter@example.com&limit=999', 25),
@@ -60,13 +62,11 @@ describe('AdminService', () => {
     [999, '100'],
     [Number.NaN, '20'],
   ])('normalizes login history limit %p to %s', async (limit, expected) => {
-    const fetchMock = jest
-      .spyOn(global, 'fetch')
-      .mockResolvedValue(
-        new Response(JSON.stringify({ sessions: [], loginCount: 0 }), {
-          status: 200,
-        }),
-      );
+    const fetchMock = jest.spyOn(global, 'fetch').mockResolvedValue(
+      new Response(JSON.stringify({ sessions: [], loginCount: 0 }), {
+        status: 200,
+      }),
+    );
 
     await service.getLoginHistory('user-id', limit);
 

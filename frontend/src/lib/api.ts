@@ -20,12 +20,27 @@ function errorMessageFrom(data: unknown, fallback: string) {
 
 let refreshPromise: Promise<boolean> | null = null;
 
+function deleteLoggedInCookie() {
+  if (typeof document === 'undefined') return;
+  document.cookie = 'pb_logged_in=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  document.cookie = 'pb_logged_in=; path=/; domain=.wayneclub.com; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+}
+
 /** access_token cookies are short-lived (15min); refresh_token (30d) lets auth-service mint a new one. */
 function refreshAccessToken(): Promise<boolean> {
   if (!refreshPromise) {
     refreshPromise = fetch(authServiceUrl('/auth/refresh'), { method: 'POST', credentials: 'include' })
-      .then((res) => res.ok)
-      .catch(() => false)
+      .then((res) => {
+        if (!res.ok) {
+          deleteLoggedInCookie();
+          return false;
+        }
+        return true;
+      })
+      .catch(() => {
+        deleteLoggedInCookie();
+        return false;
+      })
       .finally(() => {
         refreshPromise = null;
       });

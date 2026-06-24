@@ -60,7 +60,13 @@ function toProfile(data: ProfileResponse): UserProfile {
   };
 }
 
+function hasLoggedInCookie(): boolean {
+  if (typeof document === 'undefined') return false;
+  return document.cookie.split(';').some((c) => c.trim().startsWith('pb_logged_in='));
+}
+
 async function fetchProfile(): Promise<UserProfile | null> {
+  if (!hasLoggedInCookie()) return null;
   try {
     const data = await api.get<ProfileResponse>('/users/me');
     return toProfile(data);

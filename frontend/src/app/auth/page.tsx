@@ -51,7 +51,7 @@ function AuthContent() {
   const cookieNotice = (
     <p className="text-xs leading-5 text-slate-400">
       By continuing, you agree to our use of cookies to keep you signed in, remember your preferences, and analyse usage.{' '}
-      <Link href="/privacy" className="underline underline-offset-2 hover:text-slate-300">Privacy Policy</Link>.
+      <Link href="/privacy" prefetch={false} className="underline underline-offset-2 hover:text-slate-300">Privacy Policy</Link>.
     </p>
   );
 

@@ -1,4 +1,11 @@
-import { date, jsonb, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import {
+  date,
+  jsonb,
+  pgTable,
+  text,
+  timestamp,
+  uuid,
+} from 'drizzle-orm/pg-core';
 
 // PassBar-specific profile data. id has no local FK — existence is guaranteed by
 // ensureProfile() (auth-service is the source of truth for the user record itself).

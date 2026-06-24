@@ -20,7 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "import:questions": "node scripts/import_questions.mjs",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate"
+    "db:migrate": "drizzle-kit migrate",
+    "db:migrate:prod": "node dist/src/db/migrate.js"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -71,6 +72,10 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0"
+  },
+  "overrides": {
+    "multer": "^2.2.0",
+    "esbuild": "^0.25.0"
   },
   "jest": {
     "moduleFileExtensions": [

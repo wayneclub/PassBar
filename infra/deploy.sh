@@ -46,8 +46,7 @@ docker compose pull
 
 echo "==> run db migrations (backend)"
 docker compose run --rm \
-  --entrypoint sh \
-  backend -c 'npm install drizzle-kit@^0.31.10 --no-save --include=dev && ./node_modules/.bin/drizzle-kit migrate'
+  backend node dist/src/db/migrate.js
 
 echo "==> up -d"
 docker compose up -d --remove-orphans

@@ -93,10 +93,9 @@ export class AdminService {
     url.searchParams.set('userId', userId);
     url.searchParams.set('limit', String(safeLimit));
 
-    const res = await fetch(
-      url,
-      { headers: { Authorization: `Bearer ${serviceSecret}` } },
-    );
+    const res = await fetch(url, {
+      headers: { Authorization: `Bearer ${serviceSecret}` },
+    });
     if (!res.ok) {
       throw new InternalServerErrorException(
         `auth-service rejected login history lookup (${res.status})`,
