@@ -20,7 +20,10 @@ export class JwtOrCronGuard extends AuthGuard('jwt') {
     // 2. Fallback to JWT authentication
     try {
       const result = await super.canActivate(context);
-      return Boolean(result);
+      if (!result) return false;
+
+      const user = req.user;
+      return Boolean(user && user.status === 'approved');
     } catch {
       return false;
     }

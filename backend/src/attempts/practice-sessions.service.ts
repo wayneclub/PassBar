@@ -1,7 +1,7 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { and, asc, eq } from 'drizzle-orm';
 import { DB, type Database } from '../db/db.provider';
-import { practiceSessions, practiceAnswers } from '../db/schema';
+import { practiceSessions, practiceAnswers, questionItems } from '../db/schema';
 
 type TestMode = 'Tutor' | 'Timed' | 'TopicStudy' | 'SimExam';
 
@@ -60,10 +60,31 @@ export class PracticeSessionsService {
     userId: string;
     questionId: string;
     selectedChoice: string;
-    correctAnswer: string;
-    isCorrect: boolean;
     timeSpentSeconds?: number;
   }) {
+    // 1. Verify session exists and belongs to this user (prevents IDOR / Session Tampering)
+    const session = await this.db.query.practiceSessions.findFirst({
+      where: and(
+        eq(practiceSessions.id, input.sessionId),
+        eq(practiceSessions.userId, input.userId),
+      ),
+    });
+    if (!session) {
+      throw new NotFoundException('Practice session not found');
+    }
+
+    // 2. Fetch the question to get the canonical correct answer (prevents client-side cheating)
+    const question = await this.db.query.questionItems.findFirst({
+      where: eq(questionItems.id, input.questionId),
+    });
+    if (!question) {
+      throw new NotFoundException('Question not found');
+    }
+
+    const correctAnswer = question.correctAnswer;
+    const isCorrect = correctAnswer.toUpperCase() === input.selectedChoice.toUpperCase();
+
+    // 3. Save or update the answer
     await this.db
       .insert(practiceAnswers)
       .values({
@@ -71,8 +92,8 @@ export class PracticeSessionsService {
         userId: input.userId,
         questionId: input.questionId,
         selectedChoice: input.selectedChoice,
-        correctAnswer: input.correctAnswer,
-        isCorrect: input.isCorrect,
+        correctAnswer: correctAnswer,
+        isCorrect: isCorrect,
         timeSpentSeconds: input.timeSpentSeconds ?? null,
         answeredAt: new Date(),
       })
@@ -80,8 +101,8 @@ export class PracticeSessionsService {
         target: [practiceAnswers.sessionId, practiceAnswers.questionId],
         set: {
           selectedChoice: input.selectedChoice,
-          correctAnswer: input.correctAnswer,
-          isCorrect: input.isCorrect,
+          correctAnswer: correctAnswer,
+          isCorrect: isCorrect,
           timeSpentSeconds: input.timeSpentSeconds ?? null,
           answeredAt: new Date(),
         },

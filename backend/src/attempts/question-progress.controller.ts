@@ -9,6 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { ApprovedGuard } from '../auth/guards/approved.guard';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 import type { JwtPayload } from '../auth/strategies/jwt.strategy';
 import { QuestionProgressService } from './question-progress.service';
@@ -27,7 +28,7 @@ function parseList(value?: string): string[] {
 }
 
 @Controller('attempts/question-progress')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, ApprovedGuard)
 export class QuestionProgressController {
   constructor(private readonly progressService: QuestionProgressService) {}
 

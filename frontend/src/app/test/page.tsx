@@ -414,8 +414,6 @@ function TestSessionContent() {
       userId: user.id,
       questionId: question.id,
       selectedChoice,
-      correctAnswer: correctChoice,
-      isCorrect,
       timeSpentSeconds: elapsedSeconds,
     });
 
@@ -425,8 +423,6 @@ function TestSessionContent() {
         userId: user.id,
         questionId: question.id,
         selectedChoice,
-        correctAnswer: correctChoice,
-        isCorrect,
         timeSpentSeconds: elapsedSeconds,
       });
       if (!progressSaved || !answerSaved) {

@@ -1,5 +1,7 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { ApprovedGuard } from '../auth/guards/approved.guard';
+import { Roles, RolesGuard } from '../auth/guards/roles.guard';
 import { QuestionAiAnalysisService } from './question-ai-analysis.service';
 import {
   GetCachedAnalysisDto,
@@ -7,7 +9,7 @@ import {
 } from './dto/question-ai-analysis.dto';
 
 @Controller('question-ai-analysis')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, ApprovedGuard)
 export class QuestionAiAnalysisController {
   constructor(private readonly aiAnalysisService: QuestionAiAnalysisService) {}
 
@@ -18,6 +20,8 @@ export class QuestionAiAnalysisController {
   }
 
   @Post()
+  @UseGuards(RolesGuard)
+  @Roles('admin')
   save(@Body() dto: SaveAnalysisDto) {
     return this.aiAnalysisService.save(dto);
   }

@@ -176,8 +176,6 @@ export async function syncPendingAnswerProgress() {
         userId: item.userId,
         questionId: item.questionId,
         selectedChoice: item.selectedChoice,
-        correctAnswer: item.correctAnswer,
-        isCorrect: item.isCorrect,
         timeSpentSeconds: item.timeSpentSeconds,
       });
     const answerSaved = item.answerSynced || await savePracticeAnswer({
@@ -185,8 +183,6 @@ export async function syncPendingAnswerProgress() {
         userId: item.userId,
         questionId: item.questionId,
         selectedChoice: item.selectedChoice,
-        correctAnswer: item.correctAnswer,
-        isCorrect: item.isCorrect,
         timeSpentSeconds: item.timeSpentSeconds,
       });
 

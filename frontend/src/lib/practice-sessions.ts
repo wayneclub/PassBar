@@ -48,8 +48,6 @@ export async function savePracticeAnswer(input: {
   userId: string;
   questionId: string;
   selectedChoice: string;
-  correctAnswer: string;
-  isCorrect: boolean;
   timeSpentSeconds?: number;
 }) {
   if (!isUuid(input.sessionId)) return false;
@@ -57,8 +55,6 @@ export async function savePracticeAnswer(input: {
     await api.post(`/attempts/sessions/${input.sessionId}/answers`, {
       questionId: input.questionId,
       selectedChoice: input.selectedChoice,
-      correctAnswer: input.correctAnswer,
-      isCorrect: input.isCorrect,
       timeSpentSeconds: input.timeSpentSeconds,
     });
     return true;

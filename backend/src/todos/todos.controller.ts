@@ -10,6 +10,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { ApprovedGuard } from '../auth/guards/approved.guard';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 import type { JwtPayload } from '../auth/strategies/jwt.strategy';
 import { AuthService } from '../auth/auth.service';
@@ -42,19 +43,19 @@ export class TodosController {
   }
 
   @Get()
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, ApprovedGuard)
   list(@CurrentUser() user: JwtPayload) {
     return this.todosService.list(user.sub);
   }
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, ApprovedGuard)
   create(@CurrentUser() user: JwtPayload, @Body() dto: CreateTodoDto) {
     return this.todosService.create(user.sub, dto);
   }
 
   @Patch(':id')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, ApprovedGuard)
   update(
     @CurrentUser() user: JwtPayload,
     @Param('id') id: string,
@@ -64,19 +65,19 @@ export class TodosController {
   }
 
   @Delete(':id')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, ApprovedGuard)
   delete(@CurrentUser() user: JwtPayload, @Param('id') id: string) {
     return this.todosService.delete(user.sub, id);
   }
 
   @Post('sync-auto')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, ApprovedGuard)
   syncAuto(@CurrentUser() user: JwtPayload) {
     return this.todosService.syncAutoTodos(user.sub);
   }
 
   @Post('add-chapter')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, ApprovedGuard)
   addChapterAsTodo(
     @CurrentUser() user: JwtPayload,
     @Body() dto: AddChapterAsTodoDto,

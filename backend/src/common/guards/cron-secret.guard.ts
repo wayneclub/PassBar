@@ -16,7 +16,9 @@ export class CronSecretGuard implements CanActivate {
 
   canActivate(context: ExecutionContext): boolean {
     const secret = this.config.get<string>('CRON_SECRET');
-    if (!secret) return true; // not configured — allow (matches prior Next.js route behavior)
+    if (!secret) {
+      throw new UnauthorizedException('CRON_SECRET is not configured on the server');
+    }
 
     const req = context.switchToHttp().getRequest();
     const header = req.headers['authorization'];

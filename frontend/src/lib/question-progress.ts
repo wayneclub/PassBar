@@ -24,16 +24,12 @@ export async function saveQuestionAnswerProgress(input: {
   userId: string;
   questionId: string;
   selectedChoice: string;
-  correctAnswer: string;
-  isCorrect: boolean;
   timeSpentSeconds?: number;
 }) {
   try {
     await api.post('/attempts/question-progress/answer', {
       questionId: input.questionId,
       selectedChoice: input.selectedChoice,
-      correctAnswer: input.correctAnswer,
-      isCorrect: input.isCorrect,
       timeSpentSeconds: input.timeSpentSeconds,
     });
     return true;

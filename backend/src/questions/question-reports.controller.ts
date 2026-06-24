@@ -9,6 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { ApprovedGuard } from '../auth/guards/approved.guard';
 import { Roles, RolesGuard } from '../auth/guards/roles.guard';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 import type { JwtPayload } from '../auth/strategies/jwt.strategy';
@@ -16,7 +17,7 @@ import { QuestionReportsService } from './question-reports.service';
 import { SubmitQuestionReportDto } from './dto/submit-question-report.dto';
 
 @Controller('question-reports')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, ApprovedGuard)
 export class QuestionReportsController {
   constructor(private readonly reportsService: QuestionReportsService) {}
 

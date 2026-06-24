@@ -4,7 +4,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { desc, eq, gte } from 'drizzle-orm';
+import { count, desc, eq, gte } from 'drizzle-orm';
 import { DB, type Database } from '../db/db.provider';
 import { loginActivity, practiceSessions, profiles } from '../db/schema';
 
@@ -134,11 +134,17 @@ export class AdminService {
     const todayStart = new Date();
     todayStart.setHours(0, 0, 0, 0);
 
-    const [statusRows, activeRows, sessionRows, pendingList] =
+    const [statusRows, activeCountRows, sessionRows, pendingList] =
       await Promise.all([
-        this.db.select({ status: profiles.status }).from(profiles),
         this.db
-          .select({ id: profiles.id })
+          .select({
+            status: profiles.status,
+            count: count(),
+          })
+          .from(profiles)
+          .groupBy(profiles.status),
+        this.db
+          .select({ value: count() })
           .from(profiles)
           .where(gte(profiles.lastSeenAt, todayStart)),
         this.db
@@ -155,14 +161,23 @@ export class AdminService {
         this.getPendingUsers(5),
       ]);
 
+    const statusCounts = {
+      total: 0,
+      pending: 0,
+      approved: 0,
+      rejected: 0,
+    };
+    statusRows.forEach((row) => {
+      const cnt = Number(row.count ?? 0);
+      statusCounts.total += cnt;
+      if (row.status === 'pending') statusCounts.pending = cnt;
+      else if (row.status === 'approved') statusCounts.approved = cnt;
+      else if (row.status === 'rejected') statusCounts.rejected = cnt;
+    });
+
     return {
-      statusCounts: {
-        total: statusRows.length,
-        pending: statusRows.filter((r) => r.status === 'pending').length,
-        approved: statusRows.filter((r) => r.status === 'approved').length,
-        rejected: statusRows.filter((r) => r.status === 'rejected').length,
-      },
-      activeToday: activeRows.length,
+      statusCounts,
+      activeToday: Number(activeCountRows[0]?.value ?? 0),
       sessions: sessionRows.map((s) => ({
         startedAt: s.startedAt ? s.startedAt.toISOString() : null,
         questionCount: s.questionCount,

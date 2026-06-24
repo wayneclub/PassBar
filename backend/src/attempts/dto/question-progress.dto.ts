@@ -15,12 +15,6 @@ export class SaveAnswerProgressDto {
   @IsString()
   selectedChoice!: string;
 
-  @IsString()
-  correctAnswer!: string;
-
-  @IsBoolean()
-  isCorrect!: boolean;
-
   @IsOptional()
   @IsInt()
   @Min(0)

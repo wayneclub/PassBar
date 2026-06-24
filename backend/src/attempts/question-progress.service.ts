@@ -1,10 +1,11 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { and, eq, inArray, sql } from 'drizzle-orm';
 import { DB, type Database } from '../db/db.provider';
 import {
   practiceAnswers,
   practiceSessions,
   userQuestionProgress,
+  questionItems,
 } from '../db/schema';
 
 export type QuestionStatus =
@@ -62,10 +63,20 @@ export class QuestionProgressService {
     userId: string;
     questionId: string;
     selectedChoice: string;
-    correctAnswer: string;
-    isCorrect: boolean;
     timeSpentSeconds?: number;
   }) {
+    // 1. Fetch the question to get the canonical correct answer (prevents client-side cheating)
+    const question = await this.db.query.questionItems.findFirst({
+      where: eq(questionItems.id, input.questionId),
+    });
+    if (!question) {
+      throw new NotFoundException('Question not found');
+    }
+
+    const correctAnswer = question.correctAnswer;
+    const isCorrect = correctAnswer.toUpperCase() === input.selectedChoice.toUpperCase();
+    const status = isCorrect ? 'correct' : 'incorrect';
+
     const existing = await this.db.query.userQuestionProgress.findFirst({
       where: and(
         eq(userQuestionProgress.userId, input.userId),
@@ -81,10 +92,10 @@ export class QuestionProgressService {
       .values({
         userId: input.userId,
         questionId: input.questionId,
-        status: input.isCorrect ? 'correct' : 'incorrect',
+        status: status,
         selectedChoice: input.selectedChoice,
-        correctAnswer: input.correctAnswer,
-        isCorrect: input.isCorrect,
+        correctAnswer: correctAnswer,
+        isCorrect: isCorrect,
         isMarked: existing?.isMarked ?? false,
         timesAnswered: existingTimesAnswered + 1,
         timeSpentSeconds: existingTimeSpent + (input.timeSpentSeconds ?? 0),
@@ -94,10 +105,10 @@ export class QuestionProgressService {
       .onConflictDoUpdate({
         target: [userQuestionProgress.userId, userQuestionProgress.questionId],
         set: {
-          status: input.isCorrect ? 'correct' : 'incorrect',
+          status: status,
           selectedChoice: input.selectedChoice,
-          correctAnswer: input.correctAnswer,
-          isCorrect: input.isCorrect,
+          correctAnswer: correctAnswer,
+          isCorrect: isCorrect,
           timesAnswered: existingTimesAnswered + 1,
           timeSpentSeconds: existingTimeSpent + (input.timeSpentSeconds ?? 0),
           lastSeenAt: new Date(),

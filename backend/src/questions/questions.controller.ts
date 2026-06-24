@@ -1,5 +1,7 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { QuestionsService } from './questions.service';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { ApprovedGuard } from '../auth/guards/approved.guard';
 
 function parseList(value?: string): string[] {
   if (!value) return [];
@@ -10,6 +12,7 @@ function parseList(value?: string): string[] {
 }
 
 @Controller('questions')
+@UseGuards(JwtAuthGuard, ApprovedGuard)
 export class QuestionsController {
   constructor(private readonly questionsService: QuestionsService) {}
 
