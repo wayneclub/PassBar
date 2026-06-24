@@ -30,6 +30,10 @@ export const practiceSessions = pgTable('practice_sessions', {
   correctCount: integer('correct_count').notNull().default(0),
   userAgent: text('user_agent'),
   raw: jsonb('raw'),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp('updated_at', { withTimezone: true })
+    .defaultNow()
+    .$onUpdate(() => new Date()),
 });
 
 export const practiceAnswers = pgTable(
@@ -56,6 +60,9 @@ export const practiceAnswers = pgTable(
     previousIsCorrect: boolean('previous_is_correct'),
     answeredAt: timestamp('answered_at', { withTimezone: true }).defaultNow(),
     raw: jsonb('raw'),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .defaultNow()
+      .$onUpdate(() => new Date()),
   },
   (table) => [unique().on(table.sessionId, table.questionId)],
 );
@@ -86,21 +93,6 @@ export const userQuestionProgress = pgTable(
   (table) => [primaryKey({ columns: [table.userId, table.questionId] })],
 );
 
-export const authEvents = pgTable('auth_events', {
-  id: uuid('id').primaryKey().defaultRandom(),
-  userId: uuid('user_id')
-    .notNull()
-    .references(() => profiles.id, { onDelete: 'cascade' }),
-  eventType: text('event_type').notNull(),
-  provider: text('provider'),
-  email: text('email'),
-  sessionExpiresAt: timestamp('session_expires_at', { withTimezone: true }),
-  userAgent: text('user_agent'),
-  path: text('path'),
-  metadata: jsonb('metadata'),
-  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
-});
-
 export const feedback = pgTable('feedback', {
   id: uuid('id').primaryKey().defaultRandom(),
   userId: uuid('user_id').references(() => profiles.id, {
@@ -130,9 +122,13 @@ export const topicStudyProgress = pgTable(
     viewedCount: integer('viewed_count').notNull().default(0),
     lastQuestionId: text('last_question_id'),
     lastQuestionIndex: integer('last_question_index').notNull().default(0),
-    updatedAt: timestamp('updated_at', { withTimezone: true })
+    createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
       .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
   },
   (table) => [primaryKey({ columns: [table.userId, table.chapterId] })],
 );
@@ -170,7 +166,10 @@ export const userConceptMastery = pgTable(
     correct: integer('correct').notNull().default(0),
     lastAttemptAt: timestamp('last_attempt_at', { withTimezone: true }),
     status: text('status').notNull().default('under-sampled'),
-    updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow(),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .defaultNow()
+      .$onUpdate(() => new Date()),
   },
   (table) => [
     primaryKey({
@@ -189,6 +188,9 @@ export const pushSubscriptions = pgTable('push_subscriptions', {
   auth: text('auth').notNull(),
   userAgent: text('user_agent'),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp('updated_at', { withTimezone: true })
+    .defaultNow()
+    .$onUpdate(() => new Date()),
 });
 
 export const todos = pgTable('todos', {

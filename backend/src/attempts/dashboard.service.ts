@@ -8,7 +8,7 @@ import {
   profiles,
   questionChapterCounts,
   questionItems,
-  questions,
+  subjects,
   userConceptMastery,
   userQuestionProgress,
 } from '../db/schema';
@@ -432,20 +432,22 @@ export class DashboardService {
       questionIds.length > 0
         ? await this.db
             .select({
-              id: questions.id,
-              subject: questions.subject,
-              chapterId: questions.chapterId,
-              chapterName: questions.chapterName,
-              topic: questions.topic,
-              microConcept: questions.microConcept,
-              trapType: questions.trapType,
-              trapTypeIsNew: questions.trapTypeIsNew,
-              skillTested: questions.skillTested,
-              keywordMeta: questions.keywordMeta,
-              highlightMeta: questions.highlightMeta,
+              id: questionItems.id,
+              subject: subjects.subject,
+              chapterId: chapters.id,
+              chapterName: chapters.chapter,
+              topic: questionItems.topic,
+              microConcept: questionItems.microConcept,
+              trapType: questionItems.trapType,
+              trapTypeIsNew: questionItems.trapTypeIsNew,
+              skillTested: questionItems.skillTested,
+              keywordMeta: questionItems.keywordMeta,
+              highlightMeta: questionItems.highlightMeta,
             })
-            .from(questions)
-            .where(inArray(questions.id, questionIds))
+            .from(questionItems)
+            .innerJoin(chapters, eq(chapters.id, questionItems.chapterId))
+            .innerJoin(subjects, eq(subjects.id, chapters.subjectId))
+            .where(inArray(questionItems.id, questionIds))
         : [];
 
     return {

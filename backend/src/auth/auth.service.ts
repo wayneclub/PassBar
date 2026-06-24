@@ -1,21 +1,27 @@
-import { ConflictException, Inject, Injectable } from '@nestjs/common';
+import { ConflictException, Inject, Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { eq } from 'drizzle-orm';
 import { DB, type Database } from '../db/db.provider';
-import { users, profiles } from '../db/schema';
+import { profiles, loginActivity } from '../db/schema';
+
+const LOGIN_ACTIVITY_SYNC_INTERVAL_MS = 10 * 60 * 1000;
 
 @Injectable()
 export class AuthService {
+  private readonly logger = new Logger(AuthService.name);
+
   constructor(
     @Inject(DB) private readonly db: Database,
     private readonly jwtService: JwtService,
+    private readonly config: ConfigService,
   ) {}
 
   /**
    * PassBar no longer handles login itself — auth-service mints the `sub` and PassBar only
-   * sees it on the first authenticated request. `profiles.id` has an FK onto PassBar's own
-   * `users.id`, so a local mirror row has to exist there first or the profile insert below
-   * would violate that constraint.
+   * sees it on the first authenticated request. `profiles.id` has no local FK (the canonical
+   * user record lives in auth-service's own DB), so this just needs to create the local
+   * profile mirror on first sight of a given userId.
    *
    * `onConflictDoNothing` is scoped to the primary key only (not the `email` unique constraint):
    * a PK conflict means a harmless concurrent insert of the same row and is safe to ignore, but
@@ -29,20 +35,6 @@ export class AuthService {
     role: string,
     status: string,
   ) {
-    const existingUser = await this.db.query.users.findFirst({
-      where: eq(users.id, userId),
-    });
-    if (!existingUser) {
-      try {
-        await this.db
-          .insert(users)
-          .values({ id: userId, email })
-          .onConflictDoNothing({ target: users.id });
-      } catch (err) {
-        throw this.toEmailConflictError(err, email);
-      }
-    }
-
     let profile = await this.db.query.profiles.findFirst({
       where: eq(profiles.id, userId),
     });
@@ -96,7 +88,111 @@ export class AuthService {
       })
       .where(eq(profiles.id, userId))
       .returning();
+
+    // Login history (ip/device/last login/logout) lives in auth-service's sessions table —
+    // this just pulls a cached, business-friendly summary for PassBar's own admin stats.
+    // Failures here must never break the request that's piggybacking the sync on.
+    this.syncLoginActivity(userId).catch((err) =>
+      this.logger.warn(`syncLoginActivity failed for ${userId}: ${err}`),
+    );
+
+    // There's no avatar upload feature in PassBar, so the Google avatar is the only source —
+    // unlike fullName, it's safe to always overwrite rather than backfill-once.
+    if (!profile.avatarUrl) {
+      this.syncAvatar(userId).catch((err) =>
+        this.logger.warn(`syncAvatar failed for ${userId}: ${err}`),
+      );
+    }
+
     return profile;
+  }
+
+  /** Pulls the Google avatar from auth-service and backfills `profiles.avatar_url`. Only
+   * called when missing (see ensureProfile) since this piggybacks on every authenticated
+   * request and must stay cheap. */
+  private async syncAvatar(userId: string): Promise<void> {
+    const authServiceUrl = this.config.get<string>('AUTH_SERVICE_URL');
+    const serviceSecret = this.config.get<string>('SERVICE_SECRET');
+    if (!authServiceUrl || !serviceSecret) return;
+
+    const res = await fetch(
+      `${authServiceUrl}/auth/internal/avatar?userId=${userId}`,
+      { headers: { Authorization: `Bearer ${serviceSecret}` } },
+    );
+    if (!res.ok) {
+      throw new Error(`auth-service responded ${res.status}`);
+    }
+
+    const data = (await res.json()) as { image: string | null } | null;
+    if (!data?.image) return;
+
+    await this.db
+      .update(profiles)
+      .set({ avatarUrl: data.image })
+      .where(eq(profiles.id, userId));
+  }
+
+  /** Pulls recent session history from auth-service and caches a summary in `login_activity`.
+   * Skipped if the cache was refreshed within LOGIN_ACTIVITY_SYNC_INTERVAL_MS — this runs on
+   * every authenticated request via ensureProfile, so it must stay cheap. */
+  private async syncLoginActivity(userId: string): Promise<void> {
+    const cached = await this.db.query.loginActivity.findFirst({
+      where: eq(loginActivity.userId, userId),
+    });
+    if (
+      cached?.syncedAt &&
+      Date.now() - cached.syncedAt.getTime() < LOGIN_ACTIVITY_SYNC_INTERVAL_MS
+    ) {
+      return;
+    }
+
+    const authServiceUrl = this.config.get<string>('AUTH_SERVICE_URL');
+    const serviceSecret = this.config.get<string>('SERVICE_SECRET');
+    if (!authServiceUrl || !serviceSecret) return;
+
+    const res = await fetch(
+      `${authServiceUrl}/auth/internal/sessions?userId=${userId}&limit=5`,
+      { headers: { Authorization: `Bearer ${serviceSecret}` } },
+    );
+    if (!res.ok) {
+      throw new Error(`auth-service responded ${res.status}`);
+    }
+
+    const data = (await res.json()) as {
+      sessions: Array<{
+        createdAt: string;
+        revokedAt: string | null;
+        ip: string | null;
+        userAgent: string | null;
+      }>;
+      loginCount: number;
+    };
+
+    const latest = data.sessions[0];
+    const lastLogout = data.sessions.find((s) => s.revokedAt)?.revokedAt;
+
+    await this.db
+      .insert(loginActivity)
+      .values({
+        userId,
+        loginCount: data.loginCount,
+        lastLoginAt: latest ? new Date(latest.createdAt) : null,
+        lastLogoutAt: lastLogout ? new Date(lastLogout) : null,
+        lastIp: latest?.ip ?? null,
+        lastDevice: latest?.userAgent ?? null,
+        syncedAt: new Date(),
+      })
+      .onConflictDoUpdate({
+        target: loginActivity.userId,
+        set: {
+          loginCount: data.loginCount,
+          lastLoginAt: latest ? new Date(latest.createdAt) : null,
+          lastLogoutAt: lastLogout ? new Date(lastLogout) : null,
+          lastIp: latest?.ip ?? null,
+          lastDevice: latest?.userAgent ?? null,
+          syncedAt: new Date(),
+        },
+      });
   }
 
   /** Postgres unique_violation (23505) on the email column means a different row already owns it. Drizzle wraps the pg error inside `cause`, so check both. */

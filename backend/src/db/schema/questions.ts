@@ -3,10 +3,8 @@ import {
   boolean,
   integer,
   jsonb,
-  numeric,
   pgTable,
   pgView,
-  primaryKey,
   text,
   timestamp,
   unique,
@@ -29,21 +27,32 @@ export const chapters = pgTable(
     subjectId: text('subject_id')
       .notNull()
       .references(() => subjects.id, { onDelete: 'cascade' }),
-    source: text('source'),
-    capturedAt: timestamp('captured_at', { withTimezone: true }),
     count: integer('count'),
-    screenshotCount: integer('screenshot_count'),
-    url: text('url'),
-    examName: text('exam_name'),
     subject: text('subject').notNull(),
     chapter: text('chapter').notNull(),
     slug: text('slug').notNull(),
-    rawMeta: jsonb('raw_meta'),
     sortOrder: integer('sort_order').default(0),
     createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .defaultNow()
+      .$onUpdate(() => new Date()),
   },
   (table) => [unique().on(table.subjectId, table.slug)],
 );
+
+/** A question's bilingual stem/choices/explanation. Collapsed from separate per-language,
+ * per-source tables into JSONB on `question_items` itself — every read path renders a whole
+ * question (both languages) at once, so the old normalized shape only added join overhead
+ * with no query ever filtering by language/source independently. */
+export type QuestionStem = { en: string; zh?: string };
+export type QuestionChoice = {
+  key: 'a' | 'b' | 'c' | 'd';
+  en: string;
+  zh?: string;
+  sortOrder: number;
+  isCorrect: boolean;
+};
+export type QuestionExplanation = { en?: string; zh?: string };
 
 export const questionItems = pgTable(
   'question_items',
@@ -53,86 +62,25 @@ export const questionItems = pgTable(
       .notNull()
       .references(() => chapters.id, { onDelete: 'cascade' }),
     index: integer('index').notNull(),
-    question: text('question').notNull(),
     correctAnswer: text('correct_answer').notNull(),
-    sourceQuestion: text('source_question'),
-    sourceChoices: jsonb('source_choices'),
-    sourceCorrectAnswer: text('source_correct_answer'),
-    sourceExplanationHtml: text('source_explanation_html'),
-    apiQid: text('api_qid'),
-    apiAnswerKey: text('api_answer_key'),
-    apiMatchOk: boolean('api_match_ok'),
-    apiMatchScore: numeric('api_match_score'),
-    apiUrl: text('api_url'),
-    apiStatus: integer('api_status'),
+    stem: jsonb('stem').$type<QuestionStem>().notNull(),
+    choices: jsonb('choices').$type<QuestionChoice[]>().notNull(),
+    explanation: jsonb('explanation').$type<QuestionExplanation>(),
     topic: text('topic'),
     microConcept: text('micro_concept'),
     trapType: text('trap_type'),
     trapTypeIsNew: boolean('trap_type_is_new'),
     skillTested: text('skill_tested'),
-    difficulty: text('difficulty'),
     keywordMeta: jsonb('keyword_meta'),
     highlightMeta: jsonb('highlight_meta'),
     raw: jsonb('raw'),
     createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
-    updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .defaultNow()
+      .$onUpdate(() => new Date()),
   },
   (table) => [unique().on(table.chapterId, table.index)],
 );
-
-export const questionTexts = pgTable(
-  'question_texts',
-  {
-    questionId: text('question_id')
-      .notNull()
-      .references(() => questionItems.id, { onDelete: 'cascade' }),
-    language: text('language').notNull(),
-    source: text('source').notNull(),
-    questionStem: text('question_stem').notNull(),
-    raw: jsonb('raw'),
-    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
-  },
-  (table) => [
-    primaryKey({ columns: [table.questionId, table.language, table.source] }),
-  ],
-);
-
-export const questionChoices = pgTable(
-  'question_choices',
-  {
-    questionId: text('question_id')
-      .notNull()
-      .references(() => questionItems.id, { onDelete: 'cascade' }),
-    language: text('language').notNull().default('en'),
-    source: text('source').notNull().default('uworld'),
-    choiceKey: text('choice_key').notNull(),
-    choice: text('choice').notNull(),
-    sortOrder: integer('sort_order').notNull(),
-    isCorrect: boolean('is_correct').notNull().default(false),
-    raw: jsonb('raw'),
-    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
-  },
-  (table) => [
-    primaryKey({
-      columns: [table.questionId, table.language, table.choiceKey],
-    }),
-  ],
-);
-
-export const questionExplanations = pgTable('question_explanations', {
-  id: bigserial('id', { mode: 'number' }).primaryKey(),
-  questionId: text('question_id')
-    .notNull()
-    .references(() => questionItems.id, { onDelete: 'cascade' }),
-  language: text('language').notNull(),
-  source: text('source').notNull().default('uworld'),
-  explanationText: text('explanation_text'),
-  explanationHtml: text('explanation_html'),
-  mimeType: text('mime_type'),
-  sortOrder: integer('sort_order').default(0),
-  raw: jsonb('raw'),
-  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
-});
 
 export const questionAiExplanations = pgTable(
   'question_ai_explanations',
@@ -185,42 +133,13 @@ export const questionReports = pgTable('question_reports', {
     .defaultNow(),
 });
 
-// Read-only SQL views defined in legacy/supabase/schema.postgres.sql (public.question_chapter_counts, public.questions).
+// Read-only SQL view defined in legacy/supabase/schema.postgres.sql.
+// (The old `questions` view was dropped — question_items now carries the bilingual content
+// directly as JSONB, so questions.service.ts queries it straight without a flattening view.)
 
 export const questionChapterCounts = pgView('question_chapter_counts', {
   subject: text('subject').notNull(),
   chapterId: text('chapter_id').notNull(),
   chapterName: text('chapter_name').notNull(),
   count: integer('count').notNull(),
-}).existing();
-
-export const questions = pgView('questions', {
-  id: text('id').notNull(),
-  index: integer('index').notNull(),
-  subject: text('subject').notNull(),
-  chapterId: text('chapter_id').notNull(),
-  chapterName: text('chapter_name').notNull(),
-  questionText: text('question_text').notNull(),
-  fetchedQuestionStem: text('fetched_question_stem'),
-  zhQuestionStem: text('zh_question_stem'),
-  options: text('options').array().notNull(),
-  bilingualOptions: text('bilingual_options').array().notNull(),
-  zhOptions: text('zh_options').array().notNull(),
-  correctAnswer: text('correct_answer'),
-  bilingualCorrectAnswer: text('bilingual_correct_answer'),
-  correctAnswerLetter: text('correct_answer_letter').notNull(),
-  apiMatchOk: boolean('api_match_ok').notNull(),
-  apiMatchScore: numeric('api_match_score'),
-  apiQid: text('api_qid'),
-  apiAnswerKey: text('api_answer_key'),
-  enExplanationHtml: text('en_explanation_html'),
-  explanationHtml: text('explanation_html'),
-  topic: text('topic'),
-  microConcept: text('micro_concept'),
-  trapType: text('trap_type'),
-  trapTypeIsNew: boolean('trap_type_is_new'),
-  skillTested: text('skill_tested'),
-  keywordMeta: jsonb('keyword_meta'),
-  highlightMeta: jsonb('highlight_meta'),
-  raw: jsonb('raw'),
 }).existing();

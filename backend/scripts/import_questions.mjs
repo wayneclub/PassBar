@@ -3,7 +3,11 @@ import dotenv from 'dotenv';
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-dotenv.config({ path: '.env', override: false });
+dotenv.config({
+  path: path.resolve(process.cwd(), '../.env.local'),
+  override: false,
+  quiet: true,
+});
 
 const databaseUrl = process.env.DATABASE_URL;
 const dryRun = process.env.DRY_RUN === 'true';
@@ -24,7 +28,7 @@ const filterChapter = getArg('--chapter');
 
 if (!dryRun && !databaseUrl) {
   console.error('Missing required env: DATABASE_URL.');
-  console.error('The importer reads backend/.env.');
+  console.error('The importer reads root .env.local.');
   process.exit(1);
 }
 
@@ -224,11 +228,6 @@ async function upsert(table, rows, conflictCols) {
   await pool.query(sql, values);
 }
 
-async function deleteByQuestionIds(table, questionIds) {
-  if (dryRun || questionIds.length === 0) return;
-  await pool.query(`DELETE FROM public.${table} WHERE question_id = ANY($1::text[])`, [questionIds]);
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 
 let allFiles = await listEnrichedFiles(outDir);
@@ -263,9 +262,6 @@ console.log(`Target: ${dryRun ? '(dry run)' : databaseUrl.replace(/:[^:@]*@/, ':
 console.log('─'.repeat(60));
 
 let totalQuestions = 0;
-let totalTexts = 0;
-let totalChoices = 0;
-let totalExplanations = 0;
 
 for (const file of files) {
   const { meta, items } = parseEnrichedDocument(JSON.parse(await readFile(file, 'utf8')));
@@ -296,19 +292,9 @@ for (const file of files) {
     chapter: meta.chapter,
     slug: slugify(meta.chapter),
     count: Number.isFinite(meta.count) ? meta.count : items.length,
-    source: null,
-    captured_at: null,
-    screenshot_count: null,
-    url: null,
-    exam_name: null,
-    raw_meta: null,
   };
 
   const questionItems = [];
-  const texts = [];
-  const choices = [];
-  const explanations = [];
-  const allQuestionIds = [];
 
   for (const item of items) {
     const answer = normalizeChoiceKey(item.answer);
@@ -319,18 +305,34 @@ for (const file of files) {
 
     const questionId = idByIndex.get(item.index) ?? `${chapId}-${String(item.index).padStart(4, '0')}`;
     const analysisMeta = questionAnalysisMeta(item);
-    allQuestionIds.push(questionId);
+
+    const enQuestion = String(item.question ?? '').trim();
+    const zhQuestion = String(item['zh-question'] ?? '').trim();
+    const stem = { en: enQuestion };
+    if (zhQuestion) stem.zh = zhQuestion;
+
+    const choices = [];
+    choiceOrder.forEach((key, sortOrder) => {
+      const enText = item.choices?.[key] ?? item.choices?.[key.toLowerCase()] ?? '';
+      if (!enText) return;
+      const zhText = item['zh-choices']?.[key] ?? item['zh-choices']?.[key.toLowerCase()] ?? '';
+      const choice = { key: key.toLowerCase(), en: enText, sortOrder, isCorrect: key === answer };
+      if (zhText) choice.zh = zhText;
+      choices.push(choice);
+    });
+
+    const explanation = {};
+    if (!isErrorHtml(item.explanation)) explanation.en = item.explanation;
+    if (!isErrorHtml(item['zh-explanation'])) explanation.zh = item['zh-explanation'];
 
     questionItems.push({
       id: questionId,
       chapter_id: chapId,
       index: item.index,
-      question: item.question,
       correct_answer: answer,
-      source_question: item.question,
-      source_choices: item.choices ?? null,
-      source_correct_answer: answer,
-      source_explanation_html: isErrorHtml(item.explanation) ? null : item.explanation,
+      stem,
+      choices,
+      explanation: Object.keys(explanation).length ? explanation : null,
       topic:            typeof item.topic === 'string' && item.topic.trim() ? item.topic.trim() : null,
       micro_concept:    analysisMeta.micro_concept,
       trap_type:        analysisMeta.trap_type,
@@ -341,78 +343,24 @@ for (const file of files) {
       raw: item,
       updated_at: new Date().toISOString(),
     });
-
-    const enQuestion = String(item.question ?? '').trim();
-    const zhQuestion = String(item['zh-question'] ?? '').trim();
-    if (enQuestion) texts.push({ question_id: questionId, language: 'en', source: 'enriched', question_stem: enQuestion, raw: null });
-    if (zhQuestion) texts.push({ question_id: questionId, language: 'zh', source: 'enriched', question_stem: zhQuestion, raw: null });
-
-    choiceOrder.forEach((key, sortOrder) => {
-      const enText = item.choices?.[key] ?? item.choices?.[key.toLowerCase()] ?? '';
-      if (enText) {
-        choices.push({ question_id: questionId, language: 'en', source: 'enriched', choice_key: key.toLowerCase(), choice: enText, sort_order: sortOrder, is_correct: key === answer, raw: null });
-      }
-      const zhText = item['zh-choices']?.[key] ?? item['zh-choices']?.[key.toLowerCase()] ?? '';
-      if (zhText) {
-        choices.push({ question_id: questionId, language: 'zh', source: 'enriched', choice_key: key.toLowerCase(), choice: zhText, sort_order: sortOrder, is_correct: key === answer, raw: null });
-      }
-    });
-
-    if (!isErrorHtml(item.explanation)) {
-      explanations.push({
-        question_id: questionId,
-        language: 'en',
-        source: 'enriched',
-        explanation_text: null,
-        explanation_html: item.explanation,
-        mime_type: 'text/html',
-        sort_order: 0,
-        raw: null,
-      });
-    }
-
-    if (!isErrorHtml(item['zh-explanation'])) {
-      explanations.push({
-        question_id: questionId,
-        language: 'zh',
-        source: 'enriched',
-        explanation_text: null,
-        explanation_html: item['zh-explanation'],
-        mime_type: 'text/html',
-        sort_order: 0,
-        raw: null,
-      });
-    }
   }
 
   try {
     await upsert('subjects', [subject], 'id');
     await upsert('chapters', [chapter], 'id');
     await upsert('question_items', questionItems, 'id');
-
-    // Delete stale child rows before re-inserting so there are no orphan records
-    await deleteByQuestionIds('question_texts', allQuestionIds);
-    await deleteByQuestionIds('question_choices', allQuestionIds);
-    await deleteByQuestionIds('question_explanations', allQuestionIds);
-
-    await upsert('question_texts',        texts,        'question_id,language,source');
-    await upsert('question_choices',      choices,      'question_id,language,choice_key');
-    await upsert('question_explanations', explanations, 'question_id,language,source,sort_order');
   } catch (err) {
     console.error(`  Failed importing ${relativeFile}:`, err.message);
     process.exit(1);
   }
 
-  totalQuestions    += questionItems.length;
-  totalTexts        += texts.length;
-  totalChoices      += choices.length;
-  totalExplanations += explanations.length;
+  totalQuestions += questionItems.length;
   const tag = dryRun ? '[dry-run] ' : '';
-  console.log(`  ↳ ${tag}questions:${questionItems.length}  texts:${texts.length}  choices:${choices.length}  explanations:${explanations.length}`);
+  console.log(`  ↳ ${tag}questions:${questionItems.length}`);
 }
 
 const verb = dryRun ? 'Validated' : 'Imported';
 console.log('─'.repeat(60));
-console.log(`${verb} ${totalQuestions} questions, ${totalTexts} texts, ${totalChoices} choices, ${totalExplanations} explanations from ${files.length} files.`);
+console.log(`${verb} ${totalQuestions} questions from ${files.length} files.`);
 
 if (pool) await pool.end();
