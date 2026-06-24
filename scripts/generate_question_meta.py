@@ -37,10 +37,10 @@ META_PROMPT = load_prompt("meta_analysis")
 
 def _load_env_file() -> None:
     script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(script_dir)
     candidates = [
-        os.path.join(script_dir, ".env"),
-        os.path.join(script_dir, "..", "passbar", ".env.local"),
-        os.path.join(os.getcwd(), "passbar", ".env.local"),
+        os.path.join(project_root, ".env.tools.local"),
+        os.path.join(project_root, ".env.local"),
     ]
     seen: set[str] = set()
     for env_path in candidates:
@@ -212,7 +212,7 @@ def next_api_key() -> str:
     if not GEMINI_API_KEYS:
         raise RuntimeError(
             "No GEMINI_API_KEY_1 ~ GEMINI_API_KEY_N or GEMINI_API_KEY found. "
-            "Add GEMINI_API_KEY_1=your_key_here to passbar/.env.local, or use --provider gpt/codex-cli."
+            "Add GEMINI_API_KEY_1=your_key_here to .env.tools.local, or use --provider gpt/codex-cli."
         )
     key = GEMINI_API_KEYS[key_index % len(GEMINI_API_KEYS)]
     key_index += 1

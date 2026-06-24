@@ -4,8 +4,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/AuthProvider';
 import { useI18n } from '@/lib/i18n';
-import { getSubjects } from '@/lib/question-bank';
-import { getQuestionsByChapterIds } from '@/lib/question-bank';
+import { getSubjects, getAllQuestionIdsByChapter } from '@/lib/question-bank';
 import { emptyQuestionStatusCounts, getAllUserProgress, getQuestionStatusCounts, QuestionStatusCounts } from '@/lib/question-progress';
 import { createPracticeSessionRecord } from '@/lib/practice-sessions';
 import { Subject, TestSession } from '@/lib/types';
@@ -13,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { GraduationCap, FileText, Clock, BookOpen, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { selectSimExamQuestions } from '@/lib/sim-exam-sampling.mjs';
 
 export default function SimExamPage() {
   const router = useRouter();
@@ -47,23 +47,23 @@ export default function SimExamPage() {
     const SIM_EXAM_SECONDS = 3 * 60 * 60;
 
     const allChapterIds = subjects.flatMap(s => s.chapters.map(c => c.id));
-    const allQuestions = await getQuestionsByChapterIds(allChapterIds, 99999);
-
-    const bySubject = new Map<string, typeof allQuestions>();
-    for (const q of allQuestions) {
-      if (!bySubject.has(q.subject)) bySubject.set(q.subject, []);
-      bySubject.get(q.subject)!.push(q);
+    const chapterToSubject = new Map<string, string>();
+    for (const s of subjects) {
+      for (const c of s.chapters) chapterToSubject.set(c.id, s.name);
     }
 
-    const totalPool = allQuestions.length;
-    const selected: typeof allQuestions = [];
-    for (const [, qs] of bySubject.entries()) {
-      const quota = Math.max(1, Math.round((qs.length / totalPool) * SIM_EXAM_COUNT));
-      const shuffled = [...qs].sort(() => 0.5 - Math.random());
-      selected.push(...shuffled.slice(0, quota));
+    // Lightweight id-only fetch (no question content) for sampling.
+    const idsByChapter = await getAllQuestionIdsByChapter();
+    const bySubject = new Map<string, string[]>();
+    for (const chapterId of allChapterIds) {
+      const subjectName = chapterToSubject.get(chapterId);
+      if (!subjectName) continue;
+      const ids = idsByChapter[chapterId] ?? [];
+      if (!bySubject.has(subjectName)) bySubject.set(subjectName, []);
+      bySubject.get(subjectName)!.push(...ids);
     }
 
-    const shuffledAll = selected.sort(() => 0.5 - Math.random()).slice(0, SIM_EXAM_COUNT);
+    const shuffledAll = selectSimExamQuestions(bySubject, SIM_EXAM_COUNT);
     const selectedIds = shuffledAll.map(q => q.id);
 
     if (selectedIds.length === 0) {

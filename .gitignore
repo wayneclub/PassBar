@@ -21,6 +21,7 @@ next-env.d.ts
 .env
 .env.*
 !.env.example
+!.env.tools.example
 scripts/.venv/
 *.pem
 .DS_Store

@@ -13,6 +13,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "test:unit": "node --test src/lib/*.test.mjs",
     "gemini:check-question": "node scripts/check_gemini_question_analysis.mjs"
   },
   "dependencies": {

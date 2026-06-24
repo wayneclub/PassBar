@@ -4,7 +4,7 @@ import React, { Suspense, useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
   Check, X, Clock, RefreshCw, Search,
-  MoreHorizontal, UserCheck, UserX, RotateCcw,
+  MoreHorizontal, UserCheck, UserX, RotateCcw, History,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -48,6 +48,101 @@ function StatusBadge({ status, t }: { status: ProfileStatus; t: ReturnType<typeo
   );
 }
 
+type LoginHistoryEntry = {
+  id: string;
+  createdAt: string;
+  lastUsedAt: string | null;
+  revokedAt: string | null;
+  ip: string | null;
+  userAgent: string | null;
+};
+type LoginHistoryResponse = { sessions: LoginHistoryEntry[]; loginCount: number };
+
+function LoginHistoryDialog({
+  userId, userLabel, onClose, t, language,
+}: {
+  userId: string;
+  userLabel: string;
+  onClose: () => void;
+  t: ReturnType<typeof useI18n>['t'];
+  language: InterfaceLanguage;
+}) {
+  const [data, setData] = useState<LoginHistoryResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setError(null);
+    api.get<LoginHistoryResponse>(`/admin/users/${userId}/login-history`)
+      .then((res) => { if (!cancelled) setData(res); })
+      .catch(() => { if (!cancelled) setError(t('admin.loginHistoryError')); })
+      .finally(() => { if (!cancelled) setLoading(false); });
+    return () => { cancelled = true; };
+  }, [userId, t]);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm animate-in fade-in duration-200"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-2xl shadow-2xl w-[28rem] max-h-[80vh] flex flex-col animate-in zoom-in-95 duration-200 overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="bg-slate-50 border-b px-6 py-4">
+          <h2 className="text-base font-semibold">{t('admin.loginHistoryTitle')}</h2>
+          <p className="text-sm text-muted-foreground mt-0.5">{userLabel}</p>
+        </div>
+        <div className="overflow-y-auto px-6 py-4 space-y-3">
+          {loading ? (
+            <div className="flex justify-center py-10">
+              <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+            </div>
+          ) : error ? (
+            <p className="text-sm text-destructive">{error}</p>
+          ) : !data || data.sessions.length === 0 ? (
+            <p className="text-sm text-muted-foreground">{t('admin.noLoginHistory')}</p>
+          ) : (
+            <>
+              <p className="text-xs text-muted-foreground">
+                {t('admin.loginCount')}: <span className="font-semibold text-foreground">{data.loginCount}</span>
+              </p>
+              <ul className="space-y-2">
+                {data.sessions.map((s) => (
+                  <li key={s.id} className="rounded-lg border border-slate-200 px-3 py-2.5 text-sm">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-medium text-foreground">{formatDate(s.createdAt, language, t)}</span>
+                      <Badge
+                        variant="outline"
+                        className={s.revokedAt
+                          ? 'border-slate-200 text-slate-500'
+                          : 'border-green-200 bg-green-50 text-green-700'}
+                      >
+                        {s.revokedAt ? t('admin.status_loggedOut') : t('admin.status_active')}
+                      </Badge>
+                    </div>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {t('admin.ipAddress')}: {s.ip ?? '—'}
+                    </p>
+                    <p className="mt-0.5 truncate text-xs text-muted-foreground" title={s.userAgent ?? undefined}>
+                      {t('admin.device')}: {s.userAgent ?? '—'}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+        <div className="border-t px-6 py-3 flex justify-end">
+          <Button variant="outline" size="sm" onClick={onClose}>{t('admin.close')}</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function formatDate(v: string | null, language: InterfaceLanguage, t: ReturnType<typeof useI18n>['t']) {
   if (!v) return '—';
   const d = new Date(v);
@@ -69,6 +164,7 @@ function AdminUsersContent() {
   const [updating, setUpdating] = useState<string | null>(null);
   const [filter, setFilter] = useState<FilterType>(initialFilter);
   const [search, setSearch] = useState('');
+  const [historyTarget, setHistoryTarget] = useState<UserRow | null>(null);
 
   const loadUsers = useCallback(async () => {
     setLoading(true);
@@ -324,6 +420,14 @@ function AdminUsersContent() {
                                 </DropdownMenuItem>
                               </>
                             )}
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem
+                              onClick={() => setHistoryTarget(user)}
+                              className="gap-2.5 text-muted-foreground"
+                            >
+                              <History className="h-3.5 w-3.5" />
+                              {t('admin.viewLoginHistory')}
+                            </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </div>
@@ -340,6 +444,16 @@ function AdminUsersContent() {
         <p className="text-right text-xs text-muted-foreground">
           {t('admin.showingUsers', { shown: filtered.length, total: users.length })}
         </p>
+      )}
+
+      {historyTarget && (
+        <LoginHistoryDialog
+          userId={historyTarget.id}
+          userLabel={historyTarget.full_name ?? historyTarget.email ?? historyTarget.id}
+          onClose={() => setHistoryTarget(null)}
+          t={t}
+          language={language}
+        />
       )}
     </div>
   );

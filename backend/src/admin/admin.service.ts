@@ -6,7 +6,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { desc, eq, gte } from 'drizzle-orm';
 import { DB, type Database } from '../db/db.provider';
-import { practiceSessions, profiles } from '../db/schema';
+import { loginActivity, practiceSessions, profiles } from '../db/schema';
 
 @Injectable()
 export class AdminService {
@@ -26,8 +26,14 @@ export class AdminService {
         status: profiles.status,
         lastSeenAt: profiles.lastSeenAt,
         createdAt: profiles.createdAt,
+        // From auth-service's sessions table, cached in login_activity (see auth.service.ts
+        // syncLoginActivity) — lastSeenAt above is "last request", this is "last real login".
+        loginCount: loginActivity.loginCount,
+        lastLoginAt: loginActivity.lastLoginAt,
+        lastLogoutAt: loginActivity.lastLogoutAt,
       })
       .from(profiles)
+      .leftJoin(loginActivity, eq(loginActivity.userId, profiles.id))
       .orderBy(desc(profiles.createdAt));
   }
 
@@ -72,6 +78,41 @@ export class AdminService {
         `auth-service rejected membership status update (${res.status})`,
       );
     }
+  }
+
+  /** Live login history for one user, straight from auth-service's sessions table — unlike
+   * `login_activity` (a lazily-refreshed cache of just the latest entry), this is the full
+   * recent list and always current. Used by the admin "view login history" action. */
+  async getLoginHistory(userId: string, limit = 20) {
+    const authServiceUrl = this.config.getOrThrow<string>('AUTH_SERVICE_URL');
+    const serviceSecret = this.config.getOrThrow<string>('SERVICE_SECRET');
+    const safeLimit = Number.isFinite(limit)
+      ? Math.min(Math.max(Math.trunc(limit), 1), 100)
+      : 20;
+    const url = new URL('/auth/internal/sessions', authServiceUrl);
+    url.searchParams.set('userId', userId);
+    url.searchParams.set('limit', String(safeLimit));
+
+    const res = await fetch(
+      url,
+      { headers: { Authorization: `Bearer ${serviceSecret}` } },
+    );
+    if (!res.ok) {
+      throw new InternalServerErrorException(
+        `auth-service rejected login history lookup (${res.status})`,
+      );
+    }
+    return res.json() as Promise<{
+      sessions: Array<{
+        id: string;
+        createdAt: string;
+        lastUsedAt: string | null;
+        revokedAt: string | null;
+        ip: string | null;
+        userAgent: string | null;
+      }>;
+      loginCount: number;
+    }>;
   }
 
   async getPendingUsers(limit: number) {

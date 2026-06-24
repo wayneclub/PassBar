@@ -4,7 +4,7 @@ Next.js frontend for PassBar.
 
 ```bash
 npm install
-cp .env.example .env.local
+cp ../.env.example ../.env.local
 npm run dev
 ```
 

@@ -361,7 +361,7 @@ def call_cursor_cli(prompt: str, image_paths: list[str] | str | None = None, mod
             raise RuntimeError(
                 "Cursor CLI authentication required for headless/script mode. "
                 "Set CURSOR_API_KEY (Cursor Dashboard → Integrations) in your environment, "
-                "or add it to passbar/.env.local / scripts/.env."
+                "or add it to root .env.tools.local."
             )
         raise RuntimeError(
             "Cursor CLI failed "

@@ -553,7 +553,7 @@ function KanbanCard({
         {todo.type === 'review' && todo.chapter_ids ? (
           <Link
             href={`/create?chapters=${encodeURIComponent(todo.chapter_ids)}`}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e: React.MouseEvent) => e.stopPropagation()}
             className={cn(
               'text-sm font-medium leading-snug line-clamp-2 hover:text-primary transition-colors',
               todo.status === 'completed' ? 'line-through text-muted-foreground' : 'text-slate-800',

@@ -1,43 +1,153 @@
 # PassBar
 
-PassBar is a bar exam practice app for building custom MBE-style question sets, taking tutor or timed sessions, and reviewing explanations.
+PassBar is a full-stack bar exam study app built around an MBE-style question
+bank. It helps learners create focused practice sessions, simulate timed exams,
+review missed questions, and turn performance data into a daily study plan.
 
-## Stack
+## Features
 
-- Next.js frontend in `frontend/`
-- NestJS backend in `backend/` (business logic + Postgres via Drizzle)
-- `auth-service` (separate repo) — Google OAuth + JWT issuance, shared by PassBar and future products
-- Genkit/Google GenAI for explanation generation helpers
-- Local JSON exports in `questions/` for import and backup
+- Custom practice sets by subject, chapter, question status, and session mode
+- Timed simulated exams and tutor-mode practice
+- English and Chinese question content with detailed explanations
+- Review queues, bookmarks, answer history, and spaced repetition
+- Performance breakdowns by subject, concept, and recurring mistake pattern
+- Daily tasks, study planning, calendar integration, and progress tracking
+- AI-assisted question analysis and explanation tooling
+- User, question-report, and feedback administration
 
-## Local Setup
+## Tech Stack
 
-```bash
-cd backend && npm install && cp .env.example .env && npm run start:dev
-cd frontend && npm install && cp .env.example .env.local && npm run dev
+- **Frontend:** Next.js, React, TypeScript, Tailwind CSS
+- **Backend:** NestJS, PostgreSQL, Drizzle ORM
+- **Authentication:** external `auth-service` using Google OAuth and JWT
+- **AI tooling:** Genkit, Google GenAI, OpenAI, and optional CLI providers
+- **Shared code:** npm workspace package in `packages/shared`
+
+## Repository Structure
+
+```text
+PassBar/
+├── frontend/        Next.js web application
+├── backend/         NestJS API, database schema, migrations, and import tools
+├── packages/shared/ Shared workspace code
+├── questions/       Source question files
+├── out/             Generated enriched question data
+├── scripts/         Question-processing and AI batch tools
+├── infra/           Infrastructure configuration
+└── legacy/          Archived code kept for reference
 ```
 
-Open `http://localhost:3000`. The frontend talks to the backend at `NEXT_PUBLIC_API_URL` (default `http://localhost:4000`) and to `auth-service` at `NEXT_PUBLIC_AUTH_SERVICE_URL` (default `http://localhost:4010`) for login.
+## Requirements
 
-Do not commit real `.env` files or service role keys.
+- Node.js 24 or newer
+- npm
+- PostgreSQL
+- A running PassBar `auth-service` instance for sign-in
+
+## Local Development
+
+Install all workspace dependencies from the repository root:
+
+```bash
+npm install
+```
+
+Create the shared local environment file:
+
+```bash
+cp .env.example .env.local
+```
+
+At minimum, configure `DATABASE_URL`, `JWT_SECRET`, and `SERVICE_SECRET`.
+`JWT_SECRET` and `SERVICE_SECRET` must match the values used by `auth-service`.
+The example configuration expects:
+
+- Frontend: `http://localhost:3000`
+- Backend: `http://localhost:4000`
+- Auth service: `http://localhost:4010`
+
+Apply the database migrations:
+
+```bash
+npm --workspace backend run db:migrate
+```
+
+Start the backend and frontend in separate terminals:
+
+```bash
+npm --workspace backend run start:dev
+```
+
+```bash
+npm --workspace frontend run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+## Environment Files
+
+Application settings are shared through the root `.env.local` file. Browser
+variables use the `NEXT_PUBLIC_` prefix and must never contain secrets.
+
+Batch and AI scripts use a separate file:
+
+```bash
+cp .env.tools.example .env.tools.local
+```
+
+Do not create environment files inside `backend/`, `frontend/`, or `scripts/`.
+Never commit credentials, API keys, JWT secrets, or database passwords.
 
 ## Question Bank Import
 
-Imports the local JSON question files in `questions/` directly into Postgres:
+The importer reads canonical `*_enriched.json` files from `out/` by default and
+writes them directly to PostgreSQL.
+
+Preview an import without changing the database:
 
 ```bash
 cd backend
-DATABASE_URL=postgresql://... npm run import:questions
+DRY_RUN=true npm run import:questions
 ```
 
-## Git Hygiene
+Run the import:
 
-Large generated artifacts are ignored:
+```bash
+cd backend
+npm run import:questions
+```
 
-- `frontend/node_modules/`, `backend/node_modules/`
-- `frontend/.next/`, `backend/dist/`
-- `questions/**/*.zip`
-- `questions/**/*.png`
-- `.env*`
+Use `QUESTIONS_OUT_DIR` in `.env.local` to read from another directory. A
+specific subject or chapter can also be selected:
 
-The JSON question exports remain trackable because they are the source data for `import:questions`.
+```bash
+cd backend
+npm run import:questions -- --subject "Contracts"
+npm run import:questions -- --chapter "Offer and Acceptance"
+```
+
+The enriched JSON files are the source of truth for imported question content.
+
+## Useful Commands
+
+```bash
+# Frontend
+npm --workspace frontend run typecheck
+npm --workspace frontend run lint
+npm --workspace frontend run build
+
+# Backend
+npm --workspace backend run test
+npm --workspace backend run test:e2e
+npm --workspace backend run build
+
+# Database
+npm --workspace backend run db:generate
+npm --workspace backend run db:migrate
+```
+
+## Generated Files
+
+Dependencies, build output, local environment files, question ZIP archives, and
+generated question images are excluded from Git. JSON question data remains
+trackable because it is used by the import pipeline.

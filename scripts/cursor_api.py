@@ -87,7 +87,7 @@ def check_cursor_api_ready() -> None:
     if not os.environ.get("CURSOR_API_KEY", "").strip():
         raise RuntimeError(
             "CURSOR_API_KEY is required for --provider cursor-api. "
-            "Set it in passbar/.env.local (Cursor Dashboard → Integrations)."
+            "Set it in root .env.tools.local (Cursor Dashboard → Integrations)."
         )
 
 

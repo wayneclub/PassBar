@@ -85,17 +85,18 @@ GEMINI_REST_HTML_MODEL = GEMINI_MODEL  # model for Gemini REST API fallback (mus
 LAST_AI_USAGE: dict | None = None
 
 # 多組 API Key 輪替（round-robin）
-# 從環境變數讀取，支援 .env 檔案（見 scripts/.env.example）
+# 從環境變數讀取，支援根目錄 .env.tools.local / .env.local
 def _load_env_file() -> None:
     """讀取專案設定檔，補充尚未設定的環境變數。
 
-    單一來源：passbar/.env.local（Next.js + scripts 共用）。
-    fallback：scripts/.env（僅向下相容，新設定請加在 passbar/.env.local）。
+    工具設定：專案根目錄 .env.tools.local。
+    共用設定：專案根目錄 .env.local。
     """
     script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(script_dir)
     candidates = [
-        os.path.join(script_dir, "..", "passbar", ".env.local"),
-        os.path.join(script_dir, ".env"),
+        os.path.join(project_root, ".env.tools.local"),
+        os.path.join(project_root, ".env.local"),
     ]
     seen: set[str] = set()
     for env_path in candidates:
@@ -1420,11 +1421,11 @@ def main():
     if not args.dry_run and not no_ai:
         if AI_PROVIDER == "gpt" and not os.environ.get("OPENAI_API_KEY"):
             print("ERROR: No OPENAI_API_KEY found in environment or .env file.")
-            print("  Add OPENAI_API_KEY=your_key_here to passbar/.env.local")
+            print("  Add OPENAI_API_KEY=your_key_here to .env.tools.local")
             sys.exit(1)
         if AI_PROVIDER == "gemini" and not _GEMINI_API_KEYS:
             print("ERROR: No GEMINI_API_KEY_1 ~ GEMINI_API_KEY_N found in environment or .env file.")
-            print("  Add GEMINI_API_KEY_1=your_key_here to passbar/.env.local")
+            print("  Add GEMINI_API_KEY_1=your_key_here to .env.tools.local")
             sys.exit(1)
         if AI_PROVIDER == "cursor-api":
             try:

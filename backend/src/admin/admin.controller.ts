@@ -28,6 +28,11 @@ export class AdminController {
     return this.adminService.updateUserStatus(id, dto.status);
   }
 
+  @Get('users/:id/login-history')
+  getLoginHistory(@Param('id') id: string, @Query('limit') limit?: string) {
+    return this.adminService.getLoginHistory(id, Number(limit) || 20);
+  }
+
   @Get('dashboard-summary')
   getDashboardSummary(@Query('sinceDays') sinceDays?: string) {
     return this.adminService.getDashboardSummary(Number(sinceDays) || 7);

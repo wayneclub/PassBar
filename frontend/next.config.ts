@@ -1,4 +1,13 @@
 import type {NextConfig} from 'next';
+import dotenv from 'dotenv';
+import {existsSync} from 'node:fs';
+import {resolve} from 'node:path';
+
+// Local app settings live at the repository root.
+const rootEnvFile = resolve(process.cwd(), '../.env.local');
+if (existsSync(rootEnvFile)) {
+  dotenv.config({path: rootEnvFile, override: true, quiet: true});
+}
 
 const nextConfig: NextConfig = {
   output: 'standalone',
