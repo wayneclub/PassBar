@@ -83,7 +83,7 @@ import {
   type ChapterAttemptStats,
 } from '@/lib/smart-planner';
 import { saveUserStudySettings } from '@/lib/user-settings';
-import { saveStudySettings, defaultStudySettings, normalizeStudySettings, defaultDashboardWidgets, type DashboardWidgetKey, type DashboardWidgetVisibility, type StudyPaceMode, type StudySubjectMode } from '@/lib/study-settings';
+import { saveStudySettings, getStudySettings, normalizeStudySettings, defaultDashboardWidgets, type DashboardWidgetKey, type DashboardWidgetVisibility, type StudyPaceMode, type StudySubjectMode } from '@/lib/study-settings';
 import { SmartStudyCalendar } from '@/components/SmartStudyCalendar';
 
 // PracticeAnswerChapterRow is imported from smart-planner
@@ -1790,7 +1790,7 @@ export default function DashboardPage() {
     setTourOpen(open);
     if (open || !user?.id) return;
     const updatedSettings = normalizeStudySettings({
-      ...(profile?.study_settings ?? defaultStudySettings),
+      ...(profile?.study_settings ?? getStudySettings()),
       hasSeenDashboardTour: true,
     });
     saveStudySettings(updatedSettings);
@@ -1817,7 +1817,7 @@ export default function DashboardPage() {
     const next = { ...widgetVisibility, [key]: !widgetVisibility[key] };
     setWidgetVisibility(next);
     const updatedSettings = normalizeStudySettings({
-      ...(profile?.study_settings ?? defaultStudySettings),
+      ...(profile?.study_settings ?? getStudySettings()),
       dashboardWidgets: next,
     });
     saveStudySettings(updatedSettings);
@@ -2025,7 +2025,7 @@ export default function DashboardPage() {
     if (!user || !profile) return;
     setSavingWeights(true);
     const updatedSettings = {
-      ...(profile.study_settings ?? defaultStudySettings),
+      ...(profile.study_settings ?? getStudySettings()),
       studyPlan: {
         ...(profile.study_settings?.studyPlan ?? {}),
         examState: next.examState,

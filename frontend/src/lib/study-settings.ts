@@ -82,6 +82,8 @@ export type NotificationSettings = {
   dailyReminder: boolean;
   /** Time of day (HH:mm, 24h, local time) to send the daily reminder. */
   dailyReminderTime: string;
+  /** IANA timezone (e.g. "Asia/Taipei") the reminder time above is local to. */
+  timezone?: string;
   /** Exam countdown: periodic reminder of days remaining until exam_date. */
   examCountdown: boolean;
 };
@@ -137,6 +139,15 @@ export const defaultStudySettings: StudySettings = {
 };
 
 const storageKey = 'passbar_study_settings';
+
+function getBrowserTimezone(): string | undefined {
+  if (typeof Intl === 'undefined') return undefined;
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+  } catch {
+    return undefined;
+  }
+}
 
 export function normalizeStudySettings(settings: Partial<StudySettings> | null | undefined): StudySettings {
   const raw = settings?.display as Partial<DisplayOptions> | undefined;
@@ -200,6 +211,9 @@ export function normalizeStudySettings(settings: Partial<StudySettings> | null |
     dailyReminderTime: typeof rawNotifications?.dailyReminderTime === 'string' && /^\d{2}:\d{2}$/.test(rawNotifications.dailyReminderTime)
       ? rawNotifications.dailyReminderTime
       : defaultNotificationSettings.dailyReminderTime,
+    timezone: typeof rawNotifications?.timezone === 'string' && rawNotifications.timezone.length > 0
+      ? rawNotifications.timezone
+      : getBrowserTimezone(),
     examCountdown: rawNotifications?.examCountdown ?? defaultNotificationSettings.examCountdown,
   };
 

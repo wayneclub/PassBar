@@ -13,9 +13,26 @@ type StudySettings = {
     smartReview?: boolean;
     dailyReminder?: boolean;
     dailyReminderTime?: string;
+    timezone?: string;
     examCountdown?: boolean;
   };
 };
+
+/** Returns the current hour (0-23) local to the given IANA timezone, falling back to UTC. */
+function currentHourInTimezone(timezone: string | undefined): number {
+  if (!timezone) return new Date().getUTCHours();
+  try {
+    return Number(
+      new Intl.DateTimeFormat('en-US', {
+        timeZone: timezone,
+        hour: 'numeric',
+        hourCycle: 'h23',
+      }).format(new Date()),
+    );
+  } catch {
+    return new Date().getUTCHours();
+  }
+}
 
 function daysUntil(dateStr: string): number {
   const today = new Date();
@@ -88,7 +105,6 @@ export class PushCronService {
       .from(pushSubscriptions)
       .leftJoin(profiles, eq(profiles.id, pushSubscriptions.userId));
 
-    const currentUtcHour = new Date().getUTCHours();
     let sent = 0;
     let removed = 0;
 
@@ -96,6 +112,8 @@ export class PushCronService {
       const settings = (sub.studySettings ?? {}) as StudySettings;
       const notifications = settings.notifications;
       if (!notifications?.enabled) continue;
+
+      const currentLocalHour = currentHourInTimezone(notifications.timezone);
 
       const messages: {
         title: string;
@@ -120,7 +138,7 @@ export class PushCronService {
       const reminderHour = Number(
         (notifications.dailyReminderTime ?? '20:00').split(':')[0],
       );
-      if (notifications.dailyReminder && reminderHour === currentUtcHour) {
+      if (notifications.dailyReminder && reminderHour === currentLocalHour) {
         messages.push({
           title: 'PassBar',
           body: "It's time for your daily study session!",
@@ -132,7 +150,7 @@ export class PushCronService {
       if (
         notifications.examCountdown &&
         sub.examDate &&
-        reminderHour === currentUtcHour
+        reminderHour === currentLocalHour
       ) {
         const remaining = daysUntil(sub.examDate);
         if (remaining >= 0) {
