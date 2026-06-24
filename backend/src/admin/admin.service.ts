@@ -57,7 +57,7 @@ export class AdminService {
     const serviceSecret = this.config.getOrThrow<string>('SERVICE_SECRET');
 
     const res = await fetch(
-      `${authServiceUrl}/internal/memberships/status`,
+      `${authServiceUrl}/auth/internal/memberships/status`,
       {
         method: 'PATCH',
         headers: {
