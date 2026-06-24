@@ -8,6 +8,34 @@
       "when": 1782188314565,
       "tag": "0000_baseline",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1782291788133,
+      "tag": "0001_shiny_quasimodo",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1782292041886,
+      "tag": "0002_tough_tenebrous",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1782294331000,
+      "tag": "0003_question_content_jsonb",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1782294332000,
+      "tag": "0004_login_activity_and_drop_auth_events",
+      "breakpoints": true
     }
   ]
 }
