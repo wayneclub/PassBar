@@ -18,7 +18,22 @@ function errorMessageFrom(data: unknown, fallback: string) {
   return fallback;
 }
 
-async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
+let refreshPromise: Promise<boolean> | null = null;
+
+/** access_token cookies are short-lived (15min); refresh_token (30d) lets auth-service mint a new one. */
+function refreshAccessToken(): Promise<boolean> {
+  if (!refreshPromise) {
+    refreshPromise = fetch(authServiceUrl('/auth/refresh'), { method: 'POST', credentials: 'include' })
+      .then((res) => res.ok)
+      .catch(() => false)
+      .finally(() => {
+        refreshPromise = null;
+      });
+  }
+  return refreshPromise;
+}
+
+async function request<T>(path: string, options: RequestInit = {}, retried = false): Promise<T> {
   const res = await fetch(`${API_URL}${path}`, {
     ...options,
     credentials: 'include',
@@ -27,6 +42,10 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
       ...(options.headers ?? {}),
     },
   });
+
+  if (res.status === 401 && !retried && (await refreshAccessToken())) {
+    return request<T>(path, options, true);
+  }
 
   if (res.status === 204) return undefined as T;
 
