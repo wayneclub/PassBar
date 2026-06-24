@@ -1,5 +1,6 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { eq } from 'drizzle-orm';
 import webpush from 'web-push';
 import { DB, type Database } from '../db/db.provider';
@@ -62,9 +63,10 @@ export class PushCronService {
 
   /**
    * Sends push notifications for due smart reviews, daily reminders, and exam countdowns.
-   * Intended to be invoked hourly by an external cron trigger (e.g. cron-job.org, Vercel Cron)
-   * hitting POST /internal/cron/notifications with the shared CRON_SECRET header.
+   * Runs hourly in-process via @Cron since the backend is a long-running container.
+   * POST /internal/cron/notifications remains available for manual triggering.
    */
+  @Cron(CronExpression.EVERY_HOUR)
   async runHourlyNotifications() {
     if (!this.ensureVapid()) {
       this.logger.warn(
