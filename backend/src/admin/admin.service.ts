@@ -1,11 +1,19 @@
-import { Inject, Injectable } from '@nestjs/common';
+import {
+  Inject,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { desc, eq, gte } from 'drizzle-orm';
 import { DB, type Database } from '../db/db.provider';
 import { practiceSessions, profiles } from '../db/schema';
 
 @Injectable()
 export class AdminService {
-  constructor(@Inject(DB) private readonly db: Database) {}
+  constructor(
+    @Inject(DB) private readonly db: Database,
+    private readonly config: ConfigService,
+  ) {}
 
   async listUsers() {
     return this.db
@@ -27,12 +35,43 @@ export class AdminService {
     userId: string,
     status: 'pending' | 'approved' | 'rejected',
   ) {
+    // auth-service owns the real membership status — PassBar's `profiles.status` is only a
+    // mirror that every login re-syncs from the auth-service JWT claims (see auth.service.ts
+    // ensureProfile). Updating the mirror without also updating auth-service means the next
+    // login overwrites the approval straight back to 'pending'.
+    await this.setAuthServiceMembershipStatus(userId, status);
+
     const [updated] = await this.db
       .update(profiles)
       .set({ status, updatedAt: new Date() })
       .where(eq(profiles.id, userId))
       .returning({ id: profiles.id });
     return Boolean(updated);
+  }
+
+  private async setAuthServiceMembershipStatus(
+    userId: string,
+    status: 'pending' | 'approved' | 'rejected',
+  ) {
+    const authServiceUrl = this.config.getOrThrow<string>('AUTH_SERVICE_URL');
+    const serviceSecret = this.config.getOrThrow<string>('SERVICE_SECRET');
+
+    const res = await fetch(
+      `${authServiceUrl}/internal/memberships/status`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${serviceSecret}`,
+        },
+        body: JSON.stringify({ userId, product: 'passbar', status }),
+      },
+    );
+    if (!res.ok) {
+      throw new InternalServerErrorException(
+        `auth-service rejected membership status update (${res.status})`,
+      );
+    }
   }
 
   async getPendingUsers(limit: number) {

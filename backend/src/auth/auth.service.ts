@@ -25,6 +25,7 @@ export class AuthService {
   async ensureProfile(
     userId: string,
     email: string | null,
+    name: string | null,
     role: string,
     status: string,
   ) {
@@ -53,6 +54,7 @@ export class AuthService {
           .values({
             id: userId,
             email,
+            fullName: name,
             role,
             status,
             studySettings: {
@@ -81,9 +83,17 @@ export class AuthService {
     // auth-service is the source of truth for role/status (memberships), so every request
     // re-syncs the local mirror instead of trusting whatever was stored at profile creation —
     // otherwise a role change in auth-service (e.g. admin -> member) never reaches PassBar's DB.
+    // fullName only gets backfilled from the Google name when the user hasn't set their own
+    // nickname yet (via PATCH /users/me/display-name) — a user-set nickname always wins and is
+    // never overwritten by a later Google login.
     [profile] = await this.db
       .update(profiles)
-      .set({ role, status, lastSeenAt: new Date() })
+      .set({
+        role,
+        status,
+        lastSeenAt: new Date(),
+        ...(!profile.fullName && name ? { fullName: name } : {}),
+      })
       .where(eq(profiles.id, userId))
       .returning();
     return profile;

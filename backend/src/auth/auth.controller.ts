@@ -14,6 +14,7 @@ export class AuthController {
     return this.authService.ensureProfile(
       user.sub,
       user.email,
+      user.name,
       user.role,
       user.status,
     );

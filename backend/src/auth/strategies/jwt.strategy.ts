@@ -7,6 +7,7 @@ import { Strategy } from 'passport-jwt';
 export type JwtPayload = {
   sub: string;
   email: string | null;
+  name: string | null;
   role: string;
   status: string;
 };
@@ -22,6 +23,7 @@ type AuthServiceJwtPayload = {
   sub: string;
   sid: string;
   email: string | null;
+  name: string | null;
   memberships: AuthServiceMembership[];
 };
 
@@ -56,6 +58,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     return {
       sub: payload.sub,
       email: payload.email,
+      name: payload.name,
       role: ROLE_MAP[membership.role],
       status: membership.status,
     };
