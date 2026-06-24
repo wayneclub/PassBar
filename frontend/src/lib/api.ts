@@ -24,6 +24,9 @@ function deleteLoggedInCookie() {
   if (typeof document === 'undefined') return;
   document.cookie = 'pb_logged_in=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
   document.cookie = 'pb_logged_in=; path=/; domain=.wayneclub.com; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  if (typeof window !== 'undefined' && !window.location.pathname.startsWith('/auth') && !window.location.pathname.startsWith('/privacy')) {
+    window.location.href = `/auth?next=${encodeURIComponent(window.location.pathname)}`;
+  }
 }
 
 /** access_token cookies are short-lived (15min); refresh_token (30d) lets auth-service mint a new one. */
@@ -31,14 +34,16 @@ function refreshAccessToken(): Promise<boolean> {
   if (!refreshPromise) {
     refreshPromise = fetch(authServiceUrl('/auth/refresh'), { method: 'POST', credentials: 'include' })
       .then((res) => {
-        if (!res.ok) {
+        if (res.status === 401 || res.status === 403) {
           deleteLoggedInCookie();
+          return false;
+        }
+        if (!res.ok) {
           return false;
         }
         return true;
       })
       .catch(() => {
-        deleteLoggedInCookie();
         return false;
       })
       .finally(() => {
