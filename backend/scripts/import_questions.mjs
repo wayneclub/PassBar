@@ -200,11 +200,11 @@ function toParam(value) {
   return value;
 }
 
-async function upsert(table, rows, conflictCols) {
+async function upsert(table, rows, conflictCols, { skipUpdate = false } = {}) {
   if (dryRun || rows.length === 0) return;
   const columns = Object.keys(rows[0]);
   const conflictColumns = conflictCols.split(',');
-  const updateColumns = columns.filter((c) => !conflictColumns.includes(c));
+  const updateColumns = skipUpdate ? [] : columns.filter((c) => !conflictColumns.includes(c));
 
   const values = [];
   const valuePlaceholders = rows.map((row) => {
@@ -346,7 +346,7 @@ for (const file of files) {
   }
 
   try {
-    await upsert('subjects', [subject], 'id');
+    await upsert('subjects', [subject], 'id', { skipUpdate: true });
     await upsert('chapters', [chapter], 'id');
     await upsert('question_items', questionItems, 'id');
   } catch (err) {
