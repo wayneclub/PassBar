@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/components/AuthProvider';
-import { api } from '@/lib/api';
+import { api, isSessionInvalid } from '@/lib/api';
 import { useI18n } from '@/lib/i18n';
 import type { AdminUser } from '@/app/admin/users/page';
 import type { QuestionReport } from '@/lib/question-reports';
@@ -137,7 +137,13 @@ export function NotificationBell({
   // subscription, since admin tables are now only reachable via the backend API).
   useEffect(() => {
     load();
-    const interval = setInterval(() => void load(), 60_000);
+    const interval = setInterval(() => {
+      // Skip ticks while backgrounded (avoids the throttled-timer catch-up burst on
+      // resume) and once the session is known dead (avoids hammering it every minute
+      // while the auth redirect is in flight).
+      if (document.hidden || isSessionInvalid()) return;
+      void load();
+    }, 60_000);
     return () => clearInterval(interval);
   }, [load]);
 

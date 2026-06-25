@@ -20,7 +20,15 @@ function errorMessageFrom(data: unknown, fallback: string) {
 
 let refreshPromise: Promise<boolean> | null = null;
 
+/** Set once the refresh token itself is rejected, so pollers can stop hammering a dead session instead of retrying every tick until the redirect navigation lands. */
+let sessionInvalid = false;
+
+export function isSessionInvalid() {
+  return sessionInvalid;
+}
+
 function deleteLoggedInCookie() {
+  sessionInvalid = true;
   if (typeof document === 'undefined') return;
   document.cookie = 'pb_logged_in=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
   document.cookie = 'pb_logged_in=; path=/; domain=.wayneclub.com; expires=Thu, 01 Jan 1970 00:00:00 GMT';
@@ -54,6 +62,10 @@ function refreshAccessToken(): Promise<boolean> {
 }
 
 async function request<T>(path: string, options: RequestInit = {}, retried = false): Promise<T> {
+  if (sessionInvalid) {
+    throw new ApiError(401, 'Session expired');
+  }
+
   const res = await fetch(`${API_URL}${path}`, {
     ...options,
     credentials: 'include',
