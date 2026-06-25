@@ -26,6 +26,7 @@ type FormState = {
   chapterId: string;
   chapterName: string;
   chapterMode: 'practice' | 'review';
+  note: string;
 };
 
 const STATUSES: TodoStatus[] = ['new', 'scheduled', 'in_progress', 'completed'];
@@ -72,6 +73,7 @@ export default function TaskDialog({ todo, open, onClose, onSave, onDelete }: Pr
       chapterId: '',
       chapterName: '',
       chapterMode: 'practice',
+      note: '',
     };
   }
 
@@ -91,6 +93,7 @@ export default function TaskDialog({ todo, open, onClose, onSave, onDelete }: Pr
         chapterId: todo.chapter_id ?? '',
         chapterName: todo.title,
         chapterMode: todo.type === 'review' ? 'review' : 'practice',
+        note: todo.note ?? '',
       });
     } else {
       setForm(defaultForm());
@@ -151,6 +154,7 @@ export default function TaskDialog({ todo, open, onClose, onSave, onDelete }: Pr
           due_date: form.due_date ? new Date(form.due_date + 'T23:59:59').toISOString() : null,
           chapter_id: form.chapterId || null,
           chapter_ids: form.chapterId || null,
+          note: form.note.trim() || null,
           auto_generated: false,
         };
       } else {
@@ -159,6 +163,7 @@ export default function TaskDialog({ todo, open, onClose, onSave, onDelete }: Pr
           status: form.status,
           type: form.type,
           due_date: form.due_date ? new Date(form.due_date + 'T23:59:59').toISOString() : null,
+          note: form.note.trim() || null,
         };
       }
       await onSave(input);
@@ -332,6 +337,16 @@ export default function TaskDialog({ todo, open, onClose, onSave, onDelete }: Pr
               />
             </Field>
           </div>
+
+          <Field label={t('tasks.fieldNote')}>
+            <textarea
+              value={form.note}
+              onChange={(e) => set('note', e.target.value)}
+              placeholder={t('tasks.fieldNotePlaceholder')}
+              rows={3}
+              className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/40 resize-none"
+            />
+          </Field>
         </div>
 
         {/* Footer */}

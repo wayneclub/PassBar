@@ -20,7 +20,7 @@ review missed questions, and turn performance data into a daily study plan.
 - **Frontend:** Next.js, React, TypeScript, Tailwind CSS
 - **Backend:** NestJS, PostgreSQL, Drizzle ORM
 - **Authentication:** external `auth-service` using Google OAuth and JWT
-- **AI tooling:** Genkit, Google GenAI, OpenAI, and optional CLI providers
+- **AI tooling:** Gemini API for in-app feedback; OpenAI for batch question-enrichment scripts (integration in progress)
 
 ## Repository Structure
 

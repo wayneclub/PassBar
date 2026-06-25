@@ -36,6 +36,13 @@
       "when": 1782294332000,
       "tag": "0004_login_activity_and_drop_auth_events",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1782294333000,
+      "tag": "0005_todos_add_note",
+      "breakpoints": true
     }
   ]
 }

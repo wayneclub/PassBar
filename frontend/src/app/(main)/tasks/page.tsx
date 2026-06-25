@@ -152,7 +152,7 @@ function InlineRow({
   };
 
   const startEditTitle = (e: React.MouseEvent) => {
-    if (todo.type === 'review' && todo.chapter_ids) return; // linked titles not editable
+    if (todo.type !== 'manual') return; // only free-input (manual) titles are editable
     e.stopPropagation();
     setTitleDraft(todo.title);
     setEditingTitle(true);
@@ -191,8 +191,8 @@ function InlineRow({
                 }}
                 className="flex-1 min-w-0 rounded border border-primary/40 bg-white px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
               />
-            ) : (
-              todo.type === 'review' && todo.chapter_ids ? (
+            ) : todo.type !== 'manual' ? (
+              todo.chapter_ids ? (
                 <Link
                   href={`/create?chapters=${encodeURIComponent(todo.chapter_ids)}`}
                   className={cn(
@@ -204,16 +204,25 @@ function InlineRow({
                 </Link>
               ) : (
                 <span
-                  onClick={startEditTitle}
-                  title="Click to edit"
                   className={cn(
-                    'text-sm cursor-text rounded px-1 -mx-1 hover:bg-slate-100 transition-colors',
+                    'text-sm',
                     todo.status === 'completed' ? 'line-through text-muted-foreground' : 'text-foreground',
                   )}
                 >
                   {todo.title}
                 </span>
               )
+            ) : (
+              <span
+                onClick={startEditTitle}
+                title="Click to edit"
+                className={cn(
+                  'text-sm cursor-text rounded px-1 -mx-1 hover:bg-slate-100 transition-colors',
+                  todo.status === 'completed' ? 'line-through text-muted-foreground' : 'text-foreground',
+                )}
+              >
+                {todo.title}
+              </span>
             )}
             {todo.auto_generated && <AutoTag t={t} />}
             {/* Mobile metadata */}
@@ -550,7 +559,7 @@ function KanbanCard({
 
       {/* Title */}
       <div className="pr-5 mb-2">
-        {todo.type === 'review' && todo.chapter_ids ? (
+        {todo.type !== 'manual' && todo.chapter_ids ? (
           <Link
             href={`/create?chapters=${encodeURIComponent(todo.chapter_ids)}`}
             onClick={(e: React.MouseEvent) => e.stopPropagation()}
@@ -769,6 +778,7 @@ export default function TasksPage() {
         due_date: input.due_date ?? null,
         chapter_id: input.chapter_id !== undefined ? input.chapter_id : editingTodo.chapter_id,
         chapter_ids: input.chapter_ids !== undefined ? input.chapter_ids : editingTodo.chapter_ids,
+        note: input.note !== undefined ? input.note : editingTodo.note,
       });
       setTodos((prev) => prev.map((todo) =>
         todo.id === editingTodo.id
@@ -780,6 +790,7 @@ export default function TasksPage() {
               due_date: input.due_date ?? null,
               chapter_id: input.chapter_id !== undefined ? input.chapter_id : todo.chapter_id,
               chapter_ids: input.chapter_ids !== undefined ? input.chapter_ids : todo.chapter_ids,
+              note: input.note !== undefined ? input.note : todo.note,
             }
           : todo,
       ));
@@ -811,6 +822,7 @@ export default function TasksPage() {
       type,
       chapter_id: id,
       chapter_ids: chapterIds ?? id,
+      note: null,
       auto_generated: false,
       due_date: new Date().toISOString(),
       created_at: new Date().toISOString(),
