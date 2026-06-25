@@ -6,6 +6,24 @@
 改完 schema 後跑 `npm run db:generate` 產生 migration，部署前跑 `npm run db:migrate` 套用到 Postgres。
 不再使用 Supabase；新系統建 DB 一律照這個流程，不要手寫 SQL。
 
+## Gemini API 模型名稱
+
+> 2026-06-25 直接用 `GET https://generativelanguage.googleapis.com/v1beta/models?key=...`（ListModels）對現有 `GEMINI_API_KEY_*` 確認過，記錄如下，避免之後又懷疑「模型名稱是不是打錯」。
+
+`scripts/generate_question_outputs.py` 的 `GEMINI_MODEL` 目前設成 `"gemini-3.5-flash"`——**這個名稱本身是 Google 官方真實存在的模型**，不是打錯字。
+
+但實測發現它不穩定：
+- 同一個模型名稱，用不同 `GEMINI_API_KEY_N` 打 `generateContent` 會得到不同結果：有些 key 對應的專案回 `404 Not Found`（該專案尚未開通此模型存取權），有些回 `503 UNAVAILABLE`（過載）。
+- 出現 404／503 時，**先不要懷疑指令或模型名稱打錯**，先確認是不是 `gemini-3.5-flash` 本身的可用性問題。
+
+已確認以下模型對現有 key 穩定可用（`generateContent` 都支援，且未觀察到 404）：
+- `gemini-2.5-flash`（穩定，性價比高，建議當預設 fallback）
+- `gemini-2.5-pro`
+- `gemini-2.0-flash`
+- `gemini-flash-latest`
+
+若 `gemini-3.5-flash` 持續 404／503，可暫時把 `GEMINI_MODEL` 改成 `gemini-2.5-flash` 並重新確認穩定性，而不是亂猜模型名稱拼錯。
+
 ## Design System: Typography
 
 ### Page-level headings

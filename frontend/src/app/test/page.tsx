@@ -224,13 +224,23 @@ function TestSessionContent() {
         }
       }
 
-      const cachedQuestions = getCachedSessionQuestions(
-        currentSession.questionIds,
-        await getTestQuestionSnapshot(currentSession.id),
-      );
-      const sessionQuestions = cachedQuestions ?? await getQuestionsByIds(currentSession.questionIds);
-      if (!cachedQuestions && sessionQuestions.length > 0) {
-        await saveTestQuestionSnapshot(currentSession.id, sessionQuestions);
+      // Network-first: prefer fresh content from the API so DB updates (e.g. re-imported
+      // translations) show up immediately. Only fall back to the offline IndexedDB snapshot
+      // when the network fetch fails, so users who already started a test can still finish it
+      // offline with whatever content was last cached.
+      let sessionQuestions: Question[];
+      try {
+        sessionQuestions = await getQuestionsByIds(currentSession.questionIds);
+        if (sessionQuestions.length > 0) {
+          await saveTestQuestionSnapshot(currentSession.id, sessionQuestions);
+        }
+      } catch {
+        const cachedQuestions = getCachedSessionQuestions(
+          currentSession.questionIds,
+          await getTestQuestionSnapshot(currentSession.id),
+        );
+        if (!cachedQuestions) throw new Error('No cached questions available offline');
+        sessionQuestions = cachedQuestions;
       }
       let hydratedSession = currentSession;
       if (isReviewMode) {

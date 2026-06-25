@@ -299,9 +299,11 @@ def call_gemini_rest(
                 if e.code == 429:
                     print(f"    Rate limited (key …{api_key[-6:]}), trying next key …")
                 elif e.code >= 500:
+                    print(f"    HTTP {e.code} (key …{api_key[-6:]}): {body[:300]}")
                     all_rate_limited = False
                     time.sleep(10)
                 else:
+                    print(f"    HTTP {e.code} (key …{api_key[-6:]}): {body[:300]}")
                     raise
             except NonTextGeminiResponseError as e:
                 if "RECITATION" in str(e):
@@ -432,7 +434,35 @@ def call_openai_responses(
     raise RuntimeError(f"OpenAI API failed after {MAX_RETRIES} rounds. Last error: {last_error}")
 
 
-def call_ai_rest(
+# Provider auto-fallback chain: if the active provider fails outright (all keys/retries
+# exhausted, auth error, etc.), automatically retry the same prompt on the next provider
+# in this list before giving up on the question.
+AI_PROVIDER_FALLBACK_CHAIN = ["gemini", "gpt", "cursor-api"]
+
+
+def _with_provider_fallback(once_fn):
+    """Run once_fn() with the active provider; on failure, fall back through
+    AI_PROVIDER_FALLBACK_CHAIN (gemini -> gpt -> cursor-api) before giving up."""
+    global AI_PROVIDER, AI_MODEL, AI_HTML_MODEL
+    original_provider, original_model, original_html_model = AI_PROVIDER, AI_MODEL, AI_HTML_MODEL
+    chain = [original_provider] + [p for p in AI_PROVIDER_FALLBACK_CHAIN if p != original_provider]
+    last_error: Exception | None = None
+    try:
+        for provider in chain:
+            if provider != AI_PROVIDER:
+                print(f"    {ai_label()} unavailable, falling back to provider={provider} ...")
+                set_ai_provider(provider)
+            try:
+                return once_fn()
+            except Exception as exc:
+                last_error = exc
+                print(f"    Provider '{provider}' failed: {exc}")
+        raise RuntimeError(f"All providers in fallback chain exhausted. Last error: {last_error}")
+    finally:
+        AI_PROVIDER, AI_MODEL, AI_HTML_MODEL = original_provider, original_model, original_html_model
+
+
+def _call_ai_rest_once(
     prompt_text: str,
     image_paths: list[str] | str | None = None,
     expected: str = "one complete HTML document",
@@ -454,6 +484,17 @@ def call_ai_rest(
     model = (AI_HTML_MODEL if use_html_model else AI_MODEL) or None
     max_out = HTML_MAX_OUTPUT_TOKENS if use_html_model else GEMINI_DEFAULT_MAX_OUTPUT_TOKENS
     return call_gemini_rest(prompt_text, image_paths, model=model, max_output_tokens=max_out)
+
+
+def call_ai_rest(
+    prompt_text: str,
+    image_paths: list[str] | str | None = None,
+    expected: str = "one complete HTML document",
+    use_html_model: bool = False,
+) -> str:
+    return _with_provider_fallback(
+        lambda: _call_ai_rest_once(prompt_text, image_paths, expected, use_html_model)
+    )
 
 
 def ai_label() -> str:
@@ -757,8 +798,7 @@ def _extract_json_from_text(text: str) -> dict[str, Any]:
         raise
 
 
-def call_meta_json(prompt: str) -> dict[str, Any]:
-    """Unified meta entry point — delegates to whichever provider is active."""
+def _call_meta_json_once(prompt: str) -> dict[str, Any]:
     if AI_PROVIDER == "gpt":
         raw = call_openai_responses(prompt, None, max_output_tokens=12000)
         return _extract_json_from_text(raw)
@@ -771,6 +811,12 @@ def call_meta_json(prompt: str) -> dict[str, Any]:
         _set_last_ai_usage(AI_PROVIDER, META_MODEL or "(default)", "", "", "", "")
         return _extract_json_from_text(raw)
     return call_gemini_json(prompt)
+
+
+def call_meta_json(prompt: str) -> dict[str, Any]:
+    """Unified meta entry point — delegates to whichever provider is active,
+    auto-falling back through AI_PROVIDER_FALLBACK_CHAIN on outright failure."""
+    return _with_provider_fallback(lambda: _call_meta_json_once(prompt))
 
 
 def taxonomy_list(values: list[str]) -> str:
@@ -1573,10 +1619,10 @@ def process_file(
                     continue
                 usage = get_last_ai_usage()
                 existing_zh_choices = item.get("zh-choices") if isinstance(item.get("zh-choices"), dict) else {}
-                if zh_q and not str(item.get("zh-question", "")).strip():
+                if zh_q and (force or not str(item.get("zh-question", "")).strip()):
                     item["zh-question"] = zh_q
                 for k, v in zh_c.items():
-                    if v and not str(existing_zh_choices.get(k, "")).strip():
+                    if v and (force or not str(existing_zh_choices.get(k, "")).strip()):
                         existing_zh_choices[k] = v
                 item["zh-choices"] = existing_zh_choices
                 write_usage_csv(
