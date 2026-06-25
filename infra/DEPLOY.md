@@ -1,5 +1,25 @@
 # PassBar Deployment (AWS Lightsail)
 
+## Forgot everything? Start here
+
+You do not need to understand the rest of this document to do these. Pick the
+row that matches what you're trying to do.
+
+| I want to... | Do this |
+|---|---|
+| Ship a normal code change | `git push origin main`, then watch the **Actions** tab on GitHub. Nothing to run by hand. |
+| Check if prod is currently up | `https://passbar.wayneclub.com` loads, or SSH in and run `docker compose -f /home/ubuntu/apps/passbar/docker-compose.yml ps` |
+| SSH into the server | `ssh <user>@<host>` — the host/user/key are in GitHub repo secrets `DEPLOY_HOST`/`DEPLOY_USER`/`DEPLOY_SSH_KEY` (Settings → Secrets and variables → Actions). If you've also lost those, you don't have another copy — they only exist on whatever machine generated the SSH key and in those secrets. |
+| See what's currently deployed | `cat /home/ubuntu/apps/passbar/.deployed-image-tag` on the server, or check the latest successful run in the **Actions** tab |
+| Re-run the last deploy without a new commit | GitHub → **Actions** → `CI/CD` → pick the latest run on `main` → **Re-run all jobs** |
+| Roll back to a specific old version manually | On the server: `cd /home/ubuntu/apps/passbar && ./deploy.sh <old-commit-sha>` (find old SHAs in the GHCR package version list or `git log`) |
+| Tail logs | `docker compose -f /home/ubuntu/apps/passbar/docker-compose.yml logs -f backend` (or `frontend`) |
+| Change a production env var | Edit `/home/ubuntu/apps/passbar/.env` on the server, then `cd /home/ubuntu/apps/passbar && docker compose up -d` (no need to rebuild — only `NEXT_PUBLIC_*` vars require a rebuild, see below) |
+| Change a `NEXT_PUBLIC_*` (frontend build-time) var | Update it in GitHub → Settings → Secrets and variables → Actions (**Variables** or **Secrets**), then trigger a new deploy (push or re-run) — these are baked into the image at build time, editing `.env` on the server does nothing |
+| Apply a schema change manually (skip CI) | `docker compose -f /home/ubuntu/apps/passbar/docker-compose.yml run --rm backend node dist/src/db/migrate.js` |
+| Connect to the production DB directly | SSH in, then `docker exec -it postgres psql -U postgres -d passbar` (DB container is on the host stack, not the passbar stack) |
+| Something is broken and I don't know why | Jump to **Troubleshooting** near the bottom of this file |
+
 ## CI/CD flow
 
 1. Local dev as usual.
@@ -130,3 +150,60 @@ docker compose -f /home/ubuntu/apps/auth-service/docker-compose.yml logs -f auth
 ## DB migrations
 
 `backend` and `auth-service` both use Drizzle. Migrations run as a one-off step in `deploy.sh` (backend) — `auth-service` should do the same (`npx drizzle-kit migrate`) before `up -d` if its schema changed. Migrations are never run automatically on container start, so a bad migration can't silently take down a running deploy.
+
+## Troubleshooting
+
+**GitHub Actions deploy job fails at "Validate deployment configuration"**
+A required secret is missing or empty. The error lists which one(s) — go to
+Settings → Secrets and variables → Actions and check `DEPLOY_HOST`,
+`DEPLOY_USER`, `DEPLOY_SSH_KEY`, `DEPLOY_KNOWN_HOSTS`, `GHCR_READ_TOKEN`.
+
+**Deploy job fails at the SSH step**
+`DEPLOY_KNOWN_HOSTS` is stale (server was rebuilt/IP changed) or the SSH key
+was rotated. Regenerate from a trusted machine:
+`ssh-keyscan -H <server-host>` (add `-p <port>` if non-default) and update the
+`DEPLOY_KNOWN_HOSTS` secret.
+
+**`deploy.sh` fails with "Missing .env"**
+First-time setup on a new/rebuilt server — `infra/.env` doesn't exist yet.
+SSH in, `cd /home/ubuntu/apps/passbar`, `cp .env.example .env`, fill in real
+values, then re-run.
+
+**Containers never become healthy / deploy times out and rolls back**
+1. `docker compose -f /home/ubuntu/apps/passbar/docker-compose.yml logs --tail=200 backend frontend`
+2. Common causes: `DATABASE_URL` wrong or Postgres unreachable (check
+   `database-network` is attached), `JWT_SECRET`/`SERVICE_SECRET` mismatch
+   with `auth-service` (backend will fail auth-dependent calls but should
+   still pass its own healthcheck — check logs for the actual error), or a
+   migration that errored (see next item).
+
+**Migration step fails during deploy**
+The deploy aborts before `up -d`, so the *old* containers keep running — prod
+is not down. Fix the migration locally, push a new commit, deploy again. To
+inspect what happened: `docker compose -f /home/ubuntu/apps/passbar/docker-compose.yml run --rm backend node dist/src/db/migrate.js` on the server and read the
+output directly.
+
+**`docker compose pull` fails with unauthorized / image not found**
+GHCR packages are private by default after the first publish. Either make
+`passbar-frontend`/`passbar-backend` public (GitHub → your profile → Packages
+→ package settings → Change visibility), or run
+`docker login ghcr.io -u <github-username>` on the server with a PAT that has
+`read:packages`.
+
+**Site loads but shows a stale version after a successful deploy**
+`nginx-proxy-manager` cached the old container IP. The deploy script already
+tries to reload it automatically; if that step was skipped or NPM was
+restarted separately, manually run `docker exec nginx-proxy-manager nginx -s reload`.
+
+**Frontend can't reach backend or auth-service (CORS / network errors in browser)**
+Check `NEXT_PUBLIC_API_URL` / `NEXT_PUBLIC_AUTH_SERVICE_URL` (GitHub Actions
+**Variables**, not `infra/.env` — these are baked in at build time). If they
+look correct, the image needs to be rebuilt after changing them; editing
+`infra/.env` on the server has no effect on these.
+
+**I changed something in `infra/` but the server still runs the old version**
+`infra/docker-compose.yml` and `infra/deploy.sh` are only copied to the server
+by the GitHub Actions deploy job (see "Update deployment files" step), not
+read from this repo directly. Push to `main` so Actions re-copies them, or
+manually `scp` the updated files to `/home/ubuntu/apps/passbar/` if you need
+it sooner.

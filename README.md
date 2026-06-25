@@ -21,20 +21,18 @@ review missed questions, and turn performance data into a daily study plan.
 - **Backend:** NestJS, PostgreSQL, Drizzle ORM
 - **Authentication:** external `auth-service` using Google OAuth and JWT
 - **AI tooling:** Genkit, Google GenAI, OpenAI, and optional CLI providers
-- **Shared code:** npm workspace package in `packages/shared`
 
 ## Repository Structure
 
 ```text
 PassBar/
+├── .github/workflows/ CI/CD pipeline (test, build, publish, deploy)
 ├── frontend/        Next.js web application
 ├── backend/         NestJS API, database schema, migrations, and import tools
-├── packages/shared/ Shared workspace code
 ├── questions/       Source question files
 ├── out/             Generated enriched question data
 ├── scripts/         Question-processing and AI batch tools
-├── infra/           Infrastructure configuration
-└── legacy/          Archived code kept for reference
+└── infra/           Deployment configuration (maintainer use)
 ```
 
 ## Requirements

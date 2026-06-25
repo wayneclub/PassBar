@@ -2,9 +2,9 @@
 
 ## Database Schema
 
-新增或修改 table 都在 `backend/src/db/schema/`（Drizzle schema，依資料領域分檔：`users.ts`、`questions.ts`、`attempts.ts`、`auth.ts`）。
+新增或修改 table 都在 `backend/src/db/schema/`（Drizzle schema，依資料領域分檔：`users.ts`、`questions.ts`、`attempts.ts`、`login-activity.ts`）。
 改完 schema 後跑 `npm run db:generate` 產生 migration，部署前跑 `npm run db:migrate` 套用到 Postgres。
-不再維護 `supabase/schema.sql`（Supabase 已停用，相關檔案移到 `legacy/supabase/` 僅供參考）。
+不再使用 Supabase；新系統建 DB 一律照這個流程，不要手寫 SQL。
 
 ## Design System: Typography
 

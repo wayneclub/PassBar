@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Export explanation HTML from all *_castudy_enriched.json files.
+Export explanation HTML from all *_enriched.json files.
 
 Creates a debuggable folder tree, preserving subject/chapter names, and writes
 one HTML file per question plus an index.html with links.
@@ -256,7 +256,7 @@ def main() -> None:
         print(f"ERROR: out dir not found: {out_dir}")
         sys.exit(1)
 
-    files = sorted(out_dir.glob("*/*/*_castudy_enriched.json"))
+    files = sorted(out_dir.glob("*/*/*_enriched.json"))
     if args.subject:
         files = [p for p in files if args.subject.lower() in str(p).lower()]
     if args.chapter:

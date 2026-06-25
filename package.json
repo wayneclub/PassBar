@@ -3,8 +3,7 @@
   "private": true,
   "workspaces": [
     "frontend",
-    "backend",
-    "packages/*"
+    "backend"
   ],
   "devDependencies": {
     "@types/pg": "^8.20.0",
