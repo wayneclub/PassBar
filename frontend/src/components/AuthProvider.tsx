@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { api, ApiError, authServiceUrl } from '@/lib/api';
+import { api, ApiError, authServiceUrl, ensureFreshAccessToken } from '@/lib/api';
 import { getStudySettings, saveStudySettings, type StudySettings } from '@/lib/study-settings';
 
 export type UserProfile = {
@@ -85,12 +85,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     saveStudySettings(getStudySettings());
 
     let active = true;
-    fetchProfile().then((nextProfile) => {
+    const boot = async () => {
+      // access token 壽命短（15min），閒置後回來第一個請求必 401；先主動 refresh 消除噪音
+      if (hasLoggedInCookie()) await ensureFreshAccessToken();
+      const nextProfile = await fetchProfile();
       if (!active) return;
       setProfile(nextProfile);
       setLoading(false);
       if (nextProfile?.study_settings) saveStudySettings(nextProfile.study_settings);
-    });
+    };
+    void boot();
 
     return () => {
       active = false;

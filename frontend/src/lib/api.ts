@@ -61,6 +61,14 @@ function refreshAccessToken(): Promise<boolean> {
   return refreshPromise;
 }
 
+/**
+ * 主動換發 access token（App 啟動時用）。access token 只有 15 分鐘壽命，
+ * 閒置後回來的第一個請求必然 401 再靠重試恢復——先 refresh 可避免 console 噪音。
+ */
+export function ensureFreshAccessToken(): Promise<boolean> {
+  return refreshAccessToken();
+}
+
 async function request<T>(path: string, options: RequestInit = {}, retried = false): Promise<T> {
   if (sessionInvalid) {
     throw new ApiError(401, 'Session expired');

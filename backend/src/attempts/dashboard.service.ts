@@ -196,7 +196,7 @@ export class DashboardService {
     const subjectPerformance = Array.from(subjectPerformanceMap.entries()).map(
       ([name, s]) => ({
         name,
-        score: s.total > 0 ? (s.correct / s.total) * 100 : 0,
+        score: s.total > 0 ? Math.round((s.correct / s.total) * 100) : 0,
         correct: s.correct,
         total: s.total,
       }),
@@ -383,7 +383,7 @@ export class DashboardService {
     const subjectPerformance = Array.from(subjectStats.entries()).map(
       ([name, s]) => ({
         name,
-        score: s.total > 0 ? (s.correct / s.total) * 100 : 0,
+        score: s.total > 0 ? Math.round((s.correct / s.total) * 100) : 0,
         correct: s.correct,
         total: s.total,
       }),
