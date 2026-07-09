@@ -988,7 +988,7 @@ function ErrorTrapTab({
             </p>
             <div className="rounded-lg bg-blue-50 border border-blue-100 p-3">
               <p className="text-xs text-blue-700 italic">
-                "First instinct is usually your best ally on the Bar Exam."
+                &ldquo;First instinct is usually your best ally on the Bar Exam.&rdquo;
               </p>
             </div>
             <Progress value={(overthinkingScore / 5) * 100} className="h-2" />
@@ -1067,7 +1067,7 @@ function ErrorTrapTab({
                   <ul className="space-y-2">
                     {keyHighlights.map((h) => (
                       <li key={h.id} className="text-sm text-slate-700">
-                        <span className="italic">"{h.text}"</span>
+                        <span className="italic">&ldquo;{h.text}&rdquo;</span>
                         {pickLang(h.reason, language) && (
                           <span className="block text-xs text-slate-500 mt-0.5">{pickLang(h.reason, language)}</span>
                         )}

@@ -324,7 +324,7 @@ function TestSessionContent() {
     };
 
     loadSession();
-  }, [id, isReviewMode, router, user?.id]);
+  }, [id, isReviewMode, router, user?.id, startIndexParam]);
 
   const currentQuestion = questions[currentIndex];
   const enQuestionText = currentQuestion?.questionText ?? '';

@@ -1895,7 +1895,11 @@ export default function DashboardPage() {
 
   const missionPracticedQuestions = missionStatusCounts.Correct + missionStatusCounts.Incorrect;
   const rawStudyDays = profile?.study_settings?.studyPlan?.studyDaysPerWeek;
-  const studyDays = Array.isArray(rawStudyDays) && rawStudyDays.length > 0 ? rawStudyDays : [1, 2, 3, 4, 5];
+  // fallback 陣列包進 useMemo，避免每次 render 產生新 identity 導致下游 useMemo 全部失效
+  const studyDays = useMemo(
+    () => (Array.isArray(rawStudyDays) && rawStudyDays.length > 0 ? rawStudyDays : [1, 2, 3, 4, 5]),
+    [rawStudyDays],
+  );
   const triageWeeks = profile?.study_settings?.studyPlan?.triageWeeks ?? 2;
   const dailyStudyHours = profile?.study_settings?.studyPlan?.dailyStudyHours ?? 3;
   const paceMode = profile?.study_settings?.studyPlan?.paceMode ?? 'balanced';

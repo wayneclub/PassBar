@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useAuth } from '@/components/AuthProvider';
 import { useI18n } from '@/lib/i18n';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -77,12 +77,8 @@ export default function ProfilePage() {
     void saveUserStudySettings(user.id, updatedSettings).then(() => refreshProfile());
   };
 
-  useEffect(() => {
+  const loadData = useCallback(async () => {
     if (!user) return;
-    loadData();
-  }, [user]);
-
-  async function loadData() {
     setLoading(true);
     try {
       const data = await api.get<{
@@ -124,7 +120,11 @@ export default function ProfilePage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [user, profile?.created_at]);
+
+  useEffect(() => {
+    void loadData();
+  }, [loadData]);
 
   if (loading) {
     return (
