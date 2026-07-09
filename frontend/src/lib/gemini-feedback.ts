@@ -7,7 +7,8 @@ async function invokeNextApi(body: Record<string, unknown>) {
   try {
     return await api.post<GeminiResponse>('/gemini-feedback', body);
   } catch (err) {
-    throw new Error('Gemini backend could not be reached.');
+    const message = err instanceof Error && err.message ? err.message : '';
+    throw new Error(message || 'Gemini backend could not be reached.');
   }
 }
 

@@ -45,7 +45,9 @@ export class GeminiFeedbackRequestDto {
   performanceStats?: PerformanceStats;
 }
 
-const fallbackModels = ['gemini-3.5-flash'];
+// gemini-3.5-flash 對部分 API key 會回 404/503（見 CLAUDE.md「Gemini API 模型名稱」），
+// 失敗時依序退到已確認穩定的模型，避免整個 endpoint 直接 502。
+const fallbackModels = ['gemini-2.5-flash', 'gemini-2.5-pro', 'gemini-2.0-flash'];
 
 @Injectable()
 export class GeminiFeedbackService {

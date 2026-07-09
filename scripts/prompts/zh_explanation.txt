@@ -135,16 +135,10 @@ When this pattern applies, you must:
    “In Certain Circumstances, An Appeal Can Be Made Prematurely”
    (Injunction, Certification, Class action, and other statutory/interlocutory exceptions).
 
-Civil Procedure-only contrast sentence:
-Use the following sentence ONLY when all three conditions are met:
-1. Subject is Civil Procedure;
-2. the issue involves appealability, collateral-order doctrine, interlocutory appeal, discovery order, privilege, motion to compel, or a similar procedural posture;
-3. the trap is that disclosure or harm feels physically irreversible.
-
-Sentence:
-<strong>司法考试看的是「法律程序上能不能救济」，而不是「物理上的秘密有没有泄露」。</strong>
-
-Never use this sentence in Torts, Property, Contracts, Evidence, Criminal Law, Constitutional Law, or any non-Civil-Procedure question.
+Procedural-relief-vs-physical-harm contrast (generate, do not paste a canned sentence):
+When the trap is that disclosure/harm feels physically or factually irreversible, but the legal question is only whether *procedural* relief remains available after final judgment, build one 虽然…但是… sentence for THIS question using that logic — e.g. 虽然{{本题具体的不可逆事实，如机密已外泄}}，但是司法考试问的是终局后还能不能用程序救济，不是物理上能不能收回。
+Do not hardcode a single fixed wording reused verbatim across questions — the 虽然 clause must always name this question's actual fact, not a generic placeholder.
+This pattern is not exclusive to Civil Procedure; apply it whenever a question's trap genuinely turns on confusing procedural reviewability with physical/factual reversibility (most common in Civ Pro appealability, but also possible in e.g. Evidence exclusion-after-disclosure issues). Do not force it into a subject where the trap does not actually fit.
 ---
 【Visual System Lock】
 One fixed blue-gray MBE analysis card for every subject — do not adapt the theme to Criminal / Con Law / Evidence / Property / Civ Pro, etc.
@@ -953,59 +947,131 @@ Document shell (required — wrap everything in `.container` + `.container-body`
         - Which fact in the question changes the result?
     * If there is one especially tempting distractor, preview its core mistake here so section 6 can stay efficient.
     * Do not import special rules from another subject.
-    * Use any subject-specific contrast sentence only if the subject and issue match that special rule exactly.
-
-Civil Procedure-only warning:
-    * The sentence “司法考试看的是「法律程序上能不能救济」，而不是「物理上的秘密有没有泄露」。” may be used ONLY for Civil Procedure appealability / collateral-order / discovery-privilege questions.
-    * Do not use that sentence for Torts, Property, Contracts, Evidence, Criminal Law, Constitutional Law, or any non-Civil-Procedure question.
+    * Apply the procedural-relief-vs-physical-harm contrast pattern only when the trap genuinely fits; generate a fresh 虽然…但是… sentence naming this question's actual fact — never paste a fixed wording across questions.
 6. 正确答案与干扰项排除
 
 * Use <section class="option-analysis">.
 * Section title must be exactly: 正确答案与干扰项排除
-* Correct answer: .option.correct (green card).
+* Correct answer: .option.correct.
 * Each wrong option: one .distractor-box.
-* Do not restate full answer-choice text; no A/B/C/D buttons.
-* The goal is not merely to label the wrong answer, but to teach the student why that answer is tempting and exactly why it fails.
+* Do not restate full answer-choice text.
+* Do not use A/B/C/D buttons.
+* This section must teach answer elimination, not merely label options.
+
+Core principle:
+* Brevity is a means, not the goal.
+* The goal is: after reading each option explanation, the student should know exactly why that option is tempting and exactly why it fails.
+* Prefer concise, high-density explanation over artificial shortness.
+* Do not sacrifice legal clarity just to make the sentence shorter.
 
 Correct card:
-* 1–2 sentences.
-* Must cite one decisive trigger fact with .key-clue.
-* Must connect that fact to the controlling rule hook.
-* Length target: 50–100 Chinese characters.
+* Explain why the correct answer is correct by linking:
+  decisive trigger fact → controlling rule → answer result.
+* Length target: ≤90 Chinese characters.
+* If the correct answer requires two legal steps, may extend to ≤120 Chinese characters.
+* No minimum length.
+* Must include one .key-clue trigger fact.
 
 Wrong-choice explanation:
-* Each distractor must explain two things:
-  1. the tempting wrong assumption;
-  2. the precise legal distinction that defeats it.
-* Ordinary distractors: 1 sentence, 45–90 Chinese characters.
-* The most tempting distractor may use up to 2 short sentences, 80–140 Chinese characters total.
-* Do not repeat the full rule across all three distractors.
-* Do not use generic phrases like “不符合法律规定”, “本题不适用”, “法律结论错误”, or “选项说法错误.”
-* The explanation must be exam-useful: after reading it, the student should know exactly why that letter is wrong.
-* If a distractor turns on an exception, say the exception clearly.
-* If a distractor turns on a missing fact, identify the missing fact clearly.
-* If a distractor turns on a misread legal term, name the correct legal meaning in plain Chinese.
-* Avoid overly academic prose; write like a concise tutor explaining answer elimination.
+* Each distractor is one compact explanation unit.
+* Ordinary distractor: ≤90 Chinese characters.
+* Complex or highly tempting distractor: ≤140 Chinese characters.
+* No minimum length.
+* Use 1 sentence when the error has one layer.
+* Use up to 2 short sentences when the error has two layers, such as:
+  - missing element + misused exception;
+  - correct general rule + wrong factual condition;
+  - correct legal term + wrong procedural posture;
+  - correct conclusion-looking phrase + wrong reason.
+* If using 2 sentences, sentence 1 should identify the tempting assumption; sentence 2 should state the legal distinction that defeats it.
 
-Wrong-tag requirement:
-* Each distractor MUST use exactly one wrong-tag with its type class.
-* Tag text format is ALWAYS two tiers separated by ` | `, prefixed with ❌:
-    ❌ {{大类}} | {{本题专属错因}}
-* Fixed category per type — pick ONE class per distractor:
-    - tag-concept-error → ❌ 概念混淆 | …（张冠李戴、法理混用、把 A 制度当成 B）
-    - tag-fact-distortion → ❌ 事实误判 | …（题干没这细节、偷换条件、夸大/漏读事实）
-    - tag-law-misapplied → ❌ 法律适用 | …（引错规则、法条搬错场景、例外套错题）
-* The part after ` | ` is option-specific: 4–8 Chinese characters naming THIS letter’s trap.
-* The three distractor tags should not use identical option-specific wording.
+Required content for each distractor:
+1. What the option wants the student to think.
+2. Why that thought fails under the exact rule or fact pattern.
+3. The explanation must be specific to this option, not a generic rule slogan.
 
-.trap-word requirement:
-* .trap-word should wrap only 1–4 English words from the choice or rule phrase.
-* Do not wrap a full clause.
+Flexible reasoning moves — preferred reasoning moves, not fixed sentence templates:
+Use the following as reasoning patterns, not fixed sentence templates. Do not mechanically copy these sentence frames. Choose the clearest expression for the specific option.
+
+A good distractor explanation should usually do one or more of the following:
+* identify the attractive part of the option;
+* name the missing fact, missing element, or missing legal condition;
+* distinguish the general rule from the exception;
+* separate the correct legal term from the wrong legal consequence;
+* explain why the option's reason is wrong even if its conclusion feels plausible;
+* point out when the option imports a fact not in the question;
+* point out when the option answers a different legal issue.
+
+以下不是固定句型，而是"推理动作"。不要机械套用句式；请根据本选项的真实错因自然表达：
+* 指出该选项哪里看起来有道理；
+* 点出缺失的事实、要件或法律条件；
+* 区分一般规则与例外；
+* 区分正确法律术语与错误法律后果；
+* 说明为什么结论看似合理但理由错；
+* 指出该选项是否加入了题干没有的事实；
+* 指出该选项是否回答了另一个 legal issue；
+* 指出该选项是否误把背景事实当成决定性事实。
+
+可参考的推理表达（示例，不是必须套用的句型）：
+* 抓住了一个真实事实，但漏掉决定性例外。
+* 一般规则说得像对，但题干条件没有满足。
+* 问题不在结论方向，而在理由偷换。
+* 把 A 制度的规则套到 B 制度。
+* 把题干事实说重了；考试不能靠脑补补足要件。
+* 回答的是另一个问题，不是本题真正问的 legal issue。
+* 忽略了本题的时间点 / 程序姿态 / 主观状态 / 因果链。
+* 把有用背景事实误当成决定性事实。
+
+Do not force every explanation into "这个选项抓住了____，但漏掉____。" Vary the wording naturally, but every explanation must still tell the student:
+1. why the option looked tempting;
+2. what exact fact/rule/condition defeats it.
+
+禁止：
+* 每个干扰项都机械套用同一句型。
+* 为了套句型而扭曲真实错因。
+* 只说"错在没有满足规则"，但不说明缺了什么。
+* 只说"这是无关事实"，但不说明为什么无关。
+
+Forbidden phrases:
+* “不符合规则”
+* “法律结论错误”
+* “本题不适用”
+* “说法错误”
+* “无关”
+* “没有道理”
+* “该选项错误”
+unless immediately followed by a precise reason.
+
+Wrong-tag rule:
+* Each distractor should still use exactly one wrong-tag for visual consistency.
+* The tag is only a visual aid; it must not distort the legal explanation.
+* First identify the real reason the option is wrong, then choose the closest tag.
+* If the error does not fit perfectly into the three fixed categories, choose the closest category and make the option-specific phrase after `|` precise enough.
+* Do not force the legal analysis to fit the tag.
+
+Available wrong-tag classes:
+- tag-concept-error → ❌ 概念混淆 | …
+  Use when the option confuses two doctrines, legal concepts, or causes of action.
+- tag-fact-distortion → ❌ 事实误判 | …
+  Use when the option adds, omits, exaggerates, or rewrites a fact.
+- tag-law-misapplied → ❌ 法律适用 | …
+  Use when the option states a plausible rule but applies it to the wrong situation, misses an exception, or uses the wrong legal consequence.
+
+Tag text:
+* Format: ❌ {{大类}} | {{本题专属错因}}
+* The phrase after `|` should be 4–10 Chinese characters.
+* It must describe this option’s actual trap.
+* The three distractors should not use identical option-specific wording.
+
+.trap-word rule:
+* Use .trap-word only for 1–4 English words that are exam-triggering.
+* Do not highlight an entire clause.
+* If no English phrase is useful, omit .trap-word.
 
 Method box:
-* One sentence naming the solving method.
-* Length target: 25–70 Chinese characters.
-* The method should be reusable for future MBE questions.
+* One sentence naming the reusable solving method.
+* Length target: ≤70 Chinese characters.
+* It should tell the student what to do next time, not just summarize this question.
 
 Required format:
 
@@ -1014,22 +1080,22 @@ Required format:
 
   <div class="option correct" data-choice="B" data-choice-role="correct">
     <h3 class="option-title">为什么选 B？</h3>
-    <p>题干 <span class="key-clue">motion to compel</span> 属取证裁定，终局后仍可救济，故不能立刻上诉。</p>
+    <p>题干 <span class="key-clue">motion to compel</span> 属取证裁定，终局判决后仍可救济，故不能立刻上诉。</p>
   </div>
 
   <div class="distractor-box" data-choice="A" data-choice-role="distractor">
     <span class="wrong-tag tag-concept-error">❌ 概念混淆 | 规则渊源误判</span>
-    <p style="margin:0;"><strong>✕ A:</strong> 这个选项抓住 <span class="trap-word">no statute</span>，但忽略判例例外仍可能存在；本题真正失败的是 collateral-order 第三要件。</p>
+    <p style="margin:0;"><strong>✕ A:</strong> 这个选项抓住了<span class="trap-word">no statute</span>授权直接上诉，但漏掉 collateral-order 第三要件——本案披露后仍能撤销重审，不算"终局后不可救济"。</p>
   </div>
 
   <div class="distractor-box" data-choice="C" data-choice-role="distractor">
     <span class="wrong-tag tag-law-misapplied">❌ 法律适用 | 认证条件误判</span>
-    <p style="margin:0;"><strong>✕ C:</strong> 这个选项把 <span class="trap-word">§ 1292(b)</span> 搬进来，但题干没有地区法院认证，也没有上诉法院许可。</p>
+    <p style="margin:0;"><strong>✕ C:</strong> 它说对了<span class="trap-word">§ 1292(b)</span>能让中间裁定上诉，但本题地区法院从未作出该认证，缺了触发条件。</p>
   </div>
 
   <div class="distractor-box" data-choice="D" data-choice-role="distractor">
     <span class="wrong-tag tag-fact-distortion">❌ 事实误判 | 题干条件偷换</span>
-    <p style="margin:0;"><strong>✕ D:</strong> 这个选项假设存在题干没有给出的程序条件；MBE 不能靠脑补事实补上例外。</p>
+    <p style="margin:0;"><strong>✕ D:</strong> 题干没有出现禁令或临时限制令这类触发要素，所以不能走紧急程序例外这条路。</p>
   </div>
 
   <div class="method-box">
@@ -1038,11 +1104,18 @@ Required format:
   </div>
 </section>
 
+Final quality check for Section 6:
+* Did each wrong choice explain the tempting assumption?
+* Did each wrong choice explain the precise reason it fails?
+* Did I avoid generic labels without explanation?
+* Did I allow the most complex distractor enough room to be clear?
+* Did I avoid repeating the same full rule three times?
+* Did the wrong-tag support the explanation rather than control it?
+
 Important:
 * Replace letters with actual correct / wrong choices.
 * Replace example language with the actual legal issue.
 * Final HTML must include at least four data-choice="..." attributes: one correct + three distractors.
-* Section 6 should be concise but not cryptic; it must teach answer elimination, not merely label errors.
 
 7. 考场速记
 
@@ -1127,14 +1200,12 @@ Legal accuracy:
 
 Answer-choice quality:
 
-* Does the correct-answer explanation cite one decisive trigger fact?
-* Does every wrong option explain both the tempting assumption and the precise reason it fails?
-* Is the most tempting distractor given enough space to teach the key distinction?
-* Did I avoid making every wrong option so short that it becomes vague?
-* Did I avoid generic phrases like “不符合法律规定”, “本题不适用”, “法律结论错误”, or “选项说法错误”?
+* Does the correct-answer explanation cite one decisive trigger fact, link it to the controlling rule and the answer result, and stay within ≤90 (or ≤120 for a two-step answer) Chinese characters?
+* Does every distractor explain both the tempting assumption and the precise reason it fails, using 1 sentence for a one-layer error or up to 2 short sentences for a two-layer error?
+* Does every distractor stay within ≤90 (or ≤140 for the most tempting one) Chinese characters, with no artificial shortening that hurts clarity?
+* Did I avoid every forbidden phrase (“不符合规则”, “法律结论错误”, “本题不适用”, “说法错误”, “无关”, “没有道理”, “该选项错误”) unless immediately followed by a precise reason?
 * Did I avoid copying the full original answer choices?
-* Did I prevent Civil Procedure-only language from leaking into other subjects?
-* If a special rule sentence appears, does the subject and issue actually match that special rule?
+* If the procedural-relief-vs-physical-harm contrast pattern appears, did I generate a fresh sentence naming this question's actual fact instead of reusing fixed wording, and does the trap genuinely fit?
 
 Structure slimming & customization:
 
@@ -1146,7 +1217,7 @@ Structure slimming & customization:
 * Does the diagram weld 题干事实 + 法律考点 + kill-switch, not repeat headings?
 * Can a student understand the solving path from the diagram alone?
 * Did I include 核心判例 when a controlling case applies?
-* Did I use the procedural-vs-physical trap contrast when relevant?
+* Did I use the procedural-relief-vs-physical-harm contrast pattern when it genuinely fits, with a freshly generated sentence?
 * Did I include a mnemonic in 考场速记 when applicable?
 
 Style consistency:
