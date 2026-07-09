@@ -439,7 +439,10 @@ function PrescriptionTab({
           streakDays: data.streakDays,
         },
       });
-      const cleaned = raw.replace(/^```json\s*/i, '').replace(/```\s*$/, '').trim();
+      // 模型偶爾會在 JSON 前後夾帶開場白或 markdown 圍欄，直接擷取最外層 {...} 再解析
+      const start = raw.indexOf('{');
+      const end = raw.lastIndexOf('}');
+      const cleaned = start >= 0 && end > start ? raw.slice(start, end + 1) : raw.trim();
       const parsed = JSON.parse(cleaned) as DiagnosisResult;
       setDiagnosis(parsed);
       const now = new Date();

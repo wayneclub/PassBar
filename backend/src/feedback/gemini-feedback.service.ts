@@ -247,7 +247,7 @@ ${structureInstruction}
 Use Markdown. Keep it focused on this question. Do not mention that you are an AI model.`;
   }
 
-  private async callGemini(model: string, prompt: string, key: string): Promise<string> {
+  private async callGemini(model: string, prompt: string, key: string, jsonOutput = false): Promise<string> {
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(
         key,
@@ -267,6 +267,8 @@ Use Markdown. Keep it focused on this question. Do not mention that you are an A
           generationConfig: {
             temperature: 0.35,
             maxOutputTokens: 3600,
+            // 診斷結果由前端 JSON.parse，強制模型只輸出 JSON，避免夾帶開場白或 markdown 圍欄
+            ...(jsonOutput ? { responseMimeType: 'application/json' } : {}),
           },
         }),
       },
@@ -311,9 +313,11 @@ Use Markdown. Keep it focused on this question. Do not mention that you are an A
 
     const errors: string[] = [];
 
+    const jsonOutput = input.action === 'performance-diagnosis';
+
     for (const model of this.getModelsToTry()) {
       try {
-        const feedback = await this.callGemini(model, prompt, key);
+        const feedback = await this.callGemini(model, prompt, key, jsonOutput);
         return { action: input.action ?? 'feedback', feedback, model };
       } catch (error) {
         errors.push(`${model}: ${error instanceof Error ? error.message : String(error)}`);
