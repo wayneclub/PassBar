@@ -490,7 +490,7 @@ function PrescriptionTab({
                 className="mt-2 w-full gap-1 text-xs"
               >
                 {loading ? (
-                  <><Loader2 className="h-3 w-3 animate-spin" />{t('performance.diagnosisLoading')}</>
+                  <><Loader2 className="h-3 w-3 animate-spin" />{t('performance.analyzing')}</>
                 ) : (
                   <><Sparkles className="h-3 w-3" />{t('performance.generateDiagnosis')}</>
                 )}
@@ -507,6 +507,12 @@ function PrescriptionTab({
                       ? t('performance.sampleTooSmall', { count: data.totalAttempts })
                       : t('performance.diagnosisReady')}
                   </p>
+                </div>
+              )}
+              {loading && (
+                <div className="flex flex-col items-center justify-center h-full gap-3 py-6 text-center">
+                  <Loader2 className="h-6 w-6 animate-spin text-primary" />
+                  <p className="text-sm text-muted-foreground">{t('performance.diagnosisLoading')}</p>
                 </div>
               )}
               {error && (
