@@ -195,32 +195,52 @@ Respond with ONLY a single JSON object (no markdown fences, no extra text) match
               input.selectedChoice === input.correctChoice,
           );
 
+    // 段落標題跟隨使用者介面語言，不能固定繁中
+    const h =
+      input.interfaceLanguage === 'zh-Hant'
+        ? {
+            keywords: '關鍵字', whyCorrect: `為什麼選 ${correctChoice}`, trap: '陷阱檢查',
+            related: '延伸考點', tip: '考試提醒', whyWrong: '錯誤原因',
+            correctAnswer: '正確答案', choiceAnalysis: '選項分析',
+          }
+        : input.interfaceLanguage === 'zh-Hans'
+          ? {
+              keywords: '关键词', whyCorrect: `为什么选 ${correctChoice}`, trap: '陷阱检查',
+              related: '延伸考点', tip: '考试提醒', whyWrong: '错误原因',
+              correctAnswer: '正确答案', choiceAnalysis: '选项分析',
+            }
+          : {
+              keywords: 'Keywords', whyCorrect: `Why ${correctChoice} is correct`, trap: 'Trap check',
+              related: 'Related testable rules', tip: 'Exam tip', whyWrong: 'Why your answer is wrong',
+              correctAnswer: 'Correct answer', choiceAnalysis: 'Choice analysis',
+            };
+
     const structureInstruction = isCorrect
       ? `The student answered correctly. Write practical feedback with this exact structure:
-## 關鍵字
+## ${h.keywords}
 - List the decisive words, dates, relationships, or procedural posture from the English question.
-## 為什麼選 ${correctChoice}
+## ${h.whyCorrect}
 - Explain the legal reason this answer is correct, tied to the source explanation.
-## 陷阱檢查
+## ${h.trap}
 - Identify tempting traps or facts that could mislead the student, and why they do not change the result.
-## 延伸考點
+## ${h.related}
 - Identify 1-2 closely related MBE rules or variations that could be tested next.
-## 考試提醒
+## ${h.tip}
 - Give one concise MBE takeaway.`
       : `The student answered incorrectly. Write practical feedback with this exact structure:
-## 錯誤原因
+## ${h.whyWrong}
 - Explain why selected choice ${selectedChoice} is wrong, tied directly to the facts.
-## 正確答案
+## ${h.correctAnswer}
 - Explain why choice ${correctChoice} is correct, using the source explanation.
-## 選項分析
+## ${h.choiceAnalysis}
 - Analyze every answer choice A-D. For each choice, state whether it is correct or incorrect and the precise legal reason.
-## 關鍵字
+## ${h.keywords}
 - List the decisive words, dates, relationships, or procedural posture from the English question.
-## 陷阱檢查
+## ${h.trap}
 - Identify the trap that likely caused the mistake.
-## 延伸考點
+## ${h.related}
 - Identify 1-2 closely related MBE rules or variations that could be tested next.
-## 考試提醒
+## ${h.tip}
 - Give one concise MBE takeaway.`;
 
     return `You are PassBar's MBE tutor. Analyze this exact single MBE question, not the overall study session.

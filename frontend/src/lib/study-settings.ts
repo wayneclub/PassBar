@@ -140,6 +140,22 @@ export const defaultStudySettings: StudySettings = {
 
 const storageKey = 'passbar_study_settings';
 
+/** 使用者尚未選擇介面語言時，從瀏覽器（系統）語言偏好推斷預設值。 */
+export function detectBrowserLanguage(): InterfaceLanguage {
+  if (typeof navigator === 'undefined') return 'en';
+  const candidates = navigator.languages?.length ? navigator.languages : [navigator.language];
+  for (const raw of candidates) {
+    if (!raw) continue;
+    const lang = raw.toLowerCase();
+    if (lang.startsWith('zh')) {
+      // zh-TW / zh-HK / zh-MO / zh-Hant* → 繁體；其餘中文（zh, zh-CN, zh-SG, zh-Hans*）→ 簡體
+      return /hant|tw|hk|mo/.test(lang) ? 'zh-Hant' : 'zh-Hans';
+    }
+    if (lang.startsWith('en')) return 'en';
+  }
+  return 'en';
+}
+
 function getBrowserTimezone(): string | undefined {
   if (typeof Intl === 'undefined') return undefined;
   try {
@@ -220,9 +236,11 @@ export function normalizeStudySettings(settings: Partial<StudySettings> | null |
   return {
     contentMode,
     textSize: settings?.textSize === 'large' || settings?.textSize === 'small' ? settings.textSize : 'medium',
-    interfaceLanguage: settings?.interfaceLanguage === 'zh-Hans' || settings?.interfaceLanguage === 'zh-Hant'
+    interfaceLanguage: settings?.interfaceLanguage === 'zh-Hans'
+      || settings?.interfaceLanguage === 'zh-Hant'
+      || settings?.interfaceLanguage === 'en'
       ? settings.interfaceLanguage
-      : 'en',
+      : detectBrowserLanguage(),
     display,
     showNotes: settings?.showNotes ?? true,
     autoSaveProgress: settings?.autoSaveProgress ?? true,
@@ -245,7 +263,8 @@ export function getStudySettings(): StudySettings {
 
   try {
     const raw = window.localStorage.getItem(storageKey);
-    if (!raw) return defaultStudySettings;
+    // 首次使用（尚未存過設定）→ 介面語言跟隨系統偏好
+    if (!raw) return { ...defaultStudySettings, interfaceLanguage: detectBrowserLanguage() };
     return normalizeStudySettings(JSON.parse(raw) as Partial<StudySettings>);
   } catch {
     return defaultStudySettings;
