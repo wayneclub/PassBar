@@ -1,12 +1,18 @@
-import { api } from './api';
+import { api, ApiError } from './api';
 import { withBasePath } from './site';
 
 // ... (other types kept as they are)
 
-async function invokeNextApi(body: Record<string, unknown>) {
+async function invokeNextApi(body: Record<string, unknown>, retried = false): Promise<GeminiResponse> {
   try {
     return await api.post<GeminiResponse>('/gemini-feedback', body);
   } catch (err) {
+    // 網路層中斷（ERR_NETWORK_CHANGED、斷線、休眠喚醒）fetch 丟的是 TypeError 而非
+    // ApiError；Gemini 請求耗時較長、撞上瞬斷的機率高，這類錯誤自動重試一次。
+    if (!(err instanceof ApiError) && !retried) {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      return invokeNextApi(body, true);
+    }
     const message = err instanceof Error && err.message ? err.message : '';
     throw new Error(message || 'Gemini backend could not be reached.');
   }
