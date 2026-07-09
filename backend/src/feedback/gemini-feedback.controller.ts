@@ -25,6 +25,7 @@ export class GeminiFeedbackController {
         result.feedback,
         result.model,
         dto.interfaceLanguage,
+        dto.performanceStats,
       );
     }
     return result;

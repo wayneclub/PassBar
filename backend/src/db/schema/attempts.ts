@@ -233,6 +233,8 @@ export const aiDiagnoses = pgTable('ai_diagnoses', {
     .references(() => profiles.id, { onDelete: 'cascade' }),
   /** 前端可直接渲染的診斷 JSON（diagnosis/topPriorities/studyPlan/encouragement/readinessScore） */
   payload: jsonb('payload').notNull(),
+  /** 生成當下送給 Gemini 的 performanceStats 快照 — 供前端對比現況、計算診斷過期分數 */
+  statsSnapshot: jsonb('stats_snapshot'),
   /** 實際生成用的 Gemini 模型 */
   model: text('model'),
   /** 生成當下的介面語言（en / zh-Hans / zh-Hant） */

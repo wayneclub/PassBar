@@ -1,0 +1,1 @@
+ALTER TABLE "ai_diagnoses" ADD COLUMN "stats_snapshot" jsonb;

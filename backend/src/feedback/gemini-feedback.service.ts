@@ -72,8 +72,14 @@ export class GeminiFeedbackService {
     @Inject(DB) private readonly db: Database,
   ) {}
 
-  /** 生成成功後保存診斷，讓使用者重新整理頁面仍看得到上次結果。 */
-  async saveDiagnosis(userId: string, feedback: string, model: string, interfaceLanguage?: string) {
+  /** 生成成功後保存診斷（含輸入統計快照），讓使用者重新整理仍看得到，且能對比現況判斷過期。 */
+  async saveDiagnosis(
+    userId: string,
+    feedback: string,
+    model: string,
+    interfaceLanguage?: string,
+    statsSnapshot?: PerformanceStats,
+  ) {
     let payload: unknown;
     try {
       payload = JSON.parse(feedback);
@@ -86,6 +92,7 @@ export class GeminiFeedbackService {
       payload,
       model,
       interfaceLanguage: interfaceLanguage ?? null,
+      statsSnapshot: statsSnapshot ?? null,
     });
   }
 
@@ -97,7 +104,12 @@ export class GeminiFeedbackService {
       .orderBy(desc(aiDiagnoses.createdAt))
       .limit(1);
     if (!row) return { payload: null };
-    return { payload: row.payload, model: row.model, createdAt: row.createdAt };
+    return {
+      payload: row.payload,
+      model: row.model,
+      createdAt: row.createdAt,
+      statsSnapshot: row.statsSnapshot,
+    };
   }
 
   private getApiKey(): string {

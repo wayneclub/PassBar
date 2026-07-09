@@ -10,7 +10,7 @@ import { useAuth } from '@/components/AuthProvider';
 import { useI18n } from '@/lib/i18n';
 import { api } from '@/lib/api';
 import { cn } from '@/lib/utils';
-import { requestPerformanceDiagnosis } from '@/lib/gemini-feedback';
+import { requestPerformanceDiagnosis, type PerformanceDiagnosisRequest } from '@/lib/gemini-feedback';
 import {
   Bar,
   BarChart,
@@ -409,6 +409,58 @@ function buildPrescriptionTasks(data: PageData, t: ReturnType<typeof useI18n>['t
   return tasks;
 }
 
+type DiagnosisStats = PerformanceDiagnosisRequest['performanceStats'];
+
+/**
+ * 診斷過期分數（≥1 觸發背景更新）。
+ *
+ * 核心原則：診斷是輸入數據的函數——輸入沒變，重新生成只會得到幾乎相同的結果。
+ * 所以比較「診斷當下的統計快照」與現況，看數據面貌實際變了多少：
+ * - 相對數據量：新作答佔原樣本的比例（樣本小時幾題就能翻盤，樣本大時要更多）
+ * - 正確率漂移：整體正確率移動 8 個百分點即為滿分訊號
+ * - 弱點輪替：目前 top-3 弱概念與診斷當下的重疊度（優先建議對不上就該換）
+ * - 時間衰減：漸進累積；考期 ≤14 天時衰減加速（衝刺期診斷要新鮮）
+ *
+ * 硬規則：沒有新作答永不自動重打（省 quota）；6 小時冷卻期；
+ * 超過 7 天且有任何新作答則強制更新。
+ */
+function computeDiagnosisStaleness(input: {
+  ageHours: number;
+  newAttempts: number;
+  snapshot: DiagnosisStats | null;
+  current: DiagnosisStats;
+  daysToExam: number | null;
+}): number {
+  const { ageHours, newAttempts, snapshot, current, daysToExam } = input;
+  if (newAttempts <= 0) return 0;
+  if (ageHours < 6) return 0;
+  if (ageHours >= 24 * 7) return 1;
+
+  const horizonHours = daysToExam !== null && daysToExam <= 14 ? 36 : 72;
+  const timeScore = Math.min(1, ageHours / horizonHours);
+
+  // 舊資料尚未保存快照 → 退回保守規則（等同原本的 24h + 10 題）
+  if (!snapshot) {
+    return ageHours >= 24 && newAttempts >= 10 ? 1 : timeScore * 0.5;
+  }
+
+  const volumeScore = Math.min(1, newAttempts / Math.max(10, snapshot.totalAttempts * 0.15));
+
+  const accThen = snapshot.totalAttempts > 0 ? snapshot.correctAttempts / snapshot.totalAttempts : 0;
+  const accNow = current.totalAttempts > 0 ? current.correctAttempts / current.totalAttempts : 0;
+  const accuracyScore = Math.min(1, (Math.abs(accNow - accThen) * 100) / 8);
+
+  const topThen = new Set(snapshot.weakConcepts.slice(0, 3).map((c) => c.concept));
+  const topNow = current.weakConcepts.slice(0, 3).map((c) => c.concept);
+  const denominator = Math.max(topThen.size, topNow.length, 1);
+  const conceptScore =
+    topThen.size === 0 && topNow.length === 0
+      ? 0
+      : 1 - topNow.filter((c) => topThen.has(c)).length / denominator;
+
+  return 0.45 * volumeScore + 0.6 * accuracyScore + 0.5 * conceptScore + 0.35 * timeScore;
+}
+
 /** 今天的診斷只顯示 HH:mm，較舊的加上月/日，避免誤以為是今天生成的。 */
 function formatDiagnosisTime(date: Date): string {
   const hhmm = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
@@ -429,6 +481,7 @@ function PrescriptionTab({
   t: ReturnType<typeof useI18n>['t'];
   language: string;
 }) {
+  const { profile } = useAuth();
   const [diagnosis, setDiagnosis] = useState<DiagnosisResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [autoRefreshing, setAutoRefreshing] = useState(false);
@@ -474,15 +527,19 @@ function PrescriptionTab({
 
   // 載入既有診斷並決定是否自動更新：
   // - 沒有舊診斷且已作答 ≥5 題 → 直接生成（本來就沒東西可看，走前台 loading）
-  // - 有舊診斷 → 立刻顯示，再依「距上次 ≥24h 且新作答 ≥10 題」或「新作答 ≥30 題」
-  //   在背景重新生成；不滿足就沿用舊結果，不打 API。
+  // - 有舊診斷 → 立刻顯示，同時用 computeDiagnosisStaleness 對比「診斷當下的
+  //   統計快照 vs 現況」，過期分數 ≥1 才在背景重新生成，否則沿用、不打 API。
   useEffect(() => {
     if (autoChecked.current) return;
     autoChecked.current = true;
 
     let active = true;
     api
-      .get<{ payload: DiagnosisResult | null; createdAt?: string }>('/gemini-feedback/latest-diagnosis')
+      .get<{
+        payload: DiagnosisResult | null;
+        createdAt?: string;
+        statsSnapshot?: DiagnosisStats | null;
+      }>('/gemini-feedback/latest-diagnosis')
       .then((saved) => {
         if (!active) return;
 
@@ -501,13 +558,27 @@ function PrescriptionTab({
 
         const createdAt = saved?.createdAt ? new Date(saved.createdAt) : null;
         if (!createdAt) return;
-        const ageHours = (Date.now() - createdAt.getTime()) / 3_600_000;
-        const newAttempts = data.answers.filter(
-          (a) => a.answered_at && new Date(a.answered_at) > createdAt,
-        ).length;
 
-        const stale = (ageHours >= 24 && newAttempts >= 10) || newAttempts >= 30;
-        if (stale) void generateDiagnosis(true);
+        const examDate = profile?.exam_date ? new Date(profile.exam_date) : null;
+        const staleness = computeDiagnosisStaleness({
+          ageHours: (Date.now() - createdAt.getTime()) / 3_600_000,
+          newAttempts: data.answers.filter(
+            (a) => a.answered_at && new Date(a.answered_at) > createdAt,
+          ).length,
+          snapshot: saved?.statsSnapshot ?? null,
+          current: {
+            totalAttempts: data.totalAttempts,
+            correctAttempts: data.correctAttempts,
+            avgTimeSeconds: data.avgTimeSeconds,
+            weakConcepts: data.weakConcepts,
+            errorTypeBreakdown: data.errorTypeBreakdown,
+            recentTrend: data.recentTrend,
+            streakDays: data.streakDays,
+          },
+          daysToExam: examDate ? (examDate.getTime() - Date.now()) / 86_400_000 : null,
+        });
+
+        if (staleness >= 1) void generateDiagnosis(true);
       })
       .catch(() => {
         // 讀不到舊診斷不影響頁面，僅代表尚未生成過
@@ -515,7 +586,7 @@ function PrescriptionTab({
     return () => {
       active = false;
     };
-  }, [data, generateDiagnosis]);
+  }, [data, generateDiagnosis, profile?.exam_date]);
 
   const tasks = useMemo(() => buildPrescriptionTasks(data, t), [data, t]);
   const overallAccuracy = pct(data.correctAttempts, data.totalAttempts);
