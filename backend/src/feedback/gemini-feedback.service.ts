@@ -49,6 +49,11 @@ export class GeminiFeedbackRequestDto {
 // 失敗時依序退到已確認穩定的模型，避免整個 endpoint 直接 502。
 const fallbackModels = ['gemini-2.5-flash', 'gemini-2.5-pro', 'gemini-2.0-flash'];
 
+// gemini-3.5-flash 過載時可能掛住不回應（而非快速回 503）。反向代理 60 秒就會斷線回 504，
+// 所以單一模型最多等 25 秒、整體 50 秒內要試完，確保 fallback 有機會執行並趕在代理逾時前回應。
+const PER_MODEL_TIMEOUT_MS = 25_000;
+const OVERALL_DEADLINE_MS = 50_000;
+
 @Injectable()
 export class GeminiFeedbackService {
   constructor(private readonly configService: ConfigService) {}
@@ -277,6 +282,7 @@ Use Markdown. Keep it focused on this question. Do not mention that you are an A
         headers: {
           'Content-Type': 'application/json',
         },
+        signal: AbortSignal.timeout(PER_MODEL_TIMEOUT_MS),
         body: JSON.stringify({
           contents: [
             {
@@ -334,13 +340,24 @@ Use Markdown. Keep it focused on this question. Do not mention that you are an A
     const errors: string[] = [];
 
     const jsonOutput = input.action === 'performance-diagnosis';
+    const startedAt = Date.now();
 
     for (const model of this.getModelsToTry()) {
+      if (Date.now() - startedAt > OVERALL_DEADLINE_MS) {
+        errors.push(`skipped ${model}: overall deadline exceeded`);
+        continue;
+      }
       try {
         const feedback = await this.callGemini(model, prompt, key, jsonOutput);
         return { action: input.action ?? 'feedback', feedback, model };
       } catch (error) {
-        errors.push(`${model}: ${error instanceof Error ? error.message : String(error)}`);
+        const message =
+          error instanceof Error && error.name === 'TimeoutError'
+            ? `no response within ${PER_MODEL_TIMEOUT_MS / 1000}s (model hung)`
+            : error instanceof Error
+              ? error.message
+              : String(error);
+        errors.push(`${model}: ${message}`);
       }
     }
 
