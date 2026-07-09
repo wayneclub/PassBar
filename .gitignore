@@ -41,6 +41,10 @@ __pycache__/
 *.bak
 *.csv
 
+# Local scratch / one-off scripts
+/scratch/
+/stardust_parser.py
+
 # Large exported question artifacts
 /screenshot/
 /screenshots/
