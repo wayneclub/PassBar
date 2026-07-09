@@ -476,6 +476,7 @@ type TranslationKey =
   | 'performance.generateDiagnosis'
   | 'performance.diagnosisLoading'
   | 'performance.analyzing'
+  | 'performance.autoUpdating'
   | 'performance.noDataYet'
   | 'performance.sampleTooSmall'
   | 'performance.accuracy'
@@ -1368,6 +1369,7 @@ const en: Dictionary = {
   'performance.generateDiagnosis': 'AI Diagnosis',
   'performance.diagnosisLoading': 'Analyzing your learning data...',
   'performance.analyzing': 'Analyzing...',
+  'performance.autoUpdating': 'Auto-updating...',
   'performance.noDataYet': 'Complete more practice to see smart analysis here',
   'performance.sampleTooSmall': 'Sample size: {count} questions (suggest at least 5)',
   'performance.diagnosisReady': 'Click Generate AI Diagnosis to analyze your current practice data.',
@@ -2501,6 +2503,7 @@ const zhHans: Dictionary = {
   'performance.generateDiagnosis': 'AI 诊断',
   'performance.diagnosisLoading': '正在分析你的学习数据...',
   'performance.analyzing': '分析中...',
+  'performance.autoUpdating': '自动更新中...',
   'performance.noDataYet': '完成更多练习后，这里会出现智能分析',
   'performance.sampleTooSmall': '样本数：{count} 题（建议至少 5 题）',
   'performance.diagnosisReady': '点击「生成 AI 诊断」分析目前的练习数据。',
@@ -3633,6 +3636,7 @@ const zhHant: Dictionary = {
   'performance.generateDiagnosis': 'AI 診斷',
   'performance.diagnosisLoading': '正在分析你的學習數據...',
   'performance.analyzing': '分析中...',
+  'performance.autoUpdating': '自動更新中...',
   'performance.noDataYet': '完成更多練習後，這裡會出現智能分析',
   'performance.sampleTooSmall': '樣本數：{count} 題（建議至少 5 題）',
   'performance.diagnosisReady': '點擊「生成 AI 診斷」分析目前的練習數據。',

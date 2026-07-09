@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -431,30 +431,18 @@ function PrescriptionTab({
 }) {
   const [diagnosis, setDiagnosis] = useState<DiagnosisResult | null>(null);
   const [loading, setLoading] = useState(false);
+  const [autoRefreshing, setAutoRefreshing] = useState(false);
   const [error, setError] = useState('');
   const [updatedAt, setUpdatedAt] = useState('');
+  const autoChecked = useRef(false);
 
-  // 還原上次生成並存在 DB 的診斷，重新整理頁面後結果不會消失
-  useEffect(() => {
-    let active = true;
-    api
-      .get<{ payload: DiagnosisResult | null; createdAt?: string }>('/gemini-feedback/latest-diagnosis')
-      .then((saved) => {
-        if (!active || !saved?.payload) return;
-        setDiagnosis((current) => current ?? saved.payload);
-        if (saved.createdAt) setUpdatedAt(formatDiagnosisTime(new Date(saved.createdAt)));
-      })
-      .catch(() => {
-        // 讀不到舊診斷不影響頁面，僅代表尚未生成過
-      });
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  const generateDiagnosis = useCallback(async () => {
-    setLoading(true);
-    setError('');
+  const generateDiagnosis = useCallback(async (background = false) => {
+    if (background) {
+      setAutoRefreshing(true);
+    } else {
+      setLoading(true);
+      setError('');
+    }
     try {
       const raw = await requestPerformanceDiagnosis({
         interfaceLanguage: language,
@@ -476,11 +464,58 @@ function PrescriptionTab({
       setDiagnosis(parsed);
       setUpdatedAt(formatDiagnosisTime(new Date()));
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error generating diagnosis');
+      // 背景自動更新失敗時默默保留舊診斷，不打擾使用者
+      if (!background) setError(err instanceof Error ? err.message : 'Error generating diagnosis');
     } finally {
-      setLoading(false);
+      if (background) setAutoRefreshing(false);
+      else setLoading(false);
     }
   }, [data, language]);
+
+  // 載入既有診斷並決定是否自動更新：
+  // - 沒有舊診斷且已作答 ≥5 題 → 直接生成（本來就沒東西可看，走前台 loading）
+  // - 有舊診斷 → 立刻顯示，再依「距上次 ≥24h 且新作答 ≥10 題」或「新作答 ≥30 題」
+  //   在背景重新生成；不滿足就沿用舊結果，不打 API。
+  useEffect(() => {
+    if (autoChecked.current) return;
+    autoChecked.current = true;
+
+    let active = true;
+    api
+      .get<{ payload: DiagnosisResult | null; createdAt?: string }>('/gemini-feedback/latest-diagnosis')
+      .then((saved) => {
+        if (!active) return;
+
+        const payload = saved?.payload ?? null;
+        if (payload) {
+          setDiagnosis((current) => current ?? payload);
+          if (saved.createdAt) setUpdatedAt(formatDiagnosisTime(new Date(saved.createdAt)));
+        }
+
+        if (data.totalAttempts < 5) return;
+
+        if (!payload) {
+          void generateDiagnosis(false);
+          return;
+        }
+
+        const createdAt = saved?.createdAt ? new Date(saved.createdAt) : null;
+        if (!createdAt) return;
+        const ageHours = (Date.now() - createdAt.getTime()) / 3_600_000;
+        const newAttempts = data.answers.filter(
+          (a) => a.answered_at && new Date(a.answered_at) > createdAt,
+        ).length;
+
+        const stale = (ageHours >= 24 && newAttempts >= 10) || newAttempts >= 30;
+        if (stale) void generateDiagnosis(true);
+      })
+      .catch(() => {
+        // 讀不到舊診斷不影響頁面，僅代表尚未生成過
+      });
+    return () => {
+      active = false;
+    };
+  }, [data, generateDiagnosis]);
 
   const tasks = useMemo(() => buildPrescriptionTasks(data, t), [data, t]);
   const overallAccuracy = pct(data.correctAttempts, data.totalAttempts);
@@ -511,9 +546,15 @@ function PrescriptionTab({
                   {t('performance.aiUpdatedAt', { time: updatedAt })}
                 </p>
               )}
+              {autoRefreshing && (
+                <p className="text-xs text-muted-foreground flex items-center gap-1">
+                  <Loader2 className="h-3 w-3 animate-spin" />
+                  {t('performance.autoUpdating')}
+                </p>
+              )}
               <Button
-                onClick={generateDiagnosis}
-                disabled={loading || data.totalAttempts === 0}
+                onClick={() => generateDiagnosis(false)}
+                disabled={loading || autoRefreshing || data.totalAttempts === 0}
                 size="sm"
                 className="mt-2 w-full gap-1 text-xs"
               >
