@@ -1,5 +1,6 @@
 import { Injectable, InternalServerErrorException, BadGatewayException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { Allow, IsIn, IsOptional } from 'class-validator';
 
 export type FeedbackAttempt = {
   subject?: string;
@@ -28,21 +29,26 @@ export type PerformanceStats = {
   streakDays: number;
 };
 
+// ⚠ main.ts 的 ValidationPipe 開了 whitelist: true——DTO 欄位「必須」加 class-validator
+// decorator（至少 @Allow()），否則整個欄位會被剝掉，controller 只會收到空物件。
 export class GeminiFeedbackRequestDto {
+  @IsOptional()
+  @IsIn(['status', 'feedback', 'question-analysis', 'performance-diagnosis'])
   action?: 'status' | 'feedback' | 'question-analysis' | 'performance-diagnosis';
-  mode?: string;
-  totalQuestions?: number;
-  attempts?: FeedbackAttempt[];
-  unansweredCount?: number;
-  interfaceLanguage?: string;
-  questionText?: string;
-  options?: Array<{ key: string; text: string }>;
-  selectedChoice?: string | null;
-  correctChoice?: string | null;
-  isCorrect?: boolean;
-  explanationText?: string | null;
-  topic?: string | null;
-  performanceStats?: PerformanceStats;
+
+  @Allow() mode?: string;
+  @Allow() totalQuestions?: number;
+  @Allow() attempts?: FeedbackAttempt[];
+  @Allow() unansweredCount?: number;
+  @Allow() interfaceLanguage?: string;
+  @Allow() questionText?: string;
+  @Allow() options?: Array<{ key: string; text: string }>;
+  @Allow() selectedChoice?: string | null;
+  @Allow() correctChoice?: string | null;
+  @Allow() isCorrect?: boolean;
+  @Allow() explanationText?: string | null;
+  @Allow() topic?: string | null;
+  @Allow() performanceStats?: PerformanceStats;
 }
 
 // gemini-3.5-flash 對部分 API key 會回 404/503（見 CLAUDE.md「Gemini API 模型名稱」），
