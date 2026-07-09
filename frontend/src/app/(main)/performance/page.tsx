@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -409,6 +409,17 @@ function buildPrescriptionTasks(data: PageData, t: ReturnType<typeof useI18n>['t
   return tasks;
 }
 
+/** 今天的診斷只顯示 HH:mm，較舊的加上月/日，避免誤以為是今天生成的。 */
+function formatDiagnosisTime(date: Date): string {
+  const hhmm = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+  const now = new Date();
+  const sameDay =
+    date.getFullYear() === now.getFullYear() &&
+    date.getMonth() === now.getMonth() &&
+    date.getDate() === now.getDate();
+  return sameDay ? hhmm : `${date.getMonth() + 1}/${date.getDate()} ${hhmm}`;
+}
+
 function PrescriptionTab({
   data,
   t,
@@ -422,6 +433,24 @@ function PrescriptionTab({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [updatedAt, setUpdatedAt] = useState('');
+
+  // 還原上次生成並存在 DB 的診斷，重新整理頁面後結果不會消失
+  useEffect(() => {
+    let active = true;
+    api
+      .get<{ payload: DiagnosisResult | null; createdAt?: string }>('/gemini-feedback/latest-diagnosis')
+      .then((saved) => {
+        if (!active || !saved?.payload) return;
+        setDiagnosis((current) => current ?? saved.payload);
+        if (saved.createdAt) setUpdatedAt(formatDiagnosisTime(new Date(saved.createdAt)));
+      })
+      .catch(() => {
+        // 讀不到舊診斷不影響頁面，僅代表尚未生成過
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const generateDiagnosis = useCallback(async () => {
     setLoading(true);
@@ -445,8 +474,7 @@ function PrescriptionTab({
       const cleaned = start >= 0 && end > start ? raw.slice(start, end + 1) : raw.trim();
       const parsed = JSON.parse(cleaned) as DiagnosisResult;
       setDiagnosis(parsed);
-      const now = new Date();
-      setUpdatedAt(`${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`);
+      setUpdatedAt(formatDiagnosisTime(new Date()));
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error generating diagnosis');
     } finally {
@@ -1332,7 +1360,6 @@ export default function PerformancePage() {
   const [loading, setLoading] = useState(true);
   const [visible, setVisible] = useState(false);
   const [examState, setExamState] = useState<string | null>(null);
-  const mounted = useRef(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 50);
@@ -1350,20 +1377,12 @@ export default function PerformancePage() {
   const passingStandard = useMemo(() => getPassingStandard(examState), [examState]);
 
   useEffect(() => {
-    if (mounted.current) return;
-    mounted.current = true;
+    // auth 尚未解析完成時先不載入（AuthGuard 會處理未登入導向）。
+    // 不能用 mounted ref 擋重跑：首次 render 時 user 常是 undefined，
+    // 擋掉後續重跑會讓資料永遠載不進來，整頁卡在空數據。
+    if (!user?.id) return;
 
     const load = async () => {
-      if (!user?.id) {
-        setPageData({
-          answers: [], metadata: new Map(), conceptMastery: [],
-          totalAttempts: 0, correctAttempts: 0, avgTimeSeconds: 0,
-          streakDays: 0, errorTypeBreakdown: {}, recentTrend: [], weakConcepts: [],
-        });
-        setLoading(false);
-        return;
-      }
-
       setLoading(true);
 
       type PerformanceDataResponse = {

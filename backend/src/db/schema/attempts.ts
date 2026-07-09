@@ -224,3 +224,20 @@ export const userBadges = pgTable(
   },
   (table) => [unique().on(table.userId, table.badgeKey)],
 );
+
+/** AI 學習表現診斷結果 — 每次生成即存一筆，頁面載入時取最新一筆顯示。 */
+export const aiDiagnoses = pgTable('ai_diagnoses', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  userId: uuid('user_id')
+    .notNull()
+    .references(() => profiles.id, { onDelete: 'cascade' }),
+  /** 前端可直接渲染的診斷 JSON（diagnosis/topPriorities/studyPlan/encouragement/readinessScore） */
+  payload: jsonb('payload').notNull(),
+  /** 實際生成用的 Gemini 模型 */
+  model: text('model'),
+  /** 生成當下的介面語言（en / zh-Hans / zh-Hant） */
+  interfaceLanguage: text('interface_language'),
+  createdAt: timestamp('created_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});

@@ -1,6 +1,9 @@
-import { Injectable, InternalServerErrorException, BadGatewayException } from '@nestjs/common';
+import { Inject, Injectable, InternalServerErrorException, BadGatewayException, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Allow, IsIn, IsOptional } from 'class-validator';
+import { desc, eq } from 'drizzle-orm';
+import { DB, type Database } from '../db/db.provider';
+import { aiDiagnoses } from '../db/schema';
 
 export type FeedbackAttempt = {
   subject?: string;
@@ -62,7 +65,40 @@ const OVERALL_DEADLINE_MS = 50_000;
 
 @Injectable()
 export class GeminiFeedbackService {
-  constructor(private readonly configService: ConfigService) {}
+  private readonly logger = new Logger(GeminiFeedbackService.name);
+
+  constructor(
+    private readonly configService: ConfigService,
+    @Inject(DB) private readonly db: Database,
+  ) {}
+
+  /** 生成成功後保存診斷，讓使用者重新整理頁面仍看得到上次結果。 */
+  async saveDiagnosis(userId: string, feedback: string, model: string, interfaceLanguage?: string) {
+    let payload: unknown;
+    try {
+      payload = JSON.parse(feedback);
+    } catch {
+      this.logger.warn('Diagnosis feedback is not valid JSON; skipping persistence.');
+      return;
+    }
+    await this.db.insert(aiDiagnoses).values({
+      userId,
+      payload,
+      model,
+      interfaceLanguage: interfaceLanguage ?? null,
+    });
+  }
+
+  async getLatestDiagnosis(userId: string) {
+    const [row] = await this.db
+      .select()
+      .from(aiDiagnoses)
+      .where(eq(aiDiagnoses.userId, userId))
+      .orderBy(desc(aiDiagnoses.createdAt))
+      .limit(1);
+    if (!row) return { payload: null };
+    return { payload: row.payload, model: row.model, createdAt: row.createdAt };
+  }
 
   private getApiKey(): string {
     return (
