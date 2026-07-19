@@ -6,8 +6,9 @@ Single entry point for the whole pipeline — no more castudy dependency:
 
   --mode build      Sync out/{subject}/{chapter}/{subject}_{chapter}_enriched.json
                      from the latest scrape under questions/{subject}/{chapter}_*/*.json.
-                     Never touches fields already present for an existing index;
-                     only adds questions/fields that are missing.
+                     Existing UWorld records are identified by stable source UID,
+                     not by a display index, so imported external questions are
+                     never mistaken for a raw-scrape record.
   --mode translate  AI-translate zh-question / zh-choices for questions missing them.
   --mode zh-html    AI-generate zh-explanation HTML.
   --mode en-html    AI-generate explanation (English) HTML.
@@ -1443,6 +1444,49 @@ def canonical_enriched_path(subject: str, chapter: str) -> Path:
     return OUT_DIR / subject / chapter / f"{subject}_{chapter}_enriched.json"
 
 
+def _source_slug(value: str) -> str:
+    value = value.lower().replace("&", "and")
+    return re.sub(r"(^-|-$)", "", re.sub(r"[^a-z0-9]+", "-", value))
+
+
+def uworld_question_uid(subject: str, chapter: str, source_index: int) -> str:
+    """Stable identity of a raw UWorld record within its subject/chapter feed."""
+    return f"uworld:{_source_slug(subject)}:{_source_slug(chapter)}:{source_index}"
+
+
+def summarize_provenance(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Return document-level source counts from immutable per-question provenance."""
+    grouped: dict[tuple[str, str], dict[str, Any]] = {}
+    files: dict[tuple[str, str], set[str]] = {}
+    source_uids: dict[tuple[str, str], set[str]] = {}
+    for item in items:
+        for provenance in item.get("provenance", []):
+            if not isinstance(provenance, dict):
+                continue
+            provider = str(provenance.get("provider") or "unknown")
+            source_type = str(provenance.get("source_type") or "unknown")
+            key = (provider, source_type)
+            grouped.setdefault(key, {
+                "provider": provider,
+                "source_type": source_type,
+                "question_count": 0,
+            })["question_count"] += 1
+            files.setdefault(key, set())
+            source_uids.setdefault(key, set())
+            if provenance.get("source_file"):
+                files[key].add(str(provenance["source_file"]))
+            if provenance.get("source_uid"):
+                source_uids[key].add(str(provenance["source_uid"]))
+    result = []
+    for key in sorted(grouped):
+        entry = grouped[key]
+        if files[key]:
+            entry["source_files"] = sorted(files[key])
+        entry["source_record_count"] = len(source_uids[key])
+        result.append(entry)
+    return result
+
+
 def find_existing_enriched_for_build(subject: str, chapter: str) -> Path | None:
     """Prefer the canonical filename; otherwise reuse whatever *_enriched.json already exists."""
     canonical = canonical_enriched_path(subject, chapter)
@@ -1458,8 +1502,10 @@ def find_existing_enriched_for_build(subject: str, chapter: str) -> Path | None:
 def build_enriched_file(subject: str, chapter: str, dry_run: bool, quiet: bool = False) -> Path | None:
     """Sync out/{subject}/{chapter}/{subject}_{chapter}_enriched.json from the latest raw scrape.
 
-    Existing question records (matched by index) are left completely untouched —
-    only missing indices and brand-new fields on those new records are added.
+    Existing UWorld records (matched by immutable ``question_uid``) are left
+    completely untouched.  Newly discovered UWorld records receive a new
+    canonical display index, which prevents a future raw source index from
+    colliding with an externally imported official question.
 
     quiet: suppress the "no new questions" line (used for the automatic pre-sync
     that now runs before translate/zh-html/en-html/meta so the user doesn't have
@@ -1479,13 +1525,25 @@ def build_enriched_file(subject: str, chapter: str, dry_run: bool, quiet: bool =
     output_path = canonical_enriched_path(subject, chapter)
     existing_source = find_existing_enriched_for_build(subject, chapter)
     existing_records: dict[int, dict[str, Any]] = {}
+    existing_by_uid: dict[str, dict[str, Any]] = {}
     if existing_source and existing_source.exists():
         existing_doc = json.loads(existing_source.read_text(encoding="utf-8"))
         existing_items, _ = parse_enriched_document(existing_doc)
         for it in existing_items:
             idx = it.get("index")
-            if idx is not None:
-                existing_records[int(idx)] = it
+            if not isinstance(idx, int):
+                raise ValueError(f"Existing enriched question has invalid index: {existing_source}")
+            if idx in existing_records:
+                raise ValueError(f"Duplicate existing enriched index {idx}: {existing_source}")
+            existing_records[idx] = it
+            uid = it.get("question_uid")
+            # Legacy enriched files are tolerated once. Their historical index
+            # represents their UWorld source index until migration adds the UID.
+            if not isinstance(uid, str) or not uid:
+                uid = uworld_question_uid(subject, chapter, idx)
+            if uid in existing_by_uid:
+                raise ValueError(f"Duplicate existing question_uid {uid}: {existing_source}")
+            existing_by_uid[uid] = it
 
     raw_dir = raw_path.parent
     output_dir = output_path.parent
@@ -1493,11 +1551,17 @@ def build_enriched_file(subject: str, chapter: str, dry_run: bool, quiet: bool =
 
     new_count = 0
     output_records: dict[int, dict[str, Any]] = dict(existing_records)
+    next_canonical_index = max(output_records, default=0) + 1
 
     for q in raw_questions:
-        idx = int(q.get("index") or 0)
-        if idx in existing_records:
-            continue  # never touch an existing record's fields
+        source_index = int(q.get("index") or 0)
+        if source_index < 1:
+            raise ValueError(f"Raw question has invalid source index in {raw_path}: {source_index}")
+        uid = uworld_question_uid(subject, chapter, source_index)
+        if uid in existing_by_uid:
+            continue  # never touch existing enriched fields
+        idx = next_canonical_index
+        next_canonical_index += 1
 
         choices = {str(k).upper(): v for k, v in (q.get("choices") or {}).items()}
         answer = str(q.get("correctAnswer") or "").strip().upper()[:1]
@@ -1517,12 +1581,20 @@ def build_enriched_file(subject: str, chapter: str, dry_run: bool, quiet: bool =
 
         output_records[idx] = {
             "index": idx,
+            "question_uid": uid,
             "subject": subject,
             "chapter": chapter,
-            "count": count,
+            "count": 0,  # normalized to the final document count below
             "question": q.get("question", ""),
             "choices": choices,
             "answer": answer,
+            "provenance": [{
+                "source_uid": uid,
+                "provider": "uworld",
+                "source_type": "question_bank",
+                "source_file": raw_path.name,
+                "source_question_index": source_index,
+            }],
             "source_img": source_img,
             "explanation": "",
             "zh-question": "",
@@ -1543,16 +1615,20 @@ def build_enriched_file(subject: str, chapter: str, dry_run: bool, quiet: bool =
         return output_path
 
     output_dir.mkdir(parents=True, exist_ok=True)
+    final_items = [output_records[i] for i in sorted(output_records)]
+    for item in final_items:
+        item["count"] = len(final_items)
     payload = {
         "meta": {
             "subject": subject,
             "chapter": chapter,
-            "count": count,
-            "updatedAt": datetime.now().isoformat(timespec="seconds"),
+            "count": len(final_items),
+            "updatedAt": datetime.now(timezone.utc).isoformat(),
             "sourceQuestionsFile": raw_path.name,
+            "sources": summarize_provenance(final_items),
             "schema": "passbar.enriched.v2",
         },
-        "questions": [output_records[i] for i in sorted(output_records)],
+        "questions": final_items,
     }
     output_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"  [build] {subject} / {chapter}: +{new_count} new question(s), "

@@ -15,6 +15,7 @@ import type { JwtPayload } from '../auth/strategies/jwt.strategy';
 import { QuestionProgressService } from './question-progress.service';
 import {
   SaveAnswerProgressDto,
+  FilterQuestionProgressDto,
   SaveOmittedDto,
   SetQuestionMarkedDto,
 } from './dto/question-progress.dto';
@@ -80,6 +81,24 @@ export class QuestionProgressController {
         Correct: correct === 'true',
       },
     );
+  }
+
+  /**
+   * POST variant for large custom tests. Sending every eligible ID in a query
+   * string exceeds browser/proxy URL limits once users select many chapters.
+   */
+  @Post('filter')
+  filterByStatusPost(
+    @CurrentUser() user: JwtPayload,
+    @Body() dto: FilterQuestionProgressDto,
+  ) {
+    return this.progressService.filterQuestionIdsByStatus(user.sub, dto.questionIds, {
+      Unused: dto.unused,
+      Incorrect: dto.incorrect,
+      Marked: dto.marked,
+      Omitted: dto.omitted,
+      Correct: dto.correct,
+    });
   }
 
   @Get('stats/:questionId')

@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { and, eq, inArray } from 'drizzle-orm';
 import { DB, type Database } from '../db/db.provider';
-import { topicStudyProgress, topicStudyQuestionStates } from '../db/schema';
+import { questionItems, topicStudyProgress, topicStudyQuestionStates } from '../db/schema';
 
 @Injectable()
 export class TopicStudyService {
@@ -172,7 +172,11 @@ export class TopicStudyService {
       );
   }
 
-  async getChapterStateCounts(userId: string) {
+  async getChapterStateCounts(userId: string, ncbe?: boolean) {
+    const conditions = [eq(topicStudyQuestionStates.userId, userId)];
+    if (ncbe !== undefined) {
+      conditions.push(eq(questionItems.isNcbe, ncbe));
+    }
     const rows = await this.db
       .select({
         chapterId: topicStudyQuestionStates.chapterId,
@@ -180,7 +184,11 @@ export class TopicStudyService {
         isMarked: topicStudyQuestionStates.isMarked,
       })
       .from(topicStudyQuestionStates)
-      .where(eq(topicStudyQuestionStates.userId, userId));
+      .innerJoin(
+        questionItems,
+        eq(questionItems.id, topicStudyQuestionStates.questionId),
+      )
+      .where(and(...conditions));
 
     const result: Record<
       string,

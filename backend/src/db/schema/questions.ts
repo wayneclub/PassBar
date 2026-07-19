@@ -63,6 +63,10 @@ export const questionItems = pgTable(
       .references(() => chapters.id, { onDelete: 'cascade' }),
     index: integer('index').notNull(),
     correctAnswer: text('correct_answer').notNull(),
+    // Derived exclusively by the enriched importer from tags.includes('ncbe').
+    // This denormalization keeps the common official-exam filter indexable instead of
+    // requiring every request to inspect question_items.raw JSONB.
+    isNcbe: boolean('is_ncbe').notNull().default(false),
     stem: jsonb('stem').$type<QuestionStem>().notNull(),
     choices: jsonb('choices').$type<QuestionChoice[]>().notNull(),
     explanation: jsonb('explanation').$type<QuestionExplanation>(),
@@ -80,6 +84,35 @@ export const questionItems = pgTable(
       .$onUpdate(() => new Date()),
   },
   (table) => [unique().on(table.chapterId, table.index)],
+);
+
+/** Queryable provenance for every source that maps to a canonical question.
+ * `questionItems.isNcbe` remains the denormalized fast-path used by
+ * the learner-facing source filter; this table supports audit/admin/future
+ * provider-specific queries without inspecting raw JSONB. */
+export const questionSources = pgTable(
+  'question_sources',
+  {
+    questionId: text('question_id')
+      .notNull()
+      .references(() => questionItems.id, { onDelete: 'cascade' }),
+    sourceUid: text('source_uid').notNull().unique(),
+    provider: text('provider').notNull(),
+    sourceType: text('source_type').notNull(),
+    sourceFile: text('source_file'),
+    sourceFormat: text('source_format'),
+    sourceQuestionNumber: integer('source_question_number'),
+    sourceSha256: text('source_sha256'),
+    answerKey: text('answer_key'),
+    isNcbe: boolean('is_ncbe').notNull().default(false),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    unique().on(table.questionId, table.sourceUid),
+  ],
 );
 
 export const questionAiExplanations = pgTable(

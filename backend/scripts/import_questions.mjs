@@ -1,4 +1,5 @@
 import { Pool } from 'pg';
+import { createHash } from 'node:crypto';
 import dotenv from 'dotenv';
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -39,6 +40,7 @@ const outDir = process.env.QUESTIONS_OUT_DIR
     ? path.resolve(process.env.OUT_DIR)
     : path.join(projectRoot, 'out');
 const pool = dryRun ? null : new Pool({ connectionString: databaseUrl });
+let connection = pool;
 
 const choiceOrder = ['A', 'B', 'C', 'D'];
 function slugify(value) {
@@ -101,6 +103,39 @@ function questionAnalysisMeta(item) {
       ? { question_highlight_meta: meta.question_highlight_meta }
       : null,
   };
+}
+
+function sourceRowsForQuestion(questionId, item) {
+  if (!Array.isArray(item.provenance) || item.provenance.length === 0) {
+    throw new Error(`Question ${questionId} is missing required provenance`);
+  }
+
+  const sourceUids = new Set();
+  return item.provenance.map((entry) => {
+    const sourceUid = String(entry?.source_uid ?? '').trim();
+    const provider = String(entry?.provider ?? '').trim();
+    const sourceType = String(entry?.source_type ?? '').trim();
+    if (!sourceUid || !provider || !sourceType || sourceUids.has(sourceUid)) {
+      throw new Error(`Question ${questionId} has invalid or duplicate provenance`);
+    }
+    sourceUids.add(sourceUid);
+    const rawNumber = entry?.source_question_number ?? entry?.source_question_index;
+    const sourceQuestionNumber = Number.isInteger(Number(rawNumber))
+      ? Number(rawNumber)
+      : null;
+    return {
+      question_id: questionId,
+      source_uid: sourceUid,
+      provider,
+      source_type: sourceType,
+      source_file: typeof entry?.source_file === 'string' ? entry.source_file : null,
+      source_format: typeof entry?.format === 'string' ? entry.format : null,
+      source_question_number: sourceQuestionNumber,
+      source_sha256: typeof entry?.source_sha256 === 'string' ? entry.source_sha256 : null,
+      answer_key: typeof entry?.answer_key === 'string' ? entry.answer_key : null,
+      is_ncbe: provider === 'ncbe',
+    };
+  });
 }
 
 async function listEnrichedFiles(dir) {
@@ -187,11 +222,26 @@ async function fetchQuestionIdsByIndex(chapId, items) {
       `${chapId}-${String(item.index).padStart(4, '0')}`,
     ]));
   }
-  const { rows } = await pool.query(
+  const { rows } = await connection.query(
     'SELECT id, "index" FROM public.question_items WHERE chapter_id = $1',
     [chapId],
   );
   return new Map(rows.map((row) => [row.index, row.id]));
+}
+
+function stableOfficialQuestionId(questionUid) {
+  const digest = createHash('sha256').update(questionUid).digest('hex').slice(0, 32);
+  return `official-${digest}`;
+}
+
+function questionIdForImport(chapId, item, idByIndex) {
+  // Existing UWorld rows retain their historical chapter/index IDs so user
+  // progress is not broken. New official-only records use an immutable source
+  // identity, allowing a later chapter correction without changing their ID.
+  if (typeof item.question_uid === 'string' && item.question_uid.startsWith('official:')) {
+    return stableOfficialQuestionId(item.question_uid);
+  }
+  return idByIndex.get(item.index) ?? `${chapId}-${String(item.index).padStart(4, '0')}`;
 }
 
 function toParam(value) {
@@ -215,17 +265,33 @@ async function upsert(table, rows, conflictCols, { skipUpdate = false } = {}) {
     return `(${placeholders.join(', ')})`;
   }).join(', ');
 
+  const comparableColumns = updateColumns.filter((c) => c !== 'updated_at');
   const updateClause = updateColumns.length > 0
     ? updateColumns.map((c) => `"${c}" = EXCLUDED."${c}"`).join(', ')
+    : null;
+  const updateWhere = comparableColumns.length > 0
+    ? comparableColumns.map((c) => `public.${table}."${c}" IS DISTINCT FROM EXCLUDED."${c}"`).join(' OR ')
     : null;
 
   const sql = `
     INSERT INTO public.${table} (${columns.map((c) => `"${c}"`).join(', ')})
     VALUES ${valuePlaceholders}
     ON CONFLICT (${conflictColumns.map((c) => `"${c}"`).join(', ')})
-    ${updateClause ? `DO UPDATE SET ${updateClause}` : 'DO NOTHING'}
+    ${updateClause ? `DO UPDATE SET ${updateClause}${updateWhere ? ` WHERE ${updateWhere}` : ''}` : 'DO NOTHING'}
   `;
-  await pool.query(sql, values);
+  await connection.query(sql, values);
+}
+
+async function replaceQuestionSources(questionIds, sourceRows) {
+  if (dryRun || questionIds.length === 0) return;
+  // The enriched file is canonical. Replacing source rows for the imported
+  // questions removes stale provenance while the enclosing import transaction
+  // guarantees that a failed run cannot leave a partial source map behind.
+  await connection.query(
+    'DELETE FROM public.question_sources WHERE question_id = ANY($1::text[])',
+    [questionIds],
+  );
+  await upsert('question_sources', sourceRows, 'question_id,source_uid');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -262,6 +328,14 @@ console.log(`Target: ${dryRun ? '(dry run)' : databaseUrl.replace(/:[^:@]*@/, ':
 console.log('─'.repeat(60));
 
 let totalQuestions = 0;
+let transactionClient = null;
+
+try {
+  if (pool) {
+    transactionClient = await pool.connect();
+    connection = transactionClient;
+    await connection.query('BEGIN');
+  }
 
 for (const file of files) {
   const { meta, items } = parseEnrichedDocument(JSON.parse(await readFile(file, 'utf8')));
@@ -271,13 +345,7 @@ for (const file of files) {
   const chapId = chapterId(meta);
   console.log(`[${files.indexOf(file) + 1}/${files.length}] ${relativeFile}: ${items.length} questions`);
 
-  let idByIndex;
-  try {
-    idByIndex = await fetchQuestionIdsByIndex(chapId, items);
-  } catch (err) {
-    console.error(`  WARN: cannot fetch question IDs for ${chapId}: ${err.message} — skipping`);
-    continue;
-  }
+  const idByIndex = await fetchQuestionIdsByIndex(chapId, items);
 
   const subject = {
     id: subjectId(meta),
@@ -295,6 +363,7 @@ for (const file of files) {
   };
 
   const questionItems = [];
+  const questionSources = [];
 
   for (const item of items) {
     const answer = normalizeChoiceKey(item.answer);
@@ -303,7 +372,7 @@ for (const file of files) {
       continue;
     }
 
-    const questionId = idByIndex.get(item.index) ?? `${chapId}-${String(item.index).padStart(4, '0')}`;
+    const questionId = questionIdForImport(chapId, item, idByIndex);
     const analysisMeta = questionAnalysisMeta(item);
 
     const enQuestion = String(item.question ?? '').trim();
@@ -330,6 +399,7 @@ for (const file of files) {
       chapter_id: chapId,
       index: item.index,
       correct_answer: answer,
+      is_ncbe: Array.isArray(item.tags) && item.tags.includes('ncbe'),
       stem,
       choices,
       explanation: Object.keys(explanation).length ? explanation : null,
@@ -343,24 +413,33 @@ for (const file of files) {
       raw: item,
       updated_at: new Date().toISOString(),
     });
+    questionSources.push(...sourceRowsForQuestion(questionId, item));
   }
 
-  try {
-    await upsert('subjects', [subject], 'id', { skipUpdate: true });
-    await upsert('chapters', [chapter], 'id');
-    await upsert('question_items', questionItems, 'id');
-  } catch (err) {
-    console.error(`  Failed importing ${relativeFile}:`, err.message);
-    process.exit(1);
-  }
+  await upsert('subjects', [subject], 'id', { skipUpdate: true });
+  await upsert('chapters', [chapter], 'id');
+  await upsert('question_items', questionItems, 'id');
+  await replaceQuestionSources(questionItems.map((item) => item.id), questionSources);
 
   totalQuestions += questionItems.length;
   const tag = dryRun ? '[dry-run] ' : '';
   console.log(`  ↳ ${tag}questions:${questionItems.length}`);
 }
 
-const verb = dryRun ? 'Validated' : 'Imported';
-console.log('─'.repeat(60));
-console.log(`${verb} ${totalQuestions} questions from ${files.length} files.`);
+  if (transactionClient) await connection.query('COMMIT');
+} catch (err) {
+  if (transactionClient) {
+    try { await connection.query('ROLLBACK'); } catch { /* preserve original error */ }
+  }
+  console.error('Question import rolled back:', err.message);
+  process.exitCode = 1;
+} finally {
+  if (transactionClient) transactionClient.release();
+  if (pool) await pool.end();
+}
 
-if (pool) await pool.end();
+if (!process.exitCode) {
+  const verb = dryRun ? 'Validated' : 'Imported';
+  console.log('─'.repeat(60));
+  console.log(`${verb} ${totalQuestions} questions from ${files.length} files.`);
+}

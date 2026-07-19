@@ -35,6 +35,27 @@ export class SaveOmittedDto {
   questionIds!: string[];
 }
 
+export class FilterQuestionProgressDto {
+  @IsArray()
+  @IsString({ each: true })
+  questionIds!: string[];
+
+  @IsBoolean()
+  unused!: boolean;
+
+  @IsBoolean()
+  incorrect!: boolean;
+
+  @IsBoolean()
+  marked!: boolean;
+
+  @IsBoolean()
+  omitted!: boolean;
+
+  @IsBoolean()
+  correct!: boolean;
+}
+
 export class ClearProgressDto {
   @IsOptional()
   @IsIn(['practice', 'browse', 'all'])

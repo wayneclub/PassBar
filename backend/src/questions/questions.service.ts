@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { asc, eq, inArray } from 'drizzle-orm';
+import { and, asc, eq, inArray, sql } from 'drizzle-orm';
 import { DB, type Database } from '../db/db.provider';
 import {
   chapters,
@@ -12,6 +12,7 @@ import {
 type QuestionItemRow = {
   id: string;
   index: number;
+  isNcbe: boolean;
   correctAnswer: string;
   stem: { en: string; zh?: string };
   choices: QuestionChoice[];
@@ -31,6 +32,7 @@ type QuestionItemRow = {
 const baseSelect = {
   id: questionItems.id,
   index: questionItems.index,
+  isNcbe: questionItems.isNcbe,
   correctAnswer: questionItems.correctAnswer,
   stem: questionItems.stem,
   choices: questionItems.choices,
@@ -60,6 +62,7 @@ function toQuestionRow(row: QuestionItemRow) {
   return {
     id: row.id,
     index: row.index,
+    isNcbe: row.isNcbe,
     subject: row.subject,
     chapterId: row.chapterId,
     chapterName: row.chapterName,
@@ -89,7 +92,22 @@ function toQuestionRow(row: QuestionItemRow) {
 export class QuestionsService {
   constructor(@Inject(DB) private readonly db: Database) {}
 
-  async getSubjects() {
+  async getSubjects(ncbe?: boolean) {
+    if (ncbe !== undefined) {
+      return this.db
+        .select({
+          subject: subjects.subject,
+          chapterId: chapters.id,
+          chapterName: chapters.chapter,
+          count: sql<number>`count(${questionItems.id})::int`,
+        })
+        .from(questionItems)
+        .innerJoin(chapters, eq(chapters.id, questionItems.chapterId))
+        .innerJoin(subjects, eq(subjects.id, chapters.subjectId))
+        .where(eq(questionItems.isNcbe, ncbe))
+        .groupBy(subjects.subject, chapters.id, chapters.chapter)
+        .orderBy(asc(subjects.subject), asc(chapters.chapter));
+    }
     return this.db
       .select()
       .from(questionChapterCounts)
@@ -99,7 +117,7 @@ export class QuestionsService {
       );
   }
 
-  async getSubjectsGrouped(): Promise<
+  async getSubjectsGrouped(ncbe?: boolean): Promise<
     Array<{
       id: string;
       name: string;
@@ -107,7 +125,7 @@ export class QuestionsService {
       chapters: Array<{ id: string; name: string; count: number }>;
     }>
   > {
-    const rows = await this.getSubjects();
+    const rows = await this.getSubjects(ncbe);
     const grouped = new Map<
       string,
       {
@@ -148,19 +166,30 @@ export class QuestionsService {
       .innerJoin(subjects, eq(subjects.id, chapters.subjectId));
   }
 
-  async getQuestionIdsByChapterIds(chapterIds: string[]): Promise<string[]> {
+  async getQuestionIdsByChapterIds(
+    chapterIds: string[],
+    ncbe?: boolean,
+  ): Promise<string[]> {
     if (chapterIds.length === 0) return [];
+    const conditions = [inArray(questionItems.chapterId, chapterIds)];
+    if (ncbe !== undefined) {
+      conditions.push(eq(questionItems.isNcbe, ncbe));
+    }
     const rows = await this.db
       .select({ id: questionItems.id })
       .from(questionItems)
-      .where(inArray(questionItems.chapterId, chapterIds));
+      .where(and(...conditions));
     return rows.map((r) => r.id);
   }
 
-  async getAllQuestionIdsByChapter(): Promise<Record<string, string[]>> {
+  async getAllQuestionIdsByChapter(ncbe?: boolean): Promise<Record<string, string[]>> {
+    const conditions = ncbe === undefined
+      ? undefined
+      : eq(questionItems.isNcbe, ncbe);
     const rows = await this.db
       .select({ id: questionItems.id, chapterId: questionItems.chapterId })
-      .from(questionItems);
+      .from(questionItems)
+      .where(conditions);
     const map: Record<string, string[]> = {};
     for (const row of rows) {
       (map[row.chapterId] ??= []).push(row.id);
@@ -168,10 +197,18 @@ export class QuestionsService {
     return map;
   }
 
-  async getQuestionsByChapterIds(chapterIds: string[], limit: number) {
+  async getQuestionsByChapterIds(
+    chapterIds: string[],
+    limit: number,
+    ncbe?: boolean,
+  ) {
     if (chapterIds.length === 0) return [];
+    const conditions = [inArray(questionItems.chapterId, chapterIds)];
+    if (ncbe !== undefined) {
+      conditions.push(eq(questionItems.isNcbe, ncbe));
+    }
     const rows = await this.joinedQuery()
-      .where(inArray(questionItems.chapterId, chapterIds))
+      .where(and(...conditions))
       .orderBy(asc(questionItems.chapterId), asc(questionItems.index))
       .limit(limit);
     return rows.map(toQuestionRow);

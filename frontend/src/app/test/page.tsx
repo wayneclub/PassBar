@@ -1064,10 +1064,10 @@ function TestSessionContent() {
               "space-y-6 sm:space-y-8 py-4 sm:py-8",
               showExplanation ? "px-4 sm:px-6 lg:px-8" : "mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8"
             )}>
-              {/* ── Pill-style Breadcrumb: Subject › Chapter › Topic ────── */}
-              {(currentQuestion?.subject || currentQuestion?.chapterName || currentQuestion?.topic) && (
-                <nav aria-label="breadcrumb" className="-mt-1">
-                  <ol className="flex flex-wrap items-center gap-1.5">
+              {/* Knowledge structure first; the source is a deliberately quiet second group. */}
+              {(currentQuestion?.subject || currentQuestion?.chapterName || currentQuestion?.topic || currentQuestion?.isNcbe) && (
+                <nav aria-label="breadcrumb" className="-mt-1 min-w-0">
+                  <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-2 sm:gap-y-1.5">
                     {[
                       currentQuestion.subject
                         ? { label: currentQuestion.subject, pill: 'border border-primary/30 bg-primary/8 text-primary font-semibold' }
@@ -1080,16 +1080,22 @@ function TestSessionContent() {
                         : null,
                     ]
                       .filter(Boolean)
-                      .map((item, i) => (
-                        <li key={i} className="flex items-center gap-1.5 min-w-0">
-                          {i > 0 && (
-                            <span className="shrink-0 text-slate-300 select-none text-xs leading-none">›</span>
-                          )}
+                      .map((item, i, items) => (
+                        <li key={i} className="flex min-w-0 items-center gap-1.5">
                           <span className={`truncate rounded-full px-2.5 py-1 text-xs leading-none ${item!.pill}`}>
                             {item!.label}
                           </span>
+                          {i < items.length - 1 && (
+                            <span className="shrink-0 select-none text-xs leading-none text-slate-300">›</span>
+                          )}
                         </li>
                       ))}
+                    {currentQuestion.isNcbe && (
+                      <li className="ml-1 flex shrink-0 items-center gap-2">
+                        <span aria-hidden="true" className="select-none text-xs leading-none text-[#E5E7EB]">|</span>
+                        <span className="text-xs font-bold tracking-[0.08em] text-primary">NCBE</span>
+                      </li>
+                    )}
                   </ol>
                 </nav>
               )}

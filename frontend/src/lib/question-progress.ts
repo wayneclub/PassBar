@@ -1,4 +1,4 @@
-import { api } from './api';
+import { api, ApiError } from './api';
 import { QuestionStatus } from './types';
 
 export type QuestionStatusCounts = Record<QuestionStatus, number>;
@@ -87,17 +87,38 @@ export async function filterQuestionIdsByStatus(
   if (!userId) return filters.Unused ? questionIds : [];
 
   try {
-    const params = new URLSearchParams();
-    params.set('questionIds', questionIds.join(','));
-    params.set('unused', String(filters.Unused));
-    params.set('incorrect', String(filters.Incorrect));
-    params.set('marked', String(filters.Marked));
-    params.set('omitted', String(filters.Omitted));
-    params.set('correct', String(filters.Correct));
-    return await api.get<string[]>(`/attempts/question-progress/filter?${params.toString()}`);
+    return await api.post<string[]>('/attempts/question-progress/filter', {
+      questionIds,
+      unused: filters.Unused,
+      incorrect: filters.Incorrect,
+      marked: filters.Marked,
+      omitted: filters.Omitted,
+      correct: filters.Correct,
+    });
   } catch (err) {
+    // Allows a freshly updated frontend to keep working with a still-running
+    // pre-POST backend during local development. Do not use this escape hatch
+    // for a large custom test: URL limits are exactly why POST is canonical.
+    const legacyQuery = new URLSearchParams({
+      questionIds: questionIds.join(','),
+      unused: String(filters.Unused),
+      incorrect: String(filters.Incorrect),
+      marked: String(filters.Marked),
+      omitted: String(filters.Omitted),
+      correct: String(filters.Correct),
+    });
+    if (err instanceof ApiError && err.status === 404 && legacyQuery.toString().length <= 12_000) {
+      try {
+        return await api.get<string[]>(`/attempts/question-progress/filter?${legacyQuery.toString()}`);
+      } catch {
+        // Preserve the fail-closed behavior below.
+      }
+    }
     console.warn('[PassBar] Failed to load question statuses for filtering:', err);
-    return questionIds;
+    // A failed status query must not silently bypass the selected question
+    // mode (for example, returning answered questions for an "Unused" test).
+    // Fail closed so the UI shows its normal "no questions" state instead.
+    return [];
   }
 }
 

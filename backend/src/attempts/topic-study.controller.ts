@@ -25,6 +25,12 @@ function parseList(value?: string): string[] {
     .filter(Boolean);
 }
 
+function parseOptionalBoolean(value?: string): boolean | undefined {
+  if (value === 'true') return true;
+  if (value === 'false') return false;
+  return undefined;
+}
+
 @Controller('attempts/topic-study')
 @UseGuards(JwtAuthGuard)
 export class TopicStudyController {
@@ -82,8 +88,14 @@ export class TopicStudyController {
   }
 
   @Get('states/chapter-counts')
-  getChapterCounts(@CurrentUser() user: JwtPayload) {
-    return this.topicStudyService.getChapterStateCounts(user.sub);
+  getChapterCounts(
+    @CurrentUser() user: JwtPayload,
+    @Query('ncbe') ncbe?: string,
+  ) {
+    return this.topicStudyService.getChapterStateCounts(
+      user.sub,
+      parseOptionalBoolean(ncbe),
+    );
   }
 
   @Put('states')

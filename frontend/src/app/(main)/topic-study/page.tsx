@@ -10,12 +10,12 @@ import { Check } from 'lucide-react';
 import { useAuth } from '@/components/AuthProvider';
 import { useI18n } from '@/lib/i18n';
 import { getMbeChineseLabel } from '@/lib/mbe-labels';
-import { getQuestionsByChapterIds, getSubjects } from '@/lib/question-bank';
+import { getQuestionsByChapterIds, getSubjects, QuestionSourceFilter } from '@/lib/question-bank';
 import { Subject, TestSession } from '@/lib/types';
 import { getBrowseProgressByUser, BrowseProgressRow } from '@/lib/topic-study-progress';
-import { getBrowseMarkedChapterIds, getBrowseChapterStateCounts } from '@/lib/topic-study-question-states';
+import { getBrowseChapterStateCounts } from '@/lib/topic-study-question-states';
 import { saveTestQuestionSnapshot } from '@/lib/offline-cache';
-import { BookOpen, ListOrdered, Shuffle, ArrowRight, Footprints, X } from 'lucide-react';
+import { BookOpen, ListOrdered, Shuffle, ArrowRight, Footprints, X, Layers, BadgeCheck, FlaskConical } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -30,30 +30,30 @@ export default function BrowsePage() {
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [selectedChapters, setSelectedChapters] = useState<Set<string>>(new Set());
   const [questionOrder, setQuestionOrder] = useState<'sequential' | 'random'>('sequential');
+  const [questionSource, setQuestionSource] = useState<'all' | 'ncbe' | 'uworld'>('all');
   const [learnFilter, setLearnFilter] = useState<'all' | 'learned' | 'unlearned' | 'marked'>('all');
-  const [markedChapterIds, setMarkedChapterIds] = useState<Set<string>>(new Set());
-  const [learnedQuestionCount, setLearnedQuestionCount] = useState(0);
-  const [markedQuestionCount, setMarkedQuestionCount] = useState(0);
+  const [chapterStateCounts, setChapterStateCounts] = useState<Map<string, { learnedCount: number; markedCount: number }>>(new Map());
   const [isStarting, setIsStarting] = useState(false);
   const [browseProgress, setBrowseProgress] = useState<BrowseProgressRow[]>([]);
 
-  useEffect(() => {
-    getSubjects().then(setSubjects);
-  }, []);
+  const sourceFilter = useMemo<QuestionSourceFilter | undefined>(
+    () => (questionSource === 'all' ? undefined : { ncbe: questionSource === 'ncbe' }),
+    [questionSource],
+  );
 
   useEffect(() => {
-    if (!user?.id) return;
+    getSubjects(sourceFilter).then(setSubjects);
+  }, [sourceFilter]);
+
+  useEffect(() => {
+    if (!user?.id) {
+      setBrowseProgress([]);
+      setChapterStateCounts(new Map());
+      return;
+    }
     getBrowseProgressByUser(user.id).then(setBrowseProgress);
-    // Load browse-mode marks (independent from test-mode marks)
-    getBrowseMarkedChapterIds(user.id).then(setMarkedChapterIds);
-    getBrowseChapterStateCounts(user.id).then((counts) => {
-      let learned = 0;
-      let marked = 0;
-      counts.forEach((v) => { learned += v.learnedCount; marked += v.markedCount; });
-      setLearnedQuestionCount(learned);
-      setMarkedQuestionCount(marked);
-    });
-  }, [user?.id]);
+    getBrowseChapterStateCounts(user.id, sourceFilter).then(setChapterStateCounts);
+  }, [user?.id, sourceFilter]);
 
   const progressByChapter = useMemo(() => {
     const map = new Map<string, BrowseProgressRow>();
@@ -67,20 +67,29 @@ export default function BrowsePage() {
     return subjects.map((subject) => ({
       ...subject,
       chapters: subject.chapters.filter((ch) => {
-        if (learnFilter === 'learned') return progressByChapter.has(ch.id);
-        if (learnFilter === 'unlearned') return !progressByChapter.has(ch.id);
-        if (learnFilter === 'marked') return markedChapterIds.has(ch.id);
+        const state = chapterStateCounts.get(ch.id);
+        if (learnFilter === 'learned') return (state?.learnedCount ?? 0) > 0;
+        if (learnFilter === 'unlearned') return (state?.learnedCount ?? 0) < ch.count;
+        if (learnFilter === 'marked') return (state?.markedCount ?? 0) > 0;
         return true;
       }),
     })).filter((s) => s.chapters.length > 0);
-  }, [subjects, learnFilter, progressByChapter, markedChapterIds]);
+  }, [subjects, learnFilter, chapterStateCounts]);
 
-  const learnedCount = learnedQuestionCount;
+  const learnedCount = useMemo(() => {
+    let total = 0;
+    chapterStateCounts.forEach((state) => { total += state.learnedCount; });
+    return total;
+  }, [chapterStateCounts]);
   const unlearnedCount = useMemo(
-    () => subjects.reduce((s, sub) => s + sub.count, 0) - learnedQuestionCount,
-    [subjects, learnedQuestionCount]
+    () => Math.max(subjects.reduce((s, sub) => s + sub.count, 0) - learnedCount, 0),
+    [subjects, learnedCount]
   );
-  const markedCount = markedQuestionCount;
+  const markedCount = useMemo(() => {
+    let total = 0;
+    chapterStateCounts.forEach((state) => { total += state.markedCount; });
+    return total;
+  }, [chapterStateCounts]);
 
   const totalQuestions = useMemo(
     () => subjects.reduce((s, sub) => s + sub.count, 0),
@@ -96,6 +105,14 @@ export default function BrowsePage() {
   const selectedCount = useMemo(
     () => Array.from(selectedChapters).reduce((s, id) => s + (chapterCountMap.get(id) ?? 0), 0),
     [selectedChapters, chapterCountMap]
+  );
+
+  const selectedViewedCount = useMemo(
+    () => Array.from(selectedChapters).reduce(
+      (sum, id) => sum + Math.min(chapterStateCounts.get(id)?.learnedCount ?? 0, chapterCountMap.get(id) ?? 0),
+      0,
+    ),
+    [selectedChapters, chapterStateCounts, chapterCountMap],
   );
 
   const toggleChapter = (chapterId: string) => {
@@ -122,8 +139,8 @@ export default function BrowsePage() {
 
   const hasContinue = useMemo(() => {
     const chapters = Array.from(selectedChapters);
-    return chapters.some((id) => progressByChapter.has(id));
-  }, [selectedChapters, progressByChapter]);
+    return sourceFilter === undefined && chapters.some((id) => progressByChapter.has(id));
+  }, [selectedChapters, progressByChapter, sourceFilter]);
 
   const continueIndex = useMemo(() => {
     const chapters = Array.from(selectedChapters);
@@ -141,7 +158,12 @@ export default function BrowsePage() {
     }
     setIsStarting(true);
 
-    const questions = await getQuestionsByChapterIds(Array.from(selectedChapters), 99999);
+    const questions = await getQuestionsByChapterIds(Array.from(selectedChapters), 99999, sourceFilter);
+    if (questions.length === 0) {
+      setIsStarting(false);
+      alert(t('create.noQuestionsAlert'));
+      return;
+    }
     const ordered = questionOrder === 'random'
       ? [...questions].sort(() => 0.5 - Math.random())
       : questions;
@@ -186,17 +208,34 @@ export default function BrowsePage() {
         </Link>
       </header>
 
-      {/* 題目順序 */}
-      <SettingCard label={t('browse.questionOrder')}>
-        <PillToggle
-          value={questionOrder}
-          onChange={setQuestionOrder}
-          options={[
-            { value: 'sequential' as const, icon: ListOrdered, label: t('browse.orderSequential') },
-            { value: 'random'     as const, icon: Shuffle,     label: t('browse.orderRandom') },
-          ]}
-        />
-      </SettingCard>
+      {/* 題目順序 / 題目來源 */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <SettingCard label={t('browse.questionOrder')}>
+          <PillToggle
+            value={questionOrder}
+            onChange={setQuestionOrder}
+            options={[
+              { value: 'sequential' as const, icon: ListOrdered, label: t('browse.orderSequential') },
+              { value: 'random'     as const, icon: Shuffle,     label: t('browse.orderRandom') },
+            ]}
+          />
+        </SettingCard>
+
+        <SettingCard
+          label={t('create.questionSource')}
+          hint={t('create.questionSourceHint')}
+        >
+          <PillToggle
+            value={questionSource}
+            onChange={setQuestionSource}
+            options={[
+              { value: 'all'      as const, icon: Layers,       label: t('create.sourceAll') },
+              { value: 'ncbe'   as const, icon: BadgeCheck,   label: t('create.sourceNcbe') },
+              { value: 'uworld' as const, icon: FlaskConical, label: t('create.sourceUworld') },
+            ]}
+          />
+        </SettingCard>
+      </div>
 
       <Accordion type="multiple" defaultValue={['learn-status', 'subjects']} className="space-y-4">
 
@@ -302,9 +341,9 @@ export default function BrowsePage() {
                 <div className="ml-6 space-y-1">
                   {subject.chapters.map((chapter) => {
                     const chapterLabel = getMbeChineseLabel(chapter.name, language);
-                    const progress = progressByChapter.get(chapter.id);
-                    const pct = progress && chapter.count > 0
-                      ? Math.round((progress.viewed_count / chapter.count) * 100)
+                    const learned = chapterStateCounts.get(chapter.id)?.learnedCount ?? 0;
+                    const pct = chapter.count > 0
+                      ? Math.round((learned / chapter.count) * 100)
                       : 0;
                     return (
                       <div
@@ -346,7 +385,7 @@ export default function BrowsePage() {
       <div className="flex flex-col sm:flex-row items-center gap-3 rounded-lg border border-slate-200 bg-white px-5 py-4 shadow-sm">
         <div className="flex-1 text-sm text-slate-500">
           {selectedCount > 0
-            ? t('browse.viewed', { count: selectedCount })
+            ? t('browse.viewed', { count: selectedViewedCount })
             : t('browse.noChapterSelected')}
         </div>
         <div className="flex items-center gap-3">

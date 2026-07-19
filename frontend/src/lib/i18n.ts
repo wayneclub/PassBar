@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useSyncExternalStore } from 'react';
 import { getStudySettings, InterfaceLanguage } from './study-settings';
 
 type TranslationKey = string;
@@ -188,6 +188,13 @@ type TranslationKey =
   | 'create.questionOrder'
   | 'create.orderRandom'
   | 'create.orderSequential'
+  | 'create.questionSource'
+  | 'create.questionSourceHint'
+  | 'create.sourceAll'
+  | 'create.sourceNcbe'
+  | 'create.sourceUworld'
+  | 'create.sourceOfficial'
+  | 'create.sourceMock'
   | 'create.browseModeHint'
   | 'create.questionMode'
   | 'create.questionModeHint'
@@ -1008,6 +1015,13 @@ const en: Dictionary = {
   'create.questionOrder': 'Question Order',
   'create.orderRandom': 'Random',
   'create.orderSequential': 'Sequential',
+  'create.questionSource': 'Question Source',
+  'create.questionSourceHint': 'Choose NCBE questions, UWorld questions, or both.',
+  'create.sourceAll': 'All',
+  'create.sourceNcbe': 'NCBE',
+  'create.sourceUworld': 'UWorld',
+  'create.sourceOfficial': 'Official',
+  'create.sourceMock': 'Simulated',
   'create.browseModeHint': 'Instantly view the correct answer and explanation for every question — no answering required.',
   'create.questionMode': 'Question Mode',
   'create.questionModeHint': 'Choose which question history buckets are eligible for this test.',
@@ -2142,6 +2156,13 @@ const zhHans: Dictionary = {
   'create.questionOrder': '题目顺序',
   'create.orderRandom': '随机',
   'create.orderSequential': '顺序',
+  'create.questionSource': '题目来源',
+  'create.questionSourceHint': '选择 NCBE、UWorld，或两者皆包含。',
+  'create.sourceAll': '全部',
+  'create.sourceNcbe': 'NCBE',
+  'create.sourceUworld': 'UWorld',
+  'create.sourceOfficial': '真题',
+  'create.sourceMock': '模拟题',
   'create.browseModeHint': '直接查看每道题的正确答案与解析，无需作答。',
   'create.questionMode': '题目模式',
   'create.questionModeHint': '选择本次测验可抽取的题目记录类型。',
@@ -3275,6 +3296,13 @@ const zhHant: Dictionary = {
   'create.questionOrder': '題目順序',
   'create.orderRandom': '隨機',
   'create.orderSequential': '依序',
+  'create.questionSource': '題目來源',
+  'create.questionSourceHint': '選擇 NCBE、UWorld，或兩者皆包含。',
+  'create.sourceAll': '全部',
+  'create.sourceNcbe': 'NCBE',
+  'create.sourceUworld': 'UWorld',
+  'create.sourceOfficial': '真題',
+  'create.sourceMock': '模擬題',
   'create.browseModeHint': '直接查看每道題的正確答案與解析，無需作答。',
   'create.questionMode': '題目模式',
   'create.questionModeHint': '選擇本次測驗可抽取的題目紀錄類型。',
@@ -3938,18 +3966,28 @@ export function translate(language: InterfaceLanguage, key: TranslationKey, para
   return interpolate(dictionaries[language][key] ?? en[key] ?? key, params);
 }
 
-export function useI18n() {
-  const [language, setLanguage] = useState<InterfaceLanguage>('en');
+// Language lives in localStorage (via study settings) and changes are broadcast
+// with a custom event — a classic external store, so useSyncExternalStore keeps
+// every consumer in sync without an SSR hydration mismatch (server snapshot 'en').
+// The snapshot is cached so re-renders don't re-parse localStorage.
+let cachedLanguage: InterfaceLanguage | null = null;
 
-  useEffect(() => {
-    setLanguage(getStudySettings().interfaceLanguage);
-    const handleSettingsChange = (event: Event) => {
-      const next = (event as CustomEvent<{ interfaceLanguage?: InterfaceLanguage }>).detail;
-      if (next?.interfaceLanguage) setLanguage(next.interfaceLanguage);
-    };
-    window.addEventListener('passbar-study-settings-changed', handleSettingsChange);
-    return () => window.removeEventListener('passbar-study-settings-changed', handleSettingsChange);
-  }, []);
+function subscribeToLanguage(callback: () => void) {
+  const handler = () => {
+    cachedLanguage = null;
+    callback();
+  };
+  window.addEventListener('passbar-study-settings-changed', handler);
+  return () => window.removeEventListener('passbar-study-settings-changed', handler);
+}
+
+function getLanguageSnapshot(): InterfaceLanguage {
+  cachedLanguage ??= getStudySettings().interfaceLanguage;
+  return cachedLanguage;
+}
+
+export function useI18n() {
+  const language = useSyncExternalStore(subscribeToLanguage, getLanguageSnapshot, () => 'en' as const);
 
   return useMemo(() => ({
     language,

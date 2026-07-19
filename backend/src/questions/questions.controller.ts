@@ -11,26 +11,37 @@ function parseList(value?: string): string[] {
     .filter(Boolean);
 }
 
+function parseOptionalBoolean(value?: string): boolean | undefined {
+  if (value === undefined || value === '') return undefined;
+  if (value === 'true') return true;
+  if (value === 'false') return false;
+  return undefined;
+}
+
 @Controller('questions')
 @UseGuards(JwtAuthGuard, ApprovedGuard)
 export class QuestionsController {
   constructor(private readonly questionsService: QuestionsService) {}
 
   @Get('subjects')
-  getSubjects() {
-    return this.questionsService.getSubjects();
+  getSubjects(@Query('ncbe') ncbe?: string) {
+    return this.questionsService.getSubjects(parseOptionalBoolean(ncbe));
   }
 
   @Get('ids')
-  getQuestionIdsByChapterIds(@Query('chapterIds') chapterIds?: string) {
+  getQuestionIdsByChapterIds(
+    @Query('chapterIds') chapterIds?: string,
+    @Query('ncbe') ncbe?: string,
+  ) {
     return this.questionsService.getQuestionIdsByChapterIds(
       parseList(chapterIds),
+      parseOptionalBoolean(ncbe),
     );
   }
 
   @Get('ids-by-chapter')
-  getAllQuestionIdsByChapter() {
-    return this.questionsService.getAllQuestionIdsByChapter();
+  getAllQuestionIdsByChapter(@Query('ncbe') ncbe?: string) {
+    return this.questionsService.getAllQuestionIdsByChapter(parseOptionalBoolean(ncbe));
   }
 
   @Get('by-ids')
@@ -42,11 +53,13 @@ export class QuestionsController {
   getQuestionsByChapterIds(
     @Query('chapterIds') chapterIds?: string,
     @Query('limit') limit?: string,
+    @Query('ncbe') ncbe?: string,
   ) {
     const parsedLimit = Number(limit) > 0 ? Number(limit) : 50;
     return this.questionsService.getQuestionsByChapterIds(
       parseList(chapterIds),
       parsedLimit,
+      parseOptionalBoolean(ncbe),
     );
   }
 }

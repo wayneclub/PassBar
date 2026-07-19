@@ -11,6 +11,10 @@ if (existsSync(rootEnvFile)) {
 
 const nextConfig: NextConfig = {
   output: 'standalone',
+  turbopack: {
+    // The repository root owns the npm workspaces and canonical lockfile.
+    root: resolve(process.cwd(), '..'),
+  },
   trailingSlash: true,
   typescript: {
     ignoreBuildErrors: true,

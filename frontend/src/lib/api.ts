@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/api';
 const AUTH_SERVICE_URL = process.env.NEXT_PUBLIC_AUTH_SERVICE_URL ?? 'http://localhost:4010';
 
 export class ApiError extends Error {

@@ -64,6 +64,8 @@ export interface ChoiceKeywordMeta {
 export interface Question {
   id: string;
   index: number;
+  /** True when this question originates from an NCBE source. */
+  isNcbe?: boolean;
   subject: string;
   chapterName: string;
   chapterId?: string;

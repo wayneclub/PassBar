@@ -14,6 +14,7 @@ import {
 type QuestionRow = {
   id: string;
   index: number;
+  isNcbe: boolean;
   subject: string;
   chapterId: string;
   chapterName: string;
@@ -182,6 +183,7 @@ function toQuestion(row: QuestionRow) : Question {
   return {
     id: row.id,
     index: row.index,
+    isNcbe: row.isNcbe,
     subject: row.subject,
     chapterName: row.chapterName,
     chapterId: row.chapterId,
@@ -212,9 +214,10 @@ function getMockChapterId(questionId: string) {
   return `${parts[0]}-${parts[1]}`;
 }
 
-export async function getSubjects(): Promise<Subject[]> {
+export async function getSubjects(filter?: QuestionSourceFilter): Promise<Subject[]> {
   try {
-    const rows = await api.get<ChapterSummaryRow[]>('/questions/subjects');
+    const query = filter?.ncbe === undefined ? '' : `?ncbe=${filter.ncbe}`;
+    const rows = await api.get<ChapterSummaryRow[]>(`/questions/subjects${query}`);
 
     const grouped = new Map<string, Subject>();
     rows.forEach((row) => {
@@ -237,15 +240,32 @@ export async function getSubjects(): Promise<Subject[]> {
     return Array.from(grouped.values()).filter((s) => s.count > 0);
   } catch (err) {
     console.warn('[PassBar] Falling back to local question metadata:', err);
+    // The local fallback contains simulated fixtures only. Never present them
+    // as official questions when the API is unavailable.
+    if (filter?.ncbe === true) return [];
     return MBE_SUBJECTS;
   }
 }
 
-export async function getQuestionIdsByChapterIds(chapterIds: string[]): Promise<string[]> {
+export type QuestionSourceFilter = {
+  ncbe?: boolean;
+};
+
+function sourceFilterQuery(filter?: QuestionSourceFilter): string {
+  return filter?.ncbe === undefined ? '' : `&ncbe=${filter.ncbe}`;
+}
+
+export async function getQuestionIdsByChapterIds(
+  chapterIds: string[],
+  filter?: QuestionSourceFilter,
+): Promise<string[]> {
   try {
-    return await api.get<string[]>(`/questions/ids?chapterIds=${encodeURIComponent(chapterIds.join(','))}`);
+    return await api.get<string[]>(
+      `/questions/ids?chapterIds=${encodeURIComponent(chapterIds.join(','))}${sourceFilterQuery(filter)}`,
+    );
   } catch (err) {
     console.warn('[PassBar] Falling back to local question ids:', err);
+    if (filter?.ncbe === true) return [];
     return MOCK_QUESTIONS
       .filter((q) => chapterIds.includes(getMockChapterId(q.id)))
       .map((q) => q.id);
@@ -253,11 +273,15 @@ export async function getQuestionIdsByChapterIds(chapterIds: string[]): Promise<
 }
 
 /** Returns a map of chapter_id → question IDs for all questions. */
-export async function getAllQuestionIdsByChapter(): Promise<Record<string, string[]>> {
+export async function getAllQuestionIdsByChapter(
+  filter?: QuestionSourceFilter,
+): Promise<Record<string, string[]>> {
   try {
-    return await api.get<Record<string, string[]>>('/questions/ids-by-chapter');
+    const query = filter?.ncbe === undefined ? '' : `?ncbe=${filter.ncbe}`;
+    return await api.get<Record<string, string[]>>(`/questions/ids-by-chapter${query}`);
   } catch (err) {
     console.warn('[PassBar] Falling back to local question ids by chapter:', err);
+    if (filter?.ncbe === true) return {};
     const map: Record<string, string[]> = {};
     for (const q of MOCK_QUESTIONS) {
       const cid = getMockChapterId(q.id);
@@ -267,14 +291,19 @@ export async function getAllQuestionIdsByChapter(): Promise<Record<string, strin
   }
 }
 
-export async function getQuestionsByChapterIds(chapterIds: string[], limit: number): Promise<Question[]> {
+export async function getQuestionsByChapterIds(
+  chapterIds: string[],
+  limit: number,
+  filter?: QuestionSourceFilter,
+): Promise<Question[]> {
   try {
     const rows = await api.get<QuestionRow[]>(
-      `/questions?chapterIds=${encodeURIComponent(chapterIds.join(','))}&limit=${limit}`,
+      `/questions?chapterIds=${encodeURIComponent(chapterIds.join(','))}&limit=${limit}${sourceFilterQuery(filter)}`,
     );
     return rows.map(toQuestion);
   } catch (err) {
     console.warn('[PassBar] Falling back to local questions:', err);
+    if (filter?.ncbe === true) return [];
     return MOCK_QUESTIONS
       .filter((question) => chapterIds.includes(getMockChapterId(question.id)))
       .slice(0, limit);

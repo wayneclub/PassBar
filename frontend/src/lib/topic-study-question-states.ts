@@ -1,4 +1,5 @@
 import { api } from './api';
+import { QuestionSourceFilter } from './question-bank';
 
 export type BrowseQuestionState = {
   isLearned: boolean;
@@ -74,10 +75,12 @@ export async function deleteBrowseQuestionStatesForChapter(_userId: string, chap
 
 export async function getBrowseChapterStateCounts(
   _userId: string,
+  filter?: QuestionSourceFilter,
 ): Promise<Map<string, { learnedCount: number; markedCount: number }>> {
   try {
+    const query = filter?.ncbe === undefined ? '' : `?ncbe=${filter.ncbe}`;
     const data = await api.get<Record<string, { learnedCount: number; markedCount: number }>>(
-      '/attempts/topic-study/states/chapter-counts',
+      `/attempts/topic-study/states/chapter-counts${query}`,
     );
     return new Map(Object.entries(data));
   } catch (err) {

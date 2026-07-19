@@ -11,6 +11,8 @@ node_modules/
 # Build outputs
 .next/
 /frontend/out/
+/formal test/
+/docs/
 /out/
 build/
 coverage/
@@ -25,6 +27,7 @@ next-env.d.ts
 scripts/.venv/
 *.pem
 .DS_Store
+/tmp
 
 # Logs and caches
 *.log
@@ -40,6 +43,9 @@ __pycache__/
 .vercel/
 *.bak
 *.csv
+*.pdf
+*.docx
+*.zip
 
 # Local scratch / one-off scripts
 /scratch/

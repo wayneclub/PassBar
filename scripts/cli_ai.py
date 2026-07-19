@@ -37,7 +37,7 @@ def check_provider_ready(provider: str) -> None:
         return
 
     if provider == "cursor-cli":
-        if not _resolve_cursor_cli_bin():
+        if not _resolve_cursor_cli_command():
             raise RuntimeError(
                 "Cursor CLI not found. Install via: curl https://cursor.com/install -fsS | bash "
                 "or set CURSOR_CLI_BIN."
@@ -286,12 +286,21 @@ def call_antigravity_cli(prompt: str, image_paths: list[str] | str | None = None
         return _finalize_antigravity_output(output)
 
 
-def _resolve_cursor_cli_bin() -> str | None:
-    return (
-        os.environ.get("CURSOR_CLI_BIN")
-        or shutil.which("agent")
-        or shutil.which("cursor-agent")
-    )
+def _resolve_cursor_cli_command() -> list[str] | None:
+    """Resolve both legacy Cursor Agent binaries and Cursor 3's ``cursor agent``.
+
+    Cursor 3.11 exposes its headless agent as a subcommand of ``cursor`` rather
+    than installing a separate ``agent`` executable.  Keep the old binaries
+    first for users who explicitly configured them.
+    """
+    configured = os.environ.get("CURSOR_CLI_BIN")
+    if configured:
+        return shlex.split(configured)
+    legacy = shutil.which("agent") or shutil.which("cursor-agent")
+    if legacy:
+        return [legacy]
+    cursor = shutil.which("cursor")
+    return [cursor, "agent"] if cursor else None
 
 
 def call_cursor_cli(prompt: str, image_paths: list[str] | str | None = None, model: str | None = None) -> str:
@@ -300,11 +309,11 @@ def call_cursor_cli(prompt: str, image_paths: list[str] | str | None = None, mod
     Images are passed by embedding their absolute paths in the prompt; the agent
     reads them via its Read tool (see Cursor headless CLI docs).
 
-    Set CURSOR_CLI_BIN to override the `agent` binary path.
-    Authenticate with `agent login` or CURSOR_API_KEY for headless runs.
+    Set CURSOR_CLI_BIN to override the command (for example ``cursor agent``).
+    Authenticate with ``cursor agent login`` or CURSOR_API_KEY for headless runs.
     """
-    agent_bin = _resolve_cursor_cli_bin()
-    if not agent_bin:
+    agent_command = _resolve_cursor_cli_command()
+    if not agent_command:
         raise RuntimeError(
             "Cursor CLI not found. Install via: curl https://cursor.com/install -fsS | bash "
             "or set CURSOR_CLI_BIN."
@@ -321,7 +330,7 @@ def call_cursor_cli(prompt: str, image_paths: list[str] | str | None = None, mod
         )
 
     cmd = [
-        agent_bin,
+        *agent_command,
         "-p",
         "--mode",
         "ask",
