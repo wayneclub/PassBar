@@ -9,12 +9,16 @@ if (existsSync(rootEnvFile)) {
   dotenv.config({path: rootEnvFile, override: true, quiet: true});
 }
 
+// The repository root owns the npm workspaces and canonical lockfile — but only
+// in a full repo checkout. The Docker build context is frontend/ alone, and
+// pointing `turbopack.root` at its parent there nests the standalone output
+// (server.js stops being at the standalone root, so the container can't start).
+const repoRoot = resolve(process.cwd(), '..');
+const isRepoCheckout = existsSync(resolve(repoRoot, 'package-lock.json'));
+
 const nextConfig: NextConfig = {
   output: 'standalone',
-  turbopack: {
-    // The repository root owns the npm workspaces and canonical lockfile.
-    root: resolve(process.cwd(), '..'),
-  },
+  ...(isRepoCheckout ? { turbopack: { root: repoRoot } } : {}),
   trailingSlash: true,
   typescript: {
     ignoreBuildErrors: true,
