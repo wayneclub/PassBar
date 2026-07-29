@@ -22,19 +22,68 @@ let refreshPromise: Promise<boolean> | null = null;
 
 /** Set once the refresh token itself is rejected, so pollers can stop hammering a dead session instead of retrying every tick until the redirect navigation lands. */
 let sessionInvalid = false;
+let lastResumeRefreshAt = 0;
 
 export function isSessionInvalid() {
   return sessionInvalid;
 }
 
-function deleteLoggedInCookie() {
-  sessionInvalid = true;
+function clearClientLoginMarker() {
   if (typeof document === 'undefined') return;
   document.cookie = 'pb_logged_in=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
   document.cookie = 'pb_logged_in=; path=/; domain=.wayneclub.com; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-  if (typeof window !== 'undefined' && !window.location.pathname.startsWith('/auth') && !window.location.pathname.startsWith('/privacy')) {
-    window.location.href = `/auth?next=${encodeURIComponent(window.location.pathname)}`;
+}
+
+function hasLoggedInCookie() {
+  if (typeof document === 'undefined') return false;
+  return document.cookie.split(';').some((cookie) => cookie.trim().startsWith('pb_logged_in='));
+}
+
+function markSessionInvalid() {
+  if (sessionInvalid) return;
+  sessionInvalid = true;
+  clearClientLoginMarker();
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event('passbar-session-expired'));
   }
+}
+
+async function revokeAuthSession() {
+  // access_token and refresh_token are HttpOnly cookies owned by auth.wayneclub.com.
+  // Only that service can reliably remove them; JavaScript can only remove our
+  // non-sensitive pb_logged_in marker.
+  await fetch(authServiceUrl('/auth/signout'), {
+    method: 'POST',
+    credentials: 'include',
+    keepalive: true,
+  }).catch(() => undefined);
+}
+
+function redirectToSignIn(preserveCurrentPath: boolean) {
+  if (typeof window === 'undefined' || window.location.pathname.startsWith('/auth') || window.location.pathname.startsWith('/privacy')) return;
+  const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+  const destination = preserveCurrentPath
+    ? `/auth?next=${encodeURIComponent(currentPath)}`
+    : '/auth';
+  window.location.replace(destination);
+}
+
+/**
+ * Ends an expired session once, clears the client marker, asks auth-service to
+ * remove its HttpOnly cookies, and sends the user back to sign-in immediately.
+ */
+function expireSession() {
+  if (sessionInvalid) return;
+  markSessionInvalid();
+  void revokeAuthSession();
+  redirectToSignIn(true);
+}
+
+/** Explicit user sign-out. Unlike an expiry redirect, it waits for revocation first. */
+export async function signOutSession() {
+  markSessionInvalid();
+  await revokeAuthSession();
+  redirectToSignIn(false);
 }
 
 /** access_token cookies are short-lived (15min); refresh_token (30d) lets auth-service mint a new one. */
@@ -43,7 +92,7 @@ function refreshAccessToken(): Promise<boolean> {
     refreshPromise = fetch(authServiceUrl('/auth/refresh'), { method: 'POST', credentials: 'include' })
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
-          deleteLoggedInCookie();
+          expireSession();
           return false;
         }
         if (!res.ok) {
@@ -74,6 +123,11 @@ async function request<T>(path: string, options: RequestInit = {}, retried = fal
     throw new ApiError(401, 'Session expired');
   }
 
+  // A visibility/focus event starts a refresh synchronously. Let requests that
+  // resume at the same time wait for it, so the first API call is not a noisy 401.
+  if (refreshPromise) await refreshPromise;
+  if (sessionInvalid) throw new ApiError(401, 'Session expired');
+
   const res = await fetch(`${API_URL}${path}`, {
     ...options,
     credentials: 'include',
@@ -86,6 +140,10 @@ async function request<T>(path: string, options: RequestInit = {}, retried = fal
   if (res.status === 401 && !retried && (await refreshAccessToken())) {
     return request<T>(path, options, true);
   }
+
+  // A backend 401 after a failed refresh means neither token can establish a
+  // session. Treat it as sign-out rather than leaving stale cookies and pollers.
+  if (res.status === 401 && !sessionInvalid) expireSession();
 
   if (res.status === 204) return undefined as T;
 
@@ -128,4 +186,20 @@ export function apiUrl(path: string) {
 /** Builds a full auth-service (auth.wayneclub.com) URL — login/signout live there now, not on the PassBar backend. */
 export function authServiceUrl(path: string) {
   return `${AUTH_SERVICE_URL}${path}`;
+}
+
+// Refresh before a backgrounded page resumes.  The 60-second guard collapses
+// the visibilitychange, focus, and pageshow events that browsers often emit together.
+function refreshAfterResume() {
+  if (sessionInvalid || !hasLoggedInCookie() || Date.now() - lastResumeRefreshAt < 60_000) return;
+  lastResumeRefreshAt = Date.now();
+  void refreshAccessToken();
+}
+
+if (typeof window !== 'undefined') {
+  window.addEventListener('focus', refreshAfterResume);
+  window.addEventListener('pageshow', refreshAfterResume);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) refreshAfterResume();
+  });
 }

@@ -29,6 +29,18 @@ def target_path(root: Path, subject: str, chapter: str) -> Path:
     return root / subject / chapter / f"{subject}_{chapter}_enriched.json"
 
 
+def existing_provenance_uids(root: Path) -> set[str]:
+    """Return all immutable source UIDs already present in the canonical bank."""
+    result: set[str] = set()
+    for path in root.rglob("*_enriched.json"):
+        document = json.loads(path.read_text(encoding="utf-8"))
+        for item in document.get("questions", []):
+            for entry in item.get("provenance", []):
+                if isinstance(entry, dict) and isinstance(entry.get("source_uid"), str):
+                    result.add(entry["source_uid"])
+    return result
+
+
 def source_uid(item: dict[str, Any], entry: dict[str, Any]) -> str:
     return ":".join((
         "official",
@@ -90,17 +102,28 @@ def main() -> int:
     parser.add_argument("--review-json", type=Path, default=ROOT / "formal test/official_questions_review.json")
     parser.add_argument("--staging-out", type=Path, default=ROOT / "tmp/formal-test-staging/out")
     parser.add_argument("--report", type=Path, default=ROOT / "tmp/formal-test-staging/report.json")
+    parser.add_argument(
+        "--only-unimported",
+        action="store_true",
+        help="Stage only approved source records that are not already in out/.",
+    )
     args = parser.parse_args()
     staging_out = args.staging_out.resolve()
     if staging_out.exists():
         raise RuntimeError(f"Staging output already exists: {staging_out}; inspect it rather than overwriting it")
     review = json.loads(args.review_json.resolve().read_text(encoding="utf-8"))
-    candidates = [
+    approved_candidates = [
         item for item in review["questions"]
         if item.get("review", {}).get("chapter_import_review", {}).get("status") == "approved_for_staging"
     ]
+    existing_uids = existing_provenance_uids(OUT) if args.only_unimported else set()
+    candidates = [
+        item for item in approved_candidates
+        if not args.only_unimported
+        or source_uid(item, item.get("formal_test_provenance", [{}])[0]) not in existing_uids
+    ]
     if not candidates:
-        raise RuntimeError("No approved records found for staging")
+        raise RuntimeError("No approved unimported records found for staging")
     if any(not item.get("chapter") for item in candidates):
         raise RuntimeError("Approved staging candidate lacks a chapter")
 
@@ -155,6 +178,8 @@ def main() -> int:
             items.append(record)
         for item in items:
             item["count"] = len(items)
+        if "count" in document:
+            document["count"] = len(items)
         document["meta"]["count"] = len(items)
         document["meta"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
         document["meta"]["sources"] = summarize_sources(items)
@@ -175,7 +200,10 @@ def main() -> int:
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "production_out": str(OUT.relative_to(ROOT)),
         "staging_out": str(staging_out.relative_to(ROOT)),
+        "only_unimported": args.only_unimported,
+        "approved_candidates_total": len(approved_candidates),
         "approved_candidates_added": len(candidates),
+        "approved_candidates_already_present": len(approved_candidates) - len(candidates),
         "manual_review_not_imported": len(manual_review),
         "chapters_changed": staged_summary,
     }
@@ -183,6 +211,7 @@ def main() -> int:
     args.report.resolve().write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({
         "approved_candidates_added": report["approved_candidates_added"],
+        "approved_candidates_already_present": report["approved_candidates_already_present"],
         "manual_review_not_imported": report["manual_review_not_imported"],
         "chapters_changed": len(staged_summary),
     }, ensure_ascii=False))

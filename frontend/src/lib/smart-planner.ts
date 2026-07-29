@@ -1,4 +1,4 @@
-import { api } from './api';
+import { api, ApiError } from './api';
 import { TestSession } from './types';
 import { type StudyPaceMode, type StudySubjectMode } from './study-settings';
 
@@ -449,6 +449,9 @@ export async function fetchDueReviewChaptersForUser(_userId: string): Promise<Ch
   try {
     return await api.get<ChapterReviewInfo[]>('/attempts/planner/due-reviews');
   } catch (err) {
+    // Session expiry redirects through the shared API client; this expected
+    // state is not an actionable planner failure and should not pollute console.
+    if (err instanceof ApiError && err.status === 401) return [];
     console.warn('[PassBar] Failed to fetch due reviews:', err);
     return [];
   }

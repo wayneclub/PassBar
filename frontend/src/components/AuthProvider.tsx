@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { api, ApiError, authServiceUrl, ensureFreshAccessToken } from '@/lib/api';
+import { api, ApiError, ensureFreshAccessToken, signOutSession } from '@/lib/api';
 import { getStudySettings, saveStudySettings, type StudySettings } from '@/lib/study-settings';
 
 export type UserProfile = {
@@ -106,11 +106,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     user: profile ? { id: profile.id, email: profile.email } : null,
     profile,
     signOut: async () => {
-      // Sign-out is handled by auth-service, not the PassBar backend — that's where the
-      // access_token/refresh_token cookies were issued and where the session gets revoked.
-      await fetch(authServiceUrl('/auth/signout'), { method: 'POST', credentials: 'include' }).catch(() => undefined);
       setProfile(null);
-      window.location.href = '/auth';
+      await signOutSession();
     },
     refreshProfile: async () => {
       const nextProfile = await fetchProfile();
