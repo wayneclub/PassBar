@@ -18,7 +18,12 @@ import { AdminModule } from './admin/admin.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: resolve(process.cwd(), '../.env.local'),
+      // .env.local 優先（同名變數先者為準）；.env.tools.local 補上 GEMINI_API_KEY_1..N
+      // 這個 key pool，讓 AI 診斷可以多把金鑰輪替。
+      envFilePath: [
+        resolve(process.cwd(), '../.env.local'),
+        resolve(process.cwd(), '../.env.tools.local'),
+      ],
     }),
     ScheduleModule.forRoot(),
     DbModule,

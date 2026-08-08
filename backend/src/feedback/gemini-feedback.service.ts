@@ -63,9 +63,16 @@ const fallbackModels = ['gemini-2.5-flash', 'gemini-2.5-pro', 'gemini-2.0-flash'
 const PER_MODEL_TIMEOUT_MS = 25_000;
 const OVERALL_DEADLINE_MS = 50_000;
 
+// key pool 輪替時，換下一把的觸發狀態：429 額度用完、5xx 過載/內部錯誤、404 該專案未開通此模型、
+// 502 空回應。這些換一把（＝換一個專案的免費額度）就有機會成功；400 參數錯誤等換 key 也沒用。
+const KEY_ROTATION_STATUSES = new Set([429, 500, 502, 503, 404]);
+
 @Injectable()
 export class GeminiFeedbackService {
   private readonly logger = new Logger(GeminiFeedbackService.name);
+
+  // 輪替游標：每次成功後移到下一把，讓請求分散到不同 key，避免總是打第一把先撞 429。
+  private keyCursor = 0;
 
   constructor(
     private readonly configService: ConfigService,
@@ -112,17 +119,45 @@ export class GeminiFeedbackService {
     };
   }
 
-  private getApiKey(): string {
-    return (
+  /**
+   * 取得可用的 API key pool。優先讀 GEMINI_API_KEY_1..N（與批次腳本同款命名，每把對應
+   * 一個專案＝一份獨立免費額度），逐把輪替可分散 429、單把掛掉自動跳過。沒設 pool 時退回
+   * 單把 GEMINI_API_KEY。
+   */
+  private getApiKeys(): string[] {
+    const pool: string[] = [];
+    for (let i = 1; i <= 30; i += 1) {
+      const key = this.configService.get<string>(`GEMINI_API_KEY_${i}`);
+      if (key) pool.push(key);
+    }
+    if (pool.length > 0) return pool;
+    const single =
       this.configService.get<string>('GEMINI_API_KEY') ||
       this.configService.get<string>('GOOGLE_GENAI_API_KEY') ||
-      ''
-    );
+      '';
+    return single ? [single] : [];
   }
 
   private getModelsToTry(): string[] {
-    const preferred = this.configService.get<string>('GEMINI_MODEL') || 'gemini-3.5-flash';
+    // 預設用已完全 GA、免費額度寬鬆的 gemini-2.5-flash；gemini-3.5-flash 較新、偶發 404/503，
+    // 只留在 fallback 清單而不排第一（見 CLAUDE.md「Gemini API 模型名稱」）。
+    const preferred = this.configService.get<string>('GEMINI_MODEL') || 'gemini-2.5-flash';
     return Array.from(new Set([preferred, ...fallbackModels]));
+  }
+
+  /** 判斷這個錯誤是否值得換下一把 key 重試（key 級的暫時性失敗）。 */
+  private shouldTryNextKey(error: unknown): boolean {
+    // 模型掛住不回應（TimeoutError）是模型層問題，換 key 沒用——交給外層換更穩的模型。
+    if (error instanceof Error && error.name === 'TimeoutError') return false;
+    const status = (error as { status?: number }).status;
+    if (status === undefined) return false;
+    if (KEY_ROTATION_STATUSES.has(status)) return true;
+    // 400 多半是參數錯誤（換 key 無用），但「金鑰無效」也回 400——這種要換下一把。
+    if (status === 400) {
+      const message = (error as Error).message?.toLowerCase() ?? '';
+      return message.includes('api key') || message.includes('api_key') || message.includes('permission');
+    }
+    return false;
   }
 
   private trimText(value: string | undefined, maxLength = 900): string {
@@ -357,7 +392,9 @@ Use Markdown. Keep it focused on this question. Do not mention that you are an A
     const json = await response.json().catch(() => null);
     if (!response.ok) {
       const message = json?.error?.message ?? `Gemini request failed with ${response.status}`;
-      throw new Error(message);
+      const err = new Error(message) as Error & { status?: number };
+      err.status = response.status;
+      throw err;
     }
 
     const text = json?.candidates?.[0]?.content?.parts
@@ -365,22 +402,27 @@ Use Markdown. Keep it focused on this question. Do not mention that you are an A
       .join('')
       .trim();
 
-    if (!text) throw new Error('Gemini returned an empty response.');
+    if (!text) {
+      // 空回應：當成可換 key 重試的暫時性失敗（status 502）。
+      const err = new Error('Gemini returned an empty response.') as Error & { status?: number };
+      err.status = 502;
+      throw err;
+    }
     return text;
   }
 
   async getStatus() {
-    const key = this.getApiKey();
+    const hasKey = this.getApiKeys().length > 0;
     return {
       action: 'status',
-      enabled: Boolean(key),
-      model: key ? this.getModelsToTry()[0] : null,
+      enabled: hasKey,
+      model: hasKey ? this.getModelsToTry()[0] : null,
     };
   }
 
   async generateFeedback(input: GeminiFeedbackRequestDto) {
-    const key = this.getApiKey();
-    if (!key) {
+    const keys = this.getApiKeys();
+    if (keys.length === 0) {
       throw new InternalServerErrorException('Gemini API key is not configured.');
     }
 
@@ -392,26 +434,34 @@ Use Markdown. Keep it focused on this question. Do not mention that you are an A
           : this.buildPrompt(input);
 
     const errors: string[] = [];
-
     const jsonOutput = input.action === 'performance-diagnosis';
     const startedAt = Date.now();
+    const deadlineExceeded = () => Date.now() - startedAt > OVERALL_DEADLINE_MS;
 
+    // 外層換模型（穩定度 fallback），內層換 key（分散免費額度、跳過暫時失敗的那把）。
     for (const model of this.getModelsToTry()) {
-      if (Date.now() - startedAt > OVERALL_DEADLINE_MS) {
-        errors.push(`skipped ${model}: overall deadline exceeded`);
-        continue;
-      }
-      try {
-        const feedback = await this.callGemini(model, prompt, key, jsonOutput);
-        return { action: input.action ?? 'feedback', feedback, model };
-      } catch (error) {
-        const message =
-          error instanceof Error && error.name === 'TimeoutError'
-            ? `no response within ${PER_MODEL_TIMEOUT_MS / 1000}s (model hung)`
-            : error instanceof Error
-              ? error.message
-              : String(error);
-        errors.push(`${model}: ${message}`);
+      for (let i = 0; i < keys.length; i += 1) {
+        if (deadlineExceeded()) {
+          errors.push(`skipped ${model}: overall deadline exceeded`);
+          break;
+        }
+        const keyIndex = (this.keyCursor + i) % keys.length;
+        try {
+          const feedback = await this.callGemini(model, prompt, keys[keyIndex], jsonOutput);
+          // 成功：游標推進到下一把，後續請求就從別把開始，平均分散負載。
+          this.keyCursor = (keyIndex + 1) % keys.length;
+          return { action: input.action ?? 'feedback', feedback, model };
+        } catch (error) {
+          const message =
+            error instanceof Error && error.name === 'TimeoutError'
+              ? `no response within ${PER_MODEL_TIMEOUT_MS / 1000}s (model hung)`
+              : error instanceof Error
+                ? error.message
+                : String(error);
+          errors.push(`${model} key#${keyIndex + 1}: ${message}`);
+          // key 級暫時失敗（429/503/404/金鑰無效）→ 換下一把；否則換 key 也沒用，跳去換模型。
+          if (!this.shouldTryNextKey(error)) break;
+        }
       }
     }
 
