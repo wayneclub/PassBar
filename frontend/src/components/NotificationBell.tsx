@@ -133,8 +133,8 @@ export function NotificationBell({
     setNotifications(all);
   }, [isAdmin, user?.id]);
 
-  // Initial load + periodic refresh (replaces the previous Supabase realtime
-  // subscription, since admin tables are now only reachable via the backend API).
+  // Initial load + periodic refresh via polling — admin tables are only
+  // reachable through the backend API (no client-side realtime subscription).
   useEffect(() => {
     load();
     const interval = setInterval(() => {

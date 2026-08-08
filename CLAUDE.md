@@ -4,7 +4,7 @@
 
 新增或修改 table 都在 `backend/src/db/schema/`（Drizzle schema，依資料領域分檔：`users.ts`、`questions.ts`、`attempts.ts`、`login-activity.ts`）。
 改完 schema 後跑 `npm run db:generate` 產生 migration，部署前跑 `npm run db:migrate` 套用到 Postgres。
-不再使用 Supabase；新系統建 DB 一律照這個流程，不要手寫 SQL。
+DB 一律照這個流程（Drizzle schema + migration），不要手寫 SQL，也不要引入任何雲端託管 DB 的 SDK/client。
 
 ## Gemini API 模型名稱
 

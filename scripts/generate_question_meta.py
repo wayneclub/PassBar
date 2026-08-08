@@ -6,8 +6,9 @@ Read enriched question JSON, ask Gemini to analyze each question from the Englis
 question stem, answer choices, correct answer, and English explanation, then write
 standardized metadata back into the same enriched JSON file.
 
-This script intentionally does not read from or PATCH Supabase. The enriched JSON
-is the canonical source; import_questions_to_supabase.mjs imports the saved meta.
+This script only reads and writes the enriched JSON file — it does not touch any
+database. The enriched JSON is the canonical source; the question import step
+(backend `npm run import:questions`) loads the saved meta into Postgres.
 
 Usage:
   python3 scripts/generate_question_meta.py --enriched-file path/to/foo_enriched.json

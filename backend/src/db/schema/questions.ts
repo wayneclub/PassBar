@@ -166,7 +166,6 @@ export const questionReports = pgTable('question_reports', {
     .defaultNow(),
 });
 
-// Read-only SQL view defined in legacy/supabase/schema.postgres.sql.
 // (The old `questions` view was dropped — question_items now carries the bilingual content
 // directly as JSONB, so questions.service.ts queries it straight without a flattening view.)
 
