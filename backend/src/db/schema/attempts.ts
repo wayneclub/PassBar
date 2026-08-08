@@ -243,3 +243,28 @@ export const aiDiagnoses = pgTable('ai_diagnoses', {
     .notNull()
     .defaultNow(),
 });
+
+/**
+ * 學習計劃投影快照（P4）— 每人每日一份，用來對比「昨天 vs 今天」的排程差異，
+ * 讓 AI 助手能敘述「把某章從 D 天延到 D' 天，因為你某科進步」。
+ * snapshot: uid -> { d: 日期, s: 科目, c: 章節, t: review|practice }
+ */
+export const planSnapshots = pgTable(
+  'plan_snapshots',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => profiles.id, { onDelete: 'cascade' }),
+    snapshotDate: date('snapshot_date').notNull(),
+    snapshot: jsonb('snapshot')
+      .$type<Record<string, { d: string; s: string; c: string; t: string }>>()
+      .notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (t) => ({
+    uniqUserDate: unique().on(t.userId, t.snapshotDate),
+  }),
+);

@@ -420,25 +420,23 @@ Use Markdown. Keep it focused on this question. Do not mention that you are an A
     };
   }
 
-  async generateFeedback(input: GeminiFeedbackRequestDto) {
+  /**
+   * 用 model×key 雙重 fallback 跑一個 prompt。外層換模型（穩定度 fallback），內層換 key
+   * （分散免費額度、跳過暫時失敗的那把）。可重用給 AI 診斷以外的敘事（如計劃重排說明）。
+   */
+  async runPrompt(
+    prompt: string,
+    jsonOutput = false,
+  ): Promise<{ feedback: string; model: string }> {
     const keys = this.getApiKeys();
     if (keys.length === 0) {
       throw new InternalServerErrorException('Gemini API key is not configured.');
     }
 
-    const prompt =
-      input.action === 'question-analysis'
-        ? this.buildQuestionAnalysisPrompt(input)
-        : input.action === 'performance-diagnosis'
-          ? this.buildPerformanceDiagnosisPrompt(input)
-          : this.buildPrompt(input);
-
     const errors: string[] = [];
-    const jsonOutput = input.action === 'performance-diagnosis';
     const startedAt = Date.now();
     const deadlineExceeded = () => Date.now() - startedAt > OVERALL_DEADLINE_MS;
 
-    // 外層換模型（穩定度 fallback），內層換 key（分散免費額度、跳過暫時失敗的那把）。
     for (const model of this.getModelsToTry()) {
       for (let i = 0; i < keys.length; i += 1) {
         if (deadlineExceeded()) {
@@ -447,10 +445,14 @@ Use Markdown. Keep it focused on this question. Do not mention that you are an A
         }
         const keyIndex = (this.keyCursor + i) % keys.length;
         try {
-          const feedback = await this.callGemini(model, prompt, keys[keyIndex], jsonOutput);
-          // 成功：游標推進到下一把，後續請求就從別把開始，平均分散負載。
+          const feedback = await this.callGemini(
+            model,
+            prompt,
+            keys[keyIndex],
+            jsonOutput,
+          );
           this.keyCursor = (keyIndex + 1) % keys.length;
-          return { action: input.action ?? 'feedback', feedback, model };
+          return { feedback, model };
         } catch (error) {
           const message =
             error instanceof Error && error.name === 'TimeoutError'
@@ -459,15 +461,26 @@ Use Markdown. Keep it focused on this question. Do not mention that you are an A
                 ? error.message
                 : String(error);
           errors.push(`${model} key#${keyIndex + 1}: ${message}`);
-          // key 級暫時失敗（429/503/404/金鑰無效）→ 換下一把；否則換 key 也沒用，跳去換模型。
           if (!this.shouldTryNextKey(error)) break;
         }
       }
     }
 
     throw new BadGatewayException({
-      message: 'Unable to generate Gemini feedback.',
+      message: 'Unable to generate Gemini output.',
       details: errors.join('\n'),
     });
+  }
+
+  async generateFeedback(input: GeminiFeedbackRequestDto) {
+    const prompt =
+      input.action === 'question-analysis'
+        ? this.buildQuestionAnalysisPrompt(input)
+        : input.action === 'performance-diagnosis'
+          ? this.buildPerformanceDiagnosisPrompt(input)
+          : this.buildPrompt(input);
+    const jsonOutput = input.action === 'performance-diagnosis';
+    const { feedback, model } = await this.runPrompt(prompt, jsonOutput);
+    return { action: input.action ?? 'feedback', feedback, model };
   }
 }

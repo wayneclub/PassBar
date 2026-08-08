@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 import type { JwtPayload } from '../auth/strategies/jwt.strategy';
@@ -26,6 +26,11 @@ export class PlannerController {
   @Get('projection')
   getProjection(@CurrentUser() user: JwtPayload) {
     return this.plannerService.projectSchedule(user.sub);
+  }
+
+  @Get('briefing')
+  getBriefing(@CurrentUser() user: JwtPayload, @Query('lang') lang?: string) {
+    return this.plannerService.generatePlanBriefing(user.sub, lang);
   }
 
   @Post('generate-mission-session')

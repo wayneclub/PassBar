@@ -7,5 +7,6 @@ import { GeminiFeedbackService } from './gemini-feedback.service';
 @Module({
   controllers: [FeedbackController, GeminiFeedbackController],
   providers: [FeedbackService, GeminiFeedbackService],
+  exports: [GeminiFeedbackService],
 })
 export class FeedbackModule {}

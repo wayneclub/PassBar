@@ -1,12 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+import { and, desc, eq, lt } from 'drizzle-orm';
 import { DB, type Database } from '../db/db.provider';
 import {
   chapters,
+  planSnapshots,
   practiceAnswers,
   profiles,
   questionItems,
 } from '../db/schema';
+import { GeminiFeedbackService } from '../feedback/gemini-feedback.service';
 import { QuestionsService } from '../questions/questions.service';
 import { QuestionProgressService } from './question-progress.service';
 import { PracticeSessionsService } from './practice-sessions.service';
@@ -325,6 +327,53 @@ export function buildProjection(input: ProjectionInput): PlanDay[] {
     .sort((a, b) => a.date.localeCompare(b.date));
 }
 
+// ── 計劃快照與 diff（P4） ──────────────────────────────────────────────────
+// 快照壓成 uid -> { d:日期, s:科目, c:章節, t:型別 }，方便持久化與跨日比對。
+export type SnapshotMap = Record<
+  string,
+  { d: string; s: string; c: string; t: string }
+>;
+
+export type PlanDiff = {
+  moved: Array<{ subject: string; chapter: string; type: string; from: string; to: string }>;
+  added: Array<{ subject: string; chapter: string; type: string; date: string }>;
+  removed: Array<{ subject: string; chapter: string; type: string; date: string }>;
+};
+
+export function projectionToSnapshot(planDays: PlanDay[]): SnapshotMap {
+  const map: SnapshotMap = {};
+  for (const day of planDays) {
+    for (const e of day.entries) {
+      map[`${e.chapterId}:${e.type}:${e.occurrence}`] = {
+        d: day.date,
+        s: e.subject,
+        c: e.chapterName,
+        t: e.type,
+      };
+    }
+  }
+  return map;
+}
+
+/** 比對前一版與當前投影，得出被挪動 / 新增 / 移除（已完成或不再需要）的項目。 */
+export function diffProjection(prev: SnapshotMap, curr: SnapshotMap): PlanDiff {
+  const diff: PlanDiff = { moved: [], added: [], removed: [] };
+  for (const [uid, c] of Object.entries(curr)) {
+    const p = prev[uid];
+    if (!p) {
+      diff.added.push({ subject: c.s, chapter: c.c, type: c.t, date: c.d });
+    } else if (p.d !== c.d) {
+      diff.moved.push({ subject: c.s, chapter: c.c, type: c.t, from: p.d, to: c.d });
+    }
+  }
+  for (const [uid, p] of Object.entries(prev)) {
+    if (!curr[uid]) {
+      diff.removed.push({ subject: p.s, chapter: p.c, type: p.t, date: p.d });
+    }
+  }
+  return diff;
+}
+
 @Injectable()
 export class PlannerService {
   constructor(
@@ -332,6 +381,7 @@ export class PlannerService {
     private readonly questionsService: QuestionsService,
     private readonly questionProgressService: QuestionProgressService,
     private readonly practiceSessionsService: PracticeSessionsService,
+    private readonly gemini: GeminiFeedbackService,
   ) {}
 
   getEffectiveStudyHours(
@@ -1069,6 +1119,118 @@ export class PlannerService {
       allChapters,
       newChaptersPerStudyDay,
     });
+  }
+
+  /**
+   * AI 助手每日簡報（P4）：對比前一版投影，讓 Gemini 敘述「計劃如何調整、為何、今天重點」，
+   * 並落地今日快照供下次比對。
+   */
+  async generatePlanBriefing(userId: string, interfaceLanguage?: string) {
+    const planDays = await this.projectSchedule(userId);
+    const current = projectionToSnapshot(planDays);
+    const todayIso = toIsoDate(startOfLocalDay(new Date()));
+
+    const prevRow = await this.db.query.planSnapshots.findFirst({
+      where: and(
+        eq(planSnapshots.userId, userId),
+        lt(planSnapshots.snapshotDate, todayIso),
+      ),
+      orderBy: desc(planSnapshots.snapshotDate),
+    });
+    const prev = (prevRow?.snapshot ?? {}) as SnapshotMap;
+    const diff = diffProjection(prev, current);
+
+    // upsert 今日快照（同日多次呼叫只更新內容，比對對象仍是「前一天」）
+    await this.db
+      .insert(planSnapshots)
+      .values({ userId, snapshotDate: todayIso, snapshot: current })
+      .onConflictDoUpdate({
+        target: [planSnapshots.userId, planSnapshots.snapshotDate],
+        set: { snapshot: current, createdAt: new Date() },
+      });
+
+    let narrative = '';
+    let model: string | null = null;
+    try {
+      const result = await this.gemini.runPrompt(
+        this.buildBriefingPrompt(
+          planDays,
+          diff,
+          Boolean(prevRow),
+          interfaceLanguage,
+        ),
+      );
+      narrative = result.feedback;
+      model = result.model;
+    } catch {
+      // Gemini 全掛時仍回結構化 diff，前端可自行呈現，不讓簡報整個失敗。
+      narrative = '';
+    }
+
+    return {
+      narrative,
+      model,
+      hasPrevious: Boolean(prevRow),
+      diff,
+      upcoming: planDays.slice(0, 7),
+    };
+  }
+
+  private buildBriefingPrompt(
+    planDays: PlanDay[],
+    diff: PlanDiff,
+    hasPrevious: boolean,
+    interfaceLanguage?: string,
+  ): string {
+    const lang =
+      interfaceLanguage === 'zh-Hant'
+        ? 'Respond in Traditional Chinese.'
+        : interfaceLanguage === 'zh-Hans'
+          ? 'Respond in Simplified Chinese.'
+          : 'Respond in English.';
+
+    const today = planDays[0];
+    const todayList = today
+      ? today.entries
+          .map(
+            (e) =>
+              `- ${e.type === 'review' ? 'Review' : 'New'}: ${e.subject} / ${e.chapterName}`,
+          )
+          .join('\n')
+      : '(no items scheduled today)';
+
+    const fmt = (arr: Array<{ subject: string; chapter: string }>, n = 6) =>
+      arr
+        .slice(0, n)
+        .map((x) => `${x.subject} / ${x.chapter}`)
+        .join('; ') || 'none';
+
+    const changeBlock = hasPrevious
+      ? `Since your last plan:
+- Rescheduled: ${
+          diff.moved
+            .slice(0, 6)
+            .map((m) => `${m.subject}/${m.chapter} ${m.from}→${m.to}`)
+            .join('; ') || 'none'
+        }
+- Newly added: ${fmt(diff.added)}
+- Dropped or completed: ${fmt(diff.removed)}`
+      : 'This is the first plan snapshot (no previous plan to compare).';
+
+    return `You are PassBar's MBE study assistant. Give a short, encouraging daily briefing (max ~120 words).
+
+${lang}
+
+${changeBlock}
+
+Today's scheduled items (${today?.date ?? 'n/a'}):
+${todayList}
+
+Write, as flowing prose (no markdown headers):
+1. One sentence on what changed in the plan and the likely reason (tie any rescheduling to progress or weak areas when plausible).
+2. Today's focus in one or two sentences.
+3. One short encouraging line.
+Do not mention that you are an AI model.`;
   }
 
   async fetchTodayMissionForUser(userId: string) {

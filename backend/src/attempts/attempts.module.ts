@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { QuestionsModule } from '../questions/questions.module';
+import { FeedbackModule } from '../feedback/feedback.module';
 import { PracticeSessionsController } from './practice-sessions.controller';
 import { PracticeSessionsService } from './practice-sessions.service';
 import { QuestionProgressController } from './question-progress.controller';
@@ -14,7 +15,7 @@ import { DashboardController } from './dashboard.controller';
 import { DashboardService } from './dashboard.service';
 
 @Module({
-  imports: [QuestionsModule],
+  imports: [QuestionsModule, FeedbackModule],
   controllers: [
     PracticeSessionsController,
     QuestionProgressController,
