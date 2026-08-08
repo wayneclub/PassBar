@@ -51,7 +51,7 @@ export default function ProfilePage() {
   const [badges, setBadges] = useState<{ badge: AchievementBadge; unlocked: boolean; progress?: { current: number; total: number } }[]>([]);
   const [stats, setStats] = useState({ totalSolved: 0, streakDays: 0, joinDate: '' });
   const [selectedTitle, setSelectedTitle] = useState<string>(t('profile.defaultTitle'));
-  const [copied, setCopied] = useState(false);
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [calendarToken, setCalendarToken] = useState<string | null>(null);
 
   useEffect(() => {
@@ -141,12 +141,21 @@ export default function ProfilePage() {
     : (typeof window !== 'undefined' ? `${window.location.origin}/api` : '');
   const feedUrl = calendarToken ? `${apiBaseUrl}/calendar/feed?token=${calendarToken}` : '';
 
-  const handleCopy = () => {
-    if (!feedUrl) return;
-    navigator.clipboard.writeText(feedUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = (url: string, key: string) => {
+    if (!url) return;
+    navigator.clipboard.writeText(url);
+    setCopiedKey(key);
+    setTimeout(() => setCopiedKey((k) => (k === key ? null : k)), 2000);
   };
+
+  // 每一類 = 一條獨立訂閱網址（同一把 token，加 cat 參數），使用者訂閱後在日曆 App 各自成為
+  // 一個可獨立上色的日曆。事件層級顏色 Google/Apple 不吃，所以靠拆多條 feed 做到「不同顏色」。
+  const calendarFeeds = feedUrl
+    ? [
+        { key: 'plan', label: t('profile.calPlanLabel'), hint: t('profile.calPlanHint'), color: '#3B82F6', url: `${feedUrl}&cat=plan` },
+        { key: 'todos', label: t('profile.calTodosLabel'), hint: t('profile.calTodosHint'), color: '#F59E0B', url: `${feedUrl}&cat=todos` },
+      ]
+    : [];
 
   return (
     <div className="space-y-8 pb-12 animate-in fade-in duration-500">
@@ -226,53 +235,62 @@ export default function ProfilePage() {
       <div className="space-y-6">
         <div className="flex items-center gap-2">
           <CalendarDays className="w-6 h-6 text-primary" />
-          <h2 className="text-2xl font-bold tracking-tight">{t('profile.subscribePlan' as any) || 'Subscribe to Study Plan'}</h2>
+          <h2 className="text-2xl font-bold tracking-tight">{t('profile.subscribePlan')}</h2>
         </div>
         
         <Card className="border-primary/20 bg-gradient-to-br from-white to-primary/5 shadow-sm">
           <CardHeader>
             <CardDescription className="text-base text-slate-600">
-              {t('profile.subscribePlanDesc' as any) || 'Sync your daily tasks to your favorite calendar app.'}
+              {t('profile.subscribePlanDesc')}
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-4 items-center">
-              <a
-                href={feedUrl ? `webcal://${feedUrl.replace(/^https?:\/\//, '')}` : '#'}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-900 text-white font-medium hover:bg-slate-800 transition-colors shadow-sm"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.205 13.924c-.167.337-.58.483-.93.332-2.585-1.12-5.46-1.39-7.535-.747-.358.113-.736-.086-.85-.444-.112-.358.087-.736.445-.848 2.378-.737 5.58-.415 8.536.866.35.15.5.568.334.84zm1.186-2.62c-.21.424-.73.593-1.164.398-3.04-1.362-6.853-1.802-9.615-.968-.466.143-.96-.12-1.102-.587-.14-.467.12-.96.586-1.103 3.19-.964 7.42-.486 10.89 1.07.435.195.63.722.405 1.19zm.126-2.736c-3.66-1.688-8.225-2.008-11.23-.974-.564.195-1.17-.11-1.365-.675-.195-.565.11-1.17.675-1.365 3.53-1.216 8.59-.855 12.82 1.096.52.24.747.854.506 1.374-.24.52-.855.748-1.374.506zM15.42 5.56l-3.328 3.326-1.076-1.074c-.39-.39-1.025-.39-1.415 0-.39.39-.39 1.023 0 1.414l1.783 1.78c.195.196.452.294.708.294s.512-.098.707-.293l4.036-4.035c.39-.39.39-1.024 0-1.414-.39-.39-1.024-.39-1.415 0z" /></svg>
-                {t('profile.appleCalendar' as any) || 'Apple Calendar'}
-              </a>
-              <a
-                href={feedUrl ? `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(feedUrl)}` : '#'}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white border border-slate-200 text-slate-800 font-medium hover:bg-slate-50 transition-colors shadow-sm"
-              >
-                <svg viewBox="0 0 24 24" className="w-5 h-5"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" /><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" /><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" /><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" /></svg>
-                {t('profile.googleCalendar' as any) || 'Google Calendar'}
-              </a>
-              <a
-                href={feedUrl ? `https://outlook.live.com/calendar/0/addfromweb?url=${encodeURIComponent(feedUrl)}&name=PassBar+Study+Plan` : '#'}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#0078D4] text-white font-medium hover:bg-[#006cbd] transition-colors shadow-sm"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M12.924 3.754l8.328-1.52A1.25 1.25 0 0122.5 3.46v17.078a1.25 1.25 0 01-1.026 1.228l-8.55 1.56a1.25 1.25 0 01-1.424-1.228V4.982a1.25 1.25 0 011.424-1.228zm-1.424.31v15.872a.25.25 0 01-.25.25H2.75a1.25 1.25 0 01-1.25-1.25V5.064a1.25 1.25 0 011.25-1.25h8.5a.25.25 0 01.25.25zm5.75 6.436h-2.5v2.5h2.5v-2.5zm0-4.5h-2.5v2.5h2.5v-2.5zm0 9h-2.5v2.5h2.5v-2.5z"/></svg>
-                {t('profile.outlookCalendar' as any) || 'Outlook'}
-              </a>
-              <button
-                onClick={handleCopy}
-                className={cn(
-                  "flex items-center gap-2 px-4 py-2.5 rounded-lg border font-medium transition-colors shadow-sm",
-                  copied ? "bg-green-50 border-green-200 text-green-700" : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
-                )}
-              >
-                {copied ? <Check className="w-5 h-5" /> : <LinkIcon className="w-5 h-5" />}
-                {copied ? (t('profile.linkCopied' as any) || 'Copied!') : (t('profile.copyLink' as any) || 'Copy Link')}
-              </button>
-            </div>
+          <CardContent className="space-y-6">
+            {calendarFeeds.map((feed) => (
+              <div key={feed.key} className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: feed.color }} />
+                  <span className="font-semibold text-slate-800">{feed.label}</span>
+                  <span className="text-xs text-muted-foreground">{feed.hint}</span>
+                </div>
+                <div className="flex flex-wrap gap-3 items-center">
+                  <a
+                    href={`webcal://${feed.url.replace(/^https?:\/\//, '')}`}
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-900 text-white font-medium hover:bg-slate-800 transition-colors shadow-sm"
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.205 13.924c-.167.337-.58.483-.93.332-2.585-1.12-5.46-1.39-7.535-.747-.358.113-.736-.086-.85-.444-.112-.358.087-.736.445-.848 2.378-.737 5.58-.415 8.536.866.35.15.5.568.334.84zm1.186-2.62c-.21.424-.73.593-1.164.398-3.04-1.362-6.853-1.802-9.615-.968-.466.143-.96-.12-1.102-.587-.14-.467.12-.96.586-1.103 3.19-.964 7.42-.486 10.89 1.07.435.195.63.722.405 1.19zm.126-2.736c-3.66-1.688-8.225-2.008-11.23-.974-.564.195-1.17-.11-1.365-.675-.195-.565.11-1.17.675-1.365 3.53-1.216 8.59-.855 12.82 1.096.52.24.747.854.506 1.374-.24.52-.855.748-1.374.506zM15.42 5.56l-3.328 3.326-1.076-1.074c-.39-.39-1.025-.39-1.415 0-.39.39-.39 1.023 0 1.414l1.783 1.78c.195.196.452.294.708.294s.512-.098.707-.293l4.036-4.035c.39-.39.39-1.024 0-1.414-.39-.39-1.024-.39-1.415 0z" /></svg>
+                    {t('profile.appleCalendar')}
+                  </a>
+                  <a
+                    href={`https://calendar.google.com/calendar/render?cid=${encodeURIComponent(feed.url)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white border border-slate-200 text-slate-800 font-medium hover:bg-slate-50 transition-colors shadow-sm"
+                  >
+                    <svg viewBox="0 0 24 24" className="w-5 h-5"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" /><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" /><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" /><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" /></svg>
+                    {t('profile.googleCalendar')}
+                  </a>
+                  <a
+                    href={`https://outlook.live.com/calendar/0/addfromweb?url=${encodeURIComponent(feed.url)}&name=${encodeURIComponent(feed.label)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#0078D4] text-white font-medium hover:bg-[#006cbd] transition-colors shadow-sm"
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M12.924 3.754l8.328-1.52A1.25 1.25 0 0122.5 3.46v17.078a1.25 1.25 0 01-1.026 1.228l-8.55 1.56a1.25 1.25 0 01-1.424-1.228V4.982a1.25 1.25 0 011.424-1.228zm-1.424.31v15.872a.25.25 0 01-.25.25H2.75a1.25 1.25 0 01-1.25-1.25V5.064a1.25 1.25 0 011.25-1.25h8.5a.25.25 0 01.25.25zm5.75 6.436h-2.5v2.5h2.5v-2.5zm0-4.5h-2.5v2.5h2.5v-2.5zm0 9h-2.5v2.5h2.5v-2.5z"/></svg>
+                    {t('profile.outlookCalendar')}
+                  </a>
+                  <button
+                    onClick={() => handleCopy(feed.url, feed.key)}
+                    className={cn(
+                      "flex items-center gap-2 px-4 py-2.5 rounded-lg border font-medium transition-colors shadow-sm",
+                      copiedKey === feed.key ? "bg-green-50 border-green-200 text-green-700" : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
+                    )}
+                  >
+                    {copiedKey === feed.key ? <Check className="w-5 h-5" /> : <LinkIcon className="w-5 h-5" />}
+                    {copiedKey === feed.key ? t('profile.linkCopied') : t('profile.copyLink')}
+                  </button>
+                </div>
+              </div>
+            ))}
           </CardContent>
         </Card>
       </div>
