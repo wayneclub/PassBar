@@ -4,7 +4,11 @@ import { AuthProvider } from '@/components/AuthProvider';
 import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' });
+// 字型透過 CSS 變數（--font-inter → Tailwind font-body）間接套用，next/font 預設的 preload
+// 會注入 <link rel="preload" as="font">，但 Chrome 偵測不到「即時直接使用」而在每個頁面狂噴
+// 「preloaded but not used within a few seconds」警告。已用 display:'swap'（fallback 先顯示、
+// 載好再換），關掉 preload 對體感幾乎無影響，卻能徹底消除警告。
+const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter', preload: false });
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 const publicAsset = (path: string) => `${basePath}${path}`;
