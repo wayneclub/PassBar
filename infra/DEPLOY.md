@@ -127,6 +127,34 @@ Containers on `npm_network` are reachable from NPM by container name. In the NPM
 
 Enable "Force SSL" + request a Let's Encrypt cert per host as usual.
 
+## Calendar feed subscription (webcal)
+
+Each user gets a per-user subscription URL (Profile page → 匯出日曆): a 5-year
+signed token embedded in `https://passbar.wayneclub.com/api/calendar/feed?token=…`
+(the `<a>` rewrites it to `webcal://…`). The URL's host comes entirely from the
+build-time `NEXT_PUBLIC_API_URL` — it is NOT auto-corrected by Cloudflare.
+
+Requirements for external calendar clients (Google/Apple fetch it anonymously —
+the token in the query IS the auth), all config, not code:
+
+| Item | Requirement |
+|---|---|
+| `NEXT_PUBLIC_API_URL` (GitHub repo **variable**, build-time) | `https://passbar.wayneclub.com/api` — baked into the frontend image at build; setting it only in runtime `.env` does nothing |
+| Cloudflare SSL/TLS mode | **Full (strict)** — "Flexible" fights NPM's Force SSL → redirect loop (`ERR_TOO_MANY_REDIRECTS`) |
+| Cloudflare Bot Fight / WAF | Add an **allow/skip** rule for path `/api/calendar/feed*` — otherwise Google's `Google-Calendar-Importer` bot gets a challenge page instead of the `.ics` and the subscription silently stops updating |
+| Cloudflare proxy (orange cloud) | Fine here — the feed is on 443, which CF proxies. (Contrast: SSH on 22 must bypass CF via direct IP / grey cloud.) |
+| NPM | Existing `passbar.wayneclub.com/api/*` → `passbar-backend:4000` rule already covers it |
+
+Verify after deploy (should print `BEGIN:VCALENDAR`, not a CF challenge page or a
+redirect). Get a real token from the Profile page, or any logged-in `GET /api/auth/calendar-token`:
+
+```bash
+curl -sSL -A "Google-Calendar-Importer" "https://passbar.wayneclub.com/api/calendar/feed?token=<TOKEN>" | head -5
+```
+
+If you get HTML (a CF challenge) → fix the WAF/Bot rule; if it loops or errors on
+TLS → check the Cloudflare SSL mode is Full (strict).
+
 ## Responsibility (which container owns what)
 
 - **frontend** (`passbar-frontend`, port 3000): renders UI, calls `backend` for app data and `auth-service` for login/session. No DB access.

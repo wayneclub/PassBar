@@ -5,6 +5,9 @@
     "frontend",
     "backend"
   ],
+  "scripts": {
+    "dev": "./dev.sh"
+  },
   "devDependencies": {
     "@types/pg": "^8.20.0",
     "drizzle-orm": "^0.45.2",
