@@ -23,6 +23,11 @@ export class PlannerController {
     return this.plannerService.fetchDueReviewChaptersForUser(user.sub);
   }
 
+  @Get('projection')
+  getProjection(@CurrentUser() user: JwtPayload) {
+    return this.plannerService.projectSchedule(user.sub);
+  }
+
   @Post('generate-mission-session')
   generateMissionSession(
     @CurrentUser() user: JwtPayload,

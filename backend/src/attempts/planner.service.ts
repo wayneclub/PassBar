@@ -173,6 +173,158 @@ function countStudyDays(
   return count;
 }
 
+// ── 到考試日的投影排程（P2） ──────────────────────────────────────────────
+export type PlanEntry = {
+  chapterId: string;
+  subject: string;
+  chapterName: string;
+  type: 'review' | 'practice';
+  stage: number; // spaced-repetition 階段（複習）；新章節為 0
+  occurrence: number; // 同一章第幾次出現，供日曆穩定 UID 用
+};
+
+export type PlanDay = { date: string; entries: PlanEntry[] }; // date = YYYY-MM-DD
+
+export type ProjectionInput = {
+  today: Date;
+  examDate: Date | null;
+  studyDaysPerWeek: number[];
+  chapterStats: ChapterAttemptStats[];
+  allChapters: Array<{ id: string; name: string; subject: string }>;
+  newChaptersPerStudyDay: number;
+};
+
+function toIsoDate(d: Date): string {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(
+    d.getDate(),
+  ).padStart(2, '0')}`;
+}
+
+/** 回傳 date 當天或之後第一個「讀書日」；studyDaysPerWeek 空時視每天皆可讀。 */
+function snapToStudyDay(date: Date, allowed: Set<number>): Date {
+  const d = startOfLocalDay(date);
+  if (allowed.size === 0) return d;
+  for (let i = 0; i < 7; i += 1) {
+    if (allowed.has(d.getDay())) return d;
+    d.setDate(d.getDate() + 1);
+  }
+  return d;
+}
+
+/** 依 getDueReviewChapters 同款公式估算章節理想複習間隔（天）。 */
+function idealIntervalForStat(stat: ChapterAttemptStats): number {
+  const averageSeconds =
+    (stat.timedAttempts ?? 0) > 0
+      ? (stat.totalTimeSeconds ?? 0) / (stat.timedAttempts ?? 1)
+      : 0;
+  const masteryRate =
+    (stat.questionCount ?? 0) > 0
+      ? Math.round(
+          ((stat.masteredQuestionCount ?? 0) / (stat.questionCount ?? 1)) * 100,
+        )
+      : 0;
+  const accuracy =
+    stat.attempts > 0 ? Math.round((stat.correct / stat.attempts) * 100) : 0;
+  if ((stat.riskyQuestionCount ?? 0) > 0 || averageSeconds > SECONDS_PER_QUESTION)
+    return 1;
+  if (masteryRate >= 80) return 30;
+  if (masteryRate >= 50) return 7;
+  if (accuracy < 50) return 1;
+  return 3;
+}
+
+function stageForInterval(interval: number): number {
+  const idx = MASTERY_INTERVALS.findIndex((v) => v >= interval);
+  return idx < 0 ? MASTERY_INTERVALS.length - 1 : idx;
+}
+
+/**
+ * 前向投影：從今天到考試日，把「間隔複習」與「新章節」攤到各讀書日。
+ * 純函數、不碰 DB —— 便於單元測試，且 compute-on-read 讓計劃天生依真實做題自我修正。
+ */
+export function buildProjection(input: ProjectionInput): PlanDay[] {
+  const {
+    today,
+    examDate,
+    studyDaysPerWeek,
+    chapterStats,
+    allChapters,
+    newChaptersPerStudyDay,
+  } = input;
+  if (!examDate) return [];
+  const allowed = new Set(studyDaysPerWeek);
+  const start = startOfLocalDay(today);
+  const exam = startOfLocalDay(examDate);
+  if (exam <= start) return [];
+
+  const MAX_STEPS = 400;
+  const byDate = new Map<string, PlanEntry[]>();
+  const push = (date: Date, entry: PlanEntry) => {
+    const key = toIsoDate(date);
+    if (!byDate.has(key)) byDate.set(key, []);
+    byDate.get(key)!.push(entry);
+  };
+
+  // 1) 複習：每個已練章節，把 spaced-repetition 到期日往未來滾到考試日。
+  for (const stat of chapterStats) {
+    if (stat.attempts <= 0 || !stat.lastAttemptAt) continue;
+    let stage = stageForInterval(idealIntervalForStat(stat));
+    let interval = idealIntervalForStat(stat);
+    const cursor = startOfLocalDay(new Date(stat.lastAttemptAt));
+    cursor.setDate(cursor.getDate() + interval);
+    let occurrence = 0;
+    for (let steps = 0; steps < MAX_STEPS; steps += 1) {
+      const base = cursor < start ? new Date(start) : new Date(cursor);
+      const due = snapToStudyDay(base, allowed);
+      if (startOfLocalDay(due) > exam) break;
+      push(due, {
+        chapterId: stat.chapterId,
+        subject: stat.subject,
+        chapterName: stat.chapterName,
+        type: 'review',
+        stage,
+        occurrence,
+      });
+      occurrence += 1;
+      stage = Math.min(stage + 1, MASTERY_INTERVALS.length - 1);
+      interval = MASTERY_INTERVALS[stage];
+      cursor.setTime(startOfLocalDay(due).getTime());
+      cursor.setDate(cursor.getDate() + interval);
+    }
+  }
+
+  // 2) 新章節：未練過的章節依序攤到各讀書日（每日上限 newChaptersPerStudyDay）。
+  const studied = new Set(
+    chapterStats.filter((s) => s.attempts > 0).map((s) => s.chapterId),
+  );
+  const backlog = allChapters.filter((c) => !studied.has(c.id));
+  if (backlog.length > 0 && newChaptersPerStudyDay > 0) {
+    let bi = 0;
+    const day = snapToStudyDay(new Date(start), allowed);
+    for (let guard = 0; guard < MAX_STEPS && bi < backlog.length; guard += 1) {
+      if (startOfLocalDay(day) > exam) break;
+      for (let k = 0; k < newChaptersPerStudyDay && bi < backlog.length; k += 1) {
+        const c = backlog[bi];
+        push(day, {
+          chapterId: c.id,
+          subject: c.subject,
+          chapterName: c.name,
+          type: 'practice',
+          stage: 0,
+          occurrence: 0,
+        });
+        bi += 1;
+      }
+      day.setDate(day.getDate() + 1);
+      day.setTime(snapToStudyDay(day, allowed).getTime());
+    }
+  }
+
+  return [...byDate.entries()]
+    .map(([date, entries]) => ({ date, entries }))
+    .sort((a, b) => a.date.localeCompare(b.date));
+}
+
 @Injectable()
 export class PlannerService {
   constructor(
@@ -859,6 +1011,64 @@ export class PlannerService {
     const rows = await this.getPracticeAnswerChapterRows(userId);
     const chapterStats = this.computeChapterStats(rows);
     return this.getDueReviewChapters(chapterStats);
+  }
+
+  /**
+   * 投影從今天到考試日的完整排程（compute-on-read）。計劃頁與日曆 feed 都吃這個，
+   * 使用者一做題 → mastery 變 → 下次讀取自動重算，達成「動態智能修正」。
+   */
+  async projectSchedule(userId: string): Promise<PlanDay[]> {
+    const rows = await this.getPracticeAnswerChapterRows(userId);
+    const chapterStats = this.computeChapterStats(rows);
+    const [subjects, profile] = await Promise.all([
+      this.questionsService.getSubjectsGrouped(),
+      this.db.query.profiles.findFirst({ where: eq(profiles.id, userId) }),
+    ]);
+
+    const settings = (profile?.studySettings ?? {}) as {
+      studyPlan?: StudyPlanSettings;
+    };
+    const plan = settings.studyPlan ?? defaultStudyPlan;
+    const studyDaysPerWeek =
+      plan.studyDaysPerWeek ?? defaultStudyPlan.studyDaysPerWeek;
+    const examDateIso = profile?.examDate ?? plan.examDate ?? null;
+    const subjectOrder = plan.subjectOrder;
+
+    const orderedSubjects =
+      subjectOrder && subjectOrder.length > 0
+        ? [...subjects].sort(
+            (a, b) =>
+              (subjectOrder.indexOf(a.name) + 1 || 999) -
+              (subjectOrder.indexOf(b.name) + 1 || 999),
+          )
+        : subjects;
+    const allChapters = orderedSubjects.flatMap((s) =>
+      s.chapters.map((c) => ({ id: c.id, name: c.name, subject: s.name })),
+    );
+
+    const today = startOfLocalDay(new Date());
+    const examDate = examDateIso
+      ? startOfLocalDay(new Date(examDateIso + 'T00:00:00'))
+      : null;
+
+    const studied = new Set(
+      chapterStats.filter((s) => s.attempts > 0).map((s) => s.chapterId),
+    );
+    const backlog = allChapters.filter((c) => !studied.has(c.id)).length;
+    const studyDayCount = examDate
+      ? countStudyDays(today, examDate, studyDaysPerWeek)
+      : 0;
+    const newChaptersPerStudyDay =
+      studyDayCount > 0 ? clamp(Math.ceil(backlog / studyDayCount), 1, 8) : 1;
+
+    return buildProjection({
+      today,
+      examDate,
+      studyDaysPerWeek,
+      chapterStats,
+      allChapters,
+      newChaptersPerStudyDay,
+    });
   }
 
   async fetchTodayMissionForUser(userId: string) {
