@@ -14,6 +14,8 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 const publicAsset = (path: string) => `${basePath}${path}`;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://passbar.wayneclub.com'),
+  alternates: { canonical: '/' },
   title: 'PassBar | Bar Exam Practice',
   description: 'Practice MBE-style questions with a curated question bank and focused explanations.',
   icons: {
